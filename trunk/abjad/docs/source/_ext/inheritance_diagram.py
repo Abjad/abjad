@@ -204,7 +204,7 @@ class InheritanceGraph(object):
     # These are the default attrs for graphviz
     default_graph_attrs = {
         'rankdir': 'LR',
-        'size': '"8.0, 12.0"',
+        'size': '"6.0, 9.0"',
     }
     default_node_attrs = {
         'shape': 'box',

@@ -45,7 +45,9 @@ def rewrite_line(line):
             'documentationtools.make_reference_manual_lilypond_file({}).lilypond_format)'.format(
             kind, object_name), True
     elif kind == 'graphviz':
-        return '__abjad_book__ = ({!r}, {}.graphviz_format)'.format(kind, object_name), True
+        return '__abjad_book__ = ({!r}, ' \
+            'documentationtools.make_reference_manual_graphviz_graph({}).graphviz_format)'.format(
+            kind, object_name), True
 
 
 def is_valid_node(node):
@@ -130,39 +132,53 @@ def on_doctree_read(app, doctree):
 
 
 def on_build_finished(app, exc):
-    shutil.rmtree(app.builder._abjadbook_tempdir)
+    if os.path.exists(app.builder._abjadbook_tempdir):
+        shutil.rmtree(app.builder._abjadbook_tempdir)
 
 
-def render_graphviz(self, code, absolute_path):
+def render_graphviz(self, code, absolute_path, file_format='png'):
+    assert file_format in ('png', 'pdf')
     tmp_path = os.path.join(self.builder._abjadbook_tempdir,
         os.path.basename(os.path.splitext(absolute_path)[0])) + '.dot'
     with open(tmp_path, 'w') as f:
         f.write(code)
-    command = 'dot -v -Tpng -o {} {}'.format(absolute_path, tmp_path)
-    subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    command = 'convert -trim -resample 50%% {} {}'.format(absolute_path, absolute_path)
-    subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    commands = []
+    if file_format == 'png':
+        commands.append('dot -v -Tpng -o {} {}'.format(absolute_path, tmp_path))
+        commands.append('convert -trim -resample 50%% {} {}'.format(absolute_path, absolute_path))
+    elif file_format == 'pdf':
+        commands.append('dot -v -Tpdf -o {} {}'.format(absolute_path, tmp_path))
+        commands.append('pdfcrop {} {}'.format(absolute_path, absolute_path))
+    for command in commands:
+        subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
-def render_lilypond(self, code, absolute_path):
+def render_lilypond(self, code, absolute_path, file_format='png'):
+    assert file_format in ('png', 'pdf')
+    # LilyPond insists on appending an extension, even if you already did it yourself.
     abs_path = os.path.splitext(absolute_path)[0]
     tmp_path = os.path.join(self.builder._abjadbook_tempdir,
         os.path.basename(os.path.splitext(absolute_path)[0])) + '.ly'
     with open(tmp_path, 'w') as f:
         f.write(code)
-    command = 'lilypond --png -dresolution=300 -o {} {}'.format(abs_path, tmp_path)
-    subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    command = 'convert -trim -resample 30%% {} {}'.format(absolute_path, absolute_path)
-    subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    commands = []
+    if file_format == 'png':
+        commands.append('lilypond --png -dresolution=300 -o {} {}'.format(abs_path, tmp_path))
+        commands.append('convert -trim -resample 50%% {} {}'.format(absolute_path, absolute_path))
+    elif file_format == 'pdf':
+        commands.append('lilypond -o {} {}'.format(abs_path, tmp_path))
+        commands.append('pdfcrop {} {}'.format(absolute_path, absolute_path))
+    for command in commands:
+        subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
-def render_abjad_book_node(self, code, kind):
+def render_abjad_book_node(self, code, kind, file_format='png'):
     prefix = 'blah'
     hashkey = code.encode('utf-8') + kind
     file_name = '{}-{}.{}'.format(
         kind,
         hashlib.sha1(hashkey).hexdigest(),
-        'png')
+        file_format)
     if hasattr(self.builder, 'imgpath'): # HTML
         relative_path = posixpath.join(self.builder.imgpath, file_name)
         absolute_path = os.path.join(self.builder.outdir, '_images', file_name)
@@ -173,15 +189,15 @@ def render_abjad_book_node(self, code, kind):
         return relative_path, absolute_path
     # render
     if kind == 'lilypond':
-        render_lilypond(self, code, absolute_path)
+        render_lilypond(self, code, absolute_path, file_format)
     elif kind == 'graphviz':
-        render_graphviz(self, code, absolute_path)
+        render_graphviz(self, code, absolute_path, file_format)
     return relative_path, absolute_path
 
 
 def visit_abjad_book_html(self, node):
     relative_path, absolute_path = render_abjad_book_node(
-        self, node['code'], node['kind'])
+        self, node['code'], node['kind'], file_format='png')
     wrapper = 'p'
     alt = self.encode(node['code']).strip()
     self.body.append(self.starttag(node, wrapper, CLASS='abjadbook'))
@@ -192,7 +208,7 @@ def visit_abjad_book_html(self, node):
 
 def visit_abjad_book_latex(self, node):
     relative_path, absolute_path = render_abjad_book_node(
-        self, node['code'], node['kind'])
+        self, node['code'], node['kind'], file_format='pdf')
     self.body.append('\n\\includegraphics{' + relative_path + '}\n')
     raise docutils.nodes.SkipNode
 

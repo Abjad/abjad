@@ -184,14 +184,20 @@ htmlhelp_basename = 'Abjaddoc'
 # -- Options for LaTeX output --------------------------------------------------
 
 latex_elements = {
-# The paper size ('letterpaper' or 'a4paper').
-#'papersize': 'letterpaper',
+    'inputenc': r'\usepackage[utf8x]{inputenc}',
+    'utf8extra': '',
 
-# The font size ('10pt', '11pt' or '12pt').
-#'pointsize': '10pt',
+    # The paper size ('letterpaper' or 'a4paper').
+    'papersize': 'a4paper',
 
-# Additional stuff for the LaTeX preamble.
-#'preamble': '',
+    # The font size ('10pt', '11pt' or '12pt').
+    'pointsize': '8pt',
+
+    # Additional stuff for the LaTeX preamble.
+    'preamble': r'''
+\let\Verbatim=\OriginalVerbatim
+\let\endVerbatim=\endOriginalVerbatim
+    ''',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
