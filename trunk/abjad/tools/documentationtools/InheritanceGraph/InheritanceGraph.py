@@ -244,7 +244,6 @@ class InheritanceGraph(AbjadObject):
             return name
 
         klass_nodes = {}
-        module_clusters = {}
 
         graph = documentationtools.GraphvizGraph(
             name='InheritanceGraph',
@@ -273,17 +272,16 @@ class InheritanceGraph(AbjadObject):
             key=lambda x: (x.__module__, x.__name__)):
             pieces = get_klass_name_pieces(klass)
 
-            if pieces[0] not in module_clusters:
+            try:
+                cluster = graph[pieces[0]]
+            except KeyError:
                 cluster = documentationtools.GraphvizSubgraph(
-                    name='cluster_{}'.format(pieces[0]),
+                    name=pieces[0],
                     attributes={
                         'label': pieces[0],
                     },
                     )
                 graph.append(cluster)
-                module_clusters[pieces[0]] = cluster
-            else:
-                cluster = module_clusters[pieces[0]]
 
             node = documentationtools.GraphvizNode(
                 name='.'.join(pieces),
@@ -299,14 +297,16 @@ class InheritanceGraph(AbjadObject):
             if klass in self.root_klasses:
                 pass
 
-            if klass in self.lineage_klasses:
-                pass
-
             if inspect.isabstract(klass):
                 node.attributes['shape'] = 'oval'
                 node.attributes['style'] = 'bold'
             else:
                 node.attributes['shape'] = 'box'
+
+            if klass in self.lineage_klasses:
+                node.attributes['color'] = 'black'
+                node.attributes['fontcolor'] = 'white'
+                node.attributes['style'] = 'filled,rounded'
 
         for parent, children in self.parent_children_mapping.iteritems():
             for child in children:
@@ -314,11 +314,11 @@ class InheritanceGraph(AbjadObject):
                 child_node = klass_nodes[child]
                 documentationtools.GraphvizEdge()(parent_node, child_node)
 
-        for i, module_name in enumerate(sorted(module_clusters)):
-            cluster = module_clusters[module_name]
+        for i, cluster in enumerate(sorted(graph.children, key=lambda x: x.name)):
             color = i % 9 + 1
             for node in cluster:
-                node.attributes['color'] = color
+                if 'color' not in node.attributes:
+                    node.attributes['color'] = color
                 if self.use_groups:
                     node.attributes['group'] = i
             if not self.use_clusters:

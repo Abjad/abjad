@@ -41,6 +41,8 @@ class GraphvizSubgraph(GraphvizGraph):
     @property
     def canonical_name(self):
         if self.name is not None:
+            if self.is_cluster:
+                return 'cluster_' + self.name
             return self.name
         prefix = 'subgraph_'
         if self.is_cluster:
