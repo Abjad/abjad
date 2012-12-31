@@ -177,7 +177,7 @@ class ConcreteInterpreter(Interpreter):
             #self._debug(division_region_expression, 'drx')
             if division_region_expression is None:
                 return
-            divisions = division_region_expression.divisions[:]
+            divisions = division_region_expression.payload.divisions[:]
             region_duration = division_region_command.timespan.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             divisions = [divisiontools.Division(x) for x in divisions]
@@ -410,7 +410,8 @@ class ConcreteInterpreter(Interpreter):
         assert len(rhythm_region_start_division_duration_lists) == len(rhythm_command_merged_durations)
         rhythm_region_start_division_counts = [len(l) for l in rhythm_region_start_division_duration_lists]
         rhythm_region_division_lists = sequencetools.partition_sequence_by_counts(
-            voice_division_list.divisions, rhythm_region_start_division_counts, cyclic=False, overhang=False)
+            voice_division_list.divisions, 
+            rhythm_region_start_division_counts, cyclic=False, overhang=False)
         rhythm_region_division_lists = [
             divisiontools.DivisionList(x, voice_name=voice.name) for x in rhythm_region_division_lists]
         assert len(rhythm_region_division_lists) == len(rhythm_command_merged_durations)
@@ -550,7 +551,7 @@ class ConcreteInterpreter(Interpreter):
             voice_division_list = divisiontools.DivisionList([], voice.name)
             expressions = self.score_specification.contexts[voice.name]['division_region_expressions']
             #self._debug(expressions, 'expressions')
-            divisions = [expression.divisions for expression in expressions]
+            divisions = [expression.payload.divisions for expression in expressions]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)
             start_offset = durationtools.Offset(0)
             for division in divisions:

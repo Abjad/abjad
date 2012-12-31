@@ -11,8 +11,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct.division_list
 
-.. autoattribute:: experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct.divisions
-
 .. autoattribute:: experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct.payload
 
 .. autoattribute:: experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct.start_offset

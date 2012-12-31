@@ -84,7 +84,8 @@ class DivisionRegionProduct(RegionProduct):
         start_offset = durationtools.Offset(start_offset)
         assert self.timespan.start_offset <= start_offset
         duration_to_trim = start_offset - self.timespan.start_offset
-        divisions = copy.deepcopy(self.divisions)
+        #divisions = copy.deepcopy(self.divisions)
+        divisions = copy.deepcopy(self.payload.divisions)
         shards = sequencetools.split_sequence_by_weights(
             divisions, [duration_to_trim], cyclic=False, overhang=True)
         trimmed_divisions = shards[-1]
@@ -144,7 +145,8 @@ class DivisionRegionProduct(RegionProduct):
         assert stop_offset <= self.timespan.stop_offset
         duration_to_trim = self.timespan.stop_offset - stop_offset
         duration_to_keep = self.division_list.duration - duration_to_trim
-        divisions = copy.deepcopy(self.divisions)
+        #divisions = copy.deepcopy(self.divisions)
+        divisions = copy.deepcopy(self.payload.divisions)
         shards = sequencetools.split_sequence_by_weights(
             divisions, [duration_to_keep], cyclic=False, overhang=True)
         trimmed_divisions = shards[0]
@@ -161,15 +163,6 @@ class DivisionRegionProduct(RegionProduct):
         Return division list.
         '''
         return self._division_list
-
-    # TODO: remove in favor of self.division_list
-    @property
-    def divisions(self):
-        '''Division region product divisions.
-
-        Return list.
-        '''
-        return self.division_list.divisions
 
     @property
     def payload(self):
@@ -239,7 +232,8 @@ class DivisionRegionProduct(RegionProduct):
         stop_offset_translation = durationtools.Duration(stop_offset_translation)
         new_start_offset = self.timespan.start_offset + start_offset_translation
         new_stop_offset = self.timespan.stop_offset + stop_offset_translation
-        divisions = copy.copy(self.divisions)
+        #divisions = copy.copy(self.divisions)
+        divisions = copy.copy(self.payload.divisions)
         timespan = timespantools.Timespan(new_start_offset, new_stop_offset)
         result = type(self)(divisions, voice_name=self.voice_name, timespan=timespan)
         return result

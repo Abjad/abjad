@@ -53,9 +53,9 @@ class RegionProduct(AbjadObject):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    @abc.abstractproperty
+    @property
     def payload(self):
-        pass
+        return self._payload
 
     @property
     def start_offset(self):

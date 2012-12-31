@@ -96,14 +96,13 @@ class DivisionSelector(Selector):
         trimmed_division_region_expressions.fuse()
         assert len(trimmed_division_region_expressions) == 1
         final_expression = trimmed_division_region_expressions[0]
-        divisions = trimmed_division_region_expressions[0].divisions
+        divisions = trimmed_division_region_expressions[0].payload.divisions
         start_offset = trimmed_division_region_expressions[0].timespan.start_offset
         divisions, start_offset = self._apply_request_modifiers(divisions, start_offset)
         timespan = timespantools.Timespan(start_offset)
         result = settingtools.DivisionRegionProduct(
             divisions, 
             voice_name=final_expression.voice_name,
-            #start_offset=start_offset
             timespan=timespan
             )
         return result
