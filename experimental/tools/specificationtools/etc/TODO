@@ -152,5 +152,3 @@
 29. Replace OffsetPositionedExpression classes' offset properties with timespan property.
 
 30. Relace Command.offsets with Command.timespan.
-
-31. Implement Command.set(request=divisions).

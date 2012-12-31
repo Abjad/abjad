@@ -123,6 +123,10 @@ Methods
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. automethod:: experimental.tools.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.new
+
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
+
 .. automethod:: experimental.tools.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.overlaps_all_of_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`

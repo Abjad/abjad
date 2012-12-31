@@ -154,7 +154,8 @@ class ConcreteInterpreter(Interpreter):
             divisions = self.division_command_request_to_divisions(division_command_request, voice_name)
             start_offset = division_region_command.start_offset
             divisions, start_offset = division_command_request._apply_request_modifiers(divisions, start_offset)
-            division_region_command._request = divisions
+            divisions = requesttools.AbsoluteRequest(divisions)
+            division_region_command = division_region_command.new(request=divisions)
             division_region_expressions = self.division_region_command_to_division_region_expressions(
                 division_region_command, voice_name)
             return division_region_expressions
@@ -163,8 +164,8 @@ class ConcreteInterpreter(Interpreter):
             start_offset, stop_offset = division_region_command.offsets
             timespan, divisions = beat_selector._get_timespan_and_selected_objects(
                 self.score_specification, division_region_command.voice_name, start_offset, stop_offset)
-            # TODO: implement Command.set(request=divisions) to do this cleanly:
-            division_region_command._request = divisions
+            divisions = requesttools.AbsoluteRequest(divisions)
+            division_region_command = division_region_command.new(request=divisions)
             division_region_expressions = self.division_region_command_to_division_region_expressions(
                 division_region_command, voice_name)
             return division_region_expressions
@@ -657,7 +658,7 @@ class ConcreteInterpreter(Interpreter):
             fresh=single_context_setting.fresh
             )
         if single_context_setting.attribute == 'divisions':
-            command._truncate = single_context_setting.truncate
+            command = command.new(truncate=single_context_setting.truncate)
         return command
 
     def sort_and_split_raw_commands(self, raw_commands):
@@ -691,6 +692,8 @@ class ConcreteInterpreter(Interpreter):
                 right_command = copy.deepcopy(left_command)
                 left_command._stop_offset = middle_command.start_offset
                 right_command._start_offset = middle_command.stop_offset
+                #left_command = left_command.new(stop_offset=middle_command.start_offset)
+                #right_command = right_command.new(start_offset=middle_command.stop_offset)
                 command_was_split = True
             if command_was_delayed:
                 index = cooked_commands.index(cooked_command)

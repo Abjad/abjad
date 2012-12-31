@@ -100,8 +100,22 @@ class Command(Timespan):
         '''
         assert self.can_fuse(command)
         stop_offset = self.stop_offset + command.duration
-        duration = self.duration + command.duration
-        fused_command = copy.deepcopy(self)
-        fused_command._stop_offset = stop_offset
-        fused_command._duration = duration 
+        fused_command = self.new(stop_offset=stop_offset)
         return fused_command
+
+    def new(self, **kwargs):
+        positional_argument_dictionary = self._positional_argument_dictionary
+        keyword_argument_dictionary = self._keyword_argument_dictionary
+        for key, value in kwargs.iteritems():
+            if key in positional_argument_dictionary:
+                positional_argument_dictionary[key] = value
+            elif key in keyword_argument_dictionary:
+                keyword_argument_dictionary[key] = value
+            else:
+                raise KeyError(key)
+        positional_argument_values = []
+        for positional_argument_name in self._positional_argument_names:
+            positional_argument_value = positional_argument_dictionary[positional_argument_name]
+            positional_argument_values.append(positional_argument_value)
+        result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
+        return result

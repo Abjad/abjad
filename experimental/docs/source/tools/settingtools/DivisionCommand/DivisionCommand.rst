@@ -127,6 +127,10 @@ Methods
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.new
+
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
+
 .. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.overlaps_all_of_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
