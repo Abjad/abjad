@@ -116,7 +116,6 @@ class ConcreteInterpreter(Interpreter):
             divisions = division_command_request.get_payload(self.score_specification, voice_name)
             divisions = requesttools.AbsoluteRequest(divisions)
             division_region_command = division_region_command.new(request=divisions)
-            # TODO: migrate to DivisionRegionCommand
             division_region_expressions = self.division_region_command_to_division_region_expressions(
                 division_region_command, voice_name)
             return division_region_expressions
@@ -477,8 +476,7 @@ class ConcreteInterpreter(Interpreter):
         if isinstance(time_signature_setting.request, requesttools.AbsoluteRequest):
             time_signatures = time_signature_setting.request.payload
         elif isinstance(time_signature_setting.request, requesttools.TimeSignatureCommandRequest):
-            time_signatures = self.time_signature_command_request_to_time_signatures(
-                time_signature_setting.request)
+            time_signatures = time_signature_setting.request.get_payload(self.score_specification)
         elif isinstance(time_signature_setting.request, selectortools.BackgroundMeasureSelector):
             background_measure_selector = time_signature_setting.request
             time_signatures = background_measure_selector._get_time_signatures_without_timespan(
@@ -734,12 +732,3 @@ class ConcreteInterpreter(Interpreter):
             else:
                 result.append(element)
         return result
-
-    # TODO: migrate to TimeSignatureCommandRequest.get_payload(score_specification, ...)
-    def time_signature_command_request_to_time_signatures(self, command_request):
-        assert isinstance(command_request, requesttools.TimeSignatureCommandRequest)
-        assert command_request.attribute == 'time_signatures'
-        segment_specification = self.get_start_segment_specification(command_request.offset)
-        time_signatures = segment_specification.time_signatures[:]
-        time_signatures, dummy = command_request._apply_request_modifiers(time_signatures, None)
-        return time_signatures
