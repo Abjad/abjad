@@ -103,9 +103,19 @@ Methods
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_after_expr_stops
 
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_after_offset
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_at_offset
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_at_or_after_offset
+
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_before_expr_starts
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_before_expr_stops
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_before_offset
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_before_or_at_offset
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_during_expr
 
@@ -117,9 +127,19 @@ Methods
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_after_expr_stops
 
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_after_offset
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_at_offset
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_at_or_after_offset
+
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_before_expr_starts
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_before_expr_stops
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_before_offset
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_before_or_at_offset
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_during_expr
 

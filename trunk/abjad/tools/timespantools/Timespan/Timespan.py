@@ -399,6 +399,18 @@ class Timespan(BoundedObject):
         if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_starts_after_timespan_1_stops(expr, self)
 
+    def starts_after_offset(self, offset):
+        offset = durationtools.Offset(offset)
+        return offset < self.start_offset
+        
+    def starts_at_offset(self, offset):
+        offset = durationtools.Offset(offset)
+        return self.start_offset == offset
+
+    def starts_at_or_after_offset(self, offset):
+        offset = durationtools.Offset(offset)
+        return offset <= self.start_offset
+
     def starts_before_expr_starts(self, expr):
         if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_starts_before_timespan_1_starts(expr, self)
@@ -406,6 +418,14 @@ class Timespan(BoundedObject):
     def starts_before_expr_stops(self, expr):
         if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_starts_before_timespan_1_stops(expr, self)
+
+    def starts_before_offset(self, offset):
+        offset = durationtools.Offset(offset)
+        return self.start_offset < offset
+
+    def starts_before_or_at_offset(self, offset):
+        offset = durationtools.Offset(offset)
+        return self.start_offset <= offset
 
     def starts_during_expr(self, expr):
         if self._implements_timespan_interface(expr):
@@ -427,6 +447,18 @@ class Timespan(BoundedObject):
         if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_stops_after_timespan_1_stops(expr, self)
 
+    def stops_after_offset(self, offset):
+        offset = durationtools.Offset(offset)
+        return offset < self.stop_offset
+
+    def stops_at_offset(self, offset):
+        offset = durationtools.Offset(offset)
+        return self.stop_offset == offset
+
+    def stops_at_or_after_offset(self, offset):
+        offset = durationtools.Offset(offset)
+        return offset <= self.stop_offset
+
     def stops_before_expr_starts(self, expr):
         if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_stops_before_timespan_1_starts(expr, self)
@@ -434,6 +466,14 @@ class Timespan(BoundedObject):
     def stops_before_expr_stops(self, expr):
         if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_stops_before_timespan_1_stops(expr, self)
+
+    def stops_before_offset(self, offset):
+        offset = durationtools.Offset(offset)
+        return self.stop_offset < offset
+
+    def stops_before_or_at_offset(self, offset):
+        offset = durationtools.Offset(offset)
+        return self.stop_offset <= offset
 
     def stops_during_expr(self, expr):
         if self._implements_timespan_interface(expr):
