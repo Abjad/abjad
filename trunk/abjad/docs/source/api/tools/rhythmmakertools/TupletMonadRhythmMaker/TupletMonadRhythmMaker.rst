@@ -16,11 +16,11 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.reverse
+.. automethod:: abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.new
 
     Inherited from :py:class:`rhythmmakertools.RhythmMaker <abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker>`
 
-.. automethod:: abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.set
+.. automethod:: abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.reverse
 
     Inherited from :py:class:`rhythmmakertools.RhythmMaker <abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker>`
 

@@ -22,7 +22,7 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.set
+.. automethod:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.new
 
 Special Methods
 ---------------

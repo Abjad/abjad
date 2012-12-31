@@ -20,11 +20,11 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: abjad.tools.rhythmmakertools.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.reverse
+.. automethod:: abjad.tools.rhythmmakertools.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.new
 
     Inherited from :py:class:`rhythmmakertools.RhythmMaker <abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker>`
 
-.. automethod:: abjad.tools.rhythmmakertools.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.set
+.. automethod:: abjad.tools.rhythmmakertools.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.reverse
 
     Inherited from :py:class:`rhythmmakertools.RhythmMaker <abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker>`
 

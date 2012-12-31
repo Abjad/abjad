@@ -28,7 +28,7 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.set
+.. automethod:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.new
 
     Inherited from :py:class:`timerelationtools.TimeRelation <abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation>`
 

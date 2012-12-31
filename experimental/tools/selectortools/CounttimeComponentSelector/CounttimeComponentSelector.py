@@ -90,7 +90,7 @@ class CounttimeComponentSelector(Selector):
         if self.time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
         else:
-            time_relation = self.time_relation.set(timespan_1=timespan_1)
+            time_relation = self.time_relation.new(timespan_1=timespan_1)
         for current_rhythm_region_expression in rhythm_region_expressions:
             if previous_rhythm_region_expression is not None:
                 if not previous_rhtyhm_region_expression.stops_when_expr_starts(

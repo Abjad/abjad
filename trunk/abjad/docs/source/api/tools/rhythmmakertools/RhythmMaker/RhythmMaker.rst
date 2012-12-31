@@ -16,9 +16,9 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker.reverse
+.. automethod:: abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker.new
 
-.. automethod:: abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker.set
+.. automethod:: abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker.reverse
 
 Special Methods
 ---------------

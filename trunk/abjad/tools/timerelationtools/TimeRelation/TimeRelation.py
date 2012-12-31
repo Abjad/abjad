@@ -49,11 +49,11 @@ class TimeRelation(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def set(self, **kwargs):
+    def new(self, **kwargs):
         '''Inialize new time relation with keyword arguments optionally changed::
 
             >>> time_relation = timerelationtools.timespan_2_stops_when_timespan_1_starts()
-            >>> new_time_relation = time_relation.set(timespan_1=timespantools.Timespan(0, 5))
+            >>> new_time_relation = time_relation.new(timespan_1=timespantools.Timespan(0, 5))
 
         ::
 

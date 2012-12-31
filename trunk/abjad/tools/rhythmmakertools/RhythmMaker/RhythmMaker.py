@@ -97,26 +97,8 @@ class RhythmMaker(AbjadObject):
         return talea
 
     ### PUBLIC METHODS ###
- 
-    def reverse(self):
-        '''.. versionadded:: 2.10
 
-        Reverse rhythm-maker.
-
-        .. note:: method is provisional.
-
-        Defined equal to exact copy of rhythm-maker.
-
-        This is the fallback for child classes.
-
-        Directed rhythm-maker child classes should override this method.
-
-        Return newly constructed rhythm-maker.
-        '''
-        new = copy.deepcopy(self)
-        return new
-
-    def set(self, **kwargs):
+    def new(self, **kwargs):
         r'''.. versionadded:: 2.11
 
         Copy rhythm-maker.
@@ -128,7 +110,7 @@ class RhythmMaker(AbjadObject):
         ::
 
             >>> divisions = [(5, 16), (3, 8)]
-            >>> leaf_lists = maker.set(decrease_durations_monotonically=False)(divisions)
+            >>> leaf_lists = maker.new(decrease_durations_monotonically=False)(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
 
         ::
@@ -156,4 +138,22 @@ class RhythmMaker(AbjadObject):
         new = copy.deepcopy(self)
         for key, value in kwargs.iteritems():
             setattr(new, key, value)
+        return new
+ 
+    def reverse(self):
+        '''.. versionadded:: 2.10
+
+        Reverse rhythm-maker.
+
+        .. note:: method is provisional.
+
+        Defined equal to exact copy of rhythm-maker.
+
+        This is the fallback for child classes.
+
+        Directed rhythm-maker child classes should override this method.
+
+        Return newly constructed rhythm-maker.
+        '''
+        new = copy.deepcopy(self)
         return new
