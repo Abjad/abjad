@@ -5,7 +5,7 @@ from experimental.tools.requesttools.Request import Request
 class CommandRequest(Request):
     r'''
 
-    Request `attribute` command active at `symbolic_offset` in `voice_name`::
+    Request `attribute` command active at `offset` in `voice_name`::
 
         >>> from experimental.tools import *
 
@@ -38,7 +38,7 @@ class CommandRequest(Request):
                 )
             )
 
-    RegionCommand requested is canonically assumed to be a list or other iterable.
+    Command requested is canonically assumed to be a list or other iterable.
 
     Because of this the request affords list-manipulation attributes.
     These are `index`, `count`.
@@ -48,20 +48,20 @@ class CommandRequest(Request):
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute, voice_name, symbolic_offset, request_modifiers=None):
+    def __init__(self, attribute, voice_name, offset, request_modifiers=None):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
-        assert isinstance(symbolic_offset, timeexpressiontools.OffsetExpression)
+        assert isinstance(offset, timeexpressiontools.OffsetExpression)
         Request.__init__(self, request_modifiers=request_modifiers)
         self._attribute = attribute
         self._voice_name = voice_name
-        self._symbolic_offset = symbolic_offset
+        self._offset = offset
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def attribute(self):
-        '''RegionCommand request attribute specified by user.
+        '''Command request attribute specified by user.
 
             >>> command_request.attribute
             'divisions'
@@ -72,20 +72,20 @@ class CommandRequest(Request):
 
     @property
     def start_segment_identifier(self):
-        '''Delegate to ``self.symbolic_offset.start_segment_identifier``.
+        '''Delegate to ``self.offset.start_segment_identifier``.
 
             >>> command_request.start_segment_identifier
             'red'
 
         Return string or none.
         '''
-        return self.symbolic_offset.start_segment_identifier
+        return self.offset.start_segment_identifier
 
     @property
-    def symbolic_offset(self):
-        '''RegionCommand request symbolic offset specified by user.
+    def offset(self):
+        '''Command request offset specified by user.
 
-            >>> z(command_request.symbolic_offset)
+            >>> z(command_request.offset)
             timeexpressiontools.OffsetExpression(
                 anchor=selectortools.BackgroundMeasureSelector(
                     anchor='red',
@@ -96,13 +96,13 @@ class CommandRequest(Request):
                     )
                 )
 
-        Return symbolic_offset.
+        Return offset expression.
         '''
-        return self._symbolic_offset
+        return self._offset
 
     @property
     def voice_name(self):
-        '''RegionCommand request voice name specified by user.
+        '''Command request voice name specified by user.
 
             >>> command_request.voice_name
             'Voice 1'

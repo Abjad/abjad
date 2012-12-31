@@ -70,7 +70,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
 
     @property
     def _anchor_abbreviation(self):
-        '''Form of symbolic timespan suitable for writing to disk.
+        '''Form of time expression suitable for writing to disk.
         '''
         return self
 
@@ -206,8 +206,8 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
 
     @property
     def timespan_modifiers(self):
-        '''Read-only list of timespan_modifiers to be applied 
-        to symbolic timespan during evaluation.
+        '''Read-only list of timespan modifiers to be applied 
+        to timespan expression during evaluation.
 
             >>> red_segment.timespan.timespan_modifiers
             ModifierInventory([])
@@ -283,12 +283,12 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         if mathtools.is_positive_integer_equivalent_number(ratio):
             ratio = int(ratio) * [1]
         for part in range(len(ratio)):
-            new_symbolic_timespan = copy.deepcopy(self)
+            new_timespan_expression = copy.deepcopy(self)
             timespan_modifier = \
                 'self._divide_by_ratio(original_start_offset, original_stop_offset, {!r}, {!r})'
             timespan_modifier = timespan_modifier.format(ratio, part)
-            new_symbolic_timespan.timespan_modifiers.append(timespan_modifier)
-            result.append(new_symbolic_timespan)
+            new_timespan_expression.timespan_modifiers.append(timespan_modifier)
+            result.append(new_timespan_expression)
         return tuple(result)
 
     def scale(self, multiplier):

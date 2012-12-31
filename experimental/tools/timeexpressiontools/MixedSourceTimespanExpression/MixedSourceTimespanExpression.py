@@ -3,7 +3,7 @@ from experimental.tools.timeexpressiontools.TimespanExpression import TimespanEx
 
 
 class MixedSourceTimespanExpression(TimespanExpression):
-    r'''
+    r'''Mixed-source timespan expression.
 
     ::
 
@@ -60,7 +60,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
                 )
             )
 
-    Mixed-source symbolic timespan properties are read-only.
+    Mixed-source timespan expression properties are read-only.
     '''
 
     ### INITIALIZER ###
@@ -88,13 +88,6 @@ class MixedSourceTimespanExpression(TimespanExpression):
     ### PRIVATE METHODS ###
 
     def _get_timespan(self, score_specification, context_name):
-        '''Evaluate start and stop offsets of symbolic timespan when applied
-        to `context_name` in `score_specification`.
-
-        .. note:: not yet implemented.
-
-        Return pair.
-        '''
         raise NotImplementedError
 
     ### READ-ONLY PUBLIC PROPERTIES ###

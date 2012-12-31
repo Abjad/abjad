@@ -26,8 +26,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.get_score_offset
-
 .. automethod:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.request_division_command
 
 .. automethod:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.request_rhythm_command

@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.attribute
 
+.. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.offset
+
 .. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.request_modifiers
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
@@ -20,8 +22,6 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.symbolic_offset
 
 .. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.voice_name
 

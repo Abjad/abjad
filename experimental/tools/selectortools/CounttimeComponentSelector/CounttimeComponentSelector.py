@@ -72,11 +72,6 @@ class CounttimeComponentSelector(Selector):
     ### PRIVATE METHODS ###
 
     def _get_timespan(self, score_specification, voice_name):
-        '''Evaluate start and stop offsets of symbolic timespan when applied
-        to `voice_name` in `score_specification`.
-
-        Return offset pair.
-        '''
         # allow user-specified voice name to override passed-in voice name
         voice_name = self.voice_name or voice_name
         rhythm_region_expressions = score_specification.contexts[voice_name]['rhythm_region_expressions']
@@ -148,9 +143,10 @@ class CounttimeComponentSelector(Selector):
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
+    # TODO: always return class inventory.
     @property
     def klass(self):
-        '''Class(es) of counttime component symbolic timespan.
+        '''Class(es) of counttime component selector.
 
         Return class, class inventory or none.
         '''
@@ -158,7 +154,7 @@ class CounttimeComponentSelector(Selector):
 
     @property
     def predicate(self):
-        '''Predicate of counttime component symbolic timespan specified by user.
+        '''Predicate of counttime component selector specified by user.
 
         Return predicate or none.
         '''

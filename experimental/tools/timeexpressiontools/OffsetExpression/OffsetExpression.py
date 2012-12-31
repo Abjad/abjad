@@ -81,6 +81,21 @@ class OffsetExpression(AbjadObject):
         else:
             return True
 
+    ### PRIVATE METHODS ###
+
+    def _get_offset(self, score_specification, context_name):
+        edge = self.edge or Left
+        anchor_timespan = score_specification.get_anchor_timespan(self, context_name)
+        if edge == Left:
+            offset = anchor_timespan.start_offset
+        else:
+            offset = anchor_timespan.stop_offset
+        multiplier = self.multiplier or durationtools.Multiplier(1)
+        offset *= multiplier
+        addendum = self.addendum or durationtools.Offset(0)
+        offset += addendum
+        return offset
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -160,26 +175,6 @@ class OffsetExpression(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def get_score_offset(self, score_specification, context_name):
-        '''Evaluate score offset of symbolic offset when applied
-        to `context_name` in `score_specification`.
-
-        .. note:: add example.
-
-        Return offset.
-        '''
-        edge = self.edge or Left
-        anchor_timespan = score_specification.get_anchor_timespan(self, context_name)
-        if edge == Left:
-            score_offset = anchor_timespan.start_offset
-        else:
-            score_offset = anchor_timespan.stop_offset
-        multiplier = self.multiplier or durationtools.Multiplier(1)
-        score_offset = multiplier * score_offset
-        offset = self.addendum or durationtools.Offset(0)
-        score_offset = score_offset + offset
-        return score_offset
-
     def request_division_command(self, voice):
         r'''Request voice ``1`` division command
         active at start of segment ``'red'``::
@@ -202,7 +197,7 @@ class OffsetExpression(AbjadObject):
         Return command request.        
         '''
         from experimental.tools import requesttools
-        return requesttools.CommandRequest('divisions', voice, symbolic_offset=self)
+        return requesttools.CommandRequest('divisions', voice, offset=self)
 
     def request_rhythm_command(self, voice):
         r'''Request voice ``1`` rhythm command 
@@ -226,7 +221,7 @@ class OffsetExpression(AbjadObject):
         Return command request.        
         '''
         from experimental.tools import requesttools
-        return requesttools.CommandRequest('rhythm', voice, symbolic_offset=self)
+        return requesttools.CommandRequest('rhythm', voice, offset=self)
 
     def request_time_signature_command(self, voice):
         r'''Request voice ``1`` time signature command
@@ -250,4 +245,4 @@ class OffsetExpression(AbjadObject):
         Return command request.
         '''
         from experimental.tools import requesttools
-        return requesttools.CommandRequest('time_signatures', voice, symbolic_offset=self)
+        return requesttools.CommandRequest('time_signatures', voice, offset=self)

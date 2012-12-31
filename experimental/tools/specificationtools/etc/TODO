@@ -37,7 +37,7 @@
 ### MORE ###
 
 8.  Can start_segment_identifier properties eventually be completely removed from model?
-    What should be possible is for code to look at any symbolic timespan and get start segment specification.
+    What should be possible is for code to look at any timespan expression and get start segment specification.
     There is in fact an Interpreter.get_start_segment_specification() method right now.
     How does this relate to the "reanchoring" of settings during interpretation?
 
@@ -155,4 +155,4 @@
 
 31. Migrate SelectMethodMixin from timeexpressiontools to settingtools.
 
-32. Remove 'symbolic_offset' and 'symbolic_timespan' and 'symbolic' from codebase.
+32. Change CounttimeComponentSelector.klass to CounttimeComponentSelector.classes in plural.

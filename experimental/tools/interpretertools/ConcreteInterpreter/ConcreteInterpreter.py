@@ -108,9 +108,8 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
         #self._debug(division_command_request, 'division command request')
-        requested_segment_identifier = division_command_request.symbolic_offset.start_segment_identifier
-        requested_offset = division_command_request.symbolic_offset.get_score_offset(
-            self.score_specification, voice_name)
+        requested_segment_identifier = division_command_request.offset.start_segment_identifier
+        requested_offset = division_command_request.offset._get_offset(self.score_specification, voice_name)
         timespan_inventory = timespantools.TimespanInventory()
         #self._debug_values(self.score_specification.all_division_region_commands, 'all div region commands')
         for division_region_command in self.score_specification.all_division_region_commands:
@@ -140,7 +139,10 @@ class ConcreteInterpreter(Interpreter):
         elif isinstance(division_region_command.request, requesttools.AbsoluteRequest):
             request = division_region_command.request
             payload = request.payload
-            divisions = self.symbolic_timespans_to_durations(payload)
+            # TODO: This is a hack; the payload for an absolute request 
+            #       should always be some type of (literal) constant.
+            #       So the branched call below should be unnecessary.
+            divisions = self.timespan_expressions_to_durations(payload)
             divisions = [divisiontools.Division(x) for x in divisions]
             region_duration = division_region_command.timespan.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
@@ -612,10 +614,9 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(rhythm_command_request, requesttools.CommandRequest)
         assert rhythm_command_request.attribute == 'rhythm'
         #self._debug(rhythm_command_request, 'rcr')
-        requested_segment_identifier = rhythm_command_request.symbolic_offset.start_segment_identifier
+        requested_segment_identifier = rhythm_command_request.offset.start_segment_identifier
         #self._debug(requested_segment_identifier, 'segment')
-        requested_offset = rhythm_command_request.symbolic_offset.get_score_offset(
-            self.score_specification, voice_name)
+        requested_offset = rhythm_command_request.offset._get_offset(self.score_specification, voice_name)
         #self._debug(requested_offset, 'offset')
         timespan_inventory = timespantools.TimespanInventory()
         for rhythm_region_command in self.score_specification.all_rhythm_region_commands:
@@ -778,7 +779,7 @@ class ConcreteInterpreter(Interpreter):
         result.append(right_region_command)
         return result
 
-    def symbolic_timespans_to_durations(self, expr):
+    def timespan_expressions_to_durations(self, expr):
         assert isinstance(expr, (tuple, list))
         result = []
         for element in expr:
@@ -794,7 +795,7 @@ class ConcreteInterpreter(Interpreter):
     def time_signature_command_request_to_time_signatures(self, command_request):
         assert isinstance(command_request, requesttools.CommandRequest)
         assert command_request.attribute == 'time_signatures'
-        segment_specification = self.get_start_segment_specification(command_request.symbolic_offset)
+        segment_specification = self.get_start_segment_specification(command_request.offset)
         time_signatures = segment_specification.time_signatures[:]
         time_signatures, dummy = command_request._apply_request_modifiers(time_signatures, None)
         return time_signatures
