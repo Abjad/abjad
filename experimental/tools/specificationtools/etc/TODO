@@ -153,5 +153,3 @@
         leaves.rotate()
 
 30. Make CommandRequest abstract.
-
-31. Globally replace 'region_product' with 'region_product' in interpreter.

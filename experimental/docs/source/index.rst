@@ -197,13 +197,6 @@ Unstable packages (load manually)
    tools/requesttools/StatalServerRequest/StatalServerRequest
    tools/requesttools/TimeSignatureCommandRequest/TimeSignatureCommandRequest
 
---------
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/requesttools/expr_to_request
-
 :py:mod:`segmenttools <experimental.tools.segmenttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

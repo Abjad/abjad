@@ -1,3 +1,4 @@
+import copy
 from abjad.tools.abctools import AbjadObject
 
 
@@ -19,10 +20,30 @@ class SetMethodMixin(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _store_multiple_context_setting(self, attribute, source, contexts=None, persist=True, truncate=None):
+    def _expr_to_request(self, expr):
+        from abjad.tools import rhythmmakertools
+        from experimental.tools import handlertools
         from experimental.tools import requesttools
+        from experimental.tools import statalservertools
+        from experimental.tools import timeexpressiontools
+        # probably precautionary: prune expr of any incoming references
+        expr = copy.deepcopy(expr)
+        if isinstance(expr, requesttools.Request):
+            return expr
+        elif isinstance(expr, statalservertools.StatalServer):
+            return requesttools.StatalServerRequest(expr)
+        elif isinstance(expr, handlertools.Handler):
+            return requesttool.HandlerRequest(expr)
+        elif isinstance(expr, (tuple, list, str, rhythmmakertools.RhythmMaker)):
+            return requesttools.AbsoluteRequest(expr)
+        elif isinstance(expr, timeexpressiontools.TimespanExpression):
+            return expr
+        else:
+            raise TypeError('do not know how to change {!r} to request object.'.format(expr))
+
+    def _store_multiple_context_setting(self, attribute, source, contexts=None, persist=True, truncate=None):
         from experimental.tools import settingtools
-        request = requesttools.expr_to_request(source)
+        request = self._expr_to_request(source)
         assert self.score_specification is not None
         context_names = self.score_specification._context_token_to_context_names(contexts)
         multiple_context_setting = settingtools.MultipleContextSetting(
