@@ -2,7 +2,7 @@ from abjad import *
 from experimental.tools import *
 
 
-def test_SegmentSpecification__request_divisions_from_past_01():
+def test_SegmentSpecification__select_divisions_from_past_01():
     '''From-past division material request.
     '''
 
@@ -22,7 +22,7 @@ def test_SegmentSpecification__request_divisions_from_past_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_divisions_from_past_02():
+def test_SegmentSpecification__select_divisions_from_past_02():
     '''From-past division material request with request-time reverse.
     '''
 
@@ -43,7 +43,7 @@ def test_SegmentSpecification__request_divisions_from_past_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_divisions_from_past_03():
+def test_SegmentSpecification__select_divisions_from_past_03():
     '''From-past division material request with set-time reverse.
     '''
 
@@ -64,7 +64,7 @@ def test_SegmentSpecification__request_divisions_from_past_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_divisions_from_past_04():
+def test_SegmentSpecification__select_divisions_from_past_04():
     '''From-past division material request with request- and set-time reverse.
     '''
 
@@ -86,7 +86,7 @@ def test_SegmentSpecification__request_divisions_from_past_04():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_divisions_from_past_05():
+def test_SegmentSpecification__select_divisions_from_past_05():
     '''From-past division material request with region break preservation.
     '''
 

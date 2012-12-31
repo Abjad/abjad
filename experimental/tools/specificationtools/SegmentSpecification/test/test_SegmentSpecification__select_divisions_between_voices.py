@@ -2,7 +2,7 @@ from abjad import *
 from experimental.tools import *
 
 
-def test_SegmentSpecification__request_divisions_between_voices_01():
+def test_SegmentSpecification__select_divisions_between_voices_01():
     '''Division material request between voices.
     '''
 
@@ -21,7 +21,7 @@ def test_SegmentSpecification__request_divisions_between_voices_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_divisions_between_voices_02():
+def test_SegmentSpecification__select_divisions_between_voices_02():
     '''Division material request between voices with request-time reverse.
     '''
 
@@ -41,7 +41,7 @@ def test_SegmentSpecification__request_divisions_between_voices_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_divisions_between_voices_03():
+def test_SegmentSpecification__select_divisions_between_voices_03():
     '''Division material request between voices with set-time reverse.
     '''
 
@@ -61,7 +61,7 @@ def test_SegmentSpecification__request_divisions_between_voices_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_divisions_between_voices_04():
+def test_SegmentSpecification__select_divisions_between_voices_04():
     '''Division material request between voices with both request- and set-time reverse.
     '''
 
