@@ -123,8 +123,10 @@ class ScoreSpecification(Specification):
                     [(2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)]
                     ),
                 'Voice 1',
-                durationtools.Offset(0, 1),
-                durationtools.Offset(9, 4),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(9, 4)
+                    ),
                 fresh=True,
                 truncate=True
                 )
@@ -133,8 +135,10 @@ class ScoreSpecification(Specification):
                     [(2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)]
                     ),
                 'Voice 2',
-                durationtools.Offset(0, 1),
-                durationtools.Offset(9, 4),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(9, 4)
+                    ),
                 fresh=True,
                 truncate=True
                 )
@@ -177,8 +181,10 @@ class ScoreSpecification(Specification):
                         )
                     ),
                 None,
-                durationtools.Offset(0, 1),
-                durationtools.Offset(9, 4),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(9, 4)
+                    ),
                 fresh=True
                 )
 

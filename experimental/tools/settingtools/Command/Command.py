@@ -3,11 +3,13 @@ import copy
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools 
 from abjad.tools import timespantools 
-from abjad.tools.timespantools.Timespan import Timespan
+from abjad.tools.abctools.AbjadObject import AbjadObject
+#from abjad.tools.timespantools.Timespan import Timespan
 from experimental.tools import helpertools 
 
 
-class Command(Timespan):
+#class Command(Timespan):
+class Command(AbjadObject):
     '''
 
     Command indicating period of time to which request will apply.
@@ -22,18 +24,22 @@ class Command(Timespan):
 
     ### INTIAILIZER ###
 
-    def __init__(self, request, context_name, start_offset, stop_offset, fresh=None):
+    #def __init__(self, request, context_name, start_offset, stop_offset, fresh=None):
+    def __init__(self, request, context_name, timespan, fresh=None):
         from experimental.tools import requesttools 
         from experimental.tools import timeexpressiontools
         assert isinstance(request, (requesttools.Request, timeexpressiontools.TimespanExpression)), repr(request)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
-        start_offset = durationtools.Offset(start_offset)
-        stop_offset = durationtools.Offset(stop_offset)
-        assert start_offset <= stop_offset
+        #start_offset = durationtools.Offset(start_offset)
+        #stop_offset = durationtools.Offset(stop_offset)
+        #assert start_offset <= stop_offset
+        assert isinstance(timespan, timespantools.Timespan), repr(timespan)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
-        Timespan.__init__(self, start_offset=start_offset, stop_offset=stop_offset)
+        #Timespan.__init__(self, start_offset=start_offset, stop_offset=stop_offset)
+        #Timespan.__init__(self, start_offset=timespan.start_offset, stop_offset=timespan.stop_offset)
         self._request = request
         self._context_name = context_name
+        self._timespan = timespan
         self._fresh = fresh
 
     ### SPECIAL METHODS ###
@@ -88,7 +94,8 @@ class Command(Timespan):
 
     @property
     def timespan(self):
-        return timespantools.Timespan(self.start_offset, self.stop_offset)
+        #return timespantools.Timespan(self.start_offset, self.stop_offset)
+        return self._timespan
 
     ### PUBLIC METHODS ###
 
@@ -104,8 +111,10 @@ class Command(Timespan):
         Raise exception when self can not fuse with `division_command`.
         '''
         assert self.can_fuse(command)
-        stop_offset = self.stop_offset + command.duration
-        fused_command = self.new(stop_offset=stop_offset)
+        stop_offset = self.timespan.stop_offset + command.timespan.duration
+        timespan = self.timespan.new(stop_offset=stop_offset) 
+        #fused_command = self.new(stop_offset=stop_offset)
+        fused_command = self.new(timespan=timespan)
         return fused_command
 
     def new(self, **kwargs):
