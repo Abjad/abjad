@@ -9,8 +9,6 @@ settingtools.RhythmRegionExpression
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.settingtools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression.duration
-
 .. autoattribute:: experimental.tools.settingtools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression.music
 
 .. autoattribute:: experimental.tools.settingtools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression.start_offset

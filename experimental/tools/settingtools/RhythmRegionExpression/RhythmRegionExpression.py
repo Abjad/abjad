@@ -106,7 +106,7 @@ class RhythmRegionExpression(RegionExpression):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def duration(self):
+    def _duration(self):
         '''Duration of rhythm expression.
 
         Return duration.

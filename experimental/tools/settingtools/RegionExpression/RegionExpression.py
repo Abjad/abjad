@@ -61,7 +61,7 @@ class RegionExpression(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
-    def duration(self):
+    def _duration(self):
         pass
 
     @property
@@ -77,11 +77,11 @@ class RegionExpression(AbjadObject):
 
         Return offset.
         '''
-        return self.start_offset + self.duration
+        return self._start_offset + self._duration
 
     @property
     def timespan(self):
-        return timespantools.Timespan(self.start_offset, self.stop_offset)
+        return timespantools.Timespan(self._start_offset, self.stop_offset)
 
     @property
     def voice_name(self):

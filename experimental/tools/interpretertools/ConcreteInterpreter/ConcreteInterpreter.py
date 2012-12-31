@@ -395,7 +395,7 @@ class ConcreteInterpreter(Interpreter):
         division_region_expressions = \
             self.score_specification.contexts[voice.name]['division_region_expressions']
         #self._debug_values(division_region_expressions, 'division region expressions')
-        division_region_durations = [x.duration for x in division_region_expressions]
+        division_region_durations = [x.timespan.duration for x in division_region_expressions]
         #self._debug(division_region_durations, 'division region durations')
         assert sum(rhythm_command_durations) == sum(division_region_durations)
         rhythm_command_merged_durations = sequencetools.merge_duration_sequences(

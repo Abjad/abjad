@@ -13,8 +13,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.settingtools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.divisions
 
-.. autoattribute:: experimental.tools.settingtools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.duration
-
 .. autoattribute:: experimental.tools.settingtools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.start_offset
 
     Inherited from :py:class:`settingtools.RegionExpression <experimental.tools.settingtools.RegionExpression.RegionExpression.RegionExpression>`

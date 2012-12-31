@@ -71,7 +71,7 @@ class DivisionRegionExpression(RegionExpression):
 
         ::
 
-            >>> expr.duration
+            >>> expr.timespan.duration
             Duration(11, 16)
 
         Set start offset.
@@ -126,7 +126,7 @@ class DivisionRegionExpression(RegionExpression):
 
         ::
 
-            >>> expr.duration
+            >>> expr.timespan.duration
             Duration(11, 16)
 
         Set stop offset.
@@ -165,7 +165,7 @@ class DivisionRegionExpression(RegionExpression):
         return self.division_list.divisions
 
     @property
-    def duration(self):
+    def _duration(self):
         '''Duration of division expression.
         
         Return duration.

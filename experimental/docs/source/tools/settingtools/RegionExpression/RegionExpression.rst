@@ -9,8 +9,6 @@ settingtools.RegionExpression
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.settingtools.RegionExpression.RegionExpression.RegionExpression.duration
-
 .. autoattribute:: experimental.tools.settingtools.RegionExpression.RegionExpression.RegionExpression.start_offset
 
 .. autoattribute:: experimental.tools.settingtools.RegionExpression.RegionExpression.RegionExpression.stop_offset
