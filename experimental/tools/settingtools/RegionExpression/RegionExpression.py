@@ -1,11 +1,9 @@
 import abc
 from abjad.tools import durationtools
 from abjad.tools import timespantools
-#from abjad.tools.timespantools.Timespan import Timespan
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-#class RegionExpression(Timespan):
 class RegionExpression(AbjadObject):
     r'''Region expression.
 
@@ -21,74 +19,54 @@ class RegionExpression(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, voice_name, start_offset=None, stop_offset=None):
+    def __init__(self, voice_name, timespan=None):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         self._voice_name = voice_name
-        if start_offset is None:
-            start_offset = durationtools.Offset(0)
-        else:
-            start_offset = durationtools.Offset(start_offset)
-        #Timespan.__init__(self, start_offset=start_offset)
-        self._start_offset = start_offset
+        timespan = timespan or timespantools.Timespan(0)
+        assert isinstance(timespan, (timespantools.Timespan)), repr(timespan)
+        self._start_offset = timespan.start_offset
 
     ### SPECIAL METHODS ###
 
     def __lt__(self, expr):
         return self.timespan.start_offset < expr.timespan.start_offset
 
-    ### PRIVATE METHODS ###
-
-    @abc.abstractmethod
-    def _set_start_offset(self, start_offset):
-        '''Trim to start offset.
-
-        Adjust start offset.
-          
-        Operate in place and return none.
-        '''
-        pass
-
-    @abc.abstractmethod
-    def _set_stop_offset(self, stop_offset):
-        '''Trim to stop offset.
-
-        Adjust stop offset.
-          
-        Operate in place and return none.
-        '''
-        pass
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @abc.abstractproperty
     def _duration(self):
         pass
 
     @property
+    def _stop_offset(self):
+        return self._start_offset + self._duration
+
+    ### PRIVATE METHODS ###
+
+    @abc.abstractmethod
+    def _set_start_offset(self, start_offset):
+        pass
+
+    @abc.abstractmethod
+    def _set_stop_offset(self, stop_offset):
+        pass
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
     def start_offset(self):
-        return self._start_offset
+        return self.timespan.start_offset
 
     @property
     def stop_offset(self):
-        '''Offset-positioned expression stop offset.
-        
-        Defined equal to expression start offset 
-        plus expression duration.
-
-        Return offset.
-        '''
-        return self._start_offset + self._duration
+        return self.timespan.stop_offset
 
     @property
     def timespan(self):
-        return timespantools.Timespan(self._start_offset, self.stop_offset)
+        return timespantools.Timespan(self._start_offset, self._stop_offset)
 
     @property
     def voice_name(self):
-        '''Offset-positioned expression voice name.
-
-        Return string.
-        '''
         return self._voice_name
 
     ### PUBLIC METHODS ###
@@ -111,10 +89,6 @@ class RegionExpression(AbjadObject):
         return result
 
     def set_offsets(self, start_offset=None, stop_offset=None):
-        '''Adjust to offsets.
-
-        Operate in place and return none.
-        '''
         if stop_offset is not None:
             stop_offset = durationtools.Offset(stop_offset)
             if stop_offset < self.timespan.stop_offset:

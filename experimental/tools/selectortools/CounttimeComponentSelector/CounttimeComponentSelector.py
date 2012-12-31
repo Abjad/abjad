@@ -135,8 +135,10 @@ class CounttimeComponentSelector(Selector):
         rhythm_region_expressions.sort()
         assert anchor_timespan.is_well_formed, repr(anchor_timespan)
         rhythm_region_expressions.keep_material_that_intersects_timespan(anchor_timespan)
-        result = settingtools.RhythmRegionExpression(
-            voice_name=voice_name, start_offset=start_offset)
+        timespan = timespantools.Timespan(start_offset)
+        #result = settingtools.RhythmRegionExpression(
+        #    voice_name=voice_name, start_offset=start_offset)
+        result = settingtools.RhythmRegionExpression(voice_name=voice_name, timespan=timespan)
         for rhythm_region_expression in rhythm_region_expressions:
             result.music.extend(rhythm_region_expression.music)
         assert wellformednesstools.is_well_formed_component(result.music)

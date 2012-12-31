@@ -1,28 +1,25 @@
 import copy
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
+from abjad.tools import timespantools
 from experimental.tools import divisiontools
 from experimental.tools.settingtools.RegionExpression import RegionExpression
 
 
 class DivisionRegionExpression(RegionExpression):
-    r'''
+    r'''Division region expression.
 
     ::
 
         >>> from experimental.tools import *
 
-    Offset-positioned division expression.
-
-    Composers do not create offset-positioned division expressions
-    because division expression arise as a byproduct of interpretation.
+    Interpreter byproduct.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, division_list, voice_name=None, start_offset=None, stop_offset=None):
-        RegionExpression.__init__(
-            self, voice_name, start_offset=start_offset, stop_offset=stop_offset)
+    def __init__(self, division_list, voice_name=None, timespan=None):
+        RegionExpression.__init__(self, voice_name, timespan=timespan)
         if not isinstance(division_list, divisiontools.DivisionList):
             division_list = divisiontools.DivisionList(division_list)
         self._division_list = division_list
@@ -49,8 +46,10 @@ class DivisionRegionExpression(RegionExpression):
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
                     ),
                 voice_name='Voice 1',
-                start_offset=durationtools.Offset(0, 1),
-                stop_offset=durationtools.Offset(3, 4)
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(3, 4)
+                    )
                 )
 
         ::
@@ -65,8 +64,10 @@ class DivisionRegionExpression(RegionExpression):
                     [Division('[2, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
                     ),
                 voice_name='Voice 1',
-                start_offset=durationtools.Offset(1, 16),
-                stop_offset=durationtools.Offset(3, 4)
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(1, 16),
+                    stop_offset=durationtools.Offset(3, 4)
+                    )
                 )
 
         ::
@@ -79,8 +80,8 @@ class DivisionRegionExpression(RegionExpression):
         Operate in place and return none.
         '''
         start_offset = durationtools.Offset(start_offset)
-        assert self.start_offset <= start_offset
-        duration_to_trim = start_offset - self.start_offset
+        assert self.timespan.start_offset <= start_offset
+        duration_to_trim = start_offset - self.timespan.start_offset
         divisions = copy.deepcopy(self.divisions)
         shards = sequencetools.split_sequence_by_weights(
             divisions, [duration_to_trim], cyclic=False, overhang=True)
@@ -104,8 +105,10 @@ class DivisionRegionExpression(RegionExpression):
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
                     ),
                 voice_name='Voice 1',
-                start_offset=durationtools.Offset(0, 1),
-                stop_offset=durationtools.Offset(3, 4)
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(3, 4)
+                    )
                 )
 
         ::
@@ -120,8 +123,10 @@ class DivisionRegionExpression(RegionExpression):
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]')]
                     ),
                 voice_name='Voice 1',
-                start_offset=durationtools.Offset(0, 1),
-                stop_offset=durationtools.Offset(11, 16)
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(11, 16)
+                    )
                 )
 
         ::
@@ -134,8 +139,8 @@ class DivisionRegionExpression(RegionExpression):
         Operate in place and return none.
         '''
         stop_offset = durationtools.Offset(stop_offset)
-        assert stop_offset <= self.stop_offset
-        duration_to_trim = self.stop_offset - stop_offset
+        assert stop_offset <= self.timespan.stop_offset
+        duration_to_trim = self.timespan.stop_offset - stop_offset
         duration_to_keep = self.division_list.duration - duration_to_trim
         divisions = copy.deepcopy(self.divisions)
         shards = sequencetools.split_sequence_by_weights(
@@ -177,18 +182,17 @@ class DivisionRegionExpression(RegionExpression):
     def fracture(self, slice_index):
         assert isinstance(slice_index, int)
         left_division_list, right_division_list = self.division_list.fracture(slice_index)
-        left_result = type(self)(
-            left_division_list, voice_name=self.voice_name, start_offset=self.start_offset)
-        right_result = type(self)(
-            right_division_list, voice_name=self.voice_name, start_offset=left_result.stop_offset)
+        left_result = type(self)(left_division_list, voice_name=self.voice_name, timespan=self.timespan)
+        right_result = type(self)(right_division_list, voice_name=self.voice_name, timespan=self.timespan)
         return left_result, right_result
 
     def fuse(self, expr):
         '''Fuse if expression stops when `expr` starts::
 
             >>> expr_1 = settingtools.DivisionRegionExpression(2 * [(3, 16)], 'Voice 1')
+            >>> timespan = timespantools.Timespan(Offset(6, 16))
             >>> expr_2 = settingtools.DivisionRegionExpression(
-            ...     2 * [(2, 16)], 'Voice 1', start_offset=(6, 16))
+            ...     2 * [(2, 16)], 'Voice 1', timespan=timespan)
 
         ::
 
@@ -207,8 +211,10 @@ class DivisionRegionExpression(RegionExpression):
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]'), Division('[2, 16]')]
                     ),
                 voice_name='Voice 1',
-                start_offset=durationtools.Offset(0, 1),
-                stop_offset=durationtools.Offset(5, 8)
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(5, 8)
+                    )
                 )
 
         Return newly constructed expression.
@@ -217,7 +223,7 @@ class DivisionRegionExpression(RegionExpression):
         assert self.timespan.stops_when_expr_starts(expr), repr(expr)
         assert self.voice_name == expr.voice_name, repr(expr)
         division_list = self.division_list + expr.division_list
-        result = type(self)(division_list, voice_name=self.voice_name, start_offset=self.start_offset)
+        result = type(self)(division_list, voice_name=self.voice_name, timespan=self.timespan)
         return result
 
     def reverse(self):
@@ -229,9 +235,9 @@ class DivisionRegionExpression(RegionExpression):
         stop_offset_translation = stop_offset_translation or 0
         start_offset_translation = durationtools.Duration(start_offset_translation)
         stop_offset_translation = durationtools.Duration(stop_offset_translation)
-        new_start_offset = self.start_offset + start_offset_translation
-        new_stop_offset = self.stop_offset + stop_offset_translation
+        new_start_offset = self.timespan.start_offset + start_offset_translation
+        new_stop_offset = self.timespan.stop_offset + stop_offset_translation
         divisions = copy.copy(self.divisions)
-        result = type(self)(
-            divisions, voice_name=self.voice_name, start_offset=new_start_offset, stop_offset=new_stop_offset)
+        timespan = timespantools.Timespan(new_start_offset, new_stop_offset)
+        result = type(self)(divisions, voice_name=self.voice_name, timespan=timespan)
         return result

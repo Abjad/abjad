@@ -50,8 +50,10 @@ class DivisionList(BoundedObject):
                 Division('[3, 16]'), Division('[3, 16]')]
             ),
             voice_name='Voice 1',
-            start_offset=durationtools.Offset(0, 1),
-            stop_offset=durationtools.Offset(21, 8)
+            timespan=timespantools.Timespan(
+                start_offset=durationtools.Offset(0, 1),
+                stop_offset=durationtools.Offset(21, 8)
+                )
             )
 
     The reason that ``'Voice 1'`` has only one division region division list is that the 

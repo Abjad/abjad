@@ -205,8 +205,7 @@ class ConcreteInterpreter(Interpreter):
             settingtools.DivisionRegionExpression(
             divisions, 
             voice_name=voice_name, 
-            start_offset=division_region_command.timespan.start_offset,
-            stop_offset=division_region_command.timespan.stop_offset
+            timespan=division_region_command.timespan
             )]
 
     def dump_rhythm_region_expressions_into_voices(self):
@@ -445,19 +444,22 @@ class ConcreteInterpreter(Interpreter):
         if rhythm_region_division_list:
             leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
             rhythm_containers = [containertools.Container(x) for x in leaf_lists]
+            timespan = timespantools.Timespan(start_offset)
             rhythm_region_expression = settingtools.RhythmRegionExpression(
                 rhythm_containers, 
-                voice_name=rhythm_region_division_list.voice_name, start_offset=start_offset)
+                voice_name=rhythm_region_division_list.voice_name, 
+                timespan=timespan)
             self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
             return rhythm_region_expression
 
     def make_rhythm_region_expression_from_parseable_string(
         self, parseable_string, rhythm_region_division_list, start_offset, rhythm_command):
         component = iotools.p(parseable_string)
+        timespan = timespantools.Timespan(start_offset)
         rhythm_region_expression = settingtools.RhythmRegionExpression(
             music=[component],
             voice_name=rhythm_region_division_list.voice_name, 
-            start_offset=start_offset)
+            timespan=timespan)
         duration_needed = sum([durationtools.Duration(x) for x in rhythm_region_division_list])
         stop_offset = start_offset + duration_needed
         if rhythm_region_expression.timespan.stops_before_offset(stop_offset):
