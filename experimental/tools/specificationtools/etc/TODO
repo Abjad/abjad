@@ -155,9 +155,7 @@
 
 31. Migrate SelectMethodMixin from timeexpressiontools to settingtools.
 
-32. Remove 'klass' from experimental codebase.
-
-33. Possibly rename BackgroundMeasureSelector to TimeSignatureSelector.
+32. Possibly rename BackgroundMeasureSelector to TimeSignatureSelector.
     Possibly rename select_background_measures() to select_time_signatures().
 
-34. Move KlassInventory from helpertools to selectortools.
+33. Move KlassInventory from helpertools to selectortools.

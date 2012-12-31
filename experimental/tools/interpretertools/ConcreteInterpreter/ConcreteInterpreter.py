@@ -49,7 +49,7 @@ class ConcreteInterpreter(Interpreter):
 
     ### PUBLIC METHODS ###
 
-    def attribute_to_command_klass(self, attribute):
+    def attribute_to_region_command_class(self, attribute):
         if attribute == 'divisions':
             return settingtools.DivisionRegionCommand
         elif attribute == 'rhythm':
@@ -643,8 +643,8 @@ class ConcreteInterpreter(Interpreter):
     # do we eventually need to do this with time signature settings, too?
     def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):
         anchor_timespan = self.score_specification.get_anchor_timespan(single_context_setting, voice_name)
-        command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
-        command = command_klass(
+        region_command_class = self.attribute_to_region_command_class(single_context_setting.attribute)
+        command = region_command_class(
             single_context_setting.request, 
             single_context_setting.context_name,
             anchor_timespan,
