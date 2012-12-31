@@ -177,8 +177,8 @@ class ConcreteInterpreter(Interpreter):
             if isinstance(rhythm_command.request, requesttools.AbsoluteRequest):
                 result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.RhythmCommandRequest):
-                rhythm_maker = self.rhythm_command_request_to_rhythm_maker(
-                    rhythm_command.request, rhythm_command.request.voice_name)
+                rhythm_maker = rhythm_command.request.get_payload(
+                    self.score_specification, rhythm_command.request.voice_name)
                 result.append((rhythm_maker, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, selectortools.CounttimeComponentSelector):
                 if result and self.rhythm_command_prolongs_expr(rhythm_command, result[-1][0]):
@@ -552,36 +552,6 @@ class ConcreteInterpreter(Interpreter):
         if not current_material_request == previous_material_request:
             return False
         return True
-
-    # TODO: migrate to RhythmCommandRequest.get_payload(score_specification, ...)
-    def rhythm_command_request_to_rhythm_maker(self, rhythm_command_request, voice_name):
-        assert isinstance(rhythm_command_request, requesttools.RhythmCommandRequest)
-        assert rhythm_command_request.attribute == 'rhythm'
-        #self._debug(rhythm_command_request, 'rcr')
-        requested_segment_identifier = rhythm_command_request.offset.start_segment_identifier
-        #self._debug(requested_segment_identifier, 'segment')
-        requested_offset = rhythm_command_request.offset._get_offset(self.score_specification, voice_name)
-        #self._debug(requested_offset, 'offset')
-        timespan_inventory = timespantools.TimespanInventory()
-        for rhythm_region_command in self.score_specification.all_rhythm_region_commands:
-            if True:
-                if not rhythm_region_command.request == rhythm_command_request:
-                    timespan_inventory.append(rhythm_region_command)
-        timespan_time_relation = timerelationtools.offset_happens_during_timespan(offset=requested_offset)
-        candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_time_relation)
-        #self._debug_values(candidate_commands, 'candidates')
-        segment_specification = self.get_start_segment_specification(requested_segment_identifier)
-        source_command = segment_specification._get_first_element_in_expr_by_parentage(
-            candidate_commands, rhythm_command_request.voice_name, include_improper_parentage=True)
-        assert source_command is not None
-        #self._debug(source_command, 'source_command')
-        absolute_request = source_command.request
-        assert isinstance(source_command.request, requesttools.AbsoluteRequest)
-        assert isinstance(source_command.request.payload, rhythmmakertools.RhythmMaker)
-        rhythm_maker = copy.deepcopy(source_command.request.payload)
-        rhythm_maker, start_offset = rhythm_command_request._apply_request_modifiers(
-            rhythm_maker, source_command.timespan.start_offset)
-        return rhythm_maker
 
     # do we eventually need to do this with time signature settings, too?
     def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):

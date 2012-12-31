@@ -36,6 +36,8 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.get_payload
+
 .. automethod:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.partition_by_ratio
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
