@@ -28,13 +28,13 @@ import sys
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
-    'sphinx.ext.todo',
+    'abjad.docs.source._ext.abjadbook',
+    'abjad.docs.source._ext.autodoc',
+    'abjad.docs.source._ext.inheritance_diagram',
     'sphinx.ext.coverage',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.todo',
     #'sphinx.ext.viewcode',
-    'abjad.docs.source._ext.inheritance_diagram',
-    'abjad.docs.source._ext.autodoc',
-    'abjad.docs.source._ext.abjadbook',
 ]
 
 # abjad book settings
@@ -191,7 +191,7 @@ latex_elements = {
     'papersize': 'a4paper',
 
     # The font size ('10pt', '11pt' or '12pt').
-    'pointsize': '8pt',
+    'pointsize': '10pt',
 
     # Additional stuff for the LaTeX preamble.
     'preamble': r'''
@@ -204,6 +204,8 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'Abjad.tex', u'Abjad Documentation',
+   u'Trevor Bača, Josiah Oberholtzer, Víctor Adán', 'manual'),
+  ('api/index', 'AbjadAPI.tex', u'Abjad API',
    u'Trevor Bača, Josiah Oberholtzer, Víctor Adán', 'manual'),
 ]
 

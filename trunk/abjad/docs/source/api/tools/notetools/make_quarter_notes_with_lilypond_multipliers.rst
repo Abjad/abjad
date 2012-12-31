@@ -2,3 +2,4 @@ notetools.make_quarter_notes_with_lilypond_multipliers
 ======================================================
 
 .. autofunction:: abjad.tools.notetools.make_quarter_notes_with_lilypond_multipliers.make_quarter_notes_with_lilypond_multipliers
+   :noindex:

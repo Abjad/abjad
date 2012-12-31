@@ -2,3 +2,4 @@ sequencetools.get_sequence_elements_frequency_distribution
 ==========================================================
 
 .. autofunction:: abjad.tools.sequencetools.get_sequence_elements_frequency_distribution.get_sequence_elements_frequency_distribution
+   :noindex:

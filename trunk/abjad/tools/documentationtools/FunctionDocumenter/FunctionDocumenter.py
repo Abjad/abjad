@@ -48,6 +48,7 @@ class FunctionDocumenter(Documenter):
         result = []
         result.extend(self._format_heading(stripped_function_name, '='))
         result.append('.. autofunction:: %s' % self.module_name)
+        result.append('   :noindex:')
         result.append('')
 
         return '\n'.join(result)

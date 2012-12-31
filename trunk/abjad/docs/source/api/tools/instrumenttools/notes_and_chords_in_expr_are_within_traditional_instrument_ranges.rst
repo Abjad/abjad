@@ -2,3 +2,4 @@ instrumenttools.notes_and_chords_in_expr_are_within_traditional_instrument_range
 =================================================================================
 
 .. autofunction:: abjad.tools.instrumenttools.notes_and_chords_in_expr_are_within_traditional_instrument_ranges.notes_and_chords_in_expr_are_within_traditional_instrument_ranges
+   :noindex:

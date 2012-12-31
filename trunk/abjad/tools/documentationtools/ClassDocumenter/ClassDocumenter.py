@@ -85,6 +85,7 @@ class ClassDocumenter(Documenter):
         result.extend(self._format_heading(stripped_class_name, '='))
         result.extend(self._format_inheritance_diagram())
         result.append('.. autoclass:: %s' % module_name)
+        result.append('   :noindex:')
         result.append('')
 
         if self.readonly_properties:
@@ -120,6 +121,7 @@ class ClassDocumenter(Documenter):
         module_name = '%s.%s' % (self._object.__module__, self._object.__name__)
         result = []
         result.append('.. auto%s:: %s.%s' % (kind, module_name, attr.name))
+        result.append('   :noindex:') 
         result.append('')
         if attr in self.inherited_attributes:
             defining_module = '%s.%s' % (attr.defining_class.__module__, attr.defining_class.__name__)

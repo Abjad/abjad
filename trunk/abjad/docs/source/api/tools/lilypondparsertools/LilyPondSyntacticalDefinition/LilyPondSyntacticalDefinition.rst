@@ -5,11 +5,13 @@ lilypondparsertools.LilyPondSyntacticalDefinition
    :private-bases:
 
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition
+   :noindex:
 
 Read-only Properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.storage_format
+   :noindex:
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
@@ -17,770 +19,1146 @@ Methods
 -------
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_assignment__assignment_id__Chr61__identifier_init
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_assignment__embedded_scm
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_assignment_id__STRING
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_bare_number__REAL__NUMBER_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_bare_number__UNSIGNED__NUMBER_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_bare_number__bare_number_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_bare_number_closed__NUMBER_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_bare_number_closed__REAL
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_bare_number_closed__UNSIGNED
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_bare_unsigned__UNSIGNED
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_braced_music_list__Chr123__music_list__Chr125
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_chord_body__ANGLE_OPEN__chord_body_elements__ANGLE_CLOSE
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_chord_body_element__music_function_chord_body
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_chord_body_element__pitch__exclamations__questions__octave_check__post_events
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_chord_body_elements__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_chord_body_elements__chord_body_elements__chord_body_element
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_closed_music__complex_music_prefix__closed_music
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_closed_music__music_bare
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_command_element__Chr124
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_command_element__E_BACKSLASH
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_command_element__command_event
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_command_event__tempo_event
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_complex_music__complex_music_prefix__music
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_complex_music__music_function_call
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_complex_music_prefix__CONTEXT__simple_string__optional_id__optional_context_mod
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_complex_music_prefix__NEWCONTEXT__simple_string__optional_id__optional_context_mod
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_composite_music__complex_music
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_composite_music__music_bare
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_change__CHANGE__STRING__Chr61__STRING
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_def_spec_block__CONTEXT__Chr123__context_def_spec_body__Chr125
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_def_spec_body__CONTEXT_DEF_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_def_spec_body__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_def_spec_body__context_def_spec_body__context_mod
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_def_spec_body__context_def_spec_body__context_modification
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_def_spec_body__context_def_spec_body__embedded_scm
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_mod__property_operation
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_mod_list__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_mod_list__context_mod_list__CONTEXT_MOD_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_mod_list__context_mod_list__context_mod
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_mod_list__context_mod_list__embedded_scm
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_modification__CONTEXT_MOD_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_modification__WITH__CONTEXT_MOD_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_modification__WITH__Chr123__context_mod_list__Chr125
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_modification__WITH__embedded_scm_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_prop_spec__simple_string
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_context_prop_spec__simple_string__Chr46__simple_string
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_less_char__Chr126
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_less_char__Chr40
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_less_char__Chr41
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_less_char__Chr91
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_less_char__Chr93
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_less_char__E_ANGLE_CLOSE
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_less_char__E_ANGLE_OPEN
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_less_char__E_CLOSE
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_less_char__E_EXCLAMATION
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_less_char__E_OPEN
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_less_event__EVENT_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_less_event__direction_less_char
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_less_event__event_function_event
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_less_event__tremolo_type
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_reqd_event__gen_text_def
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_direction_reqd_event__script_abbreviation
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_dots__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_dots__dots__Chr46
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_duration_length__multiplied_duration
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm__embedded_scm_bare
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm__scm_function_call
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_arg__embedded_scm_bare_arg
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_arg__music_arg
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_arg__scm_function_call
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_arg_closed__closed_music
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_arg_closed__embedded_scm_bare_arg
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_arg_closed__scm_function_call_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_bare__SCM_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_bare__SCM_TOKEN
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_bare_arg__STRING
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_bare_arg__STRING_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_bare_arg__context_def_spec_block
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_bare_arg__context_modification
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_bare_arg__embedded_scm_bare
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_bare_arg__full_markup
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_bare_arg__full_markup_list
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_bare_arg__output_def
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_bare_arg__score_block
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_chord_body__SCM_FUNCTION__music_function_chord_body_arglist
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_chord_body__bare_number
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_chord_body__chord_body_element
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_chord_body__embedded_scm_bare_arg
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_chord_body__fraction
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_closed__embedded_scm_bare
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_embedded_scm_closed__scm_function_call_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_error
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_event_chord__CHORD_REPETITION__optional_notemode_duration__post_events
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_event_chord__MULTI_MEASURE_REST__optional_notemode_duration__post_events
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_event_chord__command_element
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_event_chord__note_chord_element
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_event_chord__simple_chord_elements__post_events
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_event_function_event__EVENT_FUNCTION__function_arglist_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_exclamations__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_exclamations__exclamations__Chr33
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_fingering__UNSIGNED
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_fraction__FRACTION
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_fraction__UNSIGNED__Chr47__UNSIGNED
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_full_markup__MARKUP_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_full_markup__MARKUP__markup_top
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_full_markup_list__MARKUPLIST_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_full_markup_list__MARKUPLIST__markup_list
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist__function_arglist_common
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist__function_arglist_nonbackup
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_closed_keep__duration_length
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_keep__pitch_also_in_chords
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_backup__BACKUP
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__NUMBER_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__REAL
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__UNSIGNED
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__FRACTION
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__NUMBER_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__REAL
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__UNSIGNED
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__post_event_nofinger
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_keep__embedded_scm_arg_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_backup__function_arglist_backup__REPARSE__bare_number
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_backup__function_arglist_backup__REPARSE__embedded_scm_arg_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_backup__function_arglist_backup__REPARSE__fraction
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_bare__EXPECT_DURATION__function_arglist_closed_optional__duration_length
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_bare__EXPECT_NO_MORE_ARGS
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_bare__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_skip__DEFAULT
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_bare__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_skip__DEFAULT
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_bare__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_skip__DEFAULT
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_bare__EXPECT_PITCH__function_arglist_optional__pitch_also_in_chords
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed__function_arglist_closed_common
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed__function_arglist_nonbackup
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__Chr45__NUMBER_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__Chr45__REAL
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__Chr45__UNSIGNED
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__bare_number
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__fraction
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__post_event_nofinger
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed_common__EXPECT_SCM__function_arglist_optional__embedded_scm_arg_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed_common__function_arglist_bare
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed_keep__function_arglist_backup
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed_keep__function_arglist_closed_common
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed_optional__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_closed_optional
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed_optional__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_closed_optional
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed_optional__function_arglist_backup__BACKUP
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_closed_optional__function_arglist_closed_keep
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_common__EXPECT_SCM__function_arglist_closed_optional__bare_number
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_common__EXPECT_SCM__function_arglist_closed_optional__fraction
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_common__EXPECT_SCM__function_arglist_closed_optional__post_event_nofinger
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_common__EXPECT_SCM__function_arglist_optional__embedded_scm_arg
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_common__function_arglist_bare
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_common__function_arglist_common_minus
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_common_minus__EXPECT_SCM__function_arglist_closed_optional__Chr45__NUMBER_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_common_minus__EXPECT_SCM__function_arglist_closed_optional__Chr45__REAL
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_common_minus__EXPECT_SCM__function_arglist_closed_optional__Chr45__UNSIGNED
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_common_minus__function_arglist_common_minus__REPARSE__bare_number
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_keep__function_arglist_backup
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_keep__function_arglist_common
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_closed__duration_length
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist__pitch_also_in_chords
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist__embedded_scm_arg_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__Chr45__NUMBER_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__Chr45__REAL
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__Chr45__UNSIGNED
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__FRACTION
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__bare_number_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__post_event_nofinger
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_optional__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_optional
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_optional__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_optional
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_optional__function_arglist_backup__BACKUP
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_optional__function_arglist_keep
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_skip__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_skip
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_skip__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_skip
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_skip__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_skip
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_function_arglist_skip__function_arglist_common
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_gen_text_def__full_markup
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_gen_text_def__simple_string
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_grouped_music_list__sequential_music
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_grouped_music_list__simultaneous_music
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_identifier_init__context_def_spec_block
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_identifier_init__context_modification
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_identifier_init__embedded_scm
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_identifier_init__full_markup
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_identifier_init__full_markup_list
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_identifier_init__music
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_identifier_init__number_expression
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_identifier_init__output_def
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_identifier_init__post_event_nofinger
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_identifier_init__score_block
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_identifier_init__string
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_lilypond__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_lilypond__lilypond__assignment
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_lilypond__lilypond__error
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_lilypond__lilypond__toplevel_expression
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_lilypond_header__HEADER__Chr123__lilypond_header_body__Chr125
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_lilypond_header_body__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_lilypond_header_body__lilypond_header_body__assignment
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup__markup_head_1_list__simple_markup
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup__simple_markup
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_braced_list__Chr123__markup_braced_list_body__Chr125
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_braced_list_body__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_braced_list_body__markup_braced_list_body__markup
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_braced_list_body__markup_braced_list_body__markup_list
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_command_basic_arguments__EXPECT_MARKUP_LIST__markup_command_list_arguments__markup_list
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_command_basic_arguments__EXPECT_NO_MORE_ARGS
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_command_basic_arguments__EXPECT_SCM__markup_command_list_arguments__embedded_scm_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_command_list__MARKUP_LIST_FUNCTION__markup_command_list_arguments
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_command_list_arguments__EXPECT_MARKUP__markup_command_list_arguments__markup
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_command_list_arguments__markup_command_basic_arguments
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_composed_list__markup_head_1_list__markup_braced_list
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_head_1_item__MARKUP_FUNCTION__EXPECT_MARKUP__markup_command_list_arguments
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_head_1_list__markup_head_1_item
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_head_1_list__markup_head_1_list__markup_head_1_item
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_list__MARKUPLIST_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_list__markup_braced_list
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_list__markup_command_list
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_list__markup_composed_list
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_list__markup_scm__MARKUPLIST_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_scm__embedded_scm_bare__BACKUP
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_top__markup_head_1_list__simple_markup
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_top__markup_list
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_markup_top__simple_markup
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_multiplied_duration__multiplied_duration__Chr42__FRACTION
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_multiplied_duration__multiplied_duration__Chr42__bare_unsigned
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_multiplied_duration__steno_duration
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music__composite_music
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music__simple_music
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music_arg__composite_music
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music_arg__simple_music
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music_bare__MUSIC_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music_bare__grouped_music_list
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music_function_call__MUSIC_FUNCTION__function_arglist
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music_function_chord_body__MUSIC_FUNCTION__music_function_chord_body_arglist
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music_function_chord_body_arglist__EXPECT_SCM__music_function_chord_body_arglist__embedded_scm_chord_body
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music_function_chord_body_arglist__function_arglist_bare
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music_function_event__MUSIC_FUNCTION__function_arglist_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music_list__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music_list__music_list__embedded_scm
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music_list__music_list__error
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music_list__music_list__music
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_music_property_def__simple_music_property_def
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_note_chord_element__chord_body__optional_notemode_duration__post_events
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_number_expression__number_expression__Chr43__number_term
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_number_expression__number_expression__Chr45__number_term
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_number_expression__number_term
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_number_factor__Chr45__number_factor
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_number_factor__bare_number
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_number_term__number_factor
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_number_term__number_factor__Chr42__number_factor
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_number_term__number_factor__Chr47__number_factor
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_octave_check__Chr61
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_octave_check__Chr61__sub_quotes
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_octave_check__Chr61__sup_quotes
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_octave_check__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_optional_context_mod__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_optional_context_mod__context_modification
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_optional_id__Chr61__simple_string
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_optional_id__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_optional_notemode_duration__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_optional_notemode_duration__multiplied_duration
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_optional_rest__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_optional_rest__REST
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_output_def__output_def_body__Chr125
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_output_def_body__output_def_body__assignment
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_output_def_body__output_def_head_with_mode_switch__Chr123
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_output_def_body__output_def_head_with_mode_switch__Chr123__OUTPUT_DEF_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_output_def_head__LAYOUT
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_output_def_head__MIDI
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_output_def_head__PAPER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_output_def_head_with_mode_switch__output_def_head
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_pitch__PITCH_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_pitch__steno_pitch
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_pitch_also_in_chords__pitch
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_pitch_also_in_chords__steno_tonic_pitch
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_post_event__Chr45__fingering
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_post_event__post_event_nofinger
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_post_event_nofinger__Chr94__fingering
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_post_event_nofinger__Chr95__fingering
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_post_event_nofinger__EXTENDER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_post_event_nofinger__HYPHEN
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_post_event_nofinger__direction_less_event
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_post_event_nofinger__script_dir__direction_less_event
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_post_event_nofinger__script_dir__direction_reqd_event
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_post_event_nofinger__script_dir__music_function_event
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_post_event_nofinger__string_number_event
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_post_events__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_post_events__post_events__post_event
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_property_operation__OVERRIDE__simple_string__property_path__Chr61__scalar
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_property_operation__REVERT__simple_string__embedded_scm
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_property_operation__STRING__Chr61__scalar
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_property_operation__UNSET__simple_string
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_property_path__property_path_revved
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_property_path_revved__embedded_scm_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_property_path_revved__property_path_revved__embedded_scm_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_questions__Empty
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_questions__questions__Chr63
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_scalar__bare_number
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_scalar__embedded_scm_arg
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_scalar_closed__bare_number
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_scalar_closed__embedded_scm_arg_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_scm_function_call__SCM_FUNCTION__function_arglist
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_scm_function_call_closed__SCM_FUNCTION__function_arglist_closed
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_score_block__SCORE__Chr123__score_body__Chr125
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_score_body__SCORE_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_score_body__music
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_score_body__score_body__lilypond_header
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_score_body__score_body__output_def
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_script_abbreviation__ANGLE_CLOSE
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_script_abbreviation__Chr124
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_script_abbreviation__Chr43
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_script_abbreviation__Chr45
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_script_abbreviation__Chr46
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_script_abbreviation__Chr94
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_script_abbreviation__Chr95
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_script_dir__Chr45
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_script_dir__Chr94
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_script_dir__Chr95
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_sequential_music__SEQUENTIAL__braced_music_list
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_sequential_music__braced_music_list
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_chord_elements__simple_element
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_element__RESTNAME__optional_notemode_duration
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_element__pitch__exclamations__questions__octave_check__optional_notemode_duration__optional_rest
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_markup__MARKUP_FUNCTION__markup_command_basic_arguments
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_markup__MARKUP_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_markup__SCORE__Chr123__score_body__Chr125
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_markup__STRING
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_markup__STRING_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_markup__markup_scm__MARKUP_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_music__context_change
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_music__event_chord
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_music__music_property_def
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_music_property_def__OVERRIDE__context_prop_spec__property_path__Chr61__scalar
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_music_property_def__REVERT__context_prop_spec__embedded_scm
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_music_property_def__SET__context_prop_spec__Chr61__scalar
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_music_property_def__UNSET__context_prop_spec
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_string__STRING
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simple_string__STRING_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simultaneous_music__DOUBLE_ANGLE_OPEN__music_list__DOUBLE_ANGLE_CLOSE
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_simultaneous_music__SIMULTANEOUS__braced_music_list
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_start_symbol__lilypond
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_steno_duration__DURATION_IDENTIFIER__dots
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_steno_duration__bare_unsigned__dots
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_steno_pitch__NOTENAME_PITCH
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_steno_pitch__NOTENAME_PITCH__sub_quotes
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_steno_pitch__NOTENAME_PITCH__sup_quotes
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_steno_tonic_pitch__TONICNAME_PITCH
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_steno_tonic_pitch__TONICNAME_PITCH__sub_quotes
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_steno_tonic_pitch__TONICNAME_PITCH__sup_quotes
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_string__STRING
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_string__STRING_IDENTIFIER
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_string__string__Chr43__string
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_string_number_event__E_UNSIGNED
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_sub_quotes__Chr44
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_sub_quotes__sub_quotes__Chr44
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_sup_quotes__Chr39
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_sup_quotes__sup_quotes__Chr39
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_tempo_event__TEMPO__scalar
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_tempo_event__TEMPO__scalar_closed__steno_duration__Chr61__tempo_range
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_tempo_event__TEMPO__steno_duration__Chr61__tempo_range
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_tempo_range__bare_unsigned
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_tempo_range__bare_unsigned__Chr126__bare_unsigned
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_toplevel_expression__composite_music
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_toplevel_expression__full_markup
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_toplevel_expression__full_markup_list
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_toplevel_expression__lilypond_header
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_toplevel_expression__output_def
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_toplevel_expression__score_block
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_tremolo_type__Chr58
+   :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_tremolo_type__Chr58__bare_unsigned
+   :noindex:
 
 Special Methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.__eq__
+   :noindex:
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.__ge__
+   :noindex:
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.__gt__
+   :noindex:
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.__le__
+   :noindex:
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.__lt__
+   :noindex:
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.__ne__
+   :noindex:
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.__repr__
+   :noindex:
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
