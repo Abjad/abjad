@@ -2,10 +2,10 @@ import copy
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from experimental.tools import divisiontools
-from experimental.tools.settingtools.OffsetPositionedExpression import OffsetPositionedExpression
+from experimental.tools.settingtools.RegionExpression import RegionExpression
 
 
-class OffsetPositionedDivisionList(OffsetPositionedExpression):
+class DivisionRegionExpression(RegionExpression):
     r'''
 
     ::
@@ -21,7 +21,7 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
     ### INITIALIZER ###
 
     def __init__(self, division_list, voice_name=None, start_offset=None, stop_offset=None):
-        OffsetPositionedExpression.__init__(
+        RegionExpression.__init__(
             self, voice_name, start_offset=start_offset, stop_offset=stop_offset)
         if not isinstance(division_list, divisiontools.DivisionList):
             division_list = divisiontools.DivisionList(division_list)
@@ -39,12 +39,12 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
 
         ::
 
-            >>> expr = settingtools.OffsetPositionedDivisionList(4 * [(3, 16)], 'Voice 1')
+            >>> expr = settingtools.DivisionRegionExpression(4 * [(3, 16)], 'Voice 1')
 
         ::
 
             >>> z(expr)
-            settingtools.OffsetPositionedDivisionList(
+            settingtools.DivisionRegionExpression(
                 divisiontools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
                     ),
@@ -60,7 +60,7 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
         ::
 
             >>> z(expr)
-            settingtools.OffsetPositionedDivisionList(
+            settingtools.DivisionRegionExpression(
                 divisiontools.DivisionList(
                     [Division('[2, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
                     ),
@@ -94,12 +94,12 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
 
         ::
 
-            >>> expr = settingtools.OffsetPositionedDivisionList(4 * [(3, 16)], 'Voice 1')
+            >>> expr = settingtools.DivisionRegionExpression(4 * [(3, 16)], 'Voice 1')
 
         ::
 
             >>> z(expr)
-            settingtools.OffsetPositionedDivisionList(
+            settingtools.DivisionRegionExpression(
                 divisiontools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
                     ),
@@ -115,7 +115,7 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
         ::
 
             >>> z(expr)
-            settingtools.OffsetPositionedDivisionList(
+            settingtools.DivisionRegionExpression(
                 divisiontools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]')]
                     ),
@@ -186,8 +186,8 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
     def fuse(self, expr):
         '''Fuse if expression stops when `expr` starts::
 
-            >>> expr_1 = settingtools.OffsetPositionedDivisionList(2 * [(3, 16)], 'Voice 1')
-            >>> expr_2 = settingtools.OffsetPositionedDivisionList(
+            >>> expr_1 = settingtools.DivisionRegionExpression(2 * [(3, 16)], 'Voice 1')
+            >>> expr_2 = settingtools.DivisionRegionExpression(
             ...     2 * [(2, 16)], 'Voice 1', start_offset=(6, 16))
 
         ::
@@ -202,7 +202,7 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
         ::
         
             >>> z(new_expr)
-            settingtools.OffsetPositionedDivisionList(
+            settingtools.DivisionRegionExpression(
                 divisiontools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]'), Division('[2, 16]')]
                     ),

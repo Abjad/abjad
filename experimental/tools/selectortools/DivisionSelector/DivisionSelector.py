@@ -99,7 +99,7 @@ class DivisionSelector(Selector):
         divisions = trimmed_division_region_expressions[0].divisions
         start_offset = trimmed_division_region_expressions[0].start_offset
         divisions, start_offset = self._apply_request_modifiers(divisions, start_offset)
-        result = settingtools.OffsetPositionedDivisionList(
+        result = settingtools.DivisionRegionExpression(
             divisions, 
             voice_name=final_expression.voice_name,
             start_offset=start_offset

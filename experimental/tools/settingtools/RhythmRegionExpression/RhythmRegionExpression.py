@@ -7,10 +7,10 @@ from abjad.tools import iterationtools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import wellformednesstools
-from experimental.tools.settingtools.OffsetPositionedExpression import OffsetPositionedExpression
+from experimental.tools.settingtools.RegionExpression import RegionExpression
 
 
-class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
+class RhythmRegionExpression(RegionExpression):
     r'''Offset-positioned rhythm expression.
 
     One voice of counttime components. 
@@ -36,7 +36,7 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
     ### INITIALIZER ###
 
     def __init__(self, music=None, voice_name=None, start_offset=None, stop_offset=None):
-        OffsetPositionedExpression.__init__(
+        RegionExpression.__init__(
             self, voice_name, start_offset=start_offset, stop_offset=stop_offset)
         music = containertools.Container(music=music)
         self._music = music

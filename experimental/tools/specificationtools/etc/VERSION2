@@ -1,14 +1,17 @@
-1.  Overwrite existing divisions with new divisions:
+1.  Change SelectMethodMixin.select_leaves() to SelectoMethodMixin.select_rhythm().
+    Implement SelectMethodMixin.select_rhythm(depth=-1) keyword
+
+2.  Overwrite existing divisions with new divisions:
         divisions = red_segment.select_divisions('Voice 1')[5:10]
         red_segment.set_divisions([(2, 16)], timespan=divisions)
     (Note that overwriting existing time signatures with new time signatures makes no sense.)
 
-2.  Overwrite existing rhythms with new rhythms:
+3.  Overwrite existing rhythms with new rhythms:
         leaves = red_segment.select_leaves('Voice 1')[5:10]
         red_segment.set_rhythm(library.thirty_seconds, timespan=leaves)
-
-3.  Implement voice intermittency.
 
 4.  Create leaves somewhere.
     Then select a slice of leaves.
     Then overwrite that slice with a different rhythm-maker.
+
+5.  Implement voice intermittency.

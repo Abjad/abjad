@@ -197,7 +197,7 @@ class ConcreteInterpreter(Interpreter):
         else:
             raise TypeError(division_region_command.request)
         return [
-            settingtools.OffsetPositionedDivisionList(
+            settingtools.DivisionRegionExpression(
             divisions, 
             voice_name=voice_name, 
             start_offset=division_region_command.timespan.start_offset,
@@ -440,7 +440,7 @@ class ConcreteInterpreter(Interpreter):
         if rhythm_region_division_list:
             leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
             rhythm_containers = [containertools.Container(x) for x in leaf_lists]
-            rhythm_region_expression = settingtools.OffsetPositionedRhythmExpression(
+            rhythm_region_expression = settingtools.RhythmRegionExpression(
                 rhythm_containers, 
                 voice_name=rhythm_region_division_list.voice_name, start_offset=start_offset)
             self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
@@ -449,7 +449,7 @@ class ConcreteInterpreter(Interpreter):
     def make_rhythm_region_expression_from_parseable_string(
         self, parseable_string, rhythm_region_division_list, start_offset, rhythm_command):
         component = iotools.p(parseable_string)
-        rhythm_region_expression = settingtools.OffsetPositionedRhythmExpression(
+        rhythm_region_expression = settingtools.RhythmRegionExpression(
             music=[component],
             voice_name=rhythm_region_division_list.voice_name, 
             start_offset=start_offset)

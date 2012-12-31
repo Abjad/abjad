@@ -2,10 +2,10 @@ from abjad import *
 from experimental.tools import *
 
 
-def test_OffsetPositionedRhythmExpression_rotate_01():
+def test_RhythmRegionExpression_rotate_01():
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.OffsetPositionedRhythmExpression(music=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionExpression(music=music, voice_name='Voice 1')
     durations = [x.prolated_duration for x in expr.music[:]]
     beamtools.DuratedComplexBeamSpanner(expr.music[:], durations=durations, span=1)
 
@@ -14,10 +14,10 @@ def test_OffsetPositionedRhythmExpression_rotate_01():
     assert expr.music.lilypond_format == "{\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\td'16 [\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\te'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tf'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\ta'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tb'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\tc''16 ]\n\t}\n\t{\n\t\tc'16\n\t}\n}"
 
 
-def test_OffsetPositionedRhythmExpression_rotate_02():
+def test_RhythmRegionExpression_rotate_02():
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.OffsetPositionedRhythmExpression(music=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionExpression(music=music, voice_name='Voice 1')
     durations = [x.prolated_duration for x in expr.music[:]]
     beamtools.DuratedComplexBeamSpanner(expr.music[:], durations=durations, span=1)
 
@@ -26,10 +26,10 @@ def test_OffsetPositionedRhythmExpression_rotate_02():
     assert expr.music.lilypond_format == "{\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\te'16 [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tf'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\ta'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tb'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\tc''16 ]\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\tc'16 [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\td'16 ]\n\t}\n}"
 
 
-def test_OffsetPositionedRhythmExpression_rotate_03():
+def test_RhythmRegionExpression_rotate_03():
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.OffsetPositionedRhythmExpression(music=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionExpression(music=music, voice_name='Voice 1')
     durations = [x.prolated_duration for x in expr.music[:]]
     beamtools.DuratedComplexBeamSpanner(expr.music[:], durations=durations, span=1)
 
@@ -38,12 +38,12 @@ def test_OffsetPositionedRhythmExpression_rotate_03():
     assert expr.music.lilypond_format == "{\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\tf'16 [\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\ta'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tb'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\tc''16 ]\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\tc'16 [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\td'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\te'16 ]\n\t}\n}"
 
 
-def test_OffsetPositionedRhythmExpression_rotate_04():
+def test_RhythmRegionExpression_rotate_04():
     '''Do not fracture beam.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.OffsetPositionedRhythmExpression(music=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionExpression(music=music, voice_name='Voice 1')
     durations = [x.prolated_duration for x in expr.music[:]]
     beamtools.DuratedComplexBeamSpanner(expr.music[:], durations=durations, span=1)
 
@@ -52,12 +52,12 @@ def test_OffsetPositionedRhythmExpression_rotate_04():
     assert expr.music.lilypond_format == "{\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\td'16 [\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\te'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tf'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\ta'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tb'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tc''16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\tc'16 ]\n\t}\n}"
 
 
-def test_OffsetPositionedRhythmExpression_rotate_05():
+def test_RhythmRegionExpression_rotate_05():
     '''Do not fracture beam.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.OffsetPositionedRhythmExpression(music=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionExpression(music=music, voice_name='Voice 1')
     durations = [x.prolated_duration for x in expr.music[:]]
     beamtools.DuratedComplexBeamSpanner(expr.music[:], durations=durations, span=1)
 
@@ -66,12 +66,12 @@ def test_OffsetPositionedRhythmExpression_rotate_05():
     assert expr.music.lilypond_format == "{\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\te'16 [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tf'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\ta'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tb'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tc''16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tc'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\td'16 ]\n\t}\n}"
 
 
-def test_OffsetPositionedRhythmExpression_rotate_06():
+def test_RhythmRegionExpression_rotate_06():
     '''Do not fracture beam.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.OffsetPositionedRhythmExpression(music=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionExpression(music=music, voice_name='Voice 1')
     durations = [x.prolated_duration for x in expr.music[:]]
     beamtools.DuratedComplexBeamSpanner(expr.music[:], durations=durations, span=1)
 
@@ -80,12 +80,12 @@ def test_OffsetPositionedRhythmExpression_rotate_06():
     assert expr.music.lilypond_format == "{\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\tf'16 [\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\ta'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tb'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tc''16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tc'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\td'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\te'16 ]\n\t}\n}"
 
 
-def test_OffsetPositionedRhythmExpression_rotate_07():
+def test_RhythmRegionExpression_rotate_07():
     '''Do not fracture beam. Zero effective rotation.
     '''
     
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.OffsetPositionedRhythmExpression(music=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionExpression(music=music, voice_name='Voice 1')
     durations = [x.prolated_duration for x in expr.music[:]]
     beamtools.DuratedComplexBeamSpanner(expr.music[:], durations=durations, span=1)
 
@@ -94,12 +94,12 @@ def test_OffsetPositionedRhythmExpression_rotate_07():
     assert expr.music.lilypond_format == "{\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\tc'16 [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\td'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\te'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tf'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\ta'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tb'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\tc''16 ]\n\t}\n}"
 
 
-def test_OffsetPositionedRhythmExpression_rotate_08():
+def test_RhythmRegionExpression_rotate_08():
     '''Rotation greater than component count.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.OffsetPositionedRhythmExpression(music=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionExpression(music=music, voice_name='Voice 1')
     durations = [x.prolated_duration for x in expr.music[:]]
     beamtools.DuratedComplexBeamSpanner(expr.music[:], durations=durations, span=1)
 
@@ -108,12 +108,12 @@ def test_OffsetPositionedRhythmExpression_rotate_08():
     assert expr.music.lilypond_format == "{\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\td'16 [\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\te'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tf'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\ta'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tb'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\tc''16 ]\n\t}\n\t{\n\t\tc'16\n\t}\n}"
 
 
-def test_OffsetPositionedRhythmExpression_rotate_09():
+def test_RhythmRegionExpression_rotate_09():
     '''Identity (zero) rotation.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.OffsetPositionedRhythmExpression(music=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionExpression(music=music, voice_name='Voice 1')
     durations = [x.prolated_duration for x in expr.music[:]]
     beamtools.DuratedComplexBeamSpanner(expr.music[:], durations=durations, span=1)
 
@@ -122,12 +122,12 @@ def test_OffsetPositionedRhythmExpression_rotate_09():
     assert expr.music.lilypond_format == "{\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\tc'16 [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\td'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\te'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tf'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\ta'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tb'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\tc''16 ]\n\t}\n}"
 
 
-def test_OffsetPositionedRhythmExpression_rotate_10():
+def test_RhythmRegionExpression_rotate_10():
     '''Internal node zero-rotation.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.OffsetPositionedRhythmExpression(music=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionExpression(music=music, voice_name='Voice 1')
     durations = [x.prolated_duration for x in expr.music[:]]
     beamtools.DuratedComplexBeamSpanner(expr.music[:], durations=durations, span=1)
 
@@ -137,12 +137,12 @@ def test_OffsetPositionedRhythmExpression_rotate_10():
     assert expr.music.lilypond_format == "{\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\tc'16 [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\td'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\te'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tf'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\ta'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tb'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\tc''16 ]\n\t}\n}"
 
 
-def test_OffsetPositionedRhythmExpression_rotate_11():
+def test_RhythmRegionExpression_rotate_11():
     '''Internal node left rotation.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.OffsetPositionedRhythmExpression(music=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionExpression(music=music, voice_name='Voice 1')
     durations = [x.prolated_duration for x in expr.music[:]]
     beamtools.DuratedComplexBeamSpanner(expr.music[:], durations=durations, span=1)
 
@@ -152,12 +152,12 @@ def test_OffsetPositionedRhythmExpression_rotate_11():
     assert expr.music.lilypond_format == "{\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\te'16 [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tf'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\ta'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tb'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\tc''16 ]\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\tc'16 [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\td'16 ]\n\t}\n}"
 
 
-def test_OffsetPositionedRhythmExpression_rotate_12():
+def test_RhythmRegionExpression_rotate_12():
     '''Internal node left rotation.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.OffsetPositionedRhythmExpression(music=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionExpression(music=music, voice_name='Voice 1')
     durations = [x.prolated_duration for x in expr.music[:]]
     beamtools.DuratedComplexBeamSpanner(expr.music[:], durations=durations, span=1)
 
@@ -167,12 +167,12 @@ def test_OffsetPositionedRhythmExpression_rotate_12():
     assert expr.music.lilypond_format == "{\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16 [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\ta'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tb'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\tc''16 ]\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\tc'16 [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\td'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\te'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\tf'16 ]\n\t}\n}"
 
 
-def test_OffsetPositionedRhythmExpression_rotate_13():
+def test_RhythmRegionExpression_rotate_13():
     '''Internal node right rotation.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.OffsetPositionedRhythmExpression(music=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionExpression(music=music, voice_name='Voice 1')
     durations = [x.prolated_duration for x in expr.music[:]]
     beamtools.DuratedComplexBeamSpanner(expr.music[:], durations=durations, span=1)
 
@@ -182,12 +182,12 @@ def test_OffsetPositionedRhythmExpression_rotate_13():
     assert expr.music.lilypond_format == "{\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\tb'16 [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\tc''16 ]\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\tc'16 [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\td'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\te'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tf'16\n\t}\n\t{\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\ta'16 ]\n\t}\n}"
 
 
-def test_OffsetPositionedRhythmExpression_rotate_14():
+def test_RhythmRegionExpression_rotate_14():
     '''Internal node right rotation.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.OffsetPositionedRhythmExpression(music=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionExpression(music=music, voice_name='Voice 1')
     durations = [x.prolated_duration for x in expr.music[:]]
     beamtools.DuratedComplexBeamSpanner(expr.music[:], durations=durations, span=1)
 

@@ -21,7 +21,7 @@
 
 ### ROTATION ###
 
-5.  Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
+5.  Extend RhythmRegionExpression.rotate() with a new 'level=-1' keyword.
     The keyword will specify the score-tree level at which rotation should happen.
     The keyword will be an attribute of the RotationIndicator class.
 
@@ -147,8 +147,6 @@
         leaves.reverse()
         leaves.rotate()
 
-28. Replace OffsetPositionedExpression classes' offset properties with timespan property.
+28. Replace RegionExpression classes' offset properties with timespan property.
 
-29. Rename OffsetPositionedExpression class to TimespanPositionedExpression.
-    Rename OffsetPositionedDivisionList to DivisionRegionExpression.
-    Rename OffsetPositionedRhythmExpression to RhythmRegionExpression.
+29. Migrate SelectMethodMixin from timeexpressiontools to settingtools.
