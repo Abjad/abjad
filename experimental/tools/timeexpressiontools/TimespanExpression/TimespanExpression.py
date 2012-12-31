@@ -7,7 +7,7 @@ from abjad.tools import notetools
 from abjad.tools import timespantools
 from abjad.tools.timespantools.Timespan import Timespan
 from experimental.tools.settingtools.SetMethodMixin import SetMethodMixin
-from experimental.tools.timeexpressiontools.SelectMethodMixin import SelectMethodMixin
+from experimental.tools.settingtools.SelectMethodMixin import SelectMethodMixin
 
 
 class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):

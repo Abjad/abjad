@@ -1,6 +1,6 @@
 import abc
 from experimental.tools.settingtools.SetMethodMixin import SetMethodMixin
-from experimental.tools.timeexpressiontools.SelectMethodMixin import SelectMethodMixin
+from experimental.tools.settingtools.SelectMethodMixin import SelectMethodMixin
 
 
 class SettingInterface(SelectMethodMixin, SetMethodMixin):

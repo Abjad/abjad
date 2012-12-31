@@ -232,6 +232,7 @@ Unstable packages (load manually)
 
    tools/settingtools/RegionCommand/RegionCommand
    tools/settingtools/RegionExpression/RegionExpression
+   tools/settingtools/SelectMethodMixin/SelectMethodMixin
    tools/settingtools/SetMethodMixin/SetMethodMixin
    tools/settingtools/Setting/Setting
    tools/settingtools/SettingInterface/SettingInterface
@@ -283,13 +284,6 @@ Unstable packages (load manually)
 
 :py:mod:`timeexpressiontools <experimental.tools.timeexpressiontools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/timeexpressiontools/SelectMethodMixin/SelectMethodMixin
-
---------
 
 .. toctree::
    :maxdepth: 1

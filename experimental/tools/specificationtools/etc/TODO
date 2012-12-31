@@ -151,9 +151,7 @@
 
 29. Migrate functionality out of interpreter into command request classes.
 
-30. Migrate SelectMethodMixin from timeexpressiontools to settingtools.
-
-31. Possibly rename BackgroundMeasureSelector to TimeSignatureSelector.
+30. Possibly rename BackgroundMeasureSelector to TimeSignatureSelector.
     Possibly rename select_background_measures() to select_time_signatures().
 
-32. Clean up region expression docstrings and alphabetization.
+31. Clean up region expression docstrings and alphabetization.
