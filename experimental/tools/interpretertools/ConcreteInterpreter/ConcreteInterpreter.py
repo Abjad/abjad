@@ -454,9 +454,9 @@ class ConcreteInterpreter(Interpreter):
             start_offset=start_offset)
         duration_needed = sum([durationtools.Duration(x) for x in rhythm_region_division_list])
         stop_offset = start_offset + duration_needed
-        if rhythm_region_expression.stop_offset < stop_offset:
+        if rhythm_region_expression.stops_before_offset(stop_offset):
             rhythm_region_expression.repeat_to_stop_offset(stop_offset)
-        elif stop_offset < rhythm_region_expression.stop_offset:
+        elif rhythm_region_expression.stops_after(stop_offset):
             rhythm_region_expression.set_offsets(stop_offset=stop_offset)
         return rhythm_region_expression
 
@@ -760,9 +760,9 @@ class ConcreteInterpreter(Interpreter):
         result = []
         for left_region_command, right_region_command in \
             sequencetools.iterate_sequence_pairwise_strict(region_commands):
-            assert left_region_command.timespan.stop_offset <= right_region_command.timespan.start_offset
+            assert not left_region_command.timespan.starts_after_expr_starts(right_region_command.timespan)
             result.append(left_region_command)
-            if left_region_command.timespan.stop_offset < right_region_command.timespan.start_offset:
+            if left_region_command.timespan.stops_before_expr_starts(right_region_command.timespan):
                 region_command = self.make_default_region_command(voice_name, 
                     left_region_command.timespan.stop_offset, 
                     right_region_command.timespan.start_offset, attribute)

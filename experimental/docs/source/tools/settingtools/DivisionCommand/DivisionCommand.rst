@@ -63,6 +63,10 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.timespan
+
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
+
 .. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.truncate
 
 .. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.voice_name
@@ -175,11 +179,31 @@ Methods
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.starts_after_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.starts_at_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.starts_at_or_after_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.starts_before_expr_starts
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.starts_before_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.starts_before_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.starts_before_or_at_offset
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
@@ -203,11 +227,31 @@ Methods
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.stops_after_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.stops_at_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.stops_at_or_after_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.stops_before_expr_starts
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.stops_before_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.stops_before_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.stops_before_or_at_offset
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 

@@ -57,6 +57,8 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.tools.settingtools.Command.Command.Command.timespan
+
 Read/write Properties
 ---------------------
 
@@ -161,11 +163,31 @@ Methods
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. automethod:: experimental.tools.settingtools.Command.Command.Command.starts_after_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.Command.Command.Command.starts_at_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.Command.Command.Command.starts_at_or_after_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.settingtools.Command.Command.Command.starts_before_expr_starts
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. automethod:: experimental.tools.settingtools.Command.Command.Command.starts_before_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.Command.Command.Command.starts_before_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.Command.Command.Command.starts_before_or_at_offset
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
@@ -189,11 +211,31 @@ Methods
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. automethod:: experimental.tools.settingtools.Command.Command.Command.stops_after_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.Command.Command.Command.stops_at_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.Command.Command.Command.stops_at_or_after_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.settingtools.Command.Command.Command.stops_before_expr_starts
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. automethod:: experimental.tools.settingtools.Command.Command.Command.stops_before_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.Command.Command.Command.stops_before_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.Command.Command.Command.stops_before_or_at_offset
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
