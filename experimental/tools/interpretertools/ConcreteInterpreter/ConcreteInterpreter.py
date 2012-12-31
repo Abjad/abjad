@@ -302,18 +302,6 @@ class ConcreteInterpreter(Interpreter):
     def get_start_segment_specification(self, expr):
         return self.score_specification.get_start_segment_specification(expr)
 
-    # TODO: Migrate to ScoreSpecification?
-    def get_time_signature_slice(self, start_offset, stop_offset):
-        time_signatures = self.score_specification.time_signatures
-        assert time_signatures
-        slice_duration = stop_offset - start_offset
-        weights = [start_offset, slice_duration]
-        shards = sequencetools.split_sequence_by_weights(
-            time_signatures, weights, cyclic=False, overhang=False)
-        result = shards[1]
-        result = [x.pair for x in result]
-        return result
-
     def initialize_region_expression_inventories(self, attribute):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             timespan_inventory = timespantools.TimespanInventory()
@@ -514,7 +502,8 @@ class ConcreteInterpreter(Interpreter):
             )
 
     def make_time_signature_division_command(self, voice_name, start_offset, stop_offset):
-        divisions = self.get_time_signature_slice(start_offset, stop_offset)
+        timespan = timespantools.Timespan(start_offset, stop_offset)
+        divisions = self.score_specification.get_time_signature_slice(timespan)
         return settingtools.DivisionCommand(
             requesttools.AbsoluteRequest(divisions),
             voice_name, 

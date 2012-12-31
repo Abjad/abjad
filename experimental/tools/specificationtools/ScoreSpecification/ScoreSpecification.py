@@ -556,6 +556,23 @@ class ScoreSpecification(Specification):
         assert isinstance(start_segment_identifier, (int, str)), repr(start_segment_identifier)
         return self.segment_specifications[start_segment_identifier]
 
+    def get_time_signature_slice(self, timespan):
+        '''Get time signature slice::
+
+            >>> timespan = timespantools.Timespan((0, 4), (5, 4))
+            >>> score_specification.get_time_signature_slice(timespan)
+            [(2, 8), (3, 8), (4, 8), (2, 16)]
+
+        Return list.
+        '''
+        assert self.time_signatures
+        weights = [timespan.start_offset, timespan.duration]
+        shards = sequencetools.split_sequence_by_weights(
+            self.time_signatures, weights, cyclic=False, overhang=False)
+        result = shards[1]
+        result = [x.pair for x in result]
+        return result
+
     def interpret(self):
         r'''Interpret score specification::
 
