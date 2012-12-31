@@ -51,9 +51,9 @@ class ConcreteInterpreter(Interpreter):
 
     def attribute_to_command_klass(self, attribute):
         if attribute == 'divisions':
-            return settingtools.DivisionCommand
+            return settingtools.DivisionRegionCommand
         elif attribute == 'rhythm':
-            return settingtools.RhythmCommand
+            return settingtools.RhythmRegionCommand
         else:
             raise NotImplementedError(attribute)
 
@@ -147,9 +147,12 @@ class ConcreteInterpreter(Interpreter):
         elif isinstance(division_region_command.request, requesttools.CommandRequest):
             assert division_region_command.request.attribute == 'divisions'
             division_command_request = division_region_command.request
+
+            # TODO: migrate to DivisionCommandRequest.get_payload(score_specification, ...)
             divisions = self.division_command_request_to_divisions(division_command_request, voice_name)
             start_offset = division_region_command.timespan.start_offset
             divisions, start_offset = division_command_request._apply_request_modifiers(divisions, start_offset)
+
             divisions = requesttools.AbsoluteRequest(divisions)
             division_region_command = division_region_command.new(request=divisions)
             division_region_expressions = self.division_region_command_to_division_region_expressions(
@@ -238,7 +241,7 @@ class ConcreteInterpreter(Interpreter):
         # make one last pass over commands that bear a material request
         postprocessed_result = []
         for quadruple in result:
-            if isinstance(quadruple[0], settingtools.Command):
+            if isinstance(quadruple[0], settingtools.RegionCommand):
                 postprocessed_result.append((quadruple[0].request, ) + quadruple[1:])
             else:
                 postprocessed_result.append(quadruple)
@@ -495,7 +498,7 @@ class ConcreteInterpreter(Interpreter):
 
     def make_skip_token_rhythm_command(self, voice_name, start_offset, stop_offset):
         timespan = timespantools.Timespan(start_offset, stop_offset)
-        return settingtools.RhythmCommand(
+        return settingtools.RhythmRegionCommand(
             requesttools.AbsoluteRequest(library.skip_tokens),
             voice_name, 
             timespan,
@@ -505,7 +508,7 @@ class ConcreteInterpreter(Interpreter):
     def make_time_signature_division_command(self, voice_name, start_offset, stop_offset):
         timespan = timespantools.Timespan(start_offset, stop_offset)
         divisions = self.score_specification.get_time_signature_slice(timespan)
-        return settingtools.DivisionCommand(
+        return settingtools.DivisionRegionCommand(
             requesttools.AbsoluteRequest(divisions),
             voice_name, 
             timespan,
@@ -588,11 +591,11 @@ class ConcreteInterpreter(Interpreter):
 
     def rhythm_command_prolongs_expr(self, current_rhythm_command, expr):
         # check that current rhythm command bears a rhythm material request
-        assert isinstance(current_rhythm_command, settingtools.RhythmCommand)
+        assert isinstance(current_rhythm_command, settingtools.RhythmRegionCommand)
         current_material_request = current_rhythm_command.request
         assert isinstance(current_material_request, selectortools.CounttimeComponentSelector)
         # fuse only if expr is also a rhythm command that bears a rhythm material request
-        if not isinstance(expr, settingtools.RhythmCommand):
+        if not isinstance(expr, settingtools.RhythmRegionCommand):
             return False
         else:
             previous_rhythm_command = expr
@@ -604,6 +607,7 @@ class ConcreteInterpreter(Interpreter):
             return False
         return True
 
+    # TODO: migrate to RhythmCommandRequest.get_payload(score_specification, ...)
     def rhythm_command_request_to_rhythm_maker(self, rhythm_command_request, voice_name):
         assert isinstance(rhythm_command_request, requesttools.CommandRequest)
         assert rhythm_command_request.attribute == 'rhythm'
@@ -786,6 +790,7 @@ class ConcreteInterpreter(Interpreter):
                 result.append(element)
         return result
 
+    # TODO: migrate to TimeSignatureCommandRequest.get_payload(score_specification, ...)
     def time_signature_command_request_to_time_signatures(self, command_request):
         assert isinstance(command_request, requesttools.CommandRequest)
         assert command_request.attribute == 'time_signatures'

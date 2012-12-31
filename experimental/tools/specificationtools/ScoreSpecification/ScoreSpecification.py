@@ -118,7 +118,7 @@ class ScoreSpecification(Specification):
 
             >>> for x in score_specification.all_division_region_commands:
             ...     z(x)
-            settingtools.DivisionCommand(
+            settingtools.DivisionRegionCommand(
                 requesttools.AbsoluteRequest(
                     [(2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)]
                     ),
@@ -130,7 +130,7 @@ class ScoreSpecification(Specification):
                 fresh=True,
                 truncate=True
                 )
-            settingtools.DivisionCommand(
+            settingtools.DivisionRegionCommand(
                 requesttools.AbsoluteRequest(
                     [(2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)]
                     ),
@@ -168,7 +168,7 @@ class ScoreSpecification(Specification):
 
             >>> for x in score_specification.all_rhythm_region_commands:
             ...     z(x)
-            settingtools.RhythmCommand(
+            settingtools.RhythmRegionCommand(
                 requesttools.AbsoluteRequest(
                     rhythmmakertools.TaleaRhythmMaker(
                         [1],

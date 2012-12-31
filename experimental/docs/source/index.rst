@@ -232,24 +232,23 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   tools/settingtools/Command/Command
+   tools/settingtools/RegionCommand/RegionCommand
    tools/settingtools/RegionExpression/RegionExpression
    tools/settingtools/SetMethodMixin/SetMethodMixin
    tools/settingtools/Setting/Setting
    tools/settingtools/SettingInterface/SettingInterface
-   tools/settingtools/TimespanPositionedExpression/TimespanPositionedExpression
 
 --------
 
 .. toctree::
    :maxdepth: 1
 
-   tools/settingtools/DivisionCommand/DivisionCommand
+   tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
    tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
    tools/settingtools/ModifierInventory/ModifierInventory
    tools/settingtools/MultipleContextSetting/MultipleContextSetting
    tools/settingtools/MultipleContextSettingInventory/MultipleContextSettingInventory
-   tools/settingtools/RhythmCommand/RhythmCommand
+   tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
    tools/settingtools/RhythmRegionExpression/RhythmRegionExpression
    tools/settingtools/RotationIndicator/RotationIndicator
    tools/settingtools/ScoreSettingInterface/ScoreSettingInterface

@@ -7,10 +7,10 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools import helpertools 
 
 
-class Command(AbjadObject):
+class RegionCommand(AbjadObject):
     '''
 
-    Command indicating period of time to which request will apply.
+    RegionCommand indicating period of time to which request will apply.
 
     Composers do not create commands because command arise
     as a byproduct of interpretation.
@@ -53,7 +53,7 @@ class Command(AbjadObject):
 
     @abc.abstractproperty
     def attribute(self):
-        '''Command attribute.
+        '''RegionCommand attribute.
 
         Return string.
         '''
@@ -61,7 +61,7 @@ class Command(AbjadObject):
 
     @property
     def context_name(self):
-        '''Command context name.
+        '''RegionCommand context name.
     
         Return string.
         '''
@@ -78,7 +78,7 @@ class Command(AbjadObject):
 
     @property
     def request(self):
-        '''Command request.
+        '''RegionCommand request.
         
         Return request object.
         ''' 
@@ -86,7 +86,7 @@ class Command(AbjadObject):
 
     @property
     def timespan(self):
-        '''Command timespan.
+        '''RegionCommand timespan.
         '''
         return self._timespan
 

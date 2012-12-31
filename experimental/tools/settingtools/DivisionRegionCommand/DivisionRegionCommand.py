@@ -1,18 +1,18 @@
 import copy
-from experimental.tools.settingtools.Command import Command
+from experimental.tools.settingtools.RegionCommand import RegionCommand
 
 
-class DivisionCommand(Command):
+class DivisionRegionCommand(RegionCommand):
     r'''Division command.
 
-    Command indicating durated period of time 
+    RegionCommand indicating durated period of time 
     to which an evaluated request will apply.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, request, context_name, timespan, fresh=None, truncate=None):
-        Command.__init__(self, request, context_name, timespan, fresh=fresh)
+        RegionCommand.__init__(self, request, context_name, timespan, fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate
 

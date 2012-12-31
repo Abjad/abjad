@@ -1,11 +1,11 @@
 import copy
-from experimental.tools.settingtools.Command import Command
+from experimental.tools.settingtools.RegionCommand import RegionCommand
 
 
-class RhythmCommand(Command):
+class RhythmRegionCommand(RegionCommand):
     r'''Rhythm command.
 
-    Command indicating durated period of time over which a rhythm payload will apply.
+    RegionCommand indicating durated period of time over which a rhythm payload will apply.
     '''
     
     ### READ-ONLY PUBLIC PROPERTIES ###

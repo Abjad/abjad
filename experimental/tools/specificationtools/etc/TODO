@@ -147,6 +147,12 @@
         leaves.reverse()
         leaves.rotate()
 
-28. Replace RegionExpression classes' offset properties with timespan property.
+28. Implement TimeSignatureCommandRequest, DivisionCommandRequest, RhythmCommandRequest.
 
-29. Migrate SelectMethodMixin from timeexpressiontools to settingtools.
+29. Migrate functionality out of interpreter into command request classes.
+
+30. Replace RegionExpression classes' offset properties with timespan property.
+
+31. Migrate SelectMethodMixin from timeexpressiontools to settingtools.
+
+32. Remove 'symbolic_offset' and 'symbolic_timespan' and 'symbolic' from codebase.

@@ -38,7 +38,7 @@ class CommandRequest(Request):
                 )
             )
 
-    Command requested is canonically assumed to be a list or other iterable.
+    RegionCommand requested is canonically assumed to be a list or other iterable.
 
     Because of this the request affords list-manipulation attributes.
     These are `index`, `count`.
@@ -61,7 +61,7 @@ class CommandRequest(Request):
 
     @property
     def attribute(self):
-        '''Command request attribute specified by user.
+        '''RegionCommand request attribute specified by user.
 
             >>> command_request.attribute
             'divisions'
@@ -83,7 +83,7 @@ class CommandRequest(Request):
 
     @property
     def symbolic_offset(self):
-        '''Command request symbolic offset specified by user.
+        '''RegionCommand request symbolic offset specified by user.
 
             >>> z(command_request.symbolic_offset)
             timeexpressiontools.OffsetExpression(
@@ -102,7 +102,7 @@ class CommandRequest(Request):
 
     @property
     def voice_name(self):
-        '''Command request voice name specified by user.
+        '''RegionCommand request voice name specified by user.
 
             >>> command_request.voice_name
             'Voice 1'
