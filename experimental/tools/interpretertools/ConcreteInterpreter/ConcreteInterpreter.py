@@ -152,7 +152,7 @@ class ConcreteInterpreter(Interpreter):
             assert division_region_command.request.attribute == 'divisions'
             division_command_request = division_region_command.request
             divisions = self.division_command_request_to_divisions(division_command_request, voice_name)
-            start_offset = division_region_command.start_offset
+            start_offset = division_region_command.timespan.start_offset
             divisions, start_offset = division_command_request._apply_request_modifiers(divisions, start_offset)
             divisions = requesttools.AbsoluteRequest(divisions)
             division_region_command = division_region_command.new(request=divisions)
@@ -183,7 +183,7 @@ class ConcreteInterpreter(Interpreter):
             division_list = division_region_expression.division_list.new(divisions=divisions)
             division_region_expression = division_region_expression.new(division_list=division_list)
             #self._debug(division_region_expression, 'drx')
-            addendum = division_region_command.start_offset - division_region_expression.start_offset
+            addendum = division_region_command.timespan.start_offset - division_region_expression.start_offset
             division_region_expression = division_region_expression.translate_offsets(
                 start_offset_translation=addendum, stop_offset_translation=addendum)
             return [division_region_expression]
@@ -199,8 +199,8 @@ class ConcreteInterpreter(Interpreter):
             settingtools.OffsetPositionedDivisionList(
             divisions, 
             voice_name=voice_name, 
-            start_offset=division_region_command.start_offset,
-            stop_offset=division_region_command.stop_offset
+            start_offset=division_region_command.timespan.start_offset,
+            stop_offset=division_region_command.timespan.stop_offset
             )]
 
     def dump_rhythm_region_expressions_into_voices(self):
@@ -228,8 +228,8 @@ class ConcreteInterpreter(Interpreter):
                         rhythm_command)
                 else:
                     new_entry = (rhythm_command,
-                            rhythm_command.start_offset, 
-                            rhythm_command.stop_offset, 
+                            rhythm_command.timespan.start_offset, 
+                            rhythm_command.timespan.stop_offset, 
                             rhythm_command)
                 result.append(new_entry)
             else:
@@ -632,7 +632,7 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(source_command.request.payload, rhythmmakertools.RhythmMaker)
         rhythm_maker = copy.deepcopy(source_command.request.payload)
         rhythm_maker, start_offset = rhythm_command_request._apply_request_modifiers(
-            rhythm_maker, source_command.start_offset)
+            rhythm_maker, source_command.timespan.start_offset)
         return rhythm_maker
 
     # do we eventually need to do this with time signature settings, too?
@@ -669,9 +669,9 @@ class ConcreteInterpreter(Interpreter):
             for command_to_remove in commands_to_remove:
                 cooked_commands.remove(command_to_remove)
             for command_to_curtail in commands_to_curtail:
-                command_to_curtail._stop_offset = raw_command.start_offset
+                command_to_curtail._stop_offset = raw_command.timespan.start_offset
             for command_to_delay in commands_to_delay:
-                command_to_delay._start_offset = raw_command.stop_offset
+                command_to_delay._start_offset = raw_command.timespan.stop_offset
                 command_was_delayed = True
             # TODO: branch inside and implement a method to split while treating cyclic payload smartly.
             # or, alternatively, special-case for commands that cover the entire duration of score.
@@ -679,10 +679,10 @@ class ConcreteInterpreter(Interpreter):
                 left_command = command_to_split
                 middle_command = raw_command
                 right_command = copy.deepcopy(left_command)
-                left_command._stop_offset = middle_command.start_offset
-                right_command._start_offset = middle_command.stop_offset
-                #left_command = left_command.new(stop_offset=middle_command.start_offset)
-                #right_command = right_command.new(start_offset=middle_command.stop_offset)
+                left_command._stop_offset = middle_command.timespan.start_offset
+                right_command._start_offset = middle_command.timespan.stop_offset
+                #left_command = left_command.new(stop_offset=middle_command.timespan.start_offset)
+                #right_command = right_command.new(start_offset=middle_command.timespan.stop_offset)
                 command_was_split = True
             if command_was_delayed:
                 index = cooked_commands.index(cooked_command)
@@ -760,11 +760,12 @@ class ConcreteInterpreter(Interpreter):
         result = []
         for left_region_command, right_region_command in \
             sequencetools.iterate_sequence_pairwise_strict(region_commands):
-            assert left_region_command.stop_offset <= right_region_command.start_offset
+            assert left_region_command.timespan.stop_offset <= right_region_command.timespan.start_offset
             result.append(left_region_command)
-            if left_region_command.stop_offset < right_region_command.start_offset:
+            if left_region_command.timespan.stop_offset < right_region_command.timespan.start_offset:
                 region_command = self.make_default_region_command(voice_name, 
-                    left_region_command.stop_offset, right_region_command.start_offset, attribute)
+                    left_region_command.timespan.stop_offset, 
+                    right_region_command.timespan.start_offset, attribute)
                 result.append(region_command)
         result.append(right_region_command)
         return result

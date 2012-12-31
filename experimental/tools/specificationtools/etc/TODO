@@ -153,5 +153,4 @@
 
 30. Relace Command.offsets with Command.timespan.
 
-31. Make DivisionList inherit from BoundedObject.
-    Then remove is_closed, is_half_closed, etc.
+31. Audit interpreter for 'offset.*<' and replace with (literate) bound timespan inequalities.

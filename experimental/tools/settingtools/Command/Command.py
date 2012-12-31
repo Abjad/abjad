@@ -2,6 +2,7 @@ import abc
 import copy
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools 
+from abjad.tools import timespantools 
 from abjad.tools.timespantools.Timespan import Timespan
 from experimental.tools import helpertools 
 
@@ -84,6 +85,10 @@ class Command(Timespan):
         Return request object.
         ''' 
         return self._request
+
+    @property
+    def timespan(self):
+        return timespantools.Timespan(self.start_offset, self.stop_offset)
 
     ### PUBLIC METHODS ###
 
