@@ -1,19 +1,13 @@
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.mathtools.BoundedObject import BoundedObject
 from experimental.tools import helpertools
 
 
-class DivisionList(AbjadObject):
-    r'''
+class DivisionList(BoundedObject):
+    r'''Division list.
 
     Division lists model time-contiguous divisions.
 
-    Segment division lists model the **parts of** all
-    divisions that intersect some segment.
-
-    Segment division lists break divisions that cross segment boundaries.
-
-    Segment division lists contrast with division region division lists.
-    The best way to show this is with an example::
+    Division region division list example::
 
         >>> from abjad import *
         >>> from experimental.tools import *
@@ -66,7 +60,7 @@ class DivisionList(AbjadObject):
     Note that composers may specify an arbitrary number of division-makers for any given voice.
     This results in an arbitrary number of division regions per voice.
 
-    Composers do not specify division lists because division lists 
+    Composers do not create division lists because division lists 
     arise as a byproduct of interpretation.
     '''
 
@@ -146,28 +140,12 @@ class DivisionList(AbjadObject):
         return sum([division.duration for division in self.divisions])
 
     @property
-    def is_closed(self):
-        return self.is_left_closed and self.is_right_closed
-
-    @property
-    def is_half_closed(self):
-        return not self.is_left_closed == self.is_right_closed
-
-    @property
-    def is_half_open(self):
-        return not self.is_left_open == self.is_right_open
-
-    @property
     def is_left_closed(self):
         return self[0].is_left_closed
 
     @property
     def is_left_open(self):
         return self[0].is_left_open
-
-    @property
-    def is_open(self):
-        return not self.is_left_closed and not self.is_right_closed
 
     @property
     def is_right_closed(self):

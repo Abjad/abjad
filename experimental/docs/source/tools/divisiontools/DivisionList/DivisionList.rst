@@ -15,15 +15,23 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.divisiontools.DivisionList.DivisionList.DivisionList.is_closed
 
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
 .. autoattribute:: experimental.tools.divisiontools.DivisionList.DivisionList.DivisionList.is_half_closed
 
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
 .. autoattribute:: experimental.tools.divisiontools.DivisionList.DivisionList.DivisionList.is_half_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
 .. autoattribute:: experimental.tools.divisiontools.DivisionList.DivisionList.DivisionList.is_left_closed
 
 .. autoattribute:: experimental.tools.divisiontools.DivisionList.DivisionList.DivisionList.is_left_open
 
 .. autoattribute:: experimental.tools.divisiontools.DivisionList.DivisionList.DivisionList.is_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
 .. autoattribute:: experimental.tools.divisiontools.DivisionList.DivisionList.DivisionList.is_right_closed
 
