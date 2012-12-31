@@ -3,10 +3,10 @@ from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools import timespantools
 from experimental.tools import divisiontools
-from experimental.tools.settingtools.RegionExpression import RegionExpression
+from experimental.tools.settingtools.RegionProduct import RegionProduct
 
 
-class DivisionRegionExpression(RegionExpression):
+class DivisionRegionProduct(RegionProduct):
     r'''Division region expression.
 
     ::
@@ -19,7 +19,7 @@ class DivisionRegionExpression(RegionExpression):
     ### INITIALIZER ###
 
     def __init__(self, division_list, voice_name=None, timespan=None):
-        RegionExpression.__init__(self, voice_name, timespan=timespan)
+        RegionProduct.__init__(self, voice_name, timespan=timespan)
         if not isinstance(division_list, divisiontools.DivisionList):
             division_list = divisiontools.DivisionList(division_list)
         self._division_list = division_list
@@ -36,12 +36,12 @@ class DivisionRegionExpression(RegionExpression):
 
         ::
 
-            >>> expr = settingtools.DivisionRegionExpression(4 * [(3, 16)], 'Voice 1')
+            >>> expr = settingtools.DivisionRegionProduct(4 * [(3, 16)], 'Voice 1')
 
         ::
 
             >>> z(expr)
-            settingtools.DivisionRegionExpression(
+            settingtools.DivisionRegionProduct(
                 divisiontools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
                     ),
@@ -59,7 +59,7 @@ class DivisionRegionExpression(RegionExpression):
         ::
 
             >>> z(expr)
-            settingtools.DivisionRegionExpression(
+            settingtools.DivisionRegionProduct(
                 divisiontools.DivisionList(
                     [Division('[2, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
                     ),
@@ -95,12 +95,12 @@ class DivisionRegionExpression(RegionExpression):
 
         ::
 
-            >>> expr = settingtools.DivisionRegionExpression(4 * [(3, 16)], 'Voice 1')
+            >>> expr = settingtools.DivisionRegionProduct(4 * [(3, 16)], 'Voice 1')
 
         ::
 
             >>> z(expr)
-            settingtools.DivisionRegionExpression(
+            settingtools.DivisionRegionProduct(
                 divisiontools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
                     ),
@@ -118,7 +118,7 @@ class DivisionRegionExpression(RegionExpression):
         ::
 
             >>> z(expr)
-            settingtools.DivisionRegionExpression(
+            settingtools.DivisionRegionProduct(
                 divisiontools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]')]
                     ),
@@ -189,9 +189,9 @@ class DivisionRegionExpression(RegionExpression):
     def fuse(self, expr):
         '''Fuse if expression stops when `expr` starts::
 
-            >>> expr_1 = settingtools.DivisionRegionExpression(2 * [(3, 16)], 'Voice 1')
+            >>> expr_1 = settingtools.DivisionRegionProduct(2 * [(3, 16)], 'Voice 1')
             >>> timespan = timespantools.Timespan(Offset(6, 16))
-            >>> expr_2 = settingtools.DivisionRegionExpression(
+            >>> expr_2 = settingtools.DivisionRegionProduct(
             ...     2 * [(2, 16)], 'Voice 1', timespan=timespan)
 
         ::
@@ -206,7 +206,7 @@ class DivisionRegionExpression(RegionExpression):
         ::
         
             >>> z(new_expr)
-            settingtools.DivisionRegionExpression(
+            settingtools.DivisionRegionProduct(
                 divisiontools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]'), Division('[2, 16]')]
                     ),

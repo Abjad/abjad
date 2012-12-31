@@ -7,10 +7,10 @@ from abjad.tools import iterationtools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import wellformednesstools
-from experimental.tools.settingtools.RegionExpression import RegionExpression
+from experimental.tools.settingtools.RegionProduct import RegionProduct
 
 
-class RhythmRegionExpression(RegionExpression):
+class RhythmRegionProduct(RegionProduct):
     r'''Rhythm region expression.
 
     One voice of counttime components. 
@@ -36,7 +36,7 @@ class RhythmRegionExpression(RegionExpression):
     ### INITIALIZER ###
 
     def __init__(self, music=None, voice_name=None, timespan=None):
-        RegionExpression.__init__(self, voice_name, timespan=timespan)
+        RegionProduct.__init__(self, voice_name, timespan=timespan)
         music = containertools.Container(music=music)
         self._music = music
 

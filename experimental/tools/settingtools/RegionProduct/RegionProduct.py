@@ -4,7 +4,7 @@ from abjad.tools import timespantools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class RegionExpression(AbjadObject):
+class RegionProduct(AbjadObject):
     r'''Region expression.
 
     Timespan-positioned payload.

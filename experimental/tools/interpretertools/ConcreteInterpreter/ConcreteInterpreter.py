@@ -202,7 +202,7 @@ class ConcreteInterpreter(Interpreter):
         else:
             raise TypeError(division_region_command.request)
         return [
-            settingtools.DivisionRegionExpression(
+            settingtools.DivisionRegionProduct(
             divisions, 
             voice_name=voice_name, 
             timespan=division_region_command.timespan
@@ -445,7 +445,7 @@ class ConcreteInterpreter(Interpreter):
             leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
             rhythm_containers = [containertools.Container(x) for x in leaf_lists]
             timespan = timespantools.Timespan(start_offset)
-            rhythm_region_expression = settingtools.RhythmRegionExpression(
+            rhythm_region_expression = settingtools.RhythmRegionProduct(
                 rhythm_containers, 
                 voice_name=rhythm_region_division_list.voice_name, 
                 timespan=timespan)
@@ -456,7 +456,7 @@ class ConcreteInterpreter(Interpreter):
         self, parseable_string, rhythm_region_division_list, start_offset, rhythm_command):
         component = iotools.p(parseable_string)
         timespan = timespantools.Timespan(start_offset)
-        rhythm_region_expression = settingtools.RhythmRegionExpression(
+        rhythm_region_expression = settingtools.RhythmRegionProduct(
             music=[component],
             voice_name=rhythm_region_division_list.voice_name, 
             timespan=timespan)

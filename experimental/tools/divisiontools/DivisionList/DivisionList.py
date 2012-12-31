@@ -42,7 +42,7 @@ class DivisionList(BoundedObject):
     ::
 
         >>> z(score_specification.contexts['Voice 1']['division_region_expressions'][0])
-        settingtools.DivisionRegionExpression(
+        settingtools.DivisionRegionProduct(
             divisiontools.DivisionList(
                 [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 
                 Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 

@@ -21,7 +21,7 @@
 
 ### ROTATION ###
 
-5.  Extend RhythmRegionExpression.rotate() with a new 'level=-1' keyword.
+5.  Extend RhythmRegionProduct.rotate() with a new 'level=-1' keyword.
     The keyword will specify the score-tree level at which rotation should happen.
     The keyword will be an attribute of the RotationIndicator class.
 
@@ -96,48 +96,53 @@
     the two different uses of 'command' disambiguate (ie, 'region command' 
     versus 'command request'.)
 
-19. Looks like modifiers stack may not be copied over from segment to segment for persistent settings.
+19. Clean up region expression docstrings and alphabetization.
+
+20. Looks like modifiers stack may not be copied over from segment to segment for persistent settings.
     Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
 
-20. Add a test to show this:
+21. Possibly rename BackgroundMeasureSelector to TimeSignatureSelector.
+    Possibly rename select_background_measures() to select_time_signatures().
+
+22. Add a test to show this:
         note_selector = red_segment.select_notes_and_chords('Voice 1')[10:11]
         offset = note_selector.stop_offset
 
-21. Add some tests to show this:
+23. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')
         measures = measures[10:20]
         measures = measures[2:4]
     This will show getitem composition.
 
-22. Add some tests to show this:
+24. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_part = segments.set_offset(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         middle_part.set_divisions([(3, 16)])
     This will show setting divisions for (potentially) more than one segment.
 
-23. Add some tests to show this:
+25. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_measures = segments.select_background_measures('Voice 1')[3:6]
     This will show selecting background measures from (potentially) more than one segment.
 
-24. Add some tests to show this:
+26. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')[10:20]
         middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
     This will show partitioning only part of a segment's measures.
 
-25. Add some tests to show this:
+27. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')
         middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
         measure = middle_third_of_measures[:1]
     This will show slice selection following partition.
 
-26. Add some tests to show this:
+28. Add some tests to show this:
         first_half_of_red_segment = red_segment.timespan.divide_by_ratio((1, 1))[0]
         measures = first_half_of_red_segment.select_background_measures('Voice 1')
     This will show selecting background measures that start during a duration-partitioned part of segment.
 
-27. Author tests to show each request modifier applied to each selector.
+29. Author tests to show each request modifier applied to each selector.
     Remaining tests to author:
         leaves.__getitem__()
         leaves.partition_by_ratio()
@@ -147,11 +152,6 @@
         leaves.reverse()
         leaves.rotate()
 
-28. Implement TimeSignatureCommandRequest, DivisionCommandRequest, RhythmCommandRequest.
+30. Implement TimeSignatureCommandRequest, DivisionCommandRequest, RhythmCommandRequest.
 
-29. Migrate functionality out of interpreter into command request classes.
-
-30. Possibly rename BackgroundMeasureSelector to TimeSignatureSelector.
-    Possibly rename select_background_measures() to select_time_signatures().
-
-31. Clean up region expression docstrings and alphabetization.
+31. Migrate functionality out of interpreter into command request classes.

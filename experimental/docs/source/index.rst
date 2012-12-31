@@ -231,7 +231,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    tools/settingtools/RegionCommand/RegionCommand
-   tools/settingtools/RegionExpression/RegionExpression
+   tools/settingtools/RegionProduct/RegionProduct
    tools/settingtools/SelectMethodMixin/SelectMethodMixin
    tools/settingtools/SetMethodMixin/SetMethodMixin
    tools/settingtools/Setting/Setting
@@ -243,12 +243,12 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
-   tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
+   tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
    tools/settingtools/ModifierInventory/ModifierInventory
    tools/settingtools/MultipleContextSetting/MultipleContextSetting
    tools/settingtools/MultipleContextSettingInventory/MultipleContextSettingInventory
    tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
-   tools/settingtools/RhythmRegionExpression/RhythmRegionExpression
+   tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
    tools/settingtools/RotationIndicator/RotationIndicator
    tools/settingtools/ScoreSettingInterface/ScoreSettingInterface
    tools/settingtools/SegmentSettingInterface/SegmentSettingInterface
