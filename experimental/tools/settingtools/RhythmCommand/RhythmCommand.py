@@ -3,7 +3,7 @@ from experimental.tools.settingtools.Command import Command
 
 
 class RhythmCommand(Command):
-    r'''
+    r'''Rhythm command.
 
     Command indicating durated period of time over which a rhythm payload will apply.
     '''

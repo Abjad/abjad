@@ -150,5 +150,3 @@
         leaves.rotate()
 
 29. Replace OffsetPositionedExpression classes' offset properties with timespan property.
-
-30. Replace Command.offsets with Command.timespan.

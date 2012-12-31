@@ -58,10 +58,6 @@ class ConcreteInterpreter(Interpreter):
             raise NotImplementedError(attribute)
 
     def calculate_score_and_segment_timespans(self):
-        '''Set ``'timespan'`` on score specification.
-
-        Set ``'timespan'`` on segment specifications.
-        '''
         segment_durations = [durationtools.Duration(sum(x.time_signatures)) 
             for x in self.score_specification.segment_specifications]
         if sequencetools.all_are_numbers(segment_durations):
@@ -497,8 +493,6 @@ class ConcreteInterpreter(Interpreter):
         return settingtools.RhythmCommand(
             requesttools.AbsoluteRequest(library.skip_tokens),
             voice_name, 
-            #start_offset,
-            #stop_offset,
             timespan,
             fresh=True
             )
@@ -509,8 +503,6 @@ class ConcreteInterpreter(Interpreter):
         return settingtools.DivisionCommand(
             requesttools.AbsoluteRequest(divisions),
             voice_name, 
-            #start_offset,
-            #stop_offset,
             timespan,
             fresh=True,
             truncate=True
@@ -645,8 +637,6 @@ class ConcreteInterpreter(Interpreter):
         command = command_klass(
             single_context_setting.request, 
             single_context_setting.context_name,
-            #anchor_timespan.start_offset,
-            #anchor_timespan.stop_offset,
             anchor_timespan,
             fresh=single_context_setting.fresh
             )
@@ -673,12 +663,10 @@ class ConcreteInterpreter(Interpreter):
             for command_to_remove in commands_to_remove:
                 cooked_commands.remove(command_to_remove)
             for command_to_curtail in commands_to_curtail:
-                #command_to_curtail._stop_offset = raw_command.timespan.start_offset
                 timespan = timespantools.Timespan(
                     command_to_curtail.timespan.start_offset, raw_command.timespan.start_offset)
                 command_to_curtail._timespan = timespan
             for command_to_delay in commands_to_delay:
-                #command_to_delay._start_offset = raw_command.timespan.stop_offset
                 timespan = timespantools.Timespan(
                     raw_command.timespan.stop_offset, command_to_delay.timespan.stop_offset)
                 command_to_delay._timespan = timespan
@@ -689,11 +677,9 @@ class ConcreteInterpreter(Interpreter):
                 left_command = command_to_split
                 middle_command = raw_command
                 right_command = copy.deepcopy(left_command)
-                #left_command._stop_offset = middle_command.timespan.start_offset
                 timespan = timespantools.Timespan(
                     left_command.timespan.start_offset, middle_command.timespan.start_offset)
                 left_command._timespan = timespan
-                #right_command._start_offset = middle_command.timespan.stop_offset
                 timespan = timespantools.Timespan(
                     middle_command.timespan.stop_offset, right_command.timespan.stop_offset)
                 right_command._timespan = timespan
@@ -754,8 +740,6 @@ class ConcreteInterpreter(Interpreter):
         if not region_commands and not self.score_specification.time_signatures:
             return []
         elif not region_commands and self.score_specification.time_signatures:
-            #region_command = self.make_default_region_command(
-            #    voice_name, self.score_specification.start_offset, self.score_specification.stop_offset, attribute)
             region_command = self.make_default_region_command(
                 voice_name, self.score_specification.timespan.start_offset, 
                 self.score_specification.timespan.stop_offset, attribute)

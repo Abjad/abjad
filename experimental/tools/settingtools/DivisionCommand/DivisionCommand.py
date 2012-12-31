@@ -3,7 +3,7 @@ from experimental.tools.settingtools.Command import Command
 
 
 class DivisionCommand(Command):
-    r'''
+    r'''Division command.
 
     Command indicating durated period of time 
     to which an evaluated request will apply.
@@ -11,9 +11,7 @@ class DivisionCommand(Command):
 
     ### INITIALIZER ###
 
-    #def __init__(self, request, context_name, start_offset, stop_offset, 
     def __init__(self, request, context_name, timespan, fresh=None, truncate=None):
-        #Command.__init__(self, request, context_name, start_offset, stop_offset, fresh=fresh)
         Command.__init__(self, request, context_name, timespan, fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate
