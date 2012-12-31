@@ -1,5 +1,6 @@
 import abc
 from abjad.tools import durationtools
+from abjad.tools import timespantools
 from abjad.tools.timespantools.Timespan import Timespan
 
 
@@ -32,7 +33,7 @@ class OffsetPositionedExpression(Timespan):
     ### SPECIAL METHODS ###
 
     def __lt__(self, expr):
-        return self.start_offset < expr.start_offset
+        return self.timespan.start_offset < expr.timespan.start_offset
 
     ### PRIVATE METHODS ###
 
@@ -74,6 +75,10 @@ class OffsetPositionedExpression(Timespan):
         return self.start_offset + self.duration
 
     @property
+    def timespan(self):
+        return timespantools.Timespan(self.start_offset, self.stop_offset)
+
+    @property
     def voice_name(self):
         '''Offset-positioned expression voice name.
 
@@ -107,9 +112,9 @@ class OffsetPositionedExpression(Timespan):
         '''
         if stop_offset is not None:
             stop_offset = durationtools.Offset(stop_offset)
-            if stop_offset < self.stop_offset:
+            if stop_offset < self.timespan.stop_offset:
                 self._set_stop_offset(stop_offset)
         if start_offset is not None:
             start_offset = durationtools.Offset(start_offset)
-            if self.start_offset < start_offset:
+            if self.timespan.start_offset < start_offset:
                 self._set_start_offset(start_offset)

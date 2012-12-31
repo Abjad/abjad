@@ -137,9 +137,7 @@
         measures = first_half_of_red_segment.select_background_measures('Voice 1')
     This will show selecting background measures that start during a duration-partitioned part of segment.
 
-27. Rename Request to RequestMethodMixin to parallel SetMethodMixin.
-
-28. Author tests to show each request modifier applied to each selector.
+27. Author tests to show each request modifier applied to each selector.
     Remaining tests to author:
         leaves.__getitem__()
         leaves.partition_by_ratio()
@@ -149,4 +147,8 @@
         leaves.reverse()
         leaves.rotate()
 
-29. Replace OffsetPositionedExpression classes' offset properties with timespan property.
+28. Replace OffsetPositionedExpression classes' offset properties with timespan property.
+
+29. Rename OffsetPositionedExpression class to TimespanPositionedExpression.
+    Rename OffsetPositionedDivisionList to DivisionRegionExpression.
+    Rename OffsetPositionedRhythmExpression to RhythmRegionExpression.

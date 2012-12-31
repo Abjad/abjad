@@ -179,7 +179,12 @@ class ConcreteInterpreter(Interpreter):
             division_list = division_region_expression.division_list.new(divisions=divisions)
             division_region_expression = division_region_expression.new(division_list=division_list)
             #self._debug(division_region_expression, 'drx')
-            addendum = division_region_command.timespan.start_offset - division_region_expression.start_offset
+            # remove two lines after testing
+            #addendum = division_region_command.timespan.start_offset - \
+            #    division_region_expression.timespan.start_offset
+            right = division_region_command.timespan.start_offset
+            left = division_region_expression.timespan.start_offset
+            addendum = right - left
             division_region_expression = division_region_expression.translate_offsets(
                 start_offset_translation=addendum, stop_offset_translation=addendum)
             return [division_region_expression]
@@ -450,9 +455,9 @@ class ConcreteInterpreter(Interpreter):
             start_offset=start_offset)
         duration_needed = sum([durationtools.Duration(x) for x in rhythm_region_division_list])
         stop_offset = start_offset + duration_needed
-        if rhythm_region_expression.stops_before_offset(stop_offset):
+        if rhythm_region_expression.timespan.stops_before_offset(stop_offset):
             rhythm_region_expression.repeat_to_stop_offset(stop_offset)
-        elif rhythm_region_expression.stops_after(stop_offset):
+        elif rhythm_region_expression.timespan.stops_after(stop_offset):
             rhythm_region_expression.set_offsets(stop_offset=stop_offset)
         return rhythm_region_expression
 
