@@ -105,8 +105,10 @@ class ConcreteInterpreter(Interpreter):
         return context_names
 
     def division_command_request_to_divisions(self, division_command_request, voice_name):
-        assert isinstance(division_command_request, requesttools.CommandRequest)
-        assert division_command_request.attribute == 'divisions'
+        #assert isinstance(division_command_request, requesttools.CommandRequest)
+        #assert division_command_request.attribute == 'divisions'
+        assert isinstance(division_command_request, requesttools.DivisionCommandRequest)
+
         #self._debug(division_command_request, 'division command request')
         requested_segment_identifier = division_command_request.offset.start_segment_identifier
         requested_offset = division_command_request.offset._get_offset(self.score_specification, voice_name)
@@ -146,7 +148,8 @@ class ConcreteInterpreter(Interpreter):
             divisions = [divisiontools.Division(x) for x in divisions]
             region_duration = division_region_command.timespan.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
-        elif isinstance(division_region_command.request, requesttools.CommandRequest):
+        #elif isinstance(division_region_command.request, requesttools.CommandRequest):
+        elif isinstance(division_region_command.request, requesttools.DivisionCommandRequest):
             assert division_region_command.request.attribute == 'divisions'
             division_command_request = division_region_command.request
 
@@ -217,7 +220,7 @@ class ConcreteInterpreter(Interpreter):
             rhythm_command, division_list, start_offset, stop_offset = rhythm_quadruple
             if isinstance(rhythm_command.request, requesttools.AbsoluteRequest):
                 result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
-            elif isinstance(rhythm_command.request, requesttools.CommandRequest):
+            elif isinstance(rhythm_command.request, requesttools.RhythmCommandRequest):
                 rhythm_maker = self.rhythm_command_request_to_rhythm_maker(
                     rhythm_command.request, rhythm_command.request.voice_name)
                 result.append((rhythm_maker, division_list, start_offset, rhythm_command))
@@ -529,7 +532,7 @@ class ConcreteInterpreter(Interpreter):
     def make_time_signatures_for_time_signature_setting(self, time_signature_setting):
         if isinstance(time_signature_setting.request, requesttools.AbsoluteRequest):
             time_signatures = time_signature_setting.request.payload
-        elif isinstance(time_signature_setting.request, requesttools.CommandRequest):
+        elif isinstance(time_signature_setting.request, requesttools.TimeSignatureCommandRequest):
             time_signatures = self.time_signature_command_request_to_time_signatures(
                 time_signature_setting.request)
         elif isinstance(time_signature_setting.request, selectortools.BackgroundMeasureSelector):
@@ -610,7 +613,7 @@ class ConcreteInterpreter(Interpreter):
 
     # TODO: migrate to RhythmCommandRequest.get_payload(score_specification, ...)
     def rhythm_command_request_to_rhythm_maker(self, rhythm_command_request, voice_name):
-        assert isinstance(rhythm_command_request, requesttools.CommandRequest)
+        assert isinstance(rhythm_command_request, requesttools.RhythmCommandRequest)
         assert rhythm_command_request.attribute == 'rhythm'
         #self._debug(rhythm_command_request, 'rcr')
         requested_segment_identifier = rhythm_command_request.offset.start_segment_identifier
@@ -792,7 +795,7 @@ class ConcreteInterpreter(Interpreter):
 
     # TODO: migrate to TimeSignatureCommandRequest.get_payload(score_specification, ...)
     def time_signature_command_request_to_time_signatures(self, command_request):
-        assert isinstance(command_request, requesttools.CommandRequest)
+        assert isinstance(command_request, requesttools.TimeSignatureCommandRequest)
         assert command_request.attribute == 'time_signatures'
         segment_specification = self.get_start_segment_specification(command_request.offset)
         time_signatures = segment_specification.time_signatures[:]

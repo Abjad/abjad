@@ -5,4 +5,8 @@ class TimeSignatureCommandRequest(CommandRequest):
     '''Time signature command request.
     '''
 
-    pass
+    ### INITIALIZER ###
+
+    def __init__(self, voice_name, offset, request_modifiers=None):
+        CommandRequest.__init__(self, 'time_signatures', voice_name, offset,
+            request_modifiers=request_modifiers)

@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class OffsetExpression(AbjadObject):
-    r'''
+    r'''Offset expression.
 
     ::
 
@@ -184,8 +184,7 @@ class OffsetExpression(AbjadObject):
         ::
 
             >>> z(request)
-            requesttools.CommandRequest(
-                'divisions',
+            requesttools.DivisionCommandRequest(
                 'Voice 1',
                 timeexpressiontools.OffsetExpression(
                     anchor=timeexpressiontools.TimespanExpression(
@@ -197,7 +196,7 @@ class OffsetExpression(AbjadObject):
         Return command request.        
         '''
         from experimental.tools import requesttools
-        return requesttools.CommandRequest('divisions', voice, offset=self)
+        return requesttools.DivisionCommandRequest(voice, offset=self)
 
     def request_rhythm_command(self, voice):
         r'''Request voice ``1`` rhythm command 
@@ -208,8 +207,7 @@ class OffsetExpression(AbjadObject):
         ::
 
             >>> z(request)
-            requesttools.CommandRequest(
-                'rhythm',
+            requesttools.RhythmCommandRequest(
                 'Voice 1',
                 timeexpressiontools.OffsetExpression(
                     anchor=timeexpressiontools.TimespanExpression(
@@ -221,7 +219,7 @@ class OffsetExpression(AbjadObject):
         Return command request.        
         '''
         from experimental.tools import requesttools
-        return requesttools.CommandRequest('rhythm', voice, offset=self)
+        return requesttools.RhythmCommandRequest(voice, offset=self)
 
     def request_time_signature_command(self, voice):
         r'''Request voice ``1`` time signature command
@@ -232,8 +230,7 @@ class OffsetExpression(AbjadObject):
         ::
 
             >>> z(request)
-            requesttools.CommandRequest(
-                'time_signatures',
+            requesttools.TimeSignatureCommandRequest(
                 'Voice 1',
                 timeexpressiontools.OffsetExpression(
                     anchor=timeexpressiontools.TimespanExpression(
@@ -245,4 +242,4 @@ class OffsetExpression(AbjadObject):
         Return command request.
         '''
         from experimental.tools import requesttools
-        return requesttools.CommandRequest('time_signatures', voice, offset=self)
+        return requesttools.TimeSignatureCommandRequest(voice, offset=self)

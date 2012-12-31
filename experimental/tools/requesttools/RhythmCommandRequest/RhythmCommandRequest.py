@@ -5,4 +5,8 @@ class RhythmCommandRequest(CommandRequest):
     '''Rhythm command request.
     '''
 
-    pass
+    ### INITIALIZER ###
+
+    def __init__(self, voice_name, offset, request_modifiers=None):
+        CommandRequest.__init__(self, 'rhythm', voice_name, offset,
+            request_modifiers=request_modifiers)

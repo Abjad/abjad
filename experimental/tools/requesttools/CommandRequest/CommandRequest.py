@@ -2,6 +2,7 @@ from experimental.tools import timeexpressiontools
 from experimental.tools.requesttools.Request import Request
 
 
+# TODO: make abstract
 class CommandRequest(Request):
     r'''
 
@@ -24,8 +25,7 @@ class CommandRequest(Request):
     ::
 
         >>> z(command_request)
-        requesttools.CommandRequest(
-            'divisions',
+        requesttools.DivisionCommandRequest(
             'Voice 1',
             timeexpressiontools.OffsetExpression(
                 anchor=selectortools.BackgroundMeasureSelector(
