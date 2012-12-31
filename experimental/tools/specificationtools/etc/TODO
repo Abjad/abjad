@@ -154,9 +154,3 @@
 30. Relace Command.offsets with Command.timespan.
 
 31. Implement Command.set(request=divisions).
-
-32. Rename select test collateral with 'select'.
-    The files are these:
-        test_SegmentSpecification__request_time_signatures_from_future.py
-        test_SegmentSpecification__request_time_signatures_from_past.py
-    All collateral should rename.
