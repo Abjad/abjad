@@ -11,26 +11,22 @@ from experimental.tools.settingtools.RegionProduct import RegionProduct
 
 
 class RhythmRegionProduct(RegionProduct):
-    r'''Rhythm region expression.
+    r'''Rhythm region product.
 
-    One voice of counttime components. 
-    Counttime components are tuplets, notes, rests and chords.
+    Contiguous block of counttime components specified by voice.
 
     The interpretive process of building up the rhythm for a complete
-    voice of payload involves the generation of many different rhythm expressions.
+    voice of payload involves the generation of many 
+    different rhythm region products.
     The rhythmic interpretation of a voice completes when enough    
-    contiguous rhythm expressions exist to account for the entire
+    contiguous rhythm region products exist to account for the entire
     duration of the voice.
 
-    The many different rhythm expressions that together constitute the
+    The many different rhythm region products that together constitute the
     rhythm of a voice may not necessarily be constructed in
     chronological order during interpretation.
 
-    Initializing ``start_offset=None`` will set `start_offset` to
-    ``Offset(0)``.
-    
-    Composers do not create rhythm expression objects because 
-    rhythm expressions arise as a byproduct of interpretation.
+    Interpreter byproduct.
     '''
 
     ### INITIALIZER ###

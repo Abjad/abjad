@@ -14,22 +14,22 @@ class DivisionRegionProduct(RegionProduct):
 
     ### INITIALIZER ###
 
-    def __init__(self, division_list, voice_name=None, timespan=None):
+    def __init__(self, payload, voice_name=None, timespan=None):
         RegionProduct.__init__(self, voice_name, timespan=timespan)
-        if not isinstance(division_list, divisiontools.DivisionList):
-            division_list = divisiontools.DivisionList(division_list)
-        self._division_list = division_list
+        if not isinstance(payload, divisiontools.DivisionList):
+            payload = divisiontools.DivisionList(payload)
+        self._payload = payload
 
     ### SPECIAL METHODS ###
 
     def __len__(self):
-        return len(self.division_list)
+        return len(self.payload)
 
     ### READ-ONLY PRIVATE PROPERTIES ##
 
     @property
     def _duration(self):
-        return self.division_list.duration
+        return self.payload.duration
 
     ### PRIVATE METHODS ###
 
@@ -84,13 +84,12 @@ class DivisionRegionProduct(RegionProduct):
         start_offset = durationtools.Offset(start_offset)
         assert self.timespan.start_offset <= start_offset
         duration_to_trim = start_offset - self.timespan.start_offset
-        #divisions = copy.deepcopy(self.divisions)
         divisions = copy.deepcopy(self.payload.divisions)
         shards = sequencetools.split_sequence_by_weights(
             divisions, [duration_to_trim], cyclic=False, overhang=True)
         trimmed_divisions = shards[-1]
         division_list = divisiontools.DivisionList(trimmed_divisions)
-        self._division_list = division_list
+        self._payload = division_list
         self._start_offset = start_offset
 
     def _set_stop_offset(self, stop_offset):
@@ -144,25 +143,15 @@ class DivisionRegionProduct(RegionProduct):
         stop_offset = durationtools.Offset(stop_offset)
         assert stop_offset <= self.timespan.stop_offset
         duration_to_trim = self.timespan.stop_offset - stop_offset
-        duration_to_keep = self.division_list.duration - duration_to_trim
-        #divisions = copy.deepcopy(self.divisions)
+        duration_to_keep = self.payload.duration - duration_to_trim
         divisions = copy.deepcopy(self.payload.divisions)
         shards = sequencetools.split_sequence_by_weights(
             divisions, [duration_to_keep], cyclic=False, overhang=True)
         trimmed_divisions = shards[0]
         division_list = divisiontools.DivisionList(trimmed_divisions)
-        self._division_list = division_list
+        self._payload = division_list
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    # TODO: remove in favor of self.payload
-    @property
-    def division_list(self):
-        '''Division region product division list.
-
-        Return division list.
-        '''
-        return self._division_list
 
     @property
     def payload(self):
@@ -170,13 +159,13 @@ class DivisionRegionProduct(RegionProduct):
 
         Return division list.
         '''
-        return self._division_list
+        return self._payload
         
     ### PUBLIC METHODS ###
     
     def fracture(self, slice_index):
         assert isinstance(slice_index, int)
-        left_division_list, right_division_list = self.division_list.fracture(slice_index)
+        left_division_list, right_division_list = self.payload.fracture(slice_index)
         left_result = type(self)(left_division_list, voice_name=self.voice_name, timespan=self.timespan)
         right_result = type(self)(right_division_list, voice_name=self.voice_name, timespan=self.timespan)
         return left_result, right_result
@@ -217,12 +206,12 @@ class DivisionRegionProduct(RegionProduct):
         assert isinstance(expr, type(self)), repr(expr)
         assert self.timespan.stops_when_expr_starts(expr), repr(expr)
         assert self.voice_name == expr.voice_name, repr(expr)
-        division_list = self.division_list + expr.division_list
+        division_list = self.payload + expr.payload
         result = type(self)(division_list, voice_name=self.voice_name, timespan=self.timespan)
         return result
 
     def reverse(self):
-        self.division_list.reverse()
+        self.payload.reverse()
 
     # TODO: remove code duplicated from Timespan
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
@@ -232,7 +221,6 @@ class DivisionRegionProduct(RegionProduct):
         stop_offset_translation = durationtools.Duration(stop_offset_translation)
         new_start_offset = self.timespan.start_offset + start_offset_translation
         new_stop_offset = self.timespan.stop_offset + stop_offset_translation
-        #divisions = copy.copy(self.divisions)
         divisions = copy.copy(self.payload.divisions)
         timespan = timespantools.Timespan(new_start_offset, new_stop_offset)
         result = type(self)(divisions, voice_name=self.voice_name, timespan=timespan)

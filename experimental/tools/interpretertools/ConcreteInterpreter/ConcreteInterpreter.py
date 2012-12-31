@@ -181,12 +181,9 @@ class ConcreteInterpreter(Interpreter):
             region_duration = division_region_command.timespan.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             divisions = [divisiontools.Division(x) for x in divisions]
-            division_list = division_region_expression.division_list.new(divisions=divisions)
-            division_region_expression = division_region_expression.new(division_list=division_list)
+            division_list = division_region_expression.payload.new(divisions=divisions)
+            division_region_expression = division_region_expression.new(payload=division_list)
             #self._debug(division_region_expression, 'drx')
-            # remove two lines after testing
-            #addendum = division_region_command.timespan.start_offset - \
-            #    division_region_expression.timespan.start_offset
             right = division_region_command.timespan.start_offset
             left = division_region_expression.timespan.start_offset
             addendum = right - left
