@@ -103,7 +103,9 @@ class SelectMethodMixin(AbjadObject):
             >>> z(selector)
             selectortools.CounttimeComponentSelector(
                 anchor='red',
-                klass=leaftools.Leaf,
+                classes=helpertools.KlassInventory([
+                    leaftools.Leaf
+                    ]),
                 voice_name='Voice 1'
                 )
 
@@ -113,7 +115,7 @@ class SelectMethodMixin(AbjadObject):
         selector = selectortools.CounttimeComponentSelector(
             anchor=self._anchor_abbreviation,
             time_relation=time_relation, 
-            klass=leaftools.Leaf, 
+            classes=(leaftools.Leaf, ), 
             voice_name=voice_name
             )
         selector._score_specification = self.score_specification
@@ -129,7 +131,7 @@ class SelectMethodMixin(AbjadObject):
             >>> z(selector)
             selectortools.CounttimeComponentSelector(
                 anchor='red',
-                klass=helpertools.KlassInventory([
+                classes=helpertools.KlassInventory([
                     notetools.Note,
                     chordtools.Chord
                     ]),
@@ -142,7 +144,7 @@ class SelectMethodMixin(AbjadObject):
         selector = selectortools.CounttimeComponentSelector(
             anchor=self._anchor_abbreviation,
             time_relation=time_relation, 
-            klass=(notetools.Note, chordtools.Chord),
+            classes=(notetools.Note, chordtools.Chord),
             voice_name=voice_name
             )
         selector._score_specification = self.score_specification

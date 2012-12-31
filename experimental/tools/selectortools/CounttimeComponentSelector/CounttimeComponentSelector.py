@@ -31,7 +31,9 @@ class CounttimeComponentSelector(Selector):
         
         >>> z(selector)
         selectortools.CounttimeComponentSelector(
-            klass=leaftools.Leaf,
+            classes=helpertools.KlassInventory([
+                leaftools.Leaf
+                ]),
             voice_name='Voice 1'
             )
 
@@ -44,7 +46,9 @@ class CounttimeComponentSelector(Selector):
         >>> z(selector)
         selectortools.CounttimeComponentSelector(
             anchor='red',
-            klass=leaftools.Leaf,
+            classes=helpertools.KlassInventory([
+                leaftools.Leaf
+                ]),
             voice_name='Voice 1'
             )
 
@@ -53,20 +57,21 @@ class CounttimeComponentSelector(Selector):
 
     ### INITIALIZER ###
 
-    def __init__(self, anchor=None, klass=None, predicate=None, 
+    def __init__(self, anchor=None, classes=None, predicate=None, 
         voice_name=None, time_relation=None,
         request_modifiers=None, timespan_modifiers=None):
         from experimental.tools import timeexpressiontools
-        assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
+        # TODO: bind is_counttime_component_classes_expr to CounttimeComponentSelector
+        assert classes is None or helpertools.is_counttime_component_klass_expr(classes), repr(classes)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
         Selector.__init__(self, 
             anchor=anchor, 
             voice_name=voice_name, time_relation=time_relation, 
             request_modifiers=request_modifiers,
             timespan_modifiers=timespan_modifiers)
-        if isinstance(klass, tuple):
-            klass = helpertools.KlassInventory(klass)
-        self._klass = klass
+        if isinstance(classes, tuple):
+            classes = helpertools.KlassInventory(classes)
+        self._classes = classes
         self._predicate = predicate
     
     ### PRIVATE METHODS ###
@@ -92,7 +97,7 @@ class CounttimeComponentSelector(Selector):
                     current_rhythm_region_expression):
                     return selectiontools.Selection()
             for counttime_component in iterationtools.iterate_components_in_expr(
-                current_rhythm_region_expression.music, klass=self.klass):
+                current_rhythm_region_expression.music, klass=tuple(self.classes)):
                 if time_relation(timespan_2=counttime_component,
                     score_specification=score_specification,
                     context_name=voice_name):
@@ -143,14 +148,13 @@ class CounttimeComponentSelector(Selector):
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
-    # TODO: always return class inventory.
     @property
-    def klass(self):
-        '''Class(es) of counttime component selector.
+    def classes(self):
+        '''Classes of counttime component selector.
 
         Return class, class inventory or none.
         '''
-        return self._klass
+        return self._classes
 
     @property
     def predicate(self):

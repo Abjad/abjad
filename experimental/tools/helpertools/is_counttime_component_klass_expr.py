@@ -27,8 +27,11 @@ def is_counttime_component_klass_expr(expr):
 
     Return boolean.
     '''
+    from experimental.tools import helpertools
 
     if isinstance(expr, tuple) and all([is_counttime_component_klass_expr(x) for x in expr]):
+        return True
+    elif isinstance(expr, helpertools.KlassInventory):
         return True
     elif issubclass(expr, (measuretools.Measure, tuplettools.Tuplet, leaftools.Leaf)):
         return True
