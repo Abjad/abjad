@@ -157,7 +157,6 @@
 
 32. Rename select test collateral with 'select'.
     The files are these:
-        test_ScoreSpecification_request_rhythm.py
         test_SegmentSpecification__request_divisions_between_voices.py
         test_SegmentSpecification__request_divisions_from_future.py
         test_SegmentSpecification__request_divisions_from_future_between_voices.py
