@@ -117,7 +117,6 @@ Unstable packages (load manually)
 
    tools/helpertools/AttributeNameEnumeration/AttributeNameEnumeration
    tools/helpertools/Callback/Callback
-   tools/helpertools/KlassInventory/KlassInventory
    tools/helpertools/SegmentIdentifierExpression/SegmentIdentifierExpression
 
 --------
@@ -218,6 +217,7 @@ Unstable packages (load manually)
 
    tools/selectortools/BackgroundMeasureSelector/BackgroundMeasureSelector
    tools/selectortools/BeatSelector/BeatSelector
+   tools/selectortools/ClassInventory/ClassInventory
    tools/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
    tools/selectortools/DivisionSelector/DivisionSelector
    tools/selectortools/ScoreSelector/ScoreSelector

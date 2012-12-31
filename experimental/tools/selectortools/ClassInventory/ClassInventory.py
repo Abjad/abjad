@@ -1,7 +1,7 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 
 
-class KlassInventory(ObjectInventory):
+class ClassInventory(ObjectInventory):
     r'''
 
     Class inventory.

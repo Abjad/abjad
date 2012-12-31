@@ -28,7 +28,7 @@ class OffsetExpression(AbjadObject):
         timeexpressiontools.OffsetExpression(
             anchor=selectortools.CounttimeComponentSelector(
                 anchor='red',
-                classes=helpertools.KlassInventory([
+                classes=selectortools.ClassInventory([
                     notetools.Note,
                     chordtools.Chord
                     ]),
@@ -118,7 +118,7 @@ class OffsetExpression(AbjadObject):
             >>> z(offset.anchor)
             selectortools.CounttimeComponentSelector(
                 anchor='red',
-                classes=helpertools.KlassInventory([
+                classes=selectortools.ClassInventory([
                     notetools.Note,
                     chordtools.Chord
                     ]),

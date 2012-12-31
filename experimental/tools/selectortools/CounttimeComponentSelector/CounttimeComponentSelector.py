@@ -35,7 +35,7 @@ class CounttimeComponentSelector(Selector):
         
         >>> z(selector)
         selectortools.CounttimeComponentSelector(
-            classes=helpertools.KlassInventory([
+            classes=selectortools.ClassInventory([
                 leaftools.Leaf
                 ]),
             voice_name='Voice 1'
@@ -50,7 +50,7 @@ class CounttimeComponentSelector(Selector):
         >>> z(selector)
         selectortools.CounttimeComponentSelector(
             anchor='red',
-            classes=helpertools.KlassInventory([
+            classes=selectortools.ClassInventory([
                 leaftools.Leaf
                 ]),
             voice_name='Voice 1'
@@ -62,8 +62,8 @@ class CounttimeComponentSelector(Selector):
     ### INITIALIZER ###
 
     def __init__(self, anchor=None, classes=None, predicate=None, 
-        voice_name=None, time_relation=None,
-        request_modifiers=None, timespan_modifiers=None):
+        voice_name=None, time_relation=None, request_modifiers=None, timespan_modifiers=None):
+        from experimental.tools import selectortools
         from experimental.tools import timeexpressiontools
         assert classes is None or self._is_counttime_component_class_expr(classes), repr(classes)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
@@ -74,7 +74,7 @@ class CounttimeComponentSelector(Selector):
             request_modifiers=request_modifiers,
             timespan_modifiers=timespan_modifiers)
         if isinstance(classes, tuple):
-            classes = helpertools.KlassInventory(classes)
+            classes = selectortools.ClassInventory(classes)
         self._classes = classes
         self._predicate = predicate
     
@@ -152,9 +152,10 @@ class CounttimeComponentSelector(Selector):
 
     def _is_counttime_component_class_expr(self, expr):
         from experimental.tools import helpertools
+        from experimental.tools import selectortools
         if isinstance(expr, tuple) and all([self._is_counttime_component_class_expr(x) for x in expr]):
             return True
-        elif isinstance(expr, helpertools.KlassInventory):
+        elif isinstance(expr, selectortools.ClassInventory):
             return True
         elif issubclass(expr, (measuretools.Measure, tuplettools.Tuplet, leaftools.Leaf)):
             return True
