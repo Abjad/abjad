@@ -36,12 +36,12 @@ class DivisionList(BoundedObject):
 
     ``'Voice 1'`` has only one division region division list::
 
-        >>> len(score_specification.contexts['Voice 1']['division_region_expressions'])
+        >>> len(score_specification.contexts['Voice 1']['division_region_products'])
         1
 
     ::
 
-        >>> z(score_specification.contexts['Voice 1']['division_region_expressions'][0])
+        >>> z(score_specification.contexts['Voice 1']['division_region_products'][0])
         settingtools.DivisionRegionProduct(
             divisiontools.DivisionList(
                 [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 

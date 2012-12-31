@@ -71,33 +71,33 @@ class DivisionSelector(Selector):
         timespan = self._apply_timespan_modifiers(timespan)
         return timespan
 
-    def _get_division_region_expression(self, score_specification, voice_name,
+    def _get_division_region_product(self, score_specification, voice_name,
         start_offset=None, stop_offset=None):
         from experimental.tools import settingtools
         assert voice_name == self.voice_name
         anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
         voice_proxy = score_specification.contexts[voice_name]
-        division_region_expressions = voice_proxy['division_region_expressions']
+        division_region_products = voice_proxy['division_region_products']
         timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
             timespan_1=anchor_timespan)
-        division_region_expressions = division_region_expressions.get_timespans_that_satisfy_time_relation(
+        division_region_products = division_region_products.get_timespans_that_satisfy_time_relation(
             timespan_time_relation)
-        division_region_expressions = timespantools.TimespanInventory(division_region_expressions)
-        if not division_region_expressions:
+        division_region_products = timespantools.TimespanInventory(division_region_products)
+        if not division_region_products:
             return
-        if not division_region_expressions.all_are_contiguous:
+        if not division_region_products.all_are_contiguous:
             return
-        trimmed_division_region_expressions = copy.deepcopy(division_region_expressions)
-        trimmed_division_region_expressions = timespantools.TimespanInventory(
-            trimmed_division_region_expressions)
-        trimmed_division_region_expressions.keep_material_that_intersects_timespan(anchor_timespan)
-        trimmed_division_region_expressions.sort() 
-        assert trimmed_division_region_expressions.all_are_contiguous
-        trimmed_division_region_expressions.fuse()
-        assert len(trimmed_division_region_expressions) == 1
-        final_expression = trimmed_division_region_expressions[0]
-        divisions = trimmed_division_region_expressions[0].payload.divisions
-        start_offset = trimmed_division_region_expressions[0].timespan.start_offset
+        trimmed_division_region_products = copy.deepcopy(division_region_products)
+        trimmed_division_region_products = timespantools.TimespanInventory(
+            trimmed_division_region_products)
+        trimmed_division_region_products.keep_material_that_intersects_timespan(anchor_timespan)
+        trimmed_division_region_products.sort() 
+        assert trimmed_division_region_products.all_are_contiguous
+        trimmed_division_region_products.fuse()
+        assert len(trimmed_division_region_products) == 1
+        final_expression = trimmed_division_region_products[0]
+        divisions = trimmed_division_region_products[0].payload.divisions
+        start_offset = trimmed_division_region_products[0].timespan.start_offset
         divisions, start_offset = self._apply_request_modifiers(divisions, start_offset)
         timespan = timespantools.Timespan(start_offset)
         result = settingtools.DivisionRegionProduct(

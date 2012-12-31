@@ -95,7 +95,7 @@ class ConcreteInterpreter(Interpreter):
                     [rhythm_container], [rhythm_container.prolated_duration], span=1)
 
     # TODO: migrate to DivisionRegionCommand
-    def division_region_command_to_division_region_expressions(self, division_region_command, voice_name):
+    def division_region_command_to_division_region_products(self, division_region_command, voice_name):
         if isinstance(division_region_command.request, list):
             divisions = division_region_command.request
             divisions = [divisiontools.Division(x) for x in divisions]
@@ -116,9 +116,9 @@ class ConcreteInterpreter(Interpreter):
             divisions = division_command_request.get_payload(self.score_specification, voice_name)
             divisions = requesttools.AbsoluteRequest(divisions)
             division_region_command = division_region_command.new(request=divisions)
-            division_region_expressions = self.division_region_command_to_division_region_expressions(
+            division_region_products = self.division_region_command_to_division_region_products(
                 division_region_command, voice_name)
-            return division_region_expressions
+            return division_region_products
         elif isinstance(division_region_command.request, selectortools.BeatSelector):
             beat_selector = division_region_command.request
             start_offset, stop_offset = division_region_command.timespan.offsets
@@ -126,29 +126,29 @@ class ConcreteInterpreter(Interpreter):
                 self.score_specification, division_region_command.voice_name, start_offset, stop_offset)
             divisions = requesttools.AbsoluteRequest(divisions)
             division_region_command = division_region_command.new(request=divisions)
-            division_region_expressions = self.division_region_command_to_division_region_expressions(
+            division_region_products = self.division_region_command_to_division_region_products(
                 division_region_command, voice_name)
-            return division_region_expressions
+            return division_region_products
         elif isinstance(division_region_command.request, selectortools.DivisionSelector):
             division_selector = division_region_command.request
-            division_region_expression = division_selector._get_division_region_expression(
+            division_region_product = division_selector._get_division_region_product(
                 self.score_specification, division_selector.voice_name)
-            #self._debug(division_region_expression, 'drx')
-            if division_region_expression is None:
+            #self._debug(division_region_product, 'drx')
+            if division_region_product is None:
                 return
-            divisions = division_region_expression.payload.divisions[:]
+            divisions = division_region_product.payload.divisions[:]
             region_duration = division_region_command.timespan.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             divisions = [divisiontools.Division(x) for x in divisions]
-            division_list = division_region_expression.payload.new(divisions=divisions)
-            division_region_expression = division_region_expression.new(payload=division_list)
-            #self._debug(division_region_expression, 'drx')
+            division_list = division_region_product.payload.new(divisions=divisions)
+            division_region_product = division_region_product.new(payload=division_list)
+            #self._debug(division_region_product, 'drx')
             right = division_region_command.timespan.start_offset
-            left = division_region_expression.timespan.start_offset
+            left = division_region_product.timespan.start_offset
             addendum = right - left
-            division_region_expression = division_region_expression.translate_offsets(
+            division_region_product = division_region_product.translate_offsets(
                 start_offset_translation=addendum, stop_offset_translation=addendum)
-            return [division_region_expression]
+            return [division_region_product]
         elif isinstance(division_region_command.request, selectortools.BackgroundMeasureSelector):
             background_measure_selector = division_region_command.request
             timespan, time_signatures = \
@@ -164,11 +164,11 @@ class ConcreteInterpreter(Interpreter):
             timespan=division_region_command.timespan
             )]
 
-    def dump_rhythm_region_expressions_into_voices(self):
+    def dump_rhythm_region_products_into_voices(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            for rhythm_region_expression in \
-                self.score_specification.contexts[voice.name]['rhythm_region_expressions']:
-                voice.extend(rhythm_region_expression.payload)
+            for rhythm_region_product in \
+                self.score_specification.contexts[voice.name]['rhythm_region_products']:
+                voice.extend(rhythm_region_product.payload)
 
     def filter_rhythm_quadruples(self, rhythm_quadruples):
         result = []
@@ -250,22 +250,22 @@ class ConcreteInterpreter(Interpreter):
     def get_start_segment_specification(self, expr):
         return self.score_specification.get_start_segment_specification(expr)
 
-    def initialize_region_expression_inventories(self, attribute):
+    def initialize_region_product_inventories(self, attribute):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             timespan_inventory = timespantools.TimespanInventory()
             region_commands = '{}_region_commands'.format(attribute)
             self.score_specification.contexts[voice.name][region_commands] = timespan_inventory
             timespan_inventory = timespantools.TimespanInventory()
-            region_expressions = '{}_region_expressions'.format(attribute)
-            self.score_specification.contexts[voice.name][region_expressions] = timespan_inventory
+            region_products = '{}_region_products'.format(attribute)
+            self.score_specification.contexts[voice.name][region_products] = timespan_inventory
 
     def interpret_additional_parameters(self):
         pass
 
     def interpret_divisions(self):
-        self.initialize_region_expression_inventories('division')
+        self.initialize_region_product_inventories('division')
         self.populate_all_region_commands('divisions')
-        self.make_division_region_expressions()
+        self.make_division_region_products()
         self.make_voice_division_lists()
 
     def interpret_pitch_classes(self):
@@ -275,13 +275,13 @@ class ConcreteInterpreter(Interpreter):
         pass
 
     def interpret_rhythm(self):
-        self.initialize_region_expression_inventories('rhythm')
+        self.initialize_region_product_inventories('rhythm')
         self.populate_all_region_commands('rhythm')
         #self._debug_values(self.score_specification.all_rhythm_region_commands, 'all rhythm region commands')
         self.populate_all_rhythm_quintuples()
         #self._debug_values(self.score_specification.all_rhythm_quintuples, 'all rhythm quintuples')
-        self.make_rhythm_region_expressions()
-        self.dump_rhythm_region_expressions_into_voices()
+        self.make_rhythm_region_products()
+        self.dump_rhythm_region_products_into_voices()
 
     def interpret_time_signatures(self):
         self.populate_all_time_signature_commands()
@@ -296,7 +296,7 @@ class ConcreteInterpreter(Interpreter):
         else:
             raise ValueError(attribute)
 
-    def make_division_region_expressions(self):
+    def make_division_region_products(self):
         redo = True
         previous_commands = None
         while redo:
@@ -305,22 +305,22 @@ class ConcreteInterpreter(Interpreter):
             for voice in iterationtools.iterate_voices_in_expr(self.score):
                 voice_division_region_commands = \
                     self.score_specification.contexts[voice.name]['division_region_commands']
-                voice_division_region_expressions = \
-                    self.score_specification.contexts[voice.name]['division_region_expressions']
+                voice_division_region_products = \
+                    self.score_specification.contexts[voice.name]['division_region_products']
                 current_commands[voice] = voice_division_region_commands[:]
                 voice_division_region_commands_to_reattempt = []
                 for division_region_command in voice_division_region_commands:
-                    division_region_expressions = self.division_region_command_to_division_region_expressions(
+                    division_region_products = self.division_region_command_to_division_region_products(
                         division_region_command, voice.name)
-                    if division_region_expressions is not None:
-                        assert isinstance(division_region_expressions, list)
-                        voice_division_region_expressions.extend(division_region_expressions)
+                    if division_region_products is not None:
+                        assert isinstance(division_region_products, list)
+                        voice_division_region_products.extend(division_region_products)
                     else:
                         voice_division_region_commands_to_reattempt.append(division_region_command)
                         redo = True
                 voice_division_region_commands[:] = voice_division_region_commands_to_reattempt[:]
                 # sort may have to happen as each expression adds in, above
-                voice_division_region_expressions.sort()
+                voice_division_region_products.sort()
             # check to see if we made absolutely no intepretive progress in this iteration through loop
             if current_commands == previous_commands:
                 raise Exception('cyclic specification error.')
@@ -334,10 +334,10 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(rhythm_region_commands, 'rhythm region commands')
         rhythm_command_durations = [x.timespan.duration for x in rhythm_region_commands]
         #self._debug(rhythm_command_durations, 'rhythm command durations')
-        division_region_expressions = \
-            self.score_specification.contexts[voice.name]['division_region_expressions']
-        #self._debug_values(division_region_expressions, 'division region expressions')
-        division_region_durations = [x.timespan.duration for x in division_region_expressions]
+        division_region_products = \
+            self.score_specification.contexts[voice.name]['division_region_products']
+        #self._debug_values(division_region_products, 'division region expressions')
+        division_region_durations = [x.timespan.duration for x in division_region_products]
         #self._debug(division_region_durations, 'division region durations')
         assert sum(rhythm_command_durations) == sum(division_region_durations)
         rhythm_command_merged_durations = sequencetools.merge_duration_sequences(
@@ -383,63 +383,63 @@ class ConcreteInterpreter(Interpreter):
         rhythm_quintuples = [(voice.name,) + x for x in rhythm_quadruples]
         return rhythm_quintuples
 
-    def make_rhythm_region_expression(
+    def make_rhythm_region_product(
         self, rhythm_maker, rhythm_region_division_list, start_offset, rhythm_command):
         if rhythm_region_division_list:
             leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
             rhythm_containers = [containertools.Container(x) for x in leaf_lists]
             timespan = timespantools.Timespan(start_offset)
-            rhythm_region_expression = settingtools.RhythmRegionProduct(
+            rhythm_region_product = settingtools.RhythmRegionProduct(
                 payload=rhythm_containers, 
                 voice_name=rhythm_region_division_list.voice_name, 
                 timespan=timespan)
             self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
-            return rhythm_region_expression
+            return rhythm_region_product
 
-    def make_rhythm_region_expression_from_parseable_string(
+    def make_rhythm_region_product_from_parseable_string(
         self, parseable_string, rhythm_region_division_list, start_offset, rhythm_command):
         component = iotools.p(parseable_string)
         timespan = timespantools.Timespan(start_offset)
-        rhythm_region_expression = settingtools.RhythmRegionProduct(
+        rhythm_region_product = settingtools.RhythmRegionProduct(
             payload=[component],
             voice_name=rhythm_region_division_list.voice_name, 
             timespan=timespan)
         duration_needed = sum([durationtools.Duration(x) for x in rhythm_region_division_list])
         stop_offset = start_offset + duration_needed
-        if rhythm_region_expression.timespan.stops_before_offset(stop_offset):
-            rhythm_region_expression.repeat_to_stop_offset(stop_offset)
-        elif rhythm_region_expression.timespan.stops_after(stop_offset):
-            rhythm_region_expression.set_offsets(stop_offset=stop_offset)
-        return rhythm_region_expression
+        if rhythm_region_product.timespan.stops_before_offset(stop_offset):
+            rhythm_region_product.repeat_to_stop_offset(stop_offset)
+        elif rhythm_region_product.timespan.stops_after(stop_offset):
+            rhythm_region_product.set_offsets(stop_offset=stop_offset)
+        return rhythm_region_product
 
-    def make_rhythm_region_expressions(self):
+    def make_rhythm_region_products(self):
         while self.score_specification.all_rhythm_quintuples:
             made_progress = False
             for rhythm_quintuple in self.score_specification.all_rhythm_quintuples[:]:
                 voice_name = rhythm_quintuple[0]
                 voice_proxy = self.score_specification.contexts[voice_name]
-                voice_rhythm_region_expressions = voice_proxy['rhythm_region_expressions']
+                voice_rhythm_region_products = voice_proxy['rhythm_region_products']
                 rhythm_quadruple = rhythm_quintuple[1:]
                 if isinstance(rhythm_quadruple[0], str):
-                    rhythm_region_expression = \
-                        self.make_rhythm_region_expression_from_parseable_string(*rhythm_quadruple)
+                    rhythm_region_product = \
+                        self.make_rhythm_region_product_from_parseable_string(*rhythm_quadruple)
                 elif isinstance(rhythm_quadruple[0], rhythmmakertools.RhythmMaker):
-                    rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_quadruple)
+                    rhythm_region_product = self.make_rhythm_region_product(*rhythm_quadruple)
                 elif isinstance(rhythm_quadruple[0], selectortools.CounttimeComponentSelector):
                     counttime_component_selector, start_offset, stop_offset = rhythm_quadruple[:3]
-                    rhythm_region_expression = \
-                        counttime_component_selector._get_rhythm_region_expression(
+                    rhythm_region_product = \
+                        counttime_component_selector._get_rhythm_region_product(
                         self.score_specification, counttime_component_selector.voice_name, 
                         start_offset, stop_offset)
                 else:
                     raise TypeError(rhythm_quadruple[0])
-                if rhythm_region_expression is not None:
+                if rhythm_region_product is not None:
                     self.score_specification.all_rhythm_quintuples.remove(rhythm_quintuple)
                     made_progress = True
-                    voice_rhythm_region_expressions.delete_material_that_intersects_timespan(
-                            rhythm_region_expression.timespan)
-                    voice_rhythm_region_expressions.append(rhythm_region_expression)
-                    voice_rhythm_region_expressions.sort()
+                    voice_rhythm_region_products.delete_material_that_intersects_timespan(
+                            rhythm_region_product.timespan)
+                    voice_rhythm_region_products.append(rhythm_region_product)
+                    voice_rhythm_region_products.sort()
             if not made_progress:
                 raise Exception('cyclic rhythm specification.')
 
@@ -491,7 +491,7 @@ class ConcreteInterpreter(Interpreter):
     def make_voice_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = divisiontools.DivisionList([], voice.name)
-            expressions = self.score_specification.contexts[voice.name]['division_region_expressions']
+            expressions = self.score_specification.contexts[voice.name]['division_region_products']
             #self._debug(expressions, 'expressions')
             divisions = [expression.payload.divisions for expression in expressions]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)

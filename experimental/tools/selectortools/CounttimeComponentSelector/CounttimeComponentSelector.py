@@ -83,30 +83,30 @@ class CounttimeComponentSelector(Selector):
     def _get_timespan(self, score_specification, voice_name):
         # allow user-specified voice name to override passed-in voice name
         voice_name = self.voice_name or voice_name
-        rhythm_region_expressions = score_specification.contexts[voice_name]['rhythm_region_expressions']
-        if not rhythm_region_expressions:
+        rhythm_region_products = score_specification.contexts[voice_name]['rhythm_region_products']
+        if not rhythm_region_products:
             return selectiontools.Selection()
-        if not rhythm_region_expressions[0].start_offset == durationtools.Offset(0):
+        if not rhythm_region_products[0].start_offset == durationtools.Offset(0):
             return selectiontools.Selection()
         counttime_component_pairs = []
-        previous_rhythm_region_expression = None
+        previous_rhythm_region_product = None
         timespan_1 = score_specification[self.anchor].timespan
         if self.time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
         else:
             time_relation = self.time_relation.new(timespan_1=timespan_1)
-        for current_rhythm_region_expression in rhythm_region_expressions:
-            if previous_rhythm_region_expression is not None:
-                if not previous_rhtyhm_region_expression.stops_when_expr_starts(
-                    current_rhythm_region_expression):
+        for current_rhythm_region_product in rhythm_region_products:
+            if previous_rhythm_region_product is not None:
+                if not previous_rhtyhm_region_product.stops_when_expr_starts(
+                    current_rhythm_region_product):
                     return selectiontools.Selection()
             for counttime_component in iterationtools.iterate_components_in_expr(
-                current_rhythm_region_expression.payload, klass=tuple(self.classes)):
+                current_rhythm_region_product.payload, klass=tuple(self.classes)):
                 if time_relation(timespan_2=counttime_component,
                     score_specification=score_specification,
                     context_name=voice_name):
                     counttime_component_pairs.append((
-                        counttime_component, current_rhythm_region_expression.start_offset))
+                        counttime_component, current_rhythm_region_product.start_offset))
         counttime_component_pairs, dummy = self._apply_request_modifiers(counttime_component_pairs, None)
         first_component, first_component_expression_offset = counttime_component_pairs[0]
         last_component, last_component_expression_offset = counttime_component_pairs[-1]
@@ -114,31 +114,31 @@ class CounttimeComponentSelector(Selector):
         stop_offset = last_component_expression_offset + last_component.stop_offset
         return timespantools.Timespan(start_offset, stop_offset)
 
-    def _get_rhythm_region_expression(self, score_specification, voice_name,
+    def _get_rhythm_region_product(self, score_specification, voice_name,
         start_offset=None, stop_offset=None):
         from experimental.tools import settingtools
         assert voice_name == self.voice_name
         #self._debug((start_offset, stop_offset), 'offsets')
         anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
         voice_proxy = score_specification.contexts[voice_name]
-        rhythm_region_expressions = voice_proxy['rhythm_region_expressions']
-        #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
+        rhythm_region_products = voice_proxy['rhythm_region_products']
+        #self._debug_values(rhythm_region_products, 'rhythm region expressions')
         timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
             timespan_1=anchor_timespan)
-        rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_time_relation(
+        rhythm_region_products = rhythm_region_products.get_timespans_that_satisfy_time_relation(
             timespan_time_relation)
-        #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
-        if not rhythm_region_expressions:
+        #self._debug_values(rhythm_region_products, 'rhythm region expressions')
+        if not rhythm_region_products:
             return
-        rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
-        rhythm_region_expressions = timespantools.TimespanInventory(rhythm_region_expressions)
-        rhythm_region_expressions.sort()
+        rhythm_region_products = copy.deepcopy(rhythm_region_products)
+        rhythm_region_products = timespantools.TimespanInventory(rhythm_region_products)
+        rhythm_region_products.sort()
         assert anchor_timespan.is_well_formed, repr(anchor_timespan)
-        rhythm_region_expressions.keep_material_that_intersects_timespan(anchor_timespan)
+        rhythm_region_products.keep_material_that_intersects_timespan(anchor_timespan)
         timespan = timespantools.Timespan(start_offset)
         result = settingtools.RhythmRegionProduct(voice_name=voice_name, timespan=timespan)
-        for rhythm_region_expression in rhythm_region_expressions:
-            result.payload.extend(rhythm_region_expression.payload)
+        for rhythm_region_product in rhythm_region_products:
+            result.payload.extend(rhythm_region_product.payload)
         assert wellformednesstools.is_well_formed_component(result.payload)
         result, new_start_offset = self._apply_request_modifiers(result, result.start_offset)
         if not isinstance(result, settingtools.RhythmRegionProduct):

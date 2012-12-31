@@ -154,4 +154,4 @@
 
 30. Make CommandRequest abstract.
 
-31. Globally replace 'region_expression' with 'region_product' in interpreter.
+31. Globally replace 'region_product' with 'region_product' in interpreter.
