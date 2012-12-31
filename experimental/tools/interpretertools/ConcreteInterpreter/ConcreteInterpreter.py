@@ -94,30 +94,7 @@ class ConcreteInterpreter(Interpreter):
                 beamtools.DuratedComplexBeamSpanner(
                     [rhythm_container], [rhythm_container.prolated_duration], span=1)
 
-    def division_command_request_to_divisions(self, division_command_request, voice_name):
-        assert isinstance(division_command_request, requesttools.DivisionCommandRequest)
-        #self._debug(division_command_request, 'division command request')
-        requested_segment_identifier = division_command_request.offset.start_segment_identifier
-        requested_offset = division_command_request.offset._get_offset(self.score_specification, voice_name)
-        timespan_inventory = timespantools.TimespanInventory()
-        #self._debug_values(self.score_specification.all_division_region_commands, 'all div region commands')
-        for division_region_command in self.score_specification.all_division_region_commands:
-            if not division_region_command.request == division_command_request:
-                timespan_inventory.append(division_region_command)
-        #self._debug_values(timespan_inventory, 'timespan inventory')
-        timespan_time_relation = timerelationtools.offset_happens_during_timespan(offset=requested_offset)
-        candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_time_relation)
-        #self._debug_values(candidate_commands, 'candidates')
-        segment_specification = self.get_start_segment_specification(requested_segment_identifier)
-        source_command = segment_specification._get_first_element_in_expr_by_parentage(
-            candidate_commands, division_command_request.voice_name, include_improper_parentage=True)
-        assert source_command is not None
-        #self._debug(source_command, 'source_command')
-        absolute_request = source_command.request
-        assert isinstance(absolute_request, requesttools.AbsoluteRequest), repr(absolute_request)
-        divisions = absolute_request.payload
-        return divisions
-
+    # TODO: migrate to DivisionRegionCommand
     def division_region_command_to_division_region_expressions(self, division_region_command, voice_name):
         if isinstance(division_region_command.request, list):
             divisions = division_region_command.request
@@ -134,18 +111,12 @@ class ConcreteInterpreter(Interpreter):
             divisions = [divisiontools.Division(x) for x in divisions]
             region_duration = division_region_command.timespan.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
-        #elif isinstance(division_region_command.request, requesttools.CommandRequest):
         elif isinstance(division_region_command.request, requesttools.DivisionCommandRequest):
-            assert division_region_command.request.attribute == 'divisions'
             division_command_request = division_region_command.request
-
-            # TODO: migrate to DivisionCommandRequest.get_payload(score_specification, ...)
-            divisions = self.division_command_request_to_divisions(division_command_request, voice_name)
-            start_offset = division_region_command.timespan.start_offset
-            divisions, start_offset = division_command_request._apply_request_modifiers(divisions, start_offset)
-
+            divisions = division_command_request.get_payload(self.score_specification, voice_name)
             divisions = requesttools.AbsoluteRequest(divisions)
             division_region_command = division_region_command.new(request=divisions)
+            # TODO: migrate to DivisionRegionCommand
             division_region_expressions = self.division_region_command_to_division_region_expressions(
                 division_region_command, voice_name)
             return division_region_expressions
