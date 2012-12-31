@@ -246,6 +246,23 @@ class Timespan(BoundedObject):
                 return True
         return False
 
+    def new(self, **kwargs):
+        positional_argument_dictionary = self._positional_argument_dictionary
+        keyword_argument_dictionary = self._keyword_argument_dictionary
+        for key, value in kwargs.iteritems():
+            if key in positional_argument_dictionary:
+                positional_argument_dictionary[key] = value
+            elif key in keyword_argument_dictionary:
+                keyword_argument_dictionary[key] = value
+            else:
+                raise KeyError(key)
+        positional_argument_values = []
+        for positional_argument_name in self._positional_argument_names:
+            positional_argument_value = positional_argument_dictionary[positional_argument_name]
+            positional_argument_values.append(positional_argument_value)
+        result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
+        return result
+
     def overlaps_all_of_expr(self, expr):
         if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_overlaps_all_of_timespan_1(expr, self)

@@ -79,6 +79,8 @@ Methods
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_tangent_to_expr
 
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.new
+
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_all_of_expr
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_only_start_of_expr
