@@ -1,17 +1,17 @@
 import abc
 from abjad.tools import durationtools
 from abjad.tools import timespantools
-from abjad.tools.timespantools.Timespan import Timespan
+#from abjad.tools.timespantools.Timespan import Timespan
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class RegionExpression(Timespan):
-    r'''Offset-positioned expression.
+#class RegionExpression(Timespan):
+class RegionExpression(AbjadObject):
+    r'''Region expression.
 
-    Base class from which concrete expressions inherit.
+    Timespan-positioned payload.
 
-    Composers do not create offset-positioned expression objects
-    because offset-positioned expressions arise as a byproduct
-    of interpretation.
+    Interpreter byproduct.
     ''' 
 
     ### CLASS ATTRIBUTES ###
@@ -28,7 +28,8 @@ class RegionExpression(Timespan):
             start_offset = durationtools.Offset(0)
         else:
             start_offset = durationtools.Offset(start_offset)
-        Timespan.__init__(self, start_offset=start_offset)
+        #Timespan.__init__(self, start_offset=start_offset)
+        self._start_offset = start_offset
 
     ### SPECIAL METHODS ###
 
@@ -62,6 +63,10 @@ class RegionExpression(Timespan):
     @abc.abstractproperty
     def duration(self):
         pass
+
+    @property
+    def start_offset(self):
+        return self._start_offset
 
     @property
     def stop_offset(self):

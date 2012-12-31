@@ -157,5 +157,3 @@
 
 32. Possibly rename BackgroundMeasureSelector to TimeSignatureSelector.
     Possibly rename select_background_measures() to select_time_signatures().
-
-33. Move ClassInventory from helpertools to selectortools.

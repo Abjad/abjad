@@ -8,12 +8,11 @@ from experimental.tools import helpertools
 
 
 class RegionCommand(AbjadObject):
-    '''
+    '''RegionCommand.
 
-    RegionCommand indicating period of time to which request will apply.
+    Timespan-scoped command.
 
-    Composers do not create commands because command arise
-    as a byproduct of interpretation.
+    Arise as a byproduct of interpretation.
     '''
 
     ### CLASS ATTRIBUTES ###

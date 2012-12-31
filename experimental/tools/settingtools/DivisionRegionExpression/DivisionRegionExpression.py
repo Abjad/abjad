@@ -192,7 +192,7 @@ class DivisionRegionExpression(RegionExpression):
 
         ::
 
-            >>> expr_1.stops_when_expr_starts(expr_2)
+            >>> expr_1.timespan.stops_when_expr_starts(expr_2)
             True
 
         ::
@@ -214,7 +214,7 @@ class DivisionRegionExpression(RegionExpression):
         Return newly constructed expression.
         '''
         assert isinstance(expr, type(self)), repr(expr)
-        assert self.stops_when_expr_starts(expr), repr(expr)
+        assert self.timespan.stops_when_expr_starts(expr), repr(expr)
         assert self.voice_name == expr.voice_name, repr(expr)
         division_list = self.division_list + expr.division_list
         result = type(self)(division_list, voice_name=self.voice_name, start_offset=self.start_offset)
