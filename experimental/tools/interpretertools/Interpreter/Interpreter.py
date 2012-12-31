@@ -50,7 +50,7 @@ class Interpreter(AbjadObject):
         '''
         single_context_setting = copy.deepcopy(single_context_setting)
         anchor = single_context_setting.anchor
-        segment_specification = self.get_start_segment_specification(anchor)
+        segment_specification = self.score_specification.get_start_segment_specification(anchor)
         assert segment_specification is not None
         context_name = single_context_setting.context_name
         if context_name is None:
@@ -82,7 +82,8 @@ class Interpreter(AbjadObject):
 
     def unpack_multiple_context_settings_for_score(self):
         for multiple_context_setting in self.score_specification.multiple_context_settings:
-            segment_specification = self.get_start_segment_specification(multiple_context_setting.anchor)
+            segment_specification = self.score_specification.get_start_segment_specification(
+                multiple_context_setting.anchor)
             single_context_settings = multiple_context_setting.unpack()
             segment_specification.single_context_settings.extend(single_context_settings)
             self.score_specification.single_context_settings.extend(single_context_settings)

@@ -12,13 +12,11 @@ from experimental.tools.interpretertools.Interpreter import Interpreter
 
 
 class ConcreteInterpreter(Interpreter):
-    r'''
-
-    Concrete interpreter.
+    r'''Concrete interpreter.
 
     Currently the only interpreter implemented.
 
-    The ``'concrete'`` designation is provisional.
+    The 'concrete' designation is provisional.
     '''
 
     ### INITIALIZER ###
@@ -49,6 +47,7 @@ class ConcreteInterpreter(Interpreter):
 
     ### PUBLIC METHODS ###
 
+    # TODO: remove by binding something to Setting
     def attribute_to_region_command_class(self, attribute):
         if attribute == 'divisions':
             return settingtools.DivisionRegionCommand
@@ -79,6 +78,7 @@ class ConcreteInterpreter(Interpreter):
                 timespan = timespantools.Timespan(start_offset, stop_offset)
                 segment_specification._timespan = timespan
 
+    # TODO: move to ScoreSpecification
     def clear_persistent_single_context_settings_by_context(self, context_name, attribute):
         if attribute in self.score_specification.single_context_settings_by_context[context_name]:
             del(self.score_specification.single_context_settings_by_context[context_name][attribute])
@@ -204,6 +204,7 @@ class ConcreteInterpreter(Interpreter):
                 postprocessed_result.append(quadruple)
         return postprocessed_result
 
+    # TODO: maybe move to command aggregator?
     def fuse_like_region_commands(self, region_commands):
         if any([x.request is None for x in region_commands]) or not region_commands:
             return []
@@ -216,6 +217,7 @@ class ConcreteInterpreter(Interpreter):
                 result.append(copy.deepcopy(region_command))
         return result
 
+    # TODO: move to ScoreSpecification
     def get_raw_commands_for_voice(self, context_name, attribute):
         commands = []
         for segment_specification in self.score_specification.segment_specifications:
@@ -234,6 +236,7 @@ class ConcreteInterpreter(Interpreter):
         region_commands = self.supply_missing_region_commands(region_commands, voice_name, attribute)
         return region_commands
 
+    # TODO: move to SegmentSpecification
     def get_single_context_settings_that_start_during_segment(
         self, segment_specification, context_name, attribute, 
         include_improper_parentage=False):
@@ -247,9 +250,7 @@ class ConcreteInterpreter(Interpreter):
             result.extend(single_context_settings)
         return result
 
-    def get_start_segment_specification(self, expr):
-        return self.score_specification.get_start_segment_specification(expr)
-
+    # move to ScoreSpecification
     def initialize_region_product_inventories(self, attribute):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             timespan_inventory = timespantools.TimespanInventory()
@@ -288,6 +289,7 @@ class ConcreteInterpreter(Interpreter):
         self.make_time_signatures()
         self.calculate_score_and_segment_timespans()
 
+    # move to ScoreSpecification; make signature timespan-based instead of offset-based
     def make_default_region_command(self, voice_name, start_offset, stop_offset, attribute):
         if attribute == 'divisions':
             return self.make_time_signature_division_command(voice_name, start_offset, stop_offset)
@@ -443,6 +445,7 @@ class ConcreteInterpreter(Interpreter):
             if not made_progress:
                 raise Exception('cyclic rhythm specification.')
 
+    # TODO: make timespan-based instead of offset-based
     def make_skip_token_rhythm_command(self, voice_name, start_offset, stop_offset):
         timespan = timespantools.Timespan(start_offset, stop_offset)
         return settingtools.RhythmRegionCommand(
@@ -452,6 +455,7 @@ class ConcreteInterpreter(Interpreter):
             fresh=True
             )
 
+    # TODO: make timespan-based instead of offset-based
     def make_time_signature_division_command(self, voice_name, start_offset, stop_offset):
         timespan = timespantools.Timespan(start_offset, stop_offset)
         divisions = self.score_specification.get_time_signature_slice(timespan)
@@ -463,6 +467,7 @@ class ConcreteInterpreter(Interpreter):
             truncate=True
             )
 
+    # TODO: rename to something like self.make_time_signatures_and_add_to_score()
     def make_time_signatures(self):
         while self.score_specification.all_time_signature_commands:
             for time_signature_setting in self.score_specification.all_time_signature_commands:
@@ -472,6 +477,7 @@ class ConcreteInterpreter(Interpreter):
         context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
         context.extend(measures)
 
+    # TODO: move to Setting; possibly break out TimeSignatureSetting?
     def make_time_signatures_for_time_signature_setting(self, time_signature_setting):
         if isinstance(time_signature_setting.request, requesttools.AbsoluteRequest):
             time_signatures = time_signature_setting.request.payload
@@ -484,7 +490,8 @@ class ConcreteInterpreter(Interpreter):
         else:
             raise TypeError(time_signature_setting.request)
         if time_signatures:
-            segment_specification = self.get_start_segment_specification(time_signature_setting.anchor)
+            segment_specification = self.score_specification.get_start_segment_specification(
+                time_signature_setting.anchor)
             segment_specification._time_signatures = time_signatures[:]
             self.score_specification.all_time_signature_commands.remove(time_signature_setting)
 
@@ -535,6 +542,7 @@ class ConcreteInterpreter(Interpreter):
             time_signature_setting = time_signature_settings[-1]
             self.score_specification.all_time_signature_commands.append(time_signature_setting)
 
+    # TODO: move to RhythmRegionCommand
     def rhythm_command_prolongs_expr(self, current_rhythm_command, expr):
         # check that current rhythm command bears a rhythm material request
         assert isinstance(current_rhythm_command, settingtools.RhythmRegionCommand)
@@ -553,6 +561,7 @@ class ConcreteInterpreter(Interpreter):
             return False
         return True
 
+    # TODO: move to SingleContextSetting
     # do we eventually need to do this with time signature settings, too?
     def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):
         anchor_timespan = self.score_specification.get_anchor_timespan(single_context_setting, voice_name)
@@ -567,6 +576,7 @@ class ConcreteInterpreter(Interpreter):
             command = command.new(truncate=single_context_setting.truncate)
         return command
 
+    # TODO: maybe move to a type of command aggregator?
     def sort_and_split_raw_commands(self, raw_commands):
         #self._debug_values(raw_commands, 'raw')
         cooked_commands = []
@@ -620,18 +630,6 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(cooked_commands, 'cooked')
         return cooked_commands
 
-    def sort_elements_in_expr_by_parentage(self, expr, segment_specification, context_name, 
-        include_improper_parentage=False):
-        result = []
-        context_names = [context_name]
-        if include_improper_parentage:
-            context_names = segment_specification._context_name_to_parentage_names(context_name, proper=False)
-        for context_name in context_names:
-            for element in expr:
-                if element.context_name == context_name:
-                    result.append(element)
-        return result
-
     def store_interpreter_specific_single_context_settings_by_context(self):
         self.store_single_context_attribute_settings_by_context('time_signatures')
         self.store_single_context_attribute_settings_by_context('divisions')
@@ -639,6 +637,7 @@ class ConcreteInterpreter(Interpreter):
         self.store_single_context_attribute_settings_by_context('pitch_classes')
         self.store_single_context_attribute_settings_by_context('registration')
 
+    # TODO: move to ScoreSpecification
     def store_single_context_attribute_settings_by_context(self, attribute):
         for segment_specification in self.score_specification.segment_specifications:
             new_settings = segment_specification.single_context_settings.get_settings(attribute=attribute)
@@ -657,6 +656,7 @@ class ConcreteInterpreter(Interpreter):
             settings_to_store = new_settings + forwarded_existing_settings
             self.store_single_context_settings_by_context(settings_to_store, clear_persistent_first=True)
 
+    # TODO: maybe move in ScoreSpecification?
     def supply_missing_region_commands(self, region_commands, voice_name, attribute):
         #self._debug_values(region_commands, 'region commands')
         if not region_commands and not self.score_specification.time_signatures:
@@ -691,6 +691,7 @@ class ConcreteInterpreter(Interpreter):
         result.append(right_region_command)
         return result
 
+    # TODO: this is a hack; see TODO about hack, above; test; then remove this method
     def timespan_expressions_to_durations(self, expr):
         assert isinstance(expr, (tuple, list))
         result = []

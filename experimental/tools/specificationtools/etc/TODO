@@ -151,3 +151,5 @@
         leaves.repeat_to_length()
         leaves.reverse()
         leaves.rotate()
+
+30. Possibly break TimeSignatureSetting, DivisionSetting, RhythmSetting out from Setting.
