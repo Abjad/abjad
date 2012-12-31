@@ -47,7 +47,7 @@ def test_SegmentSpecification__select_leaves_02():
 
 
 def test_SegmentSpecification__select_leaves_03():
-    '''Leaves select correctly across offset-positioned rhythm expression boundaries.
+    '''Leaves select correctly across rhythm region product boundaries.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

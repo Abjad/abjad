@@ -9,6 +9,8 @@ settingtools.RegionProduct
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.payload
+
 .. autoattribute:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.start_offset
 
 .. autoattribute:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.stop_offset

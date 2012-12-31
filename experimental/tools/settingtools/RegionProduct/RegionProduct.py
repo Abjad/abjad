@@ -53,6 +53,10 @@ class RegionProduct(AbjadObject):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
+    @abc.abstractproperty
+    def payload(self):
+        pass
+
     @property
     def start_offset(self):
         return self.timespan.start_offset

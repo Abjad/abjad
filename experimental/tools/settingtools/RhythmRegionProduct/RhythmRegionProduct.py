@@ -61,6 +61,12 @@ class RhythmRegionProduct(RegionProduct):
         '''
         return len(self.music.leaves)
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _duration(self):
+        return self.music.prolated_duration
+
     ### PRIVATE METHODS ###
 
     def _set_start_offset(self, start_offset):
@@ -105,18 +111,18 @@ class RhythmRegionProduct(RegionProduct):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def _duration(self):
-        '''Duration of rhythm expression.
-
-        Return duration.
-        '''
-        return self.music.prolated_duration
-
-    @property
     def music(self):
-        '''Offset-positioned rhythm expression music.
+        '''Rhythm region product music.
 
         Return container.
+        '''
+        return self._music
+
+    @property
+    def payload(self):
+        '''Rhythm region product payload.
+
+        Return Abjad container.
         '''
         return self._music
 

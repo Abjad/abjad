@@ -9,10 +9,6 @@ from experimental.tools.settingtools.RegionProduct import RegionProduct
 class DivisionRegionProduct(RegionProduct):
     r'''Division region expression.
 
-    ::
-
-        >>> from experimental.tools import *
-
     Interpreter byproduct.
     '''
 
@@ -29,10 +25,16 @@ class DivisionRegionProduct(RegionProduct):
     def __len__(self):
         return len(self.division_list)
 
+    ### READ-ONLY PRIVATE PROPERTIES ##
+
+    @property
+    def _duration(self):
+        return self.division_list.duration
+
     ### PRIVATE METHODS ###
 
     def _set_start_offset(self, start_offset):
-        '''Trim to start offset.
+        '''Set start offset.
 
         ::
 
@@ -91,7 +93,7 @@ class DivisionRegionProduct(RegionProduct):
         self._start_offset = start_offset
 
     def _set_stop_offset(self, stop_offset):
-        '''Trim to stop offset.
+        '''Set stop offset.
 
         ::
 
@@ -151,32 +153,32 @@ class DivisionRegionProduct(RegionProduct):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
+    # TODO: remove in favor of self.payload
     @property
     def division_list(self):
-        '''Offset-positioned division expression division list.
+        '''Division region product division list.
 
-        Return division list object.
+        Return division list.
         '''
         return self._division_list
 
+    # TODO: remove in favor of self.division_list
     @property
     def divisions(self):
-        '''Offset-positioned division expression division list divisions.
-
-        Delegate to ``self.division_list.divisions``.
+        '''Division region product divisions.
 
         Return list.
         '''
         return self.division_list.divisions
 
     @property
-    def _duration(self):
-        '''Duration of division expression.
-        
-        Return duration.
-        '''
-        return self.division_list.duration
+    def payload(self):
+        '''Division region product payload.
 
+        Return division list.
+        '''
+        return self._division_list
+        
     ### PUBLIC METHODS ###
     
     def fracture(self, slice_index):
