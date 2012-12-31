@@ -2,7 +2,7 @@ from abjad import *
 from experimental.tools import *
 
 
-def test_SegmentSpecification__request_rhythm_from_past_01():
+def test_SegmentSpecification__select_rhythm_from_past_01():
     '''From-past rhythm material request.
     '''
 
@@ -25,7 +25,7 @@ def test_SegmentSpecification__request_rhythm_from_past_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_rhythm_from_past_02():
+def test_SegmentSpecification__select_rhythm_from_past_02():
     '''From-past rhythm material request.
 
     Fit larger source into smaller target.
@@ -51,7 +51,7 @@ def test_SegmentSpecification__request_rhythm_from_past_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_rhythm_from_past_03():
+def test_SegmentSpecification__select_rhythm_from_past_03():
     '''From-past rhythm material request with request-time reverse.
     '''    
 
@@ -75,7 +75,7 @@ def test_SegmentSpecification__request_rhythm_from_past_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_rhythm_from_past_04():
+def test_SegmentSpecification__select_rhythm_from_past_04():
     '''From-past rhythm material request with set-time reverse.
     '''    
 
@@ -99,7 +99,7 @@ def test_SegmentSpecification__request_rhythm_from_past_04():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_rhythm_from_past_05():
+def test_SegmentSpecification__select_rhythm_from_past_05():
     '''From-past rhythm material request with both request- and set-time reverse.
     '''    
 
@@ -124,7 +124,7 @@ def test_SegmentSpecification__request_rhythm_from_past_05():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_rhythm_from_past_06():
+def test_SegmentSpecification__select_rhythm_from_past_06():
     '''From-past rhythm material request with request-time rotation.
     '''    
 
@@ -148,7 +148,7 @@ def test_SegmentSpecification__request_rhythm_from_past_06():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_rhythm_from_past_07():
+def test_SegmentSpecification__select_rhythm_from_past_07():
     '''From-past rhythm material request with set-time rotation.
     '''    
 
@@ -171,7 +171,7 @@ def test_SegmentSpecification__request_rhythm_from_past_07():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_rhythm_from_past_08():
+def test_SegmentSpecification__select_rhythm_from_past_08():
     '''From-past rhythm material request with both request- and set-time rotation.
     '''    
 
@@ -196,7 +196,7 @@ def test_SegmentSpecification__request_rhythm_from_past_08():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_rhythm_from_past_09():
+def test_SegmentSpecification__select_rhythm_from_past_09():
     '''From-past rhythm material request.
 
     Repeat smaller source to filler larger target.

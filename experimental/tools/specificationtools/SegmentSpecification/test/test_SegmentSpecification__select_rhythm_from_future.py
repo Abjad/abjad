@@ -2,7 +2,7 @@ from abjad import *
 from experimental.tools import *
 
 
-def test_SegmentSpecification__request_rhythm_from_future_01():
+def test_SegmentSpecification__select_rhythm_from_future_01():
     '''From-future rhythm material request.
     '''
 
@@ -23,7 +23,7 @@ def test_SegmentSpecification__request_rhythm_from_future_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_rhythm_from_future_02():
+def test_SegmentSpecification__select_rhythm_from_future_02():
     '''From-future rhythm material request with request-time reverse.
     '''
 
@@ -45,7 +45,7 @@ def test_SegmentSpecification__request_rhythm_from_future_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_rhythm_from_future_03():
+def test_SegmentSpecification__select_rhythm_from_future_03():
     '''From-future rhythm material request with set-time reverse.
     '''
 
@@ -67,7 +67,7 @@ def test_SegmentSpecification__request_rhythm_from_future_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__request_rhythm_from_future_04():
+def test_SegmentSpecification__select_rhythm_from_future_04():
     '''From-future rhythm material request with both request- and set-time reverse.
     '''
 
