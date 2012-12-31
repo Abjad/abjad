@@ -136,6 +136,14 @@ class AbjadObject(object):
         return tuple(result)
 
     @property
+    def _positional_argument_dictionary(self):
+        names = self._positional_argument_names
+        values = self._positional_argument_values
+        assert len(names) == len(values)
+        result = dict(zip(names, values))
+        return result
+
+    @property
     def _positional_argument_names(self):
         if hasattr(self.__init__, '__func__'):
             initializer = type(self).__init__.__func__
