@@ -212,7 +212,7 @@ class ConcreteInterpreter(Interpreter):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             for rhythm_region_expression in \
                 self.score_specification.contexts[voice.name]['rhythm_region_expressions']:
-                voice.extend(rhythm_region_expression.music)
+                voice.extend(rhythm_region_expression.payload)
 
     def filter_rhythm_quadruples(self, rhythm_quadruples):
         result = []
@@ -446,7 +446,7 @@ class ConcreteInterpreter(Interpreter):
             rhythm_containers = [containertools.Container(x) for x in leaf_lists]
             timespan = timespantools.Timespan(start_offset)
             rhythm_region_expression = settingtools.RhythmRegionProduct(
-                rhythm_containers, 
+                payload=rhythm_containers, 
                 voice_name=rhythm_region_division_list.voice_name, 
                 timespan=timespan)
             self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
@@ -457,7 +457,7 @@ class ConcreteInterpreter(Interpreter):
         component = iotools.p(parseable_string)
         timespan = timespantools.Timespan(start_offset)
         rhythm_region_expression = settingtools.RhythmRegionProduct(
-            music=[component],
+            payload=[component],
             voice_name=rhythm_region_division_list.voice_name, 
             timespan=timespan)
         duration_needed = sum([durationtools.Duration(x) for x in rhythm_region_division_list])

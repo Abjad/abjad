@@ -9,8 +9,6 @@ settingtools.RhythmRegionProduct
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.music
-
 .. autoattribute:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.payload
 
 .. autoattribute:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.start_offset

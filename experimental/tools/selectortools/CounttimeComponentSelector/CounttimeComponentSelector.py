@@ -101,7 +101,7 @@ class CounttimeComponentSelector(Selector):
                     current_rhythm_region_expression):
                     return selectiontools.Selection()
             for counttime_component in iterationtools.iterate_components_in_expr(
-                current_rhythm_region_expression.music, klass=tuple(self.classes)):
+                current_rhythm_region_expression.payload, klass=tuple(self.classes)):
                 if time_relation(timespan_2=counttime_component,
                     score_specification=score_specification,
                     context_name=voice_name):
@@ -136,18 +136,16 @@ class CounttimeComponentSelector(Selector):
         assert anchor_timespan.is_well_formed, repr(anchor_timespan)
         rhythm_region_expressions.keep_material_that_intersects_timespan(anchor_timespan)
         timespan = timespantools.Timespan(start_offset)
-        #result = settingtools.RhythmRegionProduct(
-        #    voice_name=voice_name, start_offset=start_offset)
         result = settingtools.RhythmRegionProduct(voice_name=voice_name, timespan=timespan)
         for rhythm_region_expression in rhythm_region_expressions:
-            result.music.extend(rhythm_region_expression.music)
-        assert wellformednesstools.is_well_formed_component(result.music)
+            result.payload.extend(rhythm_region_expression.payload)
+        assert wellformednesstools.is_well_formed_component(result.payload)
         result, new_start_offset = self._apply_request_modifiers(result, result.start_offset)
         if not isinstance(result, settingtools.RhythmRegionProduct):
             assert componenttools.all_are_components(result)
             music = componenttools.copy_components_and_fracture_crossing_spanners(result)
             result = settingtools.RhythmRegionProduct(
-                music=music, voice_name=voice_name, start_offset=start_offset)
+                payload=music, voice_name=voice_name, start_offset=start_offset)
         result.set_offsets(start_offset=start_offset, stop_offset=stop_offset)
         result.repeat_to_stop_offset(stop_offset)
         return result

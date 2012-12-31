@@ -17,7 +17,7 @@ class RhythmRegionProduct(RegionProduct):
     Counttime components are tuplets, notes, rests and chords.
 
     The interpretive process of building up the rhythm for a complete
-    voice of music involves the generation of many different rhythm expressions.
+    voice of payload involves the generation of many different rhythm expressions.
     The rhythmic interpretation of a voice completes when enough    
     contiguous rhythm expressions exist to account for the entire
     duration of the voice.
@@ -35,46 +35,44 @@ class RhythmRegionProduct(RegionProduct):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None, voice_name=None, timespan=None):
+    def __init__(self, payload=None, voice_name=None, timespan=None):
         RegionProduct.__init__(self, voice_name, timespan=timespan)
-        music = containertools.Container(music=music)
-        self._music = music
+        payload = containertools.Container(music=payload)
+        self._payload = payload
 
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         new = type(self)(voice_name=self.voice_name, timespan=self.timespan)
-        new._music = componenttools.copy_components_and_covered_spanners([self.music])[0]
+        new._payload = componenttools.copy_components_and_covered_spanners([self.payload])[0]
         return new
 
     __deepcopy__ = __copy__
 
     def __getitem__(self, expr):
-        # it's possible that music deepcopy will be required.
+        # it's possible that payload deepcopy will be required.
         # try returning references first and see if it causes problems.
-        return self.music.__getitem__(expr)
+        return self.payload.__getitem__(expr)
 
     def __len__(self): 
-        '''Defined equal to number of leaves in ``self.music``.
+        '''Defined equal to number of leaves in ``self.payload``.
     
         Return nonnegative integer.
         '''
-        return len(self.music.leaves)
+        return len(self.payload.leaves)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _duration(self):
-        return self.music.prolated_duration
+        return self.payload.prolated_duration
 
     ### PRIVATE METHODS ###
 
     def _set_start_offset(self, start_offset):
-        '''Trim to start offset.
+        '''Set start offset.
 
         .. note:: add example.
-        
-        Adjust start offset.
         
         Operate in place and return none.
         '''
@@ -82,14 +80,14 @@ class RhythmRegionProduct(RegionProduct):
         assert self.start_offset <= start_offset
         duration_to_trim = start_offset - self.start_offset
         result = componenttools.split_components_at_offsets(
-            [self.music], [duration_to_trim], cyclic=False, fracture_spanners=True)
-        trimmed_music = result[-1][0]
-        assert wellformednesstools.is_well_formed_component(trimmed_music)
-        self._music = trimmed_music
+            [self.payload], [duration_to_trim], cyclic=False, fracture_spanners=True)
+        trimmed_payload = result[-1][0]
+        assert wellformednesstools.is_well_formed_component(trimmed_payload)
+        self._payload = trimmed_payload
         self._start_offset = start_offset
 
     def _set_stop_offset(self, stop_offset):
-        '''Trim to stop offset.
+        '''Set stop offset.
 
         .. note:: add example.
 
@@ -98,33 +96,25 @@ class RhythmRegionProduct(RegionProduct):
         stop_offset = durationtools.Offset(stop_offset)
         assert stop_offset <= self.stop_offset
         duration_to_trim = self.stop_offset - stop_offset
-        duration_to_keep = self.music.prolated_duration - duration_to_trim
+        duration_to_keep = self.payload.prolated_duration - duration_to_trim
         result = componenttools.split_components_at_offsets(
-            [self.music], [duration_to_keep], cyclic=False, fracture_spanners=True)
-        trimmed_music = result[0][0]
-        if not wellformednesstools.is_well_formed_component(trimmed_music):
-            self._debug(trimmed_music, 'trimmed music')
-            wellformednesstools.tabulate_well_formedness_violations_in_expr(trimmed_music)
-        assert wellformednesstools.is_well_formed_component(trimmed_music)
-        self._music = trimmed_music
+            [self.payload], [duration_to_keep], cyclic=False, fracture_spanners=True)
+        trimmed_payload = result[0][0]
+        if not wellformednesstools.is_well_formed_component(trimmed_payload):
+            self._debug(trimmed_payload, 'trimmed payload')
+            wellformednesstools.tabulate_well_formedness_violations_in_expr(trimmed_payload)
+        assert wellformednesstools.is_well_formed_component(trimmed_payload)
+        self._payload = trimmed_payload
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def music(self):
-        '''Rhythm region product music.
-
-        Return container.
-        '''
-        return self._music
 
     @property
     def payload(self):
         '''Rhythm region product payload.
 
-        Return Abjad container.
+        Return container.
         '''
-        return self._music
+        return self._payload
 
     ### PUBLIC METHODS ###
 
@@ -138,12 +128,12 @@ class RhythmRegionProduct(RegionProduct):
         stop_offset = durationtools.Offset(stop_offset)
         assert self.stop_offset <= stop_offset
         additional_duration = stop_offset - self.stop_offset
-        needed_copies = int(math.ceil(additional_duration / self.music.prolated_duration))
+        needed_copies = int(math.ceil(additional_duration / self.payload.prolated_duration))
         copies = []
         for i in range(needed_copies):
-            copies.append(componenttools.copy_components_and_covered_spanners([self.music])[0])
+            copies.append(componenttools.copy_components_and_covered_spanners([self.payload])[0])
         for element in copies:
-            self.music.extend(element)
+            self.payload.extend(element)
         assert stop_offset <= self.stop_offset
         self._set_stop_offset(stop_offset)
 
@@ -154,9 +144,9 @@ class RhythmRegionProduct(RegionProduct):
 
         Operate in place and return none.
         '''
-        for container in iterationtools.iterate_containers_in_expr(self.music):
+        for container in iterationtools.iterate_containers_in_expr(self.payload):
             container._music.reverse()
-        for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(self.music):
+        for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(self.payload):
             spanner._reverse_components()
 
     def rotate(self, n, fracture_spanners=True):
@@ -170,7 +160,7 @@ class RhythmRegionProduct(RegionProduct):
         '''
         from experimental.tools import settingtools
         if isinstance(n, int):
-            leaves = sequencetools.CyclicTuple(self.music.leaves)
+            leaves = sequencetools.CyclicTuple(self.payload.leaves)
             if 0 < n:
                 split_offset = leaves[-n].start_offset
             elif n == 0:
@@ -180,10 +170,10 @@ class RhythmRegionProduct(RegionProduct):
         elif isinstance(n, settingtools.RotationIndicator):
             rotation_indicator = n
             if rotation_indicator.level is None:
-                components_at_level = self.music.leaves
+                components_at_level = self.payload.leaves
             else:
                 components_at_level = []
-                for component in iterationtools.iterate_components_in_expr(self.music):
+                for component in iterationtools.iterate_components_in_expr(self.payload):
                     score_index = component.parentage.score_index
                     if len(score_index) == rotation_indicator.level:
                         components_at_level.append(component)
@@ -198,7 +188,7 @@ class RhythmRegionProduct(RegionProduct):
             else:
                 index = durationtools.Duration(rotation_indicator.index)
                 if 0 <= index:
-                    split_offset = self.music.prolated_duration - index
+                    split_offset = self.payload.prolated_duration - index
                 else:
                     split_offset = abs(index)
             if rotation_indicator.fracture_spanners is not None:
@@ -206,27 +196,27 @@ class RhythmRegionProduct(RegionProduct):
         else:
             n = durationtools.Duration(n)
             if 0 <= n:
-                split_offset = self.music.prolated_duration - n
+                split_offset = self.payload.prolated_duration - n
             else:
                 split_offset = abs(n)
         #self._debug(split_offset, 'split offset')
-        if split_offset == self.music.prolated_duration:
+        if split_offset == self.payload.prolated_duration:
             return
         if fracture_spanners:
             result = componenttools.split_components_at_offsets(
-                [self.music], [split_offset], cyclic=False, fracture_spanners=True, tie_split_notes=False)
+                [self.payload], [split_offset], cyclic=False, fracture_spanners=True, tie_split_notes=False)
             left_half, right_half = result[0][0], result[-1][0]
-            music = containertools.Container()
-            music.extend(right_half)
-            music.extend(left_half)
-            assert wellformednesstools.is_well_formed_component(music)
-            self._music = music
+            payload = containertools.Container()
+            payload.extend(right_half)
+            payload.extend(left_half)
+            assert wellformednesstools.is_well_formed_component(payload)
+            self._payload = payload
         else:
             result = componenttools.split_components_at_offsets(
-                self.music[:], [split_offset], cyclic=False, fracture_spanners=False, tie_split_notes=False)
+                self.payload[:], [split_offset], cyclic=False, fracture_spanners=False, tie_split_notes=False)
             left_half, right_half = result[0], result[-1]
             for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(
-                self.music, klass=beamtools.DuratedComplexBeamSpanner):
+                self.payload, klass=beamtools.DuratedComplexBeamSpanner):
                 if left_half[-1] in spanner and right_half[0] in spanner:
                     leaf_right_of_split = right_half[0]
                     split_offset_in_beam = spanner._duration_offset_in_me(leaf_right_of_split)
@@ -234,10 +224,10 @@ class RhythmRegionProduct(RegionProduct):
                         spanner.durations, [split_offset_in_beam], cyclic=False, overhang=True)
                     new_durations = right_durations + left_durations
                     spanner._durations = new_durations
-            new_music = right_half + left_half
-            self.music._music = new_music
-            for component in new_music:
+            new_payload = right_half + left_half
+            self.payload._music = new_payload
+            for component in new_payload:
                 component._mark_entire_score_tree_for_later_update('prolated')
-            for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(self.music):
+            for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(self.payload):
                 spanner._components.sort(lambda x, y: cmp(x.parentage.score_index, y.parentage.score_index))
-            assert wellformednesstools.is_well_formed_component(self.music)
+            assert wellformednesstools.is_well_formed_component(self.payload)
