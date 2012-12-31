@@ -191,8 +191,11 @@ Unstable packages (load manually)
 
    tools/requesttools/AbsoluteRequest/AbsoluteRequest
    tools/requesttools/CommandRequest/CommandRequest
+   tools/requesttools/DivisionCommandRequest/DivisionCommandRequest
    tools/requesttools/HandlerRequest/HandlerRequest
+   tools/requesttools/RhythmCommandRequest/RhythmCommandRequest
    tools/requesttools/StatalServerRequest/StatalServerRequest
+   tools/requesttools/TimeSignatureCommandRequest/TimeSignatureCommandRequest
 
 --------
 

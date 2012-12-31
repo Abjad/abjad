@@ -155,5 +155,3 @@
 30. Implement TimeSignatureCommandRequest, DivisionCommandRequest, RhythmCommandRequest.
 
 31. Migrate functionality out of interpreter into command request classes.
-
-32. Add 'payload' property to region product classes.
