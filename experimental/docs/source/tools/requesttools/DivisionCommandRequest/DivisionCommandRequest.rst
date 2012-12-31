@@ -36,6 +36,8 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.get_payload
+
 .. automethod:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.partition_by_ratio
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`

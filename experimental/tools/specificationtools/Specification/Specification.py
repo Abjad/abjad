@@ -49,6 +49,26 @@ class Specification(AbjadObject):
         '''
         return self.specification_name
 
+    def _context_name_to_parentage_names(self, context_name, proper=True):
+        context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
+        if proper:
+            parentage = componenttools.get_proper_parentage_of_component(context)
+        else:
+            parentage = componenttools.get_improper_parentage_of_component(context)
+        context_names = [context.name for context in parentage]
+        return context_names
+
+    def _get_first_element_in_expr_by_parentage(self, expr, context_name, include_improper_parentage=False):
+        context_names = [context_name]
+        if include_improper_parentage:
+            context_names = self._context_name_to_parentage_names(context_name, proper=False)
+        for context_name in context_names:
+            for element in expr:
+                if element.context_name is None:
+                    return element
+                if element.context_name == context_name:
+                    return element
+
     ### PRIVATE METHODS ###
 
     def _context_token_to_context_names(self, context_token):

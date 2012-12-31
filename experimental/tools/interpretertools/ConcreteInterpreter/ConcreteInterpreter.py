@@ -94,21 +94,8 @@ class ConcreteInterpreter(Interpreter):
                 beamtools.DuratedComplexBeamSpanner(
                     [rhythm_container], [rhythm_container.prolated_duration], span=1)
 
-    def context_name_to_parentage_names(self, segment_specification, context_name, proper=True):
-        context = componenttools.get_first_component_in_expr_with_name(
-            segment_specification.score_model, context_name)
-        if proper:
-            parentage = componenttools.get_proper_parentage_of_component(context)
-        else:
-            parentage = componenttools.get_improper_parentage_of_component(context)
-        context_names = [context.name for context in parentage]
-        return context_names
-
     def division_command_request_to_divisions(self, division_command_request, voice_name):
-        #assert isinstance(division_command_request, requesttools.CommandRequest)
-        #assert division_command_request.attribute == 'divisions'
         assert isinstance(division_command_request, requesttools.DivisionCommandRequest)
-
         #self._debug(division_command_request, 'division command request')
         requested_segment_identifier = division_command_request.offset.start_segment_identifier
         requested_offset = division_command_request.offset._get_offset(self.score_specification, voice_name)
@@ -122,9 +109,8 @@ class ConcreteInterpreter(Interpreter):
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_time_relation)
         #self._debug_values(candidate_commands, 'candidates')
         segment_specification = self.get_start_segment_specification(requested_segment_identifier)
-        source_command = self.get_first_element_in_expr_by_parentage(
-            candidate_commands, segment_specification, division_command_request.voice_name, 
-            include_improper_parentage=True)
+        source_command = segment_specification._get_first_element_in_expr_by_parentage(
+            candidate_commands, division_command_request.voice_name, include_improper_parentage=True)
         assert source_command is not None
         #self._debug(source_command, 'source_command')
         absolute_request = source_command.request
@@ -260,19 +246,6 @@ class ConcreteInterpreter(Interpreter):
                 result.append(copy.deepcopy(region_command))
         return result
 
-    def get_first_element_in_expr_by_parentage(self, expr, segment_specification, context_name, 
-        include_improper_parentage=False):
-        context_names = [context_name]
-        if include_improper_parentage:
-            context_names = self.context_name_to_parentage_names(
-                segment_specification, context_name, proper=False)
-        for context_name in context_names:
-            for element in expr:
-                if element.context_name is None:
-                    return element
-                if element.context_name == context_name:
-                    return element
-
     def get_raw_commands_for_voice(self, context_name, attribute):
         commands = []
         for segment_specification in self.score_specification.segment_specifications:
@@ -297,7 +270,7 @@ class ConcreteInterpreter(Interpreter):
         result = []
         context_names = [context_name]
         if include_improper_parentage:
-            context_names.extend(self.context_name_to_parentage_names(segment_specification, context_name))
+            context_names.extend(segment_specification._context_name_to_parentage_names(context_name))
         for context_name in reversed(context_names):
             single_context_settings = segment_specification.single_context_settings_by_context[context_name]
             single_context_settings = single_context_settings.get_settings(attribute=attribute)
@@ -629,9 +602,8 @@ class ConcreteInterpreter(Interpreter):
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_time_relation)
         #self._debug_values(candidate_commands, 'candidates')
         segment_specification = self.get_start_segment_specification(requested_segment_identifier)
-        source_command = self.get_first_element_in_expr_by_parentage(
-            candidate_commands, segment_specification, rhythm_command_request.voice_name, 
-            include_improper_parentage=True)
+        source_command = segment_specification._get_first_element_in_expr_by_parentage(
+            candidate_commands, rhythm_command_request.voice_name, include_improper_parentage=True)
         assert source_command is not None
         #self._debug(source_command, 'source_command')
         absolute_request = source_command.request
@@ -714,8 +686,7 @@ class ConcreteInterpreter(Interpreter):
         result = []
         context_names = [context_name]
         if include_improper_parentage:
-            context_names = self.context_name_to_parentage_names(
-                segment_specification, context_name, proper=False)
+            context_names = segment_specification._context_name_to_parentage_names(context_name, proper=False)
         for context_name in context_names:
             for element in expr:
                 if element.context_name == context_name:
