@@ -1,12 +1,12 @@
+import abc
 from experimental.tools import timeexpressiontools
 from experimental.tools.requesttools.Request import Request
 
 
-# TODO: make abstract
 class CommandRequest(Request):
-    r'''
+    r'''Command request.
 
-    Request `attribute` command active at `offset` in `voice_name`::
+    Request command active at `offset` in `voice_name`::
 
         >>> from experimental.tools import *
 
@@ -48,6 +48,11 @@ class CommandRequest(Request):
 
     ### INITIALIZER ###
 
+    __metaclass__ = abc.ABCMeta
+
+    ### INITIALIZER ###
+
+    @abc.abstractmethod
     def __init__(self, attribute, voice_name, offset, request_modifiers=None):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)

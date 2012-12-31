@@ -182,6 +182,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   tools/requesttools/CommandRequest/CommandRequest
    tools/requesttools/Request/Request
 
 --------
@@ -190,7 +191,6 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    tools/requesttools/AbsoluteRequest/AbsoluteRequest
-   tools/requesttools/CommandRequest/CommandRequest
    tools/requesttools/DivisionCommandRequest/DivisionCommandRequest
    tools/requesttools/HandlerRequest/HandlerRequest
    tools/requesttools/RhythmCommandRequest/RhythmCommandRequest
