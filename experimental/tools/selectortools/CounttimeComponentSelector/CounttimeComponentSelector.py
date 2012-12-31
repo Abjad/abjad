@@ -1,10 +1,14 @@
 import copy
 from abjad.tools import componenttools
+from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
+from abjad.tools import leaftools
+from abjad.tools import measuretools
 from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
+from abjad.tools import tuplettools
 from abjad.tools import wellformednesstools
 from experimental.tools import helpertools
 from experimental.tools.selectortools.Selector import Selector
@@ -61,12 +65,12 @@ class CounttimeComponentSelector(Selector):
         voice_name=None, time_relation=None,
         request_modifiers=None, timespan_modifiers=None):
         from experimental.tools import timeexpressiontools
-        # TODO: bind is_counttime_component_classes_expr to CounttimeComponentSelector
-        assert classes is None or helpertools.is_counttime_component_klass_expr(classes), repr(classes)
+        assert classes is None or self._is_counttime_component_class_expr(classes), repr(classes)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
         Selector.__init__(self, 
             anchor=anchor, 
-            voice_name=voice_name, time_relation=time_relation, 
+            voice_name=voice_name, 
+            time_relation=time_relation, 
             request_modifiers=request_modifiers,
             timespan_modifiers=timespan_modifiers)
         if isinstance(classes, tuple):
@@ -146,13 +150,26 @@ class CounttimeComponentSelector(Selector):
         result.repeat_to_stop_offset(stop_offset)
         return result
 
+    def _is_counttime_component_class_expr(self, expr):
+        from experimental.tools import helpertools
+        if isinstance(expr, tuple) and all([self._is_counttime_component_class_expr(x) for x in expr]):
+            return True
+        elif isinstance(expr, helpertools.KlassInventory):
+            return True
+        elif issubclass(expr, (measuretools.Measure, tuplettools.Tuplet, leaftools.Leaf)):
+            return True
+        elif expr == containertools.Container:
+            return True
+        else:
+            return False
+
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
     @property
     def classes(self):
         '''Classes of counttime component selector.
 
-        Return class, class inventory or none.
+        Return class inventory or none.
         '''
         return self._classes
 

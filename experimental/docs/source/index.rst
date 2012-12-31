@@ -131,7 +131,6 @@ Unstable packages (load manually)
    tools/helpertools/expr_to_segment_name
    tools/helpertools/index_to_slice_pair
    tools/helpertools/is_background_element_klass
-   tools/helpertools/is_counttime_component_klass_expr
    tools/helpertools/read_test_output
    tools/helpertools/write_test_output
 
