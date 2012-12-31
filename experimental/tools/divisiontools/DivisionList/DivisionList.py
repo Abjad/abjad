@@ -149,20 +149,6 @@ class DivisionList(AbjadObject):
     def is_closed(self):
         return self.is_left_closed and self.is_right_closed
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def divisions(self):
-        return self._divisions
-
-    @property
-    def duration(self):
-        return sum([division.duration for division in self.divisions])
-
-    @property
-    def is_closed(self):
-        return self.is_left_closed and self.is_right_closed
-
     @property
     def is_half_closed(self):
         return not self.is_left_closed == self.is_right_closed
@@ -223,6 +209,23 @@ class DivisionList(AbjadObject):
         left_division_list = type(self)(left_divisions, voice_name=self.voice_name) 
         right_division_list = type(self)(right_divisions, voice_name=self.voice_name) 
         return left_division_list, right_division_list
+
+    def new(self, **kwargs):
+        positional_argument_dictionary = self._positional_argument_dictionary
+        keyword_argument_dictionary = self._keyword_argument_dictionary
+        for key, value in kwargs.iteritems():
+            if key in positional_argument_dictionary:
+                positional_argument_dictionary[key] = value
+            elif key in keyword_argument_dictionary:
+                keyword_argument_dictionary[key] = value
+            else:
+                raise KeyError(key)
+        positional_argument_values = []
+        for positional_argument_name in self._positional_argument_names:
+            positional_argument_value = positional_argument_dictionary[positional_argument_name]
+            positional_argument_values.append(positional_argument_value)
+        result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
+        return result
 
     def reverse(self):
         '''Operate in place and return none.

@@ -180,8 +180,8 @@ class ConcreteInterpreter(Interpreter):
             region_duration = division_region_command.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             divisions = [divisiontools.Division(x) for x in divisions]
-            # TODO: implement OffsetPositionedDivisionList.set() to handle the following line cleanly
-            division_region_expression.division_list._divisions = divisions
+            division_list = division_region_expression.division_list.new(divisions=divisions)
+            division_region_expression = division_region_expression.new(division_list=division_list)
             #self._debug(division_region_expression, 'drx')
             addendum = division_region_command.start_offset - division_region_expression.start_offset
             division_region_expression = division_region_expression.translate_offsets(

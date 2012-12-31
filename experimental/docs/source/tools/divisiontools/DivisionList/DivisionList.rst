@@ -44,6 +44,8 @@ Methods
 
 .. automethod:: experimental.tools.divisiontools.DivisionList.DivisionList.DivisionList.fracture
 
+.. automethod:: experimental.tools.divisiontools.DivisionList.DivisionList.DivisionList.new
+
 .. automethod:: experimental.tools.divisiontools.DivisionList.DivisionList.DivisionList.reverse
 
 Special Methods

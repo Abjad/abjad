@@ -152,3 +152,6 @@
 29. Replace OffsetPositionedExpression classes' offset properties with timespan property.
 
 30. Relace Command.offsets with Command.timespan.
+
+31. Make DivisionList inherit from BoundedObject.
+    Then remove is_closed, is_half_closed, etc.
