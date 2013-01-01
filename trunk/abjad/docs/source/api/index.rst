@@ -2134,6 +2134,15 @@ Abjad internal packages
    :maxdepth: 1
 
    tools/documentationtools/GraphvizObject/GraphvizObject
+   tools/documentationtools/ReSTDirective/ReSTDirective
+   tools/documentationtools/ReSTDocument/ReSTDocument
+   tools/documentationtools/ReSTHeading/ReSTHeading
+   tools/documentationtools/ReSTHorizontalRule/ReSTHorizontalRule
+   tools/documentationtools/ReSTNode/ReSTNode
+   tools/documentationtools/ReSTOnlyDirective/ReSTOnlyDirective
+   tools/documentationtools/ReSTParagraph/ReSTParagraph
+   tools/documentationtools/ReSTTOCDirective/ReSTTOCDirective
+   tools/documentationtools/ReSTTOCItem/ReSTTOCItem
 
 --------
 
