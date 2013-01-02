@@ -26,7 +26,7 @@ class MultipleContextSetting(Setting):
         settingtools.MultipleContextSetting(
             attribute='time_signatures',
             request=requesttools.AbsoluteRequest(
-                [(4, 8), (3, 8)]
+                ((4, 8), (3, 8))
                 ),
             anchor='red',
             persist=True

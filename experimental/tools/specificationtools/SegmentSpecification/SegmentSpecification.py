@@ -182,7 +182,7 @@ class SegmentSpecification(Specification):
             settingtools.SingleContextSetting(
                 attribute='time_signatures',
                 request=requesttools.AbsoluteRequest(
-                    [(2, 8), (3, 8), (4, 8)]
+                    ((2, 8), (3, 8), (4, 8))
                     ),
                 anchor='red',
                 fresh=True,

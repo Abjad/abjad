@@ -41,7 +41,7 @@ class SingleContextSetting(Setting):
         settingtools.SingleContextSetting(
             attribute='divisions',
             request=requesttools.AbsoluteRequest(
-                [(3, 16)]
+                ((3, 16),)
                 ),
             anchor='red',
             context_name='Voice 1',
@@ -83,7 +83,7 @@ class SingleContextSetting(Setting):
             settingtools.SingleContextSetting(
                 attribute='divisions',
                 request=requesttools.AbsoluteRequest(
-                    [(3, 16)]
+                    ((3, 16),)
                     ),
                 anchor='red',
                 context_name='Voice 1',

@@ -172,7 +172,8 @@ class Request(AbjadObject):
         return elements, new_start_offset
 
     def _reverse(self, elements, original_start_offset):
-        if elements.__class__.__name__ == 'list':
+        #if elements.__class__.__name__ == 'list':
+        if elements.__class__.__name__ == 'tuple':
             elements = type(elements)(reversed(elements))
         else:
             elements = elements.reverse() or elements

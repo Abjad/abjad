@@ -120,7 +120,7 @@ class ScoreSpecification(Specification):
             ...     z(x)
             settingtools.DivisionRegionCommand(
                 requesttools.AbsoluteRequest(
-                    [(2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)]
+                    ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
                     ),
                 'Voice 1',
                 timespantools.Timespan(
@@ -132,7 +132,7 @@ class ScoreSpecification(Specification):
                 )
             settingtools.DivisionRegionCommand(
                 requesttools.AbsoluteRequest(
-                    [(2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)]
+                    ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
                     ),
                 'Voice 2',
                 timespantools.Timespan(
@@ -263,7 +263,7 @@ class ScoreSpecification(Specification):
             settingtools.MultipleContextSetting(
                 attribute='time_signatures',
                 request=requesttools.AbsoluteRequest(
-                    [(2, 8), (3, 8), (4, 8)]
+                    ((2, 8), (3, 8), (4, 8))
                     ),
                 anchor='red',
                 persist=True
@@ -271,7 +271,7 @@ class ScoreSpecification(Specification):
             settingtools.MultipleContextSetting(
                 attribute='time_signatures',
                 request=requesttools.AbsoluteRequest(
-                    [(4, 16), (4, 16)]
+                    ((4, 16), (4, 16))
                     ),
                 anchor='orange',
                 persist=True
@@ -279,7 +279,7 @@ class ScoreSpecification(Specification):
             settingtools.MultipleContextSetting(
                 attribute='time_signatures',
                 request=requesttools.AbsoluteRequest(
-                    [(5, 16), (5, 16)]
+                    ((5, 16), (5, 16))
                     ),
                 anchor='yellow',
                 persist=True
@@ -384,7 +384,7 @@ class ScoreSpecification(Specification):
             settingtools.SingleContextSetting(
                 attribute='time_signatures',
                 request=requesttools.AbsoluteRequest(
-                    [(2, 8), (3, 8), (4, 8)]
+                    ((2, 8), (3, 8), (4, 8))
                     ),
                 anchor='red',
                 fresh=True,
@@ -393,7 +393,7 @@ class ScoreSpecification(Specification):
             settingtools.SingleContextSetting(
                 attribute='time_signatures',
                 request=requesttools.AbsoluteRequest(
-                    [(4, 16), (4, 16)]
+                    ((4, 16), (4, 16))
                     ),
                 anchor='orange',
                 fresh=True,
@@ -402,7 +402,7 @@ class ScoreSpecification(Specification):
             settingtools.SingleContextSetting(
                 attribute='time_signatures',
                 request=requesttools.AbsoluteRequest(
-                    [(5, 16), (5, 16)]
+                    ((5, 16), (5, 16))
                     ),
                 anchor='yellow',
                 fresh=True,

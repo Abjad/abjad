@@ -36,10 +36,8 @@ class SetMethodMixin(AbjadObject):
             return requesttool.HandlerRequest(expr)
         elif isinstance(expr, (tuple, list, str, rhythmmakertools.RhythmMaker)):
             return requesttools.AbsoluteRequest(expr)
-        elif isinstance(expr, timeexpressiontools.TimespanExpression):
-            return expr
         else:
-            raise TypeError('do not know how to change {!r} to request object.'.format(expr))
+            raise TypeError('do not know how to change {!r} to request.'.format(expr))
 
     def _store_multiple_context_setting(self, attribute, source, contexts=None, persist=True, truncate=None):
         from experimental.tools import settingtools
@@ -97,7 +95,7 @@ class SetMethodMixin(AbjadObject):
             settingtools.MultipleContextSetting(
                 attribute='divisions',
                 request=requesttools.AbsoluteRequest(
-                    [(3, 16)]
+                    ((3, 16),)
                     ),
                 anchor='red',
                 context_names=['Voice 1', 'Voice 3'],
@@ -223,7 +221,7 @@ class SetMethodMixin(AbjadObject):
             settingtools.MultipleContextSetting(
                 attribute='time_signatures',
                 request=requesttools.AbsoluteRequest(
-                    [(3, 8), (4, 8)]
+                    ((3, 8), (4, 8))
                     ),
                 anchor='red',
                 persist=True

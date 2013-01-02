@@ -153,3 +153,5 @@
         leaves.rotate()
 
 30. Possibly break TimeSignatureSetting, DivisionSetting, RhythmSetting out from Setting.
+
+31. Break RhythmMakerRequest out from AbsoluteRequest.

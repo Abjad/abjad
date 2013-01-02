@@ -102,12 +102,7 @@ class ConcreteInterpreter(Interpreter):
             region_duration = division_region_command.timespan.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
         elif isinstance(division_region_command.request, requesttools.AbsoluteRequest):
-            payload = division_region_command.request.payload
-            #payload = absolute_request.payload
-            # TODO: This is a hack; the payload for an absolute request 
-            #       should always be some type of (literal) constant.
-            #       So the branched call below should be unnecessary.
-            divisions = self.timespan_expressions_to_durations(payload)
+            divisions = division_region_command.request._evaluate_payload(self.score_specification, None)
             divisions = [divisiontools.Division(x) for x in divisions]
             region_duration = division_region_command.timespan.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
@@ -689,18 +684,4 @@ class ConcreteInterpreter(Interpreter):
                     right_region_command.timespan.start_offset, attribute)
                 result.append(region_command)
         result.append(right_region_command)
-        return result
-
-    # TODO: this is a hack; see TODO about hack, above; test; then remove this method
-    def timespan_expressions_to_durations(self, expr):
-        assert isinstance(expr, (tuple, list))
-        result = []
-        for element in expr:
-            #assert not isinstance(element, timeexpressiontools.TimespanExpression), repr(element)
-            if isinstance(element, timeexpressiontools.TimespanExpression):
-                context_name = None
-                timespan = element._get_timespan(self.score_specification, context_name)
-                result.append(timespan.duration)
-            else:
-                result.append(element)
         return result

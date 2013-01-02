@@ -6,15 +6,13 @@ from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
 
 
 class Division(NonreducedFraction, BoundedObject):
-    r'''
+    r'''Bounded nonreduced fraction.
 
-    Bounded nonreduced fraction.
-
-    Initialize from string::
+    ::
 
         >>> from experimental.tools import *
 
-    ::
+    Initialize from string::
 
         >>> divisiontools.Division('[5, 8)')
         Division('[5, 8)')
@@ -49,6 +47,10 @@ class Division(NonreducedFraction, BoundedObject):
         if isinstance(arg, str):
             triple = mathtools.interval_string_to_pair_and_indicators(arg)
             pair, is_left_open, is_right_open = triple
+        elif isinstance(arg, klass):
+            pair = arg
+        elif hasattr(arg, 'duration'):
+            pair = (arg.duration.numerator, arg.duration.denominator)
         else:
             pair = arg
         self = NonreducedFraction.__new__(klass, pair)

@@ -16,12 +16,8 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.request_modifiers
    :noindex:
 
-    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
-
 .. autoattribute:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.storage_format
    :noindex:
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Methods
 -------
