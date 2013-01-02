@@ -69,11 +69,6 @@ class ConcreteInterpreter(Interpreter):
                 timespan = timespantools.Timespan(start_offset, stop_offset)
                 segment_specification._timespan = timespan
 
-    # TODO: move to ScoreSpecification
-    def clear_persistent_single_context_settings_by_context(self, context_name, attribute):
-        if attribute in self.score_specification.single_context_settings_by_context[context_name]:
-            del(self.score_specification.single_context_settings_by_context[context_name][attribute])
-
     def conditionally_beam_rhythm_containers(self, rhythm_maker, rhythm_containers):
         if getattr(rhythm_maker, 'beam_cells_together', False):
             spannertools.destroy_spanners_attached_to_components_in_expr(rhythm_containers)
@@ -195,39 +190,15 @@ class ConcreteInterpreter(Interpreter):
                 result.append(copy.deepcopy(region_command))
         return result
 
-    # TODO: move to ScoreSpecification
-    def get_raw_commands_for_voice(self, context_name, attribute):
-        commands = []
-        for segment_specification in self.score_specification.segment_specifications:
-            single_context_settings = self.get_single_context_settings_that_start_during_segment(
-                segment_specification, context_name, attribute, include_improper_parentage=True)
-            for single_context_setting in single_context_settings:
-                command = single_context_setting.to_command(self.score_specification, context_name)
-                commands.append(command)
-        return commands
-
     def get_region_commands_for_voice(self, voice_name, attribute):
-        raw_commands = self.get_raw_commands_for_voice(voice_name, attribute)
+        raw_commands = self.score_specification.get_raw_commands_for_voice(voice_name, attribute)
         region_commands = self.sort_and_split_raw_commands(raw_commands)
         region_commands = self.fuse_like_region_commands(region_commands)
         region_commands = self.supply_missing_region_commands(region_commands, voice_name, attribute)
         return region_commands
 
-    # TODO: move to SegmentSpecification
-    def get_single_context_settings_that_start_during_segment(
-        self, segment_specification, context_name, attribute, 
-        include_improper_parentage=False):
-        result = []
-        context_names = [context_name]
-        if include_improper_parentage:
-            context_names.extend(segment_specification._context_name_to_parentage_names(context_name))
-        for context_name in reversed(context_names):
-            single_context_settings = segment_specification.single_context_settings_by_context[context_name]
-            single_context_settings = single_context_settings.get_settings(attribute=attribute)
-            result.extend(single_context_settings)
-        return result
-
-    # move to ScoreSpecification
+    # TODO: move to ScoreSpecification.
+    #       But first decide whether self.score should migrate to ScoreSpecification, too.
     def initialize_region_product_inventories(self, attribute):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             timespan_inventory = timespantools.TimespanInventory()
@@ -266,12 +237,12 @@ class ConcreteInterpreter(Interpreter):
         self.make_time_signatures()
         self.calculate_score_and_segment_timespans()
 
-    # move to ScoreSpecification; make signature timespan-based instead of offset-based
-    def make_default_region_command(self, voice_name, start_offset, stop_offset, attribute):
+    # TODO: move to ScoreSpecification.
+    def make_default_region_command(self, voice_name, timespan, attribute):
         if attribute == 'divisions':
-            return self.make_time_signature_division_command(voice_name, start_offset, stop_offset)
+            return self.make_time_signature_division_command(voice_name, timespan)
         elif attribute == 'rhythm':
-            return self.make_skip_token_rhythm_command(voice_name, start_offset, stop_offset)
+            return self.make_skip_token_rhythm_command(voice_name, timespan)
         else:
             raise ValueError(attribute)
 
@@ -422,9 +393,7 @@ class ConcreteInterpreter(Interpreter):
             if not made_progress:
                 raise Exception('cyclic rhythm specification.')
 
-    # TODO: make timespan-based instead of offset-based
-    def make_skip_token_rhythm_command(self, voice_name, start_offset, stop_offset):
-        timespan = timespantools.Timespan(start_offset, stop_offset)
+    def make_skip_token_rhythm_command(self, voice_name, timespan):
         return settingtools.RhythmRegionCommand(
             requesttools.RhythmMakerRequest(library.skip_tokens),
             voice_name, 
@@ -432,9 +401,7 @@ class ConcreteInterpreter(Interpreter):
             fresh=True
             )
 
-    # TODO: make timespan-based instead of offset-based
-    def make_time_signature_division_command(self, voice_name, start_offset, stop_offset):
-        timespan = timespantools.Timespan(start_offset, stop_offset)
+    def make_time_signature_division_command(self, voice_name, timespan):
         divisions = self.score_specification.get_time_signature_slice(timespan)
         return settingtools.DivisionRegionCommand(
             requesttools.AbsoluteRequest(divisions),
@@ -625,18 +592,21 @@ class ConcreteInterpreter(Interpreter):
             return []
         elif not region_commands and self.score_specification.time_signatures:
             region_command = self.make_default_region_command(
-                voice_name, self.score_specification.timespan.start_offset, 
-                self.score_specification.timespan.stop_offset, attribute)
+                voice_name, self.score_specification.timespan, attribute)
             return [region_command]
         if not region_commands[0].timespan.starts_when_expr_starts(self.score_specification):
-            region_command = self.make_default_region_command(
-                voice_name, self.score_specification.timespan.start_offset, 
-                region_commands[0].timespan.start_offset, attribute)
+            # TODO: implement timespan operations to create new timespan below
+            start_offset = self.score_specification.timespan.start_offset
+            stop_offset = region_commands[0].timespan.start_offset
+            timespan = timespantools.Timespan(start_offset, stop_offset)
+            region_command = self.make_default_region_command(voice_name, timespan, attribute)
             region_commands.insert(0, region_command)
         if not region_commands[-1].timespan.stops_when_expr_stops(self.score_specification):
-            region_command = self.make_default_region_command(
-                voice_name, region_commands[-1].timespan.stop_offset, 
-                self.score_specification.timespan.stop_offset, attribute)
+            # TODO: implement timespan operations to create new timespan below
+            start_offset = region_commands[-1].timespan.stop_offset 
+            stop_offset = self.score_specification.timespan.stop_offset
+            timespan = timespantools.Timespan(start_offset, stop_offset)
+            region_command = self.make_default_region_command(voice_name, timespan, attribute)
             region_commands.append(region_command)
         if len(region_commands) == 1:
             return region_commands
@@ -646,9 +616,11 @@ class ConcreteInterpreter(Interpreter):
             assert not left_region_command.timespan.starts_after_expr_starts(right_region_command.timespan)
             result.append(left_region_command)
             if left_region_command.timespan.stops_before_expr_starts(right_region_command.timespan):
-                region_command = self.make_default_region_command(voice_name, 
-                    left_region_command.timespan.stop_offset, 
-                    right_region_command.timespan.start_offset, attribute)
+                # TODO: implement timespan operations to create new timespan below
+                start_offset = left_region_command.timespan.stop_offset 
+                stop_offset = right_region_command.timespan.start_offset
+                timespan = timespantools.Timespan(start_offset, stop_offset)
+                region_command = self.make_default_region_command(voice_name, timespan, attribute)
                 result.append(region_command)
         result.append(right_region_command)
         return result

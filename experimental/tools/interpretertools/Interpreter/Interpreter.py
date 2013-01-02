@@ -57,7 +57,8 @@ class Interpreter(AbjadObject):
             context_name = segment_specification.single_context_settings_by_context.score_name
         attribute = single_context_setting.attribute
         if clear_persistent_first:
-            self.clear_persistent_single_context_settings_by_context(context_name, attribute)
+            self.score_specification.clear_persistent_single_context_settings_by_context(
+                context_name, attribute)
         if attribute in segment_specification.single_context_settings_by_context[context_name]:
             segment_specification.single_context_settings_by_context[context_name][attribute].append(
                 single_context_setting)

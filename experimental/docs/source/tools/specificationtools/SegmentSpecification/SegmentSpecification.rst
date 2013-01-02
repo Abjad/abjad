@@ -49,6 +49,12 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.timespan
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.get_single_context_settings_that_start_during_segment
+   :noindex:
+
 Special Methods
 ---------------
 

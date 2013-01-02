@@ -524,6 +524,10 @@ class ScoreSpecification(Specification):
         segment_setting_interface = settingtools.SegmentSpecificationInterface(self, name)
         return segment_setting_interface
 
+    def clear_persistent_single_context_settings_by_context(self, context_name, attribute):
+        if attribute in self.single_context_settings_by_context[context_name]:
+            del(self.single_context_settings_by_context[context_name][attribute])
+
     def get_anchor_timespan(self, expr, voice_name):
         '''Get timespan of ``expr.anchor``.
 
@@ -540,6 +544,17 @@ class ScoreSpecification(Specification):
         else:
             return expr.anchor._get_timespan(self, voice_name)
         
+    def get_raw_commands_for_voice(self, context_name, attribute):
+        commands = []
+        for segment_specification in self.segment_specifications:
+            single_context_settings = \
+                segment_specification.get_single_context_settings_that_start_during_segment(
+                context_name, attribute, include_improper_parentage=True)
+            for single_context_setting in single_context_settings:
+                command = single_context_setting.to_command(self, context_name)
+                commands.append(command)
+        return commands
+
     # TODO: possibly remove in favor of self.get_anchor_timespan().
     def get_start_segment_specification(self, expr):
         r'''Get start segment specification from `expr`::

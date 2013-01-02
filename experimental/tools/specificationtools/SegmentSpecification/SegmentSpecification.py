@@ -276,3 +276,17 @@ class SegmentSpecification(Specification):
         Return timespan.
         '''
         return Specification.timespan.fget(self)
+
+    ### PUBLIC METHODS ###
+
+    def get_single_context_settings_that_start_during_segment(self, context_name, attribute, 
+        include_improper_parentage=False):
+        result = []
+        context_names = [context_name]
+        if include_improper_parentage:
+            context_names.extend(self._context_name_to_parentage_names(context_name))
+        for context_name in reversed(context_names):
+            single_context_settings = self.single_context_settings_by_context[context_name]
+            single_context_settings = single_context_settings.get_settings(attribute=attribute)
+            result.extend(single_context_settings)
+        return result
