@@ -244,8 +244,8 @@ Unstable packages (load manually)
    tools/settingtools/RotationIndicator/RotationIndicator
    tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
    tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
+   tools/settingtools/SettingInventory/SettingInventory
    tools/settingtools/SingleContextSetting/SingleContextSetting
-   tools/settingtools/SingleContextSettingInventory/SingleContextSettingInventory
 
 :py:mod:`specificationtools <experimental.tools.specificationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

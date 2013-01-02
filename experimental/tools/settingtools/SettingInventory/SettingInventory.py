@@ -2,7 +2,7 @@ from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 from experimental.tools import helpertools
 
 
-class SingleContextSettingInventory(ObjectInventory):
+class SettingInventory(ObjectInventory):
     r'''
 
     Single-context setting inventory.

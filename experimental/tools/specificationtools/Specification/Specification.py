@@ -34,11 +34,11 @@ class Specification(AbjadObject):
         self._score_model = score_template()
         self._abbreviated_context_names = []
         self._context_names = []
-        self._multiple_context_settings = settingtools.SingleContextSettingInventory()
+        self._multiple_context_settings = settingtools.SettingInventory()
         self._single_context_settings_by_context = specificationtools.ContextProxyDictionary(score_template())
         self._initialize_context_name_abbreviations()
         self._contexts = specificationtools.ContextProxyDictionary(score_template())
-        self._single_context_settings = settingtools.SingleContextSettingInventory()
+        self._single_context_settings = settingtools.SettingInventory()
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

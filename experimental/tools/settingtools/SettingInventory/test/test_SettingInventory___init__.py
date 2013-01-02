@@ -2,7 +2,7 @@ from abjad.tools import *
 from experimental.tools import *
 
 
-def test_SingleContextSettingInventory___init___01():
+def test_SettingInventory___init___01():
     '''Init from other setting inventory.
     '''
 
@@ -12,9 +12,9 @@ def test_SingleContextSettingInventory___init___01():
     red_segment.set_time_signatures([(4, 8), (3, 8)])
 
     setting_inventory_1 = score_specification['red'].single_context_settings
-    setting_inventory_2 = settingtools.SingleContextSettingInventory(setting_inventory_1)
+    setting_inventory_2 = settingtools.SettingInventory(setting_inventory_1)
 
-    assert isinstance(setting_inventory_1, settingtools.SingleContextSettingInventory)
-    assert isinstance(setting_inventory_2, settingtools.SingleContextSettingInventory)
+    assert isinstance(setting_inventory_1, settingtools.SettingInventory)
+    assert isinstance(setting_inventory_2, settingtools.SettingInventory)
     assert not setting_inventory_1 is setting_inventory_2
     assert setting_inventory_1 == setting_inventory_2
