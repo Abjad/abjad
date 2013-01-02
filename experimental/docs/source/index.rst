@@ -180,7 +180,6 @@ Unstable packages (load manually)
 
    tools/requesttools/CommandRequest/CommandRequest
    tools/requesttools/Request/Request
-   tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
 
 --------
 
@@ -191,6 +190,7 @@ Unstable packages (load manually)
    tools/requesttools/DivisionCommandRequest/DivisionCommandRequest
    tools/requesttools/HandlerRequest/HandlerRequest
    tools/requesttools/RhythmCommandRequest/RhythmCommandRequest
+   tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
    tools/requesttools/StatalServerRequest/StatalServerRequest
    tools/requesttools/TimeSignatureCommandRequest/TimeSignatureCommandRequest
 

@@ -169,7 +169,7 @@ class ScoreSpecification(Specification):
             >>> for x in score_specification.all_rhythm_region_commands:
             ...     z(x)
             settingtools.RhythmRegionCommand(
-                requesttools.AbsoluteRequest(
+                requesttools.RhythmMakerRequest(
                     rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
@@ -286,7 +286,7 @@ class ScoreSpecification(Specification):
                 )
             settingtools.MultipleContextSetting(
                 attribute='rhythm',
-                request=requesttools.AbsoluteRequest(
+                request=requesttools.RhythmMakerRequest(
                     rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
@@ -410,7 +410,7 @@ class ScoreSpecification(Specification):
                 )
             settingtools.SingleContextSetting(
                 attribute='rhythm',
-                request=requesttools.AbsoluteRequest(
+                request=requesttools.RhythmMakerRequest(
                     rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,

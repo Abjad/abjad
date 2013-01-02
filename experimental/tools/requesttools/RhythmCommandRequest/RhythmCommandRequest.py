@@ -35,7 +35,7 @@ class RhythmCommandRequest(CommandRequest):
         assert source_command is not None
         #self._debug(source_command, 'source_command')
         absolute_request = source_command.request
-        assert isinstance(source_command.request, requesttools.AbsoluteRequest)
+        assert isinstance(source_command.request, requesttools.RhythmMakerRequest)
         assert isinstance(source_command.request.payload, rhythmmakertools.RhythmMaker)
         rhythm_maker = copy.deepcopy(source_command.request.payload)
         rhythm_maker, start_offset = self._apply_request_modifiers(

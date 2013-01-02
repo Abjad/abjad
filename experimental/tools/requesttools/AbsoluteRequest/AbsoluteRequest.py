@@ -1,6 +1,4 @@
 import numbers
-# TODO: break RhythmMakerRequest out from AbsoluteRequest
-from abjad.tools import rhythmmakertools 
 from experimental.tools.requesttools.Request import Request
 
 
@@ -28,14 +26,14 @@ class AbsoluteRequest(Request):
             ((4, 16), (2, 16))
             )
 
-    Created behind-the-scenes at setting-time.
+    Create behind-the-scenes at setting-time.
     '''
 
     ### INTIAILIZER ###
 
     def __init__(self, payload, request_modifiers=None):
         Request.__init__(self, request_modifiers=request_modifiers)
-        assert self._is_payload(payload), repr(payload)
+        assert isinstance(payload, (str, tuple, list)), repr(payload)
         if isinstance(payload, list):
             payload = tuple(payload)
         self._payload = payload
@@ -43,10 +41,7 @@ class AbsoluteRequest(Request):
     ### PRIVATE METHODS ###
 
     def _evaluate_payload(self, score_specification, voice_name):
-        # TODO: break RhythmMakerRequest out from AbsoluteRequest
-        if isinstance(self.payload, rhythmmakertools.RhythmMaker):
-            return self.payload
-        elif isinstance(self.payload, str):
+        if isinstance(self.payload, str):
             return self.payload
         elif isinstance(self.payload, tuple):
             result = []
@@ -62,15 +57,6 @@ class AbsoluteRequest(Request):
         else:
             raise TypeError(self.payload)
             
-    def _is_payload(self, expr):
-        # TODO: break RhythmMakerRequest out from AbsoluteRequest
-        from abjad.tools import rhythmmakertools
-        if isinstance(expr, rhythmmakertools.RhythmMaker):
-            return True
-        if isinstance(expr, (tuple, list, str)):
-            return True
-        return False
-            
     ### READ-ONLY PROPERTIES ###
 
     @property
@@ -80,7 +66,7 @@ class AbsoluteRequest(Request):
             >>> request.payload
             ((4, 16), (2, 16))
 
-        Return tuple, list, string or rhythm-maker.
+        Return tuple or string.
         '''
         return self._payload
 

@@ -190,7 +190,7 @@ class SegmentSpecification(Specification):
                 )
             settingtools.SingleContextSetting(
                 attribute='rhythm',
-                request=requesttools.AbsoluteRequest(
+                request=requesttools.RhythmMakerRequest(
                     rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,

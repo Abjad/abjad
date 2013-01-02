@@ -34,8 +34,10 @@ class SetMethodMixin(AbjadObject):
             return requesttools.StatalServerRequest(expr)
         elif isinstance(expr, handlertools.Handler):
             return requesttool.HandlerRequest(expr)
-        elif isinstance(expr, (tuple, list, str, rhythmmakertools.RhythmMaker)):
+        elif isinstance(expr, (tuple, list, str)):
             return requesttools.AbsoluteRequest(expr)
+        elif isinstance(expr, rhythmmakertools.RhythmMaker):
+            return requesttools.RhythmMakerRequest(expr)
         else:
             raise TypeError('do not know how to change {!r} to request.'.format(expr))
 
@@ -181,7 +183,7 @@ class SetMethodMixin(AbjadObject):
             >>> z(setting)
             settingtools.MultipleContextSetting(
                 attribute='rhythm',
-                request=requesttools.AbsoluteRequest(
+                request=requesttools.RhythmMakerRequest(
                     rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,

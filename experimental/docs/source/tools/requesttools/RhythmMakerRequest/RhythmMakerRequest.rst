@@ -10,6 +10,9 @@ requesttools.RhythmMakerRequest
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.payload
+   :noindex:
+
 .. autoattribute:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.request_modifiers
    :noindex:
 

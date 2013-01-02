@@ -161,6 +161,8 @@ class ConcreteInterpreter(Interpreter):
             rhythm_command, division_list, start_offset, stop_offset = rhythm_quadruple
             if isinstance(rhythm_command.request, requesttools.AbsoluteRequest):
                 result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
+            elif isinstance(rhythm_command.request, requesttools.RhythmMakerRequest):
+                result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.RhythmCommandRequest):
                 rhythm_maker = rhythm_command.request.get_payload(
                     self.score_specification, rhythm_command.request.voice_name)
@@ -434,7 +436,7 @@ class ConcreteInterpreter(Interpreter):
     def make_skip_token_rhythm_command(self, voice_name, start_offset, stop_offset):
         timespan = timespantools.Timespan(start_offset, stop_offset)
         return settingtools.RhythmRegionCommand(
-            requesttools.AbsoluteRequest(library.skip_tokens),
+            requesttools.RhythmMakerRequest(library.skip_tokens),
             voice_name, 
             timespan,
             fresh=True
