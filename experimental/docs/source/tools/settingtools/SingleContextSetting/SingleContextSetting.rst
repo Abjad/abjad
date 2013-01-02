@@ -49,7 +49,13 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.attribute_to_region_command_class
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.copy_setting_to_segment_name
+   :noindex:
+
+.. automethod:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.to_command
    :noindex:
 
 Special Methods

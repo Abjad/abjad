@@ -4,13 +4,11 @@ from experimental.tools.settingtools.Setting import Setting
 
 
 class SingleContextSetting(Setting):
-    r'''
+    r'''Single-context setting.
 
     ::
 
         >>> from experimental.tools import *
-
-    Single-context setting.
 
     Set `attribute` to `request` for single-context `anchor`::
 
@@ -49,11 +47,11 @@ class SingleContextSetting(Setting):
             persist=True
             )
 
-    Composers do not create single-context settings.
+    Composer set() methods product multiple-context settings.
 
-    Single-context settings are a byproduct of interpretation.
+    Multiple-context settings produce single-context settings.
 
-    Multiple-context settings unpack to produce single-context settings.
+    Single-context settings produce region commands.
     '''
 
     ### INITIALIZER ###
@@ -97,6 +95,16 @@ class SingleContextSetting(Setting):
 
     ### PUBLIC METHODS ###
 
+    # TODO: remove by breaking DivisionSingleContextSetting, RhythmSingleContextSetting out from SingleContextSetting
+    def attribute_to_region_command_class(self, attribute):
+        from experimental.tools import settingtools
+        if attribute == 'divisions':
+            return settingtools.DivisionRegionCommand
+        elif attribute == 'rhythm':
+            return settingtools.RhythmRegionCommand
+        else:
+            raise NotImplementedError(attribute)
+
     def copy_setting_to_segment_name(self, segment_name):
         '''Create new setting. 
 
@@ -111,3 +119,17 @@ class SingleContextSetting(Setting):
         new_setting._set_start_segment_identifier(segment_name)
         new_setting._fresh = False
         return new_setting
+
+    def to_command(self, score_specification, voice_name):
+        '''Change single-context setting to command.
+
+        Return command.
+        '''
+        anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
+        # TODO: remove by adding new setting classes
+        region_command_class = self.attribute_to_region_command_class(self.attribute)
+        command = region_command_class(self.request, self.context_name, anchor_timespan, fresh=self.fresh)
+        # TODO: remove by adding new setting classes
+        if self.attribute == 'divisions':
+            command = command.new(truncate=self.truncate)
+        return command

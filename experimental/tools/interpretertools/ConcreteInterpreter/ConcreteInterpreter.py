@@ -47,15 +47,6 @@ class ConcreteInterpreter(Interpreter):
 
     ### PUBLIC METHODS ###
 
-    # TODO: remove by binding something to Setting
-    def attribute_to_region_command_class(self, attribute):
-        if attribute == 'divisions':
-            return settingtools.DivisionRegionCommand
-        elif attribute == 'rhythm':
-            return settingtools.RhythmRegionCommand
-        else:
-            raise NotImplementedError(attribute)
-
     def calculate_score_and_segment_timespans(self):
         segment_durations = [durationtools.Duration(sum(x.time_signatures)) 
             for x in self.score_specification.segment_specifications]
@@ -211,8 +202,7 @@ class ConcreteInterpreter(Interpreter):
             single_context_settings = self.get_single_context_settings_that_start_during_segment(
                 segment_specification, context_name, attribute, include_improper_parentage=True)
             for single_context_setting in single_context_settings:
-                command = self.single_context_setting_to_command(
-                    single_context_setting, segment_specification, context_name)
+                command = single_context_setting.to_command(self.score_specification, context_name)
                 commands.append(command)
         return commands
 
@@ -547,21 +537,6 @@ class ConcreteInterpreter(Interpreter):
         if not current_material_request == previous_material_request:
             return False
         return True
-
-    # TODO: move to SingleContextSetting
-    # do we eventually need to do this with time signature settings, too?
-    def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):
-        anchor_timespan = self.score_specification.get_anchor_timespan(single_context_setting, voice_name)
-        region_command_class = self.attribute_to_region_command_class(single_context_setting.attribute)
-        command = region_command_class(
-            single_context_setting.request, 
-            single_context_setting.context_name,
-            anchor_timespan,
-            fresh=single_context_setting.fresh
-            )
-        if single_context_setting.attribute == 'divisions':
-            command = command.new(truncate=single_context_setting.truncate)
-        return command
 
     # TODO: maybe move to a type of command aggregator?
     def sort_and_split_raw_commands(self, raw_commands):
