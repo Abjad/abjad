@@ -1,5 +1,5 @@
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
-class ReSTTOCItem(AbjadObject):
+class ReSTTOCItem(TreeNode):
     pass

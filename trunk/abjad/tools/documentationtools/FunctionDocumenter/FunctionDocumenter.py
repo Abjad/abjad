@@ -18,6 +18,7 @@ class FunctionDocumenter(Documenter):
         ====================
         <BLANKLINE>
         .. autofunction:: abjad.tools.notetools.make_notes.make_notes
+           :noindex:
         <BLANKLINE> 
 
     Returns ``FunctionDocumenter``` instance.
