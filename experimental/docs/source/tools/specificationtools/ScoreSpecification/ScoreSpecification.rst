@@ -91,6 +91,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_time_signature_slice
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.initialize_region_product_inventories
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interpret
    :noindex:
 

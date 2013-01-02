@@ -48,9 +48,12 @@ class ConcreteInterpreter(Interpreter):
     ### PUBLIC METHODS ###
 
     def add_time_signatures_to_score(self):
-        while self.score_specification.all_time_signature_commands:
+        # TODO: resolve variable naming conflict between 'commands' and 'settings' here
+        while self.score_specification.all_time_signature_commands[:]:
             for time_signature_setting in self.score_specification.all_time_signature_commands:
-                self.make_time_signatures_for_time_signature_setting(time_signature_setting)
+                time_signatures = time_signature_setting.make_time_signatures(self.score_specification)
+                if time_signatures:
+                    self.score_specification.all_time_signature_commands.remove(time_signature_setting)
         time_signatures = self.score_specification.time_signatures
         measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
         context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
@@ -206,22 +209,11 @@ class ConcreteInterpreter(Interpreter):
         region_commands = self.supply_missing_region_commands(region_commands, voice_name, attribute)
         return region_commands
 
-    # TODO: Move to ScoreSpecification.
-    #       But first decide whether self.score should migrate to ScoreSpecification, too.
-    def initialize_region_product_inventories(self, attribute):
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
-            timespan_inventory = timespantools.TimespanInventory()
-            region_commands = '{}_region_commands'.format(attribute)
-            self.score_specification.contexts[voice.name][region_commands] = timespan_inventory
-            timespan_inventory = timespantools.TimespanInventory()
-            region_products = '{}_region_products'.format(attribute)
-            self.score_specification.contexts[voice.name][region_products] = timespan_inventory
-
     def interpret_additional_parameters(self):
         pass
 
     def interpret_divisions(self):
-        self.initialize_region_product_inventories('division')
+        self.score_specification.initialize_region_product_inventories('division')
         self.populate_all_region_commands('divisions')
         self.make_division_region_products()
         self.make_voice_division_lists()
@@ -233,7 +225,7 @@ class ConcreteInterpreter(Interpreter):
         pass
 
     def interpret_rhythm(self):
-        self.initialize_region_product_inventories('rhythm')
+        self.score_specification.initialize_region_product_inventories('rhythm')
         self.populate_all_region_commands('rhythm')
         #self._debug_values(self.score_specification.all_rhythm_region_commands, 'all rhythm region commands')
         self.populate_all_rhythm_quintuples()
@@ -392,24 +384,6 @@ class ConcreteInterpreter(Interpreter):
                     voice_rhythm_region_products.sort()
             if not made_progress:
                 raise Exception('cyclic rhythm specification.')
-
-    # TODO: move to Setting; possibly break out TimeSignatureSetting?
-    def make_time_signatures_for_time_signature_setting(self, time_signature_setting):
-        if isinstance(time_signature_setting.request, requesttools.AbsoluteRequest):
-            time_signatures = time_signature_setting.request.payload
-        elif isinstance(time_signature_setting.request, requesttools.TimeSignatureCommandRequest):
-            time_signatures = time_signature_setting.request.get_payload(self.score_specification)
-        elif isinstance(time_signature_setting.request, selectortools.BackgroundMeasureSelector):
-            background_measure_selector = time_signature_setting.request
-            time_signatures = background_measure_selector._get_time_signatures_without_timespan(
-                self.score_specification)
-        else:
-            raise TypeError(time_signature_setting.request)
-        if time_signatures:
-            segment_specification = self.score_specification.get_start_segment_specification(
-                time_signature_setting.anchor)
-            segment_specification._time_signatures = time_signatures[:]
-            self.score_specification.all_time_signature_commands.remove(time_signature_setting)
 
     def make_voice_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):

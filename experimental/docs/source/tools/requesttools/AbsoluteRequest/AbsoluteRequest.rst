@@ -22,6 +22,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.get_payload
+   :noindex:
+
 .. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.partition_by_ratio
    :noindex:
 

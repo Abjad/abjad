@@ -58,6 +58,9 @@ Methods
 
     Inherited from :py:class:`settingtools.SingleContextSetting <experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
 
+.. automethod:: experimental.tools.settingtools.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.make_time_signatures
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.to_command
    :noindex:
 

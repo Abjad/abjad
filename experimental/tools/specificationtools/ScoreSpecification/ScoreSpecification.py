@@ -591,6 +591,16 @@ class ScoreSpecification(Specification):
         result = [x.pair for x in result]
         return result
 
+    # TODO: remove string keys
+    def initialize_region_product_inventories(self, attribute):
+        for voice in iterationtools.iterate_voices_in_expr(self.score_model):
+            timespan_inventory = timespantools.TimespanInventory()
+            region_commands = '{}_region_commands'.format(attribute)
+            self.contexts[voice.name][region_commands] = timespan_inventory
+            timespan_inventory = timespantools.TimespanInventory()
+            region_products = '{}_region_products'.format(attribute)
+            self.contexts[voice.name][region_products] = timespan_inventory
+
     def interpret(self):
         r'''Interpret score specification::
 

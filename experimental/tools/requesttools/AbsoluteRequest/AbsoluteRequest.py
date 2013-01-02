@@ -93,3 +93,9 @@ class AbsoluteRequest(Request):
         Return string.
         '''
         return Request.storage_format.fget(self)
+
+    ### PUBLIC METHODS ###
+
+    # TODO: maybe make mandatory part of interface for all request classes.
+    def get_payload(self, score_specification=None):
+        return self.payload
