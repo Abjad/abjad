@@ -53,11 +53,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting.attribute_to_region_command_class
-   :noindex:
-
-    Inherited from :py:class:`settingtools.SingleContextSetting <experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
-
 .. automethod:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting.copy_setting_to_segment_name
    :noindex:
 

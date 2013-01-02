@@ -1,3 +1,4 @@
+import abc
 import copy
 from experimental.tools import helpertools
 from experimental.tools.settingtools.Setting import Setting
@@ -36,8 +37,7 @@ class SingleContextSetting(Setting):
     ::
 
         >>> z(single_context_setting)
-        settingtools.SingleContextSetting(
-            attribute='divisions',
+        settingtools.SingleContextDivisionSetting(
             request=requesttools.AbsoluteRequest(
                 ((3, 16),)
                 ),
@@ -56,6 +56,7 @@ class SingleContextSetting(Setting):
 
     ### INITIALIZER ###
 
+    @abc.abstractmethod
     def __init__(self, attribute=None, request=None, anchor=None, context_name=None, 
         fresh=True, persist=True, truncate=None):
         Setting.__init__(self, attribute=attribute, request=request, anchor=anchor, 
@@ -78,8 +79,7 @@ class SingleContextSetting(Setting):
         '''Single-context setting storage format::
 
             >>> z(single_context_setting)
-            settingtools.SingleContextSetting(
-                attribute='divisions',
+            settingtools.SingleContextDivisionSetting(
                 request=requesttools.AbsoluteRequest(
                     ((3, 16),)
                     ),
@@ -94,16 +94,6 @@ class SingleContextSetting(Setting):
         return Setting.storage_format.fget(self)
 
     ### PUBLIC METHODS ###
-
-    # TODO: remove by breaking DivisionSingleContextSetting, RhythmSingleContextSetting out from SingleContextSetting
-    def attribute_to_region_command_class(self, attribute):
-        from experimental.tools import settingtools
-        if attribute == 'divisions':
-            return settingtools.DivisionRegionCommand
-        elif attribute == 'rhythm':
-            return settingtools.RhythmRegionCommand
-        else:
-            raise NotImplementedError(attribute)
 
     def copy_setting_to_segment_name(self, segment_name):
         '''Create new setting. 
@@ -120,16 +110,10 @@ class SingleContextSetting(Setting):
         new_setting._fresh = False
         return new_setting
 
+    @abc.abstractmethod
     def to_command(self, score_specification, voice_name):
         '''Change single-context setting to command.
 
         Return command.
         '''
-        anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
-        # TODO: remove by adding new setting classes
-        region_command_class = self.attribute_to_region_command_class(self.attribute)
-        command = region_command_class(self.request, self.context_name, anchor_timespan, fresh=self.fresh)
-        # TODO: remove by adding new setting classes
-        if self.attribute == 'divisions':
-            command = command.new(truncate=self.truncate)
-        return command
+        pass

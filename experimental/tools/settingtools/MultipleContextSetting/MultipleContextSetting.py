@@ -39,6 +39,9 @@ class MultipleContextSetting(Setting):
     Multiple-context settings capture composers' musical intent.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+
     ### INITIAILIZER ###
 
     def __init__(self, attribute=None, request=None, anchor=None, context_names=None, 
@@ -48,6 +51,16 @@ class MultipleContextSetting(Setting):
         assert isinstance(context_names, (list, type(None))), repr(context_names)
         self._context_names = context_names
 
+    ### PRIVATE METHODS ###
+    
+    def _attribute_to_single_context_setting_class(self, attribute):
+        from experimental.tools import settingtools
+        return {
+            'time_signatures': settingtools.SingleContextTimeSignatureSetting,
+            'divisions': settingtools.SingleContextDivisionSetting,
+            'rhythm': settingtools.SingleContextRhythmSetting,
+            }[attribute]
+        
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -61,27 +74,27 @@ class MultipleContextSetting(Setting):
     ### PUBLIC METHODS ###
 
     def unpack(self):
-        from experimental.tools import settingtools
         single_context_settings = []
+        single_context_setting_class = \
+            self._attribute_to_single_context_setting_class(self.attribute)
         if self.context_names is None:
             anchor = copy.deepcopy(self.anchor)
-            single_context_setting = settingtools.SingleContextSetting(
-                self.attribute, 
+            single_context_setting = single_context_setting_class(
                 self.request, 
                 anchor,
                 context_name=None,
-                persist=self.persist, 
-                truncate=self.truncate)
+                persist=self.persist)
             single_context_settings.append(single_context_setting)
         else:
             for context_name in self.context_names:
                 anchor = copy.deepcopy(self.anchor)
-                single_context_setting = settingtools.SingleContextSetting(
-                    self.attribute, 
+                single_context_setting = single_context_setting_class(
                     self.request, 
                     anchor,
                     context_name=context_name,
-                    persist=self.persist, 
-                    truncate=self.truncate)
+                    persist=self.persist)
                 single_context_settings.append(single_context_setting)
+        if self.attribute == 'divisions':
+            for single_context_setting in single_context_settings:
+                single_context_setting._truncate = self.truncate
         return single_context_settings

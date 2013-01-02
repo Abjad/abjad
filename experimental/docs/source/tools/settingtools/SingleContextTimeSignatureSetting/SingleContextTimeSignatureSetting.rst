@@ -53,11 +53,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.settingtools.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.attribute_to_region_command_class
-   :noindex:
-
-    Inherited from :py:class:`settingtools.SingleContextSetting <experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
-
 .. automethod:: experimental.tools.settingtools.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.copy_setting_to_segment_name
    :noindex:
 

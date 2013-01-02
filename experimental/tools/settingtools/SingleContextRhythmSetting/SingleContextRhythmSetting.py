@@ -8,8 +8,8 @@ class SingleContextRhythmSetting(SingleContextSetting):
     ### INITIALIZER ###
 
     def __init__(self, request=None, anchor=None, context_name=None, fresh=True, persist=True):
-        Setting.__init__(self, attribute='rhythm', request=request, anchor=anchor,
-            fresh=fresh, persist=persist)
+        SingleContextSetting.__init__(self, attribute='rhythm', request=request, 
+            anchor=anchor, context_name=context_name, fresh=fresh, persist=persist)
 
     ### PUBLIC METHODS ###
 
@@ -18,6 +18,8 @@ class SingleContextRhythmSetting(SingleContextSetting):
 
         Return command.
         '''
+        from experimental.tools import settingtools
         anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
-        command = RhythmRegionCommand(self.request, self.context_name, anchor_timespan, fresh=self.fresh)
+        command = settingtools.RhythmRegionCommand(
+            self.request, self.context_name, anchor_timespan, fresh=self.fresh)
         return command

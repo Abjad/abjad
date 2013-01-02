@@ -228,6 +228,7 @@ Unstable packages (load manually)
    tools/settingtools/SelectMethodMixin/SelectMethodMixin
    tools/settingtools/SetMethodMixin/SetMethodMixin
    tools/settingtools/Setting/Setting
+   tools/settingtools/SingleContextSetting/SingleContextSetting
    tools/settingtools/SpecificationInterface/SpecificationInterface
 
 --------
@@ -247,7 +248,6 @@ Unstable packages (load manually)
    tools/settingtools/SettingInventory/SettingInventory
    tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
    tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
-   tools/settingtools/SingleContextSetting/SingleContextSetting
    tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
 
 :py:mod:`specificationtools <experimental.tools.specificationtools>`

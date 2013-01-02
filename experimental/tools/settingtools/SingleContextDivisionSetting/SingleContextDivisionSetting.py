@@ -8,8 +8,8 @@ class SingleContextDivisionSetting(SingleContextSetting):
     ### INITIALIZER ###
 
     def __init__(self, request=None, anchor=None, context_name=None, fresh=True, persist=True, truncate=None):
-        Setting.__init__(self, attribute='divisions', request=request, anchor=anchor,
-            fresh=fresh, persist=persist)
+        SingleContextSetting.__init__(self, attribute='divisions', request=request, 
+            anchor=anchor, context_name=context_name, fresh=fresh, persist=persist)
         self._truncate = truncate
 
     ### PUBLIC METHODS ###
@@ -19,7 +19,8 @@ class SingleContextDivisionSetting(SingleContextSetting):
 
         Return command.
         '''
+        from experimental.tools import settingtools
         anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
-        command = DivisionRegionCommand(
+        command = settingtools.DivisionRegionCommand(
             self.request, self.context_name, anchor_timespan, fresh=self.fresh, truncate=self.truncate)
         return command

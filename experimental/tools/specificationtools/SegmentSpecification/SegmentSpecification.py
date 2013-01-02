@@ -179,8 +179,7 @@ class SegmentSpecification(Specification):
 
             >>> for x in red_segment.single_context_settings:
             ...     z(x)
-            settingtools.SingleContextSetting(
-                attribute='time_signatures',
+            settingtools.SingleContextTimeSignatureSetting(
                 request=requesttools.AbsoluteRequest(
                     ((2, 8), (3, 8), (4, 8))
                     ),
@@ -188,8 +187,7 @@ class SegmentSpecification(Specification):
                 fresh=True,
                 persist=True
                 )
-            settingtools.SingleContextSetting(
-                attribute='rhythm',
+            settingtools.SingleContextRhythmSetting(
                 request=requesttools.RhythmMakerRequest(
                     rhythmmakertools.TaleaRhythmMaker(
                         [1],

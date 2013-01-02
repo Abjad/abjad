@@ -381,8 +381,7 @@ class ScoreSpecification(Specification):
 
             >>> for x in score_specification.single_context_settings:
             ...     z(x)
-            settingtools.SingleContextSetting(
-                attribute='time_signatures',
+            settingtools.SingleContextTimeSignatureSetting(
                 request=requesttools.AbsoluteRequest(
                     ((2, 8), (3, 8), (4, 8))
                     ),
@@ -390,8 +389,7 @@ class ScoreSpecification(Specification):
                 fresh=True,
                 persist=True
                 )
-            settingtools.SingleContextSetting(
-                attribute='time_signatures',
+            settingtools.SingleContextTimeSignatureSetting(
                 request=requesttools.AbsoluteRequest(
                     ((4, 16), (4, 16))
                     ),
@@ -399,8 +397,7 @@ class ScoreSpecification(Specification):
                 fresh=True,
                 persist=True
                 )
-            settingtools.SingleContextSetting(
-                attribute='time_signatures',
+            settingtools.SingleContextTimeSignatureSetting(
                 request=requesttools.AbsoluteRequest(
                     ((5, 16), (5, 16))
                     ),
@@ -408,8 +405,7 @@ class ScoreSpecification(Specification):
                 fresh=True,
                 persist=True
                 )
-            settingtools.SingleContextSetting(
-                attribute='rhythm',
+            settingtools.SingleContextRhythmSetting(
                 request=requesttools.RhythmMakerRequest(
                     rhythmmakertools.TaleaRhythmMaker(
                         [1],
