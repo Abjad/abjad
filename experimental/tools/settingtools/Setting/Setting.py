@@ -14,6 +14,7 @@ class Setting(AbjadObject):
 
     ### INITIALIZER ###
 
+    # TODO: eventually remove 'truncate' in favor of SingleContextDivisionSetting.truncate
     @abc.abstractmethod
     def __init__(self, attribute=None, request=None, anchor=None, fresh=True, persist=True, truncate=None):
         from experimental.tools import requesttools

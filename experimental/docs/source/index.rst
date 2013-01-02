@@ -245,7 +245,10 @@ Unstable packages (load manually)
    tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
    tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
    tools/settingtools/SettingInventory/SettingInventory
+   tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
+   tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
    tools/settingtools/SingleContextSetting/SingleContextSetting
+   tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
 
 :py:mod:`specificationtools <experimental.tools.specificationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
