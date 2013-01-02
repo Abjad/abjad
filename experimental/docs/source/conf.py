@@ -27,18 +27,18 @@ import sys, os
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
-    'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.todo',
     'sphinx.ext.viewcode',
-    'abjad.docs.source._ext.inheritance_diagram',
+    'abjad.docs.source._ext.abjad_book',
     'abjad.docs.source._ext.autodoc',
-    'abjad.docs.source._ext.abjadbook',
+    'abjad.docs.source._ext.inheritance_diagram',
 ]
 
 # abjad book settings
-abjadbook_should_process = True
-abjadbook_transform_path = 'experimental/'
+abjad_book_should_process = True
+abjad_book_transform_path = 'experimental/'
 
 # For sphinx.ext.todo
 todo_include_todos = True
@@ -212,6 +212,7 @@ latex_elements = {
 
     # Additional stuff for the LaTeX preamble.
     'preamble': r'''
+\setcounter{tocdepth}{2}
 \let\Verbatim=\OriginalVerbatim
 \let\endVerbatim=\endOriginalVerbatim
     ''',
@@ -242,7 +243,7 @@ latex_use_parts = True
 #latex_appendices = []
 
 # If false, no module index is generated.
-#latex_domain_indices = True
+latex_domain_indices = False
 
 
 # -- Options for manual page output --------------------------------------------

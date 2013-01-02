@@ -15,7 +15,7 @@ class abjad_book_block(docutils.nodes.General, docutils.nodes.Element):
 
 
 def on_builder_inited(app):
-    tmp_directory = app.builder._abjadbook_tempdir = \
+    tmp_directory = app.builder._abjad_book_tempdir = \
         os.path.abspath(tempfile.mkdtemp(dir=app.builder.outdir))
     if hasattr(app.builder, 'imgpath'):
         img_directory = os.path.join(app.builder.outdir, '_images')
@@ -74,7 +74,7 @@ def scan_doctree(doctree):
     
 
 def on_doctree_read(app, doctree):
-    transform_path = app.config.abjadbook_transform_path
+    transform_path = app.config.abjad_book_transform_path
     docname = doctree['source'][:-4].partition(app.srcdir)[-1][1:]
 
     if not docname.startswith(transform_path):
@@ -132,13 +132,13 @@ def on_doctree_read(app, doctree):
 
 
 def on_build_finished(app, exc):
-    if os.path.exists(app.builder._abjadbook_tempdir):
-        shutil.rmtree(app.builder._abjadbook_tempdir)
+    if os.path.exists(app.builder._abjad_book_tempdir):
+        shutil.rmtree(app.builder._abjad_book_tempdir)
 
 
-def render_graphviz(self, code, absolute_path, file_format='png'):
+def render_graphviz(self, code, absolute_path, file_format='png', linked=False):
     assert file_format in ('png', 'pdf')
-    tmp_path = os.path.join(self.builder._abjadbook_tempdir,
+    tmp_path = os.path.join(self.builder._abjad_book_tempdir,
         os.path.basename(os.path.splitext(absolute_path)[0])) + '.dot'
     with open(tmp_path, 'w') as f:
         f.write(code)
@@ -153,11 +153,11 @@ def render_graphviz(self, code, absolute_path, file_format='png'):
         subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
-def render_lilypond(self, code, absolute_path, file_format='png'):
+def render_lilypond(self, code, absolute_path, file_format='png', linked=False):
     assert file_format in ('png', 'pdf')
     # LilyPond insists on appending an extension, even if you already did it yourself.
     abs_path = os.path.splitext(absolute_path)[0]
-    tmp_path = os.path.join(self.builder._abjadbook_tempdir,
+    tmp_path = os.path.join(self.builder._abjad_book_tempdir,
         os.path.basename(os.path.splitext(absolute_path)[0])) + '.ly'
     with open(tmp_path, 'w') as f:
         f.write(code)
@@ -172,7 +172,7 @@ def render_lilypond(self, code, absolute_path, file_format='png'):
         subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
-def render_abjad_book_node(self, code, kind, file_format='png'):
+def render_abjad_book_node(self, code, kind, file_format='png', linked=False):
     prefix = 'blah'
     hashkey = code.encode('utf-8') + kind
     file_name = '{}-{}.{}'.format(
@@ -200,7 +200,7 @@ def visit_abjad_book_html(self, node):
         self, node['code'], node['kind'], file_format='png')
     wrapper = 'p'
     alt = self.encode(node['code']).strip()
-    self.body.append(self.starttag(node, wrapper, CLASS='abjadbook'))
+    self.body.append(self.starttag(node, wrapper, CLASS='abjad_book'))
     self.body.append('<img src="{}" alt="{}" />'.format(relative_path, alt))
     self.body.append('</{}>\n'.format(wrapper))
     raise docutils.nodes.SkipNode
@@ -225,5 +225,5 @@ def setup(app):
     app.connect('builder-inited', on_builder_inited)
     app.connect('doctree-read', on_doctree_read)
     app.connect('build-finished', on_build_finished)
-    app.add_config_value('abjadbook_transform_path', 'api/tools/', 'env')
+    app.add_config_value('abjad_book_transform_path', 'api/tools/', 'env')
 

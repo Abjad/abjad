@@ -28,7 +28,7 @@ import sys
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
-    'abjad.docs.source._ext.abjadbook',
+    'abjad.docs.source._ext.abjad_book',
     'abjad.docs.source._ext.autodoc',
     'abjad.docs.source._ext.inheritance_diagram',
     'sphinx.ext.coverage',
@@ -38,8 +38,8 @@ extensions = [
 ]
 
 # abjad book settings
-abjadbook_should_process = True
-abjadbook_transform_path = 'api/tools/'
+abjad_book_should_process = True
+abjad_book_transform_path = 'api/tools/'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -195,7 +195,7 @@ latex_elements = {
 
     # Additional stuff for the LaTeX preamble.
     'preamble': r'''
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{2}
 \let\Verbatim=\OriginalVerbatim
 \let\endVerbatim=\endOriginalVerbatim
     ''',
