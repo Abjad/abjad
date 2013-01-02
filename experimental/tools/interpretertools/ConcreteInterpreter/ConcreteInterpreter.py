@@ -102,8 +102,8 @@ class ConcreteInterpreter(Interpreter):
             region_duration = division_region_command.timespan.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
         elif isinstance(division_region_command.request, requesttools.AbsoluteRequest):
-            request = division_region_command.request
-            payload = request.payload
+            payload = division_region_command.request.payload
+            #payload = absolute_request.payload
             # TODO: This is a hack; the payload for an absolute request 
             #       should always be some type of (literal) constant.
             #       So the branched call below should be unnecessary.
@@ -650,8 +650,8 @@ class ConcreteInterpreter(Interpreter):
                 if existing_setting.context_name in new_context_names:
                     existing_settings.remove(existing_setting)
                 else:
-                    forwarded_existing_setting = existing_setting.copy_setting_to_segment(
-                        segment_specification)
+                    forwarded_existing_setting = existing_setting.copy_setting_to_segment_name(
+                        segment_specification.segment_name)
                     forwarded_existing_settings.append(forwarded_existing_setting)
             settings_to_store = new_settings + forwarded_existing_settings
             self.store_single_context_settings_by_context(settings_to_store, clear_persistent_first=True)
@@ -696,6 +696,7 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(expr, (tuple, list))
         result = []
         for element in expr:
+            #assert not isinstance(element, timeexpressiontools.TimespanExpression), repr(element)
             if isinstance(element, timeexpressiontools.TimespanExpression):
                 context_name = None
                 timespan = element._get_timespan(self.score_specification, context_name)

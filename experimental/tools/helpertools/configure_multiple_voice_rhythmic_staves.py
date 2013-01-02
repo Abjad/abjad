@@ -3,9 +3,7 @@ from abjad.tools import layouttools
 
 
 def configure_multiple_voice_rhythmic_staves(lilypond_file):
-    '''
-
-    Configure multiple voice rhythmic staves in `score`.
+    '''Configure multiple-voice rhythmic staves in `lilypond_file`.
 
     Operate in place and return none.
     '''

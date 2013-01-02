@@ -97,17 +97,17 @@ class SingleContextSetting(Setting):
 
     ### PUBLIC METHODS ###
 
-    def copy_setting_to_segment(self, segment):
+    def copy_setting_to_segment_name(self, segment_name):
         '''Create new setting. 
+
+        Set new setting start segment identifier to `segment_name`.
 
         Set new setting `fresh` to false.
 
-        Set new setting anchor to `segment`.
-
         Return new setting.
         '''
+        assert isinstance(segment_name, str)
         new_setting = copy.deepcopy(self)
-        new_setting._fresh = False
-        segment_name = helpertools.expr_to_segment_name(segment)
         new_setting._set_start_segment_identifier(segment_name)
+        new_setting._fresh = False
         return new_setting

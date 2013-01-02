@@ -125,10 +125,6 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    tools/helpertools/configure_multiple_voice_rhythmic_staves
-   tools/helpertools/expr_to_component_name
-   tools/helpertools/expr_to_score_name
-   tools/helpertools/expr_to_segment_name
-   tools/helpertools/index_to_slice_pair
    tools/helpertools/read_test_output
    tools/helpertools/write_test_output
 
