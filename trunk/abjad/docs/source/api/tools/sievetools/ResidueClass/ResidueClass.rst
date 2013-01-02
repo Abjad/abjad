@@ -19,7 +19,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.storage_format
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Methods
 -------
@@ -36,7 +36,7 @@ Special Methods
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__and__
    :noindex:
 
-    Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
+   Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__eq__
    :noindex:
@@ -59,7 +59,7 @@ Special Methods
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__or__
    :noindex:
 
-    Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
+   Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__repr__
    :noindex:
@@ -67,4 +67,4 @@ Special Methods
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__xor__
    :noindex:
 
-    Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
+   Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`

@@ -13,12 +13,12 @@ Read-only Properties
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.debug
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.lexer
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.lexer_rules_object
    :noindex:
@@ -26,22 +26,22 @@ Read-only Properties
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.logger
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.logger_path
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.output_path
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.parser
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.parser_rules_object
    :noindex:
@@ -49,12 +49,12 @@ Read-only Properties
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.pickle_path
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.storage_format
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Methods
 -------
@@ -104,7 +104,7 @@ Methods
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.tokenize
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 Special Methods
 ---------------
@@ -112,39 +112,39 @@ Special Methods
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.__call__
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.__eq__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.__ge__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.__gt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.__le__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.__lt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.__ne__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.__repr__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

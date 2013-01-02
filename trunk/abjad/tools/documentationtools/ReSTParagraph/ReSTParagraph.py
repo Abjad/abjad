@@ -25,16 +25,19 @@ class ReSTParagraph(TreeNode):
 
     ### INITIALIZER ###
 
-    def __init__(self, name=None, text=''):
+    def __init__(self, name=None, text='', wrap=True):
         TreeNode.__init__(self, name=name)
         self.text = text
+        self.wrap = wrap
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _rest_format_contributions(self):
-        text = ' '.join(self.text.split('\n'))
-        return textwrap.wrap(text)
+        if self.wrap:
+            text = ' '.join(self.text.splitlines())
+            return textwrap.wrap(text)
+        return [self.text]
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -53,5 +56,13 @@ class ReSTParagraph(TreeNode):
             arg = arg.strip()
             assert len(arg)
             self._text = arg
+        return property(**locals())
+
+    @apply
+    def wrap():
+        def fget(self):
+            return self._wrap
+        def fset(self, arg):
+            self._wrap = bool(arg)
         return property(**locals())
 

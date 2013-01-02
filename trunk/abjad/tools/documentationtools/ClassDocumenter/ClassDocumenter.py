@@ -77,38 +77,102 @@ class ClassDocumenter(Documenter):
 
         Returns string.
         '''
+        from abjad.tools import documentationtools
 
         stripped_class_name = self._shrink_module_name(self.object.__module__)
-        module_name = '%s.%s' % (self.object.__module__, self.object.__name__)
+        module_name = '{}.{}'.format(self.object.__module__, self.object.__name__)
 
-        result = []
-        result.extend(self._format_heading(stripped_class_name, '='))
-        result.extend(self._format_inheritance_diagram())
-        result.append('.. autoclass:: %s' % module_name)
-        result.append('   :noindex:')
-        result.append('')
+        #result = []
+        #result.extend(self._format_heading(stripped_class_name, '='))
+        #result.extend(self._format_inheritance_diagram())
+        #result.append('.. autoclass:: %s' % module_name)
+        #result.append('   :noindex:')
+        #result.append('')
+
+        document = documentationtools.ReSTDocument()
+        document.append(documentationtools.ReSTHeading(
+            level=2,
+            text=stripped_class_name,
+            ))
+        document.append(documentationtools.ReSTInheritanceDiagram(
+            argument=module_name,
+            ))
+        document.append(documentationtools.ReSTAutodocDirective(
+            argument=module_name,
+            directive='autoclass',
+            options={'noindex': True},
+            ))
 
         if self.readonly_properties:
-            result.extend(self._format_heading('Read-only Properties', '-'))
+            #result.extend(self._format_heading('Read-only Properties', '-'))
+            #for attr in self.readonly_properties:
+            #    result.extend(self._format_attribute(attr, 'attribute'))
+            document.append(documentationtools.ReSTHeading(
+                level=3,
+                text='Read-only Properties',
+                ))
             for attr in self.readonly_properties:
-                result.extend(self._format_attribute(attr, 'attribute'))
+                autodoc = documentationtools.ReSTAutodocDirective(
+                    argument='{}.{}'.format(module_name, attr.name),
+                    directive='autoattribute',
+                    options={'noindex': True},
+                    )
+                autodoc.extend(self._format_inheritance_note(attr))
+                document.append(autodoc)
 
         if self.readwrite_properties:
-            result.extend(self._format_heading('Read/write Properties', '-'))
+            #result.extend(self._format_heading('Read/write Properties', '-'))
+            #for attr in self.readwrite_properties:
+            #    result.extend(self._format_attribute(attr, 'attribute'))
+            document.append(documentationtools.ReSTHeading(
+                level=3,
+                text='Read/write Properties',
+                ))
             for attr in self.readwrite_properties:
-                result.extend(self._format_attribute(attr, 'attribute'))
+                autodoc = documentationtools.ReSTAutodocDirective(
+                    argument='{}.{}'.format(module_name, attr.name),
+                    directive='autoattribute',
+                    options={'noindex': True},
+                    )
+                autodoc.extend(self._format_inheritance_note(attr))
+                document.append(autodoc)
 
         if self.methods:
-            result.extend(self._format_heading('Methods', '-'))
+            #result.extend(self._format_heading('Methods', '-'))
+            #for attr in self.methods:
+            #    result.extend(self._format_attribute(attr, 'method'))
+            document.append(documentationtools.ReSTHeading(
+                level=3,
+                text='Methods',
+                ))
             for attr in self.methods:
-                result.extend(self._format_attribute(attr, 'method'))
+                autodoc = documentationtools.ReSTAutodocDirective(
+                    argument='{}.{}'.format(module_name, attr.name),
+                    directive='automethod',
+                    options={'noindex': True},
+                    )
+                autodoc.extend(self._format_inheritance_note(attr))
+                document.append(autodoc)
 
         if self.special_methods:
-            result.extend(self._format_heading('Special Methods', '-'))
+            #result.extend(self._format_heading('Special Methods', '-'))
+            #for attr in self.special_methods:
+            #    result.extend(self._format_attribute(attr, 'method'))
+            document.append(documentationtools.ReSTHeading(
+                level=3,
+                text='Special Methods',
+                ))
             for attr in self.special_methods:
-                result.extend(self._format_attribute(attr, 'method'))
+                autodoc = documentationtools.ReSTAutodocDirective(
+                    argument='{}.{}'.format(module_name, attr.name),
+                    directive='automethod',
+                    options={'noindex': True},
+                    )
+                autodoc.extend(self._format_inheritance_note(attr))
+                document.append(autodoc)
 
-        return '\n'.join(result)
+        #return '\n'.join(result)
+        return document.rest_format
 
     ### PRIVATE METHODS ###
 
@@ -117,30 +181,18 @@ class ClassDocumenter(Documenter):
             return True
         return False
 
-    def _format_attribute(self, attr, kind):
-        module_name = '%s.%s' % (self._object.__module__, self._object.__name__)
-        result = []
-        result.append('.. auto%s:: %s.%s' % (kind, module_name, attr.name))
-        result.append('   :noindex:') 
-        result.append('')
-        if attr in self.inherited_attributes:
-            defining_module = '%s.%s' % (attr.defining_class.__module__, attr.defining_class.__name__)
-            if defining_module.startswith(('abjad', 'experimental')):
-                parts = defining_module.split('.')
-                result.append('    Inherited from :py:class:`%s.%s <%s>`' %
-                    (parts[2], parts[3], defining_module))
-            else:
-                result.append('    Inherited from :py:class:`%s`' % defining_module)
-            result.append('')
-        return result
-
-    def _format_inheritance_diagram(self):
-        module_name = '%s.%s' % (self._object.__module__, self._object.__name__)
-        return [
-            '.. inheritance-diagram:: %s' % module_name,
-            '   :private-bases:',
-            '',
-        ]
+    def _format_inheritance_note(self, attr):
+        from abjad.tools import documentationtools
+        if not self._attribute_is_inherited(attr):
+            return []
+        defining_module = '{}.{}'.format(attr.defining_class.__module__, attr.defining_class.__name__)
+        if defining_module.startswith(('abjad.', 'experimental.')):
+            stripped_class_name = self._shrink_module_name(defining_module)
+            text='Inherited from :py:class:`{} <{}>`'.format(
+                stripped_class_name, defining_module)
+        else:
+            text='Inherited from :py:class:`{}`'.format(defining_module)
+        return [documentationtools.ReSTParagraph(text=text, wrap=False)]
 
     ### PUBLIC PROPERTIES ###
 

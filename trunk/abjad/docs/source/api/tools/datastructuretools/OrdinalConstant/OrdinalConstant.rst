@@ -13,7 +13,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.storage_format
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Special Methods
 ---------------
@@ -36,7 +36,7 @@ Special Methods
 .. automethod:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.__ne__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.__repr__
    :noindex:

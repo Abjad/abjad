@@ -43,7 +43,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.storage_format
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.weight
    :noindex:
@@ -108,7 +108,7 @@ Special Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__ge__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__getitem__
    :noindex:
@@ -116,7 +116,7 @@ Special Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__gt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__iadd__
    :noindex:
@@ -124,7 +124,7 @@ Special Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__le__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__len__
    :noindex:
@@ -132,7 +132,7 @@ Special Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__lt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__ne__
    :noindex:

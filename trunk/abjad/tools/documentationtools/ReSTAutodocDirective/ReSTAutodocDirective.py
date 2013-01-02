@@ -8,7 +8,7 @@ class ReSTAutodocDirective(ReSTDirective):
     ::
 
         >>> autodoc = documentationtools.ReSTAutodocDirective(
-        ...     argument=beamtools.BeamSpanner,
+        ...     argument='abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner',
         ...     directive='autoclass',
         ...     )
         >>> autodoc.options['noindex'] = True
@@ -33,10 +33,6 @@ class ReSTAutodocDirective(ReSTDirective):
     ### INITIALIZER ###
 
     def __init__(self, argument=None, children=None, directive=None, name=None, options=None):
-        if isinstance(argument, types.InstanceType):
-            argument = argument.__class__
-        if isinstance(argument, types.TypeType):
-            argument=argument.__module__ + '.' + argument.__name__
         ReSTDirective.__init__(self, argument=argument, children=children, name=name, options=options)
         self.directive = directive
 

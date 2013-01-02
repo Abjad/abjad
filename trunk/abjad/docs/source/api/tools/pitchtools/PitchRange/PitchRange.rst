@@ -37,7 +37,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.storage_format
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Special Methods
 ---------------
@@ -66,4 +66,4 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__repr__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

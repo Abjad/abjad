@@ -28,7 +28,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.storage_format
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.symbolic_accidental_string
    :noindex:

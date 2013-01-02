@@ -16,12 +16,12 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.debug
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.lexer
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.lexer_rules_object
    :noindex:
@@ -29,22 +29,22 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.logger
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.logger_path
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.output_path
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.parser
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.parser_rules_object
    :noindex:
@@ -52,12 +52,12 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.pickle_path
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.storage_format
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Read/write Properties
 ---------------------
@@ -74,7 +74,7 @@ Methods
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.tokenize
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 Special Methods
 ---------------
@@ -85,34 +85,34 @@ Special Methods
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__eq__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__ge__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__gt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__le__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__lt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__ne__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__repr__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

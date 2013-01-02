@@ -16,17 +16,17 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.items
    :noindex:
 
-    Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
+   Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.search_tree
    :noindex:
 
-    Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
+   Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.storage_format
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.target_item_klass
    :noindex:
@@ -37,7 +37,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.tempo
    :noindex:
 
-    Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
+   Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.time_signature
    :noindex:
@@ -51,44 +51,44 @@ Special Methods
 .. automethod:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__call__
    :noindex:
 
-    Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
+   Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. automethod:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__eq__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__ge__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__getitem__
    :noindex:
 
-    Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
+   Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. automethod:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__gt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__le__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__lt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__ne__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__repr__
    :noindex:
 
-    Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
+   Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
