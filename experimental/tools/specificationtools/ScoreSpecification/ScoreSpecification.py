@@ -1,6 +1,7 @@
 import re
 from abjad.tools import *
 from experimental.tools import helpertools
+from experimental.tools import library
 from experimental.tools import requesttools
 from experimental.tools import selectortools
 from experimental.tools import settingtools
@@ -606,3 +607,29 @@ class ScoreSpecification(Specification):
 
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
+
+    def make_default_region_command(self, voice_name, timespan, attribute):
+        if attribute == 'divisions':
+            return self.make_time_signature_division_command(voice_name, timespan)
+        elif attribute == 'rhythm':
+            return self.make_skip_token_rhythm_command(voice_name, timespan)
+        else:
+            raise ValueError(attribute)
+
+    def make_skip_token_rhythm_command(self, voice_name, timespan):
+        return settingtools.RhythmRegionCommand(
+            requesttools.RhythmMakerRequest(library.skip_tokens),
+            voice_name,
+            timespan,
+            fresh=True
+            )
+
+    def make_time_signature_division_command(self, voice_name, timespan):
+        divisions = self.get_time_signature_slice(timespan)
+        return settingtools.DivisionRegionCommand(
+            requesttools.AbsoluteRequest(divisions),
+            voice_name,
+            timespan,
+            fresh=True,
+            truncate=True
+            )

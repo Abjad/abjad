@@ -47,6 +47,15 @@ class ConcreteInterpreter(Interpreter):
 
     ### PUBLIC METHODS ###
 
+    def add_time_signatures_to_score(self):
+        while self.score_specification.all_time_signature_commands:
+            for time_signature_setting in self.score_specification.all_time_signature_commands:
+                self.make_time_signatures_for_time_signature_setting(time_signature_setting)
+        time_signatures = self.score_specification.time_signatures
+        measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
+        context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
+        context.extend(measures)
+
     def calculate_score_and_segment_timespans(self):
         segment_durations = [durationtools.Duration(sum(x.time_signatures)) 
             for x in self.score_specification.segment_specifications]
@@ -197,7 +206,7 @@ class ConcreteInterpreter(Interpreter):
         region_commands = self.supply_missing_region_commands(region_commands, voice_name, attribute)
         return region_commands
 
-    # TODO: move to ScoreSpecification.
+    # TODO: Move to ScoreSpecification.
     #       But first decide whether self.score should migrate to ScoreSpecification, too.
     def initialize_region_product_inventories(self, attribute):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
@@ -234,36 +243,29 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_time_signatures(self):
         self.populate_all_time_signature_commands()
-        self.make_time_signatures()
+        self.add_time_signatures_to_score()
         self.calculate_score_and_segment_timespans()
 
-    # TODO: move to ScoreSpecification.
-    def make_default_region_command(self, voice_name, timespan, attribute):
-        if attribute == 'divisions':
-            return self.make_time_signature_division_command(voice_name, timespan)
-        elif attribute == 'rhythm':
-            return self.make_skip_token_rhythm_command(voice_name, timespan)
-        else:
-            raise ValueError(attribute)
-
+    # TODO: structure like self.make_rhythm_region_products()
     def make_division_region_products(self):
         redo = True
-        previous_commands = None
         while redo:
-            current_commands = {}
             redo = False
+            made_progress = False
             for voice in iterationtools.iterate_voices_in_expr(self.score):
+                # TODO: remove string key
                 voice_division_region_commands = \
                     self.score_specification.contexts[voice.name]['division_region_commands']
+                # TODO: remove string key
                 voice_division_region_products = \
                     self.score_specification.contexts[voice.name]['division_region_products']
-                current_commands[voice] = voice_division_region_commands[:]
                 voice_division_region_commands_to_reattempt = []
                 for division_region_command in voice_division_region_commands:
                     division_region_products = self.division_region_command_to_division_region_products(
                         division_region_command, voice.name)
                     if division_region_products is not None:
                         assert isinstance(division_region_products, list)
+                        made_progress = True
                         voice_division_region_products.extend(division_region_products)
                     else:
                         voice_division_region_commands_to_reattempt.append(division_region_command)
@@ -271,11 +273,8 @@ class ConcreteInterpreter(Interpreter):
                 voice_division_region_commands[:] = voice_division_region_commands_to_reattempt[:]
                 # sort may have to happen as each expression adds in, above
                 voice_division_region_products.sort()
-            # check to see if we made absolutely no intepretive progress in this iteration through loop
-            if current_commands == previous_commands:
-                raise Exception('cyclic specification error.')
-            else:
-                previous_commands = current_commands
+            if voice_division_region_commands and not made_progress:
+                raise Exception('cyclic division specification.')
 
     def make_rhythm_quintuples_for_voice(self, voice, voice_division_list):
         #self._debug(voice, 'voice')
@@ -362,6 +361,7 @@ class ConcreteInterpreter(Interpreter):
             rhythm_region_product.set_offsets(stop_offset=stop_offset)
         return rhythm_region_product
 
+    # TODO: structure like self.make_division_region_products()
     def make_rhythm_region_products(self):
         while self.score_specification.all_rhythm_quintuples:
             made_progress = False
@@ -392,34 +392,6 @@ class ConcreteInterpreter(Interpreter):
                     voice_rhythm_region_products.sort()
             if not made_progress:
                 raise Exception('cyclic rhythm specification.')
-
-    def make_skip_token_rhythm_command(self, voice_name, timespan):
-        return settingtools.RhythmRegionCommand(
-            requesttools.RhythmMakerRequest(library.skip_tokens),
-            voice_name, 
-            timespan,
-            fresh=True
-            )
-
-    def make_time_signature_division_command(self, voice_name, timespan):
-        divisions = self.score_specification.get_time_signature_slice(timespan)
-        return settingtools.DivisionRegionCommand(
-            requesttools.AbsoluteRequest(divisions),
-            voice_name, 
-            timespan,
-            fresh=True,
-            truncate=True
-            )
-
-    # TODO: rename to something like self.make_time_signatures_and_add_to_score()
-    def make_time_signatures(self):
-        while self.score_specification.all_time_signature_commands:
-            for time_signature_setting in self.score_specification.all_time_signature_commands:
-                self.make_time_signatures_for_time_signature_setting(time_signature_setting)
-        time_signatures = self.score_specification.time_signatures
-        measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
-        context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
-        context.extend(measures)
 
     # TODO: move to Setting; possibly break out TimeSignatureSetting?
     def make_time_signatures_for_time_signature_setting(self, time_signature_setting):
@@ -585,28 +557,31 @@ class ConcreteInterpreter(Interpreter):
             settings_to_store = new_settings + forwarded_existing_settings
             self.store_single_context_settings_by_context(settings_to_store, clear_persistent_first=True)
 
-    # TODO: maybe move in ScoreSpecification?
+    # TODO: maybe move to ScoreSpecification?
     def supply_missing_region_commands(self, region_commands, voice_name, attribute):
         #self._debug_values(region_commands, 'region commands')
         if not region_commands and not self.score_specification.time_signatures:
             return []
         elif not region_commands and self.score_specification.time_signatures:
-            region_command = self.make_default_region_command(
-                voice_name, self.score_specification.timespan, attribute)
+            timespan = self.score_specification.timespan
+            region_command = self.score_specification.make_default_region_command(
+                voice_name, timespan, attribute)
             return [region_command]
         if not region_commands[0].timespan.starts_when_expr_starts(self.score_specification):
             # TODO: implement timespan operations to create new timespan below
             start_offset = self.score_specification.timespan.start_offset
             stop_offset = region_commands[0].timespan.start_offset
             timespan = timespantools.Timespan(start_offset, stop_offset)
-            region_command = self.make_default_region_command(voice_name, timespan, attribute)
+            region_command = self.score_specification.make_default_region_command(
+                voice_name, timespan, attribute)
             region_commands.insert(0, region_command)
         if not region_commands[-1].timespan.stops_when_expr_stops(self.score_specification):
             # TODO: implement timespan operations to create new timespan below
             start_offset = region_commands[-1].timespan.stop_offset 
             stop_offset = self.score_specification.timespan.stop_offset
             timespan = timespantools.Timespan(start_offset, stop_offset)
-            region_command = self.make_default_region_command(voice_name, timespan, attribute)
+            region_command = self.score_specification.make_default_region_command(
+                voice_name, timespan, attribute)
             region_commands.append(region_command)
         if len(region_commands) == 1:
             return region_commands
@@ -620,7 +595,8 @@ class ConcreteInterpreter(Interpreter):
                 start_offset = left_region_command.timespan.stop_offset 
                 stop_offset = right_region_command.timespan.start_offset
                 timespan = timespantools.Timespan(start_offset, stop_offset)
-                region_command = self.make_default_region_command(voice_name, timespan, attribute)
+                region_command = self.score_specification.make_default_region_command(
+                    voice_name, timespan, attribute)
                 result.append(region_command)
         result.append(right_region_command)
         return result
