@@ -195,6 +195,7 @@ latex_elements = {
 
     # Additional stuff for the LaTeX preamble.
     'preamble': r'''
+\setcounter{tocdepth}{3}
 \let\Verbatim=\OriginalVerbatim
 \let\endVerbatim=\endOriginalVerbatim
     ''',
@@ -215,7 +216,7 @@ latex_documents = [
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
-#latex_use_parts = False
+latex_use_parts = True
 
 # If true, show page references after internal links.
 #latex_show_pagerefs = False

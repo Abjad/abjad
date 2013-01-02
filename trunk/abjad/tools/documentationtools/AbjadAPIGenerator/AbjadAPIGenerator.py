@@ -40,6 +40,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, verbose=False):
+        from abjad.tools import documentationtools
 
         if verbose:
             print 'Now making Sphinx TOCs ...'
@@ -61,19 +62,26 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         if verbose:
             print 'Now making API index ...'
 
-        result = []
-
-        result.extend(self._create_heading(self._api_title))
+        document = documentationtools.ReSTDocument()
+        document.append(documentationtools.ReSTHeading(
+            level=0,
+            text=self._api_title,
+            ))
 
         for package_group, packages in sorted(package_dictionary.items()):
             if packages:
-                result.extend(self._create_section_title(
-                    self._package_descriptions[package_group]))
+                document.append(documentationtools.ReSTHeading(
+                    level=1,
+                    text=self._package_descriptions[package_group]
+                    ))
+                document.append(documentationtools.ReSTTOCDirective(
+                    options={'maxdepth': 1},
+                    ))
                 for package_name, package in sorted(packages.items()):
-                    result.extend(self._create_package_toc(package_name, package, tools_package_dictionary))
+                    document.extend(self._create_package_toc(package_name, package, tools_package_dictionary))
 
         f = open(self.docs_api_index_path, 'w')
-        f.write('\n'.join(result))
+        f.write(document.rest_format)
         f.close()
 
         if verbose:
@@ -83,73 +91,80 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _create_heading(self, text, character='='):
-        return [text, character * len(text), '']
-
-    def _create_package_title(self, package_name, tools_package_dictionary):
-        result = self._create_heading(
-            ':py:mod:`{} <{}>`'.format(package_name, tools_package_dictionary[package_name]),
-            '~')
-        return result
-
     def _create_package_toc(self, package_name, package_modules, tools_package_dictionary):
-        result = []
-        result.extend(self._create_package_title(package_name, tools_package_dictionary))
-
-        if package_modules['abstract_classes']:
-            result.extend(self._create_toc_directive())
-            for obj in package_modules['abstract_classes']:
-                result.append(self._module_name_to_toc_entry(obj.module_name))
-            result.append('')
-        
-        if package_modules['concrete_classes']:
-            if package_modules['abstract_classes']:
-                result.append('--------\n')
-            result.extend(self._create_toc_directive())
-            for obj in package_modules['concrete_classes']:
-                result.append(self._module_name_to_toc_entry(obj.module_name))
-            result.append('')
-
-        if package_modules['functions']:
-            if package_modules['concrete_classes'] or package_modules['abstract_classes']:
-                result.append('--------\n')
-            result.extend(self._create_toc_directive())
-            for obj in package_modules['functions']:
-                result.append(self._module_name_to_toc_entry(obj.module_name))
-            result.append('')
-
-        return result
-
-    def _create_section_title(self, title):
-        result = self._create_heading(title, '-')
-        result.extend(self._create_toc_directive())
-        return result
-
-    def _create_toc_directive(self):
-        return [
-            '.. toctree::',
-            '   :maxdepth: 1',
-            ''
+        from abjad.tools import documentationtools
+        result = [documentationtools.ReSTHeading(
+            level=2,
+            text=':py:mod:`{} <{}>`'.format(package_name, tools_package_dictionary[package_name])
+            )
         ]
+        only_html = documentationtools.ReSTOnlyDirective(argument='html')
+        only_latex = documentationtools.ReSTOnlyDirective(argument='latex')
+        if package_modules['abstract_classes']:
+            only_latex.append(documentationtools.ReSTHeading(
+                level=3,
+                text='Abstract Classes'
+                ))
+            toc_html = documentationtools.ReSTTOCDirective(
+                options={'maxdepth': 1},
+                )
+            toc_latex = documentationtools.ReSTTOCDirective()
+            for obj in package_modules['abstract_classes']:
+                toc_entry = self._module_name_to_toc_entry(obj.module_name)
+                toc_html.append(toc_entry)
+                toc_latex.append(toc_entry)
+            only_html.append(toc_html)
+            only_latex.append(toc_latex)
+        if package_modules['concrete_classes']:
+            only_latex.append(documentationtools.ReSTHeading(
+                level=3,
+                text='Concrete Classes'
+                ))
+            if package_modules['abstract_classes']:
+                only_html.append(documentationtools.ReSTHorizontalRule())
+            toc_html = documentationtools.ReSTTOCDirective(
+                options={'maxdepth': 1},
+                )
+            toc_latex = documentationtools.ReSTTOCDirective()
+            for obj in package_modules['concrete_classes']:
+                toc_entry = self._module_name_to_toc_entry(obj.module_name)
+                toc_html.append(toc_entry)
+                toc_latex.append(toc_entry)
+            only_html.append(toc_html)
+            only_latex.append(toc_latex)
+        if package_modules['functions']:
+            only_latex.append(documentationtools.ReSTHeading(
+                level=3,
+                text='Functions'
+                ))
+            toc_html = documentationtools.ReSTTOCDirective(
+                options={'maxdepth': 1},
+                )
+            toc_latex = documentationtools.ReSTTOCDirective()
+            if package_modules['concrete_classes'] or package_modules['abstract_classes']:
+                only_html.append(documentationtools.ReSTHorizontalRule())
+            for obj in package_modules['functions']:
+                toc_entry = self._module_name_to_toc_entry(obj.module_name)
+                toc_html.append(toc_entry)
+                toc_latex.append(toc_entry)
+            only_html.append(toc_html)
+            only_latex.append(toc_latex)
+        result.extend([only_html, only_latex])
+        return result
 
     def _module_name_to_toc_entry(self, module_name):
         parts = module_name.split('.')[self.tools_package_path_index-1:-1]
-        return '   %s' % '/'.join(parts)
+        return '/'.join(parts)
 
     def _sort_modules(self, objects):
-
         packages = {}
         module_mapping = {}
-
         for obj in sorted(objects, key=lambda x: x.module_name):
-
             tools_package_name = obj.module_name.split('.')[self.tools_package_path_index]
             tools_package_path = '.'.join(obj.module_name.split('.')[:self.tools_package_path_index + 1])
             tools_package_module = importlib.import_module(tools_package_path)
-
             if tools_package_name not in module_mapping:
                 module_mapping[tools_package_name] = tools_package_path
-
             if hasattr(tools_package_module, '_documentation_section'):
                 declared_documentation_section = getattr(tools_package_module, '_documentation_section')
                 if declared_documentation_section not in packages:
@@ -157,14 +172,12 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                 collection = packages[declared_documentation_section]
             else:
                 continue
-
             if tools_package_name not in collection:
                 collection[tools_package_name] = {
                     'abstract_classes': [],
                     'concrete_classes': [],
                     'functions': []
                 }
-
             if isinstance(obj, ClassDocumenter):
                 if obj.is_abstract:
                     collection[tools_package_name]['abstract_classes'].append(obj)
@@ -172,7 +185,6 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                     collection[tools_package_name]['concrete_classes'].append(obj)
             else:
                 collection[tools_package_name]['functions'].append(obj)
-
         return packages, module_mapping
         
 
