@@ -1,0 +1,102 @@
+requesttools.RhythmMakerRequest
+===============================
+
+.. inheritance-diagram:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest
+   :private-bases:
+
+.. autoclass:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest
+   :noindex:
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.request_modifiers
+   :noindex:
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.storage_format
+   :noindex:
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+Methods
+-------
+
+.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.partition_by_ratio
+   :noindex:
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
+.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.partition_by_ratio_of_durations
+   :noindex:
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
+.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.repeat_to_duration
+   :noindex:
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
+.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.repeat_to_length
+   :noindex:
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
+.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.reverse
+   :noindex:
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
+.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.rotate
+   :noindex:
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
+Special Methods
+---------------
+
+.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.___getitem__
+   :noindex:
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
+.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__eq__
+   :noindex:
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
+.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__ge__
+   :noindex:
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__getitem__
+   :noindex:
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
+.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__gt__
+   :noindex:
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__le__
+   :noindex:
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__lt__
+   :noindex:
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__ne__
+   :noindex:
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__repr__
+   :noindex:
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
