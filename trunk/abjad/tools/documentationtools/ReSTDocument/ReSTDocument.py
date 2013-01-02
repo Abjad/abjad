@@ -30,7 +30,8 @@ class ReSTDocument(TreeContainer):
                     text='Hello World!'
                     ),
                 ReSTParagraph(
-                    text='blah blah blah'
+                    text='blah blah blah',
+                    wrap=True
                     ),
                 ReSTTOCDirective(
                     children=(

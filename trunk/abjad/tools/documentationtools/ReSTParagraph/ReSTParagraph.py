@@ -10,7 +10,8 @@ class ReSTParagraph(TreeNode):
         >>> paragraph = documentationtools.ReSTParagraph(text='blah blah blah')
         >>> paragraph
         ReSTParagraph(
-            text='blah blah blah'
+            text='blah blah blah',
+            wrap=True
             )
 
     ::
