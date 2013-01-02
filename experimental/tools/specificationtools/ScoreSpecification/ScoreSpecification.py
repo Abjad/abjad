@@ -50,7 +50,7 @@ class ScoreSpecification(Specification):
         self._all_time_signature_commands = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
-        self._interface = settingtools.ScoreSettingInterface(self)
+        self._interface = settingtools.ScoreSpecificationInterface(self)
 
     ### SPECIAL METHODS ###
 
@@ -248,7 +248,7 @@ class ScoreSpecification(Specification):
         '''Read-only reference to score setting interface::
 
             >>> score_specification.interface
-            ScoreSettingInterface()
+            ScoreSpecificationInterface()
 
         Return score setting interface.
         '''
@@ -514,7 +514,7 @@ class ScoreSpecification(Specification):
         r'''Append segment specification to score specification::
 
             >>> score_specification.append_segment(name='green')
-            SegmentSettingInterface('green')
+            SegmentSpecificationInterface('green')
 
         Assign segment `name` or first unused segment number to segment.
 
@@ -525,7 +525,7 @@ class ScoreSpecification(Specification):
         segment_specification = self.segment_specification_class(self.score_template, name)
         segment_specification._score_specification = self
         self.segment_specifications.append(segment_specification)
-        segment_setting_interface = settingtools.SegmentSettingInterface(self, name)
+        segment_setting_interface = settingtools.SegmentSpecificationInterface(self, name)
         return segment_setting_interface
 
     def get_anchor_timespan(self, expr, voice_name):

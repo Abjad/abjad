@@ -1,7 +1,7 @@
-from experimental.tools.settingtools.SettingInterface import SettingInterface
+from experimental.tools.settingtools.SpecificationInterface import SpecificationInterface
 
 
-class SegmentSettingInterface(SettingInterface):
+class SegmentSpecificationInterface(SpecificationInterface):
     r'''Segment setting interface.
 
     ::
@@ -20,7 +20,7 @@ class SegmentSettingInterface(SettingInterface):
     ::
             
         >>> red_segment
-        SegmentSettingInterface('red')
+        SegmentSpecificationInterface('red')
 
     Segment specification properties are read-only.
     '''
@@ -29,7 +29,7 @@ class SegmentSettingInterface(SettingInterface):
 
     def __init__(self, score_specification, segment_name):
         assert isinstance(segment_name, str), segment_name
-        SettingInterface.__init__(self, score_specification)
+        SpecificationInterface.__init__(self, score_specification)
         self._segment_name = segment_name
 
     ### SPECIAL METHODS ###
@@ -52,7 +52,7 @@ class SegmentSettingInterface(SettingInterface):
 
         Return score specification.
         '''
-        return SettingInterface.score_specification.fget(self)
+        return SpecificationInterface.score_specification.fget(self)
 
     @property
     def segment_name(self):
@@ -83,7 +83,7 @@ class SegmentSettingInterface(SettingInterface):
         '''Segment setting interface storage format::
 
             >>> z(red_segment)
-            settingtools.SegmentSettingInterface(
+            settingtools.SegmentSpecificationInterface(
                 specificationtools.ScoreSpecification(
                     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
                         staff_count=4
@@ -94,7 +94,7 @@ class SegmentSettingInterface(SettingInterface):
 
         Return string.
         '''
-        return SettingInterface.storage_format.fget(self)
+        return SpecificationInterface.storage_format.fget(self)
 
     @property
     def timespan(self):

@@ -228,7 +228,7 @@ Unstable packages (load manually)
    tools/settingtools/SelectMethodMixin/SelectMethodMixin
    tools/settingtools/SetMethodMixin/SetMethodMixin
    tools/settingtools/Setting/Setting
-   tools/settingtools/SettingInterface/SettingInterface
+   tools/settingtools/SpecificationInterface/SpecificationInterface
 
 --------
 
@@ -243,8 +243,8 @@ Unstable packages (load manually)
    tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
    tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
    tools/settingtools/RotationIndicator/RotationIndicator
-   tools/settingtools/ScoreSettingInterface/ScoreSettingInterface
-   tools/settingtools/SegmentSettingInterface/SegmentSettingInterface
+   tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
+   tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
    tools/settingtools/SingleContextSetting/SingleContextSetting
    tools/settingtools/SingleContextSettingInventory/SingleContextSettingInventory
 

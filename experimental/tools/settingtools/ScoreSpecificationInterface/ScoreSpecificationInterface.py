@@ -1,7 +1,7 @@
-from experimental.tools.settingtools.SettingInterface import SettingInterface
+from experimental.tools.settingtools.SpecificationInterface import SpecificationInterface
 
 
-class ScoreSettingInterface(SettingInterface):
+class ScoreSpecificationInterface(SpecificationInterface):
     r'''Score setting interface.
 
     ::
@@ -25,7 +25,7 @@ class ScoreSettingInterface(SettingInterface):
     ### INITIALIZER ###
 
     def __init__(self, score_specification):
-        SettingInterface.__init__(self, score_specification)
+        SpecificationInterface.__init__(self, score_specification)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -38,7 +38,7 @@ class ScoreSettingInterface(SettingInterface):
 
         Return score specification.
         '''
-        return SettingInterface.score_specification.fget(self)
+        return SpecificationInterface.score_specification.fget(self)
 
     @property
     def specification_name(self):
@@ -49,14 +49,14 @@ class ScoreSettingInterface(SettingInterface):
 
         Return none.
         '''
-        return SettingInterface.specification_name.fget(self)
+        return SpecificationInterface.specification_name.fget(self)
 
     @property
     def storage_format(self):
         '''Score setting interface storage format::
 
             >>> z(score_specification.interface)
-            settingtools.ScoreSettingInterface(
+            settingtools.ScoreSpecificationInterface(
                 specificationtools.ScoreSpecification(
                     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
                         staff_count=4
@@ -66,7 +66,7 @@ class ScoreSettingInterface(SettingInterface):
 
         Return string.
         '''
-        return SettingInterface.storage_format.fget(self)
+        return SpecificationInterface.storage_format.fget(self)
 
     @property
     def timespan(self):
@@ -77,7 +77,7 @@ class ScoreSettingInterface(SettingInterface):
 
         Return timespan expression.
         '''
-        return SettingInterface.timespan.fget(self)
+        return SpecificationInterface.timespan.fget(self)
     
     ### PUBLIC METHODS ###
 

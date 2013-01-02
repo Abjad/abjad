@@ -3,7 +3,7 @@ from experimental.tools.settingtools.SetMethodMixin import SetMethodMixin
 from experimental.tools.settingtools.SelectMethodMixin import SelectMethodMixin
 
 
-class SettingInterface(SelectMethodMixin, SetMethodMixin):
+class SpecificationInterface(SelectMethodMixin, SetMethodMixin):
     r'''Setting interface.
 
     Score and segment setting interfaces constitute the primary vehicle of composition.
