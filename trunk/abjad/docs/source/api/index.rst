@@ -2159,6 +2159,7 @@ Abjad internal packages
    tools/documentationtools/ReSTDocument/ReSTDocument
    tools/documentationtools/ReSTHeading/ReSTHeading
    tools/documentationtools/ReSTHorizontalRule/ReSTHorizontalRule
+   tools/documentationtools/ReSTInheritanceDiagram/ReSTInheritanceDiagram
    tools/documentationtools/ReSTOnlyDirective/ReSTOnlyDirective
    tools/documentationtools/ReSTParagraph/ReSTParagraph
    tools/documentationtools/ReSTTOCDirective/ReSTTOCDirective

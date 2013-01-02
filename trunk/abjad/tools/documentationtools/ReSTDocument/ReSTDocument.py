@@ -71,11 +71,9 @@ class ReSTDocument(TreeContainer):
     @property
     def _rest_format_contributions(self):
         result = []
-        if self.children:
-            result.extend(self.children[0]._rest_format_contributions)
-            for child in self.children[1:]:
-                result.append('')
-                result.extend(child._rest_format_contributions)
+        for child in self.children:
+            result.extend(child._rest_format_contributions)
+            result.append('')
         return result
 
     ### READ-ONLY PUBLIC PROPERTIES ###

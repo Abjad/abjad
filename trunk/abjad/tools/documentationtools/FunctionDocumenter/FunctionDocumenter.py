@@ -19,7 +19,6 @@ class FunctionDocumenter(Documenter):
         <BLANKLINE>
         .. autofunction:: abjad.tools.notetools.make_notes.make_notes
            :noindex:
-        <BLANKLINE> 
 
     Returns ``FunctionDocumenter``` instance.
     '''
@@ -43,13 +42,18 @@ class FunctionDocumenter(Documenter):
 
         Returns string.
         '''
+        from abjad.tools import documentationtools
 
-        stripped_function_name = self._shrink_module_name(self.object.__module__)
-        
-        result = []
-        result.extend(self._format_heading(stripped_function_name, '='))
-        result.append('.. autofunction:: %s' % self.module_name)
-        result.append('   :noindex:')
-        result.append('')
+        document = documentationtools.ReSTDocument()
+        heading = documentationtools.ReSTHeading(
+            level=2,
+            text=self._shrink_module_name(self.object.__module__)
+            )
+        autodoc = documentationtools.ReSTAutodocDirective(
+            argument=self.module_name,
+            directive='autofunction',
+            options={'noindex': True},
+            )
+        document.extend([heading, autodoc])
 
-        return '\n'.join(result)
+        return document.rest_format
