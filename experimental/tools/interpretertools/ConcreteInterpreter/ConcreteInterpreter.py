@@ -96,34 +96,31 @@ class ConcreteInterpreter(Interpreter):
 
     # TODO: migrate to DivisionRegionCommand
     def division_region_command_to_division_region_products(self, division_region_command, voice_name):
-        if isinstance(division_region_command.request, list):
-            divisions = division_region_command.request
-            divisions = [divisiontools.Division(x) for x in divisions]
-            region_duration = division_region_command.timespan.duration
-            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
-        elif isinstance(division_region_command.request, requesttools.AbsoluteRequest):
+        region_timespan = division_region_command.timespan
+        region_duration = division_region_command.timespan.duration
+        if isinstance(division_region_command.request, requesttools.AbsoluteRequest):
             divisions = division_region_command.request._evaluate_payload(self.score_specification, None)
             divisions = [divisiontools.Division(x) for x in divisions]
-            region_duration = division_region_command.timespan.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
+            result = settingtools.DivisionRegionProduct(divisions, voice_name, region_timespan)
+            return [result]
         elif isinstance(division_region_command.request, requesttools.DivisionCommandRequest):
             division_command_request = division_region_command.request
             divisions = division_command_request.get_payload(self.score_specification, voice_name)
-            divisions = requesttools.AbsoluteRequest(divisions)
-            division_region_command = division_region_command.new(request=divisions)
-            division_region_products = self.division_region_command_to_division_region_products(
-                division_region_command, voice_name)
-            return division_region_products
+            divisions = [divisiontools.Division(x) for x in divisions]
+            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
+            result = settingtools.DivisionRegionProduct(divisions, voice_name, region_timespan)
+            return [result]
         elif isinstance(division_region_command.request, selectortools.BeatSelector):
             beat_selector = division_region_command.request
             start_offset, stop_offset = division_region_command.timespan.offsets
+            # TODO: make timespan-based instead of offset-based
             timespan, divisions = beat_selector._get_timespan_and_selected_objects(
                 self.score_specification, division_region_command.voice_name, start_offset, stop_offset)
-            divisions = requesttools.AbsoluteRequest(divisions)
-            division_region_command = division_region_command.new(request=divisions)
-            division_region_products = self.division_region_command_to_division_region_products(
-                division_region_command, voice_name)
-            return division_region_products
+            divisions = [divisiontools.Division(x) for x in divisions]
+            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
+            result = settingtools.DivisionRegionProduct(divisions, voice_name, region_timespan)
+            return [result]
         elif isinstance(division_region_command.request, selectortools.DivisionSelector):
             division_selector = division_region_command.request
             division_region_product = division_selector._get_division_region_product(
@@ -132,7 +129,6 @@ class ConcreteInterpreter(Interpreter):
             if division_region_product is None:
                 return
             divisions = division_region_product.payload.divisions[:]
-            region_duration = division_region_command.timespan.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             divisions = [divisiontools.Division(x) for x in divisions]
             division_list = division_region_product.payload.new(divisions=divisions)
@@ -150,14 +146,10 @@ class ConcreteInterpreter(Interpreter):
                 background_measure_selector._get_timespan_and_selected_objects(
                 self.score_specification, None)
             divisions = [divisiontools.Division(x) for x in time_signatures]
+            result = settingtools.DivisionRegionProduct(divisions, voice_name, region_timespan)
+            return [result]
         else:
             raise TypeError(division_region_command.request)
-        return [
-            settingtools.DivisionRegionProduct(
-            divisions, 
-            voice_name=voice_name, 
-            timespan=division_region_command.timespan
-            )]
 
     def dump_rhythm_region_products_into_voices(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
