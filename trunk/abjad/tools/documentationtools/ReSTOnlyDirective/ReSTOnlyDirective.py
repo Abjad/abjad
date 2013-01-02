@@ -2,29 +2,46 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTOnlyDirective(ReSTDirective):
-    
+    '''An ReST `only` directive:
+
+    ::
+
+        >>> only = documentationtools.ReSTOnlyDirective(argument='latex')
+
+    ::
+
+        >>> heading = documentationtools.ReSTHeading(level=3, text='A LaTeX-Only Heading')
+        >>> only.append(heading)
+        >>> only
+        ReSTOnlyDirective(
+            argument='latex',
+            children=(
+                ReSTHeading(
+                    level=3,
+                    text='A LaTeX-Only Heading'
+                    ),
+                )
+            )
+
+    ::
+
+        >>> print only.rest_format
+        .. only:: latex
+        <BLANKLINE>
+           A LaTeX-Only Heading
+           --------------------
+
+    Return `ReSTOnlyDirective` instance.
+    '''
+
     ### INITIALIZER ###
 
-    def __init__(self, children=None, name=None, expr=None):
-        ReSTDirective.__init__(self, children=children, name=name)
-        self.expr = expr
+    def __init__(self, argument=None, children=None, name=None):
+        ReSTDirective.__init__(self, argument=argument, children=children, name=name)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def directive(self):
         return 'only'
-
-    ### READ/WRITE PUBLIC PROPERTIES ###
-
-    @apply
-    def expr():
-        def fget(self):
-            return self._expr
-        def fset(self, arg):
-            assert isinstance(arg, str)
-            arg = arg.strip()
-            assert len(arg)
-            self._expr = arg
-        return property(**locals())
 

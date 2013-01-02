@@ -2,6 +2,81 @@ from abjad.tools.datastructuretools.TreeContainer import TreeContainer
 
 
 class ReSTDocument(TreeContainer):
+    '''An ReST document tree:
+
+    ::
+
+        >>> document = documentationtools.ReSTDocument()
+        >>> document
+        ReSTDocument()
+
+    ::
+
+        >>> document.append(documentationtools.ReSTHeading(level=0, text='Hello World!'))
+        >>> document.append(documentationtools.ReSTParagraph(text='blah blah blah'))
+        >>> toc = documentationtools.ReSTTOCDirective()
+        >>> toc.append('foo/bar')
+        >>> toc.append('bar/baz')
+        >>> toc.append('quux')
+        >>> document.append(toc)
+
+    ::
+
+        >>> document
+        ReSTDocument(
+            children=(
+                ReSTHeading(
+                    level=0,
+                    text='Hello World!'
+                    ),
+                ReSTParagraph(
+                    text='blah blah blah'
+                    ),
+                ReSTTOCDirective(
+                    children=(
+                        ReSTTOCItem(
+                            text='foo/bar'
+                            ),
+                        ReSTTOCItem(
+                            text='bar/baz'
+                            ),
+                        ReSTTOCItem(
+                            text='quux'
+                            )
+                        )
+                    )
+                )
+            )
+
+    ::
+
+        >>> print document.rest_format
+        ############
+        Hello World!
+        ############
+        <BLANKLINE>
+        blah blah blah
+        <BLANKLINE>
+        .. toctree::
+        <BLANKLINE>
+           foo/bar
+           bar/baz
+           quux
+
+    Return `ReSTDocument` instance.
+    '''
+
+    ### READ-ONLY PRIVATE PROPERTIES ###
+    
+    @property
+    def _rest_format_contributions(self):
+        result = []
+        if self.children:
+            result.extend(self.children[0]._rest_format_contributions)
+            for child in self.children[1:]:
+                result.append('')
+                result.extend(child._rest_format_contributions)
+        return result
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -14,3 +89,8 @@ class ReSTDocument(TreeContainer):
             documentationtools.ReSTHorizontalRule, 
             documentationtools.ReSTParagraph,
             )
+
+    @property
+    def rest_format(self):
+        return '\n'.join(self._rest_format_contributions)
+

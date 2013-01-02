@@ -25,6 +25,9 @@ Read-only Properties
 
     Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
+.. autoattribute:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading.heading_characters
+   :noindex:
+
 .. autoattribute:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading.improper_parentage
    :noindex:
 
@@ -39,6 +42,9 @@ Read-only Properties
    :noindex:
 
     Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
+
+.. autoattribute:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading.rest_format
+   :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading.root
    :noindex:

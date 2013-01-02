@@ -40,6 +40,9 @@ Read-only Properties
 
     Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
+.. autoattribute:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.rest_format
+   :noindex:
+
 .. autoattribute:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.root
    :noindex:
 

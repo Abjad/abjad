@@ -2134,7 +2134,6 @@ Abjad internal packages
    :maxdepth: 1
 
    tools/documentationtools/GraphvizObject/GraphvizObject
-   tools/documentationtools/ReSTAutodocDirective/ReSTAutodocDirective
    tools/documentationtools/ReSTDirective/ReSTDirective
 
 --------
@@ -2156,6 +2155,7 @@ Abjad internal packages
    tools/documentationtools/InheritanceGraph/InheritanceGraph
    tools/documentationtools/ModuleCrawler/ModuleCrawler
    tools/documentationtools/Pipe/Pipe
+   tools/documentationtools/ReSTAutodocDirective/ReSTAutodocDirective
    tools/documentationtools/ReSTDocument/ReSTDocument
    tools/documentationtools/ReSTHeading/ReSTHeading
    tools/documentationtools/ReSTHorizontalRule/ReSTHorizontalRule

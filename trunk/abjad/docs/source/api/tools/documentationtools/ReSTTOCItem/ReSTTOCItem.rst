@@ -40,6 +40,9 @@ Read-only Properties
 
     Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
+.. autoattribute:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.rest_format
+   :noindex:
+
 .. autoattribute:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.root
    :noindex:
 
@@ -57,6 +60,9 @@ Read/write Properties
    :noindex:
 
     Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
+
+.. autoattribute:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.text
+   :noindex:
 
 Special Methods
 ---------------

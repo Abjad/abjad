@@ -68,6 +68,11 @@ Read-only Properties
 
     Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
+.. autoattribute:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.rest_format
+   :noindex:
+
+    Inherited from :py:class:`documentationtools.ReSTDirective <abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective>`
+
 .. autoattribute:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.root
    :noindex:
 
@@ -85,9 +90,6 @@ Read/write Properties
    :noindex:
 
     Inherited from :py:class:`documentationtools.ReSTDirective <abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective>`
-
-.. autoattribute:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.expr
-   :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.name
    :noindex:
