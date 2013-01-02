@@ -4,6 +4,8 @@ from experimental.tools.settingtools.MultipleContextSetting import MultipleConte
 from experimental.tools.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
 from experimental.tools.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.tools.timeexpressiontools.OffsetExpression import OffsetExpression
+import py
+py.test.skip('deprecated')
 
 
 def test_MultipleContextSettingInventory_storage_format_01():

@@ -1,5 +1,7 @@
 from abjad.tools import *
 from experimental.tools import *
+import py
+py.test.skip('deprecated.')
 
 
 def test_MultipleContextSettingInventory___init___01():
