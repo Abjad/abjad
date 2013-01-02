@@ -49,27 +49,19 @@ class BeatSelector(Selector):
     ### PRIVATE METHODS ###
 
     def _get_timespan(self, score_specification, voice_name):
-        '''Evaluate start and stop offsets of selector when applied
-        to `voice_name` in `score_specification`.
-
-        Return offset pair.
-        '''
         timespan, beats = self._get_timespan_and_selected_objects(score_specification, voice_name)
         timespan = self._apply_timespan_modifiers(timespan)
         return timespan
 
-    def _get_timespan_and_selected_objects(self, score_specification, voice_name, 
-        start_offset=None, stop_offset=None):
+    def _get_timespan_and_selected_objects(self, score_specification, voice_name, timespan=None):
         time_signatures = score_specification.time_signatures
         assert time_signatures
-        start_offset = start_offset or 0
-        stop_offset = stop_offset or score_specification.timespan.stop_offset
+        timespan = timespan or score_specification.timespan
         naive_beats = []
         for time_signature in time_signatures:
             numerator, denominator = time_signature.pair
             naive_beats.extend(numerator * [mathtools.NonreducedFraction(1, denominator)])
-        slice_duration = stop_offset - start_offset
-        weights = [start_offset, slice_duration]
+        weights = [timespan.start_offset, timespan.duration]
         shards = sequencetools.split_sequence_by_weights(
             naive_beats, weights, cyclic=False, overhang=False)
         result = shards[1]

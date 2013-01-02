@@ -113,10 +113,8 @@ class ConcreteInterpreter(Interpreter):
             return [result]
         elif isinstance(division_region_command.request, selectortools.BeatSelector):
             beat_selector = division_region_command.request
-            start_offset, stop_offset = division_region_command.timespan.offsets
-            # TODO: make timespan-based instead of offset-based
             timespan, divisions = beat_selector._get_timespan_and_selected_objects(
-                self.score_specification, division_region_command.voice_name, start_offset, stop_offset)
+                self.score_specification, division_region_command.voice_name, timespan=region_timespan)
             divisions = [divisiontools.Division(x) for x in divisions]
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             result = settingtools.DivisionRegionProduct(divisions, voice_name, region_timespan)
