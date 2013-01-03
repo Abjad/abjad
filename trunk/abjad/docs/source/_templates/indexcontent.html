@@ -1,0 +1,60 @@
+{% extends "defindex.html" %}
+{% block tables %}
+
+    <p>
+    Abjad helps composers build up complex pieces of music notation
+    in an iterative and incremental way. 
+    Use Abjad to create a symbolic representation of all the notes, 
+    rests, staves, tuplets, beams and slurs in any score.
+    Because Abjad extends the Python programming language,
+    you can use Abjad to make systematic changes to your music as you work.
+    And because Abjad wraps the powerful LilyPond music notation package,
+    you can use Abjad to control the typographic details of the symbols on the page.
+    </p>
+
+    <img src="_images/bartok-final.png">
+
+    <p><strong>Parts of the documentation:</strong></p>
+    <table class="contentstable" align="center"><tr>
+        <td width="50%">
+            <p class="biglink">
+                <a class="biglink" href="{{ pathto("start_here/index") }}">Start Here</a><br/>
+                <span class="linkdescr">introduction and installation instructions</span></p>
+            <p class="biglink">
+                <a class="biglink" href="{{ pathto("system_overview/index") }}">System Overview</a><br/>
+                <span class="linkdescr">important concepts</span></p>
+            <p class="biglink">
+                <a class="biglink" href="{{ pathto("examples/index") }}">Examples and Demos</a><br/>
+                <span class="linkdescr">from the literature</span></p>
+            <p class="biglink">
+                <a class="biglink" href="{{ pathto("tutorials/index") }}">Tutorials</a><br/>
+                <span class="linkdescr">step-by-step instructions for beginners</span></p>
+        </td><td width="50%">
+            <p class="biglink">
+                <a class="biglink" href="{{ pathto("reference_manual/index") }}">Reference Manual</a><br/>
+                <span class="linkdescr">working with Abjad</span></p>
+            <p class="biglink">
+                <a class="biglink" href="{{ pathto("developer_documentation/index") }}">Developer Documentation</a><br/>
+                <span class="linkdescr">guidelines for contributors</span></p>
+            <p class="biglink">
+                <a class="biglink" href="{{ pathto("appendices/index") }}">Appendices</a><br/>
+                <span class="linkdescr">odds and ends</span></p>
+            <p class="biglink">
+                <a class="biglink" href="{{ pathto("api/index") }}">Abjad API</a><br/>
+                <span class="linkdescr">the complete reference</span></p>
+        </td></tr>
+    </table>
+
+    <p><strong>Indices and tables:</strong></p>
+    <table class="contentstable" align="center"><tr>
+        <td width="50%">
+            <p class="biglink">
+                <a class="biglink" href="{{ pathto("search") }}">Search page</a><br/>
+                <span class="linkdescr">search this documentation</span></p>
+        </td><td width="50%">
+            <p class="biglink">
+                <a class="biglink" href="{{ pathto("contents") }}">Complete Table of Contents</a><br/>
+                <span class="linkdescr">lists all sections and subsections</span></p>
+        </td></tr>
+    </table>
+{% endblock %}
