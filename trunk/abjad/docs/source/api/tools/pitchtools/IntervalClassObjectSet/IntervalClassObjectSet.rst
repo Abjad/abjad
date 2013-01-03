@@ -4,6 +4,8 @@ pitchtools.IntervalClassObjectSet
 .. inheritance-diagram:: abjad.tools.pitchtools.IntervalClassObjectSet.IntervalClassObjectSet.IntervalClassObjectSet
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.IntervalClassObjectSet.IntervalClassObjectSet.IntervalClassObjectSet
+
 .. autoclass:: abjad.tools.pitchtools.IntervalClassObjectSet.IntervalClassObjectSet.IntervalClassObjectSet
    :noindex:
 

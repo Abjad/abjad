@@ -4,6 +4,8 @@ quantizationtools.AttackPointOptimizer
 .. inheritance-diagram:: abjad.tools.quantizationtools.AttackPointOptimizer.AttackPointOptimizer.AttackPointOptimizer
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.quantizationtools.AttackPointOptimizer.AttackPointOptimizer.AttackPointOptimizer
+
 .. autoclass:: abjad.tools.quantizationtools.AttackPointOptimizer.AttackPointOptimizer.AttackPointOptimizer
    :noindex:
 

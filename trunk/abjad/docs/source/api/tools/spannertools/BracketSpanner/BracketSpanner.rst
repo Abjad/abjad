@@ -4,6 +4,8 @@ spannertools.BracketSpanner
 .. inheritance-diagram:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner
+
 .. autoclass:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner
    :noindex:
 

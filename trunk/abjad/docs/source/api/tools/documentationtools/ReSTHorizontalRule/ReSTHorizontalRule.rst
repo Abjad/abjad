@@ -4,6 +4,8 @@ documentationtools.ReSTHorizontalRule
 .. inheritance-diagram:: abjad.tools.documentationtools.ReSTHorizontalRule.ReSTHorizontalRule.ReSTHorizontalRule
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.documentationtools.ReSTHorizontalRule.ReSTHorizontalRule.ReSTHorizontalRule
+
 .. autoclass:: abjad.tools.documentationtools.ReSTHorizontalRule.ReSTHorizontalRule.ReSTHorizontalRule
    :noindex:
 

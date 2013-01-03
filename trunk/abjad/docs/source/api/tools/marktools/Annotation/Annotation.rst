@@ -4,6 +4,8 @@ marktools.Annotation
 .. inheritance-diagram:: abjad.tools.marktools.Annotation.Annotation.Annotation
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.marktools.Annotation.Annotation.Annotation
+
 .. autoclass:: abjad.tools.marktools.Annotation.Annotation.Annotation
    :noindex:
 

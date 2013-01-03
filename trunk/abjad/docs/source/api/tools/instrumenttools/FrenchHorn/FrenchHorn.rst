@@ -4,6 +4,8 @@ instrumenttools.FrenchHorn
 .. inheritance-diagram:: abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn
+
 .. autoclass:: abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn
    :noindex:
 

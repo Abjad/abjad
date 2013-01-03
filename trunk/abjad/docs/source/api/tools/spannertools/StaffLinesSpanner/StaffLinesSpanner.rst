@@ -4,6 +4,8 @@ spannertools.StaffLinesSpanner
 .. inheritance-diagram:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner
+
 .. autoclass:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner
    :noindex:
 

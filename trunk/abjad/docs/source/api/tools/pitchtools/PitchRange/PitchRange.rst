@@ -4,6 +4,8 @@ pitchtools.PitchRange
 .. inheritance-diagram:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange
+
 .. autoclass:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange
    :noindex:
 

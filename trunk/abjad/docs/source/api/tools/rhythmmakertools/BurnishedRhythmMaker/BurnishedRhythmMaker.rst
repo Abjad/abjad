@@ -4,6 +4,8 @@ rhythmmakertools.BurnishedRhythmMaker
 .. inheritance-diagram:: abjad.tools.rhythmmakertools.BurnishedRhythmMaker.BurnishedRhythmMaker.BurnishedRhythmMaker
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.rhythmmakertools.BurnishedRhythmMaker.BurnishedRhythmMaker.BurnishedRhythmMaker
+
 .. autoclass:: abjad.tools.rhythmmakertools.BurnishedRhythmMaker.BurnishedRhythmMaker.BurnishedRhythmMaker
    :noindex:
 

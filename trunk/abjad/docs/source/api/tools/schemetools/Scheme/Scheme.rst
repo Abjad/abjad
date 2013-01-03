@@ -4,6 +4,8 @@ schemetools.Scheme
 .. inheritance-diagram:: abjad.tools.schemetools.Scheme.Scheme.Scheme
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.schemetools.Scheme.Scheme.Scheme
+
 .. autoclass:: abjad.tools.schemetools.Scheme.Scheme.Scheme
    :noindex:
 

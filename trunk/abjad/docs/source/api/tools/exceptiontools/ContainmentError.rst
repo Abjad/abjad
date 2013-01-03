@@ -4,6 +4,8 @@ exceptiontools.ContainmentError
 .. inheritance-diagram:: abjad.tools.exceptiontools.ContainmentError.ContainmentError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.ContainmentError.ContainmentError
+
 .. autoclass:: abjad.tools.exceptiontools.ContainmentError.ContainmentError
    :noindex:
 

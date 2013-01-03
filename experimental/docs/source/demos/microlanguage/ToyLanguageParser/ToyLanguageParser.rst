@@ -4,6 +4,8 @@ microlanguage.ToyLanguageParser
 .. inheritance-diagram:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser
    :private-bases:
 
+.. abjad-lineage:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser
+
 .. autoclass:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser
    :noindex:
 
@@ -13,12 +15,12 @@ Read-only Properties
 .. autoattribute:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.debug
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.lexer
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.lexer_rules_object
    :noindex:
@@ -26,22 +28,22 @@ Read-only Properties
 .. autoattribute:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.logger
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.logger_path
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.output_path
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.parser
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.parser_rules_object
    :noindex:
@@ -49,12 +51,12 @@ Read-only Properties
 .. autoattribute:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.pickle_path
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.storage_format
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Methods
 -------
@@ -122,7 +124,7 @@ Methods
 .. automethod:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.tokenize
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 Special Methods
 ---------------
@@ -130,39 +132,39 @@ Special Methods
 .. automethod:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__call__
    :noindex:
 
-    Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. automethod:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__eq__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__ge__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__gt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__le__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__lt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__ne__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__repr__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

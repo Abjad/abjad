@@ -4,6 +4,8 @@ exceptiontools.MissingNoteHeadError
 .. inheritance-diagram:: abjad.tools.exceptiontools.MissingNoteHeadError.MissingNoteHeadError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.MissingNoteHeadError.MissingNoteHeadError
+
 .. autoclass:: abjad.tools.exceptiontools.MissingNoteHeadError.MissingNoteHeadError
    :noindex:
 

@@ -4,6 +4,8 @@ quantizationtools.JobHandler
 .. inheritance-diagram:: abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler
+
 .. autoclass:: abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler
    :noindex:
 

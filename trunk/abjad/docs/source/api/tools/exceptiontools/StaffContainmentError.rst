@@ -4,6 +4,8 @@ exceptiontools.StaffContainmentError
 .. inheritance-diagram:: abjad.tools.exceptiontools.StaffContainmentError.StaffContainmentError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.StaffContainmentError.StaffContainmentError
+
 .. autoclass:: abjad.tools.exceptiontools.StaffContainmentError.StaffContainmentError
    :noindex:
 

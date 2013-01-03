@@ -4,6 +4,8 @@ exceptiontools.MissingMeasureError
 .. inheritance-diagram:: abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError
+
 .. autoclass:: abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError
    :noindex:
 

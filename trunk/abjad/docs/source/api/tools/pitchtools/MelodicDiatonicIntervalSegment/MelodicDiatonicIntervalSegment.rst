@@ -4,6 +4,8 @@ pitchtools.MelodicDiatonicIntervalSegment
 .. inheritance-diagram:: abjad.tools.pitchtools.MelodicDiatonicIntervalSegment.MelodicDiatonicIntervalSegment.MelodicDiatonicIntervalSegment
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.MelodicDiatonicIntervalSegment.MelodicDiatonicIntervalSegment.MelodicDiatonicIntervalSegment
+
 .. autoclass:: abjad.tools.pitchtools.MelodicDiatonicIntervalSegment.MelodicDiatonicIntervalSegment.MelodicDiatonicIntervalSegment
    :noindex:
 

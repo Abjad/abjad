@@ -4,6 +4,8 @@ instrumenttools.Vibraphone
 .. inheritance-diagram:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone
+
 .. autoclass:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone
    :noindex:
 

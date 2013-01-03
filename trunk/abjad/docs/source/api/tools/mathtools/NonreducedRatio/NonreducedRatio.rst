@@ -4,6 +4,8 @@ mathtools.NonreducedRatio
 .. inheritance-diagram:: abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio
+
 .. autoclass:: abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio
    :noindex:
 

@@ -4,6 +4,8 @@ pitchtools.CounterpointObject
 .. inheritance-diagram:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject
+
 .. autoclass:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject
    :noindex:
 

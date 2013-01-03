@@ -4,6 +4,8 @@ abjadbooktools.CodeBlock
 .. inheritance-diagram:: abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock
+
 .. autoclass:: abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock
    :noindex:
 

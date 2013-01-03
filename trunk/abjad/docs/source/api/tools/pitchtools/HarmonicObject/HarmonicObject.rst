@@ -4,6 +4,8 @@ pitchtools.HarmonicObject
 .. inheritance-diagram:: abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject
+
 .. autoclass:: abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject
    :noindex:
 

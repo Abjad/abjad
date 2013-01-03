@@ -4,6 +4,8 @@ contexttools.ClefMark
 .. inheritance-diagram:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark
+
 .. autoclass:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark
    :noindex:
 

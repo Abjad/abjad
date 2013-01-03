@@ -4,6 +4,8 @@ marktools.StemTremolo
 .. inheritance-diagram:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo
+
 .. autoclass:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo
    :noindex:
 

@@ -4,6 +4,8 @@ exceptiontools.ExtraNamedComponentError
 .. inheritance-diagram:: abjad.tools.exceptiontools.ExtraNamedComponentError.ExtraNamedComponentError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.ExtraNamedComponentError.ExtraNamedComponentError
+
 .. autoclass:: abjad.tools.exceptiontools.ExtraNamedComponentError.ExtraNamedComponentError
    :noindex:
 

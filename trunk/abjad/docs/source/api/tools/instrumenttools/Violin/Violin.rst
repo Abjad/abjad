@@ -4,6 +4,8 @@ instrumenttools.Violin
 .. inheritance-diagram:: abjad.tools.instrumenttools.Violin.Violin.Violin
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.Violin.Violin.Violin
+
 .. autoclass:: abjad.tools.instrumenttools.Violin.Violin.Violin
    :noindex:
 

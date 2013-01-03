@@ -4,6 +4,8 @@ scoretemplatetools.TwoStaffPianoScoreTemplate
 .. inheritance-diagram:: abjad.tools.scoretemplatetools.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.scoretemplatetools.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate
+
 .. autoclass:: abjad.tools.scoretemplatetools.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate
    :noindex:
 

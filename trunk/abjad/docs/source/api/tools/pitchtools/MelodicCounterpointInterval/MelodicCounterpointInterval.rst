@@ -4,6 +4,8 @@ pitchtools.MelodicCounterpointInterval
 .. inheritance-diagram:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval
+
 .. autoclass:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval
    :noindex:
 

@@ -4,6 +4,8 @@ pitchtools.DiatonicPitchClassObject
 .. inheritance-diagram:: abjad.tools.pitchtools.DiatonicPitchClassObject.DiatonicPitchClassObject.DiatonicPitchClassObject
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.DiatonicPitchClassObject.DiatonicPitchClassObject.DiatonicPitchClassObject
+
 .. autoclass:: abjad.tools.pitchtools.DiatonicPitchClassObject.DiatonicPitchClassObject.DiatonicPitchClassObject
    :noindex:
 

@@ -4,6 +4,8 @@ beamtools.DuratedComplexBeamSpanner
 .. inheritance-diagram:: abjad.tools.beamtools.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.beamtools.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner
+
 .. autoclass:: abjad.tools.beamtools.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner
    :noindex:
 

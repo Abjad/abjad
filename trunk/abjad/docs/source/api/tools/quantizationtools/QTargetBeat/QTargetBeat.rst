@@ -4,6 +4,8 @@ quantizationtools.QTargetBeat
 .. inheritance-diagram:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat
+
 .. autoclass:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat
    :noindex:
 

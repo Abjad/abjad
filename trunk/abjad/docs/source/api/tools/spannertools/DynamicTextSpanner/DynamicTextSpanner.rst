@@ -4,6 +4,8 @@ spannertools.DynamicTextSpanner
 .. inheritance-diagram:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner
+
 .. autoclass:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner
    :noindex:
 

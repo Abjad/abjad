@@ -4,6 +4,8 @@ instrumenttools.ContrabassClarinet
 .. inheritance-diagram:: abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet
+
 .. autoclass:: abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet
    :noindex:
 

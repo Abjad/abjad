@@ -4,6 +4,8 @@ exceptiontools.MissingComponentError
 .. inheritance-diagram:: abjad.tools.exceptiontools.MissingComponentError.MissingComponentError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.MissingComponentError.MissingComponentError
+
 .. autoclass:: abjad.tools.exceptiontools.MissingComponentError.MissingComponentError
    :noindex:
 

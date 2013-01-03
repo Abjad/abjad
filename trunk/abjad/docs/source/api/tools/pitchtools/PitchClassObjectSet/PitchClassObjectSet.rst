@@ -4,6 +4,8 @@ pitchtools.PitchClassObjectSet
 .. inheritance-diagram:: abjad.tools.pitchtools.PitchClassObjectSet.PitchClassObjectSet.PitchClassObjectSet
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.PitchClassObjectSet.PitchClassObjectSet.PitchClassObjectSet
+
 .. autoclass:: abjad.tools.pitchtools.PitchClassObjectSet.PitchClassObjectSet.PitchClassObjectSet
    :noindex:
 

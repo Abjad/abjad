@@ -4,6 +4,8 @@ tonalitytools.TonalFunction
 .. inheritance-diagram:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction
+
 .. autoclass:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction
    :noindex:
 

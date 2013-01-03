@@ -4,6 +4,8 @@ developerscripttools.PyTestScript
 .. inheritance-diagram:: abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript
+
 .. autoclass:: abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript
    :noindex:
 

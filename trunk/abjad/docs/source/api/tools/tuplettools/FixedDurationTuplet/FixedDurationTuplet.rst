@@ -4,6 +4,8 @@ tuplettools.FixedDurationTuplet
 .. inheritance-diagram:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet
+
 .. autoclass:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet
    :noindex:
 

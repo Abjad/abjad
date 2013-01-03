@@ -4,6 +4,8 @@ pitchtools.ObjectSegment
 .. inheritance-diagram:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment
+
 .. autoclass:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment
    :noindex:
 

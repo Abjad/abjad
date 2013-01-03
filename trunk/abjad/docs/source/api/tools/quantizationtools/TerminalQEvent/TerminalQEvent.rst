@@ -4,6 +4,8 @@ quantizationtools.TerminalQEvent
 .. inheritance-diagram:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent
+
 .. autoclass:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent
    :noindex:
 

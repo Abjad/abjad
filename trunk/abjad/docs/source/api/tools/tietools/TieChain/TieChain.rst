@@ -4,6 +4,8 @@ tietools.TieChain
 .. inheritance-diagram:: abjad.tools.tietools.TieChain.TieChain.TieChain
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.tietools.TieChain.TieChain.TieChain
+
 .. autoclass:: abjad.tools.tietools.TieChain.TieChain.TieChain
    :noindex:
 

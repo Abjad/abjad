@@ -4,6 +4,8 @@ exceptiontools.UnderfullContainerError
 .. inheritance-diagram:: abjad.tools.exceptiontools.UnderfullContainerError.UnderfullContainerError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.UnderfullContainerError.UnderfullContainerError
+
 .. autoclass:: abjad.tools.exceptiontools.UnderfullContainerError.UnderfullContainerError
    :noindex:
 

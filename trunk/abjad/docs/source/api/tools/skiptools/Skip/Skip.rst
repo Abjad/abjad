@@ -4,6 +4,8 @@ skiptools.Skip
 .. inheritance-diagram:: abjad.tools.skiptools.Skip.Skip.Skip
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.skiptools.Skip.Skip.Skip
+
 .. autoclass:: abjad.tools.skiptools.Skip.Skip.Skip
    :noindex:
 

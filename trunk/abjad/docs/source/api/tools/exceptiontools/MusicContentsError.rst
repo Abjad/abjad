@@ -4,6 +4,8 @@ exceptiontools.MusicContentsError
 .. inheritance-diagram:: abjad.tools.exceptiontools.MusicContentsError.MusicContentsError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.MusicContentsError.MusicContentsError
+
 .. autoclass:: abjad.tools.exceptiontools.MusicContentsError.MusicContentsError
    :noindex:
 

@@ -4,6 +4,8 @@ instrumenttools.Cello
 .. inheritance-diagram:: abjad.tools.instrumenttools.Cello.Cello.Cello
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.Cello.Cello.Cello
+
 .. autoclass:: abjad.tools.instrumenttools.Cello.Cello.Cello
    :noindex:
 

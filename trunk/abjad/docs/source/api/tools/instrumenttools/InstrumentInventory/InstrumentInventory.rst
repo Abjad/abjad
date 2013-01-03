@@ -4,6 +4,8 @@ instrumenttools.InstrumentInventory
 .. inheritance-diagram:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory
+
 .. autoclass:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory
    :noindex:
 

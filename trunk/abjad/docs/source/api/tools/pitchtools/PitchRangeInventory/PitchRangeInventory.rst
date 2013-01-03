@@ -4,6 +4,8 @@ pitchtools.PitchRangeInventory
 .. inheritance-diagram:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory
+
 .. autoclass:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory
    :noindex:
 

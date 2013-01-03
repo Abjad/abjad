@@ -4,6 +4,8 @@ rhythmmakertools.EvenRunRhythmMaker
 .. inheritance-diagram:: abjad.tools.rhythmmakertools.EvenRunRhythmMaker.EvenRunRhythmMaker.EvenRunRhythmMaker
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.rhythmmakertools.EvenRunRhythmMaker.EvenRunRhythmMaker.EvenRunRhythmMaker
+
 .. autoclass:: abjad.tools.rhythmmakertools.EvenRunRhythmMaker.EvenRunRhythmMaker.EvenRunRhythmMaker
    :noindex:
 

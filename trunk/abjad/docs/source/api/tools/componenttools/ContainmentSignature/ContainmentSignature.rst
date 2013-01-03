@@ -4,6 +4,8 @@ componenttools.ContainmentSignature
 .. inheritance-diagram:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature
+
 .. autoclass:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature
    :noindex:
 

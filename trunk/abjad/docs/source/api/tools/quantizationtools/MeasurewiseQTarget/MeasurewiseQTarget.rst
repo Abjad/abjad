@@ -4,6 +4,8 @@ quantizationtools.MeasurewiseQTarget
 .. inheritance-diagram:: abjad.tools.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget
+
 .. autoclass:: abjad.tools.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget
    :noindex:
 

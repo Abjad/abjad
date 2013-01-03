@@ -4,6 +4,8 @@ timeintervaltools.TimeInterval
 .. inheritance-diagram:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval
+
 .. autoclass:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval
    :noindex:
 

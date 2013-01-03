@@ -4,6 +4,8 @@ documentationtools.ReSTHeading
 .. inheritance-diagram:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading
+
 .. autoclass:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading
    :noindex:
 

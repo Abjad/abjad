@@ -4,6 +4,8 @@ instrumenttools.BassVoice
 .. inheritance-diagram:: abjad.tools.instrumenttools.BassVoice.BassVoice.BassVoice
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.BassVoice.BassVoice.BassVoice
+
 .. autoclass:: abjad.tools.instrumenttools.BassVoice.BassVoice.BassVoice
    :noindex:
 

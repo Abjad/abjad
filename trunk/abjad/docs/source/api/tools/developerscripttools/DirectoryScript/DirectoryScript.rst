@@ -4,6 +4,8 @@ developerscripttools.DirectoryScript
 .. inheritance-diagram:: abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript
+
 .. autoclass:: abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript
    :noindex:
 

@@ -4,6 +4,8 @@ abjadbooktools.LaTeXOutputFormat
 .. inheritance-diagram:: abjad.tools.abjadbooktools.LaTeXOutputFormat.LaTeXOutputFormat.LaTeXOutputFormat
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.abjadbooktools.LaTeXOutputFormat.LaTeXOutputFormat.LaTeXOutputFormat
+
 .. autoclass:: abjad.tools.abjadbooktools.LaTeXOutputFormat.LaTeXOutputFormat.LaTeXOutputFormat
    :noindex:
 

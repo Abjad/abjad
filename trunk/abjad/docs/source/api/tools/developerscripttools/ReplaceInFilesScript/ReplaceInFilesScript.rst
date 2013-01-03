@@ -4,6 +4,8 @@ developerscripttools.ReplaceInFilesScript
 .. inheritance-diagram:: abjad.tools.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript
+
 .. autoclass:: abjad.tools.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript
    :noindex:
 

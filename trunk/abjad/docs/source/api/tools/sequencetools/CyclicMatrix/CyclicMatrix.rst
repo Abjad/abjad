@@ -4,6 +4,8 @@ sequencetools.CyclicMatrix
 .. inheritance-diagram:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix
+
 .. autoclass:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix
    :noindex:
 

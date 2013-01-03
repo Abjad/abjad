@@ -4,6 +4,8 @@ pitchtools.HarmonicIntervalClassObject
 .. inheritance-diagram:: abjad.tools.pitchtools.HarmonicIntervalClassObject.HarmonicIntervalClassObject.HarmonicIntervalClassObject
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.HarmonicIntervalClassObject.HarmonicIntervalClassObject.HarmonicIntervalClassObject
+
 .. autoclass:: abjad.tools.pitchtools.HarmonicIntervalClassObject.HarmonicIntervalClassObject.HarmonicIntervalClassObject
    :noindex:
 

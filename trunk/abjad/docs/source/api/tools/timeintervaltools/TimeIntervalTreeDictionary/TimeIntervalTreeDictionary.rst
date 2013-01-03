@@ -4,6 +4,8 @@ timeintervaltools.TimeIntervalTreeDictionary
 .. inheritance-diagram:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary
+
 .. autoclass:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary
    :noindex:
 

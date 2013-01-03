@@ -4,6 +4,8 @@ exceptiontools.MeasureError
 .. inheritance-diagram:: abjad.tools.exceptiontools.MeasureError.MeasureError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.MeasureError.MeasureError
+
 .. autoclass:: abjad.tools.exceptiontools.MeasureError.MeasureError
    :noindex:
 

@@ -4,6 +4,8 @@ documentationtools.ReSTDocument
 .. inheritance-diagram:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument
+
 .. autoclass:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument
    :noindex:
 

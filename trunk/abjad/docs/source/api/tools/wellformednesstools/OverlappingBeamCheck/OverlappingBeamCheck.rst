@@ -4,6 +4,8 @@ wellformednesstools.OverlappingBeamCheck
 .. inheritance-diagram:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck
+
 .. autoclass:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck
    :noindex:
 

@@ -4,6 +4,8 @@ tonalitytools.Mode
 .. inheritance-diagram:: abjad.tools.tonalitytools.Mode.Mode.Mode
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.tonalitytools.Mode.Mode.Mode
+
 .. autoclass:: abjad.tools.tonalitytools.Mode.Mode.Mode
    :noindex:
 

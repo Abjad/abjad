@@ -4,6 +4,8 @@ developerscripttools.AbjGrepScript
 .. inheritance-diagram:: abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript
+
 .. autoclass:: abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript
    :noindex:
 

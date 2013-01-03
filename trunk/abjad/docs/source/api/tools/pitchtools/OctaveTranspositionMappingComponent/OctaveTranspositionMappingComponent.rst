@@ -4,6 +4,8 @@ pitchtools.OctaveTranspositionMappingComponent
 .. inheritance-diagram:: abjad.tools.pitchtools.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent
+
 .. autoclass:: abjad.tools.pitchtools.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent
    :noindex:
 

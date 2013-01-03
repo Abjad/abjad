@@ -4,6 +4,8 @@ notetools.Note
 .. inheritance-diagram:: abjad.tools.notetools.Note.Note.Note
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.notetools.Note.Note.Note
+
 .. autoclass:: abjad.tools.notetools.Note.Note.Note
    :noindex:
 

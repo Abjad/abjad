@@ -4,6 +4,8 @@ exceptiontools.AssignabilityError
 .. inheritance-diagram:: abjad.tools.exceptiontools.AssignabilityError.AssignabilityError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.AssignabilityError.AssignabilityError
+
 .. autoclass:: abjad.tools.exceptiontools.AssignabilityError.AssignabilityError
    :noindex:
 

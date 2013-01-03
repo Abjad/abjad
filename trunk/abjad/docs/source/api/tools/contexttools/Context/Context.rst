@@ -4,6 +4,8 @@ contexttools.Context
 .. inheritance-diagram:: abjad.tools.contexttools.Context.Context.Context
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.contexttools.Context.Context.Context
+
 .. autoclass:: abjad.tools.contexttools.Context.Context.Context
    :noindex:
 

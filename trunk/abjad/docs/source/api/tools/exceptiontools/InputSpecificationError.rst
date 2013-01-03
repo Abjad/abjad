@@ -4,6 +4,8 @@ exceptiontools.InputSpecificationError
 .. inheritance-diagram:: abjad.tools.exceptiontools.InputSpecificationError.InputSpecificationError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.InputSpecificationError.InputSpecificationError
+
 .. autoclass:: abjad.tools.exceptiontools.InputSpecificationError.InputSpecificationError
    :noindex:
 

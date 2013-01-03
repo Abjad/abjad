@@ -4,6 +4,8 @@ pitchtools.NamedChromaticPitchClassSegment
 .. inheritance-diagram:: abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment
+
 .. autoclass:: abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment
    :noindex:
 

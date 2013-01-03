@@ -4,6 +4,8 @@ exceptiontools.TempoError
 .. inheritance-diagram:: abjad.tools.exceptiontools.TempoError.TempoError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.TempoError.TempoError
+
 .. autoclass:: abjad.tools.exceptiontools.TempoError.TempoError
    :noindex:
 

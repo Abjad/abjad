@@ -4,6 +4,8 @@ instrumenttools.Marimba
 .. inheritance-diagram:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba
+
 .. autoclass:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba
    :noindex:
 

@@ -4,6 +4,8 @@ quantizationtools.ParallelJobHandler
 .. inheritance-diagram:: abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler
+
 .. autoclass:: abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler
    :noindex:
 

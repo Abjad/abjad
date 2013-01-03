@@ -4,6 +4,8 @@ contexttools.TempoMarkInventory
 .. inheritance-diagram:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory
+
 .. autoclass:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory
    :noindex:
 

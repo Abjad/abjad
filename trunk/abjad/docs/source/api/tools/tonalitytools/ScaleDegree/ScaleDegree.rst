@@ -4,6 +4,8 @@ tonalitytools.ScaleDegree
 .. inheritance-diagram:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree
+
 .. autoclass:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree
    :noindex:
 

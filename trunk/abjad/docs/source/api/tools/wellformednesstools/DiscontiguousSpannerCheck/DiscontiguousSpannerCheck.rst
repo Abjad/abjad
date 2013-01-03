@@ -4,6 +4,8 @@ wellformednesstools.DiscontiguousSpannerCheck
 .. inheritance-diagram:: abjad.tools.wellformednesstools.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.wellformednesstools.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck
+
 .. autoclass:: abjad.tools.wellformednesstools.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck
    :noindex:
 

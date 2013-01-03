@@ -4,6 +4,8 @@ beamtools.MultipartBeamSpanner
 .. inheritance-diagram:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner
+
 .. autoclass:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner
    :noindex:
 

@@ -4,6 +4,8 @@ abctools.ImmutableAbjadObject
 .. inheritance-diagram:: abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject
+
 .. autoclass:: abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject
    :noindex:
 

@@ -29,6 +29,7 @@ import sys
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
     'abjad.docs.source._ext.abjad_book',
+    'abjad.docs.source._ext.abjad_lineage',
     'abjad.docs.source._ext.autodoc',
     'abjad.docs.source._ext.inheritance_diagram',
     'sphinx.ext.coverage',
@@ -149,7 +150,9 @@ html_last_updated_fmt = '%b %d, %Y'
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
-#html_additional_pages = {}
+html_additional_pages = {
+    'index': 'indexcontent.html',
+}
 
 # If false, no module index is generated.
 html_domain_indices = False

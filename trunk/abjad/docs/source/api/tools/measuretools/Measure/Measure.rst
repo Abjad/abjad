@@ -4,6 +4,8 @@ measuretools.Measure
 .. inheritance-diagram:: abjad.tools.measuretools.Measure.Measure.Measure
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.measuretools.Measure.Measure.Measure
+
 .. autoclass:: abjad.tools.measuretools.Measure.Measure.Measure
    :noindex:
 

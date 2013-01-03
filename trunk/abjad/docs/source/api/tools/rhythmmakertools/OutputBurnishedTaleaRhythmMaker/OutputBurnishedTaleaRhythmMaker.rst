@@ -4,6 +4,8 @@ rhythmmakertools.OutputBurnishedTaleaRhythmMaker
 .. inheritance-diagram:: abjad.tools.rhythmmakertools.OutputBurnishedTaleaRhythmMaker.OutputBurnishedTaleaRhythmMaker.OutputBurnishedTaleaRhythmMaker
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.rhythmmakertools.OutputBurnishedTaleaRhythmMaker.OutputBurnishedTaleaRhythmMaker.OutputBurnishedTaleaRhythmMaker
+
 .. autoclass:: abjad.tools.rhythmmakertools.OutputBurnishedTaleaRhythmMaker.OutputBurnishedTaleaRhythmMaker.OutputBurnishedTaleaRhythmMaker
    :noindex:
 

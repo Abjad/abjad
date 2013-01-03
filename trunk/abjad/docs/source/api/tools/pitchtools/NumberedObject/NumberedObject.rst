@@ -4,6 +4,8 @@ pitchtools.NumberedObject
 .. inheritance-diagram:: abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject
+
 .. autoclass:: abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject
    :noindex:
 

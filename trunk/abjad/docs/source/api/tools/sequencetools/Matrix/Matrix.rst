@@ -4,6 +4,8 @@ sequencetools.Matrix
 .. inheritance-diagram:: abjad.tools.sequencetools.Matrix.Matrix.Matrix
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.sequencetools.Matrix.Matrix.Matrix
+
 .. autoclass:: abjad.tools.sequencetools.Matrix.Matrix.Matrix
    :noindex:
 

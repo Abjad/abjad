@@ -4,6 +4,8 @@ wellformednesstools.Check
 .. inheritance-diagram:: abjad.tools.wellformednesstools.Check.Check.Check
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.wellformednesstools.Check.Check.Check
+
 .. autoclass:: abjad.tools.wellformednesstools.Check.Check.Check
    :noindex:
 

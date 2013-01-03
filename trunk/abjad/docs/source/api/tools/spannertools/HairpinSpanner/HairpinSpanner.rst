@@ -4,6 +4,8 @@ spannertools.HairpinSpanner
 .. inheritance-diagram:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner
+
 .. autoclass:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner
    :noindex:
 

@@ -4,6 +4,8 @@ tonalitytools.OmissionIndicator
 .. inheritance-diagram:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator
+
 .. autoclass:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator
    :noindex:
 

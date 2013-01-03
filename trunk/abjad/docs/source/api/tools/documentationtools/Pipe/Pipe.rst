@@ -4,6 +4,8 @@ documentationtools.Pipe
 .. inheritance-diagram:: abjad.tools.documentationtools.Pipe.Pipe.Pipe
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.documentationtools.Pipe.Pipe.Pipe
+
 .. autoclass:: abjad.tools.documentationtools.Pipe.Pipe.Pipe
    :noindex:
 

@@ -97,6 +97,9 @@ class ClassDocumenter(Documenter):
         document.append(documentationtools.ReSTInheritanceDiagram(
             argument=module_name,
             ))
+        document.append(documentationtools.ReSTLineageDirective(
+            argument=module_name,
+            ))
         document.append(documentationtools.ReSTAutodocDirective(
             argument=module_name,
             directive='autoclass',

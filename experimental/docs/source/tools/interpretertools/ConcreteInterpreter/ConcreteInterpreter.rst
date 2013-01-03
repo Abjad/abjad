@@ -4,6 +4,8 @@ interpretertools.ConcreteInterpreter
 .. inheritance-diagram:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter
    :private-bases:
 
+.. abjad-lineage:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter
+
 .. autoclass:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter
    :noindex:
 
@@ -13,7 +15,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.storage_format
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Methods
 -------
@@ -45,7 +47,7 @@ Methods
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.instantiate_score
    :noindex:
 
-    Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
+   Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_additional_parameters
    :noindex:
@@ -107,12 +109,12 @@ Methods
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.store_single_context_setting_by_context
    :noindex:
 
-    Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
+   Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.store_single_context_settings_by_context
    :noindex:
 
-    Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
+   Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.supply_missing_region_commands
    :noindex:
@@ -120,7 +122,7 @@ Methods
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.unpack_multiple_context_settings_for_score
    :noindex:
 
-    Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
+   Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
 
 Special Methods
 ---------------
@@ -131,34 +133,34 @@ Special Methods
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.__eq__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.__ge__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.__gt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.__le__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.__lt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.__ne__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.__repr__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

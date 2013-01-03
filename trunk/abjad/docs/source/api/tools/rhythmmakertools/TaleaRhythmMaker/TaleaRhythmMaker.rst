@@ -4,6 +4,8 @@ rhythmmakertools.TaleaRhythmMaker
 .. inheritance-diagram:: abjad.tools.rhythmmakertools.TaleaRhythmMaker.TaleaRhythmMaker.TaleaRhythmMaker
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.rhythmmakertools.TaleaRhythmMaker.TaleaRhythmMaker.TaleaRhythmMaker
+
 .. autoclass:: abjad.tools.rhythmmakertools.TaleaRhythmMaker.TaleaRhythmMaker.TaleaRhythmMaker
    :noindex:
 

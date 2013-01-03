@@ -4,6 +4,8 @@ instrumenttools.TenorTrombone
 .. inheritance-diagram:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone
+
 .. autoclass:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone
    :noindex:
 

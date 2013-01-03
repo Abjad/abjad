@@ -4,6 +4,8 @@ exceptiontools.MissingSpannerError
 .. inheritance-diagram:: abjad.tools.exceptiontools.MissingSpannerError.MissingSpannerError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.MissingSpannerError.MissingSpannerError
+
 .. autoclass:: abjad.tools.exceptiontools.MissingSpannerError.MissingSpannerError
    :noindex:
 

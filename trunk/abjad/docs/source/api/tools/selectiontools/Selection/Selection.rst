@@ -4,6 +4,8 @@ selectiontools.Selection
 .. inheritance-diagram:: abjad.tools.selectiontools.Selection.Selection.Selection
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.selectiontools.Selection.Selection.Selection
+
 .. autoclass:: abjad.tools.selectiontools.Selection.Selection.Selection
    :noindex:
 

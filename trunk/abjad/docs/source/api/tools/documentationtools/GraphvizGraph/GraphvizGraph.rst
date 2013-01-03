@@ -4,6 +4,8 @@ documentationtools.GraphvizGraph
 .. inheritance-diagram:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph
+
 .. autoclass:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph
    :noindex:
 

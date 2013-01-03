@@ -4,6 +4,8 @@ contexttools.ContextMark
 .. inheritance-diagram:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark
+
 .. autoclass:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark
    :noindex:
 

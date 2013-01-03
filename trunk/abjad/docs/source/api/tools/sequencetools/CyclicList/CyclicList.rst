@@ -4,6 +4,8 @@ sequencetools.CyclicList
 .. inheritance-diagram:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList
+
 .. autoclass:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList
    :noindex:
 

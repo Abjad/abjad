@@ -4,6 +4,8 @@ scoretemplatetools.GroupedRhythmicStavesScoreTemplate
 .. inheritance-diagram:: abjad.tools.scoretemplatetools.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.scoretemplatetools.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate
+
 .. autoclass:: abjad.tools.scoretemplatetools.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate
    :noindex:
 

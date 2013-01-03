@@ -4,6 +4,8 @@ voicetools.Voice
 .. inheritance-diagram:: abjad.tools.voicetools.Voice.Voice.Voice
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.voicetools.Voice.Voice.Voice
+
 .. autoclass:: abjad.tools.voicetools.Voice.Voice.Voice
    :noindex:
 

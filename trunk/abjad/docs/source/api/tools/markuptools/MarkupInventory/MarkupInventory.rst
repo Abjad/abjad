@@ -4,6 +4,8 @@ markuptools.MarkupInventory
 .. inheritance-diagram:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory
+
 .. autoclass:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory
    :noindex:
 

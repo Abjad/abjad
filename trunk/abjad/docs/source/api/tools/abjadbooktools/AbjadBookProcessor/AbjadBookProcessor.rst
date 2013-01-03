@@ -4,6 +4,8 @@ abjadbooktools.AbjadBookProcessor
 .. inheritance-diagram:: abjad.tools.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor
+
 .. autoclass:: abjad.tools.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor
    :noindex:
 

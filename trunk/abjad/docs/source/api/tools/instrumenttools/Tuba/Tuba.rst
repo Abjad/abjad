@@ -4,6 +4,8 @@ instrumenttools.Tuba
 .. inheritance-diagram:: abjad.tools.instrumenttools.Tuba.Tuba.Tuba
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.Tuba.Tuba.Tuba
+
 .. autoclass:: abjad.tools.instrumenttools.Tuba.Tuba.Tuba
    :noindex:
 

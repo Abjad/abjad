@@ -4,6 +4,8 @@ pitchtools.HarmonicCounterpointInterval
 .. inheritance-diagram:: abjad.tools.pitchtools.HarmonicCounterpointInterval.HarmonicCounterpointInterval.HarmonicCounterpointInterval
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.HarmonicCounterpointInterval.HarmonicCounterpointInterval.HarmonicCounterpointInterval
+
 .. autoclass:: abjad.tools.pitchtools.HarmonicCounterpointInterval.HarmonicCounterpointInterval.HarmonicCounterpointInterval
    :noindex:
 

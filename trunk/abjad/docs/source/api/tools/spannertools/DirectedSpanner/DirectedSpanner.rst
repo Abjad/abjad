@@ -4,6 +4,8 @@ spannertools.DirectedSpanner
 .. inheritance-diagram:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner
+
 .. autoclass:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner
    :noindex:
 

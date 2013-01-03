@@ -4,6 +4,8 @@ sievetools.ResidueClassExpression
 .. inheritance-diagram:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression
+
 .. autoclass:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression
    :noindex:
 

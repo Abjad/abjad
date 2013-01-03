@@ -4,6 +4,8 @@ scoretools.PianoStaff
 .. inheritance-diagram:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff
+
 .. autoclass:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff
    :noindex:
 

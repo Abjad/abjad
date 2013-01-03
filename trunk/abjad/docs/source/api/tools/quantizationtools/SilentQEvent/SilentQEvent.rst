@@ -4,6 +4,8 @@ quantizationtools.SilentQEvent
 .. inheritance-diagram:: abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent
+
 .. autoclass:: abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent
    :noindex:
 

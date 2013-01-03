@@ -4,6 +4,8 @@ developerscripttools.ReplacePromptsScript
 .. inheritance-diagram:: abjad.tools.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript
+
 .. autoclass:: abjad.tools.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript
    :noindex:
 

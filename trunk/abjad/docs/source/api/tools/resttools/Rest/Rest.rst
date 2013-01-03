@@ -4,6 +4,8 @@ resttools.Rest
 .. inheritance-diagram:: abjad.tools.resttools.Rest.Rest.Rest
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.resttools.Rest.Rest.Rest
+
 .. autoclass:: abjad.tools.resttools.Rest.Rest.Rest
    :noindex:
 

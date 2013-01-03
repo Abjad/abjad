@@ -4,6 +4,8 @@ exceptiontools.UnboundedTimeIntervalError
 .. inheritance-diagram:: abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError
+
 .. autoclass:: abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError
    :noindex:
 

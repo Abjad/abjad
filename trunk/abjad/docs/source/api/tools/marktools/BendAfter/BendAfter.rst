@@ -4,6 +4,8 @@ marktools.BendAfter
 .. inheritance-diagram:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter
+
 .. autoclass:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter
    :noindex:
 

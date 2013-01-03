@@ -4,6 +4,8 @@ scoretools.StaffGroup
 .. inheritance-diagram:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup
+
 .. autoclass:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup
    :noindex:
 

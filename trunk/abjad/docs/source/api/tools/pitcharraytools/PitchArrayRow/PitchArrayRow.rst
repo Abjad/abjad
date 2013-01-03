@@ -4,6 +4,8 @@ pitcharraytools.PitchArrayRow
 .. inheritance-diagram:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow
+
 .. autoclass:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow
    :noindex:
 

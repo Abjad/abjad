@@ -4,6 +4,8 @@ beamtools.BeamSpanner
 .. inheritance-diagram:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner
+
 .. autoclass:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner
    :noindex:
 

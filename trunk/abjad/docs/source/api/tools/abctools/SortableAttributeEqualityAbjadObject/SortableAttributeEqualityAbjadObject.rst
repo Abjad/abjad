@@ -4,6 +4,8 @@ abctools.SortableAttributeEqualityAbjadObject
 .. inheritance-diagram:: abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject
+
 .. autoclass:: abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject
    :noindex:
 

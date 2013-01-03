@@ -4,6 +4,8 @@ timeintervaltools.TimeIntervalMixin
 .. inheritance-diagram:: abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin
+
 .. autoclass:: abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin
    :noindex:
 

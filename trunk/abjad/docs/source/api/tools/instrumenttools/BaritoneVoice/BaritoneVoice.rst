@@ -4,6 +4,8 @@ instrumenttools.BaritoneVoice
 .. inheritance-diagram:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice
+
 .. autoclass:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice
    :noindex:
 

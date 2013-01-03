@@ -4,6 +4,8 @@ exceptiontools.SchemeParserFinishedException
 .. inheritance-diagram:: abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException
+
 .. autoclass:: abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException
    :noindex:
 

@@ -4,6 +4,8 @@ timesignaturetools.MetricalHierarchy
 .. inheritance-diagram:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy
+
 .. autoclass:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy
    :noindex:
 

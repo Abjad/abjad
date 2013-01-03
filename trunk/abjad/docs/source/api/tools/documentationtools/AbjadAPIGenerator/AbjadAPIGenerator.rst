@@ -4,6 +4,8 @@ documentationtools.AbjadAPIGenerator
 .. inheritance-diagram:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator
+
 .. autoclass:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator
    :noindex:
 

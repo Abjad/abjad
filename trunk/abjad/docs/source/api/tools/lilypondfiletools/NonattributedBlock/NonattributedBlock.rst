@@ -4,6 +4,8 @@ lilypondfiletools.NonattributedBlock
 .. inheritance-diagram:: abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock
+
 .. autoclass:: abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock
    :noindex:
 

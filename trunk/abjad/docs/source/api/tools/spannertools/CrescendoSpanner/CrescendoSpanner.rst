@@ -4,6 +4,8 @@ spannertools.CrescendoSpanner
 .. inheritance-diagram:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner
+
 .. autoclass:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner
    :noindex:
 

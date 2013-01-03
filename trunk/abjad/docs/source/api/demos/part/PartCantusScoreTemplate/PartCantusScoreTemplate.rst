@@ -4,6 +4,8 @@ part.PartCantusScoreTemplate
 .. inheritance-diagram:: abjad.demos.part.PartCantusScoreTemplate.PartCantusScoreTemplate.PartCantusScoreTemplate
    :private-bases:
 
+.. abjad-lineage:: abjad.demos.part.PartCantusScoreTemplate.PartCantusScoreTemplate.PartCantusScoreTemplate
+
 .. autoclass:: abjad.demos.part.PartCantusScoreTemplate.PartCantusScoreTemplate.PartCantusScoreTemplate
    :noindex:
 

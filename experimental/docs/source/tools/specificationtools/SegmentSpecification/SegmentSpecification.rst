@@ -4,6 +4,8 @@ specificationtools.SegmentSpecification
 .. inheritance-diagram:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification
    :private-bases:
 
+.. abjad-lineage:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification
+
 .. autoclass:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification
    :noindex:
 
@@ -61,12 +63,12 @@ Special Methods
 .. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__eq__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__ge__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__getitem__
    :noindex:
@@ -74,22 +76,22 @@ Special Methods
 .. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__gt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__le__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__lt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__ne__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__repr__
    :noindex:

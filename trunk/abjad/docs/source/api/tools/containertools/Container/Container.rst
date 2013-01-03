@@ -4,6 +4,8 @@ containertools.Container
 .. inheritance-diagram:: abjad.tools.containertools.Container.Container.Container
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.containertools.Container.Container.Container
+
 .. autoclass:: abjad.tools.containertools.Container.Container.Container
    :noindex:
 

@@ -4,6 +4,8 @@ contexttools.InstrumentMark
 .. inheritance-diagram:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark
+
 .. autoclass:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark
    :noindex:
 

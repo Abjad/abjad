@@ -4,6 +4,8 @@ developerscripttools.DeveloperScript
 .. inheritance-diagram:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript
+
 .. autoclass:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript
    :noindex:
 

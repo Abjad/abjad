@@ -4,6 +4,8 @@ documentationtools.ReSTTOCDirective
 .. inheritance-diagram:: abjad.tools.documentationtools.ReSTTOCDirective.ReSTTOCDirective.ReSTTOCDirective
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.documentationtools.ReSTTOCDirective.ReSTTOCDirective.ReSTTOCDirective
+
 .. autoclass:: abjad.tools.documentationtools.ReSTTOCDirective.ReSTTOCDirective.ReSTTOCDirective
    :noindex:
 

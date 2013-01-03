@@ -4,6 +4,8 @@ containertools.FixedDurationContainer
 .. inheritance-diagram:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer
+
 .. autoclass:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer
    :noindex:
 

@@ -4,6 +4,8 @@ instrumenttools.Piccolo
 .. inheritance-diagram:: abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo
+
 .. autoclass:: abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo
    :noindex:
 

@@ -4,6 +4,8 @@ lilypondparsertools.LilyPondSyntacticalDefinition
 .. inheritance-diagram:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition
+
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition
    :noindex:
 

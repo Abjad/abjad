@@ -4,6 +4,8 @@ wellformednesstools.MisduratedMeasureCheck
 .. inheritance-diagram:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck
+
 .. autoclass:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck
    :noindex:
 

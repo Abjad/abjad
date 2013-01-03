@@ -4,6 +4,8 @@ pitchtools.InversionEquivalentChromaticIntervalClass
 .. inheritance-diagram:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass.InversionEquivalentChromaticIntervalClass.InversionEquivalentChromaticIntervalClass
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass.InversionEquivalentChromaticIntervalClass.InversionEquivalentChromaticIntervalClass
+
 .. autoclass:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass.InversionEquivalentChromaticIntervalClass.InversionEquivalentChromaticIntervalClass
    :noindex:
 

@@ -4,6 +4,8 @@ wellformednesstools.MisrepresentedFlagCheck
 .. inheritance-diagram:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck
+
 .. autoclass:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck
    :noindex:
 

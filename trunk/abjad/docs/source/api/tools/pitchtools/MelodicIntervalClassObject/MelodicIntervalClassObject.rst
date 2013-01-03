@@ -4,6 +4,8 @@ pitchtools.MelodicIntervalClassObject
 .. inheritance-diagram:: abjad.tools.pitchtools.MelodicIntervalClassObject.MelodicIntervalClassObject.MelodicIntervalClassObject
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.MelodicIntervalClassObject.MelodicIntervalClassObject.MelodicIntervalClassObject
+
 .. autoclass:: abjad.tools.pitchtools.MelodicIntervalClassObject.MelodicIntervalClassObject.MelodicIntervalClassObject
    :noindex:
 

@@ -4,6 +4,8 @@ exceptiontools.UndefinedSpacingError
 .. inheritance-diagram:: abjad.tools.exceptiontools.UndefinedSpacingError.UndefinedSpacingError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.UndefinedSpacingError.UndefinedSpacingError
+
 .. autoclass:: abjad.tools.exceptiontools.UndefinedSpacingError.UndefinedSpacingError
    :noindex:
 

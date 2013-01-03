@@ -4,6 +4,8 @@ developerscripttools.SvnCommitScript
 .. inheritance-diagram:: abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript
+
 .. autoclass:: abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript
    :noindex:
 

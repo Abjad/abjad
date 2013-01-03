@@ -4,6 +4,8 @@ pitchtools.InversionEquivalentDiatonicIntervalClass
 .. inheritance-diagram:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass
+
 .. autoclass:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass
    :noindex:
 

@@ -4,6 +4,8 @@ rhythmmakertools.SkipRhythmMaker
 .. inheritance-diagram:: abjad.tools.rhythmmakertools.SkipRhythmMaker.SkipRhythmMaker.SkipRhythmMaker
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.rhythmmakertools.SkipRhythmMaker.SkipRhythmMaker.SkipRhythmMaker
+
 .. autoclass:: abjad.tools.rhythmmakertools.SkipRhythmMaker.SkipRhythmMaker.SkipRhythmMaker
    :noindex:
 

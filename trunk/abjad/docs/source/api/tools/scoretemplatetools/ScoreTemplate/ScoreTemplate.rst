@@ -4,6 +4,8 @@ scoretemplatetools.ScoreTemplate
 .. inheritance-diagram:: abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate
+
 .. autoclass:: abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate
    :noindex:
 

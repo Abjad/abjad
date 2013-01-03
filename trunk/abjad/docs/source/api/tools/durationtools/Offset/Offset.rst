@@ -4,6 +4,8 @@ durationtools.Offset
 .. inheritance-diagram:: abjad.tools.durationtools.Offset.Offset.Offset
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.durationtools.Offset.Offset.Offset
+
 .. autoclass:: abjad.tools.durationtools.Offset.Offset.Offset
    :noindex:
 

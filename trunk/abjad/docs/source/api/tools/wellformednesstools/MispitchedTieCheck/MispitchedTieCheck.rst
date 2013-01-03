@@ -4,6 +4,8 @@ wellformednesstools.MispitchedTieCheck
 .. inheritance-diagram:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck
+
 .. autoclass:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck
    :noindex:
 

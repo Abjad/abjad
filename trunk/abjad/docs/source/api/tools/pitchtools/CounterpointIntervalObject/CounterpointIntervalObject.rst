@@ -4,6 +4,8 @@ pitchtools.CounterpointIntervalObject
 .. inheritance-diagram:: abjad.tools.pitchtools.CounterpointIntervalObject.CounterpointIntervalObject.CounterpointIntervalObject
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.CounterpointIntervalObject.CounterpointIntervalObject.CounterpointIntervalObject
+
 .. autoclass:: abjad.tools.pitchtools.CounterpointIntervalObject.CounterpointIntervalObject.CounterpointIntervalObject
    :noindex:
 

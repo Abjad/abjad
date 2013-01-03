@@ -4,6 +4,8 @@ durationtools.Multiplier
 .. inheritance-diagram:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier
+
 .. autoclass:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier
    :noindex:
 

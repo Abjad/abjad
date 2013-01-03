@@ -4,6 +4,8 @@ instrumenttools.Trumpet
 .. inheritance-diagram:: abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet
+
 .. autoclass:: abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet
    :noindex:
 

@@ -4,6 +4,8 @@ tonalitytools.ChordClass
 .. inheritance-diagram:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass
+
 .. autoclass:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass
    :noindex:
 

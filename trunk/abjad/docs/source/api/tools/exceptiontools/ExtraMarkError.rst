@@ -4,6 +4,8 @@ exceptiontools.ExtraMarkError
 .. inheritance-diagram:: abjad.tools.exceptiontools.ExtraMarkError.ExtraMarkError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.ExtraMarkError.ExtraMarkError
+
 .. autoclass:: abjad.tools.exceptiontools.ExtraMarkError.ExtraMarkError
    :noindex:
 

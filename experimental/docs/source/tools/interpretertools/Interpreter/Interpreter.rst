@@ -4,6 +4,8 @@ interpretertools.Interpreter
 .. inheritance-diagram:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter
    :private-bases:
 
+.. abjad-lineage:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter
+
 .. autoclass:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter
    :noindex:
 
@@ -13,7 +15,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.storage_format
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Methods
 -------
@@ -42,34 +44,34 @@ Special Methods
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.__eq__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.__ge__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.__gt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.__le__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.__lt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.__ne__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.__repr__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

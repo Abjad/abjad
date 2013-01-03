@@ -4,6 +4,8 @@ exceptiontools.MissingMarkError
 .. inheritance-diagram:: abjad.tools.exceptiontools.MissingMarkError.MissingMarkError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.MissingMarkError.MissingMarkError
+
 .. autoclass:: abjad.tools.exceptiontools.MissingMarkError.MissingMarkError
    :noindex:
 

@@ -4,6 +4,8 @@ tonalitytools.ExtentIndicator
 .. inheritance-diagram:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator
+
 .. autoclass:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator
    :noindex:
 

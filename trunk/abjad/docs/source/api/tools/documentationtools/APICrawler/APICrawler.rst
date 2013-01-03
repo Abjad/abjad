@@ -4,6 +4,8 @@ documentationtools.APICrawler
 .. inheritance-diagram:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler
+
 .. autoclass:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler
    :noindex:
 

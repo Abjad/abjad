@@ -4,6 +4,8 @@ settingtools.SetMethodMixin
 .. inheritance-diagram:: experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin
    :private-bases:
 
+.. abjad-lineage:: experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin
+
 .. autoclass:: experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin
    :noindex:
 
@@ -13,7 +15,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.storage_format
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Methods
 -------
@@ -66,34 +68,34 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__eq__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__ge__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__gt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__le__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__lt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__ne__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__repr__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

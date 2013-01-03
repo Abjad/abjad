@@ -4,6 +4,8 @@ instrumenttools.ContraltoVoice
 .. inheritance-diagram:: abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice
+
 .. autoclass:: abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice
    :noindex:
 

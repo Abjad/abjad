@@ -4,6 +4,8 @@ marktools.DirectedMark
 .. inheritance-diagram:: abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark
+
 .. autoclass:: abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark
    :noindex:
 

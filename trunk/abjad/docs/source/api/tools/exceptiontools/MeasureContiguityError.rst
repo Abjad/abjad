@@ -4,6 +4,8 @@ exceptiontools.MeasureContiguityError
 .. inheritance-diagram:: abjad.tools.exceptiontools.MeasureContiguityError.MeasureContiguityError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.MeasureContiguityError.MeasureContiguityError
+
 .. autoclass:: abjad.tools.exceptiontools.MeasureContiguityError.MeasureContiguityError
    :noindex:
 

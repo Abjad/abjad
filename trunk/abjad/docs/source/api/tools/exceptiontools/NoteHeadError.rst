@@ -4,6 +4,8 @@ exceptiontools.NoteHeadError
 .. inheritance-diagram:: abjad.tools.exceptiontools.NoteHeadError.NoteHeadError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.NoteHeadError.NoteHeadError
+
 .. autoclass:: abjad.tools.exceptiontools.NoteHeadError.NoteHeadError
    :noindex:
 

@@ -4,6 +4,8 @@ lilypondfiletools.HeaderBlock
 .. inheritance-diagram:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock
+
 .. autoclass:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock
    :noindex:
 

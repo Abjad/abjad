@@ -4,6 +4,8 @@ exceptiontools.ImpreciseTempoError
 .. inheritance-diagram:: abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError
+
 .. autoclass:: abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError
    :noindex:
 

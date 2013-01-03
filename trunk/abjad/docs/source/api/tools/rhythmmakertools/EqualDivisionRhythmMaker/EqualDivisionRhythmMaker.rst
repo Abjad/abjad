@@ -4,6 +4,8 @@ rhythmmakertools.EqualDivisionRhythmMaker
 .. inheritance-diagram:: abjad.tools.rhythmmakertools.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.rhythmmakertools.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker
+
 .. autoclass:: abjad.tools.rhythmmakertools.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker
    :noindex:
 

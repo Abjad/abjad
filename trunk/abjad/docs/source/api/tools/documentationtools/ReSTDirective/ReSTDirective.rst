@@ -4,6 +4,8 @@ documentationtools.ReSTDirective
 .. inheritance-diagram:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective
+
 .. autoclass:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective
    :noindex:
 

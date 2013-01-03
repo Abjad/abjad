@@ -6,6 +6,11 @@ from abjad.docs.source._ext.abjad_book import \
     visit_abjad_book_html, visit_abjad_book_latex
 
 
+
+class InheritanceException(Exception):
+    pass
+
+
 class abjad_lineage(nodes.General, nodes.Element):
     pass
 
@@ -19,22 +24,27 @@ class AbjadLineage(Directive):
     option_spec = {}
 
     def run(self):
+        from abjad.tools import documentationtools
+
         node = abjad_lineage()
         node.document = self.state.document
         env = self.state.document.settings.env
-        class_name = self.arguments[0]
+        parts = self.arguments[0].rpartition('.')
+        module_name, class_name = parts[0], parts[2]
 
         # Create a graph starting with the list of classes
         try:
-            if class_name.startswith('abjad'):
+            if module_name.startswith('abjad'):
                 addresses = ('abjad',)
-            elif class_name.startswith('experimental'):
+            elif module_name.startswith('experimental'):
                 addresses = ('abjad', 'experimental')
             else:
-                raise InheritanceException
+                raise InheritanceException(
+                    'Could not import class {!r} specified for '
+                    'inheritance diagram'.format(self.arguments[0]))
             lineage = documentationtools.InheritanceGraph(
                 addresses=addresses,
-                lineage_addresses=(class_name,)
+                lineage_addresses=((module_name, class_name),)
                 ) 
         except InheritanceException, err:
             return [node.document.reporter.warning(err.args[0],

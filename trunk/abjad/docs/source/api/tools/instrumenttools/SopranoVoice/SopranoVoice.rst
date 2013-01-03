@@ -4,6 +4,8 @@ instrumenttools.SopranoVoice
 .. inheritance-diagram:: abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice
+
 .. autoclass:: abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice
    :noindex:
 

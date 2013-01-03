@@ -4,6 +4,8 @@ timeexpressiontools.OffsetExpression
 .. inheritance-diagram:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression
    :private-bases:
 
+.. abjad-lineage:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression
+
 .. autoclass:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression
    :noindex:
 
@@ -28,7 +30,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.storage_format
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Methods
 -------
@@ -51,29 +53,29 @@ Special Methods
 .. automethod:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__ge__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__gt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__le__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__lt__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__ne__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__repr__
    :noindex:
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

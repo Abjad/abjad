@@ -4,6 +4,8 @@ quantizationtools.UnweightedSearchTree
 .. inheritance-diagram:: abjad.tools.quantizationtools.UnweightedSearchTree.UnweightedSearchTree.UnweightedSearchTree
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.quantizationtools.UnweightedSearchTree.UnweightedSearchTree.UnweightedSearchTree
+
 .. autoclass:: abjad.tools.quantizationtools.UnweightedSearchTree.UnweightedSearchTree.UnweightedSearchTree
    :noindex:
 

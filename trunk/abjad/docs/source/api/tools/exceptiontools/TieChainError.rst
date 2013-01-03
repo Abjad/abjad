@@ -4,6 +4,8 @@ exceptiontools.TieChainError
 .. inheritance-diagram:: abjad.tools.exceptiontools.TieChainError.TieChainError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.TieChainError.TieChainError
+
 .. autoclass:: abjad.tools.exceptiontools.TieChainError.TieChainError
    :noindex:
 

@@ -4,6 +4,8 @@ tietools.TieSpanner
 .. inheritance-diagram:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner
+
 .. autoclass:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner
    :noindex:
 

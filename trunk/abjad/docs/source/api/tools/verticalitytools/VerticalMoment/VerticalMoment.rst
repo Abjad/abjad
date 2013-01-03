@@ -4,6 +4,8 @@ verticalitytools.VerticalMoment
 .. inheritance-diagram:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment
+
 .. autoclass:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment
    :noindex:
 

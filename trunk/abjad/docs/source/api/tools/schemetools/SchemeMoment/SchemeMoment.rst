@@ -4,6 +4,8 @@ schemetools.SchemeMoment
 .. inheritance-diagram:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment
+
 .. autoclass:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment
    :noindex:
 

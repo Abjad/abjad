@@ -4,6 +4,8 @@ pitchtools.HarmonicChromaticIntervalSet
 .. inheritance-diagram:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet
+
 .. autoclass:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet
    :noindex:
 

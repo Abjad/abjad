@@ -4,6 +4,8 @@ instrumenttools.UntunedPercussion
 .. inheritance-diagram:: abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion
+
 .. autoclass:: abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion
    :noindex:
 

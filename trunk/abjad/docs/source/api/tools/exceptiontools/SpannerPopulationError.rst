@@ -4,6 +4,8 @@ exceptiontools.SpannerPopulationError
 .. inheritance-diagram:: abjad.tools.exceptiontools.SpannerPopulationError.SpannerPopulationError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.SpannerPopulationError.SpannerPopulationError
+
 .. autoclass:: abjad.tools.exceptiontools.SpannerPopulationError.SpannerPopulationError
    :noindex:
 

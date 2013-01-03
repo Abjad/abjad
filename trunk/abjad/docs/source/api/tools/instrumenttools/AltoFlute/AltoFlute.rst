@@ -4,6 +4,8 @@ instrumenttools.AltoFlute
 .. inheritance-diagram:: abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute
+
 .. autoclass:: abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute
    :noindex:
 

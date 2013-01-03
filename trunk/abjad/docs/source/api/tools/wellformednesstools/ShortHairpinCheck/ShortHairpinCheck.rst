@@ -4,6 +4,8 @@ wellformednesstools.ShortHairpinCheck
 .. inheritance-diagram:: abjad.tools.wellformednesstools.ShortHairpinCheck.ShortHairpinCheck.ShortHairpinCheck
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.wellformednesstools.ShortHairpinCheck.ShortHairpinCheck.ShortHairpinCheck
+
 .. autoclass:: abjad.tools.wellformednesstools.ShortHairpinCheck.ShortHairpinCheck.ShortHairpinCheck
    :noindex:
 

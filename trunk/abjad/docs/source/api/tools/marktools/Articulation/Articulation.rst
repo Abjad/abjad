@@ -4,6 +4,8 @@ marktools.Articulation
 .. inheritance-diagram:: abjad.tools.marktools.Articulation.Articulation.Articulation
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.marktools.Articulation.Articulation.Articulation
+
 .. autoclass:: abjad.tools.marktools.Articulation.Articulation.Articulation
    :noindex:
 

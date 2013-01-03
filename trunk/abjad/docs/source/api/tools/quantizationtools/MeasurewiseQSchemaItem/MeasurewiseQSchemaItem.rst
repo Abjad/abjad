@@ -4,6 +4,8 @@ quantizationtools.MeasurewiseQSchemaItem
 .. inheritance-diagram:: abjad.tools.quantizationtools.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.quantizationtools.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem
+
 .. autoclass:: abjad.tools.quantizationtools.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem
    :noindex:
 

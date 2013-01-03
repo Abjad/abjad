@@ -4,6 +4,8 @@ componenttools.Parentage
 .. inheritance-diagram:: abjad.tools.componenttools.Parentage.Parentage.Parentage
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.componenttools.Parentage.Parentage.Parentage
+
 .. autoclass:: abjad.tools.componenttools.Parentage.Parentage.Parentage
    :noindex:
 

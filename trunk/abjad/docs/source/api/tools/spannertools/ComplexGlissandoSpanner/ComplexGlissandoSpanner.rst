@@ -4,6 +4,8 @@ spannertools.ComplexGlissandoSpanner
 .. inheritance-diagram:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner
+
 .. autoclass:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner
    :noindex:
 

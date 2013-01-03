@@ -4,6 +4,8 @@ lilypondfiletools.LilyPondVersionToken
 .. inheritance-diagram:: abjad.tools.lilypondfiletools.LilyPondVersionToken.LilyPondVersionToken.LilyPondVersionToken
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.lilypondfiletools.LilyPondVersionToken.LilyPondVersionToken.LilyPondVersionToken
+
 .. autoclass:: abjad.tools.lilypondfiletools.LilyPondVersionToken.LilyPondVersionToken.LilyPondVersionToken
    :noindex:
 

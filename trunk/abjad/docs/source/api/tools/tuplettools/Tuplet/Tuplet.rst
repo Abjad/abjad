@@ -4,6 +4,8 @@ tuplettools.Tuplet
 .. inheritance-diagram:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet
+
 .. autoclass:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet
    :noindex:
 

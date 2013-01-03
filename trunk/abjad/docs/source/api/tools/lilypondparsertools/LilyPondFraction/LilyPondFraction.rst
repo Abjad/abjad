@@ -4,6 +4,8 @@ lilypondparsertools.LilyPondFraction
 .. inheritance-diagram:: abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction
+
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction
    :noindex:
 

@@ -4,6 +4,8 @@ documentationtools.ModuleCrawler
 .. inheritance-diagram:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler
+
 .. autoclass:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler
    :noindex:
 

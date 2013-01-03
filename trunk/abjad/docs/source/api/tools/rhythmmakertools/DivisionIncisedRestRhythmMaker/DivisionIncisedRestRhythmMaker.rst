@@ -4,6 +4,8 @@ rhythmmakertools.DivisionIncisedRestRhythmMaker
 .. inheritance-diagram:: abjad.tools.rhythmmakertools.DivisionIncisedRestRhythmMaker.DivisionIncisedRestRhythmMaker.DivisionIncisedRestRhythmMaker
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.rhythmmakertools.DivisionIncisedRestRhythmMaker.DivisionIncisedRestRhythmMaker.DivisionIncisedRestRhythmMaker
+
 .. autoclass:: abjad.tools.rhythmmakertools.DivisionIncisedRestRhythmMaker.DivisionIncisedRestRhythmMaker.DivisionIncisedRestRhythmMaker
    :noindex:
 

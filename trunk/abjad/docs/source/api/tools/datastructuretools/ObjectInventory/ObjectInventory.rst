@@ -4,6 +4,8 @@ datastructuretools.ObjectInventory
 .. inheritance-diagram:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory
+
 .. autoclass:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory
    :noindex:
 

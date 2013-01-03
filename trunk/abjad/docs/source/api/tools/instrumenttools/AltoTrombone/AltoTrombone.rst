@@ -4,6 +4,8 @@ instrumenttools.AltoTrombone
 .. inheritance-diagram:: abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone
+
 .. autoclass:: abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone
    :noindex:
 

@@ -4,6 +4,8 @@ rhythmmakertools.RestRhythmMaker
 .. inheritance-diagram:: abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker
+
 .. autoclass:: abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker
    :noindex:
 

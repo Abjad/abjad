@@ -4,6 +4,8 @@ wellformednesstools.DuplicateIdCheck
 .. inheritance-diagram:: abjad.tools.wellformednesstools.DuplicateIdCheck.DuplicateIdCheck.DuplicateIdCheck
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.wellformednesstools.DuplicateIdCheck.DuplicateIdCheck.DuplicateIdCheck
+
 .. autoclass:: abjad.tools.wellformednesstools.DuplicateIdCheck.DuplicateIdCheck.DuplicateIdCheck
    :noindex:
 

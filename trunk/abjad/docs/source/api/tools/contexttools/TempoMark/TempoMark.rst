@@ -4,6 +4,8 @@ contexttools.TempoMark
 .. inheritance-diagram:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark
+
 .. autoclass:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark
    :noindex:
 

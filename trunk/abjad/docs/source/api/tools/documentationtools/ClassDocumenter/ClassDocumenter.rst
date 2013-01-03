@@ -4,6 +4,8 @@ documentationtools.ClassDocumenter
 .. inheritance-diagram:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter
+
 .. autoclass:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter
    :noindex:
 

@@ -4,6 +4,8 @@ rhythmmakertools.TupletMonadRhythmMaker
 .. inheritance-diagram:: abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker
+
 .. autoclass:: abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker
    :noindex:
 

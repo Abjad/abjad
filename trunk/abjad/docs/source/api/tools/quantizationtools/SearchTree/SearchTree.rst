@@ -4,6 +4,8 @@ quantizationtools.SearchTree
 .. inheritance-diagram:: abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree
+
 .. autoclass:: abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree
    :noindex:
 

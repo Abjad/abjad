@@ -4,6 +4,8 @@ chordtools.Chord
 .. inheritance-diagram:: abjad.tools.chordtools.Chord.Chord.Chord
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.chordtools.Chord.Chord.Chord
+
 .. autoclass:: abjad.tools.chordtools.Chord.Chord.Chord
    :noindex:
 

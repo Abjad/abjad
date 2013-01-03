@@ -4,6 +4,8 @@ scoretools.GrandStaff
 .. inheritance-diagram:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff
+
 .. autoclass:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff
    :noindex:
 

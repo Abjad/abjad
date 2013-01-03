@@ -4,6 +4,8 @@ lilypondfiletools.ContextBlock
 .. inheritance-diagram:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock
+
 .. autoclass:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock
    :noindex:
 

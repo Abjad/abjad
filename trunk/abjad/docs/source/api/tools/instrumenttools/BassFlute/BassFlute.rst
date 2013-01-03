@@ -4,6 +4,8 @@ instrumenttools.BassFlute
 .. inheritance-diagram:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute
+
 .. autoclass:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute
    :noindex:
 

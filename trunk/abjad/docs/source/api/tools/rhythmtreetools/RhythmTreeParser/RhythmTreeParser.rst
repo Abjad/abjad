@@ -4,6 +4,8 @@ rhythmtreetools.RhythmTreeParser
 .. inheritance-diagram:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser
+
 .. autoclass:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser
    :noindex:
 

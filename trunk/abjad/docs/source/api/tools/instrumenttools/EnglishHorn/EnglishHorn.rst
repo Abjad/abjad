@@ -4,6 +4,8 @@ instrumenttools.EnglishHorn
 .. inheritance-diagram:: abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn
+
 .. autoclass:: abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn
    :noindex:
 

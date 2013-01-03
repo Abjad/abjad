@@ -4,6 +4,8 @@ rhythmmakertools.OutputIncisedRestRhythmMaker
 .. inheritance-diagram:: abjad.tools.rhythmmakertools.OutputIncisedRestRhythmMaker.OutputIncisedRestRhythmMaker.OutputIncisedRestRhythmMaker
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.rhythmmakertools.OutputIncisedRestRhythmMaker.OutputIncisedRestRhythmMaker.OutputIncisedRestRhythmMaker
+
 .. autoclass:: abjad.tools.rhythmmakertools.OutputIncisedRestRhythmMaker.OutputIncisedRestRhythmMaker.OutputIncisedRestRhythmMaker
    :noindex:
 

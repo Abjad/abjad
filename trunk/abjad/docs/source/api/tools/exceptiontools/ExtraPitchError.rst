@@ -4,6 +4,8 @@ exceptiontools.ExtraPitchError
 .. inheritance-diagram:: abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError
+
 .. autoclass:: abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError
    :noindex:
 

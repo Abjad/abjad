@@ -4,6 +4,8 @@ pitchtools.NumberedChromaticPitchClass
 .. inheritance-diagram:: abjad.tools.pitchtools.NumberedChromaticPitchClass.NumberedChromaticPitchClass.NumberedChromaticPitchClass
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.pitchtools.NumberedChromaticPitchClass.NumberedChromaticPitchClass.NumberedChromaticPitchClass
+
 .. autoclass:: abjad.tools.pitchtools.NumberedChromaticPitchClass.NumberedChromaticPitchClass.NumberedChromaticPitchClass
    :noindex:
 

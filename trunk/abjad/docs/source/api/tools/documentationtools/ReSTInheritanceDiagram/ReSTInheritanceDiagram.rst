@@ -4,6 +4,8 @@ documentationtools.ReSTInheritanceDiagram
 .. inheritance-diagram:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram
+
 .. autoclass:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram
    :noindex:
 

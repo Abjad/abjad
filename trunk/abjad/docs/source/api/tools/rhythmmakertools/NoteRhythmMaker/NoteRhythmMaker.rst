@@ -4,6 +4,8 @@ rhythmmakertools.NoteRhythmMaker
 .. inheritance-diagram:: abjad.tools.rhythmmakertools.NoteRhythmMaker.NoteRhythmMaker.NoteRhythmMaker
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.rhythmmakertools.NoteRhythmMaker.NoteRhythmMaker.NoteRhythmMaker
+
 .. autoclass:: abjad.tools.rhythmmakertools.NoteRhythmMaker.NoteRhythmMaker.NoteRhythmMaker
    :noindex:
 

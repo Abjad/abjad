@@ -4,6 +4,8 @@ rhythmtreetools.RhythmTreeContainer
 .. inheritance-diagram:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer
+
 .. autoclass:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer
    :noindex:
 

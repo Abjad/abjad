@@ -4,6 +4,8 @@ instrumenttools.ClarinetInA
 .. inheritance-diagram:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA
    :private-bases:
 
+.. abjad-lineage:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA
+
 .. autoclass:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA
    :noindex:
 
