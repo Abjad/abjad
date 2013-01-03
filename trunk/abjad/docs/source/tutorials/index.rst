@@ -1,6 +1,9 @@
 Tutorials
 =========
 
+   Welcome to Abjad!  If you're new to Python, LilyPond or anything in between,
+   this is the place to get started.
+
 .. toctree::
    :numbered:
 

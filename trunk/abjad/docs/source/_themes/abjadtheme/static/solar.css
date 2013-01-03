@@ -226,6 +226,9 @@ a.headerlink:hover {
     color: white!important;
 }
 
+a.biglink {
+    font-size: 2em;
+}
 
 cite, code, tt {
     font-family: 'Source Code Pro', monospace;
