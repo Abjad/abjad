@@ -136,7 +136,7 @@ def on_build_finished(app, exc):
         shutil.rmtree(app.builder._abjad_book_tempdir)
 
 
-def render_graphviz(self, code, absolute_path, file_format='png', linked=False):
+def render_graphviz_image(self, code, absolute_path, file_format='png', linked=False):
     assert file_format in ('png', 'pdf')
     tmp_path = os.path.join(self.builder._abjad_book_tempdir,
         os.path.basename(os.path.splitext(absolute_path)[0])) + '.dot'
@@ -145,7 +145,8 @@ def render_graphviz(self, code, absolute_path, file_format='png', linked=False):
     commands = []
     if file_format == 'png':
         commands.append('dot -v -Tpng -o {} {}'.format(absolute_path, tmp_path))
-        commands.append('convert -trim -resample 50%% {} {}'.format(absolute_path, absolute_path))
+        commands.append('convert -trim -resize 75% {} {}'.format(absolute_path, absolute_path))
+        commands.append('convert -resize 780x9999">" {} {}'.format(absolute_path, absolute_path))
     elif file_format == 'pdf':
         commands.append('dot -v -Tpdf -o {} {}'.format(absolute_path, tmp_path))
         commands.append('pdfcrop {} {}'.format(absolute_path, absolute_path))
@@ -153,7 +154,7 @@ def render_graphviz(self, code, absolute_path, file_format='png', linked=False):
         subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
-def render_lilypond(self, code, absolute_path, file_format='png', linked=False):
+def render_lilypond_image(self, code, absolute_path, file_format='png', linked=False):
     assert file_format in ('png', 'pdf')
     # LilyPond insists on appending an extension, even if you already did it yourself.
     abs_path = os.path.splitext(absolute_path)[0]
@@ -189,9 +190,9 @@ def render_abjad_book_node(self, code, kind, file_format='png', linked=False):
         return relative_path, absolute_path
     # render
     if kind == 'lilypond':
-        render_lilypond(self, code, absolute_path, file_format)
+        render_lilypond_image(self, code, absolute_path, file_format)
     elif kind == 'graphviz':
-        render_graphviz(self, code, absolute_path, file_format)
+        render_graphviz_image(self, code, absolute_path, file_format)
     return relative_path, absolute_path
 
 

@@ -253,7 +253,7 @@ class InheritanceGraph(AbjadObject):
                 'fontsize': 18,
                 'overlap': 'prism',
                 'penwidth': 2,
-                'ranksep': 1,
+                'ranksep': 0.5,
                 'splines': 'spline',
                 'style': 'dotted,rounded',
             },
