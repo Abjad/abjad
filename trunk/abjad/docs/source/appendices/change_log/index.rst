@@ -1,15 +1,6 @@
 Change log
 ==========
 
-Older Versions
---------------
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-   
-   change_log_*
-
 Changes from 2.10 to 2.11
 -------------------------
 
@@ -402,5 +393,12 @@ Use componenttools.sum_duration_of_components(preprolated=True) instead.
 Removed componenttools.sum_duration_of_components_in_seconds().
 Use componenttools.sum_duration_of_components(in_seconds=True) instead.
 
+Older Versions
+--------------
 
+.. toctree::
+   :glob:
+   :maxdepth: 1
+   
+   change_log_*
 

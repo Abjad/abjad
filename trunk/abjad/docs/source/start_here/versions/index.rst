@@ -3,15 +3,6 @@
 Version history
 ===============
 
-Older Versions
---------------
-
-.. toctree::
-   :glob: 
-   :maxdepth: 1
-
-   version_*
-
 Abjad 2.11
 ----------
 
@@ -1324,4 +1315,13 @@ with d equal to the division denominator::
             c'8 ]
         }
     }
+
+Older Versions
+--------------
+
+.. toctree::
+   :glob: 
+   :maxdepth: 1
+
+   version_*
 
