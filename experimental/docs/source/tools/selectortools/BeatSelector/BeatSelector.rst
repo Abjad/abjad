@@ -125,6 +125,11 @@ Read/write Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.can_fuse
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.contains_timespan_improperly
    :noindex:
 

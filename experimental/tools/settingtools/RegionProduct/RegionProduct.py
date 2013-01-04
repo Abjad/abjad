@@ -74,7 +74,13 @@ class RegionProduct(AbjadObject):
         return self._voice_name
 
     ### PUBLIC METHODS ###
-
+    
+    def can_fuse(self, expr):
+        if isinstance(expr, type(self)):
+            if self.timespan.stops_when_timespan_starts(expr):
+                return self.voice_name == expr.voice_name
+        return False
+        
     def new(self, **kwargs):
         positional_argument_dictionary = self._positional_argument_dictionary
         keyword_argument_dictionary = self._keyword_argument_dictionary

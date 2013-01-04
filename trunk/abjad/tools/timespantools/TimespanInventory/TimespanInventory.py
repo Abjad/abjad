@@ -265,25 +265,12 @@ class TimespanInventory(ObjectInventory):
             elif timespan_2.contains_timespan_improperly(timespan_1):
                 self.remove(timespan_1)
 
-    # TODO: do not operate in place; emit new inventory instead.
     def fuse(self):
-        '''Fuse timespans if all are contiguous.
-
-            >>> example_inventory = timespantools.TimespanInventory()
+        '''Fuse overlapping timespans in inventory:
 
         ::
 
-            >>> example_inventory.append(timespantools.Timespan(0, 3))
-            >>> example_inventory.append(timespantools.Timespan(3, 6))
-            >>> example_inventory.append(timespantools.Timespan(6, 10))
-
-        ::
-
-            >>> example_inventory.fuse()
-
-        ::
-
-            >>> z(example_inventory)
+            >>> z(timespan_inventory_1.fuse())
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -291,17 +278,37 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Operate in-place and return none.
+        ::
 
-        Raise exception on noncontiguous timespans.
+            >>> z(timespan_inventory_2.fuse())
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(15, 1),
+                    stop_offset=durationtools.Offset(20, 1)
+                    )
+                ])
+
+        ::
+
+            >>> z(timespan_inventory_3.fuse())
+            timespantools.TimespanInventory([])
+
+        Emity newly constructed timespan inventory.
         '''
-        assert self.all_are_contiguous, repr(self)
-        if len(self) == 0:
-            return
-        result = self[0]
-        for timespan in self[1:]:
-            result = result.fuse(timespan)
-        self[:] = [result]
+        new_timespans = []
+        if self:
+            new_timespans.append(copy.deepcopy(self[0]))
+            for timespan in self[1:]:
+                if new_timespans[-1].can_fuse(timespan):
+                    new_timespan = new_timespans[-1].fuse(timespan)
+                    new_timespans[-1] = new_timespan
+                else:
+                    new_timespans.append(copy.deepcopy(timespan))
+        return type(self)(new_timespans)
 
     def get_timespan_that_satisfies_time_relation(self, time_relation):
         r'''Get timespan that satisifies `time_relation`::

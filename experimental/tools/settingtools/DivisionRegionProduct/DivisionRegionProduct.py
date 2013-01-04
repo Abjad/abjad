@@ -203,9 +203,7 @@ class DivisionRegionProduct(RegionProduct):
 
         Return newly constructed expression.
         '''
-        assert isinstance(expr, type(self)), repr(expr)
-        assert self.timespan.stops_when_timespan_starts(expr), repr(expr)
-        assert self.voice_name == expr.voice_name, repr(expr)
+        assert self.can_fuse(expr)
         division_list = self.payload + expr.payload
         result = type(self)(division_list, voice_name=self.voice_name, timespan=self.timespan)
         return result

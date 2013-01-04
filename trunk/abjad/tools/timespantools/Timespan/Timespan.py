@@ -165,6 +165,11 @@ class Timespan(BoundedObject):
 
     ### PUBLIC METHODS ###
 
+    def can_fuse(self, expr):
+        if isinstance(expr, type(self)):
+            return self.intersects_timespan(expr) or self.stops_when_timespan_starts(expr)
+        return False
+
     def contains_timespan_improperly(self, timespan):
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_contains_timespan_1_improperly(timespan, self)
@@ -218,9 +223,10 @@ class Timespan(BoundedObject):
 
         Emit newly created timespan.
         '''
-        assert isinstance(timespan, type(self)), repr(timespan)
-        assert self.stops_when_timespan_starts(timespan), repr(timespan)
-        return type(self)(self.start_offset, timespan.stop_offset)
+        assert self.can_fuse(timespan)
+        new_start_offset = min(self.start_offset, timespan.start_offset)
+        new_stop_offset = max(self.stop_offset, timespan.stop_offset)
+        return type(self)(new_start_offset, new_stop_offset)
 
     def happens_during_timespan(self, timespan):
         if self._implements_timespan_interface(timespan):
