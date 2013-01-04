@@ -13,7 +13,7 @@ class TimeSignatureCommandRequest(CommandRequest):
 
     ### PUBLIC METHODS ###
 
-    def get_payload(self, score_specification, voice_name=None):
+    def _get_payload(self, score_specification, voice_name=None):
         segment_specification = score_specification.get_start_segment_specification(self.offset)
         time_signatures = segment_specification.time_signatures[:]
         time_signatures, dummy = self._apply_request_modifiers(time_signatures, None)

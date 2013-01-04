@@ -48,12 +48,11 @@ class ConcreteInterpreter(Interpreter):
     ### PUBLIC METHODS ###
 
     def add_time_signatures_to_score(self):
-        # TODO: resolve variable naming conflict between 'commands' and 'settings' here
-        while self.score_specification.all_time_signature_commands[:]:
-            for time_signature_setting in self.score_specification.all_time_signature_commands:
+        while self.score_specification.all_time_signature_settings[:]:
+            for time_signature_setting in self.score_specification.all_time_signature_settings:
                 time_signatures = time_signature_setting.make_time_signatures(self.score_specification)
                 if time_signatures:
-                    self.score_specification.all_time_signature_commands.remove(time_signature_setting)
+                    self.score_specification.all_time_signature_settings.remove(time_signature_setting)
         time_signatures = self.score_specification.time_signatures
         measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
         context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
@@ -97,14 +96,15 @@ class ConcreteInterpreter(Interpreter):
         region_timespan = division_region_command.timespan
         region_duration = division_region_command.timespan.duration
         if isinstance(division_region_command.request, requesttools.AbsoluteRequest):
-            divisions = division_region_command.request._evaluate_payload(self.score_specification, None)
+            #divisions = division_region_command.request._evaluate_payload(self.score_specification, None)
+            divisions = division_region_command.request._get_payload(self.score_specification, None)
             divisions = [divisiontools.Division(x) for x in divisions]
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             result = settingtools.DivisionRegionProduct(divisions, voice_name, region_timespan)
             return [result]
         elif isinstance(division_region_command.request, requesttools.DivisionCommandRequest):
             division_command_request = division_region_command.request
-            divisions = division_command_request.get_payload(self.score_specification, voice_name)
+            divisions = division_command_request._get_payload(self.score_specification, voice_name)
             divisions = [divisiontools.Division(x) for x in divisions]
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             result = settingtools.DivisionRegionProduct(divisions, voice_name, region_timespan)
@@ -162,7 +162,7 @@ class ConcreteInterpreter(Interpreter):
             elif isinstance(rhythm_command.request, requesttools.RhythmMakerRequest):
                 result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.RhythmCommandRequest):
-                rhythm_maker = rhythm_command.request.get_payload(
+                rhythm_maker = rhythm_command.request._get_payload(
                     self.score_specification, rhythm_command.request.voice_name)
                 result.append((rhythm_maker, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, selectortools.CounttimeComponentSelector):
@@ -234,7 +234,7 @@ class ConcreteInterpreter(Interpreter):
         self.dump_rhythm_region_products_into_voices()
 
     def interpret_time_signatures(self):
-        self.populate_all_time_signature_commands()
+        self.populate_all_time_signature_settings()
         self.add_time_signatures_to_score()
         self.calculate_score_and_segment_timespans()
 
@@ -422,7 +422,7 @@ class ConcreteInterpreter(Interpreter):
                 self.score_specification.all_rhythm_quintuples.extend(rhythm_quintuples)
 
     # TODO: eventually merge with self.populate_all_region_commands()
-    def populate_all_time_signature_commands(self):
+    def populate_all_time_signature_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
             time_signature_settings = \
                 segment_specification.single_context_settings_by_context.score_context_proxy.get_settings(
@@ -430,7 +430,7 @@ class ConcreteInterpreter(Interpreter):
             if not time_signature_settings:
                 continue
             time_signature_setting = time_signature_settings[-1]
-            self.score_specification.all_time_signature_commands.append(time_signature_setting)
+            self.score_specification.all_time_signature_settings.append(time_signature_setting)
 
     # TODO: move to RhythmRegionCommand
     def rhythm_command_prolongs_expr(self, current_rhythm_command, expr):

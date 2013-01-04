@@ -45,9 +45,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.get_payload
-   :noindex:
-
 .. automethod:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.partition_by_ratio
    :noindex:
 

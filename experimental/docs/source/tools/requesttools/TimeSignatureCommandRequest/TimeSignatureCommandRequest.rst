@@ -45,9 +45,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest.get_payload
-   :noindex:
-
 .. automethod:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest.partition_by_ratio
    :noindex:
 

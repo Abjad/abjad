@@ -5,7 +5,7 @@ from experimental.tools.selectortools.Selector import Selector
 
 
 class ScoreSelector(Selector):
-    r'''
+    r'''Score selector.
 
     ::
 
@@ -23,6 +23,9 @@ class ScoreSelector(Selector):
     '''
 
     ### PRIVATE METHODS ###
+
+    def _get_payload(self, score_specification, voice_name=None):
+        raise NotImplementedError
 
     def _get_timespan(self, score_specification, context_name):
         '''Return `score_specification` start and stop offsets.

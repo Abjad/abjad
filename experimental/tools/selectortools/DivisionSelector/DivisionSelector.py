@@ -48,6 +48,9 @@ class DivisionSelector(Selector):
     
     ### PRIVATE METHODS ###
 
+    def _get_payload(self, score_specification, voice_name=None):
+        raise NotImplementedError
+
     def _get_timespan(self, score_specification, voice_name):
         voice_division_list = score_specification.contexts[voice_name]['voice_division_list']
         divisions = []

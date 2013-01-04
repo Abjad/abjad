@@ -80,6 +80,9 @@ class CounttimeComponentSelector(Selector):
     
     ### PRIVATE METHODS ###
 
+    def _get_payload(self, score_specification, voice_name=None):
+        raise NotImplementedError
+
     def _get_timespan(self, score_specification, voice_name):
         # allow user-specified voice name to override passed-in voice name
         voice_name = self.voice_name or voice_name

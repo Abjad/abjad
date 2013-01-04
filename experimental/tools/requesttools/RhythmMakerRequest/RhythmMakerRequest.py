@@ -15,6 +15,11 @@ class RhythmMakerRequest(Request):
         Request.__init__(self, request_modifiers=request_modifiers)
         self._payload = payload
 
+    ### PRIVATE METHODS ###
+
+    def _get_payload(self, score_specification=None, voice_name=None):
+        raise NotImplementedError
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

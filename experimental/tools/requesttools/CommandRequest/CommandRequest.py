@@ -115,3 +115,9 @@ class CommandRequest(Request):
         Return string.
         '''
         return self._voice_name
+
+    ### PRIVATE METHODS ###
+    
+    @abc.abstractmethod
+    def _get_payload(self, score_specification=None, voice_name=None):
+        pass

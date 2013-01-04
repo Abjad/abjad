@@ -9,7 +9,7 @@ from experimental.tools.timeexpressiontools.TimespanExpression import TimespanEx
 
 
 class Selector(TimespanExpression, Request):
-    r'''
+    r'''Selector.
 
     Abstract base class from which concrete selectors inherit.
     '''

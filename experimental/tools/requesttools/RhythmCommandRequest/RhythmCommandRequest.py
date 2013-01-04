@@ -17,7 +17,7 @@ class RhythmCommandRequest(CommandRequest):
 
     ### PUBLIC METHODS ###
 
-    def get_payload(self, score_specification, voice_name):
+    def _get_payload(self, score_specification, voice_name):
         from experimental.tools import requesttools
         requested_segment_identifier = self.offset.start_segment_identifier
         requested_offset = self.offset._get_offset(score_specification, voice_name)

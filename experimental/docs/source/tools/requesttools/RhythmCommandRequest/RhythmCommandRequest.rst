@@ -45,9 +45,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.get_payload
-   :noindex:
-
 .. automethod:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.partition_by_ratio
    :noindex:
 

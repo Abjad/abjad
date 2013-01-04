@@ -48,6 +48,9 @@ class BeatSelector(Selector):
 
     ### PRIVATE METHODS ###
 
+    def _get_payload(self, score_specification, voice_name=None):
+        raise NotImplementedError
+
     def _get_timespan(self, score_specification, voice_name):
         timespan, beats = self._get_timespan_and_selected_objects(score_specification, voice_name)
         timespan = self._apply_timespan_modifiers(timespan)

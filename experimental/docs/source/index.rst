@@ -443,6 +443,13 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/selectortools/Selector/Selector
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
       tools/selectortools/BackgroundMeasureSelector/BackgroundMeasureSelector
       tools/selectortools/BeatSelector/BeatSelector
       tools/selectortools/ClassInventory/ClassInventory
@@ -450,9 +457,15 @@ Unstable packages (load manually)
       tools/selectortools/DivisionSelector/DivisionSelector
       tools/selectortools/ScoreSelector/ScoreSelector
       tools/selectortools/SegmentSelector/SegmentSelector
-      tools/selectortools/Selector/Selector
 
 .. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/selectortools/Selector/Selector
 
    Concrete Classes
    ----------------
@@ -466,7 +479,6 @@ Unstable packages (load manually)
       tools/selectortools/DivisionSelector/DivisionSelector
       tools/selectortools/ScoreSelector/ScoreSelector
       tools/selectortools/SegmentSelector/SegmentSelector
-      tools/selectortools/Selector/Selector
 
 :py:mod:`settingtools <experimental.tools.settingtools>`
 ========================================================

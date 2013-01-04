@@ -65,6 +65,9 @@ class BackgroundMeasureSelector(Selector):
 
     ### PRIVATE METHODS ###
 
+    def _get_payload(self, score_specification, voice_name=None):
+        raise NotImplementedError
+
     # using during time signature interpretation before segment start offsets are calculated
     def _get_time_signatures_without_timespan(self, score_specification, 
         voice_name=None, start_offset=None, stop_offset=None):

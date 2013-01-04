@@ -40,7 +40,7 @@ class AbsoluteRequest(Request):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate_payload(self, score_specification, voice_name):
+    def _get_payload(self, score_specification=None, voice_name=None):
         if isinstance(self.payload, str):
             return self.payload
         elif isinstance(self.payload, tuple):
@@ -56,7 +56,6 @@ class AbsoluteRequest(Request):
             return result
         else:
             raise TypeError(self.payload)
-            
     ### READ-ONLY PROPERTIES ###
 
     @property
@@ -93,9 +92,3 @@ class AbsoluteRequest(Request):
         Return string.
         '''
         return Request.storage_format.fget(self)
-
-    ### PUBLIC METHODS ###
-
-    # TODO: maybe make mandatory part of interface for all request classes.
-    def get_payload(self, score_specification=None):
-        return self.payload

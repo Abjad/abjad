@@ -91,6 +91,9 @@ class SegmentSelector(Selector):
 
     ### PRIVATE METHODS ###
 
+    def _get_payload(self, score_specification, voice_name=None):
+        raise NotImplementedError
+
     def _get_timespan(self, score_specification, context_name):
         '''Evaluate start and stop offsets of selector when applied
         to `score_specification`.

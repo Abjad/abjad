@@ -3,13 +3,7 @@ from experimental.tools.requesttools.Request import Request
 
 
 class StatalServerRequest(Request):
-    r'''
-
-    ::
-
-        >>> from experimental.tools import *
-
-    Request `statal_server`.
+    r'''Statal server request.
 
     The purpose of a statal server request is to function as the source of a setting.
     '''
@@ -25,6 +19,11 @@ class StatalServerRequest(Request):
 
     def __call__(self):
         return self.statal_server(self)
+
+    ### PRIVATE METHODS ###
+
+    def _get_payload(self, score_specification=None, voice_name=None):
+        raise NotImplementedError
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

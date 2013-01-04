@@ -9,7 +9,7 @@ from experimental.tools import helpertools
 
 
 class Request(AbjadObject):
-    r'''
+    r'''Request.
 
     Base class from which other request classes inherit.
 
@@ -113,6 +113,10 @@ class Request(AbjadObject):
         else:
             duration = durationtools.Duration(expr)
             return duration
+
+    @abc.abstractmethod
+    def _get_payload(self, score_specification=None, voice_name=None):
+        pass
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty request_modifiers list.
