@@ -151,9 +151,10 @@ def render_graphviz_image(self, code, paths, file_format='png', keep_original=Fa
     if file_format == 'pdf':
         commands.append('pdfcrop {} {}'.format(secondary_path, primary_path))
     elif file_format == 'png':
-        commands.append('convert -density 96 -quality 85 -trim {} {}'.format(
+        commands.append('convert -density 300 -quality 85 -trim {} {}'.format(
             secondary_path, primary_path))
-        commands.append('convert -resize 66% -resize 460x9999">" {} {}'.format(primary_path, primary_path))
+        commands.append('convert -resize 20% -quality 100 -resize 460x9999">" {} {}'.format(
+            primary_path, primary_path))
 
     for command in commands:
         subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
