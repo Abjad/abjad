@@ -340,6 +340,95 @@ class TimespanInventory(ObjectInventory):
                 if elements_to_move == 0:
                     break
 
+    def scale(self, multiplier):
+        '''Scale timespan durations by `multiplier`, keeping their start offsets constant:
+
+            >>> example_inventory = timespantools.TimespanInventory()
+
+        ::
+
+            >>> example_inventory.append(timespantools.Timespan(5, 15))
+            >>> example_inventory.append(timespantools.Timespan(10, 20))
+            >>> example_inventory.append(timespantools.Timespan(25, 30))
+
+        ::
+
+            >>> example_inventory.scale(2)
+
+        ::
+
+            >>> z(example_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Duration(25, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(10, 1),
+                    stop_offset=durationtools.Duration(30, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(25, 1),
+                    stop_offset=durationtools.Duration(35, 1)
+                    )
+                ])
+
+        Operate in place and return none.
+        '''
+        multiplier = durationtools.Multiplier(multiplier)
+        assert 0 < multiplier
+        for timespan in self:
+            timespan._stop_offset = (timespan.duration * multiplier) + timespan._start_offset
+
+    def stretch(self, multiplier):
+        '''Stretch timespans by `multiplier`, keeping the earliest start offset constant:
+
+        ::
+
+            >>> example_inventory = timespantools.TimespanInventory()
+
+        ::
+
+            >>> example_inventory.append(timespantools.Timespan(5, 15))
+            >>> example_inventory.append(timespantools.Timespan(10, 20))
+            >>> example_inventory.append(timespantools.Timespan(25, 30))
+
+        ::
+
+            >>> example_inventory.stretch(2)
+
+        ::
+
+            >>> z(example_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(25, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(15, 1),
+                    stop_offset=durationtools.Offset(35, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(45, 1),
+                    stop_offset=durationtools.Offset(55, 1)
+                    )
+                ])
+
+        Operate in place and return none.
+        '''
+        multiplier = durationtools.Multiplier(multiplier)
+        assert 0 < multiplier
+        if not len(self):
+            return
+        inventory_start_offset = self.start_offset
+        for timespan in self:
+            start_offset, duration = timespan.start_offset, timespan.duration
+            timespan._start_offset = durationtools.Offset(
+                ((start_offset - inventory_start_offset) * multiplier) + inventory_start_offset)
+            timespan._stop_offset = durationtools.Offset(
+                (duration * multiplier) + timespan._start_offset)
+
     def set_offsets(self, start_offset=None, stop_offset=None):
         '''Operate in place and return none.
         '''

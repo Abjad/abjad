@@ -102,6 +102,9 @@ Methods
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.rotate
    :noindex:
 
+.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.scale
+   :noindex:
+
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.set_offsets
    :noindex:
 
@@ -109,6 +112,9 @@ Methods
    :noindex:
 
    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.stretch
+   :noindex:
 
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.translate_timespans
    :noindex:
