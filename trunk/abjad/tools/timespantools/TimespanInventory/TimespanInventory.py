@@ -253,17 +253,32 @@ class TimespanInventory(ObjectInventory):
     def delete_material_that_intersects_timespan(self, timespan_2):
         '''Operate in place and return none.
 
-        .. note:: add example.
+        .. note:: function does not yet work on (pure) TimespanInventory objects.
+                  function works on only TimespanInventory subclasses.
 
         Return none.
         '''
-        for timespan_1 in self[:]:
-            if timespan_2.curtails_timespan(timespan_1):
-                timespan_1.set_offsets(stop_offset=timespan_2.start_offset)
-            elif timespan_2.delays_timespan(timespan_1):
-                timespan_1.set_offsets(start_offset=timespan_2.stop_offset)
-            elif timespan_2.contains_timespan_improperly(timespan_1):
-                self.remove(timespan_1)
+        for timespan in self[:]:
+            if timespan_2.curtails_timespan(timespan):
+                timespan.set_offsets(stop_offset=timespan_2.start_offset)
+            elif timespan_2.delays_timespan(timespan):
+                timespan.set_offsets(start_offset=timespan_2.stop_offset)
+            elif timespan_2.contains_timespan_improperly(timespan):
+                self.remove(timespan)
+#        new_timespans = []
+#        for timespan in self:
+#            if timespan_2.curtails_timespan(timespan):
+#                new_timespan = timespan.set_offsets(stop_offset=timespan_2.start_offset)
+#                new_timespans.append(new_timespan)
+#            elif timespan_2.delays_timespan(timespan):
+#                new_timespan = timespan.set_offsets(start_offset=timespan_2.stop_offset)
+#                new_timespans.append(new_timespan)
+#            elif timespan_2.contains_timespan_improperly(timespan):
+#                pass
+#            else:
+#                new_timespan = copy.deepcopy(timespan)
+#                new_timespans.append(new_timespan)
+#        return type(self)(new_timespans)
 
     def fuse(self):
         '''Fuse overlapping timespans in inventory:

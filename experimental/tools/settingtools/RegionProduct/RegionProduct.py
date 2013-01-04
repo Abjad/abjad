@@ -1,4 +1,5 @@
 import abc
+import copy
 from abjad.tools import durationtools
 from abjad.tools import timespantools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -99,6 +100,8 @@ class RegionProduct(AbjadObject):
         return result
 
     def set_offsets(self, start_offset=None, stop_offset=None):
+        '''Operate in place.
+        '''
         if stop_offset is not None:
             stop_offset = durationtools.Offset(stop_offset)
             if stop_offset < self.timespan.stop_offset:
@@ -107,3 +110,13 @@ class RegionProduct(AbjadObject):
             start_offset = durationtools.Offset(start_offset)
             if self.timespan.start_offset < start_offset:
                 self._set_start_offset(start_offset)
+#        new_region_product = copy.deepcopy(self)
+#        if stop_offset is not None:
+#            stop_offset = durationtools.Offset(stop_offset)
+#            if stop_offset < new_region_product.timespan.stop_offset:
+#                new_region_product._set_stop_offset(stop_offset)
+#        if start_offset is not None:
+#            start_offset = durationtools.Offset(start_offset)
+#            if new_region_product.timespan.start_offset < start_offset:
+#                new_region_product._set_start_offset(start_offset)
+#        return new_region_product
