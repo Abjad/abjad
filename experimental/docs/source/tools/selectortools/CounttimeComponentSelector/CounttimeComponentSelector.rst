@@ -14,6 +14,11 @@ Read-only Properties
 
    Inherited from :py:class:`selectortools.Selector <experimental.tools.selectortools.Selector.Selector.Selector>`
 
+.. autoattribute:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.axis
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. autoattribute:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.classes
    :noindex:
 

@@ -12,6 +12,11 @@ Read-only Properties
 .. autoattribute:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.anchor
    :noindex:
 
+.. autoattribute:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.axis
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. autoattribute:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.duration
    :noindex:
 

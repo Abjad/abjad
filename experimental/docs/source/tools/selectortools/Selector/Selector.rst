@@ -12,6 +12,11 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.Selector.Selector.Selector.anchor
    :noindex:
 
+.. autoattribute:: experimental.tools.selectortools.Selector.Selector.Selector.axis
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. autoattribute:: experimental.tools.selectortools.Selector.Selector.Selector.duration
    :noindex:
 

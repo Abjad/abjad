@@ -118,6 +118,29 @@ class TimespanInventory(ObjectInventory):
         return True
 
     @property
+    def all_are_well_formed(self):
+        '''True when all timespans in inventory are well-formed::
+
+            >>> timespan_inventory_1.all_are_well_formed
+            True
+
+        ::
+        
+            >>> timespan_inventory_2.all_are_well_formed
+            True
+
+        Also true when inventory is empty::
+
+            >>> timespan_inventory_3.all_are_well_formed
+            True
+
+        Otherwise false.
+
+        Return boolean.
+        '''
+        return all([timespan.is_well_formed for timespan in self])
+
+    @property
     def axis(self):
         '''Arithmetic mean of inventory start- and stop-offsets.
 
@@ -138,6 +161,30 @@ class TimespanInventory(ObjectInventory):
         '''
         if self:
             return (self.start_offset + self.stop_offset) / 2
+
+    @property
+    def duration(self):
+        '''Time from inventory start offset to inventory stop offset::
+
+            >>> timespan_inventory_1.duration
+            Duration(10, 1)
+
+        ::
+
+            >>> timespan_inventory_2.duration
+            Duration(20, 1)
+
+        Zero when inventory is empty::
+
+            >>> timespan_inventory_3.duration
+            Duration(0, 1)
+
+        Return duration.
+        '''
+        if self.stop_offset is not None and self.start_offset is not None:
+            return self.stop_offset - self.start_offset
+        else:
+            return durationtools.Duration(0)
 
     @property
     def start_offset(self):
@@ -186,6 +233,23 @@ class TimespanInventory(ObjectInventory):
     ### PUBLIC METHODS ###
 
     # TODO: do not operate in place; emit new inventory instead.
+    def crop(self, start_offset=None, stop_offset=None):
+        '''Operate in place.
+
+        .. note:: add example.
+
+        Return none.
+        '''
+        if start_offset is not None:
+            raise NotImplementedError
+        stop_offset = durationtools.Offset(stop_offset)
+        inventory_stop_offset = self.stop_offset
+        if stop_offset < inventory_stop_offset:
+            self._set_stop_offset(stop_offset)
+        elif inventory_stop_offset < stop_offset:
+            self.repeat_to_stop_offset(stop_offset)
+
+    # TODO: do not operate in place; emit new inventory instead.
     def delete_material_that_intersects_timespan(self, timespan_2):
         '''Operate in place and return none.
 
@@ -193,13 +257,12 @@ class TimespanInventory(ObjectInventory):
 
         Return none.
         '''
-        from abjad.tools import timerelationtools
         for timespan_1 in self[:]:
-            if timerelationtools.timespan_2_curtails_timespan_1(timespan_1, timespan_2):
+            if timespan_2.curtails_expr(timespan_1):
                 timespan_1.set_offsets(stop_offset=timespan_2.start_offset)
-            elif timerelationtools.timespan_2_delays_timespan_1(timespan_1, timespan_2):
+            elif timespan_2.delays_expr(timespan_1):
                 timespan_1.set_offsets(start_offset=timespan_2.stop_offset)
-            elif timerelationtools.timespan_2_contains_timespan_1_improperly(timespan_1, timespan_2):
+            elif timespan_2.contains_expr_improperly(timespan_1):
                 self.remove(timespan_1)
 
     # TODO: do not operate in place; emit new inventory instead.
@@ -353,6 +416,7 @@ class TimespanInventory(ObjectInventory):
             else:
                 raise ValueError
 
+    # TODO: remove from TimespanInventory? Implement on spectools class that inherits from TimespanInventory?
     # TODO: do not operate in place; emit new inventory instead.
     def repeat_to_stop_offset(self, stop_offset):
         '''Copy timespans in inventory and repeat to `stop_offset`.
@@ -372,6 +436,7 @@ class TimespanInventory(ObjectInventory):
         if stop_offset < self.stop_offset:
             self[-1].set_offsets(stop_offset=stop_offset)
 
+    # TODO: move timespan.reverse() call to spectools TimespanInventory subclass
     # TODO: do not operate in place; emit new inventory instead.
     def reverse(self):
         '''Flip timespans about time axis.
@@ -393,6 +458,7 @@ class TimespanInventory(ObjectInventory):
             if hasattr(timespan, 'reverse'):
                 timespan.reverse()
 
+    # TODO: remove and implement on TimespanInventory subclass in spectools instead?
     # TODO: do not operate in place; emit new inventory instead.
     def rotate(self, rotation):
         '''Rotate *elements* of timespans.
@@ -405,7 +471,7 @@ class TimespanInventory(ObjectInventory):
         '''
         assert isinstance(rotation, int)
         assert self.all_are_contiguous
-        elements_to_move = rotation % self.contents_length
+        elements_to_move = rotation % self.duration
         if elements_to_move == 0:
             return
         if True:
@@ -520,24 +586,8 @@ class TimespanInventory(ObjectInventory):
             timespan._stop_offset = durationtools.Offset(
                 (duration * multiplier) + timespan._start_offset)
 
-    def set_offsets(self, start_offset=None, stop_offset=None):
-        '''Operate in place.
-
-        .. note:: add example.
-
-        Return none.
-        '''
-        if start_offset is not None:
-            raise NotImplementedError
-        stop_offset = durationtools.Offset(stop_offset)
-        inventory_stop_offset = self.stop_offset
-        if stop_offset < inventory_stop_offset:
-            self._set_stop_offset(stop_offset)
-        elif inventory_stop_offset < stop_offset:
-            self.repeat_to_stop_offset(stop_offset)
-
     # TODO: do not operate in place; emit new inventory instead.
-    def translate_timespan_offsets(self, start_offset_translation=None, stop_offset_translation=None):
+    def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
         '''Translate every timespan in inventory by `start_offset_translation`
         and `stop_offset_translation`.
 

@@ -89,6 +89,17 @@ class Timespan(BoundedObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def axis(self):
+        '''Arithmetic mean of timespan start- and stop-offsets::
+
+            >>> timespan.axis
+            Offset(1, 1)
+
+        Return offset.
+        '''
+        return (self.start_offset + self.stop_offset) / 2
+
+    @property
     def duration(self):
         '''Get timespan duration::
 
@@ -102,10 +113,14 @@ class Timespan(BoundedObject):
     @property
     def is_well_formed(self):
         '''True when timespan start offset preceeds timespan stop offset.
-        Otherwise false.
 
             >>> timespan.is_well_formed
             True
+
+        Otherwise false::
+
+            >>> timespantools.Timespan(10, 0).is_well_formed
+            False
 
         Return boolean.
         '''
@@ -183,6 +198,7 @@ class Timespan(BoundedObject):
         result = [type(self)(*offset_pair) for offset_pair in offset_pairs]
         return tuple(result)
 
+    # TODO: maybe remove in favor of TimespanInventory.fuse()?
     def fuse(self, expr):
         '''Fuse if timespan stops when `expr` starts::
 
@@ -357,6 +373,7 @@ class Timespan(BoundedObject):
         result = type(self)(new_start_offset, new_stop_offset)
         return result
 
+    # TODO: extend to self.split_at_offsets()
     def split_at_offset(self, offset):
         '''Split into two parts when `offset` happens during timespan::
 
