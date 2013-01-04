@@ -5,21 +5,18 @@ from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 
 
 class TimespanInventory(ObjectInventory):
-    r'''.. versionadded:: 2.11
+    r'''Timespan inventory.
 
-    Timespan inventory::
+    Example 1::
 
-        >>> timespan_inventory = timespantools.TimespanInventory()
-
-    ::
-
-        >>> timespan_inventory.append(timespantools.Timespan(0, 3))
-        >>> timespan_inventory.append(timespantools.Timespan(3, 6))
-        >>> timespan_inventory.append(timespantools.Timespan(6, 10))
+        >>> timespan_inventory_1 = timespantools.TimespanInventory()
+        >>> timespan_inventory_1.append(timespantools.Timespan(0, 3))
+        >>> timespan_inventory_1.append(timespantools.Timespan(3, 6))
+        >>> timespan_inventory_1.append(timespantools.Timespan(6, 10))
 
     ::
 
-        >>> z(timespan_inventory)
+        >>> z(timespan_inventory_1)
         timespantools.TimespanInventory([
             timespantools.Timespan(
                 start_offset=durationtools.Offset(0, 1),
@@ -35,7 +32,28 @@ class TimespanInventory(ObjectInventory):
                 )
             ])
 
-    SymbolicTimespan inventory.
+    Example 2::
+
+        >>> timespan_inventory_2 = timespantools.TimespanInventory()
+        >>> timespan_inventory_2.append(timespantools.Timespan(0, 10))
+        >>> timespan_inventory_2.append(timespantools.Timespan(3, 6))
+        >>> timespan_inventory_2.append(timespantools.Timespan(15, 20))
+
+    ::
+
+        >>> z(timespan_inventory_2)
+
+    Example 3::
+
+        >>> timespan_inventory_3 = timespantools.TimespanInventory()
+
+    ::
+
+        >>> z(timespan_inventory_3)
+
+    Operations on timespan inventories currently work in place.
+    
+    This will change such that operations will emity a newly constructed timespan inventory.
     '''
 
     ### PRIVATE METHODS ###
@@ -58,11 +76,20 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def all_are_contiguous(self):
-        '''True when all elements in inventory are time-contiguous.
-        Also true when inventory is empty.
-        Otherwise false.
+        '''True when all elements in inventory are time-contiguous::
 
-        .. note:: add example.
+            >>> timespan_inventory_1.all_are_contiguous
+            True
+
+        False when elements in inventory are not time-contiguous::
+
+            >>> timespan_inventory_2.all_are_contiguous
+            False
+
+        True when inventory is empty::
+
+            >>> timespan_inventory_3.all_are_contiguous
+            True
 
         Return boolean.
         '''
@@ -79,6 +106,17 @@ class TimespanInventory(ObjectInventory):
     def axis(self):
         '''Arithmetic mean of inventory start- and stop-offsets.
 
+            >>> timespan_inventory_1.axis
+
+        ::
+
+            >>> timespan_inventory_2.axis
+
+        None when inventory is empty::
+
+            >>> timespan_inventory_3.axis is None
+            True
+
         Return offset or none.
         '''
         if self:
@@ -86,9 +124,17 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def contents_length(self):
-        '''Sum of the length of all timespans in inventory.
+        '''Sum of the length of all timespans in inventory::
 
-        .. note:: add example.
+            >>> timespan_inventory_1.contents_length
+
+        ::
+
+            >>> timespan_inventory_2.contents_length
+
+        ::
+
+            >>> timespan_inventory_3.contents_length
 
         Return nonnegative integer.
         '''
@@ -96,8 +142,21 @@ class TimespanInventory(ObjectInventory):
     
     @property
     def start_offset(self):
-        '''Earliest start offset of any timespan in inventory.
+        '''Earliest start offset of any timespan in inventory::
 
+            >>> timespan_inventory_1.start_offset
+            Offset(0, 1)
+
+        ::
+
+            >>> timespan_inventory_2.start_offset
+            Offset(0, 1)
+
+        None when inventory is empty::
+
+            >>> timespan_inventory_3.start_offset is None
+            True
+            
         Return offset or none.
         '''
         if self:
@@ -105,7 +164,19 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def stop_offset(self):
-        '''Latest stop offset of any timespan in inventory.
+        '''Latest stop offset of any timespan in inventory::
+
+            >>> timespan_inventory_1.stop_offset
+            Offset(10, 1)
+
+        ::
+
+            >>> timespan_inventory_2.stop_offset
+            
+        None when inventory is empty::
+
+            >>> timespan_inventory_3.stop_offset is None
+            True
 
         Return offset or none.
         '''
@@ -114,7 +185,14 @@ class TimespanInventory(ObjectInventory):
 
     ### PUBLIC METHODS ###
 
+    # TODO: do not operate in place; emit new inventory instead.
     def delete_material_that_intersects_timespan(self, timespan_2):
+        '''Operate in place and return none.
+
+        .. note:: add example.
+
+        Return none.
+        '''
         from abjad.tools import timerelationtools
         for timespan_1 in self[:]:
             if timerelationtools.timespan_2_curtails_timespan_1(timespan_1, timespan_2):
@@ -124,6 +202,7 @@ class TimespanInventory(ObjectInventory):
             elif timerelationtools.timespan_2_contains_timespan_1_improperly(timespan_1, timespan_2):
                 self.remove(timespan_1)
 
+    # TODO: do not operate in place; emit new inventory instead.
     def fuse(self):
         '''Fuse timespans if all are contiguous.
 
@@ -250,7 +329,14 @@ class TimespanInventory(ObjectInventory):
         '''
         return bool(self.get_timespans_that_satisfy_time_relation(time_relation))
 
+    # TODO: do not operate in place; emit new inventory instead.
     def keep_material_that_intersects_timespan(self, keep_timespan):
+        '''Operate in place.
+
+        .. note:: add example.
+
+        Return none.
+        '''
         from abjad.tools import timerelationtools
         for timespan_1 in self[:]:
             if timerelationtools.timespan_2_contains_timespan_1_improperly(timespan_1, keep_timespan):
@@ -267,6 +353,7 @@ class TimespanInventory(ObjectInventory):
             else:
                 raise ValueError
 
+    # TODO: do not operate in place; emit new inventory instead.
     def repeat_to_stop_offset(self, stop_offset):
         '''Copy timespans in inventory and repeat to `stop_offset`.
 
@@ -285,10 +372,13 @@ class TimespanInventory(ObjectInventory):
         if stop_offset < self.stop_offset:
             self[-1].set_offsets(stop_offset=stop_offset)
 
+    # TODO: do not operate in place; emit new inventory instead.
     def reverse(self):
         '''Flip timespans about time axis.
 
         Also reverse timespans' contents.
+
+        .. note:: add example.
 
         Operate in place and return none.
         '''
@@ -303,6 +393,7 @@ class TimespanInventory(ObjectInventory):
             if hasattr(timespan, 'reverse'):
                 timespan.reverse()
 
+    # TODO: do not operate in place; emit new inventory instead.
     def rotate(self, rotation):
         '''Rotate *elements* of timespans.
 
@@ -430,7 +521,11 @@ class TimespanInventory(ObjectInventory):
                 (duration * multiplier) + timespan._start_offset)
 
     def set_offsets(self, start_offset=None, stop_offset=None):
-        '''Operate in place and return none.
+        '''Operate in place.
+
+        .. note:: add example.
+
+        Return none.
         '''
         if start_offset is not None:
             raise NotImplementedError
@@ -441,13 +536,17 @@ class TimespanInventory(ObjectInventory):
         elif inventory_stop_offset < stop_offset:
             self.repeat_to_stop_offset(stop_offset)
 
-    # TODO: change to 
-    #  self.translate_all_timespan_offsets(start_offset_translation=None, stop_offset_translation=None)
-    def translate_timespans(self, addendum):
-        '''Translate every timespan in inventory by `addendum`.
+    # TODO: do not operate in place; emit new inventory instead.
+    def translate_timespan_offsets(self, start_offset_translation=None, stop_offset_translation=None):
+        '''Translate every timespan in inventory by `start_offset_translation`
+        and `stop_offset_translation`.
+
+        .. note:: add example.
         
         Operate in place and return none.
         '''
         for timespan in self:
-            timespan._start_offset = durationtools.Offset(timespan.start_offset + addendum)
-            timespan._stop_offset = durationtools.Offset(timespan.stop_offset + addendum)
+            if start_offset_translation is not None:
+                timespan._start_offset = durationtools.Offset(timespan.start_offset + start_offset_translation)
+            if stop_offset_translation is not None:
+                timespan._stop_offset = durationtools.Offset(timespan.stop_offset + stop_offset_translation)
