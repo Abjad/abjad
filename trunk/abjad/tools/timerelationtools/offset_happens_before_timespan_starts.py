@@ -25,7 +25,7 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
 
     Make time relation indicating that `offset` happens before timespan ``[2, 8)`` starts::
 
-        >>> timespan = timerelationtools.expr_to_timespan((2, 8))
+        >>> timespan = timespantools.Timespan(2, 8)
 
     ::
 

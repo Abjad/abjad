@@ -136,7 +136,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         Example 2. Substitute `timespan_1` during evaluation::
 
-            >>> new_timespan_1 = timerelationtools.expr_to_timespan((0, 10))
+            >>> new_timespan_1 = timespantools.Timespan(0, 10)
 
         ::
 
@@ -150,7 +150,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         Example 3. Substitute `timespan_2` during evaluation::
 
-            >>> new_timespan_2 = timerelationtools.expr_to_timespan((2, 12))
+            >>> new_timespan_2 = timespantools.Timespan(2, 12)
 
         ::
 
@@ -171,15 +171,15 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         Otherwise return boolean.
         '''
-        from abjad.tools import timerelationtools
+        from abjad.tools import timespantools
         if timespan_1 is None:
             timespan_1 = self.timespan_1
         if timespan_2 is None:
             timespan_2 = self.timespan_2
         if timespan_1 is None or timespan_2 is None:
             raise ValueError('time relation is not fully loaded: {!r}.'.format(self))
-        timespan_1 = timerelationtools.expr_to_timespan(timespan_1)
-        timespan_2 = timerelationtools.expr_to_timespan(timespan_2)
+        timespan_1 = timespantools.expr_to_timespan(timespan_1)
+        timespan_2 = timespantools.expr_to_timespan(timespan_2)
         timespan_1_start, timespan_1_stop = self._get_expr_offsets(
             timespan_1, score_specification=score_specification, context_name=context_name)
         timespan_2_start, timespan_2_stop = self._get_expr_offsets(

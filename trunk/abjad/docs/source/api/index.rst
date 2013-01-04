@@ -3531,7 +3531,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/timerelationtools/expr_to_timespan
       tools/timerelationtools/offset_happens_after_timespan_starts
       tools/timerelationtools/offset_happens_after_timespan_stops
       tools/timerelationtools/offset_happens_before_timespan_starts
@@ -3588,7 +3587,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/timerelationtools/expr_to_timespan
       tools/timerelationtools/offset_happens_after_timespan_starts
       tools/timerelationtools/offset_happens_after_timespan_stops
       tools/timerelationtools/offset_happens_before_timespan_starts
@@ -3671,6 +3669,13 @@ Core composition packages
       tools/timespantools/Timespan/Timespan
       tools/timespantools/TimespanInventory/TimespanInventory
 
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/timespantools/expr_to_timespan
+
 .. only:: latex
 
    Concrete Classes
@@ -3680,6 +3685,13 @@ Core composition packages
 
       tools/timespantools/Timespan/Timespan
       tools/timespantools/TimespanInventory/TimespanInventory
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/timespantools/expr_to_timespan
 
 :py:mod:`tonalitytools <abjad.tools.tonalitytools>`
 ===================================================

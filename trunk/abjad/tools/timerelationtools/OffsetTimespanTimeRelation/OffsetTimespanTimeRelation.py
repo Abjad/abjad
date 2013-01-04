@@ -4,7 +4,7 @@ from abjad.tools.timerelationtools.TimeRelation import TimeRelation
 
 
 class OffsetTimespanTimeRelation(TimeRelation):
-    r'''.. versionadded:: 2.11
+    r'''Offset-timespan time relation.
 
     Object-oriented model of offset / timespan time relation.
 
@@ -25,14 +25,14 @@ class OffsetTimespanTimeRelation(TimeRelation):
     def __call__(self, timespan=None, offset=None):
         r'''Evaluate time relation.
         '''
-        from abjad.tools import timerelationtools
+        from abjad.tools import timespantools
         if timespan is None:
             timespan = self.timespan
         if offset is None:
             offset = self.offset
         if timespan is None or offset is None:
             raise ValueError('time relation is not fully loaded.')
-        timespan = timerelationtools.expr_to_timespan(timespan)
+        timespan = timespantools.expr_to_timespan(timespan)
         offset = durationtools.Offset(offset)
         #timespan_start = self._get_expr_start(timespan)
         #timespan_stop = self._get_expr_stop(timespan)
