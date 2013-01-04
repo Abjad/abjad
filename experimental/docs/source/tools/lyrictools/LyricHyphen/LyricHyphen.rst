@@ -1,9 +1,6 @@
 lyrictools.LyricHyphen
 ======================
 
-.. inheritance-diagram:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen
 
 .. autoclass:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen

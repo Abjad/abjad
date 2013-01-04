@@ -1,9 +1,6 @@
 helpertools.Callback
 ====================
 
-.. inheritance-diagram:: experimental.tools.helpertools.Callback.Callback.Callback
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.helpertools.Callback.Callback.Callback
 
 .. autoclass:: experimental.tools.helpertools.Callback.Callback.Callback

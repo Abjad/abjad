@@ -1,9 +1,6 @@
 lyrictools.LyricText
 ====================
 
-.. inheritance-diagram:: experimental.tools.lyrictools.LyricText.LyricText.LyricText
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.lyrictools.LyricText.LyricText.LyricText
 
 .. autoclass:: experimental.tools.lyrictools.LyricText.LyricText.LyricText

@@ -1,9 +1,6 @@
 specificationtools.SegmentSpecification
 =======================================
 
-.. inheritance-diagram:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification
 
 .. autoclass:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification

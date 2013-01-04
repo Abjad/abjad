@@ -1,9 +1,6 @@
 constrainttools.VariableLengthStreamSolver
 ==========================================
 
-.. inheritance-diagram:: experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver
 
 .. autoclass:: experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver

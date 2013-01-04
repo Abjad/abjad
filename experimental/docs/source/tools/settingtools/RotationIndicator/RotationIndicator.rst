@@ -1,9 +1,6 @@
 settingtools.RotationIndicator
 ==============================
 
-.. inheritance-diagram:: experimental.tools.settingtools.RotationIndicator.RotationIndicator.RotationIndicator
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.RotationIndicator.RotationIndicator.RotationIndicator
 
 .. autoclass:: experimental.tools.settingtools.RotationIndicator.RotationIndicator.RotationIndicator

@@ -1,9 +1,6 @@
 handlertools.pitch.PitchHandler
 ===============================
 
-.. inheritance-diagram:: experimental.tools.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler
 
 .. autoclass:: experimental.tools.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler

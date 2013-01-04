@@ -1,9 +1,6 @@
 timeexpressiontools.MixedSourceTimespanExpression
 =================================================
 
-.. inheritance-diagram:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression
 
 .. autoclass:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression

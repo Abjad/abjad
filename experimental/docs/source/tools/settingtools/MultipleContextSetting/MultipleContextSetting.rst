@@ -1,9 +1,6 @@
 settingtools.MultipleContextSetting
 ===================================
 
-.. inheritance-diagram:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting
 
 .. autoclass:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting

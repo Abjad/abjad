@@ -1,9 +1,6 @@
 handlertools.Handler
 ====================
 
-.. inheritance-diagram:: experimental.tools.handlertools.Handler.Handler.Handler
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.handlertools.Handler.Handler.Handler
 
 .. autoclass:: experimental.tools.handlertools.Handler.Handler.Handler

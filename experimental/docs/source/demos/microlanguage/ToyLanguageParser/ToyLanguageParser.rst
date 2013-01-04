@@ -1,9 +1,6 @@
 microlanguage.ToyLanguageParser
 ===============================
 
-.. inheritance-diagram:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser
-   :private-bases:
-
 .. abjad-lineage:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser
 
 .. autoclass:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser

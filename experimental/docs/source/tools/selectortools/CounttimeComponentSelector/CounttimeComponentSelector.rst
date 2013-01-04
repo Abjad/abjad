@@ -1,9 +1,6 @@
 selectortools.CounttimeComponentSelector
 ========================================
 
-.. inheritance-diagram:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector
 
 .. autoclass:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector

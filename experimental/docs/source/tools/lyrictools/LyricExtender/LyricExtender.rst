@@ -1,9 +1,6 @@
 lyrictools.LyricExtender
 ========================
 
-.. inheritance-diagram:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender
 
 .. autoclass:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender

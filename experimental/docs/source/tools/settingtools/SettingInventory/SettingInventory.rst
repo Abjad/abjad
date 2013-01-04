@@ -1,9 +1,6 @@
 settingtools.SettingInventory
 =============================
 
-.. inheritance-diagram:: experimental.tools.settingtools.SettingInventory.SettingInventory.SettingInventory
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.SettingInventory.SettingInventory.SettingInventory
 
 .. autoclass:: experimental.tools.settingtools.SettingInventory.SettingInventory.SettingInventory

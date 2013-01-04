@@ -1,9 +1,6 @@
 settingtools.RhythmRegionProduct
 ================================
 
-.. inheritance-diagram:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct
 
 .. autoclass:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct

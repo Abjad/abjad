@@ -1,9 +1,6 @@
 settingtools.Setting
 ====================
 
-.. inheritance-diagram:: experimental.tools.settingtools.Setting.Setting.Setting
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.Setting.Setting.Setting
 
 .. autoclass:: experimental.tools.settingtools.Setting.Setting.Setting

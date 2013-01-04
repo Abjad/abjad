@@ -1,9 +1,6 @@
 settingtools.SingleContextTimeSignatureSetting
 ==============================================
 
-.. inheritance-diagram:: experimental.tools.settingtools.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting
 
 .. autoclass:: experimental.tools.settingtools.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting

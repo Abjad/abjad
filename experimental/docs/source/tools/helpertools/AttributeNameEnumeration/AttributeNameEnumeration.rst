@@ -1,9 +1,6 @@
 helpertools.AttributeNameEnumeration
 ====================================
 
-.. inheritance-diagram:: experimental.tools.helpertools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.helpertools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration
 
 .. autoclass:: experimental.tools.helpertools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration

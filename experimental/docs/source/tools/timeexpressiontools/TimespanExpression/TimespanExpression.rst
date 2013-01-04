@@ -1,9 +1,6 @@
 timeexpressiontools.TimespanExpression
 ======================================
 
-.. inheritance-diagram:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression
 
 .. autoclass:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression

@@ -1,9 +1,6 @@
 settingtools.SegmentSpecificationInterface
 ==========================================
 
-.. inheritance-diagram:: experimental.tools.settingtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface
 
 .. autoclass:: experimental.tools.settingtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface

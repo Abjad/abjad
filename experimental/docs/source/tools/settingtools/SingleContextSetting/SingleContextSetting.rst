@@ -1,9 +1,6 @@
 settingtools.SingleContextSetting
 =================================
 
-.. inheritance-diagram:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting
 
 .. autoclass:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting

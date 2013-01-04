@@ -1,9 +1,6 @@
 constrainttools.RelativeIndexConstraint
 =======================================
 
-.. inheritance-diagram:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint
 
 .. autoclass:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint

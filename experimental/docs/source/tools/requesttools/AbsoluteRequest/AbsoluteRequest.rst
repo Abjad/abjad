@@ -1,9 +1,6 @@
 requesttools.AbsoluteRequest
 ============================
 
-.. inheritance-diagram:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest
 
 .. autoclass:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest

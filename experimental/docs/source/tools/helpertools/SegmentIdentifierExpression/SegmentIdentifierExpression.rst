@@ -1,9 +1,6 @@
 helpertools.SegmentIdentifierExpression
 =======================================
 
-.. inheritance-diagram:: experimental.tools.helpertools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.helpertools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression
 
 .. autoclass:: experimental.tools.helpertools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression

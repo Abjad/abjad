@@ -1,9 +1,6 @@
 handlertools.articulations.StemTremoloHandler
 =============================================
 
-.. inheritance-diagram:: experimental.tools.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler
 
 .. autoclass:: experimental.tools.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler

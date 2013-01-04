@@ -1,9 +1,6 @@
 interpretertools.ConcreteInterpreter
 ====================================
 
-.. inheritance-diagram:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter
 
 .. autoclass:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter

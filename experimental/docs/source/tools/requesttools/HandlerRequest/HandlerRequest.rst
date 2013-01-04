@@ -1,9 +1,6 @@
 requesttools.HandlerRequest
 ===========================
 
-.. inheritance-diagram:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest
 
 .. autoclass:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest

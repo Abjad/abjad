@@ -1,9 +1,6 @@
 requesttools.StatalServerRequest
 ================================
 
-.. inheritance-diagram:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest
 
 .. autoclass:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest

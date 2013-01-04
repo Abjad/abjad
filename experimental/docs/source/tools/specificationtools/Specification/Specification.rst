@@ -1,9 +1,6 @@
 specificationtools.Specification
 ================================
 
-.. inheritance-diagram:: experimental.tools.specificationtools.Specification.Specification.Specification
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.specificationtools.Specification.Specification.Specification
 
 .. autoclass:: experimental.tools.specificationtools.Specification.Specification.Specification

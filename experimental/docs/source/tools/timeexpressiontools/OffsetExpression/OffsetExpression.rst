@@ -1,9 +1,6 @@
 timeexpressiontools.OffsetExpression
 ====================================
 
-.. inheritance-diagram:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression
 
 .. autoclass:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression

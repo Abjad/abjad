@@ -1,9 +1,6 @@
 selectortools.DivisionSelector
 ==============================
 
-.. inheritance-diagram:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector
 
 .. autoclass:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector

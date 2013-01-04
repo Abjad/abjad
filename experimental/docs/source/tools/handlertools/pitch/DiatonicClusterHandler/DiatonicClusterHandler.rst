@@ -1,9 +1,6 @@
 handlertools.pitch.DiatonicClusterHandler
 =========================================
 
-.. inheritance-diagram:: experimental.tools.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler
 
 .. autoclass:: experimental.tools.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler

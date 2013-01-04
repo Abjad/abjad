@@ -1,9 +1,6 @@
 parsertools.ENPParser
 =====================
 
-.. inheritance-diagram:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser
 
 .. autoclass:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser

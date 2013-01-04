@@ -1,9 +1,6 @@
 handlertools.pitch.OctaveTranspositionHandler
 =============================================
 
-.. inheritance-diagram:: experimental.tools.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler
 
 .. autoclass:: experimental.tools.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler

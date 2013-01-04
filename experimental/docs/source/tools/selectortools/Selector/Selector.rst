@@ -1,9 +1,6 @@
 selectortools.Selector
 ======================
 
-.. inheritance-diagram:: experimental.tools.selectortools.Selector.Selector.Selector
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.selectortools.Selector.Selector.Selector
 
 .. autoclass:: experimental.tools.selectortools.Selector.Selector.Selector

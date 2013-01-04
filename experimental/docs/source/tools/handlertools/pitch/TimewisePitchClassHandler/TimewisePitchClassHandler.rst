@@ -1,9 +1,6 @@
 handlertools.pitch.TimewisePitchClassHandler
 ============================================
 
-.. inheritance-diagram:: experimental.tools.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler
 
 .. autoclass:: experimental.tools.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler

@@ -1,9 +1,6 @@
 constrainttools.AbsoluteIndexConstraint
 =======================================
 
-.. inheritance-diagram:: experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint
 
 .. autoclass:: experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint

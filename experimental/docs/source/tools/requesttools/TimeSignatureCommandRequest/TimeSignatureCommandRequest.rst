@@ -1,9 +1,6 @@
 requesttools.TimeSignatureCommandRequest
 ========================================
 
-.. inheritance-diagram:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest
 
 .. autoclass:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest

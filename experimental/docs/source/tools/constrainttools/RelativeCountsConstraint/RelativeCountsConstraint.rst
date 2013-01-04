@@ -1,9 +1,6 @@
 constrainttools.RelativeCountsConstraint
 ========================================
 
-.. inheritance-diagram:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint
 
 .. autoclass:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint

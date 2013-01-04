@@ -1,9 +1,6 @@
 settingtools.RegionProduct
 ==========================
 
-.. inheritance-diagram:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct
 
 .. autoclass:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct

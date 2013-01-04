@@ -1,9 +1,6 @@
 handlertools.articulations.RepeatedMarkupHandler
 ================================================
 
-.. inheritance-diagram:: experimental.tools.handlertools.articulations.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.handlertools.articulations.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler
 
 .. autoclass:: experimental.tools.handlertools.articulations.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler

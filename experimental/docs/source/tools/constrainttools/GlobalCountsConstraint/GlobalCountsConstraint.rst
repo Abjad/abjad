@@ -1,9 +1,6 @@
 constrainttools.GlobalCountsConstraint
 ======================================
 
-.. inheritance-diagram:: experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint
 
 .. autoclass:: experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint

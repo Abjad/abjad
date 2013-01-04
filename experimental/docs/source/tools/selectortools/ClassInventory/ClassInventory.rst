@@ -1,9 +1,6 @@
 selectortools.ClassInventory
 ============================
 
-.. inheritance-diagram:: experimental.tools.selectortools.ClassInventory.ClassInventory.ClassInventory
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.selectortools.ClassInventory.ClassInventory.ClassInventory
 
 .. autoclass:: experimental.tools.selectortools.ClassInventory.ClassInventory.ClassInventory

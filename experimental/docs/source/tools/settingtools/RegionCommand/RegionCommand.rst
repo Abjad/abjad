@@ -1,9 +1,6 @@
 settingtools.RegionCommand
 ==========================
 
-.. inheritance-diagram:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand
 
 .. autoclass:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand

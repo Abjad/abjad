@@ -1,9 +1,6 @@
 handlertools.articulations.ArticulationHandler
 ==============================================
 
-.. inheritance-diagram:: experimental.tools.handlertools.articulations.ArticulationHandler.ArticulationHandler.ArticulationHandler
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.handlertools.articulations.ArticulationHandler.ArticulationHandler.ArticulationHandler
 
 .. autoclass:: experimental.tools.handlertools.articulations.ArticulationHandler.ArticulationHandler.ArticulationHandler

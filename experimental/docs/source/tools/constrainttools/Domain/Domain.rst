@@ -1,9 +1,6 @@
 constrainttools.Domain
 ======================
 
-.. inheritance-diagram:: experimental.tools.constrainttools.Domain.Domain.Domain
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.constrainttools.Domain.Domain.Domain
 
 .. autoclass:: experimental.tools.constrainttools.Domain.Domain.Domain

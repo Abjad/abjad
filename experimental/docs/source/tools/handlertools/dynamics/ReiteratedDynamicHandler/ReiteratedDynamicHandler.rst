@@ -1,9 +1,6 @@
 handlertools.dynamics.ReiteratedDynamicHandler
 ==============================================
 
-.. inheritance-diagram:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler
 
 .. autoclass:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler

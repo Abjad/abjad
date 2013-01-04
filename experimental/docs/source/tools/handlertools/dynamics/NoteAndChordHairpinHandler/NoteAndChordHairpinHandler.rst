@@ -1,9 +1,6 @@
 handlertools.dynamics.NoteAndChordHairpinHandler
 ================================================
 
-.. inheritance-diagram:: experimental.tools.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler
 
 .. autoclass:: experimental.tools.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler

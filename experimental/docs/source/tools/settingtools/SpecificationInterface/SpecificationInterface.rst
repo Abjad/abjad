@@ -1,9 +1,6 @@
 settingtools.SpecificationInterface
 ===================================
 
-.. inheritance-diagram:: experimental.tools.settingtools.SpecificationInterface.SpecificationInterface.SpecificationInterface
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.SpecificationInterface.SpecificationInterface.SpecificationInterface
 
 .. autoclass:: experimental.tools.settingtools.SpecificationInterface.SpecificationInterface.SpecificationInterface

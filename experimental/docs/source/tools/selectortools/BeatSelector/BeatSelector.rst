@@ -1,9 +1,6 @@
 selectortools.BeatSelector
 ==========================
 
-.. inheritance-diagram:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector
 
 .. autoclass:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector

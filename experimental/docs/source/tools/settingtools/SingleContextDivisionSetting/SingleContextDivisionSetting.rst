@@ -1,9 +1,6 @@
 settingtools.SingleContextDivisionSetting
 =========================================
 
-.. inheritance-diagram:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting
 
 .. autoclass:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting

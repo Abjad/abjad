@@ -1,9 +1,6 @@
 specificationtools.SegmentSpecificationInventory
 ================================================
 
-.. inheritance-diagram:: experimental.tools.specificationtools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.specificationtools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory
 
 .. autoclass:: experimental.tools.specificationtools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory

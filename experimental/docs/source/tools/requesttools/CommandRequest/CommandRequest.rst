@@ -1,9 +1,6 @@
 requesttools.CommandRequest
 ===========================
 
-.. inheritance-diagram:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest
 
 .. autoclass:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest

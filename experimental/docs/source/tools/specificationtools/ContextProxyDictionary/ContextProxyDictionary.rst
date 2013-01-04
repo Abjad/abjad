@@ -1,9 +1,6 @@
 specificationtools.ContextProxyDictionary
 =========================================
 
-.. inheritance-diagram:: experimental.tools.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary
 
 .. autoclass:: experimental.tools.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary

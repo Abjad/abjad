@@ -1,9 +1,6 @@
 requesttools.RhythmCommandRequest
 =================================
 
-.. inheritance-diagram:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest
 
 .. autoclass:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest

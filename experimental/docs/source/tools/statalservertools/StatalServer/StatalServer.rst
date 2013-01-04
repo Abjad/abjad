@@ -1,9 +1,6 @@
 statalservertools.StatalServer
 ==============================
 
-.. inheritance-diagram:: experimental.tools.statalservertools.StatalServer.StatalServer.StatalServer
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.statalservertools.StatalServer.StatalServer.StatalServer
 
 .. autoclass:: experimental.tools.statalservertools.StatalServer.StatalServer.StatalServer

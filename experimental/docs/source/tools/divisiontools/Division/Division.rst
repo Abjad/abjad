@@ -1,9 +1,6 @@
 divisiontools.Division
 ======================
 
-.. inheritance-diagram:: experimental.tools.divisiontools.Division.Division.Division
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.divisiontools.Division.Division.Division
 
 .. autoclass:: experimental.tools.divisiontools.Division.Division.Division

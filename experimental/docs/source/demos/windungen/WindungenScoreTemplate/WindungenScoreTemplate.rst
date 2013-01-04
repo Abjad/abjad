@@ -1,9 +1,6 @@
 windungen.WindungenScoreTemplate
 ================================
 
-.. inheritance-diagram:: experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate
-   :private-bases:
-
 .. abjad-lineage:: experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate
 
 .. autoclass:: experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate

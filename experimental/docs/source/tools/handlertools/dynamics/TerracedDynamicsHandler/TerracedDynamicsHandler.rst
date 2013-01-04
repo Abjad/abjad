@@ -1,9 +1,6 @@
 handlertools.dynamics.TerracedDynamicsHandler
 =============================================
 
-.. inheritance-diagram:: experimental.tools.handlertools.dynamics.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.handlertools.dynamics.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler
 
 .. autoclass:: experimental.tools.handlertools.dynamics.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler

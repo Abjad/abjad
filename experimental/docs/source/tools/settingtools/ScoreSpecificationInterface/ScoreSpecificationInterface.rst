@@ -1,9 +1,6 @@
 settingtools.ScoreSpecificationInterface
 ========================================
 
-.. inheritance-diagram:: experimental.tools.settingtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface
 
 .. autoclass:: experimental.tools.settingtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface

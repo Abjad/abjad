@@ -1,9 +1,6 @@
 interpretertools.Interpreter
 ============================
 
-.. inheritance-diagram:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter
 
 .. autoclass:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter

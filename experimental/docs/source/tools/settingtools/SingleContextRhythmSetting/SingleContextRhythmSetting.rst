@@ -1,9 +1,6 @@
 settingtools.SingleContextRhythmSetting
 =======================================
 
-.. inheritance-diagram:: experimental.tools.settingtools.SingleContextRhythmSetting.SingleContextRhythmSetting.SingleContextRhythmSetting
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.SingleContextRhythmSetting.SingleContextRhythmSetting.SingleContextRhythmSetting
 
 .. autoclass:: experimental.tools.settingtools.SingleContextRhythmSetting.SingleContextRhythmSetting.SingleContextRhythmSetting

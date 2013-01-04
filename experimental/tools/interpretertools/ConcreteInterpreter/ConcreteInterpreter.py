@@ -439,7 +439,6 @@ class ConcreteInterpreter(Interpreter):
 
     # TODO: maybe move to ScoreSpecification?
     def supply_missing_region_commands(self, region_commands, voice_name, attribute):
-        #self._debug_values(region_commands, 'region commands')
         if not region_commands and not self.score_specification.time_signatures:
             return []
         elif not region_commands and self.score_specification.time_signatures:

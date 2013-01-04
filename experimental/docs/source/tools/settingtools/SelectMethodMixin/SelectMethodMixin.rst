@@ -1,9 +1,6 @@
 settingtools.SelectMethodMixin
 ==============================
 
-.. inheritance-diagram:: experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin
 
 .. autoclass:: experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin

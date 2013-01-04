@@ -1,9 +1,6 @@
 constrainttools.GlobalReferenceConstraint
 =========================================
 
-.. inheritance-diagram:: experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint
 
 .. autoclass:: experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint

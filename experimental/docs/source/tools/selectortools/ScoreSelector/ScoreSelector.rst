@@ -1,9 +1,6 @@
 selectortools.ScoreSelector
 ===========================
 
-.. inheritance-diagram:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector
 
 .. autoclass:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector

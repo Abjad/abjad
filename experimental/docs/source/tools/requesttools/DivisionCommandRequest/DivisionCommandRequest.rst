@@ -1,9 +1,6 @@
 requesttools.DivisionCommandRequest
 ===================================
 
-.. inheritance-diagram:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest
 
 .. autoclass:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest

@@ -1,9 +1,6 @@
 selectortools.SegmentSelector
 =============================
 
-.. inheritance-diagram:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector
 
 .. autoclass:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector

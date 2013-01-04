@@ -1,9 +1,6 @@
 segmenttools.Segment
 ====================
 
-.. inheritance-diagram:: experimental.tools.segmenttools.Segment.Segment.Segment
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.segmenttools.Segment.Segment.Segment
 
 .. autoclass:: experimental.tools.segmenttools.Segment.Segment.Segment

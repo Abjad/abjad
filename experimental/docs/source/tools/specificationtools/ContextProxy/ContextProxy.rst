@@ -1,9 +1,6 @@
 specificationtools.ContextProxy
 ===============================
 
-.. inheritance-diagram:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy
 
 .. autoclass:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy

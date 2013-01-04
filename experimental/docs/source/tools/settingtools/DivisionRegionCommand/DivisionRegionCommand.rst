@@ -1,9 +1,6 @@
 settingtools.DivisionRegionCommand
 ==================================
 
-.. inheritance-diagram:: experimental.tools.settingtools.DivisionRegionCommand.DivisionRegionCommand.DivisionRegionCommand
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.settingtools.DivisionRegionCommand.DivisionRegionCommand.DivisionRegionCommand
 
 .. autoclass:: experimental.tools.settingtools.DivisionRegionCommand.DivisionRegionCommand.DivisionRegionCommand

@@ -1,9 +1,6 @@
 breakpointtools.BreakPointFunction
 ==================================
 
-.. inheritance-diagram:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction
 
 .. autoclass:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction

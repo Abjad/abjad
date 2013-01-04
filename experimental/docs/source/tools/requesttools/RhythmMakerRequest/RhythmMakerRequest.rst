@@ -1,9 +1,6 @@
 requesttools.RhythmMakerRequest
 ===============================
 
-.. inheritance-diagram:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest
 
 .. autoclass:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest

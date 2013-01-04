@@ -1,9 +1,6 @@
 specificationtools.ScoreSpecification
 =====================================
 
-.. inheritance-diagram:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification
 
 .. autoclass:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification

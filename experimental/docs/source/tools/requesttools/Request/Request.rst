@@ -1,9 +1,6 @@
 requesttools.Request
 ====================
 
-.. inheritance-diagram:: experimental.tools.requesttools.Request.Request.Request
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.requesttools.Request.Request.Request
 
 .. autoclass:: experimental.tools.requesttools.Request.Request.Request

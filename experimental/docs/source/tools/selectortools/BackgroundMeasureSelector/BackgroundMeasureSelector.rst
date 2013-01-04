@@ -1,9 +1,6 @@
 selectortools.BackgroundMeasureSelector
 =======================================
 
-.. inheritance-diagram:: experimental.tools.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector
 
 .. autoclass:: experimental.tools.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector

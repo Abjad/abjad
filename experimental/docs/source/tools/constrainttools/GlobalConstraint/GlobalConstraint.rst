@@ -1,9 +1,6 @@
 constrainttools.GlobalConstraint
 ================================
 
-.. inheritance-diagram:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint
-   :private-bases:
-
 .. abjad-lineage:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint
 
 .. autoclass:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint
