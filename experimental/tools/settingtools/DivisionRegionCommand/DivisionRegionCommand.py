@@ -1,4 +1,5 @@
 import copy
+from abjad.tools import sequencetools
 from experimental.tools.settingtools.RegionCommand import RegionCommand
 
 
@@ -15,6 +16,38 @@ class DivisionRegionCommand(RegionCommand):
         RegionCommand.__init__(self, request, context_name, timespan, fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate
+
+    ### PRIVATE METHODS ###
+
+    def _get_payload(self, score_specification, voice_name):
+        from experimental.tools import divisiontools
+        from experimental.tools import selectortools
+        from experimental.tools import settingtools
+        region_timespan = self.timespan
+        region_duration = self.timespan.duration
+        # TODO: remove getattr() by implementing voice_name on all request classes
+        request_voice_name = getattr(self.request, 'voice_name', None)
+        if isinstance(self.request, selectortools.DivisionSelector):
+            division_region_product = self.request._get_payload(score_specification, request_voice_name)
+            if division_region_product is None:
+                return
+            divisions = division_region_product.payload.divisions[:]
+            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
+            divisions = [divisiontools.Division(x) for x in divisions]
+            division_list = division_region_product.payload.new(divisions=divisions)
+            division_region_product = division_region_product.new(payload=division_list)
+            right = self.timespan.start_offset
+            left = division_region_product.timespan.start_offset
+            addendum = right - left
+            division_region_product = division_region_product.translate_offsets(
+                start_offset_translation=addendum, stop_offset_translation=addendum)
+            return [division_region_product]
+        else:
+            divisions = self.request._get_payload(score_specification, request_voice_name)
+            divisions = [divisiontools.Division(x) for x in divisions]
+            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
+            result = settingtools.DivisionRegionProduct(divisions, voice_name, region_timespan)
+            return [result]
 
     ## READ-ONLY PUBLIC PROPERTIES ###
 

@@ -152,3 +152,6 @@
         leaves.rotate()
 
 30. Change 'request_modifiers' to 'payload_modifiers'.
+
+31. Implement _get_payload() on all RegionCommand classes.
+    Do RegionCommand classes need _get_timespan() too?
