@@ -212,7 +212,7 @@ class Timespan(BoundedObject):
 
         Raise exception when timespan does not stop when `timespan` starts.
 
-        Return newly created timespan.
+        Emit newly created timespan.
         '''
         assert isinstance(timespan, type(self)), repr(timespan)
         assert self.stops_when_timespan_starts(timespan), repr(timespan)
@@ -309,7 +309,7 @@ class Timespan(BoundedObject):
             >>> timespan.scale(Multiplier(1, 2))
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(1, 1))
 
-        Return newly constructed timespan.
+        Emit newly constructed timespan.
         '''
         multiplier = durationtools.Multiplier(multiplier)
         new_start_offset = self.start_offset
@@ -328,7 +328,7 @@ class Timespan(BoundedObject):
             >>> timespan.set_duration(Duration(3, 5))
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(11, 10))
 
-        Return newly constructed timespan.
+        Emit newly constructed timespan.
         '''
         duration = durationtools.Duration(duration)
         new_stop_offset = self.start_offset + duration
@@ -356,7 +356,7 @@ class Timespan(BoundedObject):
             >>> timespan.set_offsets(stop_offset=Offset(-1, 2))
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(1, 1))
 
-        Return newly constructed timespan.
+        Emit newly constructed timespan.
         '''
         if start_offset is not None and 0 <= start_offset:
             new_start_offset = start_offset
@@ -515,7 +515,7 @@ class Timespan(BoundedObject):
             >>> timespan.translate_offsets(start_offset_translation=Duration(-1, 8))
             Timespan(start_offset=Offset(3, 8), stop_offset=Offset(3, 2))
 
-        Return newly constructed timespan.
+        Emit newly constructed timespan.
         '''
         start_offset_translation = start_offset_translation or 0
         stop_offset_translation = stop_offset_translation or 0
