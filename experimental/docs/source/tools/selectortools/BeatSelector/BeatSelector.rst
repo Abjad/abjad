@@ -511,7 +511,7 @@ Special Methods
 .. automethod:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.__lt__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. automethod:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.__ne__
    :noindex:

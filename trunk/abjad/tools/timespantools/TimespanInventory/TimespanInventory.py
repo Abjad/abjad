@@ -424,31 +424,50 @@ class TimespanInventory(ObjectInventory):
             >>> example_inventory.append(timespantools.Timespan(3, 6))
             >>> example_inventory.append(timespantools.Timespan(6, 10))
 
-        .. note:: it's not clear that this method is working.
+        ::
+
+            >>> z(example_inventory.repeat_to_stop_offset(15))
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(3, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(3, 1),
+                    stop_offset=durationtools.Offset(6, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(6, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(10, 1),
+                    stop_offset=durationtools.Offset(13, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(13, 1),
+                    stop_offset=durationtools.Offset(15, 1)
+                    )
+                ])
+
+        Emity newly constructed timespan.
         '''
         stop_offset = durationtools.Offset(stop_offset)
         assert self.stop_offset <= stop_offset
         current_timespan_index = 0
-#        new_timespan_inventory = copy.deepcopy(self)
-#        if new_timespan_inventory:
-#            #while self.stop_offset < stop_offset:
-#            while new_timespan_inventory.stop_offset < stop_offset:
-#                new_timespan = copy.deepcopy(new_timespan_inventory[current_timespan_index])
-#                new_timespan = new_timespan.new(start_offset=new_timespan_inventory.stop_offset)
-#                new_timespan_inventory.append(new_timespan)
-#                current_timespan_index += 1
-#            if stop_offset < new_timespan_inventory.stop_offset:
-#                new_timespan_inventory[-1].crop(stop_offset=stop_offset)
-#        return new_timespan_inventory
-        while self.stop_offset < stop_offset:
-            new_timespan = copy.deepcopy(self[current_timespan_index])
-            new_timespan._start_offset = self.stop_offset
-            self.append(new_timespan)
-            current_timespan_index += 1
-        if stop_offset < self.stop_offset:
-            self[-1].set_offsets(stop_offset=stop_offset)
+        new_timespan_inventory = copy.deepcopy(self)
+        new_timespan_inventory.sort()
+        if new_timespan_inventory:
+            while new_timespan_inventory.stop_offset < stop_offset:
+                new_timespan = copy.deepcopy(new_timespan_inventory[current_timespan_index])
+                translation = new_timespan_inventory.stop_offset - new_timespan.start_offset
+                new_timespan = new_timespan.translate_offsets(translation, translation)
+                new_timespan_inventory.append(new_timespan)
+                current_timespan_index += 1
+            if stop_offset < new_timespan_inventory.stop_offset:
+                new_timespan_inventory[-1] = new_timespan_inventory[-1].set_offsets(stop_offset=stop_offset)
+        return new_timespan_inventory
 
-    # TODO: move timespan.reverse() call to spectools TimespanInventory subclass.
     def reverse(self):
         '''Flip timespans about inventory time axis:
 
@@ -504,6 +523,7 @@ class TimespanInventory(ObjectInventory):
             new_start_offset = self.axis - stop_distance
             new_stop_offset = self.axis - start_distance
             new_timespan = type(timespan)(new_start_offset, new_stop_offset)
+            # TODO: move this one call to spectools TimespanInventory subclass
             if hasattr(new_timespan, 'reverse'):
                 new_timespan.reverse()
             new_timespans.append(new_timespan)

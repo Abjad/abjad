@@ -58,6 +58,10 @@ class Timespan(BoundedObject):
             return self.offsets == timespan.offsets
         return False
 
+    def __lt__(self, expr):
+        assert hasattr(expr, 'start_offset'), repr(expr)
+        return self.start_offset < expr.start_offset
+
     def __ne__(self, timespan):
         '''True when `timespan` is not a timespan with equivalent offsets::
 
