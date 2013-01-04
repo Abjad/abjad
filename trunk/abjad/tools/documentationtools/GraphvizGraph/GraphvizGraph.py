@@ -64,7 +64,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         >>> cluster_0.node_attributes['color'] = 'white'
         >>> cluster_1.attributes['color'] = 'blue'
         >>> cluster_1.attributes['label'] = 'process #2'
-        >>> cluster_1.node_attributes['style'] = 'filled'
+        >>> cluster_1.node_attributes['style'] = ('filled', 'rounded')
         >>> start.attributes['shape'] = 'Mdiamond'
         >>> end.attributes['shape'] = 'Msquare'
 
@@ -73,42 +73,42 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
     ::
 
         >>> print graph.graphviz_format
-        digraph "G" {
-            subgraph "cluster_0" {
-                graph [color="lightgrey",
+        digraph G {
+            subgraph cluster_0 {
+                graph [color=lightgrey,
                     label="process #1",
-                    style="filled"];
-                node [color="white",
-                    style="filled"];
-                "a0";
-                "a1";
-                "a2";
-                "a3";
-                "a0" -> "a1";
-                "a1" -> "a2";
-                "a2" -> "a3";
-                "a3" -> "a0";
+                    style=filled];
+                node [color=white,
+                    style=filled];
+                a0;
+                a1;
+                a2;
+                a3;
+                a0 -> a1;
+                a1 -> a2;
+                a2 -> a3;
+                a3 -> a0;
             }
-            subgraph "cluster_1" {
-                graph [color="blue",
+            subgraph cluster_1 {
+                graph [color=blue,
                     label="process #2"];
-                node [style="filled"];
-                "b0";
-                "b1";
-                "b2";
-                "b3";
-                "b0" -> "b1";
-                "b1" -> "b2";
-                "b2" -> "b3";
+                node [style="filled, rounded"];
+                b0;
+                b1;
+                b2;
+                b3;
+                b0 -> b1;
+                b1 -> b2;
+                b2 -> b3;
             }
-            "start" [shape="Mdiamond"];
-            "end" [shape="Msquare"];
-            "a1" -> "b3";
-            "a3" -> "end";
-            "b2" -> "a3";
-            "b3" -> "end";
-            "start" -> "a0";
-            "start" -> "b0";
+            start [shape=Mdiamond];
+            end [shape=Msquare];
+            a1 -> b3;
+            a3 -> end;
+            b2 -> a3;
+            b3 -> end;
+            start -> a0;
+            start -> b0;
         }
 
     View the graph:
@@ -136,18 +136,18 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
     ::
 
         >>> print graph.graphviz_format
-        digraph "Graph" {
-            subgraph "cluster_0" {
-                "node_0_0";
-                "node_0_1";
-                "node_0_2";
-                subgraph "cluster_0_3" {
-                    "node_0_3_0";
+        digraph Graph {
+            subgraph cluster_0 {
+                node_0_0;
+                node_0_1;
+                node_0_2;
+                subgraph cluster_0_3 {
+                    node_0_3_0;
                 }
-                "node_0_0" -> "node_0_3_0";
+                node_0_0 -> node_0_3_0;
             }
-            "node_1";
-            "node_0_1" -> "node_1";
+            node_1;
+            node_0_1 -> node_1;
         }
 
     Return GraphvizGraph instance.
@@ -216,7 +216,8 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         def recurse(node, indent=0, prefix='subgraph'):
             indent_one = indent * '\t'
             indent_two = (indent + 1) * '\t'
-            result = ['{}{} "{}" {{'.format(indent_one, prefix, node.canonical_name)]
+            result = ['{}{} {} {{'.format(indent_one, prefix,
+                self._format_value(node.canonical_name))]
             if len(node.attributes):
                 contributions = self._format_attribute_list(node.attributes) 
                 contributions[0] = 'graph {}'.format(contributions[0])

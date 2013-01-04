@@ -51,10 +51,10 @@ class GraphvizEdge(GraphvizObject):
         connection = '->'
         if not self.is_directed:
             connection = '--'
-        edge_def = '"{}" {} "{}"'.format(
-            self.tail.canonical_name,
+        edge_def = '{} {} {}'.format(
+            self._format_value(self.tail.canonical_name),
             connection,
-            self.head.canonical_name)
+            self._format_value(self.head.canonical_name))
         if len(self.attributes):
             result = self._format_attribute_list(self.attributes)
             result[0] = '{} {}'.format(edge_def, result[0])

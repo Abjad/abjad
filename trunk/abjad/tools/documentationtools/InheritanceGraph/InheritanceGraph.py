@@ -250,12 +250,12 @@ class InheritanceGraph(AbjadObject):
             attributes={
                 'color': 'lightslategrey',
                 'fontname': 'Arial',
-                'fontsize': 18,
+                'fontsize': 12,
                 'overlap': 'prism',
                 'penwidth': 2,
-                'ranksep': 0.5,
+                #'ranksep': 0.5,
                 'splines': 'spline',
-                'style': 'dotted,rounded',
+                'style': ('dotted', 'rounded'),
             },
             edge_attributes={
                 'penwidth': 2,
@@ -264,7 +264,7 @@ class InheritanceGraph(AbjadObject):
                 'colorscheme': 'pastel19',
                 'fontname': 'Arial',
                 'penwidth': 2,
-                'style': 'filled,rounded',
+                'style': ('filled', 'rounded'),
             },
             )
 
@@ -306,7 +306,7 @@ class InheritanceGraph(AbjadObject):
             if klass in self.lineage_klasses:
                 node.attributes['color'] = 'black'
                 node.attributes['fontcolor'] = 'white'
-                node.attributes['style'] = 'filled,rounded'
+                node.attributes['style'] = ('filled', 'rounded')
 
         for parent, children in self.parent_children_mapping.iteritems():
             for child in children:

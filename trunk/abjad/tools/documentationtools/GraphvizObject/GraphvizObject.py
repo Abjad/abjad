@@ -14,10 +14,21 @@ class GraphvizObject(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _format_value(self, value):
+        if isinstance(value, bool):
+            return repr(value).lower()
+        elif isinstance(value, (int, float)):
+            return repr(value)
+        elif isinstance(value, str):
+            if ' ' in value or ',' in value or '\\' in value or "." in value:
+                return '"{}"'.format(value)
+            return value
+        elif isinstance(value, (list, tuple)):
+            return '"{}"'.format(', '.join(self._format_value(x) for x in value))
+        raise ValueError
+
     def _format_attribute(self, name, value):
-        if isinstance(value, str):
-            return '{}="{}"'.format(name, value)
-        return '{}={}'.format(name, value)
+        return '{}={}'.format(name, self._format_value(value))
 
     def _format_attribute_list(self, attributes):
         result = []

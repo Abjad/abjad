@@ -15,7 +15,7 @@ class GraphvizNode(TreeNode, GraphvizObject):
 
     @property
     def _graphviz_format_contributions(self):
-        node_def = '"{}"'.format(self.canonical_name)
+        node_def = self._format_value(self.canonical_name)
         if len(self.attributes):
             result = []
             result.extend(self._format_attribute_list(self.attributes))
