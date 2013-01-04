@@ -22,7 +22,7 @@ Read-only Properties
 
    Inherited from :py:class:`requesttools.CommandRequest <experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest>`
 
-.. autoattribute:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.request_modifiers
+.. autoattribute:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.payload_modifiers
    :noindex:
 
    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`

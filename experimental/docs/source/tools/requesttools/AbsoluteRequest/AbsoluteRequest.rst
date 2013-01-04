@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.payload
    :noindex:
 
-.. autoattribute:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.request_modifiers
+.. autoattribute:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.payload_modifiers
    :noindex:
 
 .. autoattribute:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.storage_format

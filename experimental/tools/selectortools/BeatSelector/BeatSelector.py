@@ -62,7 +62,7 @@ class BeatSelector(Selector):
             naive_beats, weights, cyclic=False, overhang=False)
         result = shards[1]
         start_offset = durationtools.Offset(sum(shards[0]))
-        result, start_offset = self._apply_request_modifiers(result, start_offset)
+        result, start_offset = self._apply_payload_modifiers(result, start_offset)
         result_duration = durationtools.Duration(sum(result))
         stop_offset = start_offset + result_duration
         result_timespan = timespantools.Timespan(start_offset, stop_offset)

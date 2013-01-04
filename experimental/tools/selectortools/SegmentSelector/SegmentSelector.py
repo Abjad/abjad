@@ -39,7 +39,7 @@ class SegmentSelector(Selector):
         >>> z(selector)
         selectortools.SegmentSelector(
             voice_name='Voice 1',
-            request_modifiers=settingtools.ModifierInventory([
+            payload_modifiers=settingtools.ModifierInventory([
                 'result = self.___getitem__(elements, start_offset, slice(None, 2, None))'
                 ])
             )
@@ -53,7 +53,7 @@ class SegmentSelector(Selector):
         >>> z(selector)
         selectortools.SegmentSelector(
             voice_name='Voice 1',
-            request_modifiers=settingtools.ModifierInventory([
+            payload_modifiers=settingtools.ModifierInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, 'green', None))"
                 ])
             )
@@ -67,7 +67,7 @@ class SegmentSelector(Selector):
         >>> z(selector)
         selectortools.SegmentSelector(
             voice_name='Voice 1',
-            request_modifiers=settingtools.ModifierInventory([
+            payload_modifiers=settingtools.ModifierInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, ('green', 1), None))"
                 ])
             )
@@ -81,7 +81,7 @@ class SegmentSelector(Selector):
         >>> z(selector)
         selectortools.SegmentSelector(
             voice_name='Voice 1',
-            request_modifiers=settingtools.ModifierInventory([
+            payload_modifiers=settingtools.ModifierInventory([
                 "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                 ])
             )
@@ -94,7 +94,7 @@ class SegmentSelector(Selector):
     def _get_timespan_and_payload(self, score_specification, voice_name=None):
         start_segment_identifier = self.start_segment_identifier
         segment = score_specification[start_segment_identifier]
-        segment = self._apply_request_modifiers(segment)
+        segment = self._apply_payload_modifiers(segment)
         timespan = segment.timespan
         return timespan, segment
 
@@ -114,7 +114,7 @@ class SegmentSelector(Selector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     # TODO: Eventually extend to work without anchor being defined.
-    #       Evaluate request request_modifiers instead.
+    #       Evaluate request payload_modifiers instead.
     @property
     def start_segment_identifier(self):
         '''Temporary hack. Generalize later.

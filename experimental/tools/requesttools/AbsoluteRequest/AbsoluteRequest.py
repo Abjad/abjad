@@ -31,8 +31,8 @@ class AbsoluteRequest(Request):
 
     ### INTIAILIZER ###
 
-    def __init__(self, payload, request_modifiers=None):
-        Request.__init__(self, request_modifiers=request_modifiers)
+    def __init__(self, payload, payload_modifiers=None):
+        Request.__init__(self, payload_modifiers=payload_modifiers)
         assert isinstance(payload, (str, tuple, list)), repr(payload)
         if isinstance(payload, list):
             payload = tuple(payload)
@@ -70,15 +70,15 @@ class AbsoluteRequest(Request):
         return self._payload
 
     @property
-    def request_modifiers(self):
+    def payload_modifiers(self):
         '''Absolute request modifiers::
 
-            >>> request.request_modifiers
+            >>> request.payload_modifiers
             ModifierInventory([])
 
         Return modifier inventory.
         '''
-        return Request.request_modifiers.fget(self)
+        return Request.payload_modifiers.fget(self)
 
     @property
     def storage_format(self):

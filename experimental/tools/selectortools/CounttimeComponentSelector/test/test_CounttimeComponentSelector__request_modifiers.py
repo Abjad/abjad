@@ -4,7 +4,7 @@ import py
 
 
 # NEXT TODO: make this work
-def test_CounttimeComponentSelector__request_modifiers_01():
+def test_CounttimeComponentSelector__payload_modifiers_01():
     '''Slice leaves.
     '''
     py.test.skip('working on this one now.')
@@ -26,7 +26,7 @@ def test_CounttimeComponentSelector__request_modifiers_01():
     #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-#def test_CounttimeComponentSelector__request_modifiers_02():
+#def test_CounttimeComponentSelector__payload_modifiers_02():
 #    '''Partition beats by ratio.
 #    '''
 #
@@ -46,7 +46,7 @@ def test_CounttimeComponentSelector__request_modifiers_01():
 #    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 #
 #
-#def test_CounttimeComponentSelector__request_modifiers_03():
+#def test_CounttimeComponentSelector__payload_modifiers_03():
 #    '''Partition beats by ratio of durations.
 #    '''
 #
@@ -66,7 +66,7 @@ def test_CounttimeComponentSelector__request_modifiers_01():
 #    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 #
 #
-#def test_CounttimeComponentSelector__request_modifiers_04():
+#def test_CounttimeComponentSelector__payload_modifiers_04():
 #    '''Repeat to duration.
 #    '''
 #
@@ -85,7 +85,7 @@ def test_CounttimeComponentSelector__request_modifiers_01():
 #    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 #
 #
-#def test_CounttimeComponentSelector__request_modifiers_05():
+#def test_CounttimeComponentSelector__payload_modifiers_05():
 #    '''Repeat to length.
 #    '''
 #
@@ -104,7 +104,7 @@ def test_CounttimeComponentSelector__request_modifiers_01():
 #    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 #
 #
-#def test_CounttimeComponentSelector__request_modifiers_06():
+#def test_CounttimeComponentSelector__payload_modifiers_06():
 #    '''Reverse beats.
 #    '''
 #
@@ -123,7 +123,7 @@ def test_CounttimeComponentSelector__request_modifiers_01():
 #    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 #
 #
-#def test_CounttimeComponentSelector__request_modifiers_07():
+#def test_CounttimeComponentSelector__payload_modifiers_07():
 #    '''Rotate beats.
 #    '''
 #

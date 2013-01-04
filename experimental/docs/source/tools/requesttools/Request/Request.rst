@@ -12,7 +12,7 @@ requesttools.Request
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.requesttools.Request.Request.Request.request_modifiers
+.. autoattribute:: experimental.tools.requesttools.Request.Request.Request.payload_modifiers
    :noindex:
 
 .. autoattribute:: experimental.tools.requesttools.Request.Request.Request.storage_format

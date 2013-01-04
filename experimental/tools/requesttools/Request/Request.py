@@ -25,10 +25,10 @@ class Request(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, request_modifiers=None):
+    def __init__(self, payload_modifiers=None):
         from experimental.tools import settingtools
-        request_modifiers = request_modifiers or []
-        self._request_modifiers = settingtools.ModifierInventory(request_modifiers)
+        payload_modifiers = payload_modifiers or []
+        self._payload_modifiers = settingtools.ModifierInventory(payload_modifiers)
 
     ### SPECIAL METHODS ###
 
@@ -50,7 +50,7 @@ class Request(AbjadObject):
         modifier = 'result = self.___getitem__(elements, start_offset, {!r})'
         modifier = modifier.format(expr)
         result = copy.deepcopy(self)
-        result.request_modifiers.append(modifier)
+        result.payload_modifiers.append(modifier)
         return result
 
     ### PRIVATE READ-ONLY PROPERTIES ###
@@ -58,9 +58,9 @@ class Request(AbjadObject):
     @property
     def _keyword_argument_name_value_strings(self):
         result = AbjadObject._keyword_argument_name_value_strings.fget(self)
-        if 'request_modifiers=ModifierInventory([])' in result:
+        if 'payload_modifiers=ModifierInventory([])' in result:
             result = list(result)
-            result.remove('request_modifiers=ModifierInventory([])')
+            result.remove('payload_modifiers=ModifierInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -78,7 +78,7 @@ class Request(AbjadObject):
             new_start_offset = None
         return selected_elements, new_start_offset
 
-    def _apply_request_modifiers(self, elements, start_offset):
+    def _apply_payload_modifiers(self, elements, start_offset):
         from experimental.tools import settingtools
         evaluation_context = {
             'Duration': durationtools.Duration,
@@ -92,7 +92,7 @@ class Request(AbjadObject):
             'result': None,
             'sequencetools': sequencetools,
             }
-        for modifier in self.request_modifiers:
+        for modifier in self.payload_modifiers:
             assert 'elements' in modifier
             evaluation_context['elements'] = elements
             evaluation_context['start_offset'] = start_offset
@@ -102,7 +102,7 @@ class Request(AbjadObject):
 
     def _copy_and_append_modifier(self, modifier):
         result = copy.deepcopy(self)
-        result.request_modifiers.append(modifier)
+        result.payload_modifiers.append(modifier)
         return result
 
     def _duration_helper(self, expr):
@@ -119,13 +119,13 @@ class Request(AbjadObject):
         pass
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty request_modifiers list.
+        '''Do not show empty payload_modifiers list.
         '''
         filtered_result = []
         result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'request_modifiers=settingtools.ModifierInventory([])' in string:
+            if not 'payload_modifiers=settingtools.ModifierInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
 
@@ -195,13 +195,13 @@ class Request(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def request_modifiers(self):
-        return self._request_modifiers
+    def payload_modifiers(self):
+        return self._payload_modifiers
 
     ### PUBLIC METHODS ###
 
     def partition_by_ratio(self, ratio):
-        '''Return tuple of newly constructed requests with request_modifiers appended.
+        '''Return tuple of newly constructed requests with payload_modifiers appended.
         '''
         result = []
         ratio = mathtools.Ratio(ratio)

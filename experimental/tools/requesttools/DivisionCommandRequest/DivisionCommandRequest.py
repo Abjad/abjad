@@ -9,9 +9,9 @@ class DivisionCommandRequest(CommandRequest):
 
     ### INITIALIZER ###
 
-    def __init__(self, voice_name, offset, request_modifiers=None):
+    def __init__(self, voice_name, offset, payload_modifiers=None):
         CommandRequest.__init__(self, 'divisions', voice_name, offset,
-            request_modifiers=request_modifiers)
+            payload_modifiers=payload_modifiers)
 
     ### PRIVATE METHODS ###
 
@@ -33,5 +33,5 @@ class DivisionCommandRequest(CommandRequest):
         assert isinstance(absolute_request, requesttools.AbsoluteRequest), repr(absolute_request)
         divisions = absolute_request.payload
         start_offset = division_region_command.timespan.start_offset
-        divisions, start_offset = self._apply_request_modifiers(divisions, start_offset)
+        divisions, start_offset = self._apply_payload_modifiers(divisions, start_offset)
         return divisions

@@ -141,7 +141,7 @@
         measures = first_half_of_red_segment.select_background_measures('Voice 1')
     This will show selecting background measures that start during a duration-partitioned part of segment.
 
-29. Author tests to show each request modifier applied to each selector.
+29. Author tests to show each payload modifier applied to each selector.
     Remaining tests to author:
         leaves.__getitem__()
         leaves.partition_by_ratio()
@@ -151,7 +151,5 @@
         leaves.reverse()
         leaves.rotate()
 
-30. Change 'request_modifiers' to 'payload_modifiers'.
-
-31. Implement _get_payload() on all RegionCommand classes.
+30. Implement _get_payload() on all RegionCommand classes.
     Do RegionCommand classes need _get_timespan() too?

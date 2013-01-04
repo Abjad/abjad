@@ -2,18 +2,19 @@ from abjad import *
 from experimental.tools import *
 
 
-def test_BeatSelector__request_modifiers_01():
-    '''Slice beats.
+def test_DivisionSelector__payload_modifiers_01():
+    '''Division get item.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
-    beats = red_segment.select_beats('Voice 1')
-    beats = beats[2:6]
-    red_segment.set_divisions(beats)
+    red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
+    red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
+    divisions = red_segment.select_divisions('Voice 1')
+    divisions = divisions[2:5]
+    divisions.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -21,17 +22,18 @@ def test_BeatSelector__request_modifiers_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BeatSelector__request_modifiers_02():
-    '''Partition beats by ratio.
+def test_DivisionSelector__payload_modifiers_02():
+    '''Partition divisions by ratio.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
-    beats = red_segment.select_beats('Voice 1')
-    red_segment.set_divisions(beats)
-    left, right = beats.partition_by_ratio((1, 1))
+    red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
+    red_segment.set_divisions([(3, 16)])
+    red_segment.set_rhythm(library.sixteenths)
+    divisions = red_segment.select_divisions('Voice 1')
+    left, right = divisions.partition_by_ratio((1, 2))
     left.set_rhythm(library.sixteenths)
     right.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
@@ -41,17 +43,18 @@ def test_BeatSelector__request_modifiers_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BeatSelector__request_modifiers_03():
-    '''Partition beats by ratio of durations.
+def test_DivisionSelector__payload_modifiers_03():
+    '''Partition divisions by ratio of durations.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
-    beats = red_segment.select_beats('Voice 1')
-    red_segment.set_divisions(beats)
-    left, right = beats.partition_by_ratio_of_durations((1, 1))
+    red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
+    red_segment.set_divisions([(3, 16)])
+    red_segment.set_rhythm(library.sixteenths)
+    divisions = red_segment.select_divisions('Voice 1')
+    left, right = divisions.partition_by_ratio_of_durations((1, 2))
     left.set_rhythm(library.sixteenths)
     right.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
@@ -61,18 +64,20 @@ def test_BeatSelector__request_modifiers_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BeatSelector__request_modifiers_04():
-    '''Repeat to duration.
+def test_DivisionSelector__payload_modifiers_04():
+    '''Repeat divisions to length.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
-    beats = red_segment.select_beats('Voice 1')
-    beats = beats.repeat_to_duration(Duration(5, 8))
-    red_segment.set_divisions(beats)
+    red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
+    red_segment.set_divisions([(2, 16), (3, 16), (4, 16)])
     red_segment.set_rhythm(library.sixteenths)
+    blue_segment = score_specification.append_segment(name='blue')
+    red_divisions = red_segment.select_divisions('Voice 1')
+    red_divisions = red_divisions.repeat_to_length(2)
+    blue_segment.set_divisions(red_divisions)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -80,18 +85,20 @@ def test_BeatSelector__request_modifiers_04():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BeatSelector__request_modifiers_05():
-    '''Repeat to length.
+def test_DivisionSelector__payload_modifiers_05():
+    '''Repeat divisions to duration.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
-    beats = red_segment.select_beats('Voice 1')
-    beats = beats.repeat_to_length(3)
-    red_segment.set_divisions(beats)
+    red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
+    red_segment.set_divisions([(2, 16), (3, 16), (4, 16)])
     red_segment.set_rhythm(library.sixteenths)
+    blue_segment = score_specification.append_segment(name='blue')
+    red_divisions = red_segment.select_divisions('Voice 1')
+    red_divisions = red_divisions.repeat_to_duration(Duration(6, 16))
+    blue_segment.set_divisions(red_divisions)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -99,18 +106,20 @@ def test_BeatSelector__request_modifiers_05():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BeatSelector__request_modifiers_06():
-    '''Reverse beats.
+def test_DivisionSelector__payload_modifiers_06():
+    '''Reverse divisions.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
-    beats = red_segment.select_beats('Voice 1')
-    beats = beats.reverse()
-    red_segment.set_divisions(beats)
+    red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
+    red_segment.set_divisions([(2, 16), (3, 16), (4, 16)])
     red_segment.set_rhythm(library.sixteenths)
+    blue_segment = score_specification.append_segment(name='blue')
+    red_divisions = red_segment.select_divisions('Voice 1')
+    red_divisions = red_divisions.reverse()
+    blue_segment.set_divisions(red_divisions)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -118,18 +127,20 @@ def test_BeatSelector__request_modifiers_06():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BeatSelector__request_modifiers_07():
-    '''Rotate beats.
+def test_DivisionSelector__payload_modifiers_07():
+    '''Rotate divisions.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
-    beats = red_segment.select_beats('Voice 1')
-    beats = beats.rotate(-1)
-    red_segment.set_divisions(beats)
+    red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
+    red_segment.set_divisions([(2, 16), (3, 16), (4, 16)])
     red_segment.set_rhythm(library.sixteenths)
+    blue_segment = score_specification.append_segment(name='blue')
+    red_divisions = red_segment.select_divisions('Voice 1')
+    red_divisions = red_divisions.rotate(-1)
+    blue_segment.set_divisions(red_divisions)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

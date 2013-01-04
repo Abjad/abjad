@@ -21,13 +21,13 @@ class Selector(TimespanExpression, Request):
     ### INTIALIZER ###
 
     def __init__(self, anchor=None, voice_name=None, time_relation=None, 
-        request_modifiers=None, timespan_modifiers=None):
+        payload_modifiers=None, timespan_modifiers=None):
         from experimental.tools import timeexpressiontools
         assert isinstance(anchor, (timeexpressiontools.TimespanExpression, str, type(None))), repr(anchor)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
-        Request.__init__(self, request_modifiers=request_modifiers)
+        Request.__init__(self, payload_modifiers=payload_modifiers)
         TimespanExpression.__init__(self, timespan_modifiers=timespan_modifiers)
         self._anchor = anchor
         assert voice_name is not None
@@ -67,7 +67,7 @@ class Selector(TimespanExpression, Request):
         pass
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty selector request_modifiers list.
+        '''Do not show empty selector payload_modifiers list.
         '''
         filtered_result = []
         result = Request._get_tools_package_qualified_keyword_argument_repr_pieces(

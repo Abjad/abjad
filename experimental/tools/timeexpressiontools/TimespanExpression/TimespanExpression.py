@@ -122,7 +122,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         return timespan
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty offset request_modifiers list.
+        '''Do not show empty offset payload_modifiers list.
         '''
         filtered_result = []
         result = Timespan._get_tools_package_qualified_keyword_argument_repr_pieces(
