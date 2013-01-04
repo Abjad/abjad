@@ -1,9 +1,6 @@
 instrumenttools.TenorSaxophone
 ==============================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone
 
 .. autoclass:: abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone

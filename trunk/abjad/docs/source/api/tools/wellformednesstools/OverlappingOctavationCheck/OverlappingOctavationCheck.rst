@@ -1,9 +1,6 @@
 wellformednesstools.OverlappingOctavationCheck
 ==============================================
 
-.. inheritance-diagram:: abjad.tools.wellformednesstools.OverlappingOctavationCheck.OverlappingOctavationCheck.OverlappingOctavationCheck
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.wellformednesstools.OverlappingOctavationCheck.OverlappingOctavationCheck.OverlappingOctavationCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.OverlappingOctavationCheck.OverlappingOctavationCheck.OverlappingOctavationCheck

@@ -1,9 +1,6 @@
 pitchtools.HarmonicIntervalObject
 =================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.HarmonicIntervalObject.HarmonicIntervalObject.HarmonicIntervalObject
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicIntervalObject.HarmonicIntervalObject.HarmonicIntervalObject
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicIntervalObject.HarmonicIntervalObject.HarmonicIntervalObject

@@ -1,9 +1,6 @@
 scoretools.Performer
 ====================
 
-.. inheritance-diagram:: abjad.tools.scoretools.Performer.Performer.Performer
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.scoretools.Performer.Performer.Performer
 
 .. autoclass:: abjad.tools.scoretools.Performer.Performer.Performer

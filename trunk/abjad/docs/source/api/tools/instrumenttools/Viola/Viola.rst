@@ -1,9 +1,6 @@
 instrumenttools.Viola
 =====================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.Viola.Viola.Viola
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.Viola.Viola.Viola
 
 .. autoclass:: abjad.tools.instrumenttools.Viola.Viola.Viola

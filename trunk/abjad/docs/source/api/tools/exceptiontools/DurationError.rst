@@ -1,9 +1,6 @@
 exceptiontools.DurationError
 ============================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.DurationError.DurationError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.DurationError.DurationError
 
 .. autoclass:: abjad.tools.exceptiontools.DurationError.DurationError

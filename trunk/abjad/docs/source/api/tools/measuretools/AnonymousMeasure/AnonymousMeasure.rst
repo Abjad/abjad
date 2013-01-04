@@ -1,9 +1,6 @@
 measuretools.AnonymousMeasure
 =============================
 
-.. inheritance-diagram:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure
 
 .. autoclass:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure

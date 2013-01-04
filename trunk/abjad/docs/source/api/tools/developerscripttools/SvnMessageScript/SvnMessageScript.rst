@@ -1,9 +1,6 @@
 developerscripttools.SvnMessageScript
 =====================================
 
-.. inheritance-diagram:: abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript
 
 .. autoclass:: abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript

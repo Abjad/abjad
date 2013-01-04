@@ -1,9 +1,6 @@
 wellformednesstools.OverlappingGlissandoCheck
 =============================================
 
-.. inheritance-diagram:: abjad.tools.wellformednesstools.OverlappingGlissandoCheck.OverlappingGlissandoCheck.OverlappingGlissandoCheck
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.wellformednesstools.OverlappingGlissandoCheck.OverlappingGlissandoCheck.OverlappingGlissandoCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.OverlappingGlissandoCheck.OverlappingGlissandoCheck.OverlappingGlissandoCheck

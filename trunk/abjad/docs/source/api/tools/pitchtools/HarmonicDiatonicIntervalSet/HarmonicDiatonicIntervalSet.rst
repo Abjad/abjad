@@ -1,9 +1,6 @@
 pitchtools.HarmonicDiatonicIntervalSet
 ======================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet

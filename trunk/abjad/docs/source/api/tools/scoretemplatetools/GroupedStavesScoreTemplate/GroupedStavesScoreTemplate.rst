@@ -1,9 +1,6 @@
 scoretemplatetools.GroupedStavesScoreTemplate
 =============================================
 
-.. inheritance-diagram:: abjad.tools.scoretemplatetools.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.scoretemplatetools.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate
 
 .. autoclass:: abjad.tools.scoretemplatetools.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate

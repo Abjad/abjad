@@ -1,9 +1,6 @@
 mathtools.Ratio
 ===============
 
-.. inheritance-diagram:: abjad.tools.mathtools.Ratio.Ratio.Ratio
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.mathtools.Ratio.Ratio.Ratio
 
 .. autoclass:: abjad.tools.mathtools.Ratio.Ratio.Ratio

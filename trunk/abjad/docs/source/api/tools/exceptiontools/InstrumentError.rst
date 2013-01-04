@@ -1,9 +1,6 @@
 exceptiontools.InstrumentError
 ==============================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.InstrumentError.InstrumentError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.InstrumentError.InstrumentError
 
 .. autoclass:: abjad.tools.exceptiontools.InstrumentError.InstrumentError

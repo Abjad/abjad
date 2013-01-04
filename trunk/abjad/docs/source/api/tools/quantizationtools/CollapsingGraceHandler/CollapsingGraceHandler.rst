@@ -1,9 +1,6 @@
 quantizationtools.CollapsingGraceHandler
 ========================================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.CollapsingGraceHandler.CollapsingGraceHandler.CollapsingGraceHandler
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.CollapsingGraceHandler.CollapsingGraceHandler.CollapsingGraceHandler
 
 .. autoclass:: abjad.tools.quantizationtools.CollapsingGraceHandler.CollapsingGraceHandler.CollapsingGraceHandler

@@ -1,9 +1,6 @@
 pitchtools.ChromaticObject
 ==========================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject
 
 .. autoclass:: abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject

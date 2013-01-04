@@ -1,9 +1,6 @@
 timespantools.TimespanInventory
 ===============================
 
-.. inheritance-diagram:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory
 
 .. autoclass:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory

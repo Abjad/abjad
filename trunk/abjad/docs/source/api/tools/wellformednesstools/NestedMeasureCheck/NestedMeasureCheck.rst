@@ -1,9 +1,6 @@
 wellformednesstools.NestedMeasureCheck
 ======================================
 
-.. inheritance-diagram:: abjad.tools.wellformednesstools.NestedMeasureCheck.NestedMeasureCheck.NestedMeasureCheck
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.wellformednesstools.NestedMeasureCheck.NestedMeasureCheck.NestedMeasureCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.NestedMeasureCheck.NestedMeasureCheck.NestedMeasureCheck

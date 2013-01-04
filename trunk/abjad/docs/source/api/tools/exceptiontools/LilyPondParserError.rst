@@ -1,9 +1,6 @@
 exceptiontools.LilyPondParserError
 ==================================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError
 
 .. autoclass:: abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError

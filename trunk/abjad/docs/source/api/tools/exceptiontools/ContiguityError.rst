@@ -1,9 +1,6 @@
 exceptiontools.ContiguityError
 ==============================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.ContiguityError.ContiguityError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.ContiguityError.ContiguityError
 
 .. autoclass:: abjad.tools.exceptiontools.ContiguityError.ContiguityError

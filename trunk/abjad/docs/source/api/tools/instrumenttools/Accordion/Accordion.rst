@@ -1,9 +1,6 @@
 instrumenttools.Accordion
 =========================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion
 
 .. autoclass:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion

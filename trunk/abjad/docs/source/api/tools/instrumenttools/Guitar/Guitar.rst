@@ -1,9 +1,6 @@
 instrumenttools.Guitar
 ======================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar
 
 .. autoclass:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar

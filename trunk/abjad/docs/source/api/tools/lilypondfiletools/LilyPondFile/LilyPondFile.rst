@@ -1,9 +1,6 @@
 lilypondfiletools.LilyPondFile
 ==============================
 
-.. inheritance-diagram:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile
 
 .. autoclass:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile

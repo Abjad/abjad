@@ -1,9 +1,6 @@
 tonalitytools.Scale
 ===================
 
-.. inheritance-diagram:: abjad.tools.tonalitytools.Scale.Scale.Scale
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.tonalitytools.Scale.Scale.Scale
 
 .. autoclass:: abjad.tools.tonalitytools.Scale.Scale.Scale

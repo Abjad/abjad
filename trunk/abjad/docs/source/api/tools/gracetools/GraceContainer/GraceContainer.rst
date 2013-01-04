@@ -1,9 +1,6 @@
 gracetools.GraceContainer
 =========================
 
-.. inheritance-diagram:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer
 
 .. autoclass:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer

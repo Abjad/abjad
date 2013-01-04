@@ -1,9 +1,6 @@
 exceptiontools.TimeSignatureAssignmentError
 ===========================================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.TimeSignatureAssignmentError.TimeSignatureAssignmentError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.TimeSignatureAssignmentError.TimeSignatureAssignmentError
 
 .. autoclass:: abjad.tools.exceptiontools.TimeSignatureAssignmentError.TimeSignatureAssignmentError

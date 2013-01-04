@@ -1,9 +1,6 @@
 pitchtools.MelodicDiatonicIntervalSet
 =====================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet
 
 .. autoclass:: abjad.tools.pitchtools.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet

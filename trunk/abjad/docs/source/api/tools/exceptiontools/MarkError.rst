@@ -1,9 +1,6 @@
 exceptiontools.MarkError
 ========================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.MarkError.MarkError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.MarkError.MarkError
 
 .. autoclass:: abjad.tools.exceptiontools.MarkError.MarkError

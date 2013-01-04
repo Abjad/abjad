@@ -1,9 +1,6 @@
 exceptiontools.MissingNamedComponentError
 =========================================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.MissingNamedComponentError.MissingNamedComponentError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingNamedComponentError.MissingNamedComponentError
 
 .. autoclass:: abjad.tools.exceptiontools.MissingNamedComponentError.MissingNamedComponentError

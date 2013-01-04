@@ -1,9 +1,6 @@
 instrumenttools.Flute
 =====================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.Flute.Flute.Flute
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.Flute.Flute.Flute
 
 .. autoclass:: abjad.tools.instrumenttools.Flute.Flute.Flute

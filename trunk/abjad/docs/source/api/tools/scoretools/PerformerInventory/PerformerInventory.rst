@@ -1,9 +1,6 @@
 scoretools.PerformerInventory
 =============================
 
-.. inheritance-diagram:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory
 
 .. autoclass:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory

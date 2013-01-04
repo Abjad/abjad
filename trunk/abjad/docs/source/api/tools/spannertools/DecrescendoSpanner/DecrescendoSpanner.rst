@@ -1,9 +1,6 @@
 spannertools.DecrescendoSpanner
 ===============================
 
-.. inheritance-diagram:: abjad.tools.spannertools.DecrescendoSpanner.DecrescendoSpanner.DecrescendoSpanner
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.spannertools.DecrescendoSpanner.DecrescendoSpanner.DecrescendoSpanner
 
 .. autoclass:: abjad.tools.spannertools.DecrescendoSpanner.DecrescendoSpanner.DecrescendoSpanner

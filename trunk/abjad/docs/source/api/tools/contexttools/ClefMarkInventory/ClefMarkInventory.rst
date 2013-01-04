@@ -1,9 +1,6 @@
 contexttools.ClefMarkInventory
 ==============================
 
-.. inheritance-diagram:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory
 
 .. autoclass:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory

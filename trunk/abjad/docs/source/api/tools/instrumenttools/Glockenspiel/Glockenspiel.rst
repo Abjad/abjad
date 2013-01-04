@@ -1,9 +1,6 @@
 instrumenttools.Glockenspiel
 ============================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel
 
 .. autoclass:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel

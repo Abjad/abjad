@@ -1,9 +1,6 @@
 marktools.LilyPondCommandMark
 =============================
 
-.. inheritance-diagram:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark
 
 .. autoclass:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark

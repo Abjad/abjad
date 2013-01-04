@@ -1,9 +1,6 @@
 spannertools.TextScriptSpanner
 ==============================
 
-.. inheritance-diagram:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner
 
 .. autoclass:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner

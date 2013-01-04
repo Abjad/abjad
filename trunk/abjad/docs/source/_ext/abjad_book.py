@@ -136,26 +136,36 @@ def on_build_finished(app, exc):
         shutil.rmtree(app.builder._abjad_book_tempdir)
 
 
-def render_graphviz_image(self, code, absolute_path, file_format='png', linked=False):
+def render_graphviz_image(self, code, paths, file_format='png', keep_original=False):
     assert file_format in ('png', 'pdf')
+    primary_path = paths['primary_absolute_path']
+    secondary_path = paths['secondary_absolute_path']
     tmp_path = os.path.join(self.builder._abjad_book_tempdir,
-        os.path.basename(os.path.splitext(absolute_path)[0])) + '.dot'
+        os.path.basename(os.path.splitext(primary_path)[0])) + '.dot'
     with open(tmp_path, 'w') as f:
         f.write(code)
+
     commands = []
-    if file_format == 'png':
-        commands.append('dot -v -Tpng -o {} {}'.format(absolute_path, tmp_path))
-        commands.append('convert -trim -resize 75% {} {}'.format(absolute_path, absolute_path))
-        commands.append('convert -resize 780x9999">" {} {}'.format(absolute_path, absolute_path))
-    elif file_format == 'pdf':
-        commands.append('dot -v -Tpdf -o {} {}'.format(absolute_path, tmp_path))
-        commands.append('pdfcrop {} {}'.format(absolute_path, absolute_path))
+
+    commands.append('dot -v -Tpdf -o {} {}'.format(secondary_path, tmp_path))
+    if file_format == 'pdf':
+        commands.append('pdfcrop {} {}'.format(secondary_path, primary_path))
+    elif file_format == 'png':
+        commands.append('convert -density 96 -quality 85 -trim {} {}'.format(
+            secondary_path, primary_path))
+        commands.append('convert -resize 66% -resize 460x9999">" {} {}'.format(primary_path, primary_path))
+
     for command in commands:
         subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        #subprocess.call(command, shell=True)
+
+    if not keep_original and os.path.exists(secondary_path):
+        os.remove(secondary_path)
 
 
-def render_lilypond_image(self, code, absolute_path, file_format='png', linked=False):
+def render_lilypond_image(self, code, paths, file_format='png', keep_original=False):
     assert file_format in ('png', 'pdf')
+    absolute_path = paths['primary_absolute_path']
     # LilyPond insists on appending an extension, even if you already did it yourself.
     abs_path = os.path.splitext(absolute_path)[0]
     tmp_path = os.path.join(self.builder._abjad_book_tempdir,
@@ -173,44 +183,75 @@ def render_lilypond_image(self, code, absolute_path, file_format='png', linked=F
         subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
-def render_abjad_book_node(self, code, kind, file_format='png', linked=False):
-    prefix = 'blah'
+def render_abjad_book_node(self, code, kind, file_format='png', linked=False,
+    keep_original=False):
+    suffix = 'original'
     hashkey = code.encode('utf-8') + kind
-    file_name = '{}-{}.{}'.format(
-        kind,
-        hashlib.sha1(hashkey).hexdigest(),
-        file_format)
+    hexdigest = hashlib.sha1(hashkey).hexdigest()
+    # primary in the target format, but secondary always in full-quality PDF
+    primary_file_name = '{}-{}.{}'.format(
+        kind, hexdigest, file_format)
+    secondary_file_name = '{}-{}-{}.pdf'.format(
+        kind, hexdigest, suffix)
+    paths = {}
     if hasattr(self.builder, 'imgpath'): # HTML
-        relative_path = posixpath.join(self.builder.imgpath, file_name)
-        absolute_path = os.path.join(self.builder.outdir, '_images', file_name)
+        img_directory = os.path.join(self.builder.outdir, '_images')
+        if not os.path.exists(img_directory):
+            os.makedirs(img_directory)
+        paths['primary_relative_path'] = posixpath.join(
+            self.builder.imgpath, primary_file_name)
+        paths['primary_absolute_path'] = os.path.join(
+            self.builder.outdir, '_images', primary_file_name)
+        paths['secondary_relative_path'] = posixpath.join(
+            self.builder.imgpath, secondary_file_name)
+        paths['secondary_absolute_path'] = os.path.join(
+            self.builder.outdir, '_images', secondary_file_name)
     else: # LaTeX
-        relative_path = file_name
-        absolute_path = os.path.join(self.builder.outdir, file_name)
-    if os.path.isfile(absolute_path):
-        return relative_path, absolute_path
-    # render
+        paths['primary_relative_path'] = primary_file_name
+        paths['primary_absolute_path'] = os.path.join(
+            self.builder.outdir, primary_file_name)
+        paths['secondary_relative_path'] = secondary_file_name
+        paths['secondary_absolute_path'] = os.path.join(
+            self.builder.outdir, secondary_file_name)
+    if os.path.isfile(paths['primary_absolute_path']):
+        return paths
     if kind == 'lilypond':
-        render_lilypond_image(self, code, absolute_path, file_format)
+        render_lilypond_image(self, code, paths, file_format,
+            keep_original=keep_original)
     elif kind == 'graphviz':
-        render_graphviz_image(self, code, absolute_path, file_format)
-    return relative_path, absolute_path
+        render_graphviz_image(self, code, paths, file_format,
+            keep_original=keep_original)
+    return paths
 
 
 def visit_abjad_book_html(self, node):
-    relative_path, absolute_path = render_abjad_book_node(
-        self, node['code'], node['kind'], file_format='png')
+    keep_original = node.get('keep_original', False)
+    paths = render_abjad_book_node(
+        self, node['code'], node['kind'], file_format='png',
+        keep_original=keep_original)
     wrapper = 'p'
     alt = self.encode(node['code']).strip()
     self.body.append(self.starttag(node, wrapper, CLASS='abjad_book'))
-    self.body.append('<img src="{}" alt="{}" />'.format(relative_path, alt))
+    img = '<img src="{}" alt="{}" />'.format(
+        paths['primary_relative_path'], alt)
+    if keep_original:
+        figure = '<figure>{anchor}<figcaption>{caption}</figcaption></figure>' 
+        anchor = '<a href="{}" alt="click for high-quality original">{}</a>'.format(
+            paths["secondary_relative_path"], img)
+        caption = '<a href="{}">(click for high-quality image)</a>'.format(
+            paths["secondary_relative_path"])
+        self.body.append(figure.format(anchor=anchor, caption=caption))
+    else:
+        self.body.append(img)
     self.body.append('</{}>\n'.format(wrapper))
     raise docutils.nodes.SkipNode
 
 
 def visit_abjad_book_latex(self, node):
-    relative_path, absolute_path = render_abjad_book_node(
-        self, node['code'], node['kind'], file_format='pdf')
-    self.body.append('\n\\includegraphics{' + relative_path + '}\n')
+    paths = render_abjad_book_node(
+        self, node['code'], node['kind'], file_format='pdf',
+        keep_original=False)
+    self.body.append('\n\\includegraphics{' + primary_relative_path + '}\n')
     raise docutils.nodes.SkipNode
 
 

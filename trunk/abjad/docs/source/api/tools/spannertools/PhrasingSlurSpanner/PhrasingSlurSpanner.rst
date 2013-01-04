@@ -1,9 +1,6 @@
 spannertools.PhrasingSlurSpanner
 ================================
 
-.. inheritance-diagram:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner
 
 .. autoclass:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner

@@ -1,9 +1,6 @@
 documentationtools.ReSTOnlyDirective
 ====================================
 
-.. inheritance-diagram:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective
 
 .. autoclass:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective

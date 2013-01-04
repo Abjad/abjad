@@ -1,9 +1,6 @@
 datastructuretools.Digraph
 ==========================
 
-.. inheritance-diagram:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph
 
 .. autoclass:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph

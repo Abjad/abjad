@@ -1,9 +1,6 @@
 pitchtools.ChromaticIntervalClassObject
 =======================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.ChromaticIntervalClassObject.ChromaticIntervalClassObject.ChromaticIntervalClassObject
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.ChromaticIntervalClassObject.ChromaticIntervalClassObject.ChromaticIntervalClassObject
 
 .. autoclass:: abjad.tools.pitchtools.ChromaticIntervalClassObject.ChromaticIntervalClassObject.ChromaticIntervalClassObject

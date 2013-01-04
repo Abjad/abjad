@@ -1,9 +1,6 @@
 spannertools.TrillSpanner
 =========================
 
-.. inheritance-diagram:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner
 
 .. autoclass:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner

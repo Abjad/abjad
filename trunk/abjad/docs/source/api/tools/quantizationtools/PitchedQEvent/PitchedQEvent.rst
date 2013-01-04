@@ -1,9 +1,6 @@
 quantizationtools.PitchedQEvent
 ===============================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent
 
 .. autoclass:: abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent

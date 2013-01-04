@@ -1,9 +1,6 @@
 quantizationtools.NullAttackPointOptimizer
 ==========================================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.NullAttackPointOptimizer.NullAttackPointOptimizer.NullAttackPointOptimizer
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.NullAttackPointOptimizer.NullAttackPointOptimizer.NullAttackPointOptimizer
 
 .. autoclass:: abjad.tools.quantizationtools.NullAttackPointOptimizer.NullAttackPointOptimizer.NullAttackPointOptimizer

@@ -1,9 +1,6 @@
 documentationtools.InheritanceGraph
 ===================================
 
-.. inheritance-diagram:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph
 
 .. autoclass:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph

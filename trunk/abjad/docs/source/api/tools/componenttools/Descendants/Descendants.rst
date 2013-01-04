@@ -1,9 +1,6 @@
 componenttools.Descendants
 ==========================
 
-.. inheritance-diagram:: abjad.tools.componenttools.Descendants.Descendants.Descendants
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.componenttools.Descendants.Descendants.Descendants
 
 .. autoclass:: abjad.tools.componenttools.Descendants.Descendants.Descendants

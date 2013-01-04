@@ -1,9 +1,6 @@
 instrumenttools.ContrabassSaxophone
 ===================================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.ContrabassSaxophone.ContrabassSaxophone.ContrabassSaxophone
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.ContrabassSaxophone.ContrabassSaxophone.ContrabassSaxophone
 
 .. autoclass:: abjad.tools.instrumenttools.ContrabassSaxophone.ContrabassSaxophone.ContrabassSaxophone

@@ -1,9 +1,6 @@
 exceptiontools.MissingPitchError
 ================================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.MissingPitchError.MissingPitchError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingPitchError.MissingPitchError
 
 .. autoclass:: abjad.tools.exceptiontools.MissingPitchError.MissingPitchError

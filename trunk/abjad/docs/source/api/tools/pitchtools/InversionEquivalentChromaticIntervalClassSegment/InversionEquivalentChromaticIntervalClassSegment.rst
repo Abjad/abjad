@@ -1,9 +1,6 @@
 pitchtools.InversionEquivalentChromaticIntervalClassSegment
 ===========================================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSegment.InversionEquivalentChromaticIntervalClassSegment.InversionEquivalentChromaticIntervalClassSegment
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSegment.InversionEquivalentChromaticIntervalClassSegment.InversionEquivalentChromaticIntervalClassSegment
 
 .. autoclass:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSegment.InversionEquivalentChromaticIntervalClassSegment.InversionEquivalentChromaticIntervalClassSegment

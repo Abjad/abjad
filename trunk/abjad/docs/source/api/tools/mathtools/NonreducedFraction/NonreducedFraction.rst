@@ -1,9 +1,6 @@
 mathtools.NonreducedFraction
 ============================
 
-.. inheritance-diagram:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction
 
 .. autoclass:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction

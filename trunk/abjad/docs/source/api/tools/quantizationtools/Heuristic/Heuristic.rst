@@ -1,9 +1,6 @@
 quantizationtools.Heuristic
 ===========================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic
 
 .. autoclass:: abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic

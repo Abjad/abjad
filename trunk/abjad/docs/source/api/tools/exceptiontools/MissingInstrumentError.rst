@@ -1,9 +1,6 @@
 exceptiontools.MissingInstrumentError
 =====================================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError
 
 .. autoclass:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError

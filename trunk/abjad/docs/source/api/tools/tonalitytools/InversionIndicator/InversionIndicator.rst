@@ -1,9 +1,6 @@
 tonalitytools.InversionIndicator
 ================================
 
-.. inheritance-diagram:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator
 
 .. autoclass:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator

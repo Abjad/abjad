@@ -1,9 +1,6 @@
 exceptiontools.TypographicWhitespaceError
 =========================================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError
 
 .. autoclass:: abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError

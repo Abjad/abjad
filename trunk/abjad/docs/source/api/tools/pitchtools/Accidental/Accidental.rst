@@ -1,9 +1,6 @@
 pitchtools.Accidental
 =====================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.Accidental.Accidental.Accidental
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.Accidental.Accidental.Accidental
 
 .. autoclass:: abjad.tools.pitchtools.Accidental.Accidental.Accidental

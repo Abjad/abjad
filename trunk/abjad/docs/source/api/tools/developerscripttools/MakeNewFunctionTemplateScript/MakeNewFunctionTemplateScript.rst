@@ -1,9 +1,6 @@
 developerscripttools.MakeNewFunctionTemplateScript
 ==================================================
 
-.. inheritance-diagram:: abjad.tools.developerscripttools.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.developerscripttools.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript
 
 .. autoclass:: abjad.tools.developerscripttools.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript

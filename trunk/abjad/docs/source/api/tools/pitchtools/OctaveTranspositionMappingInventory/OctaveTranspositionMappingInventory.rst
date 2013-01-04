@@ -1,9 +1,6 @@
 pitchtools.OctaveTranspositionMappingInventory
 ==============================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory
 
 .. autoclass:: abjad.tools.pitchtools.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory

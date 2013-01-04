@@ -1,9 +1,6 @@
 datastructuretools.TreeContainer
 ================================
 
-.. inheritance-diagram:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer
 
 .. autoclass:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer

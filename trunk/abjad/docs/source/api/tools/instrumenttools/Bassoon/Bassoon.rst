@@ -1,9 +1,6 @@
 instrumenttools.Bassoon
 =======================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon
 
 .. autoclass:: abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon

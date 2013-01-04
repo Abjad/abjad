@@ -1,9 +1,6 @@
 exceptiontools.VoiceContainmentError
 ====================================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.VoiceContainmentError.VoiceContainmentError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.VoiceContainmentError.VoiceContainmentError
 
 .. autoclass:: abjad.tools.exceptiontools.VoiceContainmentError.VoiceContainmentError

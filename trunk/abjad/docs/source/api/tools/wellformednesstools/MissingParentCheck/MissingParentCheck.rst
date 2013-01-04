@@ -1,9 +1,6 @@
 wellformednesstools.MissingParentCheck
 ======================================
 
-.. inheritance-diagram:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck

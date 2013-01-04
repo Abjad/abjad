@@ -1,9 +1,6 @@
 instrumenttools.BassClarinet
 ============================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet
 
 .. autoclass:: abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet

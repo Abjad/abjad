@@ -1,9 +1,6 @@
 exceptiontools.ParallelError
 ============================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.ParallelError.ParallelError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.ParallelError.ParallelError
 
 .. autoclass:: abjad.tools.exceptiontools.ParallelError.ParallelError

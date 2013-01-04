@@ -1,9 +1,6 @@
 abctools.AbjadObject
 ====================
 
-.. inheritance-diagram:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject
 
 .. autoclass:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject

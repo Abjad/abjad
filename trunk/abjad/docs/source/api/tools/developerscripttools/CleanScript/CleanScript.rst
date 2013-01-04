@@ -1,9 +1,6 @@
 developerscripttools.CleanScript
 ================================
 
-.. inheritance-diagram:: abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript
 
 .. autoclass:: abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript

@@ -1,9 +1,6 @@
 marktools.Mark
 ==============
 
-.. inheritance-diagram:: abjad.tools.marktools.Mark.Mark.Mark
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.marktools.Mark.Mark.Mark
 
 .. autoclass:: abjad.tools.marktools.Mark.Mark.Mark

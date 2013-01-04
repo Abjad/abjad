@@ -1,9 +1,6 @@
 pitchtools.MelodicObject
 ========================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject
 
 .. autoclass:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject

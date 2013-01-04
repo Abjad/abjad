@@ -1,9 +1,6 @@
 contexttools.DynamicMark
 ========================
 
-.. inheritance-diagram:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark
 
 .. autoclass:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark

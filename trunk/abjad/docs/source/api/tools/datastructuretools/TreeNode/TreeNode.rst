@@ -1,9 +1,6 @@
 datastructuretools.TreeNode
 ===========================
 
-.. inheritance-diagram:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode
 
 .. autoclass:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode

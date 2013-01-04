@@ -1,9 +1,6 @@
 exceptiontools.ExtraNoteHeadError
 =================================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.ExtraNoteHeadError.ExtraNoteHeadError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.ExtraNoteHeadError.ExtraNoteHeadError
 
 .. autoclass:: abjad.tools.exceptiontools.ExtraNoteHeadError.ExtraNoteHeadError

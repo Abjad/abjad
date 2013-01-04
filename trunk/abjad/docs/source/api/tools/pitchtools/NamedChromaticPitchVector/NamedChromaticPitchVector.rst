@@ -1,9 +1,6 @@
 pitchtools.NamedChromaticPitchVector
 ====================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.NamedChromaticPitchVector.NamedChromaticPitchVector.NamedChromaticPitchVector
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.NamedChromaticPitchVector.NamedChromaticPitchVector.NamedChromaticPitchVector
 
 .. autoclass:: abjad.tools.pitchtools.NamedChromaticPitchVector.NamedChromaticPitchVector.NamedChromaticPitchVector

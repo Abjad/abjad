@@ -1,9 +1,6 @@
 timeintervaltools.TimeIntervalTree
 ==================================
 
-.. inheritance-diagram:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree
 
 .. autoclass:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree

@@ -1,9 +1,6 @@
 stafftools.Staff
 ================
 
-.. inheritance-diagram:: abjad.tools.stafftools.Staff.Staff.Staff
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.stafftools.Staff.Staff.Staff
 
 .. autoclass:: abjad.tools.stafftools.Staff.Staff.Staff

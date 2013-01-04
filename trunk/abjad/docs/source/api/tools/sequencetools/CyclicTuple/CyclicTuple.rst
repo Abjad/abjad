@@ -1,9 +1,6 @@
 sequencetools.CyclicTuple
 =========================
 
-.. inheritance-diagram:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple
 
 .. autoclass:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple

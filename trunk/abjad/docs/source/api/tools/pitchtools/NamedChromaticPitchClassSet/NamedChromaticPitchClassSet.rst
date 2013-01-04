@@ -1,9 +1,6 @@
 pitchtools.NamedChromaticPitchClassSet
 ======================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet
 
 .. autoclass:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet

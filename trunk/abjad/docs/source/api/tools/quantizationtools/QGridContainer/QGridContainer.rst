@@ -1,9 +1,6 @@
 quantizationtools.QGridContainer
 ================================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer
 
 .. autoclass:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer

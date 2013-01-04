@@ -1,9 +1,6 @@
 sequencetools.CyclicTree
 ========================
 
-.. inheritance-diagram:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree
 
 .. autoclass:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree

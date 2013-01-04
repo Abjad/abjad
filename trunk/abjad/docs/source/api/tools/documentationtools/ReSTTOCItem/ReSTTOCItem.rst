@@ -1,9 +1,6 @@
 documentationtools.ReSTTOCItem
 ==============================
 
-.. inheritance-diagram:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem
 
 .. autoclass:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem

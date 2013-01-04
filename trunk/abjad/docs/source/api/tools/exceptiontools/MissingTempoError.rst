@@ -1,9 +1,6 @@
 exceptiontools.MissingTempoError
 ================================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError
 
 .. autoclass:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError

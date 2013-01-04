@@ -1,9 +1,6 @@
 timeintervaltools.TimeIntervalAggregateMixin
 ============================================
 
-.. inheritance-diagram:: abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin
 
 .. autoclass:: abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin

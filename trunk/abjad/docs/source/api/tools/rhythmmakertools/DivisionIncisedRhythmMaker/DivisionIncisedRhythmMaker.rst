@@ -1,9 +1,6 @@
 rhythmmakertools.DivisionIncisedRhythmMaker
 ===========================================
 
-.. inheritance-diagram:: abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker.DivisionIncisedRhythmMaker.DivisionIncisedRhythmMaker
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker.DivisionIncisedRhythmMaker.DivisionIncisedRhythmMaker
 
 .. autoclass:: abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker.DivisionIncisedRhythmMaker.DivisionIncisedRhythmMaker

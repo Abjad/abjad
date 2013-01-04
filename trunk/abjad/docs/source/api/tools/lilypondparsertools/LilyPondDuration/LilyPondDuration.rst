@@ -1,9 +1,6 @@
 lilypondparsertools.LilyPondDuration
 ====================================
 
-.. inheritance-diagram:: abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration.LilyPondDuration
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration.LilyPondDuration
 
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration.LilyPondDuration

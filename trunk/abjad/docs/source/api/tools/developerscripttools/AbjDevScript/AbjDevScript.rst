@@ -1,9 +1,6 @@
 developerscripttools.AbjDevScript
 =================================
 
-.. inheritance-diagram:: abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript
 
 .. autoclass:: abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript

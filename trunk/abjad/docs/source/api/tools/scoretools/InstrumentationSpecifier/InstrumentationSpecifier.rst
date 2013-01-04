@@ -1,9 +1,6 @@
 scoretools.InstrumentationSpecifier
 ===================================
 
-.. inheritance-diagram:: abjad.tools.scoretools.InstrumentationSpecifier.InstrumentationSpecifier.InstrumentationSpecifier
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.scoretools.InstrumentationSpecifier.InstrumentationSpecifier.InstrumentationSpecifier
 
 .. autoclass:: abjad.tools.scoretools.InstrumentationSpecifier.InstrumentationSpecifier.InstrumentationSpecifier

@@ -1,9 +1,6 @@
 contexttools.StaffChangeMark
 ============================
 
-.. inheritance-diagram:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark
 
 .. autoclass:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark

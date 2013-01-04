@@ -1,9 +1,6 @@
 lilypondparsertools.SyntaxNode
 ==============================
 
-.. inheritance-diagram:: abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode
 
 .. autoclass:: abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode

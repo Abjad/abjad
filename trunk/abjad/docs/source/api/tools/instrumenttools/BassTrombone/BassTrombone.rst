@@ -1,9 +1,6 @@
 instrumenttools.BassTrombone
 ============================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone
 
 .. autoclass:: abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone

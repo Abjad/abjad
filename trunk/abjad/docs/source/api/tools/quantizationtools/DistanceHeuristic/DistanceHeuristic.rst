@@ -1,9 +1,6 @@
 quantizationtools.DistanceHeuristic
 ===================================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic
 
 .. autoclass:: abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic

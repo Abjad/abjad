@@ -1,9 +1,6 @@
 tonalitytools.QualityIndicator
 ==============================
 
-.. inheritance-diagram:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator
 
 .. autoclass:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator

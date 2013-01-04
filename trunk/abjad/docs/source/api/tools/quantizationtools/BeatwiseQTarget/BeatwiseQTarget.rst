@@ -1,9 +1,6 @@
 quantizationtools.BeatwiseQTarget
 =================================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.BeatwiseQTarget.BeatwiseQTarget.BeatwiseQTarget
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.BeatwiseQTarget.BeatwiseQTarget.BeatwiseQTarget
 
 .. autoclass:: abjad.tools.quantizationtools.BeatwiseQTarget.BeatwiseQTarget.BeatwiseQTarget

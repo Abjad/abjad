@@ -1,9 +1,6 @@
 rhythmmakertools.RhythmMaker
 ============================
 
-.. inheritance-diagram:: abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker
 
 .. autoclass:: abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker

@@ -1,9 +1,6 @@
 developerscripttools.RenameModulesScript
 ========================================
 
-.. inheritance-diagram:: abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript
 
 .. autoclass:: abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript

@@ -1,9 +1,6 @@
 exceptiontools.GraceContainerError
 ==================================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.GraceContainerError.GraceContainerError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.GraceContainerError.GraceContainerError
 
 .. autoclass:: abjad.tools.exceptiontools.GraceContainerError.GraceContainerError

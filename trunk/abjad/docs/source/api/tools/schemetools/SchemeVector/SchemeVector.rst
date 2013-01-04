@@ -1,9 +1,6 @@
 schemetools.SchemeVector
 ========================
 
-.. inheritance-diagram:: abjad.tools.schemetools.SchemeVector.SchemeVector.SchemeVector
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.schemetools.SchemeVector.SchemeVector.SchemeVector
 
 .. autoclass:: abjad.tools.schemetools.SchemeVector.SchemeVector.SchemeVector

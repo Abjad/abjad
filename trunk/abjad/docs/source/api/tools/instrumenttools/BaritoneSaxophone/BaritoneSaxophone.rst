@@ -1,9 +1,6 @@
 instrumenttools.BaritoneSaxophone
 =================================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone
 
 .. autoclass:: abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone

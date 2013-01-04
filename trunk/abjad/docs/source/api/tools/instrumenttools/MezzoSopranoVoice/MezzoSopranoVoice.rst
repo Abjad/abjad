@@ -1,9 +1,6 @@
 instrumenttools.MezzoSopranoVoice
 =================================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.MezzoSopranoVoice.MezzoSopranoVoice.MezzoSopranoVoice
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.MezzoSopranoVoice.MezzoSopranoVoice.MezzoSopranoVoice
 
 .. autoclass:: abjad.tools.instrumenttools.MezzoSopranoVoice.MezzoSopranoVoice.MezzoSopranoVoice

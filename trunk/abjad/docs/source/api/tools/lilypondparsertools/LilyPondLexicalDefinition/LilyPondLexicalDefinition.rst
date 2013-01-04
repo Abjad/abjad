@@ -1,9 +1,6 @@
 lilypondparsertools.LilyPondLexicalDefinition
 =============================================
 
-.. inheritance-diagram:: abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition.LilyPondLexicalDefinition
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition.LilyPondLexicalDefinition
 
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition.LilyPondLexicalDefinition

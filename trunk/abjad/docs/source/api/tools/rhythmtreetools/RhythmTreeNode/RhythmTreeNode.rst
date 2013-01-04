@@ -1,9 +1,6 @@
 rhythmtreetools.RhythmTreeNode
 ==============================
 
-.. inheritance-diagram:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode
 
 .. autoclass:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode

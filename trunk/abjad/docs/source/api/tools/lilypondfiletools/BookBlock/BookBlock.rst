@@ -1,9 +1,6 @@
 lilypondfiletools.BookBlock
 ===========================
 
-.. inheritance-diagram:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock

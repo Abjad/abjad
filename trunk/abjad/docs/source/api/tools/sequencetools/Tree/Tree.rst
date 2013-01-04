@@ -1,9 +1,6 @@
 sequencetools.Tree
 ==================
 
-.. inheritance-diagram:: abjad.tools.sequencetools.Tree.Tree.Tree
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.sequencetools.Tree.Tree.Tree
 
 .. autoclass:: abjad.tools.sequencetools.Tree.Tree.Tree

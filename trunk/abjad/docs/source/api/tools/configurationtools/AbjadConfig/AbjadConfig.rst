@@ -1,9 +1,6 @@
 configurationtools.AbjadConfig
 ==============================
 
-.. inheritance-diagram:: abjad.tools.configurationtools.AbjadConfig.AbjadConfig.AbjadConfig
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.configurationtools.AbjadConfig.AbjadConfig.AbjadConfig
 
 .. autoclass:: abjad.tools.configurationtools.AbjadConfig.AbjadConfig.AbjadConfig

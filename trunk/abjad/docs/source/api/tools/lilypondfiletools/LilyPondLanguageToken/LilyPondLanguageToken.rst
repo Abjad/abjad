@@ -1,9 +1,6 @@
 lilypondfiletools.LilyPondLanguageToken
 =======================================
 
-.. inheritance-diagram:: abjad.tools.lilypondfiletools.LilyPondLanguageToken.LilyPondLanguageToken.LilyPondLanguageToken
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondfiletools.LilyPondLanguageToken.LilyPondLanguageToken.LilyPondLanguageToken
 
 .. autoclass:: abjad.tools.lilypondfiletools.LilyPondLanguageToken.LilyPondLanguageToken.LilyPondLanguageToken

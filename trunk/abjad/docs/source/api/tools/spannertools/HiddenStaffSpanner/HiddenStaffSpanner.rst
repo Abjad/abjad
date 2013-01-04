@@ -1,9 +1,6 @@
 spannertools.HiddenStaffSpanner
 ===============================
 
-.. inheritance-diagram:: abjad.tools.spannertools.HiddenStaffSpanner.HiddenStaffSpanner.HiddenStaffSpanner
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.spannertools.HiddenStaffSpanner.HiddenStaffSpanner.HiddenStaffSpanner
 
 .. autoclass:: abjad.tools.spannertools.HiddenStaffSpanner.HiddenStaffSpanner.HiddenStaffSpanner

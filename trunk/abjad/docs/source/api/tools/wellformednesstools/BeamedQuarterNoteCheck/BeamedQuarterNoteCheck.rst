@@ -1,9 +1,6 @@
 wellformednesstools.BeamedQuarterNoteCheck
 ==========================================
 
-.. inheritance-diagram:: abjad.tools.wellformednesstools.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.wellformednesstools.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck

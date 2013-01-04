@@ -94,9 +94,9 @@ class ClassDocumenter(Documenter):
             level=2,
             text=stripped_class_name,
             ))
-        document.append(documentationtools.ReSTInheritanceDiagram(
-            argument=module_name,
-            ))
+        #document.append(documentationtools.ReSTInheritanceDiagram(
+        #    argument=module_name,
+        #    ))
         document.append(documentationtools.ReSTLineageDirective(
             argument=module_name,
             ))

@@ -1,9 +1,6 @@
 exceptiontools.LineBreakError
 =============================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.LineBreakError.LineBreakError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.LineBreakError.LineBreakError
 
 .. autoclass:: abjad.tools.exceptiontools.LineBreakError.LineBreakError

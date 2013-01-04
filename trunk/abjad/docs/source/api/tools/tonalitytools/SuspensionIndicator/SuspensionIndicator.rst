@@ -1,9 +1,6 @@
 tonalitytools.SuspensionIndicator
 =================================
 
-.. inheritance-diagram:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator
 
 .. autoclass:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator

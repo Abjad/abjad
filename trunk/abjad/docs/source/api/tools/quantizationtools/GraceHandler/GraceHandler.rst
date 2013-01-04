@@ -1,9 +1,6 @@
 quantizationtools.GraceHandler
 ==============================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler
 
 .. autoclass:: abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler

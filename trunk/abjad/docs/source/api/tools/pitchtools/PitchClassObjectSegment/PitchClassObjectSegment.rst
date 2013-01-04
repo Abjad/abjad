@@ -1,9 +1,6 @@
 pitchtools.PitchClassObjectSegment
 ==================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.PitchClassObjectSegment.PitchClassObjectSegment.PitchClassObjectSegment
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.PitchClassObjectSegment.PitchClassObjectSegment.PitchClassObjectSegment
 
 .. autoclass:: abjad.tools.pitchtools.PitchClassObjectSegment.PitchClassObjectSegment.PitchClassObjectSegment

@@ -1,9 +1,6 @@
 documentationtools.Documenter
 =============================
 
-.. inheritance-diagram:: abjad.tools.documentationtools.Documenter.Documenter.Documenter
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.documentationtools.Documenter.Documenter.Documenter
 
 .. autoclass:: abjad.tools.documentationtools.Documenter.Documenter.Documenter

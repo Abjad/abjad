@@ -1,9 +1,6 @@
 pitchtools.NumberedPitchClassObject
 ===================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.NumberedPitchClassObject.NumberedPitchClassObject.NumberedPitchClassObject
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.NumberedPitchClassObject.NumberedPitchClassObject.NumberedPitchClassObject
 
 .. autoclass:: abjad.tools.pitchtools.NumberedPitchClassObject.NumberedPitchClassObject.NumberedPitchClassObject

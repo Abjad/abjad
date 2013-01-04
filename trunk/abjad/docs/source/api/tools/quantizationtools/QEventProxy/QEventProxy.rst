@@ -1,9 +1,6 @@
 quantizationtools.QEventProxy
 =============================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy
 
 .. autoclass:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy

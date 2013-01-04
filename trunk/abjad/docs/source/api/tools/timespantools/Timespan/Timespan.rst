@@ -1,9 +1,6 @@
 timespantools.Timespan
 ======================
 
-.. inheritance-diagram:: abjad.tools.timespantools.Timespan.Timespan.Timespan
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.timespantools.Timespan.Timespan.Timespan
 
 .. autoclass:: abjad.tools.timespantools.Timespan.Timespan.Timespan

@@ -1,9 +1,6 @@
 exceptiontools.TupletError
 ==========================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.TupletError.TupletError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.TupletError.TupletError
 
 .. autoclass:: abjad.tools.exceptiontools.TupletError.TupletError

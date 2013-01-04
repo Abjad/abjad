@@ -1,9 +1,6 @@
 documentationtools.ReSTLineageDirective
 =======================================
 
-.. inheritance-diagram:: abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective
 
 .. autoclass:: abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective

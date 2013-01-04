@@ -1,9 +1,6 @@
 pitchtools.CounterpointIntervalClassObject
 ==========================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.CounterpointIntervalClassObject.CounterpointIntervalClassObject.CounterpointIntervalClassObject
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.CounterpointIntervalClassObject.CounterpointIntervalClassObject.CounterpointIntervalClassObject
 
 .. autoclass:: abjad.tools.pitchtools.CounterpointIntervalClassObject.CounterpointIntervalClassObject.CounterpointIntervalClassObject

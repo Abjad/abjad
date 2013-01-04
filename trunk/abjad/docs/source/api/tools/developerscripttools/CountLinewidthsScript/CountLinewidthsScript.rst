@@ -1,9 +1,6 @@
 developerscripttools.CountLinewidthsScript
 ==========================================
 
-.. inheritance-diagram:: abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript
 
 .. autoclass:: abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript

@@ -1,9 +1,6 @@
 notetools.NoteHead
 ==================
 
-.. inheritance-diagram:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead
 
 .. autoclass:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead

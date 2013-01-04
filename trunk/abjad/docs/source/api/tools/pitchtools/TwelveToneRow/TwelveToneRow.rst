@@ -1,9 +1,6 @@
 pitchtools.TwelveToneRow
 ========================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow
 
 .. autoclass:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow

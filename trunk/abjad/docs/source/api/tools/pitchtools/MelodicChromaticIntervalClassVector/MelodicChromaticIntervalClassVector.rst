@@ -1,9 +1,6 @@
 pitchtools.MelodicChromaticIntervalClassVector
 ==============================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector
 
 .. autoclass:: abjad.tools.pitchtools.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector

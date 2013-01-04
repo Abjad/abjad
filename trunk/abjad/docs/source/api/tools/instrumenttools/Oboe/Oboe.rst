@@ -1,9 +1,6 @@
 instrumenttools.Oboe
 ====================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe
 
 .. autoclass:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe

@@ -1,9 +1,6 @@
 instrumenttools.AltoSaxophone
 =============================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone
 
 .. autoclass:: abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone

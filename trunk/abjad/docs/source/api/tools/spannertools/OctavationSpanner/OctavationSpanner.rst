@@ -1,9 +1,6 @@
 spannertools.OctavationSpanner
 ==============================
 
-.. inheritance-diagram:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner
 
 .. autoclass:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner

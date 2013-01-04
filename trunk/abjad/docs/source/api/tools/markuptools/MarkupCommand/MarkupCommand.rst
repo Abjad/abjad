@@ -1,9 +1,6 @@
 markuptools.MarkupCommand
 =========================
 
-.. inheritance-diagram:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand
 
 .. autoclass:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand

@@ -1,9 +1,6 @@
 lilypondfiletools.MIDIBlock
 ===========================
 
-.. inheritance-diagram:: abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock

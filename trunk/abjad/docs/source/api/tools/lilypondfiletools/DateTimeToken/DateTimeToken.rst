@@ -1,9 +1,6 @@
 lilypondfiletools.DateTimeToken
 ===============================
 
-.. inheritance-diagram:: abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken
 
 .. autoclass:: abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken

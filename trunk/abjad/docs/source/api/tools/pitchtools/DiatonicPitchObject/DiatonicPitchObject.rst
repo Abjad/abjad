@@ -1,9 +1,6 @@
 pitchtools.DiatonicPitchObject
 ==============================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject
 
 .. autoclass:: abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject

@@ -1,9 +1,6 @@
 lilypondfiletools.ScoreBlock
 ============================
 
-.. inheritance-diagram:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock

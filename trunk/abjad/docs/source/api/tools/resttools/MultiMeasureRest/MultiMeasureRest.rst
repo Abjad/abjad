@@ -1,9 +1,6 @@
 resttools.MultiMeasureRest
 ==========================
 
-.. inheritance-diagram:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest
 
 .. autoclass:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest

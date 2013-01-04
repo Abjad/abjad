@@ -1,9 +1,6 @@
 componenttools.Component
 ========================
 
-.. inheritance-diagram:: abjad.tools.componenttools.Component.Component.Component
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.componenttools.Component.Component.Component
 
 .. autoclass:: abjad.tools.componenttools.Component.Component.Component

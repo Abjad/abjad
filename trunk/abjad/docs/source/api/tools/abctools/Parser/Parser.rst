@@ -1,9 +1,6 @@
 abctools.Parser
 ===============
 
-.. inheritance-diagram:: abjad.tools.abctools.Parser.Parser.Parser
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.abctools.Parser.Parser.Parser
 
 .. autoclass:: abjad.tools.abctools.Parser.Parser.Parser

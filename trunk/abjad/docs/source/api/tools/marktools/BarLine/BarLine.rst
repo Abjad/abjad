@@ -1,9 +1,6 @@
 marktools.BarLine
 =================
 
-.. inheritance-diagram:: abjad.tools.marktools.BarLine.BarLine.BarLine
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.marktools.BarLine.BarLine.BarLine
 
 .. autoclass:: abjad.tools.marktools.BarLine.BarLine.BarLine

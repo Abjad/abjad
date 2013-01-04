@@ -1,9 +1,6 @@
 pitchtools.MelodicChromaticIntervalClassSegment
 ===============================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment
 
 .. autoclass:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment

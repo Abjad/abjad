@@ -1,9 +1,6 @@
 schemetools.SchemePair
 ======================
 
-.. inheritance-diagram:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair
 
 .. autoclass:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair

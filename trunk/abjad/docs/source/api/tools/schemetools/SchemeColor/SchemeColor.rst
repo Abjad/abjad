@@ -1,9 +1,6 @@
 schemetools.SchemeColor
 =======================
 
-.. inheritance-diagram:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor
 
 .. autoclass:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor

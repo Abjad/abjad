@@ -1,9 +1,6 @@
 spannertools.PianoPedalSpanner
 ==============================
 
-.. inheritance-diagram:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner
 
 .. autoclass:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner

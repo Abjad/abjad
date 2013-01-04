@@ -1,9 +1,6 @@
 abjadbooktools.AbjadBookScript
 ==============================
 
-.. inheritance-diagram:: abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript
 
 .. autoclass:: abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript

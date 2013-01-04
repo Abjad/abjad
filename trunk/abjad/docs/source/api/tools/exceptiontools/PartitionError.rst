@@ -1,9 +1,6 @@
 exceptiontools.PartitionError
 =============================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.PartitionError.PartitionError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.PartitionError.PartitionError
 
 .. autoclass:: abjad.tools.exceptiontools.PartitionError.PartitionError

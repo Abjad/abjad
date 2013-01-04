@@ -1,9 +1,6 @@
 documentationtools.FunctionCrawler
 ==================================
 
-.. inheritance-diagram:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler
 
 .. autoclass:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler

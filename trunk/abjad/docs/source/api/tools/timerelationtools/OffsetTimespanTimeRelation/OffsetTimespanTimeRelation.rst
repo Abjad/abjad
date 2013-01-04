@@ -1,9 +1,6 @@
 timerelationtools.OffsetTimespanTimeRelation
 ============================================
 
-.. inheritance-diagram:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation
 
 .. autoclass:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation

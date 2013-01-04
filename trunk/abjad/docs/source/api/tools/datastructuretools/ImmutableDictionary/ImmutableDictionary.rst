@@ -1,9 +1,6 @@
 datastructuretools.ImmutableDictionary
 ======================================
 
-.. inheritance-diagram:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary
 
 .. autoclass:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary

@@ -1,9 +1,6 @@
 quantizationtools.Quantizer
 ===========================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer
 
 .. autoclass:: abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer

@@ -1,9 +1,6 @@
 pitchtools.HarmonicChromaticIntervalSegment
 ===========================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment

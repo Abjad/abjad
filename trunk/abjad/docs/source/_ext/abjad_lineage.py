@@ -52,7 +52,7 @@ class AbjadLineage(Directive):
 
         node['code'] = lineage.graphviz_format
         node['kind'] = 'graphviz'
-        node['linked'] = True
+        node['keep_original'] = True
 
         return [node]
 

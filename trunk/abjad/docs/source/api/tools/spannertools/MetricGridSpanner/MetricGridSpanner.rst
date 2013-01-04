@@ -1,9 +1,6 @@
 spannertools.MetricGridSpanner
 ==============================
 
-.. inheritance-diagram:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner
 
 .. autoclass:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner

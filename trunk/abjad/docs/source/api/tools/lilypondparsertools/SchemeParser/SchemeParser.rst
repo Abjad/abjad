@@ -1,9 +1,6 @@
 lilypondparsertools.SchemeParser
 ================================
 
-.. inheritance-diagram:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser
 
 .. autoclass:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser

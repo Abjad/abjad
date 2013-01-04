@@ -1,9 +1,6 @@
 stafftools.RhythmicStaff
 ========================
 
-.. inheritance-diagram:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff
 
 .. autoclass:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff

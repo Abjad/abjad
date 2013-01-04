@@ -1,9 +1,6 @@
 scoretemplatetools.StringQuartetScoreTemplate
 =============================================
 
-.. inheritance-diagram:: abjad.tools.scoretemplatetools.StringQuartetScoreTemplate.StringQuartetScoreTemplate.StringQuartetScoreTemplate
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.scoretemplatetools.StringQuartetScoreTemplate.StringQuartetScoreTemplate.StringQuartetScoreTemplate
 
 .. autoclass:: abjad.tools.scoretemplatetools.StringQuartetScoreTemplate.StringQuartetScoreTemplate.StringQuartetScoreTemplate

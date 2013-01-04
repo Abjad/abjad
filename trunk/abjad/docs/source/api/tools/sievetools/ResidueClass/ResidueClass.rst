@@ -1,9 +1,6 @@
 sievetools.ResidueClass
 =======================
 
-.. inheritance-diagram:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass
 
 .. autoclass:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass

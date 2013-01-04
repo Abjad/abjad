@@ -1,9 +1,6 @@
 pitchtools.ObjectVector
 =======================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.ObjectVector.ObjectVector.ObjectVector
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.ObjectVector.ObjectVector.ObjectVector
 
 .. autoclass:: abjad.tools.pitchtools.ObjectVector.ObjectVector.ObjectVector

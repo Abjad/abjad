@@ -1,9 +1,6 @@
 exceptiontools.CyclicNodeError
 ==============================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.CyclicNodeError.CyclicNodeError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.CyclicNodeError.CyclicNodeError
 
 .. autoclass:: abjad.tools.exceptiontools.CyclicNodeError.CyclicNodeError

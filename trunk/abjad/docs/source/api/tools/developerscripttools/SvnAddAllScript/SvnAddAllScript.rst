@@ -1,9 +1,6 @@
 developerscripttools.SvnAddAllScript
 ====================================
 
-.. inheritance-diagram:: abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript
 
 .. autoclass:: abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript

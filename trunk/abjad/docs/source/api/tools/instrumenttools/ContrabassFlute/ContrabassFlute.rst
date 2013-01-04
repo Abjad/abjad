@@ -1,9 +1,6 @@
 instrumenttools.ContrabassFlute
 ===============================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute
 
 .. autoclass:: abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute

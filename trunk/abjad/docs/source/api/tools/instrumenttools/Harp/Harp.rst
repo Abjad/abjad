@@ -1,9 +1,6 @@
 instrumenttools.Harp
 ====================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.Harp.Harp.Harp
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.Harp.Harp.Harp
 
 .. autoclass:: abjad.tools.instrumenttools.Harp.Harp.Harp

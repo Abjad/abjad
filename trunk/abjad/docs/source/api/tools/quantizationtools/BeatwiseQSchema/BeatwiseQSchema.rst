@@ -1,9 +1,6 @@
 quantizationtools.BeatwiseQSchema
 =================================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema
 
 .. autoclass:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema

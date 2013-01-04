@@ -1,9 +1,6 @@
 documentationtools.ReSTParagraph
 ================================
 
-.. inheritance-diagram:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph
 
 .. autoclass:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph

@@ -1,9 +1,6 @@
 beamtools.MeasuredComplexBeamSpanner
 ====================================
 
-.. inheritance-diagram:: abjad.tools.beamtools.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.beamtools.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner
 
 .. autoclass:: abjad.tools.beamtools.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner

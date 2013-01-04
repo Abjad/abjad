@@ -1,9 +1,6 @@
 developerscripttools.BuildApiScript
 ===================================
 
-.. inheritance-diagram:: abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript
 
 .. autoclass:: abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript

@@ -1,9 +1,6 @@
 instrumenttools.TenorVoice
 ==========================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice
 
 .. autoclass:: abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice

@@ -1,9 +1,6 @@
 mathtools.BoundedObject
 =======================
 
-.. inheritance-diagram:: abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject
 
 .. autoclass:: abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject

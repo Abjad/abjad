@@ -1,9 +1,6 @@
 exceptiontools.ExtraSpannerError
 ================================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.ExtraSpannerError.ExtraSpannerError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.ExtraSpannerError.ExtraSpannerError
 
 .. autoclass:: abjad.tools.exceptiontools.ExtraSpannerError.ExtraSpannerError

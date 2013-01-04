@@ -1,9 +1,6 @@
 spannertools.GlissandoSpanner
 =============================
 
-.. inheritance-diagram:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner
 
 .. autoclass:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner

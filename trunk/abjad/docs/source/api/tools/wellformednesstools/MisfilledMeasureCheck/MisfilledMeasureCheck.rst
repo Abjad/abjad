@@ -1,9 +1,6 @@
 wellformednesstools.MisfilledMeasureCheck
 =========================================
 
-.. inheritance-diagram:: abjad.tools.wellformednesstools.MisfilledMeasureCheck.MisfilledMeasureCheck.MisfilledMeasureCheck
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.wellformednesstools.MisfilledMeasureCheck.MisfilledMeasureCheck.MisfilledMeasureCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.MisfilledMeasureCheck.MisfilledMeasureCheck.MisfilledMeasureCheck

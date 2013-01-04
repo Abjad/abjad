@@ -1,9 +1,6 @@
 developerscripttools.CountToolsScript
 =====================================
 
-.. inheritance-diagram:: abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript
 
 .. autoclass:: abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript

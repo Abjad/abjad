@@ -1,9 +1,6 @@
 lilypondfiletools.PaperBlock
 ============================
 
-.. inheritance-diagram:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock

@@ -1,9 +1,6 @@
 quantizationtools.QGridLeaf
 ===========================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf
 
 .. autoclass:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf

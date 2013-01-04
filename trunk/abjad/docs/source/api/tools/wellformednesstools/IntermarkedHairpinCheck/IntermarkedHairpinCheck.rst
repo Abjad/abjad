@@ -1,9 +1,6 @@
 wellformednesstools.IntermarkedHairpinCheck
 ===========================================
 
-.. inheritance-diagram:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck

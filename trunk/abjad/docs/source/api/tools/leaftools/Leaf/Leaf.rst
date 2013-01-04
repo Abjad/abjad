@@ -1,9 +1,6 @@
 leaftools.Leaf
 ==============
 
-.. inheritance-diagram:: abjad.tools.leaftools.Leaf.Leaf.Leaf
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.leaftools.Leaf.Leaf.Leaf
 
 .. autoclass:: abjad.tools.leaftools.Leaf.Leaf.Leaf

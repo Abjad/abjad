@@ -1,9 +1,6 @@
 containertools.Cluster
 ======================
 
-.. inheritance-diagram:: abjad.tools.containertools.Cluster.Cluster.Cluster
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.containertools.Cluster.Cluster.Cluster
 
 .. autoclass:: abjad.tools.containertools.Cluster.Cluster.Cluster

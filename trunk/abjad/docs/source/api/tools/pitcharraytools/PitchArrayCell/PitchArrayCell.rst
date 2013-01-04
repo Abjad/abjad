@@ -1,9 +1,6 @@
 pitcharraytools.PitchArrayCell
 ==============================
 
-.. inheritance-diagram:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell
 
 .. autoclass:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell

@@ -1,9 +1,6 @@
 scoretools.Score
 ================
 
-.. inheritance-diagram:: abjad.tools.scoretools.Score.Score.Score
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.scoretools.Score.Score.Score
 
 .. autoclass:: abjad.tools.scoretools.Score.Score.Score

@@ -1,9 +1,6 @@
 wellformednesstools.EmptyContainerCheck
 =======================================
 
-.. inheritance-diagram:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck

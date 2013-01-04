@@ -1,9 +1,6 @@
 lilypondfiletools.LayoutBlock
 =============================
 
-.. inheritance-diagram:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock

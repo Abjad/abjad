@@ -1,9 +1,6 @@
 exceptiontools.PitchError
 =========================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.PitchError.PitchError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.PitchError.PitchError
 
 .. autoclass:: abjad.tools.exceptiontools.PitchError.PitchError

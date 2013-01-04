@@ -1,9 +1,6 @@
 documentationtools.ReSTAutodocDirective
 =======================================
 
-.. inheritance-diagram:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective
 
 .. autoclass:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective

@@ -1,9 +1,6 @@
 exceptiontools.ContextContainmentError
 ======================================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError
 
 .. autoclass:: abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError

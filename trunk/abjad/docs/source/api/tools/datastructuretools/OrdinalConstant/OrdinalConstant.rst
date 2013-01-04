@@ -1,9 +1,6 @@
 datastructuretools.OrdinalConstant
 ==================================
 
-.. inheritance-diagram:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant
 
 .. autoclass:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant

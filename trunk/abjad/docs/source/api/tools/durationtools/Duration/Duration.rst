@@ -1,9 +1,6 @@
 durationtools.Duration
 ======================
 
-.. inheritance-diagram:: abjad.tools.durationtools.Duration.Duration.Duration
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.durationtools.Duration.Duration.Duration
 
 .. autoclass:: abjad.tools.durationtools.Duration.Duration.Duration

@@ -1,9 +1,6 @@
 schemetools.SchemeAssociativeList
 =================================
 
-.. inheritance-diagram:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList
 
 .. autoclass:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList

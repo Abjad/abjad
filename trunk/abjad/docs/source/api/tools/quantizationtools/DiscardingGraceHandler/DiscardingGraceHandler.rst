@@ -1,9 +1,6 @@
 quantizationtools.DiscardingGraceHandler
 ========================================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler
 
 .. autoclass:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler

@@ -1,9 +1,6 @@
 lilypondparsertools.LilyPondEvent
 =================================
 
-.. inheritance-diagram:: abjad.tools.lilypondparsertools.LilyPondEvent.LilyPondEvent.LilyPondEvent
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondparsertools.LilyPondEvent.LilyPondEvent.LilyPondEvent
 
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondEvent.LilyPondEvent.LilyPondEvent

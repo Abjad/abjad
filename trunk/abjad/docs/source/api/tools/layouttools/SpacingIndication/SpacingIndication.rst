@@ -1,9 +1,6 @@
 layouttools.SpacingIndication
 =============================
 
-.. inheritance-diagram:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication
 
 .. autoclass:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication

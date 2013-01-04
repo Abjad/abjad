@@ -1,9 +1,6 @@
 markuptools.MusicGlyph
 ======================
 
-.. inheritance-diagram:: abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph
 
 .. autoclass:: abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph

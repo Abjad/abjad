@@ -1,9 +1,6 @@
 lilypondfiletools.LilyPondDimension
 ===================================
 
-.. inheritance-diagram:: abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension
 
 .. autoclass:: abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension

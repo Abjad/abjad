@@ -1,9 +1,6 @@
 instrumenttools.Piano
 =====================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.Piano.Piano.Piano
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.Piano.Piano.Piano
 
 .. autoclass:: abjad.tools.instrumenttools.Piano.Piano.Piano

@@ -1,9 +1,6 @@
 contexttools.TimeSignatureMark
 ==============================
 
-.. inheritance-diagram:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark
 
 .. autoclass:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark

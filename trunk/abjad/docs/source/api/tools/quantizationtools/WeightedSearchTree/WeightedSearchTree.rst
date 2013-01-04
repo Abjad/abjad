@@ -1,9 +1,6 @@
 quantizationtools.WeightedSearchTree
 ====================================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree
 
 .. autoclass:: abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree

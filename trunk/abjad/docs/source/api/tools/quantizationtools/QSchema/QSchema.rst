@@ -1,9 +1,6 @@
 quantizationtools.QSchema
 =========================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema
 
 .. autoclass:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema

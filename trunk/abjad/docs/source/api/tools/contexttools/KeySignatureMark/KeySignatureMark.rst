@@ -1,9 +1,6 @@
 contexttools.KeySignatureMark
 =============================
 
-.. inheritance-diagram:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark
 
 .. autoclass:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark

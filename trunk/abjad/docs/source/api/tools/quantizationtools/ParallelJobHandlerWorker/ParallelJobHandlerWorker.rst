@@ -1,9 +1,6 @@
 quantizationtools.ParallelJobHandlerWorker
 ==========================================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker
 
 .. autoclass:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker

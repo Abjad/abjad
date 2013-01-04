@@ -1,9 +1,6 @@
 spannertools.HorizontalBracketSpanner
 =====================================
 
-.. inheritance-diagram:: abjad.tools.spannertools.HorizontalBracketSpanner.HorizontalBracketSpanner.HorizontalBracketSpanner
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.spannertools.HorizontalBracketSpanner.HorizontalBracketSpanner.HorizontalBracketSpanner
 
 .. autoclass:: abjad.tools.spannertools.HorizontalBracketSpanner.HorizontalBracketSpanner.HorizontalBracketSpanner

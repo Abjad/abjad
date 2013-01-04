@@ -1,9 +1,6 @@
 tonalitytools.ChordQualityIndicator
 ===================================
 
-.. inheritance-diagram:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator
 
 .. autoclass:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator

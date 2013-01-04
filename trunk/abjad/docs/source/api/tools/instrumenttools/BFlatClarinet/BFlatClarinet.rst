@@ -1,9 +1,6 @@
 instrumenttools.BFlatClarinet
 =============================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet
 
 .. autoclass:: abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet

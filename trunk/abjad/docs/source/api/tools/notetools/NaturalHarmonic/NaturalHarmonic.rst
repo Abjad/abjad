@@ -1,9 +1,6 @@
 notetools.NaturalHarmonic
 =========================
 
-.. inheritance-diagram:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic
 
 .. autoclass:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic

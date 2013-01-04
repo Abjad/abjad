@@ -1,9 +1,6 @@
 measuretools.DynamicMeasure
 ===========================
 
-.. inheritance-diagram:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure
 
 .. autoclass:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure

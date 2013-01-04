@@ -1,9 +1,6 @@
 exceptiontools.OverfullContainerError
 =====================================
 
-.. inheritance-diagram:: abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError
 
 .. autoclass:: abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError

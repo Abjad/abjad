@@ -1,9 +1,6 @@
 pitchtools.NumberedChromaticPitchClassColorMap
 ==============================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap
 
 .. autoclass:: abjad.tools.pitchtools.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap

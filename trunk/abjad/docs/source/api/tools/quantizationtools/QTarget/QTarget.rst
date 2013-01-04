@@ -1,9 +1,6 @@
 quantizationtools.QTarget
 =========================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.QTarget.QTarget.QTarget
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.QTarget.QTarget.QTarget
 
 .. autoclass:: abjad.tools.quantizationtools.QTarget.QTarget.QTarget

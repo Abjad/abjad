@@ -1,9 +1,6 @@
 quantizationtools.QEventSequence
 ================================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence
 
 .. autoclass:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence

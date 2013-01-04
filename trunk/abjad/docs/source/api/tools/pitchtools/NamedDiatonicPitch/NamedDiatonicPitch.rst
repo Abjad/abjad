@@ -1,9 +1,6 @@
 pitchtools.NamedDiatonicPitch
 =============================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch
 
 .. autoclass:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch

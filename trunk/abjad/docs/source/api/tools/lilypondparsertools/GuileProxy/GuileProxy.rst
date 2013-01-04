@@ -1,9 +1,6 @@
 lilypondparsertools.GuileProxy
 ==============================
 
-.. inheritance-diagram:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy
 
 .. autoclass:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy

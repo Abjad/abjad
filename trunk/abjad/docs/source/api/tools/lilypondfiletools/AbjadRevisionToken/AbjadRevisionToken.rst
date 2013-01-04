@@ -1,9 +1,6 @@
 lilypondfiletools.AbjadRevisionToken
 ====================================
 
-.. inheritance-diagram:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken
-   :private-bases:
-
 .. abjad-lineage:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken
 
 .. autoclass:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken
