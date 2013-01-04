@@ -111,7 +111,7 @@ class ConcreteInterpreter(Interpreter):
             return [result]
         elif isinstance(division_region_command.request, selectortools.BeatSelector):
             beat_selector = division_region_command.request
-            timespan, divisions = beat_selector._get_timespan_and_selected_objects(
+            timespan, divisions = beat_selector._get_timespan_and_payload(
                 self.score_specification, division_region_command.voice_name, timespan=region_timespan)
             divisions = [divisiontools.Division(x) for x in divisions]
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
@@ -119,7 +119,7 @@ class ConcreteInterpreter(Interpreter):
             return [result]
         elif isinstance(division_region_command.request, selectortools.DivisionSelector):
             division_selector = division_region_command.request
-            division_region_product = division_selector._get_division_region_product(
+            division_region_product = division_selector._get_payload(
                 self.score_specification, division_selector.voice_name)
             #self._debug(division_region_product, 'drx')
             if division_region_product is None:
@@ -139,7 +139,7 @@ class ConcreteInterpreter(Interpreter):
         elif isinstance(division_region_command.request, selectortools.BackgroundMeasureSelector):
             background_measure_selector = division_region_command.request
             timespan, time_signatures = \
-                background_measure_selector._get_timespan_and_selected_objects(
+                background_measure_selector._get_timespan_and_payload(
                 self.score_specification, None)
             divisions = [divisiontools.Division(x) for x in time_signatures]
             result = settingtools.DivisionRegionProduct(divisions, voice_name, region_timespan)
@@ -370,7 +370,7 @@ class ConcreteInterpreter(Interpreter):
                 elif isinstance(rhythm_quadruple[0], selectortools.CounttimeComponentSelector):
                     counttime_component_selector, start_offset, stop_offset = rhythm_quadruple[:3]
                     rhythm_region_product = \
-                        counttime_component_selector._get_rhythm_region_product(
+                        counttime_component_selector._get_payload(
                         self.score_specification, counttime_component_selector.voice_name, 
                         start_offset, stop_offset)
                 else:

@@ -91,21 +91,12 @@ class SegmentSelector(Selector):
 
     ### PRIVATE METHODS ###
 
-    def _get_payload(self, score_specification, voice_name=None):
-        raise NotImplementedError
-
-    def _get_timespan(self, score_specification, context_name):
-        '''Evaluate start and stop offsets of selector when applied
-        to `score_specification`.
-
-        Ignore `context_name`.
-
-        Return offset.
-        '''
+    def _get_timespan_and_payload(self, score_specification, voice_name=None):
         start_segment_identifier = self.start_segment_identifier
-        timespan = score_specification[start_segment_identifier].timespan
-        timespan = self._apply_timespan_modifiers(timespan)
-        return timespan
+        segment = score_specification[start_segment_identifier]
+        segment = self._apply_request_modifiers(segment)
+        timespan = segment.timespan
+        return timespan, segment
 
     def _make_identifier_expression(self, segment_name, addendum):
         assert isinstance(segment_name, str)

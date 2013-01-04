@@ -80,9 +80,44 @@ class CounttimeComponentSelector(Selector):
     
     ### PRIVATE METHODS ###
 
-    def _get_payload(self, score_specification, voice_name=None):
-        raise NotImplementedError
+    # TODO: remove start_offset=None, stop_offset=None keywords are use payload modifier instead.
+    # TODO: migrate into self._get_timespan_and_payload().
+    def _get_payload(self, score_specification, voice_name, start_offset=None, stop_offset=None):
+        from experimental.tools import settingtools
+        assert voice_name == self.voice_name
+        #self._debug((start_offset, stop_offset), 'offsets')
+        anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
+        voice_proxy = score_specification.contexts[voice_name]
+        rhythm_region_products = voice_proxy['rhythm_region_products']
+        #self._debug_values(rhythm_region_products, 'rhythm region expressions')
+        timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
+            timespan_1=anchor_timespan)
+        rhythm_region_products = rhythm_region_products.get_timespans_that_satisfy_time_relation(
+            timespan_time_relation)
+        #self._debug_values(rhythm_region_products, 'rhythm region expressions')
+        if not rhythm_region_products:
+            return
+        rhythm_region_products = copy.deepcopy(rhythm_region_products)
+        rhythm_region_products = timespantools.TimespanInventory(rhythm_region_products)
+        rhythm_region_products.sort()
+        assert anchor_timespan.is_well_formed, repr(anchor_timespan)
+        rhythm_region_products.keep_material_that_intersects_timespan(anchor_timespan)
+        timespan = timespantools.Timespan(start_offset)
+        result = settingtools.RhythmRegionProduct(voice_name=voice_name, timespan=timespan)
+        for rhythm_region_product in rhythm_region_products:
+            result.payload.extend(rhythm_region_product.payload)
+        assert wellformednesstools.is_well_formed_component(result.payload)
+        result, new_start_offset = self._apply_request_modifiers(result, result.start_offset)
+        if not isinstance(result, settingtools.RhythmRegionProduct):
+            assert componenttools.all_are_components(result)
+            music = componenttools.copy_components_and_fracture_crossing_spanners(result)
+            result = settingtools.RhythmRegionProduct(
+                payload=music, voice_name=voice_name, start_offset=start_offset)
+        result.set_offsets(start_offset=start_offset, stop_offset=stop_offset)
+        result.repeat_to_stop_offset(stop_offset)
+        return result
 
+    # TODO: migrate into self._get_timespan_and_payload()
     def _get_timespan(self, score_specification, voice_name):
         # allow user-specified voice name to override passed-in voice name
         voice_name = self.voice_name or voice_name
@@ -117,41 +152,9 @@ class CounttimeComponentSelector(Selector):
         stop_offset = last_component_expression_offset + last_component.stop_offset
         return timespantools.Timespan(start_offset, stop_offset)
 
-    def _get_rhythm_region_product(self, score_specification, voice_name,
-        start_offset=None, stop_offset=None):
-        from experimental.tools import settingtools
-        assert voice_name == self.voice_name
-        #self._debug((start_offset, stop_offset), 'offsets')
-        anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
-        voice_proxy = score_specification.contexts[voice_name]
-        rhythm_region_products = voice_proxy['rhythm_region_products']
-        #self._debug_values(rhythm_region_products, 'rhythm region expressions')
-        timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
-            timespan_1=anchor_timespan)
-        rhythm_region_products = rhythm_region_products.get_timespans_that_satisfy_time_relation(
-            timespan_time_relation)
-        #self._debug_values(rhythm_region_products, 'rhythm region expressions')
-        if not rhythm_region_products:
-            return
-        rhythm_region_products = copy.deepcopy(rhythm_region_products)
-        rhythm_region_products = timespantools.TimespanInventory(rhythm_region_products)
-        rhythm_region_products.sort()
-        assert anchor_timespan.is_well_formed, repr(anchor_timespan)
-        rhythm_region_products.keep_material_that_intersects_timespan(anchor_timespan)
-        timespan = timespantools.Timespan(start_offset)
-        result = settingtools.RhythmRegionProduct(voice_name=voice_name, timespan=timespan)
-        for rhythm_region_product in rhythm_region_products:
-            result.payload.extend(rhythm_region_product.payload)
-        assert wellformednesstools.is_well_formed_component(result.payload)
-        result, new_start_offset = self._apply_request_modifiers(result, result.start_offset)
-        if not isinstance(result, settingtools.RhythmRegionProduct):
-            assert componenttools.all_are_components(result)
-            music = componenttools.copy_components_and_fracture_crossing_spanners(result)
-            result = settingtools.RhythmRegionProduct(
-                payload=music, voice_name=voice_name, start_offset=start_offset)
-        result.set_offsets(start_offset=start_offset, stop_offset=stop_offset)
-        result.repeat_to_stop_offset(stop_offset)
-        return result
+    # TODO: eventually collapse self._get_payload() and self._get_timespan() into this method
+    def _get_timespan_and_payload(self, score_specification, voice_name):
+        raise NotImplementedError
 
     def _is_counttime_component_class_expr(self, expr):
         from experimental.tools import helpertools

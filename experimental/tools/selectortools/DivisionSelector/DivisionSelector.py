@@ -48,34 +48,9 @@ class DivisionSelector(Selector):
     
     ### PRIVATE METHODS ###
 
-    def _get_payload(self, score_specification, voice_name=None):
-        raise NotImplementedError
-
-    def _get_timespan(self, score_specification, voice_name):
-        voice_division_list = score_specification.contexts[voice_name]['voice_division_list']
-        divisions = []
-        segment_specification = score_specification.get_start_segment_specification(self.anchor)
-        specification_name = segment_specification.specification_name
-        timespan_1 = score_specification[specification_name].timespan
-        if self.time_relation is None:
-            time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
-        else:
-            time_relation = self.time_relation.new(timespan_1=timespan_1)
-        for division in voice_division_list:
-            if time_relation(timespan_2=division, 
-                score_specification=score_specification, 
-                context_name=voice_name):
-                divisions.append(division)
-        start_offset = divisions[0].start_offset
-        divisions, start_offset = self._apply_request_modifiers(divisions, start_offset)
-        start_offset = divisions[0].start_offset
-        stop_offset = divisions[-1].stop_offset
-        timespan = timespantools.Timespan(start_offset, stop_offset)
-        timespan = self._apply_timespan_modifiers(timespan)
-        return timespan
-
-    def _get_division_region_product(self, score_specification, voice_name,
-        start_offset=None, stop_offset=None):
+    # TODO: remove start_offset=None, stop_offset=None keywords and use payload modifier instead.
+    # TODO: migrate in self._get_timespan_and_payload
+    def _get_payload(self, score_specification, voice_name, start_offset=None, stop_offset=None):
         from experimental.tools import settingtools
         assert voice_name == self.voice_name
         anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
@@ -109,3 +84,32 @@ class DivisionSelector(Selector):
             timespan=timespan
             )
         return result
+
+    # TODO: migrate in self._get_timespan_and_payload()
+    def _get_timespan(self, score_specification, voice_name):
+        voice_division_list = score_specification.contexts[voice_name]['voice_division_list']
+        divisions = []
+        segment_specification = score_specification.get_start_segment_specification(self.anchor)
+        specification_name = segment_specification.specification_name
+        timespan_1 = score_specification[specification_name].timespan
+        if self.time_relation is None:
+            time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
+        else:
+            time_relation = self.time_relation.new(timespan_1=timespan_1)
+        for division in voice_division_list:
+            if time_relation(timespan_2=division, 
+                score_specification=score_specification, 
+                context_name=voice_name):
+                divisions.append(division)
+        start_offset = divisions[0].start_offset
+        divisions, start_offset = self._apply_request_modifiers(divisions, start_offset)
+        start_offset = divisions[0].start_offset
+        stop_offset = divisions[-1].stop_offset
+        timespan = timespantools.Timespan(start_offset, stop_offset)
+        timespan = self._apply_timespan_modifiers(timespan)
+        return timespan
+
+    # TODO: migrate in code from self._get_payload() and self._get_timespan()
+    def _get_timespan_and_payload(self, score_specification, voice_name):
+        raise NotImplementedError
+

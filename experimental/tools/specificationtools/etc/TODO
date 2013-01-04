@@ -80,8 +80,7 @@
 16. Extend OffsetExpression with an 'offset_modifiers' stack.
     Modifier methods include OffsetExpression.translate() and possibly others.
 
-17. Extend all selector _get_timespan() methods to return
-    (timespan, selected_objects) pair:
+17. Extend all selector _get_timespan() methods to return (timespan, payload) pair:
         BackgroundMeasureSelector._get_timespan()
         BeatSelector._get_timespan()
         CounttimeComponentSelector._get_timespan()
@@ -151,3 +150,5 @@
         leaves.repeat_to_length()
         leaves.reverse()
         leaves.rotate()
+
+30. Change 'request_modifiers' to 'payload_modifiers'.

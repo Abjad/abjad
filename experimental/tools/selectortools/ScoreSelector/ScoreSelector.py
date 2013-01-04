@@ -24,15 +24,8 @@ class ScoreSelector(Selector):
 
     ### PRIVATE METHODS ###
 
-    def _get_payload(self, score_specification, voice_name=None):
-        raise NotImplementedError
-
-    def _get_timespan(self, score_specification, context_name):
-        '''Return `score_specification` start and stop offsets.
-    
-        Ignore `context_name`.
-        '''
-        return timespantools.Timespan(*score_specification.offsets)
+    def _get_timespan_and_payload(self, score_specification, voice_name=None):
+        return timespantools.Timespan(*score_specification.offsets), score_specification
 
     def _set_start_segment_identifier(self, segment_identifier):
         raise Exception('{!r} can not be reanchored.'.format(self))

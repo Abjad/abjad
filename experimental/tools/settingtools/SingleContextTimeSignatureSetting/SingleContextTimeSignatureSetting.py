@@ -27,14 +27,13 @@ class SingleContextTimeSignatureSetting(SingleContextSetting):
     def make_time_signatures(self, score_specification):
         from experimental.tools import requesttools
         from experimental.tools import selectortools
+        # TODO: condense these to a single test!
         if isinstance(self.request, requesttools.AbsoluteRequest):
             time_signatures = self.request._get_payload(score_specification)
         elif isinstance(self.request, requesttools.TimeSignatureCommandRequest):
             time_signatures = self.request._get_payload(score_specification)
-        # TODO: Maybe extend BackgroundMeasureSelector._get_payload() method 
-        #       This will parallel TimeSignatureCommandRequest._get_payload() method.
         elif isinstance(self.request, selectortools.BackgroundMeasureSelector):
-            time_signatures = self.request._get_time_signatures_without_timespan(score_specification)
+            time_signatures = self.request._get_payload(score_specification)
         else:
             raise TypeError(self.request)
         if time_signatures:
