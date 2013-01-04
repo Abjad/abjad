@@ -28,3 +28,22 @@ class RhythmRegionCommand(RegionCommand):
         if expr.request != self.request:
             return False
         return True
+
+    def prolongs_expr(self, expr):
+        from experimental.tools import selectortools
+        from experimental.tools import settingtools
+        # check that current rhythm command bears a rhythm material request
+        current_material_request = self.request
+        assert isinstance(current_material_request, selectortools.CounttimeComponentSelector)
+        # fuse only if expr is also a rhythm command that bears a rhythm material request
+        if not isinstance(expr, settingtools.RhythmRegionCommand):
+            return False
+        else:
+            previous_rhythm_command = expr
+        previous_material_request = getattr(previous_rhythm_command, 'request', None)
+        if not isinstance(previous_material_request, selectortools.CounttimeComponentSelector):
+            return False
+        # fuse only if current and previous commands request same material
+        if not current_material_request == previous_material_request:
+            return False
+        return True

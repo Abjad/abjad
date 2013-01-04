@@ -91,9 +91,6 @@ Methods
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.populate_all_time_signature_settings
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.rhythm_command_prolongs_expr
-   :noindex:
-
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.sort_and_split_raw_commands
    :noindex:
 
@@ -102,6 +99,8 @@ Methods
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.store_single_context_attribute_settings_by_context
    :noindex:
+
+   Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.store_single_context_setting_by_context
    :noindex:

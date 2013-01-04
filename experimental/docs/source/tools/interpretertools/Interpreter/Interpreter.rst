@@ -26,6 +26,9 @@ Methods
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_interpreter_specific_single_context_settings_by_context
    :noindex:
 
+.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_single_context_attribute_settings_by_context
+   :noindex:
+
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_single_context_setting_by_context
    :noindex:
 

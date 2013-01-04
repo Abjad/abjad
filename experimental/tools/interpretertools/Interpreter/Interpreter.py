@@ -39,6 +39,24 @@ class Interpreter(AbjadObject):
     def store_interpreter_specific_single_context_settings_by_context(self):
         pass
 
+    def store_single_context_attribute_settings_by_context(self, attribute):
+        for segment_specification in self.score_specification.segment_specifications:
+            new_settings = segment_specification.single_context_settings.get_settings(attribute=attribute)
+            existing_settings = \
+                self.score_specification.single_context_settings_by_context.get_settings(
+                attribute=attribute)
+            new_context_names = [x.context_name for x in new_settings]
+            forwarded_existing_settings = []
+            for existing_setting in existing_settings[:]:
+                if existing_setting.context_name in new_context_names:
+                    existing_settings.remove(existing_setting)
+                else:
+                    forwarded_existing_setting = existing_setting.copy_setting_to_segment_name(
+                        segment_specification.segment_name)
+                    forwarded_existing_settings.append(forwarded_existing_setting)
+            settings_to_store = new_settings + forwarded_existing_settings
+            self.store_single_context_settings_by_context(settings_to_store, clear_persistent_first=True)
+
     def store_single_context_setting_by_context(self, single_context_setting, clear_persistent_first=False):
         '''Copy single-context setting.
 

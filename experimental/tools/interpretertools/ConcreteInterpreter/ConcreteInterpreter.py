@@ -110,7 +110,7 @@ class ConcreteInterpreter(Interpreter):
                     self.score_specification, rhythm_command.request.voice_name)
                 result.append((rhythm_maker, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, selectortools.CounttimeComponentSelector):
-                if result and self.rhythm_command_prolongs_expr(rhythm_command, result[-1][0]):
+                if result and rhythm_command.prolongs_expr(result[-1][0]):
                     last_start_offset = result.pop()[1]
                     new_entry = (rhythm_command,
                         last_start_offset,
@@ -376,25 +376,6 @@ class ConcreteInterpreter(Interpreter):
             time_signature_setting = time_signature_settings[-1]
             self.score_specification.all_time_signature_settings.append(time_signature_setting)
 
-    # TODO: move to RhythmRegionCommand
-    def rhythm_command_prolongs_expr(self, current_rhythm_command, expr):
-        # check that current rhythm command bears a rhythm material request
-        assert isinstance(current_rhythm_command, settingtools.RhythmRegionCommand)
-        current_material_request = current_rhythm_command.request
-        assert isinstance(current_material_request, selectortools.CounttimeComponentSelector)
-        # fuse only if expr is also a rhythm command that bears a rhythm material request
-        if not isinstance(expr, settingtools.RhythmRegionCommand):
-            return False
-        else:
-            previous_rhythm_command = expr
-        previous_material_request = getattr(previous_rhythm_command, 'request', None)
-        if not isinstance(previous_material_request, selectortools.CounttimeComponentSelector):
-            return False
-        # fuse only if current and previous commands request same material
-        if not current_material_request == previous_material_request:
-            return False
-        return True
-
     # TODO: maybe move to a type of command aggregator?
     def sort_and_split_raw_commands(self, raw_commands):
         #self._debug_values(raw_commands, 'raw')
@@ -455,25 +436,6 @@ class ConcreteInterpreter(Interpreter):
         self.store_single_context_attribute_settings_by_context('rhythm')
         self.store_single_context_attribute_settings_by_context('pitch_classes')
         self.store_single_context_attribute_settings_by_context('registration')
-
-    # TODO: move to ScoreSpecification
-    def store_single_context_attribute_settings_by_context(self, attribute):
-        for segment_specification in self.score_specification.segment_specifications:
-            new_settings = segment_specification.single_context_settings.get_settings(attribute=attribute)
-            existing_settings = \
-                self.score_specification.single_context_settings_by_context.get_settings(
-                attribute=attribute)
-            new_context_names = [x.context_name for x in new_settings]
-            forwarded_existing_settings = []
-            for existing_setting in existing_settings[:]:
-                if existing_setting.context_name in new_context_names:
-                    existing_settings.remove(existing_setting)
-                else:
-                    forwarded_existing_setting = existing_setting.copy_setting_to_segment_name(
-                        segment_specification.segment_name)
-                    forwarded_existing_settings.append(forwarded_existing_setting)
-            settings_to_store = new_settings + forwarded_existing_settings
-            self.store_single_context_settings_by_context(settings_to_store, clear_persistent_first=True)
 
     # TODO: maybe move to ScoreSpecification?
     def supply_missing_region_commands(self, region_commands, voice_name, attribute):
