@@ -15,9 +15,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.axis
    :noindex:
 
-.. autoattribute:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.contents_length
-   :noindex:
-
 .. autoattribute:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.start_offset
    :noindex:
 
@@ -116,7 +113,7 @@ Methods
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.stretch
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.translate_timespans
+.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.translate_timespan_offsets
    :noindex:
 
 Special Methods

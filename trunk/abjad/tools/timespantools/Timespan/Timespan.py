@@ -42,9 +42,9 @@ class Timespan(BoundedObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        '''True when `expr` is a timespan with equivalent offsets::
+        '''True when `expr` is a timespan with equal offsets::
 
-            >>> timespantools.Timespan(1, 3) == timespantools.Timespan(2/2, (3, 1))
+            >>> timespantools.Timespan(1, 3) == timespantools.Timespan(1, 3)
             True
 
         Otherwise false::

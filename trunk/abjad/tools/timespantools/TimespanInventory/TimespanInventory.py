@@ -42,6 +42,20 @@ class TimespanInventory(ObjectInventory):
     ::
 
         >>> z(timespan_inventory_2)
+        timespantools.TimespanInventory([
+            timespantools.Timespan(
+                start_offset=durationtools.Offset(0, 1),
+                stop_offset=durationtools.Offset(10, 1)
+                ),
+            timespantools.Timespan(
+                start_offset=durationtools.Offset(3, 1),
+                stop_offset=durationtools.Offset(6, 1)
+                ),
+            timespantools.Timespan(
+                start_offset=durationtools.Offset(15, 1),
+                stop_offset=durationtools.Offset(20, 1)
+                )
+            ])
 
     Example 3::
 
@@ -50,6 +64,7 @@ class TimespanInventory(ObjectInventory):
     ::
 
         >>> z(timespan_inventory_3)
+        timespantools.TimespanInventory([])
 
     Operations on timespan inventories currently work in place.
     
@@ -107,10 +122,12 @@ class TimespanInventory(ObjectInventory):
         '''Arithmetic mean of inventory start- and stop-offsets.
 
             >>> timespan_inventory_1.axis
+            Offset(5, 1)
 
         ::
 
             >>> timespan_inventory_2.axis
+            Offset(10, 1)
 
         None when inventory is empty::
 
@@ -122,24 +139,6 @@ class TimespanInventory(ObjectInventory):
         if self:
             return (self.start_offset + self.stop_offset) / 2
 
-    @property
-    def contents_length(self):
-        '''Sum of the length of all timespans in inventory::
-
-            >>> timespan_inventory_1.contents_length
-
-        ::
-
-            >>> timespan_inventory_2.contents_length
-
-        ::
-
-            >>> timespan_inventory_3.contents_length
-
-        Return nonnegative integer.
-        '''
-        return sum([len(timespan) for timespan in self])
-    
     @property
     def start_offset(self):
         '''Earliest start offset of any timespan in inventory::
@@ -172,6 +171,7 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_inventory_2.stop_offset
+            Offset(20, 1)
             
         None when inventory is empty::
 
@@ -243,13 +243,13 @@ class TimespanInventory(ObjectInventory):
     def get_timespan_that_satisfies_time_relation(self, time_relation):
         r'''Get timespan that satisifies `time_relation`::
 
-            >>> timespan_1 = timerelationtools.expr_to_timespan((2, 5))
+            >>> timespan_1 = timespantools.Timespan(2, 5)
             >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::
 
-            >>> timespan_inventory.get_timespan_that_satisfies_time_relation(time_relation)
+            >>> timespan_inventory_1.get_timespan_that_satisfies_time_relation(time_relation)
             Timespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
 
         Return timespan when timespan inventory contains exactly one timespan
@@ -272,13 +272,13 @@ class TimespanInventory(ObjectInventory):
     def get_timespans_that_satisfy_time_relation(self, time_relation):
         r'''Get timespans that satisfy `time_relation`::
 
-            >>> timespan_1 = timerelationtools.expr_to_timespan((2, 8))
+            >>> timespan_1 = timespantools.Timespan(2, 8)
             >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::
 
-            >>> timespans = timespan_inventory.get_timespans_that_satisfy_time_relation(time_relation)
+            >>> timespans = timespan_inventory_1.get_timespans_that_satisfy_time_relation(time_relation)
 
         ::
 
@@ -305,24 +305,24 @@ class TimespanInventory(ObjectInventory):
     def has_timespan_that_satisfies_time_relation(self, time_relation):
         r'''True when timespan inventory has timespan that satisfies `time_relation`::
 
-            >>> timespan_1 = timerelationtools.expr_to_timespan((2, 8))
+            >>> timespan_1 = timespantools.Timespan(2, 8)
             >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::
 
-            >>> timespan_inventory.has_timespan_that_satisfies_time_relation(time_relation)
+            >>> timespan_inventory_1.has_timespan_that_satisfies_time_relation(time_relation)
             True
 
         Otherwise false::
 
-            >>> timespan_1 = timerelationtools.expr_to_timespan((10, 20))
+            >>> timespan_1 = timespantools.Timespan(10, 20)
             >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::
 
-            >>> timespan_inventory.has_timespan_that_satisfies_time_relation(time_relation)
+            >>> timespan_inventory_1.has_timespan_that_satisfies_time_relation(time_relation)
             False
 
         Return boolean.
