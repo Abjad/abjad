@@ -98,17 +98,17 @@ Read/write Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.contains_expr_improperly
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.contains_timespan_improperly
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.curtails_expr
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.curtails_timespan
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.delays_expr
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.delays_timespan
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -121,22 +121,22 @@ Methods
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.happens_during_expr
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.happens_during_timespan
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.intersects_expr
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.intersects_timespan
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.is_congruent_to_expr
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.is_congruent_to_timespan
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.is_tangent_to_expr
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.is_tangent_to_timespan
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -146,27 +146,27 @@ Methods
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.overlaps_all_of_expr
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.overlaps_all_of_timespan
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.overlaps_only_start_of_expr
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.overlaps_only_start_of_timespan
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.overlaps_only_stop_of_expr
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.overlaps_only_stop_of_timespan
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.overlaps_start_of_expr
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.overlaps_start_of_timespan
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.overlaps_stop_of_expr
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.overlaps_stop_of_timespan
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -280,17 +280,17 @@ Methods
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_after_expr_starts
-   :noindex:
-
-   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
-
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_after_expr_stops
-   :noindex:
-
-   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
-
 .. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_after_offset
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_after_timespan_starts
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_after_timespan_stops
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -305,16 +305,6 @@ Methods
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_before_expr_starts
-   :noindex:
-
-   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
-
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_before_expr_stops
-   :noindex:
-
-   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
-
 .. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_before_offset
    :noindex:
 
@@ -325,32 +315,42 @@ Methods
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_during_expr
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_before_timespan_starts
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_when_expr_starts
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_before_timespan_stops
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_when_expr_stops
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_during_timespan
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_after_expr_starts
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_when_timespan_starts
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_after_expr_stops
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.starts_when_timespan_stops
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_after_offset
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_after_timespan_starts
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_after_timespan_stops
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -365,16 +365,6 @@ Methods
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_before_expr_starts
-   :noindex:
-
-   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
-
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_before_expr_stops
-   :noindex:
-
-   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
-
 .. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_before_offset
    :noindex:
 
@@ -385,17 +375,27 @@ Methods
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_during_expr
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_before_timespan_starts
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_when_expr_starts
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_before_timespan_stops
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_when_expr_stops
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_during_timespan
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_when_timespan_starts
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stops_when_timespan_stops
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -403,7 +403,7 @@ Methods
 .. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.translate_offsets
    :noindex:
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.trisects_expr
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.trisects_timespan
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`

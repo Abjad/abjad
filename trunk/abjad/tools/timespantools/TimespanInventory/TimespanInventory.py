@@ -258,11 +258,11 @@ class TimespanInventory(ObjectInventory):
         Return none.
         '''
         for timespan_1 in self[:]:
-            if timespan_2.curtails_expr(timespan_1):
+            if timespan_2.curtails_timespan(timespan_1):
                 timespan_1.set_offsets(stop_offset=timespan_2.start_offset)
-            elif timespan_2.delays_expr(timespan_1):
+            elif timespan_2.delays_timespan(timespan_1):
                 timespan_1.set_offsets(start_offset=timespan_2.stop_offset)
-            elif timespan_2.contains_expr_improperly(timespan_1):
+            elif timespan_2.contains_timespan_improperly(timespan_1):
                 self.remove(timespan_1)
 
     # TODO: do not operate in place; emit new inventory instead.

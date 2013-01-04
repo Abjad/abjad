@@ -384,13 +384,13 @@ class ConcreteInterpreter(Interpreter):
             command_was_delayed, command_was_split = False, False
             commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split = [], [], [], []
             for cooked_command in cooked_commands:
-                if raw_command.timespan.contains_expr_improperly(cooked_command):
+                if raw_command.timespan.contains_timespan_improperly(cooked_command):
                     commands_to_remove.append(cooked_command)
-                elif raw_command.timespan.delays_expr(cooked_command):
+                elif raw_command.timespan.delays_timespan(cooked_command):
                     commands_to_delay.append(cooked_command)
-                elif raw_command.timespan.curtails_expr(cooked_command):
+                elif raw_command.timespan.curtails_timespan(cooked_command):
                     commands_to_curtail.append(cooked_command)
-                elif raw_command.timespan.trisects_expr(cooked_command):
+                elif raw_command.timespan.trisects_timespan(cooked_command):
                     commands_to_split.append(cooked_command)
             #print commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split
             for command_to_remove in commands_to_remove:
@@ -446,7 +446,7 @@ class ConcreteInterpreter(Interpreter):
             region_command = self.score_specification.make_default_region_command(
                 voice_name, timespan, attribute)
             return [region_command]
-        if not region_commands[0].timespan.starts_when_expr_starts(self.score_specification):
+        if not region_commands[0].timespan.starts_when_timespan_starts(self.score_specification):
             # TODO: implement timespan operations to create new timespan below
             start_offset = self.score_specification.timespan.start_offset
             stop_offset = region_commands[0].timespan.start_offset
@@ -454,7 +454,7 @@ class ConcreteInterpreter(Interpreter):
             region_command = self.score_specification.make_default_region_command(
                 voice_name, timespan, attribute)
             region_commands.insert(0, region_command)
-        if not region_commands[-1].timespan.stops_when_expr_stops(self.score_specification):
+        if not region_commands[-1].timespan.stops_when_timespan_stops(self.score_specification):
             # TODO: implement timespan operations to create new timespan below
             start_offset = region_commands[-1].timespan.stop_offset 
             stop_offset = self.score_specification.timespan.stop_offset
@@ -467,9 +467,9 @@ class ConcreteInterpreter(Interpreter):
         result = []
         for left_region_command, right_region_command in \
             sequencetools.iterate_sequence_pairwise_strict(region_commands):
-            assert not left_region_command.timespan.starts_after_expr_starts(right_region_command.timespan)
+            assert not left_region_command.timespan.starts_after_timespan_starts(right_region_command.timespan)
             result.append(left_region_command)
-            if left_region_command.timespan.stops_before_expr_starts(right_region_command.timespan):
+            if left_region_command.timespan.stops_before_timespan_starts(right_region_command.timespan):
                 # TODO: implement timespan operations to create new timespan below
                 start_offset = left_region_command.timespan.stop_offset 
                 stop_offset = right_region_command.timespan.start_offset

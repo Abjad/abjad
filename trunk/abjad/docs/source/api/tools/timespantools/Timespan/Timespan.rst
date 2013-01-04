@@ -9,6 +9,9 @@ timespantools.Timespan
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.timespantools.Timespan.Timespan.Timespan.axis
+   :noindex:
+
 .. autoattribute:: abjad.tools.timespantools.Timespan.Timespan.Timespan.duration
    :noindex:
 
@@ -75,13 +78,13 @@ Read/write Properties
 Methods
 -------
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.contains_expr_improperly
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.contains_timespan_improperly
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.curtails_expr
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.curtails_timespan
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.delays_expr
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.delays_timespan
    :noindex:
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.divide_by_ratio
@@ -90,34 +93,34 @@ Methods
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.fuse
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.happens_during_expr
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.happens_during_timespan
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.intersects_expr
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.intersects_timespan
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_congruent_to_expr
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_congruent_to_timespan
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_tangent_to_expr
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_tangent_to_timespan
    :noindex:
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.new
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_all_of_expr
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_all_of_timespan
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_only_start_of_expr
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_only_start_of_timespan
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_only_stop_of_expr
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_only_stop_of_timespan
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_start_of_expr
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_start_of_timespan
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_stop_of_expr
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_stop_of_timespan
    :noindex:
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.scale
@@ -132,13 +135,13 @@ Methods
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.split_at_offset
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_after_expr_starts
-   :noindex:
-
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_after_expr_stops
-   :noindex:
-
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_after_offset
+   :noindex:
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_after_timespan_starts
+   :noindex:
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_after_timespan_stops
    :noindex:
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_at_offset
@@ -147,34 +150,34 @@ Methods
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_at_or_after_offset
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_before_expr_starts
-   :noindex:
-
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_before_expr_stops
-   :noindex:
-
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_before_offset
    :noindex:
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_before_or_at_offset
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_during_expr
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_before_timespan_starts
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_when_expr_starts
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_before_timespan_stops
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_when_expr_stops
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_during_timespan
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_after_expr_starts
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_when_timespan_starts
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_after_expr_stops
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_when_timespan_stops
    :noindex:
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_after_offset
+   :noindex:
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_after_timespan_starts
+   :noindex:
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_after_timespan_stops
    :noindex:
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_at_offset
@@ -183,31 +186,31 @@ Methods
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_at_or_after_offset
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_before_expr_starts
-   :noindex:
-
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_before_expr_stops
-   :noindex:
-
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_before_offset
    :noindex:
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_before_or_at_offset
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_during_expr
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_before_timespan_starts
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_when_expr_starts
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_before_timespan_stops
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_when_expr_stops
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_during_timespan
+   :noindex:
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_when_timespan_starts
+   :noindex:
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_when_timespan_stops
    :noindex:
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.translate_offsets
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.trisects_expr
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.trisects_timespan
    :noindex:
 
 Special Methods
