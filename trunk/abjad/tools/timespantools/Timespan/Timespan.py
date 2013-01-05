@@ -309,7 +309,7 @@ class Timespan(BoundedObject):
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_overlaps_stop_of_timespan_1(timespan, self)
 
-    def scale(self, multiplier):
+    def scale(self, multiplier, anchor_right=False):
         '''Scale timespan by `multiplier`::
 
             >>> timespan = timespantools.Timespan((1, 2), (3, 2)) 
@@ -319,12 +319,21 @@ class Timespan(BoundedObject):
             >>> timespan.scale(Multiplier(1, 2))
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(1, 1))
 
+        ::
+
+            >>> timespan.scale(Multiplier(1, 2), anchor_right=True)
+            Timespan(start_offset=Offset(1, 1), stop_offset=Offset(3, 2))
+
         Emit newly constructed timespan.
         '''
         multiplier = durationtools.Multiplier(multiplier)
-        new_start_offset = self.start_offset
         new_duration = multiplier * self.duration
-        new_stop_offset = self.start_offset + new_duration
+        if not anchor_right:
+            new_start_offset = self.start_offset
+            new_stop_offset = self.start_offset + new_duration
+        else:
+            new_stop_offset = self.stop_offset
+            new_start_offset = self.stop_offset - new_duration
         result = type(self)(new_start_offset, new_stop_offset)
         return result
 
@@ -489,13 +498,23 @@ class Timespan(BoundedObject):
             >>> timespantools.Timespan(3, 10).stretch(Offset(1), Multiplier(3))
             Timespan(start_offset=Offset(7, 1), stop_offset=Offset(28, 1))
 
+        Example 5:
+
+            >>> timespantools.Timespan(3, 10).stretch(Offset(11), Multiplier(2))
+            Timespan(start_offset=Offset(-5, 1), stop_offset=Offset(9, 1))
+
+        Example 6:
+
+            >>> timespantools.Timespan(3, 10).stretch(Offset(4), Multiplier(2))
+            Timespan(start_offset=Offset(2, 1), stop_offset=Offset(16, 1))
+
         Return newly emitted timespan.
         '''
         multiplier = durationtools.Multiplier(multiplier)
         assert 0 < multiplier
-        new_start_offset = multiplier * (self.start_offset - anchor) + anchor
-        new_stop_offset =  multiplier * self.duration + new_start_offset
-        return self.set_offsets(new_start_offset, new_stop_offset)
+        new_start_offset = (multiplier * (self.start_offset - anchor)) + anchor
+        new_stop_offset =  (multiplier * (self.stop_offset - anchor)) + anchor
+        return type(self)(new_start_offset, new_stop_offset)
 
     def stops_after_timespan_starts(self, timespan):
         if self._implements_timespan_interface(timespan):
