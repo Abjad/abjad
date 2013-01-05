@@ -591,9 +591,25 @@ class TimespanInventory(ObjectInventory):
                     break
 
     def scale(self, multiplier):
-        '''Scale timespan durations by `multiplier`, keeping their start offsets constant:
+        '''Scale timespan durations by `multiplier`. 
+        Keep timespan start offsets constant.
 
-            >>> z(timespan_inventory_1.scale(2))
+        Example 1:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...    timespantools.Timespan(0, 3),
+            ...    timespantools.Timespan(3, 6),
+            ...    timespantools.Timespan(6, 10)])
+
+        ::
+
+            >>> timespan_inventory.scale(2)
+
+        ::
+
+            >>> z(timespan_inventory)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -609,9 +625,22 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
+        Example 2:
+
         ::
 
-            >>> z(timespan_inventory_2.scale(2))
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...    timespantools.Timespan(0, 10),
+            ...    timespantools.Timespan(3, 6),
+            ...    timespantools.Timespan(15, 20)])
+
+        ::
+
+            >>> timespan_inventory.scale(2)
+
+        ::
+
+            >>> z(timespan_inventory)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -627,29 +656,34 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        ::
-
-            >>> z(timespan_inventory_3.scale(2))
-            timespantools.TimespanInventory([])
-
-        Emity newly constructed timespan inventory.
+        Operate in place and return none.
         '''
-        multiplier = durationtools.Multiplier(multiplier)
-        assert 0 < multiplier
-        new_timespans = []
+        timespans = []
         for timespan in self:
-            #timespan._stop_offset = (timespan.duration * multiplier) + timespan._start_offset
-            new_stop_offset = multiplier * timespan.duration + timespan.start_offset
-            new_timespan = type(timespan)(timespan.start_offset, new_stop_offset)
-            new_timespans.append(new_timespan)
-        return type(self)(new_timespans)
+            timespan = timespan.scale(multiplier)
+            timespans.append(timespan)
+        self[:] = timespans
 
     def stretch(self, multiplier):
-        '''Stretch timespans by `multiplier`, keeping the earliest start offset constant:
+        '''Stretch inventory timespans by `multiplier`. 
+        Keep earliest timespan start offset constant.
+
+        Example 1:
 
         ::
 
-            >>> z(timespan_inventory_1.stretch(2))
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...    timespantools.Timespan(0, 3),
+            ...    timespantools.Timespan(3, 6),
+            ...    timespantools.Timespan(6, 10)])
+
+        ::
+
+            >>> timespan_inventory.stretch(2)
+
+        ::
+
+            >>> z(timespan_inventory)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -665,9 +699,22 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
+        Example 2:
+
         ::
 
-            >>> z(timespan_inventory_2.stretch(2))
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...    timespantools.Timespan(0, 10),
+            ...    timespantools.Timespan(3, 6),
+            ...    timespantools.Timespan(15, 20)])
+
+        ::
+
+            >>> timespan_inventory.stretch(2)
+
+        ::
+
+            >>> z(timespan_inventory)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -683,34 +730,37 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        ::
-
-            >>> z(timespan_inventory_3.stretch(2))
-            timespantools.TimespanInventory([])
-
         Operate in place and return none.
         '''
         multiplier = durationtools.Multiplier(multiplier)
         assert 0 < multiplier
-        if not len(self):
-            return type(self)()
         inventory_start_offset = self.start_offset
-        new_timespans = []
+        timespans = []
         for timespan in self:
-            start_offset, duration = timespan.start_offset, timespan.duration
-            new_start_offset = (start_offset - inventory_start_offset) * multiplier + inventory_start_offset
-            new_stop_offset =  duration * multiplier + new_start_offset
-            new_timespan = type(timespan)(new_start_offset, new_stop_offset)
-            new_timespans.append(new_timespan)
-        return type(self)(new_timespans)
+            new_start_offset = multiplier * (timespan.start_offset - self.start_offset) + self.start_offset
+            new_stop_offset =  timespan.duration * multiplier + new_start_offset
+            timespan = timespan.set_offsets(new_start_offset, new_stop_offset)
+            timespans.append(timespan)
+        self[:] = timespans
 
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
-        '''Translate every timespan in inventory by `start_offset_translation`
+        '''Translate inventory timespans by `start_offset_translation`
         and `stop_offset_translation`.
 
         Example 1. Translate start- and stop-offsets equally::
 
-            >>> z(timespan_inventory_1.translate_offsets(50, 50))
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...    timespantools.Timespan(0, 3),
+            ...    timespantools.Timespan(3, 6),
+            ...    timespantools.Timespan(6, 10)])
+
+        ::
+
+            >>> timespan_inventory.translate_offsets(50, 50)
+
+        ::
+
+            >>> z(timespan_inventory)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(50, 1),
@@ -728,7 +778,18 @@ class TimespanInventory(ObjectInventory):
 
         Example 2. Translate only stop-offset::
 
-            >>> z(timespan_inventory_1.translate_offsets(stop_offset_translation=20))
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...    timespantools.Timespan(0, 3),
+            ...    timespantools.Timespan(3, 6),
+            ...    timespantools.Timespan(6, 10)])
+
+        ::
+
+            >>> timespan_inventory.translate_offsets(stop_offset_translation=20)
+
+        ::
+
+            >>> z(timespan_inventory)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -744,19 +805,10 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Give empty output on empty input::
-
-            >>> timespan_inventory_3.translate_offsets(50, 50)
-            TimespanInventory([])
-
-        Emit new timespan inventory.
+        Operate in place and return none.
         '''
-        new_timespans = []
+        timespans = []
         for timespan in self:
-            start_offset_translation = start_offset_translation or 0
-            stop_offset_translation = stop_offset_translation or 0
-            new_start_offset = timespan.start_offset + start_offset_translation
-            new_stop_offset = timespan.stop_offset + stop_offset_translation
-            new_timespan = type(timespan)(new_start_offset, new_stop_offset)
-            new_timespans.append(new_timespan)
-        return type(self)(new_timespans)  
+            timespan = timespan.translate_offsets(start_offset_translation, stop_offset_translation)
+            timespans.append(timespan)
+        self[:] = timespans
