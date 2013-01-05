@@ -735,7 +735,7 @@ class TimespanInventory(ObjectInventory):
         if anchor is None:
             anchor = self.start_offset
         for timespan in self:
-            timespan = timespan.stretch(anchor, multiplier)
+            timespan = timespan.stretch(multiplier, anchor)
             timespans.append(timespan)
         self[:] = timespans
 
