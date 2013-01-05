@@ -9,6 +9,12 @@ breakpointtools.BreakPointFunction
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.bpf
+   :noindex:
+
+.. autoattribute:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.dc_bias
+   :noindex:
+
 .. autoattribute:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.gnuplot_format
    :noindex:
 
@@ -41,6 +47,9 @@ Methods
 .. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.normalize_axes
    :noindex:
 
+.. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.remove_dc_bias
+   :noindex:
+
 .. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.scale_x_axis
    :noindex:
 
@@ -50,7 +59,7 @@ Methods
 .. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.set_y_at_x
    :noindex:
 
-.. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.tesselate_by_ratio
+.. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.tessalate_by_ratio
    :noindex:
 
 Special Methods
@@ -71,6 +80,9 @@ Special Methods
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__getitem__
+   :noindex:
 
 .. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__gt__
    :noindex:
