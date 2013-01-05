@@ -664,11 +664,10 @@ class TimespanInventory(ObjectInventory):
             timespans.append(timespan)
         self[:] = timespans
 
-    def stretch(self, multiplier):
-        '''Stretch inventory timespans by `multiplier`. 
-        Keep earliest timespan start offset constant.
+    def stretch(self, multiplier, anchor=None):
+        '''Stretch inventory timespans by `multiplier` relative to `anchor`.
 
-        Example 1:
+        Example 1: Stretch relative to inventory start offset:
 
         ::
 
@@ -699,42 +698,44 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Example 2:
+        Example 2: Stretch inventory relative to arbitrary anchor:
 
         ::
-
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...    timespantools.Timespan(0, 10),
+            ...    timespantools.Timespan(0, 3),
             ...    timespantools.Timespan(3, 6),
-            ...    timespantools.Timespan(15, 20)])
+            ...    timespantools.Timespan(6, 10)])
+
 
         ::
 
-            >>> timespan_inventory.stretch(2)
+            >>> timespan_inventory.stretch(2, anchor=Offset(8))
 
         ::
 
             >>> z(timespan_inventory)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(20, 1)
+                    start_offset=durationtools.Offset(-8, 1),
+                    stop_offset=durationtools.Offset(-2, 1)
                     ),
                 timespantools.Timespan(
-                    start_offset=durationtools.Offset(6, 1),
+                    start_offset=durationtools.Offset(-2, 1),
+                    stop_offset=durationtools.Offset(4, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(4, 1),
                     stop_offset=durationtools.Offset(12, 1)
-                    ),
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(30, 1),
-                    stop_offset=durationtools.Offset(40, 1)
                     )
                 ])
 
         Operate in place and return none.
         '''
         timespans = []
+        if anchor is None:
+            anchor = self.start_offset
         for timespan in self:
-            timespan = timespan.stretch(self.start_offset, multiplier)
+            timespan = timespan.stretch(anchor, multiplier)
             timespans.append(timespan)
         self[:] = timespans
 
