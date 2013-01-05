@@ -24,8 +24,16 @@ class BreakPointFunction(AbjadObject):
 
     ::
 
-        >>> bpf[0.]
+        >>> for x in (-0.5, 0., 0.25, 0.5, 0.7499, 0.75, 1., 1.5):
+        ...     bpf[x]
         0.0
+        0.0
+        -0.3333333333333333
+        -0.6666666666666666
+        -0.9998666666666667
+        1.0
+        0.25
+        0.25
 
     Return `BreakPointFunction` instance.
     '''
@@ -120,7 +128,7 @@ class BreakPointFunction(AbjadObject):
             >>> bpf * 2.
             BreakPointFunction({
                 0.0: (0.0,),
-                0.75: (-2., 2.),
+                0.75: (-2.0, 2.0),
                 1.0: (0.5,)
             })
 
@@ -141,7 +149,7 @@ class BreakPointFunction(AbjadObject):
             BreakPointFunction({
                 0.0: (-0.3,),
                 0.75: (-1.3, 0.7),
-                1.0: (-0.05,)
+                1.0: (-0.04999999999999999,)
             })
 
         `other` may also be a BreakPointFunction instance:
