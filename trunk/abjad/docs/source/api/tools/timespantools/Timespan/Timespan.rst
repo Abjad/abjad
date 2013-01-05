@@ -210,6 +210,9 @@ Methods
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_when_timespan_stops
    :noindex:
 
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stretch
+   :noindex:
+
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.translate_offsets
    :noindex:
 

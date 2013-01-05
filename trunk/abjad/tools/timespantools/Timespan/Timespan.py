@@ -466,6 +466,37 @@ class Timespan(BoundedObject):
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_starts_when_timespan_1_stops(timespan, self)
 
+    def stretch(self, anchor, multiplier):
+        '''Stretch timespan by `multiplier` relative to `anchor`.
+
+        Example 1:
+
+            >>> timespantools.Timespan(3, 10).stretch(Offset(0), Multiplier(2))
+            Timespan(start_offset=Offset(6, 1), stop_offset=Offset(20, 1))
+
+        Example 2:
+
+            >>> timespantools.Timespan(3, 10).stretch(Offset(0), Multiplier(3))
+            Timespan(start_offset=Offset(9, 1), stop_offset=Offset(30, 1))
+
+        Example 3:
+
+            >>> timespantools.Timespan(3, 10).stretch(Offset(1), Multiplier(2))
+            Timespan(start_offset=Offset(5, 1), stop_offset=Offset(19, 1))
+
+        Example 4:
+
+            >>> timespantools.Timespan(3, 10).stretch(Offset(1), Multiplier(3))
+            Timespan(start_offset=Offset(7, 1), stop_offset=Offset(28, 1))
+
+        Return newly emitted timespan.
+        '''
+        multiplier = durationtools.Multiplier(multiplier)
+        assert 0 < multiplier
+        new_start_offset = multiplier * (self.start_offset - anchor) + anchor
+        new_stop_offset =  multiplier * self.duration + new_start_offset
+        return self.set_offsets(new_start_offset, new_stop_offset)
+
     def stops_after_timespan_starts(self, timespan):
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_stops_after_timespan_1_starts(timespan, self)

@@ -732,14 +732,9 @@ class TimespanInventory(ObjectInventory):
 
         Operate in place and return none.
         '''
-        multiplier = durationtools.Multiplier(multiplier)
-        assert 0 < multiplier
-        inventory_start_offset = self.start_offset
         timespans = []
         for timespan in self:
-            new_start_offset = multiplier * (timespan.start_offset - self.start_offset) + self.start_offset
-            new_stop_offset =  timespan.duration * multiplier + new_start_offset
-            timespan = timespan.set_offsets(new_start_offset, new_stop_offset)
+            timespan = timespan.stretch(self.start_offset, multiplier)
             timespans.append(timespan)
         self[:] = timespans
 
