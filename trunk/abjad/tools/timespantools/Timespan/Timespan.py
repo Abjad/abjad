@@ -310,19 +310,24 @@ class Timespan(BoundedObject):
             return timerelationtools.timespan_2_overlaps_stop_of_timespan_1(timespan, self)
 
     def scale(self, multiplier, anchor=Left):
-        '''Scale timespan by `multiplier`::
+        '''Scale timespan by `multiplier`.
 
-            >>> timespan = timespantools.Timespan((1, 2), (3, 2)) 
+            >>> timespan = timespantools.Timespan(3, 6)
 
-        ::
-
-            >>> timespan.scale(Multiplier(1, 2))
-            Timespan(start_offset=Offset(1, 2), stop_offset=Offset(1, 1))
+        Example 1. Scale timespan relative to timespan start offset:
 
         ::
 
-            >>> timespan.scale(Multiplier(1, 2), anchor=Right)
-            Timespan(start_offset=Offset(1, 1), stop_offset=Offset(3, 2))
+            >>> timespan.scale(Multiplier(2))
+            Timespan(start_offset=Offset(3, 1), stop_offset=Offset(9, 1))
+
+        Example 2. Scale timespan relative to timespan stop offset:
+
+        ::
+
+            >>> timespan.scale(Multiplier(2), anchor=Right)
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(6, 1))
+
 
         Emit newly constructed timespan.
         '''

@@ -590,11 +590,10 @@ class TimespanInventory(ObjectInventory):
                 if elements_to_move == 0:
                     break
 
-    def scale(self, multiplier):
-        '''Scale timespan durations by `multiplier`. 
-        Keep timespan start offsets constant.
+    def scale(self, multiplier, anchor=Left):
+        '''Scale timespan durations by `multiplier` relative to `anchor`. 
 
-        Example 1:
+        Example 1. Scale relative to timespan inventory start offset:
 
         ::
 
@@ -625,34 +624,32 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Example 2:
-
-        ::
+        Example 2. Scale relative to timespan inventory stop offset:
 
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...    timespantools.Timespan(0, 10),
+            ...    timespantools.Timespan(0, 3),
             ...    timespantools.Timespan(3, 6),
-            ...    timespantools.Timespan(15, 20)])
+            ...    timespantools.Timespan(6, 10)])
 
         ::
 
-            >>> timespan_inventory.scale(2)
+            >>> timespan_inventory.scale(2, anchor=Right)
 
         ::
 
             >>> z(timespan_inventory)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
+                    start_offset=durationtools.Offset(-3, 1),
+                    stop_offset=durationtools.Offset(3, 1)
+                    ),
+                timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(20, 1)
+                    stop_offset=durationtools.Offset(6, 1)
                     ),
                 timespantools.Timespan(
-                    start_offset=durationtools.Offset(3, 1),
-                    stop_offset=durationtools.Offset(9, 1)
-                    ),
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(15, 1),
-                    stop_offset=durationtools.Offset(25, 1)
+                    start_offset=durationtools.Offset(2, 1),
+                    stop_offset=durationtools.Offset(10, 1)
                     )
                 ])
 
@@ -660,7 +657,7 @@ class TimespanInventory(ObjectInventory):
         '''
         timespans = []
         for timespan in self:
-            timespan = timespan.scale(multiplier)
+            timespan = timespan.scale(multiplier, anchor=anchor)
             timespans.append(timespan)
         self[:] = timespans
 
