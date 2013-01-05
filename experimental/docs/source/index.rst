@@ -86,7 +86,6 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/breakpointtools/BreakPoint/BreakPoint
       tools/breakpointtools/BreakPointFunctionSet/BreakPointFunctionSet
 
    --------
@@ -94,6 +93,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/breakpointtools/BreakPoint/BreakPoint
       tools/breakpointtools/BreakPointFunction/BreakPointFunction
 
 .. only:: latex
@@ -103,7 +103,6 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/breakpointtools/BreakPoint/BreakPoint
       tools/breakpointtools/BreakPointFunctionSet/BreakPointFunctionSet
 
    Concrete Classes
@@ -111,6 +110,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/breakpointtools/BreakPoint/BreakPoint
       tools/breakpointtools/BreakPointFunction/BreakPointFunction
 
 :py:mod:`constrainttools <experimental.tools.constrainttools>`

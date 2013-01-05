@@ -14,6 +14,12 @@ Read-only Properties
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.tools.breakpointtools.BreakPoint.BreakPoint.BreakPoint.x
+   :noindex:
+
+.. autoattribute:: experimental.tools.breakpointtools.BreakPoint.BreakPoint.BreakPoint.y
+   :noindex:
+
 Special Methods
 ---------------
 
