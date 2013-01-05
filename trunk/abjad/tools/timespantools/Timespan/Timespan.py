@@ -309,7 +309,7 @@ class Timespan(BoundedObject):
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_overlaps_stop_of_timespan_1(timespan, self)
 
-    def scale(self, multiplier, anchor_right=False):
+    def scale(self, multiplier, anchor=Left):
         '''Scale timespan by `multiplier`::
 
             >>> timespan = timespantools.Timespan((1, 2), (3, 2)) 
@@ -321,19 +321,22 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> timespan.scale(Multiplier(1, 2), anchor_right=True)
+            >>> timespan.scale(Multiplier(1, 2), anchor=Right)
             Timespan(start_offset=Offset(1, 1), stop_offset=Offset(3, 2))
 
         Emit newly constructed timespan.
         '''
         multiplier = durationtools.Multiplier(multiplier)
+        assert 0 < multiplier
         new_duration = multiplier * self.duration
-        if not anchor_right:
+        if anchor is Left:
             new_start_offset = self.start_offset
             new_stop_offset = self.start_offset + new_duration
-        else:
+        elif anchor is Right:
             new_stop_offset = self.stop_offset
             new_start_offset = self.stop_offset - new_duration
+        else:
+            raise ValueError
         result = type(self)(new_start_offset, new_stop_offset)
         return result
 
