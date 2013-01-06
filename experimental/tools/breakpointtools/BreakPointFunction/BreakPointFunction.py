@@ -119,6 +119,8 @@ class BreakPointFunction(AbjadObject):
         return self._operate(other, operator.div)
 
     def __getitem__(self, item):
+        '''Aliases BreakPointFunction.get_y_at_x().
+        '''
         return self.get_y_at_x(item)
 
     def __mul__(self, other):
@@ -184,10 +186,30 @@ class BreakPointFunction(AbjadObject):
 
     @property
     def dc_bias(self):
+        '''The mean y-value of a BreakPointFunction:
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction(
+            ...     {0.: 0., 0.25: 0., 0.5: (0.75, 0.25), 1.: 1.}
+            ...     ).dc_bias
+            0.4
+
+        Return number.
+        '''
         return self._dc_bias
 
     @property
     def bpf(self):
+        '''A copy of the BreakPointFunction's internal data-structure:
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction({0.: 0.25, 0.5: 1.3, 1.: 0.9}).bpf
+            {0.0: (0.25,), 0.5: (1.3,), 1.0: (0.9,)}
+
+        Return dict.
+        '''
         return self._bpf.copy()
 
     @property
@@ -196,22 +218,67 @@ class BreakPointFunction(AbjadObject):
 
     @property
     def x_center(self):
+        '''The arithmetic mean of a BreakPointFunction's x-range:
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction({0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_center
+            0.5
+
+        Return number.
+        '''
         return (self.x_range[1] + self.x_range[0]) / 2
 
     @property
     def x_range(self):
+        '''The minimum and maximum x-values of a BreakPointFunction:
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction({0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_range
+            (0.0, 1.0)
+
+        Return pair.
+        '''
         return self.x_values[0], self.x_values[-1]
 
     @property
     def x_values(self):
+        '''The sorted x-values of a BreakPointFunction:
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction({0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_values
+            (0.0, 0.5, 1.0)
+
+        Return tuple.
+        '''
         return tuple(sorted(self._bpf))
 
     @property
     def y_center(self):
+        '''The arithmetic mean of a BreakPointFunction's y-range:
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction({0.: 0.25, 0.5: 1.3, 1.: 0.9}).y_center
+            0.775
+
+        Return number.
+        '''
         return (self.y_range[1] + self.y_range[0]) / 2
 
     @property
     def y_range(self):
+        '''The minimum and maximum y-values of a BreakPointFunction:
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction({0.: 0.25, 0.5: 1.3, 1.: 0.9}).y_range
+            (0.25, 1.3)
+
+        Return pair.
+        '''
         return self._y_range
 
     ### PRIVATE METHODS ###
