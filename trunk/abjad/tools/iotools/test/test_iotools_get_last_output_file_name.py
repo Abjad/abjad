@@ -8,5 +8,9 @@ def test_iotools_get_last_output_file_name_01():
 
     assert isinstance(last_output_file_name, (str, type(None)))
     if isinstance(last_output_file_name, str):
-        assert len(last_output_file_name) == 7
-        assert last_output_file_name.endswith('.ly')
+        if len(last_output_file_name) == 7:
+            assert last_output_file_name.endswith('.ly')
+        elif len(last_output_file_name) == 8:
+            assert last_output_file_name.endswith('.pdf')
+        else:
+            raise Exception
