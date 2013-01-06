@@ -20,7 +20,11 @@ class GraphvizObject(AbjadObject):
         elif isinstance(value, (int, float)):
             return repr(value)
         elif isinstance(value, str):
-            if ' ' in value or ',' in value or '\\' in value or "." in value:
+            if ' ' in value or \
+                ',' in value or \
+                '\\' in value or \
+                "." in value or \
+                '/' in value:
                 return '"{}"'.format(value)
             return value
         elif isinstance(value, (list, tuple)):
