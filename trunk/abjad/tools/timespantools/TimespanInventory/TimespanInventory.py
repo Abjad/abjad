@@ -632,9 +632,9 @@ class TimespanInventory(ObjectInventory):
 
         Operate in place and return none.
         '''
-        assert isinstance(rotation, int)
+        assert isinstance(count, int)
         assert self.all_are_contiguous
-        elements_to_move = rotation % len(self)
+        elements_to_move = count % len(self)
         if elements_to_move == 0:
             return
         left_timespans = self[:-elements_to_move]
