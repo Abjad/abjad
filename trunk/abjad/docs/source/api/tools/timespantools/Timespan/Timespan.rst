@@ -126,6 +126,9 @@ Methods
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_stop_of_timespan
    :noindex:
 
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.reverse
+   :noindex:
+
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.scale
    :noindex:
 

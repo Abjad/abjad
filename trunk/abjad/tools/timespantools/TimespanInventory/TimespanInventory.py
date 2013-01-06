@@ -470,7 +470,7 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Emit newly constructed timespan.
+        Emit newly constructed timespan inventory.
         '''
         stop_offset = durationtools.Offset(stop_offset)
         assert self.stop_offset <= stop_offset
@@ -488,7 +488,7 @@ class TimespanInventory(ObjectInventory):
                 new_timespan_inventory[-1] = new_timespan_inventory[-1].set_offsets(stop_offset=stop_offset)
         return new_timespan_inventory
 
-    # TODO: operate in place
+    # TODO: change name to self.reflect()
     def reverse(self, axis=None):
         '''Reflect timespans.
 
@@ -496,66 +496,80 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> z(timespan_inventory_1.reverse())
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...    timespantools.Timespan(0, 3),
+            ...    timespantools.Timespan(3, 6),
+            ...    timespantools.Timespan(6, 10)])
+
+        ::
+
+            >>> timespan_inventory.reverse()
+
+        ::
+
+            >>> z(timespan_inventory)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
-                    start_offset=durationtools.Offset(7, 1),
-                    stop_offset=durationtools.Offset(10, 1)
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(4, 1)
                     ),
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(4, 1),
                     stop_offset=durationtools.Offset(7, 1)
                     ),
                 timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(4, 1)
+                    start_offset=durationtools.Offset(7, 1),
+                    stop_offset=durationtools.Offset(10, 1)
                     )
                 ])
+
+        Example 2. Reflect timespans about arbitrary axis:
 
         ::
 
-            >>> z(timespan_inventory_2.reverse())
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...    timespantools.Timespan(0, 3),
+            ...    timespantools.Timespan(3, 6),
+            ...    timespantools.Timespan(6, 10)])
+
+        ::
+
+            >>> timespan_inventory.reverse(axis=Offset(15))
+
+        ::
+
+            >>> z(timespan_inventory)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
-                    start_offset=durationtools.Offset(10, 1),
-                    stop_offset=durationtools.Offset(20, 1)
+                    start_offset=durationtools.Offset(20, 1),
+                    stop_offset=durationtools.Offset(24, 1)
                     ),
                 timespantools.Timespan(
-                    start_offset=durationtools.Offset(14, 1),
-                    stop_offset=durationtools.Offset(17, 1)
+                    start_offset=durationtools.Offset(24, 1),
+                    stop_offset=durationtools.Offset(27, 1)
                     ),
                 timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(5, 1)
+                    start_offset=durationtools.Offset(27, 1),
+                    stop_offset=durationtools.Offset(30, 1)
                     )
                 ])
 
-        Emit newly created timespan inventory.
+        Operate in place and return none.
         '''
-        #if axis is None:
-        #    axis = self.axis
-        new_timespans = []
-        for timespan in self: 
-            start_distance = timespan.start_offset - self.axis
-            stop_distance = timespan.stop_offset - self.axis
-            new_start_offset = self.axis - stop_distance
-            new_stop_offset = self.axis - start_distance
-            new_timespan = type(timespan)(new_start_offset, new_stop_offset)
-            #new_timespan = timespan.reverse(axis=axis)
-            # maybe move this one call to payload-carrying TimespanInventory subclass
-            if hasattr(new_timespan, 'reverse'):
-                new_timespan.reverse()
-            new_timespans.append(new_timespan)
-        return type(self)(new_timespans)
+        if axis is None:
+            axis = self.axis
+        timespans = []
+        for timespan in self:
+            timespan = timespan.reverse(axis=axis)
+            timespans.append(timespan)
+        timespans.reverse()
+        self[:] = timespans
 
-    # TODO: remove and implement on TimespanInventory subclass in spectools instead?
     def rotate(self, rotation):
         '''Rotate *elements* of timespans.
 
         .. note:: add example.
         
-        Operation only makes sense if timespans are contiguous.
-
         Operate in place and return none.
         '''
         assert isinstance(rotation, int)

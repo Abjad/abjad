@@ -309,32 +309,32 @@ class Timespan(BoundedObject):
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_overlaps_stop_of_timespan_1(timespan, self)
     
-#    def reverse(self, axis=None):
-#        '''Reverse timespan about `axis`.
-#
-#        Example 1. Reverse timespan about timespan axis:
-#
-#        ::
-#
-#            >>> timespantools.Timespan(3, 6).reverse()
-#            Timespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
-#
-#        Example 2. Reverse timespan about arbitrary axis:
-#
-#        ::
-#
-#            >>> timespantools.Timespan(3, 6).reverse(axis=Offset(10))
-#            Timespan(start_offset=Offset(14, 1), stop_offset=Offset(17, 1))
-#
-#        Emit newly constructed timespan.
-#        '''
-#        if axis is None:
-#            axis = self.axis
-#        start_distance = self.start_offset - axis
-#        stop_distance = self.stop_offset - axis
-#        new_start_offset = axis - stop_distance
-#        new_stop_offset = axis - start_distance
-#        return self.set_offsets(new_start_offset, new_stop_offset)
+    def reverse(self, axis=None):
+        '''Reverse timespan about `axis`.
+
+        Example 1. Reverse timespan about timespan axis:
+
+        ::
+
+            >>> timespantools.Timespan(3, 6).reverse()
+            Timespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
+
+        Example 2. Reverse timespan about arbitrary axis:
+
+        ::
+
+            >>> timespantools.Timespan(3, 6).reverse(axis=Offset(10))
+            Timespan(start_offset=Offset(14, 1), stop_offset=Offset(17, 1))
+
+        Emit newly constructed timespan.
+        '''
+        if axis is None:
+            axis = self.axis
+        start_distance = self.start_offset - axis
+        stop_distance = self.stop_offset - axis
+        new_start_offset = axis - stop_distance
+        new_stop_offset = axis - start_distance
+        return self.set_offsets(new_start_offset, new_stop_offset)
 
     def scale(self, multiplier, anchor=Left):
         '''Scale timespan by `multiplier`.
