@@ -2,6 +2,7 @@ import bisect
 import numbers
 import operator
 from abjad.tools import mathtools
+from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -214,7 +215,21 @@ class BreakPointFunction(AbjadObject):
 
     @property
     def gnuplot_format(self):
-        raise NotImplemented
+        result = [
+            "set border lw 1.5 lc rgb '#606060'",
+            "set output {filename!r}",
+            "set style line 1 lc rgb '#000000' lt 1 lw 2 pt 7 pi -1 ps 1.5",
+            "set terminal {image_format} size {width},{height} enhanced",
+            "set tics scale 0.75",
+            "unset key",
+            "plot '-' using 1:2 with linespoints ls 1",
+        ]
+        for x, ys in sorted(self._bpf.iteritems()):
+            if len(ys) == 2:
+                result.append('\t{} {}'.format(float(x), float(ys[0])))
+                result.append('')
+            result.append('\t{} {}'.format(float(x), float(ys[-1])))
+        return '\n'.join(result)
 
     @property
     def x_center(self):
