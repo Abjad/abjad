@@ -7,7 +7,6 @@ from experimental.tools import requesttools
 from experimental.tools import selectortools
 from experimental.tools import settingtools
 from experimental.tools import specificationtools
-from experimental.tools import timeexpressiontools
 from experimental.tools.interpretertools.Interpreter import Interpreter
 
 
@@ -207,7 +206,7 @@ class ConcreteInterpreter(Interpreter):
                         voice_division_region_commands_to_reattempt.append(division_region_command)
                         redo = True
                 voice_division_region_commands[:] = voice_division_region_commands_to_reattempt[:]
-                # sort may have to happen as each expression adds in, above
+                # sort may have to happen as each product adds in, above
                 voice_division_region_products.sort()
             if voice_division_region_commands and not made_progress:
                 raise Exception('cyclic division specification.')
@@ -221,7 +220,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(rhythm_command_durations, 'rhythm command durations')
         division_region_products = \
             self.score_specification.contexts[voice.name]['division_region_products']
-        #self._debug_values(division_region_products, 'division region expressions')
+        #self._debug_values(division_region_products, 'division region products')
         division_region_durations = [x.timespan.duration for x in division_region_products]
         #self._debug(division_region_durations, 'division region durations')
         assert sum(rhythm_command_durations) == sum(division_region_durations)
@@ -332,9 +331,9 @@ class ConcreteInterpreter(Interpreter):
     def make_voice_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = divisiontools.DivisionList([], voice.name)
-            expressions = self.score_specification.contexts[voice.name]['division_region_products']
-            #self._debug(expressions, 'expressions')
-            divisions = [expression.payload.divisions for expression in expressions]
+            products = self.score_specification.contexts[voice.name]['division_region_products']
+            #self._debug(products, 'products')
+            divisions = [product.payload.divisions for product in products]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)
             start_offset = durationtools.Offset(0)
             for division in divisions:
