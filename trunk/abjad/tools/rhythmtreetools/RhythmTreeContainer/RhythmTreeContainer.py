@@ -351,33 +351,33 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
             >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
             >>> graph = tree.graphviz_graph
-            >>> print graph.graphviz_format # doctest: +SKIP
-            digraph "G" {
-                "node_0" [label="1",
-                    shape="triangle"];
-                "node_1" [label="1",
-                    shape="box"];
-                "node_2" [label="2",
-                    shape="triangle"];
-                "node_3" [label="1",
-                    shape="box"];
-                "node_4" [label="1",
-                    shape="box"];
-                "node_5" [label="1",
-                    shape="box"];
-                "node_6" [label="2",
-                    shape="box"];
-                "node_0" -> "node_1";
-                "node_0" -> "node_2";
-                "node_0" -> "node_6";
-                "node_2" -> "node_3";
-                "node_2" -> "node_4";
-                "node_2" -> "node_5";
+            >>> print graph.graphviz_format
+            digraph G {
+                node_0 [label=1,
+                    shape=triangle];
+                node_1 [label=1,
+                    shape=box];
+                node_2 [label=2,
+                    shape=triangle];
+                node_3 [label=1,
+                    shape=box];
+                node_4 [label=1,
+                    shape=box];
+                node_5 [label=1,
+                    shape=box];
+                node_6 [label=2,
+                    shape=box];
+                node_0 -> node_1;
+                node_0 -> node_2;
+                node_0 -> node_6;
+                node_2 -> node_3;
+                node_2 -> node_4;
+                node_2 -> node_5;
             }
 
         ::
 
-            >>> iotools.graph(graph)
+            >>> iotools.graph(graph) # doctest: +SKIP
 
         Return `GraphvizGraph` instance.
         '''

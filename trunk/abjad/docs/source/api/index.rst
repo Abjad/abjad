@@ -3632,6 +3632,7 @@ Core composition packages
       :maxdepth: 1
 
       tools/timesignaturetools/MetricalHierarchy/MetricalHierarchy
+      tools/timesignaturetools/MetricalHierarchyInventory/MetricalHierarchyInventory
 
    --------
 
@@ -3650,6 +3651,7 @@ Core composition packages
    .. toctree::
 
       tools/timesignaturetools/MetricalHierarchy/MetricalHierarchy
+      tools/timesignaturetools/MetricalHierarchyInventory/MetricalHierarchyInventory
 
    Functions
    ---------

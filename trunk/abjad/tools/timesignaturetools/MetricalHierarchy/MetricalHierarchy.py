@@ -199,6 +199,12 @@ class MetricalHierarchy(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, other):
+        if type(self) == type(other):
+            if self.rtm_format == other.rtm_format:
+                return True
+        return False
+
     def __iter__(self):
         '''Iterate metrical hierarchy::
 
@@ -243,8 +249,12 @@ class MetricalHierarchy(AbjadObject):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
+    def _keyword_argument_names(self):
+        return ()
+
+    @property
     def _positional_argument_values(self):
-        return ((self.numerator, self.denominator),)
+        return (self.rtm_format,)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -350,23 +360,23 @@ class MetricalHierarchy(AbjadObject):
 
         ::
 
-            >>> print metrical_hierarchy.graphviz_format # doctest: +SKIP
+            >>> print metrical_hierarchy.graphviz_format
             digraph G {
-                node_0 [label=5/4,
+                node_0 [label="5/4",
                     shape=triangle];
-                node_1 [label=3/4,
+                node_1 [label="3/4",
                     shape=triangle];
-                node_2 [label=1/4,
+                node_2 [label="1/4",
                     shape=box];
-                node_3 [label=1/4,
+                node_3 [label="1/4",
                     shape=box];
-                node_4 [label=1/4,
+                node_4 [label="1/4",
                     shape=box];
-                node_5 [label=2/4,
+                node_5 [label="2/4",
                     shape=triangle];
-                node_6 [label=1/4,
+                node_6 [label="1/4",
                     shape=box];
-                node_7 [label=1/4,
+                node_7 [label="1/4",
                     shape=box];
                 node_0 -> node_1;
                 node_0 -> node_5;
@@ -476,8 +486,7 @@ class MetricalHierarchy(AbjadObject):
 
             >>> print metrical_hierarchy.storage_format
             timesignaturetools.MetricalHierarchy(
-                (5, 4),
-                decrease_durations_monotonically=True
+                '(5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))'
                 )
 
         Return string.
