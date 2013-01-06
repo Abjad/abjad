@@ -32,12 +32,12 @@ class RhythmRegionProduct(RegionProduct):
     ### INITIALIZER ###
 
     def __init__(self, payload=None, voice_name=None, timespan=None):
-        RegionProduct.__init__(self, voice_name, timespan=timespan)
         payload = containertools.Container(music=payload)
-        self._payload = payload
+        RegionProduct.__init__(self, payload=payload, voice_name=voice_name, timespan=timespan)
 
     ### SPECIAL METHODS ###
 
+    # TODO: move up to RegionProduct?
     def __copy__(self, *args):
         new = type(self)(voice_name=self.voice_name, timespan=self.timespan)
         new._payload = componenttools.copy_components_and_covered_spanners([self.payload])[0]

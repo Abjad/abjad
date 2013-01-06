@@ -20,11 +20,12 @@ class RegionProduct(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, voice_name, timespan=None):
+    def __init__(self, payload=None, voice_name=None, timespan=None):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
-        self._voice_name = voice_name
         timespan = timespan or timespantools.Timespan(0)
         assert isinstance(timespan, (timespantools.Timespan)), repr(timespan)
+        self._payload = payload
+        self._voice_name = voice_name
         self._start_offset = timespan.start_offset
 
     ### SPECIAL METHODS ###

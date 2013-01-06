@@ -14,11 +14,9 @@ class DivisionRegionProduct(RegionProduct):
 
     ### INITIALIZER ###
 
-    def __init__(self, payload, voice_name=None, timespan=None):
-        RegionProduct.__init__(self, voice_name, timespan=timespan)
-        if not isinstance(payload, divisiontools.DivisionList):
-            payload = divisiontools.DivisionList(payload)
-        self._payload = payload
+    def __init__(self, payload=None, voice_name=None, timespan=None):
+        payload = divisiontools.DivisionList(payload)
+        RegionProduct.__init__(self, payload=payload, voice_name=voice_name, timespan=timespan)
 
     ### SPECIAL METHODS ###
 
@@ -44,7 +42,7 @@ class DivisionRegionProduct(RegionProduct):
 
             >>> z(expr)
             settingtools.DivisionRegionProduct(
-                divisiontools.DivisionList(
+                payload=divisiontools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
                     ),
                 voice_name='Voice 1',
@@ -62,7 +60,7 @@ class DivisionRegionProduct(RegionProduct):
 
             >>> z(expr)
             settingtools.DivisionRegionProduct(
-                divisiontools.DivisionList(
+                payload=divisiontools.DivisionList(
                     [Division('[2, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
                     ),
                 voice_name='Voice 1',
@@ -103,7 +101,7 @@ class DivisionRegionProduct(RegionProduct):
 
             >>> z(expr)
             settingtools.DivisionRegionProduct(
-                divisiontools.DivisionList(
+                payload=divisiontools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
                     ),
                 voice_name='Voice 1',
@@ -121,7 +119,7 @@ class DivisionRegionProduct(RegionProduct):
 
             >>> z(expr)
             settingtools.DivisionRegionProduct(
-                divisiontools.DivisionList(
+                payload=divisiontools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]')]
                     ),
                 voice_name='Voice 1',
@@ -191,7 +189,7 @@ class DivisionRegionProduct(RegionProduct):
         
             >>> z(new_expr)
             settingtools.DivisionRegionProduct(
-                divisiontools.DivisionList(
+                payload=divisiontools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]'), Division('[2, 16]')]
                     ),
                 voice_name='Voice 1',

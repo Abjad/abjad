@@ -43,7 +43,7 @@ class DivisionList(BoundedObject):
 
         >>> z(score_specification.contexts['Voice 1']['division_region_products'][0])
         settingtools.DivisionRegionProduct(
-            divisiontools.DivisionList(
+            payload=divisiontools.DivisionList(
                 [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 
                 Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 
                 Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 
@@ -70,9 +70,9 @@ class DivisionList(BoundedObject):
 
     def __init__(self, divisions, voice_name=None):
         from experimental.tools import divisiontools
-        assert isinstance(divisions, list), repr(divisions)
+        divisions = [divisiontools.Division(x) for x in divisions]
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
-        self._divisions = [divisiontools.Division(x) for x in divisions]
+        self._divisions = divisions
         self._voice_name = voice_name
         assert self.is_well_formed
 
