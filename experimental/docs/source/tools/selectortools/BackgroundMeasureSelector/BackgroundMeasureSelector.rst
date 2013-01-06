@@ -228,7 +228,7 @@ Methods
 .. automethod:: experimental.tools.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.reverse
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. automethod:: experimental.tools.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.rotate
    :noindex:

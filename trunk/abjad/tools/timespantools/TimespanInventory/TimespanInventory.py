@@ -232,7 +232,6 @@ class TimespanInventory(ObjectInventory):
 
     ### PUBLIC METHODS ###
 
-    # TODO: do not operate in place; emit new inventory instead.
     def crop(self, start_offset=None, stop_offset=None):
         '''Operate in place.
 
@@ -249,7 +248,6 @@ class TimespanInventory(ObjectInventory):
         elif inventory_stop_offset < stop_offset:
             self.repeat_to_stop_offset(stop_offset)
 
-    # TODO: do not operate in place; emit new inventory instead.
     def delete_material_that_intersects_timespan(self, timespan_2):
         '''Operate in place and return none.
 
@@ -414,7 +412,7 @@ class TimespanInventory(ObjectInventory):
         '''
         return bool(self.get_timespans_that_satisfy_time_relation(time_relation))
 
-    # TODO: do not operate in place; emit new inventory instead.
+    # TODO: change to self.keep_material_that_satisfies_time_relation()
     def keep_material_that_intersects_timespan(self, keep_timespan):
         '''Operate in place.
 
@@ -437,7 +435,7 @@ class TimespanInventory(ObjectInventory):
             else:
                 raise ValueError
 
-    # TODO: do not operate in place; emit new inventory instead.
+    # TODO: operate in place
     def repeat_to_stop_offset(self, stop_offset):
         '''Copy timespans in inventory and repeat to `stop_offset`.
 
@@ -472,7 +470,7 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Emity newly constructed timespan.
+        Emit newly constructed timespan.
         '''
         stop_offset = durationtools.Offset(stop_offset)
         assert self.stop_offset <= stop_offset
@@ -490,8 +488,11 @@ class TimespanInventory(ObjectInventory):
                 new_timespan_inventory[-1] = new_timespan_inventory[-1].set_offsets(stop_offset=stop_offset)
         return new_timespan_inventory
 
-    def reverse(self):
-        '''Flip timespans about inventory time axis:
+    # TODO: operate in place
+    def reverse(self, axis=None):
+        '''Reflect timespans.
+
+        Example 1. Reflect timespans about timespan inventory axis:
 
         ::
 
@@ -529,15 +530,10 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        ::
-
-            >>> z(timespan_inventory_3.reverse())
-            timespantools.TimespanInventory([])
-
-        Also reverse timespans' contents.
-
-        Emit newly constructed timespan inventory.
+        Emit newly created timespan inventory.
         '''
+        #if axis is None:
+        #    axis = self.axis
         new_timespans = []
         for timespan in self: 
             start_distance = timespan.start_offset - self.axis
@@ -545,14 +541,14 @@ class TimespanInventory(ObjectInventory):
             new_start_offset = self.axis - stop_distance
             new_stop_offset = self.axis - start_distance
             new_timespan = type(timespan)(new_start_offset, new_stop_offset)
-            # TODO: move this one call to spectools TimespanInventory subclass
+            #new_timespan = timespan.reverse(axis=axis)
+            # maybe move this one call to payload-carrying TimespanInventory subclass
             if hasattr(new_timespan, 'reverse'):
                 new_timespan.reverse()
             new_timespans.append(new_timespan)
         return type(self)(new_timespans)
 
     # TODO: remove and implement on TimespanInventory subclass in spectools instead?
-    # TODO: do not operate in place; emit new inventory instead.
     def rotate(self, rotation):
         '''Rotate *elements* of timespans.
 
@@ -593,7 +589,7 @@ class TimespanInventory(ObjectInventory):
     def scale(self, multiplier, anchor=Left):
         '''Scale timespan durations by `multiplier` relative to `anchor`. 
 
-        Example 1. Scale relative to timespan inventory start offset:
+        Example 1. Scale timespans relative to timespan inventory start offset:
 
         ::
 
@@ -624,7 +620,7 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Example 2. Scale relative to timespan inventory stop offset:
+        Example 2. Scale timespans relative to timespan inventory stop offset:
 
             >>> timespan_inventory = timespantools.TimespanInventory([
             ...    timespantools.Timespan(0, 3),
@@ -664,7 +660,7 @@ class TimespanInventory(ObjectInventory):
     def stretch(self, multiplier, anchor=None):
         '''Stretch inventory timespans by `multiplier` relative to `anchor`.
 
-        Example 1: Stretch relative to inventory start offset:
+        Example 1: Stretch timespans relative to timespan inventory start offset:
 
         ::
 
@@ -695,9 +691,10 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Example 2: Stretch inventory relative to arbitrary anchor:
+        Example 2: Stretch timespans relative to arbitrary anchor:
 
         ::
+
             >>> timespan_inventory = timespantools.TimespanInventory([
             ...    timespantools.Timespan(0, 3),
             ...    timespantools.Timespan(3, 6),
@@ -737,10 +734,10 @@ class TimespanInventory(ObjectInventory):
         self[:] = timespans
 
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
-        '''Translate inventory timespans by `start_offset_translation`
+        '''Translate timespans by `start_offset_translation`
         and `stop_offset_translation`.
 
-        Example 1. Translate start- and stop-offsets equally::
+        Example 1. Translate timespan start- and stop-offsets equally::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
             ...    timespantools.Timespan(0, 3),
@@ -769,7 +766,9 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Example 2. Translate only stop-offset::
+        Example 2. Translate timespan stop-offsets only:
+
+        ::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
             ...    timespantools.Timespan(0, 3),

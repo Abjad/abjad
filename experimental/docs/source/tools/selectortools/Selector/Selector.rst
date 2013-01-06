@@ -216,7 +216,7 @@ Methods
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.reverse
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.rotate
    :noindex:

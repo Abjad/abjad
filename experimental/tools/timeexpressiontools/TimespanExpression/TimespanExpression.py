@@ -10,6 +10,7 @@ from experimental.tools.settingtools.SetMethodMixin import SetMethodMixin
 from experimental.tools.settingtools.SelectMethodMixin import SelectMethodMixin
 
 
+# TODO: looks like maybe TimespanExpression needs to *have a* timespan istead of *being a* timespan
 class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
     r'''Timespan expression.
 
