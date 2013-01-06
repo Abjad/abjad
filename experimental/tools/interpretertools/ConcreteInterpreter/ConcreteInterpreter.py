@@ -240,7 +240,7 @@ class ConcreteInterpreter(Interpreter):
             voice_division_list.divisions, 
             rhythm_region_start_division_counts, cyclic=False, overhang=False)
         rhythm_region_division_lists = [
-            divisiontools.DivisionList(x, voice_name=voice.name) for x in rhythm_region_division_lists]
+            settingtools.DivisionList(x, voice_name=voice.name) for x in rhythm_region_division_lists]
         assert len(rhythm_region_division_lists) == len(rhythm_command_merged_durations)
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
         rhythm_region_durations = [x.duration for x in rhythm_region_division_lists]
@@ -330,7 +330,7 @@ class ConcreteInterpreter(Interpreter):
 
     def make_voice_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_division_list = divisiontools.DivisionList([], voice.name)
+            voice_division_list = settingtools.DivisionList([], voice.name)
             products = self.score_specification.contexts[voice.name]['division_region_products']
             #self._debug(products, 'products')
             divisions = [product.payload.divisions for product in products]

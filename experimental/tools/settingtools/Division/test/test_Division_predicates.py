@@ -1,4 +1,4 @@
-from experimental.tools.divisiontools.Division import Division
+from experimental.tools.settingtools.Division import Division
 
 
 def test_Division_predicates_01():

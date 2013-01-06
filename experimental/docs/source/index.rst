@@ -132,27 +132,6 @@ Unstable packages (load manually)
       tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
       tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
-:py:mod:`divisiontools <experimental.tools.divisiontools>`
-==========================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/divisiontools/Division/Division
-      tools/divisiontools/DivisionList/DivisionList
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/divisiontools/Division/Division
-      tools/divisiontools/DivisionList/DivisionList
-
 :py:mod:`handlertools <experimental.tools.handlertools>`
 ========================================================
 
@@ -466,6 +445,8 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/settingtools/CallbackInventory/CallbackInventory
+      tools/settingtools/Division/Division
+      tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
@@ -501,6 +482,8 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/settingtools/CallbackInventory/CallbackInventory
+      tools/settingtools/Division/Division
+      tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
       tools/settingtools/MultipleContextSetting/MultipleContextSetting

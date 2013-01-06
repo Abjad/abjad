@@ -15,7 +15,8 @@ class DivisionRegionProduct(RegionProduct):
     ### INITIALIZER ###
 
     def __init__(self, payload=None, voice_name=None, timespan=None):
-        payload = divisiontools.DivisionList(payload)
+        from experimental.tools import settingtools
+        payload = settingtools.DivisionList(payload)
         RegionProduct.__init__(self, payload=payload, voice_name=voice_name, timespan=timespan)
 
     ### SPECIAL METHODS ###
@@ -42,7 +43,7 @@ class DivisionRegionProduct(RegionProduct):
 
             >>> z(expr)
             settingtools.DivisionRegionProduct(
-                payload=divisiontools.DivisionList(
+                payload=settingtools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
                     ),
                 voice_name='Voice 1',
@@ -60,7 +61,7 @@ class DivisionRegionProduct(RegionProduct):
 
             >>> z(expr)
             settingtools.DivisionRegionProduct(
-                payload=divisiontools.DivisionList(
+                payload=settingtools.DivisionList(
                     [Division('[2, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
                     ),
                 voice_name='Voice 1',
@@ -79,6 +80,7 @@ class DivisionRegionProduct(RegionProduct):
         
         Operate in place and return none.
         '''
+        from experimental.tools import settingtools
         start_offset = durationtools.Offset(start_offset)
         assert self.timespan.start_offset <= start_offset
         duration_to_trim = start_offset - self.timespan.start_offset
@@ -86,7 +88,7 @@ class DivisionRegionProduct(RegionProduct):
         shards = sequencetools.split_sequence_by_weights(
             divisions, [duration_to_trim], cyclic=False, overhang=True)
         trimmed_divisions = shards[-1]
-        division_list = divisiontools.DivisionList(trimmed_divisions)
+        division_list = settingtools.DivisionList(trimmed_divisions)
         self._payload = division_list
         self._start_offset = start_offset
 
@@ -101,7 +103,7 @@ class DivisionRegionProduct(RegionProduct):
 
             >>> z(expr)
             settingtools.DivisionRegionProduct(
-                payload=divisiontools.DivisionList(
+                payload=settingtools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
                     ),
                 voice_name='Voice 1',
@@ -119,7 +121,7 @@ class DivisionRegionProduct(RegionProduct):
 
             >>> z(expr)
             settingtools.DivisionRegionProduct(
-                payload=divisiontools.DivisionList(
+                payload=settingtools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]')]
                     ),
                 voice_name='Voice 1',
@@ -138,6 +140,7 @@ class DivisionRegionProduct(RegionProduct):
         
         Operate in place and return none.
         '''
+        from experimental.tools import settingtools
         stop_offset = durationtools.Offset(stop_offset)
         assert stop_offset <= self.timespan.stop_offset
         duration_to_trim = self.timespan.stop_offset - stop_offset
@@ -146,7 +149,7 @@ class DivisionRegionProduct(RegionProduct):
         shards = sequencetools.split_sequence_by_weights(
             divisions, [duration_to_keep], cyclic=False, overhang=True)
         trimmed_divisions = shards[0]
-        division_list = divisiontools.DivisionList(trimmed_divisions)
+        division_list = settingtools.DivisionList(trimmed_divisions)
         self._payload = division_list
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -189,7 +192,7 @@ class DivisionRegionProduct(RegionProduct):
         
             >>> z(new_expr)
             settingtools.DivisionRegionProduct(
-                payload=divisiontools.DivisionList(
+                payload=settingtools.DivisionList(
                     [Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]'), Division('[2, 16]')]
                     ),
                 voice_name='Voice 1',

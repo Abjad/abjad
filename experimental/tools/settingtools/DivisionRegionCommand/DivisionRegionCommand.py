@@ -33,7 +33,7 @@ class DivisionRegionCommand(RegionCommand):
                 return
             divisions = division_region_product.payload.divisions[:]
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
-            divisions = [divisiontools.Division(x) for x in divisions]
+            divisions = [settingtools.Division(x) for x in divisions]
             division_list = division_region_product.payload.new(divisions=divisions)
             division_region_product = division_region_product.new(payload=division_list)
             right = self.timespan.start_offset
@@ -44,7 +44,7 @@ class DivisionRegionCommand(RegionCommand):
             return [division_region_product]
         else:
             divisions = self.request._get_payload(score_specification, request_voice_name)
-            divisions = [divisiontools.Division(x) for x in divisions]
+            divisions = [settingtools.Division(x) for x in divisions]
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             result = settingtools.DivisionRegionProduct(divisions, voice_name, region_timespan)
             return [result]

@@ -43,7 +43,7 @@ class DivisionList(BoundedObject):
 
         >>> z(score_specification.contexts['Voice 1']['division_region_products'][0])
         settingtools.DivisionRegionProduct(
-            payload=divisiontools.DivisionList(
+            payload=settingtools.DivisionList(
                 [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 
                 Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 
                 Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 
@@ -69,8 +69,8 @@ class DivisionList(BoundedObject):
     ### INITIALIZER ###
 
     def __init__(self, divisions, voice_name=None):
-        from experimental.tools import divisiontools
-        divisions = [divisiontools.Division(x) for x in divisions]
+        from experimental.tools import settingtools
+        divisions = [settingtools.Division(x) for x in divisions]
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         self._divisions = divisions
         self._voice_name = voice_name
@@ -81,8 +81,8 @@ class DivisionList(BoundedObject):
     def __add__(self, expr):
         '''Concatenate division lists.
 
-            >>> left = divisiontools.DivisionList([(1, 16), (2, 16)])
-            >>> right = divisiontools.DivisionList([(3, 16), (4, 16)])
+            >>> left = settingtools.DivisionList([(1, 16), (2, 16)])
+            >>> right = settingtools.DivisionList([(3, 16), (4, 16)])
 
         ::
 
