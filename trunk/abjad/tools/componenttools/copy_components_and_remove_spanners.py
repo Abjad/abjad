@@ -92,9 +92,8 @@ def copy_components_and_remove_spanners(components, n=1):
 
     assert componenttools.all_are_thread_contiguous_components(components)
 
-    result = copy.deepcopy(components)
-    #result = [component._copy_with_children_and_marks_but_without_spanners() for component in components]
-    #result = type(components)(result)
+    result = [component._copy_with_children_and_marks_but_without_spanners() for component in components]
+    result = type(components)(result)
 
     for i in range(n - 1):
         result += copy_components_and_remove_spanners(components)
