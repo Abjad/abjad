@@ -547,7 +547,7 @@ class BreakPointFunction(AbjadObject):
             x_center = self.x_center
         else:
             assert isinstance(x_center, numbers.Real)
-        for x, ys in self._bpf:
+        for x, ys in self._bpf.iteritems():
             new_x = (x_center - x) + x_center
             bpf[new_x] = tuple(reversed(ys))
         return type(self)(bpf)
@@ -569,7 +569,7 @@ class BreakPointFunction(AbjadObject):
         bpf = {}
         y_min, y_max = self.y_range
         for x, ys in self._bpf.iteritems():
-            bpf[x] = tuple(self._scale(y, y_min, y_max, minimum, maximum) for y in ys)
+            bpf[x] = tuple([self._scale(y, y_min, y_max, minimum, maximum) for y in ys])
         return type(self)(bpf)
 
     def set_y_at_x(self, x, y):
@@ -636,6 +636,78 @@ class BreakPointFunction(AbjadObject):
  
     def tessalate_by_ratio(self, ratio, invert_on_negative=False, reverse_on_negative=False,
         y_center=None):
+        '''Concatenate copies of a BreakPointFunction, stretched by the weights in `ratio`:
+
+        ::
+
+            >>> bpf = breakpointtools.BreakPointFunction({0.: 0., 0.25: 0.9, 1.: 1.})
+
+        ::
+
+            >>> bpf.tessalate_by_ratio((1, 2, 3))
+            BreakPointFunction({
+                0.0: (0.0,),
+                0.25: (0.9,),
+                1.0: (1.0, 0.0),
+                1.5: (0.9,),
+                3.0: (1.0, 0.0),
+                3.75: (0.9,),
+                6.0: (1.0,)
+            })
+
+        Negative ratio values are still treated as weights.
+
+        If `invert_on_negative` is True, copies corresponding to negative ratio values
+        will be inverted:
+
+        ::
+
+            >>> bpf.tessalate_by_ratio((1, -2, 3), invert_on_negative=True)
+            BreakPointFunction({
+                0.0: (0.0,),
+                0.25: (0.9,),
+                1.0: (1.0,),
+                1.5: (0.09999999999999998,),
+                3.0: (0.0,),
+                3.75: (0.9,),
+                6.0: (1.0,)
+            })
+
+        If `y_center` is not None, inversion will take `y_center` as the axis of inversion:
+
+        ::
+
+            >>> bpf.tessalate_by_ratio((1, -2, 3), invert_on_negative=True, y_center=0)
+            BreakPointFunction({
+                0.0: (0.0,),
+                0.25: (0.9,),
+                1.0: (1.0, 0.0),
+                1.5: (-0.9,),
+                3.0: (-1.0, 0.0),
+                3.75: (0.9,),
+                6.0: (1.0,)
+            })
+
+        If `reverse_on_negative` is True, copies corresponding to negative ratio values
+        will be reversed:
+
+        ::
+
+            >>> bpf.tessalate_by_ratio((1, -2, 3), reverse_on_negative=True)
+            BreakPointFunction({
+                0.0: (0.0,),
+                0.25: (0.9,),
+                1.0: (1.0,),
+                2.5: (0.9,),
+                3.0: (0.0,),
+                3.75: (0.9,),
+                6.0: (1.0,)
+            })
+
+        Inversion may be combined reversing.
+
+        Emit new `BreakPointFunction` instance.
+        '''
         ratio = mathtools.Ratio(ratio)
         tessalated_bpf = None
         for i, pair in enumerate(mathtools.cumulative_sums_zero_pairwise(
