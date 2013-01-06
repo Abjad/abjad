@@ -601,6 +601,21 @@ class BreakPointFunction(AbjadObject):
         return type(self)(bpf)
 
     def scale_x_axis(self, minimum=0, maximum=1):
+        '''Scale x-axis between `minimum` and `maximum`:
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction(
+            ...     {0.: 0., 0.5: (-1., 2.), 1.: 1.}
+            ...     ).scale_x_axis(-2, 2)
+            BreakPointFunction({
+                -2.0: (0.0,),
+                0.0: (-1.0, 2.0),
+                2.0: (1.0,)
+            })
+
+        Emit new `BreakPointFunction` instance.
+        '''
         assert isinstance(minimum, numbers.Real)
         assert isinstance(maximum, numbers.Real)
         assert minimum < maximum
@@ -611,6 +626,21 @@ class BreakPointFunction(AbjadObject):
         return type(self)(bpf)
 
     def scale_y_axis(self, minimum=0, maximum=1):
+        '''Scale y-axis between `minimum` and `maximum`:
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction(
+            ...     {0.: 0., 0.5: (-1., 2.), 1.: 1.}
+            ...     ).scale_y_axis(-2, 4)
+            BreakPointFunction({
+                0.0: (0.0,),
+                0.5: (-2.0, 4.0),
+                1.0: (2.0,)
+            })
+
+        Emit new `BreakPointFunction` instance.
+        '''
         assert isinstance(minimum, numbers.Real)
         assert isinstance(maximum, numbers.Real)
         assert minimum < maximum
