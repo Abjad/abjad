@@ -59,10 +59,10 @@ Methods
 .. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.normalize_axes
    :noindex:
 
-.. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.remove_dc_bias
+.. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.reflect
    :noindex:
 
-.. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.reverse
+.. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.remove_dc_bias
    :noindex:
 
 .. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.scale_x_axis

@@ -565,12 +565,12 @@ class BreakPointFunction(AbjadObject):
         '''
         return self - self.dc_bias
 
-    def reverse(self, x_center=None):
-        '''Reverse x values of a `BreakPointFunction`:
+    def reflect(self, x_center=None):
+        '''Reflect x values of a `BreakPointFunction`:
 
         ::
 
-            >>> breakpointtools.BreakPointFunction({0.25: 0., 0.5: (-1., 2.), 1: 1.}).reverse()
+            >>> breakpointtools.BreakPointFunction({0.25: 0., 0.5: (-1., 2.), 1: 1.}).reflect()
             BreakPointFunction({
                 0.25: (1.0,),
                 0.75: (2.0, -1.0),
@@ -581,7 +581,7 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> breakpointtools.BreakPointFunction({0.25: 0., 0.5: (-1., 2.), 1: 1.}).reverse(x_center=0.25)
+            >>> breakpointtools.BreakPointFunction({0.25: 0., 0.5: (-1., 2.), 1: 1.}).reflect(x_center=0.25)
             BreakPointFunction({
                 -0.5: (1.0,),
                 0.0: (2.0, -1.0),
@@ -682,7 +682,7 @@ class BreakPointFunction(AbjadObject):
             raise ValueError
         self._update_caches()
  
-    def tessalate_by_ratio(self, ratio, invert_on_negative=False, reverse_on_negative=False,
+    def tessalate_by_ratio(self, ratio, invert_on_negative=False, reflect_on_negative=False,
         y_center=None):
         '''Concatenate copies of a BreakPointFunction, stretched by the weights in `ratio`:
 
@@ -736,12 +736,12 @@ class BreakPointFunction(AbjadObject):
                 6.0: (1.0,)
             })
 
-        If `reverse_on_negative` is True, copies corresponding to negative ratio values
-        will be reversed:
+        If `reflect_on_negative` is True, copies corresponding to negative ratio values
+        will be reflectd:
 
         ::
 
-            >>> bpf.tessalate_by_ratio((1, -2, 3), reverse_on_negative=True)
+            >>> bpf.tessalate_by_ratio((1, -2, 3), reflect_on_negative=True)
             BreakPointFunction({
                 0.0: (0.0,),
                 0.25: (0.9,),
@@ -752,7 +752,7 @@ class BreakPointFunction(AbjadObject):
                 6.0: (1.0,)
             })
 
-        Inversion may be combined reversing.
+        Inversion may be combined reflecting.
 
         Emit new `BreakPointFunction` instance.
         '''
@@ -766,8 +766,8 @@ class BreakPointFunction(AbjadObject):
             if sign < 0:
                 if invert_on_negative:
                     bpf = bpf.invert(y_center)
-                if reverse_on_negative:
-                    bpf = bpf.reverse()
+                if reflect_on_negative:
+                    bpf = bpf.reflect()
             if i == 0:
                 tessalated_bpf = bpf
             else:
