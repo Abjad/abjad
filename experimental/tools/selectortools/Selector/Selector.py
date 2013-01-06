@@ -46,9 +46,9 @@ class Selector(TimespanExpression, Request):
     @property
     def _keyword_argument_name_value_strings(self):
         result = Request._keyword_argument_name_value_strings.fget(self)
-        if 'timespan_callbacks=ModifierInventory([])' in result:
+        if 'timespan_callbacks=CallbackInventory([])' in result:
             result = list(result)
-            result.remove('timespan_callbacks=ModifierInventory([])')
+            result.remove('timespan_callbacks=CallbackInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -73,7 +73,7 @@ class Selector(TimespanExpression, Request):
         result = Request._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'timespan_callbacks=settingtools.ModifierInventory([])' in string:
+            if not 'timespan_callbacks=settingtools.CallbackInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
     

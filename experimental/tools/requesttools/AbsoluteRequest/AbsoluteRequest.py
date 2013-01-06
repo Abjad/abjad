@@ -74,7 +74,7 @@ class AbsoluteRequest(Request):
         '''Absolute request callbacks::
 
             >>> request.payload_callbacks
-            ModifierInventory([])
+            CallbackInventory([])
 
         Return callback inventory.
         '''

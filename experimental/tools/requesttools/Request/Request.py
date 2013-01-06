@@ -28,7 +28,7 @@ class Request(AbjadObject):
     def __init__(self, payload_callbacks=None):
         from experimental.tools import settingtools
         payload_callbacks = payload_callbacks or []
-        self._payload_callbacks = settingtools.ModifierInventory(payload_callbacks)
+        self._payload_callbacks = settingtools.CallbackInventory(payload_callbacks)
 
     ### SPECIAL METHODS ###
 
@@ -58,9 +58,9 @@ class Request(AbjadObject):
     @property
     def _keyword_argument_name_value_strings(self):
         result = AbjadObject._keyword_argument_name_value_strings.fget(self)
-        if 'payload_callbacks=ModifierInventory([])' in result:
+        if 'payload_callbacks=CallbackInventory([])' in result:
             result = list(result)
-            result.remove('payload_callbacks=ModifierInventory([])')
+            result.remove('payload_callbacks=CallbackInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -125,7 +125,7 @@ class Request(AbjadObject):
         result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'payload_callbacks=settingtools.ModifierInventory([])' in string:
+            if not 'payload_callbacks=settingtools.CallbackInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
 

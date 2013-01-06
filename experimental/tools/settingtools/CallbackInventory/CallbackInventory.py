@@ -1,7 +1,7 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 
 
-class ModifierInventory(ObjectInventory):
+class CallbackInventory(ObjectInventory):
     r'''Modifier inventory.
     '''
 

@@ -53,7 +53,7 @@ class BackgroundMeasureSelector(Selector):
         selectortools.BackgroundMeasureSelector(
             anchor=selectortools.SegmentSelector(
                 voice_name='Voice 1',
-                payload_callbacks=settingtools.ModifierInventory([
+                payload_callbacks=settingtools.CallbackInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 3), None))"
                     ])
                 ),

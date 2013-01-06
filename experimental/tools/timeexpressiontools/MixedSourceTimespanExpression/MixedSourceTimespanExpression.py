@@ -43,7 +43,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
                 anchor=selectortools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
-                    payload_callbacks=settingtools.ModifierInventory([
+                    payload_callbacks=settingtools.CallbackInventory([
                         'result = self.___getitem__(elements, start_offset, slice(-1, None, None))'
                         ])
                     )
@@ -52,7 +52,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
                 anchor=selectortools.BackgroundMeasureSelector(
                     anchor='blue',
                     voice_name='Voice 1',
-                    payload_callbacks=settingtools.ModifierInventory([
+                    payload_callbacks=settingtools.CallbackInventory([
                         'result = self.___getitem__(elements, start_offset, slice(None, 1, None))'
                         ])
                     ),

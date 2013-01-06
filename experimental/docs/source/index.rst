@@ -499,9 +499,9 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
-      tools/settingtools/ModifierInventory/ModifierInventory
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
@@ -533,9 +533,9 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
-      tools/settingtools/ModifierInventory/ModifierInventory
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct

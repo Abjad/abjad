@@ -39,7 +39,7 @@ class SegmentSelector(Selector):
         >>> z(selector)
         selectortools.SegmentSelector(
             voice_name='Voice 1',
-            payload_callbacks=settingtools.ModifierInventory([
+            payload_callbacks=settingtools.CallbackInventory([
                 'result = self.___getitem__(elements, start_offset, slice(None, 2, None))'
                 ])
             )
@@ -53,7 +53,7 @@ class SegmentSelector(Selector):
         >>> z(selector)
         selectortools.SegmentSelector(
             voice_name='Voice 1',
-            payload_callbacks=settingtools.ModifierInventory([
+            payload_callbacks=settingtools.CallbackInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, 'green', None))"
                 ])
             )
@@ -67,7 +67,7 @@ class SegmentSelector(Selector):
         >>> z(selector)
         selectortools.SegmentSelector(
             voice_name='Voice 1',
-            payload_callbacks=settingtools.ModifierInventory([
+            payload_callbacks=settingtools.CallbackInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, ('green', 1), None))"
                 ])
             )
@@ -81,7 +81,7 @@ class SegmentSelector(Selector):
         >>> z(selector)
         selectortools.SegmentSelector(
             voice_name='Voice 1',
-            payload_callbacks=settingtools.ModifierInventory([
+            payload_callbacks=settingtools.CallbackInventory([
                 "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                 ])
             )

@@ -31,7 +31,7 @@ class CommandRequest(Request):
                 anchor=selectortools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
-                    payload_callbacks=settingtools.ModifierInventory([
+                    payload_callbacks=settingtools.CallbackInventory([
                         'result = self.___getitem__(elements, start_offset, slice(4, 5, None))'
                         ])
                     )
@@ -95,7 +95,7 @@ class CommandRequest(Request):
                 anchor=selectortools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
-                    payload_callbacks=settingtools.ModifierInventory([
+                    payload_callbacks=settingtools.CallbackInventory([
                         'result = self.___getitem__(elements, start_offset, slice(4, 5, None))'
                         ])
                     )

@@ -38,7 +38,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         assert isinstance(anchor, (str, type(None))), repr(anchor)
         self._anchor = anchor
         timespan_callbacks = timespan_callbacks or []
-        self._timespan_callbacks = settingtools.ModifierInventory(timespan_callbacks)
+        self._timespan_callbacks = settingtools.CallbackInventory(timespan_callbacks)
 
     ### SPECIAL METHODS ###
 
@@ -78,9 +78,9 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
     @property
     def _keyword_argument_name_value_strings(self):
         result = Timespan._keyword_argument_name_value_strings.fget(self)
-        if 'timespan_callbacks=ModifierInventory([])' in result:
+        if 'timespan_callbacks=CallbackInventory([])' in result:
             result = list(result)
-            result.remove('timespan_callbacks=ModifierInventory([])')
+            result.remove('timespan_callbacks=CallbackInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -129,7 +129,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         result = Timespan._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'timespan_callbacks=settingtools.ModifierInventory([])' in string:
+            if not 'timespan_callbacks=settingtools.CallbackInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
 
@@ -211,7 +211,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         to timespan expression during evaluation.
 
             >>> red_segment.timespan.timespan_callbacks
-            ModifierInventory([])
+            CallbackInventory([])
 
         Return object inventory of zero or more strings.
         '''
@@ -229,7 +229,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
             >>> z(timespans[0])
             timeexpressiontools.TimespanExpression(
                 anchor='red',
-                timespan_callbacks=settingtools.ModifierInventory([
+                timespan_callbacks=settingtools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 0)'
                     ])
                 )
@@ -239,7 +239,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
             >>> z(timespans[1])
             timeexpressiontools.TimespanExpression(
                 anchor='red',
-                timespan_callbacks=settingtools.ModifierInventory([
+                timespan_callbacks=settingtools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 1)'
                     ])
                 )
@@ -253,7 +253,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
             >>> z(timespans[0])
             timeexpressiontools.TimespanExpression(
                 anchor='red',
-                timespan_callbacks=settingtools.ModifierInventory([
+                timespan_callbacks=settingtools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 0)'
                     ])
                 )
@@ -263,7 +263,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
             >>> z(timespans[1])
             timeexpressiontools.TimespanExpression(
                 anchor='red',
-                timespan_callbacks=settingtools.ModifierInventory([
+                timespan_callbacks=settingtools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 1)'
                     ])
                 )
@@ -273,7 +273,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
             >>> z(timespans[2])
             timeexpressiontools.TimespanExpression(
                 anchor='red',
-                timespan_callbacks=settingtools.ModifierInventory([
+                timespan_callbacks=settingtools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 2)'
                     ])
                 )
@@ -302,7 +302,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
             >>> z(timespan)
             timeexpressiontools.TimespanExpression(
                 anchor='red',
-                timespan_callbacks=settingtools.ModifierInventory([
+                timespan_callbacks=settingtools.CallbackInventory([
                     'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))'
                     ])
                 )
