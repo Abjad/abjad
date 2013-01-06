@@ -86,19 +86,15 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
     from abjad.tools import spannertools
     from abjad.tools import componenttools
     from abjad.tools import iterationtools
-    from abjad.tools.componenttools._ignore_parentage_of_components import \
-        _ignore_parentage_of_components
-    from abjad.tools.componenttools._restore_parentage_to_components_by_receipt import \
-        _restore_parentage_to_components_by_receipt
-    from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import \
-        _reattach_blinded_marks_to_components_in_expr
 
     if n < 1:
         return []
 
     assert componenttools.all_are_thread_contiguous_components(components)
 
-    new_components = copy.deepcopy(components)
+    new_components = [        
+        component._copy_with_children_and_marks_but_without_spanners() for component in components]
+    new_components = type(components)(new_components)
 
     # make schema of spanners contained by components
     schema = spannertools.make_spanner_schema(components)
