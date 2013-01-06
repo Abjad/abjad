@@ -1,6 +1,5 @@
 import copy
 from abjad.tools import *
-from experimental.tools import divisiontools
 from experimental.tools import helpertools
 from experimental.tools import library
 from experimental.tools import requesttools

@@ -20,7 +20,6 @@ class DivisionRegionCommand(RegionCommand):
     ### PRIVATE METHODS ###
 
     def _get_payload(self, score_specification, voice_name):
-        from experimental.tools import divisiontools
         from experimental.tools import selectortools
         from experimental.tools import settingtools
         region_timespan = self.timespan

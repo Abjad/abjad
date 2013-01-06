@@ -2,7 +2,6 @@ import copy
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools import timespantools
-from experimental.tools import divisiontools
 from experimental.tools.settingtools.RegionProduct import RegionProduct
 
 

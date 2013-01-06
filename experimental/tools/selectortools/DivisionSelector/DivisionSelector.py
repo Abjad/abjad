@@ -3,7 +3,6 @@ from abjad.tools import durationtools
 from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
-from experimental.tools import divisiontools
 from experimental.tools.selectortools.Selector import Selector
 
 
