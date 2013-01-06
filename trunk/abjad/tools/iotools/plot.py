@@ -1,6 +1,5 @@
 import os
 import subprocess
-from abjad.tools.iotools.get_next_output_file_name import get_next_output_file_name
 
 
 def plot(expr, image_format='png', width=640, height=320):
@@ -10,6 +9,7 @@ def plot(expr, image_format='png', width=640, height=320):
     '''
 
     from abjad import ABJCFG
+    from abjad.tools import iotools
     from abjad.tools.iotools._open_file import _open_file
     from abjad.tools.iotools._verify_output_directory import _verify_output_directory
 
@@ -22,7 +22,7 @@ def plot(expr, image_format='png', width=640, height=320):
     current_directory = os.path.abspath('.')
     ABJADOUTPUT = ABJCFG['abjad_output']
     _verify_output_directory(ABJADOUTPUT)
-    txt_path = os.path.join(ABJADOUTPUT, get_next_output_file_name().replace('ly', 'txt'))
+    txt_path = os.path.join(ABJADOUTPUT, iotools.get_next_output_file_name(file_extension='txt'))
     img_path = os.path.join(ABJADOUTPUT, txt_path.replace('txt', image_format))
 
     if image_format == 'png':

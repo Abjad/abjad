@@ -1,6 +1,5 @@
 import os
 import subprocess
-from abjad.tools.iotools.get_next_output_file_name import get_next_output_file_name
 
 
 def graph(expr, image_format='pdf', layout='dot'):
@@ -25,6 +24,7 @@ def graph(expr, image_format='pdf', layout='dot'):
     '''
 
     from abjad import ABJCFG
+    from abjad.tools import iotools
     from abjad.tools.iotools._open_file import _open_file
     from abjad.tools.iotools._verify_output_directory import _verify_output_directory
 
@@ -36,7 +36,7 @@ def graph(expr, image_format='pdf', layout='dot'):
     current_directory = os.path.abspath('.')
     ABJADOUTPUT = ABJCFG['abjad_output']
     _verify_output_directory(ABJADOUTPUT)
-    dot_path = os.path.join(ABJADOUTPUT, get_next_output_file_name().replace('ly', 'dot'))
+    dot_path = os.path.join(ABJADOUTPUT, iotools.get_next_output_file_name(file_extension='dot'))
     img_path = os.path.join(ABJADOUTPUT, dot_path.replace('dot', 'pdf'))
 
     with open(dot_path, 'w') as f:
