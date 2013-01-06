@@ -536,12 +536,60 @@ class BreakPointFunction(AbjadObject):
         return type(self)(bpf)
 
     def normalize_axes(self):
+        '''Scale both x and y axes between 0 and 1:
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction({0.25: 0.25, 0.75: 0.75}).normalize_axes()
+            BreakPointFunction({
+                0.0: (0.0,),
+                1.0: (1.0,)
+            })
+
+        Emit new `BreakPointFunction` instance.
+        '''
         return self.scale_x_axis().scale_y_axis()
 
     def remove_dc_bias(self):
+        '''Remove dc-bias from a `BreakPointFunction`:
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction({0.: 0., 1.: 1.}).remove_dc_bias()
+            BreakPointFunction({
+                0.0: (-0.5,),
+                1.0: (0.5,)
+            })
+
+        Emit new `BreakPointFunction` instance.
+        '''
         return self - self.dc_bias
 
     def reverse(self, x_center=None):
+        '''Reverse x values of a `BreakPointFunction`:
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction({0.25: 0., 0.5: (-1., 2.), 1: 1.}).reverse()
+            BreakPointFunction({
+                0.25: (1.0,),
+                0.75: (2.0, -1.0),
+                1.0: (0.0,)
+            })
+
+        If `x_center` is not None, reflection will take `x_center` as the axis of reflection:
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction({0.25: 0., 0.5: (-1., 2.), 1: 1.}).reverse(x_center=0.25)
+            BreakPointFunction({
+                -0.5: (1.0,),
+                0.0: (2.0, -1.0),
+                0.25: (0.0,)
+            })
+
+        Emit new `BreakPointFunction` instance.
+        '''
         bpf = {}
         if x_center is None:
             x_center = self.x_center
