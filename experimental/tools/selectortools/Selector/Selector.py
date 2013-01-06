@@ -8,7 +8,7 @@ from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallback
 from experimental.tools.timeexpressiontools.TimespanExpression import TimespanExpression
 
 
-class Selector(TimespanExpression, PayloadCallbackMixin):
+class Selector(PayloadCallbackMixin, TimespanExpression):
     r'''Selector.
 
     Abstract base class from which concrete selectors inherit.

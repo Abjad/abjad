@@ -496,7 +496,7 @@ Special Methods
 .. automethod:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.__eq__
    :noindex:
 
-   Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.__ge__
    :noindex:

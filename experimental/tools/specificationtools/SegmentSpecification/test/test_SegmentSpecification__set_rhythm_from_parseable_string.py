@@ -24,9 +24,8 @@ def test_SegmentSpecification__set_rhythm_from_parseable_string_02():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (2, 8), (3, 8)])
-    rhythm = requesttools.AbsoluteRequest("{ c'16 [ ( c'8 c'8. ] ) }")
-    rhythm = rhythm.reverse()
-    red_segment.set_rhythm(rhythm)
+    rhythm = red_segment.register_material("{ c'16 [ ( c'8 c'8. ] ) }")
+    red_segment.set_rhythm(rhythm.reverse())
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

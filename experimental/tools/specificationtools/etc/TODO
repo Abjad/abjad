@@ -160,5 +160,5 @@
 32. Maybe PayloadCallbackMixin should inherit from TimespanCallbackMixin?
     This is not clear.
 
-33. TimespanCallbackMixin needs to implement reverse().
-    This will allow (pure) TimespanInventory.reverse() to implement as a simply mapping.
+33. Implement self._copy_and_append_callback() on TimespanCallbackMixin.
+    (And implement beforehand on TimespanExpression before TimespanCallbackMixin breaks out.)

@@ -52,3 +52,9 @@ class SpecificationInterface(SelectMethodMixin, SetMethodMixin):
         timespan = timeexpressiontools.TimespanExpression()
         timespan._score_specification = self.score_specification
         return timespan
+
+    ### PUBLIC METHODS ###
+
+    def register_material(self, material):
+        from experimental.tools import requesttools
+        return requesttools.AbsoluteRequest(material)
