@@ -56,10 +56,13 @@ class BreakPointFunction(AbjadObject):
                 if isinstance(ys, (list, tuple)):
                     assert len(ys) in (1, 2)
                     assert all(isinstance(y, numbers.Real) for y in ys)
-                    new_bpf[x] = tuple(ys)
+                    if len(ys) == 2 and ys[0] == ys[1]:
+                        new_bpf[x] = (ys[0],)
+                    else:
+                        new_bpf[x] = tuple(ys)
                 elif isinstance(ys, numbers.Real):
                     new_bpf[x] = (ys,)
-
+        assert 1 < len(new_bpf)
         self._bpf = new_bpf
         self._update_caches()
 
@@ -192,12 +195,20 @@ class BreakPointFunction(AbjadObject):
         raise NotImplemented
 
     @property
+    def x_center(self):
+        return self.x_range[1] - self.x_range[0]
+
+    @property
     def x_range(self):
-        return self._sorted_xs[0], self._sorted_xs[-1]
+        return self.x_values[0], self.x_values[-1]
 
     @property
     def x_values(self):
         return tuple(sorted(self._bpf))
+
+    @property
+    def y_center(self):
+        return self.y_range[1] - self.y_range[0]
 
     @property
     def y_range(self):
@@ -241,7 +252,9 @@ class BreakPointFunction(AbjadObject):
         return type(self)(bpf)
 
     def _scale(self, value, old_min, old_max, new_min, new_max):
-        raise NotImplemented
+        old_range = old_max - old_min
+        new_range = new_max - new_min
+        return (((value - old_min) / old_range) * new_range) + new_min
 
     def _update_caches(self): 
         x_values = []
@@ -256,10 +269,96 @@ class BreakPointFunction(AbjadObject):
     ### PUBLIC METHODS ###
 
     def clip_x_axis(self, minimum=0, maximum=1):
-        raise NotImplemented
+        '''Clip x-axis between `minimum` and `maximum`:
+
+        ::
+
+            >>> bpf = breakpointtools.BreakPointFunction({0.: 1., 1.: 0.})
+            >>> bpf.clip_x_axis(minimum=0.25, maximum=0.75)
+            BreakPointFunction({
+                0.25: (0.75,),
+                0.75: (0.25,)
+            })
+
+        Emit new `BreakPointFunction` instance.
+        '''
+        assert isinstance(minimum, numbers.Real)
+        assert isinstance(maximum, numbers.Real)
+        assert minimum < maximum
+        bpf = {}
+        x_values = [minimum]
+        x_values.extend([x for x in self.x_values if minimum < x < maximum])
+        x_values.append(maximum)
+        for x_value in x_values:
+            if x_value in self._bpf:
+                bpf[x_value] = self._bpf[x_value]
+            else:
+                bpf[x_value] = (self[x_value],)
+        return type(self)(bpf)
 
     def clip_y_axis(self, minimum=0, maximum=1):
-        raise NotImplemented
+        '''Clip y-axis between `minimum` and `maximum`:
+
+        ::
+
+            >>> bpf = breakpointtools.BreakPointFunction({0.: 1., 1.: 0.})
+            >>> bpf.clip_y_axis(minimum=0.25, maximum=0.75)
+            BreakPointFunction({
+                0.0: (0.75,),
+                1.0: (0.25,)
+            })
+
+        Emit new `BreakPointFunction` instance.
+        '''
+        assert isinstance(minimum, numbers.Real)
+        assert isinstance(maximum, numbers.Real)
+        assert minimum < maximum
+        bpf = {}
+        for x, ys in self._bpf.iteritems():
+            new_ys = []
+            for y in ys:
+                if y < minimum:
+                    new_ys.append(minimum)
+                elif maximum < y:
+                    new_ys.append(maximum)
+                else:
+                    new_ys.append(y)
+            if len(new_ys) == 2 and new_ys[0] == new_ys[1]:
+                new_ys.pop()
+            bpf[x] = tuple(new_ys)
+        return type(self)(bpf)
+
+    def concatenate(self, other):
+        '''Concatenate self with `other`:
+
+        ::
+
+            >>> one = breakpointtools.BreakPointFunction({0.0: 0.0, 1.0: 1.0})
+            >>> two = breakpointtools.BreakPointFunction({0.5: 0.75, 1.5: 0.25})
+
+        ::
+
+            >>> one.concatenate(two)
+            BreakPointFunction({
+                0.0: (0.0,),
+                1.0: (1.0, 0.75),
+                2.0: (0.25,)
+            })
+
+        Emit new `BreakPointFunction` instance.
+        '''
+        assert isinstance(other, type(self))
+        last_x_of_first_bpf = self.x_values[-1]
+        first_x_of_second_bpf = other.x_values[0]
+        x_shift = first_x_of_second_bpf - last_x_of_first_bpf
+        stop_y = self._bpf[last_x_of_first_bpf][0]
+        start_y = other._bpf[first_x_of_second_bpf][-1]
+        hinge_ys = (stop_y, start_y) 
+        new_bpf_dict = self.bpf
+        new_bpf_dict[last_x_of_first_bpf] = hinge_ys
+        for x in other.x_values[1:]:
+            new_bpf_dict[x - x_shift] = other._bpf[x]
+        return type(self)(new_bpf_dict) 
 
     def get_y_at_x(self, x):
         '''Get `y`-value at `x`:
@@ -328,31 +427,132 @@ class BreakPointFunction(AbjadObject):
         b = y0 - (m * x0) 
         return (x * m) + b
 
+    def invert(self, y_center=None):
+        if y_center is None:
+            y_center = self.y_center
+        else:
+            assert isinstance(y_center, numbers.Real)
+        for x, ys in self._bpf:
+            new_ys = [((y_center - y) + y_center) for y in ys]
+            bpf[x] = tuple(ys)
+        return type(self)(bpf)
+
     def normalize_axes(self):
-        raise NotImplemented
+        return self.scale_x_axis().scale_y_axis()
 
     def remove_dc_bias(self):
         return self - self.dc_bias
 
+    def reverse(self, x_center=None):
+        bpf = {}
+        if x_center is None:
+            x_center = self.x_center
+        else:
+            assert isinstance(x_center, numbers.Real)
+        for x, ys in self._bpf:
+            new_x = (x_center - x) + x_center
+            bpf[new_x] = tuple(reversed(ys))
+        return type(self)(bpf)
+
     def scale_x_axis(self, minimum=0, maximum=1):
-        raise NotImplemented
+        assert isinstance(minimum, numbers.Real)
+        assert isinstance(maximum, numbers.Real)
+        assert minimum < maximum
+        bpf = {}
+        x_min, x_max = self.x_range 
+        for x, ys in self._bpf.iteritems():
+            bpf[self._scale(x, x_min, x_max, minimum, maximum)] = ys
+        return type(self)(bpf)
 
     def scale_y_axis(self, minimum=0, maximum=1):
-        raise NotImplemented
+        assert isinstance(minimum, numbers.Real)
+        assert isinstance(maximum, numbers.Real)
+        assert minimum < maximum
+        bpf = {}
+        y_min, y_max = self.y_range
+        for x, ys in self._bpf.iteritems():
+            bpf[x] = tuple(self._scale(y, y_min, y_max, minimum, maximum) for y in ys)
+        return type(self)(bpf)
 
     def set_y_at_x(self, x, y):
+        '''Set `y`-value at `x`:
+
+        ::
+
+            >>> bpf = breakpointtools.BreakPointFunction({0.0: 0.0, 1.0: 1.0})
+
+        With a number:
+
+        ::
+
+            >>> bpf.set_y_at_x(0.25, 0.75)
+            >>> bpf
+            BreakPointFunction({
+                0.0: (0.0,),
+                0.25: (0.75,),
+                1.0: (1.0,)
+            })
+
+        With a pair:
+
+        ::
+
+            >>> bpf.set_y_at_x(0.6, (-2., 2.))
+            >>> bpf
+            BreakPointFunction({
+                0.0: (0.0,),
+                0.25: (0.75,),
+                0.6: (-2.0, 2.0),
+                1.0: (1.0,)
+            })
+
+        Delete all values at `x` when `y` is None:
+
+        ::
+
+            >>> bpf.set_y_at_x(0., None)
+            >>> bpf
+            BreakPointFunction({
+                0.25: (0.75,),
+                0.6: (-2.0, 2.0),
+                1.0: (1.0,)
+            })
+
+        Operate in place and return None.
+        '''
         assert isinstance(x, numbers.Real)
         if isinstance(y, numbers.Real):
             self._bpf[x] = (y,)
         elif isinstance(y, (list, tuple)):
             assert len(y) in (1, 2) and all(isinstance(j, numbers.Real) for j in y)
-            self._bpf[x] = tuple(y)
+            if len(y) == 2 and y[0] == y[1]:
+                self._bpf[x] = (y[0],)
+            else:
+                self._bpf[x] = tuple(y)
         elif isinstance(y, type(None)):
             if x in self._bpf:
                 del(self._bpf[x])
         else:
             raise ValueError
+        self._update_caches()
  
-    def tessalate_by_ratio(self, ratio, invert_on_negative=False, reverse_on_negative=False):
+    def tessalate_by_ratio(self, ratio, invert_on_negative=False, reverse_on_negative=False,
+        y_center=None):
         ratio = mathtools.Ratio(ratio)
-
+        tessalated_bpf = None
+        for i, pair in enumerate(mathtools.cumulative_sums_zero_pairwise(
+            [abs(x) for x in ratio])):
+            sign = mathtools.sign(ratio[i])
+            start, stop = pair
+            bpf = self.scale_x_axis(start, stop)
+            if sign < 0:
+                if invert_on_negative:
+                    bpf = bpf.invert(y_center)
+                if reverse_on_negative:
+                    bpf = bpf.reverse()
+            if i == 0:
+                tessalated_bpf = bpf
+            else:
+                tessalated_bpf = tessalated_bpf.concatenate(bpf)
+        return tessalated_bpf  
+            
