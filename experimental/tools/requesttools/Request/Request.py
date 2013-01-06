@@ -25,10 +25,10 @@ class Request(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, payload_modifiers=None):
+    def __init__(self, payload_callbacks=None):
         from experimental.tools import settingtools
-        payload_modifiers = payload_modifiers or []
-        self._payload_modifiers = settingtools.ModifierInventory(payload_modifiers)
+        payload_callbacks = payload_callbacks or []
+        self._payload_callbacks = settingtools.ModifierInventory(payload_callbacks)
 
     ### SPECIAL METHODS ###
 
@@ -45,12 +45,12 @@ class Request(AbjadObject):
         return self._keyword_argument_values == expr._keyword_argument_values
 
     def __getitem__(self, expr):
-        '''Return copy of request with appended modifier.
+        '''Return copy of request with appended callback.
         '''
-        modifier = 'result = self.___getitem__(elements, start_offset, {!r})'
-        modifier = modifier.format(expr)
+        callback = 'result = self.___getitem__(elements, start_offset, {!r})'
+        callback = callback.format(expr)
         result = copy.deepcopy(self)
-        result.payload_modifiers.append(modifier)
+        result.payload_callbacks.append(callback)
         return result
 
     ### PRIVATE READ-ONLY PROPERTIES ###
@@ -58,9 +58,9 @@ class Request(AbjadObject):
     @property
     def _keyword_argument_name_value_strings(self):
         result = AbjadObject._keyword_argument_name_value_strings.fget(self)
-        if 'payload_modifiers=ModifierInventory([])' in result:
+        if 'payload_callbacks=ModifierInventory([])' in result:
             result = list(result)
-            result.remove('payload_modifiers=ModifierInventory([])')
+            result.remove('payload_callbacks=ModifierInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -78,7 +78,7 @@ class Request(AbjadObject):
             new_start_offset = None
         return selected_elements, new_start_offset
 
-    def _apply_payload_modifiers(self, elements, start_offset):
+    def _apply_payload_callbacks(self, elements, start_offset):
         from experimental.tools import settingtools
         evaluation_context = {
             'Duration': durationtools.Duration,
@@ -92,17 +92,17 @@ class Request(AbjadObject):
             'result': None,
             'sequencetools': sequencetools,
             }
-        for modifier in self.payload_modifiers:
-            assert 'elements' in modifier
+        for callback in self.payload_callbacks:
+            assert 'elements' in callback
             evaluation_context['elements'] = elements
             evaluation_context['start_offset'] = start_offset
-            exec(modifier, evaluation_context)
+            exec(callback, evaluation_context)
             elements, start_offset = evaluation_context['result']
         return elements, start_offset
 
-    def _copy_and_append_modifier(self, modifier):
+    def _copy_and_append_callback(self, callback):
         result = copy.deepcopy(self)
-        result.payload_modifiers.append(modifier)
+        result.payload_callbacks.append(callback)
         return result
 
     def _duration_helper(self, expr):
@@ -119,13 +119,13 @@ class Request(AbjadObject):
         pass
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty payload_modifiers list.
+        '''Do not show empty payload_callbacks list.
         '''
         filtered_result = []
         result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'payload_modifiers=settingtools.ModifierInventory([])' in string:
+            if not 'payload_callbacks=settingtools.ModifierInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
 
@@ -195,57 +195,57 @@ class Request(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def payload_modifiers(self):
-        return self._payload_modifiers
+    def payload_callbacks(self):
+        return self._payload_callbacks
 
     ### PUBLIC METHODS ###
 
     def partition_by_ratio(self, ratio):
-        '''Return tuple of newly constructed requests with payload_modifiers appended.
+        '''Return tuple of newly constructed requests with payload_callbacks appended.
         '''
         result = []
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
-            modifier = \
+            callback = \
                 'result = self._partition_by_ratio(elements, start_offset, {!r}, {!r})'
-            modifier = modifier.format(ratio, part)
-            result.append(self._copy_and_append_modifier(modifier))
+            callback = callback.format(ratio, part)
+            result.append(self._copy_and_append_callback(callback))
         return tuple(result)
 
     def partition_by_ratio_of_durations(self, ratio):
         result = []
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
-            modifier = \
+            callback = \
                 'result = self._partition_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
-            modifier = modifier.format(ratio, part)
-            result.append(self._copy_and_append_modifier(modifier))
+            callback = callback.format(ratio, part)
+            result.append(self._copy_and_append_callback(callback))
         return tuple(result)
 
     def repeat_to_duration(self, duration):
-        '''Return copy of request with appended modifier.
+        '''Return copy of request with appended callback.
         '''
         duration = durationtools.Duration(duration)
-        modifier = 'result = self._repeat_to_duration(elements, {!r}, start_offset)'.format(duration)
-        return self._copy_and_append_modifier(modifier)
+        callback = 'result = self._repeat_to_duration(elements, {!r}, start_offset)'.format(duration)
+        return self._copy_and_append_callback(callback)
 
     def repeat_to_length(self, length):
-        '''Return copy of request with appended modifier.
+        '''Return copy of request with appended callback.
         '''
         assert mathtools.is_nonnegative_integer(length)
-        modifier = 'result = self._repeat_to_length(elements, {!r}, start_offset)'.format(length)
-        return self._copy_and_append_modifier(modifier)
+        callback = 'result = self._repeat_to_length(elements, {!r}, start_offset)'.format(length)
+        return self._copy_and_append_callback(callback)
         
     def reverse(self):
-        '''Return copy of request with appended modifier.
+        '''Return copy of request with appended callback.
         '''
-        modifier = 'result = self._reverse(elements, start_offset)'
-        return self._copy_and_append_modifier(modifier)
+        callback = 'result = self._reverse(elements, start_offset)'
+        return self._copy_and_append_callback(callback)
 
     def rotate(self, index):
-        '''Return copy of request with appended modifier.
+        '''Return copy of request with appended callback.
         '''
         from experimental.tools import settingtools
         assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
-        modifier = 'result = self._rotate(elements, {!r}, start_offset)'.format(index)    
-        return self._copy_and_append_modifier(modifier)
+        callback = 'result = self._rotate(elements, {!r}, start_offset)'.format(index)    
+        return self._copy_and_append_callback(callback)

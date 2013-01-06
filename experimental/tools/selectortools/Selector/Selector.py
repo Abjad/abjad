@@ -21,14 +21,14 @@ class Selector(TimespanExpression, Request):
     ### INTIALIZER ###
 
     def __init__(self, anchor=None, voice_name=None, time_relation=None, 
-        payload_modifiers=None, timespan_modifiers=None):
+        payload_callbacks=None, timespan_callbacks=None):
         from experimental.tools import timeexpressiontools
         assert isinstance(anchor, (timeexpressiontools.TimespanExpression, str, type(None))), repr(anchor)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
-        Request.__init__(self, payload_modifiers=payload_modifiers)
-        TimespanExpression.__init__(self, timespan_modifiers=timespan_modifiers)
+        Request.__init__(self, payload_callbacks=payload_callbacks)
+        TimespanExpression.__init__(self, timespan_callbacks=timespan_callbacks)
         self._anchor = anchor
         assert voice_name is not None
         self._voice_name = voice_name
@@ -46,9 +46,9 @@ class Selector(TimespanExpression, Request):
     @property
     def _keyword_argument_name_value_strings(self):
         result = Request._keyword_argument_name_value_strings.fget(self)
-        if 'timespan_modifiers=ModifierInventory([])' in result:
+        if 'timespan_callbacks=ModifierInventory([])' in result:
             result = list(result)
-            result.remove('timespan_modifiers=ModifierInventory([])')
+            result.remove('timespan_callbacks=ModifierInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -59,7 +59,7 @@ class Selector(TimespanExpression, Request):
 
     def _get_timespan(self, score_specification, voice_name):
         timespan, payload = self._get_timespan_and_payload(score_specification, voice_name)
-        timespan = self._apply_timespan_modifiers(timespan)
+        timespan = self._apply_timespan_callbacks(timespan)
         return timespan
 
     @abc.abstractmethod
@@ -67,13 +67,13 @@ class Selector(TimespanExpression, Request):
         pass
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty selector payload_modifiers list.
+        '''Do not show empty selector payload_callbacks list.
         '''
         filtered_result = []
         result = Request._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'timespan_modifiers=settingtools.ModifierInventory([])' in string:
+            if not 'timespan_callbacks=settingtools.ModifierInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
     

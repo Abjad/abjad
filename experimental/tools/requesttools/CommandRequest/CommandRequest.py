@@ -31,7 +31,7 @@ class CommandRequest(Request):
                 anchor=selectortools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
-                    payload_modifiers=settingtools.ModifierInventory([
+                    payload_callbacks=settingtools.ModifierInventory([
                         'result = self.___getitem__(elements, start_offset, slice(4, 5, None))'
                         ])
                     )
@@ -53,11 +53,11 @@ class CommandRequest(Request):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute, voice_name, offset, payload_modifiers=None):
+    def __init__(self, attribute, voice_name, offset, payload_callbacks=None):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
         assert isinstance(offset, timeexpressiontools.OffsetExpression)
-        Request.__init__(self, payload_modifiers=payload_modifiers)
+        Request.__init__(self, payload_callbacks=payload_callbacks)
         self._attribute = attribute
         self._voice_name = voice_name
         self._offset = offset
@@ -95,7 +95,7 @@ class CommandRequest(Request):
                 anchor=selectortools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
-                    payload_modifiers=settingtools.ModifierInventory([
+                    payload_callbacks=settingtools.ModifierInventory([
                         'result = self.___getitem__(elements, start_offset, slice(4, 5, None))'
                         ])
                     )

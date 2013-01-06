@@ -32,13 +32,13 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
 
     ### INITIALIZER ###
 
-    def __init__(self, anchor=None, timespan_modifiers=None):
+    def __init__(self, anchor=None, timespan_callbacks=None):
         from experimental.tools import settingtools
         Timespan.__init__(self)
         assert isinstance(anchor, (str, type(None))), repr(anchor)
         self._anchor = anchor
-        timespan_modifiers = timespan_modifiers or []
-        self._timespan_modifiers = settingtools.ModifierInventory(timespan_modifiers)
+        timespan_callbacks = timespan_callbacks or []
+        self._timespan_callbacks = settingtools.ModifierInventory(timespan_callbacks)
 
     ### SPECIAL METHODS ###
 
@@ -78,14 +78,14 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
     @property
     def _keyword_argument_name_value_strings(self):
         result = Timespan._keyword_argument_name_value_strings.fget(self)
-        if 'timespan_modifiers=ModifierInventory([])' in result:
+        if 'timespan_callbacks=ModifierInventory([])' in result:
             result = list(result)
-            result.remove('timespan_modifiers=ModifierInventory([])')
+            result.remove('timespan_callbacks=ModifierInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
 
-    def _apply_timespan_modifiers(self, timespan):
+    def _apply_timespan_callbacks(self, timespan):
         assert isinstance(timespan, timespantools.Timespan)
         start_offset, stop_offset = timespan.offsets
         evaluation_context = {
@@ -94,10 +94,10 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
             'Multiplier': durationtools.Multiplier,
             'Offset': durationtools.Offset,
             }
-        for timespan_modifier in self.timespan_modifiers:
-            timespan_modifier = timespan_modifier.replace('original_start_offset', repr(start_offset))
-            timespan_modifier = timespan_modifier.replace('original_stop_offset', repr(stop_offset))
-            start_offset, stop_offset = eval(timespan_modifier, evaluation_context)
+        for timespan_callback in self.timespan_callbacks:
+            timespan_callback = timespan_callback.replace('original_start_offset', repr(start_offset))
+            timespan_callback = timespan_callback.replace('original_stop_offset', repr(stop_offset))
+            start_offset, stop_offset = eval(timespan_callback, evaluation_context)
             assert start_offset <= stop_offset
         return timespantools.Timespan(start_offset, stop_offset)
         
@@ -119,17 +119,17 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         Return pair.
         '''
         anchor_timespan = score_specification.get_anchor_timespan(self, context_name)
-        timespan = self._apply_timespan_modifiers(anchor_timespan)
+        timespan = self._apply_timespan_callbacks(anchor_timespan)
         return timespan
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty offset payload_modifiers list.
+        '''Do not show empty offset payload_callbacks list.
         '''
         filtered_result = []
         result = Timespan._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'timespan_modifiers=settingtools.ModifierInventory([])' in string:
+            if not 'timespan_callbacks=settingtools.ModifierInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
 
@@ -206,16 +206,16 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         return timeexpressiontools.OffsetExpression(anchor=self)
 
     @property
-    def timespan_modifiers(self):
-        '''Read-only list of timespan modifiers to be applied 
+    def timespan_callbacks(self):
+        '''Read-only list of timespan callbacks to be applied 
         to timespan expression during evaluation.
 
-            >>> red_segment.timespan.timespan_modifiers
+            >>> red_segment.timespan.timespan_callbacks
             ModifierInventory([])
 
         Return object inventory of zero or more strings.
         '''
-        return self._timespan_modifiers
+        return self._timespan_callbacks
 
     ### PUBLIC METHODS ###
 
@@ -229,7 +229,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
             >>> z(timespans[0])
             timeexpressiontools.TimespanExpression(
                 anchor='red',
-                timespan_modifiers=settingtools.ModifierInventory([
+                timespan_callbacks=settingtools.ModifierInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 0)'
                     ])
                 )
@@ -239,7 +239,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
             >>> z(timespans[1])
             timeexpressiontools.TimespanExpression(
                 anchor='red',
-                timespan_modifiers=settingtools.ModifierInventory([
+                timespan_callbacks=settingtools.ModifierInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 1)'
                     ])
                 )
@@ -253,7 +253,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
             >>> z(timespans[0])
             timeexpressiontools.TimespanExpression(
                 anchor='red',
-                timespan_modifiers=settingtools.ModifierInventory([
+                timespan_callbacks=settingtools.ModifierInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 0)'
                     ])
                 )
@@ -263,7 +263,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
             >>> z(timespans[1])
             timeexpressiontools.TimespanExpression(
                 anchor='red',
-                timespan_modifiers=settingtools.ModifierInventory([
+                timespan_callbacks=settingtools.ModifierInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 1)'
                     ])
                 )
@@ -273,22 +273,22 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
             >>> z(timespans[2])
             timeexpressiontools.TimespanExpression(
                 anchor='red',
-                timespan_modifiers=settingtools.ModifierInventory([
+                timespan_callbacks=settingtools.ModifierInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 2)'
                     ])
                 )
 
-        Return tuple of newly constructed timespans with appended modifier.
+        Return tuple of newly constructed timespans with appended callback.
         '''
         result = []
         if mathtools.is_positive_integer_equivalent_number(ratio):
             ratio = int(ratio) * [1]
         for part in range(len(ratio)):
             new_timespan_expression = copy.deepcopy(self)
-            timespan_modifier = \
+            timespan_callback = \
                 'self._divide_by_ratio(original_start_offset, original_stop_offset, {!r}, {!r})'
-            timespan_modifier = timespan_modifier.format(ratio, part)
-            new_timespan_expression.timespan_modifiers.append(timespan_modifier)
+            timespan_callback = timespan_callback.format(ratio, part)
+            new_timespan_expression.timespan_callbacks.append(timespan_callback)
             result.append(new_timespan_expression)
         return tuple(result)
 
@@ -302,64 +302,64 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
             >>> z(timespan)
             timeexpressiontools.TimespanExpression(
                 anchor='red',
-                timespan_modifiers=settingtools.ModifierInventory([
+                timespan_callbacks=settingtools.ModifierInventory([
                     'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))'
                     ])
                 )
 
-        Return copy of timespan with appended modifier.
+        Return copy of timespan with appended callback.
         '''
         multiplier = durationtools.Multiplier(multiplier)
-        timespan_modifier = \
+        timespan_callback = \
             'self._scale(original_start_offset, original_stop_offset, {!r})'
-        timespan_modifier = timespan_modifier.format(multiplier)
+        timespan_callback = timespan_callback.format(multiplier)
         result = copy.deepcopy(self)
-        result.timespan_modifiers.append(timespan_modifier)
+        result.timespan_callbacks.append(timespan_callback)
         return result
 
     def set_duration(self, duration):
         '''Set timespan duration to `duration`.
 
-        Return copy of timespan with appended modifier.
+        Return copy of timespan with appended callback.
         '''
         duration = durationtools.Duration(duration)
-        timespan_modifier = \
+        timespan_callback = \
             'self._set_duration(original_start_offset, original_stop_offset, {!r})'
-        timespan_modifier = timespan_modifier.format(duration)
+        timespan_callback = timespan_callback.format(duration)
         result = copy.deepcopy(self)
-        result.timespan_modifiers.append(timespan_modifier)
+        result.timespan_callbacks.append(timespan_callback)
         return result
 
     def set_offsets(self, start_offset=None, stop_offset=None):
         '''Set timespan start offset to `start_offset`
         and stop offset to `stop_offset`.
 
-        Return copy of timespan with appended modifier.
+        Return copy of timespan with appended callback.
         '''
         if start_offset is not None:
             start_offset = durationtools.Offset(start_offset)
         if stop_offset is not None:
             stop_offset = durationtools.Offset(stop_offset) 
-        timespan_modifier = \
+        timespan_callback = \
             'self._set_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
-        timespan_modifier = timespan_modifier.format(start_offset, stop_offset)
+        timespan_callback = timespan_callback.format(start_offset, stop_offset)
         result = copy.deepcopy(self)
-        result.timespan_modifiers.append(timespan_modifier)
+        result.timespan_callbacks.append(timespan_callback)
         return result
 
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
         '''Translate timespan start offset by `start_offset_translation`
         and stop offset by `stop_offset_translation`.
 
-        Return copy of timespan with appended modifier.
+        Return copy of timespan with appended callback.
         '''
         start_offset_translation = start_offset_translation or 0
         stop_offset_translation = stop_offset_translation or 0
         start_offset_translation = durationtools.Duration(start_offset_translation)
         stop_offset_translation = durationtools.Duration(stop_offset_translation)
-        timespan_modifier = \
+        timespan_callback = \
             'self._translate_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
-        timespan_modifier = timespan_modifier.format(start_offset_translation, stop_offset_translation)
+        timespan_callback = timespan_callback.format(start_offset_translation, stop_offset_translation)
         result = copy.deepcopy(self)
-        result.timespan_modifiers.append(timespan_modifier)
+        result.timespan_callbacks.append(timespan_callback)
         return result

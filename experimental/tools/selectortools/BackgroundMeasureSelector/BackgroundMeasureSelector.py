@@ -53,7 +53,7 @@ class BackgroundMeasureSelector(Selector):
         selectortools.BackgroundMeasureSelector(
             anchor=selectortools.SegmentSelector(
                 voice_name='Voice 1',
-                payload_modifiers=settingtools.ModifierInventory([
+                payload_callbacks=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 3), None))"
                     ])
                 ),
@@ -70,7 +70,7 @@ class BackgroundMeasureSelector(Selector):
         start_segment_specification = score_specification.get_start_segment_specification(self)
         time_signatures = start_segment_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
-        time_signatures, dummy = self._apply_payload_modifiers(time_signatures, None)
+        time_signatures, dummy = self._apply_payload_callbacks(time_signatures, None)
         return time_signatures
 
     def _get_timespan_and_payload(self, score_specification, context_name):
@@ -78,7 +78,7 @@ class BackgroundMeasureSelector(Selector):
         time_signatures = start_segment_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
         start_offset = start_segment_specification.timespan.start_offset
-        time_signatures, start_offset = self._apply_payload_modifiers(time_signatures, start_offset)
+        time_signatures, start_offset = self._apply_payload_callbacks(time_signatures, start_offset)
         duration = sum([durationtools.Duration(x) for x in time_signatures])
         stop_offset = start_offset + duration
         timespan = timespantools.Timespan(start_offset, stop_offset)

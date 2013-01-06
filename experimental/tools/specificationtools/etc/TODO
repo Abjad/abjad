@@ -77,7 +77,7 @@
 
 15. Audit to get rid of string-based keys everywhere in interpreter.
 
-16. Extend OffsetExpression with an 'offset_modifiers' stack.
+16. Extend OffsetExpression with an 'offset_callbacks' stack.
     Modifier methods include OffsetExpression.translate() and possibly others.
 
 17. Extend all selector _get_timespan() methods to return (timespan, payload) pair:
@@ -97,7 +97,7 @@
 
 19. Clean up region expression docstrings and alphabetization.
 
-20. Looks like modifiers stack may not be copied over from segment to segment for persistent settings.
+20. Looks like callbacks stack may not be copied over from segment to segment for persistent settings.
     Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
 
 21. Possibly rename BackgroundMeasureSelector to TimeSignatureSelector.
@@ -141,7 +141,7 @@
         measures = first_half_of_red_segment.select_background_measures('Voice 1')
     This will show selecting background measures that start during a duration-partitioned part of segment.
 
-29. Author tests to show each payload modifier applied to each selector.
+29. Author tests to show each payload callback applied to each selector.
     Remaining tests to author:
         leaves.__getitem__()
         leaves.partition_by_ratio()

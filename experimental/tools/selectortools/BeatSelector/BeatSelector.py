@@ -48,7 +48,7 @@ class BeatSelector(Selector):
 
     ### PRIVATE METHODS ###
 
-    # TODO: remove timespan=None keyword and effect with payload modifier instead.
+    # TODO: remove timespan=None keyword and effect with payload callback instead.
     def _get_timespan_and_payload(self, score_specification, voice_name, timespan=None):
         time_signatures = score_specification.time_signatures
         assert time_signatures
@@ -62,7 +62,7 @@ class BeatSelector(Selector):
             naive_beats, weights, cyclic=False, overhang=False)
         result = shards[1]
         start_offset = durationtools.Offset(sum(shards[0]))
-        result, start_offset = self._apply_payload_modifiers(result, start_offset)
+        result, start_offset = self._apply_payload_callbacks(result, start_offset)
         result_duration = durationtools.Duration(sum(result))
         stop_offset = start_offset + result_duration
         result_timespan = timespantools.Timespan(start_offset, stop_offset)

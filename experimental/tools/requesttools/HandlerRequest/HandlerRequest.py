@@ -10,9 +10,9 @@ class HandlerRequest(Request):
 
     ### INITIALIZER ###
 
-    def __init__(self, handler, payload_modifiers=None):
+    def __init__(self, handler, payload_callbacks=None):
         assert isinstance(handler, handlertools.Handler)
-        Request.__init__(self, payload_modifiers=payload_modifiers)
+        Request.__init__(self, payload_callbacks=payload_callbacks)
         self._handler = handler
 
     ### PRIVATE METHODS ###

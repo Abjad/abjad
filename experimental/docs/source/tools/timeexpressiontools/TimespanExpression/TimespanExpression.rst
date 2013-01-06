@@ -69,7 +69,7 @@ Read-only Properties
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. autoattribute:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.timespan_modifiers
+.. autoattribute:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.timespan_callbacks
    :noindex:
 
 Read/write Properties

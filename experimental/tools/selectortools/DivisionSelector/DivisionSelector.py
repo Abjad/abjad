@@ -48,7 +48,7 @@ class DivisionSelector(Selector):
     
     ### PRIVATE METHODS ###
 
-    # TODO: remove start_offset=None, stop_offset=None keywords and use payload modifier instead.
+    # TODO: remove start_offset=None, stop_offset=None keywords and use payload callback instead.
     # TODO: migrate in self._get_timespan_and_payload
     def _get_payload(self, score_specification, voice_name, start_offset=None, stop_offset=None):
         from experimental.tools import settingtools
@@ -76,7 +76,7 @@ class DivisionSelector(Selector):
         final_expression = trimmed_division_region_products[0]
         divisions = trimmed_division_region_products[0].payload.divisions
         start_offset = trimmed_division_region_products[0].timespan.start_offset
-        divisions, start_offset = self._apply_payload_modifiers(divisions, start_offset)
+        divisions, start_offset = self._apply_payload_callbacks(divisions, start_offset)
         timespan = timespantools.Timespan(start_offset)
         result = settingtools.DivisionRegionProduct(
             divisions, 
@@ -102,11 +102,11 @@ class DivisionSelector(Selector):
                 context_name=voice_name):
                 divisions.append(division)
         start_offset = divisions[0].start_offset
-        divisions, start_offset = self._apply_payload_modifiers(divisions, start_offset)
+        divisions, start_offset = self._apply_payload_callbacks(divisions, start_offset)
         start_offset = divisions[0].start_offset
         stop_offset = divisions[-1].stop_offset
         timespan = timespantools.Timespan(start_offset, stop_offset)
-        timespan = self._apply_timespan_modifiers(timespan)
+        timespan = self._apply_timespan_callbacks(timespan)
         return timespan
 
     # TODO: migrate in code from self._get_payload() and self._get_timespan()

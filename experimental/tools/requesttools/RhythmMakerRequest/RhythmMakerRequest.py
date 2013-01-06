@@ -10,9 +10,9 @@ class RhythmMakerRequest(Request):
 
     ### INTIAILIZER ###
 
-    def __init__(self, payload, payload_modifiers=None):
+    def __init__(self, payload, payload_callbacks=None):
         assert isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
-        Request.__init__(self, payload_modifiers=payload_modifiers)
+        Request.__init__(self, payload_callbacks=payload_callbacks)
         self._payload = payload
 
     ### PRIVATE METHODS ###

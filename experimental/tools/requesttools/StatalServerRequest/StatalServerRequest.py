@@ -10,9 +10,9 @@ class StatalServerRequest(Request):
 
     ### INITIALIZER ###
     
-    def __init__(self, statal_server, payload_modifiers=None):
+    def __init__(self, statal_server, payload_callbacks=None):
         assert isinstance(server, statalservertools.StatalServer)
-        Request.__init__(self, payload_modifiers=payload_modifiers)
+        Request.__init__(self, payload_callbacks=payload_callbacks)
         self._statal_server = statal_server
 
     ### SPECIAL METHODS ###

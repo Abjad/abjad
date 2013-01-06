@@ -52,7 +52,7 @@ Read-only Properties
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. autoattribute:: experimental.tools.selectortools.Selector.Selector.Selector.payload_modifiers
+.. autoattribute:: experimental.tools.selectortools.Selector.Selector.Selector.payload_callbacks
    :noindex:
 
    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
@@ -79,7 +79,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.Selector.Selector.Selector.time_relation
    :noindex:
 
-.. autoattribute:: experimental.tools.selectortools.Selector.Selector.Selector.timespan_modifiers
+.. autoattribute:: experimental.tools.selectortools.Selector.Selector.Selector.timespan_callbacks
    :noindex:
 
    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`

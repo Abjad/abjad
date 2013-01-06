@@ -11,9 +11,9 @@ class RhythmCommandRequest(CommandRequest):
 
     ### INITIALIZER ###
 
-    def __init__(self, voice_name, offset, payload_modifiers=None):
+    def __init__(self, voice_name, offset, payload_callbacks=None):
         CommandRequest.__init__(self, 'rhythm', voice_name, offset,
-            payload_modifiers=payload_modifiers)
+            payload_callbacks=payload_callbacks)
 
     ### PUBLIC METHODS ###
 
@@ -38,6 +38,6 @@ class RhythmCommandRequest(CommandRequest):
         assert isinstance(source_command.request, requesttools.RhythmMakerRequest)
         assert isinstance(source_command.request.payload, rhythmmakertools.RhythmMaker)
         rhythm_maker = copy.deepcopy(source_command.request.payload)
-        rhythm_maker, start_offset = self._apply_payload_modifiers(
+        rhythm_maker, start_offset = self._apply_payload_callbacks(
             rhythm_maker, source_command.timespan.start_offset)
         return rhythm_maker

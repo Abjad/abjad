@@ -9,7 +9,7 @@ requesttools.Request
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.requesttools.Request.Request.Request.payload_modifiers
+.. autoattribute:: experimental.tools.requesttools.Request.Request.Request.payload_callbacks
    :noindex:
 
 .. autoattribute:: experimental.tools.requesttools.Request.Request.Request.storage_format

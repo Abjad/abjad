@@ -62,7 +62,7 @@ class CounttimeComponentSelector(Selector):
     ### INITIALIZER ###
 
     def __init__(self, anchor=None, classes=None, 
-        voice_name=None, time_relation=None, payload_modifiers=None, timespan_modifiers=None):
+        voice_name=None, time_relation=None, payload_callbacks=None, timespan_callbacks=None):
         from experimental.tools import selectortools
         from experimental.tools import timeexpressiontools
         assert classes is None or self._is_counttime_component_class_expr(classes), repr(classes)
@@ -70,15 +70,15 @@ class CounttimeComponentSelector(Selector):
             anchor=anchor, 
             voice_name=voice_name, 
             time_relation=time_relation, 
-            payload_modifiers=payload_modifiers,
-            timespan_modifiers=timespan_modifiers)
+            payload_callbacks=payload_callbacks,
+            timespan_callbacks=timespan_callbacks)
         if isinstance(classes, tuple):
             classes = selectortools.ClassInventory(classes)
         self._classes = classes
     
     ### PRIVATE METHODS ###
 
-    # TODO: remove start_offset=None, stop_offset=None keywords are use payload modifier instead.
+    # TODO: remove start_offset=None, stop_offset=None keywords are use payload callback instead.
     # TODO: migrate into self._get_timespan_and_payload().
     def _get_payload(self, score_specification, voice_name, start_offset=None, stop_offset=None):
         from experimental.tools import settingtools
@@ -105,7 +105,7 @@ class CounttimeComponentSelector(Selector):
         for rhythm_region_product in rhythm_region_products:
             result.payload.extend(rhythm_region_product.payload)
         assert wellformednesstools.is_well_formed_component(result.payload)
-        result, new_start_offset = self._apply_payload_modifiers(result, result.start_offset)
+        result, new_start_offset = self._apply_payload_callbacks(result, result.start_offset)
         if not isinstance(result, settingtools.RhythmRegionProduct):
             assert componenttools.all_are_components(result)
             music = componenttools.copy_components_and_fracture_crossing_spanners(result)
@@ -143,7 +143,7 @@ class CounttimeComponentSelector(Selector):
                     context_name=voice_name):
                     counttime_component_pairs.append((
                         counttime_component, current_rhythm_region_product.start_offset))
-        counttime_component_pairs, dummy = self._apply_payload_modifiers(counttime_component_pairs, None)
+        counttime_component_pairs, dummy = self._apply_payload_callbacks(counttime_component_pairs, None)
         first_component, first_component_expression_offset = counttime_component_pairs[0]
         last_component, last_component_expression_offset = counttime_component_pairs[-1]
         start_offset = first_component_expression_offset + first_component.start_offset
