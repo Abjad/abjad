@@ -19,36 +19,19 @@
     boolean 'restart' keyword to separate these functions. When restart=True
     then truncate will always effectively be interpreted as true.
 
-### ROTATION ###
-
-5.  Extend RhythmRegionProduct.rotate() with a new 'level=-1' keyword.
-    The keyword will specify the score-tree level at which rotation should happen.
-    The keyword will be an attribute of the RotationIndicator class.
-
-6.  Reimplement rhythm rotation to pay attention to the differences beteween
-    spanners that cover components and spanners that dominate components.
-    Fill in missing spannertools docstrings before doing this.
-
-7.  Extend RotationIndicator to allow for symoblic rotation by portion of total duration.
-    Might look like rotation=settingtools.RotationIndicator((-1, 3)).
-    Or like rotation=(-1, 3), rotation=(-2, 2), rotation(-3, 1).
-    This also suggests a companion procedure that rotates based on ratio of total count of elements.
-
-### MORE ###
-
-8.  Can start_segment_identifier properties eventually be completely removed from model?
+5.  Can start_segment_identifier properties eventually be completely removed from model?
     What should be possible is for code to look at any timespan expression and get start segment specification.
     There is in fact an Interpreter.get_start_segment_specification() method right now.
     How does this relate to the "reanchoring" of settings during interpretation?
 
-9.  Rename _set_start_segment_identifier().
+6.  Rename _set_start_segment_identifier().
     Maybe should be called _set_anchor(). Not sure.
     In fact it's possible that the entire notion of "start segment identifier" reduces to "anchor".
     If that turns out to be the case then "start segment specification" is
     something like "anchor segment specification".
     And more generally we have "anchor specification" to allow both score- and segment-anchoring.
 
-10. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
+7.  Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         rhythm = red_segment.select_leaves('Voice 1', timespan=selector)
@@ -67,81 +50,76 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-11. Unskip all experimental tests before 2.11 build.
+8.  Unskip all experimental tests before 2.11 build.
 
-12. Finish timerelationtools class docstrings before 2.11 build.
+9.  Finish timerelationtools class docstrings before 2.11 build.
 
-13. Finish timespantools package docstrings before 2.11 build.
+10. Finish timespantools package docstrings before 2.11 build.
 
-14. Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
+11. Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
 
-15. Audit to get rid of string-based keys everywhere in interpreter.
+12. Audit to get rid of string-based keys everywhere in interpreter.
 
-16. Extend OffsetExpression with an 'offset_callbacks' stack.
+13. Extend OffsetExpression with an 'offset_callbacks' stack.
     Modifier methods include OffsetExpression.translate() and possibly others.
 
-17. Extend all selector _get_timespan() methods to return (timespan, payload) pair:
-        BackgroundMeasureSelector._get_timespan()
-        BeatSelector._get_timespan()
-        CounttimeComponentSelector._get_timespan()
-        DivisionSelector._get_timespan()
-        ScoreSelector._get_timespan() ?
-        SegmentSelector._get_timespan() ?
-    Then possibly rename _get_timespan() to something more descriptive.
+14. Audit all selector classes.
+    Make sure each implements a self._get_timespan_and_paylad() method.
+    Make sure each also implement self._get_timesapn(), self._get_payload() methods.
 
-18. Is the idea of a 'region command' redundant? Is it the case that all commands
+15. Is the idea of a 'region command' redundant? Is it the case that all commands
     always define a region? This might be so if all commands always encompass a timespan.
     Probably is redundant. But better to leave the redundancy in place until
     the two different uses of 'command' disambiguate (ie, 'region command' 
     versus 'command request'.)
 
-19. Clean up region expression docstrings and alphabetization.
+16. Clean up region expression docstrings and alphabetization.
 
-20. Looks like callbacks stack may not be copied over from segment to segment for persistent settings.
+17. Looks like callbacks stack may not be copied over from segment to segment for persistent settings.
     Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
 
-21. Possibly rename BackgroundMeasureSelector to TimeSignatureSelector.
+18. Possibly rename BackgroundMeasureSelector to TimeSignatureSelector.
     Possibly rename select_background_measures() to select_time_signatures().
 
-22. Add a test to show this:
+19. Add a test to show this:
         note_selector = red_segment.select_notes_and_chords('Voice 1')[10:11]
         offset = note_selector.stop_offset
 
-23. Add some tests to show this:
+20. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')
         measures = measures[10:20]
         measures = measures[2:4]
     This will show getitem composition.
 
-24. Add some tests to show this:
+21. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_part = segments.set_offset(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         middle_part.set_divisions([(3, 16)])
     This will show setting divisions for (potentially) more than one segment.
 
-25. Add some tests to show this:
+22. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_measures = segments.select_background_measures('Voice 1')[3:6]
     This will show selecting background measures from (potentially) more than one segment.
 
-26. Add some tests to show this:
+23. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')[10:20]
         middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
     This will show partitioning only part of a segment's measures.
 
-27. Add some tests to show this:
+24. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')
         middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
         measure = middle_third_of_measures[:1]
     This will show slice selection following partition.
 
-28. Add some tests to show this:
+25. Add some tests to show this:
         first_half_of_red_segment = red_segment.timespan.divide_by_ratio((1, 1))[0]
         measures = first_half_of_red_segment.select_background_measures('Voice 1')
     This will show selecting background measures that start during a duration-partitioned part of segment.
 
-29. Author tests to show each payload callback applied to each selector.
+26. Author tests to show each payload callback applied to each selector.
     Remaining tests to author:
         leaves.__getitem__()
         leaves.partition_by_ratio()
@@ -151,19 +129,16 @@
         leaves.reverse()
         leaves.rotate()
 
-30. Implement _get_payload() on all RegionCommand classes.
+27. Author payload callback tests for all payload callbacks on an AbsoluteRequest.
+
+28. Implement _get_payload() on all RegionCommand classes.
     Do RegionCommand classes need _get_timespan() too?
 
-31. Maybe make TimespanCallbackMixin in parallel to PayloadCallbackMixin.
+29. Maybe make TimespanCallbackMixin in parallel to PayloadCallbackMixin.
     This will migrate a bunch of code out of TimespanExpression into TimespanCallbackMixin.
 
-32. Maybe PayloadCallbackMixin should inherit from TimespanCallbackMixin?
-    This is not clear.
-
-33. Implement self._copy_and_append_callback() on TimespanCallbackMixin.
+30. Implement self._copy_and_append_callback() on TimespanCallbackMixin.
     (And implement beforehand on TimespanExpression before TimespanCallbackMixin breaks out.)
 
-34. Implement TimespanInventory.rotate(Duration(-4, 1)).
-
-35. Add Timespan.translate() as syntactic sugar around Timespan.translate_offsets().
+31. Add Timespan.translate() as syntactic sugar around Timespan.translate_offsets().
     Add TimespanInventory.translate() as syntactic sugar around TimespanInventory.translate_offsets().
