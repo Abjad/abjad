@@ -61,12 +61,11 @@ class CounttimeComponentSelector(Selector):
 
     ### INITIALIZER ###
 
-    def __init__(self, anchor=None, classes=None, predicate=None, 
+    def __init__(self, anchor=None, classes=None, 
         voice_name=None, time_relation=None, payload_modifiers=None, timespan_modifiers=None):
         from experimental.tools import selectortools
         from experimental.tools import timeexpressiontools
         assert classes is None or self._is_counttime_component_class_expr(classes), repr(classes)
-        assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
         Selector.__init__(self, 
             anchor=anchor, 
             voice_name=voice_name, 
@@ -76,7 +75,6 @@ class CounttimeComponentSelector(Selector):
         if isinstance(classes, tuple):
             classes = selectortools.ClassInventory(classes)
         self._classes = classes
-        self._predicate = predicate
     
     ### PRIVATE METHODS ###
 
@@ -179,11 +177,3 @@ class CounttimeComponentSelector(Selector):
         Return class inventory or none.
         '''
         return self._classes
-
-    @property
-    def predicate(self):
-        '''Predicate of counttime component selector specified by user.
-
-        Return predicate or none.
-        '''
-        return self._predicate

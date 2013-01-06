@@ -62,9 +62,6 @@ Read-only Properties
 
    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
-.. autoattribute:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.predicate
-   :noindex:
-
 .. autoattribute:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.score_specification
    :noindex:
 
@@ -234,7 +231,7 @@ Methods
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.reverse
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.rotate
    :noindex:

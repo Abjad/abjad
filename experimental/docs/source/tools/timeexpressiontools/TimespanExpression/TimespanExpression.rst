@@ -176,11 +176,6 @@ Methods
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.reverse
-   :noindex:
-
-   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
-
 .. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.scale
    :noindex:
 

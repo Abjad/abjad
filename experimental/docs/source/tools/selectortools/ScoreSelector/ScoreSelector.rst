@@ -228,7 +228,7 @@ Methods
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.reverse
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.rotate
    :noindex:

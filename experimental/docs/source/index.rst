@@ -237,7 +237,6 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/helpertools/AttributeNameEnumeration/AttributeNameEnumeration
-      tools/helpertools/Callback/Callback
       tools/helpertools/SegmentIdentifierExpression/SegmentIdentifierExpression
 
    --------
@@ -257,7 +256,6 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/helpertools/AttributeNameEnumeration/AttributeNameEnumeration
-      tools/helpertools/Callback/Callback
       tools/helpertools/SegmentIdentifierExpression/SegmentIdentifierExpression
 
    Functions
