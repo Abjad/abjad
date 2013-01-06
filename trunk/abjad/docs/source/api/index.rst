@@ -762,6 +762,7 @@ Core composition packages
       tools/iotools/p
       tools/iotools/pdf
       tools/iotools/play
+      tools/iotools/plot
       tools/iotools/profile_expr
       tools/iotools/redo
       tools/iotools/save_last_ly_as
@@ -789,6 +790,7 @@ Core composition packages
       tools/iotools/p
       tools/iotools/pdf
       tools/iotools/play
+      tools/iotools/plot
       tools/iotools/profile_expr
       tools/iotools/redo
       tools/iotools/save_last_ly_as
