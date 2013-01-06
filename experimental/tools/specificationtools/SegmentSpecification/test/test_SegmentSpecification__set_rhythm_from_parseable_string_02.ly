@@ -16,17 +16,18 @@
 		\context RhythmicStaff = "Staff 1" {
 			\context Voice = "Voice 1" {
 				{
-					c'8. [ (
+					c'16 [ (
 					c'8
-					c'16 ] )
+					c'8. ] )
 				}
 				{
-					c'8. [ (
+					c'16 [ (
 					c'8
-					c'16 ] )
+					c'8. ] )
 				}
 				{
-					c'8 [ ] ( )
+					c'16 [ (
+					c'16 ] )
 				}
 			}
 		}

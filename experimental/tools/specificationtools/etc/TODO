@@ -153,3 +153,12 @@
 
 30. Implement _get_payload() on all RegionCommand classes.
     Do RegionCommand classes need _get_timespan() too?
+
+31. Maybe make TimespanCallbackMixin in parallel to PayloadCallbackMixin.
+    This will migrate a bunch of code out of TimespanExpression into TimespanCallbackMixin.
+
+32. Maybe PayloadCallbackMixin should inherit from TimespanCallbackMixin?
+    This is not clear.
+
+33. TimespanCallbackMixin needs to implement reverse().
+    This will allow (pure) TimespanInventory.reverse() to implement as a simply mapping.
