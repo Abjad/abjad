@@ -23,10 +23,16 @@ Read-only Properties
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.x_center
+   :noindex:
+
 .. autoattribute:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.x_range
    :noindex:
 
 .. autoattribute:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.x_values
+   :noindex:
+
+.. autoattribute:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.y_center
    :noindex:
 
 .. autoattribute:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.y_range
@@ -41,13 +47,22 @@ Methods
 .. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.clip_y_axis
    :noindex:
 
+.. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.concatenate
+   :noindex:
+
 .. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.get_y_at_x
+   :noindex:
+
+.. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.invert
    :noindex:
 
 .. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.normalize_axes
    :noindex:
 
 .. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.remove_dc_bias
+   :noindex:
+
+.. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.reverse
    :noindex:
 
 .. automethod:: experimental.tools.breakpointtools.BreakPointFunction.BreakPointFunction.BreakPointFunction.scale_x_axis

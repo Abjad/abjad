@@ -196,7 +196,7 @@ class BreakPointFunction(AbjadObject):
 
     @property
     def x_center(self):
-        return self.x_range[1] - self.x_range[0]
+        return (self.x_range[1] + self.x_range[0]) / 2
 
     @property
     def x_range(self):
@@ -208,7 +208,7 @@ class BreakPointFunction(AbjadObject):
 
     @property
     def y_center(self):
-        return self.y_range[1] - self.y_range[0]
+        return (self.y_range[1] + self.y_range[0]) / 2
 
     @property
     def y_range(self):
@@ -428,13 +428,44 @@ class BreakPointFunction(AbjadObject):
         return (x * m) + b
 
     def invert(self, y_center=None):
+        '''Invert self:
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction({0.: 0., 1.: 1.}).invert()
+            BreakPointFunction({
+                0.0: (1.0,),
+                1.0: (0.0,)
+            })
+
+        If `y_center` is not None, use `y_center` as the axis of inversion:
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction({0.: 0., 1.: 1.}).invert(0)
+            BreakPointFunction({
+                0.0: (0.0,),
+                1.0: (-1.0,)
+            })
+
+        ::
+
+            >>> breakpointtools.BreakPointFunction({0.: 0., 1.: 1.}).invert(0.25)
+            BreakPointFunction({
+                0.0: (0.5,),
+                1.0: (-0.5,)
+            })
+
+        Emit new `BreakPointFunction` instance.
+        '''
         if y_center is None:
             y_center = self.y_center
         else:
             assert isinstance(y_center, numbers.Real)
-        for x, ys in self._bpf:
+        bpf = {}
+        for x, ys in self._bpf.iteritems():
             new_ys = [((y_center - y) + y_center) for y in ys]
-            bpf[x] = tuple(ys)
+            bpf[x] = tuple(new_ys)
         return type(self)(bpf)
 
     def normalize_axes(self):
