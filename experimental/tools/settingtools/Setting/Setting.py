@@ -20,7 +20,7 @@ class Setting(AbjadObject):
         from experimental.tools import requesttools
         from experimental.tools import timeexpressiontools
         assert isinstance(attribute, str)
-        assert isinstance(request, (requesttools.Request, timeexpressiontools.TimespanExpression)), repr(request)
+        assert isinstance(request, (requesttools.PayloadCallbackMixin, timeexpressiontools.TimespanExpression)), repr(request)
         assert isinstance(anchor, (timeexpressiontools.TimespanExpression, str, type(None)))
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)

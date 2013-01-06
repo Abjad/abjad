@@ -28,7 +28,7 @@ class SetMethodMixin(AbjadObject):
         from experimental.tools import timeexpressiontools
         # probably precautionary: prune expr of any incoming references
         expr = copy.deepcopy(expr)
-        if isinstance(expr, requesttools.Request):
+        if isinstance(expr, requesttools.PayloadCallbackMixin):
             return expr
         elif isinstance(expr, statalservertools.StatalServer):
             return requesttools.StatalServerRequest(expr)

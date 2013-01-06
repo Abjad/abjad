@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.payload_callbacks
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. autoattribute:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.storage_format
    :noindex:
@@ -28,32 +28,32 @@ Methods
 .. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.partition_by_ratio
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.partition_by_ratio_of_durations
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.repeat_to_duration
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.repeat_to_length
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.reverse
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.rotate
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 Special Methods
 ---------------
@@ -61,12 +61,12 @@ Special Methods
 .. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.___getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__eq__
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__ge__
    :noindex:
@@ -76,7 +76,7 @@ Special Methods
 .. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__gt__
    :noindex:

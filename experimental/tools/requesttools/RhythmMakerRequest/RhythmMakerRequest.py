@@ -1,8 +1,8 @@
 from abjad.tools import rhythmmakertools
-from experimental.tools.requesttools.Request import Request
+from experimental.tools.requesttools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class RhythmMakerRequest(Request):
+class RhythmMakerRequest(PayloadCallbackMixin):
     r'''Rhythm-maker request.
 
     Create behind-the-scenes at setting-time.
@@ -12,7 +12,7 @@ class RhythmMakerRequest(Request):
 
     def __init__(self, payload, payload_callbacks=None):
         assert isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
-        Request.__init__(self, payload_callbacks=payload_callbacks)
+        PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
         self._payload = payload
 
     ### PRIVATE METHODS ###

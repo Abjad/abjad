@@ -8,8 +8,8 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools import helpertools
 
 
-class Request(AbjadObject):
-    r'''Request.
+class PayloadCallbackMixin(AbjadObject):
+    r'''PayloadCallbackMixin.
 
     Base class from which other request classes inherit.
 

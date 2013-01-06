@@ -24,7 +24,7 @@ class RegionCommand(AbjadObject):
     def __init__(self, request, context_name, timespan, fresh=None):
         from experimental.tools import requesttools 
         from experimental.tools import timeexpressiontools
-        assert isinstance(request, (requesttools.Request, timeexpressiontools.TimespanExpression)), repr(request)
+        assert isinstance(request, (requesttools.PayloadCallbackMixin, timeexpressiontools.TimespanExpression)), repr(request)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)

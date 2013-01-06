@@ -1,8 +1,8 @@
 from experimental.tools import handlertools
-from experimental.tools.requesttools.Request import Request
+from experimental.tools.requesttools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class HandlerRequest(Request):
+class HandlerRequest(PayloadCallbackMixin):
     r'''Handler request.
 
     The purpose of a handler request is to function as the source of a setting.
@@ -12,7 +12,7 @@ class HandlerRequest(Request):
 
     def __init__(self, handler, payload_callbacks=None):
         assert isinstance(handler, handlertools.Handler)
-        Request.__init__(self, payload_callbacks=payload_callbacks)
+        PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
         self._handler = handler
 
     ### PRIVATE METHODS ###

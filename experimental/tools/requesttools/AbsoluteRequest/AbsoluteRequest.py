@@ -1,8 +1,8 @@
 import numbers
-from experimental.tools.requesttools.Request import Request
+from experimental.tools.requesttools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class AbsoluteRequest(Request):
+class AbsoluteRequest(PayloadCallbackMixin):
     r'''Absolute request.
 
     ::
@@ -32,7 +32,7 @@ class AbsoluteRequest(Request):
     ### INTIAILIZER ###
 
     def __init__(self, payload, payload_callbacks=None):
-        Request.__init__(self, payload_callbacks=payload_callbacks)
+        PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
         assert isinstance(payload, (str, tuple, list)), repr(payload)
         if isinstance(payload, list):
             payload = tuple(payload)
@@ -78,7 +78,7 @@ class AbsoluteRequest(Request):
 
         Return callback inventory.
         '''
-        return Request.payload_callbacks.fget(self)
+        return PayloadCallbackMixin.payload_callbacks.fget(self)
 
     @property
     def storage_format(self):
@@ -91,4 +91,4 @@ class AbsoluteRequest(Request):
 
         Return string.
         '''
-        return Request.storage_format.fget(self)
+        return PayloadCallbackMixin.storage_format.fget(self)

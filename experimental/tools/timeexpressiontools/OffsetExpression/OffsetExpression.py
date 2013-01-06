@@ -176,7 +176,7 @@ class OffsetExpression(AbjadObject):
     ### PUBLIC METHODS ###
 
     def request_division_command(self, voice):
-        r'''Request voice ``1`` division command
+        r'''PayloadCallbackMixin voice ``1`` division command
         active at start of segment ``'red'``::
 
             >>> request = red_segment.timespan.start_offset.request_division_command('Voice 1')
@@ -199,7 +199,7 @@ class OffsetExpression(AbjadObject):
         return requesttools.DivisionCommandRequest(voice, offset=self)
 
     def request_rhythm_command(self, voice):
-        r'''Request voice ``1`` rhythm command 
+        r'''PayloadCallbackMixin voice ``1`` rhythm command 
         active at start of segment ``'red'``::
 
             >>> request = red_segment.timespan.start_offset.request_rhythm_command('Voice 1')
@@ -222,7 +222,7 @@ class OffsetExpression(AbjadObject):
         return requesttools.RhythmCommandRequest(voice, offset=self)
 
     def request_time_signature_command(self, voice):
-        r'''Request voice ``1`` time signature command
+        r'''PayloadCallbackMixin voice ``1`` time signature command
         active at start of segment ``'red'``::
 
             >>> request = red_segment.timespan.start_offset.request_time_signature_command('Voice 1')

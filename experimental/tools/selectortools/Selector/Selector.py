@@ -4,11 +4,11 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
-from experimental.tools.requesttools.Request import Request
+from experimental.tools.requesttools.PayloadCallbackMixin import PayloadCallbackMixin
 from experimental.tools.timeexpressiontools.TimespanExpression import TimespanExpression
 
 
-class Selector(TimespanExpression, Request):
+class Selector(TimespanExpression, PayloadCallbackMixin):
     r'''Selector.
 
     Abstract base class from which concrete selectors inherit.
@@ -27,7 +27,7 @@ class Selector(TimespanExpression, Request):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
-        Request.__init__(self, payload_callbacks=payload_callbacks)
+        PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
         TimespanExpression.__init__(self, timespan_callbacks=timespan_callbacks)
         self._anchor = anchor
         assert voice_name is not None
@@ -45,7 +45,7 @@ class Selector(TimespanExpression, Request):
 
     @property
     def _keyword_argument_name_value_strings(self):
-        result = Request._keyword_argument_name_value_strings.fget(self)
+        result = PayloadCallbackMixin._keyword_argument_name_value_strings.fget(self)
         if 'timespan_callbacks=CallbackInventory([])' in result:
             result = list(result)
             result.remove('timespan_callbacks=CallbackInventory([])')
@@ -70,7 +70,7 @@ class Selector(TimespanExpression, Request):
         '''Do not show empty selector payload_callbacks list.
         '''
         filtered_result = []
-        result = Request._get_tools_package_qualified_keyword_argument_repr_pieces(
+        result = PayloadCallbackMixin._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
             if not 'timespan_callbacks=settingtools.CallbackInventory([])' in string:

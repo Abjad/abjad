@@ -22,7 +22,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.payload_callbacks
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. autoattribute:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.start_segment_identifier
    :noindex:
@@ -45,32 +45,32 @@ Methods
 .. automethod:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.partition_by_ratio
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.partition_by_ratio_of_durations
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.repeat_to_duration
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.repeat_to_length
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.reverse
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.rotate
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 Special Methods
 ---------------
@@ -78,12 +78,12 @@ Special Methods
 .. automethod:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.___getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.__eq__
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.__ge__
    :noindex:
@@ -93,7 +93,7 @@ Special Methods
 .. automethod:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.__getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.DivisionCommandRequest.DivisionCommandRequest.DivisionCommandRequest.__gt__
    :noindex:

@@ -1,8 +1,8 @@
 from experimental.tools import statalservertools
-from experimental.tools.requesttools.Request import Request
+from experimental.tools.requesttools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class StatalServerRequest(Request):
+class StatalServerRequest(PayloadCallbackMixin):
     r'''Statal server request.
 
     The purpose of a statal server request is to function as the source of a setting.
@@ -12,7 +12,7 @@ class StatalServerRequest(Request):
     
     def __init__(self, statal_server, payload_callbacks=None):
         assert isinstance(server, statalservertools.StatalServer)
-        Request.__init__(self, payload_callbacks=payload_callbacks)
+        PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
         self._statal_server = statal_server
 
     ### SPECIAL METHODS ###

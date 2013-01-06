@@ -22,7 +22,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.payload_callbacks
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. autoattribute:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.start_segment_identifier
    :noindex:
@@ -45,32 +45,32 @@ Methods
 .. automethod:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.partition_by_ratio
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.partition_by_ratio_of_durations
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.repeat_to_duration
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.repeat_to_length
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.reverse
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.rotate
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 Special Methods
 ---------------
@@ -78,12 +78,12 @@ Special Methods
 .. automethod:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.___getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.__eq__
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.__ge__
    :noindex:
@@ -93,7 +93,7 @@ Special Methods
 .. automethod:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.__getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmCommandRequest.RhythmCommandRequest.RhythmCommandRequest.__gt__
    :noindex:

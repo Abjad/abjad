@@ -1,16 +1,16 @@
 import abc
 from experimental.tools import timeexpressiontools
-from experimental.tools.requesttools.Request import Request
+from experimental.tools.requesttools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class CommandRequest(Request):
+class CommandRequest(PayloadCallbackMixin):
     r'''Command request.
 
-    Request command active at `offset` in `voice_name`::
+    PayloadCallbackMixin command active at `offset` in `voice_name`::
 
         >>> from experimental.tools import *
 
-    Example. Request division command active at start of measure 4 in ``'Voice 1'``::
+    Example. PayloadCallbackMixin division command active at start of measure 4 in ``'Voice 1'``::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
         ...     staff_count=1)
@@ -57,7 +57,7 @@ class CommandRequest(Request):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
         assert isinstance(offset, timeexpressiontools.OffsetExpression)
-        Request.__init__(self, payload_callbacks=payload_callbacks)
+        PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
         self._attribute = attribute
         self._voice_name = voice_name
         self._offset = offset
