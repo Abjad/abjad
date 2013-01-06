@@ -24,11 +24,12 @@ class SetMethodMixin(AbjadObject):
         from abjad.tools import rhythmmakertools
         from experimental.tools import handlertools
         from experimental.tools import requesttools
+        from experimental.tools import settingtools
         from experimental.tools import statalservertools
         from experimental.tools import timeexpressiontools
         # probably precautionary: prune expr of any incoming references
         expr = copy.deepcopy(expr)
-        if isinstance(expr, requesttools.PayloadCallbackMixin):
+        if isinstance(expr, settingtools.PayloadCallbackMixin):
             return expr
         elif isinstance(expr, statalservertools.StatalServer):
             return requesttools.StatalServerRequest(expr)

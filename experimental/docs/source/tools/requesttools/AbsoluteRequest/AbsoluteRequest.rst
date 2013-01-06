@@ -24,32 +24,32 @@ Methods
 .. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.partition_by_ratio
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.partition_by_ratio_of_durations
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.repeat_to_duration
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.repeat_to_length
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.reverse
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.rotate
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 Special Methods
 ---------------
@@ -57,12 +57,12 @@ Special Methods
 .. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.___getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.__eq__
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.__ge__
    :noindex:
@@ -72,7 +72,7 @@ Special Methods
 .. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.__getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.__gt__
    :noindex:

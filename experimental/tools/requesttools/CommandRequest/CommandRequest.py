@@ -1,6 +1,6 @@
 import abc
 from experimental.tools import timeexpressiontools
-from experimental.tools.requesttools.PayloadCallbackMixin import PayloadCallbackMixin
+from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
 class CommandRequest(PayloadCallbackMixin):

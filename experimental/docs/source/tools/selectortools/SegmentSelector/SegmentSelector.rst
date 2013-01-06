@@ -57,7 +57,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.payload_callbacks
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. autoattribute:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.score_specification
    :noindex:
@@ -206,32 +206,32 @@ Methods
 .. automethod:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.partition_by_ratio
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.partition_by_ratio_of_durations
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.repeat_to_duration
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.repeat_to_length
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.reverse
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.rotate
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.scale
    :noindex:
@@ -489,7 +489,7 @@ Special Methods
 .. automethod:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.___getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.__eq__
    :noindex:
@@ -504,7 +504,7 @@ Special Methods
 .. automethod:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.__getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.__gt__
    :noindex:

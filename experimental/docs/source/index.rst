@@ -376,7 +376,6 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/requesttools/CommandRequest/CommandRequest
-      tools/requesttools/PayloadCallbackMixin/PayloadCallbackMixin
 
    --------
 
@@ -399,7 +398,6 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/requesttools/CommandRequest/CommandRequest
-      tools/requesttools/PayloadCallbackMixin/PayloadCallbackMixin
 
    Concrete Classes
    ----------------
@@ -467,6 +465,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
       tools/settingtools/RegionCommand/RegionCommand
       tools/settingtools/RegionProduct/RegionProduct
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
@@ -501,6 +500,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
       tools/settingtools/RegionCommand/RegionCommand
       tools/settingtools/RegionProduct/RegionProduct
       tools/settingtools/SelectMethodMixin/SelectMethodMixin

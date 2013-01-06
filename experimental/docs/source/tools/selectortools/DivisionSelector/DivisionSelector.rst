@@ -57,7 +57,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.payload_callbacks
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. autoattribute:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.score_specification
    :noindex:
@@ -208,32 +208,32 @@ Methods
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.partition_by_ratio
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.partition_by_ratio_of_durations
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.repeat_to_duration
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.repeat_to_length
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.reverse
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.rotate
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.scale
    :noindex:
@@ -491,7 +491,7 @@ Special Methods
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.___getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.__eq__
    :noindex:
@@ -506,7 +506,7 @@ Special Methods
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.__getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.__gt__
    :noindex:

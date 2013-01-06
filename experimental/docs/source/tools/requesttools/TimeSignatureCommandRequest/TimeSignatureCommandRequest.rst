@@ -22,7 +22,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest.payload_callbacks
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. autoattribute:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest.start_segment_identifier
    :noindex:
@@ -45,32 +45,32 @@ Methods
 .. automethod:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest.partition_by_ratio
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest.partition_by_ratio_of_durations
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest.repeat_to_duration
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest.repeat_to_length
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest.reverse
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest.rotate
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 Special Methods
 ---------------
@@ -78,12 +78,12 @@ Special Methods
 .. automethod:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest.___getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest.__eq__
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest.__ge__
    :noindex:
@@ -93,7 +93,7 @@ Special Methods
 .. automethod:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest.__getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.TimeSignatureCommandRequest.TimeSignatureCommandRequest.TimeSignatureCommandRequest.__gt__
    :noindex:

@@ -60,7 +60,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.payload_callbacks
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. autoattribute:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.score_specification
    :noindex:
@@ -211,32 +211,32 @@ Methods
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.partition_by_ratio
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.partition_by_ratio_of_durations
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.repeat_to_duration
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.repeat_to_length
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.reverse
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.rotate
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.scale
    :noindex:
@@ -494,7 +494,7 @@ Special Methods
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.___getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.__eq__
    :noindex:
@@ -509,7 +509,7 @@ Special Methods
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.__getitem__
    :noindex:
 
-   Inherited from :py:class:`requesttools.PayloadCallbackMixin <experimental.tools.requesttools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.__gt__
    :noindex:

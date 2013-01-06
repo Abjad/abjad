@@ -1,5 +1,5 @@
 from experimental.tools import handlertools
-from experimental.tools.requesttools.PayloadCallbackMixin import PayloadCallbackMixin
+from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
 class HandlerRequest(PayloadCallbackMixin):

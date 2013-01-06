@@ -1,5 +1,5 @@
 from experimental.tools import statalservertools
-from experimental.tools.requesttools.PayloadCallbackMixin import PayloadCallbackMixin
+from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
 class StatalServerRequest(PayloadCallbackMixin):
