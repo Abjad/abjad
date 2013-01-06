@@ -50,7 +50,11 @@ class Container(Component):
         from abjad.tools import containertools
         left = componenttools.copy_components_and_fracture_crossing_spanners([self])[0]
         right = componenttools.copy_components_and_fracture_crossing_spanners([expr])[0]
-        return containertools.fuse_like_named_contiguous_containers_in_expr([left, right])
+        result = containertools.fuse_like_named_contiguous_containers_in_expr([left, right])
+        if result is None:
+            raise Exception('can not add.')
+        else:
+            return result
 
     def __contains__(self, expr):
         '''True if expr is in container, otherwise False.

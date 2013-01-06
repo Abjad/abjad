@@ -68,7 +68,3 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
     if merged:
         containertools.remove_leafless_containers_in_expr(expr)
         return expr.pop(0)
-    else:
-        print 'debug did not merge'
-        # TODO: raise exception instead
-        return

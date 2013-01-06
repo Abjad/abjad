@@ -3,7 +3,8 @@ import py.test
 
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_01():
-    '''Do nothing on leaf.'''
+    '''Do nothing on leaf.
+    '''
 
     t = Note(1, (1, 4))
     result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
@@ -12,7 +13,8 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_01():
 
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_02():
-    '''Do not fuse unnamed voices.'''
+    '''Do not fuse unnamed voices.
+    '''
 
     t = Staff([Voice(notetools.make_repeated_notes(2)), Voice(notetools.make_repeated_notes(2))])
     result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
@@ -20,7 +22,8 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_02():
 
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_03():
-    '''Do not fuse nonthreads.'''
+    '''Do not fuse nonthreads.
+    '''
 
     t = Staff([Voice(notetools.make_repeated_notes(2)), Voice(notetools.make_repeated_notes(2))])
     t[0].name = 'one'
@@ -30,7 +33,8 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_03():
 
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_04():
-    '''Do not fuse tuplets.'''
+    '''Do not fuse tuplets.
+    '''
 
     t = Voice([Tuplet(Fraction(2, 3), notetools.make_repeated_notes(3)),
         Tuplet(Fraction(2, 3), notetools.make_repeated_notes(3))])
@@ -40,7 +44,8 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_04():
 
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_05():
-    '''Fuse like-named staves.'''
+    '''Fuse like-named staves.
+    '''
 
     t = Staff(notetools.make_repeated_notes(4)) * 2
     t[0].name = t[1].name = 'staffOne'
@@ -50,7 +55,8 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_05():
 
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_06():
-    '''Fuse like-named staves but not differently named voices.'''
+    '''Fuse like-named staves but not differently named voices.
+    '''
 
     t = Container(Staff([Voice(notetools.make_repeated_notes(4))]) * 2)
     t[0].name = t[1].name = 'staffOne'
@@ -108,7 +114,8 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_06():
 
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_07():
-    '''Fuse orphan components.'''
+    '''Fuse orphan components.
+    '''
 
     t = Voice(notetools.make_repeated_notes(4)) * 2
     t[0].name = t[1].name = 'voiceOne'
@@ -116,18 +123,6 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_07():
     assert isinstance(result, Voice)
     assert len(result) == 8
 
-
-# TODO this should work.
-#def test_containertools_fuse_like_named_contiguous_containers_in_expr_08():
-#   '''containertools.fuse_like_named_contiguous_containers_in_expr() can take a list of parented
-#   Components.'''
-#   t = Staff(Voice(notetools.make_repeated_notes(2)) * 2)
-#   result = containertools.fuse_like_named_contiguous_containers_in_expr(t[:])
-#   assert wellformednesstools.is_well_formed_component(t)
-#   assert len(t) == 1
-
-
-# NESTED PARALLEL STRUCTURES #
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_09():
     '''Fuse parallel voices within parallel staves within parallel
@@ -227,7 +222,8 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_09():
     '''
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_10():
-    '''Fuse nested parallel structures in sequence.'''
+    '''Fuse nested parallel structures in sequence.
+    '''
 
     v1a = Voice(Note(0, (1,4))*2)
     v1a.name = 'voiceOne'
