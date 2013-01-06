@@ -71,8 +71,7 @@ class Container(Component):
         return new
 
     def _copy_with_children_and_marks_but_without_spanners(self):
-        #new = self._copy_with_marks_but_without_children_or_spanners()
-        new = copy.copy(self)
+        new = self._copy_with_marks_but_without_children_or_spanners()
         for component in self.music:
             new_component = copy.deepcopy(component)
             new.append(new_component)

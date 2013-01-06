@@ -100,8 +100,8 @@ class GraceContainer(Container):
         self._carrier = arg
         return arg
 
-    def __copy__(self, *args):
-        new = Container.__copy__(self, *args)
+    def _copy_with_marks_but_without_children_or_spanners(self):
+        new = Container._copy_with_marks_but_without_children_or_spanners(self)
         new.kind = self.kind
         return new
 

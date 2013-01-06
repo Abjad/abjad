@@ -48,12 +48,13 @@ class Context(Container):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        new = Container.__copy__(self, *args)
+    def _copy_with_marks_but_without_children_or_spanners(self):
+        new = Container._copy_with_marks_but_without_children_or_spanners(self)
         new._engraver_consists = copy.copy(self.engraver_consists)
         new._engraver_removals = copy.copy(self.engraver_removals)
         new.name = copy.copy(self.name)
         new.is_nonsemantic = copy.copy(self.is_nonsemantic)
+        return new
         return new
 
     def __repr__(self):

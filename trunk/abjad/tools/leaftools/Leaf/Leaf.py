@@ -44,6 +44,7 @@ class Leaf(Component):
             new_grace_container(new)
         return new
 
+    # necessary to make sure deepcopied leaves copy grace containers correctly
     __deepcopy__ = __copy__
 
     def __getnewargs__(self):
