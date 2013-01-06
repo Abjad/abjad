@@ -351,7 +351,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
             >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
             >>> graph = tree.graphviz_graph
-            >>> print graph.graphviz_format
+            >>> print graph.graphviz_format # doctest: +SKIP
             digraph "G" {
                 "node_0" [label="1",
                     shape="triangle"];
