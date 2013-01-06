@@ -1,6 +1,5 @@
 from abjad.tools import timespantools
 from experimental.tools import helpertools
-from experimental.tools import segmenttools
 from experimental.tools.selectortools.Selector import Selector
 
 

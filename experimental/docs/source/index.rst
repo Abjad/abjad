@@ -414,25 +414,6 @@ Unstable packages (load manually)
       tools/requesttools/StatalServerRequest/StatalServerRequest
       tools/requesttools/TimeSignatureCommandRequest/TimeSignatureCommandRequest
 
-:py:mod:`segmenttools <experimental.tools.segmenttools>`
-========================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/segmenttools/Segment/Segment
-
-.. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/segmenttools/Segment/Segment
-
 :py:mod:`selectortools <experimental.tools.selectortools>`
 ==========================================================
 
