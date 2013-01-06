@@ -4303,6 +4303,7 @@ Abjad internal packages
    .. toctree::
       :maxdepth: 1
 
+      tools/datastructuretools/BreakPointFunction/BreakPointFunction
       tools/datastructuretools/Digraph/Digraph
       tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
       tools/datastructuretools/ObjectInventory/ObjectInventory
@@ -4317,6 +4318,7 @@ Abjad internal packages
 
    .. toctree::
 
+      tools/datastructuretools/BreakPointFunction/BreakPointFunction
       tools/datastructuretools/Digraph/Digraph
       tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
       tools/datastructuretools/ObjectInventory/ObjectInventory

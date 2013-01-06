@@ -78,25 +78,6 @@ Unstable packages (load manually)
    :maxdepth: 1
 
 
-:py:mod:`breakpointtools <experimental.tools.breakpointtools>`
-==============================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/breakpointtools/BreakPointFunction/BreakPointFunction
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/breakpointtools/BreakPointFunction/BreakPointFunction
-
 :py:mod:`constrainttools <experimental.tools.constrainttools>`
 ==============================================================
 
