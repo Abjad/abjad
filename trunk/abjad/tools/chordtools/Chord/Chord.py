@@ -73,13 +73,16 @@ class Chord(Leaf):
         note_head = NoteHead(written_pitch=arg)
         return note_head in self.note_heads
 
-    def __copy__(self, *args):
-        new = Leaf.__copy__(self)
+    def _copy_with_marks_but_without_children_or_spanners(self):
+        new = Leaf._copy_with_marks_but_without_children_or_spanners(self)
         new.clear()
         for note_head in self.note_heads:
             new_note_head = copy.copy(note_head)
             new.append(new_note_head)
         return new
+
+    def __copy__(self, *args):
+        return self._copy_with_marks_but_without_children_or_spanners()
 
     # necessary to ensure deepcopied chords copy note heads correctly
     __deepcopy__ = __copy__

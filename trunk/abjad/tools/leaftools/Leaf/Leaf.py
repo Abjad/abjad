@@ -1,6 +1,5 @@
 import abc
 import copy
-import fractions
 import operator
 from abjad.tools import durationtools
 from abjad.tools import formattools
@@ -36,13 +35,16 @@ class Leaf(Component):
     def __and__(self, arg):
         return self._operate(arg, operator.__and__)
 
-    def __copy__(self, *args):
+    def _copy_with_marks_but_without_children_or_spanners(self):
         from abjad.tools import gracetools
-        new = Component.__copy__(self, *args)
+        new = Component._copy_with_marks_but_without_children_or_spanners(self)
         for grace_container in gracetools.get_grace_containers_attached_to_leaf(self):
             new_grace_container = copy.deepcopy(grace_container)
             new_grace_container(new)
         return new
+        
+    def __copy__(self, *args):
+        return self._copy_with_marks_but_without_children_or_spanners()
 
     # necessary to make sure deepcopied leaves copy grace containers correctly
     __deepcopy__ = __copy__
