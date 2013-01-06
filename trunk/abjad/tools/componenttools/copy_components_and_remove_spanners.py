@@ -4,14 +4,23 @@ import copy
 def copy_components_and_remove_spanners(components, n=1):
     r'''.. versionadded:: 1.1
 
-    Copy `components` and remove all spanners.
+    Copy `components` and remove spanners.
 
     The `components` must be thread-contiguous.
 
-    The steps taken by this function are as follows.
-    Withdraw all components at any level in `components` from spanners.
-    Deep copy unspanned components in `components`.
-    Reapply spanners to all components at any level in `components`. ::
+    The steps taken by this function are as follows:
+
+    * Withdraw `components` from spanners.
+
+    * Deep copy unspanned `components`.
+
+    * Reapply spanners to `components`.
+
+    * Return unspanned copy.
+
+    Example:
+
+    ::
 
         >>> voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
@@ -53,7 +62,9 @@ def copy_components_and_remove_spanners(components, n=1):
         >>> voice.leaves[2] is new_voice.leaves[0]
         False
 
-    Copy `components` a total of `n` times. ::
+    Copy `components` a total of `n` times:
+
+    ::
 
         >>> result = componenttools.copy_components_and_remove_spanners(voice.leaves[2:4], n=3)
         >>> result
@@ -72,21 +83,9 @@ def copy_components_and_remove_spanners(components, n=1):
             f'8
         }
 
-
-    .. versionchanged:: 2.0
-        renamed ``componenttools.clone_components_and_remove_all_spanners()`` to
-        ``componenttools.copy_components_and_remove_spanners()``.
-
-    .. versionchanged:: 2.9
-        renamed ``componenttools.copy_components_and_remove_all_spanners()`` to
-        ``componenttools.copy_components_and_remove_spanners()``.
+    Return type equal to input type.
     '''
     from abjad.tools import componenttools
-    from abjad.tools.componenttools._ignore_parentage_of_components import _ignore_parentage_of_components
-    from abjad.tools.componenttools._restore_parentage_to_components_by_receipt import \
-        _restore_parentage_to_components_by_receipt
-    from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import \
-        _reattach_blinded_marks_to_components_in_expr
 
     if n < 1:
         return []
@@ -94,6 +93,8 @@ def copy_components_and_remove_spanners(components, n=1):
     assert componenttools.all_are_thread_contiguous_components(components)
 
     result = copy.deepcopy(components)
+    #result = [component._copy_with_children_and_marks_but_without_spanners() for component in components]
+    #result = type(components)(result)
 
     for i in range(n - 1):
         result += copy_components_and_remove_spanners(components)

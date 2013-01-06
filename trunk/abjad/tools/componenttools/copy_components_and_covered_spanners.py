@@ -102,38 +102,16 @@ def copy_components_and_covered_spanners(components, n=1):
 
     assert componenttools.all_are_thread_contiguous_components(components)
 
-#   spanners = spannertools.get_spanners_that_cross_components(components)
-#   for spanner in spanners:
-#      spanner._block_all_components()
-#
-#   receipt = _ignore_parentage_of_components(components)
-#
-#   result = copy.deepcopy(components)
-#   for component in result:
-#      #component._update._mark_all_improper_parents_for_update()
-#      component._mark_entire_score_tree_for_later_update('prolated')
-#
-#   _restore_parentage_to_components_by_receipt(receipt)
-#
-#   for spanner in spanners:
-#      spanner._unblock_all_components()
-#
-#   for i in range(n - 1):
-#      result += copy_components_and_covered_spanners(components)
-#
-#   _reattach_blinded_marks_to_components_in_expr(result)
-#
-#   return result
-
-    # deep copy components
+    # copy components without spanners
     new_components = copy.deepcopy(components)
+    #new_components = [component._copy_with_children_and_marks_but_without_spanners() for component in components]
+    #new_components = type(components)(new_components)
 
     # make schema of spanners covered by components
     schema = spannertools.make_covered_spanner_schema(components)
 
     # copy spanners covered by components
     for covered_spanner, component_indices in schema.items():
-        #new_covered_spanner = copy.copy(covered_spanner)
         new_covered_spanner = copy.deepcopy(covered_spanner)
         del(schema[covered_spanner])
         schema[new_covered_spanner] = component_indices

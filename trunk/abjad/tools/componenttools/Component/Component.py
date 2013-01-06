@@ -41,7 +41,7 @@ class Component(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
+    def _copy_with_marks_but_without_children_or_spanners(self):
         from abjad.tools import marktools
         new = type(self)(*self.__getnewargs__())
         if getattr(self, '_override', None) is not None:
@@ -52,6 +52,17 @@ class Component(AbjadObject):
             new_mark = copy.copy(mark)
             new_mark.attach(new)
         return new
+
+    def _copy_with_children_and_marks_but_without_spanners(self):
+        return self._copy_with_marks_but_without_children_or_spanners()
+
+    def __copy__(self, *args):
+        return self._copy_with_marks_but_without_children_or_spanners()
+
+    # TODO: make this be the shiny new definition of deepcopy
+    #def __deepcopy__(self, memo):
+    #    from abjad.tools import componenttools
+    #    return componenttools.copy_components_and_covered_spanners([self])[0]
 
     def __getnewargs__(self):
         return ()

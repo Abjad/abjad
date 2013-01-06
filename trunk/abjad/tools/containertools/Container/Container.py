@@ -53,24 +53,29 @@ class Container(Component):
         return containertools.fuse_like_named_contiguous_containers_in_expr([left, right])
 
     def __contains__(self, expr):
-        '''True if expr is in container, otherwise False.'''
+        '''True if expr is in container, otherwise False.
+        '''
         for x in self._music:
             if x is expr:
                 return True
         else:
             return False
 
-    def __copy__(self, *args):
-        new = Component.__copy__(self, *args)
+    def _copy_with_marks_but_without_children_or_spanners(self):
+        new = Component._copy_with_marks_but_without_children_or_spanners(self)
         new.is_parallel = self.is_parallel
         return new
 
-    def __deepcopy__(self, memo):
-        new = self.__copy__()
+    def _copy_with_children_and_marks_but_without_spanners(self):
+        #new = self._copy_with_marks_but_without_children_or_spanners()
+        new = copy.copy(self)
         for component in self.music:
             new_component = copy.deepcopy(component)
             new.append(new_component)
         return new
+
+    def __deepcopy__(self, memo):
+        return self._copy_with_children_and_marks_but_without_spanners()
 
     def __delitem__(self, i):
         '''Find component(s) at index or slice 'i' in container.

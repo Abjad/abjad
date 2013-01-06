@@ -70,18 +70,5 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
         return expr.pop(0)
     else:
         print 'debug did not merge'
+        # TODO: raise exception instead
         return
-
-
-# TODO implement containers_by_reference as a simple, non-recursive
-# container fuser, like below:
-#def fuse_like_named_contiguous_containers_in_expr(expr):
-#   '''Fuse containers in self that are strictly contiguous
-#      and that have the same name.'''
-#
-#   result = expr[0]
-#   for component in expr[1:]:
-#      if isinstance(component, Container) and not component.is_parallel:
-#         componenttools.remove_component_subtree_from_score_and_spanners([component])
-#         result.extend(component)
-#   return result
