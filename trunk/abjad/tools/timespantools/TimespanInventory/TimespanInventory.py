@@ -565,40 +565,96 @@ class TimespanInventory(ObjectInventory):
         timespans.reverse()
         self[:] = timespans
 
-    def rotate(self, rotation):
-        '''Rotate *elements* of timespans.
+    def rotate(self, count):
+        '''Rotate by `count` contiguous timespans.
 
-        .. note:: add example.
-        
+        Example 1. Rotate by one timespan to the left:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...    timespantools.Timespan(0, 3),
+            ...    timespantools.Timespan(3, 4),
+            ...    timespantools.Timespan(4, 10)])
+
+        ::
+
+            >>> timespan_inventory.rotate(-1)
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(1, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(1, 1),
+                    stop_offset=durationtools.Offset(7, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(7, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        Example 2. Rotate by one timespan to the right:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...    timespantools.Timespan(0, 3),
+            ...    timespantools.Timespan(3, 4),
+            ...    timespantools.Timespan(4, 10)])
+
+        ::
+
+            >>> timespan_inventory.rotate(1)
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(6, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(6, 1),
+                    stop_offset=durationtools.Offset(9, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(9, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
         Operate in place and return none.
         '''
         assert isinstance(rotation, int)
         assert self.all_are_contiguous
-        elements_to_move = rotation % self.duration
+        elements_to_move = rotation % len(self)
         if elements_to_move == 0:
             return
-        if True:
-            for timespan in reversed(self[:]):
-                if len(timespan) <= elements_to_move:
-                    inventory_start_offset = self.start_offset
-                    self.remove(timespan)
-                    self.translate_timespans(timespan.duration)
-                    timespan._start_offset = inventory_start_offset
-                    self.insert(0, timespan)
-                    elements_to_move -= len(timespan)
-                elif elements_to_move < len(timespan):
-                    left_timespan, right_timespan = timespan.fracture(-elements_to_move)
-                    inventory_start_offset = self.start_offset
-                    self.remove(timespan)
-                    self.append(left_timespan)
-                    self.translate_timespans(right_timespan.duration)
-                    right_timespan._start_offset = inventory_start_offset
-                    self.insert(0, right_timespan)
-                    elements_to_move -= len(right_timespan)
-                if elements_to_move < 0:
-                    raise Exception(elements_to_move)
-                if elements_to_move == 0:
-                    break
+        left_timespans = self[:-elements_to_move]
+        right_timespans = self[-elements_to_move:]
+        split_offset = right_timespans[0].start_offset
+        translation_to_left = split_offset - self.start_offset
+        translation_to_left *= -1
+        translation_to_right = self.stop_offset - split_offset
+        translated_right_timespans = []
+        for right_timespan in right_timespans:
+            translated_right_timespan = right_timespan.translate_offsets(
+                translation_to_left, translation_to_left)
+            translated_right_timespans.append(translated_right_timespan)
+        translated_left_timespans = []
+        for left_timespan in left_timespans:
+            translated_left_timespan = left_timespan.translate_offsets(
+                translation_to_right, translation_to_right)
+            translated_left_timespans.append(translated_left_timespan)
+        new_timespans = translated_right_timespans + translated_left_timespans
+        self[:] = new_timespans
 
     def scale(self, multiplier, anchor=Left):
         '''Scale timespan durations by `multiplier` relative to `anchor`. 

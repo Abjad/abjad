@@ -506,6 +506,11 @@ Special Methods
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.__len__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.__lt__
    :noindex:
 

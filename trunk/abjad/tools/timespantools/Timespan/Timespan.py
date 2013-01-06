@@ -58,6 +58,9 @@ class Timespan(BoundedObject):
             return self.offsets == timespan.offsets
         return False
 
+    def __len__(self):
+        return 1
+
     def __lt__(self, expr):
         assert hasattr(expr, 'start_offset'), repr(expr)
         return self.start_offset < expr.start_offset
@@ -309,6 +312,7 @@ class Timespan(BoundedObject):
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_overlaps_stop_of_timespan_1(timespan, self)
     
+    # TODO: change name to self.reflect()
     def reverse(self, axis=None):
         '''Reverse timespan about `axis`.
 
