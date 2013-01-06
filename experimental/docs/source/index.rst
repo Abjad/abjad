@@ -387,6 +387,7 @@ Unstable packages (load manually)
       tools/requesttools/HandlerRequest/HandlerRequest
       tools/requesttools/RhythmCommandRequest/RhythmCommandRequest
       tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
+      tools/requesttools/StatalServer/StatalServer
       tools/requesttools/StatalServerRequest/StatalServerRequest
       tools/requesttools/TimeSignatureCommandRequest/TimeSignatureCommandRequest
 
@@ -409,6 +410,7 @@ Unstable packages (load manually)
       tools/requesttools/HandlerRequest/HandlerRequest
       tools/requesttools/RhythmCommandRequest/RhythmCommandRequest
       tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
+      tools/requesttools/StatalServer/StatalServer
       tools/requesttools/StatalServerRequest/StatalServerRequest
       tools/requesttools/TimeSignatureCommandRequest/TimeSignatureCommandRequest
 
@@ -568,25 +570,6 @@ Unstable packages (load manually)
       tools/specificationtools/ScoreSpecification/ScoreSpecification
       tools/specificationtools/SegmentSpecification/SegmentSpecification
       tools/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
-
-:py:mod:`statalservertools <experimental.tools.statalservertools>`
-==================================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/statalservertools/StatalServer/StatalServer
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/statalservertools/StatalServer/StatalServer
 
 :py:mod:`timeexpressiontools <experimental.tools.timeexpressiontools>`
 ======================================================================

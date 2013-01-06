@@ -1,4 +1,3 @@
-from experimental.tools import statalservertools
 from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
@@ -11,7 +10,7 @@ class StatalServerRequest(PayloadCallbackMixin):
     ### INITIALIZER ###
     
     def __init__(self, statal_server, payload_callbacks=None):
-        assert isinstance(server, statalservertools.StatalServer)
+        assert isinstance(server, requesttools.StatalServer)
         PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
         self._statal_server = statal_server
 
