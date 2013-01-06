@@ -77,8 +77,8 @@ class Container(Component):
             new.append(new_component)
         return new
 
-    def __deepcopy__(self, memo):
-        return self._copy_with_children_and_marks_but_without_spanners()
+    #def __deepcopy__(self, memo):
+    #    return self._copy_with_children_and_marks_but_without_spanners()
 
     def __delitem__(self, i):
         '''Find component(s) at index or slice 'i' in container.

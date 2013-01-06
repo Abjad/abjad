@@ -59,10 +59,10 @@ class Component(AbjadObject):
     def __copy__(self, *args):
         return self._copy_with_marks_but_without_children_or_spanners()
 
-    # TODO: make this be the shiny new definition of deepcopy
-    #def __deepcopy__(self, memo):
-    #    from abjad.tools import componenttools
-    #    return componenttools.copy_components_and_fracture_crossing_spanners([self])[0]
+    def __deepcopy__(self, memo):
+        from abjad.tools import componenttools
+        #return componenttools.copy_components_and_fracture_crossing_spanners([self])[0]
+        return componenttools.copy_components_and_covered_spanners([self])[0]
 
     def __getnewargs__(self):
         return ()

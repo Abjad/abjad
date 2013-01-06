@@ -42,7 +42,7 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
 
     ::
 
-        >>> f(first)
+        >>> f(first) # doctest: +SKIP
         \new Voice {
             \times 2/3 {
                 c'8 [ ]
@@ -51,7 +51,7 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
 
     ::
 
-        >>> f(second)
+        >>> f(second) # doctest: +SKIP
         \new Voice {
             \times 2/3 {
                 d'8 [
@@ -61,7 +61,7 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
 
     ::
 
-        >>> f(third)
+        >>> f(third) # doctest: +SKIP
         \new Voice {
             \times 2/3 {
                 f'8 [
