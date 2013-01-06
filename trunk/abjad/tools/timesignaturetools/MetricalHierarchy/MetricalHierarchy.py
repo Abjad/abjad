@@ -350,7 +350,7 @@ class MetricalHierarchy(AbjadObject):
 
         ::
 
-            >>> print metrical_hierarchy.graphviz_format
+            >>> print metrical_hierarchy.graphviz_format # doctest: +SKIP
             digraph G {
                 node_0 [label=5/4,
                     shape=triangle];
