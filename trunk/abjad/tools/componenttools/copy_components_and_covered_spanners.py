@@ -103,9 +103,9 @@ def copy_components_and_covered_spanners(components, n=1):
     assert componenttools.all_are_thread_contiguous_components(components)
 
     # copy components without spanners
-    new_components = copy.deepcopy(components)
-    #new_components = [component._copy_with_children_and_marks_but_without_spanners() for component in components]
-    #new_components = type(components)(new_components)
+    new_components = [
+        component._copy_with_children_and_marks_but_without_spanners() for component in components]
+    new_components = type(components)(new_components)
 
     # make schema of spanners covered by components
     schema = spannertools.make_covered_spanner_schema(components)
