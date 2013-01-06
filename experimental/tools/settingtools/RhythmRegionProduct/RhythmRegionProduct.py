@@ -37,9 +37,9 @@ class RhythmRegionProduct(RegionProduct):
 
     ### SPECIAL METHODS ###
 
-    # TODO: move up to RegionProduct?
     def __copy__(self, *args):
         new = type(self)(voice_name=self.voice_name, timespan=self.timespan)
+        # TODO: use copy.deepcopy() instead
         new._payload = componenttools.copy_components_and_covered_spanners([self.payload])[0]
         return new
 
