@@ -24,6 +24,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.graphviz_format
    :noindex:
 
+.. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.implied_time_signature
+   :noindex:
+
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.numerator
    :noindex:
 

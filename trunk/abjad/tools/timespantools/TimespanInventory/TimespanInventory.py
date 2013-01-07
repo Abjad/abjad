@@ -803,6 +803,76 @@ class TimespanInventory(ObjectInventory):
             timespans.append(timespan)
         self[:] = timespans
 
+    def translate(self, start_offset_translation=None, stop_offset_translation=None):
+        '''Translate timespans by `start_offset_translation`
+        and `stop_offset_translation`.
+
+        Example 1. Translate timespan start- and stop-offsets equally::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...    timespantools.Timespan(0, 3),
+            ...    timespantools.Timespan(3, 6),
+            ...    timespantools.Timespan(6, 10)])
+
+        ::
+
+            >>> timespan_inventory.translate(50, 50)
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(50, 1),
+                    stop_offset=durationtools.Offset(53, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(53, 1),
+                    stop_offset=durationtools.Offset(56, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(56, 1),
+                    stop_offset=durationtools.Offset(60, 1)
+                    )
+                ])
+
+        Example 2. Translate timespan stop-offsets only:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...    timespantools.Timespan(0, 3),
+            ...    timespantools.Timespan(3, 6),
+            ...    timespantools.Timespan(6, 10)])
+
+        ::
+
+            >>> timespan_inventory.translate(stop_offset_translation=20)
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(23, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(3, 1),
+                    stop_offset=durationtools.Offset(26, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(6, 1),
+                    stop_offset=durationtools.Offset(30, 1)
+                    )
+                ])
+
+        Alias of `translate_offsets`.
+
+        Operate in place and return none.
+        '''
+        return self.translate_offsets(start_offset_translation, stop_offset_translation)
+
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
         '''Translate timespans by `start_offset_translation`
         and `stop_offset_translation`.

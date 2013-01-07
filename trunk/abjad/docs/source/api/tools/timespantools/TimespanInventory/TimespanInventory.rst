@@ -119,6 +119,9 @@ Methods
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.stretch
    :noindex:
 
+.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.translate
+   :noindex:
+
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.translate_offsets
    :noindex:
 

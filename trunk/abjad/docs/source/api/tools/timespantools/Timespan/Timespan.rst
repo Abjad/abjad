@@ -216,6 +216,9 @@ Methods
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.stretch
    :noindex:
 
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.translate
+   :noindex:
+
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.translate_offsets
    :noindex:
 
