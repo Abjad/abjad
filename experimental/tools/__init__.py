@@ -1,6 +1,5 @@
 from abjad import *
 
-import breakpointtools
 import constrainttools
 import handlertools
 import helpertools
