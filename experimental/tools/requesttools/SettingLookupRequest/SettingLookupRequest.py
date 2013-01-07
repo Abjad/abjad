@@ -3,7 +3,7 @@ from experimental.tools import timeexpressiontools
 from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class CommandRequest(PayloadCallbackMixin):
+class SettingLookupRequest(PayloadCallbackMixin):
     r'''Command request.
 
     Request command active at `offset` in `voice_name`::
@@ -25,7 +25,7 @@ class CommandRequest(PayloadCallbackMixin):
     ::
 
         >>> z(command_request)
-        requesttools.DivisionCommandRequest(
+        requesttools.DivisionSettingLookupRequest(
             'Voice 1',
             timeexpressiontools.OffsetExpression(
                 anchor=selectortools.BackgroundMeasureSelector(

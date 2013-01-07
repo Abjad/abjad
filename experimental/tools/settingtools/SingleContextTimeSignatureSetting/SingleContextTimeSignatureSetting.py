@@ -30,7 +30,7 @@ class SingleContextTimeSignatureSetting(SingleContextSetting):
         # TODO: condense these to a single test!
         if isinstance(self.request, requesttools.AbsoluteRequest):
             time_signatures = self.request._get_payload(score_specification)
-        elif isinstance(self.request, requesttools.TimeSignatureCommandRequest):
+        elif isinstance(self.request, requesttools.TimeSignatureSettingLookupRequest):
             time_signatures = self.request._get_payload(score_specification)
         elif isinstance(self.request, selectortools.BackgroundMeasureSelector):
             time_signatures = self.request._get_payload(score_specification)

@@ -184,7 +184,7 @@ class OffsetExpression(AbjadObject):
         ::
 
             >>> z(request)
-            requesttools.DivisionCommandRequest(
+            requesttools.DivisionSettingLookupRequest(
                 'Voice 1',
                 timeexpressiontools.OffsetExpression(
                     anchor=timeexpressiontools.TimespanExpression(
@@ -196,7 +196,7 @@ class OffsetExpression(AbjadObject):
         Return command request.        
         '''
         from experimental.tools import requesttools
-        return requesttools.DivisionCommandRequest(voice, offset=self)
+        return requesttools.DivisionSettingLookupRequest(voice, offset=self)
 
     def look_up_rhythm_setting(self, voice):
         r'''PayloadCallbackMixin voice ``1`` rhythm command 
@@ -207,7 +207,7 @@ class OffsetExpression(AbjadObject):
         ::
 
             >>> z(request)
-            requesttools.RhythmCommandRequest(
+            requesttools.RhythmSettingLookupRequest(
                 'Voice 1',
                 timeexpressiontools.OffsetExpression(
                     anchor=timeexpressiontools.TimespanExpression(
@@ -219,7 +219,7 @@ class OffsetExpression(AbjadObject):
         Return command request.        
         '''
         from experimental.tools import requesttools
-        return requesttools.RhythmCommandRequest(voice, offset=self)
+        return requesttools.RhythmSettingLookupRequest(voice, offset=self)
 
     def look_up_time_signature_setting(self, voice):
         r'''PayloadCallbackMixin voice ``1`` time signature command
@@ -230,7 +230,7 @@ class OffsetExpression(AbjadObject):
         ::
 
             >>> z(request)
-            requesttools.TimeSignatureCommandRequest(
+            requesttools.TimeSignatureSettingLookupRequest(
                 'Voice 1',
                 timeexpressiontools.OffsetExpression(
                     anchor=timeexpressiontools.TimespanExpression(
@@ -242,4 +242,4 @@ class OffsetExpression(AbjadObject):
         Return command request.
         '''
         from experimental.tools import requesttools
-        return requesttools.TimeSignatureCommandRequest(voice, offset=self)
+        return requesttools.TimeSignatureSettingLookupRequest(voice, offset=self)

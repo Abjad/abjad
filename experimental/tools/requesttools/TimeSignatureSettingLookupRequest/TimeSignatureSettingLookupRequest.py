@@ -1,14 +1,14 @@
-from experimental.tools.requesttools.CommandRequest import CommandRequest
+from experimental.tools.requesttools.SettingLookupRequest import SettingLookupRequest
 
 
-class TimeSignatureCommandRequest(CommandRequest):
+class TimeSignatureSettingLookupRequest(SettingLookupRequest):
     '''Time signature command request.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, voice_name, offset, payload_callbacks=None):
-        CommandRequest.__init__(self, 'time_signatures', voice_name, offset,
+        SettingLookupRequest.__init__(self, 'time_signatures', voice_name, offset,
             payload_callbacks=payload_callbacks)
 
     ### PUBLIC METHODS ###

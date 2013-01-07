@@ -103,7 +103,7 @@ class ConcreteInterpreter(Interpreter):
                 result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.RhythmMakerRequest):
                 result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
-            elif isinstance(rhythm_command.request, requesttools.RhythmCommandRequest):
+            elif isinstance(rhythm_command.request, requesttools.RhythmSettingLookupRequest):
                 rhythm_maker = rhythm_command.request._get_payload(
                     self.score_specification, rhythm_command.request.voice_name)
                 result.append((rhythm_maker, division_list, start_offset, rhythm_command))

@@ -1,16 +1,16 @@
 from experimental.tools import timerelationtools
 from experimental.tools import timespantools
-from experimental.tools.requesttools.CommandRequest import CommandRequest
+from experimental.tools.requesttools.SettingLookupRequest import SettingLookupRequest
 
 
-class DivisionCommandRequest(CommandRequest):
+class DivisionSettingLookupRequest(SettingLookupRequest):
     '''Division command request.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, voice_name, offset, payload_callbacks=None):
-        CommandRequest.__init__(self, 'divisions', voice_name, offset,
+        SettingLookupRequest.__init__(self, 'divisions', voice_name, offset,
             payload_callbacks=payload_callbacks)
 
     ### PRIVATE METHODS ###

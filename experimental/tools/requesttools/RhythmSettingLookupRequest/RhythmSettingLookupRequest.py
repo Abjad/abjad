@@ -2,17 +2,17 @@ import copy
 from abjad.tools import rhythmmakertools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
-from experimental.tools.requesttools.CommandRequest import CommandRequest
+from experimental.tools.requesttools.SettingLookupRequest import SettingLookupRequest
 
 
-class RhythmCommandRequest(CommandRequest):
+class RhythmSettingLookupRequest(SettingLookupRequest):
     '''Rhythm command request.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, voice_name, offset, payload_callbacks=None):
-        CommandRequest.__init__(self, 'rhythm', voice_name, offset,
+        SettingLookupRequest.__init__(self, 'rhythm', voice_name, offset,
             payload_callbacks=payload_callbacks)
 
     ### PUBLIC METHODS ###

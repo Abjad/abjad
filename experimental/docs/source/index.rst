@@ -319,7 +319,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/requesttools/CommandRequest/CommandRequest
+      tools/requesttools/SettingLookupRequest/SettingLookupRequest
 
    --------
 
@@ -327,13 +327,13 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/requesttools/AbsoluteRequest/AbsoluteRequest
-      tools/requesttools/DivisionCommandRequest/DivisionCommandRequest
+      tools/requesttools/DivisionSettingLookupRequest/DivisionSettingLookupRequest
       tools/requesttools/HandlerRequest/HandlerRequest
-      tools/requesttools/RhythmCommandRequest/RhythmCommandRequest
       tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
+      tools/requesttools/RhythmSettingLookupRequest/RhythmSettingLookupRequest
       tools/requesttools/StatalServer/StatalServer
       tools/requesttools/StatalServerRequest/StatalServerRequest
-      tools/requesttools/TimeSignatureCommandRequest/TimeSignatureCommandRequest
+      tools/requesttools/TimeSignatureSettingLookupRequest/TimeSignatureSettingLookupRequest
 
 .. only:: latex
 
@@ -342,7 +342,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/requesttools/CommandRequest/CommandRequest
+      tools/requesttools/SettingLookupRequest/SettingLookupRequest
 
    Concrete Classes
    ----------------
@@ -350,13 +350,13 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/requesttools/AbsoluteRequest/AbsoluteRequest
-      tools/requesttools/DivisionCommandRequest/DivisionCommandRequest
+      tools/requesttools/DivisionSettingLookupRequest/DivisionSettingLookupRequest
       tools/requesttools/HandlerRequest/HandlerRequest
-      tools/requesttools/RhythmCommandRequest/RhythmCommandRequest
       tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
+      tools/requesttools/RhythmSettingLookupRequest/RhythmSettingLookupRequest
       tools/requesttools/StatalServer/StatalServer
       tools/requesttools/StatalServerRequest/StatalServerRequest
-      tools/requesttools/TimeSignatureCommandRequest/TimeSignatureCommandRequest
+      tools/requesttools/TimeSignatureSettingLookupRequest/TimeSignatureSettingLookupRequest
 
 :py:mod:`selectortools <experimental.tools.selectortools>`
 ==========================================================
