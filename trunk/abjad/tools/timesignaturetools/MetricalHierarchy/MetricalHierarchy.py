@@ -524,7 +524,7 @@ class MetricalHierarchy(AbjadObject):
         
             >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
             >>> kernel = metrical_hierarchy.generate_offset_kernel_to_denominator(8)
-            >>> for offset, weight in sorted(kernel.iteritems()):
+            >>> for offset, weight in sorted(kernel.kernel.iteritems()):
             ...     print '{}\t{}'.format(offset, weight)
             ...
             0       3/16
@@ -542,6 +542,7 @@ class MetricalHierarchy(AbjadObject):
         
         Return dictionary.
         '''
+        from abjad.tools import timesignaturetools
         assert mathtools.is_positive_integer_power_of_two(
             denominator / self.denominator)
 
@@ -571,4 +572,4 @@ class MetricalHierarchy(AbjadObject):
             for offset, response in kernel.iteritems():
                 kernel[offset] = durationtools.Multiplier(response, total)
         
-        return kernel
+        return timesignaturetools.MetricalKernel(kernel)

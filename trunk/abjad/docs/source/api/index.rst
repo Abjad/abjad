@@ -3635,6 +3635,7 @@ Core composition packages
 
       tools/timesignaturetools/MetricalHierarchy/MetricalHierarchy
       tools/timesignaturetools/MetricalHierarchyInventory/MetricalHierarchyInventory
+      tools/timesignaturetools/MetricalKernel/MetricalKernel
 
    --------
 
@@ -3654,6 +3655,7 @@ Core composition packages
 
       tools/timesignaturetools/MetricalHierarchy/MetricalHierarchy
       tools/timesignaturetools/MetricalHierarchyInventory/MetricalHierarchyInventory
+      tools/timesignaturetools/MetricalKernel/MetricalKernel
 
    Functions
    ---------
