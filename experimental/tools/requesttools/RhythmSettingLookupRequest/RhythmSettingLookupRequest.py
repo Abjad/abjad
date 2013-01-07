@@ -6,7 +6,7 @@ from experimental.tools.requesttools.SettingLookupRequest import SettingLookupRe
 
 
 class RhythmSettingLookupRequest(SettingLookupRequest):
-    '''Rhythm command request.
+    '''Rhythm setting lookup request.
     '''
 
     ### INITIALIZER ###
@@ -19,22 +19,20 @@ class RhythmSettingLookupRequest(SettingLookupRequest):
 
     def _get_payload(self, score_specification, voice_name):
         from experimental.tools import requesttools
+        from experimental.tools import settingtools
         requested_segment_identifier = self.offset.start_segment_identifier
         requested_offset = self.offset._get_offset(score_specification, voice_name)
         timespan_inventory = timespantools.TimespanInventory()
         for rhythm_region_command in score_specification.all_rhythm_region_commands:
-            if True:
-                if not rhythm_region_command.request == self:
-                    timespan_inventory.append(rhythm_region_command)
+            if not rhythm_region_command.request == self:
+                timespan_inventory.append(rhythm_region_command)
         timespan_time_relation = timerelationtools.offset_happens_during_timespan(offset=requested_offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_time_relation)
-        #segment_specification = self.get_start_segment_specification(requested_segment_identifier)
         segment_specification = score_specification[requested_segment_identifier]
         source_command = segment_specification._get_first_element_in_expr_by_parentage(
             candidate_commands, self.voice_name, include_improper_parentage=True)
         assert source_command is not None
-        #self._debug(source_command, 'source_command')
-        absolute_request = source_command.request
+        assert isinstance(source_command, settingtools.RegionCommand)
         assert isinstance(source_command.request, requesttools.RhythmMakerRequest)
         assert isinstance(source_command.request.payload, rhythmmakertools.RhythmMaker)
         rhythm_maker = copy.deepcopy(source_command.request.payload)

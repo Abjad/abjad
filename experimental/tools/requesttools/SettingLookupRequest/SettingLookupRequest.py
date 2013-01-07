@@ -4,45 +4,19 @@ from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallback
 
 
 class SettingLookupRequest(PayloadCallbackMixin):
-    r'''Command request.
+    r'''Setting lookup request.
 
-    Request command active at `offset` in `voice_name`::
+    Look up `attribute` setting active at `offset` in `voice_name`.
 
-        >>> from experimental.tools import *
+    Setting is assumed to resolve to a list or other iterable.
 
-    Example. Request division command active at start of measure 4 in ``'Voice 1'``::
+    Because of this setting lookup requests afford payload callbacks.
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-        ...     staff_count=1)
-        >>> score_specification = specificationtools.ScoreSpecification(score_template)
-        >>> red_segment = score_specification.append_segment(name='red')
+    Composers create concrete setting lookup request classes during specification.
 
-    ::
+    Composers create concrete setting lookup request classes with lookup methods.
 
-        >>> measure = red_segment.select_background_measures('Voice 1')[4:5]
-        >>> command_request = measure.start_offset.look_up_division_setting('Voice 1')
-
-    ::
-
-        >>> z(command_request)
-        requesttools.DivisionSettingLookupRequest(
-            'Voice 1',
-            timeexpressiontools.OffsetExpression(
-                anchor=selectortools.BackgroundMeasureSelector(
-                    anchor='red',
-                    voice_name='Voice 1',
-                    payload_callbacks=settingtools.CallbackInventory([
-                        'result = self.___getitem__(elements, start_offset, slice(4, 5, None))'
-                        ])
-                    )
-                )
-            )
-
-    Command requested is canonically assumed to be a list or other iterable.
-
-    Because of this the request affords payload callbacks.
-
-    Purpose of a command request is to function as a setting source.
+    All lookup methods implement against ``OffsetExpression``.
     '''
 
     ### INITIALIZER ###
@@ -65,10 +39,7 @@ class SettingLookupRequest(PayloadCallbackMixin):
 
     @property
     def attribute(self):
-        '''Command request attribute specified by user.
-
-            >>> command_request.attribute
-            'divisions'
+        '''Setting lookup request attribute.
 
         Return string.
         '''
@@ -78,27 +49,13 @@ class SettingLookupRequest(PayloadCallbackMixin):
     def start_segment_identifier(self):
         '''Delegate to ``self.offset.start_segment_identifier``.
 
-            >>> command_request.start_segment_identifier
-            'red'
-
         Return string or none.
         '''
         return self.offset.start_segment_identifier
 
     @property
     def offset(self):
-        '''Command request offset specified by user.
-
-            >>> z(command_request.offset)
-            timeexpressiontools.OffsetExpression(
-                anchor=selectortools.BackgroundMeasureSelector(
-                    anchor='red',
-                    voice_name='Voice 1',
-                    payload_callbacks=settingtools.CallbackInventory([
-                        'result = self.___getitem__(elements, start_offset, slice(4, 5, None))'
-                        ])
-                    )
-                )
+        '''Setting lookup request offset.
 
         Return offset expression.
         '''
@@ -106,10 +63,7 @@ class SettingLookupRequest(PayloadCallbackMixin):
 
     @property
     def voice_name(self):
-        '''Command request voice name specified by user.
-
-            >>> command_request.voice_name
-            'Voice 1'
+        '''Setting lookup request voice name.
 
         Return string.
         '''

@@ -4,7 +4,40 @@ from experimental.tools.requesttools.SettingLookupRequest import SettingLookupRe
 
 
 class DivisionSettingLookupRequest(SettingLookupRequest):
-    '''Division command request.
+    '''Division setting lookup request.
+
+    Example. Look up division setting active at start of measure 4 in ``'Voice 1'``::
+
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=1)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template)
+        >>> red_segment = score_specification.append_segment(name='red')
+
+    ::
+
+        >>> measure = red_segment.select_background_measures('Voice 1')[4:5]
+        >>> setting = measure.start_offset.look_up_division_setting('Voice 1')
+
+    ::
+
+        >>> z(setting)
+        requesttools.DivisionSettingLookupRequest(
+            'Voice 1',
+            timeexpressiontools.OffsetExpression(
+                anchor=selectortools.BackgroundMeasureSelector(
+                    anchor='red',
+                    voice_name='Voice 1',
+                    payload_callbacks=settingtools.CallbackInventory([
+                        'result = self.___getitem__(elements, start_offset, slice(4, 5, None))'
+                        ])
+                    )
+                )
+            )
+
+    Composers create division setting lookup requests during specification time.
+
+    Composers create division setting lookup requests through a method
+    implemented on ``OffsetExpression``.
     '''
 
     ### INITIALIZER ###
