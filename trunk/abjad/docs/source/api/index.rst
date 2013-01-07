@@ -3644,6 +3644,7 @@ Core composition packages
 
       tools/timesignaturetools/duration_and_possible_denominators_to_time_signature
       tools/timesignaturetools/establish_metrical_hierarchy
+      tools/timesignaturetools/fit_metrical_hierarchies_to_expr
       tools/timesignaturetools/make_gridded_test_rhythm
 
 .. only:: latex
@@ -3664,6 +3665,7 @@ Core composition packages
 
       tools/timesignaturetools/duration_and_possible_denominators_to_time_signature
       tools/timesignaturetools/establish_metrical_hierarchy
+      tools/timesignaturetools/fit_metrical_hierarchies_to_expr
       tools/timesignaturetools/make_gridded_test_rhythm
 
 :py:mod:`timespantools <abjad.tools.timespantools>`
