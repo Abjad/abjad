@@ -2,12 +2,12 @@
     Even better will be to extend helpertools.write_test_output() to write 'X7 'instead of 'X 7'.
     Also remove 'series' from test file name.
 
-2.  Afford rhythm command request of parseable string. This will make ...
+2.  Afford rhythm setting lookup of parseable string. This will make ...
         red_segment.set_rhythm("c'32 [ c'16 c'16. ]", contexts=['Voice 1'])
         voice_1_rhythm_command = red_segment.timespan.start_offset.look_up_rhythm_setting('Voice 1')
         red_segment.set_rhythm(voice_1_rhythm_command, contexts=['Voice 2'])
     ... interpret correctly.
-    Then make X5 work with rhythm command request instead of rhythm request.
+    Then make X5 work with rhythm setting lookup instead of rhythm selector.
 
 3.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
@@ -67,15 +67,11 @@
     Make sure each implements a self._get_timespan_and_paylad() method.
     Make sure each also implement self._get_timesapn(), self._get_payload() methods.
 
-15. Is the idea of a 'region command' redundant? Is it the case that all commands
-    always define a region? This might be so if all commands always encompass a timespan.
-    Probably is redundant. But better to leave the redundancy in place until
-    the two different uses of 'command' disambiguate (ie, 'region command' 
-    versus 'command request'.)
+15. Is the idea of a 'region command' redundant?
 
-16. Clean up region expression docstrings and alphabetization.
+16. Clean up region product docstrings and alphabetization.
 
-17. Looks like callbacks stack may not be copied over from segment to segment for persistent settings.
+17. Looks like callback stacks may not be copied over from segment to segment for persistent settings.
     Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
 
 18. Possibly rename BackgroundMeasureSelector to TimeSignatureSelector.
@@ -143,7 +139,15 @@
 31. Add Timespan.translate() as syntactic sugar around Timespan.translate_offsets().
     Add TimespanInventory.translate() as syntactic sugar around TimespanInventory.translate_offsets().
 
-32. Maybe rename all request() methods to retrieve().
+32. Extract the look_up() methods to a separate LookupMethodMixin class.
+    Then have OffsetExpression inherit from LookupMethodMixin.
 
-33. Extract the request() methods to a separate RequestMethodMixin class.
-    Then have OffsetExpression inherit from this class.
+33. Maybe better name for RegionCommand is just TimespanScopedSetting.
+
+34. Change primary usage pattern from ...
+        score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+        score_specification = specificationtools.ScoreSpecification(score_template)
+    ... to ...
+        score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+        score_specification = settingtools.ScoreSpecificationInterface(score_template)
+    ... so that composers are always only ever interacting with interfaces.

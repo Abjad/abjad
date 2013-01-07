@@ -198,6 +198,8 @@ def test_schematic_examples__X_series_05():
     red_segment.set_rhythm("{ c'32 [ c'16 c'16. ] }", contexts=['Voice 1'])
     first_division = red_segment.select_divisions('Voice 1')[:1]
     voice_1_rhythmic_cell = first_division.select_leaves('Voice 1')
+    # TODO: make this line work
+    #voice_1_rhythmic_cell = first_division.start_offset.look_up_rhythm_setting('Voice 1')
     indicator = settingtools.RotationIndicator(Duration(-1, 32), fracture_spanners=False)
     red_segment.set_rhythm(voice_1_rhythmic_cell.rotate(indicator), contexts=['Voice 2'])
     indicator = settingtools.RotationIndicator(Duration(-2, 32), fracture_spanners=False)

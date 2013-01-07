@@ -33,9 +33,17 @@ class RhythmSettingLookupRequest(SettingLookupRequest):
             candidate_commands, self.voice_name, include_improper_parentage=True)
         assert source_command is not None
         assert isinstance(source_command, settingtools.RegionCommand)
-        assert isinstance(source_command.request, requesttools.RhythmMakerRequest)
-        assert isinstance(source_command.request.payload, rhythmmakertools.RhythmMaker)
-        rhythm_maker = copy.deepcopy(source_command.request.payload)
-        rhythm_maker, start_offset = self._apply_payload_callbacks(
-            rhythm_maker, source_command.timespan.start_offset)
-        return rhythm_maker
+        # TODO: the lack of symmtery between these two branches means either:
+        #   that the call to self._apply_payload_callbacks() is unnecessary, or
+        #   that the call must appear in both branches.
+        if isinstance(source_command.request, requesttools.RhythmMakerRequest):
+            assert isinstance(source_command.request.payload, rhythmmakertools.RhythmMaker)
+            rhythm_maker = copy.deepcopy(source_command.request.payload)
+            rhythm_maker, start_offset = self._apply_payload_callbacks(
+                rhythm_maker, source_command.timespan.start_offset)
+            return rhythm_maker
+        elif isinstance(source_command.request, requesttools.AbsoluteRequest):
+            assert isinstance(source_command.request.payload, str)
+            return source_command.request.payload
+        else:
+            raise TypeError(source_command.request)
