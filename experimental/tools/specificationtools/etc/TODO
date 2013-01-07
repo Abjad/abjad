@@ -133,18 +133,15 @@
 29. Maybe make TimespanCallbackMixin in parallel to PayloadCallbackMixin.
     This will migrate a bunch of code out of TimespanExpression into TimespanCallbackMixin.
 
-30. Implement self._copy_and_append_callback() on TimespanCallbackMixin.
-    (And implement beforehand on TimespanExpression before TimespanCallbackMixin breaks out.)
-
-31. Add Timespan.translate() as syntactic sugar around Timespan.translate_offsets().
+30. Add Timespan.translate() as syntactic sugar around Timespan.translate_offsets().
     Add TimespanInventory.translate() as syntactic sugar around TimespanInventory.translate_offsets().
 
-32. Extract the look_up() methods to a separate LookupMethodMixin class.
+31. Extract the look_up() methods to a separate LookupMethodMixin class.
     Then have OffsetExpression inherit from LookupMethodMixin.
 
-33. Maybe better name for RegionCommand is just TimespanScopedSetting.
+32. Maybe better name for RegionCommand is just TimespanScopedSetting.
 
-34. Change primary usage pattern from ...
+33. Change primary usage pattern from ...
         score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
         score_specification = specificationtools.ScoreSpecification(score_template)
     ... to ...

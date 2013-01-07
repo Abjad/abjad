@@ -101,6 +101,11 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
             assert start_offset <= stop_offset
         return timespantools.Timespan(start_offset, stop_offset)
         
+    def _copy_and_append_timespan_callback(self, callback):
+        result = copy.deepcopy(self)
+        result.timespan_callbacks.append(callback)
+        return result
+    
     def _divide_by_ratio(self, start_offset, stop_offset, ratio, the_part):
         original_start_offset, original_stop_offset = start_offset, stop_offset
         original_duration = original_stop_offset - original_start_offset
@@ -284,12 +289,10 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         if mathtools.is_positive_integer_equivalent_number(ratio):
             ratio = int(ratio) * [1]
         for part in range(len(ratio)):
-            new_timespan_expression = copy.deepcopy(self)
             timespan_callback = \
                 'self._divide_by_ratio(original_start_offset, original_stop_offset, {!r}, {!r})'
             timespan_callback = timespan_callback.format(ratio, part)
-            new_timespan_expression.timespan_callbacks.append(timespan_callback)
-            result.append(new_timespan_expression)
+            result.append(self._copy_and_append_timespan_callback(timespan_callback))
         return tuple(result)
 
     def scale(self, multiplier):
@@ -313,9 +316,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         timespan_callback = \
             'self._scale(original_start_offset, original_stop_offset, {!r})'
         timespan_callback = timespan_callback.format(multiplier)
-        result = copy.deepcopy(self)
-        result.timespan_callbacks.append(timespan_callback)
-        return result
+        return self._copy_and_append_timespan_callback(timespan_callback)
 
     def set_duration(self, duration):
         '''Set timespan duration to `duration`.
@@ -326,9 +327,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         timespan_callback = \
             'self._set_duration(original_start_offset, original_stop_offset, {!r})'
         timespan_callback = timespan_callback.format(duration)
-        result = copy.deepcopy(self)
-        result.timespan_callbacks.append(timespan_callback)
-        return result
+        return self._copy_and_append_timespan_callback(timespan_callback)
 
     def set_offsets(self, start_offset=None, stop_offset=None):
         '''Set timespan start offset to `start_offset`
@@ -343,9 +342,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         timespan_callback = \
             'self._set_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
         timespan_callback = timespan_callback.format(start_offset, stop_offset)
-        result = copy.deepcopy(self)
-        result.timespan_callbacks.append(timespan_callback)
-        return result
+        return self._copy_and_append_timespan_callback(timespan_callback)
 
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
         '''Translate timespan start offset by `start_offset_translation`
@@ -360,6 +357,4 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         timespan_callback = \
             'self._translate_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
         timespan_callback = timespan_callback.format(start_offset_translation, stop_offset_translation)
-        result = copy.deepcopy(self)
-        result.timespan_callbacks.append(timespan_callback)
-        return result
+        return self._copy_and_append_timespan_callback(timespan_callback)

@@ -100,7 +100,7 @@ class PayloadCallbackMixin(AbjadObject):
             elements, start_offset = evaluation_context['result']
         return elements, start_offset
 
-    def _copy_and_append_callback(self, callback):
+    def _copy_and_append_payload_callback(self, callback):
         result = copy.deepcopy(self)
         result.payload_callbacks.append(callback)
         return result
@@ -209,7 +209,7 @@ class PayloadCallbackMixin(AbjadObject):
             callback = \
                 'result = self._partition_by_ratio(elements, start_offset, {!r}, {!r})'
             callback = callback.format(ratio, part)
-            result.append(self._copy_and_append_callback(callback))
+            result.append(self._copy_and_append_payload_callback(callback))
         return tuple(result)
 
     def partition_by_ratio_of_durations(self, ratio):
@@ -219,7 +219,7 @@ class PayloadCallbackMixin(AbjadObject):
             callback = \
                 'result = self._partition_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
             callback = callback.format(ratio, part)
-            result.append(self._copy_and_append_callback(callback))
+            result.append(self._copy_and_append_payload_callback(callback))
         return tuple(result)
 
     def repeat_to_duration(self, duration):
@@ -227,20 +227,20 @@ class PayloadCallbackMixin(AbjadObject):
         '''
         duration = durationtools.Duration(duration)
         callback = 'result = self._repeat_to_duration(elements, {!r}, start_offset)'.format(duration)
-        return self._copy_and_append_callback(callback)
+        return self._copy_and_append_payload_callback(callback)
 
     def repeat_to_length(self, length):
         '''Return copy of request with appended callback.
         '''
         assert mathtools.is_nonnegative_integer(length)
         callback = 'result = self._repeat_to_length(elements, {!r}, start_offset)'.format(length)
-        return self._copy_and_append_callback(callback)
+        return self._copy_and_append_payload_callback(callback)
         
     def reverse(self):
         '''Return copy of request with appended callback.
         '''
         callback = 'result = self._reverse(elements, start_offset)'
-        return self._copy_and_append_callback(callback)
+        return self._copy_and_append_payload_callback(callback)
 
     def rotate(self, index):
         '''Return copy of request with appended callback.
@@ -248,4 +248,4 @@ class PayloadCallbackMixin(AbjadObject):
         from experimental.tools import settingtools
         assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
         callback = 'result = self._rotate(elements, {!r}, start_offset)'.format(index)    
-        return self._copy_and_append_callback(callback)
+        return self._copy_and_append_payload_callback(callback)
