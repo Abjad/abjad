@@ -6,11 +6,11 @@ from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallback
 class CommandRequest(PayloadCallbackMixin):
     r'''Command request.
 
-    PayloadCallbackMixin command active at `offset` in `voice_name`::
+    Request command active at `offset` in `voice_name`::
 
         >>> from experimental.tools import *
 
-    Example. PayloadCallbackMixin division command active at start of measure 4 in ``'Voice 1'``::
+    Example. Request division command active at start of measure 4 in ``'Voice 1'``::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
         ...     staff_count=1)
@@ -20,7 +20,7 @@ class CommandRequest(PayloadCallbackMixin):
     ::
 
         >>> measure = red_segment.select_background_measures('Voice 1')[4:5]
-        >>> command_request = measure.start_offset.request_division_command('Voice 1')
+        >>> command_request = measure.start_offset.look_up_division_setting('Voice 1')
 
     ::
 
@@ -40,8 +40,7 @@ class CommandRequest(PayloadCallbackMixin):
 
     Command requested is canonically assumed to be a list or other iterable.
 
-    Because of this the request affords list-manipulation attributes.
-    These are `index`, `count`.
+    Because of this the request affords payload callbacks.
 
     Purpose of a command request is to function as a setting source.
     '''

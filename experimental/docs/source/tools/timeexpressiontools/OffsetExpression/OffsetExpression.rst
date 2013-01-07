@@ -32,13 +32,13 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.request_division_command
+.. automethod:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_division_setting
    :noindex:
 
-.. automethod:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.request_rhythm_command
+.. automethod:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_rhythm_setting
    :noindex:
 
-.. automethod:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.request_time_signature_command
+.. automethod:: experimental.tools.timeexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_time_signature_setting
    :noindex:
 
 Special Methods

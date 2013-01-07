@@ -4,7 +4,7 @@
 
 2.  Afford rhythm command request of parseable string. This will make ...
         red_segment.set_rhythm("c'32 [ c'16 c'16. ]", contexts=['Voice 1'])
-        voice_1_rhythm_command = red_segment.timespan.start_offset.request_rhythm_command('Voice 1')
+        voice_1_rhythm_command = red_segment.timespan.start_offset.look_up_rhythm_setting('Voice 1')
         red_segment.set_rhythm(voice_1_rhythm_command, contexts=['Voice 2'])
     ... interpret correctly.
     Then make X5 work with rhythm command request instead of rhythm request.
@@ -142,3 +142,8 @@
 
 31. Add Timespan.translate() as syntactic sugar around Timespan.translate_offsets().
     Add TimespanInventory.translate() as syntactic sugar around TimespanInventory.translate_offsets().
+
+32. Maybe rename all request() methods to retrieve().
+
+33. Extract the request() methods to a separate RequestMethodMixin class.
+    Then have OffsetExpression inherit from this class.
