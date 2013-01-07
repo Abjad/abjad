@@ -396,6 +396,19 @@ class MetricalHierarchy(AbjadObject):
         return self.root_node.graphviz_format
 
     @property
+    def implied_time_signature(self):
+        '''Implied time signature:
+
+        ::
+
+            >>> timesignaturetools.MetricalHierarchy((4, 4)).implied_time_signature
+            TimeSignatureMark((4, 4))
+
+        Return TimeSignatureMark object.
+        '''
+        return contexttools.TimeSignatureMark(self.root_node.duration)
+
+    @property
     def numerator(self):
         r'''Beat hierarchy numerator::
 
