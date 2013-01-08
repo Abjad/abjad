@@ -118,7 +118,7 @@ def test_DivisionSelector__payload_callbacks_06():
     red_segment.set_rhythm(library.sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     red_divisions = red_segment.select_divisions('Voice 1')
-    red_divisions = red_divisions.reverse()
+    red_divisions = red_divisions.reflect()
     blue_segment.set_divisions(red_divisions)
     score = score_specification.interpret()
 

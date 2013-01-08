@@ -116,7 +116,7 @@ def test_SegmentSpecification__select_background_measures_from_past_06():
     red_segment.set_rhythm(library.sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.select_background_measures('Voice 1')
-    red_time_signatures = red_time_signatures.reverse()
+    red_time_signatures = red_time_signatures.reflect()
     blue_segment.set_time_signatures(red_time_signatures)
     score = score_specification.interpret()
 
@@ -137,7 +137,7 @@ def test_SegmentSpecification__select_background_measures_from_past_07():
     red_segment.set_rhythm(library.sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.select_background_measures('Voice 1')
-    red_time_signatures = red_time_signatures.reverse()
+    red_time_signatures = red_time_signatures.reflect()
     blue_segment.set_time_signatures(red_time_signatures)
     score = score_specification.interpret()
 
@@ -158,8 +158,8 @@ def test_SegmentSpecification__select_background_measures_from_past_08():
     red_segment.set_rhythm(library.sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.select_background_measures('Voice 1')
-    red_time_signatures = red_time_signatures.reverse()
-    red_time_signatures = red_time_signatures.reverse()
+    red_time_signatures = red_time_signatures.reflect()
+    red_time_signatures = red_time_signatures.reflect()
     blue_segment.set_time_signatures(red_time_signatures)
     score = score_specification.interpret()
 

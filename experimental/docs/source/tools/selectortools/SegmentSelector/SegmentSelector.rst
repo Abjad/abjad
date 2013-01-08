@@ -213,17 +213,17 @@ Methods
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
+.. automethod:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.reflect
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
 .. automethod:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.repeat_to_duration
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.repeat_to_length
-   :noindex:
-
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
-
-.. automethod:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.reverse
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`

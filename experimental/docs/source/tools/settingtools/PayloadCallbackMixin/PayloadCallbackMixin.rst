@@ -26,13 +26,13 @@ Methods
 .. automethod:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.partition_by_ratio_of_durations
    :noindex:
 
+.. automethod:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.reflect
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.repeat_to_duration
    :noindex:
 
 .. automethod:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.repeat_to_length
-   :noindex:
-
-.. automethod:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.reverse
    :noindex:
 
 .. automethod:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.rotate

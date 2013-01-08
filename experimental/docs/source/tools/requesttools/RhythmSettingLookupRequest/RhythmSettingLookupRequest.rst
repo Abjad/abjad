@@ -52,17 +52,17 @@ Methods
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.reflect
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
 .. automethod:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.repeat_to_duration
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.repeat_to_length
-   :noindex:
-
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
-
-.. automethod:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.reverse
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`

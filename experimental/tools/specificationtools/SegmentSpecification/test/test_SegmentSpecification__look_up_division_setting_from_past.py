@@ -36,7 +36,7 @@ def test_SegmentSpecification__look_up_division_setting_from_past_02():
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
     red_division_command = red_segment.timespan.start_offset.look_up_division_setting('Voice 1')
-    red_division_command = red_division_command.reverse()
+    red_division_command = red_division_command.reflect()
     blue_segment.set_divisions(red_division_command)
     score = score_specification.interpret()
 
@@ -58,7 +58,7 @@ def test_SegmentSpecification__look_up_division_setting_from_past_03():
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
     red_division_command = red_segment.timespan.start_offset.look_up_division_setting('Voice 1')
-    red_division_command = red_division_command.reverse()
+    red_division_command = red_division_command.reflect()
     blue_segment.set_divisions(red_division_command)
     score = score_specification.interpret()
 
@@ -80,8 +80,8 @@ def test_SegmentSpecification__look_up_division_setting_from_past_04():
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
     red_division_command = red_segment.timespan.start_offset.look_up_division_setting('Voice 1')
-    red_division_command = red_division_command.reverse()
-    red_division_command = red_division_command.reverse()
+    red_division_command = red_division_command.reflect()
+    red_division_command = red_division_command.reflect()
     blue_segment.set_divisions(red_division_command)
     score = score_specification.interpret()
 

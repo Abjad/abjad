@@ -52,17 +52,17 @@ Methods
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
+.. automethod:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.reflect
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
 .. automethod:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.repeat_to_duration
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.repeat_to_length
-   :noindex:
-
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
-
-.. automethod:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.reverse
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`

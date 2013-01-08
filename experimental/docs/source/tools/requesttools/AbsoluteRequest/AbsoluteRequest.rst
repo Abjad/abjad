@@ -31,17 +31,17 @@ Methods
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
+.. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.reflect
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
 .. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.repeat_to_duration
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.repeat_to_length
-   :noindex:
-
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
-
-.. automethod:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.reverse
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`

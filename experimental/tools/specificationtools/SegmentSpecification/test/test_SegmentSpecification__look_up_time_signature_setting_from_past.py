@@ -30,7 +30,7 @@ def test_SegmentSpecification__look_up_time_signature_setting_from_past_02():
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signature_command = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
-    red_time_signature_command = red_time_signature_command.reverse()
+    red_time_signature_command = red_time_signature_command.reflect()
     blue_segment.set_time_signatures(red_time_signature_command)
     score = score_specification.interpret()
 
@@ -49,7 +49,7 @@ def test_SegmentSpecification__look_up_time_signature_setting_from_past_03():
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signature_command = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
-    red_time_signature_command = red_time_signature_command.reverse()
+    red_time_signature_command = red_time_signature_command.reflect()
     blue_segment.set_time_signatures(red_time_signature_command)
     score = score_specification.interpret()
 
@@ -68,8 +68,8 @@ def test_SegmentSpecification__look_up_time_signature_setting_from_past_04():
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signature_command = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
-    red_time_signature_command = red_time_signature_command.reverse()
-    red_time_signature_command = red_time_signature_command.reverse()
+    red_time_signature_command = red_time_signature_command.reflect()
+    red_time_signature_command = red_time_signature_command.reflect()
     blue_segment.set_time_signatures(red_time_signature_command)
     score = score_specification.interpret()
 

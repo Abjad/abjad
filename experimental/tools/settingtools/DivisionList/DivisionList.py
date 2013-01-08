@@ -207,7 +207,7 @@ class DivisionList(BoundedObject):
         result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
         return result
 
-    def reverse(self):
+    def reflect(self):
         '''Operate in place and return none.
         '''
-        self.divisions.reverse()
+        self.divisions.reflect()

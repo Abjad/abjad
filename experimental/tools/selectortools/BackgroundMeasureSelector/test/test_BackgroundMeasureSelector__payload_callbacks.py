@@ -109,7 +109,7 @@ def test_BackgroundMeasureSelector__payload_callbacks_06():
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
     red_segment.set_rhythm(library.sixteenths)
     measures = red_segment.select_background_measures('Voice 1')
-    measures = measures.reverse()
+    measures = measures.reflect()
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures(measures)
     score = score_specification.interpret()

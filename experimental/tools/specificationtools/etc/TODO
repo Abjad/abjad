@@ -119,7 +119,7 @@
         leaves.partition_by_ratio_of_durations()
         leaves.repeat_to_duration()
         leaves.repeat_to_length()
-        leaves.reverse()
+        leaves.reflect()
         leaves.rotate()
 
 26. Author payload callback tests for all payload callbacks on an AbsoluteRequest.

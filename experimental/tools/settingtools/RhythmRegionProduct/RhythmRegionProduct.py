@@ -133,7 +133,7 @@ class RhythmRegionProduct(RegionProduct):
         assert stop_offset <= self.stop_offset
         self._set_stop_offset(stop_offset)
 
-    def reverse(self):
+    def reflect(self):
         '''Reverse rhythm.
 
         .. note:: add example.

@@ -36,7 +36,7 @@ def test_SegmentSpecification__look_up_rhythm_setting_from_past_02():
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
     red_rhythm_command = red_segment.timespan.start_offset.look_up_rhythm_setting('Voice 1')
-    red_rhythm_command = red_rhythm_command.reverse()
+    red_rhythm_command = red_rhythm_command.reflect()
     blue_segment.set_rhythm(red_rhythm_command)
     score = score_specification.interpret()
 
@@ -58,7 +58,7 @@ def test_SegmentSpecification__look_up_rhythm_setting_from_past_03():
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
     red_rhythm_command = red_segment.timespan.start_offset.look_up_rhythm_setting('Voice 1')
-    red_rhythm_command = red_rhythm_command.reverse()
+    red_rhythm_command = red_rhythm_command.reflect()
     blue_segment.set_rhythm(red_rhythm_command)
     score = score_specification.interpret()
 
@@ -80,8 +80,8 @@ def test_SegmentSpecification__look_up_rhythm_setting_from_past_04():
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
     red_rhythm_command = red_segment.timespan.start_offset.look_up_rhythm_setting('Voice 1')
-    red_rhythm_command = red_rhythm_command.reverse()
-    red_rhythm_command = red_rhythm_command.reverse()
+    red_rhythm_command = red_rhythm_command.reflect()
+    red_rhythm_command = red_rhythm_command.reflect()
     blue_segment.set_rhythm(red_rhythm_command)
     score = score_specification.interpret()
 

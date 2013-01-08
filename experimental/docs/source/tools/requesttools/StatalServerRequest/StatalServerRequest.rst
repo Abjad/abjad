@@ -35,17 +35,17 @@ Methods
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
+.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.reflect
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
 .. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.repeat_to_duration
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.repeat_to_length
-   :noindex:
-
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
-
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.reverse
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`

@@ -38,7 +38,7 @@ def test_SegmentSpecification__look_up_division_setting_from_past_between_voices
     red_segment.set_rhythm(library.sixteenths)
     blue_segment.set_time_signatures([(3, 8), (3, 8)])
     red_voice_2_division_command = red_segment.timespan.start_offset.look_up_division_setting('Voice 2')
-    red_voice_2_division_command = red_voice_2_division_command.reverse()
+    red_voice_2_division_command = red_voice_2_division_command.reflect()
     blue_segment.set_divisions(red_voice_2_division_command, contexts=['Voice 1'])
     score = score_specification.interpret()
 
@@ -61,7 +61,7 @@ def test_SegmentSpecification__look_up_division_setting_from_past_between_voices
     red_segment.set_rhythm(library.sixteenths)
     blue_segment.set_time_signatures([(3, 8), (3, 8)])
     red_voice_2_division_command = red_segment.timespan.start_offset.look_up_division_setting('Voice 2')
-    red_voice_2_division_command = red_voice_2_division_command.reverse()
+    red_voice_2_division_command = red_voice_2_division_command.reflect()
     blue_segment.set_divisions(red_voice_2_division_command, contexts=['Voice 1'])
     score = score_specification.interpret()
 
@@ -84,8 +84,8 @@ def test_SegmentSpecification__look_up_division_setting_from_past_between_voices
     red_segment.set_rhythm(library.sixteenths)
     blue_segment.set_time_signatures([(3, 8), (3, 8)])
     red_voice_2_division_command = red_segment.timespan.start_offset.look_up_division_setting('Voice 2')
-    red_voice_2_division_command = red_voice_2_division_command.reverse()
-    red_voice_2_division_command = red_voice_2_division_command.reverse()
+    red_voice_2_division_command = red_voice_2_division_command.reflect()
+    red_voice_2_division_command = red_voice_2_division_command.reflect()
     blue_segment.set_divisions(red_voice_2_division_command, contexts=['Voice 1'])
     score = score_specification.interpret()
 

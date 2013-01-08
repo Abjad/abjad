@@ -38,7 +38,7 @@ def test_SegmentSpecification__select_rhythm_from_past_between_voices_02():
     red_segment.set_rhythm(library.sixteenths)
     blue_segment.set_time_signatures([(3, 8), (3, 8)])
     red_voice_2_rhythm = red_segment.select_leaves('Voice 2')
-    red_voice_2_rhythm = red_voice_2_rhythm.reverse()
+    red_voice_2_rhythm = red_voice_2_rhythm.reflect()
     blue_segment.set_rhythm(red_voice_2_rhythm, contexts=['Voice 1'])
     score = score_specification.interpret()
 
@@ -61,7 +61,7 @@ def test_SegmentSpecification__select_rhythm_from_past_between_voices_03():
     red_segment.set_rhythm(library.sixteenths)
     blue_segment.set_time_signatures([(3, 8), (3, 8)])
     red_voice_2_rhythm = red_segment.select_leaves('Voice 2')
-    red_voice_2_rhythm = red_voice_2_rhythm.reverse()
+    red_voice_2_rhythm = red_voice_2_rhythm.reflect()
     blue_segment.set_rhythm(red_voice_2_rhythm, contexts=['Voice 1'])
     score = score_specification.interpret()
 
@@ -84,8 +84,8 @@ def test_SegmentSpecification__select_rhythm_from_past_between_voices_04():
     red_segment.set_rhythm(library.sixteenths)
     blue_segment.set_time_signatures([(3, 8), (3, 8)])
     red_voice_2_rhythm = red_segment.select_leaves('Voice 2')
-    red_voice_2_rhythm = red_voice_2_rhythm.reverse()
-    red_voice_2_rhythm = red_voice_2_rhythm.reverse()
+    red_voice_2_rhythm = red_voice_2_rhythm.reflect()
+    red_voice_2_rhythm = red_voice_2_rhythm.reflect()
     blue_segment.set_rhythm(red_voice_2_rhythm, contexts=['Voice 1'])
     score = score_specification.interpret()
 

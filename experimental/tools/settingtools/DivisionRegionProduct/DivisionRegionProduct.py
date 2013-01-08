@@ -208,8 +208,8 @@ class DivisionRegionProduct(RegionProduct):
         result = type(self)(division_list, voice_name=self.voice_name, timespan=self.timespan)
         return result
 
-    def reverse(self):
-        self.payload.reverse()
+    def reflect(self):
+        self.payload.reflect()
 
     # TODO: remove code duplicated from Timespan
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):

@@ -108,7 +108,7 @@ def test_BeatSelector__payload_callbacks_06():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
     beats = red_segment.select_beats('Voice 1')
-    beats = beats.reverse()
+    beats = beats.reflect()
     red_segment.set_divisions(beats)
     red_segment.set_rhythm(library.sixteenths)
     score = score_specification.interpret()

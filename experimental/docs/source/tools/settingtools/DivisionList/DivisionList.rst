@@ -70,7 +70,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.DivisionList.DivisionList.DivisionList.new
    :noindex:
 
-.. automethod:: experimental.tools.settingtools.DivisionList.DivisionList.DivisionList.reverse
+.. automethod:: experimental.tools.settingtools.DivisionList.DivisionList.DivisionList.reflect
    :noindex:
 
 Special Methods

@@ -50,10 +50,10 @@ Methods
 
    Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`
 
-.. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.repeat_to_stop_offset
+.. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.reflect
    :noindex:
 
-.. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.reverse
+.. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.repeat_to_stop_offset
    :noindex:
 
 .. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.rotate
