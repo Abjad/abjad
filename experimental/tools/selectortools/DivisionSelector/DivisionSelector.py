@@ -67,7 +67,7 @@ class DivisionSelector(Selector):
         trimmed_division_region_products = copy.deepcopy(division_region_products)
         trimmed_division_region_products = timespantools.TimespanInventory(
             trimmed_division_region_products)
-        trimmed_division_region_products.keep_material_that_intersects_timespan(anchor_timespan)
+        trimmed_division_region_products.trim_to_timespan(anchor_timespan)
         trimmed_division_region_products.sort() 
         assert trimmed_division_region_products.all_are_contiguous
         trimmed_division_region_products = trimmed_division_region_products.fuse()

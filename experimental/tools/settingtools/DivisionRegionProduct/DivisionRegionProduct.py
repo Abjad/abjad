@@ -54,7 +54,7 @@ class DivisionRegionProduct(RegionProduct):
 
         ::
 
-            >>> expr.set_offsets(start_offset=(1, 16))
+            >>> result = expr.set_offsets(start_offset=(1, 16))
 
         ::
 
@@ -114,7 +114,7 @@ class DivisionRegionProduct(RegionProduct):
 
         ::
 
-            >>> expr.set_offsets(stop_offset=(11, 16))
+            >>> result = expr.set_offsets(stop_offset=(11, 16))
 
         ::
 
