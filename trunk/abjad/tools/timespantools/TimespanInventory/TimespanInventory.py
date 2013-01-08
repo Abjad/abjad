@@ -1,6 +1,7 @@
 import copy
 import math
 from abjad.tools import durationtools
+from abjad.tools import sequencetools
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 
 
@@ -185,6 +186,48 @@ class TimespanInventory(ObjectInventory):
             return self.stop_offset - self.start_offset
         else:
             return durationtools.Duration(0)
+
+    @property
+    def is_sorted(self):
+        '''True when timespans are in time order:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...    timespantools.Timespan(0, 3),
+            ...    timespantools.Timespan(3, 6),
+            ...    timespantools.Timespan(6, 10)])
+
+        ::
+
+            >>> timespan_inventory.is_sorted
+            True
+
+        Otherwise false:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...    timespantools.Timespan(0, 3),
+            ...    timespantools.Timespan(6, 10),
+            ...    timespantools.Timespan(3, 6)])
+
+        ::
+
+            >>> timespan_inventory.is_sorted
+            False
+    
+        Return boolean.
+        '''
+        if len(self) < 2:
+            return True
+        for left_timespan, right_timespan in sequencetools.iterate_sequence_pairwise_strict(self):
+            if right_timespan.start_offset < left_timespan.start_offset:
+                return False
+            if left_timespan.start_offset == right_timespan.start_offset:
+                if right_timespan.stop_offset < left_timespan.stop_offset:
+                    return False
+        return True
 
     @property
     def start_offset(self):
@@ -472,6 +515,7 @@ class TimespanInventory(ObjectInventory):
 
         Emit newly constructed timespan inventory.
         '''
+        assert self.is_sorted
         stop_offset = durationtools.Offset(stop_offset)
         assert self.stop_offset <= stop_offset
         current_timespan_index = 0
