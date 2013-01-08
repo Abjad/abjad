@@ -183,6 +183,10 @@ class Timespan(BoundedObject):
         timespan = type(self)(new_start_offset, new_stop_offset)
         return timespantools.TimespanInventory([timespan])
 
+    # NEXT TODO: implement setminus
+    def __sub__(self, expr):
+        pass
+
     def __xor__(self, expr):
         '''Logical AND of two timespans:
 
