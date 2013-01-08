@@ -312,22 +312,21 @@ class Timespan(BoundedObject):
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_overlaps_stop_of_timespan_1(timespan, self)
     
-    # TODO: change name to self.reflect()
-    def reverse(self, axis=None):
+    def reflect(self, axis=None):
         '''Reverse timespan about `axis`.
 
         Example 1. Reverse timespan about timespan axis:
 
         ::
 
-            >>> timespantools.Timespan(3, 6).reverse()
+            >>> timespantools.Timespan(3, 6).reflect()
             Timespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
 
         Example 2. Reverse timespan about arbitrary axis:
 
         ::
 
-            >>> timespantools.Timespan(3, 6).reverse(axis=Offset(10))
+            >>> timespantools.Timespan(3, 6).reflect(axis=Offset(10))
             Timespan(start_offset=Offset(14, 1), stop_offset=Offset(17, 1))
 
         Emit newly constructed timespan.

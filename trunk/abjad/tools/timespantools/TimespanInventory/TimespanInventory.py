@@ -249,7 +249,7 @@ class TimespanInventory(ObjectInventory):
             self.repeat_to_stop_offset(stop_offset)
 
     def delete_material_that_intersects_timespan(self, timespan_2):
-        '''Operate in place and return none.
+        '''Operate in place and return timespan inventory.
 
         .. note:: function does not yet work on (pure) TimespanInventory objects.
                   function works on only TimespanInventory subclasses.
@@ -488,8 +488,7 @@ class TimespanInventory(ObjectInventory):
                 new_timespan_inventory[-1] = new_timespan_inventory[-1].set_offsets(stop_offset=stop_offset)
         return new_timespan_inventory
 
-    # TODO: change name to self.reflect()
-    def reverse(self, axis=None):
+    def reflect(self, axis=None):
         '''Reflect timespans.
 
         Example 1. Reflect timespans about timespan inventory axis:
@@ -503,7 +502,7 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> timespan_inventory.reverse()
+            >>> result = timespan_inventory.reflect()
 
         ::
 
@@ -534,7 +533,7 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> timespan_inventory.reverse(axis=Offset(15))
+            >>> result = timespan_inventory.reflect(axis=Offset(15))
 
         ::
 
@@ -554,16 +553,17 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Operate in place and return none.
+        Operate in place and return timespan inventory.
         '''
         if axis is None:
             axis = self.axis
         timespans = []
         for timespan in self:
-            timespan = timespan.reverse(axis=axis)
+            timespan = timespan.reflect(axis=axis)
             timespans.append(timespan)
         timespans.reverse()
         self[:] = timespans
+        return self
 
     def rotate(self, count):
         '''Rotate by `count` contiguous timespans.
@@ -579,7 +579,7 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> timespan_inventory.rotate(-1)
+            >>> result = timespan_inventory.rotate(-1)
 
         ::
 
@@ -610,7 +610,7 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> timespan_inventory.rotate(1)
+            >>> result = timespan_inventory.rotate(1)
 
         ::
 
@@ -630,7 +630,7 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Operate in place and return none.
+        Operate in place and return timespan inventory.
         '''
         assert isinstance(count, int)
         assert self.all_are_contiguous
@@ -655,9 +655,10 @@ class TimespanInventory(ObjectInventory):
             translated_left_timespans.append(translated_left_timespan)
         new_timespans = translated_right_timespans + translated_left_timespans
         self[:] = new_timespans
+        return self
 
     def scale(self, multiplier, anchor=Left):
-        '''Scale timespan durations by `multiplier` relative to `anchor`. 
+        '''Scale timespan by `multiplier` relative to `anchor`. 
 
         Example 1. Scale timespans relative to timespan inventory start offset:
 
@@ -670,7 +671,7 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> timespan_inventory.scale(2)
+            >>> result = timespan_inventory.scale(2)
 
         ::
 
@@ -699,7 +700,7 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> timespan_inventory.scale(2, anchor=Right)
+            >>> result = timespan_inventory.scale(2, anchor=Right)
 
         ::
 
@@ -719,16 +720,17 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Operate in place and return none.
+        Operate in place and return timespan inventory.
         '''
         timespans = []
         for timespan in self:
             timespan = timespan.scale(multiplier, anchor=anchor)
             timespans.append(timespan)
         self[:] = timespans
+        return self
 
     def stretch(self, multiplier, anchor=None):
-        '''Stretch inventory timespans by `multiplier` relative to `anchor`.
+        '''Stretch timespans by `multiplier` relative to `anchor`.
 
         Example 1: Stretch timespans relative to timespan inventory start offset:
 
@@ -741,7 +743,7 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> timespan_inventory.stretch(2)
+            >>> result = timespan_inventory.stretch(2)
 
         ::
 
@@ -773,7 +775,7 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> timespan_inventory.stretch(2, anchor=Offset(8))
+            >>> result = timespan_inventory.stretch(2, anchor=Offset(8))
 
         ::
 
@@ -793,7 +795,7 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Operate in place and return none.
+        Operate in place and return timespan inventory.
         '''
         timespans = []
         if anchor is None:
@@ -802,6 +804,7 @@ class TimespanInventory(ObjectInventory):
             timespan = timespan.stretch(multiplier, anchor)
             timespans.append(timespan)
         self[:] = timespans
+        return self
 
     def translate(self, translation=None):
         '''Translate timespans by `translation`.
@@ -815,7 +818,7 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> timespan_inventory.translate(50)
+            >>> result = timespan_inventory.translate(50)
 
         ::
 
@@ -835,7 +838,7 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Operate in place and return none.
+        Operate in place and return timespan inventory.
         '''
         return self.translate_offsets(translation, translation)
 
@@ -852,7 +855,7 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> timespan_inventory.translate_offsets(50, 50)
+            >>> result = timespan_inventory.translate_offsets(50, 50)
 
         ::
 
@@ -883,7 +886,7 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> timespan_inventory.translate_offsets(stop_offset_translation=20)
+            >>> result = timespan_inventory.translate_offsets(stop_offset_translation=20)
 
         ::
 
@@ -903,10 +906,11 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Operate in place and return none.
+        Operate in place and return timespan inventory.
         '''
         timespans = []
         for timespan in self:
             timespan = timespan.translate_offsets(start_offset_translation, stop_offset_translation)
             timespans.append(timespan)
         self[:] = timespans
+        return self
