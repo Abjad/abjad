@@ -56,6 +56,10 @@ def test_function_name_to_title_lines(test_function_name):
         title_lines.append(' '.join(right_parts))
     else:
         title_words = ' '.join(parts)
-        title = '{} {}'.format(title_words, test_number)
+        if 'schematic example' in title_words:
+            space = ''
+        else:
+            space = ' '
+        title = '{}{}{}'.format(title_words, space, test_number)
         title_lines.append(title)
     return title_lines
