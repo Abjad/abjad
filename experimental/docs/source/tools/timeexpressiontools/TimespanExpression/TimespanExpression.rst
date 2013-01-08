@@ -415,6 +415,11 @@ Methods
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.translate
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.translate_offsets
    :noindex:
 

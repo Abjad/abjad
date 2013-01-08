@@ -475,6 +475,11 @@ Methods
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. automethod:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.translate
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.translate_offsets
    :noindex:
 
