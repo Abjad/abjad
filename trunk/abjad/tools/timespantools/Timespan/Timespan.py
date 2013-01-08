@@ -600,22 +600,19 @@ class Timespan(BoundedObject):
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_stops_when_timespan_1_stops(timespan, self)
 
-    def translate(self, start_offset_translation=None, stop_offset_translation=None):
-        '''Translate timespan start offset by `start_offset_translation` and
-        stop offset by `stop_offset_translation`::
+    def translate(self, translation=None):
+        '''Translate timespan by `translation`.
 
-            >>> timespan = timespantools.Timespan((1, 2), (3, 2)) 
+            >>> timespan = timespantools.Timespan(5, 10)
 
         ::
 
-            >>> timespan.translate(start_offset_translation=Duration(-1, 8))
-            Timespan(start_offset=Offset(3, 8), stop_offset=Offset(3, 2))
-
-        Alias of `translate_offsets`.
+            >>> timespan.translate(2)
+            Timespan(start_offset=Offset(7, 1), stop_offset=Offset(12, 1))
 
         Emit newly constructed timespan.
         '''
-        return self.translate_offsets(start_offset_translation, stop_offset_translation)
+        return self.translate_offsets(translation, translation)
 
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
         '''Translate timespan start offset by `start_offset_translation` and
