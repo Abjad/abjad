@@ -41,6 +41,31 @@ class Timespan(BoundedObject):
 
     ### SPECIAL METHODS ###
 
+    def __and__(self, expr):
+        from abjad.tools import timespantools
+        expr = self._get_timespan(expr)
+        if not self.intersects_timespan(expr):
+            return timespantools.TimespanInventory()
+        if self.start_offset < expr.start_offset:
+            left, right = self, expr
+        else:
+            left, right = expr, self
+
+        print left
+        print right
+        
+        if left.start_offset < right.start_offset:
+            new_start_offset = right.start_offset
+        else:
+            new_start_offset = left.start_offset
+        if left.stop_offset <= right.stop_offset:
+            new_stop_offset = left.stop_offset
+        else:
+            new_stop_offset = right.stop_offset
+
+        timespan = type(self)(new_start_offset, new_stop_offset)
+        return timespantools.TimespanInventory([timespan])
+
     def __eq__(self, timespan):
         '''True when `timespan` is a timespan with equal offsets::
 
@@ -81,6 +106,18 @@ class Timespan(BoundedObject):
         return not self == timespan
 
     ### PRIVATE METHODS ###
+
+    def _get_offsets(self, expr):
+        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+            return expr.start_offset, expr.stop_offset
+        elif hasattr(expr, 'timespan'):
+            return expr.timespan.offsets
+        else:
+            raise TypeError(expr)
+
+    def _get_timespan(self, expr):
+        start_offset, stop_offset = self._get_offsets(expr)
+        return type(self)(start_offset, stop_offset)
 
     def _initialize_offset(self, offset):
         if offset is not None:
