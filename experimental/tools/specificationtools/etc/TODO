@@ -147,3 +147,6 @@
     An Expression functions as an object-oriented record of specification-choices made by the composer.
     So perhaps the vast majority of the things composers do at specification-time (ie, everything)
     should result in the system storing (and subsequently interpreting) Expressions (rather than other classes).
+
+32. Add test to show this:
+        setting = score_specification.get_offset(32, 5).look_up_rhythm_setting('Voice 1')
