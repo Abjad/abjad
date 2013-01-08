@@ -194,9 +194,9 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...    timespantools.Timespan(0, 3),
-            ...    timespantools.Timespan(3, 6),
-            ...    timespantools.Timespan(6, 10)])
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10)])
 
         ::
 
@@ -208,9 +208,9 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...    timespantools.Timespan(0, 3),
-            ...    timespantools.Timespan(6, 10),
-            ...    timespantools.Timespan(3, 6)])
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(6, 10),
+            ...     timespantools.Timespan(3, 6)])
 
         ::
 
@@ -478,18 +478,23 @@ class TimespanInventory(ObjectInventory):
             else:
                 raise ValueError
 
-    # TODO: operate in place
     def repeat_to_stop_offset(self, stop_offset):
-        '''Copy timespans in inventory and repeat to `stop_offset`.
-
-            >>> example_inventory = timespantools.TimespanInventory()
-            >>> example_inventory.append(timespantools.Timespan(0, 3))
-            >>> example_inventory.append(timespantools.Timespan(3, 6))
-            >>> example_inventory.append(timespantools.Timespan(6, 10))
+        '''Repeat timespans to `stop_offset`:
 
         ::
 
-            >>> z(example_inventory.repeat_to_stop_offset(15))
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10)])
+
+        ::
+
+            >>> result = timespan_inventory.repeat_to_stop_offset(15)
+
+        ::
+
+            >>> z(timespan_inventory)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -513,24 +518,22 @@ class TimespanInventory(ObjectInventory):
                     )
                 ])
 
-        Emit newly constructed timespan inventory.
+        Operate in place and return timespan inventory.
         '''
         assert self.is_sorted
         stop_offset = durationtools.Offset(stop_offset)
         assert self.stop_offset <= stop_offset
         current_timespan_index = 0
-        new_timespan_inventory = copy.deepcopy(self)
-        new_timespan_inventory.sort()
-        if new_timespan_inventory:
-            while new_timespan_inventory.stop_offset < stop_offset:
-                new_timespan = copy.deepcopy(new_timespan_inventory[current_timespan_index])
-                translation = new_timespan_inventory.stop_offset - new_timespan.start_offset
-                new_timespan = new_timespan.translate_offsets(translation, translation)
-                new_timespan_inventory.append(new_timespan)
+        if self:
+            while self.stop_offset < stop_offset:
+                current_timespan = self[current_timespan_index]
+                translation = self.stop_offset - current_timespan.start_offset
+                new_timespan = current_timespan.translate(translation)
+                self.append(new_timespan)
                 current_timespan_index += 1
-            if stop_offset < new_timespan_inventory.stop_offset:
-                new_timespan_inventory[-1] = new_timespan_inventory[-1].set_offsets(stop_offset=stop_offset)
-        return new_timespan_inventory
+            if stop_offset < self.stop_offset:
+                self[-1] = self[-1].set_offsets(stop_offset=stop_offset)
+        return self
 
     def reflect(self, axis=None):
         '''Reflect timespans.
@@ -540,9 +543,9 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...    timespantools.Timespan(0, 3),
-            ...    timespantools.Timespan(3, 6),
-            ...    timespantools.Timespan(6, 10)])
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10)])
 
         ::
 
@@ -571,9 +574,9 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...    timespantools.Timespan(0, 3),
-            ...    timespantools.Timespan(3, 6),
-            ...    timespantools.Timespan(6, 10)])
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10)])
 
         ::
 
@@ -617,9 +620,9 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...    timespantools.Timespan(0, 3),
-            ...    timespantools.Timespan(3, 4),
-            ...    timespantools.Timespan(4, 10)])
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 4),
+            ...     timespantools.Timespan(4, 10)])
 
         ::
 
@@ -648,9 +651,9 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...    timespantools.Timespan(0, 3),
-            ...    timespantools.Timespan(3, 4),
-            ...    timespantools.Timespan(4, 10)])
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 4),
+            ...     timespantools.Timespan(4, 10)])
 
         ::
 
@@ -709,9 +712,9 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...    timespantools.Timespan(0, 3),
-            ...    timespantools.Timespan(3, 6),
-            ...    timespantools.Timespan(6, 10)])
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10)])
 
         ::
 
@@ -738,9 +741,9 @@ class TimespanInventory(ObjectInventory):
         Example 2. Scale timespans relative to timespan inventory stop offset:
 
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...    timespantools.Timespan(0, 3),
-            ...    timespantools.Timespan(3, 6),
-            ...    timespantools.Timespan(6, 10)])
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10)])
 
         ::
 
@@ -781,9 +784,9 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...    timespantools.Timespan(0, 3),
-            ...    timespantools.Timespan(3, 6),
-            ...    timespantools.Timespan(6, 10)])
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10)])
 
         ::
 
@@ -812,9 +815,9 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...    timespantools.Timespan(0, 3),
-            ...    timespantools.Timespan(3, 6),
-            ...    timespantools.Timespan(6, 10)])
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10)])
 
 
         ::
@@ -856,9 +859,9 @@ class TimespanInventory(ObjectInventory):
         Example 1. Translate timespan by offset ``50``::.
 
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...    timespantools.Timespan(0, 3),
-            ...    timespantools.Timespan(3, 6),
-            ...    timespantools.Timespan(6, 10)])
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10)])
 
         ::
 
@@ -893,9 +896,9 @@ class TimespanInventory(ObjectInventory):
         Example 1. Translate timespan start- and stop-offsets equally::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...    timespantools.Timespan(0, 3),
-            ...    timespantools.Timespan(3, 6),
-            ...    timespantools.Timespan(6, 10)])
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10)])
 
         ::
 
@@ -924,9 +927,9 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...    timespantools.Timespan(0, 3),
-            ...    timespantools.Timespan(3, 6),
-            ...    timespantools.Timespan(6, 10)])
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10)])
 
         ::
 
