@@ -308,23 +308,9 @@ class TimespanInventory(ObjectInventory):
                 timespan.set_offsets(start_offset=timespan_2.stop_offset)
             elif timespan_2.contains_timespan_improperly(timespan):
                 self.remove(timespan)
-#        new_timespans = []
-#        for timespan in self:
-#            if timespan_2.curtails_timespan(timespan):
-#                new_timespan = timespan.set_offsets(stop_offset=timespan_2.start_offset)
-#                new_timespans.append(new_timespan)
-#            elif timespan_2.delays_timespan(timespan):
-#                new_timespan = timespan.set_offsets(start_offset=timespan_2.stop_offset)
-#                new_timespans.append(new_timespan)
-#            elif timespan_2.contains_timespan_improperly(timespan):
-#                pass
-#            else:
-#                new_timespan = copy.deepcopy(timespan)
-#                new_timespans.append(new_timespan)
-#        return type(self)(new_timespans)
 
     def fuse(self):
-        '''Fuse overlapping timespans in inventory:
+        '''Compute logical OR of timespans in inventory:
 
         ::
 
@@ -369,7 +355,9 @@ class TimespanInventory(ObjectInventory):
         return type(self)(new_timespans)
 
     def get_timespan_that_satisfies_time_relation(self, time_relation):
-        r'''Get timespan that satisifies `time_relation`::
+        r'''Get timespan that satisifies `time_relation`:
+
+        ::
 
             >>> timespan_1 = timespantools.Timespan(2, 5)
             >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
@@ -398,7 +386,9 @@ class TimespanInventory(ObjectInventory):
             raise Exception('missing timespan error.')
 
     def get_timespans_that_satisfy_time_relation(self, time_relation):
-        r'''Get timespans that satisfy `time_relation`::
+        r'''Get timespans that satisfy `time_relation`:
+
+        ::
 
             >>> timespan_1 = timespantools.Timespan(2, 8)
             >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
@@ -406,16 +396,24 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> timespans = timespan_inventory_1.get_timespans_that_satisfy_time_relation(time_relation)
+            >>> result = timespan_inventory_1.get_timespans_that_satisfy_time_relation(
+            ...     time_relation)
 
         ::
 
-            >>> for timespan in timespans:
-            ...     timespan
-            Timespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
-            Timespan(start_offset=Offset(6, 1), stop_offset=Offset(10, 1))
+            >>> z(result)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(3, 1),
+                    stop_offset=durationtools.Offset(6, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(6, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
 
-        Return list of ``0`` or more timespans.
+        Return new timespan inventory.
         '''
         from abjad.tools import timerelationtools
         result = []
@@ -428,10 +426,12 @@ class TimespanInventory(ObjectInventory):
                     result.append(timespan)
             else:
                 raise ValueError
-        return result
+        return type(self)(result)
 
     def has_timespan_that_satisfies_time_relation(self, time_relation):
-        r'''True when timespan inventory has timespan that satisfies `time_relation`::
+        r'''True when timespan inventory has timespan that satisfies `time_relation`:
+
+        ::
 
             >>> timespan_1 = timespantools.Timespan(2, 8)
             >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
@@ -442,7 +442,9 @@ class TimespanInventory(ObjectInventory):
             >>> timespan_inventory_1.has_timespan_that_satisfies_time_relation(time_relation)
             True
 
-        Otherwise false::
+        Otherwise false:
+
+        ::
 
             >>> timespan_1 = timespantools.Timespan(10, 20)
             >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
