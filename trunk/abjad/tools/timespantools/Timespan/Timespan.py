@@ -1,3 +1,4 @@
+import copy
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
@@ -42,27 +43,51 @@ class Timespan(BoundedObject):
     ### SPECIAL METHODS ###
 
     def __and__(self, expr):
+        '''Logical AND of two timespans:
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 12)
+            >>> timespan_3 = timespantools.Timespan(-2, 2)
+            >>> timespan_4 = timespantools.Timespan(10, 20)
+
+        ::
+
+            >>> timespan_1 & timespan_2
+            TimespanInventory([Timespan(start_offset=Offset(5, 1), stop_offset=Offset(10, 1))])
+
+        ::
+
+            >>> timespan_1 & timespan_3
+            TimespanInventory([Timespan(start_offset=Offset(0, 1), stop_offset=Offset(2, 1))])
+
+        ::
+
+            >>> timespan_1 & timespan_4
+            TimespanInventory([])
+
+        ::
+
+            >>> timespan_2 & timespan_3
+            TimespanInventory([])
+
+        ::
+
+            >>> timespan_2 & timespan_4
+            TimespanInventory([Timespan(start_offset=Offset(10, 1), stop_offset=Offset(12, 1))])
+
+        ::
+
+            >>> timespan_3 & timespan_4
+            TimespanInventory([])
+
+        Return timespan inventory.
+        '''
         from abjad.tools import timespantools
         expr = self._get_timespan(expr)
         if not self.intersects_timespan(expr):
             return timespantools.TimespanInventory()
-        if self.start_offset < expr.start_offset:
-            left, right = self, expr
-        else:
-            left, right = expr, self
-
-        print left
-        print right
-        
-        if left.start_offset < right.start_offset:
-            new_start_offset = right.start_offset
-        else:
-            new_start_offset = left.start_offset
-        if left.stop_offset <= right.stop_offset:
-            new_stop_offset = left.stop_offset
-        else:
-            new_stop_offset = right.stop_offset
-
+        new_start_offset = max(self.start_offset, expr.start_offset)
+        new_stop_offset = min(self.stop_offset, expr.stop_offset)
         timespan = type(self)(new_start_offset, new_stop_offset)
         return timespantools.TimespanInventory([timespan])
 
@@ -104,6 +129,175 @@ class Timespan(BoundedObject):
         Return boolean.
         '''
         return not self == timespan
+
+    def __or__(self, expr):
+        '''Logical OR of two timespans:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 12)
+            >>> timespan_3 = timespantools.Timespan(-2, 2)
+            >>> timespan_4 = timespantools.Timespan(10, 20)
+
+        ::
+
+            >>> timespan_1 | timespan_2
+            TimespanInventory([Timespan(start_offset=Offset(0, 1), stop_offset=Offset(12, 1))])
+
+        ::
+
+            >>> timespan_1 | timespan_3
+            TimespanInventory([Timespan(start_offset=Offset(-2, 1), stop_offset=Offset(10, 1))])
+
+        ::
+
+
+            >>> timespan_1 | timespan_4
+            TimespanInventory([Timespan(start_offset=Offset(0, 1), stop_offset=Offset(20, 1))])
+
+        ::
+
+            >>> timespan_2 | timespan_3
+            TimespanInventory([])
+
+        ::
+
+            >>> timespan_2 | timespan_4
+            TimespanInventory([Timespan(start_offset=Offset(5, 1), stop_offset=Offset(20, 1))])
+
+        ::
+
+            >>> timespan_3 | timespan_4
+            TimespanInventory([])
+
+        Return timespan inventory.
+        '''
+        from abjad.tools import timespantools
+        expr = self._get_timespan(expr)
+        if not self.intersects_timespan(expr) and \
+            not self.is_tangent_to_timespan(expr):
+            return timespantools.TimespanInventory()
+        new_start_offset = min(self.start_offset, expr.start_offset)
+        new_stop_offset = max(self.stop_offset, expr.stop_offset)
+        timespan = type(self)(new_start_offset, new_stop_offset)
+        return timespantools.TimespanInventory([timespan])
+
+    def __xor__(self, expr):
+        '''Logical AND of two timespans:
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 12)
+            >>> timespan_3 = timespantools.Timespan(-2, 2)
+            >>> timespan_4 = timespantools.Timespan(10, 20)
+
+        ::
+
+            >>> z(timespan_1 ^ timespan_2)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(5, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(10, 1),
+                    stop_offset=durationtools.Offset(12, 1)
+                    )
+                ])
+
+        ::
+
+            >>> z(timespan_1 ^ timespan_3)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(-2, 1),
+                    stop_offset=durationtools.Offset(0, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(2, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        ::
+
+            >>> z(timespan_1 ^ timespan_4)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(10, 1),
+                    stop_offset=durationtools.Offset(20, 1)
+                    )
+                ])
+
+        ::
+
+            >>> z(timespan_2 ^ timespan_3)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(12, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(-2, 1),
+                    stop_offset=durationtools.Offset(2, 1)
+                    )
+                ])
+
+        ::
+
+            >>> z(timespan_2 ^ timespan_4)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(12, 1),
+                    stop_offset=durationtools.Offset(20, 1)
+                    )
+                ])
+
+        ::
+
+            >>> z(timespan_3 ^ timespan_4)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(-2, 1),
+                    stop_offset=durationtools.Offset(2, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(10, 1),
+                    stop_offset=durationtools.Offset(20, 1)
+                    )
+                ])
+
+        Return timespan inventory.
+        '''
+        from abjad.tools import timespantools
+        expr = self._get_timespan(expr)
+        if not self.intersects_timespan(expr) or \
+            self.is_tangent_to_timespan(expr):
+            result = timespantools.TimespanInventory()
+            result.append(copy.deepcopy(self))
+            result.append(copy.deepcopy(expr))
+            return result
+        result = timespantools.TimespanInventory()
+        start_offsets = [self.start_offset, expr.start_offset]
+        stop_offsets = [self.stop_offset, expr.stop_offset]
+        start_offsets.sort()
+        stop_offsets.sort()
+        timespan_1 = type(self)(*start_offsets)
+        timespan_2 = type(self)(*stop_offsets)
+        if timespan_1.is_well_formed:
+            result.append(timespan_1)
+        if timespan_2.is_well_formed:
+            result.append(timespan_2)
+        result.sort()
+        return result
 
     ### PRIVATE METHODS ###
 
