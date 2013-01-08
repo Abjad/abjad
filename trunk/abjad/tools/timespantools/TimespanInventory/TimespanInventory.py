@@ -10,10 +10,10 @@ class TimespanInventory(ObjectInventory):
 
     Example 1::
 
-        >>> timespan_inventory_1 = timespantools.TimespanInventory()
-        >>> timespan_inventory_1.append(timespantools.Timespan(0, 3))
-        >>> timespan_inventory_1.append(timespantools.Timespan(3, 6))
-        >>> timespan_inventory_1.append(timespantools.Timespan(6, 10))
+        >>> timespan_inventory_1 = timespantools.TimespanInventory([
+        ...     timespantools.Timespan(0, 3),
+        ...     timespantools.Timespan(3, 6),
+        ...     timespantools.Timespan(6, 10)])
 
     ::
 
@@ -35,10 +35,10 @@ class TimespanInventory(ObjectInventory):
 
     Example 2::
 
-        >>> timespan_inventory_2 = timespantools.TimespanInventory()
-        >>> timespan_inventory_2.append(timespantools.Timespan(0, 10))
-        >>> timespan_inventory_2.append(timespantools.Timespan(3, 6))
-        >>> timespan_inventory_2.append(timespantools.Timespan(15, 20))
+        >>> timespan_inventory_2 = timespantools.TimespanInventory([
+        ...     timespantools.Timespan(0, 10),
+        ...     timespantools.Timespan(3, 6),
+        ...     timespantools.Timespan(15, 20)])
 
     ::
 
@@ -58,7 +58,9 @@ class TimespanInventory(ObjectInventory):
                 )
             ])
 
-    Example 3::
+    Example 3. Empty timespan inventory:
+
+    ::
 
         >>> timespan_inventory_3 = timespantools.TimespanInventory()
 
@@ -454,29 +456,6 @@ class TimespanInventory(ObjectInventory):
         Return boolean.
         '''
         return bool(self.get_timespans_that_satisfy_time_relation(time_relation))
-
-    # TODO: change to self.keep_material_that_satisfies_time_relation()
-    def keep_material_that_intersects_timespan(self, keep_timespan):
-        '''Operate in place.
-
-        .. note:: add example.
-
-        Return none.
-        '''
-        for timespan_1 in self[:]:
-            if keep_timespan.contains_timespan_improperly(timespan_1):
-                pass
-            elif not keep_timespan.intersects_timespan(timespan_1):
-                self.remove(timespan_1)
-            elif keep_timespan.delays_timespan(timespan_1):
-                timespan_1.set_offsets(stop_offset=keep_timespan.stop_offset)
-            elif keep_timespan.curtails_timespan(timespan_1):
-                timespan_1.set_offsets(start_offset=keep_timespan.start_offset)
-            elif keep_timespan.trisects_timespan(timespan_1):
-                timespan_1.set_offsets(start_offset=keep_timespan.start_offset)
-                timespan_1.set_offsets(stop_offset=keep_timespan.stop_offset)
-            else:
-                raise ValueError
 
     def repeat_to_stop_offset(self, stop_offset):
         '''Repeat timespans to `stop_offset`:
@@ -959,5 +938,59 @@ class TimespanInventory(ObjectInventory):
         for timespan in self:
             timespan = timespan.translate_offsets(start_offset_translation, stop_offset_translation)
             timespans.append(timespan)
+        self[:] = timespans
+        return self
+
+    def trim_to_timespan(self, timespan):
+        '''Keep material that intersects `timespan`:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10)])
+
+        ::  
+
+            >>> timespan = timespantools.Timespan(2, 7)
+            >>> result = timespan_inventory.trim_to_timespan(timespan)
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(2, 1),
+                    stop_offset=durationtools.Offset(3, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(3, 1),
+                    stop_offset=durationtools.Offset(6, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(6, 1),
+                    stop_offset=durationtools.Offset(7, 1)
+                    )
+                ])
+
+        Operate in place and return none.
+        '''
+        timespans = []
+        for current_timespan in self:
+            if timespan.contains_timespan_improperly(current_timespan):
+                pass
+            elif not timespan.intersects_timespan(current_timespan):
+                continue
+            elif timespan.delays_timespan(current_timespan):
+                current_timespan = current_timespan.set_offsets(stop_offset=timespan.stop_offset)
+            elif timespan.curtails_timespan(current_timespan):
+                current_timespan = current_timespan.set_offsets(start_offset=timespan.start_offset)
+            elif timespan.trisects_timespan(current_timespan):
+                current_timespan = current_timespan.set_offsets(*timespan.offsets)
+            else:
+                raise ValueError(current_timespan)
+            assert current_timespan is not None
+            timespans.append(current_timespan)
         self[:] = timespans
         return self
