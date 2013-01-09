@@ -51,6 +51,9 @@ Methods
 
    Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 
+.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.compute_logical_and
+   :noindex:
+
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.count
    :noindex:
 

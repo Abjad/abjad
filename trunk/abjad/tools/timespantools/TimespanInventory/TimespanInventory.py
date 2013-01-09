@@ -312,41 +312,106 @@ class TimespanInventory(ObjectInventory):
     def compute_logical_and(self):
         '''Compute logical AND of timespans.
 
+        Example 1:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 10)])
+
+        ::
+
+            >>> result = timespan_inventory.compute_logical_and()
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        Example 2:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 10),
+            ...     timespantools.Timespan(5, 12)])
+
+        ::
+
+            >>> result = timespan_inventory.compute_logical_and()
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        Example 3:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 10),
+            ...     timespantools.Timespan(5, 12),
+            ...     timespantools.Timespan(-2, 8)])
+
+        ::
+
+            >>> result = timespan_inventory.compute_logical_and()
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(8, 1)
+                    )
+                ])
+
+        Same as setwise intersection.
+
         Operate in place and return timespan inventory.
         '''
+        if 1 < len(self):
+            result = self[0]
+            for timespan in self:
+                if not timespan.intersects_timespan(result):
+                    self[:] = []
+                    return self
+                else:
+                    inventory = result & timespan
+                    result = inventory[0]
+            self[:] = [result]
+        return self
+
     def fuse(self):
-        '''Compute logical OR of timespans in inventory:
+        '''Compute logical OR of timespans:
 
         ::
 
-            >>> z(timespan_inventory_1.fuse())
-            timespantools.TimespanInventory([
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(10, 1)
-                    )
-                ])
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10)])
 
         ::
 
-            >>> z(timespan_inventory_2.fuse())
-            timespantools.TimespanInventory([
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(10, 1)
-                    ),
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(15, 1),
-                    stop_offset=durationtools.Offset(20, 1)
-                    )
-                ])
+            >>> timespan_inventory.fuse()
+            TimespanInventory([Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))])
 
-        ::
+        Emit newly constructed timespan inventory.
 
-            >>> z(timespan_inventory_3.fuse())
-            timespantools.TimespanInventory([])
-
-        Emity newly constructed timespan inventory.
+        .. note:: change to operate in place and return self.
         '''
         new_timespans = []
         if self:
