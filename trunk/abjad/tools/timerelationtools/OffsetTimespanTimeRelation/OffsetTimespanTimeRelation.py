@@ -32,10 +32,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
             offset = self.offset
         if timespan is None or offset is None:
             raise ValueError('time relation is not fully loaded.')
-        timespan = timespantools.expr_to_timespan(timespan)
+        timespan = timespantools.Timespan()._get_timespan(timespan)
         offset = durationtools.Offset(offset)
-        #timespan_start = self._get_expr_start(timespan)
-        #timespan_stop = self._get_expr_stop(timespan)
         timespan_start, timespan_stop = self._get_expr_offsets(timespan)
         command = self.template
         command = command.replace('timespan.start', repr(timespan_start))

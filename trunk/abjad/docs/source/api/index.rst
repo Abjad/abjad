@@ -3679,13 +3679,6 @@ Core composition packages
       tools/timespantools/Timespan/Timespan
       tools/timespantools/TimespanInventory/TimespanInventory
 
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/timespantools/expr_to_timespan
-
 .. only:: latex
 
    Concrete Classes
@@ -3695,13 +3688,6 @@ Core composition packages
 
       tools/timespantools/Timespan/Timespan
       tools/timespantools/TimespanInventory/TimespanInventory
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/timespantools/expr_to_timespan
 
 :py:mod:`tonalitytools <abjad.tools.tonalitytools>`
 ===================================================
