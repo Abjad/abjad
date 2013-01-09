@@ -69,9 +69,7 @@ class TimespanInventory(ObjectInventory):
         >>> z(timespan_inventory_3)
         timespantools.TimespanInventory([])
 
-    Operations on timespan inventories currently work in place.
-    
-    This will change such that operations will emity a newly constructed timespan inventory.
+    Operations on timespan currently work in place.
     '''
 
     ### PRIVATE METHODS ###
@@ -94,17 +92,17 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def all_are_contiguous(self):
-        '''True when all elements in inventory are time-contiguous::
+        '''True when all timespans are time-contiguous::
 
             >>> timespan_inventory_1.all_are_contiguous
             True
 
-        False when elements in inventory are not time-contiguous::
+        False when timespans not time-contiguous::
 
             >>> timespan_inventory_2.all_are_contiguous
             False
 
-        True when inventory is empty::
+        True when empty::
 
             >>> timespan_inventory_3.all_are_contiguous
             True
@@ -122,7 +120,7 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def all_are_well_formed(self):
-        '''True when all timespans in inventory are well-formed::
+        '''True when all timespans are well-formed::
 
             >>> timespan_inventory_1.all_are_well_formed
             True
@@ -132,7 +130,9 @@ class TimespanInventory(ObjectInventory):
             >>> timespan_inventory_2.all_are_well_formed
             True
 
-        Also true when inventory is empty::
+        Also true when empty:
+
+        ::
 
             >>> timespan_inventory_3.all_are_well_formed
             True
@@ -145,7 +145,7 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def axis(self):
-        '''Arithmetic mean of inventory start- and stop-offsets.
+        '''Arithmetic mean of start- and stop-offsets.
 
             >>> timespan_inventory_1.axis
             Offset(5, 1)
@@ -155,7 +155,7 @@ class TimespanInventory(ObjectInventory):
             >>> timespan_inventory_2.axis
             Offset(10, 1)
 
-        None when inventory is empty::
+        None when inventory::
 
             >>> timespan_inventory_3.axis is None
             True
@@ -167,7 +167,7 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def duration(self):
-        '''Time from inventory start offset to inventory stop offset::
+        '''Time from start offset to stop offset::
 
             >>> timespan_inventory_1.duration
             Duration(10, 1)
@@ -177,7 +177,9 @@ class TimespanInventory(ObjectInventory):
             >>> timespan_inventory_2.duration
             Duration(20, 1)
 
-        Zero when inventory is empty::
+        Zero when empty:
+
+        ::
 
             >>> timespan_inventory_3.duration
             Duration(0, 1)
@@ -233,7 +235,9 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def start_offset(self):
-        '''Earliest start offset of any timespan in inventory::
+        '''Earliest start offset of any timespan:
+
+        ::
 
             >>> timespan_inventory_1.start_offset
             Offset(0, 1)
@@ -243,7 +247,9 @@ class TimespanInventory(ObjectInventory):
             >>> timespan_inventory_2.start_offset
             Offset(0, 1)
 
-        None when inventory is empty::
+        None when empty:
+
+        ::
 
             >>> timespan_inventory_3.start_offset is None
             True
@@ -255,7 +261,9 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def stop_offset(self):
-        '''Latest stop offset of any timespan in inventory::
+        '''Latest stop offset of any timespan:
+
+        ::
 
             >>> timespan_inventory_1.stop_offset
             Offset(10, 1)
@@ -265,7 +273,9 @@ class TimespanInventory(ObjectInventory):
             >>> timespan_inventory_2.stop_offset
             Offset(20, 1)
             
-        None when inventory is empty::
+        None when empty:
+
+        ::
 
             >>> timespan_inventory_3.stop_offset is None
             True
