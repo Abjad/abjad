@@ -431,6 +431,11 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__and__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__eq__
    :noindex:
 
@@ -464,7 +469,22 @@ Special Methods
 
    Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__or__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__repr__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__sub__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__xor__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
