@@ -144,22 +144,17 @@ def render_graphviz_image(self, code, paths, file_format='png', keep_original=Fa
         os.path.basename(os.path.splitext(primary_path)[0])) + '.dot'
     with open(tmp_path, 'w') as f:
         f.write(code)
-
     commands = []
-
-    commands.append('dot -v -Tpdf -o {} {}'.format(secondary_path, tmp_path))
+    commands.append('dot -Tpdf -o {} {}'.format(secondary_path, tmp_path))
     if file_format == 'pdf':
         commands.append('pdfcrop {} {}'.format(secondary_path, primary_path))
     elif file_format == 'png':
-        commands.append('convert -density 300 -quality 85 -trim {} {}'.format(
-            secondary_path, primary_path))
-        commands.append('convert -resize 20% -quality 100 -resize 460x9999">" {} {}'.format(
+        commands.append('dot -Tpng -o {} {}'.format(primary_path, tmp_path))
+        commands.append('convert -debug Exception -trim -resize 75% -resize 460x9999">" {} {}'.format(
             primary_path, primary_path))
-
     for command in commands:
         subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         #subprocess.call(command, shell=True)
-
     if not keep_original and os.path.exists(secondary_path):
         os.remove(secondary_path)
 
