@@ -40,14 +40,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.settingtools.RhythmRegionCommand.RhythmRegionCommand.RhythmRegionCommand.can_fuse
-   :noindex:
-
-.. automethod:: experimental.tools.settingtools.RhythmRegionCommand.RhythmRegionCommand.RhythmRegionCommand.fuse
-   :noindex:
-
-   Inherited from :py:class:`settingtools.RegionCommand <experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand>`
-
 .. automethod:: experimental.tools.settingtools.RhythmRegionCommand.RhythmRegionCommand.RhythmRegionCommand.new
    :noindex:
 
@@ -88,6 +80,11 @@ Special Methods
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.settingtools.RhythmRegionCommand.RhythmRegionCommand.RhythmRegionCommand.__or__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.RegionCommand <experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand>`
 
 .. automethod:: experimental.tools.settingtools.RhythmRegionCommand.RhythmRegionCommand.RhythmRegionCommand.__repr__
    :noindex:

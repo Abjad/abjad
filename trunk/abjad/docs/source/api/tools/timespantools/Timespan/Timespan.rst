@@ -57,9 +57,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.can_fuse
-   :noindex:
-
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.contains_timespan_improperly
    :noindex:
 
@@ -70,9 +67,6 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.divide_by_ratio
-   :noindex:
-
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.fuse
    :noindex:
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.happens_during_timespan

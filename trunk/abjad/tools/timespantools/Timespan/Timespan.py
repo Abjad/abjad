@@ -503,6 +503,11 @@ class Timespan(BoundedObject):
 
     ### PRIVATE METHODS ###
 
+    def _can_fuse(self, expr):
+        if isinstance(expr, type(self)):
+            return self.intersects_timespan(expr) or self.stops_when_timespan_starts(expr)
+        return False
+
     def _get_offsets(self, expr):
         if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
             return expr.start_offset, expr.stop_offset
@@ -710,11 +715,6 @@ class Timespan(BoundedObject):
 
     ### PUBLIC METHODS ###
 
-    def can_fuse(self, expr):
-        if isinstance(expr, type(self)):
-            return self.intersects_timespan(expr) or self.stops_when_timespan_starts(expr)
-        return False
-
     def contains_timespan_improperly(self, timespan):
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_contains_timespan_1_improperly(timespan, self)
@@ -751,21 +751,6 @@ class Timespan(BoundedObject):
         offset_pairs = sequencetools.iterate_sequence_pairwise_strict(start_offsets)
         result = [type(self)(*offset_pair) for offset_pair in offset_pairs]
         return tuple(result)
-
-    def fuse(self, timespan):
-        '''Fuse if timespan stops when `timespan` starts::
-
-            >>> timespan_1.fuse(timespan_2)
-            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(12, 1))
-
-        Raise exception when timespan does not stop when `timespan` starts.
-
-        Emit newly created timespan.
-        '''
-        assert self.can_fuse(timespan)
-        new_start_offset = min(self.start_offset, timespan.start_offset)
-        new_stop_offset = max(self.stop_offset, timespan.stop_offset)
-        return type(self)(new_start_offset, new_stop_offset)
 
     def happens_during_timespan(self, timespan):
         if self._implements_timespan_interface(timespan):

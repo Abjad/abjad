@@ -122,11 +122,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.can_fuse
-   :noindex:
-
-   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
-
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.contains_timespan_improperly
    :noindex:
 
@@ -146,11 +141,6 @@ Methods
    :noindex:
 
    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
-
-.. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.fuse
-   :noindex:
-
-   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.happens_during_timespan
    :noindex:

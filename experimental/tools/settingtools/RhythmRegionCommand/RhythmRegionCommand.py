@@ -8,15 +8,9 @@ class RhythmRegionCommand(RegionCommand):
     RegionCommand indicating durated period of time over which a rhythm payload will apply.
     '''
     
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def attribute(self):
-        return 'rhythm'
-
-    ### PUBLIC METHODS ###
-
-    def can_fuse(self, expr):
+    def _can_fuse(self, expr):
         '''True when self can fuse `expr` to the end of self. Otherwise false.
 
         Return boolean.
@@ -28,6 +22,14 @@ class RhythmRegionCommand(RegionCommand):
         if expr.request != self.request:
             return False
         return True
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def attribute(self):
+        return 'rhythm'
+
+    ### PUBLIC METHODS ###
 
     def prolongs_expr(self, expr):
         from experimental.tools import selectortools

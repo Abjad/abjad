@@ -32,12 +32,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.can_fuse
-   :noindex:
-
-.. automethod:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.fuse
-   :noindex:
-
 .. automethod:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.new
    :noindex:
 
@@ -69,6 +63,9 @@ Special Methods
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.__or__
+   :noindex:
 
 .. automethod:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.__repr__
    :noindex:

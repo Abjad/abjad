@@ -32,9 +32,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.can_fuse
-   :noindex:
-
 .. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.new
    :noindex:
 

@@ -23,6 +23,48 @@ class DivisionRegionProduct(RegionProduct):
     def __len__(self):
         return len(self.payload)
 
+    def __or__(self, expr):
+        '''Logical OR of two division region products:
+
+        ::
+
+            >>> region_product_1 = settingtools.DivisionRegionProduct(2 * [(3, 16)], 'Voice 1')
+            >>> timespan = timespantools.Timespan(Offset(6, 16))
+            >>> region_product_2 = settingtools.DivisionRegionProduct(
+            ...     2 * [(2, 16)], 'Voice 1', timespan=timespan)
+
+        ::
+
+            >>> region_product_1.timespan.stops_when_timespan_starts(region_product_2)
+            True
+
+        ::
+
+            >>> result = region_product_1 | region_product_2
+
+        ::
+        
+            >>> z(result)
+            timespantools.TimespanInventory([
+                settingtools.DivisionRegionProduct(
+                    payload=settingtools.DivisionList(
+                        [Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]'), Division('[2, 16]')]
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(5, 8)
+                        )
+                    )
+                ])
+
+        Return timespan inventory.
+        '''
+        assert self._can_fuse(expr)
+        division_list = self.payload + expr.payload
+        result = type(self)(division_list, voice_name=self.voice_name, timespan=self.timespan)
+        return timespantools.TimespanInventory([result])
+
     ### READ-ONLY PRIVATE PROPERTIES ##
 
     @property
@@ -169,44 +211,6 @@ class DivisionRegionProduct(RegionProduct):
         left_result = type(self)(left_division_list, voice_name=self.voice_name, timespan=self.timespan)
         right_result = type(self)(right_division_list, voice_name=self.voice_name, timespan=self.timespan)
         return left_result, right_result
-
-    def fuse(self, expr):
-        '''Fuse if expression stops when `expr` starts::
-
-            >>> expr_1 = settingtools.DivisionRegionProduct(2 * [(3, 16)], 'Voice 1')
-            >>> timespan = timespantools.Timespan(Offset(6, 16))
-            >>> expr_2 = settingtools.DivisionRegionProduct(
-            ...     2 * [(2, 16)], 'Voice 1', timespan=timespan)
-
-        ::
-
-            >>> expr_1.timespan.stops_when_timespan_starts(expr_2)
-            True
-
-        ::
-
-            >>> new_expr = expr_1.fuse(expr_2)
-
-        ::
-        
-            >>> z(new_expr)
-            settingtools.DivisionRegionProduct(
-                payload=settingtools.DivisionList(
-                    [Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]'), Division('[2, 16]')]
-                    ),
-                voice_name='Voice 1',
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(5, 8)
-                    )
-                )
-
-        Return newly constructed expression.
-        '''
-        assert self.can_fuse(expr)
-        division_list = self.payload + expr.payload
-        result = type(self)(division_list, voice_name=self.voice_name, timespan=self.timespan)
-        return result
 
     def reflect(self):
         self.payload.reflect()

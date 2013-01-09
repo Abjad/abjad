@@ -504,9 +504,9 @@ class TimespanInventory(ObjectInventory):
         if self:
             timespans = [self[0]]
             for timespan in self[1:]:
-                if timespans[-1].can_fuse(timespan):
-                    timespan = timespans[-1].fuse(timespan)
-                    timespans[-1] = timespan
+                if timespans[-1]._can_fuse(timespan):
+                    inventory = timespans[-1] | timespan
+                    timespans[-1:] = inventory[:]
                 else:
                     timespans.append(timespan)
         self[:] = timespans

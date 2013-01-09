@@ -50,6 +50,12 @@ class RegionCommand(AbjadObject):
     def __lt__(self, expr):
         return timerelationtools.timespan_2_starts_before_timespan_1_starts(expr, self)
 
+    ### PRIVATE METHODS ###
+
+    @abc.abstractmethod
+    def _can_fuse(self, expr):
+        pass
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
@@ -93,22 +99,21 @@ class RegionCommand(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    @abc.abstractmethod
-    def can_fuse(self, expr):
-        pass
-
-    def fuse(self, command):
+    # TODO: change name to self.__or__()
+    #def fuse(self, command):
+    def __or__(self, command):
         '''Fuse `command` to the end of self.
 
         Return newly constructed division command.
 
         Raise exception when self can not fuse with `division_command`.
         '''
-        assert self.can_fuse(command)
+        assert self._can_fuse(command)
         stop_offset = self.timespan.stop_offset + command.timespan.duration
         timespan = self.timespan.new(stop_offset=stop_offset) 
         fused_command = self.new(timespan=timespan)
-        return fused_command
+        #return fused_command
+        return timespantools.TimespanInventory([fused_command])
 
     def new(self, **kwargs):
         positional_argument_dictionary = self._positional_argument_dictionary

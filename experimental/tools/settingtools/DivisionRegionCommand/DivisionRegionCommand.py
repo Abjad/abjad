@@ -19,6 +19,20 @@ class DivisionRegionCommand(RegionCommand):
 
     ### PRIVATE METHODS ###
 
+    def _can_fuse(self, expr):
+        '''True when self can fuse `expr` to the end of self. Otherwise false.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, type(self)):
+            return False
+        if self.truncate:
+            return False
+        if expr.fresh or expr.truncate:
+            return False
+        if expr.request != self.request:
+            return False
+        return True
     def _get_payload(self, score_specification, voice_name):
         from experimental.tools import selectortools
         from experimental.tools import settingtools
@@ -63,20 +77,3 @@ class DivisionRegionCommand(RegionCommand):
         '''Aliased to ``self.context_name``.
         '''
         return self.context_name
-
-    ### PUBLIC METHODS ###
-
-    def can_fuse(self, expr):
-        '''True when self can fuse `expr` to the end of self. Otherwise false.
-
-        Return boolean.
-        '''
-        if not isinstance(expr, type(self)):
-            return False
-        if self.truncate:
-            return False
-        if expr.fresh or expr.truncate:
-            return False
-        if expr.request != self.request:
-            return False
-        return True
