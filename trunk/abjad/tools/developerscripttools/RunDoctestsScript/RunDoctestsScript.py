@@ -53,10 +53,10 @@ class RunDoctestsScript(DirectoryScript):
             globs.update(importlib.import_module('experimental.demos').__dict__)
         except ImportError:
             pass
-        if args.nondiff:
-            optionflags = doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS
-        else:
+        if args.diff:
             optionflags = doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS|doctest.REPORT_NDIFF
+        else:
+            optionflags = doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS
         iotools.clear_terminal()
         total_modules = 0
         for dir_path, dir_names, file_names in os.walk('.'):
@@ -72,7 +72,7 @@ class RunDoctestsScript(DirectoryScript):
 
     def setup_argument_parser(self, parser):
 
-        parser.add_argument('--nondiff',
+        parser.add_argument('--diff',
             action='store_true',
-            help='suppress diff-like output on failed tests.',
+            help='print diff-like output on failed tests.',
             )
