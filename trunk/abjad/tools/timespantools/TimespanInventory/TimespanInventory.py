@@ -669,6 +669,7 @@ class TimespanInventory(ObjectInventory):
         self.sort()
         return self
 
+    # TODO: conform to operate-in-place-and-return-self pattern
     def delete_material_that_intersects_timespan(self, timespan):
         '''Delete material that intersects `timespan`:
 
@@ -684,8 +685,11 @@ class TimespanInventory(ObjectInventory):
             >>> timespan = timespantools.Timespan(5, 10)
             >>> result = timespan_inventory.delete_material_that_intersects_timespan(timespan)
 
+        .. note:: complete example.
+
         Operate in place and return timespan inventory.
         '''
+        # TODO: refactor to use set-theoretic primitives
         #timespans = []
         for current_timespan in self[:]:
             if timespan.curtails_timespan(current_timespan):
@@ -695,6 +699,7 @@ class TimespanInventory(ObjectInventory):
             elif timespan.contains_timespan_improperly(current_timespan):
                 self.remove(current_timespan)
                 #pass
+            # TODO: test for trisection and figure out why not included yet
             #else:
             #    raise Exception('why here now?')
         #self[:] = timespans
