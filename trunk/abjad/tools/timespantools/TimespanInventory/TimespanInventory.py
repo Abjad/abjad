@@ -512,6 +512,183 @@ class TimespanInventory(ObjectInventory):
         self[:] = timespans
         return self
 
+    def compute_logical_xor(self):
+        '''Compute logical XOR of timespans.
+
+        Example 1:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory()
+
+        ::
+
+            >>> result = timespan_inventory.compute_logical_xor()
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([])
+
+        Example 2:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 10)])
+
+        ::
+
+            >>> result = timespan_inventory.compute_logical_xor()
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        Example 3:
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 10),
+            ...     timespantools.Timespan(5, 12)])
+
+        ::
+
+            >>> result = timespan_inventory.compute_logical_xor()
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(5, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(10, 1),
+                    stop_offset=durationtools.Offset(12, 1)
+                    )
+                ])
+
+        Example 4:
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 10),
+            ...     timespantools.Timespan(5, 12),
+            ...     timespantools.Timespan(-2, 2)])
+
+        ::
+
+            >>> result = timespan_inventory.compute_logical_xor()
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(-2, 1),
+                    stop_offset=durationtools.Offset(0, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(2, 1),
+                    stop_offset=durationtools.Offset(5, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(10, 1),
+                    stop_offset=durationtools.Offset(12, 1)
+                    )
+                ])
+
+        Example 5:
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(-2, 2),
+            ...     timespantools.Timespan(10, 20)])
+
+        ::
+
+            >>> result = timespan_inventory.compute_logical_xor()
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(-2, 1),
+                    stop_offset=durationtools.Offset(2, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(10, 1),
+                    stop_offset=durationtools.Offset(20, 1)
+                    )
+                ])
+
+        Example 6:
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 10),
+            ...     timespantools.Timespan(4, 8),
+            ...     timespantools.Timespan(2, 6)])
+
+        ::
+
+            >>> result = timespan_inventory.compute_logical_xor()
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(2, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(8, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        Example 7:
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 10),
+            ...     timespantools.Timespan(0, 10)])
+
+        ::
+
+            >>> result = timespan_inventory.compute_logical_xor()
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([])
+
+        Operate in place and return timespan inventory.
+        '''
+        all_fragments = []
+        for i, timespan_1 in enumerate(self):
+            timespan_1_fragments = [timespan_1]
+            for j, timespan_2 in enumerate(self):
+                if i == j:
+                    continue
+                revised_timespan_1_fragments = []
+                for timespan_1_fragment in timespan_1_fragments:
+                    if timespan_2.intersects_timespan(timespan_1_fragment):
+                        result = timespan_1_fragment - timespan_2
+                        revised_timespan_1_fragments.extend(result)
+                    else:   
+                        revised_timespan_1_fragments.append(timespan_1_fragment)
+                timespan_1_fragments = revised_timespan_1_fragments
+            all_fragments.extend(timespan_1_fragments)
+        self[:] = all_fragments
+        self.sort()
+        return self
+
     def get_timespan_that_satisfies_time_relation(self, time_relation):
         r'''Get timespan that satisifies `time_relation`:
 
