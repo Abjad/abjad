@@ -65,9 +65,6 @@ Methods
 
    Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.crop
-   :noindex:
-
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.delete_material_that_intersects_timespan
    :noindex:
 
@@ -107,6 +104,9 @@ Methods
    :noindex:
 
    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.remove_degenerate_timespans
+   :noindex:
 
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.repeat_to_stop_offset
    :noindex:

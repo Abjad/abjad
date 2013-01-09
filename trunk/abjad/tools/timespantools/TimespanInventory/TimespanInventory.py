@@ -155,7 +155,9 @@ class TimespanInventory(ObjectInventory):
             >>> timespan_inventory_2.axis
             Offset(10, 1)
 
-        None when inventory::
+        None when empty:
+
+        ::
 
             >>> timespan_inventory_3.axis is None
             True
@@ -286,38 +288,6 @@ class TimespanInventory(ObjectInventory):
             return max([timespan.stop_offset for timespan in self])
 
     ### PUBLIC METHODS ###
-
-    def crop(self, start_offset=None, stop_offset=None):
-        '''Operate in place.
-
-        .. note:: add example.
-
-        Return none.
-        '''
-        if start_offset is not None:
-            raise NotImplementedError
-        stop_offset = durationtools.Offset(stop_offset)
-        inventory_stop_offset = self.stop_offset
-        if stop_offset < inventory_stop_offset:
-            self._set_stop_offset(stop_offset)
-        elif inventory_stop_offset < stop_offset:
-            self.repeat_to_stop_offset(stop_offset)
-
-    def delete_material_that_intersects_timespan(self, timespan_2):
-        '''Operate in place and return timespan inventory.
-
-        .. note:: function does not yet work on (pure) TimespanInventory objects.
-                  function works on only TimespanInventory subclasses.
-
-        Return none.
-        '''
-        for timespan in self[:]:
-            if timespan_2.curtails_timespan(timespan):
-                timespan.set_offsets(stop_offset=timespan_2.start_offset)
-            elif timespan_2.delays_timespan(timespan):
-                timespan.set_offsets(start_offset=timespan_2.stop_offset)
-            elif timespan_2.contains_timespan_improperly(timespan):
-                self.remove(timespan)
 
     def compute_logical_and(self):
         '''Compute logical AND of timespans.
@@ -699,6 +669,37 @@ class TimespanInventory(ObjectInventory):
         self.sort()
         return self
 
+    def delete_material_that_intersects_timespan(self, timespan):
+        '''Delete material that intersects `timespan`:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 16),
+            ...     timespantools.Timespan(5, 12),
+            ...     timespantools.Timespan(-2, 8)])
+
+        ::
+
+            >>> timespan = timespantools.Timespan(5, 10)
+            >>> result = timespan_inventory.delete_material_that_intersects_timespan(timespan)
+
+        Operate in place and return timespan inventory.
+        '''
+        #timespans = []
+        for current_timespan in self[:]:
+            if timespan.curtails_timespan(current_timespan):
+                current_timespan = current_timespan.set_offsets(stop_offset=timespan.start_offset)
+            elif timespan.delays_timespan(current_timespan):
+                current_timespan = current_timespan.set_offsets(start_offset=timespan.stop_offset)
+            elif timespan.contains_timespan_improperly(current_timespan):
+                self.remove(current_timespan)
+                #pass
+            #else:
+            #    raise Exception('why here now?')
+        #self[:] = timespans
+        #return self
+
     def get_timespan_that_satisfies_time_relation(self, time_relation):
         r'''Get timespan that satisifies `time_relation`:
 
@@ -804,63 +805,6 @@ class TimespanInventory(ObjectInventory):
         '''
         return bool(self.get_timespans_that_satisfy_time_relation(time_relation))
 
-    def repeat_to_stop_offset(self, stop_offset):
-        '''Repeat timespans to `stop_offset`:
-
-        ::
-
-            >>> timespan_inventory = timespantools.TimespanInventory([
-            ...     timespantools.Timespan(0, 3),
-            ...     timespantools.Timespan(3, 6),
-            ...     timespantools.Timespan(6, 10)])
-
-        ::
-
-            >>> result = timespan_inventory.repeat_to_stop_offset(15)
-
-        ::
-
-            >>> z(timespan_inventory)
-            timespantools.TimespanInventory([
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(3, 1)
-                    ),
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(3, 1),
-                    stop_offset=durationtools.Offset(6, 1)
-                    ),
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(6, 1),
-                    stop_offset=durationtools.Offset(10, 1)
-                    ),
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(10, 1),
-                    stop_offset=durationtools.Offset(13, 1)
-                    ),
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(13, 1),
-                    stop_offset=durationtools.Offset(15, 1)
-                    )
-                ])
-
-        Operate in place and return timespan inventory.
-        '''
-        assert self.is_sorted
-        stop_offset = durationtools.Offset(stop_offset)
-        assert self.stop_offset <= stop_offset
-        current_timespan_index = 0
-        if self:
-            while self.stop_offset < stop_offset:
-                current_timespan = self[current_timespan_index]
-                translation = self.stop_offset - current_timespan.start_offset
-                new_timespan = current_timespan.translate(translation)
-                self.append(new_timespan)
-                current_timespan_index += 1
-            if stop_offset < self.stop_offset:
-                self[-1] = self[-1].set_offsets(stop_offset=stop_offset)
-        return self
-
     def reflect(self, axis=None):
         '''Reflect timespans.
 
@@ -936,6 +880,115 @@ class TimespanInventory(ObjectInventory):
             timespans.append(timespan)
         timespans.reverse()
         self[:] = timespans
+        return self
+
+    def remove_degenerate_timespans(self):
+        '''Remove degenerate timespans:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(5, 10),
+            ...     timespantools.Timespan(5, 15),
+            ...     timespantools.Timespan(5, 20)])
+
+        ::
+
+            >>> result = timespan_inventory.translate_offsets(stop_offset_translation=-10)
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(0, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(5, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        ::
+
+            >>> result = timespan_inventory.remove_degenerate_timespans()
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        Operate in place and return timespan inventory.
+        '''
+        timespans = [x for x in self if x.is_well_formed]
+        self[:] = timespans
+        return self
+
+    def repeat_to_stop_offset(self, stop_offset):
+        '''Repeat timespans to `stop_offset`:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10)])
+
+        ::
+
+            >>> result = timespan_inventory.repeat_to_stop_offset(15)
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(3, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(3, 1),
+                    stop_offset=durationtools.Offset(6, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(6, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(10, 1),
+                    stop_offset=durationtools.Offset(13, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(13, 1),
+                    stop_offset=durationtools.Offset(15, 1)
+                    )
+                ])
+
+        Operate in place and return timespan inventory.
+        '''
+        assert self.is_sorted
+        stop_offset = durationtools.Offset(stop_offset)
+        assert self.stop_offset <= stop_offset
+        current_timespan_index = 0
+        if self:
+            while self.stop_offset < stop_offset:
+                current_timespan = self[current_timespan_index]
+                translation = self.stop_offset - current_timespan.start_offset
+                new_timespan = current_timespan.translate(translation)
+                self.append(new_timespan)
+                current_timespan_index += 1
+            if stop_offset < self.stop_offset:
+                self[-1] = self[-1].set_offsets(stop_offset=stop_offset)
         return self
 
     def rotate(self, count):
@@ -1182,7 +1235,9 @@ class TimespanInventory(ObjectInventory):
     def translate(self, translation=None):
         '''Translate timespans by `translation`.
 
-        Example 1. Translate timespan by offset ``50``::.
+        Example 1. Translate timespan by offset ``50``:
+
+        ::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
             ...     timespantools.Timespan(0, 3),
@@ -1289,7 +1344,7 @@ class TimespanInventory(ObjectInventory):
         return self
 
     def trim_to_timespan(self, timespan):
-        '''Keep material that intersects `timespan`:
+        '''Trim timespans to `timespan`:
 
         ::
 
