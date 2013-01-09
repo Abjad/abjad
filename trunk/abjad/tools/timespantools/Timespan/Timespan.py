@@ -157,34 +157,72 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> timespan_1 | timespan_2
-            TimespanInventory([Timespan(start_offset=Offset(0, 1), stop_offset=Offset(12, 1))])
+            >>> z(timespan_1 | timespan_2)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(12, 1)
+                    )
+                ])
 
         ::
 
-            >>> timespan_1 | timespan_3
-            TimespanInventory([Timespan(start_offset=Offset(-2, 1), stop_offset=Offset(10, 1))])
+            >>> z(timespan_1 | timespan_3)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(-2, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
 
         ::
 
 
-            >>> timespan_1 | timespan_4
-            TimespanInventory([Timespan(start_offset=Offset(0, 1), stop_offset=Offset(20, 1))])
+            >>> z(timespan_1 | timespan_4)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(20, 1)
+                    )
+                ])
 
         ::
 
-            >>> timespan_2 | timespan_3
-            TimespanInventory([])
+            >>> z(timespan_2 | timespan_3)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(-2, 1),
+                    stop_offset=durationtools.Offset(2, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(12, 1)
+                    )
+                ])
 
         ::
 
-            >>> timespan_2 | timespan_4
-            TimespanInventory([Timespan(start_offset=Offset(5, 1), stop_offset=Offset(20, 1))])
+            >>> z(timespan_2 | timespan_4)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(20, 1)
+                    )
+                ])
 
         ::
 
-            >>> timespan_3 | timespan_4
-            TimespanInventory([])
+            >>> z(timespan_3 | timespan_4)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(-2, 1),
+                    stop_offset=durationtools.Offset(2, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(10, 1),
+                    stop_offset=durationtools.Offset(20, 1)
+                    )
+                ])
 
         Return timespan inventory.
         '''
@@ -192,7 +230,9 @@ class Timespan(BoundedObject):
         expr = self._get_timespan(expr)
         if not self.intersects_timespan(expr) and \
             not self.is_tangent_to_timespan(expr):
-            return timespantools.TimespanInventory()
+            result = timespantools.TimespanInventory([self, expr])
+            result.sort()
+            return result
         new_start_offset = min(self.start_offset, expr.start_offset)
         new_stop_offset = max(self.stop_offset, expr.stop_offset)
         timespan = type(self)(new_start_offset, new_stop_offset)
@@ -387,12 +427,12 @@ class Timespan(BoundedObject):
             >>> z(timespan_2 ^ timespan_3)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
-                    start_offset=durationtools.Offset(5, 1),
-                    stop_offset=durationtools.Offset(12, 1)
-                    ),
-                timespantools.Timespan(
                     start_offset=durationtools.Offset(-2, 1),
                     stop_offset=durationtools.Offset(2, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(12, 1)
                     )
                 ])
 
@@ -433,6 +473,7 @@ class Timespan(BoundedObject):
             result = timespantools.TimespanInventory()
             result.append(copy.deepcopy(self))
             result.append(copy.deepcopy(expr))
+            result.sort()
             return result
         result = timespantools.TimespanInventory()
         start_offsets = [self.start_offset, expr.start_offset]
