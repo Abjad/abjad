@@ -185,7 +185,126 @@ class Timespan(BoundedObject):
 
     # NEXT TODO: implement setminus
     def __sub__(self, expr):
-        pass
+        '''Subtract `expr` from timespan:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 12)
+            >>> timespan_3 = timespantools.Timespan(-2, 2)
+            >>> timespan_4 = timespantools.Timespan(10, 20)
+
+        ::
+
+            >>> timespan_1 - timespan_1
+            TimespanInventory([])
+
+        ::
+
+            >>> timespan_1 - timespan_2
+            TimespanInventory([Timespan(start_offset=Offset(0, 1), stop_offset=Offset(5, 1))])
+
+        ::
+
+            >>> timespan_1 - timespan_3
+            TimespanInventory([Timespan(start_offset=Offset(2, 1), stop_offset=Offset(10, 1))])
+
+        ::
+
+            >>> timespan_1 - timespan_4
+            TimespanInventory([Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))])
+
+        ::
+
+            >>> timespan_2 - timespan_1
+            TimespanInventory([Timespan(start_offset=Offset(10, 1), stop_offset=Offset(12, 1))])
+
+        ::
+
+            >>> timespan_2 - timespan_2
+            TimespanInventory([])
+
+        ::
+
+            >>> timespan_2 - timespan_3
+            TimespanInventory([Timespan(start_offset=Offset(5, 1), stop_offset=Offset(12, 1))])
+
+        ::
+
+            >>> timespan_2 - timespan_4
+            TimespanInventory([Timespan(start_offset=Offset(5, 1), stop_offset=Offset(10, 1))])
+
+        ::
+
+            >>> timespan_3 - timespan_3
+            TimespanInventory([])
+
+        ::
+
+            >>> timespan_3 - timespan_1
+            TimespanInventory([Timespan(start_offset=Offset(-2, 1), stop_offset=Offset(0, 1))])
+
+        ::
+
+            >>> timespan_3 - timespan_2
+            TimespanInventory([Timespan(start_offset=Offset(-2, 1), stop_offset=Offset(2, 1))])
+
+        ::
+
+            >>> timespan_3 - timespan_4
+            TimespanInventory([Timespan(start_offset=Offset(-2, 1), stop_offset=Offset(2, 1))])
+
+        ::
+
+            >>> timespan_4 - timespan_4
+            TimespanInventory([])
+
+        ::
+
+            >>> timespan_4 - timespan_1
+            TimespanInventory([Timespan(start_offset=Offset(10, 1), stop_offset=Offset(20, 1))])
+
+        ::
+
+            >>> timespan_4 - timespan_2
+            TimespanInventory([Timespan(start_offset=Offset(12, 1), stop_offset=Offset(20, 1))])
+
+        ::
+
+            >>> timespan_4 - timespan_3
+            TimespanInventory([Timespan(start_offset=Offset(10, 1), stop_offset=Offset(20, 1))])
+
+        Return timespan inventory.
+        '''
+        from abjad.tools import timespantools
+        expr = self._get_timespan(expr)
+        inventory = timespantools.TimespanInventory()
+        if not self.intersects_timespan(expr):
+            inventory.append(copy.deepcopy(self))
+        elif expr.trisects_timespan(self):
+            new_start_offset = self.start_offset
+            new_stop_offset = expr.start_offset
+            timespan = type(self)(new_start_offset, new_stop_offset)
+            inventory.append(timespan)
+            new_start_offset = expr.stop_offset
+            new_stop_offset = self.stop_offset
+            timespan = type(self)(new_start_offset, new_stop_offset)
+            inventory.append(timespan)
+        elif expr.contains_timespan_improperly(self):
+            pass
+        elif expr.overlaps_only_start_of_timespan(self):
+            new_start_offset = expr.stop_offset
+            new_stop_offset = self.stop_offset
+            timespan = type(self)(new_start_offset, new_stop_offset)
+            inventory.append(timespan)
+        elif expr.overlaps_only_stop_of_timespan(self):
+            new_start_offset = self.start_offset
+            new_stop_offset = expr.start_offset
+            timespan = type(self)(new_start_offset, new_stop_offset)
+            inventory.append(timespan)
+        else:
+            raise ValueError(self, expr)
+        return inventory
 
     def __xor__(self, expr):
         '''Logical AND of two timespans:
