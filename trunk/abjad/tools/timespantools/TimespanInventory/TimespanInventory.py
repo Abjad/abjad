@@ -394,35 +394,123 @@ class TimespanInventory(ObjectInventory):
             self[:] = [result]
         return self
 
-    def fuse(self):
-        '''Compute logical OR of timespans:
+    def compute_logical_or(self):
+        '''Compute logical OR of timespans.
+
+        Example 1:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory()
+
+        ::
+
+            >>> result = timespan_inventory.compute_logical_or()
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([])
+
+        Example 2:
 
         ::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
-            ...     timespantools.Timespan(0, 3),
-            ...     timespantools.Timespan(3, 6),
-            ...     timespantools.Timespan(6, 10)])
+            ...     timespantools.Timespan(0, 10)])
 
         ::
 
-            >>> timespan_inventory.fuse()
-            TimespanInventory([Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))])
+            >>> result = timespan_inventory.compute_logical_or()
 
-        Emit newly constructed timespan inventory.
+        ::
 
-        .. note:: change to operate in place and return self.
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        Example 3:
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 10),
+            ...     timespantools.Timespan(5, 12)])
+
+        ::
+
+            >>> result = timespan_inventory.compute_logical_or()
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(12, 1)
+                    )
+                ])
+
+        Example 4:
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 10),
+            ...     timespantools.Timespan(5, 12),
+            ...     timespantools.Timespan(-2, 2)])
+
+        ::
+
+            >>> result = timespan_inventory.compute_logical_or()
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(-2, 1),
+                    stop_offset=durationtools.Offset(12, 1)
+                    )
+                ])
+
+        Example 5:
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(-2, 2),
+            ...     timespantools.Timespan(10, 20)])
+
+        ::
+
+            >>> result = timespan_inventory.compute_logical_or()
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(-2, 1),
+                    stop_offset=durationtools.Offset(2, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(10, 1),
+                    stop_offset=durationtools.Offset(20, 1)
+                    )
+                ])
+
+        Operate in place and return timespan inventory.
         '''
-        new_timespans = []
+        timespans = []
         if self:
-            new_timespans.append(copy.deepcopy(self[0]))
+            timespans = [self[0]]
             for timespan in self[1:]:
-                if new_timespans[-1].can_fuse(timespan):
-                    new_timespan = new_timespans[-1].fuse(timespan)
-                    new_timespans[-1] = new_timespan
+                if timespans[-1].can_fuse(timespan):
+                    timespan = timespans[-1].fuse(timespan)
+                    timespans[-1] = timespan
                 else:
-                    new_timespans.append(copy.deepcopy(timespan))
-        return type(self)(new_timespans)
+                    timespans.append(timespan)
+        self[:] = timespans
+        return self
 
     def get_timespan_that_satisfies_time_relation(self, time_relation):
         r'''Get timespan that satisifies `time_relation`:

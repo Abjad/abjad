@@ -27,22 +27,42 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.is_closed
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.is_half_closed
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.is_half_open
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.is_left_closed
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.is_left_open
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.is_open
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.is_right_closed
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.is_right_open
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.is_well_formed
    :noindex:
@@ -82,7 +102,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.storage_format
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.time_relation
    :noindex:
@@ -98,29 +118,6 @@ Read-only Properties
    :noindex:
 
    Inherited from :py:class:`selectortools.Selector <experimental.tools.selectortools.Selector.Selector.Selector>`
-
-Read/write Properties
----------------------
-
-.. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.is_left_closed
-   :noindex:
-
-   Inherited from :py:class:`abjad.tools.mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
-
-.. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.is_left_open
-   :noindex:
-
-   Inherited from :py:class:`abjad.tools.mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
-
-.. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.is_right_closed
-   :noindex:
-
-   Inherited from :py:class:`abjad.tools.mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
-
-.. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.is_right_open
-   :noindex:
-
-   Inherited from :py:class:`abjad.tools.mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
 Methods
 -------
@@ -551,7 +548,7 @@ Special Methods
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.__repr__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.__sub__
    :noindex:

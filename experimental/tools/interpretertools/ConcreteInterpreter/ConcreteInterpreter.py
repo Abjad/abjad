@@ -131,7 +131,7 @@ class ConcreteInterpreter(Interpreter):
                 postprocessed_result.append(quadruple)
         return postprocessed_result
 
-    # TODO: maybe move to command aggregator?
+    # TODO: use TimespanInventory.compute_logical_or() instead
     def fuse_like_region_commands(self, region_commands):
         if any([x.request is None for x in region_commands]) or not region_commands:
             return []

@@ -7,7 +7,7 @@ from experimental.tools.selectortools.Selector import Selector
 
 
 class DivisionSelector(Selector):
-    r'''
+    r'''Division selector.
 
     ::
 
@@ -70,7 +70,7 @@ class DivisionSelector(Selector):
         trimmed_division_region_products.trim_to_timespan(anchor_timespan)
         trimmed_division_region_products.sort() 
         assert trimmed_division_region_products.all_are_contiguous
-        trimmed_division_region_products = trimmed_division_region_products.fuse()
+        trimmed_division_region_products = trimmed_division_region_products.compute_logical_or()
         assert len(trimmed_division_region_products) == 1
         final_expression = trimmed_division_region_products[0]
         divisions = trimmed_division_region_products[0].payload.divisions
