@@ -7,26 +7,16 @@ from abjad.tools.mathtools.BoundedObject import BoundedObject
 
 
 class Timespan(BoundedObject):
-    r'''.. versionadded:: 2.11
+    r'''Closed-open interval.
 
-    Timespan ``[1/2, 3/2)``::
-
-        >>> timespan = timespantools.Timespan((1, 2), (3, 2)) 
+    Examples:
 
     ::
 
-        >>> timespan
-        Timespan(start_offset=Offset(1, 2), stop_offset=Offset(3, 2))
-
-    ::
-    
-        >>> z(timespan)
-        timespantools.Timespan(
-            start_offset=durationtools.Offset(1, 2),
-            stop_offset=durationtools.Offset(3, 2)
-            )
-
-    Timespans are object-modeled offset pairs.
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 12)
+            >>> timespan_3 = timespantools.Timespan(-2, 2)
+            >>> timespan_4 = timespantools.Timespan(10, 20)
 
     Timespans are immutable and treated as value objects.
     '''
@@ -109,9 +99,34 @@ class Timespan(BoundedObject):
         return False
 
     def __len__(self):
+        '''Defined equal to ``1`` for all timespans:
+
+        ::
+
+            >>> len(timespan_1)
+            1
+
+        Return positive integer.
+        '''
         return 1
 
     def __lt__(self, expr):
+        '''True when `expr` start offset is less than timespan start offset:
+
+        ::
+
+            >>> timespan_1 < timespan_2
+            True
+
+        Otherwise false:
+
+        ::
+
+            >>> timespan_2 < timespan_3
+            False
+
+        Return boolean.
+        '''
         assert hasattr(expr, 'start_offset'), repr(expr)
         return self.start_offset < expr.start_offset
 
@@ -183,7 +198,18 @@ class Timespan(BoundedObject):
         timespan = type(self)(new_start_offset, new_stop_offset)
         return timespantools.TimespanInventory([timespan])
 
-    # NEXT TODO: implement setminus
+    def __repr__(self):
+        '''Interpreter representation of timespan:
+
+        ::
+
+            >>> timespan_1
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
+
+        Return string.
+        '''
+        return BoundedObject.__repr__(self)
+
     def __sub__(self, expr):
         '''Subtract `expr` from timespan:
 
@@ -453,8 +479,8 @@ class Timespan(BoundedObject):
     def axis(self):
         '''Arithmetic mean of timespan start- and stop-offsets::
 
-            >>> timespan.axis
-            Offset(1, 1)
+            >>> timespan_1.axis
+            Offset(5, 1)
 
         Return offset.
         '''
@@ -464,24 +490,118 @@ class Timespan(BoundedObject):
     def duration(self):
         '''Get timespan duration::
 
-            >>> timespan.duration
-            Duration(1, 1)
+            >>> timespan_1.duration
+            Duration(10, 1)
 
         Return duration.
         '''
         return self.stop_offset - self.start_offset
 
     @property
-    def is_well_formed(self):
-        '''True when timespan start offset preceeds timespan stop offset.
+    def is_closed(self):
+        '''False for all timespans:
 
-            >>> timespan.is_well_formed
+        ::
+
+            >>> timespan_1.is_closed
+            False
+
+        Return boolean.
+        '''
+        return BoundedObject.is_closed.fget(self)
+
+    @property
+    def is_half_closed(self):
+        '''True for all timespans:
+
+        ::
+
+            >>> timespan_1.is_half_closed
             True
 
+        Return boolean.
+        '''
+        return BoundedObject.is_half_closed.fget(self)
+
+    @property
+    def is_half_open(self):
+        '''True for all timespans:
+
+        ::
+
+            >>> timespan_1.is_half_open
+            True
+
+        Return boolean.
+        '''
+        return BoundedObject.is_half_open.fget(self)
+
+    @property
+    def is_open(self):
+        '''False for all timespans:
+
+        ::
+
+            >>> timespan_1.is_open
+            False
+
+        Return boolean.
+        '''
+        return BoundedObject.is_open.fget(self)
+
+    @property
+    def is_left_closed(self):
+        '''True for all timespans.
+
+            >>> timespan_1.is_left_closed
+            True
+
+        Return boolean.
+        '''
+        return True
+
+
+    @property
+    def is_left_open(self):
+        '''False for all timespans.
+
+            >>> timespan_1.is_left_open
+            False
+
+        Return boolean.
+        '''
+        return False
+
+    @property
+    def is_right_closed(self):
+        '''False for all timespans.
+
+            >>> timespan_1.is_right_closed
+            False
+
+        Return boolean.
+        '''
+        return False
+
+
+    @property
+    def is_right_open(self):
+        '''True for all timespans.
+
+            >>> timespan_1.is_right_open
+            True
+
+        Return boolean.
+        '''
+        return True
+
+    @property
+    def is_well_formed(self):
+        '''True when timespan start offset preceeds timespan stop offset.
         Otherwise false::
 
-            >>> timespantools.Timespan(10, 0).is_well_formed
-            False
+            >>> timespan_1.is_well_formed
+            True
 
         Return boolean.
         '''
@@ -491,8 +611,8 @@ class Timespan(BoundedObject):
     def offsets(self):
         '''Timespan offsets::
 
-            >>> timespan.offsets
-            (Offset(1, 2), Offset(3, 2))
+            >>> timespan_1.offsets
+            (Offset(0, 1), Offset(10, 1))
 
         Return offset pair.
         '''
@@ -502,8 +622,8 @@ class Timespan(BoundedObject):
     def start_offset(self):
         '''Timespan start offset::
 
-            >>> timespan.start_offset
-            Offset(1, 2)
+            >>> timespan_1.start_offset
+            Offset(0, 1)
 
         Return offset.
         '''
@@ -513,12 +633,27 @@ class Timespan(BoundedObject):
     def stop_offset(self):
         '''Timespan stop offset::
 
-            >>> timespan.stop_offset
-            Offset(3, 2)
+            >>> timespan_1.stop_offset
+            Offset(10, 1)
             
         Return offset.
         '''
         return self._stop_offset
+
+    @property
+    def storage_format(self):
+        '''Timespan storage format:
+
+        ::
+
+            >>> z(timespan_1)
+            timespantools.Timespan(
+                start_offset=durationtools.Offset(0, 1),
+                stop_offset=durationtools.Offset(10, 1)
+                )
+
+        Return string.
+        '''
 
     ### PUBLIC METHODS ###
 
@@ -564,17 +699,11 @@ class Timespan(BoundedObject):
         result = [type(self)(*offset_pair) for offset_pair in offset_pairs]
         return tuple(result)
 
-    # TODO: maybe remove in favor of TimespanInventory.fuse()?
     def fuse(self, timespan):
         '''Fuse if timespan stops when `timespan` starts::
 
-            >>> timespan_1 = timespantools.Timespan(0, 5)
-            >>> timespan_2 = timespantools.Timespan(5, 10)
-
-        ::
-
             >>> timespan_1.fuse(timespan_2)
-            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(12, 1))
 
         Raise exception when timespan does not stop when `timespan` starts.
 
@@ -601,22 +730,17 @@ class Timespan(BoundedObject):
         '''True when `timespan` has offsets
         and `self.stop_offset` equals `timespan.start_offset`::
 
-            >>> timespan_1 = timespantools.Timespan(5, 10)
-            >>> timespan_2 = timespantools.Timespan(10, 15)
-
-        ::
-
-            >>> timespan_1.is_tangent_to_timespan(timespan_2)
+            >>> timespan_1.is_tangent_to_timespan(timespan_4)
             True
 
         Or when `timespan.stop_offset` equals `self.start_offset`::
 
-            >>> timespan_2.is_tangent_to_timespan(timespan_1)
+            >>> timespan_4.is_tangent_to_timespan(timespan_1)
             True    
 
         Otherwise false::
 
-            >>> timespan_1.is_tangent_to_timespan('text')
+            >>> timespan_1.is_tangent_to_timespan(timespan_1)
             False
 
         Return boolean.
@@ -630,6 +754,15 @@ class Timespan(BoundedObject):
         return False
 
     def new(self, **kwargs):
+        '''Create new timespan with `kwargs`:
+
+        ::
+
+            >>> timespan_1.new(stop_offset=Offset(9))
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(9, 1))
+
+        Return new timespan.
+        '''
         positional_argument_dictionary = self._positional_argument_dictionary
         keyword_argument_dictionary = self._keyword_argument_dictionary
         for key, value in kwargs.iteritems():
