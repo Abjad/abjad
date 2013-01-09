@@ -21,6 +21,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.duration
    :noindex:
 
+.. autoattribute:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.is_sorted
+   :noindex:
+
 .. autoattribute:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.start_offset
    :noindex:
 
@@ -86,13 +89,13 @@ Methods
 
    Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.keep_material_that_intersects_timespan
-   :noindex:
-
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.pop
    :noindex:
 
    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.reflect
+   :noindex:
 
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.remove
    :noindex:
@@ -104,6 +107,8 @@ Methods
 
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.reverse
    :noindex:
+
+   Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.rotate
    :noindex:
@@ -123,6 +128,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.translate_offsets
+   :noindex:
+
+.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.trim_to_timespan
    :noindex:
 
 Special Methods

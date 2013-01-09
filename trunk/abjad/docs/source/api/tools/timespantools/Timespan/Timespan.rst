@@ -126,7 +126,7 @@ Methods
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_stop_of_timespan
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.reverse
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.reflect
    :noindex:
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.scale
@@ -228,6 +228,9 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.__and__
+   :noindex:
+
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.__eq__
    :noindex:
 
@@ -255,7 +258,16 @@ Special Methods
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.__or__
+   :noindex:
+
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.__repr__
    :noindex:
 
    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.__sub__
+   :noindex:
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.__xor__
+   :noindex:
