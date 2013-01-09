@@ -8,14 +8,10 @@ def timespan_2_happens_during_timespan_1(timespan_1=None, timespan_2=None, hold=
 
     Evaluate whether timespan ``[7/8, 8/8)`` happens during timespan ``[1/2, 3/2)``::
 
+        >>> timespan_1 = timespantools.Timespan(Offset(1, 2), Offset(3, 2))
+        >>> timespan_2 = timespantools.Timespan(Offset(7, 8), Offset(8, 8))
         >>> timerelationtools.timespan_2_happens_during_timespan_1(
-        ...     timespan_1=((1, 2), (3, 2)), timespan_2=((7, 8), (8, 8)))
-        True
-
-    Evaluate whether offset ``7/8`` happens during timespan ``[1/2, 3/2)``::
-
-        >>> timerelationtools.timespan_2_happens_during_timespan_1(
-        ...     timespan_1=((1, 2), (3, 2)), timespan_2=durationtools.Offset(7, 8))
+        ...     timespan_1=timespan_1, timespan_2=timespan_2)
         True
 
     Return time relation or boolean.

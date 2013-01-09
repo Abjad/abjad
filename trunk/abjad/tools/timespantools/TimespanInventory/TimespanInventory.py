@@ -309,6 +309,11 @@ class TimespanInventory(ObjectInventory):
             elif timespan_2.contains_timespan_improperly(timespan):
                 self.remove(timespan)
 
+    def compute_logical_and(self):
+        '''Compute logical AND of timespans.
+
+        Operate in place and return timespan inventory.
+        '''
     def fuse(self):
         '''Compute logical OR of timespans in inventory:
 
