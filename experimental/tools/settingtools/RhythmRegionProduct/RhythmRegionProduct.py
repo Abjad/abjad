@@ -74,6 +74,7 @@ class RhythmRegionProduct(RegionProduct):
         '''
         start_offset = durationtools.Offset(start_offset)
         assert self.start_offset <= start_offset
+        assert start_offset < self.stop_offset
         duration_to_trim = start_offset - self.start_offset
         result = componenttools.split_components_at_offsets(
             [self.payload], [duration_to_trim], cyclic=False, fracture_spanners=True)
@@ -91,6 +92,7 @@ class RhythmRegionProduct(RegionProduct):
         '''
         stop_offset = durationtools.Offset(stop_offset)
         assert stop_offset <= self.stop_offset
+        assert self.start_offset < stop_offset
         duration_to_trim = self.stop_offset - stop_offset
         duration_to_keep = self.payload.prolated_duration - duration_to_trim
         result = componenttools.split_components_at_offsets(
