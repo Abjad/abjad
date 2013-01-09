@@ -368,6 +368,18 @@ class Timespan(BoundedObject):
             new_stop_offset = expr.start_offset
             timespan = type(self)(new_start_offset, new_stop_offset)
             inventory.append(timespan)
+        elif expr.starts_when_timespan_starts(self) and \
+            expr.stops_before_timespan_stops(self):
+            new_start_offset = expr.stop_offset
+            new_stop_offset = self.stop_offset
+            timespan = type(self)(new_start_offset, new_stop_offset)
+            inventory.append(timespan)
+        elif expr.stops_when_timespan_stops(self) and \
+            expr.starts_after_timespan_starts(self):
+            new_start_offset = self.start_offset
+            new_stop_offset = expr.start_offset
+            timespan = type(self)(new_start_offset, new_stop_offset)
+            inventory.append(timespan)
         else:
             raise ValueError(self, expr)
         return inventory
