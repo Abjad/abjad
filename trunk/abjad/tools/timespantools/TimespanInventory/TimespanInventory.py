@@ -670,7 +670,7 @@ class TimespanInventory(ObjectInventory):
         return self
 
     # TODO: conform to operate-in-place-and-return-self pattern
-    def delete_material_that_intersects_timespan(self, timespan):
+    def __sub__(self, timespan):
         '''Delete material that intersects `timespan`:
 
         ::

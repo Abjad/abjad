@@ -322,8 +322,7 @@ class ConcreteInterpreter(Interpreter):
                 if rhythm_region_product is not None:
                     self.score_specification.all_rhythm_quintuples.remove(rhythm_quintuple)
                     made_progress = True
-                    voice_rhythm_region_products.delete_material_that_intersects_timespan(
-                        rhythm_region_product.timespan)
+                    voice_rhythm_region_products = voice_rhythm_region_products - rhythm_region_product.timespan
                     voice_rhythm_region_products.append(rhythm_region_product)
                     voice_rhythm_region_products.sort()
             if not made_progress:
