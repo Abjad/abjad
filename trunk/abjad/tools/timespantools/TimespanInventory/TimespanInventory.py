@@ -1378,21 +1378,17 @@ class TimespanInventory(ObjectInventory):
 
         Operate in place and return none.
         '''
+        # TODO: replace large constants with positive & negative infinity
         timespans = []
+        from abjad.tools import timespantools
+        result = []
         for current_timespan in self:
-            if timespan.contains_timespan_improperly(current_timespan):
-                pass
-            elif not timespan.intersects_timespan(current_timespan):
-                continue
-            elif timespan.delays_timespan(current_timespan):
-                current_timespan = current_timespan.set_offsets(stop_offset=timespan.stop_offset)
-            elif timespan.curtails_timespan(current_timespan):
-                current_timespan = current_timespan.set_offsets(start_offset=timespan.start_offset)
-            elif timespan.trisects_timespan(current_timespan):
-                current_timespan = current_timespan.set_offsets(*timespan.offsets)
-            else:
-                raise ValueError(current_timespan)
-            assert current_timespan is not None
-            timespans.append(current_timespan)
+            left_knife = timespantools.Timespan(-100000, timespan.start_offset)
+            result.extend(current_timespan - left_knife)
+        right_knife = timespantools.Timespan(timespan.stop_offset, 1000000000)
+        filtered_result = []
+        for x in result:
+            filtered_result.extend(x - right_knife)
+        timespans.extend(filtered_result)
         self[:] = timespans
         return self
