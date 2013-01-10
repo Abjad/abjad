@@ -8,7 +8,7 @@ def is_singleton(expr):
 
     Otherwise false::
 
-        abajd> sequencetools.is_singleton((19, 20, 21))
+        >>> sequencetools.is_singleton((19, 20, 21))
         False
 
     Return boolean.

@@ -301,7 +301,7 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
         ::
 
-            abajd> fraction.denominator
+            >>> fraction.denominator
             3
 
         Return positive integer.
@@ -316,7 +316,7 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
         ::
 
-            abajd> fraction.numerator
+            >>> fraction.numerator
             3
 
         Return integer.

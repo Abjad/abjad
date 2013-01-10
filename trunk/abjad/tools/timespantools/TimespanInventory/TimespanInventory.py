@@ -72,22 +72,6 @@ class TimespanInventory(ObjectInventory):
     Operations on timespan currently work in place.
     '''
 
-    ### PRIVATE METHODS ###
-
-    def _set_start_offset(self, start_offset):
-        from abjad.tools import timespantools
-        start_offset = durationtools.Offset(start_offset)
-        assert self.start_offset <= start_offset
-        delete_timespan = timespantools.Timespan(self.start_offset, start_offset)
-        self.delete_material_that_intersects_timespan(delete_timespan)
-
-    def _set_stop_offset(self, stop_offset):
-        from abjad.tools import timespantools
-        stop_offset = durationtools.Offset(stop_offset)
-        assert stop_offset <= self.stop_offset
-        delete_timespan = timespantools.Timespan(stop_offset, self.stop_offset)
-        self.delete_material_that_intersects_timespan(delete_timespan)
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
