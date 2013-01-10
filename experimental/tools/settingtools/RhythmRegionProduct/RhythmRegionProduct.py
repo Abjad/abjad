@@ -106,10 +106,15 @@ class RhythmRegionProduct(RegionProduct):
         self._payload = trimmed_payload
 
     def _split_payload_at_offsets(self, offsets):
+        assert isinstance(self.payload, containertools.Container)
         music = self.payload
         self._payload = containertools.Container()
         result = componenttools.split_components_at_offsets(
             [music], offsets, cyclic=False, fracture_spanners=True)
+        for shard in result:
+            assert len(shard) == 1
+            if not wellformednesstools.is_well_formed_component(shard[0]):
+                wellformednesstools.tabulate_well_formedness_violations_in_expr(shard[0])
         return result
 
     ### READ-ONLY PUBLIC PROPERTIES ###

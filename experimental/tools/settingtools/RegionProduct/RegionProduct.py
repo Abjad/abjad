@@ -148,7 +148,6 @@ class RegionProduct(AbjadObject):
         Operate in place and return timespan inventory.
         '''
         if timespan.delays_timespan(self):
-            #print 'A'
             split_offset = durationtools.Offset(timespan.stop_offset)
             duration_to_trim = split_offset - self.start_offset
             result = self._split_payload_at_offsets([duration_to_trim])
@@ -157,24 +156,17 @@ class RegionProduct(AbjadObject):
             self._start_offset = split_offset
             result = timespantools.TimespanInventory([self])
         elif timespan.curtails_timespan(self):
-            #print 'b'
             split_offset = durationtools.Offset(timespan.start_offset)
             duration_to_trim = self.stop_offset - split_offset
             duration_to_keep = self.payload.prolated_duration - duration_to_trim
             result = self._split_payload_at_offsets([duration_to_keep])
             trimmed_payload = result[0][0]
             self._payload = trimmed_payload
-            if not wellformednesstools.is_well_formed_component(self.payload):
-                self._debug(self.payload, 'self.payload')
-                wellformednesstools.tabulate_well_formedness_violations_in_expr(self.payload)
             result = timespantools.TimespanInventory([self])
         elif timespan.trisects_timespan(self):
-            #print 'c'
             split_offsets = []
             split_offsets.append(timespan.start_offset - self.start_offset)
             split_offsets.append(timespan.duration)
-            assert isinstance(self.payload, containertools.Container)
-            assert len(self.payload) == 1
             result = self._split_payload_at_offsets(split_offsets)
             left_payload = result[0][0]
             right_payload = result[-1][0]
@@ -186,14 +178,9 @@ class RegionProduct(AbjadObject):
             right_product = type(self)(
                 payload=None, voice_name=self.voice_name, timespan=right_timespan)
             right_product._payload = right_payload
-            if not wellformednesstools.is_well_formed_component(left_product.payload):
-                wellformednesstools.tabulate_well_formedness_violations_in_expr(left_product.payload)
-            if not wellformednesstools.is_well_formed_component(right_product.payload):
-                wellformednesstools.tabulate_well_formedness_violations_in_expr(right_product.payload)
             products = [left_product, right_product]
             result = timespantools.TimespanInventory(products)
         else:
-            #print 'd'
             result = timespantools.TimespanInventory([self])
         return result
 
