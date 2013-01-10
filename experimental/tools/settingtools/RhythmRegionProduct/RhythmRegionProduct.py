@@ -6,6 +6,7 @@ from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
+from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
 from experimental.tools.settingtools.RegionProduct import RegionProduct
 
@@ -56,6 +57,38 @@ class RhythmRegionProduct(RegionProduct):
         Return nonnegative integer.
         '''
         return len(self.payload.leaves)
+
+    # TODO: write tests
+    def __sub__(self, timespan):
+        # TODO: fix this
+        if timespan.start_offset <= self.start_offset < timespan.stop_offset:
+            start_offset = durationtools.Offset(timespan.start_offset)
+            assert self.start_offset <= start_offset
+            assert start_offset < self.stop_offset
+            duration_to_trim = start_offset - self.start_offset
+            result = componenttools.split_components_at_offsets(
+                [self.payload], [duration_to_trim], cyclic=False, fracture_spanners=True)
+            trimmed_payload = result[-1][0]
+            assert wellformednesstools.is_well_formed_component(trimmed_payload)
+            self._payload = trimmed_payload
+            self._start_offset = start_offset
+        ####
+        if self.start_offset < timespan.start_offset < self.stop_offset:
+            stop_offset = durationtools.Offset(timespan.start_offset)
+            assert stop_offset <= self.stop_offset, repr((self, timespan))
+            assert self.start_offset < stop_offset
+            duration_to_trim = self.stop_offset - stop_offset
+            duration_to_keep = self.payload.prolated_duration - duration_to_trim
+            result = componenttools.split_components_at_offsets(
+                [self.payload], [duration_to_keep], cyclic=False, fracture_spanners=True)
+            trimmed_payload = result[0][0]
+            if not wellformednesstools.is_well_formed_component(trimmed_payload):
+                self._debug(trimmed_payload, 'trimmed payload')
+                wellformednesstools.tabulate_well_formedness_violations_in_expr(trimmed_payload)
+            assert wellformednesstools.is_well_formed_component(trimmed_payload)
+            self._payload = trimmed_payload
+        result = timespantools.TimespanInventory([self])
+        return result
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

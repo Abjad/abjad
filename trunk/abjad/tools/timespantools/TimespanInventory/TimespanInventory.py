@@ -683,31 +683,37 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan = timespantools.Timespan(5, 10)
-            >>> result = timespan_inventory.delete_material_that_intersects_timespan(timespan)
+            >>> result = timespan_inventory - timespan
+
+        ::
+
+            >>> z(timespan_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(-2, 1),
+                    stop_offset=durationtools.Offset(5, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(5, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(10, 1),
+                    stop_offset=durationtools.Offset(16, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(10, 1),
+                    stop_offset=durationtools.Offset(12, 1)
+                    )
+                ])
 
         Operate in place and return timespan inventory.
         '''
-        # TODO: refactor to use set-theoretic primitives
         new_timespans = []
         for current_timespan in self[:]:
-            if timespan.curtails_timespan(current_timespan):
-                current_timespan = current_timespan.set_offsets(stop_offset=timespan.start_offset)
-                new_timespans.append(current_timespan)
-            elif timespan.delays_timespan(current_timespan):
-                current_timespan = current_timespan.set_offsets(start_offset=timespan.stop_offset)
-                new_timspans.append(current_timespan)
-            elif timespan.contains_timespan_improperly(current_timespan):
-                self.remove(current_timespan)
-            elif timespan.trisects_timespan(current_timespan):
-                raise Exception
-            else:
-                assert not timespan.intersects_timespan(current_timespan), repr((timespan, current_timespan))
-                new_timespans.append(current_timespan)
-        # TODO: use this instead of everything above in the 
-        #for current_timespan in self[:]:
-        #    current_timespan = current_timespan.set_offsets(*timespan.offsets)
-        #    new_timespans.append(current_timespan)
-        self[:] = new_timespans
+            result = current_timespan - timespan
+            new_timespans.extend(result)
+        self[:] = sorted(new_timespans)
         return self
 
     def get_timespan_that_satisfies_time_relation(self, time_relation):
