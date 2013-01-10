@@ -71,150 +71,154 @@ class RhythmRegionProduct(RegionProduct):
 
         ::
 
-            >>> z(result)
-            timespantools.TimespanInventory([
-                settingtools.RhythmRegionProduct(
-                    payload=containertools.Container(
-                        music=({d'8, e'8, f'8},)
-                        ),
-                    voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(1, 8),
-                        stop_offset=durationtools.Offset(1, 2)
+                >>> z(result)
+                timespantools.TimespanInventory([
+                    settingtools.RhythmRegionProduct(
+                        payload=containertools.Container(
+                            music=({d'8, e'8, f'8},)
+                            ),
+                        voice_name='Voice 1',
+                        timespan=timespantools.Timespan(
+                            start_offset=durationtools.Offset(1, 8),
+                            stop_offset=durationtools.Offset(1, 2)
+                            )
                         )
-                    )
-                ])
+                    ])
 
-        Example 2. Subtract from right:
+            Example 2. Subtract from right:
 
-        ::
+            ::
 
-            >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
-            >>> result = product - timespantools.Timespan(Offset(3, 8), 100)
+                >>> payload = [Container("c'8 d'8 e'8 f'8")]
+                >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+                >>> result = product - timespantools.Timespan(Offset(3, 8), 100)
 
-        ::
+            ::
 
-            >>> z(result)
-            timespantools.TimespanInventory([
-                settingtools.RhythmRegionProduct(
-                    payload=containertools.Container(
-                        music=({c'8, d'8, e'8},)
-                        ),
-                    voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(3, 8)
+                >>> z(result)
+                timespantools.TimespanInventory([
+                    settingtools.RhythmRegionProduct(
+                        payload=containertools.Container(
+                            music=({c'8, d'8, e'8},)
+                            ),
+                        voice_name='Voice 1',
+                        timespan=timespantools.Timespan(
+                            start_offset=durationtools.Offset(0, 1),
+                            stop_offset=durationtools.Offset(3, 8)
+                            )
                         )
-                    )
-                ])
+                    ])
 
-        Example 3. Subtract from middle:
+            Example 3. Subtract from middle:
 
-        ::
+            ::
 
-            >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
-            >>> result = product - timespantools.Timespan(Offset(1, 8), Offset(3, 8))
+                >>> payload = [Container("c'8 d'8 e'8 f'8")]
+                >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+                >>> result = product - timespantools.Timespan(Offset(1, 8), Offset(3, 8))
 
-        ::
+            ::
 
-            >>> z(result)
-            timespantools.TimespanInventory([
-                settingtools.RhythmRegionProduct(
-                    payload=containertools.Container(
-                        music=({c'8},)
+                >>> z(result)
+                timespantools.TimespanInventory([
+                    settingtools.RhythmRegionProduct(
+                        payload=containertools.Container(
+                            music=({c'8},)
+                            ),
+                        voice_name='Voice 1',
+                        timespan=timespantools.Timespan(
+                            start_offset=durationtools.Offset(0, 1),
+                            stop_offset=durationtools.Offset(1, 8)
+                            )
                         ),
-                    voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(1, 8)
+                    settingtools.RhythmRegionProduct(
+                        payload=containertools.Container(
+                            music=({f'8},)
+                            ),
+                        voice_name='Voice 1',
+                        timespan=timespantools.Timespan(
+                            start_offset=durationtools.Offset(3, 8),
+                            stop_offset=durationtools.Offset(1, 2)
+                            )
                         )
-                    ),
-                settingtools.RhythmRegionProduct(
-                    payload=containertools.Container(
-                        music=({f'8},)
-                        ),
-                    voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(3, 8),
-                        stop_offset=durationtools.Offset(1, 2)
+                    ])
+
+            Example 4. Subtract nothing:
+
+            ::
+
+                >>> payload = [Container("c'8 d'8 e'8 f'8")]
+                >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+                >>> result = product - timespantools.Timespan(100, 200)
+
+            ::
+
+                >>> z(result)
+                timespantools.TimespanInventory([
+                    settingtools.RhythmRegionProduct(
+                        payload=containertools.Container(
+                            music=({c'8, d'8, e'8, f'8},)
+                            ),
+                        voice_name='Voice 1',
+                        timespan=timespantools.Timespan(
+                            start_offset=durationtools.Offset(0, 1),
+                            stop_offset=durationtools.Offset(1, 2)
+                            )
                         )
-                    )
-                ])
-
-        Example 4. Subtract nothing:
-
-        ::
-
-            >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
-            >>> result = product - timespantools.Timespan(100, 200)
-
-        ::
-
-            >>> z(result)
-            timespantools.TimespanInventory([
-                settingtools.RhythmRegionProduct(
-                    payload=containertools.Container(
-                        music=({c'8, d'8, e'8, f'8},)
-                        ),
-                    voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(1, 2)
-                        )
-                    )
-                ])
+                    ])
 
         Operate in place and return timespan inventory.
         '''
         if timespan.delays_timespan(self):
+            #print 'A'
             split_offset = durationtools.Offset(timespan.stop_offset)
             duration_to_trim = split_offset - self.start_offset
+            #result = self._split_payload_at_offsets([duration_to_trim])
             result = componenttools.split_components_at_offsets(
                 [self.payload], [duration_to_trim], cyclic=False, fracture_spanners=True)
             trimmed_payload = result[-1][0]
             self._payload = trimmed_payload
+            #self.payload[:] = result[-1][0]
             self._start_offset = split_offset
             result = timespantools.TimespanInventory([self])
         elif timespan.curtails_timespan(self):
+            #print 'b'
             split_offset = durationtools.Offset(timespan.start_offset)
             duration_to_trim = self.stop_offset - split_offset
             duration_to_keep = self.payload.prolated_duration - duration_to_trim
-            result = componenttools.split_components_at_offsets(
-                [self.payload], [duration_to_keep], cyclic=False, fracture_spanners=True)
+            result = self._split_payload_at_offsets([duration_to_keep])
             trimmed_payload = result[0][0]
-            if not wellformednesstools.is_well_formed_component(trimmed_payload):
-                self._debug(trimmed_payload, 'trimmed payload')
-                wellformednesstools.tabulate_well_formedness_violations_in_expr(trimmed_payload)
             self._payload = trimmed_payload
+            if not wellformednesstools.is_well_formed_component(self.payload):
+                self._debug(self.payload, 'self.payload')
+                wellformednesstools.tabulate_well_formedness_violations_in_expr(self.payload)
             result = timespantools.TimespanInventory([self])
         elif timespan.trisects_timespan(self):
+            #print 'c'
             split_offsets = []
             split_offsets.append(timespan.start_offset - self.start_offset)
             split_offsets.append(timespan.duration)
             assert isinstance(self.payload, containertools.Container)
             assert len(self.payload) == 1
-            music = self.payload[0]
-            self.payload[:] = []
-            result = componenttools.split_components_at_offsets(
-                [music], split_offsets, cyclic=False, fracture_spanners=True)
+            result = self._split_payload_at_offsets(split_offsets)
             left_payload = result[0][0]
             right_payload = result[-1][0]
-            if not wellformednesstools.is_well_formed_component(left_payload):
-                wellformednesstools.tabulate_well_formedness_violations_in_expr(left_payload)
-            if not wellformednesstools.is_well_formed_component(right_payload):
-                wellformednesstools.tabulate_well_formedness_violations_in_expr(right_payload)
             left_timespan = timespantools.Timespan(self.start_offset)
             left_product = type(self)(
-                payload=[left_payload], voice_name=self.voice_name, timespan=left_timespan)
+                payload=None, voice_name=self.voice_name, timespan=left_timespan)
+            left_product._payload = left_payload
             right_timespan = timespantools.Timespan(timespan.stop_offset)
             right_product = type(self)(
-                payload=[right_payload], voice_name=self.voice_name, timespan=right_timespan)
+                payload=None, voice_name=self.voice_name, timespan=right_timespan)
+            right_product._payload = right_payload
+            if not wellformednesstools.is_well_formed_component(left_product.payload):
+                wellformednesstools.tabulate_well_formedness_violations_in_expr(left_product.payload)
+            if not wellformednesstools.is_well_formed_component(right_product.payload):
+                wellformednesstools.tabulate_well_formedness_violations_in_expr(right_product.payload)
             products = [left_product, right_product]
             result = timespantools.TimespanInventory(products)
         else:
+            #print 'd'
             result = timespantools.TimespanInventory([self])
         return result
 
@@ -264,6 +268,13 @@ class RhythmRegionProduct(RegionProduct):
             wellformednesstools.tabulate_well_formedness_violations_in_expr(trimmed_payload)
         assert wellformednesstools.is_well_formed_component(trimmed_payload)
         self._payload = trimmed_payload
+
+    def _split_payload_at_offsets(self, offsets):
+        music = self.payload
+        self._payload = containertools.Container()
+        result = componenttools.split_components_at_offsets(
+            [music], offsets, cyclic=False, fracture_spanners=True)
+        return result
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
