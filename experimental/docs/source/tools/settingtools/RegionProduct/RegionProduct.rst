@@ -35,7 +35,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.new
    :noindex:
 
-.. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.set_offsets
+.. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.trim_to_timespan
    :noindex:
 
 Special Methods
