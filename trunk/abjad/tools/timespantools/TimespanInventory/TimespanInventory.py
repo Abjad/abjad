@@ -699,10 +699,14 @@ class TimespanInventory(ObjectInventory):
             elif timespan.contains_timespan_improperly(current_timespan):
                 self.remove(current_timespan)
             elif timespan.trisects_timespan(current_timespan):
-                raise Exception('?')
+                raise Exception
             else:
                 assert not timespan.intersects_timespan(current_timespan), repr((timespan, current_timespan))
                 new_timespans.append(current_timespan)
+        # TODO: use this instead of everything above in the 
+        #for current_timespan in self[:]:
+        #    current_timespan = current_timespan.set_offsets(*timespan.offsets)
+        #    new_timespans.append(current_timespan)
         self[:] = new_timespans
         return self
 
