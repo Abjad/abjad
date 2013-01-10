@@ -191,126 +191,6 @@ class DivisionRegionProduct(RegionProduct):
 
     ### PRIVATE METHODS ###
 
-    def _set_start_offset(self, start_offset):
-        '''Set start offset.
-
-        ::
-
-            >>> expr = settingtools.DivisionRegionProduct(4 * [(3, 16)], 'Voice 1')
-
-        ::
-
-            >>> z(expr)
-            settingtools.DivisionRegionProduct(
-                payload=settingtools.DivisionList(
-                    [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
-                    ),
-                voice_name='Voice 1',
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(3, 4)
-                    )
-                )
-
-        ::
-
-            >>> result = expr.set_offsets(start_offset=(1, 16))
-
-        ::
-
-            >>> z(expr)
-            settingtools.DivisionRegionProduct(
-                payload=settingtools.DivisionList(
-                    [Division('[2, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
-                    ),
-                voice_name='Voice 1',
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(1, 16),
-                    stop_offset=durationtools.Offset(3, 4)
-                    )
-                )
-
-        ::
-
-            >>> expr.timespan.duration
-            Duration(11, 16)
-
-        Set start offset.
-        
-        Operate in place and return none.
-        '''
-        from experimental.tools import settingtools
-        start_offset = durationtools.Offset(start_offset)
-        assert self.timespan.start_offset <= start_offset
-        duration_to_trim = start_offset - self.timespan.start_offset
-        divisions = copy.deepcopy(self.payload.divisions)
-        shards = sequencetools.split_sequence_by_weights(
-            divisions, [duration_to_trim], cyclic=False, overhang=True)
-        trimmed_divisions = shards[-1]
-        division_list = settingtools.DivisionList(trimmed_divisions)
-        self._payload = division_list
-        self._start_offset = start_offset
-
-    def _set_stop_offset(self, stop_offset):
-        '''Set stop offset.
-
-        ::
-
-            >>> expr = settingtools.DivisionRegionProduct(4 * [(3, 16)], 'Voice 1')
-
-        ::
-
-            >>> z(expr)
-            settingtools.DivisionRegionProduct(
-                payload=settingtools.DivisionList(
-                    [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
-                    ),
-                voice_name='Voice 1',
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(3, 4)
-                    )
-                )
-
-        ::
-
-            >>> result = expr.set_offsets(stop_offset=(11, 16))
-
-        ::
-
-            >>> z(expr)
-            settingtools.DivisionRegionProduct(
-                payload=settingtools.DivisionList(
-                    [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]')]
-                    ),
-                voice_name='Voice 1',
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(11, 16)
-                    )
-                )
-
-        ::
-
-            >>> expr.timespan.duration
-            Duration(11, 16)
-
-        Set stop offset.
-        
-        Operate in place and return none.
-        '''
-        from experimental.tools import settingtools
-        stop_offset = durationtools.Offset(stop_offset)
-        assert stop_offset <= self.timespan.stop_offset
-        duration_to_trim = self.timespan.stop_offset - stop_offset
-        duration_to_keep = self.payload.duration - duration_to_trim
-        divisions = copy.deepcopy(self.payload.divisions)
-        shards = sequencetools.split_sequence_by_weights(
-            divisions, [duration_to_keep], cyclic=False, overhang=True)
-        trimmed_divisions = shards[0]
-        division_list = settingtools.DivisionList(trimmed_divisions)
-        self._payload = division_list
-
     def _split_payload_at_offsets(self, offsets):
         from experimental.tools import settingtools
         divisions = copy.deepcopy(self.payload.divisions)
@@ -318,7 +198,6 @@ class DivisionRegionProduct(RegionProduct):
         shards = sequencetools.split_sequence_by_weights(
             divisions, offsets, cyclic=False, overhang=True)
         shards = [settingtools.DivisionList(shard, voice_name=self.voice_name) for shard in shards]
-        #print shards
         return shards
 
     ### READ-ONLY PUBLIC PROPERTIES ###

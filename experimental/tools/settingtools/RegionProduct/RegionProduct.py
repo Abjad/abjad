@@ -100,14 +100,6 @@ class RegionProduct(AbjadObject):
                 return self.voice_name == expr.voice_name
         return False
         
-    @abc.abstractmethod
-    def _set_start_offset(self, start_offset):
-        pass
-
-    @abc.abstractmethod
-    def _set_stop_offset(self, stop_offset):
-        pass
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
