@@ -45,16 +45,20 @@ class RegionProduct(AbjadObject):
             split_offset = durationtools.Offset(timespan.stop_offset)
             duration_to_trim = split_offset - self.start_offset
             result = self._split_payload_at_offsets([duration_to_trim])
-            trimmed_payload = result[-1][0]
+            trimmed_payload = result[-1]
             self._payload = trimmed_payload
             self._start_offset = split_offset
             result = timespantools.TimespanInventory([self])
         elif timespan.curtails_timespan(self):
             split_offset = durationtools.Offset(timespan.start_offset)
             duration_to_trim = self.stop_offset - split_offset
-            duration_to_keep = self.payload.prolated_duration - duration_to_trim
+            if hasattr(self.payload, 'prolated_duration'):
+                payload_duration = self.payload.prolated_duration
+            else:
+                payload_duration = self.payload.duration
+            duration_to_keep = payload_duration - duration_to_trim
             result = self._split_payload_at_offsets([duration_to_keep])
-            trimmed_payload = result[0][0]
+            trimmed_payload = result[0]
             self._payload = trimmed_payload
             result = timespantools.TimespanInventory([self])
         elif timespan.trisects_timespan(self):
@@ -62,15 +66,15 @@ class RegionProduct(AbjadObject):
             split_offsets.append(timespan.start_offset - self.start_offset)
             split_offsets.append(timespan.duration)
             result = self._split_payload_at_offsets(split_offsets)
-            left_payload = result[0][0]
-            right_payload = result[-1][0]
+            left_payload = result[0]
+            right_payload = result[-1]
             left_timespan = timespantools.Timespan(self.start_offset)
             left_product = type(self)(
-                payload=None, voice_name=self.voice_name, timespan=left_timespan)
+                payload=[], voice_name=self.voice_name, timespan=left_timespan)
             left_product._payload = left_payload
             right_timespan = timespantools.Timespan(timespan.stop_offset)
             right_product = type(self)(
-                payload=None, voice_name=self.voice_name, timespan=right_timespan)
+                payload=[], voice_name=self.voice_name, timespan=right_timespan)
             right_product._payload = right_payload
             products = [left_product, right_product]
             result = timespantools.TimespanInventory(products)

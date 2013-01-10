@@ -105,5 +105,3 @@ Special Methods
 
 .. automethod:: experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct.__sub__
    :noindex:
-
-   Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`

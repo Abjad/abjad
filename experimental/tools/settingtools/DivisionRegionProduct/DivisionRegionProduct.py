@@ -65,6 +65,124 @@ class DivisionRegionProduct(RegionProduct):
         result = type(self)(division_list, voice_name=self.voice_name, timespan=self.timespan)
         return timespantools.TimespanInventory([result])
 
+    def __sub__(self, timespan):
+        '''Subtract `timespan` from division region product.
+
+        Example 1. Subtract from left:
+
+        ::
+
+            >>> payload = [(6, 8), (6, 8), (3, 4)]
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> result = product - timespantools.Timespan(0, Offset(1, 8))
+
+        ::
+
+            >>> z(result)
+            timespantools.TimespanInventory([
+                settingtools.DivisionRegionProduct(
+                    payload=settingtools.DivisionList(
+                        [Division('[5, 8]'), Division('[6, 8]'), Division('[3, 4]')],
+                        voice_name='Voice 1'
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(1, 8),
+                        stop_offset=durationtools.Offset(9, 4)
+                        )
+                    )
+                ])
+
+        Example 2. Subtract from right:
+
+        ::
+
+            >>> payload = [(6, 8), (6, 8), (3, 4)]
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> result = product - timespantools.Timespan(Offset(17, 8), 100)
+
+        ::
+
+            >>> z(result)
+            timespantools.TimespanInventory([
+                settingtools.DivisionRegionProduct(
+                    payload=settingtools.DivisionList(
+                        [Division('[6, 8]'), Division('[6, 8]'), Division('[5, 8]')],
+                        voice_name='Voice 1'
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(17, 8)
+                        )
+                    )
+                ])
+
+        Example 3. Subtract from middle:
+
+        ::
+
+            >>> payload = [(6, 8), (6, 8), (3, 4)]
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> result = product - timespantools.Timespan(Offset(1, 8), Offset(17, 8))
+
+        ::
+
+            >>> z(result)
+            timespantools.TimespanInventory([
+                settingtools.DivisionRegionProduct(
+                    payload=settingtools.DivisionList(
+                        [Division('[1, 8]')],
+                        voice_name='Voice 1'
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(1, 8)
+                        )
+                    ),
+                settingtools.DivisionRegionProduct(
+                    payload=settingtools.DivisionList(
+                        [Division('[1, 8]')],
+                        voice_name='Voice 1'
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(17, 8),
+                        stop_offset=durationtools.Offset(9, 4)
+                        )
+                    )
+                ])
+
+
+        Example 4. Subtract from nothing:
+
+        ::
+
+            >>> payload = [(6, 8), (6, 8), (3, 4)]
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> result = product - timespantools.Timespan(100, 200)
+
+        ::
+
+            >>> z(result)
+            timespantools.TimespanInventory([
+                settingtools.DivisionRegionProduct(
+                    payload=settingtools.DivisionList(
+                        [Division('[6, 8]'), Division('[6, 8]'), Division('[3, 4]')]
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(9, 4)
+                        )
+                    )
+                ])
+
+        Operate in place and return timespan inventory.
+        '''
+        return RegionProduct.__sub__(self, timespan)
+
     ### READ-ONLY PRIVATE PROPERTIES ##
 
     @property
@@ -192,6 +310,16 @@ class DivisionRegionProduct(RegionProduct):
         trimmed_divisions = shards[0]
         division_list = settingtools.DivisionList(trimmed_divisions)
         self._payload = division_list
+
+    def _split_payload_at_offsets(self, offsets):
+        from experimental.tools import settingtools
+        divisions = copy.deepcopy(self.payload.divisions)
+        self._payload = settingtools.DivisionList([], voice_name=self.voice_name)
+        shards = sequencetools.split_sequence_by_weights(
+            divisions, offsets, cyclic=False, overhang=True)
+        shards = [settingtools.DivisionList(shard, voice_name=self.voice_name) for shard in shards]
+        #print shards
+        return shards
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
