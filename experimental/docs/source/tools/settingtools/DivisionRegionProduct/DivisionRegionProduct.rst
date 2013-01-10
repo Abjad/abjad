@@ -102,3 +102,8 @@ Special Methods
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct.__sub__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`
