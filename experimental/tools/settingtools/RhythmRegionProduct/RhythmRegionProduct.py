@@ -60,24 +60,71 @@ class RhythmRegionProduct(RegionProduct):
 
     # TODO: write tests
     def __sub__(self, timespan):
-        # TODO: fix this
-        if timespan.start_offset <= self.start_offset < timespan.stop_offset:
-            start_offset = durationtools.Offset(timespan.start_offset)
-            assert self.start_offset <= start_offset
-            assert start_offset < self.stop_offset
-            duration_to_trim = start_offset - self.start_offset
+        '''Substract `timespan` from rhythm region product.
+
+        Example 1. Subtract from left:
+
+        ::
+
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> product = product - timespantools.Timespan(0, Offset(1, 8))
+
+        ::
+
+            >>> z(product)
+            timespantools.TimespanInventory([
+                settingtools.RhythmRegionProduct(
+                    payload=containertools.Container(
+                        music=({d'8, e'8, f'8},)
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(1, 8),
+                        stop_offset=durationtools.Offset(1, 2)
+                        )
+                    )
+                ])
+
+        Example 2. Subtract from right:
+
+        ::
+
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> result = product - timespantools.Timespan(Offset(3, 8), 100)
+
+        ::
+
+            >>> z(product)
+            settingtools.RhythmRegionProduct(
+                payload=containertools.Container(
+                    music=({c'8, d'8, e'8},)
+                    ),
+                voice_name='Voice 1',
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(3, 8)
+                    )
+                )
+
+        Operate in place and return self.
+        '''
+        #if timespan.start_offset <= self.start_offset < timespan.stop_offset:
+        if timespan.delays_timespan(self):
+            split_offset = durationtools.Offset(timespan.stop_offset)
+            duration_to_trim = split_offset - self.start_offset
             result = componenttools.split_components_at_offsets(
                 [self.payload], [duration_to_trim], cyclic=False, fracture_spanners=True)
             trimmed_payload = result[-1][0]
             assert wellformednesstools.is_well_formed_component(trimmed_payload)
             self._payload = trimmed_payload
-            self._start_offset = start_offset
-        ####
-        if self.start_offset < timespan.start_offset < self.stop_offset:
-            stop_offset = durationtools.Offset(timespan.start_offset)
-            assert stop_offset <= self.stop_offset, repr((self, timespan))
-            assert self.start_offset < stop_offset
-            duration_to_trim = self.stop_offset - stop_offset
+            self._start_offset = split_offset
+            result = timespantools.TimespanInventory([self])
+        #elif self.start_offset < timespan.start_offset < self.stop_offset:
+        elif timespan.curtails_timespan(self):
+            split_offset = durationtools.Offset(timespan.start_offset)
+            duration_to_trim = self.stop_offset - split_offset
             duration_to_keep = self.payload.prolated_duration - duration_to_trim
             result = componenttools.split_components_at_offsets(
                 [self.payload], [duration_to_keep], cyclic=False, fracture_spanners=True)
@@ -87,7 +134,12 @@ class RhythmRegionProduct(RegionProduct):
                 wellformednesstools.tabulate_well_formedness_violations_in_expr(trimmed_payload)
             assert wellformednesstools.is_well_formed_component(trimmed_payload)
             self._payload = trimmed_payload
-        result = timespantools.TimespanInventory([self])
+            result = timespantools.TimespanInventory([self])
+        elif timespan.trisects_timespan(self):
+            raise Exception
+            # return two parts
+        else:
+            result = timespantools.TimespanInventory([self])
         return result
 
     ### READ-ONLY PRIVATE PROPERTIES ###
