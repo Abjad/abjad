@@ -100,6 +100,7 @@ class RegionProduct(AbjadObject):
         result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
         return result
 
+    # TODO: change to __sub__
     def set_offsets(self, start_offset=None, stop_offset=None):
         '''Operate in place.
         '''

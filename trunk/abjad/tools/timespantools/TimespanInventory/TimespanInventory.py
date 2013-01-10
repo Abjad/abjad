@@ -685,25 +685,26 @@ class TimespanInventory(ObjectInventory):
             >>> timespan = timespantools.Timespan(5, 10)
             >>> result = timespan_inventory.delete_material_that_intersects_timespan(timespan)
 
-        .. note:: complete example.
-
         Operate in place and return timespan inventory.
         '''
         # TODO: refactor to use set-theoretic primitives
-        #timespans = []
+        new_timespans = []
         for current_timespan in self[:]:
             if timespan.curtails_timespan(current_timespan):
                 current_timespan = current_timespan.set_offsets(stop_offset=timespan.start_offset)
+                new_timespans.append(current_timespan)
             elif timespan.delays_timespan(current_timespan):
                 current_timespan = current_timespan.set_offsets(start_offset=timespan.stop_offset)
+                new_timspans.append(current_timespan)
             elif timespan.contains_timespan_improperly(current_timespan):
                 self.remove(current_timespan)
-                #pass
-            # TODO: test for trisection and figure out why not included yet
-            #else:
-            #    raise Exception('why here now?')
-        #self[:] = timespans
-        #return self
+            elif timespan.trisects_timespan(current_timespan):
+                raise Exception('?')
+            else:
+                assert not timespan.intersects_timespan(current_timespan), repr((timespan, current_timespan))
+                new_timespans.append(current_timespan)
+        self[:] = new_timespans
+        return self
 
     def get_timespan_that_satisfies_time_relation(self, time_relation):
         r'''Get timespan that satisifies `time_relation`:
