@@ -27,6 +27,16 @@ Read-only Properties
 
    Inherited from :py:class:`settingtools.RegionCommand <experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand>`
 
+.. autoattribute:: experimental.tools.settingtools.DivisionRegionCommand.DivisionRegionCommand.DivisionRegionCommand.start_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.RegionCommand <experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand>`
+
+.. autoattribute:: experimental.tools.settingtools.DivisionRegionCommand.DivisionRegionCommand.DivisionRegionCommand.stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.RegionCommand <experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand>`
+
 .. autoattribute:: experimental.tools.settingtools.DivisionRegionCommand.DivisionRegionCommand.DivisionRegionCommand.storage_format
    :noindex:
 

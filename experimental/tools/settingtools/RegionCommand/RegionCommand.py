@@ -60,7 +60,7 @@ class RegionCommand(AbjadObject):
 
     @abc.abstractproperty
     def attribute(self):
-        '''RegionCommand attribute.
+        '''Region command attribute.
 
         Return string.
         '''
@@ -68,7 +68,7 @@ class RegionCommand(AbjadObject):
 
     @property
     def context_name(self):
-        '''RegionCommand context name.
+        '''Region command context name.
     
         Return string.
         '''
@@ -76,7 +76,7 @@ class RegionCommand(AbjadObject):
 
     @property
     def fresh(self):
-        '''True when command was generated in response 
+        '''True when region command was generated in response 
         to an explicit user command. Otherwise false.
 
         Return boolean.
@@ -85,35 +85,50 @@ class RegionCommand(AbjadObject):
 
     @property
     def request(self):
-        '''RegionCommand request.
+        '''Region command request.
         
         Return request object.
         ''' 
         return self._request
 
     @property
+    def start_offset(self):
+        '''Region command start offset.
+
+        Return offset.
+        '''
+        return self.timespan.start_offset
+
+    @property
+    def stop_offset(self):
+        '''Region command stop offset.
+
+        Return offset.
+        '''
+        return self.timespan.stop_offset
+
+    @property
     def timespan(self):
-        '''RegionCommand timespan.
+        '''Region command timespan.
+
+        Return timespan.
         '''
         return self._timespan
 
     ### PUBLIC METHODS ###
 
-    # TODO: change name to self.__or__()
-    #def fuse(self, command):
     def __or__(self, command):
-        '''Fuse `command` to the end of self.
+        '''Fuse region command and `command`.
 
-        Return newly constructed division command.
+        Return newly constructed region command.
 
-        Raise exception when self can not fuse with `division_command`.
+        Raise exception when region command can not fuse with `command`.
         '''
         assert self._can_fuse(command)
         stop_offset = self.timespan.stop_offset + command.timespan.duration
         timespan = self.timespan.new(stop_offset=stop_offset) 
-        fused_command = self.new(timespan=timespan)
-        #return fused_command
-        return timespantools.TimespanInventory([fused_command])
+        result = self.new(timespan=timespan)
+        return timespantools.TimespanInventory([result])
 
     def new(self, **kwargs):
         positional_argument_dictionary = self._positional_argument_dictionary

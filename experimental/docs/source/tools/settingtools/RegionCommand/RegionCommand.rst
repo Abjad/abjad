@@ -21,6 +21,12 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.request
    :noindex:
 
+.. autoattribute:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.start_offset
+   :noindex:
+
+.. autoattribute:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.stop_offset
+   :noindex:
+
 .. autoattribute:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.storage_format
    :noindex:
 

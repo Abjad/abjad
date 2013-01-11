@@ -27,6 +27,16 @@ Read-only Properties
 
    Inherited from :py:class:`settingtools.RegionCommand <experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand>`
 
+.. autoattribute:: experimental.tools.settingtools.RhythmRegionCommand.RhythmRegionCommand.RhythmRegionCommand.start_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.RegionCommand <experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand>`
+
+.. autoattribute:: experimental.tools.settingtools.RhythmRegionCommand.RhythmRegionCommand.RhythmRegionCommand.stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.RegionCommand <experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand>`
+
 .. autoattribute:: experimental.tools.settingtools.RhythmRegionCommand.RhythmRegionCommand.RhythmRegionCommand.storage_format
    :noindex:
 
