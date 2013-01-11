@@ -40,6 +40,45 @@ class InheritanceGraph(AbjadObject):
         >>> graph = documentationtools.InheritanceGraph(
         ...     (A, B, C, D, E, F), root_addresses=(B,))
 
+    The class is intended for use in documenting packages.
+
+    To document all of Abjad, use this formulation:
+
+    ::
+
+        >>> graph = documentationtools.InheritanceGraph(
+        ...     addresses=('abjad',))
+
+    To document only those classes descending from Container, use this formulation:
+
+    ::
+
+        >>> graph = documentationtools.InheritanceGraph(
+        ...     addresses=('abjad',),
+        ...     root_addresses=(Container,)
+        ...     )
+
+    To document only those classes whose lineage pass through componenttools,
+    use this formulation:
+
+    ::
+
+        >>> graph = documentationtools.InheritanceGraph(
+        ...     addresses=('abjad',),
+        ...     lineage_addresses=(componenttools,),
+        ...     )
+
+    When creating the Graphviz representation, classes in the inheritance graph
+    may be hidden, based on their distance from any defined lineage class:
+
+    ::
+
+        >>> graph = documentationtools.InheritanceGraph(
+        ...     addresses=('abjad',),
+        ...     lineage_addresses=(marktools.Mark,),
+        ...     lineage_prune_distance=1,
+        ...     )
+
     Returns ``InheritanceGraph`` instance.
     '''
 
@@ -51,6 +90,8 @@ class InheritanceGraph(AbjadObject):
         '_immediate_klasses',
         '_lineage_addresses',
         '_lineage_klasses',
+        '_lineage_distance_mapping',
+        '_lineage_prune_distance',
         '_parent_children_mapping',
         '_recurse_into_submodules',
         '_root_addresses',
@@ -67,6 +108,7 @@ class InheritanceGraph(AbjadObject):
     def __init__(self,
         addresses=('abjad',),
         lineage_addresses=None,
+        lineage_prune_distance=None,
         recurse_into_submodules=True,
         root_addresses=None,
         use_clusters=True,
@@ -74,6 +116,10 @@ class InheritanceGraph(AbjadObject):
         ):
 
         self._recurse_into_submodules = bool(recurse_into_submodules)
+        if lineage_prune_distance is not None:
+            lineage_prune_distance = int(lineage_prune_distance)
+            assert 0 < lineage_prune_distance
+        self._lineage_prune_distance = lineage_prune_distance
         self._use_clusters = bool(use_clusters)
         self._use_groups = bool(use_groups)
 
@@ -111,6 +157,8 @@ class InheritanceGraph(AbjadObject):
         self._parent_children_mapping = parent_children_mapping
 
         self._immediate_klasses = main_immediate_klasses.intersection(self._parent_children_mapping.viewkeys())
+
+        self._lineage_distance_mapping = self._find_lineage_distances()
 
     ### PRIVATE METHODS ###
 
@@ -173,6 +221,26 @@ class InheritanceGraph(AbjadObject):
                 address = module.__name__
             cached_addresses.append(address)
         return all_klasses, immediate_klasses, tuple(cached_addresses)
+
+    def _find_lineage_distances(self):
+        if not self.lineage_klasses:
+            return None
+        if not self.lineage_prune_distance:
+            return None
+        distance_mapping = {}
+        def recurse_downward(klass, distance=0):
+            if klass not in self.parent_children_mapping:
+                return
+            for child in self.parent_children_mapping[klass]:
+                if child not in distance_mapping:
+                    distance_mapping[child] = distance + 1
+                    recurse_downward(child, distance + 1)
+                elif (distance + 1) < distance_mapping[child]:
+                    distance_mapping[child] = distance + 1
+                    recurse_downward(child, distance + 1)
+        for klass in self.lineage_klasses:
+            recurse_downward(klass)
+        return distance_mapping
 
     def _strip_nonlineage_klasses(self, child_parents_mapping, parent_children_mapping):
         if not self.lineage_klasses:
@@ -288,31 +356,65 @@ class InheritanceGraph(AbjadObject):
                 )
             node.attributes['label'] = '\\n'.join(pieces)                    
 
-            cluster.append(node)
-            klass_nodes[klass] = node
-
             if klass in self.immediate_klasses:
                 pass
-
             if klass in self.root_klasses:
                 pass
-
             if inspect.isabstract(klass):
                 node.attributes['shape'] = 'oval'
                 node.attributes['style'] = 'bold'
             else:
                 node.attributes['shape'] = 'box'
-
             if klass in self.lineage_klasses:
                 node.attributes['color'] = 'black'
                 node.attributes['fontcolor'] = 'white'
                 node.attributes['style'] = ('filled', 'rounded')
 
+            if self.lineage_prune_distance is None:
+                cluster.append(node)
+                klass_nodes[klass] = node
+            elif klass not in self.lineage_distance_mapping:
+                cluster.append(node)
+                klass_nodes[klass] = node
+            else:
+                ok_distance = self.lineage_prune_distance + 1
+                distance = self.lineage_distance_mapping[klass]
+                if distance < ok_distance:
+                    cluster.append(node)
+                    klass_nodes[klass] = node
+                elif distance == ok_distance:
+                    node.attributes['shape'] = 'invis'
+                    node.attributes['style'] = 'transparent'
+                    node.attributes['label'] = ' ' 
+                    cluster.append(node)
+                    klass_nodes[klass] = node
+                elif ok_distance < distance:
+                    pass
+
+        distances = self.lineage_distance_mapping
         for parent, children in self.parent_children_mapping.iteritems():
             for child in children:
-                parent_node = klass_nodes[parent]
-                child_node = klass_nodes[child]
-                documentationtools.GraphvizEdge()(parent_node, child_node)
+                ok_to_join = False
+                if self.lineage_prune_distance is None:
+                    ok_to_join = True
+                elif parent not in distances:
+                    if child not in distances:
+                        ok_to_join = True
+                    elif child in distances and distances[child] <= ok_distance:
+                        ok_to_join = True
+                elif child not in distances:
+                    if parent not in distances:
+                        ok_to_join = True
+                    elif parent in distances and distances[parent] <= ok_distance:
+                        ok_to_join = True
+                elif distances[child] <= ok_distance and \
+                    distances[parent] <= ok_distance:
+                    ok_to_join = True
+                if ok_to_join:
+                    parent_node = klass_nodes[parent]
+                    child_node = klass_nodes[child]
+                    documentationtools.GraphvizEdge()(parent_node, child_node)
+                
 
         for i, cluster in enumerate(sorted(graph.children, key=lambda x: x.name)):
             color = i % 9 + 1
@@ -337,6 +439,14 @@ class InheritanceGraph(AbjadObject):
     @property
     def lineage_addresses(self):
         return self._lineage_addresses
+
+    @property
+    def lineage_distance_mapping(self):
+        return self._lineage_distance_mapping
+
+    @property
+    def lineage_prune_distance(self):
+        return self._lineage_prune_distance
 
     @property
     def lineage_klasses(self):

@@ -27,7 +27,13 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.lineage_addresses
    :noindex:
 
+.. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.lineage_distance_mapping
+   :noindex:
+
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.lineage_klasses
+   :noindex:
+
+.. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.lineage_prune_distance
    :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.parent_children_mapping
