@@ -33,6 +33,41 @@ class RegionProduct(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __and__(self, timespan):
+        '''Keep intersection of `timespan` and region product.
+
+        Operate in place and return timespan inventory.
+        '''
+        if timespan.delays_timespan(self):
+            split_offset = durationtools.Offset(timespan.stop_offset)
+            duration_to_keep = split_offset - self.start_offset
+            result = self._split_payload_at_offsets([duration_to_keep])
+            trimmed_payload = result[0]
+            self._payload = trimmed_payload
+            result = timespantools.TimespanInventory([self])
+        elif timespan.curtails_timespan(self):
+            split_offset = durationtools.Offset(timespan.start_offset)
+            duration_to_trim = split_offset - self.start_offset
+            result = self._split_payload_at_offsets([duration_to_trim])
+            trimmed_payload = result[-1]
+            self._payload = trimmed_payload
+            self._start_offset = split_offset
+            result = timespantools.TimespanInventory([self])
+        elif timespan.trisects_timespan(self):
+            split_offsets = []
+            split_offsets.append(timespan.start_offset - self.start_offset)
+            split_offsets.append(timespan.duration)
+            result = self._split_payload_at_offsets(split_offsets)
+            middle_payload = result[1]
+            middle_timespan = timespantools.Timespan(*timespan.offsets)
+            middle_product = type(self)(
+                payload=[], voice_name=self.voice_name, timespan=middle_timespan)
+            middle_product._payload = middle_payload
+            result = timespantools.TimespanInventory([middle_product])
+        else:
+            result = timespantools.TimespanInventory()
+        return result
+
     def __lt__(self, expr):
         return self.timespan.start_offset < expr.timespan.start_offset
 

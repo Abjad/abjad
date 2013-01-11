@@ -41,6 +41,9 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.__and__
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.__eq__
    :noindex:
 

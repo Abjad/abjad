@@ -38,6 +38,98 @@ class RhythmRegionProduct(RegionProduct):
 
     ### SPECIAL METHODS ###
 
+    def __and__(self, timespan):
+        '''Keep intersection of `timespan` and rhythm region product.
+
+        Example 1. Intersection on the left:
+
+        ::
+
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> result = product & timespantools.Timespan(Offset(-1, 8), Offset(3, 8))
+
+        ::
+
+            >>> z(result)
+            timespantools.TimespanInventory([
+                settingtools.RhythmRegionProduct(
+                    payload=containertools.Container(
+                        music=({c'8, d'8, e'8},)
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(3, 8)
+                        )
+                    )
+                ])
+
+        Example 2. Intersection on the right:
+
+        ::
+
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> result = product & timespantools.Timespan(Offset(1, 8), Offset(5, 8))
+
+        ::
+
+            >>> z(result)
+            timespantools.TimespanInventory([
+                settingtools.RhythmRegionProduct(
+                    payload=containertools.Container(
+                        music=({d'8, e'8, f'8},)
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(1, 8),
+                        stop_offset=durationtools.Offset(1, 2)
+                        )
+                    )
+                ])
+
+        Example 3. Trisection:
+
+        ::
+
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> result = product & timespantools.Timespan(Offset(1, 8), Offset(3, 8))
+
+        ::
+
+            >>> z(result)
+            timespantools.TimespanInventory([
+                settingtools.RhythmRegionProduct(
+                    payload=containertools.Container(
+                        music=({d'8, e'8},)
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(1, 8),
+                        stop_offset=durationtools.Offset(3, 8)
+                        )
+                    )
+                ])
+
+        Example 4. No intersection:
+
+        ::
+
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> result = product & timespantools.Timespan(100, 200)
+
+        ::
+
+            >>> z(result)
+            timespantools.TimespanInventory([])
+
+        Operate in place and return timespan inventory.
+        '''
+        return RegionProduct.__and__(self, timespan)
+
     def __copy__(self, *args):
         new = type(self)(voice_name=self.voice_name, timespan=self.timespan)
         # TODO: use copy.deepcopy() instead

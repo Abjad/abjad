@@ -62,6 +62,9 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.__and__
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.__eq__
    :noindex:
 
