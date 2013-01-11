@@ -361,6 +361,30 @@ class TimespanInventory(ObjectInventory):
         if self:
             return max([timespan.stop_offset for timespan in self])
 
+    @property
+    def timespan(self):
+        '''Timespan inventory timespan:
+
+        ::
+
+            >>> timespan_inventory_1.timespan
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
+
+        ::
+
+            >>> timespan_inventory_2.timespan
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(20, 1))
+
+        ::
+
+            >>> timespan_inventory_3.timespan
+            Timespan()
+
+        Return timespan.
+        '''
+        from abjad.tools import timespantools
+        return timespantools.Timespan(self.start_offset, self.stop_offset)
+
     ### PUBLIC METHODS ###
 
     def compute_logical_and(self):

@@ -49,6 +49,11 @@ Read-only Properties
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.tools.settingtools.RegionCommandInventory.RegionCommandInventory.RegionCommandInventory.timespan
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.timespantools.TimespanInventory <abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory>`
+
 Read/write Properties
 ---------------------
 
