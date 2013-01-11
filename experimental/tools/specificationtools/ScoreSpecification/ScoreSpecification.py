@@ -553,7 +553,10 @@ class ScoreSpecification(Specification):
                 context_name, attribute, include_improper_parentage=True)
             for single_context_setting in single_context_settings:
                 command = single_context_setting.to_command(self, context_name)
-                commands.append(command)
+                # make sure setting was setting for timespan that exists in current segment
+                if command.timespan.is_well_formed:
+                    commands.append(command)
+        assert commands.all_are_well_formed
         return commands
 
     # TODO: possibly remove in favor of self.get_anchor_timespan().

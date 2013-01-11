@@ -79,8 +79,6 @@ class RegionCommandInventory(TimespanInventory):
                 voice_name, timespan, attribute)
             self[:] = [region_command]
             return self
-        commands = [expr for expr in self if expr.timespan.is_well_formed]
-        self[:] = commands
         timespans = timespantools.TimespanInventory([expr.timespan for expr in self])
         timespans.append(score_specification.timespan)
         missing_region_timespans = timespans.compute_logical_xor() 
