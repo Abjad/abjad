@@ -112,8 +112,12 @@ class CounttimeComponentSelector(Selector):
             result = settingtools.RhythmRegionProduct(
                 payload=music, voice_name=voice_name, start_offset=start_offset)
         # TODO: impelement with logical AND
+        #x = timespantools.Timespan(start_offset, stop_offset)
+        #result = result.trim_to_timespan(x)
+        #assert len(result) == 1
+        #result = result[0]
         x = timespantools.Timespan(start_offset, stop_offset)
-        result = result.trim_to_timespan(x)
+        result = result & x
         assert len(result) == 1
         result = result[0]
         result.repeat_to_stop_offset(stop_offset)

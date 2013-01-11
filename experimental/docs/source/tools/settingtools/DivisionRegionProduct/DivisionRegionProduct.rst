@@ -54,11 +54,6 @@ Methods
 .. automethod:: experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct.translate_offsets
    :noindex:
 
-.. automethod:: experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct.trim_to_timespan
-   :noindex:
-
-   Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`
-
 Special Methods
 ---------------
 
