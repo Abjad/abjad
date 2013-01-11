@@ -179,11 +179,13 @@ class RegionProduct(AbjadObject):
     # TODO: implement Timespan.trim_to_timespan(); or not
     # TODO: write tests
     def trim_to_timespan(self, timespan):
-        result = self
-        if timespan.start_offset is not None:
-            knife = timespantools.Timespan(self.start_offset, timespan.start_offset)
-            result = self - knife
-        if timespan.stop_offset is not None:
-            knife = timespantools.Timespan(timespan.stop_offset, self.stop_offset)
-            result = result - knife
-        return result
+        return self & timespan
+        #result = self
+        #if timespan.start_offset is not None:
+        #    knife = timespantools.Timespan(self.start_offset, timespan.start_offset)
+        #    result = self - knife
+        #if timespan.stop_offset is not None:
+        #    knife = timespantools.Timespan(timespan.stop_offset, self.stop_offset)
+        #    result = result - knife
+        #return result
+
