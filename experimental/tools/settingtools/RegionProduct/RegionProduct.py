@@ -38,7 +38,9 @@ class RegionProduct(AbjadObject):
 
         Operate in place and return timespan inventory.
         '''
-        if timespan.delays_timespan(self):
+        if timespan.contains_timespan_improperly(self):
+            result = timespantools.TimespanInventory([self]) 
+        elif timespan.delays_timespan(self):
             split_offset = durationtools.Offset(timespan.stop_offset)
             duration_to_keep = split_offset - self.start_offset
             result = self._split_payload_at_offsets([duration_to_keep])
