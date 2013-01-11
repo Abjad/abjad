@@ -230,7 +230,7 @@ class TimespanInventory(ObjectInventory):
 
         Return boolean.
         '''
-        return all([timespan.is_well_formed for timespan in self])
+        return all([self._get_timespan(expr).is_well_formed for expr in self])
 
     @property
     def axis(self):
