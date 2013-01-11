@@ -128,6 +128,13 @@ class Timespan(BoundedObject):
         Return boolean.
         '''
         assert hasattr(expr, 'start_offset'), repr(expr)
+        if hasattr(expr, 'stop_offset'):
+            if self.start_offset < expr.start_offset:
+                return True
+            elif self.start_offset == expr.start_offset and \
+                self.stop_offset < expr.stop_offset:
+                return True
+            return False
         return self.start_offset < expr.start_offset
 
     def __ne__(self, timespan):

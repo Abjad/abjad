@@ -144,6 +144,9 @@ Special Methods
 
    Inherited from :py:class:`__builtin__.list`
 
+.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__and__
+   :noindex:
+
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__contains__
    :noindex:
 
