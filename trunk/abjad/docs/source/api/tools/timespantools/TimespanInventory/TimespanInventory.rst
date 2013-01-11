@@ -133,9 +133,6 @@ Methods
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.translate_offsets
    :noindex:
 
-.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.trim_to_timespan
-   :noindex:
-
 Special Methods
 ---------------
 
