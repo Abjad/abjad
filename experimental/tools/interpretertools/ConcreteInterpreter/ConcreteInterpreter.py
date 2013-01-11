@@ -131,20 +131,10 @@ class ConcreteInterpreter(Interpreter):
                 postprocessed_result.append(quadruple)
         return postprocessed_result
 
-    # TODO: use TimespanInventory.compute_logical_or() instead
     def fuse_like_region_commands(self, region_commands):
-        if any([x.request is None for x in region_commands]) or not region_commands:
-            return []
-        assert region_commands[0].fresh, repr(region_commands[0])
-        result = [copy.deepcopy(region_commands[0])]
-        for region_command in region_commands[1:]:
-            if result[-1]._can_fuse(region_command):
-                #result[-1] = result[-1].fuse(region_command)
-                inventory = result[-1] | region_command
-                result[-1:] = inventory[:]
-            else:
-                result.append(copy.deepcopy(region_command))
-        return result
+        region_commands = timespantools.TimespanInventory(region_commands)
+        region_commands.compute_logical_or()
+        return region_commands
 
     def get_region_commands_for_voice(self, voice_name, attribute):
         raw_commands = self.score_specification.get_raw_commands_for_voice(voice_name, attribute)
