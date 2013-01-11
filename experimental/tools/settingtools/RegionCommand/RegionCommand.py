@@ -50,6 +50,19 @@ class RegionCommand(AbjadObject):
     def __lt__(self, expr):
         return timerelationtools.timespan_2_starts_before_timespan_1_starts(expr, self)
 
+    def __sub__(self, timespan):
+        '''Subtract `timespan` from region command.
+
+        Operate in place and return region command inventory.
+        '''
+        from experimental.tools import settingtools
+        timespans = self.timespan - timespan
+        result = settingtools.RegionCommandInventory()
+        for timespan in timespans:
+            region_command = self.new(timespan=timespan)
+            result.append(region_command)
+        return result
+
     ### PRIVATE METHODS ###
 
     @abc.abstractmethod

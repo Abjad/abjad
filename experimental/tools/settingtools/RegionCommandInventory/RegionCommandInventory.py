@@ -109,3 +109,14 @@ class RegionCommandInventory(TimespanInventory):
         result.append(right_region_command)
         self[:] = sorted(result)
         return self
+
+        # TODO: use this implementation instead of the longer one above
+#        score_timespan = score_specification.timespan
+#        self.append(score_timespan)
+#        missing_regions = self.compute_logical_xor() 
+#        for missing_region in missing_regions:
+#            region_command = score_specification.make_default_region_command(
+#                voice_name, missing_region, attribute)
+#            self.append(region_command)
+#        self.sort()
+#        return self

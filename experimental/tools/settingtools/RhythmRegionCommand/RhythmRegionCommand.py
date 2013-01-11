@@ -7,6 +7,50 @@ class RhythmRegionCommand(RegionCommand):
 
     RegionCommand indicating durated period of time over which a rhythm payload will apply.
     '''
+
+    ### SPECIAL METHODS ###
+
+    def __sub__(self, timespan):
+        '''Subtract `timespan` from rhythm region command.
+
+            >>> absolute_request = requesttools.AbsoluteRequest("{ c'16 [ c'8 ] }")
+            >>> timespan = timespantools.Timespan(0, 20)
+            >>> rhythm_region_command = settingtools.RhythmRegionCommand(
+            ...     absolute_request, 'Voice 1', timespan)
+
+        ::
+
+            >>> result = rhythm_region_command - timespantools.Timespan(5, 15)
+
+        ::
+
+            >>> z(result)
+            settingtools.RegionCommandInventory([
+                settingtools.RhythmRegionCommand(
+                    requesttools.AbsoluteRequest(
+                        "{ c'16 [ c'8 ] }"
+                        ),
+                    'Voice 1',
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(5, 1)
+                        )
+                    ),
+                settingtools.RhythmRegionCommand(
+                    requesttools.AbsoluteRequest(
+                        "{ c'16 [ c'8 ] }"
+                        ),
+                    'Voice 1',
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(15, 1),
+                        stop_offset=durationtools.Offset(20, 1)
+                        )
+                    )
+                ])
+
+        Return region command inventory.
+        '''
+        return RegionCommand.__sub__(self, timespan)
     
     ### PRIVATE METHODS ###
 

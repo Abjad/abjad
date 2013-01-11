@@ -77,3 +77,6 @@ Special Methods
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.__sub__
+   :noindex:

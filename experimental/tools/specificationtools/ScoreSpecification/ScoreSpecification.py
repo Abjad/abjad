@@ -618,6 +618,7 @@ class ScoreSpecification(Specification):
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
+    # TODO: change argument order to self.make_default_region_command(attribute, voice_name, timespan)
     def make_default_region_command(self, voice_name, timespan, attribute):
         if attribute == 'divisions':
             return self.make_time_signature_division_command(voice_name, timespan)
