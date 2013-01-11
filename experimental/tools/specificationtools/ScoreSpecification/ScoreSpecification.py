@@ -605,14 +605,7 @@ class ScoreSpecification(Specification):
             self.contexts[voice.name][region_products] = timespan_inventory
 
     def interpret(self):
-        r'''Interpret score specification::
-
-            >>> score = score_specification.interpret()
-
-        ::
-    
-            >>> isinstance(score, scoretools.Score)
-            True
+        r'''Interpret score specification.
 
         Return Abjad score object.
         '''

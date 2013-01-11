@@ -54,7 +54,8 @@ class DivisionSelector(Selector):
         assert voice_name == self.voice_name
         anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
         voice_proxy = score_specification.contexts[voice_name]
-        division_region_products = voice_proxy['division_region_products']
+        #division_region_products = voice_proxy['division_region_products']
+        division_region_products = voice_proxy.division_region_products
         timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
             timespan_1=anchor_timespan)
         division_region_products = division_region_products.get_timespans_that_satisfy_time_relation(

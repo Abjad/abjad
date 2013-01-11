@@ -2,6 +2,7 @@ from collections import OrderedDict
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
+# TODO: do not inherit from OrderedDict; use custom class attributes instead
 class ContextProxy(AbjadObject, OrderedDict):
 
     ### INITIALIZER ###
@@ -10,7 +11,10 @@ class ContextProxy(AbjadObject, OrderedDict):
     # TODO: add public division_region_products timespan inventory
     # TODO: add public rhythm_region_products timespan inventory
     def __init__(self):
+        from experimental.tools import settingtools
         OrderedDict.__init__(self)
+        self._division_region_commands = settingtools.RegionCommandInventory()
+        self._division_region_products = settingtools.RegionCommandInventory()
 
     ### SPECIAL METHODS ###
 
@@ -26,6 +30,24 @@ class ContextProxy(AbjadObject, OrderedDict):
     @property
     def _positional_argument_values(self):
         return self.items()
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def division_region_commands(self):
+        '''Context proxy division region commands.
+
+        Return region command inventory.
+        '''
+        return self._division_region_commands
+
+    @property
+    def division_region_products(self):
+        '''Context proxy division region products.
+
+        Return region product inventory.
+        '''
+        return self._division_region_products
 
     ### PUBLIC METHODS ###
 

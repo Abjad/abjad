@@ -174,12 +174,9 @@ class ConcreteInterpreter(Interpreter):
             redo = False
             made_progress = False
             for voice in iterationtools.iterate_voices_in_expr(self.score):
-                # TODO: remove string key
-                voice_division_region_commands = \
-                    self.score_specification.contexts[voice.name]['division_region_commands']
-                # TODO: remove string key
-                voice_division_region_products = \
-                    self.score_specification.contexts[voice.name]['division_region_products']
+                voice_proxy = self.score_specification.contexts[voice.name]
+                voice_division_region_commands = voice_proxy.division_region_commands
+                voice_division_region_products = voice_proxy.division_region_products 
                 voice_division_region_commands_to_reattempt = []
                 for division_region_command in voice_division_region_commands:
                     division_region_products = division_region_command._get_payload(
@@ -197,15 +194,16 @@ class ConcreteInterpreter(Interpreter):
             if voice_division_region_commands and not made_progress:
                 raise Exception('cyclic division specification.')
 
+    # TODO: pass in voice_name instead of voice
     def make_rhythm_quintuples_for_voice(self, voice, voice_division_list):
         #self._debug(voice, 'voice')
         #self._debug(voice_division_list, 'voice division list')
-        rhythm_region_commands = self.score_specification.contexts[voice.name]['rhythm_region_commands']
+        voice_proxy = self.score_specification.contexts[voice.name]
+        rhythm_region_commands = voice_proxy['rhythm_region_commands']
         #self._debug_values(rhythm_region_commands, 'rhythm region commands')
         rhythm_command_durations = [x.timespan.duration for x in rhythm_region_commands]
         #self._debug(rhythm_command_durations, 'rhythm command durations')
-        division_region_products = \
-            self.score_specification.contexts[voice.name]['division_region_products']
+        division_region_products = voice_proxy.division_region_products
         #self._debug_values(division_region_products, 'division region products')
         division_region_durations = [x.timespan.duration for x in division_region_products]
         #self._debug(division_region_durations, 'division region durations')
@@ -316,7 +314,8 @@ class ConcreteInterpreter(Interpreter):
     def make_voice_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = settingtools.DivisionList([], voice.name)
-            products = self.score_specification.contexts[voice.name]['division_region_products']
+            voice_proxy = self.score_specification.contexts[voice.name]
+            products = voice_proxy.division_region_products
             #self._debug(products, 'products')
             divisions = [product.payload.divisions for product in products]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)
@@ -334,7 +333,11 @@ class ConcreteInterpreter(Interpreter):
                 region_commands = self.get_region_commands_for_voice(voice.name, attribute)
                 singular_attribute = attribute.rstrip('s')
                 key = '{}_region_commands'.format(singular_attribute)
-                self.score_specification.contexts[voice.name][key][:] = region_commands[:]
+                if key == 'division_region_commands':
+                    self.score_specification.contexts[voice.name].division_region_commands[:] = \
+                        region_commands[:]
+                else:
+                    self.score_specification.contexts[voice.name][key][:] = region_commands[:]
                 all_region_commands = getattr(self.score_specification, 'all_' + key)
                 for region_command in region_commands:
                     if region_command not in all_region_commands:
