@@ -80,18 +80,14 @@ class RegionCommandInventory(TimespanInventory):
             self[:] = [region_command]
             return self
         if not self.timespan.starts_when_timespan_starts(score_specification):
-            # TODO: implement timespan operations to create new timespan below
-            start_offset = score_specification.timespan.start_offset
-            stop_offset = self.start_offset
-            timespan = timespantools.Timespan(start_offset, stop_offset)
+            timespans = score_specification.timespan - self.timespan
+            timespan = timespans[0]
             region_command = score_specification.make_default_region_command(
                 voice_name, timespan, attribute)
             self.insert(0, region_command)
         if not self.timespan.stops_when_timespan_stops(score_specification):
-            # TODO: implement timespan operations to create new timespan below
-            start_offset = self.stop_offset 
-            stop_offset = score_specification.timespan.stop_offset
-            timespan = timespantools.Timespan(start_offset, stop_offset)
+            timespans = score_specification.timespan - self.timespan
+            timespan = timespans[-1]
             region_command = score_specification.make_default_region_command(
                 voice_name, timespan, attribute)
             self.append(region_command)
@@ -111,5 +107,5 @@ class RegionCommandInventory(TimespanInventory):
                     voice_name, timespan, attribute)
                 result.append(region_command)
         result.append(right_region_command)
-        self[:] = result
+        self[:] = sorted(result)
         return self
