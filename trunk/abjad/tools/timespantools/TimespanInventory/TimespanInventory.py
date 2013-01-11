@@ -162,6 +162,21 @@ class TimespanInventory(ObjectInventory):
         self[:] = sorted(new_timespans)
         return self
 
+    ### PRIVATE METHODS ###
+
+    def _get_offsets(self, expr):
+        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+            return expr.start_offset, expr.stop_offset
+        elif hasattr(expr, 'timespan'):
+            return expr.timespan.offsets
+        else:
+            raise TypeError(expr)
+
+    def _get_timespan(self, expr):
+        from abjad.tools import timespantools
+        start_offset, stop_offset = self._get_offsets(expr)
+        return timespantools.Timespan(start_offset, stop_offset)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -333,7 +348,7 @@ class TimespanInventory(ObjectInventory):
         Return offset or none.
         '''
         if self:
-            return min([timespan.start_offset for timespan in self])
+            return min([self._get_timespan(expr).start_offset for expr in self])
 
     @property
     def stop_offset(self):
@@ -359,7 +374,7 @@ class TimespanInventory(ObjectInventory):
         Return offset or none.
         '''
         if self:
-            return max([timespan.stop_offset for timespan in self])
+            return min([self._get_timespan(expr).stop_offset for expr in self])
 
     @property
     def timespan(self):
