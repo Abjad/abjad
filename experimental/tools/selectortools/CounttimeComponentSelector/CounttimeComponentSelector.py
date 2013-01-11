@@ -99,7 +99,7 @@ class CounttimeComponentSelector(Selector):
         rhythm_region_products = timespantools.TimespanInventory(rhythm_region_products)
         rhythm_region_products.sort()
         assert anchor_timespan.is_well_formed, repr(anchor_timespan)
-        rhythm_region_products.trim_to_timespan(anchor_timespan)
+        rhythm_region_products = rhythm_region_products & anchor_timespan
         timespan = timespantools.Timespan(start_offset)
         result = settingtools.RhythmRegionProduct(voice_name=voice_name, timespan=timespan)
         for rhythm_region_product in rhythm_region_products:
@@ -111,13 +111,8 @@ class CounttimeComponentSelector(Selector):
             music = componenttools.copy_components_and_fracture_crossing_spanners(result)
             result = settingtools.RhythmRegionProduct(
                 payload=music, voice_name=voice_name, start_offset=start_offset)
-        # TODO: impelement with logical AND
-        #x = timespantools.Timespan(start_offset, stop_offset)
-        #result = result.trim_to_timespan(x)
-        #assert len(result) == 1
-        #result = result[0]
-        x = timespantools.Timespan(start_offset, stop_offset)
-        result = result & x
+        keep_timespan = timespantools.Timespan(start_offset, stop_offset)
+        result = result & keep_timespan
         assert len(result) == 1
         result = result[0]
         result.repeat_to_stop_offset(stop_offset)
