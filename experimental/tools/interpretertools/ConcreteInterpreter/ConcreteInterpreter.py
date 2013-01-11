@@ -133,8 +133,9 @@ class ConcreteInterpreter(Interpreter):
 
     def get_region_commands_for_voice(self, voice_name, attribute):
         raw_commands = self.score_specification.get_raw_commands_for_voice(voice_name, attribute)
-        region_commands = self.sort_and_split_raw_commands(raw_commands)
-        region_commands = timespantools.TimespanInventory(region_commands)
+        region_commands = settingtools.RegionCommandInventory(raw_commands)
+        region_commands.sort_and_split_raw_commands()
+        #region_commands = timespantools.TimespanInventory(region_commands)
         region_commands.compute_logical_or()
         region_commands = self.supply_missing_region_commands(region_commands, voice_name, attribute)
         return region_commands
@@ -360,60 +361,6 @@ class ConcreteInterpreter(Interpreter):
                 continue
             time_signature_setting = time_signature_settings[-1]
             self.score_specification.all_time_signature_settings.append(time_signature_setting)
-
-    # TODO: maybe move to a type of command aggregator?
-    def sort_and_split_raw_commands(self, raw_commands):
-        #self._debug_values(raw_commands, 'raw')
-        cooked_commands = []
-        for raw_command in raw_commands:
-            command_was_delayed, command_was_split = False, False
-            commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split = [], [], [], []
-            for cooked_command in cooked_commands:
-                if raw_command.timespan.contains_timespan_improperly(cooked_command):
-                    commands_to_remove.append(cooked_command)
-                elif raw_command.timespan.delays_timespan(cooked_command):
-                    commands_to_delay.append(cooked_command)
-                elif raw_command.timespan.curtails_timespan(cooked_command):
-                    commands_to_curtail.append(cooked_command)
-                elif raw_command.timespan.trisects_timespan(cooked_command):
-                    commands_to_split.append(cooked_command)
-            #print commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split
-            for command_to_remove in commands_to_remove:
-                cooked_commands.remove(command_to_remove)
-            for command_to_curtail in commands_to_curtail:
-                timespan = timespantools.Timespan(
-                    command_to_curtail.timespan.start_offset, raw_command.timespan.start_offset)
-                command_to_curtail._timespan = timespan
-            for command_to_delay in commands_to_delay:
-                timespan = timespantools.Timespan(
-                    raw_command.timespan.stop_offset, command_to_delay.timespan.stop_offset)
-                command_to_delay._timespan = timespan
-                command_was_delayed = True
-            # TODO: branch inside and implement a method to split while treating cyclic payload smartly.
-            # or, alternatively, special-case for commands that cover the entire duration of score.
-            for command_to_split in commands_to_split:
-                left_command = command_to_split
-                middle_command = raw_command
-                right_command = copy.deepcopy(left_command)
-                timespan = timespantools.Timespan(
-                    left_command.timespan.start_offset, middle_command.timespan.start_offset)
-                left_command._timespan = timespan
-                timespan = timespantools.Timespan(
-                    middle_command.timespan.stop_offset, right_command.timespan.stop_offset)
-                right_command._timespan = timespan
-                command_was_split = True
-            if command_was_delayed:
-                index = cooked_commands.index(cooked_command)
-                cooked_commands.insert(index, raw_command)
-            elif command_was_split:
-                cooked_commands.append(middle_command)
-                cooked_commands.append(right_command)
-            else:
-                cooked_commands.append(raw_command)
-            cooked_commands.sort()
-            #self._debug_values(cooked_commands, 'cooked')
-        #self._debug_values(cooked_commands, 'cooked')
-        return cooked_commands
 
     def store_interpreter_specific_single_context_settings_by_context(self):
         self.store_single_context_attribute_settings_by_context('time_signatures')

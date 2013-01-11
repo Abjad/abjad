@@ -160,6 +160,9 @@ Methods
 
    Inherited from :py:class:`__builtin__.list`
 
+.. automethod:: experimental.tools.settingtools.RegionCommandInventory.RegionCommandInventory.RegionCommandInventory.sort_and_split_raw_commands
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.RegionCommandInventory.RegionCommandInventory.RegionCommandInventory.stretch
    :noindex:
 
