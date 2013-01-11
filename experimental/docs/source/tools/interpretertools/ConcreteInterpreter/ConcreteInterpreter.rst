@@ -32,9 +32,6 @@ Methods
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.filter_rhythm_quadruples
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.fuse_like_region_commands
-   :noindex:
-
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_region_commands_for_voice
    :noindex:
 

@@ -131,15 +131,11 @@ class ConcreteInterpreter(Interpreter):
                 postprocessed_result.append(quadruple)
         return postprocessed_result
 
-    def fuse_like_region_commands(self, region_commands):
-        region_commands = timespantools.TimespanInventory(region_commands)
-        region_commands.compute_logical_or()
-        return region_commands
-
     def get_region_commands_for_voice(self, voice_name, attribute):
         raw_commands = self.score_specification.get_raw_commands_for_voice(voice_name, attribute)
         region_commands = self.sort_and_split_raw_commands(raw_commands)
-        region_commands = self.fuse_like_region_commands(region_commands)
+        region_commands = timespantools.TimespanInventory(region_commands)
+        region_commands.compute_logical_or()
         region_commands = self.supply_missing_region_commands(region_commands, voice_name, attribute)
         return region_commands
 
