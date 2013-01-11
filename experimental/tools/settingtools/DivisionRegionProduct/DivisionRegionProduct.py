@@ -20,6 +20,101 @@ class DivisionRegionProduct(RegionProduct):
 
     ### SPECIAL METHODS ###
 
+    def __and__(self, timespan):
+        '''Keep intersection of `timespan` and rhythm region product.
+
+        Example 1. Intersection on the left:
+
+        ::
+
+            >>> payload = [(6, 8), (6, 8), (3, 4)]
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> result = product & timespantools.Timespan(0, Offset(1, 8))
+
+        ::
+
+            >>> z(result)
+            timespantools.TimespanInventory([
+                settingtools.DivisionRegionProduct(
+                    payload=settingtools.DivisionList(
+                        [Division('[1, 8]')],
+                        voice_name='Voice 1'
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(1, 8)
+                        )
+                    )
+                ])
+
+        Example 2. Intersection on the right:
+
+        ::
+
+            >>> payload = [(6, 8), (6, 8), (3, 4)]
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> result = product & timespantools.Timespan(Offset(17, 8), 100)
+
+        ::
+
+            >>> z(result)
+            timespantools.TimespanInventory([
+                settingtools.DivisionRegionProduct(
+                    payload=settingtools.DivisionList(
+                        [Division('[1, 8]')],
+                        voice_name='Voice 1'
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(17, 8),
+                        stop_offset=durationtools.Offset(9, 4)
+                        )
+                    )
+                ])
+
+        Example 3. Trisection:
+
+        ::
+
+            >>> payload = [(6, 8), (6, 8), (3, 4)]
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> result = product & timespantools.Timespan(Offset(1, 8), Offset(17, 8))
+
+        ::
+
+            >>> z(result)
+            timespantools.TimespanInventory([
+                settingtools.DivisionRegionProduct(
+                    payload=settingtools.DivisionList(
+                        [Division('[5, 8]'), Division('[6, 8]'), Division('[5, 8]')],
+                        voice_name='Voice 1'
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(1, 8),
+                        stop_offset=durationtools.Offset(17, 8)
+                        )
+                    )
+                ])
+
+        Example 4. No intersection:
+
+        ::
+
+            >>> payload = [(6, 8), (6, 8), (3, 4)]
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> result = product & timespantools.Timespan(100, 200)
+
+        ::
+
+            >>> z(result)
+            timespantools.TimespanInventory([])
+
+        Operate in place and return timespan inventory.
+        '''
+        return RegionProduct.__and__(self, timespan)
+
     def __len__(self):
         return len(self.payload)
 
