@@ -431,6 +431,7 @@ Unstable packages (load manually)
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
+      tools/settingtools/RegionCommandInventory/RegionCommandInventory
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
       tools/settingtools/RotationIndicator/RotationIndicator
@@ -468,6 +469,7 @@ Unstable packages (load manually)
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
+      tools/settingtools/RegionCommandInventory/RegionCommandInventory
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
       tools/settingtools/RotationIndicator/RotationIndicator
