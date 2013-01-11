@@ -79,44 +79,14 @@ class RegionCommandInventory(TimespanInventory):
                 voice_name, timespan, attribute)
             self[:] = [region_command]
             return self
-        if not self.timespan.starts_when_timespan_starts(score_specification):
-            timespans = score_specification.timespan - self.timespan
-            timespan = timespans[0]
-            region_command = score_specification.make_default_region_command(
-                voice_name, timespan, attribute)
-            self.insert(0, region_command)
-        if not self.timespan.stops_when_timespan_stops(score_specification):
-            timespans = score_specification.timespan - self.timespan
-            timespan = timespans[-1]
-            region_command = score_specification.make_default_region_command(
-                voice_name, timespan, attribute)
-            self.append(region_command)
-        if len(self) == 1:
-            return self
-        result = []
-        for left_region_command, right_region_command in \
-            sequencetools.iterate_sequence_pairwise_strict(self):
-            assert not left_region_command.timespan.starts_after_timespan_starts(right_region_command.timespan)
-            result.append(left_region_command)
-            if left_region_command.timespan.stops_before_timespan_starts(right_region_command.timespan):
-                # TODO: implement timespan operations to create new timespan below
-                start_offset = left_region_command.timespan.stop_offset 
-                stop_offset = right_region_command.timespan.start_offset
-                timespan = timespantools.Timespan(start_offset, stop_offset)
-                region_command = score_specification.make_default_region_command(
-                    voice_name, timespan, attribute)
-                result.append(region_command)
-        result.append(right_region_command)
-        self[:] = sorted(result)
+        commands = [expr for expr in self if expr.timespan.is_well_formed]
+        self[:] = commands
+        timespans = timespantools.TimespanInventory([expr.timespan for expr in self])
+        timespans.append(score_specification.timespan)
+        missing_region_timespans = timespans.compute_logical_xor() 
+        for missing_region_timespan in missing_region_timespans:
+            missing_region_command = score_specification.make_default_region_command(
+                voice_name, missing_region_timespan, attribute)
+            self.append(missing_region_command)
+        self.sort()
         return self
-
-        # TODO: use this implementation instead of the longer one above
-#        score_timespan = score_specification.timespan
-#        self.append(score_timespan)
-#        missing_regions = self.compute_logical_xor() 
-#        for missing_region in missing_regions:
-#            region_command = score_specification.make_default_region_command(
-#                voice_name, missing_region, attribute)
-#            self.append(region_command)
-#        self.sort()
-#        return self
