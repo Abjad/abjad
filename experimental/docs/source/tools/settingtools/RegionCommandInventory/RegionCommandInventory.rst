@@ -160,13 +160,16 @@ Methods
 
    Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: experimental.tools.settingtools.RegionCommandInventory.RegionCommandInventory.RegionCommandInventory.sort_and_split_raw_commands
+.. automethod:: experimental.tools.settingtools.RegionCommandInventory.RegionCommandInventory.RegionCommandInventory.sort_and_split_commands
    :noindex:
 
 .. automethod:: experimental.tools.settingtools.RegionCommandInventory.RegionCommandInventory.RegionCommandInventory.stretch
    :noindex:
 
    Inherited from :py:class:`abjad.tools.timespantools.TimespanInventory <abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory>`
+
+.. automethod:: experimental.tools.settingtools.RegionCommandInventory.RegionCommandInventory.RegionCommandInventory.supply_missing_commands
+   :noindex:
 
 .. automethod:: experimental.tools.settingtools.RegionCommandInventory.RegionCommandInventory.RegionCommandInventory.translate
    :noindex:

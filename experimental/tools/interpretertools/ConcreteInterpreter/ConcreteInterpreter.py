@@ -132,12 +132,10 @@ class ConcreteInterpreter(Interpreter):
         return postprocessed_result
 
     def get_region_commands_for_voice(self, voice_name, attribute):
-        raw_commands = self.score_specification.get_raw_commands_for_voice(voice_name, attribute)
-        region_commands = settingtools.RegionCommandInventory(raw_commands)
-        region_commands.sort_and_split_raw_commands()
-        #region_commands = timespantools.TimespanInventory(region_commands)
+        region_commands = self.score_specification.get_region_commands_for_voice(voice_name, attribute)
+        region_commands.sort_and_split_commands()
         region_commands.compute_logical_or()
-        region_commands = self.supply_missing_region_commands(region_commands, voice_name, attribute)
+        region_commands.supply_missing_commands(self.score_specification, voice_name, attribute)
         return region_commands
 
     def interpret_additional_parameters(self):
@@ -368,46 +366,3 @@ class ConcreteInterpreter(Interpreter):
         self.store_single_context_attribute_settings_by_context('rhythm')
         self.store_single_context_attribute_settings_by_context('pitch_classes')
         self.store_single_context_attribute_settings_by_context('registration')
-
-    # TODO: maybe move to ScoreSpecification?
-    def supply_missing_region_commands(self, region_commands, voice_name, attribute):
-        if not region_commands and not self.score_specification.time_signatures:
-            return []
-        elif not region_commands and self.score_specification.time_signatures:
-            timespan = self.score_specification.timespan
-            region_command = self.score_specification.make_default_region_command(
-                voice_name, timespan, attribute)
-            return [region_command]
-        if not region_commands[0].timespan.starts_when_timespan_starts(self.score_specification):
-            # TODO: implement timespan operations to create new timespan below
-            start_offset = self.score_specification.timespan.start_offset
-            stop_offset = region_commands[0].timespan.start_offset
-            timespan = timespantools.Timespan(start_offset, stop_offset)
-            region_command = self.score_specification.make_default_region_command(
-                voice_name, timespan, attribute)
-            region_commands.insert(0, region_command)
-        if not region_commands[-1].timespan.stops_when_timespan_stops(self.score_specification):
-            # TODO: implement timespan operations to create new timespan below
-            start_offset = region_commands[-1].timespan.stop_offset 
-            stop_offset = self.score_specification.timespan.stop_offset
-            timespan = timespantools.Timespan(start_offset, stop_offset)
-            region_command = self.score_specification.make_default_region_command(
-                voice_name, timespan, attribute)
-            region_commands.append(region_command)
-        if len(region_commands) == 1:
-            return region_commands
-        result = []
-        for left_region_command, right_region_command in \
-            sequencetools.iterate_sequence_pairwise_strict(region_commands):
-            assert not left_region_command.timespan.starts_after_timespan_starts(right_region_command.timespan)
-            result.append(left_region_command)
-            if left_region_command.timespan.stops_before_timespan_starts(right_region_command.timespan):
-                # TODO: implement timespan operations to create new timespan below
-                start_offset = left_region_command.timespan.stop_offset 
-                stop_offset = right_region_command.timespan.start_offset
-                timespan = timespantools.Timespan(start_offset, stop_offset)
-                region_command = self.score_specification.make_default_region_command(
-                    voice_name, timespan, attribute)
-                result.append(region_command)
-        result.append(right_region_command)
-        return result

@@ -545,8 +545,8 @@ class ScoreSpecification(Specification):
         else:
             return expr.anchor._get_timespan(self, voice_name)
         
-    def get_raw_commands_for_voice(self, context_name, attribute):
-        commands = []
+    def get_region_commands_for_voice(self, context_name, attribute):
+        commands = settingtools.RegionCommandInventory()
         for segment_specification in self.segment_specifications:
             single_context_settings = \
                 segment_specification.get_single_context_settings_that_start_during_segment(

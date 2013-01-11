@@ -1,4 +1,5 @@
 import copy
+from abjad.tools import sequencetools
 from abjad.tools import timespantools
 from abjad.tools.timespantools.TimespanInventory import TimespanInventory
 
@@ -6,12 +7,12 @@ from abjad.tools.timespantools.TimespanInventory import TimespanInventory
 class RegionCommandInventory(TimespanInventory):
     '''Region command inventory.
 
-    Special methods to do things to collections of region commands.
+    Methods to do things region command collections.
     '''
 
     ### PUBLIC METHODS ###
 
-    def sort_and_split_raw_commands(self):
+    def sort_and_split_commands(self):
         '''Operate in place and return region command inventory.
         '''
         cooked_commands = []
@@ -64,4 +65,50 @@ class RegionCommandInventory(TimespanInventory):
             #self._debug_values(cooked_commands, 'cooked')
         #self._debug_values(cooked_commands, 'cooked')
         self[:] = cooked_commands
+        return self
+
+    def supply_missing_commands(self, score_specification, voice_name, attribute):
+        '''Operate in place and return region command inventory.
+        '''
+        if not self and not score_specification.time_signatures:
+            return self
+        elif not self and score_specification.time_signatures:
+            timespan = score_specification.timespan
+            region_command = score_specification.make_default_region_command(
+                voice_name, timespan, attribute)
+            self[:] = [region_command]
+            return self
+        if not self[0].timespan.starts_when_timespan_starts(score_specification):
+            # TODO: implement timespan operations to create new timespan below
+            start_offset = score_specification.timespan.start_offset
+            stop_offset = self[0].timespan.start_offset
+            timespan = timespantools.Timespan(start_offset, stop_offset)
+            region_command = score_specification.make_default_region_command(
+                voice_name, timespan, attribute)
+            self.insert(0, region_command)
+        if not self[-1].timespan.stops_when_timespan_stops(score_specification):
+            # TODO: implement timespan operations to create new timespan below
+            start_offset = self[-1].timespan.stop_offset 
+            stop_offset = score_specification.timespan.stop_offset
+            timespan = timespantools.Timespan(start_offset, stop_offset)
+            region_command = score_specification.make_default_region_command(
+                voice_name, timespan, attribute)
+            self.append(region_command)
+        if len(self) == 1:
+            return self
+        result = []
+        for left_region_command, right_region_command in \
+            sequencetools.iterate_sequence_pairwise_strict(self):
+            assert not left_region_command.timespan.starts_after_timespan_starts(right_region_command.timespan)
+            result.append(left_region_command)
+            if left_region_command.timespan.stops_before_timespan_starts(right_region_command.timespan):
+                # TODO: implement timespan operations to create new timespan below
+                start_offset = left_region_command.timespan.stop_offset 
+                stop_offset = right_region_command.timespan.start_offset
+                timespan = timespantools.Timespan(start_offset, stop_offset)
+                region_command = score_specification.make_default_region_command(
+                    voice_name, timespan, attribute)
+                result.append(region_command)
+        result.append(right_region_command)
+        self[:] = result
         return self
