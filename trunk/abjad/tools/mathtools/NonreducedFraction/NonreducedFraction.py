@@ -317,7 +317,7 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         ::
 
             >>> fraction.numerator
-            3
+            -6
 
         Return integer.
         '''
