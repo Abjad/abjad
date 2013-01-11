@@ -374,7 +374,7 @@ class TimespanInventory(ObjectInventory):
         Return offset or none.
         '''
         if self:
-            return min([self._get_timespan(expr).stop_offset for expr in self])
+            return max([self._get_timespan(expr).stop_offset for expr in self])
 
     @property
     def timespan(self):

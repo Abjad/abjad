@@ -82,17 +82,14 @@ class RegionCommandInventory(TimespanInventory):
         if not self.timespan.starts_when_timespan_starts(score_specification):
             # TODO: implement timespan operations to create new timespan below
             start_offset = score_specification.timespan.start_offset
-            stop_offset = self[0].timespan.start_offset
-            #stop_offset = self.start_offset
+            stop_offset = self.start_offset
             timespan = timespantools.Timespan(start_offset, stop_offset)
             region_command = score_specification.make_default_region_command(
                 voice_name, timespan, attribute)
             self.insert(0, region_command)
-        if not self[-1].timespan.stops_when_timespan_stops(score_specification):
-        #if not self.timespan.stops_when_timespan_stops(score_specification):
+        if not self.timespan.stops_when_timespan_stops(score_specification):
             # TODO: implement timespan operations to create new timespan below
-            start_offset = self[-1].timespan.stop_offset 
-            #start_offset = self.stop_offset 
+            start_offset = self.stop_offset 
             stop_offset = score_specification.timespan.stop_offset
             timespan = timespantools.Timespan(start_offset, stop_offset)
             region_command = score_specification.make_default_region_command(
