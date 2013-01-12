@@ -46,9 +46,9 @@ class ScoreSpecification(Specification):
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
         self._division_region_commands = []
-        self._all_rhythm_quintuples = []
+        self._rhythm_quintuples = []
         self._rhythm_region_commands = []
-        self._all_time_signature_settings = []
+        self._time_signature_settings = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
         self._interface = settingtools.ScoreSpecificationInterface(self)
@@ -151,17 +151,17 @@ class ScoreSpecification(Specification):
         return self._division_region_commands
 
     @property
-    def all_rhythm_quintuples(self):
+    def rhythm_quintuples(self):
         '''Read-only list of all rhythm quintuples.
 
-            >>> for x in score_specification.all_rhythm_quintuples:
+            >>> for x in score_specification.rhythm_quintuples:
             ...     z(x)
 
         Popluate during interpretation. Then consume during interpretation.
 
         Return list.
         '''
-        return self._all_rhythm_quintuples
+        return self._rhythm_quintuples
 
     @property
     def rhythm_region_commands(self):
@@ -196,17 +196,17 @@ class ScoreSpecification(Specification):
         return self._rhythm_region_commands
 
     @property
-    def all_time_signature_settings(self):
+    def time_signature_settings(self):
         '''Read-only list of all time signature settings.
 
-            >>> for x in score_specification.all_time_signature_settings:
+            >>> for x in score_specification.time_signature_settings:
             ...     z(x)
 
         Populate during interpretation. Then consume during interpretation.
 
         Return list.
         '''
-        return self._all_time_signature_settings
+        return self._time_signature_settings
 
     @property
     def context_names(self):

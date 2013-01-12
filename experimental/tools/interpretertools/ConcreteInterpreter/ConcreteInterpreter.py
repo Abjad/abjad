@@ -46,11 +46,11 @@ class ConcreteInterpreter(Interpreter):
     ### PUBLIC METHODS ###
 
     def add_time_signatures_to_score(self):
-        while self.score_specification.all_time_signature_settings[:]:
-            for time_signature_setting in self.score_specification.all_time_signature_settings:
+        while self.score_specification.time_signature_settings[:]:
+            for time_signature_setting in self.score_specification.time_signature_settings:
                 time_signatures = time_signature_setting.make_time_signatures(self.score_specification)
                 if time_signatures:
-                    self.score_specification.all_time_signature_settings.remove(time_signature_setting)
+                    self.score_specification.time_signature_settings.remove(time_signature_setting)
         time_signatures = self.score_specification.time_signatures
         measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
         context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
@@ -89,7 +89,6 @@ class ConcreteInterpreter(Interpreter):
                 beamtools.DuratedComplexBeamSpanner(
                     [rhythm_container], [rhythm_container.prolated_duration], span=1)
 
-    # TODO: generalize into self.dump_region_products_into_voices()
     def dump_rhythm_region_products_into_voices(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_proxy = self.score_specification.contexts[voice.name]
@@ -157,14 +156,14 @@ class ConcreteInterpreter(Interpreter):
     def interpret_rhythm(self):
         self.score_specification.initialize_region_product_inventories('rhythm')
         self.populate_region_commands('rhythm')
-        #self._debug_values(self.score_specification.rhythm_region_commands, 'all rhythm region commands')
-        self.populate_all_rhythm_quintuples()
-        #self._debug_values(self.score_specification.all_rhythm_quintuples, 'all rhythm quintuples')
+        #self._debug_values(self.score_specification.rhythm_region_commands, 'rhythm region commands')
+        self.populate_rhythm_quintuples()
+        #self._debug_values(self.score_specification.rhythm_quintuples, 'rhythm quintuples')
         self.make_rhythm_region_products()
         self.dump_rhythm_region_products_into_voices()
 
     def interpret_time_signatures(self):
-        self.populate_all_time_signature_settings()
+        self.populate_time_signature_settings()
         self.add_time_signatures_to_score()
         self.calculate_score_and_segment_timespans()
 
@@ -283,9 +282,9 @@ class ConcreteInterpreter(Interpreter):
 
     # TODO: structure like self.make_division_region_products()
     def make_rhythm_region_products(self):
-        while self.score_specification.all_rhythm_quintuples:
+        while self.score_specification.rhythm_quintuples:
             made_progress = False
-            for rhythm_quintuple in self.score_specification.all_rhythm_quintuples[:]:
+            for rhythm_quintuple in self.score_specification.rhythm_quintuples[:]:
                 voice_name = rhythm_quintuple[0]
                 voice_proxy = self.score_specification.contexts[voice_name]
                 voice_rhythm_region_products = voice_proxy.rhythm_region_products
@@ -304,7 +303,7 @@ class ConcreteInterpreter(Interpreter):
                 else:
                     raise TypeError(rhythm_quadruple[0])
                 if rhythm_region_product is not None:
-                    self.score_specification.all_rhythm_quintuples.remove(rhythm_quintuple)
+                    self.score_specification.rhythm_quintuples.remove(rhythm_quintuple)
                     made_progress = True
                     voice_rhythm_region_products = voice_rhythm_region_products - rhythm_region_product.timespan
                     voice_rhythm_region_products.append(rhythm_region_product)
@@ -342,17 +341,17 @@ class ConcreteInterpreter(Interpreter):
                     if region_command not in score_region_commands:
                         score_region_commands.append(region_command)
 
-    def populate_all_rhythm_quintuples(self):
+    def populate_rhythm_quintuples(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
             #self._debug(voice_division_list, 'vdl')
             if voice_division_list:
                 rhythm_quintuples = self.make_rhythm_quintuples_for_voice(voice, voice_division_list)
                 #self._debug_values(rhythm_quintuples, 'rq')
-                self.score_specification.all_rhythm_quintuples.extend(rhythm_quintuples)
+                self.score_specification.rhythm_quintuples.extend(rhythm_quintuples)
 
     # TODO: eventually merge with self.populate_region_commands()
-    def populate_all_time_signature_settings(self):
+    def populate_time_signature_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
             time_signature_settings = \
                 segment_specification.single_context_settings_by_context.score_context_proxy.get_settings(
@@ -360,7 +359,7 @@ class ConcreteInterpreter(Interpreter):
             if not time_signature_settings:
                 continue
             time_signature_setting = time_signature_settings[-1]
-            self.score_specification.all_time_signature_settings.append(time_signature_setting)
+            self.score_specification.time_signature_settings.append(time_signature_setting)
 
     def store_interpreter_specific_single_context_settings_by_context(self):
         self.store_single_context_attribute_settings_by_context('time_signatures')
