@@ -45,9 +45,9 @@ class ScoreSpecification(Specification):
     def __init__(self, score_template):
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
-        self._all_division_region_commands = []
+        self._division_region_commands = []
         self._all_rhythm_quintuples = []
-        self._all_rhythm_region_commands = []
+        self._rhythm_region_commands = []
         self._all_time_signature_settings = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
@@ -114,10 +114,10 @@ class ScoreSpecification(Specification):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def all_division_region_commands(self):
+    def division_region_commands(self):
         '''Read-only list of all division region commands::
 
-            >>> for x in score_specification.all_division_region_commands:
+            >>> for x in score_specification.division_region_commands:
             ...     z(x)
             settingtools.DivisionRegionCommand(
                 requesttools.AbsoluteRequest(
@@ -148,7 +148,7 @@ class ScoreSpecification(Specification):
 
         Return list.
         '''
-        return self._all_division_region_commands
+        return self._division_region_commands
 
     @property
     def all_rhythm_quintuples(self):
@@ -164,10 +164,10 @@ class ScoreSpecification(Specification):
         return self._all_rhythm_quintuples
 
     @property
-    def all_rhythm_region_commands(self):
+    def rhythm_region_commands(self):
         '''Read-only list of all rhythm region commands.
 
-            >>> for x in score_specification.all_rhythm_region_commands:
+            >>> for x in score_specification.rhythm_region_commands:
             ...     z(x)
             settingtools.RhythmRegionCommand(
                 requesttools.RhythmMakerRequest(
@@ -193,7 +193,7 @@ class ScoreSpecification(Specification):
 
         Return list.
         '''
-        return self._all_rhythm_region_commands
+        return self._rhythm_region_commands
 
     @property
     def all_time_signature_settings(self):

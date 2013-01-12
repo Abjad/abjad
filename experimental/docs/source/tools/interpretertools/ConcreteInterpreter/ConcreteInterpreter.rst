@@ -76,13 +76,13 @@ Methods
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_voice_division_lists
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.populate_all_region_commands
-   :noindex:
-
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.populate_all_rhythm_quintuples
    :noindex:
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.populate_all_time_signature_settings
+   :noindex:
+
+.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.populate_region_commands
    :noindex:
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.store_interpreter_specific_single_context_settings_by_context

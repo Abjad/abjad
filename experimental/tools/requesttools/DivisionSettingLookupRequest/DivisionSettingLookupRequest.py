@@ -53,7 +53,7 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
         requested_segment_identifier = self.offset.start_segment_identifier
         requested_offset = self.offset._get_offset(score_specification, voice_name)
         timespan_inventory = timespantools.TimespanInventory()
-        for division_region_command in score_specification.all_division_region_commands:
+        for division_region_command in score_specification.division_region_commands:
             if not division_region_command.request == self:
                 timespan_inventory.append(division_region_command)
         timespan_time_relation = timerelationtools.offset_happens_during_timespan(offset=requested_offset)

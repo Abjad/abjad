@@ -9,13 +9,7 @@ specificationtools.ScoreSpecification
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.all_division_region_commands
-   :noindex:
-
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.all_rhythm_quintuples
-   :noindex:
-
-.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.all_rhythm_region_commands
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.all_time_signature_settings
@@ -27,10 +21,16 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.contexts
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.division_region_commands
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interface
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.multiple_context_settings
+   :noindex:
+
+.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.rhythm_region_commands
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_model
