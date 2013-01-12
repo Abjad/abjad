@@ -1,0 +1,8 @@
+#! /usr/bin/env python
+
+
+if __name__ == '__main__':
+    import subprocess
+    import sys
+    args = ['py.test', '-x'] + sys.argv[1:]
+    subprocess.call(args, shell=True)
