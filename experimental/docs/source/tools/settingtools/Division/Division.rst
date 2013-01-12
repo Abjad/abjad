@@ -129,6 +129,9 @@ Methods
 
    Inherited from :py:class:`abjad.tools.mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
+.. automethod:: experimental.tools.settingtools.Division.Division.Division.new
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.Division.Division.Division.reduce
    :noindex:
 

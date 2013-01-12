@@ -249,6 +249,8 @@ class ConcreteInterpreter(Interpreter):
         rhythm_quintuples = [(voice_name,) + x for x in rhythm_quadruples]
         return rhythm_quintuples
 
+    # TODO: remove rhythm_command input argument.
+    # TODO: bind to some FlavoredRhythmCommand object. Migrate code form here to there.
     def make_rhythm_region_product(
         self, rhythm_maker, rhythm_region_division_list, start_offset, rhythm_command):
         if rhythm_region_division_list:
@@ -262,16 +264,16 @@ class ConcreteInterpreter(Interpreter):
             self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
             return rhythm_region_product
 
+    # TODO: streamline further
     def make_rhythm_region_product_from_parseable_string(
-        self, parseable_string, rhythm_region_division_list, start_offset, rhythm_command):
+        self, parseable_string, total_duration, voice_name, start_offset):
         component = iotools.p(parseable_string)
         timespan = timespantools.Timespan(start_offset)
         rhythm_region_product = settingtools.RhythmRegionProduct(
-            payload=[component],
-            voice_name=rhythm_region_division_list.voice_name, 
-            timespan=timespan)
-        duration_needed = sum([durationtools.Duration(x) for x in rhythm_region_division_list])
-        stop_offset = start_offset + duration_needed
+            payload=[component], voice_name=voice_name, timespan=timespan)
+        # TODO: maybe create timespan here instead of just offset
+        stop_offset = start_offset + total_duration
+        # TODO: maybe use timespan comparisons here instead offset comparisons
         if rhythm_region_product.timespan.stops_before_offset(stop_offset):
             rhythm_region_product.repeat_to_stop_offset(stop_offset)
         elif rhythm_region_product.timespan.stops_after(stop_offset):
@@ -283,15 +285,20 @@ class ConcreteInterpreter(Interpreter):
         while self.score_specification.rhythm_quintuples:
             made_progress = False
             for rhythm_quintuple in self.score_specification.rhythm_quintuples[:]:
-                voice_name = rhythm_quintuple[0]
-                voice_proxy = self.score_specification.contexts[voice_name]
-                voice_rhythm_region_products = voice_proxy.rhythm_region_products
                 rhythm_quadruple = rhythm_quintuple[1:]
+                # TODO: Implement SpecialRhythmRegionCommand.
+                #       Make this first branch equal to SpecialRhythmRegionCommand._get_paylad(...)
                 if isinstance(rhythm_quadruple[0], str):
+                    parseable_string, rhythm_region_division_list, start_offset = rhythm_quadruple[:3]
+                    total_duration = sum([durationtools.Duration(x) for x in rhythm_region_division_list])
+                    voice_name = rhythm_region_division_list.voice_name
                     rhythm_region_product = \
-                        self.make_rhythm_region_product_from_parseable_string(*rhythm_quadruple)
+                        self.make_rhythm_region_product_from_parseable_string(
+                        parseable_string, total_duration, voice_name, start_offset)
+                # TODO: bind to FlavoredRhythmRegionCommand.
                 elif isinstance(rhythm_quadruple[0], rhythmmakertools.RhythmMaker):
                     rhythm_region_product = self.make_rhythm_region_product(*rhythm_quadruple)
+                # TODO: bind to something.
                 elif isinstance(rhythm_quadruple[0], selectortools.CounttimeComponentSelector):
                     counttime_component_selector, start_offset, stop_offset = rhythm_quadruple[:3]
                     rhythm_region_product = \
@@ -303,6 +310,9 @@ class ConcreteInterpreter(Interpreter):
                 if rhythm_region_product is not None:
                     self.score_specification.rhythm_quintuples.remove(rhythm_quintuple)
                     made_progress = True
+                    voice_name = rhythm_quintuple[0]
+                    voice_proxy = self.score_specification.contexts[voice_name]
+                    voice_rhythm_region_products = voice_proxy.rhythm_region_products
                     voice_rhythm_region_products = voice_rhythm_region_products - rhythm_region_product.timespan
                     voice_rhythm_region_products.append(rhythm_region_product)
                     voice_rhythm_region_products.sort()
