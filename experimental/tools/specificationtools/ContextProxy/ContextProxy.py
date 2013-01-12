@@ -15,6 +15,7 @@ class ContextProxy(AbjadObject, OrderedDict):
         self._division_region_products = settingtools.RegionCommandInventory()
         self._rhythm_region_commands = settingtools.RegionCommandInventory()
         self._rhythm_region_products = settingtools.RegionCommandInventory()
+        self._voice_division_list = None
 
     ### SPECIAL METHODS ###
 
@@ -64,6 +65,14 @@ class ContextProxy(AbjadObject, OrderedDict):
         Return region product inventory.
         '''
         return self._rhythm_region_products
+
+    @property
+    def voice_division_list(self):
+        '''Context proxy voice divisionlist.
+
+        Return voice division list.
+        '''
+        return self._voice_division_list
 
     ### PUBLIC METHODS ###
 

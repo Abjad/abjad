@@ -314,16 +314,15 @@ class ConcreteInterpreter(Interpreter):
             voice_division_list = settingtools.DivisionList([], voice.name)
             voice_proxy = self.score_specification.contexts[voice.name]
             products = voice_proxy.division_region_products
-            #self._debug(products, 'products')
             divisions = [product.payload.divisions for product in products]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)
             start_offset = durationtools.Offset(0)
             for division in divisions:
-                offset_positioned_division = copy.deepcopy(division)
-                offset_positioned_division._start_offset = durationtools.Offset(start_offset)
+                division = copy.deepcopy(division)
+                division._start_offset = durationtools.Offset(start_offset)
                 start_offset += division.duration
-                voice_division_list.divisions.append(offset_positioned_division)
-            self.score_specification.contexts[voice.name]['voice_division_list'] = voice_division_list
+                voice_division_list.divisions.append(division)
+            voice_proxy._voice_division_list = voice_division_list
 
     def populate_region_commands(self, attribute):
         if self.score_specification.segment_specifications:
@@ -341,7 +340,7 @@ class ConcreteInterpreter(Interpreter):
 
     def populate_rhythm_quintuples(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
+            voice_division_list = self.score_specification.contexts[voice.name].voice_division_list
             #self._debug(voice_division_list, 'vdl')
             if voice_division_list:
                 rhythm_quintuples = self.make_rhythm_quintuples_for_voice(voice.name, voice_division_list)

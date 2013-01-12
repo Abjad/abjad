@@ -87,7 +87,7 @@ class DivisionSelector(Selector):
 
     # TODO: migrate in self._get_timespan_and_payload()
     def _get_timespan(self, score_specification, voice_name):
-        voice_division_list = score_specification.contexts[voice_name]['voice_division_list']
+        voice_division_list = score_specification.contexts[voice_name].voice_division_list
         divisions = []
         segment_specification = score_specification.get_start_segment_specification(self.anchor)
         specification_name = segment_specification.specification_name
