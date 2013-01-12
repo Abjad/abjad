@@ -15,6 +15,12 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.division_region_products
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.rhythm_region_commands
+   :noindex:
+
+.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.rhythm_region_products
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.storage_format
    :noindex:
 

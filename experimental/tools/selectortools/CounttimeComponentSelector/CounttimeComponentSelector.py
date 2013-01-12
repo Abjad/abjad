@@ -86,7 +86,7 @@ class CounttimeComponentSelector(Selector):
         #self._debug((start_offset, stop_offset), 'offsets')
         anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
         voice_proxy = score_specification.contexts[voice_name]
-        rhythm_region_products = voice_proxy['rhythm_region_products']
+        rhythm_region_products = voice_proxy.rhythm_region_products
         #self._debug_values(rhythm_region_products, 'rhythm region expressions')
         timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
             timespan_1=anchor_timespan)
@@ -122,7 +122,7 @@ class CounttimeComponentSelector(Selector):
     def _get_timespan(self, score_specification, voice_name):
         # allow user-specified voice name to override passed-in voice name
         voice_name = self.voice_name or voice_name
-        rhythm_region_products = score_specification.contexts[voice_name]['rhythm_region_products']
+        rhythm_region_products = score_specification.contexts[voice_name].rhythm_region_products
         if not rhythm_region_products:
             return selectiontools.Selection()
         if not rhythm_region_products[0].start_offset == durationtools.Offset(0):

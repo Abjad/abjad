@@ -89,10 +89,11 @@ class ConcreteInterpreter(Interpreter):
                 beamtools.DuratedComplexBeamSpanner(
                     [rhythm_container], [rhythm_container.prolated_duration], span=1)
 
+    # TODO: generalize into self.dump_region_products_into_voices()
     def dump_rhythm_region_products_into_voices(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            for rhythm_region_product in \
-                self.score_specification.contexts[voice.name]['rhythm_region_products']:
+            voice_proxy = self.score_specification.contexts[voice.name]
+            for rhythm_region_product in voice_proxy.rhythm_region_products:
                 voice.extend(rhythm_region_product.payload)
 
     def filter_rhythm_quadruples(self, rhythm_quadruples):
@@ -199,7 +200,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(voice, 'voice')
         #self._debug(voice_division_list, 'voice division list')
         voice_proxy = self.score_specification.contexts[voice.name]
-        rhythm_region_commands = voice_proxy['rhythm_region_commands']
+        rhythm_region_commands = voice_proxy.rhythm_region_commands
         #self._debug_values(rhythm_region_commands, 'rhythm region commands')
         rhythm_command_durations = [x.timespan.duration for x in rhythm_region_commands]
         #self._debug(rhythm_command_durations, 'rhythm command durations')
@@ -287,7 +288,7 @@ class ConcreteInterpreter(Interpreter):
             for rhythm_quintuple in self.score_specification.all_rhythm_quintuples[:]:
                 voice_name = rhythm_quintuple[0]
                 voice_proxy = self.score_specification.contexts[voice_name]
-                voice_rhythm_region_products = voice_proxy['rhythm_region_products']
+                voice_rhythm_region_products = voice_proxy.rhythm_region_products
                 rhythm_quadruple = rhythm_quintuple[1:]
                 if isinstance(rhythm_quadruple[0], str):
                     rhythm_region_product = \
@@ -330,14 +331,12 @@ class ConcreteInterpreter(Interpreter):
     def populate_all_region_commands(self, attribute):
         if self.score_specification.segment_specifications:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
+                voice_proxy = self.score_specification.contexts[voice.name]
                 region_commands = self.get_region_commands_for_voice(voice.name, attribute)
                 singular_attribute = attribute.rstrip('s')
                 key = '{}_region_commands'.format(singular_attribute)
-                if key == 'division_region_commands':
-                    self.score_specification.contexts[voice.name].division_region_commands[:] = \
-                        region_commands[:]
-                else:
-                    self.score_specification.contexts[voice.name][key][:] = region_commands[:]
+                region_command_inventory = getattr(voice_proxy, key)
+                region_command_inventory[:] = region_commands[:]
                 all_region_commands = getattr(self.score_specification, 'all_' + key)
                 for region_command in region_commands:
                     if region_command not in all_region_commands:
