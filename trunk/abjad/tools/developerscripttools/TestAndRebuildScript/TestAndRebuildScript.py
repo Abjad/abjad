@@ -12,7 +12,7 @@ class TestAndRebuildScript(DeveloperScript):
 
     @property
     def alias(self):
-        return 'rebuild'
+        return 're'
 
     @property
     def long_description(self):
