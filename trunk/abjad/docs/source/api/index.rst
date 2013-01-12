@@ -4371,6 +4371,7 @@ Abjad internal packages
       tools/developerscripttools/SvnCommitScript/SvnCommitScript
       tools/developerscripttools/SvnMessageScript/SvnMessageScript
       tools/developerscripttools/SvnUpdateScript/SvnUpdateScript
+      tools/developerscripttools/TestAndRebuildScript/TestAndRebuildScript
 
    --------
 
@@ -4412,6 +4413,7 @@ Abjad internal packages
       tools/developerscripttools/SvnCommitScript/SvnCommitScript
       tools/developerscripttools/SvnMessageScript/SvnMessageScript
       tools/developerscripttools/SvnUpdateScript/SvnUpdateScript
+      tools/developerscripttools/TestAndRebuildScript/TestAndRebuildScript
 
    Functions
    ---------

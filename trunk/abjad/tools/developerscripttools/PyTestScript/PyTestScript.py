@@ -1,8 +1,9 @@
-from abjad.tools import iotools
-from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 import argparse
 import multiprocessing
 import os
+import pytest
+from abjad.tools import iotools
+from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class PyTestScript(DirectoryScript):
@@ -72,10 +73,9 @@ class PyTestScript(DirectoryScript):
         print ''
 
         path = ' '.join(args.path)
-        command = 'py.test {} {} {} {}'.format(parallel, exitfirst, report, path)
-        print command
+        command = '{} {} {} {}'.format(parallel, exitfirst, report, path)
 
-        iotools.spawn_subprocess(command)
+        return pytest.main(command.split())
 
     def setup_argument_parser(self, parser):
 
