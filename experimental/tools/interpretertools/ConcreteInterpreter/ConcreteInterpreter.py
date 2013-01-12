@@ -194,11 +194,9 @@ class ConcreteInterpreter(Interpreter):
             if voice_division_region_commands and not made_progress:
                 raise Exception('cyclic division specification.')
 
-    # TODO: pass in voice_name instead of voice
-    def make_rhythm_quintuples_for_voice(self, voice, voice_division_list):
-        #self._debug(voice, 'voice')
+    def make_rhythm_quintuples_for_voice(self, voice_name, voice_division_list):
         #self._debug(voice_division_list, 'voice division list')
-        voice_proxy = self.score_specification.contexts[voice.name]
+        voice_proxy = self.score_specification.contexts[voice_name]
         rhythm_region_commands = voice_proxy.rhythm_region_commands
         #self._debug_values(rhythm_region_commands, 'rhythm region commands')
         rhythm_command_durations = [x.timespan.duration for x in rhythm_region_commands]
@@ -224,7 +222,7 @@ class ConcreteInterpreter(Interpreter):
             voice_division_list.divisions, 
             rhythm_region_start_division_counts, cyclic=False, overhang=False)
         rhythm_region_division_lists = [
-            settingtools.DivisionList(x, voice_name=voice.name) for x in rhythm_region_division_lists]
+            settingtools.DivisionList(x, voice_name=voice_name) for x in rhythm_region_division_lists]
         assert len(rhythm_region_division_lists) == len(rhythm_command_merged_durations)
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
         rhythm_region_durations = [x.duration for x in rhythm_region_division_lists]
@@ -248,7 +246,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
         rhythm_quadruples = self.filter_rhythm_quadruples(rhythm_quadruples)
         #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
-        rhythm_quintuples = [(voice.name,) + x for x in rhythm_quadruples]
+        rhythm_quintuples = [(voice_name,) + x for x in rhythm_quadruples]
         return rhythm_quintuples
 
     def make_rhythm_region_product(
@@ -346,7 +344,7 @@ class ConcreteInterpreter(Interpreter):
             voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
             #self._debug(voice_division_list, 'vdl')
             if voice_division_list:
-                rhythm_quintuples = self.make_rhythm_quintuples_for_voice(voice, voice_division_list)
+                rhythm_quintuples = self.make_rhythm_quintuples_for_voice(voice.name, voice_division_list)
                 #self._debug_values(rhythm_quintuples, 'rq')
                 self.score_specification.rhythm_quintuples.extend(rhythm_quintuples)
 
