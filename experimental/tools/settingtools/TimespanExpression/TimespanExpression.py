@@ -191,8 +191,8 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
 
         Return offset expression.
         '''            
-        from experimental.tools import timeexpressiontools
-        return timeexpressiontools.OffsetExpression(anchor=self)
+        from experimental.tools import settingtools
+        return settingtools.OffsetExpression(anchor=self)
 
     @property
     def start_segment_identifier(self):
@@ -207,8 +207,8 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
 
         Return offset expression.
         '''            
-        from experimental.tools import timeexpressiontools
-        return timeexpressiontools.OffsetExpression(anchor=self)
+        from experimental.tools import settingtools
+        return settingtools.OffsetExpression(anchor=self)
 
     @property
     def timespan_callbacks(self):
@@ -232,7 +232,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         ::
     
             >>> z(timespans[0])
-            timeexpressiontools.TimespanExpression(
+            settingtools.TimespanExpression(
                 anchor='red',
                 timespan_callbacks=settingtools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 0)'
@@ -242,7 +242,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         ::
 
             >>> z(timespans[1])
-            timeexpressiontools.TimespanExpression(
+            settingtools.TimespanExpression(
                 anchor='red',
                 timespan_callbacks=settingtools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 1)'
@@ -256,7 +256,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         ::
 
             >>> z(timespans[0])
-            timeexpressiontools.TimespanExpression(
+            settingtools.TimespanExpression(
                 anchor='red',
                 timespan_callbacks=settingtools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 0)'
@@ -266,7 +266,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         ::
 
             >>> z(timespans[1])
-            timeexpressiontools.TimespanExpression(
+            settingtools.TimespanExpression(
                 anchor='red',
                 timespan_callbacks=settingtools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 1)'
@@ -276,7 +276,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         ::
 
             >>> z(timespans[2])
-            timeexpressiontools.TimespanExpression(
+            settingtools.TimespanExpression(
                 anchor='red',
                 timespan_callbacks=settingtools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 2)'
@@ -303,7 +303,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         ::
 
             >>> z(timespan)
-            timeexpressiontools.TimespanExpression(
+            settingtools.TimespanExpression(
                 anchor='red',
                 timespan_callbacks=settingtools.CallbackInventory([
                     'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))'

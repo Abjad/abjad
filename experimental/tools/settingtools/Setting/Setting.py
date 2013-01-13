@@ -19,11 +19,11 @@ class Setting(AbjadObject):
     def __init__(self, attribute=None, request=None, anchor=None, fresh=True, persist=True, truncate=None):
         from experimental.tools import requesttools
         from experimental.tools import settingtools
-        from experimental.tools import timeexpressiontools
+        from experimental.tools import settingtools
         assert isinstance(attribute, str)
         assert isinstance(request, (
-            settingtools.PayloadCallbackMixin, timeexpressiontools.TimespanExpression)), repr(request)
-        assert isinstance(anchor, (timeexpressiontools.TimespanExpression, str, type(None)))
+            settingtools.PayloadCallbackMixin, settingtools.TimespanExpression)), repr(request)
+        assert isinstance(anchor, (settingtools.TimespanExpression, str, type(None)))
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))

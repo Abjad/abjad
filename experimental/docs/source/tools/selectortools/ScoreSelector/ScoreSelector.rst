@@ -82,7 +82,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.score_specification
    :noindex:
 
-   Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.start_offset
    :noindex:
@@ -112,7 +112,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.timespan_callbacks
    :noindex:
 
-   Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. autoattribute:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.voice_name
    :noindex:
@@ -140,7 +140,7 @@ Methods
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.divide_by_ratio
    :noindex:
 
-   Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.happens_during_timespan
    :noindex:
@@ -225,7 +225,7 @@ Methods
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.scale
    :noindex:
 
-   Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.select_background_measures
    :noindex:
@@ -275,7 +275,7 @@ Methods
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_duration
    :noindex:
 
-   Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_dynamics
    :noindex:
@@ -295,7 +295,7 @@ Methods
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_offsets
    :noindex:
 
-   Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_pitch_class_application
    :noindex:
@@ -470,7 +470,7 @@ Methods
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.translate_offsets
    :noindex:
 
-   Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.trisects_timespan
    :noindex:

@@ -430,7 +430,9 @@ Unstable packages (load manually)
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
+      tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
+      tools/settingtools/OffsetExpression/OffsetExpression
       tools/settingtools/RegionCommandInventory/RegionCommandInventory
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
@@ -441,6 +443,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
+      tools/settingtools/TimespanExpression/TimespanExpression
 
 .. only:: latex
 
@@ -468,7 +471,9 @@ Unstable packages (load manually)
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
+      tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
+      tools/settingtools/OffsetExpression/OffsetExpression
       tools/settingtools/RegionCommandInventory/RegionCommandInventory
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
@@ -479,6 +484,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
+      tools/settingtools/TimespanExpression/TimespanExpression
 
 :py:mod:`specificationtools <experimental.tools.specificationtools>`
 ====================================================================
@@ -520,26 +526,3 @@ Unstable packages (load manually)
       tools/specificationtools/ScoreSpecification/ScoreSpecification
       tools/specificationtools/SegmentSpecification/SegmentSpecification
       tools/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
-
-:py:mod:`timeexpressiontools <experimental.tools.timeexpressiontools>`
-======================================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/timeexpressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
-      tools/timeexpressiontools/OffsetExpression/OffsetExpression
-      tools/timeexpressiontools/TimespanExpression/TimespanExpression
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/timeexpressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
-      tools/timeexpressiontools/OffsetExpression/OffsetExpression
-      tools/timeexpressiontools/TimespanExpression/TimespanExpression

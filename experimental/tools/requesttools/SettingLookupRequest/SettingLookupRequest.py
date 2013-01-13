@@ -1,5 +1,5 @@
 import abc
-from experimental.tools import timeexpressiontools
+from experimental.tools import settingtools
 from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
@@ -29,7 +29,7 @@ class SettingLookupRequest(PayloadCallbackMixin):
     def __init__(self, attribute, voice_name, offset, payload_callbacks=None):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
-        assert isinstance(offset, timeexpressiontools.OffsetExpression)
+        assert isinstance(offset, settingtools.OffsetExpression)
         PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
         self._attribute = attribute
         self._voice_name = voice_name

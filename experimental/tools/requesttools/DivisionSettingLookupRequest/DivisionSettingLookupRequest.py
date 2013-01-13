@@ -23,7 +23,7 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
         >>> z(setting)
         requesttools.DivisionSettingLookupRequest(
             'Voice 1',
-            timeexpressiontools.OffsetExpression(
+            settingtools.OffsetExpression(
                 anchor=selectortools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',

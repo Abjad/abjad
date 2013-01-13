@@ -105,7 +105,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
         Return timespan expression.
         '''
-        from experimental.tools import timeexpressiontools
-        timespan = timeexpressiontools.TimespanExpression(anchor=self.specification_name)
+        from experimental.tools import settingtools
+        timespan = settingtools.TimespanExpression(anchor=self.specification_name)
         timespan._score_specification = self.score_specification
         return timespan

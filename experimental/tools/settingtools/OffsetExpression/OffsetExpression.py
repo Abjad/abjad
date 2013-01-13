@@ -25,7 +25,7 @@ class OffsetExpression(AbjadObject):
     ::
 
         >>> z(offset)
-        timeexpressiontools.OffsetExpression(
+        settingtools.OffsetExpression(
             anchor=selectortools.CounttimeComponentSelector(
                 anchor='red',
                 classes=selectortools.ClassInventory([
@@ -44,9 +44,9 @@ class OffsetExpression(AbjadObject):
 
     def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
         from experimental.tools import specificationtools
-        from experimental.tools import timeexpressiontools
+        from experimental.tools import settingtools
         assert isinstance(anchor, (
-            timeexpressiontools.TimespanExpression, 
+            settingtools.TimespanExpression, 
             type(None), str)), repr(anchor)
         assert edge in (Left, Right, None), repr(edge)
         if multiplier is not None:
@@ -186,8 +186,8 @@ class OffsetExpression(AbjadObject):
             >>> z(request)
             requesttools.DivisionSettingLookupRequest(
                 'Voice 1',
-                timeexpressiontools.OffsetExpression(
-                    anchor=timeexpressiontools.TimespanExpression(
+                settingtools.OffsetExpression(
+                    anchor=settingtools.TimespanExpression(
                         anchor='red'
                         )
                     )
@@ -209,8 +209,8 @@ class OffsetExpression(AbjadObject):
             >>> z(request)
             requesttools.RhythmSettingLookupRequest(
                 'Voice 1',
-                timeexpressiontools.OffsetExpression(
-                    anchor=timeexpressiontools.TimespanExpression(
+                settingtools.OffsetExpression(
+                    anchor=settingtools.TimespanExpression(
                         anchor='red'
                         )
                     )
@@ -232,8 +232,8 @@ class OffsetExpression(AbjadObject):
             >>> z(request)
             requesttools.TimeSignatureSettingLookupRequest(
                 'Voice 1',
-                timeexpressiontools.OffsetExpression(
-                    anchor=timeexpressiontools.TimespanExpression(
+                settingtools.OffsetExpression(
+                    anchor=settingtools.TimespanExpression(
                         anchor='red'
                         )
                     )

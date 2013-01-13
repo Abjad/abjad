@@ -5,7 +5,7 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
 from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
-from experimental.tools.timeexpressiontools.TimespanExpression import TimespanExpression
+from experimental.tools.settingtools.TimespanExpression import TimespanExpression
 
 
 class Selector(PayloadCallbackMixin, TimespanExpression):
@@ -22,8 +22,8 @@ class Selector(PayloadCallbackMixin, TimespanExpression):
 
     def __init__(self, anchor=None, voice_name=None, time_relation=None, 
         payload_callbacks=None, timespan_callbacks=None):
-        from experimental.tools import timeexpressiontools
-        assert isinstance(anchor, (timeexpressiontools.TimespanExpression, str, type(None))), repr(anchor)
+        from experimental.tools import settingtools
+        assert isinstance(anchor, (settingtools.TimespanExpression, str, type(None))), repr(anchor)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
@@ -92,8 +92,8 @@ class Selector(PayloadCallbackMixin, TimespanExpression):
 
     @property
     def start_offset(self):
-        from experimental.tools import timeexpressiontools
-        return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation)
+        from experimental.tools import settingtools
+        return settingtools.OffsetExpression(anchor=self._anchor_abbreviation)
 
     @property
     def start_segment_identifier(self):
@@ -110,8 +110,8 @@ class Selector(PayloadCallbackMixin, TimespanExpression):
 
     @property
     def stop_offset(self):
-        from experimental.tools import timeexpressiontools
-        return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
+        from experimental.tools import settingtools
+        return settingtools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
 
     @property
     def time_relation(self):

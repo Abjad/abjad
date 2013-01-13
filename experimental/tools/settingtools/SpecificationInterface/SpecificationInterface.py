@@ -48,8 +48,8 @@ class SpecificationInterface(SelectMethodMixin, SetMethodMixin):
 
     @property
     def timespan(self):
-        from experimental.tools import timeexpressiontools
-        timespan = timeexpressiontools.TimespanExpression()
+        from experimental.tools import settingtools
+        timespan = settingtools.TimespanExpression()
         timespan._score_specification = self.score_specification
         return timespan
 

@@ -64,7 +64,7 @@ class CounttimeComponentSelector(Selector):
     def __init__(self, anchor=None, classes=None, 
         voice_name=None, time_relation=None, payload_callbacks=None, timespan_callbacks=None):
         from experimental.tools import selectortools
-        from experimental.tools import timeexpressiontools
+        from experimental.tools import settingtools
         assert classes is None or self._is_counttime_component_class_expr(classes), repr(classes)
         Selector.__init__(self, 
             anchor=anchor, 
