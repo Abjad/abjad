@@ -120,23 +120,11 @@ class ScoreSpecification(Specification):
             >>> for x in score_specification.division_region_commands:
             ...     z(x)
             settingtools.DivisionRegionCommand(
-                settingtools.AbsoluteExpression(
+                request=settingtools.AbsoluteExpression(
                     ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
                     ),
-                'Voice 1',
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(9, 4)
-                    ),
-                fresh=True,
-                truncate=True
-                )
-            settingtools.DivisionRegionCommand(
-                settingtools.AbsoluteExpression(
-                    ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
-                    ),
-                'Voice 2',
-                timespantools.Timespan(
+                context_name='Voice 1',
+                timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(9, 4)
                     ),
@@ -154,8 +142,8 @@ class ScoreSpecification(Specification):
     def rhythm_quintuples(self):
         '''Read-only list of all rhythm quintuples.
 
-            >>> for x in score_specification.rhythm_quintuples:
-            ...     z(x)
+            >>> len(score_specification.rhythm_quintuples) == 0
+            True
 
         Popluate during interpretation. Then consume during interpretation.
 
@@ -170,7 +158,7 @@ class ScoreSpecification(Specification):
             >>> for x in score_specification.rhythm_region_commands:
             ...     z(x)
             settingtools.RhythmRegionCommand(
-                requesttools.RhythmMakerRequest(
+                request=requesttools.RhythmMakerRequest(
                     rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
@@ -181,8 +169,7 @@ class ScoreSpecification(Specification):
                         tie_split_notes=False
                         )
                     ),
-                None,
-                timespantools.Timespan(
+                timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(9, 4)
                     ),
