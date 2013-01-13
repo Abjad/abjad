@@ -180,7 +180,7 @@ class SegmentSpecification(Specification):
             >>> for x in red_segment.single_context_settings:
             ...     z(x)
             settingtools.SingleContextTimeSignatureSetting(
-                request=requesttools.AbsoluteExpression(
+                request=settingtools.AbsoluteExpression(
                     ((2, 8), (3, 8), (4, 8))
                     ),
                 anchor='red',

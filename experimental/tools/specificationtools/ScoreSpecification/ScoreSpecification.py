@@ -120,7 +120,7 @@ class ScoreSpecification(Specification):
             >>> for x in score_specification.division_region_commands:
             ...     z(x)
             settingtools.DivisionRegionCommand(
-                requesttools.AbsoluteExpression(
+                settingtools.AbsoluteExpression(
                     ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
                     ),
                 'Voice 1',
@@ -132,7 +132,7 @@ class ScoreSpecification(Specification):
                 truncate=True
                 )
             settingtools.DivisionRegionCommand(
-                requesttools.AbsoluteExpression(
+                settingtools.AbsoluteExpression(
                     ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
                     ),
                 'Voice 2',
@@ -263,7 +263,7 @@ class ScoreSpecification(Specification):
             ...     z(x)
             settingtools.MultipleContextSetting(
                 attribute='time_signatures',
-                request=requesttools.AbsoluteExpression(
+                request=settingtools.AbsoluteExpression(
                     ((2, 8), (3, 8), (4, 8))
                     ),
                 anchor='red',
@@ -271,7 +271,7 @@ class ScoreSpecification(Specification):
                 )
             settingtools.MultipleContextSetting(
                 attribute='time_signatures',
-                request=requesttools.AbsoluteExpression(
+                request=settingtools.AbsoluteExpression(
                     ((4, 16), (4, 16))
                     ),
                 anchor='orange',
@@ -279,7 +279,7 @@ class ScoreSpecification(Specification):
                 )
             settingtools.MultipleContextSetting(
                 attribute='time_signatures',
-                request=requesttools.AbsoluteExpression(
+                request=settingtools.AbsoluteExpression(
                     ((5, 16), (5, 16))
                     ),
                 anchor='yellow',
@@ -383,7 +383,7 @@ class ScoreSpecification(Specification):
             >>> for x in score_specification.single_context_settings:
             ...     z(x)
             settingtools.SingleContextTimeSignatureSetting(
-                request=requesttools.AbsoluteExpression(
+                request=settingtools.AbsoluteExpression(
                     ((2, 8), (3, 8), (4, 8))
                     ),
                 anchor='red',
@@ -391,7 +391,7 @@ class ScoreSpecification(Specification):
                 persist=True
                 )
             settingtools.SingleContextTimeSignatureSetting(
-                request=requesttools.AbsoluteExpression(
+                request=settingtools.AbsoluteExpression(
                     ((4, 16), (4, 16))
                     ),
                 anchor='orange',
@@ -399,7 +399,7 @@ class ScoreSpecification(Specification):
                 persist=True
                 )
             settingtools.SingleContextTimeSignatureSetting(
-                request=requesttools.AbsoluteExpression(
+                request=settingtools.AbsoluteExpression(
                     ((5, 16), (5, 16))
                     ),
                 anchor='yellow',
@@ -634,7 +634,7 @@ class ScoreSpecification(Specification):
     def make_time_signature_division_command(self, voice_name, timespan):
         divisions = self.get_time_signature_slice(timespan)
         return settingtools.DivisionRegionCommand(
-            requesttools.AbsoluteExpression(divisions),
+            settingtools.AbsoluteExpression(divisions),
             voice_name,
             timespan,
             fresh=True,

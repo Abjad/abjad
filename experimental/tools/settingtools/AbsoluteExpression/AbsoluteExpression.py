@@ -3,7 +3,7 @@ from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallback
 
 
 class AbsoluteExpression(PayloadCallbackMixin):
-    r'''Absolute request.
+    r'''Absolute setting.
 
     ::
 
@@ -12,21 +12,23 @@ class AbsoluteExpression(PayloadCallbackMixin):
     ::
 
 
-        >>> request = requesttools.AbsoluteExpression([(4, 16), (2, 16)])
+        >>> expression = settingtools.AbsoluteExpression([(4, 16), (2, 16)])
 
     ::
 
-        >>> request
+        >>> expression
         AbsoluteExpression(((4, 16), (2, 16)))
 
     ::
 
-        >>> z(request)
-        requesttools.AbsoluteExpression(
+        >>> z(expression)
+        settingtools.AbsoluteExpression(
             ((4, 16), (2, 16))
             )
 
-    Create behind-the-scenes at setting-time.
+    Expression is assumed to resolve to a list or other iterable.
+
+    Because of this absolute expressions afford payload callbacks.
     '''
 
     ### INTIAILIZER ###
@@ -60,9 +62,11 @@ class AbsoluteExpression(PayloadCallbackMixin):
 
     @property
     def payload(self):
-        '''Absolute request payload::
+        '''Absolute expression payload:
 
-            >>> request.payload
+        ::
+
+            >>> expression.payload
             ((4, 16), (2, 16))
 
         Return tuple or string.
@@ -71,9 +75,11 @@ class AbsoluteExpression(PayloadCallbackMixin):
 
     @property
     def payload_callbacks(self):
-        '''Absolute request callbacks::
+        '''Absolute expression callbacks:
 
-            >>> request.payload_callbacks
+        ::
+
+            >>> expression.payload_callbacks
             CallbackInventory([])
 
         Return callback inventory.
@@ -82,10 +88,12 @@ class AbsoluteExpression(PayloadCallbackMixin):
 
     @property
     def storage_format(self):
-        '''Absolute request storage format::
+        '''Absolute expression storage format:
 
-            >>> print request.storage_format
-            requesttools.AbsoluteExpression(
+        ::
+
+            >>> z(expression)
+            settingtools.AbsoluteExpression(
                 ((4, 16), (2, 16))
                 )
 

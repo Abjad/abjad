@@ -310,7 +310,6 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/requesttools/AbsoluteExpression/AbsoluteExpression
       tools/requesttools/DivisionSettingLookupRequest/DivisionSettingLookupRequest
       tools/requesttools/HandlerRequest/HandlerRequest
       tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
@@ -332,7 +331,6 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/requesttools/AbsoluteExpression/AbsoluteExpression
       tools/requesttools/DivisionSettingLookupRequest/DivisionSettingLookupRequest
       tools/requesttools/HandlerRequest/HandlerRequest
       tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
@@ -406,6 +404,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/settingtools/AbsoluteExpression/AbsoluteExpression
       tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/Division/Division
@@ -451,6 +450,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/settingtools/AbsoluteExpression/AbsoluteExpression
       tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/Division/Division

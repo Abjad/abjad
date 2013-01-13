@@ -49,7 +49,7 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
     ### PRIVATE METHODS ###
 
     def _get_payload(self, score_specification, voice_name):
-        from experimental.tools import requesttools
+        from experimental.tools import settingtools
         requested_segment_identifier = self.offset.start_segment_identifier
         requested_offset = self.offset._get_offset(score_specification, voice_name)
         timespan_inventory = timespantools.TimespanInventory()
@@ -63,7 +63,7 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
             candidate_commands, self.voice_name, include_improper_parentage=True)
         assert source_command is not None
         absolute_request = source_command.request
-        assert isinstance(absolute_request, requesttools.AbsoluteExpression), repr(absolute_request)
+        assert isinstance(absolute_request, settingtools.AbsoluteExpression), repr(absolute_request)
         divisions = absolute_request.payload
         start_offset = division_region_command.timespan.start_offset
         divisions, start_offset = self._apply_payload_callbacks(divisions, start_offset)

@@ -35,7 +35,7 @@ class SetMethodMixin(AbjadObject):
         elif isinstance(expr, handlertools.Handler):
             return requesttool.HandlerRequest(expr)
         elif isinstance(expr, (tuple, list, str)):
-            return requesttools.AbsoluteExpression(expr)
+            return settingtools.AbsoluteExpression(expr)
         elif isinstance(expr, rhythmmakertools.RhythmMaker):
             return requesttools.RhythmMakerRequest(expr)
         else:
@@ -96,7 +96,7 @@ class SetMethodMixin(AbjadObject):
             >>> z(setting)
             settingtools.MultipleContextSetting(
                 attribute='divisions',
-                request=requesttools.AbsoluteExpression(
+                request=settingtools.AbsoluteExpression(
                     ((3, 16),)
                     ),
                 anchor='red',
@@ -222,7 +222,7 @@ class SetMethodMixin(AbjadObject):
             >>> z(setting)
             settingtools.MultipleContextSetting(
                 attribute='time_signatures',
-                request=requesttools.AbsoluteExpression(
+                request=settingtools.AbsoluteExpression(
                     ((3, 8), (4, 8))
                     ),
                 anchor='red',

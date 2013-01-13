@@ -99,7 +99,7 @@ class ConcreteInterpreter(Interpreter):
         result = []
         for rhythm_quadruple in rhythm_quadruples:
             rhythm_command, division_list, start_offset, stop_offset = rhythm_quadruple
-            if isinstance(rhythm_command.request, requesttools.AbsoluteExpression):
+            if isinstance(rhythm_command.request, settingtools.AbsoluteExpression):
                 result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.RhythmMakerRequest):
                 result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))

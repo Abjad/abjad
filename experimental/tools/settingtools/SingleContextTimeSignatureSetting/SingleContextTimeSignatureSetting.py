@@ -27,8 +27,9 @@ class SingleContextTimeSignatureSetting(SingleContextSetting):
     def make_time_signatures(self, score_specification):
         from experimental.tools import requesttools
         from experimental.tools import selectortools
+        from experimental.tools import settingtools
         # TODO: condense these to a single test!
-        if isinstance(self.request, requesttools.AbsoluteExpression):
+        if isinstance(self.request, settingtools.AbsoluteExpression):
             time_signatures = self.request._get_payload(score_specification)
         elif isinstance(self.request, requesttools.TimeSignatureSettingLookupRequest):
             time_signatures = self.request._get_payload(score_specification)
