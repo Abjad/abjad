@@ -78,7 +78,7 @@ class CounttimeComponentSelector(Selector):
     
     ### PRIVATE METHODS ###
 
-    # TODO: remove start_offset=None, stop_offset=None keywords are use payload callback instead.
+    # TODO: remove start_offset=None, stop_offset=None keywords and use payload callback instead.
     # TODO: migrate into self._get_timespan_and_payload().
     def _get_payload(self, score_specification, voice_name, start_offset=None, stop_offset=None):
         from experimental.tools import settingtools

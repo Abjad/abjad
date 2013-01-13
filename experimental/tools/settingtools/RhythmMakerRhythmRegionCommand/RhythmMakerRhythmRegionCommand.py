@@ -29,7 +29,7 @@ class RhythmMakerRhythmRegionCommand(AbjadObject):
                 beamtools.DuratedComplexBeamSpanner(
                     [rhythm_container], [rhythm_container.prolated_duration], span=1)
 
-    def _get_payload(self):
+    def _get_payload(self, score_specification=None, voice_name=None):
         from experimental.tools import settingtools
         if self.rhythm_region_division_list:
             leaf_lists = self.rhythm_maker(self.rhythm_region_division_list.pairs)

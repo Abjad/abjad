@@ -78,17 +78,6 @@ class ConcreteInterpreter(Interpreter):
                 timespan = timespantools.Timespan(start_offset, stop_offset)
                 segment_specification._timespan = timespan
 
-#    def conditionally_beam_rhythm_containers(self, rhythm_maker, rhythm_containers):
-#        if getattr(rhythm_maker, 'beam_cells_together', False):
-#            spannertools.destroy_spanners_attached_to_components_in_expr(rhythm_containers)
-#            durations = [x.prolated_duration for x in rhythm_containers]
-#            beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
-#        elif getattr(rhythm_maker, 'beam_each_cell', False):
-#            spannertools.destroy_spanners_attached_to_components_in_expr(rhythm_containers)
-#            for rhythm_container in rhythm_containers:
-#                beamtools.DuratedComplexBeamSpanner(
-#                    [rhythm_container], [rhythm_container.prolated_duration], span=1)
-
     def dump_rhythm_region_products_into_voices(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_proxy = self.score_specification.contexts[voice.name]
@@ -249,45 +238,30 @@ class ConcreteInterpreter(Interpreter):
         rhythm_quintuples = [(voice_name,) + x for x in rhythm_quadruples]
         return rhythm_quintuples
 
-#    # TODO: remove rhythm_command input argument.
-#    # TODO: bind to some FlavoredRhythmCommand object. Migrate code form here to there.
-#    def make_rhythm_region_product_from_rhythm_maker(
-#        self, rhythm_maker, rhythm_region_division_list, start_offset):
-#        if rhythm_region_division_list:
-#            leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
-#            rhythm_containers = [containertools.Container(x) for x in leaf_lists]
-#            timespan = timespantools.Timespan(start_offset)
-#            rhythm_region_product = settingtools.RhythmRegionProduct(
-#                payload=rhythm_containers, 
-#                voice_name=rhythm_region_division_list.voice_name, 
-#                timespan=timespan)
-#            self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
-#            return rhythm_region_product
-
     # TODO: structure like self.make_division_region_products()
     def make_rhythm_region_products(self):
         while self.score_specification.rhythm_quintuples:
             made_progress = False
             for rhythm_quintuple in self.score_specification.rhythm_quintuples[:]:
                 rhythm_triple = rhythm_quintuple[1:4]
-                # TODO: Make branch equal to ParseableStringRhythmRegionCommand._get_paylaod() only.
+                # TODO: make branch equal to ParseableStringRhythmRegionCommand._get_paylaod() only.
                 if isinstance(rhythm_triple[0], str):
                     parseable_string, rhythm_region_division_list, start_offset = rhythm_triple
                     total_duration = sum([durationtools.Duration(x) for x in rhythm_region_division_list])
                     voice_name = rhythm_region_division_list.voice_name
                     command = settingtools.ParseableStringRhythmRegionCommand(
                         parseable_string, total_duration, voice_name, start_offset)
-                    rhythm_region_product = command._get_payload()
-                # TODO: Make branch equal to RhythmMakerRhythmRegionCommand._get_payload() only.
+                    rhythm_region_product = command._get_payload(self.score_specification)
+                # TODO: make branch equal to RhythmMakerRhythmRegionCommand._get_payload() only.
                 elif isinstance(rhythm_triple[0], rhythmmakertools.RhythmMaker):
                     rhythm_maker, rhythm_region_division_list, start_offset = rhythm_triple 
                     command = settingtools.RhythmMakerRhythmRegionCommand(
                         rhythm_maker, rhythm_region_division_list, start_offset)
-                    rhythm_region_product = command._get_payload()
-                # TODO: Bind to something.
-                #       Make branch equal to Something._get_payload(...).
+                    rhythm_region_product = command._get_payload(self.score_specification)
+                # TODO: make branch equal to CounttimeComponentSelector._get_payload() only.
                 elif isinstance(rhythm_triple[0], selectortools.CounttimeComponentSelector):
                     counttime_component_selector, start_offset, stop_offset = rhythm_triple
+                    # TODO: remove start_offset, stop_offset parameters.
                     rhythm_region_product = \
                         counttime_component_selector._get_payload(
                         self.score_specification, counttime_component_selector.voice_name, 

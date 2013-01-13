@@ -18,7 +18,7 @@ class ParseableStringRhythmRegionCommand(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_payload(self):
+    def _get_payload(self, score_specification=None, voice_name=None):
         from experimental.tools import settingtools
         component = iotools.p(self.parseable_string)
         timespan = timespantools.Timespan(self.start_offset)
