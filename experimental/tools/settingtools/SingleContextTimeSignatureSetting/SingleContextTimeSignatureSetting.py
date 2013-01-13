@@ -25,18 +25,7 @@ class SingleContextTimeSignatureSetting(SingleContextSetting):
         return command
 
     def make_time_signatures(self, score_specification):
-        from experimental.tools import requesttools
-        from experimental.tools import selectortools
-        from experimental.tools import settingtools
-        # TODO: condense these to a single test!
-        if isinstance(self.request, settingtools.AbsoluteExpression):
-            time_signatures = self.request._get_payload(score_specification)
-        elif isinstance(self.request, requesttools.TimeSignatureSettingLookupRequest):
-            time_signatures = self.request._get_payload(score_specification)
-        elif isinstance(self.request, selectortools.BackgroundMeasureSelector):
-            time_signatures = self.request._get_payload(score_specification)
-        else:
-            raise TypeError(self.request)
+        time_signatures = self.request._get_payload(score_specification)
         if time_signatures:
             segment_specification = score_specification.get_start_segment_specification(self.anchor)
             segment_specification._time_signatures = time_signatures[:]
