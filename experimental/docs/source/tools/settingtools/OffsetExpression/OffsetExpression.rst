@@ -35,11 +35,17 @@ Methods
 .. automethod:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_division_setting
    :noindex:
 
+   Inherited from :py:class:`settingtools.LookupMethodMixin <experimental.tools.settingtools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin>`
+
 .. automethod:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_rhythm_setting
    :noindex:
 
+   Inherited from :py:class:`settingtools.LookupMethodMixin <experimental.tools.settingtools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin>`
+
 .. automethod:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_time_signature_setting
    :noindex:
+
+   Inherited from :py:class:`settingtools.LookupMethodMixin <experimental.tools.settingtools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin>`
 
 Special Methods
 ---------------

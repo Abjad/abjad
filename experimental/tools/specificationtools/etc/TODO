@@ -127,10 +127,7 @@
 27. Maybe make TimespanCallbackMixin in parallel to PayloadCallbackMixin.
     This will migrate a bunch of code out of TimespanExpression into TimespanCallbackMixin.
 
-28. Extract the look_up() methods to a separate LookupMethodMixin class.
-    Then have OffsetExpression inherit from LookupMethodMixin.
-
-29. Change primary usage pattern from ...
+28. Change primary usage pattern from ...
         score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
         score_specification = specificationtools.ScoreSpecification(score_template)
     ... to ...
@@ -138,5 +135,5 @@
         score_specification = settingtools.ScoreSpecificationInterface(score_template)
     ... so that composers are always only ever interacting with interfaces.
 
-30. Add test to show this:
+29. Add test to show this:
         setting = score_specification.get_offset(32, 5).look_up_rhythm_setting('Voice 1')

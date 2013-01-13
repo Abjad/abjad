@@ -1,9 +1,9 @@
 from abjad.tools import durationtools
 from abjad.tools import timespantools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.tools.settingtools.LookupMethodMixin import LookupMethodMixin
 
 
-class OffsetExpression(AbjadObject):
+class OffsetExpression(LookupMethodMixin):
     r'''Offset expression.
 
     ::
@@ -172,74 +172,3 @@ class OffsetExpression(AbjadObject):
             return self.anchor
         else:
             return self.anchor.start_segment_identifier
-
-    ### PUBLIC METHODS ###
-
-    def look_up_division_setting(self, voice):
-        r'''PayloadCallbackMixin voice ``1`` division command
-        active at start of segment ``'red'``::
-
-            >>> request = red_segment.timespan.start_offset.look_up_division_setting('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.DivisionSettingLookupRequest(
-                'Voice 1',
-                settingtools.OffsetExpression(
-                    anchor=settingtools.TimespanExpression(
-                        anchor='red'
-                        )
-                    )
-                )
-
-        Return command request.        
-        '''
-        from experimental.tools import requesttools
-        return requesttools.DivisionSettingLookupRequest(voice, offset=self)
-
-    def look_up_rhythm_setting(self, voice):
-        r'''PayloadCallbackMixin voice ``1`` rhythm command 
-        active at start of segment ``'red'``::
-
-            >>> request = red_segment.timespan.start_offset.look_up_rhythm_setting('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.RhythmSettingLookupRequest(
-                'Voice 1',
-                settingtools.OffsetExpression(
-                    anchor=settingtools.TimespanExpression(
-                        anchor='red'
-                        )
-                    )
-                )
-
-        Return command request.        
-        '''
-        from experimental.tools import requesttools
-        return requesttools.RhythmSettingLookupRequest(voice, offset=self)
-
-    def look_up_time_signature_setting(self, voice):
-        r'''PayloadCallbackMixin voice ``1`` time signature command
-        active at start of segment ``'red'``::
-
-            >>> request = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.TimeSignatureSettingLookupRequest(
-                'Voice 1',
-                settingtools.OffsetExpression(
-                    anchor=settingtools.TimespanExpression(
-                        anchor='red'
-                        )
-                    )
-                )
-
-        Return command request.
-        '''
-        from experimental.tools import requesttools
-        return requesttools.TimeSignatureSettingLookupRequest(voice, offset=self)
