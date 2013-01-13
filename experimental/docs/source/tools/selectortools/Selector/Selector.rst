@@ -102,7 +102,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.Selector.Selector.Selector.timespan_callbacks
    :noindex:
 
-   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
 .. autoattribute:: experimental.tools.selectortools.Selector.Selector.Selector.voice_name
    :noindex:
@@ -128,7 +128,7 @@ Methods
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.divide_by_ratio
    :noindex:
 
-   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.happens_during_timespan
    :noindex:
@@ -213,7 +213,7 @@ Methods
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.scale
    :noindex:
 
-   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.select_background_measures
    :noindex:
@@ -263,7 +263,7 @@ Methods
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.set_duration
    :noindex:
 
-   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.set_dynamics
    :noindex:
@@ -283,7 +283,7 @@ Methods
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.set_offsets
    :noindex:
 
-   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.set_pitch_class_application
    :noindex:
@@ -458,7 +458,7 @@ Methods
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.translate_offsets
    :noindex:
 
-   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.trisects_timespan
    :noindex:

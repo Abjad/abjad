@@ -17,6 +17,24 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.timespan_callbacks
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.divide_by_ratio
+   :noindex:
+
+.. automethod:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.scale
+   :noindex:
+
+.. automethod:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.set_duration
+   :noindex:
+
+.. automethod:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.set_offsets
+   :noindex:
+
+.. automethod:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.translate_offsets
+   :noindex:
+
 Special Methods
 ---------------
 

@@ -98,7 +98,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.timespan_callbacks
    :noindex:
 
-   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
 Methods
 -------
@@ -121,7 +121,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.divide_by_ratio
    :noindex:
 
-   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
 .. automethod:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.happens_during_timespan
    :noindex:
@@ -181,7 +181,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.scale
    :noindex:
 
-   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
 .. automethod:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.select_background_measures
    :noindex:
@@ -231,7 +231,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_duration
    :noindex:
 
-   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
 .. automethod:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_dynamics
    :noindex:
@@ -251,7 +251,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_offsets
    :noindex:
 
-   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
 .. automethod:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_pitch_class_application
    :noindex:
@@ -426,7 +426,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.translate_offsets
    :noindex:
 
-   Inherited from :py:class:`settingtools.TimespanExpression <experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression>`
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
 .. automethod:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.trisects_timespan
    :noindex:

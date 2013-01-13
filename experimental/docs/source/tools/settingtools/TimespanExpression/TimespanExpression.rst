@@ -92,6 +92,8 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.timespan_callbacks
    :noindex:
 
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
+
 Methods
 -------
 
@@ -112,6 +114,8 @@ Methods
 
 .. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.divide_by_ratio
    :noindex:
+
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
 .. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.happens_during_timespan
    :noindex:
@@ -171,6 +175,8 @@ Methods
 .. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.scale
    :noindex:
 
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
+
 .. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.select_background_measures
    :noindex:
 
@@ -219,6 +225,8 @@ Methods
 .. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.set_duration
    :noindex:
 
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
+
 .. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.set_dynamics
    :noindex:
 
@@ -236,6 +244,8 @@ Methods
 
 .. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.set_offsets
    :noindex:
+
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
 .. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.set_pitch_class_application
    :noindex:
@@ -409,6 +419,8 @@ Methods
 
 .. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.translate_offsets
    :noindex:
+
+   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
 .. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.trisects_timespan
    :noindex:
