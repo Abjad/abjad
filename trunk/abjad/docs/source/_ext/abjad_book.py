@@ -4,14 +4,65 @@ import multiprocessing
 import os
 import posixpath
 import shutil
+import sphinx
 import subprocess
 import tempfile
+from abjad import ABJCFG
 from abjad.tools import documentationtools
 from abjad.tools import sequencetools
 
 
+class abjad_literal_block(docutils.nodes.literal_block):
+    pass
+
+
 class abjad_book_block(docutils.nodes.General, docutils.nodes.Element):
     pass
+
+
+class AbjadBookDirective(sphinx.util.compat.Directive):
+    has_content = True
+    required_arguments = 0
+    optional_arguments = 0
+    final_argument_whitespace = True
+    option_spec = {
+        'errors-ok': docutils.parsers.rst.directives.flag,
+        'hidden': docutils.parsers.rst.directives.flag,
+        'strip-prompt': docutils.parsers.rst.directives.flag,
+    }
+    def run(self):
+        self.assert_has_content()
+        code = u'\n'.join(self.content)
+        #literal = abjad_literal_block(code, code)
+        literal = docutils.nodes.literal_block(code, code)
+        sphinx.util.nodes.set_source_info(self, literal)
+        return [literal]
+
+
+class ShellDirective(sphinx.util.compat.Directive):
+    has_content = True
+    required_arguments = 0
+    optional_arguments = 0
+    final_argument_whitespace = False
+    option_spec = {}
+    def run(self):
+        self.assert_has_content()
+        original_directory = os.path.abspath(os.path.curdir)
+        os.chdir(ABJCFG.ABJAD_PATH)
+        result = []
+        for line in self.content:
+            prompt = '{}$ '.format(os.path.basename(os.path.abspath(os.path.curdir)))
+            prompt += line
+            result.append(prompt)
+            proc = subprocess.Popen(line.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            out, err = proc.communicate()
+            result.extend(out.splitlines())
+        code = u'\n'.join(result)
+        literal = docutils.nodes.literal_block(code, code)
+        literal['language'] = 'bash'
+        sphinx.util.nodes.set_source_info(self, literal)
+        os.chdir(original_directory)
+        return [literal]
 
 
 def on_builder_inited(app):
@@ -252,6 +303,8 @@ def visit_abjad_book_latex(self, node):
 
 
 def setup(app):
+    app.add_directive('abjad', AbjadBookDirective)
+    app.add_directive('shell', ShellDirective)
     app.add_node(abjad_book_block,
         html=(visit_abjad_book_html, None),
         latex=(visit_abjad_book_latex, None),
