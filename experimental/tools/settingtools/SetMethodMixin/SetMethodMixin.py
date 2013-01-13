@@ -30,7 +30,7 @@ class SetMethodMixin(AbjadObject):
         expr = copy.deepcopy(expr)
         if isinstance(expr, settingtools.PayloadCallbackMixin):
             return expr
-        elif isinstance(expr, requesttools.StatalServer):
+        elif isinstance(expr, settingtools.StatalServer):
             return requesttools.StatalServerRequest(expr)
         elif isinstance(expr, handlertools.Handler):
             return requesttool.HandlerRequest(expr)

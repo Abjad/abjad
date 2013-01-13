@@ -10,7 +10,7 @@ class StatalServerRequest(PayloadCallbackMixin):
     ### INITIALIZER ###
     
     def __init__(self, statal_server, payload_callbacks=None):
-        assert isinstance(server, requesttools.StatalServer)
+        assert isinstance(server, settingtools.StatalServer)
         PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
         self._statal_server = statal_server
 

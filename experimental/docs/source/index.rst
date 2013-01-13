@@ -315,7 +315,6 @@ Unstable packages (load manually)
       tools/requesttools/HandlerRequest/HandlerRequest
       tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
       tools/requesttools/RhythmSettingLookupRequest/RhythmSettingLookupRequest
-      tools/requesttools/StatalServer/StatalServer
       tools/requesttools/StatalServerRequest/StatalServerRequest
       tools/requesttools/TimeSignatureSettingLookupRequest/TimeSignatureSettingLookupRequest
 
@@ -338,7 +337,6 @@ Unstable packages (load manually)
       tools/requesttools/HandlerRequest/HandlerRequest
       tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
       tools/requesttools/RhythmSettingLookupRequest/RhythmSettingLookupRequest
-      tools/requesttools/StatalServer/StatalServer
       tools/requesttools/StatalServerRequest/StatalServerRequest
       tools/requesttools/TimeSignatureSettingLookupRequest/TimeSignatureSettingLookupRequest
 
@@ -428,6 +426,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
+      tools/settingtools/StatalServer/StatalServer
       tools/settingtools/TimespanExpression/TimespanExpression
 
 .. only:: latex
@@ -472,6 +471,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
+      tools/settingtools/StatalServer/StatalServer
       tools/settingtools/TimespanExpression/TimespanExpression
 
 :py:mod:`specificationtools <experimental.tools.specificationtools>`
