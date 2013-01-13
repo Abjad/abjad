@@ -251,8 +251,8 @@ class ConcreteInterpreter(Interpreter):
 
     # TODO: remove rhythm_command input argument.
     # TODO: bind to some FlavoredRhythmCommand object. Migrate code form here to there.
-    def make_rhythm_region_product(
-        self, rhythm_maker, rhythm_region_division_list, start_offset, rhythm_command):
+    def make_rhythm_region_product_from_rhythm_maker(
+        self, rhythm_maker, rhythm_region_division_list, start_offset):
         if rhythm_region_division_list:
             leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
             rhythm_containers = [containertools.Container(x) for x in leaf_lists]
@@ -285,28 +285,32 @@ class ConcreteInterpreter(Interpreter):
         while self.score_specification.rhythm_quintuples:
             made_progress = False
             for rhythm_quintuple in self.score_specification.rhythm_quintuples[:]:
-                rhythm_quadruple = rhythm_quintuple[1:]
+                rhythm_triple = rhythm_quintuple[1:4]
                 # TODO: Implement SpecialRhythmRegionCommand.
-                #       Make this first branch equal to SpecialRhythmRegionCommand._get_paylad(...)
-                if isinstance(rhythm_quadruple[0], str):
-                    parseable_string, rhythm_region_division_list, start_offset = rhythm_quadruple[:3]
+                #       Make branch equal to SpecialRhythmRegionCommand._get_paylaod(...).
+                if isinstance(rhythm_triple[0], str):
+                    parseable_string, rhythm_region_division_list, start_offset = rhythm_triple
                     total_duration = sum([durationtools.Duration(x) for x in rhythm_region_division_list])
                     voice_name = rhythm_region_division_list.voice_name
                     rhythm_region_product = \
                         self.make_rhythm_region_product_from_parseable_string(
                         parseable_string, total_duration, voice_name, start_offset)
-                # TODO: bind to FlavoredRhythmRegionCommand.
-                elif isinstance(rhythm_quadruple[0], rhythmmakertools.RhythmMaker):
-                    rhythm_region_product = self.make_rhythm_region_product(*rhythm_quadruple)
-                # TODO: bind to something.
-                elif isinstance(rhythm_quadruple[0], selectortools.CounttimeComponentSelector):
-                    counttime_component_selector, start_offset, stop_offset = rhythm_quadruple[:3]
+                # TODO: Bind to FlavoredRhythmRegionCommand.
+                #       Make branch equal to FlavoredRhythmRegionCommand._get_payload(...).
+                elif isinstance(rhythm_triple[0], rhythmmakertools.RhythmMaker):
+                    rhythm_maker, voice_division_list, start_offset = rhythm_triple 
+                    rhythm_region_product = self.make_rhythm_region_product_from_rhythm_maker(
+                        rhythm_maker, voice_division_list, start_offset)
+                # TODO: Bind to something.
+                #       Make branch equal to Something._get_payload(...).
+                elif isinstance(rhythm_triple[0], selectortools.CounttimeComponentSelector):
+                    counttime_component_selector, start_offset, stop_offset = rhythm_triple
                     rhythm_region_product = \
                         counttime_component_selector._get_payload(
                         self.score_specification, counttime_component_selector.voice_name, 
                         start_offset, stop_offset)
                 else:
-                    raise TypeError(rhythm_quadruple[0])
+                    raise TypeError(rhythm_triple[0])
                 if rhythm_region_product is not None:
                     self.score_specification.rhythm_quintuples.remove(rhythm_quintuple)
                     made_progress = True

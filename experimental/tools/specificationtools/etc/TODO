@@ -61,7 +61,7 @@
     Modifier methods include OffsetExpression.translate() and possibly others.
 
 13. Audit all selector classes.
-    Make sure each implements a self._get_timespan_and_paylad() method.
+    Make sure each implements a self._get_timespan_and_payload() method.
     Make sure each also implement self._get_timesapn(), self._get_payload() methods.
 
 14. Is the idea of a 'region command' redundant?
