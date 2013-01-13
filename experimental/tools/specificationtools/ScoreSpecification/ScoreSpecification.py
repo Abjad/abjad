@@ -120,11 +120,11 @@ class ScoreSpecification(Specification):
             >>> for x in score_specification.division_region_commands:
             ...     z(x)
             settingtools.DivisionRegionCommand(
-                settingtools.AbsoluteExpression(
+                request=settingtools.AbsoluteExpression(
                     ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
                     ),
-                'Voice 1',
-                timespantools.Timespan(
+                context_name='Voice 1',
+                timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(9, 4)
                     ),
@@ -132,11 +132,11 @@ class ScoreSpecification(Specification):
                 truncate=True
                 )
             settingtools.DivisionRegionCommand(
-                settingtools.AbsoluteExpression(
+                request=settingtools.AbsoluteExpression(
                     ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
                     ),
-                'Voice 2',
-                timespantools.Timespan(
+                context_name='Voice 2',
+                timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(9, 4)
                     ),
@@ -170,7 +170,7 @@ class ScoreSpecification(Specification):
             >>> for x in score_specification.rhythm_region_commands:
             ...     z(x)
             settingtools.RhythmRegionCommand(
-                requesttools.RhythmMakerRequest(
+                request=requesttools.RhythmMakerRequest(
                     rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
@@ -181,8 +181,7 @@ class ScoreSpecification(Specification):
                         tie_split_notes=False
                         )
                     ),
-                None,
-                timespantools.Timespan(
+                timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(9, 4)
                     ),

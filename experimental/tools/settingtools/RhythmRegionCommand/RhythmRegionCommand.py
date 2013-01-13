@@ -5,7 +5,8 @@ from experimental.tools.settingtools.RegionCommand import RegionCommand
 class RhythmRegionCommand(RegionCommand):
     r'''Rhythm region command.
 
-    Region command indicating durated period of time over which a rhythm will apply.
+    Region command indicating durated period of time 
+    over which a rhythm-maker will apply.
     '''
 
     ### SPECIAL METHODS ###
@@ -27,21 +28,21 @@ class RhythmRegionCommand(RegionCommand):
             >>> z(result)
             settingtools.RegionCommandInventory([
                 settingtools.RhythmRegionCommand(
-                    settingtools.AbsoluteExpression(
+                    request=settingtools.AbsoluteExpression(
                         "{ c'16 [ c'8 ] }"
                         ),
-                    'Voice 1',
-                    timespantools.Timespan(
+                    context_name='Voice 1',
+                    timespan=timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
                         stop_offset=durationtools.Offset(5, 1)
                         )
                     ),
                 settingtools.RhythmRegionCommand(
-                    settingtools.AbsoluteExpression(
+                    request=settingtools.AbsoluteExpression(
                         "{ c'16 [ c'8 ] }"
                         ),
-                    'Voice 1',
-                    timespantools.Timespan(
+                    context_name='Voice 1',
+                    timespan=timespantools.Timespan(
                         start_offset=durationtools.Offset(15, 1),
                         stop_offset=durationtools.Offset(20, 1)
                         )
@@ -71,6 +72,8 @@ class RhythmRegionCommand(RegionCommand):
 
     @property
     def attribute(self):
+        '''Return string.
+        '''
         return 'rhythm'
 
     ### PUBLIC METHODS ###

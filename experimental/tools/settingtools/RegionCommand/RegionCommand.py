@@ -8,9 +8,9 @@ from experimental.tools import helpertools
 
 
 class RegionCommand(AbjadObject):
-    '''RegionCommand.
+    '''Region command.
 
-    Timespan-scoped command.
+    Durated period of time to which an attribute-maker will apply.
 
     Interpreter byproduct.
     '''
@@ -21,7 +21,7 @@ class RegionCommand(AbjadObject):
 
     ### INTIAILIZER ###
 
-    def __init__(self, request, context_name, timespan, fresh=None):
+    def __init__(self, request=None, context_name=None, timespan=None, fresh=None):
         from experimental.tools import requesttools 
         from experimental.tools import settingtools 
         from experimental.tools import settingtools
@@ -39,14 +39,13 @@ class RegionCommand(AbjadObject):
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            for my_value, expr_value in zip(
-                self._positional_argument_values, expr._positional_argument_values):
-                if not my_value == expr_value:
-                    return False
-            else:
+            if self.request == expr.request and \
+                self.context_name == expr.context_name and \
+                self.timespan == expr.timespan:
                 return True
         return False
 
+    # TODO: extend to account for stop offset
     def __lt__(self, expr):
         return timerelationtools.timespan_2_starts_before_timespan_1_starts(expr, self)
 

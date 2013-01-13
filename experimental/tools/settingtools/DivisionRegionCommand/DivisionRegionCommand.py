@@ -4,15 +4,15 @@ from experimental.tools.settingtools.RegionCommand import RegionCommand
 
 
 class DivisionRegionCommand(RegionCommand):
-    r'''Division command.
+    r'''Division region command.
 
-    RegionCommand indicating durated period of time 
-    to which an evaluated request will apply.
+    Region command indicating durated period of time 
+    to which a division-maker will apply.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, request, context_name, timespan, fresh=None, truncate=None):
+    def __init__(self, request=None, context_name=None, timespan=None, fresh=None, truncate=None):
         RegionCommand.__init__(self, request, context_name, timespan, fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate
@@ -33,6 +33,7 @@ class DivisionRegionCommand(RegionCommand):
         if expr.request != self.request:
             return False
         return True
+
     def _get_payload(self, score_specification, voice_name):
         from experimental.tools import selectortools
         from experimental.tools import settingtools
@@ -66,14 +67,20 @@ class DivisionRegionCommand(RegionCommand):
 
     @property
     def attribute(self):
+        '''Return string.
+        '''
         return 'divisions'
 
     @property
     def truncate(self):
+        '''Return boolean.
+        '''
         return self._truncate
 
     @property
     def voice_name(self):
-        '''Aliased to ``self.context_name``.
+        '''Aliased to division region command `context_name`.
+
+        Return string.
         '''
         return self.context_name
