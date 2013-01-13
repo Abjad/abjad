@@ -27,21 +27,21 @@ class RhythmRegionCommand(RegionCommand):
             >>> z(result)
             settingtools.RegionCommandInventory([
                 settingtools.RhythmRegionCommand(
-                    request=settingtools.AbsoluteExpression(
+                    settingtools.AbsoluteExpression(
                         "{ c'16 [ c'8 ] }"
                         ),
-                    context_name='Voice 1',
-                    timespan=timespantools.Timespan(
+                    'Voice 1',
+                    timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
                         stop_offset=durationtools.Offset(5, 1)
                         )
                     ),
                 settingtools.RhythmRegionCommand(
-                    request=settingtools.AbsoluteExpression(
+                    settingtools.AbsoluteExpression(
                         "{ c'16 [ c'8 ] }"
                         ),
-                    context_name='Voice 1',
-                    timespan=timespantools.Timespan(
+                    'Voice 1',
+                    timespantools.Timespan(
                         start_offset=durationtools.Offset(15, 1),
                         stop_offset=durationtools.Offset(20, 1)
                         )

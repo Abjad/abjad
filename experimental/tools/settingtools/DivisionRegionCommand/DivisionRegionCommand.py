@@ -4,16 +4,16 @@ from experimental.tools.settingtools.RegionCommand import RegionCommand
 
 
 class DivisionRegionCommand(RegionCommand):
-    r'''Division region command.
+    r'''Division command.
 
-    Region command indicating durated period of time 
-    to which division expression will apply.
+    RegionCommand indicating durated period of time 
+    to which an evaluated request will apply.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, request=None, context_name=None, timespan=None, fresh=None, truncate=None):
-        RegionCommand.__init__(self, request=request, context_name=context_name, timespan=timespan, fresh=fresh)
+    def __init__(self, request, context_name, timespan, fresh=None, truncate=None):
+        RegionCommand.__init__(self, request, context_name, timespan, fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate
 

@@ -21,7 +21,7 @@ class RegionCommand(AbjadObject):
 
     ### INTIAILIZER ###
 
-    def __init__(self, request=None, context_name=None, timespan=None, fresh=None):
+    def __init__(self, request, context_name, timespan, fresh=None):
         from experimental.tools import requesttools 
         from experimental.tools import settingtools 
         from experimental.tools import settingtools
