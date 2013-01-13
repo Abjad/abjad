@@ -416,6 +416,7 @@ Unstable packages (load manually)
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
       tools/settingtools/OffsetExpression/OffsetExpression
+      tools/settingtools/ParseableStringRhythmRegionCommand/ParseableStringRhythmRegionCommand
       tools/settingtools/RegionCommandInventory/RegionCommandInventory
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
@@ -464,6 +465,7 @@ Unstable packages (load manually)
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
       tools/settingtools/OffsetExpression/OffsetExpression
+      tools/settingtools/ParseableStringRhythmRegionCommand/ParseableStringRhythmRegionCommand
       tools/settingtools/RegionCommandInventory/RegionCommandInventory
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct

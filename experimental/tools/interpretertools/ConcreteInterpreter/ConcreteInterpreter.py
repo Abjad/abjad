@@ -286,8 +286,8 @@ class ConcreteInterpreter(Interpreter):
             made_progress = False
             for rhythm_quintuple in self.score_specification.rhythm_quintuples[:]:
                 rhythm_triple = rhythm_quintuple[1:4]
-                # TODO: Implement SpecialRhythmRegionCommand.
-                #       Make branch equal to SpecialRhythmRegionCommand._get_paylaod(...).
+                # TODO: Implement ParseableStringRhythmRegionCommand.
+                #       Make branch equal to ParseableStringRhythmRegionCommand._get_paylaod().
                 if isinstance(rhythm_triple[0], str):
                     parseable_string, rhythm_region_division_list, start_offset = rhythm_triple
                     total_duration = sum([durationtools.Duration(x) for x in rhythm_region_division_list])
