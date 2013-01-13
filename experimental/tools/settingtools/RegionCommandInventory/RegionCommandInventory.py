@@ -76,7 +76,7 @@ class RegionCommandInventory(TimespanInventory):
         elif not self and score_specification.time_signatures:
             timespan = score_specification.timespan
             region_command = score_specification.make_default_region_command(
-                voice_name, timespan, attribute)
+                attribute, voice_name, timespan)
             self[:] = [region_command]
             return self
         timespans = timespantools.TimespanInventory([expr.timespan for expr in self])
@@ -84,7 +84,7 @@ class RegionCommandInventory(TimespanInventory):
         missing_region_timespans = timespans.compute_logical_xor() 
         for missing_region_timespan in missing_region_timespans:
             missing_region_command = score_specification.make_default_region_command(
-                voice_name, missing_region_timespan, attribute)
+                attribute, voice_name, missing_region_timespan)
             self.append(missing_region_command)
         self.sort()
         return self

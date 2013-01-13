@@ -131,7 +131,6 @@ class ConcreteInterpreter(Interpreter):
         pass
 
     def interpret_divisions(self):
-        self.score_specification.initialize_region_product_inventories('division')
         self.populate_region_commands('divisions')
         self.make_division_region_products()
         self.make_voice_division_lists()
@@ -143,7 +142,6 @@ class ConcreteInterpreter(Interpreter):
         pass
 
     def interpret_rhythm(self):
-        self.score_specification.initialize_region_product_inventories('rhythm')
         self.populate_region_commands('rhythm')
         #self._debug_values(self.score_specification.rhythm_region_commands, 'rhythm region commands')
         self.populate_rhythm_quintuples()
