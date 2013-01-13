@@ -115,7 +115,7 @@ Then follow the steps below to check out from Google Code.
 
 1. Make sure Subversion is installed on your machine:
 
-   .. code-block::
+   .. code-block:: bash
    
       svn --version
 
