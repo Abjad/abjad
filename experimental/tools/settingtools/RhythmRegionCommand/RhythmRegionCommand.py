@@ -3,9 +3,9 @@ from experimental.tools.settingtools.RegionCommand import RegionCommand
 
 
 class RhythmRegionCommand(RegionCommand):
-    r'''Rhythm command.
+    r'''Rhythm region command.
 
-    RegionCommand indicating durated period of time over which a rhythm payload will apply.
+    Region command indicating durated period of time over which a rhythm will apply.
     '''
 
     ### SPECIAL METHODS ###
@@ -13,10 +13,10 @@ class RhythmRegionCommand(RegionCommand):
     def __sub__(self, timespan):
         '''Subtract `timespan` from rhythm region command.
 
-            >>> absolute_request = settingtools.AbsoluteExpression("{ c'16 [ c'8 ] }")
+            >>> expression = settingtools.AbsoluteExpression("{ c'16 [ c'8 ] }")
             >>> timespan = timespantools.Timespan(0, 20)
             >>> rhythm_region_command = settingtools.RhythmRegionCommand(
-            ...     absolute_request, 'Voice 1', timespan)
+            ...     expression, 'Voice 1', timespan)
 
         ::
 

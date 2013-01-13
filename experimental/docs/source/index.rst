@@ -399,6 +399,7 @@ Unstable packages (load manually)
       tools/settingtools/Setting/Setting
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
+      tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
 
    --------
 
@@ -446,6 +447,7 @@ Unstable packages (load manually)
       tools/settingtools/Setting/Setting
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
+      tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
 
    Concrete Classes
    ----------------
