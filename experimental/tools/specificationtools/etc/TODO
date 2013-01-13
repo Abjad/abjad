@@ -57,7 +57,6 @@
 11. Looks like callback stacks may not be copied over from segment to segment for persistent settings.
     Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
 
-
 12. Extend OffsetExpression with an 'offset_callbacks' stack.
     Modifier methods include OffsetExpression.translate() and possibly others.
 
@@ -120,7 +119,7 @@
         leaves.reflect()
         leaves.rotate()
 
-25. Author payload callback tests for all payload callbacks on an AbsoluteRequest.
+25. Author payload callback tests for all payload callbacks on an AbsoluteExpression.
 
 26. Implement _get_payload() on all RegionCommand classes.
     Do RegionCommand classes need _get_timespan() too?
@@ -139,9 +138,7 @@
         score_specification = settingtools.ScoreSpecificationInterface(score_template)
     ... so that composers are always only ever interacting with interfaces.
 
-30. Implement a fundamental Expression class.
-    Change AbsoluteRequest to AbsoluteExpression. This will parallel TimespanExpression.
-    Maybe change all Request classes everywhere to Expression classes.
+30. Maybe change all Request classes everywhere to Expression classes.
     An Expression functions as an object-oriented record of specification-choices made by the composer.
     So perhaps the vast majority of the things composers do at specification-time (ie, everything)
     should result in the system storing (and subsequently interpreting) Expressions (rather than other classes).

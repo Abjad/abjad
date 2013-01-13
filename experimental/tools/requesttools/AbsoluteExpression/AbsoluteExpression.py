@@ -2,7 +2,7 @@ import numbers
 from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class AbsoluteRequest(PayloadCallbackMixin):
+class AbsoluteExpression(PayloadCallbackMixin):
     r'''Absolute request.
 
     ::
@@ -12,17 +12,17 @@ class AbsoluteRequest(PayloadCallbackMixin):
     ::
 
 
-        >>> request = requesttools.AbsoluteRequest([(4, 16), (2, 16)])
+        >>> request = requesttools.AbsoluteExpression([(4, 16), (2, 16)])
 
     ::
 
         >>> request
-        AbsoluteRequest(((4, 16), (2, 16)))
+        AbsoluteExpression(((4, 16), (2, 16)))
 
     ::
 
         >>> z(request)
-        requesttools.AbsoluteRequest(
+        requesttools.AbsoluteExpression(
             ((4, 16), (2, 16))
             )
 
@@ -85,7 +85,7 @@ class AbsoluteRequest(PayloadCallbackMixin):
         '''Absolute request storage format::
 
             >>> print request.storage_format
-            requesttools.AbsoluteRequest(
+            requesttools.AbsoluteExpression(
                 ((4, 16), (2, 16))
                 )
 

@@ -13,7 +13,7 @@ class RhythmRegionCommand(RegionCommand):
     def __sub__(self, timespan):
         '''Subtract `timespan` from rhythm region command.
 
-            >>> absolute_request = requesttools.AbsoluteRequest("{ c'16 [ c'8 ] }")
+            >>> absolute_request = requesttools.AbsoluteExpression("{ c'16 [ c'8 ] }")
             >>> timespan = timespantools.Timespan(0, 20)
             >>> rhythm_region_command = settingtools.RhythmRegionCommand(
             ...     absolute_request, 'Voice 1', timespan)
@@ -27,7 +27,7 @@ class RhythmRegionCommand(RegionCommand):
             >>> z(result)
             settingtools.RegionCommandInventory([
                 settingtools.RhythmRegionCommand(
-                    requesttools.AbsoluteRequest(
+                    requesttools.AbsoluteExpression(
                         "{ c'16 [ c'8 ] }"
                         ),
                     'Voice 1',
@@ -37,7 +37,7 @@ class RhythmRegionCommand(RegionCommand):
                         )
                     ),
                 settingtools.RhythmRegionCommand(
-                    requesttools.AbsoluteRequest(
+                    requesttools.AbsoluteExpression(
                         "{ c'16 [ c'8 ] }"
                         ),
                     'Voice 1',

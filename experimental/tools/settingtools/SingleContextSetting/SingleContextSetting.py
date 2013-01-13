@@ -38,7 +38,7 @@ class SingleContextSetting(Setting):
 
         >>> z(single_context_setting)
         settingtools.SingleContextDivisionSetting(
-            request=requesttools.AbsoluteRequest(
+            request=requesttools.AbsoluteExpression(
                 ((3, 16),)
                 ),
             anchor='red',
@@ -80,7 +80,7 @@ class SingleContextSetting(Setting):
 
             >>> z(single_context_setting)
             settingtools.SingleContextDivisionSetting(
-                request=requesttools.AbsoluteRequest(
+                request=requesttools.AbsoluteExpression(
                     ((3, 16),)
                     ),
                 anchor='red',

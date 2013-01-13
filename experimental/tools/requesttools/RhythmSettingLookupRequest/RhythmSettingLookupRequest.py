@@ -42,7 +42,7 @@ class RhythmSettingLookupRequest(SettingLookupRequest):
             rhythm_maker, start_offset = self._apply_payload_callbacks(
                 rhythm_maker, source_command.timespan.start_offset)
             return rhythm_maker
-        elif isinstance(source_command.request, requesttools.AbsoluteRequest):
+        elif isinstance(source_command.request, requesttools.AbsoluteExpression):
             assert isinstance(source_command.request.payload, str)
             return source_command.request.payload
         else:

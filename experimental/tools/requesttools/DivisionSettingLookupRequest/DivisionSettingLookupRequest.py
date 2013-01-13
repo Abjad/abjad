@@ -63,7 +63,7 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
             candidate_commands, self.voice_name, include_improper_parentage=True)
         assert source_command is not None
         absolute_request = source_command.request
-        assert isinstance(absolute_request, requesttools.AbsoluteRequest), repr(absolute_request)
+        assert isinstance(absolute_request, requesttools.AbsoluteExpression), repr(absolute_request)
         divisions = absolute_request.payload
         start_offset = division_region_command.timespan.start_offset
         divisions, start_offset = self._apply_payload_callbacks(divisions, start_offset)

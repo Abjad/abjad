@@ -57,4 +57,4 @@ class SpecificationInterface(SelectMethodMixin, SetMethodMixin):
 
     def register_material(self, material):
         from experimental.tools import requesttools
-        return requesttools.AbsoluteRequest(material)
+        return requesttools.AbsoluteExpression(material)
