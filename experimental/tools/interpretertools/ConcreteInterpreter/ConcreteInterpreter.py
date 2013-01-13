@@ -183,6 +183,8 @@ class ConcreteInterpreter(Interpreter):
 
     def make_rhythm_quintuples_for_voice(self, voice_name, voice_division_list):
         #self._debug(voice_division_list, 'voice division list')
+        if not voice_division_list:
+            return []
         voice_proxy = self.score_specification.contexts[voice_name]
         rhythm_region_commands = voice_proxy.rhythm_region_commands
         #self._debug_values(rhythm_region_commands, 'rhythm region commands')
@@ -310,11 +312,8 @@ class ConcreteInterpreter(Interpreter):
     def populate_rhythm_quintuples(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = self.score_specification.contexts[voice.name].voice_division_list
-            #self._debug(voice_division_list, 'vdl')
-            if voice_division_list:
-                rhythm_quintuples = self.make_rhythm_quintuples_for_voice(voice.name, voice_division_list)
-                #self._debug_values(rhythm_quintuples, 'rq')
-                self.score_specification.rhythm_quintuples.extend(rhythm_quintuples)
+            rhythm_quintuples = self.make_rhythm_quintuples_for_voice(voice.name, voice_division_list)
+            self.score_specification.rhythm_quintuples.extend(rhythm_quintuples)
 
     # TODO: eventually merge with self.populate_region_commands()
     def populate_time_signature_settings(self):
