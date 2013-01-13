@@ -362,7 +362,6 @@ Unstable packages (load manually)
       tools/selectortools/ClassInventory/ClassInventory
       tools/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
       tools/selectortools/DivisionSelector/DivisionSelector
-      tools/selectortools/ScoreSelector/ScoreSelector
       tools/selectortools/SegmentSelector/SegmentSelector
 
 .. only:: latex
@@ -384,7 +383,6 @@ Unstable packages (load manually)
       tools/selectortools/ClassInventory/ClassInventory
       tools/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
       tools/selectortools/DivisionSelector/DivisionSelector
-      tools/selectortools/ScoreSelector/ScoreSelector
       tools/selectortools/SegmentSelector/SegmentSelector
 
 :py:mod:`settingtools <experimental.tools.settingtools>`
