@@ -70,8 +70,12 @@ class RegionProduct(AbjadObject):
             result = timespantools.TimespanInventory()
         return result
 
-    def __lt__(self, expr):
-        return self.timespan.start_offset < expr.timespan.start_offset
+    def __lt__(self, expr):        
+        if self.timespan.starts_before_timespan_starts(expr):
+            return True
+        elif self.timespan.starts_when_timespan_starts(expr):
+            return self.timespan.stops_before_timespan_stops(expr)
+        return False
 
     def __sub__(self, timespan):
         '''Subtract `timespan` from region product.
