@@ -14,7 +14,7 @@ class ConcreteInterpreter(Interpreter):
 
     Currently the only interpreter implemented.
 
-    The 'concrete' designation is provisional.
+    The name is provisional.
     '''
 
     ### INITIALIZER ###
@@ -264,37 +264,20 @@ class ConcreteInterpreter(Interpreter):
             self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
             return rhythm_region_product
 
-    # TODO: streamline further
-    def make_rhythm_region_product_from_parseable_string(
-        self, parseable_string, total_duration, voice_name, start_offset):
-        component = iotools.p(parseable_string)
-        timespan = timespantools.Timespan(start_offset)
-        rhythm_region_product = settingtools.RhythmRegionProduct(
-            payload=[component], voice_name=voice_name, timespan=timespan)
-        # TODO: maybe create timespan here instead of just offset
-        stop_offset = start_offset + total_duration
-        # TODO: maybe use timespan comparisons here instead offset comparisons
-        if rhythm_region_product.timespan.stops_before_offset(stop_offset):
-            rhythm_region_product.repeat_to_stop_offset(stop_offset)
-        elif rhythm_region_product.timespan.stops_after(stop_offset):
-            rhythm_region_product.set_offsets(stop_offset=stop_offset)
-        return rhythm_region_product
-
     # TODO: structure like self.make_division_region_products()
     def make_rhythm_region_products(self):
         while self.score_specification.rhythm_quintuples:
             made_progress = False
             for rhythm_quintuple in self.score_specification.rhythm_quintuples[:]:
                 rhythm_triple = rhythm_quintuple[1:4]
-                # TODO: Implement ParseableStringRhythmRegionCommand.
-                #       Make branch equal to ParseableStringRhythmRegionCommand._get_paylaod().
+                # TODO: Make branch equal to ParseableStringRhythmRegionCommand._get_paylaod() only.
                 if isinstance(rhythm_triple[0], str):
                     parseable_string, rhythm_region_division_list, start_offset = rhythm_triple
                     total_duration = sum([durationtools.Duration(x) for x in rhythm_region_division_list])
                     voice_name = rhythm_region_division_list.voice_name
-                    rhythm_region_product = \
-                        self.make_rhythm_region_product_from_parseable_string(
+                    command = settingtools.ParseableStringRhythmRegionCommand(
                         parseable_string, total_duration, voice_name, start_offset)
+                    rhythm_region_product = command._get_payload()
                 # TODO: Bind to FlavoredRhythmRegionCommand.
                 #       Make branch equal to FlavoredRhythmRegionCommand._get_payload(...).
                 elif isinstance(rhythm_triple[0], rhythmmakertools.RhythmMaker):
