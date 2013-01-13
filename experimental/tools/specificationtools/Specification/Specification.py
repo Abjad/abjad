@@ -22,7 +22,7 @@ class Specification(AbjadObject):
 
     __metaclass__ = abc.ABCMeta
 
-    attributes = helpertools.AttributeNameEnumeration()
+    attributes = settingtools.AttributeNameEnumeration()
 
     ### INITIALIZER ###
 

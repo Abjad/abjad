@@ -68,7 +68,7 @@ class ScoreSpecification(Specification):
 
         Get segment specification from segment identifier expression::
 
-            >>> expression = helpertools.SegmentIdentifierExpression("'red' + 2")
+            >>> expression = settingtools.SegmentIdentifierExpression("'red' + 2")
             >>> score_specification[expression]
             SegmentSpecification('yellow')
 

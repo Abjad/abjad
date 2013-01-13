@@ -180,27 +180,11 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/helpertools/AttributeNameEnumeration/AttributeNameEnumeration
-      tools/helpertools/SegmentIdentifierExpression/SegmentIdentifierExpression
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
       tools/helpertools/configure_multiple_voice_rhythmic_staves
       tools/helpertools/read_test_output
       tools/helpertools/write_test_output
 
 .. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/helpertools/AttributeNameEnumeration/AttributeNameEnumeration
-      tools/helpertools/SegmentIdentifierExpression/SegmentIdentifierExpression
 
    Functions
    ---------
@@ -425,6 +409,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
@@ -438,6 +423,7 @@ Unstable packages (load manually)
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
+      tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/settingtools/SettingInventory/SettingInventory
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
@@ -466,6 +452,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
@@ -479,6 +466,7 @@ Unstable packages (load manually)
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
+      tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/settingtools/SettingInventory/SettingInventory
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting

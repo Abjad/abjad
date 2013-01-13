@@ -10,7 +10,7 @@ class SegmentIdentifierExpression(AbjadObject):
 
     ::
 
-        >>> helpertools.SegmentIdentifierExpression("'red' + 3")
+        >>> settingtools.SegmentIdentifierExpression("'red' + 3")
         SegmentIdentifierExpression("'red' + 3")
 
     Delays evaluation of string argument until later in interpretation.

@@ -10,7 +10,7 @@ class AttributeNameEnumeration(OrderedDict):
 
     ::
 
-        >>> attributes = helpertools.AttributeNameEnumeration()
+        >>> attributes = settingtools.AttributeNameEnumeration()
 
     ::
 

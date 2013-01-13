@@ -5,7 +5,7 @@ from abjad.tools import mathtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.tools import helpertools
+from experimental.tools.settingtools.AttributeNameEnumeration import AttributeNameEnumeration
 
 
 class PayloadCallbackMixin(AbjadObject):
@@ -20,7 +20,7 @@ class PayloadCallbackMixin(AbjadObject):
 
     __metaclass__ = abc.ABCMeta
 
-    attributes = helpertools.AttributeNameEnumeration()
+    attributes = AttributeNameEnumeration()
 
     ### INITIALIZER ###
 

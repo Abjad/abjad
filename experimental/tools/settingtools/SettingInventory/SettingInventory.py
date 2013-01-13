@@ -1,29 +1,27 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
-from experimental.tools import helpertools
+from experimental.tools.settingtools.AttributeNameEnumeration import AttributeNameEnumeration
+
 
 
 class SettingInventory(ObjectInventory):
-    r'''
-
-    Single-context setting inventory.
+    r'''Single inventory.
     '''
 
     ### CLASS ATTRIBUTES ###
 
-    attributes = helpertools.AttributeNameEnumeration()
+    attributes = AttributeNameEnumeration()
 
     ### PUBLIC METHODS ###
 
-    def get_setting(self, 
-        attribute=None, context_name=None, persist=None, timespan=None, segment_name=None):
+    def get_setting(self, attribute=None, context_name=None, persist=None, timespan=None, segment_name=None):
         settings = self.get_settings(attribute=attribute, 
             context_name=context_name, persist=persist, timespan=timespan, segment_name=segment_name)
         if not settings:
-            raise Exception(
-                'no settings for {!r} found in segment {!r}.'.format(attribute, segment_name))
+            error ='no settings for {!r} found in segment {!r}.'.format(attribute, segment_name)
+            raise Exception(error)
         elif 1 < len(settings):
-            raise Exception(
-                'multiple settings for {!r} found in segment {!r}.'.format(attribute, segment_name))
+            error = 'multiple settings for {!r} found in segment {!r}.'.format(attribute, segment_name)
+            raise Exception(error)
         assert len(settings) == 1
         return settings[0]
 

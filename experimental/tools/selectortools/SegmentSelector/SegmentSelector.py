@@ -101,9 +101,9 @@ class SegmentSelector(Selector):
         assert isinstance(segment_name, str)
         assert isinstance(addendum, int)
         if 0 < addendum:
-            return helpertools.SegmentIdentifierExpression('{!r} + {!r}'.format(segment_name, addendum))
+            return settingtools.SegmentIdentifierExpression('{!r} + {!r}'.format(segment_name, addendum))
         else:
-            return helpertools.SegmentIdentifierExpression('{!r} - {!r}'.format(segment_name, addendum))
+            return settingtools.SegmentIdentifierExpression('{!r} - {!r}'.format(segment_name, addendum))
 
     # TODO: eventually extend method to work with segment selectors that select more than one segment
     def _set_start_segment_identifier(self, segment_identifier):
