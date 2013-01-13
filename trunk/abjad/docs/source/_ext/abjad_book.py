@@ -12,11 +12,11 @@ from abjad.tools import documentationtools
 from abjad.tools import sequencetools
 
 
-class abjad_literal_block(docutils.nodes.literal_block):
+class abjad_book_block(docutils.nodes.General, docutils.nodes.Element):
     pass
 
 
-class abjad_book_block(docutils.nodes.General, docutils.nodes.Element):
+class abjad_literal_block(docutils.nodes.General, docutils.nodes.Element):
     pass
 
 
@@ -33,8 +33,11 @@ class AbjadBookDirective(sphinx.util.compat.Directive):
     def run(self):
         self.assert_has_content()
         code = u'\n'.join(self.content)
-        #literal = abjad_literal_block(code, code)
-        literal = docutils.nodes.literal_block(code, code)
+        literal = abjad_literal_block(code, code)
+        literal['errors-ok'] = 'errors-ok' in self.options
+        literal['hidden'] = 'hidden' in self.options
+        literal['strip-prompt'] = 'strip-prompt' in self.options
+        #literal = docutils.nodes.literal_block(code, code)
         sphinx.util.nodes.set_source_info(self, literal)
         return [literal]
 
@@ -57,6 +60,7 @@ class ShellDirective(sphinx.util.compat.Directive):
             proc = subprocess.Popen(line.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             out, err = proc.communicate()
             result.extend(out.splitlines())
+            result.extend(err.splitlines())
         code = u'\n'.join(result)
         literal = docutils.nodes.literal_block(code, code)
         literal['language'] = 'bash'
@@ -74,7 +78,7 @@ def on_builder_inited(app):
             os.makedirs(img_directory)
 
 
-def rewrite_line(line):
+def rewrite_literal_block_line(line):
     if line.strip().startswith(('f(', 'play(', 'print ', 'redo(', 'z(', 'iotools.log(')):
         return '', False
     elif not line.startswith(('show(', 'iotools.graph')):
@@ -101,15 +105,13 @@ def rewrite_line(line):
             kind, object_name), True
 
 
-def is_valid_node(node):
-    if isinstance(node, 
-        (docutils.nodes.literal_block, docutils.nodes.doctest_block)
-        ):
-        return True
-    return False
-
-
-def scan_doctree(doctree):
+def scan_doctree_for_literal_blocks(doctree):
+    def is_valid_node(node):
+        if isinstance(node, 
+            (docutils.nodes.literal_block, docutils.nodes.doctest_block)
+            ):
+            return True
+        return False
     should_process = False
     literal_blocks = [x for x in doctree.traverse(is_valid_node)]
     literal_lines = []
@@ -117,12 +119,18 @@ def scan_doctree(doctree):
         lines = []
         for i, line in enumerate(literal_block[0].splitlines()):
             if line.startswith(('>>>', '... ')):
-                rewritten_line, has_image = rewrite_line(line[4:])
+                rewritten_line, has_image = rewrite_literal_block_line(line[4:])
                 should_process = should_process or has_image
                 lines.append((i, rewritten_line))
         literal_lines.append(tuple(lines))
     return zip(literal_blocks, literal_lines), should_process
-    
+     
+
+def scan_doctree_for_abjad_literal_blocks(doctree):
+    abjad_literal_blocks = [x for x in doctree.traverse(abjad_literal_block)]
+    should_process = 0 < len(abjad_literal_blocks)
+    return abjad_literal_blocks, should_process
+
 
 def on_doctree_read(app, doctree):
     transform_path = app.config.abjad_book_transform_path
@@ -134,9 +142,16 @@ def on_doctree_read(app, doctree):
     environment = {'__builtins__': __builtins__}
     exec('from abjad import *\n', environment)
 
-    literal_block_pairs, should_process = scan_doctree(doctree)
+    result_a = scan_doctree_for_literal_blocks(doctree)
+    result_b = scan_doctree_for_abjad_literal_blocks(doctree)
+
+    should_process = result_a[1] or result_b[1]
     if not should_process:
         return
+
+    literal_blocks_pairs = result_a[0]
+    abjad_literal_blocks = result_b[0]
+
     for literal_block, all_lines in literal_block_pairs:
         original_lines = literal_block[0].splitlines()
         replacement_blocks = []
