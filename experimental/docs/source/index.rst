@@ -418,6 +418,7 @@ Unstable packages (load manually)
       tools/settingtools/OffsetExpression/OffsetExpression
       tools/settingtools/ParseableStringRhythmRegionCommand/ParseableStringRhythmRegionCommand
       tools/settingtools/RegionCommandInventory/RegionCommandInventory
+      tools/settingtools/RhythmMakerRhythmRegionCommand/RhythmMakerRhythmRegionCommand
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
       tools/settingtools/RotationIndicator/RotationIndicator
@@ -467,6 +468,7 @@ Unstable packages (load manually)
       tools/settingtools/OffsetExpression/OffsetExpression
       tools/settingtools/ParseableStringRhythmRegionCommand/ParseableStringRhythmRegionCommand
       tools/settingtools/RegionCommandInventory/RegionCommandInventory
+      tools/settingtools/RhythmMakerRhythmRegionCommand/RhythmMakerRhythmRegionCommand
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
       tools/settingtools/RotationIndicator/RotationIndicator
