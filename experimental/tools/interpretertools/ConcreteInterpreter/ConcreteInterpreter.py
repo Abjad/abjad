@@ -84,11 +84,21 @@ class ConcreteInterpreter(Interpreter):
             for rhythm_region_product in voice_proxy.rhythm_region_products:
                 voice.extend(rhythm_region_product.payload)
 
+    # TODO: change signature to self.get_region_commands_for_voice(attribute, voice_name)
+    def get_region_commands_for_voice(self, voice_name, attribute):
+        region_commands = self.score_specification.get_region_commands_for_voice(voice_name, attribute)
+        region_commands.sort_and_split_commands()
+        region_commands.compute_logical_or()
+        # TODO: change signature to region_commands.supply_missing_commands(attribute, self.score_spec, vn)
+        region_commands.supply_missing_commands(self.score_specification, voice_name, attribute)
+        return region_commands
+
     # NEXT TODO: rewrite this as something comprehensible
-    def filter_rhythm_quadruples(self, rhythm_quadruples):
+    def initialize_finalized_rhythm_region_commands(self, voice_name, 
+        rhythm_commands, division_lists, start_offsets, stop_offsets):
         result = []
-        for rhythm_quadruple in rhythm_quadruples:
-            rhythm_command, division_list, start_offset, stop_offset = rhythm_quadruple
+        for rhythm_command, division_list, start_offset, stop_offset in zip(
+            rhythm_commands, division_lists, start_offsets, stop_offsets):
             if isinstance(rhythm_command.request, settingtools.AbsoluteExpression):
                 result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.RhythmMakerRequest):
@@ -113,22 +123,11 @@ class ConcreteInterpreter(Interpreter):
             else:
                 raise TypeError(rhythm_command.request)
         # make one last pass over commands that bear a material request
-        postprocessed_result = []
-        for quadruple in result:
-            if isinstance(quadruple[0], settingtools.RegionCommand):
-                postprocessed_result.append((quadruple[0].request, ) + quadruple[1:])
-            else:
-                postprocessed_result.append(quadruple)
-        return postprocessed_result
-
-    # TODO: change signature to self.get_region_commands_for_voice(attribute, voice_name)
-    def get_region_commands_for_voice(self, voice_name, attribute):
-        region_commands = self.score_specification.get_region_commands_for_voice(voice_name, attribute)
-        region_commands.sort_and_split_commands()
-        region_commands.compute_logical_or()
-        # TODO: change signature to region_commands.supply_missing_commands(attribute, self.score_spec, vn)
-        region_commands.supply_missing_commands(self.score_specification, voice_name, attribute)
-        return region_commands
+        for i, entry in enumerate(result[:]):
+            if isinstance(entry[0], settingtools.RegionCommand):
+                result[i] = (entry[0].request, ) + entry[1:]
+        result = [(voice_name, ) + entry for entry in result]
+        return result
 
     def interpret_additional_parameters(self):
         pass
@@ -232,12 +231,9 @@ class ConcreteInterpreter(Interpreter):
         rhythm_commands = [x[-1] for x in merged_duration_rhythm_command_pairs]
         #self._debug_values(rhythm_commands, 'rhythm commands')
         assert len(rhythm_commands) == len(rhythm_region_division_lists)
-        rhythm_quadruples = zip(rhythm_commands, rhythm_region_division_lists, 
+        finalized_rhythm_commands = self.initialize_finalized_rhythm_region_commands(
+            voice_name, rhythm_commands, rhythm_region_division_lists, 
             rhythm_region_start_offsets, rhythm_region_stop_offsets)
-        #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
-        rhythm_quadruples = self.filter_rhythm_quadruples(rhythm_quadruples)
-        #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
-        finalized_rhythm_commands = [(voice_name,) + x for x in rhythm_quadruples]
         return finalized_rhythm_commands
 
     def make_region_commands(self, attribute):
