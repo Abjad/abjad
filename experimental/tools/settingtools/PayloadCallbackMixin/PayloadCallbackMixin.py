@@ -4,6 +4,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import sequencetools
+from abjad.tools import timespantools
 from experimental.tools.settingtools.AttributeNameEnumeration import AttributeNameEnumeration
 from experimental.tools.settingtools.Expression import Expression
 
@@ -71,11 +72,17 @@ class PayloadCallbackMixin(Expression):
 
     def ___and__(self, elements, timespan, original_start_offset):
         if hasattr(elements, '__and__'):
+            # translate timespan relative to elements' original start offset
             elements_original_start_offset = elements.start_offset
+            timespan = timespan.translate(elements_original_start_offset)
             result = elements & timespan
-            start_offset_change = result.start_offset - elements_original_start_offset
-            new_start_offset = original_start_offset + start_offset_change
-            return result, new_start_offset
+            assert isinstance(result, timespantools.TimespanInventory), repr(result)
+            assert len(result) == 1, repr(result)
+            result = result[0]
+            translation = result.start_offset - elements_original_start_offset
+            result = result.translate(-translation)
+            assert result.start_offset == original_start_offset
+            return result, result.start_offset
         else:
             raise NotImplementedError(elements)
 
@@ -100,6 +107,7 @@ class PayloadCallbackMixin(Expression):
             'Offset': durationtools.Offset,
             'Ratio': mathtools.Ratio,
             'RotationIndicator': settingtools.RotationIndicator,
+            'Timespan': timespantools.Timespan,
             'elements': elements,
             'self': self,
             'start_offset': start_offset,

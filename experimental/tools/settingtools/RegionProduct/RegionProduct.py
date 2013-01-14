@@ -182,4 +182,10 @@ class RegionProduct(AbjadObject):
         result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
         return result
 
-
+    def translate(self, translation):
+        '''Operate in place and return region product.
+        '''
+        translation = durationtools.Duration(translation)
+        new_start_offset = self.start_offset + translation
+        self._start_offset = new_start_offset
+        return self

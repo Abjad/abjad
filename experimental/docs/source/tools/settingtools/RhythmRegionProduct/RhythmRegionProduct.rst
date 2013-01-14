@@ -54,6 +54,11 @@ Methods
 .. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.rotate
    :noindex:
 
+.. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.translate
+   :noindex:
+
+   Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`
+
 Special Methods
 ---------------
 

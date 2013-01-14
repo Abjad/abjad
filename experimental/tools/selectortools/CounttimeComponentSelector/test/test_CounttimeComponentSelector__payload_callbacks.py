@@ -167,3 +167,24 @@ def test_CounttimeComponentSelector__payload_callbacks_08():
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_CounttimeComponentSelector__payload_callbacks_09():
+    '''Logical AND of rhythm and timespan.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
+    red_segment.set_rhythm("{ c'16 [ c'8 c'8. ] }")
+    red_leaves = red_segment.select_leaves('Voice 1')
+    timespan = timespantools.Timespan(Offset(1, 32), Offset(18, 32))
+    red_leaves = red_leaves & timespan
+    blue_segment = score_specification.append_segment(name='blue')
+    blue_segment.set_rhythm(red_leaves)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)

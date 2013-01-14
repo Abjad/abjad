@@ -167,3 +167,5 @@
 
 35. Rename CounttimeComponentSelector to RhythmSelector.
     Rename SelectMethodMix.select_leaves() to SelectMethodMix.select_rhythm().
+
+36. Move ClassInventory to settingtools.
