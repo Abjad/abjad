@@ -94,25 +94,23 @@ class ConcreteInterpreter(Interpreter):
         return region_commands
 
     # NEXT TODO: rewrite this as something comprehensible
-    def initialize_finalized_rhythm_region_commands(self, voice_name, 
-        rhythm_commands, division_lists, start_offsets, stop_offsets):
+    def initialize_finalized_rhythm_region_commands(self, voice_name, rhythm_commands, division_lists, timespans):
         result = []
-        for rhythm_command, division_list, start_offset, stop_offset in zip(
-            rhythm_commands, division_lists, start_offsets, stop_offsets):
+        for rhythm_command, division_list, timespan in zip(rhythm_commands, division_lists, timespans):
             if isinstance(rhythm_command.request, settingtools.AbsoluteExpression):
-                result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
+                result.append((rhythm_command.request.payload, division_list, timespan.start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.RhythmMakerRequest):
-                result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
+                result.append((rhythm_command.request.payload, division_list, timespan.start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.RhythmSettingLookupRequest):
                 rhythm_maker = rhythm_command.request._get_payload(
                     self.score_specification, rhythm_command.request.voice_name)
-                result.append((rhythm_maker, division_list, start_offset, rhythm_command))
+                result.append((rhythm_maker, division_list, timespan.start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, selectortools.CounttimeComponentSelector):
                 if result and rhythm_command.prolongs_expr(result[-1][0]):
                     last_start_offset = result.pop()[1]
                     new_entry = (rhythm_command,
                         last_start_offset,
-                        stop_offset,
+                        timespan.stop_offset,
                         rhythm_command)
                 else:
                     new_entry = (rhythm_command,
@@ -231,9 +229,10 @@ class ConcreteInterpreter(Interpreter):
         rhythm_commands = [x[-1] for x in merged_duration_rhythm_command_pairs]
         #self._debug_values(rhythm_commands, 'rhythm commands')
         assert len(rhythm_commands) == len(rhythm_region_division_lists)
+        rhythm_region_timespans = zip(rhythm_region_start_offsets, rhythm_region_stop_offsets)
+        rhythm_region_timespans = [timespantools.Timespan(*pair) for pair in rhythm_region_timespans]
         finalized_rhythm_commands = self.initialize_finalized_rhythm_region_commands(
-            voice_name, rhythm_commands, rhythm_region_division_lists, 
-            rhythm_region_start_offsets, rhythm_region_stop_offsets)
+            voice_name, rhythm_commands, rhythm_region_division_lists, rhythm_region_timespans)
         return finalized_rhythm_commands
 
     def make_region_commands(self, attribute):
