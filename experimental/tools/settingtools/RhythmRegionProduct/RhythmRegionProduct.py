@@ -271,24 +271,7 @@ class RhythmRegionProduct(RegionProduct):
 
     ### PRIVATE METHODS ###
 
-    def _set_start_offset(self, start_offset):
-        '''Set start offset.
-
-        .. note:: add example.
-        
-        Operate in place and return none.
-        '''
-        start_offset = durationtools.Offset(start_offset)
-        assert self.start_offset <= start_offset
-        assert start_offset < self.stop_offset
-        duration_to_trim = start_offset - self.start_offset
-        result = componenttools.split_components_at_offsets(
-            [self.payload], [duration_to_trim], cyclic=False, fracture_spanners=True)
-        trimmed_payload = result[-1][0]
-        assert wellformednesstools.is_well_formed_component(trimmed_payload)
-        self._payload = trimmed_payload
-        self._start_offset = start_offset
-
+    # TODO: remove
     def _set_stop_offset(self, stop_offset):
         '''Set stop offset.
 
