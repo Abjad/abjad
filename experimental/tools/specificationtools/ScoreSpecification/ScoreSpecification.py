@@ -188,7 +188,9 @@ class ScoreSpecification(Specification):
 
     @property
     def finalized_rhythm_commands(self):
-        '''Read-only list of all rhythm quintuples.
+        '''Read-only list of finalized rhythm commands:
+
+        ::
 
             >>> for x in score_specification.finalized_rhythm_commands:
             ...     z(x)

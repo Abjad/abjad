@@ -148,7 +148,7 @@ class ConcreteInterpreter(Interpreter):
         self.make_region_commands('rhythm')
         #self._debug_values(self.score_specification.rhythm_region_commands, 'rhythm region commands')
         self.make_finalized_rhythm_commands()
-        #self._debug_values(self.score_specification.finalized_rhythm_commands, 'rhythm quintuples')
+        #self._debug_values(self.score_specification.finalized_rhythm_commands, 'finalized rhythm commands')
         self.make_rhythm_region_products()
         self.dump_rhythm_region_products_into_voices()
 
