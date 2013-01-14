@@ -147,8 +147,8 @@ class ConcreteInterpreter(Interpreter):
     def interpret_rhythm(self):
         self.make_region_commands('rhythm')
         #self._debug_values(self.score_specification.rhythm_region_commands, 'rhythm region commands')
-        self.make_rhythm_quintuples()
-        #self._debug_values(self.score_specification.rhythm_quintuples, 'rhythm quintuples')
+        self.make_finalized_rhythm_commands()
+        #self._debug_values(self.score_specification.finalized_rhythm_commands, 'rhythm quintuples')
         self.make_rhythm_region_products()
         self.dump_rhythm_region_products_into_voices()
 
@@ -184,26 +184,12 @@ class ConcreteInterpreter(Interpreter):
             if voice_division_region_commands and not made_progress:
                 raise Exception('cyclic division specification.')
 
-    def make_region_commands(self, attribute):
-        if self.score_specification.segment_specifications:
-            for voice in iterationtools.iterate_voices_in_expr(self.score):
-                voice_proxy = self.score_specification.contexts[voice.name]
-                region_commands = self.get_region_commands_for_voice(voice.name, attribute)
-                singular_attribute = attribute.rstrip('s')
-                key = '{}_region_commands'.format(singular_attribute)
-                region_command_inventory = getattr(voice_proxy, key)
-                region_command_inventory[:] = region_commands[:]
-                score_region_commands = getattr(self.score_specification, key)
-                for region_command in region_commands:
-                    if region_command not in score_region_commands:
-                        score_region_commands.append(region_command)
-
-    def make_rhythm_quintuples(self):
+    def make_finalized_rhythm_commands(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            rhythm_quintuples = self.make_rhythm_quintuples_for_voice(voice.name)
-            self.score_specification.rhythm_quintuples.extend(rhythm_quintuples)
+            finalized_rhythm_commands = self.make_finalized_rhythm_commands_for_voice(voice.name)
+            self.score_specification.finalized_rhythm_commands.extend(finalized_rhythm_commands)
 
-    def make_rhythm_quintuples_for_voice(self, voice_name):
+    def make_finalized_rhythm_commands_for_voice(self, voice_name):
         voice_proxy = self.score_specification.contexts[voice_name]
         voice_division_list = voice_proxy.voice_division_list
         division_region_products = voice_proxy.division_region_products
@@ -251,15 +237,29 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
         rhythm_quadruples = self.filter_rhythm_quadruples(rhythm_quadruples)
         #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
-        rhythm_quintuples = [(voice_name,) + x for x in rhythm_quadruples]
-        return rhythm_quintuples
+        finalized_rhythm_commands = [(voice_name,) + x for x in rhythm_quadruples]
+        return finalized_rhythm_commands
+
+    def make_region_commands(self, attribute):
+        if self.score_specification.segment_specifications:
+            for voice in iterationtools.iterate_voices_in_expr(self.score):
+                voice_proxy = self.score_specification.contexts[voice.name]
+                region_commands = self.get_region_commands_for_voice(voice.name, attribute)
+                singular_attribute = attribute.rstrip('s')
+                key = '{}_region_commands'.format(singular_attribute)
+                region_command_inventory = getattr(voice_proxy, key)
+                region_command_inventory[:] = region_commands[:]
+                score_region_commands = getattr(self.score_specification, key)
+                for region_command in region_commands:
+                    if region_command not in score_region_commands:
+                        score_region_commands.append(region_command)
 
     # TODO: structure like self.make_division_region_products()
     def make_rhythm_region_products(self):
-        while self.score_specification.rhythm_quintuples:
+        while self.score_specification.finalized_rhythm_commands:
             made_progress = False
-            for rhythm_quintuple in self.score_specification.rhythm_quintuples[:]:
-                rhythm_triple = rhythm_quintuple[1:4]
+            for finalized_rhythm_command in self.score_specification.finalized_rhythm_commands[:]:
+                rhythm_triple = finalized_rhythm_command[1:4]
                 # TODO: make branch equal to ParseableStringRhythmRegionCommand._get_paylaod() only.
                 if isinstance(rhythm_triple[0], str):
                     parseable_string, rhythm_region_division_list, start_offset = rhythm_triple
@@ -285,9 +285,9 @@ class ConcreteInterpreter(Interpreter):
                 else:
                     raise TypeError(rhythm_triple[0])
                 if rhythm_region_product is not None:
-                    self.score_specification.rhythm_quintuples.remove(rhythm_quintuple)
+                    self.score_specification.finalized_rhythm_commands.remove(finalized_rhythm_command)
                     made_progress = True
-                    voice_name = rhythm_quintuple[0]
+                    voice_name = finalized_rhythm_command[0]
                     voice_proxy = self.score_specification.contexts[voice_name]
                     voice_rhythm_region_products = voice_proxy.rhythm_region_products
                     voice_rhythm_region_products = voice_rhythm_region_products - rhythm_region_product.timespan

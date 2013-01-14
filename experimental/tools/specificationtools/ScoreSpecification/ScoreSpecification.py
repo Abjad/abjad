@@ -46,7 +46,7 @@ class ScoreSpecification(Specification):
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
         self._division_region_commands = []
-        self._rhythm_quintuples = []
+        self._finalized_rhythm_commands = []
         self._rhythm_region_commands = []
         self._time_signature_settings = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
@@ -187,6 +187,19 @@ class ScoreSpecification(Specification):
         return self._division_region_commands
 
     @property
+    def finalized_rhythm_commands(self):
+        '''Read-only list of all rhythm quintuples.
+
+            >>> for x in score_specification.finalized_rhythm_commands:
+            ...     z(x)
+
+        Popluate during interpretation. Then consume during interpretation.
+
+        Return list.
+        '''
+        return self._finalized_rhythm_commands
+
+    @property
     def interface(self):
         '''Read-only reference to score setting interface::
 
@@ -248,19 +261,6 @@ class ScoreSpecification(Specification):
         '''
         return Specification.multiple_context_settings.fget(self)
     
-    @property
-    def rhythm_quintuples(self):
-        '''Read-only list of all rhythm quintuples.
-
-            >>> for x in score_specification.rhythm_quintuples:
-            ...     z(x)
-
-        Popluate during interpretation. Then consume during interpretation.
-
-        Return list.
-        '''
-        return self._rhythm_quintuples
-
     @property
     def rhythm_region_commands(self):
         '''Read-only list of all rhythm region commands.
