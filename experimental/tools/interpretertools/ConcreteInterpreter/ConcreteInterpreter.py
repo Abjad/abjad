@@ -103,7 +103,9 @@ class ConcreteInterpreter(Interpreter):
             if isinstance(rhythm_command.request, settingtools.AbsoluteExpression):
                 parseable_string = rhythm_command.request.payload
                 assert isinstance(parseable_string, str), repr(parseable_string)
-                result.append((voice_name, parseable_string, division_list, timespan.start_offset, rhythm_command))
+                command = settingtools.ParseableStringRhythmRegionCommand(
+                    parseable_string, division_list.duration, voice_name, timespan.start_offset)
+                result.append(command)
             elif isinstance(rhythm_command.request, requesttools.RhythmMakerRequest):
                 rhythm_maker = rhythm_command.request.payload
                 assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
@@ -113,7 +115,7 @@ class ConcreteInterpreter(Interpreter):
                 assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
                 result.append((voice_name, rhythm_maker, division_list, timespan.start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, selectortools.CounttimeComponentSelector):
-                if result and rhythm_command.prolongs_expr(result[-1][-1]):
+                if result and isinstance(result[-1], tuple) and rhythm_command.prolongs_expr(result[-1][-1]):
                     last_start_offset = result.pop()[2]
                     new_entry = (
                         voice_name,
@@ -260,35 +262,31 @@ class ConcreteInterpreter(Interpreter):
         while self.score_specification.finalized_rhythm_commands:
             made_progress = False
             for finalized_rhythm_command in self.score_specification.finalized_rhythm_commands[:]:
-                rhythm_triple = finalized_rhythm_command[1:4]
-                # TODO: make branch equal to ParseableStringRhythmRegionCommand._get_paylaod() only.
-                if isinstance(rhythm_triple[0], str):
-                    parseable_string, rhythm_region_division_list, start_offset = rhythm_triple
-                    total_duration = sum([durationtools.Duration(x) for x in rhythm_region_division_list])
-                    voice_name = rhythm_region_division_list.voice_name
-                    command = settingtools.ParseableStringRhythmRegionCommand(
-                        parseable_string, total_duration, voice_name, start_offset)
-                    rhythm_region_product = command._get_payload(self.score_specification)
+                if isinstance(finalized_rhythm_command, settingtools.ParseableStringRhythmRegionCommand):
+                    rhythm_region_product = finalized_rhythm_command._get_payload(self.score_specification)
                 # TODO: make branch equal to RhythmMakerRhythmRegionCommand._get_payload() only.
-                elif isinstance(rhythm_triple[0], rhythmmakertools.RhythmMaker):
-                    rhythm_maker, rhythm_region_division_list, start_offset = rhythm_triple 
+                elif isinstance(finalized_rhythm_command[1], rhythmmakertools.RhythmMaker):
+                    rhythm_maker, rhythm_region_division_list, start_offset = finalized_rhythm_command[1:4]
                     command = settingtools.RhythmMakerRhythmRegionCommand(
                         rhythm_maker, rhythm_region_division_list, start_offset)
                     rhythm_region_product = command._get_payload(self.score_specification)
                 # TODO: make branch equal to CounttimeComponentSelector._get_payload() only.
-                elif isinstance(rhythm_triple[0], selectortools.CounttimeComponentSelector):
-                    counttime_component_selector, start_offset, stop_offset = rhythm_triple
+                elif isinstance(finalized_rhythm_command[1], selectortools.CounttimeComponentSelector):
+                    counttime_component_selector, start_offset, stop_offset = finalized_rhythm_command[1:4]
                     # TODO: remove start_offset, stop_offset parameters.
                     rhythm_region_product = \
                         counttime_component_selector._get_payload(
                         self.score_specification, counttime_component_selector.voice_name, 
                         start_offset, stop_offset)
                 else:
-                    raise TypeError(rhythm_triple[0])
+                    raise TypeError(finalized_rhythm_command[1])
                 if rhythm_region_product is not None:
                     self.score_specification.finalized_rhythm_commands.remove(finalized_rhythm_command)
                     made_progress = True
-                    voice_name = finalized_rhythm_command[0]
+                    if hasattr(finalized_rhythm_command, 'voice_name'):
+                        voice_name = finalized_rhythm_command.voice_name
+                    else:
+                        voice_name = finalized_rhythm_command[0]
                     voice_proxy = self.score_specification.contexts[voice_name]
                     voice_rhythm_region_products = voice_proxy.rhythm_region_products
                     voice_rhythm_region_products = voice_rhythm_region_products - rhythm_region_product.timespan

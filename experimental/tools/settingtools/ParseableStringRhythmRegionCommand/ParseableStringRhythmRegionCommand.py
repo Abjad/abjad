@@ -1,10 +1,10 @@
 from abjad.tools import iotools
 from abjad.tools import timespantools
 from abjad.tools.abctools import AbjadObject
-#from experimental.tools.settingtools.RhythmRegionCommand import RhythmRegionCommand
+from experimental.tools.settingtools.FinalizedRhythmRegionCommand import FinalizedRhythmRegionCommand
 
 
-class ParseableStringRhythmRegionCommand(AbjadObject):
+class ParseableStringRhythmRegionCommand(FinalizedRhythmRegionCommand):
     '''Parseable string rhythm region command.
     '''
 
