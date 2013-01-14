@@ -50,6 +50,11 @@ Methods
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
+.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.repeat_to_stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
 .. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.rotate
    :noindex:
 
@@ -58,7 +63,17 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.___and__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
 .. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.___getitem__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__and__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`

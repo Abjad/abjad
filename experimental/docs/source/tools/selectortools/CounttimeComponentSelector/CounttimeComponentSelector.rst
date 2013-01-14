@@ -220,6 +220,11 @@ Methods
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
+.. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.repeat_to_stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.rotate
    :noindex:
 
@@ -483,6 +488,11 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.___and__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.___getitem__
    :noindex:
 
@@ -491,7 +501,7 @@ Special Methods
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.__and__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.__eq__
    :noindex:

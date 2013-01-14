@@ -47,14 +47,12 @@ class DivisionSelector(Selector):
     
     ### PRIVATE METHODS ###
 
-    # TODO: remove start_offset=None, stop_offset=None keywords and use payload callback instead.
     # TODO: migrate in self._get_timespan_and_payload
-    def _get_payload(self, score_specification, voice_name, start_offset=None, stop_offset=None):
+    def _get_payload(self, score_specification, voice_name):
         from experimental.tools import settingtools
         assert voice_name == self.voice_name
         anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
         voice_proxy = score_specification.contexts[voice_name]
-        #division_region_products = voice_proxy['division_region_products']
         division_region_products = voice_proxy.division_region_products
         timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
             timespan_1=anchor_timespan)
@@ -112,4 +110,3 @@ class DivisionSelector(Selector):
     # TODO: migrate in code from self._get_payload() and self._get_timespan()
     def _get_timespan_and_payload(self, score_specification, voice_name):
         raise NotImplementedError
-

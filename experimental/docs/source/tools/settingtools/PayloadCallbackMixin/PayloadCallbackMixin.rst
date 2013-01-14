@@ -35,13 +35,22 @@ Methods
 .. automethod:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.repeat_to_length
    :noindex:
 
+.. automethod:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.repeat_to_stop_offset
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.rotate
    :noindex:
 
 Special Methods
 ---------------
 
+.. automethod:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.___and__
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.___getitem__
+   :noindex:
+
+.. automethod:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.__and__
    :noindex:
 
 .. automethod:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.__eq__

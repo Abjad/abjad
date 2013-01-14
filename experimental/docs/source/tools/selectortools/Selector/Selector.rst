@@ -205,6 +205,11 @@ Methods
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
+.. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.repeat_to_stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.rotate
    :noindex:
 
@@ -468,6 +473,11 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.___and__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.___getitem__
    :noindex:
 
@@ -476,7 +486,7 @@ Special Methods
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.__and__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.__eq__
    :noindex:

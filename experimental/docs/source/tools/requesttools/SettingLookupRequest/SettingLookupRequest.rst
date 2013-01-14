@@ -59,6 +59,11 @@ Methods
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
+.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.repeat_to_stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
 .. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.rotate
    :noindex:
 
@@ -67,7 +72,17 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.___and__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
 .. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.___getitem__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.__and__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`

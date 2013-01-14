@@ -103,10 +103,15 @@ class CounttimeComponentSelector(Selector):
             result.payload.extend(rhythm_region_product.payload)
         assert wellformednesstools.is_well_formed_component(result.payload)
         result, new_start_offset = self._apply_payload_callbacks(result, result.start_offset)
+        assert isinstance(result, settingtools.RhythmRegionProduct), repr(result)
         keep_timespan = timespantools.Timespan(start_offset, stop_offset)
+        assert not keep_timespan.starts_before_timespan_starts(result.timespan), repr((result.timespan, keep_timespan))
+        assert result.timespan.start_offset == keep_timespan.start_offset, repr((result.timespan, keep_timespan))
         result = result & keep_timespan
+        assert isinstance(result, timespantools.TimespanInventory), repr(result)
         assert len(result) == 1
         result = result[0]
+        assert isinstance(result, settingtools.RhythmRegionProduct), repr(result)
         result.repeat_to_stop_offset(stop_offset)
         return result
 

@@ -30,6 +30,11 @@ class PayloadCallbackMixin(Expression):
 
     ### SPECIAL METHODS ###
 
+    def __and__(self, timespan):
+        assert isinstance(timespan, timespantools.Timespan), repr(timespan)
+        callback = 'result = self.___and__(elements, {!r}, start_offset)'.format(timespan)
+        return self._copy_and_append_payload_callback(callback)
+
     def __eq__(self, expr):
         '''True when mandatory and keyword arguments compare equal.
         Otherwise false.
@@ -47,9 +52,10 @@ class PayloadCallbackMixin(Expression):
         '''
         callback = 'result = self.___getitem__(elements, start_offset, {!r})'
         callback = callback.format(expr)
-        result = copy.deepcopy(self)
-        result.payload_callbacks.append(callback)
-        return result
+        #result = copy.deepcopy(self)
+        #result.payload_callbacks.append(callback)
+        #return result
+        return self._copy_and_append_payload_callback(callback)
 
     ### PRIVATE READ-ONLY PROPERTIES ###
 
@@ -62,6 +68,10 @@ class PayloadCallbackMixin(Expression):
         return tuple(result)
 
     ### PRIVATE METHODS ###
+
+    # TODO: implement method
+    def ___and__(self, elements, timespan, original_start_offset):
+        raise NotImplementedError('implement me')
 
     def ___getitem__(self, elements, original_start_offset, expr):
         assert isinstance(expr, slice)
@@ -183,6 +193,10 @@ class PayloadCallbackMixin(Expression):
         new_start_offset = original_start_offset
         return elements, new_start_offset
 
+    # TODO: implement method
+    def _repeat_to_stop_offset(self, elements, stop_offset, original_start_offset):
+        raise NotImplementedError('implement me')
+
     def _rotate(self, elements, n, original_start_offset):
         if hasattr(elements, 'rotate'):
             elements.rotate(n)
@@ -239,6 +253,13 @@ class PayloadCallbackMixin(Expression):
         '''
         assert mathtools.is_nonnegative_integer(length)
         callback = 'result = self._repeat_to_length(elements, {!r}, start_offset)'.format(length)
+        return self._copy_and_append_payload_callback(callback)
+
+    def repeat_to_stop_offset(self, stop_offset):
+        '''Return copy of request with appended callback.
+        '''
+        stop_offset = durationtools.Offset(stop_offset)
+        callback = 'result = self._repeat_to_stop_offset(elements, {!r}, start_offset)'.format(stop_offset)
         return self._copy_and_append_payload_callback(callback)
         
     def rotate(self, index):
