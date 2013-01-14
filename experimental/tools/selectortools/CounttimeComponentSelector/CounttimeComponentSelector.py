@@ -83,16 +83,13 @@ class CounttimeComponentSelector(Selector):
     def _get_payload(self, score_specification, voice_name, start_offset=None, stop_offset=None):
         from experimental.tools import settingtools
         assert voice_name == self.voice_name
-        #self._debug((start_offset, stop_offset), 'offsets')
+        assert start_offset is not None, repr(start_offset)
+        assert stop_offset is not None, repr(stop_offset)
         anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
         voice_proxy = score_specification.contexts[voice_name]
         rhythm_region_products = voice_proxy.rhythm_region_products
-        #self._debug_values(rhythm_region_products, 'rhythm region expressions')
-        timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
-            timespan_1=anchor_timespan)
-        rhythm_region_products = rhythm_region_products.get_timespans_that_satisfy_time_relation(
-            timespan_time_relation)
-        #self._debug_values(rhythm_region_products, 'rhythm region expressions')
+        time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
+        rhythm_region_products = rhythm_region_products.get_timespans_that_satisfy_time_relation(time_relation)
         if not rhythm_region_products:
             return
         rhythm_region_products = copy.deepcopy(rhythm_region_products)
@@ -106,11 +103,6 @@ class CounttimeComponentSelector(Selector):
             result.payload.extend(rhythm_region_product.payload)
         assert wellformednesstools.is_well_formed_component(result.payload)
         result, new_start_offset = self._apply_payload_callbacks(result, result.start_offset)
-        if not isinstance(result, settingtools.RhythmRegionProduct):
-            assert componenttools.all_are_components(result)
-            music = componenttools.copy_components_and_fracture_crossing_spanners(result)
-            result = settingtools.RhythmRegionProduct(
-                payload=music, voice_name=voice_name, start_offset=start_offset)
         keep_timespan = timespantools.Timespan(start_offset, stop_offset)
         result = result & keep_timespan
         assert len(result) == 1
