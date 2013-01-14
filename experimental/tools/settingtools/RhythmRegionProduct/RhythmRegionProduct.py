@@ -271,28 +271,6 @@ class RhythmRegionProduct(RegionProduct):
 
     ### PRIVATE METHODS ###
 
-    # TODO: remove
-    def _set_stop_offset(self, stop_offset):
-        '''Set stop offset.
-
-        .. note:: add example.
-
-        Operate in place and return none.
-        '''
-        stop_offset = durationtools.Offset(stop_offset)
-        assert stop_offset <= self.stop_offset
-        assert self.start_offset < stop_offset
-        duration_to_trim = self.stop_offset - stop_offset
-        duration_to_keep = self.payload.prolated_duration - duration_to_trim
-        result = componenttools.split_components_at_offsets(
-            [self.payload], [duration_to_keep], cyclic=False, fracture_spanners=True)
-        trimmed_payload = result[0][0]
-        if not wellformednesstools.is_well_formed_component(trimmed_payload):
-            self._debug(trimmed_payload, 'trimmed payload')
-            wellformednesstools.tabulate_well_formedness_violations_in_expr(trimmed_payload)
-        assert wellformednesstools.is_well_formed_component(trimmed_payload)
-        self._payload = trimmed_payload
-
     def _split_payload_at_offsets(self, offsets):
         assert isinstance(self.payload, containertools.Container)
         music = self.payload
@@ -346,14 +324,19 @@ class RhythmRegionProduct(RegionProduct):
         for element in copies:
             self.payload.extend(element)
         assert stop_offset <= self.stop_offset
-        self._set_stop_offset(stop_offset)
+        stop_offset = durationtools.Offset(stop_offset)
+        assert stop_offset <= self.stop_offset
+        assert self.start_offset < stop_offset
+        duration_to_trim = self.stop_offset - stop_offset
+        duration_to_keep = self.payload.prolated_duration - duration_to_trim
+        shards = self._split_payload_at_offsets([duration_to_keep])
+        assert len(shards) in (1, 2), repr(shards)
+        self._payload = shards[0]
 
     def rotate(self, n, fracture_spanners=True):
         '''Rotate rhythm.
 
         .. note:: add example.
-
-        .. note:: extend method in several ways; check todo file.
 
         Operate in place and return none.
         '''

@@ -158,18 +158,15 @@
         RhythmRegionProduct.rotate()
     ... are the ones that need examples.
 
-32. Remove RhythmRegionProduct._set_start_offset(), _set_stop_offset().
-    Replace with set-theoretic primitives.
-
-33. Implement PayloadCallbackMixin.repeat_to_stop_offset() to work with CounttimeComponentSelector.
+32. Implement PayloadCallbackMixin.repeat_to_stop_offset() to work with CounttimeComponentSelector.
     Then write tests to make work with the other selectors, too.
 
-34. Implement PayloadCallbackMixin.__and__() to work with CounttimeComponentSelector.
+33. Implement PayloadCallbackMixin.__and__() to work with CounttimeComponentSelector.
     Then write tests to make work with the other selectors, too.
 
-35. Replace CounttimeComponentSelector._get_payload() custom code.
+34. Replace CounttimeComponentSelector._get_payload() custom code.
     Use PayloadCallbackMixing.__and__() and PayloadCallbackMixin.repeat_to_stop_offset() instead.
 
-36. Streamline ConcreteInterpreter.make_rhythm_region_products().
+35. Streamline ConcreteInterpreter.make_rhythm_region_products().
     Change counttime_component_selector._get_payload(score_spec, voice_name, start_offset, stop_offset)
     to counttime_component_selector._get_payload(score_specification, voice_name).
