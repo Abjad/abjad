@@ -97,34 +97,40 @@ class ConcreteInterpreter(Interpreter):
     def initialize_finalized_rhythm_region_commands(self, voice_name, rhythm_commands, division_lists, timespans):
         result = []
         for rhythm_command, division_list, timespan in zip(rhythm_commands, division_lists, timespans):
+            assert isinstance(rhythm_command, settingtools.RhythmRegionCommand), repr(rhythm_command)
+            assert isinstance(division_list, settingtools.DivisionList), repr(division_list)
+            assert isinstance(timespan, timespantools.Timespan), repr(timespan)
             if isinstance(rhythm_command.request, settingtools.AbsoluteExpression):
-                result.append((rhythm_command.request.payload, division_list, timespan.start_offset, rhythm_command))
+                parseable_string = rhythm_command.request.payload
+                assert isinstance(parseable_string, str), repr(parseable_string)
+                result.append((voice_name, parseable_string, division_list, timespan.start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.RhythmMakerRequest):
-                result.append((rhythm_command.request.payload, division_list, timespan.start_offset, rhythm_command))
+                rhythm_maker = rhythm_command.request.payload
+                assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
+                result.append((voice_name, rhythm_maker, division_list, timespan.start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.RhythmSettingLookupRequest):
-                rhythm_maker = rhythm_command.request._get_payload(
-                    self.score_specification, rhythm_command.request.voice_name)
-                result.append((rhythm_maker, division_list, timespan.start_offset, rhythm_command))
+                rhythm_maker = rhythm_command.request._get_payload(self.score_specification, voice_name)
+                assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
+                result.append((voice_name, rhythm_maker, division_list, timespan.start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, selectortools.CounttimeComponentSelector):
-                if result and rhythm_command.prolongs_expr(result[-1][0]):
-                    last_start_offset = result.pop()[1]
-                    new_entry = (rhythm_command,
+                if result and rhythm_command.prolongs_expr(result[-1][-1]):
+                    last_start_offset = result.pop()[2]
+                    new_entry = (
+                        voice_name,
+                        rhythm_command.request,
                         last_start_offset,
                         timespan.stop_offset,
                         rhythm_command)
                 else:
-                    new_entry = (rhythm_command,
+                    new_entry = (
+                            voice_name,
+                            rhythm_command.request,
                             rhythm_command.timespan.start_offset, 
                             rhythm_command.timespan.stop_offset, 
                             rhythm_command)
                 result.append(new_entry)
             else:
                 raise TypeError(rhythm_command.request)
-        # make one last pass over commands that bear a material request
-        for i, entry in enumerate(result[:]):
-            if isinstance(entry[0], settingtools.RegionCommand):
-                result[i] = (entry[0].request, ) + entry[1:]
-        result = [(voice_name, ) + entry for entry in result]
         return result
 
     def interpret_additional_parameters(self):
