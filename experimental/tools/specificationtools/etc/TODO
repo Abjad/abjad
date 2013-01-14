@@ -152,21 +152,15 @@
 30. Disallow Timespan(start_offset, stop_offset) where stop_offset < start_offset.
     Check at initialization time.
 
-31. Finish RhythmRegionProduct docstring examples. The methods ...
-        RhythmRegionProduct.reflect()
-        RhythmRegionProduct.repeat_to_stop_offset()
-        RhythmRegionProduct.rotate()
-    ... are the ones that need examples.
-
-32. Implement PayloadCallbackMixin.repeat_to_stop_offset() to work with CounttimeComponentSelector.
+31. Implement PayloadCallbackMixin.repeat_to_stop_offset() to work with CounttimeComponentSelector.
     Then write tests to make work with the other selectors, too.
 
-33. Implement PayloadCallbackMixin.__and__() to work with CounttimeComponentSelector.
+32. Implement PayloadCallbackMixin.__and__() to work with CounttimeComponentSelector.
     Then write tests to make work with the other selectors, too.
 
-34. Replace CounttimeComponentSelector._get_payload() custom code.
+33. Replace CounttimeComponentSelector._get_payload() custom code.
     Use PayloadCallbackMixing.__and__() and PayloadCallbackMixin.repeat_to_stop_offset() instead.
 
-35. Streamline ConcreteInterpreter.make_rhythm_region_products().
+34. Streamline ConcreteInterpreter.make_rhythm_region_products().
     Change counttime_component_selector._get_payload(score_spec, voice_name, start_offset, stop_offset)
     to counttime_component_selector._get_payload(score_specification, voice_name).
