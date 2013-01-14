@@ -69,9 +69,15 @@ class PayloadCallbackMixin(Expression):
 
     ### PRIVATE METHODS ###
 
-    # TODO: implement method
     def ___and__(self, elements, timespan, original_start_offset):
-        raise NotImplementedError('implement me')
+        if hasattr(elements, '__and__'):
+            elements_original_start_offset = elements.start_offset
+            result = elements & timespan
+            start_offset_change = result.start_offset - elements_original_start_offset
+            new_start_offset = original_start_offset + start_offset_change
+            return result, new_start_offset
+        else:
+            raise NotImplementedError(elements)
 
     def ___getitem__(self, elements, original_start_offset, expr):
         assert isinstance(expr, slice)

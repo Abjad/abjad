@@ -100,7 +100,7 @@ def test_BeatSelector__payload_callbacks_05():
 
 
 def test_BeatSelector__payload_callbacks_06():
-    '''Reverse beats.
+    '''Reflect beats.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

@@ -164,3 +164,6 @@
 34. Streamline ConcreteInterpreter.make_rhythm_region_products().
     Change counttime_component_selector._get_payload(score_spec, voice_name, start_offset, stop_offset)
     to counttime_component_selector._get_payload(score_specification, voice_name).
+
+35. Rename CounttimeComponentSelector to RhythmSelector.
+    Rename SelectMethodMix.select_leaves() to SelectMethodMix.select_rhythm().

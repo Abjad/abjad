@@ -100,7 +100,7 @@ def test_BackgroundMeasureSelector__payload_callbacks_05():
 
 
 def test_BackgroundMeasureSelector__payload_callbacks_06():
-    '''Reverse measures.
+    '''Reflect measures.
     '''
 
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
