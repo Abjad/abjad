@@ -2,17 +2,19 @@ from abjad.tools import beamtools
 from abjad.tools import containertools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
-from abjad.tools.abctools import AbjadObject
+from experimental.tools.settingtools.FinalizedRhythmRegionCommand import FinalizedRhythmRegionCommand
 
 
-class RhythmMakerRhythmRegionCommand(AbjadObject):
+class RhythmMakerRhythmRegionCommand(FinalizedRhythmRegionCommand):
     '''Rhythm-maker rhythm region command.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, rhythm_maker=None, rhythm_region_division_list=None, start_offset=None):
+    def __init__(self, 
+        rhythm_maker=None, voice_name=None, rhythm_region_division_list=None, start_offset=None):
         self._rhythm_maker = rhythm_maker
+        self._voice_name = voice_name
         self._rhythm_region_division_list = rhythm_region_division_list
         self._start_offset = start_offset
 
@@ -55,3 +57,7 @@ class RhythmMakerRhythmRegionCommand(AbjadObject):
     @property
     def start_offset(self):
         return self._start_offset
+
+    @property
+    def voice_name(self):
+        return self._voice_name

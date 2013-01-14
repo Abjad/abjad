@@ -23,6 +23,9 @@ Read-only Properties
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.tools.settingtools.RhythmMakerRhythmRegionCommand.RhythmMakerRhythmRegionCommand.RhythmMakerRhythmRegionCommand.voice_name
+   :noindex:
+
 Special Methods
 ---------------
 

@@ -109,11 +109,15 @@ class ConcreteInterpreter(Interpreter):
             elif isinstance(rhythm_command.request, requesttools.RhythmMakerRequest):
                 rhythm_maker = rhythm_command.request.payload
                 assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
-                result.append((voice_name, rhythm_maker, division_list, timespan.start_offset, rhythm_command))
+                #result.append((voice_name, rhythm_maker, division_list, timespan.start_offset, rhythm_command))
+                result.append(settingtools.RhythmMakerRhythmRegionCommand(
+                    rhythm_maker, voice_name, division_list, timespan.start_offset))
             elif isinstance(rhythm_command.request, requesttools.RhythmSettingLookupRequest):
                 rhythm_maker = rhythm_command.request._get_payload(self.score_specification, voice_name)
                 assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
-                result.append((voice_name, rhythm_maker, division_list, timespan.start_offset, rhythm_command))
+                #result.append((voice_name, rhythm_maker, division_list, timespan.start_offset, rhythm_command))
+                result.append(settingtools.RhythmMakerRhythmRegionCommand(
+                    rhythm_maker, voice_name, division_list, timespan.start_offset))
             elif isinstance(rhythm_command.request, selectortools.CounttimeComponentSelector):
                 if result and isinstance(result[-1], tuple) and rhythm_command.prolongs_expr(result[-1][-1]):
                     last_start_offset = result.pop()[2]
@@ -264,12 +268,8 @@ class ConcreteInterpreter(Interpreter):
             for finalized_rhythm_command in self.score_specification.finalized_rhythm_commands[:]:
                 if isinstance(finalized_rhythm_command, settingtools.ParseableStringRhythmRegionCommand):
                     rhythm_region_product = finalized_rhythm_command._get_payload(self.score_specification)
-                # TODO: make branch equal to RhythmMakerRhythmRegionCommand._get_payload() only.
-                elif isinstance(finalized_rhythm_command[1], rhythmmakertools.RhythmMaker):
-                    rhythm_maker, rhythm_region_division_list, start_offset = finalized_rhythm_command[1:4]
-                    command = settingtools.RhythmMakerRhythmRegionCommand(
-                        rhythm_maker, rhythm_region_division_list, start_offset)
-                    rhythm_region_product = command._get_payload(self.score_specification)
+                elif isinstance(finalized_rhythm_command, settingtools.RhythmMakerRhythmRegionCommand):
+                    rhythm_region_product = finalized_rhythm_command._get_payload(self.score_specification)
                 # TODO: make branch equal to CounttimeComponentSelector._get_payload() only.
                 elif isinstance(finalized_rhythm_command[1], selectortools.CounttimeComponentSelector):
                     counttime_component_selector, start_offset, stop_offset = finalized_rhythm_command[1:4]
