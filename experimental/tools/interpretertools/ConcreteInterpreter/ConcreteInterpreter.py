@@ -84,6 +84,7 @@ class ConcreteInterpreter(Interpreter):
             for rhythm_region_product in voice_proxy.rhythm_region_products:
                 voice.extend(rhythm_region_product.payload)
 
+    # NEXT TODO: rewrite this as something comprehensible
     def filter_rhythm_quadruples(self, rhythm_quadruples):
         result = []
         for rhythm_quadruple in rhythm_quadruples:
@@ -120,10 +121,12 @@ class ConcreteInterpreter(Interpreter):
                 postprocessed_result.append(quadruple)
         return postprocessed_result
 
+    # TODO: change signature to self.get_region_commands_for_voice(attribute, voice_name)
     def get_region_commands_for_voice(self, voice_name, attribute):
         region_commands = self.score_specification.get_region_commands_for_voice(voice_name, attribute)
         region_commands.sort_and_split_commands()
         region_commands.compute_logical_or()
+        # TODO: change signature to region_commands.supply_missing_commands(attribute, self.score_spec, vn)
         region_commands.supply_missing_commands(self.score_specification, voice_name, attribute)
         return region_commands
 
@@ -197,27 +200,21 @@ class ConcreteInterpreter(Interpreter):
 
     def make_rhythm_quintuples(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_division_list = self.score_specification.contexts[voice.name].voice_division_list
-            rhythm_quintuples = self.make_rhythm_quintuples_for_voice(voice.name, voice_division_list)
+            rhythm_quintuples = self.make_rhythm_quintuples_for_voice(voice.name)
             self.score_specification.rhythm_quintuples.extend(rhythm_quintuples)
 
-    def make_rhythm_quintuples_for_voice(self, voice_name, voice_division_list):
-        #self._debug(voice_division_list, 'voice division list')
+    def make_rhythm_quintuples_for_voice(self, voice_name):
+        voice_proxy = self.score_specification.contexts[voice_name]
+        voice_division_list = voice_proxy.voice_division_list
+        division_region_products = voice_proxy.division_region_products
+        rhythm_region_commands = voice_proxy.rhythm_region_commands
         if not voice_division_list:
             return []
-        voice_proxy = self.score_specification.contexts[voice_name]
-        rhythm_region_commands = voice_proxy.rhythm_region_commands
-        #self._debug_values(rhythm_region_commands, 'rhythm region commands')
-        rhythm_command_durations = [x.timespan.duration for x in rhythm_region_commands]
-        #self._debug(rhythm_command_durations, 'rhythm command durations')
-        division_region_products = voice_proxy.division_region_products
-        #self._debug_values(division_region_products, 'division region products')
         division_region_durations = [x.timespan.duration for x in division_region_products]
-        #self._debug(division_region_durations, 'division region durations')
-        assert sum(rhythm_command_durations) == sum(division_region_durations)
+        rhythm_command_durations = [x.timespan.duration for x in rhythm_region_commands]
+        assert sum(division_region_durations) == sum(rhythm_command_durations)
         rhythm_command_merged_durations = sequencetools.merge_duration_sequences(
             division_region_durations, rhythm_command_durations)
-        #self._debug(rhythm_command_merged_durations, 'rcmds')
         # assert that rhythm commands cover rhythm regions exactly
         assert sequencetools.partition_sequence_by_weights_exactly(
             rhythm_command_merged_durations, rhythm_command_durations)
@@ -228,8 +225,7 @@ class ConcreteInterpreter(Interpreter):
         assert len(rhythm_region_start_division_duration_lists) == len(rhythm_command_merged_durations)
         rhythm_region_start_division_counts = [len(l) for l in rhythm_region_start_division_duration_lists]
         rhythm_region_division_lists = sequencetools.partition_sequence_by_counts(
-            voice_division_list.divisions, 
-            rhythm_region_start_division_counts, cyclic=False, overhang=False)
+            voice_division_list.divisions, rhythm_region_start_division_counts, cyclic=False, overhang=False)
         rhythm_region_division_lists = [
             settingtools.DivisionList(x, voice_name=voice_name) for x in rhythm_region_division_lists]
         assert len(rhythm_region_division_lists) == len(rhythm_command_merged_durations)

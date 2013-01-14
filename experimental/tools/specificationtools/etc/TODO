@@ -46,11 +46,11 @@
 
 7.  Finish timerelationtools class docstrings before 2.11 build.
 
-8. Finish timespantools package docstrings before 2.11 build.
+8.  Finish timespantools package docstrings before 2.11 build.
 
-9. Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
+9.  Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
 
-10.  Author tests to make sure that persistent overlapping division selectors 
+10. Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
     See test_multiple_segment_solo__persistent_overlapping_division_selectors_05().
 
@@ -64,12 +64,22 @@
     Make sure each implements a self._get_timespan_and_payload() method.
     Make sure each also implement self._get_timesapn(), self._get_payload() methods.
 
-14. Is the idea of a 'region command' redundant?
+14. Clean up region product docstrings.
 
-15. Clean up region product docstrings and alphabetization.
+15. Extend SelectMethodMixin with select_time_signatures() method.
+    (Fine for the method to return BackgroundMeasureSelector.)
+    (Fine to implement new TimeSignatureSelector that subclasses BackgroundMeasureSelector.)
+    Then change ...
+        measures = red_segment.select_background_measures('Voice 1')
+        blue_segment.set_time_signatures(measures)
+    ... to ...
+        time_signatures = red_segment.select_time_signatures('Voice 1')
+        red_segment.set_time_signatures(time_signatures)
+    ... throughout tests.
 
-16. Possibly rename BackgroundMeasureSelector to TimeSignatureSelector.
-    Possibly rename select_background_measures() to select_time_signatures().
+16. Change BackgroundMeasureSelector to MeasureSelector.
+    Change SelectMethodMixin.select_background_measures to SelectoMethodMixin.select_measures().
+    Remove 'background' globally from the codebase.
 
 17. Add a test to show this:
         note_selector = red_segment.select_notes_and_chords('Voice 1')[10:11]

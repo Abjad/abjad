@@ -544,6 +544,7 @@ class ScoreSpecification(Specification):
         else:
             return expr.anchor._get_timespan(self, voice_name)
         
+    # TODO: change signature to self.get_region_commands_for_voice(attribute, voice_name)
     def get_region_commands_for_voice(self, context_name, attribute):
         commands = settingtools.RegionCommandInventory()
         for segment_specification in self.segment_specifications:
