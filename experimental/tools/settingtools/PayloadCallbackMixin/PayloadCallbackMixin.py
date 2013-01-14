@@ -163,16 +163,6 @@ class PayloadCallbackMixin(Expression):
         new_start_offset = original_start_offset + duration_before
         return selected_part, new_start_offset
 
-    def _repeat_to_duration(self, elements, duration, original_start_offset):
-        elements = sequencetools.repeat_sequence_to_weight_exactly(elements, duration)
-        new_start_offset = original_start_offset
-        return elements, new_start_offset
-
-    def _repeat_to_length(self, elements, length, original_start_offset):
-        elements = sequencetools.repeat_sequence_to_length(elements, length)
-        new_start_offset = original_start_offset
-        return elements, new_start_offset
-
     def _reflect(self, elements, original_start_offset):
         if hasattr(elements, 'reflect'):
             elements = elements.reflect() or elements
@@ -180,6 +170,16 @@ class PayloadCallbackMixin(Expression):
             elements = type(elements)(reversed(elements))
         else:
             elements = elements.reverse() or elements
+        new_start_offset = original_start_offset
+        return elements, new_start_offset
+
+    def _repeat_to_duration(self, elements, duration, original_start_offset):
+        elements = sequencetools.repeat_sequence_to_weight_exactly(elements, duration)
+        new_start_offset = original_start_offset
+        return elements, new_start_offset
+
+    def _repeat_to_length(self, elements, length, original_start_offset):
+        elements = sequencetools.repeat_sequence_to_length(elements, length)
         new_start_offset = original_start_offset
         return elements, new_start_offset
 
@@ -221,6 +221,12 @@ class PayloadCallbackMixin(Expression):
             result.append(self._copy_and_append_payload_callback(callback))
         return tuple(result)
 
+    def reflect(self):
+        '''Return copy of request with appended callback.
+        '''
+        callback = 'result = self._reflect(elements, start_offset)'
+        return self._copy_and_append_payload_callback(callback)
+
     def repeat_to_duration(self, duration):
         '''Return copy of request with appended callback.
         '''
@@ -235,12 +241,6 @@ class PayloadCallbackMixin(Expression):
         callback = 'result = self._repeat_to_length(elements, {!r}, start_offset)'.format(length)
         return self._copy_and_append_payload_callback(callback)
         
-    def reflect(self):
-        '''Return copy of request with appended callback.
-        '''
-        callback = 'result = self._reflect(elements, start_offset)'
-        return self._copy_and_append_payload_callback(callback)
-
     def rotate(self, index):
         '''Return copy of request with appended callback.
         '''

@@ -334,6 +334,18 @@ class RhythmRegionProduct(RegionProduct):
 
     ### PUBLIC METHODS ###
 
+    def reflect(self):
+        '''Reverse rhythm.
+
+        .. note:: add example.
+
+        Operate in place and return none.
+        '''
+        for container in iterationtools.iterate_containers_in_expr(self.payload):
+            container._music.reverse()
+        for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(self.payload):
+            spanner._reverse_components()
+
     def repeat_to_stop_offset(self, stop_offset):
         '''Repeat rhythm to `stop_offset`.
 
@@ -352,18 +364,6 @@ class RhythmRegionProduct(RegionProduct):
             self.payload.extend(element)
         assert stop_offset <= self.stop_offset
         self._set_stop_offset(stop_offset)
-
-    def reflect(self):
-        '''Reverse rhythm.
-
-        .. note:: add example.
-
-        Operate in place and return none.
-        '''
-        for container in iterationtools.iterate_containers_in_expr(self.payload):
-            container._music.reverse()
-        for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(self.payload):
-            spanner._reverse_components()
 
     def rotate(self, n, fracture_spanners=True):
         '''Rotate rhythm.

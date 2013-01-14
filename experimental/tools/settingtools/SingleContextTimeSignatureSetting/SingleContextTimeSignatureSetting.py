@@ -13,6 +13,13 @@ class SingleContextTimeSignatureSetting(SingleContextSetting):
 
     ### PUBLIC METHODS ###
 
+    def make_time_signatures(self, score_specification):
+        time_signatures = self.request._get_payload(score_specification)
+        if time_signatures:
+            segment_specification = score_specification.get_start_segment_specification(self.anchor)
+            segment_specification._time_signatures = time_signatures[:]
+            return time_signatures
+
     def to_command(self, score_specification, voice_name):
         '''Change single-context time signature setting to command.
 
@@ -23,10 +30,3 @@ class SingleContextTimeSignatureSetting(SingleContextSetting):
         command = settingtools.TimeSignatureRegionCommand(
             self.request, self.context_name, anchor_timespan, fresh=self.fresh)
         return command
-
-    def make_time_signatures(self, score_specification):
-        time_signatures = self.request._get_payload(score_specification)
-        if time_signatures:
-            segment_specification = score_specification.get_start_segment_specification(self.anchor)
-            segment_specification._time_signatures = time_signatures[:]
-            return time_signatures

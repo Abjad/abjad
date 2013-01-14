@@ -131,7 +131,7 @@ class ConcreteInterpreter(Interpreter):
         pass
 
     def interpret_divisions(self):
-        self.populate_region_commands('divisions')
+        self.make_region_commands('divisions')
         self.make_division_region_products()
         self.make_voice_division_lists()
 
@@ -142,9 +142,9 @@ class ConcreteInterpreter(Interpreter):
         pass
 
     def interpret_rhythm(self):
-        self.populate_region_commands('rhythm')
+        self.make_region_commands('rhythm')
         #self._debug_values(self.score_specification.rhythm_region_commands, 'rhythm region commands')
-        self.populate_rhythm_quintuples()
+        self.make_rhythm_quintuples()
         #self._debug_values(self.score_specification.rhythm_quintuples, 'rhythm quintuples')
         self.make_rhythm_region_products()
         self.dump_rhythm_region_products_into_voices()
@@ -180,6 +180,26 @@ class ConcreteInterpreter(Interpreter):
                 voice_division_region_products.sort()
             if voice_division_region_commands and not made_progress:
                 raise Exception('cyclic division specification.')
+
+    def make_region_commands(self, attribute):
+        if self.score_specification.segment_specifications:
+            for voice in iterationtools.iterate_voices_in_expr(self.score):
+                voice_proxy = self.score_specification.contexts[voice.name]
+                region_commands = self.get_region_commands_for_voice(voice.name, attribute)
+                singular_attribute = attribute.rstrip('s')
+                key = '{}_region_commands'.format(singular_attribute)
+                region_command_inventory = getattr(voice_proxy, key)
+                region_command_inventory[:] = region_commands[:]
+                score_region_commands = getattr(self.score_specification, key)
+                for region_command in region_commands:
+                    if region_command not in score_region_commands:
+                        score_region_commands.append(region_command)
+
+    def make_rhythm_quintuples(self):
+        for voice in iterationtools.iterate_voices_in_expr(self.score):
+            voice_division_list = self.score_specification.contexts[voice.name].voice_division_list
+            rhythm_quintuples = self.make_rhythm_quintuples_for_voice(voice.name, voice_division_list)
+            self.score_specification.rhythm_quintuples.extend(rhythm_quintuples)
 
     def make_rhythm_quintuples_for_voice(self, voice_name, voice_division_list):
         #self._debug(voice_division_list, 'voice division list')
@@ -295,27 +315,7 @@ class ConcreteInterpreter(Interpreter):
                 voice_division_list.divisions.append(division)
             voice_proxy._voice_division_list = voice_division_list
 
-    def populate_region_commands(self, attribute):
-        if self.score_specification.segment_specifications:
-            for voice in iterationtools.iterate_voices_in_expr(self.score):
-                voice_proxy = self.score_specification.contexts[voice.name]
-                region_commands = self.get_region_commands_for_voice(voice.name, attribute)
-                singular_attribute = attribute.rstrip('s')
-                key = '{}_region_commands'.format(singular_attribute)
-                region_command_inventory = getattr(voice_proxy, key)
-                region_command_inventory[:] = region_commands[:]
-                score_region_commands = getattr(self.score_specification, key)
-                for region_command in region_commands:
-                    if region_command not in score_region_commands:
-                        score_region_commands.append(region_command)
-
-    def populate_rhythm_quintuples(self):
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_division_list = self.score_specification.contexts[voice.name].voice_division_list
-            rhythm_quintuples = self.make_rhythm_quintuples_for_voice(voice.name, voice_division_list)
-            self.score_specification.rhythm_quintuples.extend(rhythm_quintuples)
-
-    # TODO: eventually merge with self.populate_region_commands()
+    # TODO: eventually merge with self.make_region_commands()
     def populate_time_signature_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
             time_signature_settings = \

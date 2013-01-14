@@ -114,6 +114,42 @@ class ScoreSpecification(Specification):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def context_names(self):
+        r'''Score specification context names::
+
+            >>> for x in score_specification.context_names:
+            ...     x
+            ... 
+            'Grouped Rhythmic Staves Score'
+            'Grouped Rhythmic Staves Staff Group'
+            'Staff 1'
+            'Voice 1'
+            'Staff 2'
+            'Voice 2'
+
+        Return list of strings.
+        '''
+        return Specification.context_names.fget(self)
+
+    @property
+    def contexts(self):
+        r'''Score specification context proxy dictionary::
+
+            >>> for key in score_specification.contexts:
+            ...     key
+            ... 
+            'Grouped Rhythmic Staves Score'
+            'Grouped Rhythmic Staves Staff Group'
+            'Staff 1'
+            'Staff 2'
+            'Voice 1'
+            'Voice 2'
+
+        Return context proxy dictionary.
+        '''
+        return Specification.contexts.fget(self)
+
+    @property
     def division_region_commands(self):
         '''Read-only list of all division region commands::
 
@@ -149,99 +185,6 @@ class ScoreSpecification(Specification):
         Return list.
         '''
         return self._division_region_commands
-
-    @property
-    def rhythm_quintuples(self):
-        '''Read-only list of all rhythm quintuples.
-
-            >>> for x in score_specification.rhythm_quintuples:
-            ...     z(x)
-
-        Popluate during interpretation. Then consume during interpretation.
-
-        Return list.
-        '''
-        return self._rhythm_quintuples
-
-    @property
-    def rhythm_region_commands(self):
-        '''Read-only list of all rhythm region commands.
-
-            >>> for x in score_specification.rhythm_region_commands:
-            ...     z(x)
-            settingtools.RhythmRegionCommand(
-                request=requesttools.RhythmMakerRequest(
-                    rhythmmakertools.TaleaRhythmMaker(
-                        [1],
-                        16,
-                        prolation_addenda=[],
-                        secondary_divisions=[],
-                        beam_each_cell=False,
-                        beam_cells_together=True,
-                        tie_split_notes=False
-                        )
-                    ),
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(9, 4)
-                    ),
-                fresh=True
-                )
-
-        Populate during interpretation
-
-        Return list.
-        '''
-        return self._rhythm_region_commands
-
-    @property
-    def time_signature_settings(self):
-        '''Read-only list of all time signature settings.
-
-            >>> for x in score_specification.time_signature_settings:
-            ...     z(x)
-
-        Populate during interpretation. Then consume during interpretation.
-
-        Return list.
-        '''
-        return self._time_signature_settings
-
-    @property
-    def context_names(self):
-        r'''Score specification context names::
-
-            >>> for x in score_specification.context_names:
-            ...     x
-            ... 
-            'Grouped Rhythmic Staves Score'
-            'Grouped Rhythmic Staves Staff Group'
-            'Staff 1'
-            'Voice 1'
-            'Staff 2'
-            'Voice 2'
-
-        Return list of strings.
-        '''
-        return Specification.context_names.fget(self)
-
-    @property
-    def contexts(self):
-        r'''Score specification context proxy dictionary::
-
-            >>> for key in score_specification.contexts:
-            ...     key
-            ... 
-            'Grouped Rhythmic Staves Score'
-            'Grouped Rhythmic Staves Staff Group'
-            'Staff 1'
-            'Staff 2'
-            'Voice 1'
-            'Voice 2'
-
-        Return context proxy dictionary.
-        '''
-        return Specification.contexts.fget(self)
 
     @property
     def interface(self):
@@ -305,6 +248,50 @@ class ScoreSpecification(Specification):
         '''
         return Specification.multiple_context_settings.fget(self)
     
+    @property
+    def rhythm_quintuples(self):
+        '''Read-only list of all rhythm quintuples.
+
+            >>> for x in score_specification.rhythm_quintuples:
+            ...     z(x)
+
+        Popluate during interpretation. Then consume during interpretation.
+
+        Return list.
+        '''
+        return self._rhythm_quintuples
+
+    @property
+    def rhythm_region_commands(self):
+        '''Read-only list of all rhythm region commands.
+
+            >>> for x in score_specification.rhythm_region_commands:
+            ...     z(x)
+            settingtools.RhythmRegionCommand(
+                request=requesttools.RhythmMakerRequest(
+                    rhythmmakertools.TaleaRhythmMaker(
+                        [1],
+                        16,
+                        prolation_addenda=[],
+                        secondary_divisions=[],
+                        beam_each_cell=False,
+                        beam_cells_together=True,
+                        tie_split_notes=False
+                        )
+                    ),
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(9, 4)
+                    ),
+                fresh=True
+                )
+
+        Populate during interpretation
+
+        Return list.
+        '''
+        return self._rhythm_region_commands
+
     @property
     def score_model(self):
         '''Score specification score model::
@@ -471,6 +458,19 @@ class ScoreSpecification(Specification):
         Return string.
         '''
         return Specification.storage_format.fget(self)
+
+    @property
+    def time_signature_settings(self):
+        '''Read-only list of all time signature settings.
+
+            >>> for x in score_specification.time_signature_settings:
+            ...     z(x)
+
+        Populate during interpretation. Then consume during interpretation.
+
+        Return list.
+        '''
+        return self._time_signature_settings
 
     @property
     def time_signatures(self):
