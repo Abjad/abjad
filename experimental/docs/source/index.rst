@@ -390,6 +390,7 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/settingtools/Expression/Expression
+      tools/settingtools/FinalizedRhythmRegionCommand/FinalizedRhythmRegionCommand
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
       tools/settingtools/RegionCommand/RegionCommand
@@ -440,6 +441,7 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/settingtools/Expression/Expression
+      tools/settingtools/FinalizedRhythmRegionCommand/FinalizedRhythmRegionCommand
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
       tools/settingtools/RegionCommand/RegionCommand
