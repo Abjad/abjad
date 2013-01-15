@@ -397,7 +397,7 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_inventory_3.timespan
-            Timespan()
+            Timespan(start_offset=NegativeInfinity, stop_offset=Infinity)
 
         Return timespan.
         '''
@@ -974,31 +974,9 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(5, 5),
             ...     timespantools.Timespan(5, 10),
-            ...     timespantools.Timespan(5, 15),
-            ...     timespantools.Timespan(5, 20)])
-
-        ::
-
-            >>> result = timespan_inventory.translate_offsets(stop_offset_translation=-10)
-
-        ::
-
-            >>> z(timespan_inventory)
-            timespantools.TimespanInventory([
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(5, 1),
-                    stop_offset=durationtools.Offset(0, 1)
-                    ),
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(5, 1),
-                    stop_offset=durationtools.Offset(5, 1)
-                    ),
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(5, 1),
-                    stop_offset=durationtools.Offset(10, 1)
-                    )
-                ])
+            ...     timespantools.Timespan(5, 25)])
 
         ::
 
@@ -1011,6 +989,10 @@ class TimespanInventory(ObjectInventory):
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(5, 1),
                     stop_offset=durationtools.Offset(10, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(25, 1)
                     )
                 ])
 

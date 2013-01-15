@@ -27,6 +27,9 @@ class Timespan(BoundedObject):
         BoundedObject.__init__(self)
         start_offset = self._initialize_offset(start_offset)
         stop_offset = self._initialize_offset(stop_offset)
+        assert start_offset is not None
+        assert stop_offset is not None
+        assert start_offset <= stop_offset, repr((start_offset, stop_offset))
         self._start_offset = start_offset
         self._stop_offset = stop_offset
 
@@ -535,7 +538,9 @@ class Timespan(BoundedObject):
         return False
 
     def _initialize_offset(self, offset):
-        if offset not in (NegativeInfinity, Infinity):
+        if offset in (NegativeInfinity, Infinity):
+            return offset
+        else:
             return durationtools.Offset(offset)
 
     ### READ-ONLY PUBLIC PROPERTIES ###

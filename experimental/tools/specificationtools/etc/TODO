@@ -145,6 +145,3 @@
     Remaining tests to author:
         leaves.partition_by_ratio()
         leaves.partition_by_ratio_of_durations()
-
-31. Disallow Timespan(start_offset, stop_offset) where stop_offset < start_offset.
-    Check at initialization time.
