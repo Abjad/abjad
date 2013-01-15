@@ -4,6 +4,8 @@ from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
+from abjad.tools import mathtools
+from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
@@ -333,6 +335,70 @@ class RhythmRegionProduct(RegionProduct):
         return self._payload
 
     ### PUBLIC METHODS ###
+
+    def partition_by_ratio(self, ratio):
+        '''Partition leaves by `ratio`.
+
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> timespan = timespantools.Timespan(Offset(10), Infinity)
+            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
+
+        ::
+
+            >>> result = product.partition_by_ratio((1, 2, 1))
+
+        ::
+
+            >>> z(result)
+            settingtools.RegionCommandInventory([
+                settingtools.RhythmRegionProduct(
+                    payload=containertools.Container(
+                        music=({c'8},)
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(10, 1),
+                        stop_offset=durationtools.Offset(81, 8)
+                        )
+                    ),
+                settingtools.RhythmRegionProduct(
+                    payload=containertools.Container(
+                        music=({d'8, e'8},)
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(81, 8),
+                        stop_offset=durationtools.Offset(83, 8)
+                        )
+                    ),
+                settingtools.RhythmRegionProduct(
+                    payload=containertools.Container(
+                        music=({f'8},)
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(83, 8),
+                        stop_offset=durationtools.Offset(21, 2)
+                        )
+                    )
+                ])
+
+        Operate in place and return newly constructed region command inventory.
+        '''
+        from experimental.tools import settingtools
+        parts = sequencetools.partition_sequence_by_ratio_of_lengths(self.payload.leaves, ratio)
+        parts = [selectiontools.Selection(part) for part in parts]
+        durations = [part.timespan.duration for part in parts]
+        payload_parts = self._split_payload_at_offsets(durations)
+        start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
+        start_offsets = [self.start_offset + start_offset for start_offset in start_offsets]
+        region_products = settingtools.RegionCommandInventory()
+        for payload_part, start_offset in zip(payload_parts, start_offsets):
+            timespan = timespantools.Timespan(start_offset)
+            region_product = type(self)(None, self.voice_name, timespan)
+            region_product._payload = payload_part
+            region_products.append(region_product)
+        return region_products
 
     def reflect(self):
         '''Reflect rhythm about rhythm region product axis:

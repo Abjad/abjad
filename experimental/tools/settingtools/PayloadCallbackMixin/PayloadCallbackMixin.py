@@ -153,15 +153,20 @@ class PayloadCallbackMixin(Expression):
         return filtered_result
 
     def _partition_by_ratio(self, elements, original_start_offset, ratio, part):
-        parts = sequencetools.partition_sequence_by_ratio_of_lengths(elements, ratio)
-        selected_part = parts[part]
-        parts_before = parts[:part]
-        durations_before = [
-            sum([durationtools.Duration(x) for x in part_before]) for part_before in parts_before]
-        duration_before = sum(durations_before)
-        start_offset = durationtools.Offset(duration_before)
-        new_start_offset = original_start_offset + start_offset
-        return selected_part, new_start_offset
+        if hasattr(elements, 'partition_by_ratio'):
+            parts = elements.partition_by_ratio(ratio)
+            selected_part = parts[part]
+            return selected_part, original_start_offset
+        else:
+            parts = sequencetools.partition_sequence_by_ratio_of_lengths(elements, ratio)
+            selected_part = parts[part]
+            parts_before = parts[:part]
+            durations_before = [
+                sum([durationtools.Duration(x) for x in part_before]) for part_before in parts_before]
+            duration_before = sum(durations_before)
+            start_offset = durationtools.Offset(duration_before)
+            new_start_offset = original_start_offset + start_offset
+            return selected_part, new_start_offset
 
     def _partition_by_ratio_of_durations(self, elements, original_start_offset, ratio, part):
         def duration_helper(x):
