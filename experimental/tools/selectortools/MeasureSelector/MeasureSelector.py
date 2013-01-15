@@ -21,7 +21,7 @@ class MeasureSelector(Selector):
 
     Select voice ``1`` measures that start during score::
 
-        >>> selector = score_specification.interface.select_background_measures('Voice 1')
+        >>> selector = score_specification.interface.select_measures('Voice 1')
 
     ::
 
@@ -32,7 +32,7 @@ class MeasureSelector(Selector):
 
     Select voice ``1`` measures starting during segment ``'red'``::
 
-        >>> selector = red_segment.select_background_measures('Voice 1')
+        >>> selector = red_segment.select_measures('Voice 1')
 
     ::
 
@@ -45,7 +45,7 @@ class MeasureSelector(Selector):
     Select voice ``1`` measures that start during three contiguous segments::
 
         >>> segments = score_specification.interface.select_segments('Voice 1')['red':('red', 3)]
-        >>> selector = segments.select_background_measures('Voice 1')
+        >>> selector = segments.select_measures('Voice 1')
 
     ::
 

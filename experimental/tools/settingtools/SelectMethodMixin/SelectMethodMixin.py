@@ -20,11 +20,11 @@ class SelectMethodMixin(AbjadObject):
     
     ### PUBLIC METHODS ###
 
-    def select_background_measures(self, voice_name, time_relation=None):
+    def select_measures(self, voice_name, time_relation=None):
         '''Select voice ``1`` background measures 
         that start during segment ``'red'``::
 
-            >>> selector = red_segment.select_background_measures('Voice 1')
+            >>> selector = red_segment.select_measures('Voice 1')
 
         ::
 

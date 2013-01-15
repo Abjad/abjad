@@ -12,7 +12,7 @@ def test_MeasureSelector__timespan_callbacks_01():
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
-    timespan = red_segment.select_background_measures('Voice 1')[:1]
+    timespan = red_segment.select_measures('Voice 1')[:1]
     timespan = timespan.scale(Multiplier(4))
     timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
@@ -32,7 +32,7 @@ def test_MeasureSelector__timespan_callbacks_02():
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
-    timespan = red_segment.select_background_measures('Voice 1')[:1]
+    timespan = red_segment.select_measures('Voice 1')[:1]
     timespan = timespan.set_duration(Duration(2, 8))
     timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
@@ -52,7 +52,7 @@ def test_MeasureSelector__timespan_callbacks_03():
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
-    timespan = red_segment.select_background_measures('Voice 1')[:2]
+    timespan = red_segment.select_measures('Voice 1')[:2]
     timespan = timespan.set_offsets(start_offset=Offset(1, 8))
     timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
@@ -72,7 +72,7 @@ def test_MeasureSelector__timespan_callbacks_04():
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
-    timespan = red_segment.select_background_measures('Voice 1')[:1]
+    timespan = red_segment.select_measures('Voice 1')[:1]
     timespan = timespan.set_offsets(stop_offset=Offset(2, 8))
     timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
@@ -92,7 +92,7 @@ def test_MeasureSelector__timespan_callbacks_05():
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
-    timespan = red_segment.select_background_measures('Voice 1')[:1]
+    timespan = red_segment.select_measures('Voice 1')[:1]
     timespan = timespan.translate_offsets(Duration(1, 8), Duration(1, 8)) 
     timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
@@ -112,7 +112,7 @@ def test_MeasureSelector__timespan_callbacks_06():
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
-    timespan = red_segment.select_background_measures('Voice 1')[:2]
+    timespan = red_segment.select_measures('Voice 1')[:2]
     timespan = timespan.translate_offsets(start_offset_translation=Duration(1, 8)) 
     timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
@@ -132,7 +132,7 @@ def test_MeasureSelector__timespan_callbacks_07():
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
-    timespan = red_segment.select_background_measures('Voice 1')[:2]
+    timespan = red_segment.select_measures('Voice 1')[:2]
     timespan = timespan.translate_offsets(stop_offset_translation=Duration(-1, 8)) 
     timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
@@ -152,7 +152,7 @@ def test_MeasureSelector__timespan_callbacks_08():
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
-    timespan = red_segment.select_background_measures('Voice 1')[:2]
+    timespan = red_segment.select_measures('Voice 1')[:2]
     timespan = timespan.translate_offsets(start_offset_translation=Duration(1, 8))
     timespan = timespan.scale(Multiplier(2))
     timespan.set_rhythm(library.thirty_seconds)

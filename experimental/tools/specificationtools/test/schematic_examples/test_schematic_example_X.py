@@ -83,7 +83,7 @@ def test_schematic_example_X_03():
 
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(6, 8), (3, 8)])
-    measures = red_segment.select_background_measures('Voice 1')
+    measures = red_segment.select_measures('Voice 1')
     left_measure, right_measure = measures.partition_by_ratio((1, 1))
     left_measure.set_divisions([(3, 16)], contexts=['Voice 1'])
     right_measure.set_divisions([(5, 16)], contexts=['Voice 1'])
@@ -108,7 +108,7 @@ def test_schematic_example_X_03():
 
     blue_segment = score_specification.append_segment(name='blue')
     
-    red_time_signatures = red_segment.select_background_measures('Voice 1')
+    red_time_signatures = red_segment.select_measures('Voice 1')
     red_time_signatures = red_time_signatures.reflect()
     blue_segment.set_time_signatures(red_time_signatures)
 
@@ -276,8 +276,8 @@ def test_schematic_example_X_07():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
-    first_measure = red_segment.select_background_measures('Voice 1')[:1]
-    second_measure = red_segment.select_background_measures('Voice 1')[1:2]
+    first_measure = red_segment.select_measures('Voice 1')[:1]
+    second_measure = red_segment.select_measures('Voice 1')[1:2]
     first_measure.set_rhythm("{ c'32 [ c'16 c'16. c'8 ] }", contexts=['Voice 1'])
     cell = first_measure.select_leaves('Voice 1')
     second_measure.set_rhythm(cell.rotate(Duration(-1, 32)), contexts=['Voice 1'])
@@ -326,7 +326,7 @@ def test_schematic_example_X_08():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
-    measures = red_segment.select_background_measures('Voice 1')
+    measures = red_segment.select_measures('Voice 1')
     first_measure, middle_measure, last_measure = measures.partition_by_ratio((1, 1, 1))
     first_measure.set_rhythm(library.even_runs(0), contexts=['Voice 1'])
     middle_measure.set_rhythm(library.even_runs(1), contexts=['Voice 1'])

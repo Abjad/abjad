@@ -29,11 +29,6 @@ Methods
 
    Inherited from :py:class:`settingtools.SpecificationInterface <experimental.tools.settingtools.SpecificationInterface.SpecificationInterface.SpecificationInterface>`
 
-.. automethod:: experimental.tools.settingtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.select_background_measures
-   :noindex:
-
-   Inherited from :py:class:`settingtools.SelectMethodMixin <experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
-
 .. automethod:: experimental.tools.settingtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.select_beats
    :noindex:
 
@@ -45,6 +40,11 @@ Methods
    Inherited from :py:class:`settingtools.SelectMethodMixin <experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
 
 .. automethod:: experimental.tools.settingtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.select_leaves
+   :noindex:
+
+   Inherited from :py:class:`settingtools.SelectMethodMixin <experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
+.. automethod:: experimental.tools.settingtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.select_measures
    :noindex:
 
    Inherited from :py:class:`settingtools.SelectMethodMixin <experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`

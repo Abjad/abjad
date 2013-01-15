@@ -31,7 +31,7 @@ def test_single_segment_solo__overlapping_division_selectors_02():
     score_specification = specificationtools.ScoreSpecification(score_template) 
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8)])
-    first_measure = red_segment.select_background_measures('Voice 1')[:1]
+    first_measure = red_segment.select_measures('Voice 1')[:1]
     first_measure.set_divisions([(3, 16)])
     red_segment.set_divisions([(1, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
@@ -52,7 +52,7 @@ def test_single_segment_solo__overlapping_division_selectors_03():
     score_specification = specificationtools.ScoreSpecification(score_template) 
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8)])
-    first_measure = red_segment.select_background_measures('Voice 1')[1:2]
+    first_measure = red_segment.select_measures('Voice 1')[1:2]
     first_measure.set_divisions([(3, 16)])
     red_segment.set_divisions([(1, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
@@ -74,7 +74,7 @@ def test_single_segment_solo__overlapping_division_selectors_04():
     score_specification = specificationtools.ScoreSpecification(score_template) 
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8)])
-    last_measure = red_segment.select_background_measures('Voice 1')[1:2]
+    last_measure = red_segment.select_measures('Voice 1')[1:2]
     red_segment.set_divisions([(3, 16)])
     last_measure.set_divisions([(1, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
@@ -94,7 +94,7 @@ def test_single_segment_solo__overlapping_division_selectors_05():
     score_specification = specificationtools.ScoreSpecification(score_template) 
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
-    middle_measure = red_segment.select_background_measures('Voice 1')[1:2]
+    middle_measure = red_segment.select_measures('Voice 1')[1:2]
     red_segment.set_divisions([(3, 16)])
     middle_measure.set_divisions([(1, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
@@ -156,7 +156,7 @@ def test_single_segment_solo__overlapping_division_selectors_08():
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     red_segment.set_divisions([(3, 16)])
-    middle_measure = red_segment.select_background_measures('Voice 1')[1:2]
+    middle_measure = red_segment.select_measures('Voice 1')[1:2]
     middle_measure.set_divisions([(2, 16)])
     middle_measure.set_divisions([(1, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
@@ -176,7 +176,7 @@ def test_single_segment_solo__overlapping_division_selectors_09():
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     red_segment.set_divisions([(3, 16)])
-    middle_measure = red_segment.select_background_measures('Voice 1')[1:2]
+    middle_measure = red_segment.select_measures('Voice 1')[1:2]
     middle_measure.set_divisions([(2, 16)])
     arbitrary_chunk = red_segment.timespan.set_offsets((5, 8), (6, 8))
     arbitrary_chunk.set_divisions([(1, 16)])

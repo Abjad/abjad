@@ -2,7 +2,7 @@ from abjad.tools import *
 from experimental.tools import *
 
 
-def test_SegmentSpecification__select_background_measures_01():
+def test_SegmentSpecification__select_measures_01():
     '''Negative start.
     '''
 
@@ -10,7 +10,7 @@ def test_SegmentSpecification__select_background_measures_01():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
-    last_two_measures = red_segment.select_background_measures('Voice 1')[-2:]
+    last_two_measures = red_segment.select_measures('Voice 1')[-2:]
     red_segment.set_divisions([(2, 32)])
     last_two_measures.set_divisions([(3, 32)])
     red_segment.set_rhythm(library.thirty_seconds)
@@ -21,7 +21,7 @@ def test_SegmentSpecification__select_background_measures_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_background_measures_02():
+def test_SegmentSpecification__select_measures_02():
     '''Negative stop.
     '''
 
@@ -29,7 +29,7 @@ def test_SegmentSpecification__select_background_measures_02():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
-    first_two_measures = red_segment.select_background_measures('Voice 1')[:-1]
+    first_two_measures = red_segment.select_measures('Voice 1')[:-1]
     red_segment.set_divisions([(2, 32)])
     first_two_measures.set_divisions([(3, 32)])
     red_segment.set_rhythm(library.thirty_seconds)
@@ -40,7 +40,7 @@ def test_SegmentSpecification__select_background_measures_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_background_measures_03():
+def test_SegmentSpecification__select_measures_03():
     '''Negative start and stop.
     '''
 
@@ -48,7 +48,7 @@ def test_SegmentSpecification__select_background_measures_03():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
-    middle_measure = red_segment.select_background_measures('Voice 1')[1:-1]
+    middle_measure = red_segment.select_measures('Voice 1')[1:-1]
     red_segment.set_divisions([(2, 32)])
     middle_measure.set_divisions([(3, 32)])
     red_segment.set_rhythm(library.thirty_seconds)
@@ -59,7 +59,7 @@ def test_SegmentSpecification__select_background_measures_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_background_measures_04():
+def test_SegmentSpecification__select_measures_04():
     '''Negative index.
     '''
     
@@ -67,7 +67,7 @@ def test_SegmentSpecification__select_background_measures_04():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
-    last_measure = red_segment.select_background_measures('Voice 1')[-1:]
+    last_measure = red_segment.select_measures('Voice 1')[-1:]
     red_segment.set_divisions([(2, 32)])
     last_measure.set_divisions([(3, 32)])
     red_segment.set_rhythm(library.thirty_seconds)
@@ -78,7 +78,7 @@ def test_SegmentSpecification__select_background_measures_04():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_background_measures_05():
+def test_SegmentSpecification__select_measures_05():
     '''Positive index.
     '''
     
@@ -86,7 +86,7 @@ def test_SegmentSpecification__select_background_measures_05():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
-    last_measure = red_segment.select_background_measures('Voice 1')[1:2]
+    last_measure = red_segment.select_measures('Voice 1')[1:2]
     red_segment.set_divisions([(2, 32)])
     last_measure.set_divisions([(3, 32)])
     red_segment.set_rhythm(library.thirty_seconds)

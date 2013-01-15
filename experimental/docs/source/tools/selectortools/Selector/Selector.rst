@@ -215,11 +215,6 @@ Methods
 
    Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
-.. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.select_background_measures
-   :noindex:
-
-   Inherited from :py:class:`settingtools.SelectMethodMixin <experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
-
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.select_beats
    :noindex:
 
@@ -231,6 +226,11 @@ Methods
    Inherited from :py:class:`settingtools.SelectMethodMixin <experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.select_leaves
+   :noindex:
+
+   Inherited from :py:class:`settingtools.SelectMethodMixin <experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
+.. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.select_measures
    :noindex:
 
    Inherited from :py:class:`settingtools.SelectMethodMixin <experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`

@@ -29,8 +29,8 @@ def test_SegmentSpecification__select_leaves_02():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
-    first_measure = red_segment.select_background_measures('Voice 1')[:1]
-    second_measure = red_segment.select_background_measures('Voice 1')[1:2]
+    first_measure = red_segment.select_measures('Voice 1')[:1]
+    second_measure = red_segment.select_measures('Voice 1')[1:2]
     first_measure.set_rhythm("{ c'32 [ c'16 c'16. c'8 ] }", contexts=['Voice 1'])
     cell = first_measure.select_leaves('Voice 1')
     second_measure.set_rhythm(cell.rotate(Duration(-1, 32)), contexts=['Voice 1'])
@@ -54,8 +54,8 @@ def test_SegmentSpecification__select_leaves_03():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
-    first_measure = red_segment.select_background_measures('Voice 1')[:1]
-    second_measure = red_segment.select_background_measures('Voice 1')[1:2]
+    first_measure = red_segment.select_measures('Voice 1')[:1]
+    second_measure = red_segment.select_measures('Voice 1')[1:2]
     first_measure.set_rhythm("{ c'32 [ c'16 c'16. c'8 ] }", contexts=['Voice 1'])
     cell = first_measure.select_leaves('Voice 1')
     second_measure.set_rhythm(cell.rotate(Duration(-1, 32)), contexts=['Voice 1'])

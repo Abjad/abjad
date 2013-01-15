@@ -15,7 +15,7 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
 
     ::
 
-        >>> measure = red_segment.select_background_measures('Voice 1')[4:5]
+        >>> measure = red_segment.select_measures('Voice 1')[4:5]
         >>> setting = measure.start_offset.look_up_division_setting('Voice 1')
 
     ::

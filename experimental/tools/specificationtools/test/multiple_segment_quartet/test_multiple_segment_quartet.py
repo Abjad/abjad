@@ -27,7 +27,7 @@ def test_multiple_segment_quartet_01():
     lower = ['Voice 3', 'Voice 4']
     red_segment.set_rhythm(library.note_tokens, contexts=lower)
     blue_segment = score_specification.append_segment(name='blue')
-    source = red_segment.select_background_measures('Voice 1')
+    source = red_segment.select_measures('Voice 1')
     source = source.rotate(-2)
     source = source.repeat_to_length(2)
     blue_segment.set_time_signatures(source)
@@ -55,7 +55,7 @@ def test_multiple_segment_quartet_02():
     red_segment.set_divisions([(4, 16), (3, 16)], contexts=lower)
     red_segment.set_rhythm(library.note_tokens, contexts=lower)
     blue_segment = score_specification.append_segment(name='blue')
-    source = red_segment.select_background_measures('Voice 1')
+    source = red_segment.select_measures('Voice 1')
     source = source.rotate(-2)
     source = source.repeat_to_length(2)
     blue_segment.set_time_signatures(source)
@@ -75,8 +75,8 @@ def test_multiple_segment_quartet_03():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
-    first_measure = red_segment.select_background_measures('Voice 1')[:1]
-    second_measure = red_segment.select_background_measures('Voice 1')[-1:]
+    first_measure = red_segment.select_measures('Voice 1')[:1]
+    second_measure = red_segment.select_measures('Voice 1')[-1:]
     first_half, second_half = red_segment.timespan.divide_by_ratio((1, 1))
     first_measure.set_divisions([(3, 16)], contexts=['Voice 1'], persist=False)
     second_measure.set_divisions([(5, 16)], contexts=['Voice 1'], persist=False)

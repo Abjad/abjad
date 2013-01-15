@@ -94,8 +94,8 @@ def test_SegmentSpecification__select_divisions_from_past_05():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
-    left = red_segment.select_background_measures('Voice 1')[:1]
-    right = red_segment.select_background_measures('Voice 1')[-1:]
+    left = red_segment.select_measures('Voice 1')[:1]
+    right = red_segment.select_measures('Voice 1')[-1:]
     left.set_divisions([(2, 16)])
     right.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)

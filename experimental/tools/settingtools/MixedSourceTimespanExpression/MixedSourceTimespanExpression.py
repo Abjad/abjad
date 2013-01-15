@@ -23,12 +23,12 @@ class MixedSourceTimespanExpression(TimespanExpression):
     and stoppding at the right edge of the first measure 
     that starts during segment ``'blue'``::
 
-        >>> measure = red_segment.select_background_measures('Voice 1')[-1:]
+        >>> measure = red_segment.select_measures('Voice 1')[-1:]
         >>> start_offset = measure.start_offset
 
     ::
 
-        >>> measure = blue_segment.select_background_measures('Voice 1')[:1]
+        >>> measure = blue_segment.select_measures('Voice 1')[:1]
         >>> stop_offset = measure.stop_offset
         
     ::

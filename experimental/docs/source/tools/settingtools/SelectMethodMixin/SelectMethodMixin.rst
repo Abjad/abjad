@@ -17,9 +17,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.select_background_measures
-   :noindex:
-
 .. automethod:: experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.select_beats
    :noindex:
 
@@ -27,6 +24,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.select_leaves
+   :noindex:
+
+.. automethod:: experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.select_measures
    :noindex:
 
 .. automethod:: experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.select_notes_and_chords

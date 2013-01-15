@@ -70,22 +70,21 @@
     (Fine for the method to return MeasureSelector.)
     (Fine to implement new TimeSignatureSelector that subclasses MeasureSelector.)
     Then change ...
-        measures = red_segment.select_background_measures('Voice 1')
+        measures = red_segment.select_measures('Voice 1')
         blue_segment.set_time_signatures(measures)
     ... to ...
         time_signatures = red_segment.select_time_signatures('Voice 1')
         red_segment.set_time_signatures(time_signatures)
     ... throughout tests.
 
-16. Change SelectMethodMixin.select_background_measures to SelectMethodMixin.select_measures().
-    Remove 'background' globally from the codebase.
+16. Remove 'background' globally from the codebase.
 
 17. Add a test to show this:
         note_selector = red_segment.select_notes_and_chords('Voice 1')[10:11]
         offset = note_selector.stop_offset
 
 18. Add some tests to show this:
-        measures = red_segment.select_background_measures('Voice 1')
+        measures = red_segment.select_measures('Voice 1')
         measures = measures[10:20]
         measures = measures[2:4]
     This will show getitem composition.
@@ -99,23 +98,23 @@
 
 20. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
-        middle_measures = segments.select_background_measures('Voice 1')[3:6]
+        middle_measures = segments.select_measures('Voice 1')[3:6]
     This will show selecting background measures from (potentially) more than one segment.
 
 21. Add some tests to show this:
-        measures = red_segment.select_background_measures('Voice 1')[10:20]
+        measures = red_segment.select_measures('Voice 1')[10:20]
         middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
     This will show partitioning only part of a segment's measures.
 
 22. Add some tests to show this:
-        measures = red_segment.select_background_measures('Voice 1')
+        measures = red_segment.select_measures('Voice 1')
         middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
         measure = middle_third_of_measures[:1]
     This will show slice selection following partition.
 
 23. Add some tests to show this:
         first_half_of_red_segment = red_segment.timespan.divide_by_ratio((1, 1))[0]
-        measures = first_half_of_red_segment.select_background_measures('Voice 1')
+        measures = first_half_of_red_segment.select_measures('Voice 1')
     This will show selecting background measures that start during a duration-partitioned part of segment.
 
 24. Add test to show this:

@@ -32,11 +32,6 @@ Methods
 
    Inherited from :py:class:`settingtools.SpecificationInterface <experimental.tools.settingtools.SpecificationInterface.SpecificationInterface.SpecificationInterface>`
 
-.. automethod:: experimental.tools.settingtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.select_background_measures
-   :noindex:
-
-   Inherited from :py:class:`settingtools.SelectMethodMixin <experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
-
 .. automethod:: experimental.tools.settingtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.select_beats
    :noindex:
 
@@ -48,6 +43,11 @@ Methods
    Inherited from :py:class:`settingtools.SelectMethodMixin <experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
 
 .. automethod:: experimental.tools.settingtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.select_leaves
+   :noindex:
+
+   Inherited from :py:class:`settingtools.SelectMethodMixin <experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
+.. automethod:: experimental.tools.settingtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.select_measures
    :noindex:
 
    Inherited from :py:class:`settingtools.SelectMethodMixin <experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`

@@ -18,7 +18,7 @@ def test_single_segment_quartet_01():
 
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(6, 8), (3, 8)])
-    measures = red_segment.select_background_measures('Voice 1')
+    measures = red_segment.select_measures('Voice 1')
     left_measure, right_measure = measures.partition_by_ratio((1, 1))
     left_measure.set_divisions([(3, 16)], contexts=['Voice 1'])
     right_measure.set_divisions([(5, 16)], contexts=['Voice 1'])
