@@ -141,12 +141,8 @@
 
 29. Write PayloadCallbackMixin.__and__() tests for all selectors.
 
-30. Author tests to show each payload callback applied to each selector.
-    Remaining tests to author:
-        leaves.partition_by_ratio_of_durations()
-
-31. Add docstring examples for recent RhythmRegionProduct methods.
+30. Add docstring examples for recent RhythmRegionProduct methods.
     Move recent RhythmRegionProduct methods up to RegionProduct.
     Add docstring examples for the same methods bound to DivisionRegionProduct.
 
-32. Change region product classes back to start-offset initialization instead of timespan initialization.
+31. Change region product classes back to start-offset initialization instead of timespan initialization.

@@ -48,6 +48,9 @@ Methods
 .. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.partition_by_ratio
    :noindex:
 
+.. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.partition_by_ratio_of_durations
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.reflect
    :noindex:
 
