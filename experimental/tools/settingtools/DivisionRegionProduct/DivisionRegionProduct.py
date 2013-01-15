@@ -401,25 +401,36 @@ class DivisionRegionProduct(RegionProduct):
         
     ### PUBLIC METHODS ###
     
-    def fracture(self, slice_index):
-        assert isinstance(slice_index, int)
-        left_division_list, right_division_list = self.payload.fracture(slice_index)
-        left_result = type(self)(left_division_list, voice_name=self.voice_name, timespan=self.timespan)
-        right_result = type(self)(right_division_list, voice_name=self.voice_name, timespan=self.timespan)
-        return left_result, right_result
-
     def reflect(self):
         self.payload.reflect()
 
-    # TODO: remove code duplicated from Timespan
-    def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
-        start_offset_translation = start_offset_translation or 0
-        stop_offset_translation = stop_offset_translation or 0
-        start_offset_translation = durationtools.Duration(start_offset_translation)
-        stop_offset_translation = durationtools.Duration(stop_offset_translation)
-        new_start_offset = self.timespan.start_offset + start_offset_translation
-        new_stop_offset = self.timespan.stop_offset + stop_offset_translation
-        divisions = copy.copy(self.payload.divisions)
-        timespan = timespantools.Timespan(new_start_offset, new_stop_offset)
-        result = type(self)(divisions, voice_name=self.voice_name, timespan=timespan)
-        return result
+    def translate(self, translation):
+        '''Translate division region product by `translation`:
+        
+        ::
+
+            >>> payload = [(6, 8), (6, 8), (3, 4)]
+            >>> timespan = timespantools.Timespan(0, Infinity)
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespan)
+
+        ::
+
+            >>> result = product.translate(10)
+
+        ::
+
+            >>> z(product)
+            settingtools.DivisionRegionProduct(
+                payload=settingtools.DivisionList(
+                    [Division('[6, 8]'), Division('[6, 8]'), Division('[3, 4]')]
+                    ),
+                voice_name='Voice 1',
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(10, 1),
+                    stop_offset=durationtools.Offset(49, 4)
+                    )
+                )
+
+        Operate in place and return division region product.
+        '''
+        return RegionProduct.translate(self, translation)

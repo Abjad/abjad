@@ -52,9 +52,8 @@ class DivisionRegionCommand(RegionCommand):
             division_region_product = division_region_product.new(payload=division_list)
             right = self.timespan.start_offset
             left = division_region_product.timespan.start_offset
-            addendum = right - left
-            division_region_product = division_region_product.translate_offsets(
-                start_offset_translation=addendum, stop_offset_translation=addendum)
+            translation = right - left
+            division_region_product.translate(translation)
             return [division_region_product]
         else:
             divisions = self.request._get_payload(score_specification, request_voice_name)
