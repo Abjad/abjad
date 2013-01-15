@@ -35,6 +35,9 @@ Methods
 .. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.new
    :noindex:
 
+.. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.partition_by_ratio
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.reflect
    :noindex:
 

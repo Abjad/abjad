@@ -1,8 +1,11 @@
 import abc
 import copy
+import numbers
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import durationtools
+from abjad.tools import mathtools
+from abjad.tools import sequencetools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -158,6 +161,10 @@ class RegionProduct(AbjadObject):
     def _duration(self):
         return self.payload.duration
 
+    @abc.abstractproperty
+    def _payload_elements(self):
+        pass
+
     @property
     def _stop_offset(self):
         return self._start_offset + self._duration
@@ -169,6 +176,18 @@ class RegionProduct(AbjadObject):
             if self.timespan.stops_when_timespan_starts(expr):
                 return self.voice_name == expr.voice_name
         return False
+
+    def _get_duration_of_expr(self, expr):
+        duration = durationtools.Duration(0)
+        for element in expr:
+            if hasattr(element, 'duration'):
+                duration += element.duration
+            elif hasattr(element, 'prolated_duration'):
+                duration += element.prolated_duration
+            else:
+                assert isinstance(element, numbers.Number), repr(element)
+                duration += element
+        return duration
 
     @abc.abstractmethod
     def _split_payload_at_offsets(self, offsets):
@@ -232,6 +251,25 @@ class RegionProduct(AbjadObject):
             positional_argument_values.append(positional_argument_value)
         result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
         return result
+
+    def partition_by_ratio(self, ratio):
+        '''Partition region product payload by ratio.
+
+        Operate in place and return newly constructed inventory.
+        '''
+        from experimental.tools import settingtools
+        parts = sequencetools.partition_sequence_by_ratio_of_lengths(self._payload_elements, ratio)
+        durations = [self._get_duration_of_expr(part) for part in parts]
+        payload_parts = self._split_payload_at_offsets(durations)
+        start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
+        start_offsets = [self.start_offset + start_offset for start_offset in start_offsets]
+        region_products = settingtools.RegionCommandInventory()
+        for payload_part, start_offset in zip(payload_parts, start_offsets):
+            timespan = timespantools.Timespan(start_offset)
+            region_product = type(self)([], self.voice_name, timespan)
+            region_product._payload = payload_part
+            region_products.append(region_product)
+        return region_products
 
     def reflect(self):
         '''Reflect payload about region product axis.

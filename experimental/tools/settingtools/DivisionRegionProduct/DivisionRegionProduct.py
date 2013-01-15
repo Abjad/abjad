@@ -1,5 +1,6 @@
 import copy
 from abjad.tools import durationtools
+from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import timespantools
 from experimental.tools.settingtools.RegionProduct import RegionProduct
@@ -299,6 +300,12 @@ class DivisionRegionProduct(RegionProduct):
         '''
         return RegionProduct.__sub__(self, timespan)
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _payload_elements(self):
+        return self.payload.divisions
+
     ### PRIVATE METHODS ###
 
     def _split_payload_at_offsets(self, offsets):
@@ -400,7 +407,52 @@ class DivisionRegionProduct(RegionProduct):
         return RegionProduct.voice_name.fget(self)
         
     ### PUBLIC METHODS ###
-    
+
+    def partition_by_ratio(self, ratio):
+        '''Partition divisions by `ratio`:
+
+        ::
+
+            >>> payload = [(6, 8), (6, 8), (3, 4), (3, 4)]
+            >>> timespan = timespantools.Timespan(0, Infinity)
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespan)
+
+        ::
+
+            >>> result = product.partition_by_ratio((1, 1))
+
+        ::
+
+            >>> z(result)
+            settingtools.RegionCommandInventory([
+                settingtools.DivisionRegionProduct(
+                    payload=settingtools.DivisionList(
+                        [Division('[6, 8]'), Division('[6, 8]')],
+                        voice_name='Voice 1'
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(3, 2)
+                        )
+                    ),
+                settingtools.DivisionRegionProduct(
+                    payload=settingtools.DivisionList(
+                        [Division('[3, 4]'), Division('[3, 4]')],
+                        voice_name='Voice 1'
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(3, 2),
+                        stop_offset=durationtools.Offset(3, 1)
+                        )
+                    )
+                ])
+
+        Operate in place and return newly constructed inventory.
+        '''
+        return RegionProduct.partition_by_ratio(self, ratio)
+
     def reflect(self):
         '''Reflect divisions about axis:
 

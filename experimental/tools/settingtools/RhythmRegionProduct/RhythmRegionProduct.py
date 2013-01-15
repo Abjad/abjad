@@ -377,6 +377,10 @@ class RhythmRegionProduct(RegionProduct):
     def _duration(self):
         return self.payload.prolated_duration
 
+    @property
+    def _payload_elements(self):
+        return self.payload.leaves
+
     ### PRIVATE METHODS ###
 
     def _split_payload_at_offsets(self, offsets):
@@ -533,20 +537,7 @@ class RhythmRegionProduct(RegionProduct):
 
         Operate in place and return newly constructed region command inventory.
         '''
-        from experimental.tools import settingtools
-        parts = sequencetools.partition_sequence_by_ratio_of_lengths(self.payload.leaves, ratio)
-        parts = [selectiontools.Selection(part) for part in parts]
-        durations = [part.timespan.duration for part in parts]
-        payload_parts = self._split_payload_at_offsets(durations)
-        start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
-        start_offsets = [self.start_offset + start_offset for start_offset in start_offsets]
-        region_products = settingtools.RegionCommandInventory()
-        for payload_part, start_offset in zip(payload_parts, start_offsets):
-            timespan = timespantools.Timespan(start_offset)
-            region_product = type(self)(None, self.voice_name, timespan)
-            region_product._payload = payload_part
-            region_products.append(region_product)
-        return region_products
+        return RegionProduct.partition_by_ratio(self, ratio)
 
     def partition_by_ratio_of_durations(self, ratio):
         '''Partition leaves by `ratio` of durations:
