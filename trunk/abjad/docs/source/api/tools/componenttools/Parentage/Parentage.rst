@@ -53,6 +53,11 @@ Read-only Properties
 
    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.timespan
+   :noindex:
+
+   Inherited from :py:class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
+
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.tuplet_depth
    :noindex:
 

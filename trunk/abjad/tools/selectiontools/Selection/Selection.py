@@ -86,10 +86,19 @@ class Selection(AbjadObject):
 
     @property
     def start_offset(self):
-        '''Read-only start offset of earliest component in selection.'''
+        '''Read-only start offset of earliest component in selection.
+        '''
         return min(x.start_offset for x in self)
 
     @property
     def stop_offset(self):
-        '''Read-only stop offset of earliest component in selection.'''
+        '''Read-only stop offset of earliest component in selection.
+        '''
         return max(x.stop_offset for x in self)
+
+    @property
+    def timespan(self):
+        '''Read-only timespan of selection.
+        '''
+        from abjad.tools import timespantools
+        return timespantools.Timespan(self.start_offset, self.stop_offset)

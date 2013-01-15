@@ -32,6 +32,11 @@ Read-only Properties
 
    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: abjad.tools.componenttools.Descendants.Descendants.Descendants.timespan
+   :noindex:
+
+   Inherited from :py:class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
+
 Special Methods
 ---------------
 
