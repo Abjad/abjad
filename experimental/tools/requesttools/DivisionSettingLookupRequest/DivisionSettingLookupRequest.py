@@ -24,7 +24,7 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
         requesttools.DivisionSettingLookupRequest(
             'Voice 1',
             settingtools.OffsetExpression(
-                anchor=selectortools.BackgroundMeasureSelector(
+                anchor=selectortools.MeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
                     payload_callbacks=settingtools.CallbackInventory([

@@ -353,10 +353,10 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/selectortools/BackgroundMeasureSelector/BackgroundMeasureSelector
       tools/selectortools/BeatSelector/BeatSelector
       tools/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
       tools/selectortools/DivisionSelector/DivisionSelector
+      tools/selectortools/MeasureSelector/MeasureSelector
       tools/selectortools/SegmentSelector/SegmentSelector
 
 .. only:: latex
@@ -373,10 +373,10 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/selectortools/BackgroundMeasureSelector/BackgroundMeasureSelector
       tools/selectortools/BeatSelector/BeatSelector
       tools/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
       tools/selectortools/DivisionSelector/DivisionSelector
+      tools/selectortools/MeasureSelector/MeasureSelector
       tools/selectortools/SegmentSelector/SegmentSelector
 
 :py:mod:`settingtools <experimental.tools.settingtools>`

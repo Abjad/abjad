@@ -2,7 +2,7 @@ from abjad import *
 from experimental.tools import *
 
 
-def test_BackgroundMeasureSelector__payload_callbacks_01():
+def test_MeasureSelector__payload_callbacks_01():
     '''Measures __getitem__().
     '''
 
@@ -21,7 +21,7 @@ def test_BackgroundMeasureSelector__payload_callbacks_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__payload_callbacks_02():
+def test_MeasureSelector__payload_callbacks_02():
     '''Partition measures by ratio of counts.
     '''
 
@@ -40,7 +40,7 @@ def test_BackgroundMeasureSelector__payload_callbacks_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__payload_callbacks_03():
+def test_MeasureSelector__payload_callbacks_03():
     '''Partition measures by ratio of durations.
     '''
 
@@ -59,7 +59,7 @@ def test_BackgroundMeasureSelector__payload_callbacks_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__payload_callbacks_04():
+def test_MeasureSelector__payload_callbacks_04():
     '''Repeat measures to length.
     '''
 
@@ -79,7 +79,7 @@ def test_BackgroundMeasureSelector__payload_callbacks_04():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__payload_callbacks_05():
+def test_MeasureSelector__payload_callbacks_05():
     '''Repeat measures to duration.
     '''
 
@@ -99,7 +99,7 @@ def test_BackgroundMeasureSelector__payload_callbacks_05():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__payload_callbacks_06():
+def test_MeasureSelector__payload_callbacks_06():
     '''Reflect measures.
     '''
 
@@ -119,7 +119,7 @@ def test_BackgroundMeasureSelector__payload_callbacks_06():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__payload_callbacks_07():
+def test_MeasureSelector__payload_callbacks_07():
     '''Rotate measures.
     '''
 

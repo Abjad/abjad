@@ -6,7 +6,7 @@ from abjad.tools import timespantools
 from experimental.tools.selectortools.Selector import Selector
 
 
-class BackgroundMeasureSelector(Selector):
+class MeasureSelector(Selector):
     r'''Background measure selector.
 
     ::
@@ -26,7 +26,7 @@ class BackgroundMeasureSelector(Selector):
     ::
 
         >>> z(selector)
-        selectortools.BackgroundMeasureSelector(
+        selectortools.MeasureSelector(
             voice_name='Voice 1'
             )
 
@@ -37,7 +37,7 @@ class BackgroundMeasureSelector(Selector):
     ::
 
         >>> z(selector)
-        selectortools.BackgroundMeasureSelector(
+        selectortools.MeasureSelector(
             anchor='red',
             voice_name='Voice 1'
             )
@@ -50,7 +50,7 @@ class BackgroundMeasureSelector(Selector):
     ::
 
         >>> z(selector)
-        selectortools.BackgroundMeasureSelector(
+        selectortools.MeasureSelector(
             anchor=selectortools.SegmentSelector(
                 voice_name='Voice 1',
                 payload_callbacks=settingtools.CallbackInventory([

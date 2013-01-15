@@ -2,7 +2,7 @@ from abjad import *
 from experimental.tools import *
 
 
-def test_BackgroundMeasureSelector__timespan_callbacks_01():
+def test_MeasureSelector__timespan_callbacks_01():
     '''Scale timespan.
     '''
 
@@ -22,7 +22,7 @@ def test_BackgroundMeasureSelector__timespan_callbacks_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__timespan_callbacks_02():
+def test_MeasureSelector__timespan_callbacks_02():
     '''Set timespan duration.
     '''
 
@@ -42,7 +42,7 @@ def test_BackgroundMeasureSelector__timespan_callbacks_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__timespan_callbacks_03():
+def test_MeasureSelector__timespan_callbacks_03():
     '''Set timespan start offset.
     '''
 
@@ -62,7 +62,7 @@ def test_BackgroundMeasureSelector__timespan_callbacks_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__timespan_callbacks_04():
+def test_MeasureSelector__timespan_callbacks_04():
     '''Set timespan stop offset.
     '''
 
@@ -82,7 +82,7 @@ def test_BackgroundMeasureSelector__timespan_callbacks_04():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__timespan_callbacks_05():
+def test_MeasureSelector__timespan_callbacks_05():
     '''Translate timespan.
     '''
 
@@ -102,7 +102,7 @@ def test_BackgroundMeasureSelector__timespan_callbacks_05():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__timespan_callbacks_06():
+def test_MeasureSelector__timespan_callbacks_06():
     '''Translate timespan start offset.
     '''
 
@@ -122,7 +122,7 @@ def test_BackgroundMeasureSelector__timespan_callbacks_06():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__timespan_callbacks_07():
+def test_MeasureSelector__timespan_callbacks_07():
     '''Translate timespan stop offset.
     '''
 
@@ -142,7 +142,7 @@ def test_BackgroundMeasureSelector__timespan_callbacks_07():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__timespan_callbacks_08():
+def test_MeasureSelector__timespan_callbacks_08():
     '''Stacked timespan payload_callbacks applied in composition.
     '''
 

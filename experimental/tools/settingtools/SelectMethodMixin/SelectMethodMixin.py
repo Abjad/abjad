@@ -29,7 +29,7 @@ class SelectMethodMixin(AbjadObject):
         ::
 
             >>> z(selector)
-            selectortools.BackgroundMeasureSelector(
+            selectortools.MeasureSelector(
                 anchor='red',
                 voice_name='Voice 1'
                 )
@@ -37,7 +37,7 @@ class SelectMethodMixin(AbjadObject):
         Return background measure selector.
         '''
         from experimental.tools import selectortools
-        selector = selectortools.BackgroundMeasureSelector(
+        selector = selectortools.MeasureSelector(
             anchor=self._anchor_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation

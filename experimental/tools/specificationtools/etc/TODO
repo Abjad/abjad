@@ -67,8 +67,8 @@
 14. Clean up region product docstrings.
 
 15. Extend SelectMethodMixin with select_time_signatures() method.
-    (Fine for the method to return BackgroundMeasureSelector.)
-    (Fine to implement new TimeSignatureSelector that subclasses BackgroundMeasureSelector.)
+    (Fine for the method to return MeasureSelector.)
+    (Fine to implement new TimeSignatureSelector that subclasses MeasureSelector.)
     Then change ...
         measures = red_segment.select_background_measures('Voice 1')
         blue_segment.set_time_signatures(measures)
@@ -77,8 +77,7 @@
         red_segment.set_time_signatures(time_signatures)
     ... throughout tests.
 
-16. Change BackgroundMeasureSelector to MeasureSelector.
-    Change SelectMethodMixin.select_background_measures to SelectMethodMixin.select_measures().
+16. Change SelectMethodMixin.select_background_measures to SelectMethodMixin.select_measures().
     Remove 'background' globally from the codebase.
 
 17. Add a test to show this:
