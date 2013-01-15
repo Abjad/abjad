@@ -402,7 +402,35 @@ class DivisionRegionProduct(RegionProduct):
     ### PUBLIC METHODS ###
     
     def reflect(self):
-        self.payload.reflect()
+        '''Reflect divisions about axis:
+
+        ::
+
+            >>> payload = [(6, 8), (6, 8), (3, 4)]
+            >>> timespan = timespantools.Timespan(0, Infinity)
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespan)
+
+        ::
+
+            >>> result = product.reflect()    
+
+        ::
+
+            >>> z(product)
+            settingtools.DivisionRegionProduct(
+                payload=settingtools.DivisionList(
+                    [Division('[3, 4]'), Division('[6, 8]'), Division('[6, 8]')]
+                    ),
+                voice_name='Voice 1',
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(9, 4)
+                    )
+                )
+
+        Operate in place and return division region product.
+        '''
+        return RegionProduct.reflect(self)
 
     def translate(self, translation):
         '''Translate division region product by `translation`:

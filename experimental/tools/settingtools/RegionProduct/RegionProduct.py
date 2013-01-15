@@ -233,6 +233,14 @@ class RegionProduct(AbjadObject):
         result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
         return result
 
+    def reflect(self):
+        '''Reflect payload about region product axis.
+
+        Operate in place and return region product.
+        '''
+        self.payload.reflect()
+        return self
+
     def translate(self, translation):
         '''Operate in place and return region product.
         '''

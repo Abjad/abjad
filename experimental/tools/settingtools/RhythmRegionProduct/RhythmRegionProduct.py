@@ -609,7 +609,7 @@ class RhythmRegionProduct(RegionProduct):
         return region_products
 
     def reflect(self):
-        '''Reflect rhythm about rhythm region product axis:
+        '''Reflect rhythm about axis:
 
         ::
 
