@@ -15,27 +15,17 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`
-
 .. autoattribute:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.stop_offset
    :noindex:
-
-   Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`
 
 .. autoattribute:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.storage_format
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.timespan
    :noindex:
 
-   Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`
-
 .. autoattribute:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.voice_name
    :noindex:
-
-   Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`
 
 Methods
 -------
@@ -68,8 +58,6 @@ Methods
 
 .. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.translate
    :noindex:
-
-   Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`
 
 Special Methods
 ---------------

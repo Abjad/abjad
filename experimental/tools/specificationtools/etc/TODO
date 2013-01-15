@@ -141,8 +141,7 @@
 
 29. Write PayloadCallbackMixin.__and__() tests for all selectors.
 
-30. Add docstring examples for recent RhythmRegionProduct methods.
-    Move recent RhythmRegionProduct methods up to RegionProduct.
+30. Move recent RhythmRegionProduct methods up to RegionProduct.
     Add docstring examples for the same methods bound to DivisionRegionProduct.
 
 31. Change region product classes back to start-offset initialization instead of timespan initialization.

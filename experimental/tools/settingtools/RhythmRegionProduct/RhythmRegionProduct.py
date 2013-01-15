@@ -36,18 +36,14 @@ class RhythmRegionProduct(RegionProduct):
                 )
             )
 
-    Contiguous block of counttime components specified by voice.
+    Contiguous block of one voice's counttime components.
 
-    The interpretive process of building up the rhythm for a complete
-    voice involves the generation of many different rhythm region products.
-    Voice rhythm interpretation completes when contiguous rhythm region 
-    products exist to account for the duration of the voice.
+    Rhythm interpretation generates many rhythm region products.
 
-    The rhythm region products that together constitute the rhythm 
-    of a voice may not be constructed in chronological order 
-    during interpretation.
+    Rhythm interpretation completes when contiguous rhythm region
+    products exist to account for the duration of every voice.
 
-    Interpreter byproduct.
+    Rhythm region products may be constructed out of chronological order.
     '''
 
     ### INITIALIZER ###
@@ -210,90 +206,90 @@ class RhythmRegionProduct(RegionProduct):
                         )
                     ])
 
-            Example 2. Subtract from right:
+        Example 2. Subtract from right:
 
-            ::
+        ::
 
-                >>> payload = [Container("c'8 d'8 e'8 f'8")]
-                >>> timespan = timespantools.Timespan(0, Infinity)
-                >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
-                >>> result = product - timespantools.Timespan(Offset(3, 8), 100)
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> timespan = timespantools.Timespan(0, Infinity)
+            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
+            >>> result = product - timespantools.Timespan(Offset(3, 8), 100)
 
-            ::
+        ::
 
-                >>> z(result)
-                timespantools.TimespanInventory([
-                    settingtools.RhythmRegionProduct(
-                        payload=containertools.Container(
-                            music=({c'8, d'8, e'8},)
-                            ),
-                        voice_name='Voice 1',
-                        timespan=timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(3, 8)
-                            )
-                        )
-                    ])
-
-            Example 3. Subtract from middle:
-
-            ::
-
-                >>> payload = [Container("c'8 d'8 e'8 f'8")]
-                >>> timespan = timespantools.Timespan(0, Infinity)
-                >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
-                >>> result = product - timespantools.Timespan(Offset(1, 8), Offset(3, 8))
-
-            ::
-
-                >>> z(result)
-                timespantools.TimespanInventory([
-                    settingtools.RhythmRegionProduct(
-                        payload=containertools.Container(
-                            music=({c'8},)
-                            ),
-                        voice_name='Voice 1',
-                        timespan=timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(1, 8)
-                            )
+            >>> z(result)
+            timespantools.TimespanInventory([
+                settingtools.RhythmRegionProduct(
+                    payload=containertools.Container(
+                        music=({c'8, d'8, e'8},)
                         ),
-                    settingtools.RhythmRegionProduct(
-                        payload=containertools.Container(
-                            music=({f'8},)
-                            ),
-                        voice_name='Voice 1',
-                        timespan=timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 8),
-                            stop_offset=durationtools.Offset(1, 2)
-                            )
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(3, 8)
                         )
-                    ])
+                    )
+                ])
 
-            Example 4. Subtract nothing:
+        Example 3. Subtract from middle:
 
-            ::
+        ::
 
-                >>> payload = [Container("c'8 d'8 e'8 f'8")]
-                >>> timespan = timespantools.Timespan(0, Infinity)
-                >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
-                >>> result = product - timespantools.Timespan(100, 200)
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> timespan = timespantools.Timespan(0, Infinity)
+            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
+            >>> result = product - timespantools.Timespan(Offset(1, 8), Offset(3, 8))
 
-            ::
+        ::
 
-                >>> z(result)
-                timespantools.TimespanInventory([
-                    settingtools.RhythmRegionProduct(
-                        payload=containertools.Container(
-                            music=({c'8, d'8, e'8, f'8},)
-                            ),
-                        voice_name='Voice 1',
-                        timespan=timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(1, 2)
-                            )
+            >>> z(result)
+            timespantools.TimespanInventory([
+                settingtools.RhythmRegionProduct(
+                    payload=containertools.Container(
+                        music=({c'8},)
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(1, 8)
                         )
-                    ])
+                    ),
+                settingtools.RhythmRegionProduct(
+                    payload=containertools.Container(
+                        music=({f'8},)
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(3, 8),
+                        stop_offset=durationtools.Offset(1, 2)
+                        )
+                    )
+                ])
+
+        Example 4. Subtract nothing:
+
+        ::
+
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> timespan = timespantools.Timespan(0, Infinity)
+            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
+            >>> result = product - timespantools.Timespan(100, 200)
+
+        ::
+
+            >>> z(result)
+            timespantools.TimespanInventory([
+                settingtools.RhythmRegionProduct(
+                    payload=containertools.Container(
+                        music=({c'8, d'8, e'8, f'8},)
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(1, 2)
+                        )
+                    )
+                ])
 
         Operate in place and return timespan inventory.
         '''
@@ -333,6 +329,80 @@ class RhythmRegionProduct(RegionProduct):
         Return container.
         '''
         return self._payload
+
+    @property
+    def start_offset(self):
+        '''Rhythm region product start offset:
+
+        ::
+
+            >>> product.start_offset
+            Offset(0, 1)
+
+        Return offset.
+        '''
+        return RegionProduct.start_offset.fget(self)
+
+    @property
+    def stop_offset(self):
+        '''Rhythm region product stop offset:
+
+        ::
+
+            >>> product.stop_offset
+            Offset(1, 2)
+
+        Return offset.
+        '''
+        return RegionProduct.stop_offset.fget(self)
+
+    @property
+    def storage_format(self):
+        '''Rhythm region product storage format:
+
+        ::
+
+            >>> z(product)
+            settingtools.RhythmRegionProduct(
+                payload=containertools.Container(
+                    music=({c'8, d'8, e'8, f'8},)
+                    ),
+                voice_name='Voice 1',
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(1, 2)
+                    )
+                )
+
+        Return string.
+        '''
+        return RegionProduct.storage_format.fget(self)
+
+    @property
+    def timespan(self):
+        '''Rhythm region product timespan:
+
+        ::
+
+            >>> product.timespan
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(1, 2))
+
+        Return timespan.
+        '''
+        return RegionProduct.timespan.fget(self)
+
+    @property
+    def voice_name(self):
+        '''Rhythm region product voice name:
+
+        ::
+
+            >>> product.voice_name
+            'Voice 1'
+
+        Return string.
+        '''
+        return RegionProduct.voice_name.fget(self)
 
     ### PUBLIC METHODS ###
 
@@ -500,8 +570,58 @@ class RhythmRegionProduct(RegionProduct):
     def repeat_to_duration(self, duration):
         '''Repeat to `duration`.
 
-        .. note:: add example.
-        
+        Example 1. Repeat to duration less than rhythm region product:
+
+        ::
+
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> timespan = timespantools.Timespan(0, Infinity)
+            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
+
+        ::
+
+            >>> result = product.repeat_to_duration(Duration(5, 16))
+
+        ::
+
+            >>> z(product)
+            settingtools.RhythmRegionProduct(
+                payload=containertools.Container(
+                    music=({c'8, d'8, e'16},)
+                    ),
+                voice_name='Voice 1',
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(5, 16)
+                    )
+                )
+
+        Example 2. Repeat to duration greater than rhythm region product:
+
+        ::
+
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> timespan = timespantools.Timespan(0, Infinity)
+            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
+
+        ::
+
+            >>> result = product.repeat_to_duration(Duration(13, 16))
+
+        ::
+
+            >>> z(product)
+            settingtools.RhythmRegionProduct(
+                payload=containertools.Container(
+                    music=({c'8, d'8, e'8, f'8}, {c'8, d'8, e'16})
+                    ),
+                voice_name='Voice 1',
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(13, 16)
+                    )
+                )
+
         Operate in place and return rhythm region product.
         '''
         if self.timespan.duration < duration:
@@ -518,10 +638,60 @@ class RhythmRegionProduct(RegionProduct):
             return self
 
     def repeat_to_length(self, length):
-        '''Repeat to `length` of leaves.
+        '''Repeat to leaf `length`.
 
-        .. note:: add example.
-        
+        Example 1. Repeat to `length` less than rhythm region product:
+    
+        ::
+
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> timespan = timespantools.Timespan(0, Infinity)
+            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
+
+        ::
+
+            >>> result = product.repeat_to_length(3)
+
+        ::
+
+            >>> z(product)
+            settingtools.RhythmRegionProduct(
+                payload=containertools.Container(
+                    music=({c'8, d'8, e'8},)
+                    ),
+                voice_name='Voice 1',
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(3, 8)
+                    )
+                )
+
+        Example 2. Repeat to `length` greater than rhythm region product:
+    
+        ::
+
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> timespan = timespantools.Timespan(0, Infinity)
+            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
+
+        ::
+
+            >>> result = product.repeat_to_length(7)
+
+        ::
+
+            >>> z(product)
+            settingtools.RhythmRegionProduct(
+                payload=containertools.Container(
+                    music=({c'8, d'8, e'8, f'8}, {c'8, d'8, e'8})
+                    ),
+                voice_name='Voice 1',
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(7, 8)
+                    )
+                )
+
         Operate in place and return rhythm region product.
         '''
         leaves = sequencetools.CyclicTuple(self.payload.leaves)
@@ -709,3 +879,34 @@ class RhythmRegionProduct(RegionProduct):
                 spanner._components.sort(lambda x, y: cmp(x.parentage.score_index, y.parentage.score_index))
             assert wellformednesstools.is_well_formed_component(self.payload)
         return self
+
+    def translate(self, translation):
+        '''Translate rhythm region product by `translation`:
+        
+        ::
+
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> timespan = timespantools.Timespan(0, Infinity)
+            >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
+
+        ::
+
+            >>> result = product.translate(10)
+
+        ::
+
+            >>> z(product)
+            settingtools.RhythmRegionProduct(
+                payload=containertools.Container(
+                    music=({c'8, d'8, e'8, f'8},)
+                    ),
+                voice_name='Voice 1',
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(10, 1),
+                    stop_offset=durationtools.Offset(21, 2)
+                    )
+                )
+
+        Operate in place and return rhythm region product.
+        '''
+        return RegionProduct.translate(self, translation)
