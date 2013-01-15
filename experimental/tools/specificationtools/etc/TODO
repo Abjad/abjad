@@ -121,13 +121,8 @@
 
 24. Author tests to show each payload callback applied to each selector.
     Remaining tests to author:
-        leaves.__getitem__()
         leaves.partition_by_ratio()
         leaves.partition_by_ratio_of_durations()
-        leaves.repeat_to_duration()
-        leaves.repeat_to_length()
-        leaves.reflect()
-        leaves.rotate()
 
 25. Author payload callback tests for all payload callbacks on an AbsoluteExpression.
 

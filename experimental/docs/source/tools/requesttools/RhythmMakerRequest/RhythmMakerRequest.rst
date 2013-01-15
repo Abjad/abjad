@@ -50,11 +50,6 @@ Methods
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.repeat_to_stop_offset
-   :noindex:
-
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
-
 .. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.rotate
    :noindex:
 

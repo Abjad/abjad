@@ -154,16 +154,24 @@ class RhythmRegionProduct(RegionProduct):
 
     def __copy__(self, *args):
         new = type(self)(voice_name=self.voice_name, timespan=self.timespan)
-        # TODO: use copy.deepcopy() instead
+        # TODO: use copy.deepcopy() instead (once Component.__deepcopy__ is unaliased)
         new._payload = componenttools.copy_components_and_covered_spanners([self.payload])[0]
         return new
 
     __deepcopy__ = __copy__
 
-    def __getitem__(self, expr):
-        # it's possible that payload deepcopy will be required.
-        # try returning references first and see if it causes problems.
-        return self.payload.__getitem__(expr)
+    def _getitem(self, expr):
+        assert isinstance(expr, slice), repr(expr)
+        leaves = self.payload.leaves.__getitem__(expr)
+        start_offset = leaves[0].start_offset
+        stop_offset = leaves[-1].stop_offset
+        timespan = timespantools.Timespan(start_offset, stop_offset)
+        timespan = timespan.translate(self.start_offset)
+        result = self & timespan
+        assert len(result) == 1, repr(result)
+        result = result[0]
+        result = result.translate(-start_offset)
+        return result
 
     def __len__(self): 
         '''Defined equal to number of leaves in payload.

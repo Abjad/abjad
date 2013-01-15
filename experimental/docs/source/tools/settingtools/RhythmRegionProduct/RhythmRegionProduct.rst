@@ -48,6 +48,12 @@ Methods
 .. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.reflect
    :noindex:
 
+.. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.repeat_to_duration
+   :noindex:
+
+.. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.repeat_to_length
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.repeat_to_stop_offset
    :noindex:
 
@@ -74,9 +80,6 @@ Special Methods
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.__getitem__
-   :noindex:
 
 .. automethod:: experimental.tools.settingtools.RhythmRegionProduct.RhythmRegionProduct.RhythmRegionProduct.__gt__
    :noindex:

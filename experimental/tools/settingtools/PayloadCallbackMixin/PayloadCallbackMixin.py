@@ -53,9 +53,6 @@ class PayloadCallbackMixin(Expression):
         '''
         callback = 'result = self.___getitem__(elements, start_offset, {!r})'
         callback = callback.format(expr)
-        #result = copy.deepcopy(self)
-        #result.payload_callbacks.append(callback)
-        #return result
         return self._copy_and_append_payload_callback(callback)
 
     ### PRIVATE READ-ONLY PROPERTIES ###
@@ -88,16 +85,20 @@ class PayloadCallbackMixin(Expression):
 
     def ___getitem__(self, elements, original_start_offset, expr):
         assert isinstance(expr, slice)
-        start_index, stop_index, stride = expr.indices(len(elements))
-        selected_elements = elements[expr]
-        elements_before = elements[:start_index]
-        if original_start_offset is not None:
-            duration_before = sum([self._duration_helper(x) for x in elements_before])
-            start_offset = durationtools.Offset(duration_before)
-            new_start_offset = original_start_offset + start_offset
+        if hasattr(elements, '_getitem'):
+            result = elements._getitem(expr) 
+            return result, original_start_offset
         else:
-            new_start_offset = None
-        return selected_elements, new_start_offset
+            start_index, stop_index, stride = expr.indices(len(elements))
+            selected_elements = elements[expr]
+            elements_before = elements[:start_index]
+            if original_start_offset is not None:
+                duration_before = sum([self._duration_helper(x) for x in elements_before])
+                start_offset = durationtools.Offset(duration_before)
+                new_start_offset = original_start_offset + start_offset
+            else:
+                new_start_offset = None
+            return selected_elements, new_start_offset
 
     def _apply_payload_callbacks(self, elements, start_offset):
         from experimental.tools import settingtools
