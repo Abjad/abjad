@@ -6,9 +6,36 @@ from experimental.tools.settingtools.RegionProduct import RegionProduct
 
 
 class DivisionRegionProduct(RegionProduct):
-    r'''Division region expression.
+    r'''Division region product:
 
-    Interpreter byproduct.
+    ::
+
+        >>> payload = [(6, 8), (6, 8), (3, 4)]
+        >>> timespan = timespantools.Timespan(0, Infinity)
+        >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespan)
+
+    ::
+
+        >>> z(product)
+        settingtools.DivisionRegionProduct(
+            payload=settingtools.DivisionList(
+                [Division('[6, 8]'), Division('[6, 8]'), Division('[3, 4]')]
+                ),
+            voice_name='Voice 1',
+            timespan=timespantools.Timespan(
+                start_offset=durationtools.Offset(0, 1),
+                stop_offset=durationtools.Offset(9, 4)
+                )
+            )
+
+    Contiguous block of one voice's divisions.
+
+    Division interpretation generates many division region products.
+    
+    Division interpretation completes when contiguous division region
+    products exist to account for the duration of every voice.
+
+    Division region products may be constructed out of chronological order.
     '''
 
     ### INITIALIZER ###
@@ -272,12 +299,6 @@ class DivisionRegionProduct(RegionProduct):
         '''
         return RegionProduct.__sub__(self, timespan)
 
-    ### READ-ONLY PRIVATE PROPERTIES ##
-
-    @property
-    def _duration(self):
-        return self.payload.duration
-
     ### PRIVATE METHODS ###
 
     def _split_payload_at_offsets(self, offsets):
@@ -293,11 +314,90 @@ class DivisionRegionProduct(RegionProduct):
 
     @property
     def payload(self):
-        '''Division region product payload.
+        '''Division region product payload:
+
+        ::
+
+            >>> product.payload
+            DivisionList('[6, 8], [6, 8], [3, 4]')
 
         Return division list.
         '''
-        return self._payload
+        return RegionProduct.payload.fget(self)
+
+    @property
+    def start_offset(self):
+        '''Division region product start offset:
+
+        ::
+
+            >>> product.start_offset
+            Offset(0, 1)
+
+        Return offset.
+        '''
+        return RegionProduct.start_offset.fget(self)
+
+    @property
+    def stop_offset(self):
+        '''Division region product stop offset:
+
+        ::
+
+            >>> product.stop_offset
+            Offset(9, 4)
+
+        Return offset.
+        '''
+        return RegionProduct.stop_offset.fget(self)
+
+    @property
+    def storage_format(self):
+        '''Division region product storage format:
+
+        ::
+
+            >>> z(product)
+            settingtools.DivisionRegionProduct(
+                payload=settingtools.DivisionList(
+                    [Division('[6, 8]'), Division('[6, 8]'), Division('[3, 4]')]
+                    ),
+                voice_name='Voice 1',
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(9, 4)
+                    )
+                )
+
+        Return string.
+        '''
+        return RegionProduct.storage_format.fget(self)
+
+    @property
+    def timespan(self):
+        '''Division region product timespan:
+
+        ::
+
+            >>> product.timespan
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(9, 4))
+
+        Return timespan.
+        '''
+        return RegionProduct.timespan.fget(self)
+
+    @property
+    def voice_name(self):
+        '''Division region product voice name:
+
+        ::
+
+            >>> product.voice_name
+            'Voice 1'
+
+        Return string.
+        '''
+        return RegionProduct.voice_name.fget(self)
         
     ### PUBLIC METHODS ###
     

@@ -154,9 +154,9 @@ class RegionProduct(AbjadObject):
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
-    @abc.abstractproperty
+    @property
     def _duration(self):
-        pass
+        return self.payload.duration
 
     @property
     def _stop_offset(self):
@@ -169,27 +169,49 @@ class RegionProduct(AbjadObject):
             if self.timespan.stops_when_timespan_starts(expr):
                 return self.voice_name == expr.voice_name
         return False
+
+    @abc.abstractmethod
+    def _split_payload_at_offsets(self, offsets):
+        pass
         
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def payload(self):
+        '''Region product payload.
+        '''
         return self._payload
 
     @property
     def start_offset(self):
+        '''Region product start offset.
+    
+        Return offset.
+        '''
         return self.timespan.start_offset
 
     @property
     def stop_offset(self):
+        '''Region product stop offset.
+
+        Return offset.
+        '''
         return self.timespan.stop_offset
 
     @property
     def timespan(self):
+        '''Region product timespan.
+
+        Return timespan.
+        '''
         return timespantools.Timespan(self._start_offset, self._stop_offset)
 
     @property
     def voice_name(self):
+        '''Region product voice name.
+
+        Return string.
+        '''
         return self._voice_name
 
     ### PUBLIC METHODS ###

@@ -15,27 +15,17 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`
-
 .. autoattribute:: experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct.stop_offset
    :noindex:
-
-   Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`
 
 .. autoattribute:: experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct.storage_format
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct.timespan
    :noindex:
 
-   Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`
-
 .. autoattribute:: experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct.voice_name
    :noindex:
-
-   Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`
 
 Methods
 -------

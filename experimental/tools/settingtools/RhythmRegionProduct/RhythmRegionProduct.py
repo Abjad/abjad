@@ -404,7 +404,7 @@ class RhythmRegionProduct(RegionProduct):
 
         Return container.
         '''
-        return self._payload
+        return RegionProduct.payload.fget(self)
 
     @property
     def start_offset(self):
