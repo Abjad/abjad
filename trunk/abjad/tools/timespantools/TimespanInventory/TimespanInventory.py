@@ -277,7 +277,7 @@ class TimespanInventory(ObjectInventory):
 
         Return duration.
         '''
-        if self.stop_offset is not None and self.start_offset is not None:
+        if self.stop_offset is not Infinity and self.start_offset is not NegativeInfinity:
             return self.stop_offset - self.start_offset
         else:
             return durationtools.Duration(0)
@@ -338,17 +338,19 @@ class TimespanInventory(ObjectInventory):
             >>> timespan_inventory_2.start_offset
             Offset(0, 1)
 
-        None when empty:
+        Negative infinity when empty:
 
         ::
 
-            >>> timespan_inventory_3.start_offset is None
-            True
+            >>> timespan_inventory_3.start_offset
+            NegativeInfinity
             
         Return offset or none.
         '''
         if self:
             return min([self._get_timespan(expr).start_offset for expr in self])
+        else:
+            return NegativeInfinity
 
     @property
     def stop_offset(self):
@@ -364,17 +366,19 @@ class TimespanInventory(ObjectInventory):
             >>> timespan_inventory_2.stop_offset
             Offset(20, 1)
             
-        None when empty:
+        Infinity when empty:
 
         ::
 
-            >>> timespan_inventory_3.stop_offset is None
-            True
+            >>> timespan_inventory_3.stop_offset
+            Infinity
 
         Return offset or none.
         '''
         if self:
             return max([self._get_timespan(expr).stop_offset for expr in self])
+        else:
+            return Infinity
 
     @property
     def timespan(self):

@@ -1381,6 +1381,8 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
+      tools/mathtools/Infinity/Infinity
+      tools/mathtools/NegativeInfinity/NegativeInfinity
       tools/mathtools/NonreducedFraction/NonreducedFraction
       tools/mathtools/NonreducedRatio/NonreducedRatio
       tools/mathtools/Ratio/Ratio
@@ -1456,6 +1458,8 @@ Core composition packages
 
    .. toctree::
 
+      tools/mathtools/Infinity/Infinity
+      tools/mathtools/NegativeInfinity/NegativeInfinity
       tools/mathtools/NonreducedFraction/NonreducedFraction
       tools/mathtools/NonreducedRatio/NonreducedRatio
       tools/mathtools/Ratio/Ratio
