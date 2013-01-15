@@ -115,9 +115,6 @@ class DivisionRegionProduct(RegionProduct):
         '''
         return RegionProduct.__and__(self, timespan)
 
-    def __len__(self):
-        return len(self.payload)
-
     def __or__(self, expr):
         '''Logical OR of two division region products:
 
@@ -155,10 +152,7 @@ class DivisionRegionProduct(RegionProduct):
 
         Return timespan inventory.
         '''
-        assert self._can_fuse(expr)
-        division_list = self.payload + expr.payload
-        result = type(self)(division_list, voice_name=self.voice_name, timespan=self.timespan)
-        return timespantools.TimespanInventory([result])
+        return RegionProduct.__or__(self, expr)
 
     def __sub__(self, timespan):
         '''Subtract `timespan` from division region product.

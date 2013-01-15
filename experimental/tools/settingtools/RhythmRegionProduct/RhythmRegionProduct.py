@@ -178,6 +178,82 @@ class RhythmRegionProduct(RegionProduct):
         '''
         return len(self.payload.leaves)
 
+    def __or__(self, expr):
+        '''Logical OR of two rhythm region products:
+
+        ::
+
+            >>> payload = [Container("c'8 d'8 e'8 f'8")]
+            >>> timespan = timespantools.Timespan(0, Infinity)
+            >>> product_1 = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
+
+        ::
+
+            >>> payload = [Container("g'8 a'8 b'8 c''8")]
+            >>> timespan = timespantools.Timespan(Offset(4, 8), Infinity)
+            >>> product_2 = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
+
+        ::
+
+            >>> product_1.timespan.stops_when_timespan_starts(product_2)
+            True
+
+        ::
+
+            >>> result = product_1 | product_2
+
+        ::
+        
+            >>> z(result)
+            timespantools.TimespanInventory([
+                settingtools.RhythmRegionProduct(
+                    payload=containertools.Container(
+                        music=({c'8, d'8, e'8, f'8, g'8, a'8, b'8, c''8},)
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(1, 1)
+                        )
+                    )
+                ])
+
+        Leave rhythm region product unchanged:
+
+        ::
+
+            >>> z(product_1)
+            settingtools.RhythmRegionProduct(
+                payload=containertools.Container(
+                    music=({c'8, d'8, e'8, f'8},)
+                    ),
+                voice_name='Voice 1',
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(1, 2)
+                    )
+                )
+
+        Leave `expr` unchanged:
+
+        ::
+
+            >>> z(product_2)
+            settingtools.RhythmRegionProduct(
+                payload=containertools.Container(
+                    music=({g'8, a'8, b'8, c''8},)
+                    ),
+                voice_name='Voice 1',
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(1, 2),
+                    stop_offset=durationtools.Offset(1, 1)
+                    )
+                )
+
+        Return region command inventory.
+        '''
+        return RegionProduct.__or__(self, expr)
+
     def __sub__(self, timespan):
         '''Subtract `timespan` from rhythm region product.
 

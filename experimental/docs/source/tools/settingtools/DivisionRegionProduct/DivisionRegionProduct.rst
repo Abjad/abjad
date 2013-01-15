@@ -88,6 +88,8 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct.__len__
    :noindex:
 
+   Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`
+
 .. automethod:: experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct.__lt__
    :noindex:
 

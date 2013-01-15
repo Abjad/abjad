@@ -64,6 +64,9 @@ Special Methods
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.__len__
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.__lt__
    :noindex:
 
@@ -71,6 +74,9 @@ Special Methods
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.__or__
+   :noindex:
 
 .. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.__repr__
    :noindex:

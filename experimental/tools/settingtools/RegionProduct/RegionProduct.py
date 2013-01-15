@@ -9,9 +9,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class RegionProduct(AbjadObject):
-    r'''Region expression.
+    r'''Region product.
 
-    Timespan-positioned payload.
+    Offset-positioned payload.
 
     Interpreter byproduct.
     ''' 
@@ -70,12 +70,41 @@ class RegionProduct(AbjadObject):
             result = timespantools.TimespanInventory()
         return result
 
+    def __len__(self):
+        '''Defined equal to length of payload.
+
+        Return nonnegative integer.
+        '''
+        return len(self.payload)
+
     def __lt__(self, expr):        
+        '''True when rhythm region product starts before `expr`.
+
+        Also true when rhythm region product starts when `expr` starts
+        but rhythm region product stops before `expr` stops.
+
+        Otherwise false.
+
+        Return boolean.
+        '''
         if self.timespan.starts_before_timespan_starts(expr):
             return True
         elif self.timespan.starts_when_timespan_starts(expr):
             return self.timespan.stops_before_timespan_stops(expr)
         return False
+
+    def __or__(self, expr):
+        '''Logical OR of two region products.
+
+        Region products must be able to fuse.
+        
+        Return timespan inventory.
+        '''
+        assert self._can_fuse(expr)
+        payload = self.payload + expr.payload
+        result = type(self)([], voice_name=self.voice_name, timespan=self.timespan)
+        result._payload = payload
+        return timespantools.TimespanInventory([result])
 
     def __sub__(self, timespan):
         '''Subtract `timespan` from region product.
