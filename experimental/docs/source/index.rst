@@ -355,7 +355,6 @@ Unstable packages (load manually)
 
       tools/selectortools/BackgroundMeasureSelector/BackgroundMeasureSelector
       tools/selectortools/BeatSelector/BeatSelector
-      tools/selectortools/ClassInventory/ClassInventory
       tools/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
       tools/selectortools/DivisionSelector/DivisionSelector
       tools/selectortools/SegmentSelector/SegmentSelector
@@ -376,7 +375,6 @@ Unstable packages (load manually)
 
       tools/selectortools/BackgroundMeasureSelector/BackgroundMeasureSelector
       tools/selectortools/BeatSelector/BeatSelector
-      tools/selectortools/ClassInventory/ClassInventory
       tools/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
       tools/selectortools/DivisionSelector/DivisionSelector
       tools/selectortools/SegmentSelector/SegmentSelector
@@ -410,6 +408,7 @@ Unstable packages (load manually)
       tools/settingtools/AbsoluteExpression/AbsoluteExpression
       tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/settingtools/CallbackInventory/CallbackInventory
+      tools/settingtools/ClassInventory/ClassInventory
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
@@ -461,6 +460,7 @@ Unstable packages (load manually)
       tools/settingtools/AbsoluteExpression/AbsoluteExpression
       tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/settingtools/CallbackInventory/CallbackInventory
+      tools/settingtools/ClassInventory/ClassInventory
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand

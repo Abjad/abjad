@@ -28,7 +28,7 @@ class OffsetExpression(LookupMethodMixin):
         settingtools.OffsetExpression(
             anchor=selectortools.CounttimeComponentSelector(
                 anchor='red',
-                classes=selectortools.ClassInventory([
+                classes=settingtools.ClassInventory([
                     notetools.Note,
                     chordtools.Chord
                     ]),
@@ -118,7 +118,7 @@ class OffsetExpression(LookupMethodMixin):
             >>> z(offset.anchor)
             selectortools.CounttimeComponentSelector(
                 anchor='red',
-                classes=selectortools.ClassInventory([
+                classes=settingtools.ClassInventory([
                     notetools.Note,
                     chordtools.Chord
                     ]),

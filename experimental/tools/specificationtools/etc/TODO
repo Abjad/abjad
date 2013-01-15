@@ -119,17 +119,10 @@
         measures = first_half_of_red_segment.select_background_measures('Voice 1')
     This will show selecting background measures that start during a duration-partitioned part of segment.
 
-24. Author tests to show each payload callback applied to each selector.
-    Remaining tests to author:
-        leaves.partition_by_ratio()
-        leaves.partition_by_ratio_of_durations()
+24. Add test to show this:
+        setting = score_specification.get_offset(32, 5).look_up_rhythm_setting('Voice 1')
 
-25. Author payload callback tests for all payload callbacks on an AbsoluteExpression.
-
-26. Implement _get_payload() on all RegionCommand classes.
-    Do RegionCommand classes need _get_timespan() too?
-
-27. Change primary usage pattern from ...
+25. Change primary usage pattern from ...
         score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
         score_specification = specificationtools.ScoreSpecification(score_template)
     ... to ...
@@ -137,30 +130,25 @@
         score_specification = settingtools.ScoreSpecificationInterface(score_template)
     ... so that composers are always only ever interacting with interfaces.
 
-28. Add test to show this:
-        setting = score_specification.get_offset(32, 5).look_up_rhythm_setting('Voice 1')
-
-29. Implement Infinity and NegativeInfinity constants.
-    Set Timespan start_offset=None to start_offset=NegativeInfinity.
-    Set Timespan stop_offset=None to stop_offset=Infinity.
-
-30. Disallow Timespan(start_offset, stop_offset) where stop_offset < start_offset.
-    Check at initialization time.
-
-31. Implement PayloadCallbackMixin.repeat_to_duration() on RhythmRegionProduct.
-    Implement PayloadCallbackMixin.repeat_to_length() on RhythmRegionProduct.
-    Then write CounttimeComponentSelector tests for those two methods.
-
-32. Write PayloadCallbackMixin.__and__() tests for all selectors.
-
-33. Replace CounttimeComponentSelector._get_payload() custom code.
-    Use PayloadCallbackMixing.__and__() and PayloadCallbackMixin.repeat_to_stop_offset() instead.
-
-34. Streamline ConcreteInterpreter.make_rhythm_region_products().
+26. Streamline ConcreteInterpreter.make_rhythm_region_products().
     Change counttime_component_selector._get_payload(score_spec, voice_name, start_offset, stop_offset)
     to counttime_component_selector._get_payload(score_specification, voice_name).
 
-35. Rename CounttimeComponentSelector to RhythmSelector.
-    Rename SelectMethodMix.select_leaves() to SelectMethodMix.select_rhythm().
+27. Replace CounttimeComponentSelector._get_payload() custom code.
+    Use PayloadCallbackMixing.__and__() and PayloadCallbackMixin.repeat_to_stop_offset() instead.
 
-36. Move ClassInventory to settingtools.
+28. Author payload callback tests for all payload callbacks on an AbsoluteExpression.
+
+29. Write PayloadCallbackMixin.__and__() tests for all selectors.
+
+30. Author tests to show each payload callback applied to each selector.
+    Remaining tests to author:
+        leaves.partition_by_ratio()
+        leaves.partition_by_ratio_of_durations()
+
+31. Disallow Timespan(start_offset, stop_offset) where stop_offset < start_offset.
+    Check at initialization time.
+
+32. Implement Infinity and NegativeInfinity constants.
+    Set Timespan start_offset=None to start_offset=NegativeInfinity.
+    Set Timespan stop_offset=None to stop_offset=Infinity.

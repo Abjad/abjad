@@ -10,7 +10,6 @@ from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import tuplettools
 from abjad.tools import wellformednesstools
-from experimental.tools import helpertools
 from experimental.tools.selectortools.Selector import Selector
 
 
@@ -35,7 +34,7 @@ class CounttimeComponentSelector(Selector):
         
         >>> z(selector)
         selectortools.CounttimeComponentSelector(
-            classes=selectortools.ClassInventory([
+            classes=settingtools.ClassInventory([
                 leaftools.Leaf
                 ]),
             voice_name='Voice 1'
@@ -50,7 +49,7 @@ class CounttimeComponentSelector(Selector):
         >>> z(selector)
         selectortools.CounttimeComponentSelector(
             anchor='red',
-            classes=selectortools.ClassInventory([
+            classes=settingtools.ClassInventory([
                 leaftools.Leaf
                 ]),
             voice_name='Voice 1'
@@ -73,7 +72,7 @@ class CounttimeComponentSelector(Selector):
             payload_callbacks=payload_callbacks,
             timespan_callbacks=timespan_callbacks)
         if isinstance(classes, tuple):
-            classes = selectortools.ClassInventory(classes)
+            classes = settingtools.ClassInventory(classes)
         self._classes = classes
     
     ### PRIVATE METHODS ###
@@ -155,11 +154,10 @@ class CounttimeComponentSelector(Selector):
         raise NotImplementedError
 
     def _is_counttime_component_class_expr(self, expr):
-        from experimental.tools import helpertools
-        from experimental.tools import selectortools
+        from experimental.tools import settingtools
         if isinstance(expr, tuple) and all([self._is_counttime_component_class_expr(x) for x in expr]):
             return True
-        elif isinstance(expr, selectortools.ClassInventory):
+        elif isinstance(expr, settingtools.ClassInventory):
             return True
         elif issubclass(expr, (measuretools.Measure, tuplettools.Tuplet, leaftools.Leaf)):
             return True
