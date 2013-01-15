@@ -5,6 +5,8 @@ __builtins__['Right'] = datastructuretools.OrdinalConstant('x', 1, 'Right')
 __builtins__['Center'] = datastructuretools.OrdinalConstant('y', 0, 'Center')
 __builtins__['Up'] = datastructuretools.OrdinalConstant('y', 1, 'Up')
 __builtins__['Down'] = datastructuretools.OrdinalConstant('y', -1, 'Down')
+__builtins__['Infinity'] = float('infinity')
+__builtins__['NegativeInfinity'] = float('-infinity')
 
 from abjad.tools import abctools
 from abjad.tools import abjadbooktools
