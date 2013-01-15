@@ -90,7 +90,6 @@ def test_CounttimeComponentSelector__payload_callbacks_04():
 def test_CounttimeComponentSelector__payload_callbacks_05():
     '''Repeat to length.
     '''
-    py.test.skip('working on this one.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -104,8 +103,8 @@ def test_CounttimeComponentSelector__payload_callbacks_05():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name, render_pdf=True)
-    #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
 def test_CounttimeComponentSelector__payload_callbacks_06():

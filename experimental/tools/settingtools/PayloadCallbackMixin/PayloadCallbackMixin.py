@@ -207,9 +207,13 @@ class PayloadCallbackMixin(Expression):
             return elements, new_start_offset
 
     def _repeat_to_length(self, elements, length, original_start_offset):
-        elements = sequencetools.repeat_sequence_to_length(elements, length)
-        new_start_offset = original_start_offset
-        return elements, new_start_offset
+        if hasattr(elements, 'repeat_to_length'):
+            result = elements.repeat_to_length(length)
+            return result, original_start_offset
+        else:
+            elements = sequencetools.repeat_sequence_to_length(elements, length)
+            new_start_offset = original_start_offset
+            return elements, new_start_offset
 
     def _rotate(self, elements, n, original_start_offset):
         if hasattr(elements, 'rotate'):

@@ -362,7 +362,11 @@ class RhythmRegionProduct(RegionProduct):
         return self
 
     def repeat_to_duration(self, duration):
-        '''Add example.
+        '''Repeat to `duration`.
+
+        .. note:: add example.
+        
+        Operate in place and return rhythm region product.
         '''
         if self.timespan.duration < duration:
             stop_offset = self.start_offset + duration
@@ -376,6 +380,18 @@ class RhythmRegionProduct(RegionProduct):
             return result
         elif self.timespan.duration == duration:
             return self
+
+    def repeat_to_length(self, length):
+        '''Repeat to `length` of leaves.
+
+        .. note:: add example.
+        
+        Operate in place and return rhythm region product.
+        '''
+        leaves = sequencetools.CyclicTuple(self.payload.leaves)
+        leaves = leaves[:length]
+        duration = sum([leaf.prolated_duration for leaf in leaves])
+        return self.repeat_to_duration(duration)
 
     def repeat_to_stop_offset(self, stop_offset):
         '''Repeat rhythm region product to `stop_offset`:
