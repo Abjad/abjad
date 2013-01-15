@@ -148,7 +148,3 @@
 
 31. Disallow Timespan(start_offset, stop_offset) where stop_offset < start_offset.
     Check at initialization time.
-
-32. Implement Infinity and NegativeInfinity constants.
-    Set Timespan start_offset=None to start_offset=NegativeInfinity.
-    Set Timespan stop_offset=None to stop_offset=Infinity.

@@ -17,7 +17,7 @@ class RhythmRegionProduct(RegionProduct):
     ::
 
         >>> payload = [Container("c'8 d'8 e'8 f'8")]
-        >>> timespan = timespantools.Timespan(Offset(10), None)
+        >>> timespan = timespantools.Timespan(Offset(10), Infinity)
         >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
 
     ::
@@ -64,7 +64,7 @@ class RhythmRegionProduct(RegionProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> timespan = timespantools.Timespan(0, None)
+            >>> timespan = timespantools.Timespan(0, Infinity)
             >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
             >>> result = product & timespantools.Timespan(Offset(-1, 8), Offset(3, 8))
 
@@ -89,7 +89,7 @@ class RhythmRegionProduct(RegionProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> timespan = timespantools.Timespan(0, None)
+            >>> timespan = timespantools.Timespan(0, Infinity)
             >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
             >>> result = product & timespantools.Timespan(Offset(1, 8), Offset(5, 8))
 
@@ -114,7 +114,7 @@ class RhythmRegionProduct(RegionProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> timespan = timespantools.Timespan(0, None)
+            >>> timespan = timespantools.Timespan(0, Infinity)
             >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
             >>> result = product & timespantools.Timespan(Offset(1, 8), Offset(3, 8))
 
@@ -139,7 +139,7 @@ class RhythmRegionProduct(RegionProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> timespan = timespantools.Timespan(0, None)
+            >>> timespan = timespantools.Timespan(0, Infinity)
             >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
             >>> result = product & timespantools.Timespan(100, 200)
 
@@ -188,7 +188,7 @@ class RhythmRegionProduct(RegionProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> timespan = timespantools.Timespan(0, None)
+            >>> timespan = timespantools.Timespan(0, Infinity)
             >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
             >>> result = product - timespantools.Timespan(0, Offset(1, 8))
 
@@ -213,7 +213,7 @@ class RhythmRegionProduct(RegionProduct):
             ::
 
                 >>> payload = [Container("c'8 d'8 e'8 f'8")]
-                >>> timespan = timespantools.Timespan(0, None)
+                >>> timespan = timespantools.Timespan(0, Infinity)
                 >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
                 >>> result = product - timespantools.Timespan(Offset(3, 8), 100)
 
@@ -238,7 +238,7 @@ class RhythmRegionProduct(RegionProduct):
             ::
 
                 >>> payload = [Container("c'8 d'8 e'8 f'8")]
-                >>> timespan = timespantools.Timespan(0, None)
+                >>> timespan = timespantools.Timespan(0, Infinity)
                 >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
                 >>> result = product - timespantools.Timespan(Offset(1, 8), Offset(3, 8))
 
@@ -273,7 +273,7 @@ class RhythmRegionProduct(RegionProduct):
             ::
 
                 >>> payload = [Container("c'8 d'8 e'8 f'8")]
-                >>> timespan = timespantools.Timespan(0, None)
+                >>> timespan = timespantools.Timespan(0, Infinity)
                 >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
                 >>> result = product - timespantools.Timespan(100, 200)
 
@@ -340,7 +340,7 @@ class RhythmRegionProduct(RegionProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> timespan = timespantools.Timespan(0, None)
+            >>> timespan = timespantools.Timespan(0, Infinity)
             >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
 
         ::
@@ -407,7 +407,7 @@ class RhythmRegionProduct(RegionProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> timespan = timespantools.Timespan(0, None)
+            >>> timespan = timespantools.Timespan(0, Infinity)
             >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
 
         ::
@@ -458,7 +458,7 @@ class RhythmRegionProduct(RegionProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> timespan = timespantools.Timespan(0, None)
+            >>> timespan = timespantools.Timespan(0, Infinity)
             >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
 
         ::
@@ -484,7 +484,7 @@ class RhythmRegionProduct(RegionProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> timespan = timespantools.Timespan(0, None)
+            >>> timespan = timespantools.Timespan(0, Infinity)
             >>> product = settingtools.RhythmRegionProduct(payload, 'Voice 1', timespan)
 
         ::
