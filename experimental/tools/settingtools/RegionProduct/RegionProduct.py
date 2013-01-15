@@ -313,8 +313,19 @@ class RegionProduct(AbjadObject):
         self.payload.reflect()
         return self
 
+    def rotate(self, rotation):
+        '''Rotate payload by `rotation`.
+
+        Operate in place and return region product.
+        '''
+        payload = self.payload.rotate(rotation)
+        self._payload = payload
+        return self
+
     def translate(self, translation):
-        '''Operate in place and return region product.
+        '''Translate region product by `translation`.
+
+        Operate in place and return region product.
         '''
         translation = durationtools.Duration(translation)
         new_start_offset = self.start_offset + translation

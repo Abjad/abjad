@@ -44,6 +44,9 @@ Methods
 .. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.reflect
    :noindex:
 
+.. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.rotate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.translate
    :noindex:
 

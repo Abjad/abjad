@@ -529,6 +529,39 @@ class DivisionRegionProduct(RegionProduct):
         '''
         return RegionProduct.reflect(self)
 
+    def rotate(self, rotation):
+        '''Rotate divisions by `rotation`.
+
+        ::
+
+            >>> payload = [(6, 8), (6, 8), (3, 4)]
+            >>> timespan = timespantools.Timespan(0, Infinity)
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespan)
+
+        ::
+
+            >>> result = product.rotate(-1)    
+
+        ::
+
+            >>> z(product)
+            settingtools.DivisionRegionProduct(
+                payload=settingtools.DivisionList(
+                    [Division('[6, 8]'), Division('[3, 4]'), Division('[6, 8]')]
+                    ),
+                voice_name='Voice 1',
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(9, 4)
+                    )
+                )
+        
+        .. note:: implement duration rotation.
+
+        Operate in place and return division region product.
+        '''
+        return RegionProduct.rotate(self, rotation)
+
     def translate(self, translation):
         '''Translate division region product by `translation`:
         

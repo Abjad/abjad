@@ -78,7 +78,7 @@
     ... throughout tests.
 
 16. Change BackgroundMeasureSelector to MeasureSelector.
-    Change SelectMethodMixin.select_background_measures to SelectoMethodMixin.select_measures().
+    Change SelectMethodMixin.select_background_measures to SelectMethodMixin.select_measures().
     Remove 'background' globally from the codebase.
 
 17. Add a test to show this:
@@ -141,7 +141,10 @@
 
 29. Write PayloadCallbackMixin.__and__() tests for all selectors.
 
-30. Move recent RhythmRegionProduct methods up to RegionProduct.
-    Add docstring examples for the same methods bound to DivisionRegionProduct.
+30. Remove RhythmRegionProduct.repeat_to_stop_offset().
+    Move recent RhythmRegionProduct methods up to RegionProduct:
+        RhythmRegionProduct.repeat_to_duration()
+        RhythmRegionProduct.repeat_to_length()
+    Add docstring examples for DivisionRegionProduct implementations of these methods.
 
 31. Change region product classes back to start-offset initialization instead of timespan initialization.

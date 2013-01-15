@@ -70,6 +70,9 @@ Methods
 .. automethod:: experimental.tools.settingtools.DivisionList.DivisionList.DivisionList.reflect
    :noindex:
 
+.. automethod:: experimental.tools.settingtools.DivisionList.DivisionList.DivisionList.rotate
+   :noindex:
+
 Special Methods
 ---------------
 
