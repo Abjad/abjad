@@ -175,20 +175,20 @@ class DivisionList(BoundedObject):
 
     ### PUBLIC METHODS ###
 
-    def fracture(self, slice_index):
-        '''Return newly constructed left division list 
-        and newly constructured right division list.
-
-        .. note:: add example.
-
-        Return pair.
-        '''
-        assert isinstance(slice_index, int)
-        left_divisions = self[:slice_index]
-        right_divisions = self[slice_index:]
-        left_division_list = type(self)(left_divisions, voice_name=self.voice_name) 
-        right_division_list = type(self)(right_divisions, voice_name=self.voice_name) 
-        return left_division_list, right_division_list
+#    def fracture(self, slice_index):
+#        '''Return newly constructed left division list 
+#        and newly constructured right division list.
+#
+#        .. note:: add example.
+#
+#        Return pair.
+#        '''
+#        assert isinstance(slice_index, int)
+#        left_divisions = self[:slice_index]
+#        right_divisions = self[slice_index:]
+#        left_division_list = type(self)(left_divisions, voice_name=self.voice_name) 
+#        right_division_list = type(self)(right_divisions, voice_name=self.voice_name) 
+#        return left_division_list, right_division_list
 
     def new(self, **kwargs):
         positional_argument_dictionary = self._positional_argument_dictionary

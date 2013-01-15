@@ -64,9 +64,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.settingtools.DivisionList.DivisionList.DivisionList.fracture
-   :noindex:
-
 .. automethod:: experimental.tools.settingtools.DivisionList.DivisionList.DivisionList.new
    :noindex:
 
