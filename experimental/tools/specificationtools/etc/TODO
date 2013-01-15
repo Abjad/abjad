@@ -152,11 +152,11 @@
 30. Disallow Timespan(start_offset, stop_offset) where stop_offset < start_offset.
     Check at initialization time.
 
-31. Implement PayloadCallbackMixin.repeat_to_stop_offset() to work with CounttimeComponentSelector.
-    Then write tests to make work with the other selectors, too.
+31. Implement PayloadCallbackMixin.repeat_to_duration() on RhythmRegionProduct.
+    Implement PayloadCallbackMixin.repeat_to_length() on RhythmRegionProduct.
+    Then write CounttimeComponentSelector tests for those two methods.
 
-32. Implement PayloadCallbackMixin.__and__() to work with CounttimeComponentSelector.
-    Then write tests to make work with the other selectors, too.
+32. Write PayloadCallbackMixin.__and__() tests for all selectors.
 
 33. Replace CounttimeComponentSelector._get_payload() custom code.
     Use PayloadCallbackMixing.__and__() and PayloadCallbackMixin.repeat_to_stop_offset() instead.

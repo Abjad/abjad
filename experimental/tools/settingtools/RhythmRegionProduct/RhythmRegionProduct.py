@@ -361,6 +361,22 @@ class RhythmRegionProduct(RegionProduct):
             spanner._reverse_components()
         return self
 
+    def repeat_to_duration(self, duration):
+        '''Add example.
+        '''
+        if self.timespan.duration < duration:
+            stop_offset = self.start_offset + duration
+            return self.repeat_to_stop_offset(stop_offset)
+        elif duration < self.timespan.duration:
+            stop_offset = self.start_offset + duration
+            timespan = timespantools.Timespan(self.start_offset, stop_offset)
+            result = self & timespan
+            assert len(result) == 1, repr(result)
+            result = result[0]
+            return result
+        elif self.timespan.duration == duration:
+            return self
+
     def repeat_to_stop_offset(self, stop_offset):
         '''Repeat rhythm region product to `stop_offset`:
 
@@ -391,7 +407,7 @@ class RhythmRegionProduct(RegionProduct):
         Operate in place and return rhythm region product.
         '''
         stop_offset = durationtools.Offset(stop_offset)
-        assert self.stop_offset <= stop_offset
+        assert self.stop_offset <= stop_offset, repr((self.stop_offset, stop_offset))
         additional_duration = stop_offset - self.stop_offset
         needed_copies = int(math.ceil(additional_duration / self.payload.prolated_duration))
         copies = []

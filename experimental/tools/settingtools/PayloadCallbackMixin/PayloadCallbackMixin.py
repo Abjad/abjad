@@ -198,18 +198,18 @@ class PayloadCallbackMixin(Expression):
         return elements, new_start_offset
 
     def _repeat_to_duration(self, elements, duration, original_start_offset):
-        elements = sequencetools.repeat_sequence_to_weight_exactly(elements, duration)
-        new_start_offset = original_start_offset
-        return elements, new_start_offset
+        if hasattr(elements, 'repeat_to_duration'):
+            result = elements.repeat_to_duration(duration)
+            return result, original_start_offset
+        else:
+            elements = sequencetools.repeat_sequence_to_weight_exactly(elements, duration)
+            new_start_offset = original_start_offset
+            return elements, new_start_offset
 
     def _repeat_to_length(self, elements, length, original_start_offset):
         elements = sequencetools.repeat_sequence_to_length(elements, length)
         new_start_offset = original_start_offset
         return elements, new_start_offset
-
-    # TODO: implement method
-    def _repeat_to_stop_offset(self, elements, stop_offset, original_start_offset):
-        raise NotImplementedError('implement me')
 
     def _rotate(self, elements, n, original_start_offset):
         if hasattr(elements, 'rotate'):
@@ -269,13 +269,6 @@ class PayloadCallbackMixin(Expression):
         callback = 'result = self._repeat_to_length(elements, {!r}, start_offset)'.format(length)
         return self._copy_and_append_payload_callback(callback)
 
-    def repeat_to_stop_offset(self, stop_offset):
-        '''Return copy of request with appended callback.
-        '''
-        stop_offset = durationtools.Offset(stop_offset)
-        callback = 'result = self._repeat_to_stop_offset(elements, {!r}, start_offset)'.format(stop_offset)
-        return self._copy_and_append_payload_callback(callback)
-        
     def rotate(self, index):
         '''Return copy of request with appended callback.
         '''
