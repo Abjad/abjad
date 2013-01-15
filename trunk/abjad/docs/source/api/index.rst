@@ -534,6 +534,7 @@ Core composition packages
 
       tools/durationtools/all_are_durations
       tools/durationtools/count_offsets_in_expr
+      tools/durationtools/durations_to_integers
       tools/durationtools/durations_to_nonreduced_fractions_with_common_denominator
       tools/durationtools/group_nonreduced_fractions_by_implied_prolation
       tools/durationtools/numeric_seconds_to_clock_string
@@ -557,6 +558,7 @@ Core composition packages
 
       tools/durationtools/all_are_durations
       tools/durationtools/count_offsets_in_expr
+      tools/durationtools/durations_to_integers
       tools/durationtools/durations_to_nonreduced_fractions_with_common_denominator
       tools/durationtools/group_nonreduced_fractions_by_implied_prolation
       tools/durationtools/numeric_seconds_to_clock_string
