@@ -178,15 +178,26 @@ class RegionProduct(AbjadObject):
         return False
 
     def _get_duration_of_expr(self, expr):
+        if hasattr(expr, 'duration'):
+            return expr.duration
+        elif hasattr(expr, 'prolated_duration'):
+            return expr.prolated_duration
+        elif isinstance(expr, numbers.Number):
+            return durationtools.Duration(expr)
+        else:
+            raise TypeError(expr)
+
+    def _get_duration_of_list(self, expr):
         duration = durationtools.Duration(0)
         for element in expr:
-            if hasattr(element, 'duration'):
-                duration += element.duration
-            elif hasattr(element, 'prolated_duration'):
-                duration += element.prolated_duration
-            else:
-                assert isinstance(element, numbers.Number), repr(element)
-                duration += element
+#            if hasattr(element, 'duration'):
+#                duration += element.duration
+#            elif hasattr(element, 'prolated_duration'):
+#                duration += element.prolated_duration
+#            else:
+#                assert isinstance(element, numbers.Number), repr(element)
+#                duration += element
+            duration += self._get_duration_of_expr(element)
         return duration
 
     @abc.abstractmethod
@@ -259,7 +270,30 @@ class RegionProduct(AbjadObject):
         '''
         from experimental.tools import settingtools
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(self._payload_elements, ratio)
-        durations = [self._get_duration_of_expr(part) for part in parts]
+        durations = [self._get_duration_of_list(part) for part in parts]
+        payload_parts = self._split_payload_at_offsets(durations)
+        start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
+        start_offsets = [self.start_offset + start_offset for start_offset in start_offsets]
+        region_products = settingtools.RegionCommandInventory()
+        for payload_part, start_offset in zip(payload_parts, start_offsets):
+            timespan = timespantools.Timespan(start_offset)
+            region_product = type(self)([], self.voice_name, timespan)
+            region_product._payload = payload_part
+            region_products.append(region_product)
+        return region_products
+
+    def partition_by_ratio_of_durations(self, ratio):
+        '''Partition region product payload by ratio of durations.
+
+        Operate in place and return newly constructed inventory.
+        '''
+        from experimental.tools import settingtools
+        element_durations = [self._get_duration_of_expr(leaf) for leaf in self._payload_elements]
+        integers = durationtools.durations_to_integers(element_durations)
+        parts = sequencetools.partition_sequence_by_ratio_of_weights(integers, ratio)
+        part_lengths = [len(part) for part in parts]
+        parts = sequencetools.partition_sequence_by_counts(self._payload_elements, part_lengths)
+        durations = [self._get_duration_of_list(part) for part in parts]
         payload_parts = self._split_payload_at_offsets(durations)
         start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
         start_offsets = [self.start_offset + start_offset for start_offset in start_offsets]

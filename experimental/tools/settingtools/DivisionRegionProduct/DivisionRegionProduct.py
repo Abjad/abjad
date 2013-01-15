@@ -413,7 +413,7 @@ class DivisionRegionProduct(RegionProduct):
 
         ::
 
-            >>> payload = [(6, 8), (6, 8), (3, 4), (3, 4)]
+            >>> payload = [(6, 8), (6, 8), (6, 8), (6, 8), (6, 4), (6, 4)]
             >>> timespan = timespantools.Timespan(0, Infinity)
             >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespan)
 
@@ -427,24 +427,24 @@ class DivisionRegionProduct(RegionProduct):
             settingtools.RegionCommandInventory([
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[6, 8]'), Division('[6, 8]')],
+                        [Division('[6, 8]'), Division('[6, 8]'), Division('[6, 8]')],
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
                     timespan=timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(3, 2)
+                        stop_offset=durationtools.Offset(9, 4)
                         )
                     ),
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[3, 4]'), Division('[3, 4]')],
+                        [Division('[6, 8]'), Division('[6, 4]'), Division('[6, 4]')],
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
                     timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(3, 2),
-                        stop_offset=durationtools.Offset(3, 1)
+                        start_offset=durationtools.Offset(9, 4),
+                        stop_offset=durationtools.Offset(6, 1)
                         )
                     )
                 ])
@@ -452,6 +452,51 @@ class DivisionRegionProduct(RegionProduct):
         Operate in place and return newly constructed inventory.
         '''
         return RegionProduct.partition_by_ratio(self, ratio)
+
+    def partition_by_ratio_of_durations(self, ratio):
+        '''Partition divisions by `ratio` of durations:
+
+        ::
+
+            >>> payload = [(6, 8), (6, 8), (6, 8), (6, 8), (6, 4), (6, 4)]
+            >>> timespan = timespantools.Timespan(0, Infinity)
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespan)
+
+        ::
+
+            >>> result = product.partition_by_ratio_of_durations((1, 1))
+
+        ::
+
+            >>> z(result)
+            settingtools.RegionCommandInventory([
+                settingtools.DivisionRegionProduct(
+                    payload=settingtools.DivisionList(
+                        [Division('[6, 8]'), Division('[6, 8]'), Division('[6, 8]'), Division('[6, 8]')],
+                        voice_name='Voice 1'
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(3, 1)
+                        )
+                    ),
+                settingtools.DivisionRegionProduct(
+                    payload=settingtools.DivisionList(
+                        [Division('[6, 4]'), Division('[6, 4]')],
+                        voice_name='Voice 1'
+                        ),
+                    voice_name='Voice 1',
+                    timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(3, 1),
+                        stop_offset=durationtools.Offset(6, 1)
+                        )
+                    )
+                ])
+
+        Operate in place and return newly constructed inventory.
+        '''
+        return RegionProduct.partition_by_ratio_of_durations(self, ratio)
 
     def reflect(self):
         '''Reflect divisions about axis:

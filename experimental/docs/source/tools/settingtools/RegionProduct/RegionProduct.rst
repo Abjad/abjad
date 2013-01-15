@@ -38,6 +38,9 @@ Methods
 .. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.partition_by_ratio
    :noindex:
 
+.. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.partition_by_ratio_of_durations
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct.reflect
    :noindex:
 
