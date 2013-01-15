@@ -77,50 +77,48 @@
         red_segment.set_time_signatures(time_signatures)
     ... throughout tests.
 
-16. Remove 'background' globally from the codebase.
-
-17. Add a test to show this:
+16. Add a test to show this:
         note_selector = red_segment.select_notes_and_chords('Voice 1')[10:11]
         offset = note_selector.stop_offset
 
-18. Add some tests to show this:
+17. Add some tests to show this:
         measures = red_segment.select_measures('Voice 1')
         measures = measures[10:20]
         measures = measures[2:4]
     This will show getitem composition.
 
-19. Add some tests to show this:
+18. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_part = segments.set_offset(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         middle_part.set_divisions([(3, 16)])
     This will show setting divisions for (potentially) more than one segment.
 
-20. Add some tests to show this:
+19. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_measures = segments.select_measures('Voice 1')[3:6]
-    This will show selecting background measures from (potentially) more than one segment.
+    This will show selecting measures from (potentially) more than one segment.
 
-21. Add some tests to show this:
+20. Add some tests to show this:
         measures = red_segment.select_measures('Voice 1')[10:20]
         middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
     This will show partitioning only part of a segment's measures.
 
-22. Add some tests to show this:
+21. Add some tests to show this:
         measures = red_segment.select_measures('Voice 1')
         middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
         measure = middle_third_of_measures[:1]
     This will show slice selection following partition.
 
-23. Add some tests to show this:
+22. Add some tests to show this:
         first_half_of_red_segment = red_segment.timespan.divide_by_ratio((1, 1))[0]
         measures = first_half_of_red_segment.select_measures('Voice 1')
-    This will show selecting background measures that start during a duration-partitioned part of segment.
+    This will show selecting measures that start during a duration-partitioned part of segment.
 
-24. Add test to show this:
+23. Add test to show this:
         setting = score_specification.get_offset(32, 5).look_up_rhythm_setting('Voice 1')
 
-25. Change primary usage pattern from ...
+24. Change primary usage pattern from ...
         score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
         score_specification = specificationtools.ScoreSpecification(score_template)
     ... to ...
@@ -128,21 +126,21 @@
         score_specification = settingtools.ScoreSpecificationInterface(score_template)
     ... so that composers are always only ever interacting with interfaces.
 
-26. Streamline ConcreteInterpreter.make_rhythm_region_products().
+25. Streamline ConcreteInterpreter.make_rhythm_region_products().
     Change counttime_component_selector._get_payload(score_spec, voice_name, start_offset, stop_offset)
     to counttime_component_selector._get_payload(score_specification, voice_name).
 
-27. Replace CounttimeComponentSelector._get_payload() custom code.
+26. Replace CounttimeComponentSelector._get_payload() custom code.
     Use PayloadCallbackMixing.__and__() and PayloadCallbackMixin.repeat_to_stop_offset() instead.
 
-28. Author payload callback tests for all payload callbacks on an AbsoluteExpression.
+27. Author payload callback tests for all payload callbacks on an AbsoluteExpression.
 
-29. Write PayloadCallbackMixin.__and__() tests for all selectors.
+28. Write PayloadCallbackMixin.__and__() tests for all selectors.
 
-30. Remove RhythmRegionProduct.repeat_to_stop_offset().
+29. Remove RhythmRegionProduct.repeat_to_stop_offset().
     Move recent RhythmRegionProduct methods up to RegionProduct:
         RhythmRegionProduct.repeat_to_duration()
         RhythmRegionProduct.repeat_to_length()
     Add docstring examples for DivisionRegionProduct implementations of these methods.
 
-31. Change region product classes back to start-offset initialization instead of timespan initialization.
+30. Change region product classes back to start-offset initialization instead of timespan initialization.

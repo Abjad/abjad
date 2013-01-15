@@ -158,19 +158,6 @@ class RhythmRegionProduct(RegionProduct):
 
     __deepcopy__ = __copy__
 
-    def _getitem(self, expr):
-        assert isinstance(expr, slice), repr(expr)
-        leaves = self.payload.leaves.__getitem__(expr)
-        start_offset = leaves[0].start_offset
-        stop_offset = leaves[-1].stop_offset
-        timespan = timespantools.Timespan(start_offset, stop_offset)
-        timespan = timespan.translate(self.start_offset)
-        result = self & timespan
-        assert len(result) == 1, repr(result)
-        result = result[0]
-        result = result.translate(-start_offset)
-        return result
-
     def __len__(self): 
         '''Defined equal to number of leaves in payload.
     
@@ -382,6 +369,19 @@ class RhythmRegionProduct(RegionProduct):
         return self.payload.leaves
 
     ### PRIVATE METHODS ###
+
+    def _getitem(self, expr):
+        assert isinstance(expr, slice), repr(expr)
+        leaves = self.payload.leaves.__getitem__(expr)
+        start_offset = leaves[0].start_offset
+        stop_offset = leaves[-1].stop_offset
+        timespan = timespantools.Timespan(start_offset, stop_offset)
+        timespan = timespan.translate(self.start_offset)
+        result = self & timespan
+        assert len(result) == 1, repr(result)
+        result = result[0]
+        result = result.translate(-start_offset)
+        return result
 
     def _split_payload_at_offsets(self, offsets):
         assert isinstance(self.payload, containertools.Container)

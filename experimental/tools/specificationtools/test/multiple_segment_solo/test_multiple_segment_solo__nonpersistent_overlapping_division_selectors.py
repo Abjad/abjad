@@ -3,7 +3,7 @@ from experimental.tools import *
 
 
 def test_multiple_segment_solo__nonpersistent_overlapping_division_selectors_01():
-    '''Nonpersistent overlapping background measure division selector.
+    '''Nonpersistent overlapping measure division selector.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -24,7 +24,7 @@ def test_multiple_segment_solo__nonpersistent_overlapping_division_selectors_01(
 
 
 def test_multiple_segment_solo__nonpersistent_overlapping_division_selectors_02():
-    '''Nonpersistent overlapping background measures ratio part division selector.
+    '''Nonpersistent overlapping measures ratio part division selector.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

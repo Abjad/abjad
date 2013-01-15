@@ -3,7 +3,7 @@ from experimental.tools import *
 
 
 def test_single_segment_solo__nonoverlapping_division_selectors_01():
-    '''Nonoverlapping background measure selectors.
+    '''Nonoverlapping measure selectors.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

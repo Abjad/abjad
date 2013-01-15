@@ -20,31 +20,6 @@ class SelectMethodMixin(AbjadObject):
     
     ### PUBLIC METHODS ###
 
-    def select_measures(self, voice_name, time_relation=None):
-        '''Select voice ``1`` background measures 
-        that start during segment ``'red'``::
-
-            >>> selector = red_segment.select_measures('Voice 1')
-
-        ::
-
-            >>> z(selector)
-            selectortools.MeasureSelector(
-                anchor='red',
-                voice_name='Voice 1'
-                )
-
-        Return background measure selector.
-        '''
-        from experimental.tools import selectortools
-        selector = selectortools.MeasureSelector(
-            anchor=self._anchor_abbreviation,
-            voice_name=voice_name,
-            time_relation=time_relation
-            )
-        selector._score_specification = self.score_specification
-        return selector
-
     def select_beats(self, voice_name, time_relation=None):
         '''Select voice ``1`` beats that start during segment ``'red'``::
 
@@ -117,6 +92,31 @@ class SelectMethodMixin(AbjadObject):
             time_relation=time_relation, 
             classes=(leaftools.Leaf, ), 
             voice_name=voice_name
+            )
+        selector._score_specification = self.score_specification
+        return selector
+
+    def select_measures(self, voice_name, time_relation=None):
+        '''Select voice ``1`` measures 
+        that start during segment ``'red'``::
+
+            >>> selector = red_segment.select_measures('Voice 1')
+
+        ::
+
+            >>> z(selector)
+            selectortools.MeasureSelector(
+                anchor='red',
+                voice_name='Voice 1'
+                )
+
+        Return measure selector.
+        '''
+        from experimental.tools import selectortools
+        selector = selectortools.MeasureSelector(
+            anchor=self._anchor_abbreviation,
+            voice_name=voice_name,
+            time_relation=time_relation
             )
         selector._score_specification = self.score_specification
         return selector

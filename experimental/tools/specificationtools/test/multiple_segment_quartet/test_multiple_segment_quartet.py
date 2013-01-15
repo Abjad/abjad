@@ -67,7 +67,7 @@ def test_multiple_segment_quartet_02():
 
 
 def test_multiple_segment_quartet_03():
-    '''Voices 1 & 2 set divisions according to ratio of background measures.
+    '''Voices 1 & 2 set divisions according to ratio of measures.
     Voices 3 & 4 set divisions according to ratio of segment duration.
     '''
 
