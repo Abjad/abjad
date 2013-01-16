@@ -126,18 +126,11 @@
         score_specification = settingtools.ScoreSpecificationInterface(score_template)
     ... so that composers are always only ever interacting with interfaces.
 
-25. Streamline ConcreteInterpreter.make_rhythm_region_products().
-    Change counttime_component_selector._get_payload(score_spec, voice_name, start_offset, stop_offset)
-    to counttime_component_selector._get_payload(score_specification, voice_name).
+25. Author payload callback tests for all payload callbacks on an AbsoluteExpression.
 
-26. Replace CounttimeComponentSelector._get_payload() custom code.
-    Use PayloadCallbackMixing.__and__() and PayloadCallbackMixin.repeat_to_stop_offset() instead.
+26. Write PayloadCallbackMixin.__and__() tests for all selectors.
 
-27. Author payload callback tests for all payload callbacks on an AbsoluteExpression.
-
-28. Write PayloadCallbackMixin.__and__() tests for all selectors.
-
-29. Remove RhythmRegionProduct.repeat_to_stop_offset().
+27. Remove RhythmRegionProduct.repeat_to_stop_offset().
     Move recent RhythmRegionProduct methods up to RegionProduct:
         RhythmRegionProduct.repeat_to_duration()
         RhythmRegionProduct.repeat_to_length()

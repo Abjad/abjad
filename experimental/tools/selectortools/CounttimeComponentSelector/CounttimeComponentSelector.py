@@ -80,9 +80,6 @@ class CounttimeComponentSelector(Selector):
     # TODO: migrate into self._get_timespan_and_payload().
     def _get_payload(self, score_specification, voice_name):
         from experimental.tools import settingtools
-        #assert voice_name == self.voice_name
-        #anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
-        #voice_proxy = score_specification.contexts[voice_name]
         anchor_timespan = score_specification.get_anchor_timespan(self, self.voice_name)
         voice_proxy = score_specification.contexts[self.voice_name]
         rhythm_region_products = voice_proxy.rhythm_region_products
@@ -95,7 +92,6 @@ class CounttimeComponentSelector(Selector):
         rhythm_region_products.sort()
         assert anchor_timespan.is_well_formed, repr(anchor_timespan)
         rhythm_region_products = rhythm_region_products & anchor_timespan
-        #result = settingtools.RhythmRegionProduct(voice_name=voice_name, start_offset=start_offset)
         result = settingtools.RhythmRegionProduct(voice_name=voice_name, start_offset=durationtools.Offset(0))
         for rhythm_region_product in rhythm_region_products:
             result.payload.extend(rhythm_region_product.payload)
@@ -103,19 +99,6 @@ class CounttimeComponentSelector(Selector):
         result, new_start_offset = self._apply_payload_callbacks(result, result.start_offset)
         assert isinstance(result, settingtools.RhythmRegionProduct), repr(result)
         return result
-
-#        keep_timespan = timespantools.Timespan(start_offset, stop_offset)
-#        assert not keep_timespan.starts_before_timespan_starts(result.timespan), repr((result.timespan, keep_timespan))
-#        assert result.timespan.start_offset == keep_timespan.start_offset, repr((result.timespan, keep_timespan))
-#        result = result & keep_timespan
-#        assert isinstance(result, timespantools.TimespanInventory), repr(result)
-#        assert len(result) == 1
-#        result = result[0]
-#        assert isinstance(result, settingtools.RhythmRegionProduct), repr(result)
-#        result.repeat_to_stop_offset(stop_offset)
-#        return result
-
-
 
     # TODO: migrate into self._get_timespan_and_payload()
     def _get_timespan(self, score_specification, voice_name):

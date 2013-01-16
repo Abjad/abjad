@@ -26,6 +26,12 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.SelectorRhythmRegionCommand.SelectorRhythmRegionCommand.SelectorRhythmRegionCommand.voice_name
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.settingtools.SelectorRhythmRegionCommand.SelectorRhythmRegionCommand.SelectorRhythmRegionCommand.prolongs_expr
+   :noindex:
+
 Special Methods
 ---------------
 

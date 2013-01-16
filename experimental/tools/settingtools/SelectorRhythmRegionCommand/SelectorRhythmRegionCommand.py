@@ -21,12 +21,10 @@ class SelectorRhythmRegionCommand(FinalizedRhythmRegionCommand):
 
     def _get_payload(self, score_specification, voice_name=None):
         from experimental.tools import settingtools
-        self._debug(self, 'selector rhythm region command')
         result = self.selector._get_payload(score_specification, self.voice_name)
         if result is None:
             return
         result._start_offset = self.start_offset
-
         start_offset, stop_offset = self.start_offset, self.start_offset + self.total_duration
         keep_timespan = timespantools.Timespan(start_offset, stop_offset)
         assert not keep_timespan.starts_before_timespan_starts(result.timespan), repr((result.timespan, keep_timespan))

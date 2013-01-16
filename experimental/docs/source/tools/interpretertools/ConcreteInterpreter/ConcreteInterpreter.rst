@@ -29,9 +29,6 @@ Methods
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_region_commands_for_voice
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.initialize_finalized_rhythm_region_commands
-   :noindex:
-
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.instantiate_score
    :noindex:
 
@@ -62,6 +59,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_finalized_rhythm_commands_for_voice
+   :noindex:
+
+.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_finalized_rhythm_region_commands
    :noindex:
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_region_commands
