@@ -84,28 +84,6 @@ class ConcreteInterpreter(Interpreter):
             for rhythm_region_product in voice_proxy.rhythm_region_products:
                 voice.extend(rhythm_region_product.payload)
 
-    # NEXT TODO: rewrite this as something comprehensible
-    def finalize_rhythm_region_commands(self, rhythm_region_commands, voice_name, start_offsets, division_lists):
-        finalized_rhythm_region_commands = []
-        for rhythm_region_command, start_offset, division_list in zip(
-            rhythm_region_commands, start_offsets, division_lists):
-            finalized_rhythm_region_command = rhythm_region_command.finalize(
-                self.score_specification, voice_name, start_offset, division_list)
-            finalized_rhythm_region_commands.append(finalized_rhythm_region_command)
-        result = []
-        for finalized_rhythm_region_command in finalized_rhythm_region_commands:
-            if result and isinstance(finalized_rhythm_region_command, settingtools.SelectorRhythmRegionCommand) and \
-                finalized_rhythm_region_command.prolongs_expr(result[-1]):
-                current_stop_offset = finalized_rhythm_region_command.start_offset
-                current_stop_offset += finalized_rhythm_region_command.total_duration
-                previous_stop_offset = result[-1].start_offset + result[-1].total_duration
-                extra_duration = current_stop_offset - previous_stop_offset
-                assert 0 <= extra_duration
-                result[-1]._total_duration += extra_duration
-            else:
-                result.append(finalized_rhythm_region_command)
-        return result
-
     def get_region_commands_for_voice(self, attribute, voice_name):
         region_commands = self.score_specification.get_region_commands_for_voice(attribute, voice_name)
         region_commands.sort_and_split_commands()
@@ -212,8 +190,14 @@ class ConcreteInterpreter(Interpreter):
         # the first column in pairs is not used for anything further at all is discarded
         rhythm_region_commands = [x[-1] for x in merged_duration_rhythm_region_command_pairs]
         assert len(rhythm_region_commands) == len(rhythm_region_division_lists)
-        finalized_rhythm_region_commands = self.finalize_rhythm_region_commands(
-            rhythm_region_commands, voice_name, rhythm_region_start_offsets, rhythm_region_division_lists)
+        finalized_rhythm_region_commands = []
+        for rhythm_region_command, rhythm_region_start_offset, rhythm_region_division_list in zip(
+            rhythm_region_commands, rhythm_region_start_offsets, rhythm_region_division_lists):
+            finalized_rhythm_region_command = rhythm_region_command.finalize(
+                self.score_specification, voice_name, rhythm_region_start_offset, rhythm_region_division_list)
+            finalized_rhythm_region_commands.append(finalized_rhythm_region_command)
+        finalized_rhythm_region_commands = self.merge_prolonging_finalized_rhythm_region_commands(
+            finalized_rhythm_region_commands)
         return finalized_rhythm_region_commands
 
     def make_region_commands(self, attribute):
@@ -262,6 +246,21 @@ class ConcreteInterpreter(Interpreter):
                 start_offset += division.duration
                 voice_division_list.divisions.append(division)
             voice_proxy._voice_division_list = voice_division_list
+
+    def merge_prolonging_finalized_rhythm_region_commands(self, finalized_rhythm_region_commands):
+        result = []
+        for finalized_rhythm_region_command in finalized_rhythm_region_commands:
+            if result and isinstance(finalized_rhythm_region_command, settingtools.SelectorRhythmRegionCommand) and \
+                finalized_rhythm_region_command.prolongs_expr(result[-1]):
+                current_stop_offset = finalized_rhythm_region_command.start_offset
+                current_stop_offset += finalized_rhythm_region_command.total_duration
+                previous_stop_offset = result[-1].start_offset + result[-1].total_duration
+                extra_duration = current_stop_offset - previous_stop_offset
+                assert 0 <= extra_duration
+                result[-1]._total_duration += extra_duration
+            else:
+                result.append(finalized_rhythm_region_command)
+        return result
 
     # TODO: eventually merge with self.make_region_commands()
     def populate_time_signature_settings(self):
