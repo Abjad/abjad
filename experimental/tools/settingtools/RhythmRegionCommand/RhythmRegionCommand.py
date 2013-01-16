@@ -75,32 +75,3 @@ class RhythmRegionCommand(RegionCommand):
         '''Return string.
         '''
         return 'rhythm'
-
-    ### PUBLIC METHODS ###
-
-    def prolongs_expr(self, expr):
-        '''True when `self` and `expr` are both rhythm region commands
-        that carry counttime component selectors that compare equal.
-        Otherwise false.
-
-        Make no time comparison.
-
-        Return boolean.
-        '''
-        from experimental.tools import selectortools
-        from experimental.tools import settingtools
-        # check that rhythm region command bears a counttime component selector
-        current_material_request = self.request
-        assert isinstance(current_material_request, selectortools.CounttimeComponentSelector)
-        # fuse only if expr is also a rhythm region command that bears a counttime component selector
-        if not isinstance(expr, settingtools.RhythmRegionCommand):
-            return False
-        else:
-            previous_rhythm_region_command = expr
-        previous_material_request = getattr(previous_rhythm_region_command, 'request', None)
-        if not isinstance(previous_material_request, selectortools.CounttimeComponentSelector):
-            return False
-        # fuse only if current and previous counttime component selectors are equal
-        if not current_material_request == previous_material_request:
-            return False
-        return True

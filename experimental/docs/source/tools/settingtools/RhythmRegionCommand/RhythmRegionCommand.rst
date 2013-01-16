@@ -55,9 +55,6 @@ Methods
 
    Inherited from :py:class:`settingtools.RegionCommand <experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand>`
 
-.. automethod:: experimental.tools.settingtools.RhythmRegionCommand.RhythmRegionCommand.RhythmRegionCommand.prolongs_expr
-   :noindex:
-
 Special Methods
 ---------------
 
