@@ -257,28 +257,16 @@ class ConcreteInterpreter(Interpreter):
                     if region_command not in score_region_commands:
                         score_region_commands.append(region_command)
 
-    # TODO: structure like self.make_division_region_products()
     def make_rhythm_region_products(self):
         while self.score_specification.finalized_rhythm_commands:
             made_progress = False
             for finalized_rhythm_command in self.score_specification.finalized_rhythm_commands[:]:
-                # TODO: compress all four branches to
-                #       rhythm_region_product = finalized_rhythm_command._get_payload(self.score_specification).
-                if isinstance(finalized_rhythm_command, settingtools.ParseableStringRhythmRegionCommand):
-                    rhythm_region_product = finalized_rhythm_command._get_payload(self.score_specification)
-                elif isinstance(finalized_rhythm_command, settingtools.RhythmMakerRhythmRegionCommand):
-                    rhythm_region_product = finalized_rhythm_command._get_payload(self.score_specification)
-                elif isinstance(finalized_rhythm_command, settingtools.SelectorRhythmRegionCommand):
-                    rhythm_region_product = finalized_rhythm_command._get_payload(self.score_specification)
-                else:
-                    raise TypeError(finalized_rhythm_command)
+                assert isinstance(finalized_rhythm_command, settingtools.FinalizedRhythmRegionCommand)
+                rhythm_region_product = finalized_rhythm_command._get_payload(self.score_specification)
                 if rhythm_region_product is not None:
-                    self.score_specification.finalized_rhythm_commands.remove(finalized_rhythm_command)
                     made_progress = True
-                    if hasattr(finalized_rhythm_command, 'voice_name'):
-                        voice_name = finalized_rhythm_command.voice_name
-                    else:
-                        voice_name = finalized_rhythm_command[0]
+                    self.score_specification.finalized_rhythm_commands.remove(finalized_rhythm_command)
+                    voice_name = finalized_rhythm_command.voice_name
                     voice_proxy = self.score_specification.contexts[voice_name]
                     voice_rhythm_region_products = voice_proxy.rhythm_region_products
                     voice_rhythm_region_products = voice_rhythm_region_products - rhythm_region_product.timespan
