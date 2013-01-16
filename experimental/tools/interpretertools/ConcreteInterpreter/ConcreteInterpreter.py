@@ -92,8 +92,10 @@ class ConcreteInterpreter(Interpreter):
         return region_commands
 
     # NEXT TODO: rewrite this as something comprehensible
+    # TODO: change name to self.make_finalized_rhythm_region_commands()
     def initialize_finalized_rhythm_region_commands(self, voice_name, rhythm_commands, division_lists, timespans):
         result = []
+        #self._debug(len(rhythm_commands), 'total rhythm commands')
         for rhythm_command, division_list, timespan in zip(rhythm_commands, division_lists, timespans):
             assert isinstance(rhythm_command, settingtools.RhythmRegionCommand), repr(rhythm_command)
             assert isinstance(division_list, settingtools.DivisionList), repr(division_list)
@@ -116,22 +118,40 @@ class ConcreteInterpreter(Interpreter):
                     rhythm_maker, voice_name, division_list, timespan.start_offset))
             # TODO: make SelectorRhythmRegionCommand here
             elif isinstance(rhythm_command.request, selectortools.CounttimeComponentSelector):
-                if result and isinstance(result[-1], tuple) and rhythm_command.prolongs_expr(result[-1][-1]):
-                    last_start_offset = result.pop()[2]
-                    new_entry = (
-                        voice_name,
-                        rhythm_command.request,
-                        last_start_offset,
-                        timespan.stop_offset,
-                        rhythm_command)
+                self._debug(rhythm_command, 'rhythm region command')
+                #selector_rhythm_region_command = settingtools.SelectorRhythmRegionCommand(
+                #    rhythm_command.request, division_list.duration, voice_name, timespan.start_offset)
+                total_duration = rhythm_command.timespan.duration
+                selector_rhythm_region_command = settingtools.SelectorRhythmRegionCommand(
+                    rhythm_command.request, total_duration, voice_name, rhythm_command.timespan.start_offset)
+#                if result and isinstance(result[-1], tuple) and rhythm_command.prolongs_expr(result[-1][-1]):
+#                    last_start_offset = result.pop()[2]
+#                    new_entry = (
+#                        voice_name,
+#                        rhythm_command.request,
+#                        last_start_offset,
+#                        timespan.stop_offset,
+#                        rhythm_command)
+#                else:
+#                    new_entry = (
+#                            voice_name,
+#                            rhythm_command.request,
+#                            rhythm_command.timespan.start_offset, 
+#                            rhythm_command.timespan.stop_offset, 
+#                            rhythm_command)
+#                result.append(new_entry)
+                if result and selector_rhythm_region_command.prolongs_expr(result[-1]):
+                    #result[-1]._total_duration += selector_rhythm_region_command.total_duration
+                    #result[-1]._total_duration = selector_rhythm_region_command.total_duration
+                    current_stop_offset = selector_rhythm_region_command.start_offset
+                    current_stop_offset += selector_rhythm_region_command.total_duration
+                    previous_stop_offset = result[-1].start_offset + result[-1].total_duration
+                    #extra_duration = stop_offset - result[-1].stop_offset
+                    extra_duration = current_stop_offset - previous_stop_offset
+                    assert 0 <= extra_duration
+                    result[-1]._total_duration += extra_duration
                 else:
-                    new_entry = (
-                            voice_name,
-                            rhythm_command.request,
-                            rhythm_command.timespan.start_offset, 
-                            rhythm_command.timespan.stop_offset, 
-                            rhythm_command)
-                result.append(new_entry)
+                    result.append(selector_rhythm_region_command)
             else:
                 raise TypeError(rhythm_command.request)
         return result
@@ -268,15 +288,18 @@ class ConcreteInterpreter(Interpreter):
                 elif isinstance(finalized_rhythm_command, settingtools.RhythmMakerRhythmRegionCommand):
                     rhythm_region_product = finalized_rhythm_command._get_payload(self.score_specification)
                 # TODO: make branch equal to SelectorRhythmRegionCommand._get_payload() only.
-                elif isinstance(finalized_rhythm_command[1], selectortools.CounttimeComponentSelector):
-                    counttime_component_selector, start_offset, stop_offset = finalized_rhythm_command[1:4]
-                    # TODO: remove start_offset, stop_offset parameters.
-                    rhythm_region_product = \
-                        counttime_component_selector._get_payload(
-                        self.score_specification, counttime_component_selector.voice_name, 
-                        start_offset, stop_offset)
+#                elif isinstance(finalized_rhythm_command[1], selectortools.CounttimeComponentSelector):
+#                    counttime_component_selector, start_offset, stop_offset = finalized_rhythm_command[1:4]
+#                    # TODO: remove start_offset, stop_offset parameters.
+#                    rhythm_region_product = \
+#                        counttime_component_selector._get_payload(
+#                        self.score_specification, counttime_component_selector.voice_name, 
+#                        start_offset, stop_offset)
+                elif isinstance(finalized_rhythm_command, settingtools.SelectorRhythmRegionCommand):
+                    rhythm_region_product = finalized_rhythm_command._get_payload(self.score_specification)
                 else:
-                    raise TypeError(finalized_rhythm_command[1])
+                    #raise TypeError(finalized_rhythm_command[1])
+                    raise TypeError(finalized_rhythm_command)
                 if rhythm_region_product is not None:
                     self.score_specification.finalized_rhythm_commands.remove(finalized_rhythm_command)
                     made_progress = True
