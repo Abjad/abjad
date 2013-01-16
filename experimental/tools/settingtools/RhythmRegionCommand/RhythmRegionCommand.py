@@ -80,6 +80,7 @@ class RhythmRegionCommand(RegionCommand):
 
     ### PUBLIC METHODS ###
 
+    # TODO: maybe implement finalize() methods on AbsoluteExpression, RhythmMakerRequest, etc.
     def finalize(self, score_specification, voice_name, start_offset, division_list):
         from experimental.tools import requesttools
         from experimental.tools import selectortools
@@ -91,22 +92,22 @@ class RhythmRegionCommand(RegionCommand):
             parseable_string = self.request.payload
             assert isinstance(parseable_string, str), repr(parseable_string)
             command = settingtools.ParseableStringRhythmRegionCommand(
-                parseable_string, start_offset, division_list.duration, voice_name)
+                parseable_string, voice_name, start_offset, division_list.duration)
         elif isinstance(self.request, requesttools.RhythmMakerRequest):
             rhythm_maker = self.request.payload
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             command = settingtools.RhythmMakerRhythmRegionCommand(
-                rhythm_maker, start_offset, division_list, voice_name)
+                rhythm_maker, voice_name, start_offset, division_list)
         elif isinstance(self.request, requesttools.RhythmSettingLookupRequest):
             rhythm_maker = self.request._get_payload(score_specification, voice_name)
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             command = settingtools.RhythmMakerRhythmRegionCommand(
-                rhythm_maker, start_offset, division_list, voice_name)
+                rhythm_maker, voice_name, start_offset, division_list)
         elif isinstance(self.request, selectortools.CounttimeComponentSelector):
             total_duration = self.timespan.duration
             command_start_offset = self.timespan.start_offset
             command = settingtools.SelectorRhythmRegionCommand(
-                self.request, command_start_offset, total_duration, voice_name)
+                self.request, voice_name, command_start_offset, total_duration)
         else:
             raise TypeError(self.request)
         return command

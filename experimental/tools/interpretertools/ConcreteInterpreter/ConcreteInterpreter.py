@@ -85,26 +85,25 @@ class ConcreteInterpreter(Interpreter):
                 voice.extend(rhythm_region_product.payload)
 
     # NEXT TODO: rewrite this as something comprehensible
-    # TODO: order rhythm_region_commands, start_offsets, division_lists, voice_name
-    def finalize_rhythm_region_commands(self, voice_name, rhythm_region_commands, division_lists, start_offsets):
+    def finalize_rhythm_region_commands(self, rhythm_region_commands, voice_name, start_offsets, division_lists):
+        finalized_rhythm_region_commands = []
+        for rhythm_region_command, start_offset, division_list in zip(
+            rhythm_region_commands, start_offsets, division_lists):
+            finalized_rhythm_region_command = rhythm_region_command.finalize(
+                self.score_specification, voice_name, start_offset, division_list)
+            finalized_rhythm_region_commands.append(finalized_rhythm_region_command)
         result = []
-        # TODO: order rhythm_region_command, start_offset, division_list
-        for rhythm_region_command, division_list, start_offset in zip(
-            rhythm_region_commands, division_lists, start_offsets):
-            command = rhythm_region_command.finalize(self.score_specification, voice_name, start_offset, division_list)
-            result.append(command)
-        commands, result = result[:], []
-        for command in commands:
-            if result and isinstance(command, settingtools.SelectorRhythmRegionCommand) and \
-                command.prolongs_expr(result[-1]):
-                current_stop_offset = command.start_offset
-                current_stop_offset += command.total_duration
+        for finalized_rhythm_region_command in finalized_rhythm_region_commands:
+            if result and isinstance(finalized_rhythm_region_command, settingtools.SelectorRhythmRegionCommand) and \
+                finalized_rhythm_region_command.prolongs_expr(result[-1]):
+                current_stop_offset = finalized_rhythm_region_command.start_offset
+                current_stop_offset += finalized_rhythm_region_command.total_duration
                 previous_stop_offset = result[-1].start_offset + result[-1].total_duration
                 extra_duration = current_stop_offset - previous_stop_offset
                 assert 0 <= extra_duration
                 result[-1]._total_duration += extra_duration
             else:
-                result.append(command)
+                result.append(finalized_rhythm_region_command)
         return result
 
     def get_region_commands_for_voice(self, attribute, voice_name):
@@ -214,7 +213,7 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_commands = [x[-1] for x in merged_duration_rhythm_region_command_pairs]
         assert len(rhythm_region_commands) == len(rhythm_region_division_lists)
         finalized_rhythm_region_commands = self.finalize_rhythm_region_commands(
-            voice_name, rhythm_region_commands, rhythm_region_division_lists, rhythm_region_start_offsets)
+            rhythm_region_commands, voice_name, rhythm_region_start_offsets, rhythm_region_division_lists)
         return finalized_rhythm_region_commands
 
     def make_region_commands(self, attribute):

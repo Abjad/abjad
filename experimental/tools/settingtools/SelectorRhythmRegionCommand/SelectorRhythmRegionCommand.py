@@ -10,11 +10,11 @@ class SelectorRhythmRegionCommand(FinalizedRhythmRegionCommand):
 
     ### INITIALIZER ###
 
-    def __init__(self, selector=None, start_offset=None, total_duration=None, voice_name=None):
+    def __init__(self, selector=None, voice_name=None, start_offset=None, total_duration=None):
         self._selector = selector
-        self._total_duration = total_duration
         self._voice_name = voice_name
         self._start_offset = start_offset
+        self._total_duration = total_duration
 
     ### PRIVATE METHODS ###
 
