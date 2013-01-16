@@ -84,13 +84,11 @@ class ConcreteInterpreter(Interpreter):
             for rhythm_region_product in voice_proxy.rhythm_region_products:
                 voice.extend(rhythm_region_product.payload)
 
-    # TODO: change signature to self.get_region_commands_for_voice(attribute, voice_name)
-    def get_region_commands_for_voice(self, voice_name, attribute):
-        region_commands = self.score_specification.get_region_commands_for_voice(voice_name, attribute)
+    def get_region_commands_for_voice(self, attribute, voice_name):
+        region_commands = self.score_specification.get_region_commands_for_voice(attribute, voice_name)
         region_commands.sort_and_split_commands()
         region_commands.compute_logical_or()
-        # TODO: change signature to region_commands.supply_missing_commands(attribute, self.score_spec, vn)
-        region_commands.supply_missing_commands(self.score_specification, voice_name, attribute)
+        region_commands.supply_missing_commands(attribute, self.score_specification, voice_name)
         return region_commands
 
     # NEXT TODO: rewrite this as something comprehensible
@@ -250,7 +248,7 @@ class ConcreteInterpreter(Interpreter):
         if self.score_specification.segment_specifications:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
                 voice_proxy = self.score_specification.contexts[voice.name]
-                region_commands = self.get_region_commands_for_voice(voice.name, attribute)
+                region_commands = self.get_region_commands_for_voice(attribute, voice.name)
                 singular_attribute = attribute.rstrip('s')
                 key = '{}_region_commands'.format(singular_attribute)
                 region_command_inventory = getattr(voice_proxy, key)
@@ -269,7 +267,7 @@ class ConcreteInterpreter(Interpreter):
                     rhythm_region_product = finalized_rhythm_command._get_payload(self.score_specification)
                 elif isinstance(finalized_rhythm_command, settingtools.RhythmMakerRhythmRegionCommand):
                     rhythm_region_product = finalized_rhythm_command._get_payload(self.score_specification)
-                # TODO: make branch equal to CounttimeComponentSelector._get_payload() only.
+                # TODO: make branch equal to SelectorRhythmRegionCommand._get_payload() only.
                 elif isinstance(finalized_rhythm_command[1], selectortools.CounttimeComponentSelector):
                     counttime_component_selector, start_offset, stop_offset = finalized_rhythm_command[1:4]
                     # TODO: remove start_offset, stop_offset parameters.

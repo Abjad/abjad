@@ -67,8 +67,7 @@ class RegionCommandInventory(TimespanInventory):
         self[:] = cooked_commands
         return self
 
-    # TODO: change signature to self.supply_missing_commands(attribute, score_specification, voice_name)
-    def supply_missing_commands(self, score_specification, voice_name, attribute):
+    def supply_missing_commands(self, attribute, score_specification, voice_name):
         '''Operate in place and return region command inventory.
         '''
         assert self.is_sorted
