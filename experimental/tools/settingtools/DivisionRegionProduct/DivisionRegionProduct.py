@@ -12,8 +12,7 @@ class DivisionRegionProduct(RegionProduct):
     ::
 
         >>> payload = [(6, 8), (6, 8), (3, 4)]
-        >>> timespan = timespantools.Timespan(0, Infinity)
-        >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespan)
+        >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', Offset(0))
 
     ::
 
@@ -23,10 +22,7 @@ class DivisionRegionProduct(RegionProduct):
                 [Division('[6, 8]'), Division('[6, 8]'), Division('[3, 4]')]
                 ),
             voice_name='Voice 1',
-            timespan=timespantools.Timespan(
-                start_offset=durationtools.Offset(0, 1),
-                stop_offset=durationtools.Offset(9, 4)
-                )
+            start_offset=durationtools.Offset(0, 1)
             )
 
     Contiguous block of one voice's divisions.
@@ -41,10 +37,10 @@ class DivisionRegionProduct(RegionProduct):
 
     ### INITIALIZER ###
 
-    def __init__(self, payload=None, voice_name=None, timespan=None):
+    def __init__(self, payload=None, voice_name=None, start_offset=None):
         from experimental.tools import settingtools
         payload = settingtools.DivisionList(payload)
-        RegionProduct.__init__(self, payload=payload, voice_name=voice_name, timespan=timespan)
+        RegionProduct.__init__(self, payload=payload, voice_name=voice_name, start_offset=start_offset)
 
     ### SPECIAL METHODS ###
 
@@ -56,7 +52,7 @@ class DivisionRegionProduct(RegionProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', Offset(0))
             >>> result = product & timespantools.Timespan(0, Offset(1, 8))
 
         ::
@@ -69,10 +65,7 @@ class DivisionRegionProduct(RegionProduct):
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(1, 8)
-                        )
+                    start_offset=durationtools.Offset(0, 1)
                     )
                 ])
 
@@ -81,7 +74,7 @@ class DivisionRegionProduct(RegionProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', Offset(0))
             >>> result = product & timespantools.Timespan(Offset(17, 8), 100)
 
         ::
@@ -94,10 +87,7 @@ class DivisionRegionProduct(RegionProduct):
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(17, 8),
-                        stop_offset=durationtools.Offset(9, 4)
-                        )
+                    start_offset=durationtools.Offset(17, 8)
                     )
                 ])
 
@@ -106,7 +96,7 @@ class DivisionRegionProduct(RegionProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', Offset(0))
             >>> result = product & timespantools.Timespan(Offset(1, 8), Offset(17, 8))
 
         ::
@@ -119,10 +109,7 @@ class DivisionRegionProduct(RegionProduct):
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(1, 8),
-                        stop_offset=durationtools.Offset(17, 8)
-                        )
+                    start_offset=durationtools.Offset(1, 8)
                     )
                 ])
 
@@ -131,7 +118,7 @@ class DivisionRegionProduct(RegionProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', Offset(0))
             >>> result = product & timespantools.Timespan(100, 200)
 
         ::
@@ -148,10 +135,10 @@ class DivisionRegionProduct(RegionProduct):
 
         ::
 
-            >>> region_product_1 = settingtools.DivisionRegionProduct(2 * [(3, 16)], 'Voice 1')
+            >>> region_product_1 = settingtools.DivisionRegionProduct(2 * [(3, 16)], 'Voice 1', Offset(0))
             >>> timespan = timespantools.Timespan(Offset(6, 16))
             >>> region_product_2 = settingtools.DivisionRegionProduct(
-            ...     2 * [(2, 16)], 'Voice 1', timespan=timespan)
+            ...     2 * [(2, 16)], 'Voice 1', Offset(6, 16))
 
         ::
 
@@ -171,10 +158,7 @@ class DivisionRegionProduct(RegionProduct):
                         [Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]'), Division('[2, 16]')]
                         ),
                     voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(5, 8)
-                        )
+                    start_offset=durationtools.Offset(0, 1)
                     )
                 ])
 
@@ -190,7 +174,7 @@ class DivisionRegionProduct(RegionProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', Offset(0))
             >>> result = product - timespantools.Timespan(0, Offset(1, 8))
 
         ::
@@ -203,10 +187,7 @@ class DivisionRegionProduct(RegionProduct):
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(1, 8),
-                        stop_offset=durationtools.Offset(9, 4)
-                        )
+                    start_offset=durationtools.Offset(1, 8)
                     )
                 ])
 
@@ -215,7 +196,7 @@ class DivisionRegionProduct(RegionProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', Offset(0))
             >>> result = product - timespantools.Timespan(Offset(17, 8), 100)
 
         ::
@@ -228,10 +209,7 @@ class DivisionRegionProduct(RegionProduct):
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(17, 8)
-                        )
+                    start_offset=durationtools.Offset(0, 1)
                     )
                 ])
 
@@ -240,7 +218,7 @@ class DivisionRegionProduct(RegionProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', Offset(0))
             >>> result = product - timespantools.Timespan(Offset(1, 8), Offset(17, 8))
 
         ::
@@ -253,10 +231,7 @@ class DivisionRegionProduct(RegionProduct):
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(1, 8)
-                        )
+                    start_offset=durationtools.Offset(0, 1)
                     ),
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
@@ -264,10 +239,7 @@ class DivisionRegionProduct(RegionProduct):
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(17, 8),
-                        stop_offset=durationtools.Offset(9, 4)
-                        )
+                    start_offset=durationtools.Offset(17, 8)
                     )
                 ])
 
@@ -277,7 +249,7 @@ class DivisionRegionProduct(RegionProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespantools.Timespan(0))
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', Offset(0))
             >>> result = product - timespantools.Timespan(100, 200)
 
         ::
@@ -289,10 +261,7 @@ class DivisionRegionProduct(RegionProduct):
                         [Division('[6, 8]'), Division('[6, 8]'), Division('[3, 4]')]
                         ),
                     voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(9, 4)
-                        )
+                    start_offset=durationtools.Offset(0, 1)
                     )
                 ])
 
@@ -370,10 +339,7 @@ class DivisionRegionProduct(RegionProduct):
                     [Division('[6, 8]'), Division('[6, 8]'), Division('[3, 4]')]
                     ),
                 voice_name='Voice 1',
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(9, 4)
-                    )
+                start_offset=durationtools.Offset(0, 1)
                 )
 
         Return string.
@@ -414,8 +380,7 @@ class DivisionRegionProduct(RegionProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (6, 8), (6, 8), (6, 4), (6, 4)]
-            >>> timespan = timespantools.Timespan(0, Infinity)
-            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespan)
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -431,10 +396,7 @@ class DivisionRegionProduct(RegionProduct):
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(9, 4)
-                        )
+                    start_offset=durationtools.Offset(0, 1)
                     ),
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
@@ -442,10 +404,7 @@ class DivisionRegionProduct(RegionProduct):
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(9, 4),
-                        stop_offset=durationtools.Offset(6, 1)
-                        )
+                    start_offset=durationtools.Offset(9, 4)
                     )
                 ])
 
@@ -459,8 +418,7 @@ class DivisionRegionProduct(RegionProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (6, 8), (6, 8), (6, 4), (6, 4)]
-            >>> timespan = timespantools.Timespan(0, Infinity)
-            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespan)
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -476,10 +434,7 @@ class DivisionRegionProduct(RegionProduct):
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(3, 1)
-                        )
+                    start_offset=durationtools.Offset(0, 1)
                     ),
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
@@ -487,10 +442,7 @@ class DivisionRegionProduct(RegionProduct):
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
-                    timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(3, 1),
-                        stop_offset=durationtools.Offset(6, 1)
-                        )
+                    start_offset=durationtools.Offset(3, 1)
                     )
                 ])
 
@@ -504,8 +456,7 @@ class DivisionRegionProduct(RegionProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> timespan = timespantools.Timespan(0, Infinity)
-            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespan)
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -519,10 +470,7 @@ class DivisionRegionProduct(RegionProduct):
                     [Division('[3, 4]'), Division('[6, 8]'), Division('[6, 8]')]
                     ),
                 voice_name='Voice 1',
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(9, 4)
-                    )
+                start_offset=durationtools.Offset(0, 1)
                 )
 
         Operate in place and return division region product.
@@ -535,8 +483,7 @@ class DivisionRegionProduct(RegionProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> timespan = timespantools.Timespan(0, Infinity)
-            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespan)
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -550,10 +497,7 @@ class DivisionRegionProduct(RegionProduct):
                     [Division('[6, 8]'), Division('[3, 4]'), Division('[6, 8]')]
                     ),
                 voice_name='Voice 1',
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(9, 4)
-                    )
+                start_offset=durationtools.Offset(0, 1)
                 )
         
         .. note:: implement duration rotation.
@@ -568,8 +512,7 @@ class DivisionRegionProduct(RegionProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> timespan = timespantools.Timespan(0, Infinity)
-            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', timespan)
+            >>> product = settingtools.DivisionRegionProduct(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -583,10 +526,7 @@ class DivisionRegionProduct(RegionProduct):
                     [Division('[6, 8]'), Division('[6, 8]'), Division('[3, 4]')]
                     ),
                 voice_name='Voice 1',
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(10, 1),
-                    stop_offset=durationtools.Offset(49, 4)
-                    )
+                start_offset=durationtools.Offset(10, 1)
                 )
 
         Operate in place and return division region product.

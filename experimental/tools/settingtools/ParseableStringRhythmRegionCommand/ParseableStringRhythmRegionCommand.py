@@ -21,9 +21,9 @@ class ParseableStringRhythmRegionCommand(FinalizedRhythmRegionCommand):
     def _get_payload(self, score_specification=None, voice_name=None):
         from experimental.tools import settingtools
         component = iotools.p(self.parseable_string)
-        timespan = timespantools.Timespan(self.start_offset)
+        #timespan = timespantools.Timespan(self.start_offset)
         rhythm_region_product = settingtools.RhythmRegionProduct(
-            payload=[component], voice_name=self.voice_name, timespan=timespan)
+            payload=[component], voice_name=self.voice_name, start_offset=self.start_offset)
         # TODO: maybe create timespan here instead of just offset
         stop_offset = self.start_offset + self.total_duration
         # TODO: maybe use timespan comparisons here instead offset comparisons

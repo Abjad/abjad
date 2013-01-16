@@ -5,7 +5,7 @@ from experimental.tools import *
 def test_RhythmRegionProduct_rotate_01():
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.RhythmRegionProduct(payload=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionProduct(music, 'Voice 1', Offset(0))
     durations = [x.prolated_duration for x in expr.payload[:]]
     beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
@@ -17,7 +17,7 @@ def test_RhythmRegionProduct_rotate_01():
 def test_RhythmRegionProduct_rotate_02():
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.RhythmRegionProduct(payload=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionProduct(music, 'Voice 1', Offset(0))
     durations = [x.prolated_duration for x in expr.payload[:]]
     beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
@@ -29,7 +29,7 @@ def test_RhythmRegionProduct_rotate_02():
 def test_RhythmRegionProduct_rotate_03():
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.RhythmRegionProduct(payload=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionProduct(music, 'Voice 1', Offset(0))
     durations = [x.prolated_duration for x in expr.payload[:]]
     beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
@@ -43,7 +43,7 @@ def test_RhythmRegionProduct_rotate_04():
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.RhythmRegionProduct(payload=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionProduct(music, 'Voice 1', Offset(0))
     durations = [x.prolated_duration for x in expr.payload[:]]
     beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
@@ -57,7 +57,7 @@ def test_RhythmRegionProduct_rotate_05():
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.RhythmRegionProduct(payload=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionProduct(music, 'Voice 1', Offset(0))
     durations = [x.prolated_duration for x in expr.payload[:]]
     beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
@@ -71,7 +71,7 @@ def test_RhythmRegionProduct_rotate_06():
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.RhythmRegionProduct(payload=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionProduct(music, 'Voice 1', Offset(0))
     durations = [x.prolated_duration for x in expr.payload[:]]
     beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
@@ -85,7 +85,7 @@ def test_RhythmRegionProduct_rotate_07():
     '''
     
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.RhythmRegionProduct(payload=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionProduct(music, 'Voice 1', Offset(0))
     durations = [x.prolated_duration for x in expr.payload[:]]
     beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
@@ -99,7 +99,7 @@ def test_RhythmRegionProduct_rotate_08():
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.RhythmRegionProduct(payload=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionProduct(music, 'Voice 1', Offset(0))
     durations = [x.prolated_duration for x in expr.payload[:]]
     beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
@@ -113,7 +113,7 @@ def test_RhythmRegionProduct_rotate_09():
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.RhythmRegionProduct(payload=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionProduct(music, 'Voice 1', Offset(0))
     durations = [x.prolated_duration for x in expr.payload[:]]
     beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
@@ -127,7 +127,7 @@ def test_RhythmRegionProduct_rotate_10():
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.RhythmRegionProduct(payload=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionProduct(music, 'Voice 1', Offset(0))
     durations = [x.prolated_duration for x in expr.payload[:]]
     beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
@@ -142,7 +142,7 @@ def test_RhythmRegionProduct_rotate_11():
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.RhythmRegionProduct(payload=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionProduct(music, 'Voice 1', Offset(0))
     durations = [x.prolated_duration for x in expr.payload[:]]
     beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
@@ -157,7 +157,7 @@ def test_RhythmRegionProduct_rotate_12():
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.RhythmRegionProduct(payload=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionProduct(music, 'Voice 1', Offset(0))
     durations = [x.prolated_duration for x in expr.payload[:]]
     beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
@@ -172,7 +172,7 @@ def test_RhythmRegionProduct_rotate_13():
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.RhythmRegionProduct(payload=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionProduct(music, 'Voice 1', Offset(0))
     durations = [x.prolated_duration for x in expr.payload[:]]
     beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
@@ -187,7 +187,7 @@ def test_RhythmRegionProduct_rotate_14():
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
-    expr = settingtools.RhythmRegionProduct(payload=music, voice_name='Voice 1')
+    expr = settingtools.RhythmRegionProduct(music, 'Voice 1', Offset(0))
     durations = [x.prolated_duration for x in expr.payload[:]]
     beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 

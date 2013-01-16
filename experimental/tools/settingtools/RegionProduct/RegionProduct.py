@@ -26,13 +26,12 @@ class RegionProduct(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, payload=None, voice_name=None, timespan=None):
+    def __init__(self, payload=None, voice_name=None, start_offset=None):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
-        timespan = timespan or timespantools.Timespan(0)
-        assert isinstance(timespan, (timespantools.Timespan)), repr(timespan)
+        start_offset = durationtools.Offset(start_offset)
         self._payload = payload
         self._voice_name = voice_name
-        self._start_offset = timespan.start_offset
+        self._start_offset = start_offset
 
     ### SPECIAL METHODS ###
 
@@ -66,7 +65,7 @@ class RegionProduct(AbjadObject):
             middle_payload = result[1]
             middle_timespan = timespantools.Timespan(*timespan.offsets)
             middle_product = type(self)(
-                payload=[], voice_name=self.voice_name, timespan=middle_timespan)
+                payload=[], voice_name=self.voice_name, start_offset=middle_timespan.start_offset)
             middle_product._payload = middle_payload
             result = timespantools.TimespanInventory([middle_product])
         else:
@@ -105,7 +104,7 @@ class RegionProduct(AbjadObject):
         '''
         assert self._can_fuse(expr)
         payload = self.payload + expr.payload
-        result = type(self)([], voice_name=self.voice_name, timespan=self.timespan)
+        result = type(self)([], voice_name=self.voice_name, start_offset=self.timespan.start_offset)
         result._payload = payload
         return timespantools.TimespanInventory([result])
 
@@ -143,11 +142,11 @@ class RegionProduct(AbjadObject):
             right_payload = result[-1]
             left_timespan = timespantools.Timespan(self.start_offset)
             left_product = type(self)(
-                payload=[], voice_name=self.voice_name, timespan=left_timespan)
+                payload=[], voice_name=self.voice_name, start_offset=left_timespan.start_offset)
             left_product._payload = left_payload
             right_timespan = timespantools.Timespan(timespan.stop_offset)
             right_product = type(self)(
-                payload=[], voice_name=self.voice_name, timespan=right_timespan)
+                payload=[], voice_name=self.voice_name, start_offset=right_timespan.start_offset)
             right_product._payload = right_payload
             products = [left_product, right_product]
             result = timespantools.TimespanInventory(products)
@@ -190,13 +189,6 @@ class RegionProduct(AbjadObject):
     def _get_duration_of_list(self, expr):
         duration = durationtools.Duration(0)
         for element in expr:
-#            if hasattr(element, 'duration'):
-#                duration += element.duration
-#            elif hasattr(element, 'prolated_duration'):
-#                duration += element.prolated_duration
-#            else:
-#                assert isinstance(element, numbers.Number), repr(element)
-#                duration += element
             duration += self._get_duration_of_expr(element)
         return duration
 
@@ -277,7 +269,7 @@ class RegionProduct(AbjadObject):
         region_products = settingtools.RegionCommandInventory()
         for payload_part, start_offset in zip(payload_parts, start_offsets):
             timespan = timespantools.Timespan(start_offset)
-            region_product = type(self)([], self.voice_name, timespan)
+            region_product = type(self)([], self.voice_name, timespan.start_offset)
             region_product._payload = payload_part
             region_products.append(region_product)
         return region_products
@@ -300,7 +292,7 @@ class RegionProduct(AbjadObject):
         region_products = settingtools.RegionCommandInventory()
         for payload_part, start_offset in zip(payload_parts, start_offsets):
             timespan = timespantools.Timespan(start_offset)
-            region_product = type(self)([], self.voice_name, timespan)
+            region_product = type(self)([], self.voice_name, timespan.start_offset)
             region_product._payload = payload_part
             region_products.append(region_product)
         return region_products

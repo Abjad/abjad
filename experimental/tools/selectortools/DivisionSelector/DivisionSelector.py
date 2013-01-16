@@ -75,11 +75,11 @@ class DivisionSelector(Selector):
         divisions = trimmed_division_region_products[0].payload.divisions
         start_offset = trimmed_division_region_products[0].timespan.start_offset
         divisions, start_offset = self._apply_payload_callbacks(divisions, start_offset)
-        timespan = timespantools.Timespan(start_offset)
+        #timespan = timespantools.Timespan(start_offset)
         result = settingtools.DivisionRegionProduct(
             divisions, 
             voice_name=final_expression.voice_name,
-            timespan=timespan
+            start_offset=start_offset
             )
         return result
 

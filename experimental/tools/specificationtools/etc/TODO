@@ -142,5 +142,3 @@
         RhythmRegionProduct.repeat_to_duration()
         RhythmRegionProduct.repeat_to_length()
     Add docstring examples for DivisionRegionProduct implementations of these methods.
-
-30. Change region product classes back to start-offset initialization instead of timespan initialization.

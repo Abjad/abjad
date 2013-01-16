@@ -59,7 +59,7 @@ class DivisionRegionCommand(RegionCommand):
             divisions = self.request._get_payload(score_specification, request_voice_name)
             divisions = [settingtools.Division(x) for x in divisions]
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
-            result = settingtools.DivisionRegionProduct(divisions, voice_name, region_timespan)
+            result = settingtools.DivisionRegionProduct(divisions, voice_name, region_timespan.start_offset)
             return [result]
 
     ## READ-ONLY PUBLIC PROPERTIES ###
