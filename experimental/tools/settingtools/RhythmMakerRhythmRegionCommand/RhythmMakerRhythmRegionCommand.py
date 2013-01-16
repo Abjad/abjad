@@ -11,8 +11,7 @@ class RhythmMakerRhythmRegionCommand(FinalizedRhythmRegionCommand):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
-        rhythm_maker=None, voice_name=None, rhythm_region_division_list=None, start_offset=None):
+    def __init__(self, rhythm_maker=None, start_offset=None, rhythm_region_division_list=None, voice_name=None):
         self._rhythm_maker = rhythm_maker
         self._voice_name = voice_name
         self._rhythm_region_division_list = rhythm_region_division_list

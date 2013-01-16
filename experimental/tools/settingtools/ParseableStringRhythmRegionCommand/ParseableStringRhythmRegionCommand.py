@@ -9,7 +9,7 @@ class ParseableStringRhythmRegionCommand(FinalizedRhythmRegionCommand):
 
     ### INITIALIZER ###
 
-    def __init__(self, parseable_string=None, total_duration=None, voice_name=None, start_offset=None):
+    def __init__(self, parseable_string=None, start_offset=None, total_duration=None, voice_name=None):
         self._parseable_string = parseable_string
         self._total_duration = total_duration
         self._voice_name = voice_name

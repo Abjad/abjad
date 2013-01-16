@@ -10,8 +10,7 @@ class SelectorRhythmRegionCommand(FinalizedRhythmRegionCommand):
 
     ### INITIALIZER ###
 
-    # TODO: self.__init__(selector, start_offset, total_duration, voice_name)
-    def __init__(self, selector=None, total_duration=None, voice_name=None, start_offset=None):
+    def __init__(self, selector=None, start_offset=None, total_duration=None, voice_name=None):
         self._selector = selector
         self._total_duration = total_duration
         self._voice_name = voice_name

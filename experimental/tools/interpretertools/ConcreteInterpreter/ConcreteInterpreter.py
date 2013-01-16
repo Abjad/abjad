@@ -105,22 +105,22 @@ class ConcreteInterpreter(Interpreter):
                 parseable_string = rhythm_command.request.payload
                 assert isinstance(parseable_string, str), repr(parseable_string)
                 command = settingtools.ParseableStringRhythmRegionCommand(
-                    parseable_string, division_list.duration, voice_name, timespan.start_offset)
+                    parseable_string, timespan.start_offset, division_list.duration, voice_name)
                 result.append(command)
             elif isinstance(rhythm_command.request, requesttools.RhythmMakerRequest):
                 rhythm_maker = rhythm_command.request.payload
                 assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
                 result.append(settingtools.RhythmMakerRhythmRegionCommand(
-                    rhythm_maker, voice_name, division_list, timespan.start_offset))
+                    rhythm_maker, timespan.start_offset, division_list, voice_name))
             elif isinstance(rhythm_command.request, requesttools.RhythmSettingLookupRequest):
                 rhythm_maker = rhythm_command.request._get_payload(self.score_specification, voice_name)
                 assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
                 result.append(settingtools.RhythmMakerRhythmRegionCommand(
-                    rhythm_maker, voice_name, division_list, timespan.start_offset))
+                    rhythm_maker, timespan.start_offset, division_list, voice_name))
             elif isinstance(rhythm_command.request, selectortools.CounttimeComponentSelector):
                 total_duration = rhythm_command.timespan.duration
                 selector_rhythm_region_command = settingtools.SelectorRhythmRegionCommand(
-                    rhythm_command.request, total_duration, voice_name, rhythm_command.timespan.start_offset)
+                    rhythm_command.request, rhythm_command.timespan.start_offset, total_duration, voice_name)
                 # TODO: move prolongation analysis to subsequent loop
                 if result and selector_rhythm_region_command.prolongs_expr(result[-1]):
                     current_stop_offset = selector_rhythm_region_command.start_offset
