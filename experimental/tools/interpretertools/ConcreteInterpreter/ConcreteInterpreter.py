@@ -87,7 +87,8 @@ class ConcreteInterpreter(Interpreter):
     # NEXT TODO: rewrite this as something comprehensible
     def finalize_rhythm_region_commands(self, voice_name, rhythm_region_commands, division_lists, start_offsets):
         result = []
-        for rhythm_region_command, division_list, start_offset in zip(rhythm_region_commands, division_lists, start_offsets):
+        for rhythm_region_command, division_list, start_offset in zip(
+            rhythm_region_commands, division_lists, start_offsets):
             assert isinstance(rhythm_region_command, settingtools.RhythmRegionCommand), repr(rhythm_region_command)
             assert isinstance(division_list, settingtools.DivisionList), repr(division_list)
             assert isinstance(start_offset, durationtools.Offset), repr(start_offset)
@@ -111,20 +112,23 @@ class ConcreteInterpreter(Interpreter):
                     rhythm_maker, start_offset, division_list, voice_name))
             elif isinstance(rhythm_region_command.request, selectortools.CounttimeComponentSelector):
                 total_duration = rhythm_region_command.timespan.duration
-                selector_rhythm_region_command = settingtools.SelectorRhythmRegionCommand(
-                    rhythm_region_command.request, rhythm_region_command.timespan.start_offset, total_duration, voice_name)
-                # TODO: move prolongation analysis to subsequent loop
-                if result and selector_rhythm_region_command.prolongs_expr(result[-1]):
-                    current_stop_offset = selector_rhythm_region_command.start_offset
-                    current_stop_offset += selector_rhythm_region_command.total_duration
-                    previous_stop_offset = result[-1].start_offset + result[-1].total_duration
-                    extra_duration = current_stop_offset - previous_stop_offset
-                    assert 0 <= extra_duration
-                    result[-1]._total_duration += extra_duration
-                else:
-                    result.append(selector_rhythm_region_command)
+                command_start_offset = rhythm_region_command.timespan.start_offset
+                result.append(settingtools.SelectorRhythmRegionCommand(
+                    rhythm_region_command.request, command_start_offset, total_duration, voice_name))
             else:
                 raise TypeError(rhythm_region_command.request)
+        commands, result = result[:], []
+        for command in commands:
+            if result and isinstance(command, settingtools.SelectorRhythmRegionCommand) and \
+                command.prolongs_expr(result[-1]):
+                current_stop_offset = command.start_offset
+                current_stop_offset += command.total_duration
+                previous_stop_offset = result[-1].start_offset + result[-1].total_duration
+                extra_duration = current_stop_offset - previous_stop_offset
+                assert 0 <= extra_duration
+                result[-1]._total_duration += extra_duration
+            else:
+                result.append(command)
         return result
 
     def get_region_commands_for_voice(self, attribute, voice_name):
