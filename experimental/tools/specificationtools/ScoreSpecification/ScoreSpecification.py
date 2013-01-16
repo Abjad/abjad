@@ -46,7 +46,7 @@ class ScoreSpecification(Specification):
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
         self._division_region_commands = []
-        self._finalized_rhythm_commands = []
+        self._finalized_rhythm_region_commands = []
         self._rhythm_region_commands = []
         self._time_signature_settings = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
@@ -187,19 +187,19 @@ class ScoreSpecification(Specification):
         return self._division_region_commands
 
     @property
-    def finalized_rhythm_commands(self):
+    def finalized_rhythm_region_commands(self):
         '''Read-only list of finalized rhythm commands:
 
         ::
 
-            >>> for x in score_specification.finalized_rhythm_commands:
+            >>> for x in score_specification.finalized_rhythm_region_commands:
             ...     z(x)
 
         Popluate during interpretation. Then consume during interpretation.
 
         Return list.
         '''
-        return self._finalized_rhythm_commands
+        return self._finalized_rhythm_region_commands
 
     @property
     def interface(self):

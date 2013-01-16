@@ -84,15 +84,8 @@ class ConcreteInterpreter(Interpreter):
             for rhythm_region_product in voice_proxy.rhythm_region_products:
                 voice.extend(rhythm_region_product.payload)
 
-    def get_region_commands_for_voice(self, attribute, voice_name):
-        region_commands = self.score_specification.get_region_commands_for_voice(attribute, voice_name)
-        region_commands.sort_and_split_commands()
-        region_commands.compute_logical_or()
-        region_commands.supply_missing_commands(attribute, self.score_specification, voice_name)
-        return region_commands
-
     # NEXT TODO: rewrite this as something comprehensible
-    def make_finalized_rhythm_region_commands(self, voice_name, rhythm_commands, division_lists, start_offsets):
+    def finalize_rhythm_region_commands(self, voice_name, rhythm_commands, division_lists, start_offsets):
         result = []
         for rhythm_command, division_list, start_offset in zip(rhythm_commands, division_lists, start_offsets):
             assert isinstance(rhythm_command, settingtools.RhythmRegionCommand), repr(rhythm_command)
@@ -134,6 +127,13 @@ class ConcreteInterpreter(Interpreter):
                 raise TypeError(rhythm_command.request)
         return result
 
+    def get_region_commands_for_voice(self, attribute, voice_name):
+        region_commands = self.score_specification.get_region_commands_for_voice(attribute, voice_name)
+        region_commands.sort_and_split_commands()
+        region_commands.compute_logical_or()
+        region_commands.supply_missing_commands(attribute, self.score_specification, voice_name)
+        return region_commands
+
     def interpret_additional_parameters(self):
         pass
 
@@ -151,8 +151,8 @@ class ConcreteInterpreter(Interpreter):
     def interpret_rhythm(self):
         self.make_region_commands('rhythm')
         #self._debug_values(self.score_specification.rhythm_region_commands, 'rhythm region commands')
-        self.make_finalized_rhythm_commands()
-        #self._debug_values(self.score_specification.finalized_rhythm_commands, 'finalized rhythm commands')
+        self.make_finalized_rhythm_region_commands()
+        #self._debug_values(self.score_specification.finalized_rhythm_region_commands, 'finalized rhythm commands')
         self.make_rhythm_region_products()
         self.dump_rhythm_region_products_into_voices()
 
@@ -188,12 +188,12 @@ class ConcreteInterpreter(Interpreter):
             if voice_division_region_commands and not made_progress:
                 raise Exception('cyclic division specification.')
 
-    def make_finalized_rhythm_commands(self):
+    def make_finalized_rhythm_region_commands(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            finalized_rhythm_commands = self.make_finalized_rhythm_commands_for_voice(voice.name)
-            self.score_specification.finalized_rhythm_commands.extend(finalized_rhythm_commands)
+            finalized_rhythm_region_commands = self.make_finalized_rhythm_region_commands_for_voice(voice.name)
+            self.score_specification.finalized_rhythm_region_commands.extend(finalized_rhythm_region_commands)
 
-    def make_finalized_rhythm_commands_for_voice(self, voice_name):
+    def make_finalized_rhythm_region_commands_for_voice(self, voice_name):
         voice_proxy = self.score_specification.contexts[voice_name]
         voice_division_list = voice_proxy.voice_division_list
         division_region_products = voice_proxy.division_region_products
@@ -233,9 +233,9 @@ class ConcreteInterpreter(Interpreter):
         # the first column in pairs is not used for anything further at all is discarded
         rhythm_commands = [x[-1] for x in merged_duration_rhythm_command_pairs]
         assert len(rhythm_commands) == len(rhythm_region_division_lists)
-        finalized_rhythm_commands = self.make_finalized_rhythm_region_commands(
+        finalized_rhythm_region_commands = self.finalize_rhythm_region_commands(
             voice_name, rhythm_commands, rhythm_region_division_lists, rhythm_region_start_offsets)
-        return finalized_rhythm_commands
+        return finalized_rhythm_region_commands
 
     def make_region_commands(self, attribute):
         if self.score_specification.segment_specifications:
@@ -252,15 +252,15 @@ class ConcreteInterpreter(Interpreter):
                         score_region_commands.append(region_command)
 
     def make_rhythm_region_products(self):
-        while self.score_specification.finalized_rhythm_commands:
+        while self.score_specification.finalized_rhythm_region_commands:
             made_progress = False
-            for finalized_rhythm_command in self.score_specification.finalized_rhythm_commands[:]:
-                assert isinstance(finalized_rhythm_command, settingtools.FinalizedRhythmRegionCommand)
-                rhythm_region_product = finalized_rhythm_command._get_payload(self.score_specification)
+            for finalized_rhythm_region_command in self.score_specification.finalized_rhythm_region_commands[:]:
+                assert isinstance(finalized_rhythm_region_command, settingtools.FinalizedRhythmRegionCommand)
+                rhythm_region_product = finalized_rhythm_region_command._get_payload(self.score_specification)
                 if rhythm_region_product is not None:
                     made_progress = True
-                    self.score_specification.finalized_rhythm_commands.remove(finalized_rhythm_command)
-                    voice_name = finalized_rhythm_command.voice_name
+                    self.score_specification.finalized_rhythm_region_commands.remove(finalized_rhythm_region_command)
+                    voice_name = finalized_rhythm_region_command.voice_name
                     voice_proxy = self.score_specification.contexts[voice_name]
                     voice_rhythm_region_products = voice_proxy.rhythm_region_products
                     voice_rhythm_region_products = voice_rhythm_region_products - rhythm_region_product.timespan
