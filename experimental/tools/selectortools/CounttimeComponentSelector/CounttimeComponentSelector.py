@@ -77,7 +77,8 @@ class CounttimeComponentSelector(Selector):
     
     ### PRIVATE METHODS ###
 
-    # TODO: remove start_offset=None, stop_offset=None keywords and use payload callback instead.
+    # TODO: remove start_offset=None, stop_offset=None keywords.
+    # TODO: migrate start_offset, stop_offset functionality to SelectorRhythmRegionCommand._get_payload().
     # TODO: migrate into self._get_timespan_and_payload().
     def _get_payload(self, score_specification, voice_name, start_offset=None, stop_offset=None):
         from experimental.tools import settingtools
@@ -96,7 +97,6 @@ class CounttimeComponentSelector(Selector):
         rhythm_region_products.sort()
         assert anchor_timespan.is_well_formed, repr(anchor_timespan)
         rhythm_region_products = rhythm_region_products & anchor_timespan
-        #timespan = timespantools.Timespan(start_offset)
         result = settingtools.RhythmRegionProduct(voice_name=voice_name, start_offset=start_offset)
         for rhythm_region_product in rhythm_region_products:
             result.payload.extend(rhythm_region_product.payload)

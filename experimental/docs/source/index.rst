@@ -425,6 +425,7 @@ Unstable packages (load manually)
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
+      tools/settingtools/SelectorRhythmRegionCommand/SelectorRhythmRegionCommand
       tools/settingtools/SettingInventory/SettingInventory
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
@@ -477,6 +478,7 @@ Unstable packages (load manually)
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
+      tools/settingtools/SelectorRhythmRegionCommand/SelectorRhythmRegionCommand
       tools/settingtools/SettingInventory/SettingInventory
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting

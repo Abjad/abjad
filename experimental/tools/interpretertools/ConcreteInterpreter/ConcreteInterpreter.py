@@ -109,15 +109,14 @@ class ConcreteInterpreter(Interpreter):
             elif isinstance(rhythm_command.request, requesttools.RhythmMakerRequest):
                 rhythm_maker = rhythm_command.request.payload
                 assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
-                #result.append((voice_name, rhythm_maker, division_list, timespan.start_offset, rhythm_command))
                 result.append(settingtools.RhythmMakerRhythmRegionCommand(
                     rhythm_maker, voice_name, division_list, timespan.start_offset))
             elif isinstance(rhythm_command.request, requesttools.RhythmSettingLookupRequest):
                 rhythm_maker = rhythm_command.request._get_payload(self.score_specification, voice_name)
                 assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
-                #result.append((voice_name, rhythm_maker, division_list, timespan.start_offset, rhythm_command))
                 result.append(settingtools.RhythmMakerRhythmRegionCommand(
                     rhythm_maker, voice_name, division_list, timespan.start_offset))
+            # TODO: make SelectorRhythmRegionCommand here
             elif isinstance(rhythm_command.request, selectortools.CounttimeComponentSelector):
                 if result and isinstance(result[-1], tuple) and rhythm_command.prolongs_expr(result[-1][-1]):
                     last_start_offset = result.pop()[2]
