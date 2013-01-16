@@ -13,7 +13,7 @@ class ScoreSpecification(Specification):
 
     ::
 
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     The examples below reference the score specification defined here::
 

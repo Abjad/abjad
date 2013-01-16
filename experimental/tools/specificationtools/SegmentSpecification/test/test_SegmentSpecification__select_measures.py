@@ -1,5 +1,5 @@
 from abjad.tools import *
-from experimental.tools import *
+from experimental import *
 
 
 def test_SegmentSpecification__select_measures_01():

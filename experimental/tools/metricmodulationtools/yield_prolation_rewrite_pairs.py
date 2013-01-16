@@ -3,7 +3,7 @@ def yield_prolation_rewrite_pairs(prolated_duration, minimum_written_duration=No
 
     ::
 
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
 
     Ensure written duration never less than `minimum_written_duration`.

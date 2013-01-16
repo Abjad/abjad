@@ -6,7 +6,7 @@ class LookupMethodMixin(Expression):
     '''Lookup method mixin.
     ::
 
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     ::
 

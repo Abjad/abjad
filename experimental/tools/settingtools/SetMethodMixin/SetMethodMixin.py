@@ -7,7 +7,7 @@ class SetMethodMixin(AbjadObject):
 
     ::
         
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     Examples below use the score and segment specification defined here::
 

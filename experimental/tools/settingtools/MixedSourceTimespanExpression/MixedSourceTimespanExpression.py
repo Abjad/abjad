@@ -7,7 +7,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
 
     ::
 
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     ::
 

@@ -8,7 +8,7 @@ class OffsetExpression(LookupMethodMixin):
 
     ::
 
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     ::
 

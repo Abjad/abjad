@@ -14,7 +14,7 @@ class TimespanCallbackMixin(Expression):
 
     ::
         
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     ::
 

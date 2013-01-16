@@ -12,7 +12,7 @@ class BeatSelector(Selector):
 
     ::
 
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     ::
 

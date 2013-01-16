@@ -1,5 +1,5 @@
 from abjad import *
-from experimental.tools import *
+from experimental import *
 
 
 def test_single_segment_solo__nonoverlapping_division_selectors_01():

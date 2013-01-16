@@ -11,7 +11,7 @@ class MeasureSelector(Selector):
 
     ::
 
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     ::
 

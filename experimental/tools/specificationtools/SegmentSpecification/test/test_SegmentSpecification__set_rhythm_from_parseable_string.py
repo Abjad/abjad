@@ -1,5 +1,5 @@
 from abjad import *
-from experimental.tools import *
+from experimental import *
 
 
 def test_SegmentSpecification__set_rhythm_from_parseable_string_01():

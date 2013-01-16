@@ -1,5 +1,5 @@
 from abjad import *
-from experimental.tools import *
+from experimental import *
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_between_voices_01():

@@ -12,7 +12,7 @@ class SegmentSpecification(Specification):
 
     ::
 
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     The examples below reference the segment specifications defined here::
 

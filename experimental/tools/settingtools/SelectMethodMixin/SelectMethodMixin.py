@@ -7,7 +7,7 @@ from abjad.tools.abctools import AbjadObject
 class SelectMethodMixin(AbjadObject):
     '''Select-method mix-in.
 
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     ::
 

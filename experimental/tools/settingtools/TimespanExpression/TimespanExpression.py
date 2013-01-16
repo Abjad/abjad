@@ -10,7 +10,7 @@ class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixi
 
     ::
         
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     ::
 

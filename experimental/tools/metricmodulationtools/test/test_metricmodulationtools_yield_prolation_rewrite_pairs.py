@@ -1,5 +1,5 @@
 from abjad import *
-from experimental.tools import *
+from experimental import *
 import py
 py.test.skip('skipped bc takes to long to run; unskip and retest before each release, just for maintenance.')
 

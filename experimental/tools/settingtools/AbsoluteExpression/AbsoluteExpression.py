@@ -7,7 +7,7 @@ class AbsoluteExpression(PayloadCallbackMixin):
 
     ::
 
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     ::
 

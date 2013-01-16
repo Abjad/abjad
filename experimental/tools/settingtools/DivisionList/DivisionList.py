@@ -12,7 +12,7 @@ class DivisionList(BoundedObject):
     Division region division list example::
 
         >>> from abjad import *
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     ::
 

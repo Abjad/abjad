@@ -18,7 +18,7 @@ class CounttimeComponentSelector(Selector):
 
     ::
 
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     ::
 

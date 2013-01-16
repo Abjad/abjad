@@ -6,7 +6,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     ::
 
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     Score specification::
 

@@ -6,7 +6,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     ::
 
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     The examples below reference the following segment specification::
 

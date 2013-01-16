@@ -9,7 +9,7 @@ class SingleContextSetting(Setting):
 
     ::
 
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     Set `attribute` to `request` for single-context `anchor`::
 

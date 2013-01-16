@@ -8,7 +8,7 @@ class MultipleContextSetting(Setting):
     Multiple-context setting::
     
         >>> from abjad.tools import *
-        >>> from experimental.tools import *
+        >>> from experimental import *
 
     Set `attribute` to `request` for multiple-context `anchor`:: 
 

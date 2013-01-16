@@ -1,5 +1,5 @@
 from abjad.tools import *
-from experimental.tools import *
+from experimental import *
 from experimental.tools.settingtools import SettingInventory
 
 

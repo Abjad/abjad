@@ -127,5 +127,3 @@
 24. Write PayloadCallbackMixin.__and__() tests for all selectors.
 
 25. Author payload callback tests for all payload callbacks on an AbsoluteExpression.
-
-26. Change all 'from experimental.tools import *' to 'from experimental import *'.

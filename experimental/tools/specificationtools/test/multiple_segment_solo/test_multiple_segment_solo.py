@@ -1,5 +1,5 @@
 from abjad import *
-from experimental.tools import *
+from experimental import *
 
 
 def test_multiple_segment_solo_01():
