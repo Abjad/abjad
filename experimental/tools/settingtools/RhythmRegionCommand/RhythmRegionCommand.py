@@ -96,8 +96,8 @@ class RhythmRegionCommand(RegionCommand):
         if not isinstance(expr, settingtools.RhythmRegionCommand):
             return False
         else:
-            previous_rhythm_command = expr
-        previous_material_request = getattr(previous_rhythm_command, 'request', None)
+            previous_rhythm_region_command = expr
+        previous_material_request = getattr(previous_rhythm_region_command, 'request', None)
         if not isinstance(previous_material_request, selectortools.CounttimeComponentSelector):
             return False
         # fuse only if current and previous counttime component selectors are equal

@@ -609,11 +609,11 @@ class ScoreSpecification(Specification):
         if attribute == 'divisions':
             return self.make_time_signature_division_command(voice_name, timespan)
         elif attribute == 'rhythm':
-            return self.make_skip_token_rhythm_command(voice_name, timespan)
+            return self.make_skip_token_rhythm_region_command(voice_name, timespan)
         else:
             raise ValueError(attribute)
 
-    def make_skip_token_rhythm_command(self, voice_name, timespan):
+    def make_skip_token_rhythm_region_command(self, voice_name, timespan):
         return settingtools.RhythmRegionCommand(
             requesttools.RhythmMakerRequest(library.skip_tokens),
             voice_name,
