@@ -54,17 +54,22 @@ class Selector(PayloadCallbackMixin, TimespanExpression):
     ### PRIVATE METHODS ###
 
     def _get_payload(self, score_specification, voice_name=None):
+        # ignore voice_name input parameter
+        voice_name = None
         timespan, payload = self._get_timespan_and_payload(score_specification, voice_name)
         return payload
 
     def _get_timespan(self, score_specification, voice_name=None):
+        # ignore voice_name input parameter
+        voice_name = None
         timespan, payload = self._get_timespan_and_payload(score_specification, voice_name)
         timespan = self._apply_timespan_callbacks(timespan)
         return timespan
 
     @abc.abstractmethod
     def _get_timespan_and_payload(self, score_specification, voice_name=None):
-        pass
+        # ignore voice_name input parameter
+        voice_name = None
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty selector payload_callbacks list.

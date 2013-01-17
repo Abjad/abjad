@@ -91,6 +91,8 @@ class SegmentSelector(Selector):
     ### PRIVATE METHODS ###
 
     def _get_timespan_and_payload(self, score_specification, voice_name=None):
+        # ignore voice_name input parameter
+        voice_name = None
         start_segment_identifier = self.start_segment_identifier
         segment = score_specification[start_segment_identifier]
         segment = self._apply_payload_callbacks(segment)

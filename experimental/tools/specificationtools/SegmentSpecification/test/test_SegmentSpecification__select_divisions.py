@@ -15,7 +15,7 @@ def test_SegmentSpecification__select_divisions_01():
     red_segment.set_time_signatures(2 * [(3, 8)])
     red_segment.set_divisions([(4, 8)])
     divisions_that_start_during_red = red_segment.select_divisions('Voice 1')
-    divisions_that_start_during_blue = blue_segment.select_divisions('voice 1')
+    divisions_that_start_during_blue = blue_segment.select_divisions('Voice 1')
     divisions_that_start_during_red.set_rhythm(library.sixteenths)
     divisions_that_start_during_blue.set_rhythm(library.eighths)
     score = score_specification.interpret()

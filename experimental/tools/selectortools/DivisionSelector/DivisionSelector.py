@@ -46,11 +46,10 @@ class DivisionSelector(Selector):
     # TODO: migrate in self._get_timespan_and_payload
     def _get_payload(self, score_specification, voice_name=None):
         from experimental.tools import settingtools
-        #assert voice_name == self.voice_name
-        # ignore voice_name input parameter and use division selector voice name instead
-        voice_name = self.voice_name
-        anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
-        voice_proxy = score_specification.contexts[voice_name]
+        # ignore voice_name input parameter
+        voice_name = None
+        anchor_timespan = score_specification.get_anchor_timespan(self, self.voice_name)
+        voice_proxy = score_specification.contexts[self.voice_name]
         division_region_products = voice_proxy.division_region_products
         timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
             timespan_1=anchor_timespan)
@@ -73,7 +72,6 @@ class DivisionSelector(Selector):
         divisions = trimmed_division_region_products[0].payload.divisions
         start_offset = trimmed_division_region_products[0].timespan.start_offset
         divisions, start_offset = self._apply_payload_callbacks(divisions, start_offset)
-        #timespan = timespantools.Timespan(start_offset)
         result = settingtools.DivisionRegionProduct(
             divisions, 
             voice_name=final_expression.voice_name,
@@ -82,8 +80,10 @@ class DivisionSelector(Selector):
         return result
 
     # TODO: migrate in self._get_timespan_and_payload()
-    def _get_timespan(self, score_specification, voice_name):
-        voice_division_list = score_specification.contexts[voice_name].voice_division_list
+    def _get_timespan(self, score_specification, voice_name=None):
+        # ignore voice_name input parameter
+        voice_name = None
+        voice_division_list = score_specification.contexts[self.voice_name].voice_division_list
         divisions = []
         segment_specification = score_specification.get_start_segment_specification(self.anchor)
         specification_name = segment_specification.specification_name
@@ -95,7 +95,7 @@ class DivisionSelector(Selector):
         for division in voice_division_list:
             if time_relation(timespan_2=division, 
                 score_specification=score_specification, 
-                context_name=voice_name):
+                context_name=self.voice_name):
                 divisions.append(division)
         start_offset = divisions[0].start_offset
         divisions, start_offset = self._apply_payload_callbacks(divisions, start_offset)

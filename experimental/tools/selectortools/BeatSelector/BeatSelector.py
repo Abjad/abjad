@@ -43,7 +43,9 @@ class BeatSelector(Selector):
     ### PRIVATE METHODS ###
 
     # TODO: remove timespan=None keyword and effect with payload callback instead.
-    def _get_timespan_and_payload(self, score_specification, voice_name, timespan=None):
+    def _get_timespan_and_payload(self, score_specification, voice_name=None, timespan=None):
+        # ignore voice_name input parameter
+        voice_name = None
         time_signatures = score_specification.time_signatures
         assert time_signatures
         timespan = timespan or score_specification.timespan
