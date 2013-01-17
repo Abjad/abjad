@@ -8,24 +8,24 @@ from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
 class Division(NonreducedFraction, BoundedObject):
     r'''Bounded nonreduced fraction.
 
+    Initialize from string:
+
     ::
-
-        >>> from experimental import *
-
-    Initialize from string::
 
         >>> settingtools.Division('[5, 8)')
         Division('[5, 8)')
 
-    Initialize from pair and optional open / closed keywords::
+    Initialize from pair and optional open / closed keywords:
 
-        >>> settingtools.Division((5, 8), is_right_open=True)
-        Division('[5, 8)')
+    ::
+
+        >>> settingtools.Division((5, 8), is_right_open=True, start_offset=Offset(1, 8))
+        Division('[5, 8)', start_offset=Offset(1, 8))
 
     Initialize from other division:
 
         >>> settingtools.Division(_)
-        Division('[5, 8)')
+        Division('[5, 8)', start_offset=Offset(1, 8))
 
     Divisions may model beats. Divisions may model complete measures.
     Divisions may model time objects other than beats or measures.
@@ -60,8 +60,10 @@ class Division(NonreducedFraction, BoundedObject):
             is_right_open = getattr(pair, 'is_right_open', False)
         self.is_left_open = is_left_open
         self.is_right_open = is_right_open
-        if start_offset is not None:
-            start_offset = durationtools.Offset(start_offset)
+        #if start_offset is not None:
+        #    start_offset = durationtools.Offset(start_offset)
+        if start_offset is None:
+            start_offset = getattr(pair, 'start_offset', None)
         self._start_offset = start_offset
         return self
 
