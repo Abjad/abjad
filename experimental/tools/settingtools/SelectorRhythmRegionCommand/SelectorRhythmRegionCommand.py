@@ -20,6 +20,8 @@ class SelectorRhythmRegionCommand(FinalizedRhythmRegionCommand):
 
     def _get_payload(self, score_specification, voice_name=None):
         from experimental.tools import settingtools
+        # ignore voice_name input parameter
+        voice_name = None
         result = self.selector._get_payload(score_specification, self.voice_name)
         if result is None:
             return

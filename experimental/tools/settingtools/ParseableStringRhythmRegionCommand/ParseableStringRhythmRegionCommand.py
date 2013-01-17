@@ -19,6 +19,8 @@ class ParseableStringRhythmRegionCommand(FinalizedRhythmRegionCommand):
 
     def _get_payload(self, score_specification=None, voice_name=None):
         from experimental.tools import settingtools
+        # ignore voice_name input parameter
+        voice_name = None
         component = iotools.p(self.parseable_string)
         rhythm_region_product = settingtools.RhythmRegionProduct(
             payload=[component], voice_name=self.voice_name, start_offset=self.start_offset)

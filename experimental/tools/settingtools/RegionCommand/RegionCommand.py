@@ -52,6 +52,19 @@ class RegionCommand(AbjadObject):
             return self.timespan.stops_before_timespan_stops(expr)
         return False
 
+    def __or__(self, command):
+        '''Logical OR of region command and `command`.
+
+        Return newly constructed region command.
+
+        Raise exception when region command can not fuse with `command`.
+        '''
+        assert self._can_fuse(command)
+        stop_offset = self.timespan.stop_offset + command.timespan.duration
+        timespan = self.timespan.new(stop_offset=stop_offset) 
+        result = self.new(timespan=timespan)
+        return timespantools.TimespanInventory([result])
+
     def __sub__(self, timespan):
         '''Subtract `timespan` from region command.
 
@@ -131,19 +144,6 @@ class RegionCommand(AbjadObject):
         return self._timespan
 
     ### PUBLIC METHODS ###
-
-    def __or__(self, command):
-        '''Fuse region command and `command`.
-
-        Return newly constructed region command.
-
-        Raise exception when region command can not fuse with `command`.
-        '''
-        assert self._can_fuse(command)
-        stop_offset = self.timespan.stop_offset + command.timespan.duration
-        timespan = self.timespan.new(stop_offset=stop_offset) 
-        result = self.new(timespan=timespan)
-        return timespantools.TimespanInventory([result])
 
     def new(self, **kwargs):
         positional_argument_dictionary = self._positional_argument_dictionary

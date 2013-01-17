@@ -36,6 +36,8 @@ class DivisionRegionCommand(RegionCommand):
 
     def _get_payload(self, score_specification, voice_name=None):
         from experimental.tools import settingtools
+        # ignore voice_name input parameter
+        voice_name = None
         payload = self.request._get_payload(score_specification)
         if payload is None:
             return
@@ -45,7 +47,7 @@ class DivisionRegionCommand(RegionCommand):
             divisions = [settingtools.Division(x) for x in payload]
         divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, self.timespan.duration)
         division_region_product = settingtools.DivisionRegionProduct(
-            divisions, voice_name, self.timespan.start_offset)
+            divisions, self.voice_name, self.timespan.start_offset)
         return [division_region_product]
 
     ## READ-ONLY PUBLIC PROPERTIES ###
