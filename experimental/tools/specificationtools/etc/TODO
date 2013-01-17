@@ -125,5 +125,3 @@
     Make sure each also implement self._get_timesapn(), self._get_payload() methods.
 
 24. Write PayloadCallbackMixin.__and__() tests for all selectors.
-
-25. Author payload callback tests for all payload callbacks on an AbsoluteExpression.
