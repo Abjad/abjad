@@ -11,10 +11,6 @@ from experimental.tools.specificationtools.Specification import Specification
 class ScoreSpecification(Specification):
     r'''Score specification.
 
-    ::
-
-        >>> from experimental import *
-
     The examples below reference the score specification defined here::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

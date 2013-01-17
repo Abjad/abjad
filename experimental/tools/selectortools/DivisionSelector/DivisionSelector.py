@@ -7,11 +7,7 @@ from experimental.tools.selectortools.Selector import Selector
 
 
 class DivisionSelector(Selector):
-    r'''Division selector.
-
-    ::
-
-        >>> from experimental import *
+    r'''Division selector:
 
     ::
 

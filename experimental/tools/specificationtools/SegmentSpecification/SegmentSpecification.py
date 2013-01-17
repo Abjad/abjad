@@ -10,10 +10,6 @@ from experimental.tools.specificationtools.Specification import Specification
 class SegmentSpecification(Specification):
     r'''Segment specification.
 
-    ::
-
-        >>> from experimental import *
-
     The examples below reference the segment specifications defined here::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
