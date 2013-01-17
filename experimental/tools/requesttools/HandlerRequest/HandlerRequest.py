@@ -18,6 +18,8 @@ class HandlerRequest(PayloadCallbackMixin):
     ### PRIVATE METHODS ###
 
     def _get_payload(self, score_specification=None, voice_name=None):
+        # ignore voice_name input parameter
+        voice_name = None
         raise NotImplementedError
 
     ### READ-ONLY PROPERTIES ###

@@ -14,6 +14,8 @@ class TimeSignatureSettingLookupRequest(SettingLookupRequest):
     ### PUBLIC METHODS ###
 
     def _get_payload(self, score_specification, voice_name=None):
+        # ignore voice_name input parameter
+        voice_name = None
         segment_specification = score_specification.get_start_segment_specification(self.offset)
         time_signatures = segment_specification.time_signatures[:]
         time_signatures, dummy = self._apply_payload_callbacks(time_signatures, None)

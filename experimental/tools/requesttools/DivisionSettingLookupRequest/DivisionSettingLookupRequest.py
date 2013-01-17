@@ -42,7 +42,6 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
 
     ### INITIALIZER ###
 
-    # TODO: make all input parameters into keywords
     def __init__(self, voice_name=None, offset=None, payload_callbacks=None):
         SettingLookupRequest.__init__(self, attribute='divisions', voice_name=voice_name, 
             offset=offset, payload_callbacks=payload_callbacks)
@@ -51,8 +50,10 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
 
     def _get_payload(self, score_specification, voice_name=None):
         from experimental.tools import settingtools
+        # ignore voice_name input parameter
+        voice_name = None
         requested_segment_identifier = self.offset.start_segment_identifier
-        requested_offset = self.offset._get_offset(score_specification, voice_name)
+        requested_offset = self.offset._get_offset(score_specification, self.voice_name)
         timespan_inventory = timespantools.TimespanInventory()
         for division_region_command in score_specification.division_region_commands:
             if not division_region_command.request == self:
