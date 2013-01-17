@@ -43,7 +43,7 @@ class TimespanCallbackMixin(Expression):
     ### PRIVATE METHODS ###
 
     def _apply_timespan_callbacks(self, timespan):
-        assert isinstance(timespan, timespantools.Timespan)
+        assert isinstance(timespan, timespantools.Timespan), repr(timespan)
         start_offset, stop_offset = timespan.offsets
         evaluation_context = {
             'self': self,

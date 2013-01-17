@@ -39,6 +39,9 @@ class DivisionRegionProduct(RegionProduct):
 
     def __init__(self, payload=None, voice_name=None, start_offset=None):
         from experimental.tools import settingtools
+        #if payload is not None:
+        #    assert all([x.start_offset is not None for x in payload]), repr(payload)
+        assert isinstance(payload, (list, type(None))), repr(payload)
         payload = settingtools.DivisionList(payload)
         RegionProduct.__init__(self, payload=payload, voice_name=voice_name, start_offset=start_offset)
 
