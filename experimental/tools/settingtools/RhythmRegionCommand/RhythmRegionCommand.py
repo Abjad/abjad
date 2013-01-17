@@ -99,7 +99,7 @@ class RhythmRegionCommand(RegionCommand):
             command = settingtools.RhythmMakerRhythmRegionCommand(
                 rhythm_maker, voice_name, start_offset, division_list)
         elif isinstance(self.request, requesttools.RhythmSettingLookupRequest):
-            rhythm_maker = self.request._get_payload(score_specification, voice_name)
+            rhythm_maker = self.request._get_payload(score_specification)
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             command = settingtools.RhythmMakerRhythmRegionCommand(
                 rhythm_maker, voice_name, start_offset, division_list)

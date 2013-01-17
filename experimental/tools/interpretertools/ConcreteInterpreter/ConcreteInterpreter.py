@@ -131,8 +131,7 @@ class ConcreteInterpreter(Interpreter):
                 voice_division_region_commands_to_reattempt = []
                 for division_region_command in voice_division_region_commands:
                     #self._debug(division_region_command, 'division region command')
-                    division_region_products = division_region_command._get_payload(
-                        self.score_specification, voice.name)
+                    division_region_products = division_region_command._get_payload(self.score_specification)
                     if division_region_products is not None:
                         assert isinstance(division_region_products, list)
                         made_progress = True
