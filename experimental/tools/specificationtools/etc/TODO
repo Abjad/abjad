@@ -122,6 +122,5 @@
 
 23. Audit all selector classes.
     Make sure each implements a self._get_timespan_and_payload() method.
-    Make sure each also implement self._get_timesapn(), self._get_payload() methods.
+    Make sure each also implement self._get_timespan(), self._get_payload() methods.
 
-24. Write PayloadCallbackMixin.__and__() tests for all selectors.
