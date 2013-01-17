@@ -10,7 +10,7 @@ class RhythmMakerRequest(PayloadCallbackMixin):
 
     ### INTIAILIZER ###
 
-    def __init__(self, payload, payload_callbacks=None):
+    def __init__(self, payload=None, payload_callbacks=None):
         assert isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
         PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
         self._payload = payload

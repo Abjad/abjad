@@ -39,8 +39,8 @@ class LookupMethodMixin(Expression):
 
             >>> z(request)
             requesttools.DivisionSettingLookupRequest(
-                'Voice 1',
-                settingtools.OffsetExpression(
+                voice_name='Voice 1',
+                offset=settingtools.OffsetExpression(
                     anchor=settingtools.TimespanExpression(
                         anchor='red'
                         )
@@ -62,8 +62,8 @@ class LookupMethodMixin(Expression):
 
             >>> z(request)
             requesttools.RhythmSettingLookupRequest(
-                'Voice 1',
-                settingtools.OffsetExpression(
+                voice_name='Voice 1',
+                offset=settingtools.OffsetExpression(
                     anchor=settingtools.TimespanExpression(
                         anchor='red'
                         )
@@ -85,8 +85,8 @@ class LookupMethodMixin(Expression):
 
             >>> z(request)
             requesttools.TimeSignatureSettingLookupRequest(
-                'Voice 1',
-                settingtools.OffsetExpression(
+                voice_name='Voice 1',
+                offset=settingtools.OffsetExpression(
                     anchor=settingtools.TimespanExpression(
                         anchor='red'
                         )

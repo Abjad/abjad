@@ -22,8 +22,8 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
 
         >>> z(setting)
         requesttools.DivisionSettingLookupRequest(
-            'Voice 1',
-            settingtools.OffsetExpression(
+            voice_name='Voice 1',
+            offset=settingtools.OffsetExpression(
                 anchor=selectortools.MeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
@@ -43,9 +43,9 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
     ### INITIALIZER ###
 
     # TODO: make all input parameters into keywords
-    def __init__(self, voice_name, offset, payload_callbacks=None):
-        SettingLookupRequest.__init__(self, 'divisions', voice_name, offset,
-            payload_callbacks=payload_callbacks)
+    def __init__(self, voice_name=None, offset=None, payload_callbacks=None):
+        SettingLookupRequest.__init__(self, attribute='divisions', voice_name=voice_name, 
+            offset=offset, payload_callbacks=payload_callbacks)
 
     ### PRIVATE METHODS ###
 

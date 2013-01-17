@@ -10,7 +10,7 @@ class HandlerRequest(PayloadCallbackMixin):
 
     ### INITIALIZER ###
 
-    def __init__(self, handler, payload_callbacks=None):
+    def __init__(self, handler=None, payload_callbacks=None):
         assert isinstance(handler, handlertools.Handler)
         PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
         self._handler = handler

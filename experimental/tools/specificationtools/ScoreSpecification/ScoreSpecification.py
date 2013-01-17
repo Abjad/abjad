@@ -241,7 +241,7 @@ class ScoreSpecification(Specification):
             settingtools.MultipleContextSetting(
                 attribute='rhythm',
                 request=requesttools.RhythmMakerRequest(
-                    rhythmmakertools.TaleaRhythmMaker(
+                    payload=rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
                         prolation_addenda=[],
@@ -267,7 +267,7 @@ class ScoreSpecification(Specification):
             ...     z(x)
             settingtools.RhythmRegionCommand(
                 request=requesttools.RhythmMakerRequest(
-                    rhythmmakertools.TaleaRhythmMaker(
+                    payload=rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
                         prolation_addenda=[],
@@ -392,7 +392,7 @@ class ScoreSpecification(Specification):
                 )
             settingtools.SingleContextRhythmSetting(
                 request=requesttools.RhythmMakerRequest(
-                    rhythmmakertools.TaleaRhythmMaker(
+                    payload=rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
                         prolation_addenda=[],

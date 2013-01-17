@@ -7,9 +7,9 @@ class TimeSignatureSettingLookupRequest(SettingLookupRequest):
 
     ### INITIALIZER ###
 
-    def __init__(self, voice_name, offset, payload_callbacks=None):
-        SettingLookupRequest.__init__(self, 'time_signatures', voice_name, offset,
-            payload_callbacks=payload_callbacks)
+    def __init__(self, voice_name=None, offset=None, payload_callbacks=None):
+        SettingLookupRequest.__init__(self, attribute='time_signatures', voice_name=voice_name, 
+            offset=offset, payload_callbacks=payload_callbacks)
 
     ### PUBLIC METHODS ###
 

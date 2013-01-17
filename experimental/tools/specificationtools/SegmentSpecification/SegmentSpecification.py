@@ -185,7 +185,7 @@ class SegmentSpecification(Specification):
                 )
             settingtools.SingleContextRhythmSetting(
                 request=requesttools.RhythmMakerRequest(
-                    rhythmmakertools.TaleaRhythmMaker(
+                    payload=rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
                         prolation_addenda=[],

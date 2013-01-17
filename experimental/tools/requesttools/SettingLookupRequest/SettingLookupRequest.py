@@ -26,7 +26,7 @@ class SettingLookupRequest(PayloadCallbackMixin):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute, voice_name, offset, payload_callbacks=None):
+    def __init__(self, attribute=None, voice_name=None, offset=None, payload_callbacks=None):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
         assert isinstance(offset, settingtools.OffsetExpression)

@@ -135,5 +135,3 @@
 
 27. Remove BeatSelector._get_timespan_and_payload() timespan=None keyword 
     Effect with payload callback instead.
-
-28. Make all SettingLookupRequest input parameters into keywords.
