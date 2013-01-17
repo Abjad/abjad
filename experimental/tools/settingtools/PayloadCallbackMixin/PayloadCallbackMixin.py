@@ -214,6 +214,8 @@ class PayloadCallbackMixin(Expression):
             result = elements.repeat_to_duration(duration)
             return result, original_start_offset
         else:
+            if not sequencetools.all_are_numbers(elements):
+                elements = [mathtools.NonreducedFraction(x) for x in elements]
             elements = sequencetools.repeat_sequence_to_weight_exactly(elements, duration)
             new_start_offset = original_start_offset
             return elements, new_start_offset
