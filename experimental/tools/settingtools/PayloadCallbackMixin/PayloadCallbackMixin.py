@@ -194,6 +194,8 @@ class PayloadCallbackMixin(Expression):
             durations_before = [
                 sum([durationtools.Duration(x) for x in part_before]) for part_before in duration_parts_before]
             duration_before = sum(durations_before)
+            if original_start_offset is None:
+                original_start_offset = durationtools.Offset(0)
             new_start_offset = original_start_offset + duration_before
             return selected_part, new_start_offset
 
