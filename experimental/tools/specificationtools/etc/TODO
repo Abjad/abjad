@@ -124,3 +124,4 @@
     Make sure each implements a self._get_timespan_and_payload() method.
     Make sure each also implement self._get_timespan(), self._get_payload() methods.
 
+24. Extend DivisionList repr to include start_offset.

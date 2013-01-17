@@ -118,8 +118,8 @@ class DivisionSelector(Selector):
 #        division_region_products = voice_proxy.division_region_products
 #        if division_region_products is None:
 #            return None, None
-#        voice_division_list = voice_proxy.voice_division_list
-#        self._debug(voice_division_list, 'voice division list')
+#        #voice_division_list = voice_proxy.voice_division_list
+#        #self._debug(voice_division_list, 'voice division list')
 #        existing_voice_divisions = []
 #        for division_region_product in division_region_products:
 #            #existing_voice_divisions.extend(division_region_product.payload.divisions)
@@ -138,7 +138,6 @@ class DivisionSelector(Selector):
 #        divisions = []
 #        #for division in voice_division_list:
 #        for division in existing_voice_divisions:
-#            self._debug(division, 'division')
 #            if time_relation(timespan_2=division, 
 #                score_specification=score_specification, 
 #                context_name=self.voice_name):

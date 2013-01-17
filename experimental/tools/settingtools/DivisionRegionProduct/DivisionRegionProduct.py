@@ -19,7 +19,9 @@ class DivisionRegionProduct(RegionProduct):
         >>> z(product)
         settingtools.DivisionRegionProduct(
             payload=settingtools.DivisionList(
-                [Division('[6, 8]'), Division('[6, 8]'), Division('[3, 4]')]
+                [Division('[6, 8]', start_offset=Offset(0, 1)), 
+                Division('[6, 8]', start_offset=Offset(3, 4)), 
+                Division('[3, 4]', start_offset=Offset(3, 2))]
                 ),
             voice_name='Voice 1',
             start_offset=durationtools.Offset(0, 1)
@@ -39,10 +41,17 @@ class DivisionRegionProduct(RegionProduct):
 
     def __init__(self, payload=None, voice_name=None, start_offset=None):
         from experimental.tools import settingtools
-        #if payload is not None:
-        #    assert all([x.start_offset is not None for x in payload]), repr(payload)
         assert isinstance(payload, (list, type(None))), repr(payload)
-        payload = settingtools.DivisionList(payload)
+        payload = payload or []
+        divisions = []
+        total_duration = start_offset or durationtools.Duration(0)
+        for division in payload:
+            division_start_offset = durationtools.Offset(total_duration)
+            division = settingtools.Division(division, start_offset=division_start_offset)
+            divisions.append(division)
+            total_duration += division.duration
+        assert all([x.start_offset is not None for x in divisions]), repr(divisions)
+        payload = settingtools.DivisionList(divisions)
         RegionProduct.__init__(self, payload=payload, voice_name=voice_name, start_offset=start_offset)
 
     ### SPECIAL METHODS ###
@@ -108,13 +117,17 @@ class DivisionRegionProduct(RegionProduct):
             timespantools.TimespanInventory([
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[5, 8]'), Division('[6, 8]'), Division('[5, 8]')],
+                        [Division('[5, 8]'), 
+                        Division('[6, 8]', start_offset=Offset(3, 4)), 
+                        Division('[5, 8]')],
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(1, 8)
                     )
                 ])
+
+        .. note:: fix lack of start-offset.
 
         Example 4. No intersection:
 
@@ -158,12 +171,17 @@ class DivisionRegionProduct(RegionProduct):
             timespantools.TimespanInventory([
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]'), Division('[2, 16]')]
+                        [Division('[3, 16]', start_offset=Offset(0, 1)), 
+                        Division('[3, 16]', start_offset=Offset(3, 16)), 
+                        Division('[2, 16]', start_offset=Offset(3, 8)), 
+                        Division('[2, 16]', start_offset=Offset(1, 2))]
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(0, 1)
                     )
                 ])
+
+        .. note:: fix lack of start-offset in first division in list.
 
         Return timespan inventory.
         '''
@@ -186,13 +204,17 @@ class DivisionRegionProduct(RegionProduct):
             timespantools.TimespanInventory([
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[5, 8]'), Division('[6, 8]'), Division('[3, 4]')],
+                        [Division('[5, 8]'), 
+                        Division('[6, 8]', start_offset=Offset(3, 4)), 
+                        Division('[3, 4]', start_offset=Offset(3, 2))],
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(1, 8)
                     )
                 ])
+
+        .. note:: fix lack of start-offset on (5, 8) division at start of list.
 
         Example 2. Subtract from right:
 
@@ -208,13 +230,17 @@ class DivisionRegionProduct(RegionProduct):
             timespantools.TimespanInventory([
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[6, 8]'), Division('[6, 8]'), Division('[5, 8]')],
+                        [Division('[6, 8]', start_offset=Offset(0, 1)), 
+                        Division('[6, 8]', start_offset=Offset(3, 4)), 
+                        Division('[5, 8]')],
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(0, 1)
                     )
                 ])
+
+        .. note:: fix the lack of start-offset on the (5, 8) division at end of list.
 
         Example 3. Subtract from middle:
 
@@ -261,7 +287,9 @@ class DivisionRegionProduct(RegionProduct):
             timespantools.TimespanInventory([
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[6, 8]'), Division('[6, 8]'), Division('[3, 4]')]
+                        [Division('[6, 8]', start_offset=Offset(0, 1)), 
+                        Division('[6, 8]', start_offset=Offset(3, 4)), 
+                        Division('[3, 4]', start_offset=Offset(3, 2))]
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(0, 1)
@@ -339,7 +367,9 @@ class DivisionRegionProduct(RegionProduct):
             >>> z(product)
             settingtools.DivisionRegionProduct(
                 payload=settingtools.DivisionList(
-                    [Division('[6, 8]'), Division('[6, 8]'), Division('[3, 4]')]
+                    [Division('[6, 8]', start_offset=Offset(0, 1)), 
+                    Division('[6, 8]', start_offset=Offset(3, 4)), 
+                    Division('[3, 4]', start_offset=Offset(3, 2))]
                     ),
                 voice_name='Voice 1',
                 start_offset=durationtools.Offset(0, 1)
@@ -395,7 +425,9 @@ class DivisionRegionProduct(RegionProduct):
             settingtools.RegionCommandInventory([
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[6, 8]'), Division('[6, 8]'), Division('[6, 8]')],
+                        [Division('[6, 8]', start_offset=Offset(0, 1)), 
+                        Division('[6, 8]', start_offset=Offset(3, 4)), 
+                        Division('[6, 8]', start_offset=Offset(3, 2))],
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
@@ -403,7 +435,9 @@ class DivisionRegionProduct(RegionProduct):
                     ),
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[6, 8]'), Division('[6, 4]'), Division('[6, 4]')],
+                        [Division('[6, 8]', start_offset=Offset(9, 4)), 
+                        Division('[6, 4]', start_offset=Offset(3, 1)), 
+                        Division('[6, 4]', start_offset=Offset(9, 2))],
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
@@ -433,7 +467,10 @@ class DivisionRegionProduct(RegionProduct):
             settingtools.RegionCommandInventory([
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[6, 8]'), Division('[6, 8]'), Division('[6, 8]'), Division('[6, 8]')],
+                        [Division('[6, 8]', start_offset=Offset(0, 1)), 
+                        Division('[6, 8]', start_offset=Offset(3, 4)), 
+                        Division('[6, 8]', start_offset=Offset(3, 2)), 
+                        Division('[6, 8]', start_offset=Offset(9, 4))],
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
@@ -441,7 +478,8 @@ class DivisionRegionProduct(RegionProduct):
                     ),
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[6, 4]'), Division('[6, 4]')],
+                        [Division('[6, 4]', start_offset=Offset(3, 1)), 
+                        Division('[6, 4]', start_offset=Offset(9, 2))],
                         voice_name='Voice 1'
                         ),
                     voice_name='Voice 1',
@@ -470,7 +508,9 @@ class DivisionRegionProduct(RegionProduct):
             >>> z(product)
             settingtools.DivisionRegionProduct(
                 payload=settingtools.DivisionList(
-                    [Division('[3, 4]'), Division('[6, 8]'), Division('[6, 8]')]
+                    [Division('[3, 4]', start_offset=Offset(3, 2)), 
+                    Division('[6, 8]', start_offset=Offset(3, 4)), 
+                    Division('[6, 8]', start_offset=Offset(0, 1))]
                     ),
                 voice_name='Voice 1',
                 start_offset=durationtools.Offset(0, 1)
@@ -497,7 +537,9 @@ class DivisionRegionProduct(RegionProduct):
             >>> z(product)
             settingtools.DivisionRegionProduct(
                 payload=settingtools.DivisionList(
-                    [Division('[6, 8]'), Division('[3, 4]'), Division('[6, 8]')]
+                    [Division('[6, 8]', start_offset=Offset(3, 4)), 
+                    Division('[3, 4]', start_offset=Offset(3, 2)), 
+                    Division('[6, 8]', start_offset=Offset(0, 1))]
                     ),
                 voice_name='Voice 1',
                 start_offset=durationtools.Offset(0, 1)
@@ -526,7 +568,9 @@ class DivisionRegionProduct(RegionProduct):
             >>> z(product)
             settingtools.DivisionRegionProduct(
                 payload=settingtools.DivisionList(
-                    [Division('[6, 8]'), Division('[6, 8]'), Division('[3, 4]')]
+                    [Division('[6, 8]', start_offset=Offset(0, 1)), 
+                    Division('[6, 8]', start_offset=Offset(3, 4)), 
+                    Division('[3, 4]', start_offset=Offset(3, 2))]
                     ),
                 voice_name='Voice 1',
                 start_offset=durationtools.Offset(10, 1)

@@ -46,11 +46,21 @@ class DivisionList(BoundedObject):
         >>> z(score_specification.contexts['Voice 1'].division_region_products[0])
         settingtools.DivisionRegionProduct(
             payload=settingtools.DivisionList(
-                [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 
-                Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 
-                Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 
-                Division('[3, 16]'), Division('[3, 16]')]
-            ),
+               [Division('[3, 16]', start_offset=Offset(0, 1)), 
+                Division('[3, 16]', start_offset=Offset(3, 16)), 
+                Division('[3, 16]', start_offset=Offset(3, 8)), 
+                Division('[3, 16]', start_offset=Offset(9, 16)), 
+                Division('[3, 16]', start_offset=Offset(3, 4)), 
+                Division('[3, 16]', start_offset=Offset(15, 16)), 
+                Division('[3, 16]', start_offset=Offset(9, 8)), 
+                Division('[3, 16]', start_offset=Offset(21, 16)), 
+                Division('[3, 16]', start_offset=Offset(3, 2)), 
+                Division('[3, 16]', start_offset=Offset(27, 16)), 
+                Division('[3, 16]', start_offset=Offset(15, 8)), 
+                Division('[3, 16]', start_offset=Offset(33, 16)), 
+                Division('[3, 16]', start_offset=Offset(9, 4)), 
+                Division('[3, 16]', start_offset=Offset(39, 16))]
+                ),
             voice_name='Voice 1',
             start_offset=durationtools.Offset(0, 1)
             )
