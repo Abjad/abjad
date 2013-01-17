@@ -104,10 +104,10 @@ class CounttimeComponentSelector(Selector):
         return result
 
     # TODO: migrate into self._get_timespan_and_payload()
-    def _get_timespan(self, score_specification, voice_name):
-        # allow user-specified voice name to override passed-in voice name
-        voice_name = self.voice_name or voice_name
-        rhythm_region_products = score_specification.contexts[voice_name].rhythm_region_products
+    def _get_timespan(self, score_specification, voice_name=None):
+        # ignore voice_name input parameter
+        voice_name = None
+        rhythm_region_products = score_specification.contexts[self.voice_name].rhythm_region_products
         if not rhythm_region_products:
             return
         if not rhythm_region_products[0].start_offset == durationtools.Offset(0):
@@ -128,7 +128,7 @@ class CounttimeComponentSelector(Selector):
                 current_rhythm_region_product.payload, klass=tuple(self.classes)):
                 if time_relation(timespan_2=counttime_component,
                     score_specification=score_specification,
-                    context_name=voice_name):
+                    context_name=self.voice_name):
                     counttime_component_pairs.append((
                         counttime_component, current_rhythm_region_product.start_offset))
         counttime_component_pairs, dummy = self._apply_payload_callbacks(counttime_component_pairs, None)
