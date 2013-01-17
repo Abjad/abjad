@@ -34,7 +34,7 @@ class DivisionRegionCommand(RegionCommand):
             return False
         return True
 
-    def _get_payload(self, score_specification, voice_name):
+    def _get_payload(self, score_specification, voice_name=None):
         from experimental.tools import requesttools
         from experimental.tools import selectortools
         from experimental.tools import settingtools
@@ -58,8 +58,7 @@ class DivisionRegionCommand(RegionCommand):
         elif isinstance(self.request, (settingtools.AbsoluteExpression,
                 selectortools.BeatSelector, selectortools.MeasureSelector, 
                 requesttools.DivisionSettingLookupRequest)):
-            # TODO: maybe call self.request._get_payload(score_specification) instead
-            divisions = self.request._get_payload(score_specification, self.voice_name)
+            divisions = self.request._get_payload(score_specification)
             divisions = [settingtools.Division(x) for x in divisions]
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             result = settingtools.DivisionRegionProduct(divisions, voice_name, region_timespan.start_offset)

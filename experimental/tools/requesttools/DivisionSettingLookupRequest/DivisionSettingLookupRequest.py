@@ -42,13 +42,14 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
 
     ### INITIALIZER ###
 
+    # TODO: make all input parameters into keywords
     def __init__(self, voice_name, offset, payload_callbacks=None):
         SettingLookupRequest.__init__(self, 'divisions', voice_name, offset,
             payload_callbacks=payload_callbacks)
 
     ### PRIVATE METHODS ###
 
-    def _get_payload(self, score_specification, voice_name):
+    def _get_payload(self, score_specification, voice_name=None):
         from experimental.tools import settingtools
         requested_segment_identifier = self.offset.start_segment_identifier
         requested_offset = self.offset._get_offset(score_specification, voice_name)

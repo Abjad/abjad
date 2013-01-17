@@ -6,13 +6,7 @@ from experimental.tools.selectortools.Selector import Selector
 
 
 class BeatSelector(Selector):
-    '''
-
-    Beat selector.
-
-    ::
-
-        >>> from experimental import *
+    '''Beat selector:
 
     ::
 

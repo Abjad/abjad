@@ -17,7 +17,7 @@ class RhythmSettingLookupRequest(SettingLookupRequest):
 
     ### PUBLIC METHODS ###
 
-    def _get_payload(self, score_specification, voice_name):
+    def _get_payload(self, score_specification, voice_name=None):
         from experimental.tools import requesttools
         from experimental.tools import settingtools
         requested_segment_identifier = self.offset.start_segment_identifier

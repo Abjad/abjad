@@ -128,8 +128,12 @@
 
 25. Author payload callback tests for all payload callbacks on an AbsoluteExpression.
 
-26. Change Selector._get_payload(score_specification, voice_name)
-    to Selector._get_payload(score_specification, voice_name=None).
-    Then set voice_name = self.voice_name in all Selector._get_payload() implementations.
-    Then chanse down calling code that calls whatever_selector._get_payload(score_specification, voice_name)
+26. Set voice_name = self.voice_name in all Selector._get_payload() implementations.
+    Then chase down calling code that calls whatever_selector._get_payload(score_specification, voice_name)
     and change to whatever_selector._get_payload(score_specification).
+    Possibly do the same for all SettingLookupRequest._get_payload() methods.
+
+27. Remove BeatSelector._get_timespan_and_payload() timespan=None keyword 
+    Effect with payload callback instead.
+
+28. Make all SettingLookupRequest input parameters into keywords.
