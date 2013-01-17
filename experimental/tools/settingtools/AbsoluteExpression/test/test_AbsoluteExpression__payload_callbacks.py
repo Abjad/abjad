@@ -100,3 +100,43 @@ def test_AbsoluteExpression__payload_callbacks_05():
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_AbsoluteExpression__payload_callbacks_06():
+    '''Repeat divisions to truncating length.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    material_manager = settingtools.MaterialManager()
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures(3 * [(3, 8)])
+    divisions = material_manager.register_material([(1, 16), (2, 16), (3, 16), (4, 16)])
+    divisions = divisions.repeat_to_length(3)
+    red_segment.set_divisions(divisions)
+    red_segment.set_rhythm(library.sixteenths)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_AbsoluteExpression__payload_callbacks_07():
+    '''Repeat divisions to extended length.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    material_manager = settingtools.MaterialManager()
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures(3 * [(3, 8)])
+    divisions = material_manager.register_material([(1, 16), (2, 16), (3, 16), (4, 16)])
+    divisions = divisions.repeat_to_length(6)
+    red_segment.set_divisions(divisions)
+    red_segment.set_rhythm(library.sixteenths)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
