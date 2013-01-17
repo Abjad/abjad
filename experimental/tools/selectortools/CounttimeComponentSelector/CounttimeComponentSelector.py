@@ -138,7 +138,9 @@ class CounttimeComponentSelector(Selector):
         return timespantools.Timespan(start_offset, stop_offset)
 
     # TODO: eventually collapse self._get_payload() and self._get_timespan() into this method
-    def _get_timespan_and_payload(self, score_specification, voice_name):
+    def _get_timespan_and_payload(self, score_specification, voice_name=None):
+        # ignore voice_name input parameter
+        voice_name = None
         raise NotImplementedError
 
     def _is_counttime_component_class_expr(self, expr):
