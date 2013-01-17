@@ -68,6 +68,7 @@ class PayloadCallbackMixin(Expression):
     ### PRIVATE METHODS ###
 
     def ___and__(self, elements, timespan, original_start_offset):
+        from experimental.tools import settingtools
         if hasattr(elements, '__and__'):
             # translate timespan relative to elements' original start offset
             elements_original_start_offset = elements.start_offset
@@ -81,7 +82,16 @@ class PayloadCallbackMixin(Expression):
             assert result.start_offset == original_start_offset
             return result, result.start_offset
         else:
-            raise NotImplementedError(elements)
+            if not sequencetools.all_are_numbers(elements):
+                elements = [mathtools.NonreducedFraction(x) for x in elements]
+            if original_start_offset is None:
+                original_start_offset = durationtools.Offset(0)
+            division_region_product = settingtools.DivisionRegionProduct(
+                payload=elements, voice_name='dummy voice name', start_offset=original_start_offset)
+            result = division_region_product & timespan
+            result = result[0]
+            divisions = result.payload.divisions
+            return divisions, result.start_offset
 
     def ___getitem__(self, elements, original_start_offset, expr):
         assert isinstance(expr, slice)
