@@ -44,9 +44,11 @@ class DivisionSelector(Selector):
     ### PRIVATE METHODS ###
 
     # TODO: migrate in self._get_timespan_and_payload
-    def _get_payload(self, score_specification, voice_name):
+    def _get_payload(self, score_specification, voice_name=None):
         from experimental.tools import settingtools
-        assert voice_name == self.voice_name
+        #assert voice_name == self.voice_name
+        # ignore voice_name input parameter and use division selector voice name instead
+        voice_name = self.voice_name
         anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
         voice_proxy = score_specification.contexts[voice_name]
         division_region_products = voice_proxy.division_region_products

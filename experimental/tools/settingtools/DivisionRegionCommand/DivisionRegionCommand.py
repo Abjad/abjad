@@ -35,14 +35,14 @@ class DivisionRegionCommand(RegionCommand):
         return True
 
     def _get_payload(self, score_specification, voice_name):
+        from experimental.tools import requesttools
         from experimental.tools import selectortools
         from experimental.tools import settingtools
         region_timespan = self.timespan
         region_duration = self.timespan.duration
-        # TODO: remove getattr() by implementing voice_name on all request classes
-        request_voice_name = getattr(self.request, 'voice_name', None)
+        # TODO: maybe compress these two branches into a single suite
         if isinstance(self.request, selectortools.DivisionSelector):
-            division_region_product = self.request._get_payload(score_specification, request_voice_name)
+            division_region_product = self.request._get_payload(score_specification)
             if division_region_product is None:
                 return
             divisions = division_region_product.payload.divisions[:]
@@ -55,12 +55,17 @@ class DivisionRegionCommand(RegionCommand):
             translation = right - left
             division_region_product.translate(translation)
             return [division_region_product]
-        else:
-            divisions = self.request._get_payload(score_specification, request_voice_name)
+        elif isinstance(self.request, (settingtools.AbsoluteExpression,
+                selectortools.BeatSelector, selectortools.MeasureSelector, 
+                requesttools.DivisionSettingLookupRequest)):
+            # TODO: maybe call self.request._get_payload(score_specification) instead
+            divisions = self.request._get_payload(score_specification, self.voice_name)
             divisions = [settingtools.Division(x) for x in divisions]
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             result = settingtools.DivisionRegionProduct(divisions, voice_name, region_timespan.start_offset)
             return [result]
+        else:
+            raise TypeError(self.request)
 
     ## READ-ONLY PUBLIC PROPERTIES ###
 
