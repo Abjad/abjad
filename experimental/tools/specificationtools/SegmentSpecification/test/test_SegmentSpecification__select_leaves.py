@@ -11,8 +11,7 @@ def test_SegmentSpecification__select_leaves_01():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(2 * [(3, 8)])
     red_segment.set_rhythm("{ c'32 [ c'16 c'16. c'8 ] }", contexts=['Voice 1'])
-    timespan = red_segment.select_leaves('Voice 1')[2:4]
-    rhythm = timespan.select_leaves('Voice 1')
+    rhythm = red_segment.select_leaves('Voice 1')[2:4]
     red_segment.set_rhythm(rhythm, contexts=['Voice 2'])
     score = score_specification.interpret()
 
@@ -61,8 +60,7 @@ def test_SegmentSpecification__select_leaves_03():
     second_measure.set_rhythm(cell.rotate(Duration(-1, 32)), contexts=['Voice 1'])
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures(2 * [(2, 8)])
-    timespan = red_segment.select_leaves('Voice 1')[4:8]
-    voice_1_rhythm = timespan.select_leaves('Voice 1')
+    voice_1_rhythm = red_segment.select_leaves('Voice 1')[4:8]
     blue_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 1'])
     score = score_specification.interpret()
 

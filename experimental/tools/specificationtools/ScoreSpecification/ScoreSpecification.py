@@ -540,7 +540,9 @@ class ScoreSpecification(Specification):
         elif expr.anchor is None:
             return self.timespan
         else:
+            #self._debug(expr.anchor, 'expr.anchor')
             return expr.anchor._get_timespan(self, voice_name)
+            #return self.get_anchor_timespan(expr.anchor, voice_name)
         
     def get_region_commands_for_voice(self, attribute, context_name):
         commands = settingtools.RegionCommandInventory()
