@@ -24,11 +24,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.settingtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.register_material
-   :noindex:
-
-   Inherited from :py:class:`settingtools.SpecificationInterface <experimental.tools.settingtools.SpecificationInterface.SpecificationInterface.SpecificationInterface>`
-
 .. automethod:: experimental.tools.settingtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.select_beats
    :noindex:
 

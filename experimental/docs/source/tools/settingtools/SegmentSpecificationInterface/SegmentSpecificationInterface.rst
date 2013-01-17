@@ -27,11 +27,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.settingtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.register_material
-   :noindex:
-
-   Inherited from :py:class:`settingtools.SpecificationInterface <experimental.tools.settingtools.SpecificationInterface.SpecificationInterface.SpecificationInterface>`
-
 .. automethod:: experimental.tools.settingtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.select_beats
    :noindex:
 

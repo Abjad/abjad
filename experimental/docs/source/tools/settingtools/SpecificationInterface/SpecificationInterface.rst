@@ -26,9 +26,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.settingtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.register_material
-   :noindex:
-
 .. automethod:: experimental.tools.settingtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_beats
    :noindex:
 
