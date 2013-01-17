@@ -35,36 +35,18 @@ class DivisionRegionCommand(RegionCommand):
         return True
 
     def _get_payload(self, score_specification, voice_name=None):
-        from experimental.tools import requesttools
-        from experimental.tools import selectortools
         from experimental.tools import settingtools
-        region_timespan = self.timespan
-        region_duration = self.timespan.duration
-        # TODO: maybe compress these two branches into a single suite
-        if isinstance(self.request, selectortools.DivisionSelector):
-            division_region_product = self.request._get_payload(score_specification)
-            if division_region_product is None:
-                return
-            divisions = division_region_product.payload.divisions[:]
-            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
-            divisions = [settingtools.Division(x) for x in divisions]
-            division_list = division_region_product.payload.new(divisions=divisions)
-            division_region_product = division_region_product.new(payload=division_list)
-            right = self.timespan.start_offset
-            left = division_region_product.timespan.start_offset
-            translation = right - left
-            division_region_product.translate(translation)
-            return [division_region_product]
-        elif isinstance(self.request, (settingtools.AbsoluteExpression,
-                selectortools.BeatSelector, selectortools.MeasureSelector, 
-                requesttools.DivisionSettingLookupRequest)):
-            divisions = self.request._get_payload(score_specification)
-            divisions = [settingtools.Division(x) for x in divisions]
-            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
-            result = settingtools.DivisionRegionProduct(divisions, voice_name, region_timespan.start_offset)
-            return [result]
+        payload = self.request._get_payload(score_specification)
+        if payload is None:
+            return
+        elif isinstance(payload, settingtools.DivisionRegionProduct):
+            divisions = payload.payload.divisions[:]
         else:
-            raise TypeError(self.request)
+            divisions = [settingtools.Division(x) for x in payload]
+        divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, self.timespan.duration)
+        division_region_product = settingtools.DivisionRegionProduct(
+            divisions, voice_name, self.timespan.start_offset)
+        return [division_region_product]
 
     ## READ-ONLY PUBLIC PROPERTIES ###
 
