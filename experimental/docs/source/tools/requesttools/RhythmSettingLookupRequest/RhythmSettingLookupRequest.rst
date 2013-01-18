@@ -9,6 +9,11 @@ requesttools.RhythmSettingLookupRequest
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.anchor
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.attribute
    :noindex:
 
@@ -24,10 +29,25 @@ Read-only Properties
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
+.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.score_specification
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.start_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.start_segment_identifier
    :noindex:
 
    Inherited from :py:class:`requesttools.SettingLookupRequest <experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest>`
+
+.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
 .. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.storage_format
    :noindex:

@@ -32,8 +32,8 @@ def test_BeatSelector__payload_callbacks_02():
     beats = red_segment.select_beats('Voice 1')
     red_segment.set_divisions(beats)
     left, right = beats.partition_by_ratio((1, 1))
-    left.set_rhythm(library.sixteenths)
-    right.set_rhythm(library.thirty_seconds)
+    left.timespan.set_rhythm(library.sixteenths)
+    right.timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -52,8 +52,8 @@ def test_BeatSelector__payload_callbacks_03():
     beats = red_segment.select_beats('Voice 1')
     red_segment.set_divisions(beats)
     left, right = beats.partition_by_ratio_of_durations((1, 1))
-    left.set_rhythm(library.sixteenths)
-    right.set_rhythm(library.thirty_seconds)
+    left.timespan.set_rhythm(library.sixteenths)
+    right.timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

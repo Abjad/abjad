@@ -27,6 +27,7 @@ class PayloadCallbackMixin(Expression):
     def __init__(self, payload_callbacks=None):
         from experimental.tools import settingtools
         payload_callbacks = payload_callbacks or []
+        Expression.__init__(self)
         self._payload_callbacks = settingtools.CallbackInventory(payload_callbacks)
 
     ### SPECIAL METHODS ###

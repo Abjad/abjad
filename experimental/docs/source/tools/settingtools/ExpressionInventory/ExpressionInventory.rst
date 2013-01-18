@@ -9,6 +9,31 @@ settingtools.ExpressionInventory
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.anchor
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.score_specification
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.start_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.start_segment_identifier
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. autoattribute:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.storage_format
    :noindex:
 

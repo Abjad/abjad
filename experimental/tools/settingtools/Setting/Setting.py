@@ -1,4 +1,5 @@
 import abc
+import copy
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -22,7 +23,8 @@ class Setting(AbjadObject):
         from experimental.tools import settingtools
         assert isinstance(attribute, str)
         assert isinstance(expression, (settingtools.Expression)), repr(expression)
-        assert isinstance(anchor, (settingtools.TimespanExpression, str, type(None)))
+        #assert isinstance(anchor, (settingtools.TimespanExpression, str, type(None)))
+        assert isinstance(anchor, (settingtools.Expression, str, type(None)))
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))
@@ -54,7 +56,10 @@ class Setting(AbjadObject):
         if isinstance(self.anchor, str):
             self._anchor = segment_identifier
         else:
-            self.anchor._set_start_segment_identifier(segment_identifier)
+            #self.anchor._set_start_segment_identifier(segment_identifier)
+            anchor = copy.deepcopy(self.anchor)
+            anchor._set_start_segment_identifier(segment_identifier)
+            self._anchor = anchor
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

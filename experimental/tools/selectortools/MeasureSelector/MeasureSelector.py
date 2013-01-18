@@ -41,17 +41,19 @@ class MeasureSelector(Selector):
     Select voice ``1`` measures that start during three contiguous segments::
 
         >>> segments = score_specification.interface.select_segments('Voice 1')['red':('red', 3)]
-        >>> selector = segments.select_measures('Voice 1')
+        >>> selector = segments.timespan.select_measures('Voice 1')
 
     ::
 
         >>> z(selector)
         selectortools.MeasureSelector(
-            anchor=selectortools.SegmentSelector(
-                voice_name='Voice 1',
-                payload_callbacks=settingtools.CallbackInventory([
-                    "result = self.___getitem__(elements, start_offset, slice('red', ('red', 3), None))"
-                    ])
+            anchor=settingtools.TimespanExpression(
+                anchor=selectortools.SegmentSelector(
+                    voice_name='Voice 1',
+                    payload_callbacks=settingtools.CallbackInventory([
+                        "result = self.___getitem__(elements, start_offset, slice('red', ('red', 3), None))"
+                        ])
+                    )
                 ),
             voice_name='Voice 1'
             )

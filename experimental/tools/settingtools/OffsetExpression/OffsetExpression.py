@@ -41,14 +41,13 @@ class OffsetExpression(LookupMethodMixin):
     def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
         from experimental.tools import specificationtools
         from experimental.tools import settingtools
-        assert isinstance(anchor, (
-            settingtools.TimespanExpression, 
-            type(None), str)), repr(anchor)
+        assert isinstance(anchor, (settingtools.Expression, type(None), str)), repr(anchor)
         assert edge in (Left, Right, None), repr(edge)
         if multiplier is not None:
             multiplier = durationtools.Multiplier(multiplier)
         if addendum is not None:
             addendum = durationtools.Offset(addendum)
+        LookupMethodMixin.__init__(self)
         self._anchor = anchor
         self._multiplier = multiplier
         self._edge = edge

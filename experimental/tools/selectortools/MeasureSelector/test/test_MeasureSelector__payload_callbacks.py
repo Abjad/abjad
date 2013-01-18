@@ -13,7 +13,7 @@ def test_MeasureSelector__payload_callbacks_01():
     red_segment.set_rhythm(library.sixteenths)
     measures = red_segment.select_measures('Voice 1')
     measures = measures[1:3]
-    measures.set_rhythm(library.eighths)
+    measures.timespan.set_rhythm(library.eighths)
     score = score_specification.interpret()
     
     current_function_name = introspectiontools.get_current_function_name()
@@ -31,8 +31,8 @@ def test_MeasureSelector__payload_callbacks_02():
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
     measures = red_segment.select_measures('Voice 1')
     left, right = measures.partition_by_ratio((1, 1))
-    left.set_rhythm(library.sixteenths)
-    right.set_rhythm(library.eighths)
+    left.timespan.set_rhythm(library.sixteenths)
+    right.timespan.set_rhythm(library.eighths)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -50,8 +50,8 @@ def test_MeasureSelector__payload_callbacks_03():
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
     measures = red_segment.select_measures('Voice 1')
     left, right = measures.partition_by_ratio_of_durations((1, 1))
-    left.set_rhythm(library.sixteenths)
-    right.set_rhythm(library.eighths)
+    left.timespan.set_rhythm(library.sixteenths)
+    right.timespan.set_rhythm(library.eighths)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

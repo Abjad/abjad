@@ -22,7 +22,7 @@ class LookupMethodMixin(Expression):
 
     @abc.abstractmethod
     def __init__(self):
-        pass
+        Expression.__init__(self)
 
     ### PUBLIC METHODS ###
 

@@ -78,10 +78,10 @@ def test_multiple_segment_quartet_03():
     first_measure = red_segment.select_measures('Voice 1')[:1]
     second_measure = red_segment.select_measures('Voice 1')[-1:]
     first_half, second_half = red_segment.timespan.divide_by_ratio((1, 1))
-    first_measure.set_divisions([(3, 16)], contexts=['Voice 1'], persist=False)
-    second_measure.set_divisions([(5, 16)], contexts=['Voice 1'], persist=False)
-    first_measure.set_divisions([(5, 16)], contexts=['Voice 2'], persist=False)
-    second_measure.set_divisions([(3, 16)], contexts=['Voice 2'], persist=False)
+    first_measure.timespan.set_divisions([(3, 16)], contexts=['Voice 1'], persist=False)
+    second_measure.timespan.set_divisions([(5, 16)], contexts=['Voice 1'], persist=False)
+    first_measure.timespan.set_divisions([(5, 16)], contexts=['Voice 2'], persist=False)
+    second_measure.timespan.set_divisions([(3, 16)], contexts=['Voice 2'], persist=False)
     first_half.set_divisions([(3, 16)], contexts=['Voice 3'], persist=False)
     second_half.set_divisions([(5, 16)], contexts=['Voice 3'], persist=False)
     first_half.set_divisions([(5, 16)], contexts=['Voice 4'], persist=False)

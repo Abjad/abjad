@@ -9,6 +9,21 @@ settingtools.Expression
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.settingtools.Expression.Expression.Expression.anchor
+   :noindex:
+
+.. autoattribute:: experimental.tools.settingtools.Expression.Expression.Expression.score_specification
+   :noindex:
+
+.. autoattribute:: experimental.tools.settingtools.Expression.Expression.Expression.start_offset
+   :noindex:
+
+.. autoattribute:: experimental.tools.settingtools.Expression.Expression.Expression.start_segment_identifier
+   :noindex:
+
+.. autoattribute:: experimental.tools.settingtools.Expression.Expression.Expression.stop_offset
+   :noindex:
+
 .. autoattribute:: experimental.tools.settingtools.Expression.Expression.Expression.storage_format
    :noindex:
 

@@ -96,8 +96,8 @@ def test_SegmentSpecification__select_divisions_from_past_05():
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     left = red_segment.select_measures('Voice 1')[:1]
     right = red_segment.select_measures('Voice 1')[-1:]
-    left.set_divisions([(2, 16)])
-    right.set_divisions([(3, 16)])
+    left.timespan.set_divisions([(2, 16)])
+    right.timespan.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(5, 8), (6, 8)])

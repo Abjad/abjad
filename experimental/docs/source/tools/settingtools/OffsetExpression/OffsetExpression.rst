@@ -21,8 +21,23 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.multiplier
    :noindex:
 
+.. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.score_specification
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.start_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.start_segment_identifier
    :noindex:
+
+.. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
 .. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.storage_format
    :noindex:

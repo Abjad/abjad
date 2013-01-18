@@ -9,11 +9,36 @@ settingtools.AbsoluteExpression
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.anchor
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. autoattribute:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.payload
    :noindex:
 
 .. autoattribute:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.payload_callbacks
    :noindex:
+
+.. autoattribute:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.score_specification
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.start_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.start_segment_identifier
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
 .. autoattribute:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.storage_format
    :noindex:

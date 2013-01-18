@@ -14,7 +14,7 @@ def test_DivisionSelector__payload_callbacks_01():
     red_segment.set_rhythm(library.sixteenths)
     divisions = red_segment.select_divisions('Voice 1')
     divisions = divisions[2:5]
-    divisions.set_rhythm(library.thirty_seconds)
+    divisions.timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -34,8 +34,8 @@ def test_DivisionSelector__payload_callbacks_02():
     red_segment.set_rhythm(library.sixteenths)
     divisions = red_segment.select_divisions('Voice 1')
     left, right = divisions.partition_by_ratio((1, 2))
-    left.set_rhythm(library.sixteenths)
-    right.set_rhythm(library.thirty_seconds)
+    left.timespan.set_rhythm(library.sixteenths)
+    right.timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -55,8 +55,8 @@ def test_DivisionSelector__payload_callbacks_03():
     red_segment.set_rhythm(library.sixteenths)
     divisions = red_segment.select_divisions('Voice 1')
     left, right = divisions.partition_by_ratio_of_durations((1, 2))
-    left.set_rhythm(library.sixteenths)
-    right.set_rhythm(library.thirty_seconds)
+    left.timespan.set_rhythm(library.sixteenths)
+    right.timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

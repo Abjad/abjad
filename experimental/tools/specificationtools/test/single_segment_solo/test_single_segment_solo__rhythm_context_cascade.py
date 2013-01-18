@@ -95,7 +95,7 @@ def test_single_segment_solo__rhythm_context_cascade_05():
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
     selector = red_segment.select_measures('Voice 1')[1:2]
-    selector.set_rhythm(library.thirty_seconds, contexts=['Voice 1'])
+    selector.timespan.set_rhythm(library.thirty_seconds, contexts=['Voice 1'])
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

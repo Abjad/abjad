@@ -12,7 +12,7 @@ def test_SegmentSpecification__select_measures_01():
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     last_two_measures = red_segment.select_measures('Voice 1')[-2:]
     red_segment.set_divisions([(2, 32)])
-    last_two_measures.set_divisions([(3, 32)])
+    last_two_measures.timespan.set_divisions([(3, 32)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -31,7 +31,7 @@ def test_SegmentSpecification__select_measures_02():
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     first_two_measures = red_segment.select_measures('Voice 1')[:-1]
     red_segment.set_divisions([(2, 32)])
-    first_two_measures.set_divisions([(3, 32)])
+    first_two_measures.timespan.set_divisions([(3, 32)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -50,7 +50,7 @@ def test_SegmentSpecification__select_measures_03():
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     middle_measure = red_segment.select_measures('Voice 1')[1:-1]
     red_segment.set_divisions([(2, 32)])
-    middle_measure.set_divisions([(3, 32)])
+    middle_measure.timespan.set_divisions([(3, 32)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -69,7 +69,7 @@ def test_SegmentSpecification__select_measures_04():
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     last_measure = red_segment.select_measures('Voice 1')[-1:]
     red_segment.set_divisions([(2, 32)])
-    last_measure.set_divisions([(3, 32)])
+    last_measure.timespan.set_divisions([(3, 32)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -88,7 +88,7 @@ def test_SegmentSpecification__select_measures_05():
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     last_measure = red_segment.select_measures('Voice 1')[1:2]
     red_segment.set_divisions([(2, 32)])
-    last_measure.set_divisions([(3, 32)])
+    last_measure.timespan.set_divisions([(3, 32)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 

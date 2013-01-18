@@ -122,3 +122,9 @@
 23. Remove _get_payload(), _get_timespan(), _get_payload_and_timespan() in favor of _evaluate().
 
 24. Consider creating an expressiontools package.
+
+25. Currently only TimespanExpression has a score_specification reference.
+    Probably all Expression classes need a score_specification reference.
+    In fact, probably a number of properties can migrate up from
+    concrete expression classes to the abstract Expression.
+    Also, Expression should be made abstract.

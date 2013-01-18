@@ -9,6 +9,31 @@ settingtools.LookupMethodMixin
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.settingtools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.anchor
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.settingtools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.score_specification
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.settingtools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.start_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.settingtools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.start_segment_identifier
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.settingtools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. autoattribute:: experimental.tools.settingtools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.storage_format
    :noindex:
 

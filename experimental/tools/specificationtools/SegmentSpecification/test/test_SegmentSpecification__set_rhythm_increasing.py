@@ -15,10 +15,10 @@ def test_SegmentSpecification__set_rhythm_increasing_01():
     red_segment.set_time_signatures([(6, 8), (3, 8)])
     measures = red_segment.select_measures('Voice 1')
     left_measure, right_measure = measures.partition_by_ratio((1, 1))
-    left_measure.set_divisions([(3, 16)], contexts=['Voice 1'])
-    right_measure.set_divisions([(5, 16)], contexts=['Voice 1'])
-    left_measure.set_divisions([(5, 16)], contexts=['Voice 2'])
-    right_measure.set_divisions([(3, 16)], contexts=['Voice 2'])
+    left_measure.timespan.set_divisions([(3, 16)], contexts=['Voice 1'])
+    right_measure.timespan.set_divisions([(5, 16)], contexts=['Voice 1'])
+    left_measure.timespan.set_divisions([(5, 16)], contexts=['Voice 2'])
+    right_measure.timespan.set_divisions([(3, 16)], contexts=['Voice 2'])
 
     left_half, right_half = red_segment.timespan.divide_by_ratio((1, 1))
 

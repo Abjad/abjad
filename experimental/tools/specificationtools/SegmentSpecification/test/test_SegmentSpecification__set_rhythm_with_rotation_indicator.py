@@ -14,9 +14,9 @@ def test_SegmentSpecification__set_rhythm_with_rotation_indicator_01():
     first_division = red_segment.select_divisions('Voice 1')[:1]
     second_division = red_segment.select_divisions('Voice 1')[1:2]
     third_division = red_segment.select_divisions('Voice 1')[2:3]
-    first_division.set_rhythm(library.eighths)
-    second_division.set_rhythm(library.sixteenths)
-    third_division.set_rhythm(library.thirty_seconds)
+    first_division.timespan.set_rhythm(library.eighths)
+    second_division.timespan.set_rhythm(library.sixteenths)
+    third_division.timespan.set_rhythm(library.thirty_seconds)
     red_rhythm = red_segment.select_leaves('Voice 1')
     indicator = settingtools.RotationIndicator(-1, 1)
     red_segment.set_rhythm(red_rhythm.rotate(indicator), contexts=['Voice 2'])

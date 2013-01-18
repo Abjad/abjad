@@ -51,9 +51,9 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_03():
     left.set_divisions([(3, 16)])
     right.set_divisions([(2, 16)])
     selector = red_segment.select_divisions('Voice 1')[:2]
-    selector.set_rhythm(library.sixteenths)
+    selector.timespan.set_rhythm(library.sixteenths)
     selector = red_segment.select_divisions('Voice 1')[2:]
-    selector.set_rhythm(library.thirty_seconds)
+    selector.timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

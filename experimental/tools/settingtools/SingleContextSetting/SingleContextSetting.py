@@ -100,9 +100,13 @@ class SingleContextSetting(Setting):
         Return new setting.
         '''
         assert isinstance(segment_name, str)
+        #print self
+        #print segment_name
         new_setting = copy.deepcopy(self)
         new_setting._set_start_segment_identifier(segment_name)
         new_setting._fresh = False
+        #print new_setting
+        #print ''
         return new_setting
 
     @abc.abstractmethod

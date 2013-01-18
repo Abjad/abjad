@@ -8,7 +8,8 @@ from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallback
 from experimental.tools.settingtools.TimespanExpression import TimespanExpression
 
 
-class Selector(PayloadCallbackMixin, TimespanExpression):
+#class Selector(PayloadCallbackMixin, TimespanExpression):
+class Selector(PayloadCallbackMixin):
     r'''Selector.
 
     Abstract base class from which concrete selectors inherit.
@@ -20,15 +21,17 @@ class Selector(PayloadCallbackMixin, TimespanExpression):
 
     ### INTIALIZER ###
 
-    def __init__(self, anchor=None, voice_name=None, time_relation=None, 
-        payload_callbacks=None, timespan_callbacks=None):
+    #def __init__(self, anchor=None, voice_name=None, time_relation=None, 
+    #    payload_callbacks=None, timespan_callbacks=None):
+    def __init__(self, anchor=None, voice_name=None, time_relation=None, payload_callbacks=None):
         from experimental.tools import settingtools
-        assert isinstance(anchor, (settingtools.TimespanExpression, str, type(None))), repr(anchor)
+        #assert isinstance(anchor, (settingtools.TimespanExpression, str, type(None))), repr(anchor)
+        assert isinstance(anchor, (settingtools.Expression, str, type(None))), repr(anchor)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
-        TimespanExpression.__init__(self, timespan_callbacks=timespan_callbacks)
+        #TimespanExpression.__init__(self, timespan_callbacks=timespan_callbacks)
         self._anchor = anchor
         assert voice_name is not None
         self._voice_name = voice_name
@@ -63,7 +66,7 @@ class Selector(PayloadCallbackMixin, TimespanExpression):
         # ignore voice_name input parameter
         voice_name = None
         payload, timespan = self._get_payload_and_timespan(score_specification)
-        timespan = self._apply_timespan_callbacks(timespan)
+        #timespan = self._apply_timespan_callbacks(timespan)
         return timespan
 
     @abc.abstractmethod
@@ -82,41 +85,45 @@ class Selector(PayloadCallbackMixin, TimespanExpression):
                 filtered_result.append(string)
         return filtered_result
     
-    def _set_start_segment_identifier(self, segment_identifier):
-        assert isinstance(segment_identifier, str)
-        if isinstance(self.anchor, str):
-            self._anchor = segment_identifier
-        else:
-            self.anchor._set_start_segment_identifier(segment_identifier)
+#    def _set_start_segment_identifier(self, segment_identifier):
+#        assert isinstance(segment_identifier, str)
+#        if isinstance(self.anchor, str):
+#            self._anchor = segment_identifier
+#        else:
+#            self.anchor._set_start_segment_identifier(segment_identifier)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    @property
-    def anchor(self):
-        return self._anchor
-
-    @property
-    def start_offset(self):
-        from experimental.tools import settingtools
-        return settingtools.OffsetExpression(anchor=self._anchor_abbreviation)
-
-    @property
-    def start_segment_identifier(self):
-        '''Return anchor when anchor is a string.
-
-        Otherwise delegate to ``self.anchor.start_segment_identifier``.
-
-        Return string or none.
-        '''
-        if isinstance(self.anchor, str):
-            return self.anchor
-        else:
-            return self.anchor.start_segment_identifier
-
-    @property
-    def stop_offset(self):
-        from experimental.tools import settingtools
-        return settingtools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
+#    @property
+#    def anchor(self):
+#        return self._anchor
+#
+#    @property
+#    def start_offset(self):
+#        from experimental.tools import settingtools
+#        result = settingtools.OffsetExpression(anchor=self._anchor_abbreviation)
+#        result._score_specification = self.score_specification
+#        return result
+#
+#    @property
+#    def start_segment_identifier(self):
+#        '''Return anchor when anchor is a string.
+#
+#        Otherwise delegate to ``self.anchor.start_segment_identifier``.
+#
+#        Return string or none.
+#        '''
+#        if isinstance(self.anchor, str):
+#            return self.anchor
+#        else:
+#            return self.anchor.start_segment_identifier
+#
+#    @property
+#    def stop_offset(self):
+#        from experimental.tools import settingtools
+#        result = settingtools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
+#        result._score_specification = self.score_specification
+#        return result
 
     @property
     def time_relation(self):
@@ -132,7 +139,10 @@ class Selector(PayloadCallbackMixin, TimespanExpression):
 
         Return timespan expression.
         '''
-        return settingtools.TimespanExpression(anchor=self)
+        from experimental.tools import settingtools
+        timespan = settingtools.TimespanExpression(anchor=self)
+        timespan._score_specification = self.score_specification
+        return timespan
 
     @property
     def voice_name(self):

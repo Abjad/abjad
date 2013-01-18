@@ -9,6 +9,11 @@ requesttools.DivisionSettingLookupRequest
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.anchor
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. autoattribute:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.attribute
    :noindex:
 
@@ -24,10 +29,25 @@ Read-only Properties
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
+.. autoattribute:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.score_specification
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.start_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. autoattribute:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.start_segment_identifier
    :noindex:
 
    Inherited from :py:class:`requesttools.SettingLookupRequest <experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest>`
+
+.. autoattribute:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
 .. autoattribute:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.storage_format
    :noindex:

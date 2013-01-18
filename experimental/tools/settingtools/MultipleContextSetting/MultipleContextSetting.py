@@ -36,9 +36,6 @@ class MultipleContextSetting(Setting):
     Multiple-context settings capture composers' musical intent.
     '''
 
-    ### CLASS ATTRIBUTES ###
-
-
     ### INITIAILIZER ###
 
     def __init__(self, attribute=None, expression=None, anchor=None, context_names=None, 

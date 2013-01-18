@@ -11,7 +11,7 @@ def test_single_segment_solo__incomplete_division_coverage_01():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     selector = red_segment.select_measures('Voice 1')[1:2]
-    selector.set_divisions([(2, 16)])
+    selector.timespan.set_divisions([(2, 16)])
     red_segment.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
@@ -29,9 +29,9 @@ def test_single_segment_solo__incomplete_division_coverage_02():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     selector = red_segment.select_measures('Voice 1')[:1]
-    selector.set_divisions([(3, 16)])
+    selector.timespan.set_divisions([(3, 16)])
     selector = red_segment.select_measures('Voice 1')[-1:]
-    selector.set_divisions([(2, 16)])
+    selector.timespan.set_divisions([(2, 16)])
     red_segment.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
@@ -49,8 +49,8 @@ def test_single_segment_solo__incomplete_division_coverage_03():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     selector = red_segment.select_measures('Voice 1')[1:2]
-    selector.set_divisions([(2, 16)])
-    selector.set_divisions([(2, 16)], contexts=['Voice 1'])
+    selector.timespan.set_divisions([(2, 16)])
+    selector.timespan.set_divisions([(2, 16)], contexts=['Voice 1'])
     red_segment.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
@@ -68,9 +68,9 @@ def test_single_segment_solo__incomplete_division_coverage_04():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     selector = red_segment.select_measures('Voice 1')[:1]
-    selector.set_divisions([(3, 16)])
+    selector.timespan.set_divisions([(3, 16)])
     selector = red_segment.select_measures('Voice 1')[-1:]
-    selector.set_divisions([(2, 16)], contexts=['Voice 1'])
+    selector.timespan.set_divisions([(2, 16)], contexts=['Voice 1'])
     red_segment.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
@@ -88,9 +88,9 @@ def test_single_segment_solo__incomplete_division_coverage_05():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     selector = red_segment.select_measures('Voice 1')[-2:]
-    selector.set_divisions([(2, 16)])
+    selector.timespan.set_divisions([(2, 16)])
     selector = red_segment.select_measures('Voice 1')[-1:]
-    selector.set_divisions([(3, 16)])
+    selector.timespan.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
@@ -108,9 +108,9 @@ def test_single_segment_solo__incomplete_division_coverage_06():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     selector = red_segment.select_measures('Voice 1')[-2:]
-    selector.set_divisions([(2, 16)])
+    selector.timespan.set_divisions([(2, 16)])
     selector = red_segment.select_measures('Voice 1')[-1:]
-    selector.set_divisions([(3, 16)], contexts=['Voice 1'])
+    selector.timespan.set_divisions([(3, 16)], contexts=['Voice 1'])
     red_segment.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
@@ -128,9 +128,9 @@ def test_single_segment_solo__incomplete_division_coverage_07():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     selector = red_segment.select_measures('Voice 1')[-2:]
-    selector.set_divisions([(2, 16)], contexts=['Voice 1'])
+    selector.timespan.set_divisions([(2, 16)], contexts=['Voice 1'])
     selector = red_segment.select_measures('Voice 1')[-1:]
-    selector.set_divisions([(3, 16)])
+    selector.timespan.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 

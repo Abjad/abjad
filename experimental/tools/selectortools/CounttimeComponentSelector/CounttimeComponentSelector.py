@@ -56,17 +56,23 @@ class CounttimeComponentSelector(Selector):
 
     ### INITIALIZER ###
 
-    def __init__(self, anchor=None, classes=None, 
-        voice_name=None, time_relation=None, payload_callbacks=None, timespan_callbacks=None):
+    #def __init__(self, anchor=None, classes=None, 
+    #    voice_name=None, time_relation=None, payload_callbacks=None, timespan_callbacks=None):
+    def __init__(self, anchor=None, classes=None, voice_name=None, time_relation=None, payload_callbacks=None):
         from experimental.tools import selectortools
         from experimental.tools import settingtools
         assert classes is None or self._is_counttime_component_class_expr(classes), repr(classes)
+        #Selector.__init__(self, 
+        #    anchor=anchor, 
+        #    voice_name=voice_name, 
+        #    time_relation=time_relation, 
+        #    payload_callbacks=payload_callbacks,
+        #    timespan_callbacks=timespan_callbacks)
         Selector.__init__(self, 
             anchor=anchor, 
             voice_name=voice_name, 
             time_relation=time_relation, 
-            payload_callbacks=payload_callbacks,
-            timespan_callbacks=timespan_callbacks)
+            payload_callbacks=payload_callbacks)
         if isinstance(classes, tuple):
             classes = settingtools.ClassInventory(classes)
         self._classes = classes
