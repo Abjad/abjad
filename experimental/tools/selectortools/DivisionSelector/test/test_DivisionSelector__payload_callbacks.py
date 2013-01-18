@@ -18,8 +18,8 @@ def test_DivisionSelector__payload_callbacks_01():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_DivisionSelector__payload_callbacks_02():
@@ -39,8 +39,8 @@ def test_DivisionSelector__payload_callbacks_02():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_DivisionSelector__payload_callbacks_03():
@@ -60,8 +60,8 @@ def test_DivisionSelector__payload_callbacks_03():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_DivisionSelector__payload_callbacks_04():
@@ -81,8 +81,8 @@ def test_DivisionSelector__payload_callbacks_04():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_DivisionSelector__payload_callbacks_05():
@@ -102,8 +102,8 @@ def test_DivisionSelector__payload_callbacks_05():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_DivisionSelector__payload_callbacks_06():
@@ -123,8 +123,8 @@ def test_DivisionSelector__payload_callbacks_06():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_DivisionSelector__payload_callbacks_07():
@@ -144,8 +144,8 @@ def test_DivisionSelector__payload_callbacks_07():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_DivisionSelector__payload_callbacks_08():
@@ -166,5 +166,5 @@ def test_DivisionSelector__payload_callbacks_08():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)

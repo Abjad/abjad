@@ -6,12 +6,12 @@ def write_test_output(score, full_file_name, test_function_name,
     cache_ly=False, cache_pdf=False, go=False, render_pdf=False):
     r'''Write test output.
     '''
-    from experimental.tools import helpertools
+    from experimental.tools import testtools
     if go: cache_ly = cache_pdf = render_pdf = True
     if not any([cache_ly, cache_pdf, render_pdf]):
         return
     lilypond_file = lilypondfiletools.make_floating_time_signature_lilypond_file(score)
-    helpertools.configure_multiple_voice_rhythmic_staves(lilypond_file)
+    testtools.configure_multiple_voice_rhythmic_staves(lilypond_file)
     title_lines = test_function_name_to_title_lines(test_function_name)
     lilypond_file.header_block.title = markuptools.make_centered_title_markup(
         title_lines, font_size=6, vspace_before=2, vspace_after=4)

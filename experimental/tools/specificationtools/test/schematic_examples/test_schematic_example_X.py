@@ -29,8 +29,8 @@ def test_schematic_example_X_01():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_schematic_example_X_02():
@@ -62,8 +62,8 @@ def test_schematic_example_X_02():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_schematic_example_X_03():
@@ -124,8 +124,8 @@ def test_schematic_example_X_03():
     score = score_specification.interpret() 
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_schematic_example_X_04():
@@ -174,8 +174,8 @@ def test_schematic_example_X_04():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_schematic_example_X_05():
@@ -212,8 +212,8 @@ def test_schematic_example_X_05():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_schematic_example_X_06():
@@ -255,8 +255,8 @@ def test_schematic_example_X_06():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_schematic_example_X_07():
@@ -301,8 +301,8 @@ def test_schematic_example_X_07():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_schematic_example_X_08():
@@ -347,8 +347,8 @@ def test_schematic_example_X_08():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_schematic_example_X_09():
@@ -393,5 +393,5 @@ def test_schematic_example_X_09():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)

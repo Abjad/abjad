@@ -21,8 +21,8 @@ def test_SegmentSpecification__select_rhythm_from_past_01():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_rhythm_from_past_02():
@@ -47,8 +47,8 @@ def test_SegmentSpecification__select_rhythm_from_past_02():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_rhythm_from_past_03():
@@ -71,8 +71,8 @@ def test_SegmentSpecification__select_rhythm_from_past_03():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_rhythm_from_past_04():
@@ -95,8 +95,8 @@ def test_SegmentSpecification__select_rhythm_from_past_04():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_rhythm_from_past_05():
@@ -120,8 +120,8 @@ def test_SegmentSpecification__select_rhythm_from_past_05():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_rhythm_from_past_06():
@@ -144,8 +144,8 @@ def test_SegmentSpecification__select_rhythm_from_past_06():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_rhythm_from_past_07():
@@ -167,8 +167,8 @@ def test_SegmentSpecification__select_rhythm_from_past_07():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_rhythm_from_past_08():
@@ -192,8 +192,8 @@ def test_SegmentSpecification__select_rhythm_from_past_08():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_rhythm_from_past_09():
@@ -218,5 +218,5 @@ def test_SegmentSpecification__select_rhythm_from_past_09():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
