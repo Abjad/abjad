@@ -17,12 +17,12 @@ Read-only Properties
 
    Inherited from :py:class:`settingtools.RegionCommand <experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand>`
 
-.. autoattribute:: experimental.tools.settingtools.DivisionRegionCommand.DivisionRegionCommand.DivisionRegionCommand.fresh
+.. autoattribute:: experimental.tools.settingtools.DivisionRegionCommand.DivisionRegionCommand.DivisionRegionCommand.expression
    :noindex:
 
    Inherited from :py:class:`settingtools.RegionCommand <experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand>`
 
-.. autoattribute:: experimental.tools.settingtools.DivisionRegionCommand.DivisionRegionCommand.DivisionRegionCommand.request
+.. autoattribute:: experimental.tools.settingtools.DivisionRegionCommand.DivisionRegionCommand.DivisionRegionCommand.fresh
    :noindex:
 
    Inherited from :py:class:`settingtools.RegionCommand <experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand>`

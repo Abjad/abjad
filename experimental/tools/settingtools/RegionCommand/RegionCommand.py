@@ -20,15 +20,15 @@ class RegionCommand(AbjadObject):
 
     ### INTIAILIZER ###
 
-    def __init__(self, request=None, context_name=None, timespan=None, fresh=None):
+    def __init__(self, expression=None, context_name=None, timespan=None, fresh=None):
         from experimental.tools import requesttools 
         from experimental.tools import settingtools 
         from experimental.tools import settingtools
-        assert isinstance(request, (settingtools.Expression)), repr(request)
+        assert isinstance(expression, (settingtools.Expression)), repr(expression)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
-        self._request = request
+        self._expression = expression
         self._context_name = context_name
         self._timespan = timespan
         self._fresh = fresh
@@ -37,7 +37,7 @@ class RegionCommand(AbjadObject):
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            if self.request == expr.request and \
+            if self.expression == expr.expression and \
                 self.context_name == expr.context_name and \
                 self.timespan == expr.timespan:
                 return True
@@ -110,12 +110,12 @@ class RegionCommand(AbjadObject):
         return self._fresh
 
     @property
-    def request(self):
-        '''Region command request.
+    def expression(self):
+        '''Region command expression.
         
-        Return request object.
+        Return expression.
         ''' 
-        return self._request
+        return self._expression
 
     @property
     def start_offset(self):

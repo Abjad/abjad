@@ -15,10 +15,10 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.context_name
    :noindex:
 
-.. autoattribute:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.fresh
+.. autoattribute:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.expression
    :noindex:
 
-.. autoattribute:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.request
+.. autoattribute:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.fresh
    :noindex:
 
 .. autoattribute:: experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand.start_offset

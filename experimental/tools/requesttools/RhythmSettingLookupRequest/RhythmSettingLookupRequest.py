@@ -26,7 +26,7 @@ class RhythmSettingLookupRequest(SettingLookupRequest):
         requested_offset = self.offset._get_offset(score_specification, self.voice_name)
         timespan_inventory = timespantools.TimespanInventory()
         for rhythm_region_command in score_specification.rhythm_region_commands:
-            if not rhythm_region_command.request == self:
+            if not rhythm_region_command.expression == self:
                 timespan_inventory.append(rhythm_region_command)
         timespan_time_relation = timerelationtools.offset_happens_during_timespan(offset=requested_offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_time_relation)
@@ -38,14 +38,14 @@ class RhythmSettingLookupRequest(SettingLookupRequest):
         # TODO: the lack of symmtery between these two branches means either:
         #   that the call to self._apply_payload_callbacks() is unnecessary, or
         #   that the call must appear in both branches.
-        if isinstance(source_command.request, requesttools.RhythmMakerRequest):
-            assert isinstance(source_command.request.payload, rhythmmakertools.RhythmMaker)
-            rhythm_maker = copy.deepcopy(source_command.request.payload)
+        if isinstance(source_command.expression, requesttools.RhythmMakerRequest):
+            assert isinstance(source_command.expression.payload, rhythmmakertools.RhythmMaker)
+            rhythm_maker = copy.deepcopy(source_command.expression.payload)
             rhythm_maker, start_offset = self._apply_payload_callbacks(
                 rhythm_maker, source_command.timespan.start_offset)
             return rhythm_maker
-        elif isinstance(source_command.request, settingtools.AbsoluteExpression):
-            assert isinstance(source_command.request.payload, str)
-            return source_command.request.payload
+        elif isinstance(source_command.expression, settingtools.AbsoluteExpression):
+            assert isinstance(source_command.expression.payload, str)
+            return source_command.expression.payload
         else:
-            raise TypeError(source_command.request)
+            raise TypeError(source_command.expression)

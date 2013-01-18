@@ -30,7 +30,7 @@ class RhythmRegionCommand(RegionCommand):
             >>> z(result)
             settingtools.RegionCommandInventory([
                 settingtools.RhythmRegionCommand(
-                    request=settingtools.AbsoluteExpression(
+                    expression=settingtools.AbsoluteExpression(
                         "{ c'16 [ c'8 ] }"
                         ),
                     context_name='Voice 1',
@@ -40,7 +40,7 @@ class RhythmRegionCommand(RegionCommand):
                         )
                     ),
                 settingtools.RhythmRegionCommand(
-                    request=settingtools.AbsoluteExpression(
+                    expression=settingtools.AbsoluteExpression(
                         "{ c'16 [ c'8 ] }"
                         ),
                     context_name='Voice 1',
@@ -66,7 +66,7 @@ class RhythmRegionCommand(RegionCommand):
             return False
         if expr.fresh:
             return False
-        if expr.request != self.request:
+        if expr.expression != self.expression:
             return False
         return True
 
@@ -88,26 +88,26 @@ class RhythmRegionCommand(RegionCommand):
         assert isinstance(start_offset, durationtools.Offset), repr(start_offset)
         assert isinstance(division_list, settingtools.DivisionList), repr(division_list)
         assert isinstance(voice_name, str), repr(voice_name)
-        if isinstance(self.request, settingtools.AbsoluteExpression):
-            parseable_string = self.request.payload
+        if isinstance(self.expression, settingtools.AbsoluteExpression):
+            parseable_string = self.expression.payload
             assert isinstance(parseable_string, str), repr(parseable_string)
             command = settingtools.ParseableStringRhythmRegionCommand(
                 parseable_string, voice_name, start_offset, division_list.duration)
-        elif isinstance(self.request, requesttools.RhythmMakerRequest):
-            rhythm_maker = self.request.payload
+        elif isinstance(self.expression, requesttools.RhythmMakerRequest):
+            rhythm_maker = self.expression.payload
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             command = settingtools.RhythmMakerRhythmRegionCommand(
                 rhythm_maker, voice_name, start_offset, division_list)
-        elif isinstance(self.request, requesttools.RhythmSettingLookupRequest):
-            rhythm_maker = self.request._get_payload(score_specification)
+        elif isinstance(self.expression, requesttools.RhythmSettingLookupRequest):
+            rhythm_maker = self.expression._get_payload(score_specification)
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             command = settingtools.RhythmMakerRhythmRegionCommand(
                 rhythm_maker, voice_name, start_offset, division_list)
-        elif isinstance(self.request, selectortools.CounttimeComponentSelector):
+        elif isinstance(self.expression, selectortools.CounttimeComponentSelector):
             total_duration = self.timespan.duration
             command_start_offset = self.timespan.start_offset
             command = settingtools.SelectorRhythmRegionCommand(
-                self.request, voice_name, command_start_offset, total_duration)
+                self.expression, voice_name, command_start_offset, total_duration)
         else:
-            raise TypeError(self.request)
+            raise TypeError(self.expression)
         return command

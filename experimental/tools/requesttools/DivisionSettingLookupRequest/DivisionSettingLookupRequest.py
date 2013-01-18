@@ -56,7 +56,7 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
         requested_offset = self.offset._get_offset(score_specification, self.voice_name)
         timespan_inventory = timespantools.TimespanInventory()
         for division_region_command in score_specification.division_region_commands:
-            if not division_region_command.request == self:
+            if not division_region_command.expression == self:
                 timespan_inventory.append(division_region_command)
         timespan_time_relation = timerelationtools.offset_happens_during_timespan(offset=requested_offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_time_relation)
@@ -64,7 +64,7 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
         source_command = segment_specification._get_first_element_in_expr_by_parentage(
             candidate_commands, self.voice_name, include_improper_parentage=True)
         assert source_command is not None
-        expression = source_command.request
+        expression = source_command.expression
         assert isinstance(expression, settingtools.AbsoluteExpression), repr(expression)
         divisions = expression.payload
         start_offset = division_region_command.timespan.start_offset

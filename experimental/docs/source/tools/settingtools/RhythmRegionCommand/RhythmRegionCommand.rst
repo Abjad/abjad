@@ -17,12 +17,12 @@ Read-only Properties
 
    Inherited from :py:class:`settingtools.RegionCommand <experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand>`
 
-.. autoattribute:: experimental.tools.settingtools.RhythmRegionCommand.RhythmRegionCommand.RhythmRegionCommand.fresh
+.. autoattribute:: experimental.tools.settingtools.RhythmRegionCommand.RhythmRegionCommand.RhythmRegionCommand.expression
    :noindex:
 
    Inherited from :py:class:`settingtools.RegionCommand <experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand>`
 
-.. autoattribute:: experimental.tools.settingtools.RhythmRegionCommand.RhythmRegionCommand.RhythmRegionCommand.request
+.. autoattribute:: experimental.tools.settingtools.RhythmRegionCommand.RhythmRegionCommand.RhythmRegionCommand.fresh
    :noindex:
 
    Inherited from :py:class:`settingtools.RegionCommand <experimental.tools.settingtools.RegionCommand.RegionCommand.RegionCommand>`

@@ -12,8 +12,8 @@ class DivisionRegionCommand(RegionCommand):
 
     ### INITIALIZER ###
 
-    def __init__(self, request=None, context_name=None, timespan=None, fresh=None, truncate=None):
-        RegionCommand.__init__(self, request, context_name, timespan, fresh=fresh)
+    def __init__(self, expression=None, context_name=None, timespan=None, fresh=None, truncate=None):
+        RegionCommand.__init__(self, expression, context_name, timespan, fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate
 
@@ -30,7 +30,7 @@ class DivisionRegionCommand(RegionCommand):
             return False
         if expr.fresh or expr.truncate:
             return False
-        if expr.request != self.request:
+        if expr.expression != self.expression:
             return False
         return True
 
@@ -38,7 +38,7 @@ class DivisionRegionCommand(RegionCommand):
         from experimental.tools import settingtools
         # ignore voice_name input parameter
         voice_name = None
-        payload = self.request._get_payload(score_specification)
+        payload = self.expression._get_payload(score_specification)
         if payload is None:
             return
         elif isinstance(payload, settingtools.DivisionRegionProduct):
