@@ -94,17 +94,15 @@
 19. Add test to show this:
         setting = score_specification.get_offset(32, 5).look_up_rhythm_setting('Voice 1')
 
-20. Change primary usage pattern from ...
-        score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-        score_specification = specificationtools.ScoreSpecification(score_template)
-    ... to ...
-        score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-        score_specification = settingtools.ScoreSpecificationInterface(score_template)
-    ... so that composers are always only ever interacting with interfaces.
+20. Afford rhythm setting lookup of parseable string. This will make ...
+        red_segment.set_rhythm("c'32 [ c'16 c'16. ]", contexts=['Voice 1'])
+        voice_1_rhythm_command = red_segment.timespan.start_offset.look_up_rhythm_setting('Voice 1')
+        red_segment.set_rhythm(voice_1_rhythm_command, contexts=['Voice 2'])
+    ... interpret correctly.
+    Then make X5 work with rhythm setting lookup instead of rhythm selector.
 
 21. Extend SelectMethodMixin with select_time_signatures() method.
-    (Fine for the method to return MeasureSelector.)
-    (Fine to implement new TimeSignatureSelector that subclasses MeasureSelector.)
+    (Return new TimeSignatureSelector that subclasses MeasureSelector.)
     Then change ...
         measures = red_segment.select_measures('Voice 1')
         blue_segment.set_time_signatures(measures)
@@ -113,11 +111,12 @@
         red_segment.set_time_signatures(time_signatures)
     ... throughout tests.
 
-22. Afford rhythm setting lookup of parseable string. This will make ...
-        red_segment.set_rhythm("c'32 [ c'16 c'16. ]", contexts=['Voice 1'])
-        voice_1_rhythm_command = red_segment.timespan.start_offset.look_up_rhythm_setting('Voice 1')
-        red_segment.set_rhythm(voice_1_rhythm_command, contexts=['Voice 2'])
-    ... interpret correctly.
-    Then make X5 work with rhythm setting lookup instead of rhythm selector.
+22. Change primary usage pattern from ...
+        score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+        score_specification = specificationtools.ScoreSpecification(score_template)
+    ... to ...
+        score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+        score_specification = settingtools.ScoreSpecificationInterface(score_template)
+    ... so that composers only ever interact with interfaces.
 
-23. Reverse output arguments of _get_payload_and_timespan().
+23. Remove _get_payload() and _get_timespan() in favor of _get_payload_and_timespan().

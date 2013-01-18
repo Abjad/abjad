@@ -91,8 +91,7 @@ class SegmentSelector(Selector):
         start_segment_identifier = self.start_segment_identifier
         segment = score_specification[start_segment_identifier]
         segment = self._apply_payload_callbacks(segment)
-        timespan = segment.timespan
-        return timespan, segment
+        return segment, segment.timespan
 
     def _make_identifier_expression(self, segment_name, addendum):
         assert isinstance(segment_name, str)

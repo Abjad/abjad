@@ -62,4 +62,4 @@ class BeatSelector(Selector):
         stop_offset = start_offset + result_duration
         result_timespan = timespantools.Timespan(start_offset, stop_offset)
         result = [x.pair for x in result]
-        return result_timespan, result
+        return result, result_timespan

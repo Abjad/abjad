@@ -78,4 +78,4 @@ class DivisionSelector(Selector):
             divisions, 
             voice_name=self.voice_name,
             start_offset=new_start_offset)
-        return result.timespan, result
+        return result, result.timespan

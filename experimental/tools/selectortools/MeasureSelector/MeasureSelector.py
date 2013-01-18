@@ -82,4 +82,4 @@ class MeasureSelector(Selector):
         duration = sum([durationtools.Duration(x) for x in time_signatures])
         stop_offset = start_offset + duration
         timespan = timespantools.Timespan(start_offset, stop_offset)
-        return timespan, time_signatures
+        return time_signatures, timespan

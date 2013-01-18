@@ -97,7 +97,7 @@ class CounttimeComponentSelector(Selector):
         assert isinstance(result, settingtools.RhythmRegionProduct), repr(result)
         stop_offset = new_start_offset + result.timespan.duration
         timespan = timespantools.Timespan(new_start_offset, stop_offset)
-        return timespan, result
+        return result, timespan
 
     def _is_counttime_component_class_expr(self, expr):
         from experimental.tools import settingtools
