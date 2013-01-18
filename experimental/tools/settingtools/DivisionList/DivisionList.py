@@ -218,11 +218,9 @@ class DivisionList(BoundedObject):
 
         .. note:: add example.
 
-        Operate in place and return none.
-
-        .. note:: make emit newly constructed division list.
+        Emit newly constructed division list.
         '''
-        self.divisions.reverse()
+        return type(self)(reversed(self.divisions), voice_name=self.voice_name, start_offset=self.start_offset)
 
     def rotate(self, rotation):
         '''Rotate divisions about axis.

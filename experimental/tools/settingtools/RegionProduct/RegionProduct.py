@@ -302,7 +302,9 @@ class RegionProduct(AbjadObject):
 
         Operate in place and return region product.
         '''
-        self.payload.reflect()
+        payload = self.payload.reflect()
+        if payload is not None:
+            self._payload = payload
         return self
 
     def rotate(self, rotation):

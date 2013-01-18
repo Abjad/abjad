@@ -512,11 +512,11 @@ class DivisionRegionProduct(RegionProduct):
             >>> z(product)
             settingtools.DivisionRegionProduct(
                 payload=settingtools.DivisionList(
-                    [Division('[3, 4]', start_offset=Offset(3, 2)), 
+                    [Division('[3, 4]', start_offset=Offset(0, 1)), 
                     Division('[6, 8]', start_offset=Offset(3, 4)), 
-                    Division('[6, 8]', start_offset=Offset(0, 1))],
+                    Division('[6, 8]', start_offset=Offset(3, 2))],
                     voice_name='Voice 1',
-                    start_offset=durationtools.Offset(3, 2)
+                    start_offset=durationtools.Offset(0, 1)
                     ),
                 voice_name='Voice 1',
                 start_offset=durationtools.Offset(0, 1)
