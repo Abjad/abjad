@@ -53,7 +53,8 @@ class DivisionList(BoundedObject):
                 Division('[3, 16]', start_offset=Offset(15, 8)), 
                 Division('[3, 16]', start_offset=Offset(33, 16)), 
                 Division('[3, 16]', start_offset=Offset(9, 4)), 
-                Division('[3, 16]', start_offset=Offset(39, 16))]
+                Division('[3, 16]', start_offset=Offset(39, 16))],
+                start_offset=durationtools.Offset(0, 1)
                 ),
             voice_name='Voice 1',
             start_offset=durationtools.Offset(0, 1)
@@ -71,7 +72,7 @@ class DivisionList(BoundedObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, divisions, voice_name=None):
+    def __init__(self, divisions, voice_name=None, start_offset=None):
         from experimental.tools import settingtools
         divisions = [settingtools.Division(x) for x in divisions]
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
@@ -171,6 +172,11 @@ class DivisionList(BoundedObject):
     @property
     def pairs(self):
         return [division.pair for division in self]
+
+    @property
+    def start_offset(self):
+        if self:
+            return self[0].start_offset
 
     @property
     def voice_name(self):

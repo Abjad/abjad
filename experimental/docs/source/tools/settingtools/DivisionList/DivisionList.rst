@@ -53,6 +53,9 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.DivisionList.DivisionList.DivisionList.pairs
    :noindex:
 
+.. autoattribute:: experimental.tools.settingtools.DivisionList.DivisionList.DivisionList.start_offset
+   :noindex:
+
 .. autoattribute:: experimental.tools.settingtools.DivisionList.DivisionList.DivisionList.storage_format
    :noindex:
 

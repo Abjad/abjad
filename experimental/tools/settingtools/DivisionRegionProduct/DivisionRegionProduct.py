@@ -21,7 +21,8 @@ class DivisionRegionProduct(RegionProduct):
             payload=settingtools.DivisionList(
                 [Division('[6, 8]', start_offset=Offset(0, 1)), 
                 Division('[6, 8]', start_offset=Offset(3, 4)), 
-                Division('[3, 4]', start_offset=Offset(3, 2))]
+                Division('[3, 4]', start_offset=Offset(3, 2))],
+                start_offset=durationtools.Offset(0, 1)
                 ),
             voice_name='Voice 1',
             start_offset=durationtools.Offset(0, 1)
@@ -174,7 +175,8 @@ class DivisionRegionProduct(RegionProduct):
                         [Division('[3, 16]', start_offset=Offset(0, 1)), 
                         Division('[3, 16]', start_offset=Offset(3, 16)), 
                         Division('[2, 16]', start_offset=Offset(3, 8)), 
-                        Division('[2, 16]', start_offset=Offset(1, 2))]
+                        Division('[2, 16]', start_offset=Offset(1, 2))],
+                        start_offset=durationtools.Offset(0, 1)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(0, 1)
@@ -233,7 +235,8 @@ class DivisionRegionProduct(RegionProduct):
                         [Division('[6, 8]', start_offset=Offset(0, 1)), 
                         Division('[6, 8]', start_offset=Offset(3, 4)), 
                         Division('[5, 8]')],
-                        voice_name='Voice 1'
+                        voice_name='Voice 1',
+                        start_offset=durationtools.Offset(0, 1)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(0, 1)
@@ -289,7 +292,8 @@ class DivisionRegionProduct(RegionProduct):
                     payload=settingtools.DivisionList(
                         [Division('[6, 8]', start_offset=Offset(0, 1)), 
                         Division('[6, 8]', start_offset=Offset(3, 4)), 
-                        Division('[3, 4]', start_offset=Offset(3, 2))]
+                        Division('[3, 4]', start_offset=Offset(3, 2))],
+                        start_offset=durationtools.Offset(0, 1)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(0, 1)
@@ -369,7 +373,8 @@ class DivisionRegionProduct(RegionProduct):
                 payload=settingtools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)), 
                     Division('[6, 8]', start_offset=Offset(3, 4)), 
-                    Division('[3, 4]', start_offset=Offset(3, 2))]
+                    Division('[3, 4]', start_offset=Offset(3, 2))],
+                    start_offset=durationtools.Offset(0, 1)
                     ),
                 voice_name='Voice 1',
                 start_offset=durationtools.Offset(0, 1)
@@ -428,7 +433,8 @@ class DivisionRegionProduct(RegionProduct):
                         [Division('[6, 8]', start_offset=Offset(0, 1)), 
                         Division('[6, 8]', start_offset=Offset(3, 4)), 
                         Division('[6, 8]', start_offset=Offset(3, 2))],
-                        voice_name='Voice 1'
+                        voice_name='Voice 1',   
+                        start_offset=durationtools.Offset(0, 1)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(0, 1)
@@ -438,7 +444,8 @@ class DivisionRegionProduct(RegionProduct):
                         [Division('[6, 8]', start_offset=Offset(9, 4)), 
                         Division('[6, 4]', start_offset=Offset(3, 1)), 
                         Division('[6, 4]', start_offset=Offset(9, 2))],
-                        voice_name='Voice 1'
+                        voice_name='Voice 1',
+                        start_offset=durationtools.Offset(9, 4)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(9, 4)
@@ -471,7 +478,8 @@ class DivisionRegionProduct(RegionProduct):
                         Division('[6, 8]', start_offset=Offset(3, 4)), 
                         Division('[6, 8]', start_offset=Offset(3, 2)), 
                         Division('[6, 8]', start_offset=Offset(9, 4))],
-                        voice_name='Voice 1'
+                        voice_name='Voice 1',
+                        start_offset=durationtools.Offset(0, 1)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(0, 1)
@@ -480,7 +488,8 @@ class DivisionRegionProduct(RegionProduct):
                     payload=settingtools.DivisionList(
                         [Division('[6, 4]', start_offset=Offset(3, 1)), 
                         Division('[6, 4]', start_offset=Offset(9, 2))],
-                        voice_name='Voice 1'
+                        voice_name='Voice 1',
+                        start_offset=durationtools.Offset(3, 1)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(3, 1)
@@ -510,7 +519,8 @@ class DivisionRegionProduct(RegionProduct):
                 payload=settingtools.DivisionList(
                     [Division('[3, 4]', start_offset=Offset(3, 2)), 
                     Division('[6, 8]', start_offset=Offset(3, 4)), 
-                    Division('[6, 8]', start_offset=Offset(0, 1))]
+                    Division('[6, 8]', start_offset=Offset(0, 1))],
+                    start_offset=durationtools.Offset(3, 2)
                     ),
                 voice_name='Voice 1',
                 start_offset=durationtools.Offset(0, 1)
@@ -539,7 +549,8 @@ class DivisionRegionProduct(RegionProduct):
                 payload=settingtools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(3, 4)), 
                     Division('[3, 4]', start_offset=Offset(3, 2)), 
-                    Division('[6, 8]', start_offset=Offset(0, 1))]
+                    Division('[6, 8]', start_offset=Offset(0, 1))],
+                    start_offset=durationtools.Offset(3, 4)
                     ),
                 voice_name='Voice 1',
                 start_offset=durationtools.Offset(0, 1)
@@ -570,7 +581,8 @@ class DivisionRegionProduct(RegionProduct):
                 payload=settingtools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)), 
                     Division('[6, 8]', start_offset=Offset(3, 4)), 
-                    Division('[3, 4]', start_offset=Offset(3, 2))]
+                    Division('[3, 4]', start_offset=Offset(3, 2))],
+                    start_offset=durationtools.Offset(0, 1)
                     ),
                 voice_name='Voice 1',
                 start_offset=durationtools.Offset(10, 1)
