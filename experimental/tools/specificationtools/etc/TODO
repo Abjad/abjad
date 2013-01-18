@@ -121,10 +121,3 @@
     Then make X5 work with rhythm setting lookup instead of rhythm selector.
 
 23. Change _get_timespan_and_payload() to _get_payload_and_timespan() globally.
-
-24. Create a mathtools.Interval class.
-    Migrate all mathtools.BoundedObject functionality into mathtools.Interval.
-    Removed mathtools.BoundedObject.
-    In fact, perhaps rename BoundedObject to Interval.
-    Make timespantools.Timespan inherit from mathtools.Interval.
-    Hoist some Timespan functionality up into mathtools.Interval.

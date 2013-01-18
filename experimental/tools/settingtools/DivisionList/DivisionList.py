@@ -1,4 +1,3 @@
-import copy
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools.mathtools.BoundedObject import BoundedObject
@@ -220,7 +219,7 @@ class DivisionList(BoundedObject):
 
         Emit newly constructed division list.
         '''
-        return type(self)(reversed(self.divisions), voice_name=self.voice_name, start_offset=self.start_offset)
+        return self.new(divisions=reversed(self.divisions))
 
     def rotate(self, rotation):
         '''Rotate divisions about axis.
@@ -231,6 +230,5 @@ class DivisionList(BoundedObject):
 
         Emit newly constructed division list.
         '''
-        divisions = copy.deepcopy(self.divisions)
-        divisions = sequencetools.rotate_sequence(divisions, rotation)
+        divisions = sequencetools.rotate_sequence(self.divisions, rotation)
         return self.new(divisions=divisions)
