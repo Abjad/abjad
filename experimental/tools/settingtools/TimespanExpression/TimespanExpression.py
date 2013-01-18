@@ -9,10 +9,6 @@ class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixi
     r'''Timespan expression.
 
     ::
-        
-        >>> from experimental import *
-
-    ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)

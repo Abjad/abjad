@@ -3,14 +3,11 @@ from experimental.tools.settingtools.Setting import Setting
 
 
 class MultipleContextSetting(Setting):
-    r'''
+    r'''Multiple-context setting.
 
-    Multiple-context setting::
-    
-        >>> from abjad.tools import *
-        >>> from experimental import *
+    Set `attribute` to `request` for multiple-context `anchor`:
 
-    Set `attribute` to `request` for multiple-context `anchor`:: 
+    ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)

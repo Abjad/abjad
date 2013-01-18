@@ -4,10 +4,6 @@ from experimental.tools.settingtools.SpecificationInterface import Specification
 class SegmentSpecificationInterface(SpecificationInterface):
     r'''Segment setting interface.
 
-    ::
-
-        >>> from experimental import *
-
     The examples below reference the following segment specification::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)

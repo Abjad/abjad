@@ -7,10 +7,6 @@ from experimental.tools.settingtools.Setting import Setting
 class SingleContextSetting(Setting):
     r'''Single-context setting.
 
-    ::
-
-        >>> from experimental import *
-
     Set `attribute` to `request` for single-context `anchor`::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)

@@ -9,10 +9,7 @@ class DivisionList(BoundedObject):
 
     Division lists model time-contiguous divisions.
 
-    Division region division list example::
-
-        >>> from abjad import *
-        >>> from experimental import *
+    Division region division list example:
 
     ::
 

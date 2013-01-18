@@ -5,10 +5,6 @@ from abjad.tools.abctools import AbjadObject
 class SetMethodMixin(AbjadObject):
     '''Setting-maker mix-in.
 
-    ::
-        
-        >>> from experimental import *
-
     Examples below use the score and segment specification defined here::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)

@@ -4,16 +4,16 @@ from experimental.tools.settingtools.SpecificationInterface import Specification
 class ScoreSpecificationInterface(SpecificationInterface):
     r'''Score setting interface.
 
+    Score specification:
+
     ::
-
-        >>> from experimental import *
-
-    Score specification::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(template)
 
-    With three named segments::
+    With three named segments:
+
+    ::
 
         >>> red_segment = score_specification.append_segment(name='red')
         >>> orange_segment = score_specification.append_segment(name='orange')

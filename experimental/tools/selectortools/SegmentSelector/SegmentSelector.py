@@ -4,11 +4,7 @@ from experimental.tools.selectortools.Selector import Selector
 
 
 class SegmentSelector(Selector):
-    r'''
-
-    ::
-
-        >>> from experimental import *
+    r'''Segment selector.
 
     ::
 

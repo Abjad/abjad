@@ -3,14 +3,9 @@ from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallback
 
 
 class AbsoluteExpression(PayloadCallbackMixin):
-    r'''Absolute setting.
+    r'''Absolute expression.
 
     ::
-
-        >>> from experimental import *
-
-    ::
-
 
         >>> expression = settingtools.AbsoluteExpression([(4, 16), (2, 16)])
 

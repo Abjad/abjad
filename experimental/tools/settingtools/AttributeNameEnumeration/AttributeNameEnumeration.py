@@ -2,11 +2,9 @@ from collections import OrderedDict
 
 
 class AttributeNameEnumeration(OrderedDict):
-    r'''
+    r'''Attribute name enumeration.
 
-    The allowable attribute names known to the ``specificationtools`` classes::
-
-        >>> from experimental import *
+    The allowable attribute names known to the ``specificationtools`` classes:
 
     ::
 

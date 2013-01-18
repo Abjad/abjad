@@ -7,10 +7,6 @@ from abjad.tools.abctools import AbjadObject
 class SelectMethodMixin(AbjadObject):
     '''Select-method mix-in.
 
-        >>> from experimental import *
-
-    ::
-
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')

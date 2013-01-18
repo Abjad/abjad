@@ -4,9 +4,6 @@ from experimental.tools.settingtools.Expression import Expression
 
 class LookupMethodMixin(Expression):
     '''Lookup method mixin.
-    ::
-
-        >>> from experimental import *
 
     ::
 

@@ -7,11 +7,7 @@ from experimental.tools.selectortools.Selector import Selector
 
 
 class MeasureSelector(Selector):
-    r'''Background measure selector.
-
-    ::
-
-        >>> from experimental import *
+    r'''Measure selector.
 
     ::
 
@@ -60,7 +56,7 @@ class MeasureSelector(Selector):
             voice_name='Voice 1'
             )
 
-    Background measure selectors are immutable.
+    Measure selectors are immutable.
     '''
 
     ### PRIVATE METHODS ###

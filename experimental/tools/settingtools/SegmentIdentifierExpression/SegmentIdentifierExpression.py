@@ -2,11 +2,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class SegmentIdentifierExpression(AbjadObject):
-    r'''
+    r'''Segment identifier expression.
 
-    Delayed evaluation wrapper similar to Mathematica ``Hold[]``::
-
-        >>> from experimental import *
+    Delayed evaluation wrapper similar to Mathematica ``Hold[]``:
 
     ::
 
