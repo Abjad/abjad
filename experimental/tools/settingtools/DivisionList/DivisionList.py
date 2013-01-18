@@ -1,4 +1,5 @@
 import copy
+from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools.mathtools.BoundedObject import BoundedObject
 
@@ -75,8 +76,18 @@ class DivisionList(BoundedObject):
 
     def __init__(self, divisions, voice_name=None, start_offset=None):
         from experimental.tools import settingtools
-        divisions = [settingtools.Division(x) for x in divisions]
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
+        if start_offset is not None:
+            start_offset = durationtools.Offset(start_offset)
+        positioned_divisions = []
+        total_duration = start_offset or durationtools.Duration(0)
+        for division in divisions:
+            division_start_offset = durationtools.Offset(total_duration)
+            positioned_division = settingtools.Division(division, start_offset=division_start_offset)
+            positioned_divisions.append(positioned_division)
+            total_duration += positioned_division.duration
+        divisions = positioned_divisions
+        assert all([x.start_offset is not None for x in divisions]), repr(divisions)
         self._divisions = divisions
         self._voice_name = voice_name
         assert self.is_well_formed

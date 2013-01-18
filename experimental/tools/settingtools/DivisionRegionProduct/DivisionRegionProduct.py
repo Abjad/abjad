@@ -75,8 +75,9 @@ class DivisionRegionProduct(RegionProduct):
             timespantools.TimespanInventory([
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[1, 8]')],
-                        voice_name='Voice 1'
+                        [Division('[1, 8]', start_offset=Offset(0, 1))],
+                        voice_name='Voice 1',
+                        start_offset=durationtools.Offset(0, 1)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(0, 1)
@@ -97,8 +98,9 @@ class DivisionRegionProduct(RegionProduct):
             timespantools.TimespanInventory([
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[1, 8]')],
-                        voice_name='Voice 1'
+                        [Division('[1, 8]', start_offset=Offset(17, 8))],
+                        voice_name='Voice 1',
+                        start_offset=durationtools.Offset(17, 8)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(17, 8)
@@ -119,17 +121,16 @@ class DivisionRegionProduct(RegionProduct):
             timespantools.TimespanInventory([
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[5, 8]'), 
+                        [Division('[5, 8]', start_offset=Offset(1, 8)), 
                         Division('[6, 8]', start_offset=Offset(3, 4)), 
-                        Division('[5, 8]')],
-                        voice_name='Voice 1'
+                        Division('[5, 8]', start_offset=Offset(3, 2))],
+                        voice_name='Voice 1',
+                        start_offset=durationtools.Offset(1, 8)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(1, 8)
                     )
                 ])
-
-        .. note:: fix lack of start-offset.
 
         Example 4. No intersection:
 
@@ -184,8 +185,6 @@ class DivisionRegionProduct(RegionProduct):
                     )
                 ])
 
-        .. note:: fix lack of start-offset in first division in list.
-
         Return timespan inventory.
         '''
         return RegionProduct.__or__(self, expr)
@@ -207,17 +206,16 @@ class DivisionRegionProduct(RegionProduct):
             timespantools.TimespanInventory([
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[5, 8]'), 
+                        [Division('[5, 8]', start_offset=Offset(1, 8)), 
                         Division('[6, 8]', start_offset=Offset(3, 4)), 
                         Division('[3, 4]', start_offset=Offset(3, 2))],
-                        voice_name='Voice 1'
+                        voice_name='Voice 1',
+                        start_offset=durationtools.Offset(1, 8)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(1, 8)
                     )
                 ])
-
-        .. note:: fix lack of start-offset on (5, 8) division at start of list.
 
         Example 2. Subtract from right:
 
@@ -235,7 +233,7 @@ class DivisionRegionProduct(RegionProduct):
                     payload=settingtools.DivisionList(
                         [Division('[6, 8]', start_offset=Offset(0, 1)), 
                         Division('[6, 8]', start_offset=Offset(3, 4)), 
-                        Division('[5, 8]')],
+                        Division('[5, 8]', start_offset=Offset(3, 2))],
                         voice_name='Voice 1',
                         start_offset=durationtools.Offset(0, 1)
                         ),
@@ -243,8 +241,6 @@ class DivisionRegionProduct(RegionProduct):
                     start_offset=durationtools.Offset(0, 1)
                     )
                 ])
-
-        .. note:: fix the lack of start-offset on the (5, 8) division at end of list.
 
         Example 3. Subtract from middle:
 
@@ -260,16 +256,18 @@ class DivisionRegionProduct(RegionProduct):
             timespantools.TimespanInventory([
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[1, 8]')],
-                        voice_name='Voice 1'
+                        [Division('[1, 8]', start_offset=Offset(0, 1))],
+                        voice_name='Voice 1',
+                        start_offset=durationtools.Offset(0, 1)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(0, 1)
                     ),
                 settingtools.DivisionRegionProduct(
                     payload=settingtools.DivisionList(
-                        [Division('[1, 8]')],
-                        voice_name='Voice 1'
+                        [Division('[1, 8]', start_offset=Offset(17, 8))],
+                        voice_name='Voice 1',
+                        start_offset=durationtools.Offset(17, 8)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(17, 8)
@@ -317,11 +315,15 @@ class DivisionRegionProduct(RegionProduct):
     def _split_payload_at_offsets(self, offsets):
         from experimental.tools import settingtools
         divisions = copy.deepcopy(self.payload.divisions)
-        self._payload = settingtools.DivisionList([], voice_name=self.voice_name)
+        self._payload = settingtools.DivisionList([], voice_name=self.voice_name, start_offset=self.start_offset)
         shards = sequencetools.split_sequence_by_weights(
             divisions, offsets, cyclic=False, overhang=True)
-        shards = [settingtools.DivisionList(shard, voice_name=self.voice_name) for shard in shards]
-        return shards
+        result, total_duration = [], durationtools.Duration(0)
+        for shard in shards:
+            shard = settingtools.DivisionList(shard, voice_name=self.voice_name, start_offset=total_duration)
+            result.append(shard)
+            total_duration += shard.duration
+        return result
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -551,18 +553,16 @@ class DivisionRegionProduct(RegionProduct):
             >>> z(product)
             settingtools.DivisionRegionProduct(
                 payload=settingtools.DivisionList(
-                    [Division('[6, 8]', start_offset=Offset(3, 4)), 
-                    Division('[3, 4]', start_offset=Offset(3, 2)), 
-                    Division('[6, 8]', start_offset=Offset(0, 1))],
+                    [Division('[6, 8]', start_offset=Offset(0, 1)), 
+                    Division('[3, 4]', start_offset=Offset(3, 4)), 
+                    Division('[6, 8]', start_offset=Offset(3, 2))],
                     voice_name='Voice 1',
-                    start_offset=durationtools.Offset(3, 4)
+                    start_offset=durationtools.Offset(0, 1)
                     ),
                 voice_name='Voice 1',
                 start_offset=durationtools.Offset(0, 1)
                 )
         
-        .. note:: implement duration rotation.
-
         Operate in place and return division region product.
         '''
         return RegionProduct.rotate(self, rotation)
