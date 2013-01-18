@@ -1,7 +1,8 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from experimental.tools.settingtools.Expression import Expression
 
 
-class ExpressionInventory(ObjectInventory):
+class ExpressionInventory(ObjectInventory, Expression):
     '''Expression inventory.
 
     Each expression will be evaluated in turn.
@@ -14,6 +15,7 @@ class ExpressionInventory(ObjectInventory):
         voice_name = None
         results = []
         for expression in self:
-            result = expression._get_payload(score_specification)
+            # TODO: eventually change to expression._evaluate(score_specification)
+            result = expression._get_timespan(score_specification, voice_name)
             results.append(result)
         return results

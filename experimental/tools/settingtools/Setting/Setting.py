@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Setting(AbjadObject):
-    r'''
+    r'''Setting.
 
     Abstract setting class from which concrete settings inherit.
     '''
@@ -21,8 +21,7 @@ class Setting(AbjadObject):
         from experimental.tools import settingtools
         from experimental.tools import settingtools
         assert isinstance(attribute, str)
-        assert isinstance(request, (
-            settingtools.PayloadCallbackMixin, settingtools.TimespanExpression)), repr(request)
+        assert isinstance(request, (settingtools.Expression)), repr(request)
         assert isinstance(anchor, (settingtools.TimespanExpression, str, type(None)))
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)

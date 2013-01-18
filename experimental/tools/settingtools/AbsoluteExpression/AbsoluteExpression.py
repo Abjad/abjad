@@ -51,6 +51,7 @@ class AbsoluteExpression(PayloadCallbackMixin):
                 #       Absolute expression should not contain other expressions.
                 #       Create some other class to model a list of TimespanExpression objects.
                 if isinstance(element, settingtools.TimespanExpression):
+                    raise Exception(self)
                     timespan = element._get_timespan(score_specification, voice_name)
                     result.append(timespan)
                 else:

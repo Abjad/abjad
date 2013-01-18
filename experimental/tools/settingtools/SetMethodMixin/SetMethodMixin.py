@@ -16,6 +16,13 @@ class SetMethodMixin(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _all_are_expressions(self, expr):
+        from experimental.tools import settingtools
+        if isinstance(expr, (tuple, list)):
+            if all([isinstance(x, settingtools.Expression) for x in expr]):
+                return True
+        return False
+
     def _expr_to_request(self, expr):
         from abjad.tools import rhythmmakertools
         from experimental.tools import handlertools
@@ -30,7 +37,9 @@ class SetMethodMixin(AbjadObject):
             return requesttools.StatalServerRequest(expr)
         elif isinstance(expr, handlertools.Handler):
             return requesttool.HandlerRequest(expr)
-        elif isinstance(expr, (tuple, list, str)):
+        elif self._all_are_expressions(expr):
+            return settingtools.ExpressionInventory(expr)
+        elif isinstance(expr, (str, tuple, list)):
             return settingtools.AbsoluteExpression(expr)
         elif isinstance(expr, rhythmmakertools.RhythmMaker):
             return requesttools.RhythmMakerRequest(expr)
