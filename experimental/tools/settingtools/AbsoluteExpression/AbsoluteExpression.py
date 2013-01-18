@@ -41,23 +41,8 @@ class AbsoluteExpression(PayloadCallbackMixin):
         from experimental.tools import settingtools
         # ignore voice_name input parameter
         voice_name = None
-        if isinstance(self.payload, str):
+        if isinstance(self.payload, (str, tuple)):
             result = self.payload
-        elif isinstance(self.payload, tuple):
-            result = []
-            for element in self.payload:
-                # TODO: this is not the correct use of an AbsoluteExpression.
-                #       Absolute expressions should contain only constants.
-                #       Absolute expression should not contain other expressions.
-                #       Create some other class to model a list of TimespanExpression objects.
-                if isinstance(element, settingtools.TimespanExpression):
-                    raise Exception(self)
-                    timespan = element._get_timespan(score_specification, voice_name)
-                    result.append(timespan)
-                else:
-                    assert isinstance(element, (numbers.Number, str, tuple)), repr(element)
-                    result.append(element)
-            result = tuple(result)
         else:
             raise TypeError(self.payload)
         result, dummy = self._apply_payload_callbacks(result, None)
