@@ -120,8 +120,6 @@
     ... interpret correctly.
     Then make X5 work with rhythm setting lookup instead of rhythm selector.
 
-23. Audit all selector classes.
-    Make sure each implements a self._get_timespan_and_payload() method.
-    Make sure each also implement self._get_timespan(), self._get_payload() methods.
+23. Extend DivisionList repr to include start_offset.
 
-24. Extend DivisionList repr to include start_offset.
+24. Change _get_timespan_and_payload() to _get_payload_and_timespan() globally.
