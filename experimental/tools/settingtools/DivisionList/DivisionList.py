@@ -1,15 +1,12 @@
 import copy
 from abjad.tools import sequencetools
 from abjad.tools.mathtools.BoundedObject import BoundedObject
-from experimental.tools import testtools
 
 
 class DivisionList(BoundedObject):
     r'''Division list.
 
-    Division lists model time-contiguous divisions.
-
-    Division region division list example:
+    Offset-positioned time-contiguous divisions:
 
     ::
 

@@ -4,7 +4,6 @@ from abjad.tools import durationtools
 from abjad.tools import timerelationtools 
 from abjad.tools import timespantools 
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.tools import testtools 
 
 
 class RegionCommand(AbjadObject):

@@ -1,7 +1,6 @@
 import abc
 from abjad.tools import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.tools import testtools
 from experimental.tools import settingtools
 
 
