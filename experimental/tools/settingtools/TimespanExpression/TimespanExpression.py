@@ -1,11 +1,9 @@
-from abjad.tools.timespantools.Timespan import Timespan
 from experimental.tools.settingtools.SetMethodMixin import SetMethodMixin
 from experimental.tools.settingtools.SelectMethodMixin import SelectMethodMixin
 from experimental.tools.settingtools.TimespanCallbackMixin import TimespanCallbackMixin
 
 
-# TODO: looks like maybe TimespanExpression needs to *have a* timespan istead of *being a* timespan
-class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixin, Timespan):
+class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixin):
     r'''Timespan expression.
 
     ::
@@ -24,7 +22,6 @@ class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixi
 
     def __init__(self, anchor=None, timespan_callbacks=None):
         from experimental.tools import settingtools
-        Timespan.__init__(self)
         TimespanCallbackMixin.__init__(self)
         assert isinstance(anchor, (str, type(None))), repr(anchor)
         self._anchor = anchor
@@ -68,7 +65,7 @@ class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixi
 
     @property
     def _keyword_argument_name_value_strings(self):
-        result = Timespan._keyword_argument_name_value_strings.fget(self)
+        result = TimespanCallbackMixin._keyword_argument_name_value_strings.fget(self)
         if 'timespan_callbacks=CallbackInventory([])' in result:
             result = list(result)
             result.remove('timespan_callbacks=CallbackInventory([])')
@@ -90,7 +87,7 @@ class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixi
         '''Do not show empty offset payload_callbacks list.
         '''
         filtered_result = []
-        result = Timespan._get_tools_package_qualified_keyword_argument_repr_pieces(
+        result = TimespanCallbackMixin._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
             if not 'timespan_callbacks=settingtools.CallbackInventory([])' in string:

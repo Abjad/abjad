@@ -127,6 +127,14 @@ class Selector(PayloadCallbackMixin, TimespanExpression):
         return self._time_relation
 
     @property
+    def timespan(self):
+        '''Selector timespan.
+
+        Return timespan expression.
+        '''
+        return settingtools.TimespanExpression(anchor=self)
+
+    @property
     def voice_name(self):
         '''Voice name of selector.
 
