@@ -6,7 +6,9 @@ from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
 
 
 class Division(NonreducedFraction, BoundedObject):
-    r'''Bounded nonreduced fraction.
+    r'''Division.
+
+    Offset-positioned, bounded, nonreduced fraction.
 
     Initialize from string:
 
@@ -60,8 +62,6 @@ class Division(NonreducedFraction, BoundedObject):
             is_right_open = getattr(pair, 'is_right_open', False)
         self.is_left_open = is_left_open
         self.is_right_open = is_right_open
-        #if start_offset is not None:
-        #    start_offset = durationtools.Offset(start_offset)
         if start_offset is None:
             start_offset = getattr(pair, 'start_offset', None)
         self._start_offset = start_offset

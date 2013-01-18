@@ -54,6 +54,7 @@ class DivisionList(BoundedObject):
                 Division('[3, 16]', start_offset=Offset(33, 16)), 
                 Division('[3, 16]', start_offset=Offset(9, 4)), 
                 Division('[3, 16]', start_offset=Offset(39, 16))],
+                voice_name='Voice 1',
                 start_offset=durationtools.Offset(0, 1)
                 ),
             voice_name='Voice 1',
