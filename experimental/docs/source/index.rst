@@ -390,6 +390,7 @@ Unstable packages (load manually)
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
+      tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
@@ -444,6 +445,7 @@ Unstable packages (load manually)
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
+      tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
