@@ -22,17 +22,17 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.context_name
    :noindex:
 
+.. autoattribute:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.expression
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
+
 .. autoattribute:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.fresh
    :noindex:
 
    Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.persist
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
-
-.. autoattribute:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.request
    :noindex:
 
    Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`

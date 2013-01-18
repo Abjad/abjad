@@ -2,7 +2,6 @@ import re
 from abjad.tools import *
 from experimental.tools import library
 from experimental.tools import requesttools
-from experimental.tools import selectortools
 from experimental.tools import settingtools
 from experimental.tools.specificationtools.Specification import Specification
 
@@ -215,7 +214,7 @@ class ScoreSpecification(Specification):
             ...     z(x)
             settingtools.MultipleContextSetting(
                 attribute='time_signatures',
-                request=settingtools.AbsoluteExpression(
+                expression=settingtools.AbsoluteExpression(
                     ((2, 8), (3, 8), (4, 8))
                     ),
                 anchor='red',
@@ -223,7 +222,7 @@ class ScoreSpecification(Specification):
                 )
             settingtools.MultipleContextSetting(
                 attribute='time_signatures',
-                request=settingtools.AbsoluteExpression(
+                expression=settingtools.AbsoluteExpression(
                     ((4, 16), (4, 16))
                     ),
                 anchor='orange',
@@ -231,7 +230,7 @@ class ScoreSpecification(Specification):
                 )
             settingtools.MultipleContextSetting(
                 attribute='time_signatures',
-                request=settingtools.AbsoluteExpression(
+                expression=settingtools.AbsoluteExpression(
                     ((5, 16), (5, 16))
                     ),
                 anchor='yellow',
@@ -239,7 +238,7 @@ class ScoreSpecification(Specification):
                 )
             settingtools.MultipleContextSetting(
                 attribute='rhythm',
-                request=requesttools.RhythmMakerRequest(
+                expression=requesttools.RhythmMakerRequest(
                     payload=rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
@@ -366,7 +365,7 @@ class ScoreSpecification(Specification):
             >>> for x in score_specification.single_context_settings:
             ...     z(x)
             settingtools.SingleContextTimeSignatureSetting(
-                request=settingtools.AbsoluteExpression(
+                expression=settingtools.AbsoluteExpression(
                     ((2, 8), (3, 8), (4, 8))
                     ),
                 anchor='red',
@@ -374,7 +373,7 @@ class ScoreSpecification(Specification):
                 persist=True
                 )
             settingtools.SingleContextTimeSignatureSetting(
-                request=settingtools.AbsoluteExpression(
+                expression=settingtools.AbsoluteExpression(
                     ((4, 16), (4, 16))
                     ),
                 anchor='orange',
@@ -382,7 +381,7 @@ class ScoreSpecification(Specification):
                 persist=True
                 )
             settingtools.SingleContextTimeSignatureSetting(
-                request=settingtools.AbsoluteExpression(
+                expression=settingtools.AbsoluteExpression(
                     ((5, 16), (5, 16))
                     ),
                 anchor='yellow',
@@ -390,7 +389,7 @@ class ScoreSpecification(Specification):
                 persist=True
                 )
             settingtools.SingleContextRhythmSetting(
-                request=requesttools.RhythmMakerRequest(
+                expression=requesttools.RhythmMakerRequest(
                     payload=rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,

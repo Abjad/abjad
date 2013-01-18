@@ -44,16 +44,16 @@ class SetMethodMixin(AbjadObject):
         elif isinstance(expr, rhythmmakertools.RhythmMaker):
             return requesttools.RhythmMakerRequest(expr)
         else:
-            raise TypeError('do not know how to change {!r} to request.'.format(expr))
+            raise TypeError('do not know how to change {!r} to expression.'.format(expr))
 
     def _store_multiple_context_setting(self, attribute, source, contexts=None, persist=True, truncate=None):
         from experimental.tools import settingtools
-        request = self._expr_to_expression(source)
+        expression = self._expr_to_expression(source)
         assert self.score_specification is not None
         context_names = self.score_specification._context_token_to_context_names(contexts)
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute=attribute,
-            request=request,
+            expression=expression,
             anchor=self._anchor_abbreviation,
             context_names=context_names,
             persist=persist,
@@ -101,7 +101,7 @@ class SetMethodMixin(AbjadObject):
             >>> z(setting)
             settingtools.MultipleContextSetting(
                 attribute='divisions',
-                request=settingtools.AbsoluteExpression(
+                expression=settingtools.AbsoluteExpression(
                     ((3, 16),)
                     ),
                 anchor='red',
@@ -188,7 +188,7 @@ class SetMethodMixin(AbjadObject):
             >>> z(setting)
             settingtools.MultipleContextSetting(
                 attribute='rhythm',
-                request=requesttools.RhythmMakerRequest(
+                expression=requesttools.RhythmMakerRequest(
                     payload=rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
@@ -227,7 +227,7 @@ class SetMethodMixin(AbjadObject):
             >>> z(setting)
             settingtools.MultipleContextSetting(
                 attribute='time_signatures',
-                request=settingtools.AbsoluteExpression(
+                expression=settingtools.AbsoluteExpression(
                     ((3, 8), (4, 8))
                     ),
                 anchor='red',

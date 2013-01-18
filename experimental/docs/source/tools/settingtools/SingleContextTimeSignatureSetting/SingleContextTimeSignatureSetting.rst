@@ -24,17 +24,17 @@ Read-only Properties
 
    Inherited from :py:class:`settingtools.SingleContextSetting <experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
 
+.. autoattribute:: experimental.tools.settingtools.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.expression
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
+
 .. autoattribute:: experimental.tools.settingtools.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.fresh
    :noindex:
 
    Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.tools.settingtools.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.persist
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
-
-.. autoattribute:: experimental.tools.settingtools.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.request
    :noindex:
 
    Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`

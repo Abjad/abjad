@@ -6,7 +6,7 @@ from experimental.tools.settingtools.Setting import Setting
 class SingleContextSetting(Setting):
     r'''Single-context setting.
 
-    Set `attribute` to `request` for single-context `anchor`::
+    Set `attribute` to `expression` for single-context `anchor`::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
@@ -33,7 +33,7 @@ class SingleContextSetting(Setting):
 
         >>> z(single_context_setting)
         settingtools.SingleContextDivisionSetting(
-            request=settingtools.AbsoluteExpression(
+            expression=settingtools.AbsoluteExpression(
                 ((3, 16),)
                 ),
             anchor='red',
@@ -52,9 +52,9 @@ class SingleContextSetting(Setting):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute=None, request=None, anchor=None, context_name=None, 
+    def __init__(self, attribute=None, expression=None, anchor=None, context_name=None, 
         fresh=True, persist=True, truncate=None):
-        Setting.__init__(self, attribute=attribute, request=request, anchor=anchor, 
+        Setting.__init__(self, attribute=attribute, expression=expression, anchor=anchor, 
             fresh=fresh, persist=persist, truncate=truncate)
         assert isinstance(context_name, (str, type(None)))
         self._context_name = context_name
@@ -75,7 +75,7 @@ class SingleContextSetting(Setting):
 
             >>> z(single_context_setting)
             settingtools.SingleContextDivisionSetting(
-                request=settingtools.AbsoluteExpression(
+                expression=settingtools.AbsoluteExpression(
                     ((3, 16),)
                     ),
                 anchor='red',

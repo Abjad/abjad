@@ -16,18 +16,18 @@ class Setting(AbjadObject):
 
     # TODO: eventually remove 'truncate' in favor of SingleContextDivisionSetting.truncate
     @abc.abstractmethod
-    def __init__(self, attribute=None, request=None, anchor=None, fresh=True, persist=True, truncate=None):
+    def __init__(self, attribute=None, expression=None, anchor=None, fresh=True, persist=True, truncate=None):
         from experimental.tools import requesttools
         from experimental.tools import settingtools
         from experimental.tools import settingtools
         assert isinstance(attribute, str)
-        assert isinstance(request, (settingtools.Expression)), repr(request)
+        assert isinstance(expression, (settingtools.Expression)), repr(expression)
         assert isinstance(anchor, (settingtools.TimespanExpression, str, type(None)))
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))
         self._attribute = attribute
-        self._request = request
+        self._expression = expression
         self._anchor = anchor
         self._fresh = fresh
         self._persist = persist
@@ -92,12 +92,12 @@ class Setting(AbjadObject):
         return self._persist
 
     @property
-    def request(self):
-        '''Setting request.
+    def expression(self):
+        '''Setting expression.
 
-        Return request object.
+        Return expression.
         '''
-        return self._request
+        return self._expression
 
     @property
     def truncate(self):

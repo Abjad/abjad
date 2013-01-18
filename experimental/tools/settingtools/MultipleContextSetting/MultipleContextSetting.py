@@ -5,7 +5,7 @@ from experimental.tools.settingtools.Setting import Setting
 class MultipleContextSetting(Setting):
     r'''Multiple-context setting.
 
-    Set `attribute` to `request` for multiple-context `anchor`:
+    Set `attribute` to `expression` for multiple-context `anchor`:
 
     ::
 
@@ -22,7 +22,7 @@ class MultipleContextSetting(Setting):
         >>> z(multiple_context_setting)
         settingtools.MultipleContextSetting(
             attribute='time_signatures',
-            request=settingtools.AbsoluteExpression(
+            expression=settingtools.AbsoluteExpression(
                 ((4, 8), (3, 8))
                 ),
             anchor='red',
@@ -41,9 +41,9 @@ class MultipleContextSetting(Setting):
 
     ### INITIAILIZER ###
 
-    def __init__(self, attribute=None, request=None, anchor=None, context_names=None, 
+    def __init__(self, attribute=None, expression=None, anchor=None, context_names=None, 
             persist=True, truncate=None):
-        Setting.__init__(self, attribute=attribute, request=request, anchor=anchor, 
+        Setting.__init__(self, attribute=attribute, expression=expression, anchor=anchor, 
             persist=persist, truncate=truncate)
         assert isinstance(context_names, (list, type(None))), repr(context_names)
         self._context_names = context_names
@@ -77,7 +77,7 @@ class MultipleContextSetting(Setting):
         if self.context_names is None:
             anchor = copy.deepcopy(self.anchor)
             single_context_setting = single_context_setting_class(
-                self.request, 
+                self.expression, 
                 anchor,
                 context_name=None,
                 persist=self.persist)
@@ -86,7 +86,7 @@ class MultipleContextSetting(Setting):
             for context_name in self.context_names:
                 anchor = copy.deepcopy(self.anchor)
                 single_context_setting = single_context_setting_class(
-                    self.request, 
+                    self.expression, 
                     anchor,
                     context_name=context_name,
                     persist=self.persist)

@@ -24,17 +24,17 @@ Read-only Properties
 
    Inherited from :py:class:`settingtools.SingleContextSetting <experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
 
+.. autoattribute:: experimental.tools.settingtools.SingleContextRhythmSetting.SingleContextRhythmSetting.SingleContextRhythmSetting.expression
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
+
 .. autoattribute:: experimental.tools.settingtools.SingleContextRhythmSetting.SingleContextRhythmSetting.SingleContextRhythmSetting.fresh
    :noindex:
 
    Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.tools.settingtools.SingleContextRhythmSetting.SingleContextRhythmSetting.SingleContextRhythmSetting.persist
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
-
-.. autoattribute:: experimental.tools.settingtools.SingleContextRhythmSetting.SingleContextRhythmSetting.SingleContextRhythmSetting.request
    :noindex:
 
    Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`

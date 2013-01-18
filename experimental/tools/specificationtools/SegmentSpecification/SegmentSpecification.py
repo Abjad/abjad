@@ -1,8 +1,4 @@
 from abjad.tools import *
-from experimental.tools import requesttools
-from experimental.tools import selectortools
-from experimental.tools import settingtools
-from experimental.tools import settingtools
 from experimental.tools.specificationtools.Specification import Specification
 
 
@@ -175,7 +171,7 @@ class SegmentSpecification(Specification):
             >>> for x in red_segment.single_context_settings:
             ...     z(x)
             settingtools.SingleContextTimeSignatureSetting(
-                request=settingtools.AbsoluteExpression(
+                expression=settingtools.AbsoluteExpression(
                     ((2, 8), (3, 8), (4, 8))
                     ),
                 anchor='red',
@@ -183,7 +179,7 @@ class SegmentSpecification(Specification):
                 persist=True
                 )
             settingtools.SingleContextRhythmSetting(
-                request=requesttools.RhythmMakerRequest(
+                expression=requesttools.RhythmMakerRequest(
                     payload=rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,

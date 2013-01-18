@@ -2,7 +2,6 @@ from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 from experimental.tools.settingtools.AttributeNameEnumeration import AttributeNameEnumeration
 
 
-
 class SettingInventory(ObjectInventory):
     r'''Single inventory.
     '''

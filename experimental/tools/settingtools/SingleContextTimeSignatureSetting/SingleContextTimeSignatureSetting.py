@@ -7,14 +7,14 @@ class SingleContextTimeSignatureSetting(SingleContextSetting):
 
     ### INITIALIZER ###
 
-    def __init__(self, request=None, anchor=None, context_name=None, fresh=True, persist=True):
-        SingleContextSetting.__init__(self, attribute='time_signatures', request=request, 
+    def __init__(self, expression=None, anchor=None, context_name=None, fresh=True, persist=True):
+        SingleContextSetting.__init__(self, attribute='time_signatures', expression=expression, 
             anchor=anchor, context_name=context_name, fresh=fresh, persist=persist)
 
     ### PUBLIC METHODS ###
 
     def make_time_signatures(self, score_specification):
-        time_signatures = self.request._get_payload(score_specification)
+        time_signatures = self.expression._get_payload(score_specification)
         if time_signatures:
             segment_specification = score_specification.get_start_segment_specification(self.anchor)
             segment_specification._time_signatures = time_signatures[:]
@@ -28,5 +28,5 @@ class SingleContextTimeSignatureSetting(SingleContextSetting):
         from experimental.tools import settingtools
         anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
         command = settingtools.TimeSignatureRegionCommand(
-            self.request, self.context_name, anchor_timespan, fresh=self.fresh)
+            self.expression, self.context_name, anchor_timespan, fresh=self.fresh)
         return command

@@ -22,17 +22,17 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.context_names
    :noindex:
 
+.. autoattribute:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.expression
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
+
 .. autoattribute:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.fresh
    :noindex:
 
    Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.persist
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
-
-.. autoattribute:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.request
    :noindex:
 
    Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`

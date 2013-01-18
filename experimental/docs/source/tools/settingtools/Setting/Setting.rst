@@ -15,13 +15,13 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.attribute
    :noindex:
 
+.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.expression
+   :noindex:
+
 .. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.fresh
    :noindex:
 
 .. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.persist
-   :noindex:
-
-.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.request
    :noindex:
 
 .. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.storage_format
