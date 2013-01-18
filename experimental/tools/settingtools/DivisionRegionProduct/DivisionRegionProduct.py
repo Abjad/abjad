@@ -43,17 +43,7 @@ class DivisionRegionProduct(RegionProduct):
 
     def __init__(self, payload=None, voice_name=None, start_offset=None):
         from experimental.tools import settingtools
-        assert isinstance(payload, (list, type(None))), repr(payload)
-        payload = payload or []
-        divisions = []
-        total_duration = start_offset or durationtools.Duration(0)
-        for division in payload:
-            division_start_offset = durationtools.Offset(total_duration)
-            division = settingtools.Division(division, start_offset=division_start_offset)
-            divisions.append(division)
-            total_duration += division.duration
-        assert all([x.start_offset is not None for x in divisions]), repr(divisions)
-        payload = settingtools.DivisionList(divisions, voice_name=voice_name, start_offset=start_offset)
+        payload = settingtools.DivisionList(payload, voice_name=voice_name, start_offset=start_offset)
         RegionProduct.__init__(self, payload=payload, voice_name=voice_name, start_offset=start_offset)
 
     ### SPECIAL METHODS ###
