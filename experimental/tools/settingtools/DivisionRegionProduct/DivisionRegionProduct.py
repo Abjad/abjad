@@ -571,14 +571,14 @@ class DivisionRegionProduct(RegionProduct):
 
         ::
 
-            >>> z(product)
+            >>> z(result)
             settingtools.DivisionRegionProduct(
                 payload=settingtools.DivisionList(
-                    [Division('[6, 8]', start_offset=Offset(0, 1)), 
-                    Division('[6, 8]', start_offset=Offset(3, 4)), 
-                    Division('[3, 4]', start_offset=Offset(3, 2))],
+                    [Division('[6, 8]', start_offset=Offset(10, 1)), 
+                    Division('[6, 8]', start_offset=Offset(43, 4)), 
+                    Division('[3, 4]', start_offset=Offset(23, 2))],
                     voice_name='Voice 1',
-                    start_offset=durationtools.Offset(0, 1)
+                    start_offset=durationtools.Offset(10, 1)
                     ),
                 voice_name='Voice 1',
                 start_offset=durationtools.Offset(10, 1)
@@ -586,4 +586,6 @@ class DivisionRegionProduct(RegionProduct):
 
         Operate in place and return division region product.
         '''
-        return RegionProduct.translate(self, translation)
+        new_start_offset = self.start_offset + translation
+        result = type(self)(self.payload.divisions, voice_name=self.voice_name, start_offset=new_start_offset)
+        return result
