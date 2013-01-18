@@ -73,7 +73,7 @@ class CounttimeComponentSelector(Selector):
     
     ### PRIVATE METHODS ###
 
-    def _get_timespan_and_payload(self, score_specification, voice_name=None):
+    def _get_payload_and_timespan(self, score_specification, voice_name=None):
         from experimental.tools import settingtools
         # ignore voice_name input parameter
         voice_name = None

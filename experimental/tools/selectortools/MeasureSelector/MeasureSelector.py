@@ -71,7 +71,7 @@ class MeasureSelector(Selector):
         time_signatures, dummy = self._apply_payload_callbacks(time_signatures, None)
         return time_signatures
 
-    def _get_timespan_and_payload(self, score_specification, voice_name=None):
+    def _get_payload_and_timespan(self, score_specification, voice_name=None):
         # ignore voice_name input parameter
         voice_name = None
         start_segment_specification = score_specification.get_start_segment_specification(self)

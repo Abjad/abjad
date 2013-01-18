@@ -42,7 +42,7 @@ class BeatSelector(Selector):
 
     ### PRIVATE METHODS ###
 
-    def _get_timespan_and_payload(self, score_specification, voice_name=None):
+    def _get_payload_and_timespan(self, score_specification, voice_name=None):
         # ignore voice_name input parameter
         voice_name = None
         time_signatures = score_specification.time_signatures

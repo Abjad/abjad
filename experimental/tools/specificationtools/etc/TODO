@@ -120,4 +120,4 @@
     ... interpret correctly.
     Then make X5 work with rhythm setting lookup instead of rhythm selector.
 
-23. Change _get_timespan_and_payload() to _get_payload_and_timespan() globally.
+23. Reverse output arguments of _get_payload_and_timespan().
