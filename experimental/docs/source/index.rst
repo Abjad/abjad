@@ -505,26 +505,3 @@ Unstable packages (load manually)
       tools/specificationtools/ScoreSpecification/ScoreSpecification
       tools/specificationtools/SegmentSpecification/SegmentSpecification
       tools/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
-
-:py:mod:`testtools <experimental.tools.testtools>`
-==================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/testtools/configure_multiple_voice_rhythmic_staves
-      tools/testtools/read_test_output
-      tools/testtools/write_test_output
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/testtools/configure_multiple_voice_rhythmic_staves
-      tools/testtools/read_test_output
-      tools/testtools/write_test_output

@@ -57,6 +57,7 @@ from abjad.tools import spannertools
 from abjad.tools import stafftools
 from abjad.tools import stringtools
 from abjad.tools import tempotools
+from abjad.tools import testtools
 from abjad.tools import tietools
 from abjad.tools import timeintervaltools
 from abjad.tools import timesignaturetools
