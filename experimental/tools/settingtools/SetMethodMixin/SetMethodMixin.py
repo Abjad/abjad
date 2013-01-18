@@ -23,7 +23,7 @@ class SetMethodMixin(AbjadObject):
                 return True
         return False
 
-    def _expr_to_request(self, expr):
+    def _expr_to_expression(self, expr):
         from abjad.tools import rhythmmakertools
         from experimental.tools import handlertools
         from experimental.tools import requesttools
@@ -48,13 +48,13 @@ class SetMethodMixin(AbjadObject):
 
     def _store_multiple_context_setting(self, attribute, source, contexts=None, persist=True, truncate=None):
         from experimental.tools import settingtools
-        request = self._expr_to_request(source)
+        request = self._expr_to_expression(source)
         assert self.score_specification is not None
         context_names = self.score_specification._context_token_to_context_names(contexts)
         multiple_context_setting = settingtools.MultipleContextSetting(
-            attribute,
-            request,
-            self._anchor_abbreviation,
+            attribute=attribute,
+            request=request,
+            anchor=self._anchor_abbreviation,
             context_names=context_names,
             persist=persist,
             truncate=truncate
