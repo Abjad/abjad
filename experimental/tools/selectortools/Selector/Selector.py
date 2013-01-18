@@ -5,10 +5,8 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
 from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
-from experimental.tools.settingtools.TimespanExpression import TimespanExpression
 
 
-#class Selector(PayloadCallbackMixin, TimespanExpression):
 class Selector(PayloadCallbackMixin):
     r'''Selector.
 
@@ -21,28 +19,17 @@ class Selector(PayloadCallbackMixin):
 
     ### INTIALIZER ###
 
-    #def __init__(self, anchor=None, voice_name=None, time_relation=None, 
-    #    payload_callbacks=None, timespan_callbacks=None):
     def __init__(self, anchor=None, voice_name=None, time_relation=None, payload_callbacks=None):
         from experimental.tools import settingtools
-        #assert isinstance(anchor, (settingtools.TimespanExpression, str, type(None))), repr(anchor)
         assert isinstance(anchor, (settingtools.Expression, str, type(None))), repr(anchor)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
-        #TimespanExpression.__init__(self, timespan_callbacks=timespan_callbacks)
         self._anchor = anchor
         assert voice_name is not None
         self._voice_name = voice_name
         self._time_relation = time_relation
-
-    ### SPECIAL METHODS ###
-
-    def __deepcopy__(self, memo):
-        result = type(self)(*self._input_argument_values)
-        result._score_specification = self.score_specification
-        return result
 
     ### PRIVATE READ-ONLY PROPERTIES ###
 
@@ -85,45 +72,7 @@ class Selector(PayloadCallbackMixin):
                 filtered_result.append(string)
         return filtered_result
     
-#    def _set_start_segment_identifier(self, segment_identifier):
-#        assert isinstance(segment_identifier, str)
-#        if isinstance(self.anchor, str):
-#            self._anchor = segment_identifier
-#        else:
-#            self.anchor._set_start_segment_identifier(segment_identifier)
-
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-#    @property
-#    def anchor(self):
-#        return self._anchor
-#
-#    @property
-#    def start_offset(self):
-#        from experimental.tools import settingtools
-#        result = settingtools.OffsetExpression(anchor=self._anchor_abbreviation)
-#        result._score_specification = self.score_specification
-#        return result
-#
-#    @property
-#    def start_segment_identifier(self):
-#        '''Return anchor when anchor is a string.
-#
-#        Otherwise delegate to ``self.anchor.start_segment_identifier``.
-#
-#        Return string or none.
-#        '''
-#        if isinstance(self.anchor, str):
-#            return self.anchor
-#        else:
-#            return self.anchor.start_segment_identifier
-#
-#    @property
-#    def stop_offset(self):
-#        from experimental.tools import settingtools
-#        result = settingtools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
-#        result._score_specification = self.score_specification
-#        return result
 
     @property
     def time_relation(self):

@@ -33,7 +33,6 @@ class Expression(AbjadObject):
         if isinstance(self.anchor, str):
             self._anchor = segment_identifier
         else:
-            #self.anchor._set_start_segment_identifier(segment_identifier)
             anchor = copy.deepcopy(self.anchor)
             anchor._set_start_segment_identifier(segment_identifier)
             self._anchor = anchor

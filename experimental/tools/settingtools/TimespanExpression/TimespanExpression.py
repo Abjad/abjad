@@ -30,11 +30,6 @@ class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixi
 
     ### SPECIAL METHODS ###
 
-#    def __deepcopy__(self, memo):
-#        result = type(self)(*self._input_argument_values)
-#        result._score_specification = self.score_specification
-#        return result
-
     def __eq__(self, expr):
         '''True when mandatory and keyword arguments compare equal.
         Otherwise false.
@@ -56,12 +51,6 @@ class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixi
         return self._keyword_argument_values == expr._keyword_argument_values
 
     ### PRIVATE READ-ONLY PROPERTIES ###
-
-#    @property
-#    def _anchor_abbreviation(self):
-#        '''Form of timespan expression suitable for writing to disk.
-#        '''
-#        return self
 
     @property
     def _keyword_argument_name_value_strings(self):
@@ -93,46 +82,3 @@ class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixi
             if not 'timespan_callbacks=settingtools.CallbackInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
-
-#    def _set_start_segment_identifier(self, segment_identifier):
-#        assert isinstance(segment_identifier, str)
-#        self._anchor = segment_identifier
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-#    @property
-#    def anchor(self):
-#        return self._anchor
-#
-#    @property
-#    def score_specification(self):
-#        return self._score_specification
-#
-#    @property
-#    def start_offset(self):
-#        '''Timespan expression start offset.
-#
-#        Return offset expression.
-#        '''            
-#        from experimental.tools import settingtools
-#        result = settingtools.OffsetExpression(anchor=self)
-#        result._score_specification = self.score_specification
-#        return result
-#
-#    @property
-#    def start_segment_identifier(self):
-#        if isinstance(self.anchor, str):
-#            return self.anchor
-#        else:
-#            return self.anchor.start_segment_identifier
-#
-#    @property
-#    def stop_offset(self):
-#        '''Timespan expression stop offset.
-#
-#        Return offset expression.
-#        '''            
-#        from experimental.tools import settingtools
-#        result = settingtools.OffsetExpression(anchor=self)
-#        result._score_specification = self.score_specification
-#        return result
