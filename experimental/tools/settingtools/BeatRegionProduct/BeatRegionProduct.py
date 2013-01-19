@@ -1,3 +1,4 @@
+from abjad.tools import sequencetools
 from experimental.tools.settingtools.DivisionRegionProduct import DivisionRegionProduct
 
 
@@ -27,4 +28,27 @@ class BeatRegionProduct(DivisionRegionProduct):
     Contiguous block of one voice's beats.
     '''
 
-    pass
+    ### PRIVATE METHODS ###
+
+    # TODO: eventually hoist to DivisionRegionProduct
+    # TODO: return only result; do not return result.start_offset
+    def _getitem(self, expr):
+        assert isinstance(expr, slice), repr(expr)
+        divisions = self.payload.__getitem__(expr)
+        start_offset = divisions[0].start_offset
+        result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=start_offset)
+        return result, result.start_offset
+
+    ### PUBLIC METHODS ###
+
+    # TODO: eventually hoist to DivisionRegionProduct
+    def repeat_to_duration(self, duration):
+        divisions = sequencetools.repeat_sequence_to_weight_exactly(self.payload, duration)
+        result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=self.start_offset)
+        return result
+
+    # TODO: eventually hoist to DivisionRegionProduct
+    def repeat_to_length(self, length):
+        divisions = sequencetools.repeat_sequence_to_length(self.payload, length)
+        result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=self.start_offset)
+        return result

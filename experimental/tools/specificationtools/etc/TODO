@@ -130,3 +130,9 @@
     Also, Expression should be made abstract.
 
 26. All selector _evaluate() methods should return region products.
+
+27. Eventually change PayloadCallbackMixin._apply_payload_callbacks(elements, start_offset)
+    to PayloadCallbackMixin._apply_payload_callbacks(region_product).
+
+28. Implement _getitem() on all region products.
+    Change _getitem() output signature from (elements, start_offset) to just new_region_product.

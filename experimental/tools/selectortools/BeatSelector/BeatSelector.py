@@ -43,6 +43,7 @@ class BeatSelector(Selector):
     ### PRIVATE METHODS ###
 
     def _get_payload_and_timespan(self, score_specification, voice_name=None):
+        from experimental.tools import settingtools
         # ignore voice_name input parameter
         voice_name = None
         time_signatures = score_specification.time_signatures
@@ -57,9 +58,6 @@ class BeatSelector(Selector):
             naive_beats, weights, cyclic=False, overhang=False)
         result = shards[1]
         start_offset = durationtools.Offset(sum(shards[0]))
+        result = settingtools.BeatRegionProduct(result, voice_name=self.voice_name, start_offset=start_offset)
         result, start_offset = self._apply_payload_callbacks(result, start_offset)
-        result_duration = durationtools.Duration(sum(result))
-        stop_offset = start_offset + result_duration
-        result_timespan = timespantools.Timespan(start_offset, stop_offset)
-        result = [x.pair for x in result]
-        return result, result_timespan
+        return result, result.timespan
