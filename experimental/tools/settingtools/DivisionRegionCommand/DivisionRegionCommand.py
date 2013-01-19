@@ -38,7 +38,10 @@ class DivisionRegionCommand(RegionCommand):
         from experimental.tools import settingtools
         # ignore voice_name input parameter
         voice_name = None
-        payload = self.expression._get_payload(score_specification)
+        if hasattr(self.expression, '_get_payload'):
+            payload = self.expression._get_payload(score_specification)
+        else:
+            payload = self.expression._evaluate(score_specification)
         if payload is None:
             return
         elif isinstance(payload, settingtools.DivisionRegionProduct):

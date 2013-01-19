@@ -22,7 +22,7 @@ class SelectorRhythmRegionCommand(FinalizedRhythmRegionCommand):
         from experimental.tools import settingtools
         # ignore voice_name input parameter
         voice_name = None
-        result = self.selector._get_payload(score_specification)
+        result = self.selector._evaluate(score_specification)
         if result is None:
             return
         result._start_offset = self.start_offset
