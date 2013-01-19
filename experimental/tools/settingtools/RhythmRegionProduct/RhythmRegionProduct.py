@@ -333,7 +333,7 @@ class RhythmRegionProduct(RegionProduct):
         result = self & timespan
         assert len(result) == 1, repr(result)
         result = result[0]
-        return result, timespan.start_offset
+        return result
 
     def _split_payload_at_offsets(self, offsets):
         assert isinstance(self.payload, containertools.Container)

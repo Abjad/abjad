@@ -41,7 +41,7 @@ class BeatRegionProduct(DivisionRegionProduct):
         else:
             start_offset = durationtools.Offset(0)
         result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=start_offset)
-        return result, result.start_offset
+        return result
 
     ### PUBLIC METHODS ###
 

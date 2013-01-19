@@ -97,9 +97,8 @@ class PayloadCallbackMixin(Expression):
     def ___getitem__(self, elements, original_start_offset, expr):
         assert isinstance(expr, slice)
         if hasattr(elements, '_getitem'):
-            result, new_start_offset = elements._getitem(expr) 
-            assert result.start_offset == new_start_offset, repr((result, new_start_offset))
-            return result, new_start_offset
+            result = elements._getitem(expr) 
+            return result, result.start_offset
         else:
             start_index, stop_index, stride = expr.indices(len(elements))
             selected_elements = elements[expr]
@@ -168,7 +167,7 @@ class PayloadCallbackMixin(Expression):
         if hasattr(elements, 'partition_by_ratio'):
             parts = elements.partition_by_ratio(ratio)
             selected_part = parts[part]
-            return selected_part, original_start_offset
+            return selected_part, selected_part.start_offset
         else:
             parts = sequencetools.partition_sequence_by_ratio_of_lengths(elements, ratio)
             selected_part = parts[part]
@@ -186,7 +185,7 @@ class PayloadCallbackMixin(Expression):
         if hasattr(elements, 'partition_by_ratio_of_durations'):
             parts = elements.partition_by_ratio_of_durations(ratio)
             selected_part = parts[part]
-            return selected_part, original_start_offset
+            return selected_part, selected_part.start_offset
         else:
             def duration_helper(x):
                 if hasattr(x, 'prolated_duration'):
@@ -224,7 +223,7 @@ class PayloadCallbackMixin(Expression):
     def _repeat_to_duration(self, elements, duration, original_start_offset):
         if hasattr(elements, 'repeat_to_duration'):
             result = elements.repeat_to_duration(duration)
-            return result, original_start_offset
+            return result, result.start_offset
         else:
             if not sequencetools.all_are_numbers(elements):
                 elements = [mathtools.NonreducedFraction(x) for x in elements]
@@ -235,7 +234,7 @@ class PayloadCallbackMixin(Expression):
     def _repeat_to_length(self, elements, length, original_start_offset):
         if hasattr(elements, 'repeat_to_length'):
             result = elements.repeat_to_length(length)
-            return result, original_start_offset
+            return result, result.start_offset
         else:
             elements = sequencetools.repeat_sequence_to_length(elements, length)
             new_start_offset = original_start_offset
