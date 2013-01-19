@@ -83,7 +83,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
 
     ### PRIVATE METHODS ###
 
-    def _get_timespan(self, score_specification, context_name):
+    def _evaluate(self, score_specification, context_name):
         raise NotImplementedError
 
     ### READ-ONLY PUBLIC PROPERTIES ###

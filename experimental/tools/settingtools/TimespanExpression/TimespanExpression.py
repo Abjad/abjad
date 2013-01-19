@@ -62,7 +62,7 @@ class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixi
 
     ### PRIVATE METHODS ###
 
-    def _get_timespan(self, score_specification, context_name):
+    def _evaluate(self, score_specification, context_name):
         '''Evaluate timespan expression when 
         applied to `context_name` in `score_specification`.
 
@@ -73,7 +73,7 @@ class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixi
         return timespan
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty offset payload_callbacks list.
+        '''Do not show empty callback inventory.
         '''
         filtered_result = []
         result = TimespanCallbackMixin._get_tools_package_qualified_keyword_argument_repr_pieces(

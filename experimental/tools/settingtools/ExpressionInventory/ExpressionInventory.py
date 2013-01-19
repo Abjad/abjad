@@ -23,7 +23,6 @@ class ExpressionInventory(ObjectInventory, Expression):
         voice_name = None
         results = []
         for expression in self:
-            # TODO: eventually change to expression._evaluate(score_specification)
-            result = expression._get_timespan(score_specification, voice_name)
+            result = expression._evaluate(score_specification, voice_name)
             results.append(result)
         return results
