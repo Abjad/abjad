@@ -86,12 +86,16 @@ class SegmentSelector(Selector):
     ### PRIVATE METHODS ###
 
     def _get_payload_and_timespan(self, score_specification, voice_name=None):
+        from experimental.tools import settingtools
         # ignore voice_name input parameter
         voice_name = None
         start_segment_identifier = self.start_segment_identifier
         segment = score_specification[start_segment_identifier]
-        segment = self._apply_payload_callbacks(segment)
-        return segment, segment.timespan
+        start_offset = segment.start_offset
+        result = settingtools.SegmentRegionProduct(
+            [segment], voice_name=self.voice_name, start_offset=start_offset)
+        result = self._apply_payload_callbacks(result)
+        return result
 
     def _make_identifier_expression(self, segment_name, addendum):
         assert isinstance(segment_name, str)
