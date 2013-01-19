@@ -334,6 +334,10 @@ class RhythmRegionProduct(RegionProduct):
         assert len(result) == 1, repr(result)
         result = result[0]
         result = result.translate(-start_offset)
+        #print result
+        #print timespan
+        #print ''
+        result._start_offset = timespan.start_offset
         return result, timespan.start_offset
 
     def _split_payload_at_offsets(self, offsets):

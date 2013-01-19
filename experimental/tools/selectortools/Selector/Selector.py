@@ -53,8 +53,8 @@ class Selector(PayloadCallbackMixin):
         # ignore voice_name input parameter
         voice_name = None
         payload, timespan = self._get_payload_and_timespan(score_specification)
-        #timespan = self._apply_timespan_callbacks(timespan)
-        return timespan
+        assert payload.timespan == timespan, repr((self, payload.timespan, timespan))
+        return payload.timespan
 
     @abc.abstractmethod
     def _get_payload_and_timespan(self, score_specification, voice_name=None):
