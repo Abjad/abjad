@@ -64,7 +64,7 @@ class MeasureSelector(Selector):
     ### PRIVATE METHODS ###
 
     # special definition because time signatures can be evaluated without knowing the timespan they occupy
-    def _get_payload(self, score_specification, voice_name=None):
+    def _evaluate_early(self, score_specification, voice_name=None):
         # ignore voice_name input parameter
         voice_name = None
         start_segment_specification = score_specification.get_start_segment_specification(self)

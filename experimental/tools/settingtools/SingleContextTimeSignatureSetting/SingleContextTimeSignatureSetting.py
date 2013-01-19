@@ -14,7 +14,10 @@ class SingleContextTimeSignatureSetting(SingleContextSetting):
     ### PUBLIC METHODS ###
 
     def make_time_signatures(self, score_specification):
-        time_signatures = self.expression._get_payload(score_specification)
+        if hasattr(self.expression, '_evaluate_early'):
+            time_signatures = self.expression._evaluate_early(score_specification)
+        else:
+            time_signatures = self.expression._get_payload(score_specification)
         if time_signatures:
             segment_specification = score_specification.get_start_segment_specification(self.anchor)
             segment_specification._time_signatures = time_signatures[:]
