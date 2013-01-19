@@ -128,3 +128,5 @@
     In fact, probably a number of properties can migrate up from
     concrete expression classes to the abstract Expression.
     Also, Expression should be made abstract.
+
+26. All selector _evaluate() methods should return region products.

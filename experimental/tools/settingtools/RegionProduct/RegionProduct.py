@@ -25,7 +25,7 @@ class RegionProduct(AbjadObject):
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def __init__(self, payload=None, voice_name=None, start_offset=None):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         start_offset = durationtools.Offset(start_offset)
@@ -158,7 +158,10 @@ class RegionProduct(AbjadObject):
 
     @property
     def _duration(self):
-        return self.payload.duration
+        if hasattr(self.payload, 'duration'):
+            return self.payload.duration
+        else:
+            return self._get_duration_of_list(self.payload)
 
     @abc.abstractproperty
     def _payload_elements(self):

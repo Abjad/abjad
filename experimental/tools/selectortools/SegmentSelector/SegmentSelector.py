@@ -101,11 +101,6 @@ class SegmentSelector(Selector):
         else:
             return settingtools.SegmentIdentifierExpression('{!r} - {!r}'.format(segment_name, addendum))
 
-#    # TODO: eventually extend method to work with segment selectors that select more than one segment
-#    def _set_start_segment_identifier(self, segment_identifier):
-#        assert isinstance(segment_identifier, str)
-#        self._anchor = segment_identifier
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     # TODO: Eventually extend to work without anchor being defined.

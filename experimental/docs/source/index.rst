@@ -383,6 +383,7 @@ Unstable packages (load manually)
 
       tools/settingtools/AbsoluteExpression/AbsoluteExpression
       tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
+      tools/settingtools/BeatRegionProduct/BeatRegionProduct
       tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/ClassInventory/ClassInventory
       tools/settingtools/Division/Division
@@ -392,6 +393,7 @@ Unstable packages (load manually)
       tools/settingtools/Expression/Expression
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/MaterialManager/MaterialManager
+      tools/settingtools/MeasureRegionProduct/MeasureRegionProduct
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
       tools/settingtools/OffsetExpression/OffsetExpression
@@ -403,6 +405,7 @@ Unstable packages (load manually)
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
+      tools/settingtools/SegmentRegionProduct/SegmentRegionProduct
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/settingtools/SelectorRhythmRegionCommand/SelectorRhythmRegionCommand
       tools/settingtools/SettingInventory/SettingInventory
@@ -438,6 +441,7 @@ Unstable packages (load manually)
 
       tools/settingtools/AbsoluteExpression/AbsoluteExpression
       tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
+      tools/settingtools/BeatRegionProduct/BeatRegionProduct
       tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/ClassInventory/ClassInventory
       tools/settingtools/Division/Division
@@ -447,6 +451,7 @@ Unstable packages (load manually)
       tools/settingtools/Expression/Expression
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/MaterialManager/MaterialManager
+      tools/settingtools/MeasureRegionProduct/MeasureRegionProduct
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
       tools/settingtools/OffsetExpression/OffsetExpression
@@ -458,6 +463,7 @@ Unstable packages (load manually)
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
+      tools/settingtools/SegmentRegionProduct/SegmentRegionProduct
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/settingtools/SelectorRhythmRegionCommand/SelectorRhythmRegionCommand
       tools/settingtools/SettingInventory/SettingInventory
