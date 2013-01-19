@@ -1,3 +1,4 @@
+from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from experimental.tools.settingtools.DivisionRegionProduct import DivisionRegionProduct
 
@@ -35,7 +36,10 @@ class BeatRegionProduct(DivisionRegionProduct):
     def _getitem(self, expr):
         assert isinstance(expr, slice), repr(expr)
         divisions = self.payload.__getitem__(expr)
-        start_offset = divisions[0].start_offset
+        if divisions:
+            start_offset = divisions[0].start_offset
+        else:
+            start_offset = durationtools.Offset(0)
         result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=start_offset)
         return result, result.start_offset
 

@@ -97,6 +97,8 @@ class PayloadCallbackMixin(Expression):
     def ___getitem__(self, elements, original_start_offset, expr):
         assert isinstance(expr, slice)
         if hasattr(elements, '_getitem'):
+            print elements
+            print expr
             result, new_start_offset = elements._getitem(expr) 
             return result, new_start_offset
         else:

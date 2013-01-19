@@ -62,6 +62,12 @@ Methods
 
    Inherited from :py:class:`settingtools.DivisionRegionProduct <experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct>`
 
+.. automethod:: experimental.tools.settingtools.MeasureRegionProduct.MeasureRegionProduct.MeasureRegionProduct.repeat_to_duration
+   :noindex:
+
+.. automethod:: experimental.tools.settingtools.MeasureRegionProduct.MeasureRegionProduct.MeasureRegionProduct.repeat_to_length
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.MeasureRegionProduct.MeasureRegionProduct.MeasureRegionProduct.rotate
    :noindex:
 
