@@ -119,7 +119,7 @@
         score_specification = settingtools.ScoreSpecificationInterface(score_template)
     ... so that composers only ever interact with interfaces.
 
-23. Remove _get_payload(), _get_timespan(), _get_payload_and_timespan() in favor of _evaluate().
+23. Remove _get_payload(), _get_timespan() in favor of _evaluate().
 
 24. Consider creating an expressiontools package.
 
