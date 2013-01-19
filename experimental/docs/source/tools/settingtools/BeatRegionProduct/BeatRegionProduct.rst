@@ -65,8 +65,12 @@ Methods
 .. automethod:: experimental.tools.settingtools.BeatRegionProduct.BeatRegionProduct.BeatRegionProduct.repeat_to_duration
    :noindex:
 
+   Inherited from :py:class:`settingtools.DivisionRegionProduct <experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct>`
+
 .. automethod:: experimental.tools.settingtools.BeatRegionProduct.BeatRegionProduct.BeatRegionProduct.repeat_to_length
    :noindex:
+
+   Inherited from :py:class:`settingtools.DivisionRegionProduct <experimental.tools.settingtools.DivisionRegionProduct.DivisionRegionProduct.DivisionRegionProduct>`
 
 .. automethod:: experimental.tools.settingtools.BeatRegionProduct.BeatRegionProduct.BeatRegionProduct.rotate
    :noindex:

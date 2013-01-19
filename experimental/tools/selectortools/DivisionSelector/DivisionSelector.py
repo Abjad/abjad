@@ -72,11 +72,5 @@ class DivisionSelector(Selector):
         if self.time_relation is None:
             result &= anchor_timespan
             result = result[0]
-        divisions = result.payload.divisions
-        # TODO: pass in DivisionRegionProduct instead of divisions; then avoid remaking DivisionRegionProduct
-        divisions, new_start_offset = self._apply_payload_callbacks(divisions, result.start_offset)
-        result = settingtools.DivisionRegionProduct(
-            divisions, 
-            voice_name=self.voice_name,
-            start_offset=new_start_offset)
+        result, new_start_offset = self._apply_payload_callbacks(result, result.start_offset)
         return result

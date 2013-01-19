@@ -300,6 +300,16 @@ class DivisionRegionProduct(RegionProduct):
 
     ### PRIVATE METHODS ###
 
+    def _getitem(self, expr):
+        assert isinstance(expr, slice), repr(expr)
+        divisions = self.payload.__getitem__(expr)
+        if divisions:
+            start_offset = divisions[0].start_offset
+        else:
+            start_offset = durationtools.Offset(0)
+        result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=start_offset)
+        return result
+
     def _split_payload_at_offsets(self, offsets):
         from experimental.tools import settingtools
         divisions = copy.deepcopy(self.payload.divisions)
@@ -523,6 +533,18 @@ class DivisionRegionProduct(RegionProduct):
         Operate in place and return division region product.
         '''
         return RegionProduct.reflect(self)
+
+    # TODO: add example
+    def repeat_to_duration(self, duration):
+        divisions = sequencetools.repeat_sequence_to_weight_exactly(self.payload, duration)
+        result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=self.start_offset)
+        return result
+
+    # TODO: add example
+    def repeat_to_length(self, length):
+        divisions = sequencetools.repeat_sequence_to_length(self.payload, length)
+        result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=self.start_offset)
+        return result
 
     def rotate(self, rotation):
         '''Rotate divisions by `rotation`.
