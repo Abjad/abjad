@@ -51,14 +51,6 @@ class Selector(PayloadCallbackMixin):
         assert isinstance(payload, (settingtools.RegionProduct, type(None))), repr(payload)
         return payload
 
-    def _get_timespan(self, score_specification, voice_name=None):
-        from experimental.tools import settingtools
-        # ignore voice_name input parameter
-        voice_name = None
-        payload = self._evaluate(score_specification)
-        assert isinstance(payload, settingtools.RegionProduct), repr(payload)
-        return payload.timespan
-
     @abc.abstractmethod
     def _evaluate(self, score_specification, voice_name=None):
         # ignore voice_name input parameter
