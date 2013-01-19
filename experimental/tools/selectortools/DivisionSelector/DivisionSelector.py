@@ -49,7 +49,7 @@ class DivisionSelector(Selector):
         voice_proxy = score_specification.contexts[self.voice_name]
         division_region_products = voice_proxy.division_region_products
         if division_region_products is None:
-            return None, None
+            return None
         existing_voice_divisions = []
         for division_region_product in division_region_products:
             existing_voice_divisions.extend(division_region_product.payload.divisions)
@@ -65,7 +65,7 @@ class DivisionSelector(Selector):
                 context_name=self.voice_name):
                 divisions.append(division)
         if not divisions:
-            return None, None
+            return None
         start_offset = divisions[0].start_offset
         result = settingtools.DivisionRegionProduct(
             divisions, voice_name=self.voice_name, start_offset=start_offset)
@@ -73,9 +73,10 @@ class DivisionSelector(Selector):
             result &= anchor_timespan
             result = result[0]
         divisions = result.payload.divisions
+        # TODO: pass in DivisionRegionProduct instead of divisions; then avoid remaking DivisionRegionProduct
         divisions, new_start_offset = self._apply_payload_callbacks(divisions, result.start_offset)
         result = settingtools.DivisionRegionProduct(
             divisions, 
             voice_name=self.voice_name,
             start_offset=new_start_offset)
-        return result, result.timespan
+        return result

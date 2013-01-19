@@ -44,16 +44,19 @@ class Selector(PayloadCallbackMixin):
     ### PRIVATE METHODS ###
 
     def _get_payload(self, score_specification, voice_name=None):
+        from experimental.tools import settingtools
         # ignore voice_name input parameter
         voice_name = None
-        payload, timespan = self._evaluate(score_specification)
+        payload = self._evaluate(score_specification)
+        assert isinstance(payload, (settingtools.RegionProduct, type(None))), repr(payload)
         return payload
 
     def _get_timespan(self, score_specification, voice_name=None):
+        from experimental.tools import settingtools
         # ignore voice_name input parameter
         voice_name = None
-        payload, timespan = self._evaluate(score_specification)
-        assert payload.timespan == timespan, repr((self, payload.timespan, timespan))
+        payload = self._evaluate(score_specification)
+        assert isinstance(payload, settingtools.RegionProduct), repr(payload)
         return payload.timespan
 
     @abc.abstractmethod

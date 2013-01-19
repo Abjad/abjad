@@ -89,7 +89,7 @@ class CounttimeComponentSelector(Selector):
         time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
         rhythm_region_products = rhythm_region_products.get_timespans_that_satisfy_time_relation(time_relation)
         if not rhythm_region_products:
-            return None, None
+            return None
         rhythm_region_products = copy.deepcopy(rhythm_region_products)
         rhythm_region_products = timespantools.TimespanInventory(rhythm_region_products)
         rhythm_region_products.sort()
@@ -104,7 +104,7 @@ class CounttimeComponentSelector(Selector):
         stop_offset = new_start_offset + result.timespan.duration
         timespan = timespantools.Timespan(new_start_offset, stop_offset)
         assert result.timespan == timespan, repr((result.timespan, timespan))
-        return result, timespan
+        return result
 
     def _is_counttime_component_class_expr(self, expr):
         from experimental.tools import settingtools

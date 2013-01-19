@@ -60,5 +60,5 @@ class BeatSelector(Selector):
         start_offset = durationtools.Offset(sum(shards[0]))
         result = settingtools.BeatRegionProduct(
             result, voice_name=self.voice_name, start_offset=start_offset)
-        result, start_offset = self._apply_payload_callbacks(result, start_offset)
-        return result, result.timespan
+        result, start_offset = self._apply_payload_callbacks(result, result.start_offset)
+        return result

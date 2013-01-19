@@ -83,5 +83,5 @@ class MeasureSelector(Selector):
         start_offset = start_segment_specification.timespan.start_offset
         result = settingtools.MeasureRegionProduct(
             time_signatures, voice_name=self.voice_name, start_offset=start_offset)
-        result, start_offset = self._apply_payload_callbacks(result, start_offset)
-        return result, result.timespan
+        result, start_offset = self._apply_payload_callbacks(result, result.start_offset)
+        return result
