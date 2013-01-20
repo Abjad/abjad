@@ -14,8 +14,10 @@ class Expression(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self):
-        self._anchor = None
+    def __init__(self, anchor=None):
+        from experimental.tools import settingtools
+        assert isinstance(anchor, (settingtools.Expression, str, type(None))), repr(anchor)
+        self._anchor = anchor
         self._score_specification = None
 
     ### SPECIAL METHODS ###

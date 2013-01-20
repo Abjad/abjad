@@ -21,8 +21,8 @@ class LookupMethodMixin(Expression):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self):
-        Expression.__init__(self)
+    def __init__(self, anchor=None):
+        Expression.__init__(self, anchor=anchor)
 
     ### PUBLIC METHODS ###
 
