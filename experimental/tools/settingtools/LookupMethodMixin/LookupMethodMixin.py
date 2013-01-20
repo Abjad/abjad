@@ -1,8 +1,10 @@
 import abc
-from experimental.tools.settingtools.Expression import Expression
+#from experimental.tools.settingtools.Expression import Expression
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class LookupMethodMixin(Expression):
+#class LookupMethodMixin(Expression):
+class LookupMethodMixin(AbjadObject):
     '''Lookup method mixin.
 
     ::
@@ -14,15 +16,15 @@ class LookupMethodMixin(Expression):
     Base class.
     '''
     
-    ### CLASS ATTRIBUTES ###
-
-    __metaclass__ = abc.ABCMeta
-
-    ### INITIALIZER ###
-
-    @abc.abstractmethod
-    def __init__(self, anchor=None):
-        Expression.__init__(self, anchor=anchor)
+#    ### CLASS ATTRIBUTES ###
+#
+#    __metaclass__ = abc.ABCMeta
+#
+#    ### INITIALIZER ###
+#
+#    @abc.abstractmethod
+#    def __init__(self, anchor=None):
+#        Expression.__init__(self, anchor=anchor)
 
     ### PUBLIC METHODS ###
 

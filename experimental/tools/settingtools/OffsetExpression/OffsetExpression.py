@@ -1,9 +1,11 @@
 from abjad.tools import durationtools
 from abjad.tools import timespantools
+from experimental.tools.settingtools.Expression import Expression
 from experimental.tools.settingtools.LookupMethodMixin import LookupMethodMixin
 
 
-class OffsetExpression(LookupMethodMixin):
+#class OffsetExpression(LookupMethodMixin):
+class OffsetExpression(Expression, LookupMethodMixin):
     r'''Offset expression.
 
     ::
@@ -46,7 +48,7 @@ class OffsetExpression(LookupMethodMixin):
             multiplier = durationtools.Multiplier(multiplier)
         if addendum is not None:
             addendum = durationtools.Offset(addendum)
-        LookupMethodMixin.__init__(self, anchor=anchor)
+        Expression.__init__(self, anchor=anchor)
         self._multiplier = multiplier
         self._edge = edge
         self._addendum = addendum
