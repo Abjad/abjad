@@ -24,7 +24,7 @@ class LookupMethodMixin(AbjadObject):
         ::
 
             >>> z(request)
-            requesttools.DivisionSettingLookup(
+            settingtools.DivisionSettingLookup(
                 voice_name='Voice 1',
                 offset=settingtools.OffsetExpression(
                     anchor=settingtools.TimespanExpression(
@@ -35,8 +35,8 @@ class LookupMethodMixin(AbjadObject):
 
         Return command request.        
         '''
-        from experimental.tools import requesttools
-        return requesttools.DivisionSettingLookup(voice, offset=self)
+        from experimental.tools import settingtools
+        return settingtools.DivisionSettingLookup(voice, offset=self)
 
     def look_up_rhythm_setting(self, voice):
         r'''PayloadCallbackMixin voice ``1`` rhythm command 
@@ -47,7 +47,7 @@ class LookupMethodMixin(AbjadObject):
         ::
 
             >>> z(request)
-            requesttools.RhythmSettingLookup(
+            settingtools.RhythmSettingLookup(
                 voice_name='Voice 1',
                 offset=settingtools.OffsetExpression(
                     anchor=settingtools.TimespanExpression(
@@ -58,8 +58,8 @@ class LookupMethodMixin(AbjadObject):
 
         Return command request.        
         '''
-        from experimental.tools import requesttools
-        return requesttools.RhythmSettingLookup(voice, offset=self)
+        from experimental.tools import settingtools
+        return settingtools.RhythmSettingLookup(voice, offset=self)
 
     def look_up_time_signature_setting(self, voice):
         r'''PayloadCallbackMixin voice ``1`` time signature command
@@ -70,7 +70,7 @@ class LookupMethodMixin(AbjadObject):
         ::
 
             >>> z(request)
-            requesttools.TimeSignatureSettingLookup(
+            settingtools.TimeSignatureSettingLookup(
                 voice_name='Voice 1',
                 offset=settingtools.OffsetExpression(
                     anchor=settingtools.TimespanExpression(
@@ -81,5 +81,5 @@ class LookupMethodMixin(AbjadObject):
 
         Return command request.
         '''
-        from experimental.tools import requesttools
-        return requesttools.TimeSignatureSettingLookup(voice, offset=self)
+        from experimental.tools import settingtools
+        return settingtools.TimeSignatureSettingLookup(voice, offset=self)

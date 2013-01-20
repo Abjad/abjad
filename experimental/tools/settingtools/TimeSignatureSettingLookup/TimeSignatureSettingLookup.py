@@ -1,4 +1,4 @@
-from experimental.tools.requesttools.SettingLookup import SettingLookup
+from experimental.tools.settingtools.SettingLookup import SettingLookup
 
 
 class TimeSignatureSettingLookup(SettingLookup):

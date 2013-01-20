@@ -280,40 +280,20 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/requesttools/SettingLookup/SettingLookup
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/requesttools/DivisionSettingLookup/DivisionSettingLookup
       tools/requesttools/HandlerRequest/HandlerRequest
       tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
-      tools/requesttools/RhythmSettingLookup/RhythmSettingLookup
       tools/requesttools/StatalServerRequest/StatalServerRequest
-      tools/requesttools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
 
 .. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/requesttools/SettingLookup/SettingLookup
 
    Concrete Classes
    ----------------
 
    .. toctree::
 
-      tools/requesttools/DivisionSettingLookup/DivisionSettingLookup
       tools/requesttools/HandlerRequest/HandlerRequest
       tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
-      tools/requesttools/RhythmSettingLookup/RhythmSettingLookup
       tools/requesttools/StatalServerRequest/StatalServerRequest
-      tools/requesttools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
 
 :py:mod:`selectortools <experimental.tools.selectortools>`
 ==========================================================
@@ -374,6 +354,7 @@ Unstable packages (load manually)
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin
       tools/settingtools/Setting/Setting
+      tools/settingtools/SettingLookup/SettingLookup
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
@@ -392,6 +373,7 @@ Unstable packages (load manually)
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
+      tools/settingtools/DivisionSettingLookup/DivisionSettingLookup
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MeasureRegionProduct/MeasureRegionProduct
@@ -403,6 +385,7 @@ Unstable packages (load manually)
       tools/settingtools/RhythmMakerRhythmRegionCommand/RhythmMakerRhythmRegionCommand
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
+      tools/settingtools/RhythmSettingLookup/RhythmSettingLookup
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
@@ -414,6 +397,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
       tools/settingtools/StatalServer/StatalServer
+      tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
       tools/settingtools/TimespanExpression/TimespanExpression
 
 .. only:: latex
@@ -433,6 +417,7 @@ Unstable packages (load manually)
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin
       tools/settingtools/Setting/Setting
+      tools/settingtools/SettingLookup/SettingLookup
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
@@ -451,6 +436,7 @@ Unstable packages (load manually)
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
+      tools/settingtools/DivisionSettingLookup/DivisionSettingLookup
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MeasureRegionProduct/MeasureRegionProduct
@@ -462,6 +448,7 @@ Unstable packages (load manually)
       tools/settingtools/RhythmMakerRhythmRegionCommand/RhythmMakerRhythmRegionCommand
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
+      tools/settingtools/RhythmSettingLookup/RhythmSettingLookup
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
@@ -473,6 +460,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
       tools/settingtools/StatalServer/StatalServer
+      tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
       tools/settingtools/TimespanExpression/TimespanExpression
 
 :py:mod:`specificationtools <experimental.tools.specificationtools>`

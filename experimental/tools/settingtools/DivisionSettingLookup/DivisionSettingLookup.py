@@ -1,6 +1,6 @@
 from experimental.tools import timerelationtools
 from experimental.tools import timespantools
-from experimental.tools.requesttools.SettingLookup import SettingLookup
+from experimental.tools.settingtools.SettingLookup import SettingLookup
 
 
 class DivisionSettingLookup(SettingLookup):
@@ -21,7 +21,7 @@ class DivisionSettingLookup(SettingLookup):
     ::
 
         >>> z(setting)
-        requesttools.DivisionSettingLookup(
+        settingtools.DivisionSettingLookup(
             voice_name='Voice 1',
             offset=settingtools.OffsetExpression(
                 anchor=selectortools.MeasureSelector(

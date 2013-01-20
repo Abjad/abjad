@@ -1,5 +1,4 @@
 import abc
-from experimental.tools import settingtools
 from experimental.tools.settingtools.Expression import Expression
 from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
@@ -28,6 +27,7 @@ class SettingLookup(Expression, PayloadCallbackMixin):
 
     @abc.abstractmethod
     def __init__(self, attribute=None, voice_name=None, offset=None, callbacks=None):
+        from experimental.tools import settingtools
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
         assert isinstance(offset, settingtools.OffsetExpression)

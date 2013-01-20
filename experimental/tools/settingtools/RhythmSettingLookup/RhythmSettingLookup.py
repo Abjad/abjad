@@ -2,7 +2,7 @@ import copy
 from abjad.tools import rhythmmakertools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
-from experimental.tools.requesttools.SettingLookup import SettingLookup
+from experimental.tools.settingtools.SettingLookup import SettingLookup
 
 
 class RhythmSettingLookup(SettingLookup):
