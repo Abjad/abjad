@@ -1,4 +1,3 @@
-from abjad.tools import timespantools
 from experimental.tools.selectortools.Selector import Selector
 
 
@@ -105,14 +104,3 @@ class SegmentSelector(Selector):
             return settingtools.SegmentIdentifierExpression('{!r} + {!r}'.format(segment_name, addendum))
         else:
             return settingtools.SegmentIdentifierExpression('{!r} - {!r}'.format(segment_name, addendum))
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    # TODO: Eventually extend to work without anchor being defined.
-    #       Evaluate request payload_callbacks instead.
-    @property
-    def start_segment_identifier(self):
-        '''Temporary hack. Generalize later.
-        '''
-        assert isinstance(self.anchor, str)
-        return self.anchor
