@@ -23,7 +23,7 @@ class RhythmSettingLookupRequest(SettingLookupRequest):
         # ignore voice_name input parameter
         voice_name = None
         requested_segment_identifier = self.offset.start_segment_identifier
-        requested_offset = self.offset._get_offset(score_specification, self.voice_name)
+        requested_offset = self.offset._evaluate(score_specification, self.voice_name)
         timespan_inventory = timespantools.TimespanInventory()
         for rhythm_region_command in score_specification.rhythm_region_commands:
             if not rhythm_region_command.expression == self:

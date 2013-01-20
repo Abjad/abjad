@@ -78,7 +78,7 @@ class OffsetExpression(LookupMethodMixin):
 
     ### PRIVATE METHODS ###
 
-    def _get_offset(self, score_specification, context_name):
+    def _evaluate(self, score_specification, context_name):
         edge = self.edge or Left
         anchor_timespan = score_specification.get_anchor_timespan(self, context_name)
         if edge == Left:

@@ -8,7 +8,7 @@ class SettingLookupRequest(PayloadCallbackMixin):
 
     Look up `attribute` setting active at `offset` in `voice_name`.
 
-    Setting is assumed to resolve to a list or other iterable.
+    Setting is assumed to resolve to a list or other iterable payload.
 
     Because of this setting lookup requests afford payload callbacks.
 
