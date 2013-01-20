@@ -11,10 +11,10 @@ class RhythmMakerRequest(Expression, PayloadCallbackMixin):
 
     ### INTIAILIZER ###
 
-    def __init__(self, payload=None, payload_callbacks=None):
+    def __init__(self, payload=None, callbacks=None):
         assert isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
         Expression.__init__(self)
-        PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
+        PayloadCallbackMixin.__init__(self, callbacks=callbacks)
         self._payload = payload
 
     ### PRIVATE METHODS ###

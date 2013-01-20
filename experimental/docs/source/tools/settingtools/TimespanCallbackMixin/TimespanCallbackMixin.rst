@@ -9,13 +9,13 @@ settingtools.TimespanCallbackMixin
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.callbacks
+   :noindex:
+
 .. autoattribute:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.storage_format
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. autoattribute:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.timespan_callbacks
-   :noindex:
 
 Methods
 -------

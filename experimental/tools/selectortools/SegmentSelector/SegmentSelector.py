@@ -32,7 +32,7 @@ class SegmentSelector(Selector):
         >>> z(selector)
         selectortools.SegmentSelector(
             voice_name='Voice 1',
-            payload_callbacks=settingtools.CallbackInventory([
+            callbacks=settingtools.CallbackInventory([
                 'result = self.___getitem__(elements, start_offset, slice(None, 2, None))'
                 ])
             )
@@ -46,7 +46,7 @@ class SegmentSelector(Selector):
         >>> z(selector)
         selectortools.SegmentSelector(
             voice_name='Voice 1',
-            payload_callbacks=settingtools.CallbackInventory([
+            callbacks=settingtools.CallbackInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, 'green', None))"
                 ])
             )
@@ -60,7 +60,7 @@ class SegmentSelector(Selector):
         >>> z(selector)
         selectortools.SegmentSelector(
             voice_name='Voice 1',
-            payload_callbacks=settingtools.CallbackInventory([
+            callbacks=settingtools.CallbackInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, ('green', 1), None))"
                 ])
             )
@@ -74,7 +74,7 @@ class SegmentSelector(Selector):
         >>> z(selector)
         selectortools.SegmentSelector(
             voice_name='Voice 1',
-            payload_callbacks=settingtools.CallbackInventory([
+            callbacks=settingtools.CallbackInventory([
                 "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                 ])
             )
@@ -93,7 +93,7 @@ class SegmentSelector(Selector):
         start_offset = segment.start_offset
         result = settingtools.SegmentRegionProduct(
             [segment], voice_name=self.voice_name, start_offset=start_offset)
-        result = self._apply_payload_callbacks(result)
+        result = self._apply_callbacks(result)
         assert isinstance(result, settingtools.SegmentRegionProduct), repr(result)
         return result
 

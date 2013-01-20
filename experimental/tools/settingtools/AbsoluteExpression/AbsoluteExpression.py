@@ -28,10 +28,10 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
 
     ### INTIAILIZER ###
 
-    def __init__(self, payload, payload_callbacks=None):
+    def __init__(self, payload, callbacks=None):
         assert isinstance(payload, (str, tuple, list)), repr(payload)
         Expression.__init__(self)
-        PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
+        PayloadCallbackMixin.__init__(self, callbacks=callbacks)
         if isinstance(payload, list):
             payload = tuple(payload)
         self._payload = payload
@@ -46,7 +46,7 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
             result = self.payload
         else:
             raise TypeError(self.payload)
-        result, dummy = self._apply_payload_callbacks(result, None)
+        result, dummy = self._apply_callbacks(result, None)
         return result
 
     ### READ-ONLY PROPERTIES ###
@@ -65,17 +65,17 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
         return self._payload
 
     @property
-    def payload_callbacks(self):
+    def callbacks(self):
         '''Absolute expression callbacks:
 
         ::
 
-            >>> expression.payload_callbacks
+            >>> expression.callbacks
             CallbackInventory([])
 
         Return callback inventory.
         '''
-        return PayloadCallbackMixin.payload_callbacks.fget(self)
+        return PayloadCallbackMixin.callbacks.fget(self)
 
     @property
     def storage_format(self):

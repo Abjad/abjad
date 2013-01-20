@@ -33,14 +33,14 @@ class TimespanCallbackMixin(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, timespan_callbacks=None):
+    def __init__(self, callbacks=None):
         from experimental.tools import settingtools
-        timespan_callbacks = timespan_callbacks or []
-        self._timespan_callbacks = settingtools.CallbackInventory(timespan_callbacks)
+        callbacks = callbacks or []
+        self._callbacks = settingtools.CallbackInventory(callbacks)
 
     ### PRIVATE METHODS ###
 
-    def _apply_timespan_callbacks(self, timespan):
+    def _apply_callbacks(self, timespan):
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
         start_offset, stop_offset = timespan.offsets
         evaluation_context = {
@@ -49,16 +49,16 @@ class TimespanCallbackMixin(AbjadObject):
             'Multiplier': durationtools.Multiplier,
             'Offset': durationtools.Offset,
             }
-        for timespan_callback in self.timespan_callbacks:
-            timespan_callback = timespan_callback.replace('original_start_offset', repr(start_offset))
-            timespan_callback = timespan_callback.replace('original_stop_offset', repr(stop_offset))
-            start_offset, stop_offset = eval(timespan_callback, evaluation_context)
+        for callback in self.callbacks:
+            callback = callback.replace('original_start_offset', repr(start_offset))
+            callback = callback.replace('original_stop_offset', repr(stop_offset))
+            start_offset, stop_offset = eval(callback, evaluation_context)
             assert start_offset <= stop_offset
         return timespantools.Timespan(start_offset, stop_offset)
         
-    def _copy_and_append_timespan_callback(self, callback):
+    def _copy_and_append_callback(self, callback):
         result = copy.deepcopy(self)
-        result.timespan_callbacks.append(callback)
+        result.callbacks.append(callback)
         return result
     
     def _divide_by_ratio(self, start_offset, stop_offset, ratio, the_part):
@@ -109,18 +109,18 @@ class TimespanCallbackMixin(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def timespan_callbacks(self):
+    def callbacks(self):
         '''Read-only list of timespan callbacks to be applied 
         during evaluation:
 
         ::
 
-            >>> red_segment.timespan.timespan_callbacks
+            >>> red_segment.timespan.callbacks
             CallbackInventory([])
 
         Return callback inventory of zero or more strings.
         '''
-        return self._timespan_callbacks
+        return self._callbacks
     
     ### PUBLIC METHODS ###
 
@@ -134,7 +134,7 @@ class TimespanCallbackMixin(AbjadObject):
             >>> z(timespans[0])
             settingtools.TimespanExpression(
                 anchor='red',
-                timespan_callbacks=settingtools.CallbackInventory([
+                callbacks=settingtools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 0)'
                     ])
                 )
@@ -144,7 +144,7 @@ class TimespanCallbackMixin(AbjadObject):
             >>> z(timespans[1])
             settingtools.TimespanExpression(
                 anchor='red',
-                timespan_callbacks=settingtools.CallbackInventory([
+                callbacks=settingtools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 1)'
                     ])
                 )
@@ -158,7 +158,7 @@ class TimespanCallbackMixin(AbjadObject):
             >>> z(timespans[0])
             settingtools.TimespanExpression(
                 anchor='red',
-                timespan_callbacks=settingtools.CallbackInventory([
+                callbacks=settingtools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 0)'
                     ])
                 )
@@ -168,7 +168,7 @@ class TimespanCallbackMixin(AbjadObject):
             >>> z(timespans[1])
             settingtools.TimespanExpression(
                 anchor='red',
-                timespan_callbacks=settingtools.CallbackInventory([
+                callbacks=settingtools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 1)'
                     ])
                 )
@@ -178,7 +178,7 @@ class TimespanCallbackMixin(AbjadObject):
             >>> z(timespans[2])
             settingtools.TimespanExpression(
                 anchor='red',
-                timespan_callbacks=settingtools.CallbackInventory([
+                callbacks=settingtools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 2)'
                     ])
                 )
@@ -189,10 +189,10 @@ class TimespanCallbackMixin(AbjadObject):
         if mathtools.is_positive_integer_equivalent_number(ratio):
             ratio = int(ratio) * [1]
         for part in range(len(ratio)):
-            timespan_callback = \
+            callback = \
                 'self._divide_by_ratio(original_start_offset, original_stop_offset, {!r}, {!r})'
-            timespan_callback = timespan_callback.format(ratio, part)
-            result.append(self._copy_and_append_timespan_callback(timespan_callback))
+            callback = callback.format(ratio, part)
+            result.append(self._copy_and_append_callback(callback))
         return tuple(result)
 
     def scale(self, multiplier):
@@ -205,7 +205,7 @@ class TimespanCallbackMixin(AbjadObject):
             >>> z(timespan)
             settingtools.TimespanExpression(
                 anchor='red',
-                timespan_callbacks=settingtools.CallbackInventory([
+                callbacks=settingtools.CallbackInventory([
                     'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))'
                     ])
                 )
@@ -213,10 +213,10 @@ class TimespanCallbackMixin(AbjadObject):
         Return copy of timespan with appended callback.
         '''
         multiplier = durationtools.Multiplier(multiplier)
-        timespan_callback = \
+        callback = \
             'self._scale(original_start_offset, original_stop_offset, {!r})'
-        timespan_callback = timespan_callback.format(multiplier)
-        return self._copy_and_append_timespan_callback(timespan_callback)
+        callback = callback.format(multiplier)
+        return self._copy_and_append_callback(callback)
 
     def set_duration(self, duration):
         '''Set timespan duration to `duration`.
@@ -224,10 +224,10 @@ class TimespanCallbackMixin(AbjadObject):
         Return copy of timespan with appended callback.
         '''
         duration = durationtools.Duration(duration)
-        timespan_callback = \
+        callback = \
             'self._set_duration(original_start_offset, original_stop_offset, {!r})'
-        timespan_callback = timespan_callback.format(duration)
-        return self._copy_and_append_timespan_callback(timespan_callback)
+        callback = callback.format(duration)
+        return self._copy_and_append_callback(callback)
 
     def set_offsets(self, start_offset=None, stop_offset=None):
         '''Set timespan start offset to `start_offset`
@@ -239,10 +239,10 @@ class TimespanCallbackMixin(AbjadObject):
             start_offset = durationtools.Offset(start_offset)
         if stop_offset is not None:
             stop_offset = durationtools.Offset(stop_offset) 
-        timespan_callback = \
+        callback = \
             'self._set_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
-        timespan_callback = timespan_callback.format(start_offset, stop_offset)
-        return self._copy_and_append_timespan_callback(timespan_callback)
+        callback = callback.format(start_offset, stop_offset)
+        return self._copy_and_append_callback(callback)
 
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
         '''Translate timespan start offset by `start_offset_translation`
@@ -254,7 +254,7 @@ class TimespanCallbackMixin(AbjadObject):
         stop_offset_translation = stop_offset_translation or 0
         start_offset_translation = durationtools.Duration(start_offset_translation)
         stop_offset_translation = durationtools.Duration(stop_offset_translation)
-        timespan_callback = \
+        callback = \
             'self._translate_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
-        timespan_callback = timespan_callback.format(start_offset_translation, stop_offset_translation)
-        return self._copy_and_append_timespan_callback(timespan_callback)
+        callback = callback.format(start_offset_translation, stop_offset_translation)
+        return self._copy_and_append_callback(callback)

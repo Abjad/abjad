@@ -27,7 +27,7 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
                 anchor=selectortools.MeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
-                    payload_callbacks=settingtools.CallbackInventory([
+                    callbacks=settingtools.CallbackInventory([
                         'result = self.___getitem__(elements, start_offset, slice(4, 5, None))'
                         ])
                     )
@@ -42,9 +42,9 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
 
     ### INITIALIZER ###
 
-    def __init__(self, voice_name=None, offset=None, payload_callbacks=None):
+    def __init__(self, voice_name=None, offset=None, callbacks=None):
         SettingLookupRequest.__init__(self, attribute='divisions', voice_name=voice_name, 
-            offset=offset, payload_callbacks=payload_callbacks)
+            offset=offset, callbacks=callbacks)
 
     ### PRIVATE METHODS ###
 
@@ -68,5 +68,5 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
         assert isinstance(expression, settingtools.AbsoluteExpression), repr(expression)
         divisions = expression.payload
         start_offset = division_region_command.timespan.start_offset
-        divisions, start_offset = self._apply_payload_callbacks(divisions, start_offset)
+        divisions, start_offset = self._apply_callbacks(divisions, start_offset)
         return divisions

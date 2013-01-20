@@ -21,12 +21,12 @@ class TimespanExpression(Expression, TimespanCallbackMixin, SelectMethodMixin, S
 
     ### INITIALIZER ###
 
-    def __init__(self, anchor=None, timespan_callbacks=None):
+    def __init__(self, anchor=None, callbacks=None):
         from experimental.tools import settingtools
         Expression.__init__(self, anchor=anchor)
         TimespanCallbackMixin.__init__(self)
-        timespan_callbacks = timespan_callbacks or []
-        self._timespan_callbacks = settingtools.CallbackInventory(timespan_callbacks)
+        callbacks = callbacks or []
+        self._callbacks = settingtools.CallbackInventory(callbacks)
 
     ### SPECIAL METHODS ###
 
@@ -55,9 +55,9 @@ class TimespanExpression(Expression, TimespanCallbackMixin, SelectMethodMixin, S
     @property
     def _keyword_argument_name_value_strings(self):
         result = Expression._keyword_argument_name_value_strings.fget(self)
-        if 'timespan_callbacks=CallbackInventory([])' in result:
+        if 'callbacks=CallbackInventory([])' in result:
             result = list(result)
-            result.remove('timespan_callbacks=CallbackInventory([])')
+            result.remove('callbacks=CallbackInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -69,7 +69,7 @@ class TimespanExpression(Expression, TimespanCallbackMixin, SelectMethodMixin, S
         Return pair.
         '''
         anchor_timespan = score_specification.get_anchor_timespan(self, context_name)
-        timespan = self._apply_timespan_callbacks(anchor_timespan)
+        timespan = self._apply_callbacks(anchor_timespan)
         return timespan
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
@@ -79,6 +79,6 @@ class TimespanExpression(Expression, TimespanCallbackMixin, SelectMethodMixin, S
         result = Expression._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'timespan_callbacks=settingtools.CallbackInventory([])' in string:
+            if not 'callbacks=settingtools.CallbackInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result

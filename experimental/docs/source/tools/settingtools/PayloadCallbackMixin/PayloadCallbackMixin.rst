@@ -9,7 +9,7 @@ settingtools.PayloadCallbackMixin
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.payload_callbacks
+.. autoattribute:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.callbacks
    :noindex:
 
 .. autoattribute:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.storage_format

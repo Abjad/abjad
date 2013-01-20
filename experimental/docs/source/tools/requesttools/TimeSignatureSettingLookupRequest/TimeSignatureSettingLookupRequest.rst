@@ -19,15 +19,15 @@ Read-only Properties
 
    Inherited from :py:class:`requesttools.SettingLookupRequest <experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest>`
 
+.. autoattribute:: experimental.tools.requesttools.TimeSignatureSettingLookupRequest.TimeSignatureSettingLookupRequest.TimeSignatureSettingLookupRequest.callbacks
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
 .. autoattribute:: experimental.tools.requesttools.TimeSignatureSettingLookupRequest.TimeSignatureSettingLookupRequest.TimeSignatureSettingLookupRequest.offset
    :noindex:
 
    Inherited from :py:class:`requesttools.SettingLookupRequest <experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest>`
-
-.. autoattribute:: experimental.tools.requesttools.TimeSignatureSettingLookupRequest.TimeSignatureSettingLookupRequest.TimeSignatureSettingLookupRequest.payload_callbacks
-   :noindex:
-
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. autoattribute:: experimental.tools.requesttools.TimeSignatureSettingLookupRequest.TimeSignatureSettingLookupRequest.TimeSignatureSettingLookupRequest.score_specification
    :noindex:

@@ -20,12 +20,12 @@ class Selector(Expression, PayloadCallbackMixin):
 
     ### INTIALIZER ###
 
-    def __init__(self, anchor=None, voice_name=None, time_relation=None, payload_callbacks=None):
+    def __init__(self, anchor=None, voice_name=None, time_relation=None, callbacks=None):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         Expression.__init__(self, anchor=anchor)
-        PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
+        PayloadCallbackMixin.__init__(self, callbacks=callbacks)
         assert voice_name is not None
         self._voice_name = voice_name
         self._time_relation = time_relation
@@ -35,9 +35,9 @@ class Selector(Expression, PayloadCallbackMixin):
     @property
     def _keyword_argument_name_value_strings(self):
         result = PayloadCallbackMixin._keyword_argument_name_value_strings.fget(self)
-        if 'timespan_callbacks=CallbackInventory([])' in result:
+        if 'callbacks=CallbackInventory([])' in result:
             result = list(result)
-            result.remove('timespan_callbacks=CallbackInventory([])')
+            result.remove('callbacks=CallbackInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -48,13 +48,13 @@ class Selector(Expression, PayloadCallbackMixin):
         voice_name = None
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty selector payload_callbacks list.
+        '''Do not show empty selector callbacks list.
         '''
         filtered_result = []
         result = PayloadCallbackMixin._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'timespan_callbacks=settingtools.CallbackInventory([])' in string:
+            if not 'callbacks=settingtools.CallbackInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
     

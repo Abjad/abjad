@@ -39,7 +39,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
                 anchor=selectortools.MeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
-                    payload_callbacks=settingtools.CallbackInventory([
+                    callbacks=settingtools.CallbackInventory([
                         'result = self.___getitem__(elements, start_offset, slice(-1, None, None))'
                         ])
                     )
@@ -48,7 +48,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
                 anchor=selectortools.MeasureSelector(
                     anchor='blue',
                     voice_name='Voice 1',
-                    payload_callbacks=settingtools.CallbackInventory([
+                    callbacks=settingtools.CallbackInventory([
                         'result = self.___getitem__(elements, start_offset, slice(None, 1, None))'
                         ])
                     ),
@@ -61,12 +61,12 @@ class MixedSourceTimespanExpression(TimespanExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, start_offset=None, stop_offset=None, timespan_callbacks=None):
+    def __init__(self, start_offset=None, stop_offset=None, callbacks=None):
         from experimental.tools import specificationtools
         from experimental.tools import settingtools
         assert isinstance(start_offset, (settingtools.OffsetExpression, type(None))), repr(start_offset)
         assert isinstance(stop_offset, (settingtools.OffsetExpression, type(None))), repr(stop_offset)
-        TimespanExpression.__init__(self, timespan_callbacks=timespan_callbacks)
+        TimespanExpression.__init__(self, callbacks=callbacks)
         self._start_offset = start_offset
         self._stop_offset = stop_offset
 

@@ -121,8 +121,8 @@
 
 23. Extend AbsoluteExpression with start_offset property for offset-positioning.
     This will create the idea of an offset-positioned expression.
-    Then change PayloadCallbackMixin._apply_payload_callbacks(elements, start_offset)
-    to PayloadCallbackMixin._apply_payload_callbacks(offset_positioned_expression).
+    Then change PayloadCallbackMixin._apply_callbacks(elements, start_offset)
+    to PayloadCallbackMixin._apply_callbacks(offset_positioned_expression).
     But why not just use RegionProduct as offset-positioned expression?
 
 24. Implement _getitem() on all region products.
@@ -130,12 +130,7 @@
     Implement complete set of payload callbacks on all region products.
     Set output signature of all region product payload callback methods to just a new_region_product.
 
-25. Consider creating an expressiontools package.
+25. Hoist properties up from the concrete expression classes to Expression.
 
-26. Hoist properties up from the concrete expression classes to Expression.
-
-27. Rename timespan_callbacks to callbacks.
-    Rename payload_callbacks to callbacks.
-
-28. Should Setting inherit from Expression?
+26. Should Setting inherit from Expression?
     Then hoist Setting.anchor to Expression.

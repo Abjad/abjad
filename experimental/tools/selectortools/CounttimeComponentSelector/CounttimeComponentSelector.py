@@ -57,8 +57,8 @@ class CounttimeComponentSelector(Selector):
     ### INITIALIZER ###
 
     #def __init__(self, anchor=None, classes=None, 
-    #    voice_name=None, time_relation=None, payload_callbacks=None, timespan_callbacks=None):
-    def __init__(self, anchor=None, classes=None, voice_name=None, time_relation=None, payload_callbacks=None):
+    #    voice_name=None, time_relation=None, callbacks=None, callbacks=None):
+    def __init__(self, anchor=None, classes=None, voice_name=None, time_relation=None, callbacks=None):
         from experimental.tools import selectortools
         from experimental.tools import settingtools
         assert classes is None or self._is_counttime_component_class_expr(classes), repr(classes)
@@ -66,13 +66,13 @@ class CounttimeComponentSelector(Selector):
         #    anchor=anchor, 
         #    voice_name=voice_name, 
         #    time_relation=time_relation, 
-        #    payload_callbacks=payload_callbacks,
-        #    timespan_callbacks=timespan_callbacks)
+        #    callbacks=callbacks,
+        #    callbacks=callbacks)
         Selector.__init__(self, 
             anchor=anchor, 
             voice_name=voice_name, 
             time_relation=time_relation, 
-            payload_callbacks=payload_callbacks)
+            callbacks=callbacks)
         if isinstance(classes, tuple):
             classes = settingtools.ClassInventory(classes)
         self._classes = classes
@@ -99,7 +99,7 @@ class CounttimeComponentSelector(Selector):
         for rhythm_region_product in rhythm_region_products:
             result.payload.extend(rhythm_region_product.payload)
         assert wellformednesstools.is_well_formed_component(result.payload)
-        result, new_start_offset = self._apply_payload_callbacks(result, result.start_offset)
+        result, new_start_offset = self._apply_callbacks(result, result.start_offset)
         assert isinstance(result, settingtools.RhythmRegionProduct), repr(result)
         return result
 

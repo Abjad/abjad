@@ -19,15 +19,15 @@ Read-only Properties
 
    Inherited from :py:class:`requesttools.SettingLookupRequest <experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest>`
 
+.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.callbacks
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
 .. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.offset
    :noindex:
 
    Inherited from :py:class:`requesttools.SettingLookupRequest <experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest>`
-
-.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.payload_callbacks
-   :noindex:
-
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
 .. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.score_specification
    :noindex:

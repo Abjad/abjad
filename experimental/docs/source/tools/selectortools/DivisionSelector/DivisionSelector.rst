@@ -14,7 +14,7 @@ Read-only Properties
 
    Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
-.. autoattribute:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.payload_callbacks
+.. autoattribute:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.callbacks
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`

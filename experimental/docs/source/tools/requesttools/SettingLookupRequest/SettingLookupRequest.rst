@@ -17,13 +17,13 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.attribute
    :noindex:
 
-.. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.offset
-   :noindex:
-
-.. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.payload_callbacks
+.. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.callbacks
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+.. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.offset
+   :noindex:
 
 .. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.score_specification
    :noindex:

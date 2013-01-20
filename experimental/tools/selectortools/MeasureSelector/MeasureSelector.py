@@ -50,7 +50,7 @@ class MeasureSelector(Selector):
             anchor=settingtools.TimespanExpression(
                 anchor=selectortools.SegmentSelector(
                     voice_name='Voice 1',
-                    payload_callbacks=settingtools.CallbackInventory([
+                    callbacks=settingtools.CallbackInventory([
                         "result = self.___getitem__(elements, start_offset, slice('red', ('red', 3), None))"
                         ])
                     )
@@ -70,7 +70,7 @@ class MeasureSelector(Selector):
         start_segment_specification = score_specification.get_start_segment_specification(self)
         time_signatures = start_segment_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
-        time_signatures, dummy = self._apply_payload_callbacks(time_signatures, None)
+        time_signatures, dummy = self._apply_callbacks(time_signatures, None)
         return time_signatures
 
     def _evaluate(self, score_specification, voice_name=None):
@@ -83,6 +83,6 @@ class MeasureSelector(Selector):
         start_offset = start_segment_specification.timespan.start_offset
         result = settingtools.MeasureRegionProduct(
             time_signatures, voice_name=self.voice_name, start_offset=start_offset)
-        result, start_offset = self._apply_payload_callbacks(result, result.start_offset)
+        result, start_offset = self._apply_callbacks(result, result.start_offset)
         assert isinstance(result, settingtools.MeasureRegionProduct), repr(result)
         return result

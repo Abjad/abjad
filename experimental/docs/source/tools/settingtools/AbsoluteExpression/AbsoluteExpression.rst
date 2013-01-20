@@ -14,10 +14,10 @@ Read-only Properties
 
    Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
-.. autoattribute:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.payload
+.. autoattribute:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.callbacks
    :noindex:
 
-.. autoattribute:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.payload_callbacks
+.. autoattribute:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.payload
    :noindex:
 
 .. autoattribute:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.score_specification

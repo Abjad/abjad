@@ -11,9 +11,9 @@ class RhythmSettingLookupRequest(SettingLookupRequest):
 
     ### INITIALIZER ###
 
-    def __init__(self, voice_name=None, offset=None, payload_callbacks=None):
+    def __init__(self, voice_name=None, offset=None, callbacks=None):
         SettingLookupRequest.__init__(self, attribute='rhythm', voice_name=voice_name, 
-            offset=offset, payload_callbacks=payload_callbacks)
+            offset=offset, callbacks=callbacks)
 
     ### PUBLIC METHODS ###
 
@@ -36,12 +36,12 @@ class RhythmSettingLookupRequest(SettingLookupRequest):
         assert source_command is not None
         assert isinstance(source_command, settingtools.RegionCommand)
         # TODO: the lack of symmtery between these two branches means either:
-        #   that the call to self._apply_payload_callbacks() is unnecessary, or
+        #   that the call to self._apply_callbacks() is unnecessary, or
         #   that the call must appear in both branches.
         if isinstance(source_command.expression, requesttools.RhythmMakerRequest):
             assert isinstance(source_command.expression.payload, rhythmmakertools.RhythmMaker)
             rhythm_maker = copy.deepcopy(source_command.expression.payload)
-            rhythm_maker, start_offset = self._apply_payload_callbacks(
+            rhythm_maker, start_offset = self._apply_callbacks(
                 rhythm_maker, source_command.timespan.start_offset)
             return rhythm_maker
         elif isinstance(source_command.expression, settingtools.AbsoluteExpression):

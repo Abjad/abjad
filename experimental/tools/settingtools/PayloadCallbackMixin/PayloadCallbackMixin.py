@@ -24,17 +24,17 @@ class PayloadCallbackMixin(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, payload_callbacks=None):
+    def __init__(self, callbacks=None):
         from experimental.tools import settingtools
-        payload_callbacks = payload_callbacks or []
-        self._payload_callbacks = settingtools.CallbackInventory(payload_callbacks)
+        callbacks = callbacks or []
+        self._callbacks = settingtools.CallbackInventory(callbacks)
 
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
         callback = 'result = self.___and__(elements, {!r}, start_offset)'.format(timespan)
-        return self._copy_and_append_payload_callback(callback)
+        return self._copy_and_append_callback(callback)
 
     def __eq__(self, expr):
         '''True when mandatory and keyword arguments compare equal.
@@ -53,16 +53,16 @@ class PayloadCallbackMixin(AbjadObject):
         '''
         callback = 'result = self.___getitem__(elements, start_offset, {!r})'
         callback = callback.format(expr)
-        return self._copy_and_append_payload_callback(callback)
+        return self._copy_and_append_callback(callback)
 
     ### PRIVATE READ-ONLY PROPERTIES ###
 
     @property
     def _keyword_argument_name_value_strings(self):
         result = AbjadObject._keyword_argument_name_value_strings.fget(self)
-        if 'payload_callbacks=CallbackInventory([])' in result:
+        if 'callbacks=CallbackInventory([])' in result:
             result = list(result)
-            result.remove('payload_callbacks=CallbackInventory([])')
+            result.remove('callbacks=CallbackInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -110,7 +110,7 @@ class PayloadCallbackMixin(AbjadObject):
                 new_start_offset = None
             return selected_elements, new_start_offset
 
-    def _apply_payload_callbacks(self, elements, start_offset):
+    def _apply_callbacks(self, elements, start_offset):
         from experimental.tools import settingtools
         evaluation_context = {
             'Duration': durationtools.Duration,
@@ -125,7 +125,7 @@ class PayloadCallbackMixin(AbjadObject):
             'result': None,
             'sequencetools': sequencetools,
             }
-        for callback in self.payload_callbacks:
+        for callback in self.callbacks:
             assert 'elements' in callback
             evaluation_context['elements'] = elements
             evaluation_context['start_offset'] = start_offset
@@ -133,9 +133,9 @@ class PayloadCallbackMixin(AbjadObject):
             elements, start_offset = evaluation_context['result']
         return elements, start_offset
 
-    def _copy_and_append_payload_callback(self, callback):
+    def _copy_and_append_callback(self, callback):
         result = copy.deepcopy(self)
-        result.payload_callbacks.append(callback)
+        result.callbacks.append(callback)
         return result
 
     def _duration_helper(self, expr):
@@ -148,13 +148,13 @@ class PayloadCallbackMixin(AbjadObject):
             return duration
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty payload_callbacks list.
+        '''Do not show empty callbacks list.
         '''
         filtered_result = []
         result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'payload_callbacks=settingtools.CallbackInventory([])' in string:
+            if not 'callbacks=settingtools.CallbackInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
 
@@ -246,13 +246,13 @@ class PayloadCallbackMixin(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def payload_callbacks(self):
-        return self._payload_callbacks
+    def callbacks(self):
+        return self._callbacks
 
     ### PUBLIC METHODS ###
 
     def partition_by_ratio(self, ratio):
-        '''Return tuple of newly constructed requests with payload_callbacks appended.
+        '''Return tuple of newly constructed requests with callbacks appended.
         '''
         result = []
         ratio = mathtools.Ratio(ratio)
@@ -260,7 +260,7 @@ class PayloadCallbackMixin(AbjadObject):
             callback = \
                 'result = self._partition_by_ratio(elements, start_offset, {!r}, {!r})'
             callback = callback.format(ratio, part)
-            result.append(self._copy_and_append_payload_callback(callback))
+            result.append(self._copy_and_append_callback(callback))
         return tuple(result)
 
     def partition_by_ratio_of_durations(self, ratio):
@@ -270,28 +270,28 @@ class PayloadCallbackMixin(AbjadObject):
             callback = \
                 'result = self._partition_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
             callback = callback.format(ratio, part)
-            result.append(self._copy_and_append_payload_callback(callback))
+            result.append(self._copy_and_append_callback(callback))
         return tuple(result)
 
     def reflect(self):
         '''Return copy of request with appended callback.
         '''
         callback = 'result = self._reflect(elements, start_offset)'
-        return self._copy_and_append_payload_callback(callback)
+        return self._copy_and_append_callback(callback)
 
     def repeat_to_duration(self, duration):
         '''Return copy of request with appended callback.
         '''
         duration = durationtools.Duration(duration)
         callback = 'result = self._repeat_to_duration(elements, {!r}, start_offset)'.format(duration)
-        return self._copy_and_append_payload_callback(callback)
+        return self._copy_and_append_callback(callback)
 
     def repeat_to_length(self, length):
         '''Return copy of request with appended callback.
         '''
         assert mathtools.is_nonnegative_integer(length)
         callback = 'result = self._repeat_to_length(elements, {!r}, start_offset)'.format(length)
-        return self._copy_and_append_payload_callback(callback)
+        return self._copy_and_append_callback(callback)
 
     def rotate(self, index):
         '''Return copy of request with appended callback.
@@ -299,4 +299,4 @@ class PayloadCallbackMixin(AbjadObject):
         from experimental.tools import settingtools
         assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
         callback = 'result = self._rotate(elements, {!r}, start_offset)'.format(index)    
-        return self._copy_and_append_payload_callback(callback)
+        return self._copy_and_append_callback(callback)
