@@ -321,6 +321,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/settingtools/AnchoredExpression/AnchoredExpression
       tools/settingtools/AnchoredObject/AnchoredObject
       tools/settingtools/Expression/Expression
       tools/settingtools/FinalizedRhythmRegionCommand/FinalizedRhythmRegionCommand
@@ -387,6 +388,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/settingtools/AnchoredExpression/AnchoredExpression
       tools/settingtools/AnchoredObject/AnchoredObject
       tools/settingtools/Expression/Expression
       tools/settingtools/FinalizedRhythmRegionCommand/FinalizedRhythmRegionCommand

@@ -153,10 +153,6 @@
     So do we need an AnchoredObject class?
     Then Setting would inherit from AnchoredObject but not from Expression.
 
-29. Insist on 'callbacks' as a mandatory part of any Expression.
-    Use abc.abstractproperty.
-    Add callbacks to OffsetExpression.
+29. Remove the word 'requested' from the codebase.
 
-30. Remove the word 'requested' from the codebase.
-
-31. Remove 'from abjad import *' in favor of 'from experimental import *' in all test files.
+30. Remove 'from abjad import *' in favor of 'from experimental import *' in all test files.
