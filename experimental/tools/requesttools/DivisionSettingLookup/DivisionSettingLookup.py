@@ -1,9 +1,9 @@
 from experimental.tools import timerelationtools
 from experimental.tools import timespantools
-from experimental.tools.requesttools.SettingLookupRequest import SettingLookupRequest
+from experimental.tools.requesttools.SettingLookup import SettingLookup
 
 
-class DivisionSettingLookupRequest(SettingLookupRequest):
+class DivisionSettingLookup(SettingLookup):
     '''Division setting lookup request.
 
     Example. Look up division setting active at start of measure 4 in ``'Voice 1'``::
@@ -21,7 +21,7 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
     ::
 
         >>> z(setting)
-        requesttools.DivisionSettingLookupRequest(
+        requesttools.DivisionSettingLookup(
             voice_name='Voice 1',
             offset=settingtools.OffsetExpression(
                 anchor=selectortools.MeasureSelector(
@@ -43,7 +43,7 @@ class DivisionSettingLookupRequest(SettingLookupRequest):
     ### INITIALIZER ###
 
     def __init__(self, voice_name=None, offset=None, callbacks=None):
-        SettingLookupRequest.__init__(self, attribute='divisions', voice_name=voice_name, 
+        SettingLookup.__init__(self, attribute='divisions', voice_name=voice_name, 
             offset=offset, callbacks=callbacks)
 
     ### PRIVATE METHODS ###

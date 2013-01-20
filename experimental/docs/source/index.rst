@@ -280,19 +280,19 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/requesttools/SettingLookupRequest/SettingLookupRequest
+      tools/requesttools/SettingLookup/SettingLookup
 
    --------
 
    .. toctree::
       :maxdepth: 1
 
-      tools/requesttools/DivisionSettingLookupRequest/DivisionSettingLookupRequest
+      tools/requesttools/DivisionSettingLookup/DivisionSettingLookup
       tools/requesttools/HandlerRequest/HandlerRequest
       tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
-      tools/requesttools/RhythmSettingLookupRequest/RhythmSettingLookupRequest
+      tools/requesttools/RhythmSettingLookup/RhythmSettingLookup
       tools/requesttools/StatalServerRequest/StatalServerRequest
-      tools/requesttools/TimeSignatureSettingLookupRequest/TimeSignatureSettingLookupRequest
+      tools/requesttools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
 
 .. only:: latex
 
@@ -301,19 +301,19 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/requesttools/SettingLookupRequest/SettingLookupRequest
+      tools/requesttools/SettingLookup/SettingLookup
 
    Concrete Classes
    ----------------
 
    .. toctree::
 
-      tools/requesttools/DivisionSettingLookupRequest/DivisionSettingLookupRequest
+      tools/requesttools/DivisionSettingLookup/DivisionSettingLookup
       tools/requesttools/HandlerRequest/HandlerRequest
       tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
-      tools/requesttools/RhythmSettingLookupRequest/RhythmSettingLookupRequest
+      tools/requesttools/RhythmSettingLookup/RhythmSettingLookup
       tools/requesttools/StatalServerRequest/StatalServerRequest
-      tools/requesttools/TimeSignatureSettingLookupRequest/TimeSignatureSettingLookupRequest
+      tools/requesttools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
 
 :py:mod:`selectortools <experimental.tools.selectortools>`
 ==========================================================

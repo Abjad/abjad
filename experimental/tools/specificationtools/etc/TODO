@@ -142,11 +142,10 @@
 27. The class that inherit from AnchoredExpression will be these:
         OffsetExpression
         TimespanExpression
-        SettingLookupRequest (SettingLookup)
+        SettingLookup
         Selector
     This implies a split between StatalServerRequest, RhythmMakerRequest, HandlerRequest (on
-    the one hand) and SettingLookupRequest (on the other). Will make sense to change
-    SettingLookupRequest to SettingLookup.
+    the one hand) and SettingLookup (on the other). Will make sense to change
 
 28. Setting should inherit from AnchoredObject. But Setting should not inherit from Expression.
     Why? Because settings model exec() rather than eval().

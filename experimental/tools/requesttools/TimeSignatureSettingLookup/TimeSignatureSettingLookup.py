@@ -1,14 +1,14 @@
-from experimental.tools.requesttools.SettingLookupRequest import SettingLookupRequest
+from experimental.tools.requesttools.SettingLookup import SettingLookup
 
 
-class TimeSignatureSettingLookupRequest(SettingLookupRequest):
+class TimeSignatureSettingLookup(SettingLookup):
     '''Time signature command request.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, voice_name=None, offset=None, callbacks=None):
-        SettingLookupRequest.__init__(self, attribute='time_signatures', voice_name=voice_name, 
+        SettingLookup.__init__(self, attribute='time_signatures', voice_name=voice_name, 
             offset=offset, callbacks=callbacks)
 
     ### PUBLIC METHODS ###

@@ -98,7 +98,7 @@ class RhythmRegionCommand(RegionCommand):
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             command = settingtools.RhythmMakerRhythmRegionCommand(
                 rhythm_maker, voice_name, start_offset, division_list)
-        elif isinstance(self.expression, requesttools.RhythmSettingLookupRequest):
+        elif isinstance(self.expression, requesttools.RhythmSettingLookup):
             rhythm_maker = self.expression._evaluate(score_specification)
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             command = settingtools.RhythmMakerRhythmRegionCommand(

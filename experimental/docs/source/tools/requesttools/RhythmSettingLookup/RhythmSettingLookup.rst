@@ -1,0 +1,151 @@
+requesttools.RhythmSettingLookup
+================================
+
+.. abjad-lineage:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup
+
+.. autoclass:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup
+   :noindex:
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.anchor
+   :noindex:
+
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+
+.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.attribute
+   :noindex:
+
+   Inherited from :py:class:`requesttools.SettingLookup <experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup>`
+
+.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.callbacks
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.offset
+   :noindex:
+
+   Inherited from :py:class:`requesttools.SettingLookup <experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup>`
+
+.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.score_specification
+   :noindex:
+
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+
+.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.start_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.start_segment_identifier
+   :noindex:
+
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+
+.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.storage_format
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.voice_name
+   :noindex:
+
+   Inherited from :py:class:`requesttools.SettingLookup <experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup>`
+
+Methods
+-------
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.partition_by_ratio
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.partition_by_ratio_of_durations
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.reflect
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.repeat_to_duration
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.repeat_to_length
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.rotate
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+Special Methods
+---------------
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.___and__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.___getitem__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.__and__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.__eq__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.__ge__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.__getitem__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.__gt__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.__le__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.__lt__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.__ne__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.requesttools.RhythmSettingLookup.RhythmSettingLookup.RhythmSettingLookup.__repr__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

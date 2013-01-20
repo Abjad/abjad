@@ -4,7 +4,7 @@ from experimental.tools.settingtools.Expression import Expression
 from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class SettingLookupRequest(Expression, PayloadCallbackMixin):
+class SettingLookup(Expression, PayloadCallbackMixin):
     r'''Setting lookup request.
 
     Look up `attribute` setting active at `offset` in `voice_name`.

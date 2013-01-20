@@ -1,87 +1,87 @@
-requesttools.SettingLookupRequest
-=================================
+requesttools.SettingLookup
+==========================
 
-.. abjad-lineage:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest
+.. abjad-lineage:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup
 
-.. autoclass:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest
+.. autoclass:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup
    :noindex:
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.anchor
+.. autoattribute:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.anchor
    :noindex:
 
    Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
-.. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.attribute
+.. autoattribute:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.attribute
    :noindex:
 
-.. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.callbacks
+.. autoattribute:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.callbacks
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.offset
+.. autoattribute:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.offset
    :noindex:
 
-.. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.score_specification
-   :noindex:
-
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
-
-.. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.start_offset
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
-.. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.start_segment_identifier
+.. autoattribute:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.score_specification
    :noindex:
 
    Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
-.. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.stop_offset
+.. autoattribute:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.start_offset
    :noindex:
 
    Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
-.. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.storage_format
+.. autoattribute:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.start_segment_identifier
+   :noindex:
+
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+
+.. autoattribute:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.storage_format
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.voice_name
+.. autoattribute:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.voice_name
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.partition_by_ratio
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.partition_by_ratio
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.partition_by_ratio_of_durations
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.partition_by_ratio_of_durations
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.reflect
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.reflect
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.repeat_to_duration
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.repeat_to_duration
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.repeat_to_length
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.repeat_to_length
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.rotate
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.rotate
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
@@ -89,57 +89,57 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.___and__
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.___and__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.___getitem__
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.___getitem__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.__and__
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.__and__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.__eq__
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.__eq__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.__ge__
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.__ge__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.__getitem__
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.__getitem__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.__gt__
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.__gt__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.__le__
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.__le__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.__lt__
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.__lt__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.__ne__
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.__ne__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.__repr__
+.. automethod:: experimental.tools.requesttools.SettingLookup.SettingLookup.SettingLookup.__repr__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
