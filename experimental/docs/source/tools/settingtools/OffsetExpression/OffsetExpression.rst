@@ -9,18 +9,12 @@ settingtools.OffsetExpression
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.addendum
-   :noindex:
-
 .. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.anchor
    :noindex:
 
    Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
 .. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.edge
-   :noindex:
-
-.. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.multiplier
    :noindex:
 
 .. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.score_specification

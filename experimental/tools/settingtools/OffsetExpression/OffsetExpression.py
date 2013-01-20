@@ -4,7 +4,6 @@ from experimental.tools.settingtools.Expression import Expression
 from experimental.tools.settingtools.LookupMethodMixin import LookupMethodMixin
 
 
-#class OffsetExpression(LookupMethodMixin):
 class OffsetExpression(Expression, LookupMethodMixin):
     r'''Offset expression.
 
@@ -40,38 +39,27 @@ class OffsetExpression(Expression, LookupMethodMixin):
 
     ### INITIALIZER ###
 
-    def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
-        from experimental.tools import specificationtools
-        from experimental.tools import settingtools
+    # TODO: initialize with callback inventory
+    def __init__(self, anchor=None, edge=None):
         assert edge in (Left, Right, None), repr(edge)
-        if multiplier is not None:
-            multiplier = durationtools.Multiplier(multiplier)
-        if addendum is not None:
-            addendum = durationtools.Offset(addendum)
         Expression.__init__(self, anchor=anchor)
-        self._multiplier = multiplier
         self._edge = edge
-        self._addendum = addendum
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        '''True when `other` is a offset with score object indicator,
-        edge and addendum all indicating those of `self`.
+    def __eq__(self, expr):
+        '''True when `expr` is a offset with anchor
+        and edge equal to offset those of offset expression.
         
         Otherwise false.
 
         Return boolean.
         '''
-        if not isinstance(other, type(self)):
+        if not isinstance(expr, type(self)):
             return False
-        elif not self.anchor == other.anchor:
+        elif not self.anchor == expr.anchor:
             return False
-        elif not self.edge == other.edge:
-            return False
-        elif not self.multiplier == other.multiplier:
-            return False
-        elif not self.addendum == other.addendum:
+        elif not self.edge == expr.edge:
             return False
         else:
             return True
@@ -85,26 +73,10 @@ class OffsetExpression(Expression, LookupMethodMixin):
             offset = anchor_timespan.start_offset
         else:
             offset = anchor_timespan.stop_offset
-        multiplier = self.multiplier or durationtools.Multiplier(1)
-        offset *= multiplier
-        addendum = self.addendum or durationtools.Offset(0)
-        offset += addendum
+        # TODO: apply callbacks
         return offset
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def addendum(self):
-        '''Symbolic offset addendum specified by user.
-
-            >>> offset.addendum is None
-            True
-
-        Value of none is interpreted as ``Offset(0)``.
-            
-        Return offset or none.
-        '''
-        return self._addendum
 
     @property
     def edge(self):
@@ -119,19 +91,7 @@ class OffsetExpression(Expression, LookupMethodMixin):
         '''
         return self._edge
 
-    @property
-    def multiplier(self):
-        '''Symbolic offset multiplier specified by user.
-
-            >>> offset.multiplier is None
-            True
-
-        Value of none is interpreted as ``Multiplier(1)``.
-
-        Return multiplier or none.
-        '''
-        return self._multiplier
-
+    # TODO: hoist to Expression
     @property
     def start_segment_identifier(self):
         '''Symbolic offset start segment identifier.
