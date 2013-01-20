@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.edge
    :noindex:
@@ -20,7 +20,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.score_specification
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.start_offset
    :noindex:
@@ -30,7 +30,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.stop_offset
    :noindex:

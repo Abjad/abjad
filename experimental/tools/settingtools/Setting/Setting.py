@@ -1,9 +1,9 @@
 import abc
 import copy
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.tools.settingtools.AnchoredObject import AnchoredObject
 
 
-class Setting(AbjadObject):
+class Setting(AnchoredObject):
     r'''Setting.
 
     Abstract setting class from which concrete settings inherit.
@@ -23,13 +23,12 @@ class Setting(AbjadObject):
         from experimental.tools import settingtools
         assert isinstance(attribute, str)
         assert isinstance(expression, (settingtools.Expression)), repr(expression)
-        assert isinstance(anchor, (settingtools.Expression, str, type(None)))
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))
+        AnchoredObject.__init__(self, anchor=anchor)
         self._attribute = attribute
         self._expression = expression
-        self._anchor = anchor
         self._fresh = fresh
         self._persist = persist
         self._truncate = truncate
@@ -48,26 +47,7 @@ class Setting(AbjadObject):
             return False
         return self._keyword_argument_values == expr._keyword_argument_values
 
-    ### PRIVATE METHODS ###
-
-    def _set_start_segment_identifier(self, segment_identifier):
-        assert isinstance(segment_identifier, str)
-        if isinstance(self.anchor, str):
-            self._anchor = segment_identifier
-        else:
-            anchor = copy.deepcopy(self.anchor)
-            anchor._set_start_segment_identifier(segment_identifier)
-            self._anchor = anchor
-
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def anchor(self):
-        '''Setting anchor.
-
-        Return anchor or none.
-        '''
-        return self._anchor
 
     @property
     def attribute(self):

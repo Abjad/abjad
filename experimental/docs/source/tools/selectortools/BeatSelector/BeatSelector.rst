@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.callbacks
    :noindex:
@@ -22,7 +22,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.score_specification
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.start_offset
    :noindex:
@@ -32,7 +32,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.stop_offset
    :noindex:

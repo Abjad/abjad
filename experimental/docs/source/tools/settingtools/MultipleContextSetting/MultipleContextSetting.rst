@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.attribute
    :noindex:
@@ -36,6 +36,16 @@ Read-only Properties
    :noindex:
 
    Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
+
+.. autoattribute:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.score_specification
+   :noindex:
+
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+
+.. autoattribute:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.start_segment_identifier
+   :noindex:
+
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.storage_format
    :noindex:

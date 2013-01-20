@@ -12,6 +12,8 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.anchor
    :noindex:
 
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+
 .. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.attribute
    :noindex:
 
@@ -23,6 +25,16 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.persist
    :noindex:
+
+.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.score_specification
+   :noindex:
+
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+
+.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.start_segment_identifier
+   :noindex:
+
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.storage_format
    :noindex:

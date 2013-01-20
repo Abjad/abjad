@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting.attribute
    :noindex:
@@ -38,6 +38,16 @@ Read-only Properties
    :noindex:
 
    Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
+
+.. autoattribute:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting.score_specification
+   :noindex:
+
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+
+.. autoattribute:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting.start_segment_identifier
+   :noindex:
+
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting.storage_format
    :noindex:

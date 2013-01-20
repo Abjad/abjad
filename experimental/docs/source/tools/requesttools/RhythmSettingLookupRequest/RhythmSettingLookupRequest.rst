@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.attribute
    :noindex:
@@ -32,7 +32,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.score_specification
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.start_offset
    :noindex:
@@ -42,7 +42,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.requesttools.RhythmSettingLookupRequest.RhythmSettingLookupRequest.RhythmSettingLookupRequest.stop_offset
    :noindex:

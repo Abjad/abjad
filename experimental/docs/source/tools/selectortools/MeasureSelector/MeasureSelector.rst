@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.MeasureSelector.MeasureSelector.MeasureSelector.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.MeasureSelector.MeasureSelector.MeasureSelector.callbacks
    :noindex:
@@ -22,7 +22,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.MeasureSelector.MeasureSelector.MeasureSelector.score_specification
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.MeasureSelector.MeasureSelector.MeasureSelector.start_offset
    :noindex:
@@ -32,7 +32,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.MeasureSelector.MeasureSelector.MeasureSelector.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.MeasureSelector.MeasureSelector.MeasureSelector.stop_offset
    :noindex:

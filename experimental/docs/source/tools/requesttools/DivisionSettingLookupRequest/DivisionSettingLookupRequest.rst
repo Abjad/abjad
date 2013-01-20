@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.attribute
    :noindex:
@@ -32,7 +32,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.score_specification
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.start_offset
    :noindex:
@@ -42,7 +42,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.requesttools.DivisionSettingLookupRequest.DivisionSettingLookupRequest.DivisionSettingLookupRequest.stop_offset
    :noindex:

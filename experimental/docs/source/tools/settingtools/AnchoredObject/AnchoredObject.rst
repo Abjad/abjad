@@ -9,6 +9,15 @@ settingtools.AnchoredObject
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject.anchor
+   :noindex:
+
+.. autoattribute:: experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject.score_specification
+   :noindex:
+
+.. autoattribute:: experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject.start_segment_identifier
+   :noindex:
+
 .. autoattribute:: experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject.storage_format
    :noindex:
 
