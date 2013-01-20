@@ -61,4 +61,5 @@ class BeatSelector(Selector):
         result = settingtools.BeatRegionProduct(
             result, voice_name=self.voice_name, start_offset=start_offset)
         result, start_offset = self._apply_payload_callbacks(result, result.start_offset)
+        assert isinstance(result, settingtools.BeatRegionProduct), repr(result)
         return result

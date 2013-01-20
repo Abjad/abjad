@@ -84,4 +84,5 @@ class MeasureSelector(Selector):
         result = settingtools.MeasureRegionProduct(
             time_signatures, voice_name=self.voice_name, start_offset=start_offset)
         result, start_offset = self._apply_payload_callbacks(result, result.start_offset)
+        assert isinstance(result, settingtools.MeasureRegionProduct), repr(result)
         return result

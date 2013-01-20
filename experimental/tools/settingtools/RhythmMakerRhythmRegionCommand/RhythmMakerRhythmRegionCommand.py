@@ -30,7 +30,7 @@ class RhythmMakerRhythmRegionCommand(FinalizedRhythmRegionCommand):
                 beamtools.DuratedComplexBeamSpanner(
                     [rhythm_container], [rhythm_container.prolated_duration], span=1)
 
-    def _get_payload(self, score_specification=None, voice_name=None):
+    def _evaluate(self, score_specification=None, voice_name=None):
         from experimental.tools import settingtools
         # ignore voice_name input parameter
         voice_name = None

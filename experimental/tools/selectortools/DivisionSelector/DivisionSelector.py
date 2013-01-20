@@ -73,4 +73,5 @@ class DivisionSelector(Selector):
             result &= anchor_timespan
             result = result[0]
         result, new_start_offset = self._apply_payload_callbacks(result, result.start_offset)
+        assert isinstance(result, settingtools.DivisionRegionProduct), repr(result)
         return result

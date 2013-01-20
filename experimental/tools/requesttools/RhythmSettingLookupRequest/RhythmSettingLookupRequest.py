@@ -17,7 +17,7 @@ class RhythmSettingLookupRequest(SettingLookupRequest):
 
     ### PUBLIC METHODS ###
 
-    def _get_payload(self, score_specification, voice_name=None):
+    def _evaluate(self, score_specification, voice_name=None):
         from experimental.tools import requesttools
         from experimental.tools import settingtools
         # ignore voice_name input parameter

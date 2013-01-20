@@ -72,7 +72,7 @@ class SettingLookupRequest(PayloadCallbackMixin):
     ### PRIVATE METHODS ###
     
     @abc.abstractmethod
-    def _get_payload(self, score_specification=None, voice_name=None):
+    def _evaluate(self, score_specification=None, voice_name=None):
         # ignore voice_name input parameter
         voice_name = None
         pass

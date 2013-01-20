@@ -17,7 +17,7 @@ class ParseableStringRhythmRegionCommand(FinalizedRhythmRegionCommand):
 
     ### PRIVATE METHODS ###
 
-    def _get_payload(self, score_specification=None, voice_name=None):
+    def _evaluate(self, score_specification=None, voice_name=None):
         from experimental.tools import settingtools
         # ignore voice_name input parameter
         voice_name = None

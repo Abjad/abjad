@@ -34,12 +34,12 @@ class DivisionRegionCommand(RegionCommand):
             return False
         return True
 
-    def _get_payload(self, score_specification, voice_name=None):
+    def _evaluate(self, score_specification, voice_name=None):
         from experimental.tools import settingtools
         # ignore voice_name input parameter
         voice_name = None
-        if hasattr(self.expression, '_get_payload'):
-            payload = self.expression._get_payload(score_specification)
+        if hasattr(self.expression, '_evaluate'):
+            payload = self.expression._evaluate(score_specification)
         else:
             payload = self.expression._evaluate(score_specification)
         if payload is None:

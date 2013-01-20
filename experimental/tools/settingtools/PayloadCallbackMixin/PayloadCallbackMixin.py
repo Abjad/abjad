@@ -150,7 +150,7 @@ class PayloadCallbackMixin(Expression):
 
     # TODO: eventually insist on _evaluate() method
     #@abc.abstractmethod
-    #def _get_payload(self, score_specification=None, voice_name=None):
+    #def _evaluate(self, score_specification=None, voice_name=None):
     #    pass
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):

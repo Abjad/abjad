@@ -18,7 +18,7 @@ class ExpressionInventory(ObjectInventory, Expression):
 
     ### PRIVATE METHODS ###
 
-    def _get_payload(self, score_specification, voice_name=None):
+    def _evaluate(self, score_specification, voice_name=None):
         # ignore voice_name input parameter
         voice_name = None
         results = []

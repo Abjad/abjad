@@ -95,6 +95,7 @@ class SegmentSelector(Selector):
         result = settingtools.SegmentRegionProduct(
             [segment], voice_name=self.voice_name, start_offset=start_offset)
         result = self._apply_payload_callbacks(result)
+        assert isinstance(result, settingtools.SegmentRegionProduct), repr(result)
         return result
 
     def _make_identifier_expression(self, segment_name, addendum):
