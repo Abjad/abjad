@@ -3,7 +3,7 @@ from experimental.tools.settingtools.Expression import Expression
 from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class RhythmMakerRequest(Expression, PayloadCallbackMixin):
+class RhythmMakerExpression(Expression, PayloadCallbackMixin):
     r'''Rhythm-maker request.
 
     Create behind-the-scenes at setting-time.

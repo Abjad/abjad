@@ -272,29 +272,6 @@ Unstable packages (load manually)
 
       tools/parsertools/ENPParser/ENPParser
 
-:py:mod:`requesttools <experimental.tools.requesttools>`
-========================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/requesttools/HandlerRequest/HandlerRequest
-      tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
-      tools/requesttools/StatalServerRequest/StatalServerRequest
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/requesttools/HandlerRequest/HandlerRequest
-      tools/requesttools/RhythmMakerRequest/RhythmMakerRequest
-      tools/requesttools/StatalServerRequest/StatalServerRequest
-
 :py:mod:`selectortools <experimental.tools.selectortools>`
 ==========================================================
 
@@ -375,6 +352,7 @@ Unstable packages (load manually)
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
       tools/settingtools/DivisionSettingLookup/DivisionSettingLookup
       tools/settingtools/ExpressionInventory/ExpressionInventory
+      tools/settingtools/HandlerRequest/HandlerRequest
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MeasureRegionProduct/MeasureRegionProduct
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
@@ -382,6 +360,7 @@ Unstable packages (load manually)
       tools/settingtools/OffsetExpression/OffsetExpression
       tools/settingtools/ParseableStringRhythmRegionCommand/ParseableStringRhythmRegionCommand
       tools/settingtools/RegionCommandInventory/RegionCommandInventory
+      tools/settingtools/RhythmMakerExpression/RhythmMakerExpression
       tools/settingtools/RhythmMakerRhythmRegionCommand/RhythmMakerRhythmRegionCommand
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
@@ -397,6 +376,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
       tools/settingtools/StatalServer/StatalServer
+      tools/settingtools/StatalServerRequest/StatalServerRequest
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
       tools/settingtools/TimespanExpression/TimespanExpression
 
@@ -438,6 +418,7 @@ Unstable packages (load manually)
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
       tools/settingtools/DivisionSettingLookup/DivisionSettingLookup
       tools/settingtools/ExpressionInventory/ExpressionInventory
+      tools/settingtools/HandlerRequest/HandlerRequest
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MeasureRegionProduct/MeasureRegionProduct
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
@@ -445,6 +426,7 @@ Unstable packages (load manually)
       tools/settingtools/OffsetExpression/OffsetExpression
       tools/settingtools/ParseableStringRhythmRegionCommand/ParseableStringRhythmRegionCommand
       tools/settingtools/RegionCommandInventory/RegionCommandInventory
+      tools/settingtools/RhythmMakerExpression/RhythmMakerExpression
       tools/settingtools/RhythmMakerRhythmRegionCommand/RhythmMakerRhythmRegionCommand
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
@@ -460,6 +442,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
       tools/settingtools/StatalServer/StatalServer
+      tools/settingtools/StatalServerRequest/StatalServerRequest
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
       tools/settingtools/TimespanExpression/TimespanExpression
 

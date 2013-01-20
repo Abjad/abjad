@@ -80,7 +80,7 @@ class RhythmRegionCommand(RegionCommand):
 
     ### PUBLIC METHODS ###
 
-    # TODO: maybe implement finalize() methods on AbsoluteExpression, RhythmMakerRequest, etc.
+    # TODO: maybe implement finalize() methods on AbsoluteExpression, RhythmMakerExpression, etc.
     def finalize(self, score_specification, voice_name, start_offset, division_list):
         from experimental.tools import requesttools
         from experimental.tools import selectortools
@@ -93,7 +93,7 @@ class RhythmRegionCommand(RegionCommand):
             assert isinstance(parseable_string, str), repr(parseable_string)
             command = settingtools.ParseableStringRhythmRegionCommand(
                 parseable_string, voice_name, start_offset, division_list.duration)
-        elif isinstance(self.expression, requesttools.RhythmMakerRequest):
+        elif isinstance(self.expression, settingtools.RhythmMakerExpression):
             rhythm_maker = self.expression.payload
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             command = settingtools.RhythmMakerRhythmRegionCommand(

@@ -238,7 +238,7 @@ class ScoreSpecification(Specification):
                 )
             settingtools.MultipleContextSetting(
                 attribute='rhythm',
-                expression=requesttools.RhythmMakerRequest(
+                expression=settingtools.RhythmMakerExpression(
                     payload=rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
@@ -264,7 +264,7 @@ class ScoreSpecification(Specification):
             >>> for x in score_specification.rhythm_region_commands:
             ...     z(x)
             settingtools.RhythmRegionCommand(
-                expression=requesttools.RhythmMakerRequest(
+                expression=settingtools.RhythmMakerExpression(
                     payload=rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
@@ -389,7 +389,7 @@ class ScoreSpecification(Specification):
                 persist=True
                 )
             settingtools.SingleContextRhythmSetting(
-                expression=requesttools.RhythmMakerRequest(
+                expression=settingtools.RhythmMakerExpression(
                     payload=rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
@@ -612,7 +612,7 @@ class ScoreSpecification(Specification):
 
     def make_skip_token_rhythm_region_command(self, voice_name, timespan):
         return settingtools.RhythmRegionCommand(
-            requesttools.RhythmMakerRequest(library.skip_tokens),
+            settingtools.RhythmMakerExpression(library.skip_tokens),
             voice_name,
             timespan,
             fresh=True

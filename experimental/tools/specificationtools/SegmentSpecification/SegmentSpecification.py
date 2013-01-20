@@ -179,7 +179,7 @@ class SegmentSpecification(Specification):
                 persist=True
                 )
             settingtools.SingleContextRhythmSetting(
-                expression=requesttools.RhythmMakerRequest(
+                expression=settingtools.RhythmMakerExpression(
                     payload=rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,

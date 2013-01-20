@@ -1,48 +1,48 @@
-requesttools.RhythmMakerRequest
-===============================
+settingtools.RhythmMakerExpression
+==================================
 
-.. abjad-lineage:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest
+.. abjad-lineage:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression
 
-.. autoclass:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest
+.. autoclass:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression
    :noindex:
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.anchor
+.. autoattribute:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.anchor
    :noindex:
 
    Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
-.. autoattribute:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.callbacks
+.. autoattribute:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.callbacks
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. autoattribute:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.payload
+.. autoattribute:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.payload
    :noindex:
 
-.. autoattribute:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.score_specification
-   :noindex:
-
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
-
-.. autoattribute:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.start_offset
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
-.. autoattribute:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.start_segment_identifier
+.. autoattribute:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.score_specification
    :noindex:
 
    Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
-.. autoattribute:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.stop_offset
+.. autoattribute:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.start_offset
    :noindex:
 
    Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
-.. autoattribute:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.storage_format
+.. autoattribute:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.start_segment_identifier
+   :noindex:
+
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+
+.. autoattribute:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.storage_format
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -50,32 +50,32 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.partition_by_ratio
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.partition_by_ratio
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.partition_by_ratio_of_durations
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.partition_by_ratio_of_durations
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.reflect
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.reflect
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.repeat_to_duration
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.repeat_to_duration
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.repeat_to_length
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.repeat_to_length
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.rotate
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.rotate
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
@@ -83,57 +83,57 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.___and__
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.___and__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.___getitem__
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.___getitem__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__and__
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__and__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__eq__
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__eq__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__ge__
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__ge__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__getitem__
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__getitem__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__gt__
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__gt__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__le__
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__le__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__lt__
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__lt__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__ne__
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__ne__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.requesttools.RhythmMakerRequest.RhythmMakerRequest.RhythmMakerRequest.__repr__
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__repr__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

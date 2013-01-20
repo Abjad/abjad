@@ -38,7 +38,7 @@ class RhythmSettingLookup(SettingLookup):
         # TODO: the lack of symmtery between these two branches means either:
         #   that the call to self._apply_callbacks() is unnecessary, or
         #   that the call must appear in both branches.
-        if isinstance(source_command.expression, requesttools.RhythmMakerRequest):
+        if isinstance(source_command.expression, settingtools.RhythmMakerExpression):
             assert isinstance(source_command.expression.payload, rhythmmakertools.RhythmMaker)
             rhythm_maker = copy.deepcopy(source_command.expression.payload)
             rhythm_maker, start_offset = self._apply_callbacks(

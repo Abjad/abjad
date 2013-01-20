@@ -137,14 +137,14 @@
     Then AbsoluteExpression can inherit from Expression (without anchor).
     And FinalizedRhythmRegionCommand can inherit from Expression (without anchor), too.
     And ExpressionInventory can inherit from Expression (without anchor), too.
-    StatalServerRequest, RhythmMakerRequest, HandlerRequest all inherit without anchor, too.
+    StatalServerRequest, RhythmMakerExpression, HandlerRequest all inherit without anchor, too.
 
 27. The class that inherit from AnchoredExpression will be these:
         OffsetExpression
         TimespanExpression
         SettingLookup
         Selector
-    This implies a split between StatalServerRequest, RhythmMakerRequest, HandlerRequest (on
+    This implies a split between StatalServerRequest, RhythmMakerExpression, HandlerRequest (on
     the one hand) and SettingLookup (on the other). Will make sense to change
 
 28. Setting should inherit from AnchoredObject. But Setting should not inherit from Expression.
@@ -152,3 +152,7 @@
     But settings are definitely anchored because the setting anchor is the setting scope.
     So do we need an AnchoredObject class?
     Then Setting would inherit from AnchoredObject but not from Expression.
+
+29. Insist on 'callbacks' as a mandatory part of any Expression.
+    Use abc.abstractproperty.
+    Add callbacks to OffsetExpression.

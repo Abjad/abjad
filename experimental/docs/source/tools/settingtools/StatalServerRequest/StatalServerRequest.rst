@@ -1,48 +1,48 @@
-requesttools.StatalServerRequest
+settingtools.StatalServerRequest
 ================================
 
-.. abjad-lineage:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest
+.. abjad-lineage:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest
 
-.. autoclass:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest
+.. autoclass:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest
    :noindex:
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.anchor
+.. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.anchor
    :noindex:
 
    Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
-.. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.callbacks
+.. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.callbacks
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.score_specification
+.. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.score_specification
    :noindex:
 
    Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
-.. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.start_offset
+.. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.start_offset
    :noindex:
 
    Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
-.. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.start_segment_identifier
+.. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.start_segment_identifier
    :noindex:
 
    Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
-.. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.statal_server
+.. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.statal_server
    :noindex:
 
-.. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.stop_offset
+.. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.stop_offset
    :noindex:
 
    Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
-.. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.storage_format
+.. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.storage_format
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -50,32 +50,32 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.partition_by_ratio
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.partition_by_ratio
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.partition_by_ratio_of_durations
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.partition_by_ratio_of_durations
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.reflect
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.reflect
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.repeat_to_duration
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.repeat_to_duration
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.repeat_to_length
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.repeat_to_length
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.rotate
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.rotate
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
@@ -83,60 +83,60 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.___and__
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.___and__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.___getitem__
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.___getitem__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__and__
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__and__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__call__
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__call__
    :noindex:
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__eq__
-   :noindex:
-
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
-
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__ge__
-   :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__getitem__
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__eq__
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__gt__
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__ge__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__le__
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__getitem__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__gt__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__lt__
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__le__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__ne__
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__lt__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__repr__
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__ne__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__repr__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
