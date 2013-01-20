@@ -8,6 +8,7 @@ class SingleContextDivisionSetting(SingleContextSetting):
     ### INITIALIZER ###
 
     def __init__(self, expression=None, anchor=None, context_name=None, fresh=True, persist=True, truncate=None):
+        assert isinstance(truncate, (bool, type(None)))
         SingleContextSetting.__init__(self, attribute='divisions', expression=expression, 
             anchor=anchor, context_name=context_name, fresh=fresh, persist=persist)
         self._truncate = truncate

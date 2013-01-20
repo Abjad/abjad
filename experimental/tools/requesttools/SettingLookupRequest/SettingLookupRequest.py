@@ -1,9 +1,10 @@
 import abc
 from experimental.tools import settingtools
+from experimental.tools.settingtools.Expression import Expression
 from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class SettingLookupRequest(PayloadCallbackMixin):
+class SettingLookupRequest(Expression, PayloadCallbackMixin):
     r'''Setting lookup request.
 
     Look up `attribute` setting active at `offset` in `voice_name`.
@@ -30,6 +31,7 @@ class SettingLookupRequest(PayloadCallbackMixin):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
         assert isinstance(offset, settingtools.OffsetExpression)
+        Expression.__init__(self, anchor=offset)
         PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
         self._attribute = attribute
         self._voice_name = voice_name

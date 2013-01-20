@@ -136,3 +136,6 @@
 
 27. Rename timespan_callbacks to callbacks.
     Rename payload_callbacks to callbacks.
+
+28. Should Setting inherit from Expression?
+    Then hoist Setting.anchor to Expression.

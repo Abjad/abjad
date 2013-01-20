@@ -1,8 +1,8 @@
-import numbers
+from experimental.tools.settingtools.Expression import Expression
 from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class AbsoluteExpression(PayloadCallbackMixin):
+class AbsoluteExpression(Expression, PayloadCallbackMixin):
     r'''Absolute expression.
 
     ::
@@ -29,8 +29,9 @@ class AbsoluteExpression(PayloadCallbackMixin):
     ### INTIAILIZER ###
 
     def __init__(self, payload, payload_callbacks=None):
-        PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
         assert isinstance(payload, (str, tuple, list)), repr(payload)
+        Expression.__init__(self)
+        PayloadCallbackMixin.__init__(self, payload_callbacks=payload_callbacks)
         if isinstance(payload, list):
             payload = tuple(payload)
         self._payload = payload

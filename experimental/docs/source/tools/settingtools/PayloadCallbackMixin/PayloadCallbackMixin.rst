@@ -9,33 +9,8 @@ settingtools.PayloadCallbackMixin
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.anchor
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
 .. autoattribute:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.payload_callbacks
    :noindex:
-
-.. autoattribute:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.score_specification
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
-.. autoattribute:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.start_offset
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
-.. autoattribute:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.start_segment_identifier
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
-.. autoattribute:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.stop_offset
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
 .. autoattribute:: experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.storage_format
    :noindex:

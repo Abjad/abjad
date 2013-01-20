@@ -5,11 +5,11 @@ from abjad.tools import mathtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import sequencetools
 from abjad.tools import timespantools
+from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools.settingtools.AttributeNameEnumeration import AttributeNameEnumeration
-from experimental.tools.settingtools.Expression import Expression
 
 
-class PayloadCallbackMixin(Expression):
+class PayloadCallbackMixin(AbjadObject):
     r'''Payload callback mixin.
 
     Base class from which payload-carrying expressions inherit.
@@ -27,7 +27,6 @@ class PayloadCallbackMixin(Expression):
     def __init__(self, payload_callbacks=None):
         from experimental.tools import settingtools
         payload_callbacks = payload_callbacks or []
-        Expression.__init__(self)
         self._payload_callbacks = settingtools.CallbackInventory(payload_callbacks)
 
     ### SPECIAL METHODS ###
@@ -60,7 +59,7 @@ class PayloadCallbackMixin(Expression):
 
     @property
     def _keyword_argument_name_value_strings(self):
-        result = Expression._keyword_argument_name_value_strings.fget(self)
+        result = AbjadObject._keyword_argument_name_value_strings.fget(self)
         if 'payload_callbacks=CallbackInventory([])' in result:
             result = list(result)
             result.remove('payload_callbacks=CallbackInventory([])')
@@ -157,7 +156,7 @@ class PayloadCallbackMixin(Expression):
         '''Do not show empty payload_callbacks list.
         '''
         filtered_result = []
-        result = Expression._get_tools_package_qualified_keyword_argument_repr_pieces(
+        result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
             if not 'payload_callbacks=settingtools.CallbackInventory([])' in string:
