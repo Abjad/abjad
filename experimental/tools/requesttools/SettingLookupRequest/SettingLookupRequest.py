@@ -56,14 +56,6 @@ class SettingLookupRequest(Expression, PayloadCallbackMixin):
         return self._offset
 
     @property
-    def start_segment_identifier(self):
-        '''Delegate to ``self.offset.start_segment_identifier``.
-
-        Return string or none.
-        '''
-        return self.offset.start_segment_identifier
-
-    @property
     def voice_name(self):
         '''Setting lookup request voice name.
 

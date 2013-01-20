@@ -38,6 +38,8 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.start_segment_identifier
    :noindex:
 
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. autoattribute:: experimental.tools.requesttools.SettingLookupRequest.SettingLookupRequest.SettingLookupRequest.stop_offset
    :noindex:
 
