@@ -147,11 +147,6 @@ class PayloadCallbackMixin(AbjadObject):
             duration = durationtools.Duration(expr)
             return duration
 
-    # TODO: eventually insist on _evaluate() method
-    #@abc.abstractmethod
-    #def _evaluate(self, score_specification=None, voice_name=None):
-    #    pass
-
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty payload_callbacks list.
         '''

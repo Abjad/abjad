@@ -39,6 +39,10 @@ class Expression(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    @abc.abstractmethod
+    def _evaluate(self):
+        pass
+
     def _set_start_segment_identifier(self, segment_identifier):
         assert isinstance(segment_identifier, str)
         if isinstance(self.anchor, str):
