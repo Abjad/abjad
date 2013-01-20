@@ -364,6 +364,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/settingtools/Expression/Expression
       tools/settingtools/FinalizedRhythmRegionCommand/FinalizedRhythmRegionCommand
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
@@ -390,7 +391,6 @@ Unstable packages (load manually)
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
-      tools/settingtools/Expression/Expression
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MeasureRegionProduct/MeasureRegionProduct
@@ -422,6 +422,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/settingtools/Expression/Expression
       tools/settingtools/FinalizedRhythmRegionCommand/FinalizedRhythmRegionCommand
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
@@ -448,7 +449,6 @@ Unstable packages (load manually)
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
-      tools/settingtools/Expression/Expression
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MeasureRegionProduct/MeasureRegionProduct

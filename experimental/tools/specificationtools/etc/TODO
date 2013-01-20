@@ -119,20 +119,17 @@
         score_specification = settingtools.ScoreSpecificationInterface(score_template)
     ... so that composers only ever interact with interfaces.
 
-23. Consider creating an expressiontools package.
-
-24. Currently only TimespanExpression has a score_specification reference.
-    Probably all Expression classes need a score_specification reference.
-    In fact, probably a number of properties can migrate up from
-    concrete expression classes to the abstract Expression.
-    Also, Expression should be made abstract.
-
-25. Extend AbsoluteExpression with start_offset property for offset-positioning.
+23. Extend AbsoluteExpression with start_offset property for offset-positioning.
     This will create the idea of an offset-positioned expression.
     Then change PayloadCallbackMixin._apply_payload_callbacks(elements, start_offset)
     to PayloadCallbackMixin._apply_payload_callbacks(offset_positioned_expression).
+    But why not just use RegionProduct as offset-positioned expression?
 
-26. Implement _getitem() on all region products.
+24. Implement _getitem() on all region products.
     Change _getitem() output signature from (elements, start_offset) to just new_region_product.
     Implement complete set of payload callbacks on all region products.
     Set output signature of all region product payload callback methods to just a new_region_product.
+
+25. Consider creating an expressiontools package.
+
+26. Hoist properties up from the concrete expression classes to Expression.

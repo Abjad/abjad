@@ -1,3 +1,4 @@
+import abc
 import copy
 from abjad.tools.abctools import AbjadObject
 
@@ -6,14 +7,22 @@ class Expression(AbjadObject):
     '''Expression base class.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __metaclass__ = abc.ABCMeta
+
     ### INITIALIZER ###
 
+    @abc.abstractmethod
     def __init__(self):
+        self._anchor = None
         self._score_specification = None
 
     ### SPECIAL METHODS ###
 
     def __deepcopy__(self, memo):
+        '''Expression deepcopy preserves score specification.
+        '''
         result = type(self)(*self._input_argument_values)
         result._score_specification = self.score_specification
         return result
@@ -22,7 +31,7 @@ class Expression(AbjadObject):
 
     @property
     def _anchor_abbreviation(self):
-        '''Form of expression suitable for writing to disk.
+        '''Form of expression suitable for inclusion in storage format.
         '''
         return self
 
@@ -41,10 +50,31 @@ class Expression(AbjadObject):
 
     @property
     def anchor(self):
+        '''Expression anchor.
+
+        Every expression is anchored to something.
+
+        Expressions may be anchored to the entire score,
+        to a single segment, or to another expression.
+
+        This ability of an expression to be anchored
+        to another expression is primary source of
+        recursion in the model.
+
+        Return none when expression is anchored to the entire score.
+
+        Return string name of segment when expression is anchored to a single segment.
+
+        Return expression when expression is anchored to another expression.
+        '''
         return self._anchor
 
     @property
     def score_specification(self):
+        '''Expression score specification.
+
+        Return reference to score specification object.
+        '''
         return self._score_specification
 
     @property
@@ -62,9 +92,9 @@ class Expression(AbjadObject):
     def start_segment_identifier(self):
         '''Return anchor when anchor is a string.
 
-        Otherwise delegate to anchor start-segment identifier.
+        Otherwise return anchor start-segment identifier.
 
-        Return string or none.
+        Return string name of segment.
         '''
         if isinstance(self.anchor, str):
             return self.anchor
