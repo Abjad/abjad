@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__set_divisions_01():
-    '''Set divisions from time signature request.
+    '''Set divisions from time signature selector.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

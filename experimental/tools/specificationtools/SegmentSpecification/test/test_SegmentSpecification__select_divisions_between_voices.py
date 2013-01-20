@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__select_divisions_between_voices_01():
-    '''Division material request between voices.
+    '''Division selector between voices.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -22,7 +22,7 @@ def test_SegmentSpecification__select_divisions_between_voices_01():
 
 
 def test_SegmentSpecification__select_divisions_between_voices_02():
-    '''Division material request between voices with request-time reverse.
+    '''Division selector between voices with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -42,7 +42,7 @@ def test_SegmentSpecification__select_divisions_between_voices_02():
 
 
 def test_SegmentSpecification__select_divisions_between_voices_03():
-    '''Division material request between voices with set-time reverse.
+    '''Division selector between voices with set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -62,7 +62,7 @@ def test_SegmentSpecification__select_divisions_between_voices_03():
 
 
 def test_SegmentSpecification__select_divisions_between_voices_04():
-    '''Division material request between voices with both request- and set-time reverse.
+    '''Division selector between voices with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

@@ -19,11 +19,11 @@ class LookupMethodMixin(AbjadObject):
         r'''Look up voice ``1`` division command
         active at start of segment ``'red'``::
 
-            >>> request = red_segment.timespan.start_offset.look_up_division_setting('Voice 1')
+            >>> lookup = red_segment.timespan.start_offset.look_up_division_setting('Voice 1')
 
         ::
 
-            >>> z(request)
+            >>> z(lookup)
             settingtools.DivisionSettingLookup(
                 voice_name='Voice 1',
                 offset=settingtools.OffsetExpression(
@@ -33,7 +33,7 @@ class LookupMethodMixin(AbjadObject):
                     )
                 )
 
-        Return command request.        
+        Return setting lookup.        
         '''
         from experimental.tools import settingtools
         return settingtools.DivisionSettingLookup(voice, offset=self)
@@ -42,11 +42,11 @@ class LookupMethodMixin(AbjadObject):
         r'''PayloadCallbackMixin voice ``1`` rhythm command 
         active at start of segment ``'red'``::
 
-            >>> request = red_segment.timespan.start_offset.look_up_rhythm_setting('Voice 1')
+            >>> lookup = red_segment.timespan.start_offset.look_up_rhythm_setting('Voice 1')
 
         ::
 
-            >>> z(request)
+            >>> z(lookup)
             settingtools.RhythmSettingLookup(
                 voice_name='Voice 1',
                 offset=settingtools.OffsetExpression(
@@ -56,7 +56,7 @@ class LookupMethodMixin(AbjadObject):
                     )
                 )
 
-        Return command request.        
+        Return setting lookup.        
         '''
         from experimental.tools import settingtools
         return settingtools.RhythmSettingLookup(voice, offset=self)
@@ -65,11 +65,11 @@ class LookupMethodMixin(AbjadObject):
         r'''PayloadCallbackMixin voice ``1`` time signature command
         active at start of segment ``'red'``::
 
-            >>> request = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
+            >>> lookup = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
 
         ::
 
-            >>> z(request)
+            >>> z(lookup)
             settingtools.TimeSignatureSettingLookup(
                 voice_name='Voice 1',
                 offset=settingtools.OffsetExpression(
@@ -79,7 +79,7 @@ class LookupMethodMixin(AbjadObject):
                     )
                 )
 
-        Return command request.
+        Return setting lookup.
         '''
         from experimental.tools import settingtools
         return settingtools.TimeSignatureSettingLookup(voice, offset=self)

@@ -18,7 +18,6 @@ class Setting(AnchoredObject):
     # TODO: eventually remove 'truncate' in favor of SingleContextDivisionSetting.truncate
     @abc.abstractmethod
     def __init__(self, attribute=None, expression=None, anchor=None, fresh=True, persist=True, truncate=None):
-        from experimental.tools import requesttools
         from experimental.tools import settingtools
         from experimental.tools import settingtools
         assert isinstance(attribute, str)

@@ -21,7 +21,7 @@ def test_SegmentSpecification__look_up_time_signature_setting_from_past_01():
 
 
 def test_SegmentSpecification__look_up_time_signature_setting_from_past_02():
-    '''From-past time signature command reqeust with request-time reverse.
+    '''From-past time signature command reqeust with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -59,7 +59,7 @@ def test_SegmentSpecification__look_up_time_signature_setting_from_past_03():
 
 
 def test_SegmentSpecification__look_up_time_signature_setting_from_past_04():
-    '''From-past time signature command request with both request- and set-time reverse.
+    '''From-past time signature setting lookup with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

@@ -21,7 +21,6 @@ class RegionCommand(AbjadObject):
     ### INTIAILIZER ###
 
     def __init__(self, expression=None, context_name=None, timespan=None, fresh=None):
-        from experimental.tools import requesttools 
         from experimental.tools import settingtools 
         from experimental.tools import settingtools
         assert isinstance(expression, (settingtools.Expression)), repr(expression)

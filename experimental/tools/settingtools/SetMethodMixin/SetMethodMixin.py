@@ -26,7 +26,6 @@ class SetMethodMixin(AbjadObject):
     def _expr_to_expression(self, expr):
         from abjad.tools import rhythmmakertools
         from experimental.tools import handlertools
-        from experimental.tools import requesttools
         from experimental.tools import settingtools
         from experimental.tools import settingtools
         # probably precautionary: prune expr of any incoming references

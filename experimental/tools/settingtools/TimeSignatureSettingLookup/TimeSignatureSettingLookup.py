@@ -2,7 +2,7 @@ from experimental.tools.settingtools.SettingLookup import SettingLookup
 
 
 class TimeSignatureSettingLookup(SettingLookup):
-    '''Time signature command request.
+    '''Time signature setting lookup.
     '''
 
     ### INITIALIZER ###

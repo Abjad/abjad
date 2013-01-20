@@ -78,7 +78,7 @@ def test_single_segment_solo__overlapping_rhythm_selectors_04():
 
 
 def test_single_segment_solo__overlapping_rhythm_selectors_05():
-    '''With rhythm material request.
+    '''With rhythm selector.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

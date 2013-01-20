@@ -49,7 +49,7 @@ class PayloadCallbackMixin(AbjadObject):
         return self._keyword_argument_values == expr._keyword_argument_values
 
     def __getitem__(self, expr):
-        '''Return copy of request with appended callback.
+        '''Return copy of expression with appended callback.
         '''
         callback = 'result = self.___getitem__(elements, start_offset, {!r})'
         callback = callback.format(expr)
@@ -252,7 +252,7 @@ class PayloadCallbackMixin(AbjadObject):
     ### PUBLIC METHODS ###
 
     def partition_by_ratio(self, ratio):
-        '''Return tuple of newly constructed requests with callbacks appended.
+        '''Return tuple of newly constructed expressions with callbacks appended.
         '''
         result = []
         ratio = mathtools.Ratio(ratio)
@@ -274,27 +274,27 @@ class PayloadCallbackMixin(AbjadObject):
         return tuple(result)
 
     def reflect(self):
-        '''Return copy of request with appended callback.
+        '''Return copy of expression with appended callback.
         '''
         callback = 'result = self._reflect(elements, start_offset)'
         return self._copy_and_append_callback(callback)
 
     def repeat_to_duration(self, duration):
-        '''Return copy of request with appended callback.
+        '''Return copy of expression with appended callback.
         '''
         duration = durationtools.Duration(duration)
         callback = 'result = self._repeat_to_duration(elements, {!r}, start_offset)'.format(duration)
         return self._copy_and_append_callback(callback)
 
     def repeat_to_length(self, length):
-        '''Return copy of request with appended callback.
+        '''Return copy of expression with appended callback.
         '''
         assert mathtools.is_nonnegative_integer(length)
         callback = 'result = self._repeat_to_length(elements, {!r}, start_offset)'.format(length)
         return self._copy_and_append_callback(callback)
 
     def rotate(self, index):
-        '''Return copy of request with appended callback.
+        '''Return copy of expression with appended callback.
         '''
         from experimental.tools import settingtools
         assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))

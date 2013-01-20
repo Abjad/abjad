@@ -156,3 +156,7 @@
 29. Insist on 'callbacks' as a mandatory part of any Expression.
     Use abc.abstractproperty.
     Add callbacks to OffsetExpression.
+
+30. Remove the word 'requested' from the codebase.
+
+31. Remove 'from abjad import *' in favor of 'from experimental import *' in all test files.

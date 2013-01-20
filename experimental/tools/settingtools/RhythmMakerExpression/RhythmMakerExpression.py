@@ -4,7 +4,7 @@ from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallback
 
 
 class RhythmMakerExpression(Expression, PayloadCallbackMixin):
-    r'''Rhythm-maker request.
+    r'''Rhythm-maker expression.
 
     Create behind-the-scenes at setting-time.
     '''

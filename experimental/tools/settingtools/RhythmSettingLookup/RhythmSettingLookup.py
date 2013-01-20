@@ -6,7 +6,7 @@ from experimental.tools.settingtools.SettingLookup import SettingLookup
 
 
 class RhythmSettingLookup(SettingLookup):
-    '''Rhythm setting lookup request.
+    '''Rhythm setting lookup.
     '''
 
     ### INITIALIZER ###
@@ -18,7 +18,6 @@ class RhythmSettingLookup(SettingLookup):
     ### PUBLIC METHODS ###
 
     def _evaluate(self, score_specification, voice_name=None):
-        from experimental.tools import requesttools
         from experimental.tools import settingtools
         # ignore voice_name input parameter
         voice_name = None

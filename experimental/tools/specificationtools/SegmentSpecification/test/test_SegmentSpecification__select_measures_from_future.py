@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__select_measures_from_future_01():
-    '''From-future time signature material request.
+    '''From-future time signature selector.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -23,7 +23,7 @@ def test_SegmentSpecification__select_measures_from_future_01():
 
 
 def test_SegmentSpecification__select_measures_from_future_02():
-    '''From-future time signature request with request-time reverse.
+    '''From-future time signature selector with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -44,7 +44,7 @@ def test_SegmentSpecification__select_measures_from_future_02():
 
 
 def test_SegmentSpecification__select_measures_from_future_03():
-    '''From-future time signature material request with set-time reverse.
+    '''From-future time signature selector with set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -65,7 +65,7 @@ def test_SegmentSpecification__select_measures_from_future_03():
 
 
 def test_SegmentSpecification__select_measures_from_future_04():
-    '''From-future time signature material request with both request- and set-time reverse.
+    '''From-future time signature selector with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

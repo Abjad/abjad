@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__select_measures_from_past_01():
-    '''From-past time signature material request.
+    '''From-past time signature selector.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -23,7 +23,7 @@ def test_SegmentSpecification__select_measures_from_past_01():
 
 
 def test_SegmentSpecification__select_measures_from_past_02():
-    '''From-past time signature material request with smaller set-time count.
+    '''From-past time signature selector with smaller set-time count.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -43,7 +43,7 @@ def test_SegmentSpecification__select_measures_from_past_02():
 
 
 def test_SegmentSpecification__select_measures_from_past_03():
-    '''From-past time signature material request with larger set-time count.
+    '''From-past time signature selector with larger set-time count.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -63,7 +63,7 @@ def test_SegmentSpecification__select_measures_from_past_03():
 
 
 def test_SegmentSpecification__select_measures_from_past_04():
-    '''From-past time signature material request with slicing.
+    '''From-past time signature selector with slicing.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -83,7 +83,7 @@ def test_SegmentSpecification__select_measures_from_past_04():
 
 
 def test_SegmentSpecification__select_measures_from_past_05():
-    '''From-past time signature material request with set-time index and count.
+    '''From-past time signature selector with set-time index and count.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -105,7 +105,7 @@ def test_SegmentSpecification__select_measures_from_past_05():
 
 
 def test_SegmentSpecification__select_measures_from_past_06():
-    '''From-past time signature material request with set-time reverse.
+    '''From-past time signature selector with set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -126,7 +126,7 @@ def test_SegmentSpecification__select_measures_from_past_06():
 
 
 def test_SegmentSpecification__select_measures_from_past_07():
-    '''From-past time signature material request with request-time reverse.
+    '''From-past time signature selector with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -147,7 +147,7 @@ def test_SegmentSpecification__select_measures_from_past_07():
 
 
 def test_SegmentSpecification__select_measures_from_past_08():
-    '''From-past time signature material request with both request- and set-time reverse.
+    '''From-past time signature selector with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

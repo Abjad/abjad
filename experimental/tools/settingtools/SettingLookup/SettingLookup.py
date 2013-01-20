@@ -4,17 +4,17 @@ from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallback
 
 
 class SettingLookup(Expression, PayloadCallbackMixin):
-    r'''Setting lookup request.
+    r'''Setting lookup.
 
     Look up `attribute` setting active at `offset` in `voice_name`.
 
     Setting is assumed to resolve to a list or other iterable payload.
 
-    Because of this setting lookup requests afford payload callbacks.
+    Because of this setting lookups afford payload callbacks.
 
-    Composers create concrete setting lookup request classes during specification.
+    Composers create concrete setting lookup classes during specification.
 
-    Composers create concrete setting lookup request classes with lookup methods.
+    Composers create concrete setting lookup classes with lookup methods.
 
     All lookup methods implement against ``OffsetExpression``.
     '''
@@ -41,7 +41,7 @@ class SettingLookup(Expression, PayloadCallbackMixin):
 
     @property
     def attribute(self):
-        '''Setting lookup request attribute.
+        '''Setting lookup attribute.
 
         Return string.
         '''
@@ -49,7 +49,7 @@ class SettingLookup(Expression, PayloadCallbackMixin):
 
     @property
     def offset(self):
-        '''Setting lookup request offset.
+        '''Setting lookup offset.
 
         Return offset expression.
         '''
@@ -57,7 +57,7 @@ class SettingLookup(Expression, PayloadCallbackMixin):
 
     @property
     def voice_name(self):
-        '''Setting lookup request voice name.
+        '''Setting lookup voice name.
 
         Return string.
         '''

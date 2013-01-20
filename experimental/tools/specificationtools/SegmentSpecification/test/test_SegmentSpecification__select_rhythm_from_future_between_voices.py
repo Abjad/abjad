@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__select_rhythm_from_future_between_voices_01():
-    '''From-future rhythm material request between voices.
+    '''From-future rhythm selector between voices.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -25,7 +25,7 @@ def test_SegmentSpecification__select_rhythm_from_future_between_voices_01():
 
 
 def test_SegmentSpecification__select_rhythm_from_future_between_voices_02():
-    '''From-future rhythm material request between voices with request-time reverse.
+    '''From-future rhythm selector between voices with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -48,7 +48,7 @@ def test_SegmentSpecification__select_rhythm_from_future_between_voices_02():
 
 
 def test_SegmentSpecification__select_rhythm_from_future_between_voices_03():
-    '''From-future rhythm material request between voices with set-time reverse.
+    '''From-future rhythm selector between voices with set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -71,7 +71,7 @@ def test_SegmentSpecification__select_rhythm_from_future_between_voices_03():
 
 
 def test_SegmentSpecification__select_rhythm_from_future_between_voices_04():
-    '''From-future rhythm material request between voices with both request- and set-time reverse.
+    '''From-future rhythm selector between voices with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

@@ -4,7 +4,7 @@ from experimental.tools.settingtools.SettingLookup import SettingLookup
 
 
 class DivisionSettingLookup(SettingLookup):
-    '''Division setting lookup request.
+    '''Division setting lookup.
 
     Example. Look up division setting active at start of measure 4 in ``'Voice 1'``::
 
@@ -34,9 +34,9 @@ class DivisionSettingLookup(SettingLookup):
                 )
             )
 
-    Composers create division setting lookup requests during specification time.
+    Composers create division setting lookups during specification time.
 
-    Composers create division setting lookup requests through a method
+    Composers create division setting lookups through a method
     implemented on ``OffsetExpression``.
     '''
 

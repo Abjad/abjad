@@ -1,7 +1,6 @@
 import re
 from abjad.tools import *
 from experimental.tools import library
-from experimental.tools import requesttools
 from experimental.tools import settingtools
 from experimental.tools.specificationtools.Specification import Specification
 

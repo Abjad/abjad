@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__look_up_division_setting_from_past_between_voices_01():
-    '''From-past division command request between voices.
+    '''From-past division setting lookup between voices.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -25,7 +25,7 @@ def test_SegmentSpecification__look_up_division_setting_from_past_between_voices
 
 
 def test_SegmentSpecification__look_up_division_setting_from_past_between_voices_02():
-    '''From-past division command request between voices with request-time reverse.
+    '''From-past division setting lookup between voices with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -48,7 +48,7 @@ def test_SegmentSpecification__look_up_division_setting_from_past_between_voices
 
 
 def test_SegmentSpecification__look_up_division_setting_from_past_between_voices_03():
-    '''From-past division command request between voices with set-time reverse.
+    '''From-past division setting lookup between voices with set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -71,7 +71,7 @@ def test_SegmentSpecification__look_up_division_setting_from_past_between_voices
 
 
 def test_SegmentSpecification__look_up_division_setting_from_past_between_voices_04():
-    '''From-past division command request between voices with request- and set-time reverse.
+    '''From-past division setting lookup between voices with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
