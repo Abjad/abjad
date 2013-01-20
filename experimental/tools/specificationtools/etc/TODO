@@ -120,33 +120,21 @@
     ... so that composers only ever interact with interfaces.
 
 23. Extend AbsoluteExpression with start_offset property for offset-positioning.
-    This will create the idea of an offset-positioned expression.
+    This will create the idea of a start-positioned expression.
     Then change PayloadCallbackMixin._apply_callbacks(elements, start_offset)
-    to PayloadCallbackMixin._apply_callbacks(offset_positioned_expression).
-    But why not just use RegionProduct as offset-positioned expression?
+    to PayloadCallbackMixin._apply_callbacks(start_positioned_expression).
+    Why not just use RegionProduct as start-positioned expression?
+    Because there's a difference between a (not-yet-evaluated) expression
+    and an (already evaluated) RegionProduct.
+    At any rate it makes sense to change 
+    PayloadCallbackMixin._apply_callbacks(elements, start_offset) to
+    PayloadCallbackMixin._apply_callbacks(expr, start_offset) in the meantime.
 
 24. Implement _getitem() on all region products.
     Change _getitem() output signature from (elements, start_offset) to just new_region_product.
     Implement complete set of payload callbacks on all region products.
     Set output signature of all region product payload callback methods to just a new_region_product.
 
-25. Hoist properties up from the concrete expression classes to Expression.
+25. Remove the word 'requested' from the codebase.
 
-26. Maybe add AnchoredExpression to Expression with 'anchor' property.
-    AnchoredExpression will inherit from AnchoredObject.
-    Then AbsoluteExpression can inherit from Expression (without anchor).
-    And FinalizedRhythmRegionCommand can inherit from Expression (without anchor), too.
-    And ExpressionInventory can inherit from Expression (without anchor), too.
-    StatalServerRequest, RhythmMakerExpression, HandlerRequest all inherit without anchor, too.
-
-27. The class that inherit from AnchoredExpression will be these:
-        OffsetExpression
-        TimespanExpression
-        SettingLookup
-        Selector
-    This implies a split between StatalServerRequest, RhythmMakerExpression, HandlerRequest (on
-    the one hand) and SettingLookup (on the other). Will make sense to change
-
-28. Remove the word 'requested' from the codebase.
-
-29. Remove 'from abjad import *' in favor of 'from experimental import *' in all test files.
+26. Remove 'from abjad import *' in favor of 'from experimental import *' in all test files.

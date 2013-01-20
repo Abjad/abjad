@@ -9,6 +9,16 @@ settingtools.FinalizedRhythmRegionCommand
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.settingtools.FinalizedRhythmRegionCommand.FinalizedRhythmRegionCommand.FinalizedRhythmRegionCommand.start_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
+.. autoattribute:: experimental.tools.settingtools.FinalizedRhythmRegionCommand.FinalizedRhythmRegionCommand.FinalizedRhythmRegionCommand.stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. autoattribute:: experimental.tools.settingtools.FinalizedRhythmRegionCommand.FinalizedRhythmRegionCommand.FinalizedRhythmRegionCommand.storage_format
    :noindex:
 

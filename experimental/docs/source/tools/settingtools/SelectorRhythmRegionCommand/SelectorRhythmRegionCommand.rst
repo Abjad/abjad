@@ -15,6 +15,11 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.SelectorRhythmRegionCommand.SelectorRhythmRegionCommand.SelectorRhythmRegionCommand.start_offset
    :noindex:
 
+.. autoattribute:: experimental.tools.settingtools.SelectorRhythmRegionCommand.SelectorRhythmRegionCommand.SelectorRhythmRegionCommand.stop_offset
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. autoattribute:: experimental.tools.settingtools.SelectorRhythmRegionCommand.SelectorRhythmRegionCommand.SelectorRhythmRegionCommand.storage_format
    :noindex:
 

@@ -1,10 +1,8 @@
 import abc
 import copy
-#from experimental.tools.settingtools.AnchoredObject import AnchoredObject
 from abjad.tools.abctools import AbjadObject
 
 
-#class Expression(AnchoredObject):
 class Expression(AbjadObject):
     '''Expression base class.
     '''

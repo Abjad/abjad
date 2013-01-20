@@ -1,7 +1,7 @@
-from abjad.tools.abctools import AbjadObject
+from experimental.tools.settingtools.Expression import Expression
 
 
-class FinalizedRhythmRegionCommand(AbjadObject):
+class FinalizedRhythmRegionCommand(Expression):
     '''Finalized rhythm region command.
     '''
 
