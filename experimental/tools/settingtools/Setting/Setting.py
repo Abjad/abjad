@@ -58,6 +58,14 @@ class Setting(AnchoredObject):
         return self._attribute
 
     @property
+    def expression(self):
+        '''Setting expression.
+
+        Return expression.
+        '''
+        return self._expression
+
+    @property
     def fresh(self):
         '''True when setting results from explicit composer command.
         Otherwise false.
@@ -73,14 +81,6 @@ class Setting(AnchoredObject):
         Return boolean.
         '''
         return self._persist
-
-    @property
-    def expression(self):
-        '''Setting expression.
-
-        Return expression.
-        '''
-        return self._expression
 
     @property
     def truncate(self):

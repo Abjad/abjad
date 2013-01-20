@@ -52,19 +52,6 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
     ### READ-ONLY PROPERTIES ###
 
     @property
-    def payload(self):
-        '''Absolute expression payload:
-
-        ::
-
-            >>> expression.payload
-            ((4, 16), (2, 16))
-
-        Return tuple or string.
-        '''
-        return self._payload
-
-    @property
     def callbacks(self):
         '''Absolute expression callbacks:
 
@@ -76,6 +63,19 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
         Return callback inventory.
         '''
         return PayloadCallbackMixin.callbacks.fget(self)
+
+    @property
+    def payload(self):
+        '''Absolute expression payload:
+
+        ::
+
+            >>> expression.payload
+            ((4, 16), (2, 16))
+
+        Return tuple or string.
+        '''
+        return self._payload
 
     @property
     def storage_format(self):

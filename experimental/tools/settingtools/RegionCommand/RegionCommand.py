@@ -101,6 +101,14 @@ class RegionCommand(AbjadObject):
         return self._context_name
 
     @property
+    def expression(self):
+        '''Region command expression.
+        
+        Return expression.
+        ''' 
+        return self._expression
+
+    @property
     def fresh(self):
         '''True when region command was generated in response 
         to an explicit user command. Otherwise false.
@@ -108,14 +116,6 @@ class RegionCommand(AbjadObject):
         Return boolean.
         '''
         return self._fresh
-
-    @property
-    def expression(self):
-        '''Region command expression.
-        
-        Return expression.
-        ''' 
-        return self._expression
 
     @property
     def start_offset(self):
