@@ -1,5 +1,3 @@
-from abjad.tools import durationtools
-from abjad.tools import timespantools
 from experimental.tools.settingtools.Expression import Expression
 from experimental.tools.settingtools.LookupMethodMixin import LookupMethodMixin
 
@@ -34,7 +32,9 @@ class OffsetExpression(Expression, LookupMethodMixin):
             edge=Right
             )
 
-    Symbolic offsets are immutable.
+    Offset expressions implement the lookup interface.
+
+    Offset expressions are immutable.
     '''
 
     ### INITIALIZER ###
@@ -80,7 +80,9 @@ class OffsetExpression(Expression, LookupMethodMixin):
 
     @property
     def edge(self):
-        '''Symbolic offset edge indicator specified by user.
+        '''Offset expression edge:
+
+        ::
         
             >>> offset.edge
             Right
@@ -90,20 +92,3 @@ class OffsetExpression(Expression, LookupMethodMixin):
         Return boolean or none.
         '''
         return self._edge
-
-    # TODO: hoist to Expression
-    @property
-    def start_segment_identifier(self):
-        '''Symbolic offset start segment identifier.
-
-            >>> offset.start_segment_identifier
-            'red'
-
-        Delegate to ``self.anchor.start_segment_identifier``.
-
-        Return string or none.
-        '''
-        if isinstance(self.anchor, str):
-            return self.anchor
-        else:
-            return self.anchor.start_segment_identifier

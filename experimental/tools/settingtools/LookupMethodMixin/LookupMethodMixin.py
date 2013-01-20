@@ -1,9 +1,6 @@
-import abc
-#from experimental.tools.settingtools.Expression import Expression
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-#class LookupMethodMixin(Expression):
 class LookupMethodMixin(AbjadObject):
     '''Lookup method mixin.
 
@@ -13,19 +10,9 @@ class LookupMethodMixin(AbjadObject):
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
-    Base class.
+    Add to classes that should implement the lookup interface.
     '''
     
-#    ### CLASS ATTRIBUTES ###
-#
-#    __metaclass__ = abc.ABCMeta
-#
-#    ### INITIALIZER ###
-#
-#    @abc.abstractmethod
-#    def __init__(self, anchor=None):
-#        Expression.__init__(self, anchor=anchor)
-
     ### PUBLIC METHODS ###
 
     def look_up_division_setting(self, voice):
