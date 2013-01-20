@@ -9,23 +9,8 @@ settingtools.Expression
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.settingtools.Expression.Expression.Expression.anchor
-   :noindex:
-
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
-
-.. autoattribute:: experimental.tools.settingtools.Expression.Expression.Expression.score_specification
-   :noindex:
-
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
-
 .. autoattribute:: experimental.tools.settingtools.Expression.Expression.Expression.start_offset
    :noindex:
-
-.. autoattribute:: experimental.tools.settingtools.Expression.Expression.Expression.start_segment_identifier
-   :noindex:
-
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.Expression.Expression.Expression.stop_offset
    :noindex:

@@ -9,11 +9,6 @@ settingtools.HandlerRequest
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.anchor
-   :noindex:
-
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
-
 .. autoattribute:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.callbacks
    :noindex:
 
@@ -22,20 +17,10 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.handler
    :noindex:
 
-.. autoattribute:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.score_specification
-   :noindex:
-
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
-
 .. autoattribute:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.start_offset
    :noindex:
 
    Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
-.. autoattribute:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.start_segment_identifier
-   :noindex:
-
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.stop_offset
    :noindex:

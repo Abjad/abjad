@@ -1,8 +1,8 @@
-from experimental.tools.settingtools.Expression import Expression
+from experimental.tools.settingtools.AnchoredExpression import AnchoredExpression
 from experimental.tools.settingtools.LookupMethodMixin import LookupMethodMixin
 
 
-class OffsetExpression(Expression, LookupMethodMixin):
+class OffsetExpression(AnchoredExpression, LookupMethodMixin):
     r'''Offset expression.
 
     ::
@@ -42,7 +42,7 @@ class OffsetExpression(Expression, LookupMethodMixin):
     # TODO: initialize with callback inventory
     def __init__(self, anchor=None, edge=None):
         assert edge in (Left, Right, None), repr(edge)
-        Expression.__init__(self, anchor=anchor)
+        AnchoredExpression.__init__(self, anchor=anchor)
         self._edge = edge
 
     ### SPECIAL METHODS ###

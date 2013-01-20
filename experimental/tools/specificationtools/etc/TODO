@@ -147,12 +147,6 @@
     This implies a split between StatalServerRequest, RhythmMakerExpression, HandlerRequest (on
     the one hand) and SettingLookup (on the other). Will make sense to change
 
-28. Setting should inherit from AnchoredObject. But Setting should not inherit from Expression.
-    Why? Because settings model exec() rather than eval().
-    But settings are definitely anchored because the setting anchor is the setting scope.
-    So do we need an AnchoredObject class?
-    Then Setting would inherit from AnchoredObject but not from Expression.
+28. Remove the word 'requested' from the codebase.
 
-29. Remove the word 'requested' from the codebase.
-
-30. Remove 'from abjad import *' in favor of 'from experimental import *' in all test files.
+29. Remove 'from abjad import *' in favor of 'from experimental import *' in all test files.

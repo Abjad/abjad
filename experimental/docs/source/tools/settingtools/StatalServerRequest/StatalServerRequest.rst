@@ -9,30 +9,15 @@ settingtools.StatalServerRequest
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.anchor
-   :noindex:
-
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
-
 .. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.callbacks
    :noindex:
 
    Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
 
-.. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.score_specification
-   :noindex:
-
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
-
 .. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.start_offset
    :noindex:
 
    Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
-.. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.start_segment_identifier
-   :noindex:
-
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.statal_server
    :noindex:

@@ -1,25 +1,17 @@
 import abc
 import copy
-from experimental.tools.settingtools.AnchoredObject import AnchoredObject
+#from experimental.tools.settingtools.AnchoredObject import AnchoredObject
+from abjad.tools.abctools import AbjadObject
 
 
-class Expression(AnchoredObject):
+#class Expression(AnchoredObject):
+class Expression(AbjadObject):
     '''Expression base class.
     '''
 
     ### CLASS ATTRIBUTES ###
 
     __metaclass__ = abc.ABCMeta
-
-    ### SPECIAL METHODS ###
-
-    # TODO: maybe move to AnchoredObject
-    def __deepcopy__(self, memo):
-        '''Expression deepcopy preserves score specification.
-        '''
-        result = type(self)(*self._input_argument_values)
-        result._score_specification = self.score_specification
-        return result
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

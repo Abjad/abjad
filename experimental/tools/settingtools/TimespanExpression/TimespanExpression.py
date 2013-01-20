@@ -1,10 +1,10 @@
-from experimental.tools.settingtools.Expression import Expression
+from experimental.tools.settingtools.AnchoredExpression import AnchoredExpression
 from experimental.tools.settingtools.SetMethodMixin import SetMethodMixin
 from experimental.tools.settingtools.SelectMethodMixin import SelectMethodMixin
 from experimental.tools.settingtools.TimespanCallbackMixin import TimespanCallbackMixin
 
 
-class TimespanExpression(Expression, TimespanCallbackMixin, SelectMethodMixin, SetMethodMixin):
+class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethodMixin, SetMethodMixin):
     r'''Timespan expression.
 
     ::
@@ -23,7 +23,7 @@ class TimespanExpression(Expression, TimespanCallbackMixin, SelectMethodMixin, S
 
     def __init__(self, anchor=None, callbacks=None):
         from experimental.tools import settingtools
-        Expression.__init__(self, anchor=anchor)
+        AnchoredExpression.__init__(self, anchor=anchor)
         TimespanCallbackMixin.__init__(self)
         callbacks = callbacks or []
         self._callbacks = settingtools.CallbackInventory(callbacks)
@@ -54,7 +54,7 @@ class TimespanExpression(Expression, TimespanCallbackMixin, SelectMethodMixin, S
 
     @property
     def _keyword_argument_name_value_strings(self):
-        result = Expression._keyword_argument_name_value_strings.fget(self)
+        result = AnchoredExpression._keyword_argument_name_value_strings.fget(self)
         if 'callbacks=CallbackInventory([])' in result:
             result = list(result)
             result.remove('callbacks=CallbackInventory([])')
@@ -76,7 +76,7 @@ class TimespanExpression(Expression, TimespanCallbackMixin, SelectMethodMixin, S
         '''Do not show empty callback inventory.
         '''
         filtered_result = []
-        result = Expression._get_tools_package_qualified_keyword_argument_repr_pieces(
+        result = AnchoredExpression._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
             if not 'callbacks=settingtools.CallbackInventory([])' in string:
