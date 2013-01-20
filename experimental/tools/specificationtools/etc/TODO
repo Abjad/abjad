@@ -132,5 +132,24 @@
 
 25. Hoist properties up from the concrete expression classes to Expression.
 
-26. Should Setting inherit from Expression?
-    Then hoist Setting.anchor to Expression.
+26. Maybe add AnchoredExpression to Expression with 'anchor' property.
+    AnchoredExpression will inherit from AnchoredObject.
+    Then AbsoluteExpression can inherit from Expression (without anchor).
+    And FinalizedRhythmRegionCommand can inherit from Expression (without anchor), too.
+    And ExpressionInventory can inherit from Expression (without anchor), too.
+    StatalServerRequest, RhythmMakerRequest, HandlerRequest all inherit without anchor, too.
+
+27. The class that inherit from AnchoredExpression will be these:
+        OffsetExpression
+        TimespanExpression
+        SettingLookupRequest (SettingLookup)
+        Selector
+    This implies a split between StatalServerRequest, RhythmMakerRequest, HandlerRequest (on
+    the one hand) and SettingLookupRequest (on the other). Will make sense to change
+    SettingLookupRequest to SettingLookup.
+
+28. Setting should inherit from AnchoredObject. But Setting should not inherit from Expression.
+    Why? Because settings model exec() rather than eval().
+    But settings are definitely anchored because the setting anchor is the setting scope.
+    So do we need an AnchoredObject class?
+    Then Setting would inherit from AnchoredObject but not from Expression.
