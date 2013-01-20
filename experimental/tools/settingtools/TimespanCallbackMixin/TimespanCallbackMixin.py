@@ -6,10 +6,12 @@ from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import notetools
 from abjad.tools import timespantools
-from experimental.tools.settingtools.Expression import Expression
+#from experimental.tools.settingtools.Expression import Expression
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class TimespanCallbackMixin(Expression):
+#class TimespanCallbackMixin(Expression):
+class TimespanCallbackMixin(AbjadObject):
     '''Timespan callback mixin.
 
     ::

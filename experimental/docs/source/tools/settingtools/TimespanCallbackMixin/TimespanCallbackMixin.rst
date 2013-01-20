@@ -9,31 +9,6 @@ settingtools.TimespanCallbackMixin
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.anchor
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
-.. autoattribute:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.score_specification
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
-.. autoattribute:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.start_offset
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
-.. autoattribute:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.start_segment_identifier
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
-.. autoattribute:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.stop_offset
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
 .. autoattribute:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.storage_format
    :noindex:
 

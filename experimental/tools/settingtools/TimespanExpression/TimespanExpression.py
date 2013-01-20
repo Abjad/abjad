@@ -1,9 +1,10 @@
+from experimental.tools.settingtools.Expression import Expression
 from experimental.tools.settingtools.SetMethodMixin import SetMethodMixin
 from experimental.tools.settingtools.SelectMethodMixin import SelectMethodMixin
 from experimental.tools.settingtools.TimespanCallbackMixin import TimespanCallbackMixin
 
 
-class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixin):
+class TimespanExpression(Expression, TimespanCallbackMixin, SelectMethodMixin, SetMethodMixin):
     r'''Timespan expression.
 
     ::
@@ -22,9 +23,8 @@ class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixi
 
     def __init__(self, anchor=None, timespan_callbacks=None):
         from experimental.tools import settingtools
+        Expression.__init__(self, anchor=anchor)
         TimespanCallbackMixin.__init__(self)
-        assert isinstance(anchor, (settingtools.Expression, str, type(None))), repr(anchor)
-        self._anchor = anchor
         timespan_callbacks = timespan_callbacks or []
         self._timespan_callbacks = settingtools.CallbackInventory(timespan_callbacks)
 
@@ -54,7 +54,7 @@ class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixi
 
     @property
     def _keyword_argument_name_value_strings(self):
-        result = TimespanCallbackMixin._keyword_argument_name_value_strings.fget(self)
+        result = Expression._keyword_argument_name_value_strings.fget(self)
         if 'timespan_callbacks=CallbackInventory([])' in result:
             result = list(result)
             result.remove('timespan_callbacks=CallbackInventory([])')
@@ -76,7 +76,7 @@ class TimespanExpression(TimespanCallbackMixin, SelectMethodMixin, SetMethodMixi
         '''Do not show empty callback inventory.
         '''
         filtered_result = []
-        result = TimespanCallbackMixin._get_tools_package_qualified_keyword_argument_repr_pieces(
+        result = Expression._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
             if not 'timespan_callbacks=settingtools.CallbackInventory([])' in string:
