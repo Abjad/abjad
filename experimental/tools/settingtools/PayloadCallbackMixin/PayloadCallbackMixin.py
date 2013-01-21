@@ -139,14 +139,7 @@ class PayloadCallbackMixin(CallbackMixin):
             selected_part = parts[part]
             return selected_part, selected_part.start_offset
         else:
-            def duration_helper(x):
-                if hasattr(x, 'prolated_duration'):
-                    return x.prolated_duration
-                elif hasattr(x, 'duration'):
-                    return x.duration
-                else:
-                    return durationtools.Duration(x)
-            element_durations = [duration_helper(x) for x in expr]
+            element_durations = [self._duration_helper(x) for x in expr]
             element_tokens = durationtools.durations_to_integers(element_durations)
             token_parts = sequencetools.partition_sequence_by_ratio_of_weights(element_tokens, ratio)
             part_lengths = [len(x) for x in token_parts]
