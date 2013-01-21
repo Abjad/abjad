@@ -1,8 +1,9 @@
 from experimental.tools.settingtools.AbsoluteExpression import AbsoluteExpression
 from experimental.tools.settingtools.StartPositionedObject import StartPositionedObject
+from experimental.tools.settingtools.StartPositionedPayloadCallbackMixin import StartPositionedPayloadCallbackMixin
 
 
-class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObject):
+class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObject, StartPositionedPayloadCallbackMixin):
     '''Start-positioned absolute expression.
 
         >>> expression = settingtools.StartPositionedAbsoluteExpression(
@@ -19,7 +20,7 @@ class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObjec
             ((4, 16), (2, 16)),
             start_offset=durationtools.Offset(5, 1),
             callbacks=settingtools.CallbackInventory([
-                'result = self._repeat_to_length(expr, 6)'
+                'result = self._repeat_to_length(expr, 6, start_offset)'
                 ])
             )
 
@@ -30,8 +31,23 @@ class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObjec
     ### INITIALIZER ###
 
     def __init__(self, payload, start_offset=None, callbacks=None):
-        AbsoluteExpression.__init__(self, payload=payload, callbacks=callbacks)
+        AbsoluteExpression.__init__(self, payload=payload)
         StartPositionedObject.__init__(self, start_offset=start_offset)
+        StartPositionedPayloadCallbackMixin.__init__(self, callbacks=callbacks)
+
+    ### PRIVATE METHODS ###
+
+    def _evaluate(self, score_specification=None, voice_name=None):
+        from experimental.tools import settingtools
+        # ignore voice_name input parameter
+        voice_name = None
+        if isinstance(self.payload, (str, tuple)):
+            result = self.payload
+        else:
+            raise TypeError(self.payload)
+        # TODO: eventually change to result = self._apply_callbacks(result)
+        result, dummy = self._apply_callbacks(result, result.start_offset)
+        return result
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
