@@ -145,3 +145,27 @@ class SelectMethodMixin(AbjadObject):
             )
         selector._score_specification = self.score_specification
         return selector
+
+    def select_time_signatures(self, voice_name, time_relation=None):
+        '''Select voice ``1`` time signatures that start during segment ``'red'``::
+
+            >>> selector = red_segment.select_time_signatures('Voice 1')
+
+        ::
+
+            >>> z(selector)
+            selectortools.TimeSignatureSelector(
+                anchor='red',
+                voice_name='Voice 1'
+                )
+
+        Return time signature selector.
+        '''
+        from experimental.tools import selectortools
+        selector = selectortools.TimeSignatureSelector(
+            anchor=self._anchor_abbreviation,
+            time_relation=time_relation, 
+            voice_name=voice_name
+            )
+        selector._score_specification = self.score_specification
+        return selector

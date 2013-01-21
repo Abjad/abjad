@@ -32,6 +32,9 @@ Methods
 .. automethod:: experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.select_notes_and_chords
    :noindex:
 
+.. automethod:: experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.select_time_signatures
+   :noindex:
+
 Special Methods
 ---------------
 

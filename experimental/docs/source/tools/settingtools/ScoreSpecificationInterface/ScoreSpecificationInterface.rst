@@ -52,6 +52,11 @@ Methods
 .. automethod:: experimental.tools.settingtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.select_segments
    :noindex:
 
+.. automethod:: experimental.tools.settingtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.select_time_signatures
+   :noindex:
+
+   Inherited from :py:class:`settingtools.SelectMethodMixin <experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
 .. automethod:: experimental.tools.settingtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.set_aggregate
    :noindex:
 

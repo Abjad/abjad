@@ -52,6 +52,11 @@ Methods
 
    Inherited from :py:class:`settingtools.SelectMethodMixin <experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
 
+.. automethod:: experimental.tools.settingtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.select_time_signatures
+   :noindex:
+
+   Inherited from :py:class:`settingtools.SelectMethodMixin <experimental.tools.settingtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
 .. automethod:: experimental.tools.settingtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_aggregate
    :noindex:
 
