@@ -47,29 +47,3 @@ class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObjec
         Return offset.
         '''
         return StartPositionedObject.start_offset.fget(self)
-
-    @property
-    def stop_offset(self):
-        '''Start-positioned absolute expression stop offset:
-
-        ::
-
-            >>> expression.stop_offset
-            Offset(43, 8)
-
-        Return offset.
-        '''
-        return StartPositionedObject.stop_offset.fget(self)
-
-    @property
-    def timespan(self):
-        '''Start-positioned absolute expression stop offset:
-
-        ::
-
-            >>> expression.timespan
-            Timespan(start_offset=Offset(5, 1), stop_offset=Offset(43, 8))
-
-        Return timespan.
-        '''
-        return StartPositionedObject.timespan.fget(self)

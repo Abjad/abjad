@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.callbacks
    :noindex:
@@ -22,22 +22,22 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.score_specification
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.stop_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.storage_format
    :noindex:

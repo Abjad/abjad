@@ -8,15 +8,13 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.tools.settingtools.StartPositionedObject import StartPositionedObject
 
 
-class RegionProduct(AbjadObject):
+class RegionProduct(StartPositionedObject):
     r'''Region product.
 
-    Start-positioned payload.
-
-    Interpreter byproduct.
+    Start-positioned product.
     ''' 
 
     ### CLASS ATTRIBUTES ###
@@ -28,10 +26,9 @@ class RegionProduct(AbjadObject):
     @abc.abstractmethod
     def __init__(self, payload=None, voice_name=None, start_offset=None):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
-        start_offset = durationtools.Offset(start_offset)
+        StartPositionedObject.__init__(self, start_offset=start_offset)
         self._payload = payload
         self._voice_name = voice_name
-        self._start_offset = start_offset
 
     ### SPECIAL METHODS ###
 
@@ -169,7 +166,7 @@ class RegionProduct(AbjadObject):
 
     @property
     def _stop_offset(self):
-        return self._start_offset + self._duration
+        return self.start_offset + self._duration
 
     ### PRIVATE METHODS ###
 
@@ -208,14 +205,6 @@ class RegionProduct(AbjadObject):
         return self._payload
 
     @property
-    def start_offset(self):
-        '''Region product start offset.
-    
-        Return offset.
-        '''
-        return self.timespan.start_offset
-
-    @property
     def stop_offset(self):
         '''Region product stop offset.
 
@@ -229,7 +218,7 @@ class RegionProduct(AbjadObject):
 
         Return timespan.
         '''
-        return timespantools.Timespan(self._start_offset, self._stop_offset)
+        return timespantools.Timespan(self.start_offset, self._stop_offset)
 
     @property
     def voice_name(self):

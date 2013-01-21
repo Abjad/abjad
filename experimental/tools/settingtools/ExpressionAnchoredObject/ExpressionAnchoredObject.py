@@ -3,7 +3,7 @@ import copy
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class AnchoredObject(AbjadObject):
+class ExpressionAnchoredObject(AbjadObject):
     '''Anchored object.
     '''
 

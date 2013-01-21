@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.callbacks
    :noindex:
@@ -22,22 +22,22 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.score_specification
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.stop_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.storage_format
    :noindex:

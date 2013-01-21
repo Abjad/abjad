@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.callbacks
    :noindex:
@@ -22,22 +22,22 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.score_specification
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.stop_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.storage_format
    :noindex:

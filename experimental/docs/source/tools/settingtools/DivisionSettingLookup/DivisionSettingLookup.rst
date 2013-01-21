@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.DivisionSettingLookup.DivisionSettingLookup.DivisionSettingLookup.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.DivisionSettingLookup.DivisionSettingLookup.DivisionSettingLookup.attribute
    :noindex:
@@ -32,22 +32,22 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.DivisionSettingLookup.DivisionSettingLookup.DivisionSettingLookup.score_specification
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.DivisionSettingLookup.DivisionSettingLookup.DivisionSettingLookup.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.DivisionSettingLookup.DivisionSettingLookup.DivisionSettingLookup.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.DivisionSettingLookup.DivisionSettingLookup.DivisionSettingLookup.stop_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.DivisionSettingLookup.DivisionSettingLookup.DivisionSettingLookup.storage_format
    :noindex:

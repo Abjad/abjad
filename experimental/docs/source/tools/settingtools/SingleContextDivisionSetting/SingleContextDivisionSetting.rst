@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting.attribute
    :noindex:
@@ -42,22 +42,22 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting.score_specification
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting.stop_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SingleContextDivisionSetting.SingleContextDivisionSetting.SingleContextDivisionSetting.storage_format
    :noindex:

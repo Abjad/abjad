@@ -1,9 +1,9 @@
 import abc
 import copy
-from experimental.tools.settingtools.AnchoredObject import AnchoredObject
+from experimental.tools.settingtools.ExpressionAnchoredObject import ExpressionAnchoredObject
 
 
-class Setting(AnchoredObject):
+class Setting(ExpressionAnchoredObject):
     r'''Setting.
 
     Abstract setting class from which concrete settings inherit.
@@ -25,7 +25,7 @@ class Setting(AnchoredObject):
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))
-        AnchoredObject.__init__(self, anchor=anchor)
+        ExpressionAnchoredObject.__init__(self, anchor=anchor)
         self._attribute = attribute
         self._expression = expression
         self._fresh = fresh

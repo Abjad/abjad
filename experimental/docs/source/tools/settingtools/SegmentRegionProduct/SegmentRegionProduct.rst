@@ -17,7 +17,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.SegmentRegionProduct.SegmentRegionProduct.SegmentRegionProduct.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.RegionProduct <experimental.tools.settingtools.RegionProduct.RegionProduct.RegionProduct>`
+   Inherited from :py:class:`settingtools.StartPositionedObject <experimental.tools.settingtools.StartPositionedObject.StartPositionedObject.StartPositionedObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SegmentRegionProduct.SegmentRegionProduct.SegmentRegionProduct.stop_offset
    :noindex:

@@ -22,16 +22,10 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.stop_offset
-   :noindex:
-
 .. autoattribute:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.storage_format
    :noindex:
 
    Inherited from :py:class:`settingtools.AbsoluteExpression <experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression>`
-
-.. autoattribute:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.timespan
-   :noindex:
 
 Methods
 -------

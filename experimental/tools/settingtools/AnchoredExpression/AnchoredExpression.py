@@ -1,8 +1,8 @@
-from experimental.tools.settingtools.AnchoredObject import AnchoredObject
+from experimental.tools.settingtools.ExpressionAnchoredObject import ExpressionAnchoredObject
 from experimental.tools.settingtools.Expression import Expression
 
 
-class AnchoredExpression(Expression, AnchoredObject):
+class AnchoredExpression(Expression, ExpressionAnchoredObject):
     '''Anchored expression.
     '''
 
@@ -10,11 +10,11 @@ class AnchoredExpression(Expression, AnchoredObject):
 
     def __init__(self, anchor=None):
         Expression.__init__(self)
-        AnchoredObject.__init__(self, anchor=anchor)
+        ExpressionAnchoredObject.__init__(self, anchor=anchor)
 
     ### SPECIAL METHODS ###
 
-    # TODO: maybe move to AnchoredObject
+    # TODO: maybe move to ExpressionAnchoredObject
     def __deepcopy__(self, memo):
         '''Expression deepcopy preserves score specification.
         '''
