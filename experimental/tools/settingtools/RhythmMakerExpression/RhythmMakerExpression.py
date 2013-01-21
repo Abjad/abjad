@@ -1,9 +1,9 @@
 from abjad.tools import rhythmmakertools
 from experimental.tools.settingtools.Expression import Expression
-from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
+from experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin import NonstartPositionedPayloadCallbackMixin
 
 
-class RhythmMakerExpression(Expression, PayloadCallbackMixin):
+class RhythmMakerExpression(Expression, NonstartPositionedPayloadCallbackMixin):
     r'''Rhythm-maker expression.
 
     Create behind-the-scenes at setting-time.
@@ -14,7 +14,7 @@ class RhythmMakerExpression(Expression, PayloadCallbackMixin):
     def __init__(self, payload=None, callbacks=None):
         assert isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
         Expression.__init__(self)
-        PayloadCallbackMixin.__init__(self, callbacks=callbacks)
+        NonstartPositionedPayloadCallbackMixin.__init__(self, callbacks=callbacks)
         self._payload = payload
 
     ### PRIVATE METHODS ###

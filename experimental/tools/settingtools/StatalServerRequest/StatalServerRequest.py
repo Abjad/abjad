@@ -1,8 +1,8 @@
 from experimental.tools.settingtools.Expression import Expression
-from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
+from experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin import NonstartPositionedPayloadCallbackMixin
 
 
-class StatalServerRequest(Expression, PayloadCallbackMixin):
+class StatalServerRequest(Expression, NonstartPositionedPayloadCallbackMixin):
     r'''Statal server request.
 
     The purpose of a statal server request is to function as the source of a setting.
@@ -13,7 +13,7 @@ class StatalServerRequest(Expression, PayloadCallbackMixin):
     def __init__(self, statal_server=None, callbacks=None):
         assert isinstance(statal_server, settingtools.StatalServer), repr(statal_server)
         Expression.__init__(self)
-        PayloadCallbackMixin.__init__(self, callbacks=callbacks)
+        NonstartPositionedPayloadCallbackMixin.__init__(self, callbacks=callbacks)
         self._statal_server = statal_server
 
     ### SPECIAL METHODS ###
