@@ -25,7 +25,7 @@ class MakeNewClassTemplateScript(DeveloperScript):
     Return `MakeNewClassTemplateScript` instance.
     '''
 
-    ### PUBLIC READ-ONLY ATTRIBUTES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def alias(self):

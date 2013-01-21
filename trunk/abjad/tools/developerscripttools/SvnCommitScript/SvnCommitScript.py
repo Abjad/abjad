@@ -28,7 +28,7 @@ class SvnCommitScript(DirectoryScript):
     Return `SvnCommitScript` instance.
     '''
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def alias(self):

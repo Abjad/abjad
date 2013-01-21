@@ -8,7 +8,7 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 class TestAndRebuildScript(DeveloperScript):
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def alias(self):

@@ -65,7 +65,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
         return tuple.__new__(klass, (beatspan, search_tree, tempo))
 
-    ### PUBLIC READ-ONLY ATTRIBUTES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def beatspan(self):

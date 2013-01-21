@@ -22,7 +22,7 @@ class RunDoctestsScript(DirectoryScript):
     Return `RunDoctestsScript` instance.
     '''
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def alias(self):

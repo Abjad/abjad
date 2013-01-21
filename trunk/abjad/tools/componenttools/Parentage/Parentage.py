@@ -61,7 +61,7 @@ class Parentage(Selection):
         Selection.__init__(self, music) 
         self._component = component
 
-    ### PUBLIC READ-ONLY ATTRIBUTES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def component(self):

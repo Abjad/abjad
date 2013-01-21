@@ -64,7 +64,7 @@ class AbjadBookProcessor(abctools.AbjadObject):
 
         return result
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def directory(self):

@@ -90,7 +90,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         return '{} => {}'.format(
             self.source_pitch_range.one_line_named_chromatic_pitch_repr, self.target_octave_start_pitch)
 
-    ### READ / WRITE ATTRIBUTES ###
+    ### READ / WRITE PROPERTIES ###
 
     @apply
     def source_pitch_range():

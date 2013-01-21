@@ -56,7 +56,7 @@ class GraphvizObject(AbjadObject):
             attributes = copy.copy(attributes)
         setattr(self, destination, attributes)
 
-    ### READ-ONLY PUBLIC ATTRIBUTES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def attributes(self):

@@ -29,7 +29,7 @@ class CleanScript(DirectoryScript):
     Return `CleanScript` instance.
     '''
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def alias(self):

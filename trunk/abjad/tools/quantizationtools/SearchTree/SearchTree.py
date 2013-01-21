@@ -77,7 +77,7 @@ class SearchTree(AbjadObject):
         for key, value in state.iteritems():
             setattr(self, key, value)
 
-    ### READ-ONLY PUBLIC ATTRIBUTES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
     def default_definition(self):

@@ -178,7 +178,7 @@ class BreakPointFunction(AbjadObject):
         result.append('})')
         return '\n'.join(result)
 
-    ### READ-ONLY PUBLIC ATTRIBUTES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def dc_bias(self):

@@ -53,7 +53,7 @@ class OutputFormat(abctools.AbjadObject):
                             
         return tuple(reformatted)
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def code_block_closing(self):

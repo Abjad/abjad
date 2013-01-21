@@ -25,7 +25,7 @@ class SvnAddAllScript(DirectoryScript):
     Return `SvnAddAllScript` instance.
     '''
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def alias(self):

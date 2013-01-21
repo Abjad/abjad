@@ -130,9 +130,3 @@
     Set output signature of all region product payload callback methods to just a new_region_product.
 
 24. Remove the word 'requested' from the codebase.
-
-25. Change 'PUBLIC READ-ONLY PROPERTIES' to 'READ-ONLY PUBLIC PROPERTIES'.
-    Change 'READ-ONLY PRIVATE PROPERTIES' to 'READ-ONLY PRIVATE PROPERTIES'.
-
-26. Change 'READ-ONLY ATTRIBUTES' to 'READ-ONLY PROPERTIES'.
-    Change 'WRITE ATTRIBUTES' to 'WRITE PROPERTIES'.

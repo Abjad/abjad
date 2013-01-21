@@ -164,7 +164,7 @@ class CodeBlock(abctools.AbjadObject):
 
         return image_count
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def ending_line_number(self):

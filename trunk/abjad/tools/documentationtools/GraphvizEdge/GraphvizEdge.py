@@ -61,7 +61,7 @@ class GraphvizEdge(GraphvizObject):
             return result
         return [edge_def + ';']
 
-    ### READ-ONLY PUBLIC ATTRIBUTES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def head(self):

@@ -22,7 +22,7 @@ class SvnMessageScript(DeveloperScript):
     Return `SvnMessageScript` instance.
     '''
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def alias(self):

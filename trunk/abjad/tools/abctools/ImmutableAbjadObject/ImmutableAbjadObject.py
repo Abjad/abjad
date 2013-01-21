@@ -23,7 +23,7 @@ class ImmutableAbjadObject(AbjadObject):
     def __init__(self, *args, **kwargs):
         pass
 
-    ### PRIVATE READ-ONLY ATTRIBUTES ###
+    ### PRIVATE READ-ONLY PROPERTIES ###
 
     @property
     def _positional_argument_names(self):

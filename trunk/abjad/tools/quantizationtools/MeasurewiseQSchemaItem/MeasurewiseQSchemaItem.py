@@ -73,7 +73,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
         return tuple.__new__(klass, (search_tree, tempo, time_signature, use_full_measure))
 
-    ### PUBLIC READ-ONLY ATTRIBUTES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def beatspan(self):

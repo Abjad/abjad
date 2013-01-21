@@ -38,7 +38,7 @@ class SvnUpdateScript(DirectoryScript):
     Return `SvnUpdateScript` instance.
     '''
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def alias(self):

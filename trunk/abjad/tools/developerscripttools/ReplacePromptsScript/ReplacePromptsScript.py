@@ -41,7 +41,7 @@ class ReplacePromptsScript(DirectoryScript):
     Return `ReplacePromptsScript` instance.
     '''
 
-    ### PUBLIC READ-ONLY ATTRIBUTES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def alias(self):

@@ -44,7 +44,7 @@ class ReplaceInFilesScript(DirectoryScript):
     Return `ReplaceInFilesScript` instance.
     '''
 
-    ### PUBLIC READ-ONLY ATTRIBUTES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
