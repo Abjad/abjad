@@ -14,6 +14,11 @@ Read-only Properties
 
    Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
+.. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.callbacks
+   :noindex:
+
+   Inherited from :py:class:`settingtools.OffsetCallbackMixin <experimental.tools.settingtools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin>`
+
 .. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.edge
    :noindex:
 
@@ -59,6 +64,16 @@ Methods
    :noindex:
 
    Inherited from :py:class:`settingtools.LookupMethodMixin <experimental.tools.settingtools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin>`
+
+.. automethod:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.scale
+   :noindex:
+
+   Inherited from :py:class:`settingtools.OffsetCallbackMixin <experimental.tools.settingtools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin>`
+
+.. automethod:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.translate
+   :noindex:
+
+   Inherited from :py:class:`settingtools.OffsetCallbackMixin <experimental.tools.settingtools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin>`
 
 Special Methods
 ---------------

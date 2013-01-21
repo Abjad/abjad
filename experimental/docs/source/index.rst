@@ -292,6 +292,7 @@ Unstable packages (load manually)
       tools/selectortools/DivisionSelector/DivisionSelector
       tools/selectortools/MeasureSelector/MeasureSelector
       tools/selectortools/SegmentSelector/SegmentSelector
+      tools/selectortools/TimeSignatureSelector/TimeSignatureSelector
 
 .. only:: latex
 
@@ -312,6 +313,7 @@ Unstable packages (load manually)
       tools/selectortools/DivisionSelector/DivisionSelector
       tools/selectortools/MeasureSelector/MeasureSelector
       tools/selectortools/SegmentSelector/SegmentSelector
+      tools/selectortools/TimeSignatureSelector/TimeSignatureSelector
 
 :py:mod:`settingtools <experimental.tools.settingtools>`
 ========================================================
@@ -326,6 +328,7 @@ Unstable packages (load manually)
       tools/settingtools/Expression/Expression
       tools/settingtools/FinalizedRhythmRegionCommand/FinalizedRhythmRegionCommand
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
+      tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
       tools/settingtools/RegionCommand/RegionCommand
       tools/settingtools/RegionProduct/RegionProduct
@@ -393,6 +396,7 @@ Unstable packages (load manually)
       tools/settingtools/Expression/Expression
       tools/settingtools/FinalizedRhythmRegionCommand/FinalizedRhythmRegionCommand
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
+      tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
       tools/settingtools/RegionCommand/RegionCommand
       tools/settingtools/RegionProduct/RegionProduct
