@@ -107,7 +107,7 @@ def test_schematic_example_X_03():
 
     blue_segment = score_specification.append_segment(name='blue')
     
-    red_time_signatures = red_segment.select_measures('Voice 1')
+    red_time_signatures = red_segment.select_time_signatures('Voice 1')
     red_time_signatures = red_time_signatures.reflect()
     blue_segment.set_time_signatures(red_time_signatures)
 

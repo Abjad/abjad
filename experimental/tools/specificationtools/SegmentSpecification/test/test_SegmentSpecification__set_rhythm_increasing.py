@@ -37,7 +37,7 @@ def test_SegmentSpecification__set_rhythm_increasing_01():
 
     blue_segment = score_specification.append_segment(name='blue')
 
-    red_time_signatures = red_segment.select_measures('Voice 1')
+    red_time_signatures = red_segment.select_time_signatures('Voice 1')
     blue_segment.set_time_signatures(red_time_signatures.reflect())
 
     red_voice_1_divisions = red_segment.select_divisions('Voice 1')

@@ -19,11 +19,11 @@ class SelectMethodMixin(AbjadObject):
     def select_beats(self, voice_name, time_relation=None):
         '''Select voice ``1`` beats that start during segment ``'red'``::
 
-            >>> selector = red_segment.select_beats('Voice 1')
+            >>> beats = red_segment.select_beats('Voice 1')
 
         ::
 
-            >>> z(selector)
+            >>> z(beats)
             selectortools.BeatSelector(
                 anchor='red',
                 voice_name='Voice 1'
@@ -43,11 +43,11 @@ class SelectMethodMixin(AbjadObject):
     def select_divisions(self, voice_name, time_relation=None):
         '''Select voice ``1`` divisions that start during segment ``'red'``::
 
-            >>> selector = red_segment.select_divisions('Voice 1')
+            >>> divisions = red_segment.select_divisions('Voice 1')
 
         ::
             
-            >>> z(selector)
+            >>> z(divisions)
             selectortools.DivisionSelector(
                 anchor='red',
                 voice_name='Voice 1'
@@ -67,11 +67,11 @@ class SelectMethodMixin(AbjadObject):
     def select_leaves(self, voice_name, time_relation=None):
         '''Select voice ``1`` leaves that start during segment ``'red'``::
 
-            >>> selector = red_segment.select_leaves('Voice 1')
+            >>> leaves = red_segment.select_leaves('Voice 1')
 
         ::
 
-            >>> z(selector)
+            >>> z(leaves)
             selectortools.CounttimeComponentSelector(
                 anchor='red',
                 classes=settingtools.ClassInventory([
@@ -96,11 +96,11 @@ class SelectMethodMixin(AbjadObject):
         '''Select voice ``1`` measures 
         that start during segment ``'red'``::
 
-            >>> selector = red_segment.select_measures('Voice 1')
+            >>> measures = red_segment.select_measures('Voice 1')
 
         ::
 
-            >>> z(selector)
+            >>> z(measures)
             selectortools.MeasureSelector(
                 anchor='red',
                 voice_name='Voice 1'
@@ -120,11 +120,11 @@ class SelectMethodMixin(AbjadObject):
     def select_notes_and_chords(self, voice_name, time_relation=None):
         '''Select voice ``1`` notes and chords that start during segment ``'red'``::
 
-            >>> selector = red_segment.select_notes_and_chords('Voice 1')
+            >>> notes_and_chords = red_segment.select_notes_and_chords('Voice 1')
 
         ::
 
-            >>> z(selector)
+            >>> z(notes_and_chords)
             selectortools.CounttimeComponentSelector(
                 anchor='red',
                 classes=settingtools.ClassInventory([
@@ -149,11 +149,11 @@ class SelectMethodMixin(AbjadObject):
     def select_time_signatures(self, voice_name, time_relation=None):
         '''Select voice ``1`` time signatures that start during segment ``'red'``::
 
-            >>> selector = red_segment.select_time_signatures('Voice 1')
+            >>> time_signatures = red_segment.select_time_signatures('Voice 1')
 
         ::
 
-            >>> z(selector)
+            >>> z(time_signatures)
             selectortools.TimeSignatureSelector(
                 anchor='red',
                 voice_name='Voice 1'

@@ -103,18 +103,18 @@ the duration of the violin 1 voice in T as desired; but Tn must then specify sou
 (in the form of either manifest values or callables) for each of the parts in the target
 selection of Tn. The specification interface might look like this:
 
-selection = segment.select_measures(segment, part=[1, 1, 1])
-selection[0](foo)
-selection[1](bar)
-selection[2](foo)
-segment.set_divisions(selection)
+measures = segment.select_measures(segment, part=[1, 1, 1])
+measures[0](foo)
+measures[1](bar)
+measures[2](foo)
+segment.set_divisions(measures)
 
 Or the specification interface might allow for simple setting cascades like this:
 
-selection = segment.select_measures(segment, part=[1, 1, 1])
-selection(foo)
-selection[1](bar)
-segment.set_divisions(selection)
+measures = segment.select_measures(segment, part=[1, 1, 1])
+measures(foo)
+measures[1](bar)
+segment.set_divisions(measures)
 
 We have so far allowed for division specification sources set equal to manifest values or to
 callables. We have not yet discussed division specification sources set equal to requests 

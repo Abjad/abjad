@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__set_divisions_01():
-    '''Set divisions from time signature selector.
+    '''Set divisions from time signatures.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -10,9 +10,9 @@ def test_SegmentSpecification__set_divisions_01():
 
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
-    divisions = red_segment.select_measures('Voice 1')
-    divisions = divisions.reflect()
-    red_segment.set_divisions(divisions, contexts=['Voice 1'])
+    time_signatures = red_segment.select_time_signatures('Voice 1')
+    time_signatures = time_signatures.reflect()
+    red_segment.set_divisions(time_signatures, contexts=['Voice 1'])
     red_segment.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 

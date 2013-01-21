@@ -105,17 +105,7 @@
     ... interpret correctly.
     Then make X5 work with rhythm setting lookup instead of rhythm selector.
 
-21. Extend SelectMethodMixin with select_time_signatures() method.
-    (Return new TimeSignatureSelector that subclasses MeasureSelector.)
-    Then change ...
-        measures = red_segment.select_measures('Voice 1')
-        blue_segment.set_time_signatures(measures)
-    ... to ...
-        time_signatures = red_segment.select_time_signatures('Voice 1')
-        red_segment.set_time_signatures(time_signatures)
-    ... throughout tests.
-
-22. Change primary usage pattern from ...
+21. Change primary usage pattern from ...
         score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
         score_specification = specificationtools.ScoreSpecification(score_template)
     ... to ...
@@ -123,7 +113,7 @@
         score_specification = settingtools.ScoreSpecificationInterface(score_template)
     ... so that composers only ever interact with interfaces.
 
-23. Extend AbsoluteExpression with start_offset property for offset-positioning.
+22. Extend AbsoluteExpression with start_offset property for offset-positioning.
     This will create the idea of a start-positioned expression.
     Then change PayloadCallbackMixin._apply_callbacks(elements, start_offset)
     to PayloadCallbackMixin._apply_callbacks(start_positioned_expression).
@@ -134,11 +124,15 @@
     PayloadCallbackMixin._apply_callbacks(elements, start_offset) to
     PayloadCallbackMixin._apply_callbacks(expr, start_offset) in the meantime.
 
-24. Implement _getitem() on all region products.
+23. Implement _getitem() on all region products.
     Change _getitem() output signature from (elements, start_offset) to just new_region_product.
     Implement complete set of payload callbacks on all region products.
     Set output signature of all region product payload callback methods to just a new_region_product.
 
-25. Remove the word 'requested' from the codebase.
+24. Remove the word 'requested' from the codebase.
 
-26. Create a CallbackMixin class from which TimespanCallbackMixin, etc can inherit.
+25. Create a CallbackMixin class from which TimespanCallbackMixin, etc can inherit.
+
+26. Rename test_SegmentSpecification__select_measures_from_future.py
+    to test_SegmentSpecification__select_time_signatures_from_future.py.
+    Same with _from_past.py file.
