@@ -1,23 +1,23 @@
-settingtools.HandlerRequest
+settingtools.HandlerExpression
 ===========================
 
-.. abjad-lineage:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest
+.. abjad-lineage:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression
 
-.. autoclass:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest
+.. autoclass:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression
    :noindex:
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.callbacks
+.. autoattribute:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.callbacks
    :noindex:
 
    Inherited from :py:class:`settingtools.CallbackMixin <experimental.tools.settingtools.CallbackMixin.CallbackMixin.CallbackMixin>`
 
-.. autoattribute:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.handler
+.. autoattribute:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.handler
    :noindex:
 
-.. autoattribute:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.storage_format
+.. autoattribute:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.storage_format
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -25,32 +25,32 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.partition_by_ratio
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.partition_by_ratio
    :noindex:
 
    Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.partition_by_ratio_of_durations
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.partition_by_ratio_of_durations
    :noindex:
 
    Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.reflect
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.reflect
    :noindex:
 
    Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.repeat_to_duration
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.repeat_to_duration
    :noindex:
 
    Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.repeat_to_length
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.repeat_to_length
    :noindex:
 
    Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.rotate
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.rotate
    :noindex:
 
    Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
@@ -58,57 +58,57 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.___and__
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.___and__
    :noindex:
 
    Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.___getitem__
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.___getitem__
    :noindex:
 
    Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.__and__
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.__and__
    :noindex:
 
    Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.__eq__
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.__eq__
    :noindex:
 
    Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.__ge__
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.__ge__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.__getitem__
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.__getitem__
    :noindex:
 
    Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.__gt__
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.__gt__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.__le__
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.__le__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.__lt__
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.__lt__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.__ne__
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.__ne__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.__repr__
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.__repr__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

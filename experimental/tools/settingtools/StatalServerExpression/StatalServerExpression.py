@@ -2,7 +2,7 @@ from experimental.tools.settingtools.Expression import Expression
 from experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin import NonstartPositionedPayloadCallbackMixin
 
 
-class StatalServerRequest(Expression, NonstartPositionedPayloadCallbackMixin):
+class StatalServerExpression(Expression, NonstartPositionedPayloadCallbackMixin):
     r'''Statal server request.
 
     The purpose of a statal server request is to function as the source of a setting.

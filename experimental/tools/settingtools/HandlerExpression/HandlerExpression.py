@@ -3,7 +3,7 @@ from experimental.tools.settingtools.Expression import Expression
 from experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin import NonstartPositionedPayloadCallbackMixin
 
 
-class HandlerRequest(Expression, NonstartPositionedPayloadCallbackMixin):
+class HandlerExpression(Expression, NonstartPositionedPayloadCallbackMixin):
     r'''Handler request.
 
     The purpose of a handler request is to function as the source of a setting.

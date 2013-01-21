@@ -360,7 +360,7 @@ Unstable packages (load manually)
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
       tools/settingtools/DivisionSettingLookup/DivisionSettingLookup
       tools/settingtools/ExpressionInventory/ExpressionInventory
-      tools/settingtools/HandlerRequest/HandlerRequest
+      tools/settingtools/HandlerExpression/HandlerExpression
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MeasureRegionProduct/MeasureRegionProduct
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
@@ -384,7 +384,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
       tools/settingtools/StartPositionedAbsoluteExpression/StartPositionedAbsoluteExpression
       tools/settingtools/StatalServer/StatalServer
-      tools/settingtools/StatalServerRequest/StatalServerRequest
+      tools/settingtools/StatalServerExpression/StatalServerExpression
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
       tools/settingtools/TimespanExpression/TimespanExpression
 
@@ -432,7 +432,7 @@ Unstable packages (load manually)
       tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
       tools/settingtools/DivisionSettingLookup/DivisionSettingLookup
       tools/settingtools/ExpressionInventory/ExpressionInventory
-      tools/settingtools/HandlerRequest/HandlerRequest
+      tools/settingtools/HandlerExpression/HandlerExpression
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MeasureRegionProduct/MeasureRegionProduct
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
@@ -456,7 +456,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
       tools/settingtools/StartPositionedAbsoluteExpression/StartPositionedAbsoluteExpression
       tools/settingtools/StatalServer/StatalServer
-      tools/settingtools/StatalServerRequest/StatalServerRequest
+      tools/settingtools/StatalServerExpression/StatalServerExpression
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
       tools/settingtools/TimespanExpression/TimespanExpression
 
