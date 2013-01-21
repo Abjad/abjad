@@ -1,7 +1,7 @@
 from experimental import *
 
 
-def test_SegmentSpecification__select_measures_from_past_01():
+def test_SegmentSpecification__select_time_signatures_from_past_01():
     '''From-past time signature selector.
     '''
 
@@ -21,7 +21,7 @@ def test_SegmentSpecification__select_measures_from_past_01():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_measures_from_past_02():
+def test_SegmentSpecification__select_time_signatures_from_past_02():
     '''From-past time signature selector with smaller set-time count.
     '''
 
@@ -41,7 +41,7 @@ def test_SegmentSpecification__select_measures_from_past_02():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_measures_from_past_03():
+def test_SegmentSpecification__select_time_signatures_from_past_03():
     '''From-past time signature selector with larger set-time count.
     '''
 
@@ -61,7 +61,7 @@ def test_SegmentSpecification__select_measures_from_past_03():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_measures_from_past_04():
+def test_SegmentSpecification__select_time_signatures_from_past_04():
     '''From-past time signature selector with slicing.
     '''
 
@@ -81,7 +81,7 @@ def test_SegmentSpecification__select_measures_from_past_04():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_measures_from_past_05():
+def test_SegmentSpecification__select_time_signatures_from_past_05():
     '''From-past time signature selector with set-time index and count.
     '''
 
@@ -103,7 +103,7 @@ def test_SegmentSpecification__select_measures_from_past_05():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_measures_from_past_06():
+def test_SegmentSpecification__select_time_signatures_from_past_06():
     '''From-past time signature selector with set-time reverse.
     '''
 
@@ -124,7 +124,7 @@ def test_SegmentSpecification__select_measures_from_past_06():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_measures_from_past_07():
+def test_SegmentSpecification__select_time_signatures_from_past_07():
     '''From-past time signature selector with reverse callback.
     '''
 
@@ -145,7 +145,7 @@ def test_SegmentSpecification__select_measures_from_past_07():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_measures_from_past_08():
+def test_SegmentSpecification__select_time_signatures_from_past_08():
     '''From-past time signature selector with reverse callbacks.
     '''
 

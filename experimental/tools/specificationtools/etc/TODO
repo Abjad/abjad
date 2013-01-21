@@ -132,7 +132,3 @@
 24. Remove the word 'requested' from the codebase.
 
 25. Create a CallbackMixin class from which TimespanCallbackMixin, etc can inherit.
-
-26. Rename test_SegmentSpecification__select_measures_from_future.py
-    to test_SegmentSpecification__select_time_signatures_from_future.py.
-    Same with _from_past.py file.

@@ -1,7 +1,7 @@
 from experimental import *
 
 
-def test_SegmentSpecification__select_measures_from_future_01():
+def test_SegmentSpecification__select_time_signatures_from_future_01():
     '''From-future time signature selector.
     '''
 
@@ -21,7 +21,7 @@ def test_SegmentSpecification__select_measures_from_future_01():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_measures_from_future_02():
+def test_SegmentSpecification__select_time_signatures_from_future_02():
     '''From-future time signature selector with reverse callback.
     '''
 
@@ -42,7 +42,7 @@ def test_SegmentSpecification__select_measures_from_future_02():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_measures_from_future_03():
+def test_SegmentSpecification__select_time_signatures_from_future_03():
     '''From-future time signature selector with set-time reverse.
     '''
 
@@ -63,7 +63,7 @@ def test_SegmentSpecification__select_measures_from_future_03():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_measures_from_future_04():
+def test_SegmentSpecification__select_time_signatures_from_future_04():
     '''From-future time signature selector with reverse callbacks.
     '''
 
