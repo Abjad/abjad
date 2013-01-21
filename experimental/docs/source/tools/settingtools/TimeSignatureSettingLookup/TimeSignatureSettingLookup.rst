@@ -113,7 +113,7 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.TimeSignatureSettingLookup.TimeSignatureSettingLookup.TimeSignatureSettingLookup.__eq__
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadCallbackMixin <experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.settingtools.TimeSignatureSettingLookup.TimeSignatureSettingLookup.TimeSignatureSettingLookup.__ge__
    :noindex:

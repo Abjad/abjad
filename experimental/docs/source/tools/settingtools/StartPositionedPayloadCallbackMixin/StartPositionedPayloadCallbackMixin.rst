@@ -55,6 +55,8 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.__eq__
    :noindex:
 
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
+
 .. automethod:: experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.__ge__
    :noindex:
 

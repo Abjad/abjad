@@ -1,11 +1,27 @@
-from experimental.tools.settingtools.StartPositionedPayloadCallbackMixin import StartPositionedPayloadCallbackMixin
+from abjad.tools import durationtools
+from abjad.tools import mathtools
+from abjad.tools import sequencetools
+from abjad.tools import timespantools
+from experimental.tools.settingtools.CallbackMixin import CallbackMixin
 
 
-class NonstartPositionedPayloadCallbackMixin(StartPositionedPayloadCallbackMixin):
+class NonstartPositionedPayloadCallbackMixin(CallbackMixin):
     '''Nonstart-positioned payload callback mixin.
     '''
     
     ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        '''True when mandatory and keyword arguments compare equal.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, type(self)):
+            return False
+        if not self._positional_argument_values == expr._positional_argument_values:
+            return False
+        return self._keyword_argument_values == expr._keyword_argument_values
 
     def __getitem__(self, expr):
         '''Return copy of expression with appended callback.
@@ -46,6 +62,15 @@ class NonstartPositionedPayloadCallbackMixin(StartPositionedPayloadCallbackMixin
             exec(callback, evaluation_context)
             expr = evaluation_context['result']
         return expr
+
+    def _duration_helper(self, expr):
+        if hasattr(expr, 'duration'):
+            return expr.duration
+        elif hasattr(expr, 'prolated_duration'):
+            return expr.prolated_duration
+        else:
+            duration = durationtools.Duration(expr)
+            return duration
 
     def _partition_by_ratio(self, expr, ratio, part):
         if hasattr(expr, 'partition_by_ratio'):

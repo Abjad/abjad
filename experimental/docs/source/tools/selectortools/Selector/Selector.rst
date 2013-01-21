@@ -107,7 +107,7 @@ Special Methods
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.__eq__
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadCallbackMixin <experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.Selector.Selector.Selector.__ge__
    :noindex:

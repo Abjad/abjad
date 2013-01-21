@@ -66,5 +66,3 @@ class CallbackMixin(AbjadObject):
         Return callback inventory of zero or more strings.
         '''
         return self._callbacks
-
-

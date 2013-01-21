@@ -3,10 +3,10 @@ from abjad.tools import mathtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import sequencetools
 from abjad.tools import timespantools
-from experimental.tools.settingtools.CallbackMixin import CallbackMixin
+from experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin import NonstartPositionedPayloadCallbackMixin
 
 
-class StartPositionedPayloadCallbackMixin(CallbackMixin):
+class StartPositionedPayloadCallbackMixin(NonstartPositionedPayloadCallbackMixin):
     r'''Payload callback mixin.
 
     Base class from which payload-carrying expressions inherit.
@@ -18,18 +18,6 @@ class StartPositionedPayloadCallbackMixin(CallbackMixin):
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
         callback = 'result = self.___and__(expr, {!r}, start_offset)'.format(timespan)
         return self._copy_and_append_callback(callback)
-
-    def __eq__(self, expr):
-        '''True when mandatory and keyword arguments compare equal.
-        Otherwise false.
-
-        Return boolean.
-        '''
-        if not isinstance(expr, type(self)):
-            return False
-        if not self._positional_argument_values == expr._positional_argument_values:
-            return False
-        return self._keyword_argument_values == expr._keyword_argument_values
 
     def __getitem__(self, expr):
         '''Return copy of expression with appended callback.
@@ -105,15 +93,6 @@ class StartPositionedPayloadCallbackMixin(CallbackMixin):
             exec(callback, evaluation_context)
             expr, start_offset = evaluation_context['result']
         return expr, start_offset
-
-    def _duration_helper(self, expr):
-        if hasattr(expr, 'duration'):
-            return expr.duration
-        elif hasattr(expr, 'prolated_duration'):
-            return expr.prolated_duration
-        else:
-            duration = durationtools.Duration(expr)
-            return duration
 
     def _partition_by_ratio(self, expr, original_start_offset, ratio, part):
         if hasattr(expr, 'partition_by_ratio'):

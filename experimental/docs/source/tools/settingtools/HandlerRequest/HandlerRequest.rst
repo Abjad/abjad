@@ -58,25 +58,15 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.___and__
-   :noindex:
-
-   Inherited from :py:class:`settingtools.StartPositionedPayloadCallbackMixin <experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin>`
-
 .. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.___getitem__
    :noindex:
 
    Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
-.. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.__and__
-   :noindex:
-
-   Inherited from :py:class:`settingtools.StartPositionedPayloadCallbackMixin <experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin>`
-
 .. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.__eq__
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadCallbackMixin <experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.__ge__
    :noindex:
