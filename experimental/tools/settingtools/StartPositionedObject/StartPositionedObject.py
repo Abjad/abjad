@@ -1,4 +1,5 @@
 import abc
+import numbers
 from abjad.tools import durationtools
 from abjad.tools import timespantools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -42,7 +43,7 @@ class StartPositionedObject(AbjadObject):
         elif isinstance(expr, numbers.Number):
             return durationtools.Duration(expr)
         else:
-            raise TypeError(expr)
+            return durationtools.Duration(expr)
 
     def _get_duration_of_list(self, expr):
         duration = durationtools.Duration(0)
@@ -60,6 +61,8 @@ class StartPositionedObject(AbjadObject):
         '''
         return self.timespan.start_offset
 
+    # TODO: Maybe implement not on start-positioned expressions.
+    #       Maybe implement only on start-positioned products.
     @property
     def stop_offset(self):
         '''Start-positioned object stop offset.
@@ -68,6 +71,8 @@ class StartPositionedObject(AbjadObject):
         '''
         return self.timespan.stop_offset
 
+    # TODO: Maybe implement not on start-positioned expressions.
+    #       Maybe implement only on start-positioned products.
     @property
     def timespan(self):
         '''Start-positioned object timespan.

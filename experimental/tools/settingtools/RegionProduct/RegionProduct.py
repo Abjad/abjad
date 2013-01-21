@@ -187,7 +187,7 @@ class RegionProduct(AbjadObject):
         elif isinstance(expr, numbers.Number):
             return durationtools.Duration(expr)
         else:
-            raise TypeError(expr)
+            return durationtools.Duration(expr)
 
     def _get_duration_of_list(self, expr):
         duration = durationtools.Duration(0)

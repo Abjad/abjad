@@ -21,9 +21,7 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
             ((4, 16), (2, 16))
             )
 
-    Expression is assumed to resolve to a list or other iterable.
-
-    Because of this absolute expressions afford payload callbacks.
+    Absolute expressions are assumed to evaluate to a list or other iterable.
     '''
 
     ### INTIAILIZER ###
@@ -46,6 +44,7 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
             result = self.payload
         else:
             raise TypeError(self.payload)
+        # TODO: eventually change to result = self._apply_callbacks(result)
         result, dummy = self._apply_callbacks(result, None)
         return result
 

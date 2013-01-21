@@ -381,6 +381,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
+      tools/settingtools/StartPositionedAbsoluteExpression/StartPositionedAbsoluteExpression
       tools/settingtools/StatalServer/StatalServer
       tools/settingtools/StatalServerRequest/StatalServerRequest
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
@@ -451,6 +452,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
+      tools/settingtools/StartPositionedAbsoluteExpression/StartPositionedAbsoluteExpression
       tools/settingtools/StatalServer/StatalServer
       tools/settingtools/StatalServerRequest/StatalServerRequest
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
