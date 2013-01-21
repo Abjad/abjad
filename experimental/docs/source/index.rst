@@ -333,12 +333,14 @@ Unstable packages (load manually)
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
       tools/settingtools/RegionCommand/RegionCommand
       tools/settingtools/RegionProduct/RegionProduct
+      tools/settingtools/SegmentRegionProduct/SegmentRegionProduct
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin
       tools/settingtools/Setting/Setting
       tools/settingtools/SettingLookup/SettingLookup
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
+      tools/settingtools/StartPositionedObject/StartPositionedObject
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
 
    --------
@@ -373,7 +375,6 @@ Unstable packages (load manually)
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
-      tools/settingtools/SegmentRegionProduct/SegmentRegionProduct
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/settingtools/SelectorRhythmRegionCommand/SelectorRhythmRegionCommand
       tools/settingtools/SettingInventory/SettingInventory
@@ -402,12 +403,14 @@ Unstable packages (load manually)
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
       tools/settingtools/RegionCommand/RegionCommand
       tools/settingtools/RegionProduct/RegionProduct
+      tools/settingtools/SegmentRegionProduct/SegmentRegionProduct
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin
       tools/settingtools/Setting/Setting
       tools/settingtools/SettingLookup/SettingLookup
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
+      tools/settingtools/StartPositionedObject/StartPositionedObject
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
 
    Concrete Classes
@@ -442,7 +445,6 @@ Unstable packages (load manually)
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
-      tools/settingtools/SegmentRegionProduct/SegmentRegionProduct
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/settingtools/SelectorRhythmRegionCommand/SelectorRhythmRegionCommand
       tools/settingtools/SettingInventory/SettingInventory

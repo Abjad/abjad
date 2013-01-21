@@ -14,7 +14,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class RegionProduct(AbjadObject):
     r'''Region product.
 
-    Offset-positioned payload.
+    Start-positioned payload.
 
     Interpreter byproduct.
     ''' 
@@ -25,7 +25,7 @@ class RegionProduct(AbjadObject):
 
     ### INITIALIZER ###
 
-    #@abc.abstractmethod
+    @abc.abstractmethod
     def __init__(self, payload=None, voice_name=None, start_offset=None):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         start_offset = durationtools.Offset(start_offset)
