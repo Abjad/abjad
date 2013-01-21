@@ -1,9 +1,9 @@
 import abc
 from experimental.tools.settingtools.AnchoredExpression import AnchoredExpression
-from experimental.tools.settingtools.StartPositionedPayloadCallbackMixin import StartPositionedPayloadCallbackMixin
+from experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin import NonstartPositionedPayloadCallbackMixin
 
 
-class SettingLookup(AnchoredExpression, StartPositionedPayloadCallbackMixin):
+class SettingLookup(AnchoredExpression, NonstartPositionedPayloadCallbackMixin):
     r'''Setting lookup.
 
     Look up `attribute` setting active at `offset` in `voice_name`.
@@ -32,7 +32,7 @@ class SettingLookup(AnchoredExpression, StartPositionedPayloadCallbackMixin):
         assert isinstance(voice_name, str), repr(voice_name)
         assert isinstance(offset, settingtools.OffsetExpression)
         AnchoredExpression.__init__(self, anchor=offset)
-        StartPositionedPayloadCallbackMixin.__init__(self, callbacks=callbacks)
+        NonstartPositionedPayloadCallbackMixin.__init__(self, callbacks=callbacks)
         self._attribute = attribute
         self._voice_name = voice_name
         self._offset = offset

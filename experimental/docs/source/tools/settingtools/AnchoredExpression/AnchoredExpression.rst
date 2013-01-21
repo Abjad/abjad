@@ -39,6 +39,14 @@ Read-only Properties
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+Methods
+-------
+
+.. automethod:: experimental.tools.settingtools.AnchoredExpression.AnchoredExpression.AnchoredExpression.new
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 Special Methods
 ---------------
 

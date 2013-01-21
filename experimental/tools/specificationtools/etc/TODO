@@ -130,5 +130,6 @@
     Callbacks apply to RegionProduct classes.
     This means that RegionProduct is some type of Expression.
 
-25. Change Lookup classes to inherit from NonstartPositionedPayloadCallbackMixin
-    instead of StartPositionedPayloadCallbackMixin.
+25. Make all _evaluate() methods assert expression output.
+
+26. Make all _apply_callbacks() methods assert expression input.

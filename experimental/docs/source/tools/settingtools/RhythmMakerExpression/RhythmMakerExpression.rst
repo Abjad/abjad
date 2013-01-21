@@ -28,6 +28,8 @@ Methods
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.new
    :noindex:
 
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.partition_by_ratio
    :noindex:
 

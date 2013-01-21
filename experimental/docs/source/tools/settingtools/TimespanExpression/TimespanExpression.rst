@@ -52,6 +52,11 @@ Methods
 
    Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
+.. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.new
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.scale
    :noindex:
 

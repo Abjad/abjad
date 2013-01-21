@@ -65,6 +65,11 @@ Methods
 
    Inherited from :py:class:`settingtools.LookupMethodMixin <experimental.tools.settingtools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin>`
 
+.. automethod:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.new
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. automethod:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.scale
    :noindex:
 

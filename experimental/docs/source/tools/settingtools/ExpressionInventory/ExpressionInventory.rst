@@ -50,6 +50,11 @@ Methods
 
    Inherited from :py:class:`__builtin__.list`
 
+.. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.new
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.pop
    :noindex:
 

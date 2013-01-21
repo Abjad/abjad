@@ -25,6 +25,11 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.new
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.partition_by_ratio
    :noindex:
 

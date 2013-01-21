@@ -62,6 +62,11 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.new
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. automethod:: experimental.tools.selectortools.BeatSelector.BeatSelector.BeatSelector.partition_by_ratio
    :noindex:
 

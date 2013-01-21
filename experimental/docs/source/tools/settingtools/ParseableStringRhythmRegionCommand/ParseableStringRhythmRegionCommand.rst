@@ -26,6 +26,14 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.ParseableStringRhythmRegionCommand.ParseableStringRhythmRegionCommand.ParseableStringRhythmRegionCommand.voice_name
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.settingtools.ParseableStringRhythmRegionCommand.ParseableStringRhythmRegionCommand.ParseableStringRhythmRegionCommand.new
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 Special Methods
 ---------------
 

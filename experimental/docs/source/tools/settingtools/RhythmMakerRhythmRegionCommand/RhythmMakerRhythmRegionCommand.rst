@@ -26,6 +26,14 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.RhythmMakerRhythmRegionCommand.RhythmMakerRhythmRegionCommand.RhythmMakerRhythmRegionCommand.voice_name
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.settingtools.RhythmMakerRhythmRegionCommand.RhythmMakerRhythmRegionCommand.RhythmMakerRhythmRegionCommand.new
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 Special Methods
 ---------------
 

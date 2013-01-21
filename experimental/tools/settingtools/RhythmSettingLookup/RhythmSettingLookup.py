@@ -42,9 +42,8 @@ class RhythmSettingLookup(SettingLookup):
             assert isinstance(source_command.expression.payload, rhythmmakertools.RhythmMaker)
             # TODO: deepcopy is not necessary
             expression = copy.deepcopy(source_command.expression)
-            # TODO: eventually change to result = self._apply_callbacks(expression)
-            result, dummy = self._apply_callbacks(expression, start_offset=0)
-            # TODO: eventually return RhythmMakerExpression
+            result = self._apply_callbacks(expression)
+            # TODO: eventually return RhythmMakerExpression instead of rhythm-maker
             rhythm_maker = result.payload
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             return rhythm_maker
