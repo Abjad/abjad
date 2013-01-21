@@ -6,7 +6,7 @@ from abjad.tools import timespantools
 from experimental.tools.settingtools.CallbackMixin import CallbackMixin
 
 
-class PayloadCallbackMixin(CallbackMixin):
+class StartPositionedPayloadCallbackMixin(CallbackMixin):
     r'''Payload callback mixin.
 
     Base class from which payload-carrying expressions inherit.

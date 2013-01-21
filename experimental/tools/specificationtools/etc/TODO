@@ -115,8 +115,8 @@
 
 22. Extend AbsoluteExpression with start_offset property for offset-positioning.
     This will create the idea of a start-positioned expression.
-    Then change PayloadCallbackMixin._apply_callbacks(elements, start_offset)
-    to PayloadCallbackMixin._apply_callbacks(start_positioned_expression).
+    Then change StartPositionedPayloadCallbackMixin._apply_callbacks(elements, start_offset)
+    to StartPositionedPayloadCallbackMixin._apply_callbacks(start_positioned_expression).
     Why not just use RegionProduct as start-positioned expression?
     Because there's a difference between a (not-yet-evaluated) expression
     and an (already evaluated) RegionProduct.

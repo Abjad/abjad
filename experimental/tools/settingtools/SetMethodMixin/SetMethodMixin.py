@@ -30,7 +30,7 @@ class SetMethodMixin(AbjadObject):
         from experimental.tools import settingtools
         # probably precautionary: prune expr of any incoming references
         expr = copy.deepcopy(expr)
-        if isinstance(expr, settingtools.PayloadCallbackMixin):
+        if isinstance(expr, settingtools.StartPositionedPayloadCallbackMixin):
             return expr
         elif isinstance(expr, settingtools.StatalServer):
             return settingtools.StatalServerRequest(expr)

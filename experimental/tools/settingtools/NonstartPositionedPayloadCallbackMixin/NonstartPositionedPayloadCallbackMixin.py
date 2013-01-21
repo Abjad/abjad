@@ -1,7 +1,7 @@
-from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
+from experimental.tools.settingtools.StartPositionedPayloadCallbackMixin import StartPositionedPayloadCallbackMixin
 
 
-class NonstartPositionedPayloadCallbackMixin(PayloadCallbackMixin):
+class NonstartPositionedPayloadCallbackMixin(StartPositionedPayloadCallbackMixin):
     '''Nonstart-positioned payload callback mixin.
     '''
     

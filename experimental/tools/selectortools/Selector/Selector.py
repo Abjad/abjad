@@ -5,10 +5,10 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
 from experimental.tools.settingtools.AnchoredExpression import AnchoredExpression
-from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
+from experimental.tools.settingtools.StartPositionedPayloadCallbackMixin import StartPositionedPayloadCallbackMixin
 
 
-class Selector(AnchoredExpression, PayloadCallbackMixin):
+class Selector(AnchoredExpression, StartPositionedPayloadCallbackMixin):
     r'''Selector.
 
     Abstract base class from which concrete selectors inherit.
@@ -25,7 +25,7 @@ class Selector(AnchoredExpression, PayloadCallbackMixin):
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         AnchoredExpression.__init__(self, anchor=anchor)
-        PayloadCallbackMixin.__init__(self, callbacks=callbacks)
+        StartPositionedPayloadCallbackMixin.__init__(self, callbacks=callbacks)
         assert voice_name is not None
         self._voice_name = voice_name
         self._time_relation = time_relation
@@ -34,7 +34,7 @@ class Selector(AnchoredExpression, PayloadCallbackMixin):
 
     @property
     def _keyword_argument_name_value_strings(self):
-        result = PayloadCallbackMixin._keyword_argument_name_value_strings.fget(self)
+        result = StartPositionedPayloadCallbackMixin._keyword_argument_name_value_strings.fget(self)
         if 'callbacks=CallbackInventory([])' in result:
             result = list(result)
             result.remove('callbacks=CallbackInventory([])')
@@ -51,7 +51,7 @@ class Selector(AnchoredExpression, PayloadCallbackMixin):
         '''Do not show empty selector callbacks list.
         '''
         filtered_result = []
-        result = PayloadCallbackMixin._get_tools_package_qualified_keyword_argument_repr_pieces(
+        result = StartPositionedPayloadCallbackMixin._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
             if not 'callbacks=settingtools.CallbackInventory([])' in string:

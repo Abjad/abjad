@@ -331,7 +331,6 @@ Unstable packages (load manually)
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/NonstartPositionedPayloadCallbackMixin/NonstartPositionedPayloadCallbackMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
-      tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
       tools/settingtools/RegionCommand/RegionCommand
       tools/settingtools/RegionProduct/RegionProduct
       tools/settingtools/SegmentRegionProduct/SegmentRegionProduct
@@ -342,6 +341,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
       tools/settingtools/StartPositionedObject/StartPositionedObject
+      tools/settingtools/StartPositionedPayloadCallbackMixin/StartPositionedPayloadCallbackMixin
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
 
    --------
@@ -403,7 +403,6 @@ Unstable packages (load manually)
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/NonstartPositionedPayloadCallbackMixin/NonstartPositionedPayloadCallbackMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
-      tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
       tools/settingtools/RegionCommand/RegionCommand
       tools/settingtools/RegionProduct/RegionProduct
       tools/settingtools/SegmentRegionProduct/SegmentRegionProduct
@@ -414,6 +413,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
       tools/settingtools/StartPositionedObject/StartPositionedObject
+      tools/settingtools/StartPositionedPayloadCallbackMixin/StartPositionedPayloadCallbackMixin
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
 
    Concrete Classes
