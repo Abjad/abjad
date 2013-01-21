@@ -1,4 +1,3 @@
-from abjad import *
 from experimental import *
 import copy
 

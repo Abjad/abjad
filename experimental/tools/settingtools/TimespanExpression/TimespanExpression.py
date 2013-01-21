@@ -24,9 +24,7 @@ class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethod
     def __init__(self, anchor=None, callbacks=None):
         from experimental.tools import settingtools
         AnchoredExpression.__init__(self, anchor=anchor)
-        TimespanCallbackMixin.__init__(self)
-        callbacks = callbacks or []
-        self._callbacks = settingtools.CallbackInventory(callbacks)
+        TimespanCallbackMixin.__init__(self, callbacks=callbacks)
 
     ### SPECIAL METHODS ###
 

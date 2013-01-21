@@ -92,7 +92,11 @@
     This will show selecting measures that start during a duration-partitioned part of segment.
 
 19. Add test to show this:
-        setting = score_specification.get_offset(32, 5).look_up_rhythm_setting('Voice 1')
+        offset = score_specification.start_offset.translate(Duration(32, 5))
+        lookup = offset.look_up_rhythm_setting('Voice 1')
+    Then add composer interface affordance for this:
+        offset = score_specification.offset(Offset(32, 5))
+        lookup = offset.look_up_rhythm_setting('Voice 1')
 
 20. Afford rhythm setting lookup of parseable string. This will make ...
         red_segment.set_rhythm("c'32 [ c'16 c'16. ]", contexts=['Voice 1'])
@@ -137,4 +141,4 @@
 
 25. Remove the word 'requested' from the codebase.
 
-26. Remove 'from abjad import *' in favor of 'from experimental import *' in all test files.
+26. Create a CallbackMixin class from which TimespanCallbackMixin, etc can inherit.

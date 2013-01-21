@@ -1,3 +1,5 @@
+from abjad import *
+
 from tools import constrainttools
 from tools import handlertools
 from tools import interpretertools

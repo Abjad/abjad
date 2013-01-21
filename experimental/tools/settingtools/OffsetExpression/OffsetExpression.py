@@ -1,8 +1,9 @@
 from experimental.tools.settingtools.AnchoredExpression import AnchoredExpression
 from experimental.tools.settingtools.LookupMethodMixin import LookupMethodMixin
+from experimental.tools.settingtools.OffsetCallbackMixin import OffsetCallbackMixin
 
 
-class OffsetExpression(AnchoredExpression, LookupMethodMixin):
+class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixin):
     r'''Offset expression.
 
     ::
@@ -39,10 +40,11 @@ class OffsetExpression(AnchoredExpression, LookupMethodMixin):
 
     ### INITIALIZER ###
 
-    # TODO: initialize with callback inventory
-    def __init__(self, anchor=None, edge=None):
+    def __init__(self, anchor=None, edge=None, callbacks=None):
+        from experimental.tools import settingtools
         assert edge in (Left, Right, None), repr(edge)
         AnchoredExpression.__init__(self, anchor=anchor)
+        OffsetCallbackMixin.__init__(self, callbacks=callbacks)
         self._edge = edge
 
     ### SPECIAL METHODS ###
@@ -73,8 +75,19 @@ class OffsetExpression(AnchoredExpression, LookupMethodMixin):
             offset = anchor_timespan.start_offset
         else:
             offset = anchor_timespan.stop_offset
-        # TODO: apply callbacks
+        offset = self._apply_callbacks(offset)
         return offset
+
+    def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
+        '''Do not show empty callback inventory.
+        '''
+        filtered_result = []
+        result = AnchoredExpression._get_tools_package_qualified_keyword_argument_repr_pieces(
+            self, is_indented=is_indented)
+        for string in result:
+            if not 'callbacks=settingtools.CallbackInventory([])' in string:
+                filtered_result.append(string)
+        return filtered_result
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
