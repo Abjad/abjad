@@ -25,6 +25,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.new
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.partition_by_ratio
    :noindex:
 
@@ -37,8 +40,6 @@ Methods
 
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.reflect
    :noindex:
-
-   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.repeat_to_duration
    :noindex:

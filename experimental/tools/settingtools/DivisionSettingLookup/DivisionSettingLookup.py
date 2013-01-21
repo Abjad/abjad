@@ -66,7 +66,8 @@ class DivisionSettingLookup(SettingLookup):
         assert source_command is not None
         expression = source_command.expression
         assert isinstance(expression, settingtools.AbsoluteExpression), repr(expression)
-        divisions = expression.payload
-        start_offset = division_region_command.timespan.start_offset
-        divisions, start_offset = self._apply_callbacks(divisions, start_offset)
-        return divisions
+        # TODO: eventually have Lookup classes inherit from Nonstart callbacks
+        # TODO: eventually change to result = self._apply_callbacks(expression)
+        result, dummy = self._apply_callbacks(expression, 0)
+        # TODO: eventually return AbsoluteExpression instead of tuple of divisions
+        return result.payload

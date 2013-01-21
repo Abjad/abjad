@@ -21,6 +21,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.new
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.partition_by_ratio
    :noindex:
 
@@ -33,8 +36,6 @@ Methods
 
 .. automethod:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.reflect
    :noindex:
-
-   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.repeat_to_duration
    :noindex:
