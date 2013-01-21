@@ -30,12 +30,8 @@ class SetMethodMixin(AbjadObject):
         from experimental.tools import settingtools
         # probably precautionary: prune expr of any incoming references
         expr = copy.deepcopy(expr)
-        if isinstance(expr, settingtools.StartPositionedPayloadCallbackMixin):
+        if isinstance(expr, settingtools.Expression):
             return expr
-        elif isinstance(expr, settingtools.StatalServer):
-            return settingtools.StatalServerRequest(expr)
-        elif isinstance(expr, handlertools.Handler):
-            return requesttool.HandlerRequest(expr)
         elif self._all_are_expressions(expr):
             return settingtools.ExpressionInventory(expr)
         elif isinstance(expr, (str, tuple, list)):

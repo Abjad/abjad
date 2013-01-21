@@ -11,6 +11,11 @@ class NonstartPositionedPayloadCallbackMixin(CallbackMixin):
     
     ### SPECIAL METHODS ###
 
+    def __and__(self, timespan):
+        assert isinstance(timespan, timespantools.Timespan), repr(timespan)
+        callback = 'result = self.___and__(expr, {!r})'.format(timespan)
+        return self._copy_and_append_callback(callback)
+
     def __eq__(self, expr):
         '''True when mandatory and keyword arguments compare equal.
         Otherwise false.
@@ -32,6 +37,24 @@ class NonstartPositionedPayloadCallbackMixin(CallbackMixin):
 
     ### PRIVATE METHODS ###
 
+    def ___and__(self, expr, timespan):
+        from experimental.tools import settingtools
+        if hasattr(expr, '__and__'):
+            result = expr & timespan
+            assert isinstance(result, timespantools.TimespanInventory), repr(result)
+            assert len(result) == 1, repr(result)
+            result = result[0]
+            return result
+        else:
+            if not sequencetools.all_are_numbers(expr):
+                expr = [mathtools.NonreducedFraction(x) for x in expr]
+            division_region_product = settingtools.DivisionRegionProduct(
+                payload=expr, voice_name='dummy voice name', start_offset=durationtools.Offset(0))
+            result = division_region_product & timespan
+            result = result[0]
+            divisions = result.payload.divisions
+            return divisions
+
     def ___getitem__(self, expr, s):
         assert isinstance(s, slice)
         if hasattr(expr, '_getitem'):
@@ -40,7 +63,7 @@ class NonstartPositionedPayloadCallbackMixin(CallbackMixin):
         else:
             start_index, stop_index, stride = s.indices(len(expr))
             selected_expr = expr[s]
-            return selected_expr, new_start_offset
+            return selected_expr
 
     def _apply_callbacks(self, expr):
         from experimental.tools import settingtools
@@ -57,6 +80,7 @@ class NonstartPositionedPayloadCallbackMixin(CallbackMixin):
             'sequencetools': sequencetools,
             }
         for callback in self.callbacks:
+            print callback
             assert 'expr' in callback
             evaluation_context['expr'] = expr
             exec(callback, evaluation_context)

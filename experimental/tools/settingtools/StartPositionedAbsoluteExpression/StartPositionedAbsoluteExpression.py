@@ -19,7 +19,7 @@ class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObjec
             ((4, 16), (2, 16)),
             start_offset=durationtools.Offset(5, 1),
             callbacks=settingtools.CallbackInventory([
-                'result = self._repeat_to_length(expr, 6, start_offset)'
+                'result = self._repeat_to_length(expr, 6)'
                 ])
             )
 

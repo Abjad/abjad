@@ -1,8 +1,8 @@
 from experimental.tools.settingtools.Expression import Expression
-from experimental.tools.settingtools.StartPositionedPayloadCallbackMixin import StartPositionedPayloadCallbackMixin
+from experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin import NonstartPositionedPayloadCallbackMixin
 
 
-class AbsoluteExpression(Expression, StartPositionedPayloadCallbackMixin):
+class AbsoluteExpression(Expression, NonstartPositionedPayloadCallbackMixin):
     r'''Absolute expression.
 
     ::
@@ -29,7 +29,7 @@ class AbsoluteExpression(Expression, StartPositionedPayloadCallbackMixin):
     def __init__(self, payload, callbacks=None):
         assert isinstance(payload, (str, tuple, list)), repr(payload)
         Expression.__init__(self)
-        StartPositionedPayloadCallbackMixin.__init__(self, callbacks=callbacks)
+        NonstartPositionedPayloadCallbackMixin.__init__(self, callbacks=callbacks)
         if isinstance(payload, list):
             payload = tuple(payload)
         self._payload = payload
@@ -44,8 +44,7 @@ class AbsoluteExpression(Expression, StartPositionedPayloadCallbackMixin):
             result = self.payload
         else:
             raise TypeError(self.payload)
-        # TODO: eventually change to result = self._apply_callbacks(result)
-        result, dummy = self._apply_callbacks(result, None)
+        result = self._apply_callbacks(result)
         return result
 
     ### READ-ONLY PROPERTIES ###
@@ -61,7 +60,7 @@ class AbsoluteExpression(Expression, StartPositionedPayloadCallbackMixin):
 
         Return callback inventory.
         '''
-        return StartPositionedPayloadCallbackMixin.callbacks.fget(self)
+        return NonstartPositionedPayloadCallbackMixin.callbacks.fget(self)
 
     @property
     def payload(self):
@@ -89,4 +88,4 @@ class AbsoluteExpression(Expression, StartPositionedPayloadCallbackMixin):
 
         Return string.
         '''
-        return StartPositionedPayloadCallbackMixin.storage_format.fget(self)
+        return NonstartPositionedPayloadCallbackMixin.storage_format.fget(self)

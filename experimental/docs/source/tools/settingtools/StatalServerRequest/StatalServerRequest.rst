@@ -58,7 +58,17 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.___and__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
+
 .. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.___getitem__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
+
+.. automethod:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.__and__
    :noindex:
 
    Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
