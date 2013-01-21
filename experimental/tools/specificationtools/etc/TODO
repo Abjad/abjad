@@ -131,4 +131,5 @@
 
 24. Remove the word 'requested' from the codebase.
 
-25. Create a CallbackMixin class from which TimespanCallbackMixin, etc can inherit.
+25. Change 'PUBLIC READ-ONLY PROPERTIES' to 'READ-ONLY PUBLIC PROPERTIES'.
+    Change 'PRIVATE READ-ONLY PROPERTIES' to 'READ-ONLY PRIVATE PROPERTIES'.

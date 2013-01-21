@@ -17,7 +17,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.callbacks
    :noindex:
 
-   Inherited from :py:class:`settingtools.OffsetCallbackMixin <experimental.tools.settingtools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin>`
+   Inherited from :py:class:`settingtools.CallbackMixin <experimental.tools.settingtools.CallbackMixin.CallbackMixin.CallbackMixin>`
 
 .. autoattribute:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.edge
    :noindex:

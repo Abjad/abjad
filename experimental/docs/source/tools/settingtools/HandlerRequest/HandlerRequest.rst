@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.callbacks
    :noindex:
 
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.CallbackMixin <experimental.tools.settingtools.CallbackMixin.CallbackMixin.CallbackMixin>`
 
 .. autoattribute:: experimental.tools.settingtools.HandlerRequest.HandlerRequest.HandlerRequest.handler
    :noindex:

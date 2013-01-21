@@ -12,6 +12,8 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.callbacks
    :noindex:
 
+   Inherited from :py:class:`settingtools.CallbackMixin <experimental.tools.settingtools.CallbackMixin.CallbackMixin.CallbackMixin>`
+
 .. autoattribute:: experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.storage_format
    :noindex:
 

@@ -1,27 +1,13 @@
-import abc
-import copy
 from abjad.tools import durationtools
-from abjad.tools.abctools import AbjadObject
+from experimental.tools.settingtools.CallbackMixin import CallbackMixin
 
 
-class OffsetCallbackMixin(AbjadObject):
+class OffsetCallbackMixin(CallbackMixin):
     '''Offset callback mixin.
 
     .. note:: add examples.
 
     '''
-
-    ### CLASS ATTRIBUTES ###
-
-    __metaclass__ = abc.ABCMeta
-
-    ### INITIALIZER ###
-
-    @abc.abstractmethod
-    def __init__(self, callbacks=None):
-        from experimental.tools import settingtools
-        callbacks = callbacks or []
-        self._callbacks = settingtools.CallbackInventory(callbacks)
 
     ### PRIVATE METHODS ###
 
@@ -38,11 +24,6 @@ class OffsetCallbackMixin(AbjadObject):
             offset = eval(callback, evaluation_context)
         return offset
 
-    def _copy_and_append_callback(self, callback):
-        result = copy.deepcopy(self)
-        result.callbacks.append(callback)
-        return result
-
     def _scale(self, offset, multiplier):
         assert 0 <= multiplier
         offset *= multiplier
@@ -51,12 +32,6 @@ class OffsetCallbackMixin(AbjadObject):
     def _translate(self, offset, translation):
         offset += translation
         return offset
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def callbacks(self):
-        return self._callbacks
 
     ### PUBLIC METHODS ###
 

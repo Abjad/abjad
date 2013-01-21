@@ -12,6 +12,8 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.callbacks
    :noindex:
 
+   Inherited from :py:class:`settingtools.CallbackMixin <experimental.tools.settingtools.CallbackMixin.CallbackMixin.CallbackMixin>`
+
 .. autoattribute:: experimental.tools.settingtools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.storage_format
    :noindex:
 

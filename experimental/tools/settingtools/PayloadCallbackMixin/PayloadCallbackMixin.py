@@ -1,33 +1,16 @@
-import abc
-import copy
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import sequencetools
 from abjad.tools import timespantools
-from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.tools.settingtools.AttributeNameEnumeration import AttributeNameEnumeration
+from experimental.tools.settingtools.CallbackMixin import CallbackMixin
 
 
-class PayloadCallbackMixin(AbjadObject):
+class PayloadCallbackMixin(CallbackMixin):
     r'''Payload callback mixin.
 
     Base class from which payload-carrying expressions inherit.
     '''
-
-    ### CLASS ATTRIBUTES ###
-
-    __metaclass__ = abc.ABCMeta
-
-    attributes = AttributeNameEnumeration()
-
-    ### INITIALIZER ###
-
-    @abc.abstractmethod
-    def __init__(self, callbacks=None):
-        from experimental.tools import settingtools
-        callbacks = callbacks or []
-        self._callbacks = settingtools.CallbackInventory(callbacks)
 
     ### SPECIAL METHODS ###
 
@@ -54,16 +37,6 @@ class PayloadCallbackMixin(AbjadObject):
         callback = 'result = self.___getitem__(elements, start_offset, {!r})'
         callback = callback.format(expr)
         return self._copy_and_append_callback(callback)
-
-    ### PRIVATE READ-ONLY PROPERTIES ###
-
-    @property
-    def _keyword_argument_name_value_strings(self):
-        result = AbjadObject._keyword_argument_name_value_strings.fget(self)
-        if 'callbacks=CallbackInventory([])' in result:
-            result = list(result)
-            result.remove('callbacks=CallbackInventory([])')
-        return tuple(result)
 
     ### PRIVATE METHODS ###
 
@@ -133,11 +106,6 @@ class PayloadCallbackMixin(AbjadObject):
             elements, start_offset = evaluation_context['result']
         return elements, start_offset
 
-    def _copy_and_append_callback(self, callback):
-        result = copy.deepcopy(self)
-        result.callbacks.append(callback)
-        return result
-
     def _duration_helper(self, expr):
         if hasattr(expr, 'duration'):
             return expr.duration
@@ -146,17 +114,6 @@ class PayloadCallbackMixin(AbjadObject):
         else:
             duration = durationtools.Duration(expr)
             return duration
-
-    def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty callbacks list.
-        '''
-        filtered_result = []
-        result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
-            self, is_indented=is_indented)
-        for string in result:
-            if not 'callbacks=settingtools.CallbackInventory([])' in string:
-                filtered_result.append(string)
-        return filtered_result
 
     def _partition_by_ratio(self, elements, original_start_offset, ratio, part):
         if hasattr(elements, 'partition_by_ratio'):
@@ -242,12 +199,6 @@ class PayloadCallbackMixin(AbjadObject):
             elements = sequencetools.rotate_sequence(elements, n)
         new_start_offset = original_start_offset
         return elements, new_start_offset
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def callbacks(self):
-        return self._callbacks
 
     ### PUBLIC METHODS ###
 

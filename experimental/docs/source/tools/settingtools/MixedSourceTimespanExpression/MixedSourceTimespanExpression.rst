@@ -17,7 +17,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.callbacks
    :noindex:
 
-   Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
+   Inherited from :py:class:`settingtools.CallbackMixin <experimental.tools.settingtools.CallbackMixin.CallbackMixin.CallbackMixin>`
 
 .. autoattribute:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.score_specification
    :noindex:

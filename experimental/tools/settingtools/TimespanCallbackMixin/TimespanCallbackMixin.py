@@ -1,15 +1,13 @@
-import abc
-import copy
 from abjad.tools import chordtools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import notetools
 from abjad.tools import timespantools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.tools.settingtools.CallbackMixin import CallbackMixin
 
 
-class TimespanCallbackMixin(AbjadObject):
+class TimespanCallbackMixin(CallbackMixin):
     '''Timespan callback mixin.
 
     ::
@@ -23,18 +21,6 @@ class TimespanCallbackMixin(AbjadObject):
 
     The examples below refer to the score and segment specifications defined above.
     '''
-
-    ### CLASS ATTRIBUTES ###
-
-    __metaclass__ = abc.ABCMeta
-
-    ### INITIALIZER ###
-
-    @abc.abstractmethod
-    def __init__(self, callbacks=None):
-        from experimental.tools import settingtools
-        callbacks = callbacks or []
-        self._callbacks = settingtools.CallbackInventory(callbacks)
 
     ### PRIVATE METHODS ###
 
@@ -54,11 +40,6 @@ class TimespanCallbackMixin(AbjadObject):
             assert start_offset <= stop_offset
         return timespantools.Timespan(start_offset, stop_offset)
         
-    def _copy_and_append_callback(self, callback):
-        result = copy.deepcopy(self)
-        result.callbacks.append(callback)
-        return result
-    
     def _divide_by_ratio(self, start_offset, stop_offset, ratio, the_part):
         original_start_offset, original_stop_offset = start_offset, stop_offset
         original_duration = original_stop_offset - original_start_offset
@@ -104,22 +85,6 @@ class TimespanCallbackMixin(AbjadObject):
         new_stop_offset = original_stop_offset + stop_offset_translation
         return new_start_offset, new_stop_offset
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def callbacks(self):
-        '''Read-only list of timespan callbacks to be applied 
-        during evaluation:
-
-        ::
-
-            >>> red_segment.timespan.callbacks
-            CallbackInventory([])
-
-        Return callback inventory of zero or more strings.
-        '''
-        return self._callbacks
-    
     ### PUBLIC METHODS ###
 
     def divide_by_ratio(self, ratio):
