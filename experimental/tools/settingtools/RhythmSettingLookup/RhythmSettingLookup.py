@@ -43,6 +43,12 @@ class RhythmSettingLookup(SettingLookup):
             rhythm_maker, start_offset = self._apply_callbacks(
                 rhythm_maker, source_command.timespan.start_offset)
             return rhythm_maker
+            # TODO: implement callbacks on RhythmMakerExpression so the following lines will work
+            #expression = copy.deepcopy(source_command.expression)
+            #result, dummy = self._apply_callbacks(expression, start_offset=0)
+            ## TODO: eventually return RhythmMakerExpression
+            #rhythm_maker = result.payload
+            #return rhythm_maker
         elif isinstance(source_command.expression, settingtools.AbsoluteExpression):
             assert isinstance(source_command.expression.payload, str)
             return source_command.expression.payload
