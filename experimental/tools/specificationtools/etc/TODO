@@ -120,9 +120,6 @@
     Why not just use RegionProduct as start-positioned expression?
     Because there's a difference between a (not-yet-evaluated) expression
     and an (already evaluated) RegionProduct.
-    At any rate it makes sense to change 
-    PayloadCallbackMixin._apply_callbacks(elements, start_offset) to
-    PayloadCallbackMixin._apply_callbacks(expr, start_offset) in the meantime.
 
 23. Implement _getitem() on all region products.
     Change _getitem() output signature from (elements, start_offset) to just new_region_product.

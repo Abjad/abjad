@@ -28,7 +28,7 @@ class DivisionSettingLookup(SettingLookup):
                     anchor='red',
                     voice_name='Voice 1',
                     callbacks=settingtools.CallbackInventory([
-                        'result = self.___getitem__(elements, start_offset, slice(4, 5, None))'
+                        'result = self.___getitem__(expr, start_offset, slice(4, 5, None))'
                         ])
                     )
                 )
