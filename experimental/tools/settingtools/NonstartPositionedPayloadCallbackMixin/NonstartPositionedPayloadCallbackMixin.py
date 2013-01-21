@@ -13,59 +13,59 @@ class NonstartPositionedPayloadCallbackMixin(CallbackMixin):
 
     def __and__(self, timespan):
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
-        callback = 'result = self.___and__(expr, {!r})'.format(timespan)
+        callback = 'result = self.___and__(expression, {!r})'.format(timespan)
         return self._copy_and_append_callback(callback)
 
-    def __eq__(self, expr):
+    def __eq__(self, expression):
         '''True when mandatory and keyword arguments compare equal.
         Otherwise false.
 
         Return boolean.
         '''
-        if not isinstance(expr, type(self)):
+        if not isinstance(expression, type(self)):
             return False
-        if not self._positional_argument_values == expr._positional_argument_values:
+        if not self._positional_argument_values == expression._positional_argument_values:
             return False
-        return self._keyword_argument_values == expr._keyword_argument_values
+        return self._keyword_argument_values == expression._keyword_argument_values
 
-    def __getitem__(self, expr):
+    def __getitem__(self, expression):
         '''Return copy of expression with appended callback.
         '''
-        callback = 'result = self.___getitem__(expr, {!r})'
-        callback = callback.format(expr)
+        callback = 'result = self.___getitem__(expression, {!r})'
+        callback = callback.format(expression)
         return self._copy_and_append_callback(callback)
 
     ### PRIVATE METHODS ###
 
-    def ___and__(self, expr, timespan):
+    def ___and__(self, expression, timespan):
         from experimental.tools import settingtools
-        if hasattr(expr, '__and__'):
-            result = expr & timespan
+        if hasattr(expression, '__and__'):
+            result = expression & timespan
             assert isinstance(result, timespantools.TimespanInventory), repr(result)
             assert len(result) == 1, repr(result)
             result = result[0]
             return result
         else:
-            if not sequencetools.all_are_numbers(expr):
-                expr = [mathtools.NonreducedFraction(x) for x in expr]
+            if not sequencetools.all_are_numbers(expression):
+                expression = [mathtools.NonreducedFraction(x) for x in expression]
             division_region_product = settingtools.DivisionRegionProduct(
-                payload=expr, voice_name='dummy voice name', start_offset=durationtools.Offset(0))
+                payload=expression, voice_name='dummy voice name', start_offset=durationtools.Offset(0))
             result = division_region_product & timespan
             result = result[0]
             divisions = result.payload.divisions
             return divisions
 
-    def ___getitem__(self, expr, s):
+    def ___getitem__(self, expression, s):
         assert isinstance(s, slice)
-        if hasattr(expr, '_getitem'):
-            result = expr._getitem(s) 
+        if hasattr(expression, '_getitem'):
+            result = expression._getitem(s) 
             return result
         else:
-            start_index, stop_index, stride = s.indices(len(expr))
-            selected_expr = expr[s]
-            return selected_expr
+            start_index, stop_index, stride = s.indices(len(expression))
+            selected_expression = expression[s]
+            return selected_expression
 
-    def _apply_callbacks(self, expr):
+    def _apply_callbacks(self, expression):
         from experimental.tools import settingtools
         evaluation_context = {
             'Duration': durationtools.Duration,
@@ -74,86 +74,86 @@ class NonstartPositionedPayloadCallbackMixin(CallbackMixin):
             'Ratio': mathtools.Ratio,
             'RotationIndicator': settingtools.RotationIndicator,
             'Timespan': timespantools.Timespan,
-            'expr': expr,
+            'expression': expression,
             'self': self,
             'result': None,
             'sequencetools': sequencetools,
             }
         for callback in self.callbacks:
             print callback
-            assert 'expr' in callback
-            evaluation_context['expr'] = expr
+            assert 'expression' in callback
+            evaluation_context['expression'] = expression
             exec(callback, evaluation_context)
-            expr = evaluation_context['result']
-        return expr
+            expression = evaluation_context['result']
+        return expression
 
-    def _duration_helper(self, expr):
-        if hasattr(expr, 'duration'):
-            return expr.duration
-        elif hasattr(expr, 'prolated_duration'):
-            return expr.prolated_duration
+    def _duration_helper(self, expression):
+        if hasattr(expression, 'duration'):
+            return expression.duration
+        elif hasattr(expression, 'prolated_duration'):
+            return expression.prolated_duration
         else:
-            duration = durationtools.Duration(expr)
+            duration = durationtools.Duration(expression)
             return duration
 
-    def _partition_by_ratio(self, expr, ratio, part):
-        if hasattr(expr, 'partition_by_ratio'):
-            parts = expr.partition_by_ratio(ratio)
+    def _partition_by_ratio(self, expression, ratio, part):
+        if hasattr(expression, 'partition_by_ratio'):
+            parts = expression.partition_by_ratio(ratio)
             selected_part = parts[part]
             return selected_part
         else:
-            parts = sequencetools.partition_sequence_by_ratio_of_lengths(expr, ratio)
+            parts = sequencetools.partition_sequence_by_ratio_of_lengths(expression, ratio)
             selected_part = parts[part]
             return selected_part
 
-    def _partition_by_ratio_of_durations(self, expr, ratio, part):
-        if hasattr(expr, 'partition_by_ratio_of_durations'):
-            parts = expr.partition_by_ratio_of_durations(ratio)
+    def _partition_by_ratio_of_durations(self, expression, ratio, part):
+        if hasattr(expression, 'partition_by_ratio_of_durations'):
+            parts = expression.partition_by_ratio_of_durations(ratio)
             selected_part = parts[part]
             return selected_part
         else:
-            element_durations = [self._duration_helper(x) for x in expr]
+            element_durations = [self._duration_helper(x) for x in expression]
             element_tokens = durationtools.durations_to_integers(element_durations)
             token_parts = sequencetools.partition_sequence_by_ratio_of_weights(element_tokens, ratio)
             part_lengths = [len(x) for x in token_parts]
             duration_parts = sequencetools.partition_sequence_by_counts(element_durations, part_lengths)
-            element_parts = sequencetools.partition_sequence_by_counts(expr, part_lengths)
+            element_parts = sequencetools.partition_sequence_by_counts(expression, part_lengths)
             selected_part = element_parts[part]
             return selected_part
 
-    def _reflect(self, expr):
-        if hasattr(expr, 'reflect'):
-            expr = expr.reflect() or expr
-        elif expr.__class__.__name__ in ('tuple', 'list'):
-            expr = type(expr)(reversed(expr))
+    def _reflect(self, expression):
+        if hasattr(expression, 'reflect'):
+            expression = expression.reflect() or expression
+        elif expression.__class__.__name__ in ('tuple', 'list'):
+            expression = type(expression)(reversed(expression))
         else:
-            expr = expr.reverse() or expr
-        return expr
+            expression = expression.reverse() or expression
+        return expression
 
-    def _repeat_to_duration(self, expr, duration):
-        if hasattr(expr, 'repeat_to_duration'):
-            result = expr.repeat_to_duration(duration)
+    def _repeat_to_duration(self, expression, duration):
+        if hasattr(expression, 'repeat_to_duration'):
+            result = expression.repeat_to_duration(duration)
             return result
         else:
-            if not sequencetools.all_are_numbers(expr):
-                expr = [mathtools.NonreducedFraction(x) for x in expr]
-            expr = sequencetools.repeat_sequence_to_weight_exactly(expr, duration)
-            return expr
+            if not sequencetools.all_are_numbers(expression):
+                expression = [mathtools.NonreducedFraction(x) for x in expression]
+            expression = sequencetools.repeat_sequence_to_weight_exactly(expression, duration)
+            return expression
 
-    def _repeat_to_length(self, expr, length):
-        if hasattr(expr, 'repeat_to_length'):
-            result = expr.repeat_to_length(length)
+    def _repeat_to_length(self, expression, length):
+        if hasattr(expression, 'repeat_to_length'):
+            result = expression.repeat_to_length(length)
             return result
         else:
-            expr = sequencetools.repeat_sequence_to_length(expr, length)
-            return expr
+            expression = sequencetools.repeat_sequence_to_length(expression, length)
+            return expression
 
-    def _rotate(self, expr, n):
-        if hasattr(expr, 'rotate'):
-            expr.rotate(n)
+    def _rotate(self, expression, n):
+        if hasattr(expression, 'rotate'):
+            expression.rotate(n)
         else:
-            expr = sequencetools.rotate_sequence(expr, n)
-        return expr
+            expression = sequencetools.rotate_sequence(expression, n)
+        return expression
 
     ### PUBLIC METHODS ###
 
@@ -164,7 +164,7 @@ class NonstartPositionedPayloadCallbackMixin(CallbackMixin):
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             callback = \
-                'result = self._partition_by_ratio(expr, {!r}, {!r})'
+                'result = self._partition_by_ratio(expression, {!r}, {!r})'
             callback = callback.format(ratio, part)
             result.append(self._copy_and_append_callback(callback))
         return tuple(result)
@@ -174,7 +174,7 @@ class NonstartPositionedPayloadCallbackMixin(CallbackMixin):
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             callback = \
-                'result = self._partition_by_ratio_of_durations(expr, {!r}, {!r})'
+                'result = self._partition_by_ratio_of_durations(expression, {!r}, {!r})'
             callback = callback.format(ratio, part)
             result.append(self._copy_and_append_callback(callback))
         return tuple(result)
@@ -182,21 +182,21 @@ class NonstartPositionedPayloadCallbackMixin(CallbackMixin):
     def reflect(self):
         '''Return copy of expression with appended callback.
         '''
-        callback = 'result = self._reflect(expr)'
+        callback = 'result = self._reflect(expression)'
         return self._copy_and_append_callback(callback)
 
     def repeat_to_duration(self, duration):
         '''Return copy of expression with appended callback.
         '''
         duration = durationtools.Duration(duration)
-        callback = 'result = self._repeat_to_duration(expr, {!r})'.format(duration)
+        callback = 'result = self._repeat_to_duration(expression, {!r})'.format(duration)
         return self._copy_and_append_callback(callback)
 
     def repeat_to_length(self, length):
         '''Return copy of expression with appended callback.
         '''
         assert mathtools.is_nonnegative_integer(length)
-        callback = 'result = self._repeat_to_length(expr, {!r})'.format(length)
+        callback = 'result = self._repeat_to_length(expression, {!r})'.format(length)
         return self._copy_and_append_callback(callback)
 
     def rotate(self, index):
@@ -204,5 +204,5 @@ class NonstartPositionedPayloadCallbackMixin(CallbackMixin):
         '''
         from experimental.tools import settingtools
         assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
-        callback = 'result = self._rotate(expr, {!r})'.format(index)    
+        callback = 'result = self._rotate(expression, {!r})'.format(index)    
         return self._copy_and_append_callback(callback)
