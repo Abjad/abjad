@@ -23,7 +23,7 @@ class StatalServer(AbjadObject):
             result.append(self.iterable[request.index])
         return result
 
-    ### READ-ONLY PUBLIC ATTRIBUTES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def last_node(self):

@@ -30,7 +30,7 @@ class Selector(AnchoredExpression, PayloadCallbackMixin):
         self._voice_name = voice_name
         self._time_relation = time_relation
 
-    ### PRIVATE READ-ONLY PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _keyword_argument_name_value_strings(self):

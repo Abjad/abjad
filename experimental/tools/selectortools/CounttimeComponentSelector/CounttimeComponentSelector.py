@@ -116,7 +116,7 @@ class CounttimeComponentSelector(Selector):
         else:
             return False
 
-    ### READ-ONLY PUBLIC ATTRIBUTES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def classes(self):

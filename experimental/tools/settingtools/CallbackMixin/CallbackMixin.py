@@ -24,7 +24,7 @@ class CallbackMixin(AbjadObject):
         callbacks = callbacks or []
         self._callbacks = settingtools.CallbackInventory(callbacks)
 
-    ### PRIVATE READ-ONLY PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _keyword_argument_name_value_strings(self):

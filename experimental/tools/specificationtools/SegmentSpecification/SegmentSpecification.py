@@ -71,7 +71,7 @@ class SegmentSpecification(Specification):
         '''
         return '{}({!r})'.format(self._class_name, self.segment_name)
 
-    ### READ-ONLY PUBLIC ATTRIBUTES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def context_names(self):

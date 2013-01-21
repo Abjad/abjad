@@ -48,7 +48,7 @@ class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethod
             return False
         return self._keyword_argument_values == expr._keyword_argument_values
 
-    ### PRIVATE READ-ONLY PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _keyword_argument_name_value_strings(self):

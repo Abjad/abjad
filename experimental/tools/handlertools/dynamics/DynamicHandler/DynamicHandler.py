@@ -15,7 +15,7 @@ class DynamicHandler(Handler):
     def __init__(self, minimum_prolated_duration=None):
         self.minimum_prolated_duration = minimum_prolated_duration
 
-    ### PRIVATE READ-ONLY PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _tools_package_name(self):
