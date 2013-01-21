@@ -41,7 +41,7 @@ class Specification(AbjadObject):
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
-    # TODO: remove in favor of self.specification_name
+    # TODO: remove in favor of SpecificationInterface._anchor_abbreviation
     @property
     def _anchor_abbreviation(self):
         '''Form of specification suitable for writing to disk.

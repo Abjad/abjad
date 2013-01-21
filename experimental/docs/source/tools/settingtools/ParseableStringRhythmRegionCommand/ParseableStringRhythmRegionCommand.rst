@@ -15,11 +15,6 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.ParseableStringRhythmRegionCommand.ParseableStringRhythmRegionCommand.ParseableStringRhythmRegionCommand.start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.settingtools.ParseableStringRhythmRegionCommand.ParseableStringRhythmRegionCommand.ParseableStringRhythmRegionCommand.stop_offset
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
 .. autoattribute:: experimental.tools.settingtools.ParseableStringRhythmRegionCommand.ParseableStringRhythmRegionCommand.ParseableStringRhythmRegionCommand.storage_format
    :noindex:
 

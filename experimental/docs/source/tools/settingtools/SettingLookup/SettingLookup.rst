@@ -33,7 +33,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.SettingLookup.SettingLookup.SettingLookup.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SettingLookup.SettingLookup.SettingLookup.start_segment_identifier
    :noindex:
@@ -43,7 +43,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.SettingLookup.SettingLookup.SettingLookup.stop_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SettingLookup.SettingLookup.SettingLookup.storage_format
    :noindex:

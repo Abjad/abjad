@@ -27,7 +27,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.Selector.Selector.Selector.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.Selector.Selector.Selector.start_segment_identifier
    :noindex:
@@ -37,7 +37,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.selectortools.Selector.Selector.Selector.stop_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.selectortools.Selector.Selector.Selector.storage_format
    :noindex:

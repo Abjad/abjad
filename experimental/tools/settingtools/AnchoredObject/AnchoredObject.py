@@ -16,10 +16,17 @@ class AnchoredObject(AbjadObject):
     @abc.abstractmethod
     def __init__(self, anchor=None):
         from experimental.tools import settingtools
-        # TODO: eventually assert anchor is AnchoredExpression and not just unqualified Expression
-        assert isinstance(anchor, (settingtools.Expression, str, type(None))), repr(anchor)
+        assert isinstance(anchor, (settingtools.AnchoredExpression, str, type(None))), repr(anchor)
         self._anchor = anchor
         self._score_specification = None
+
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _anchor_abbreviation(self):
+        '''Form of anchored object suitable for inclusion in storage format.
+        '''
+        return self
 
     ### PRIVATE METHODS ###
 
@@ -64,6 +71,17 @@ class AnchoredObject(AbjadObject):
         return self._score_specification
 
     @property
+    def start_offset(self):
+        '''Expression start offset.
+
+        Return offset expression.
+        '''
+        from experimental.tools import settingtools
+        result = settingtools.OffsetExpression(anchor=self._anchor_abbreviation)
+        result._score_specification = self.score_specification
+        return result
+
+    @property
     def start_segment_identifier(self):
         '''Return anchor when anchor is a string.
 
@@ -75,3 +93,14 @@ class AnchoredObject(AbjadObject):
             return self.anchor
         else:
             return self.anchor.start_segment_identifier
+
+    @property
+    def stop_offset(self):
+        '''Expression stop offset.
+
+        Return offset expression.
+        '''
+        from experimental.tools import settingtools
+        result = settingtools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
+        result._score_specification = self.score_specification
+        return result

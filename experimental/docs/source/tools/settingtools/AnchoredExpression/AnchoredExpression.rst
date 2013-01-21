@@ -22,7 +22,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.AnchoredExpression.AnchoredExpression.AnchoredExpression.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.AnchoredExpression.AnchoredExpression.AnchoredExpression.start_segment_identifier
    :noindex:
@@ -32,7 +32,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.AnchoredExpression.AnchoredExpression.AnchoredExpression.stop_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.AnchoredExpression.AnchoredExpression.AnchoredExpression.storage_format
    :noindex:

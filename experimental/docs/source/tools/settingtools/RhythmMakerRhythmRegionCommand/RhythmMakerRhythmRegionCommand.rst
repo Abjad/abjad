@@ -18,11 +18,6 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.RhythmMakerRhythmRegionCommand.RhythmMakerRhythmRegionCommand.RhythmMakerRhythmRegionCommand.start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.settingtools.RhythmMakerRhythmRegionCommand.RhythmMakerRhythmRegionCommand.RhythmMakerRhythmRegionCommand.stop_offset
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
 .. autoattribute:: experimental.tools.settingtools.RhythmMakerRhythmRegionCommand.RhythmMakerRhythmRegionCommand.RhythmMakerRhythmRegionCommand.storage_format
    :noindex:
 

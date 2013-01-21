@@ -14,18 +14,8 @@ Read-only Properties
 
    Inherited from :py:class:`settingtools.CallbackMixin <experimental.tools.settingtools.CallbackMixin.CallbackMixin.CallbackMixin>`
 
-.. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.start_offset
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
-
 .. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.statal_server
    :noindex:
-
-.. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.stop_offset
-   :noindex:
-
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
 .. autoattribute:: experimental.tools.settingtools.StatalServerRequest.StatalServerRequest.StatalServerRequest.storage_format
    :noindex:
