@@ -129,3 +129,10 @@
 24. Make RegionProduct inherit from some type of Expression.
     Callbacks apply to RegionProduct classes.
     This means that RegionProduct is some type of Expression.
+
+25. Implement new() on base Expression.
+
+26. Eventually change Callback 'expr' dummy variable to 'expression'.
+
+27. Change Lookup classes to inherit from NonstartPositionedPayloadCallbackMixin
+    instead of StartPositionedPayloadCallbackMixin.
