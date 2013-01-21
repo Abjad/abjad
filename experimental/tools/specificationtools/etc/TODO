@@ -125,3 +125,7 @@
     Change _getitem() output signature from (elements, start_offset) to just new_region_product.
     Implement complete set of payload callbacks on all region products.
     Set output signature of all region product payload callback methods to just a new_region_product.
+
+24. Make RegionProduct inherit from some type of Expression.
+    Callbacks apply to RegionProduct classes.
+    This means that RegionProduct is some type of Expression.

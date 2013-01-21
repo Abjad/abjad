@@ -73,6 +73,7 @@ class StartPositionedPayloadCallbackMixin(NonstartPositionedPayloadCallbackMixin
 
     def _apply_callbacks(self, expr, start_offset):
         from experimental.tools import settingtools
+        #assert isinstance(expr, (settingtools.Expression, settingtools.RegionProduct)), repr(expr)
         evaluation_context = {
             'Duration': durationtools.Duration,
             'NonreducedFraction': mathtools.NonreducedFraction,
