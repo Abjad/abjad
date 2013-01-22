@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.callbacks
    :noindex:
 
-   Inherited from :py:class:`settingtools.AbsoluteExpression <experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression>`
+   Inherited from :py:class:`settingtools.CallbackMixin <experimental.tools.settingtools.CallbackMixin.CallbackMixin.CallbackMixin>`
 
 .. autoattribute:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.payload
    :noindex:

@@ -14,7 +14,7 @@ class AbsoluteExpression(Expression):
     ::
 
         >>> expression
-        AbsoluteExpression(((4, 16), (2, 16)), callbacks=CallbackInventory([]))
+        AbsoluteExpression(((4, 16), (2, 16)))
 
     ::
 
@@ -28,15 +28,12 @@ class AbsoluteExpression(Expression):
 
     ### INTIAILIZER ###
 
-    def __init__(self, payload, callbacks=None):
+    def __init__(self, payload):
         assert isinstance(payload, (str, tuple, list)), repr(payload)
         Expression.__init__(self)
         if isinstance(payload, list):
             payload = tuple(payload)
         self._payload = payload
-        from experimental.tools import settingtools
-        callbacks = callbacks or []
-        self._callbacks = settingtools.CallbackInventory(callbacks)
 
     ### SPECIAL METHODS ###
 
@@ -82,19 +79,6 @@ class AbsoluteExpression(Expression):
         return self.payload[:]
 
     ### READ-ONLY PROPERTIES ###
-
-    @property
-    def callbacks(self):
-        '''Absolute expression callbacks:
-
-        ::
-
-            >>> expression.callbacks
-            CallbackInventory([])
-
-        Return callback inventory.
-        '''
-        return self._callbacks
 
     @property
     def payload(self):
