@@ -23,7 +23,7 @@ Methods
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.calculate_score_and_segment_timespans
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.dump_rhythm_region_products_into_voices
+.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.dump_rhythm_products_into_voices
    :noindex:
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_region_commands_for_voice
@@ -52,7 +52,7 @@ Methods
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_time_signatures
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_division_region_products
+.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_division_products
    :noindex:
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_finalized_rhythm_region_commands
@@ -64,7 +64,7 @@ Methods
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_region_commands
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_rhythm_region_products
+.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_rhythm_products
    :noindex:
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_voice_division_lists

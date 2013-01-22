@@ -37,12 +37,12 @@ class RhythmMakerRhythmRegionCommand(FinalizedRhythmRegionCommand):
         if self.rhythm_region_division_list:
             leaf_lists = self.rhythm_maker(self.rhythm_region_division_list.pairs)
             rhythm_containers = [containertools.Container(x) for x in leaf_lists]
-            rhythm_region_product = settingtools.StartPositionedRhythmProduct(
+            rhythm_product = settingtools.StartPositionedRhythmProduct(
                 payload=rhythm_containers,
                 voice_name=self.rhythm_region_division_list.voice_name,
                 start_offset=self.start_offset)
             self._conditionally_beam_rhythm_containers(rhythm_containers)
-            return rhythm_region_product
+            return rhythm_product
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

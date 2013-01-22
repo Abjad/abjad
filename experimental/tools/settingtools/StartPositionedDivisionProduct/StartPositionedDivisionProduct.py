@@ -142,19 +142,19 @@ class StartPositionedDivisionProduct(StartPositionedProduct):
 
         ::
 
-            >>> region_product_1 = settingtools.StartPositionedDivisionProduct(2 * [(3, 16)], 'Voice 1', Offset(0))
+            >>> product_1 = settingtools.StartPositionedDivisionProduct(2 * [(3, 16)], 'Voice 1', Offset(0))
             >>> timespan = timespantools.Timespan(Offset(6, 16))
-            >>> region_product_2 = settingtools.StartPositionedDivisionProduct(
+            >>> product_2 = settingtools.StartPositionedDivisionProduct(
             ...     2 * [(2, 16)], 'Voice 1', Offset(6, 16))
 
         ::
 
-            >>> region_product_1.timespan.stops_when_timespan_starts(region_product_2)
+            >>> product_1.timespan.stops_when_timespan_starts(product_2)
             True
 
         ::
 
-            >>> result = region_product_1 | region_product_2
+            >>> result = product_1 | product_2
 
         ::
         

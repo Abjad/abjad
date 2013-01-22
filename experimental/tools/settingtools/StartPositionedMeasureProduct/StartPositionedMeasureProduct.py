@@ -8,11 +8,11 @@ class StartPositionedMeasureProduct(StartPositionedDivisionProduct):
     ::
 
         >>> payload = [(6, 8), (6, 8), (3, 4)]
-        >>> measure_region_product = settingtools.StartPositionedMeasureProduct(payload, 'Voice 1', Offset(0))
+        >>> measure_product = settingtools.StartPositionedMeasureProduct(payload, 'Voice 1', Offset(0))
 
     ::
 
-        >>> z(measure_region_product)
+        >>> z(measure_product)
         settingtools.StartPositionedMeasureProduct(
             payload=settingtools.DivisionList(
                 [Division('[6, 8]', start_offset=Offset(0, 1)), 

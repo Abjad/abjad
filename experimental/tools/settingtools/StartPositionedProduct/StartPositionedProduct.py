@@ -258,13 +258,13 @@ class StartPositionedProduct(StartPositionedObject):
         payload_parts = self._split_payload_at_offsets(durations)
         start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
         start_offsets = [self.start_offset + start_offset for start_offset in start_offsets]
-        region_products = settingtools.RegionCommandInventory()
+        products = settingtools.RegionCommandInventory()
         for payload_part, start_offset in zip(payload_parts, start_offsets):
             timespan = timespantools.Timespan(start_offset)
-            region_product = type(self)([], self.voice_name, timespan.start_offset)
-            region_product._payload = payload_part
-            region_products.append(region_product)
-        return region_products
+            product = type(self)([], self.voice_name, timespan.start_offset)
+            product._payload = payload_part
+            products.append(product)
+        return products
 
     def partition_by_ratio_of_durations(self, ratio):
         '''Partition region product payload by ratio of durations.
@@ -281,13 +281,13 @@ class StartPositionedProduct(StartPositionedObject):
         payload_parts = self._split_payload_at_offsets(durations)
         start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
         start_offsets = [self.start_offset + start_offset for start_offset in start_offsets]
-        region_products = settingtools.RegionCommandInventory()
+        products = settingtools.RegionCommandInventory()
         for payload_part, start_offset in zip(payload_parts, start_offsets):
             timespan = timespantools.Timespan(start_offset)
-            region_product = type(self)([], self.voice_name, timespan.start_offset)
-            region_product._payload = payload_part
-            region_products.append(region_product)
-        return region_products
+            product = type(self)([], self.voice_name, timespan.start_offset)
+            product._payload = payload_part
+            products.append(product)
+        return products
 
     def reflect(self):
         '''Reflect payload about region product axis.

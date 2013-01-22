@@ -48,9 +48,9 @@ class NonstartPositionedPayloadCallbackMixin(CallbackMixin):
         else:
             if not sequencetools.all_are_numbers(expression):
                 expression = [mathtools.NonreducedFraction(x) for x in expression]
-            division_region_product = settingtools.StartPositionedDivisionProduct(
+            division_product = settingtools.StartPositionedDivisionProduct(
                 payload=expression, voice_name='dummy voice name', start_offset=durationtools.Offset(0))
-            result = division_region_product & timespan
+            result = division_product & timespan
             result = result[0]
             divisions = result.payload.divisions
             return divisions

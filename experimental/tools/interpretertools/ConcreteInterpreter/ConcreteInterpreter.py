@@ -76,11 +76,11 @@ class ConcreteInterpreter(Interpreter):
                 timespan = timespantools.Timespan(start_offset, stop_offset)
                 segment_specification._timespan = timespan
 
-    def dump_rhythm_region_products_into_voices(self):
+    def dump_rhythm_products_into_voices(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_proxy = self.score_specification.contexts[voice.name]
-            for rhythm_region_product in voice_proxy.rhythm_region_products:
-                voice.extend(rhythm_region_product.payload)
+            for rhythm_product in voice_proxy.rhythm_products:
+                voice.extend(rhythm_product.payload)
 
     def get_region_commands_for_voice(self, attribute, voice_name):
         region_commands = self.score_specification.get_region_commands_for_voice(attribute, voice_name)
@@ -94,7 +94,7 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_divisions(self):
         self.make_region_commands('divisions')
-        self.make_division_region_products()
+        self.make_division_products()
         self.make_voice_division_lists()
 
     def interpret_pitch_classes(self):
@@ -108,16 +108,16 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(self.score_specification.rhythm_region_commands, 'rhythm region commands')
         self.make_finalized_rhythm_region_commands()
         #self._debug_values(self.score_specification.finalized_rhythm_region_commands, 'finalized rhythm commands')
-        self.make_rhythm_region_products()
-        self.dump_rhythm_region_products_into_voices()
+        self.make_rhythm_products()
+        self.dump_rhythm_products_into_voices()
 
     def interpret_time_signatures(self):
         self.populate_time_signature_settings()
         self.add_time_signatures_to_score()
         self.calculate_score_and_segment_timespans()
 
-    # TODO: structure like self.make_rhythm_region_products()
-    def make_division_region_products(self):
+    # TODO: structure like self.make_rhythm_products()
+    def make_division_products(self):
         redo = True
         while redo:
             redo = False
@@ -125,22 +125,22 @@ class ConcreteInterpreter(Interpreter):
             for voice in iterationtools.iterate_voices_in_expr(self.score):
                 voice_proxy = self.score_specification.contexts[voice.name]
                 voice_division_region_commands = voice_proxy.division_region_commands
-                voice_division_region_products = voice_proxy.division_region_products 
+                voice_division_products = voice_proxy.division_products 
                 voice_division_region_commands_to_reattempt = []
                 for division_region_command in voice_division_region_commands:
                     #self._debug(division_region_command, 'division region command')
-                    division_region_products = division_region_command._evaluate(self.score_specification)
-                    if division_region_products is not None:
-                        assert isinstance(division_region_products, list)
-                        assert all([isinstance(x, settingtools.StartPositionedDivisionProduct) for x in division_region_products])
+                    division_products = division_region_command._evaluate(self.score_specification)
+                    if division_products is not None:
+                        assert isinstance(division_products, list)
+                        assert all([isinstance(x, settingtools.StartPositionedDivisionProduct) for x in division_products])
                         made_progress = True
-                        voice_division_region_products.extend(division_region_products)
+                        voice_division_products.extend(division_products)
                     else:
                         voice_division_region_commands_to_reattempt.append(division_region_command)
                         redo = True
                 voice_division_region_commands[:] = voice_division_region_commands_to_reattempt[:]
                 # sort may have to happen as each adds in, above
-                voice_division_region_products.sort()
+                voice_division_products.sort()
             if voice_division_region_commands and not made_progress:
                 raise Exception('cyclic division specification.')
 
@@ -152,11 +152,11 @@ class ConcreteInterpreter(Interpreter):
     def make_finalized_rhythm_region_commands_for_voice(self, voice_name):
         voice_proxy = self.score_specification.contexts[voice_name]
         voice_division_list = voice_proxy.voice_division_list
-        division_region_products = voice_proxy.division_region_products
+        division_products = voice_proxy.division_products
         rhythm_region_commands = voice_proxy.rhythm_region_commands
         if not voice_division_list:
             return []
-        division_region_durations = [x.timespan.duration for x in division_region_products]
+        division_region_durations = [x.timespan.duration for x in division_products]
         rhythm_region_command_durations = [x.timespan.duration for x in rhythm_region_commands]
         assert sum(division_region_durations) == sum(rhythm_region_command_durations)
         rhythm_region_command_merged_durations = sequencetools.merge_duration_sequences(
@@ -213,22 +213,22 @@ class ConcreteInterpreter(Interpreter):
                     if region_command not in score_region_commands:
                         score_region_commands.append(region_command)
 
-    def make_rhythm_region_products(self):
+    def make_rhythm_products(self):
         while self.score_specification.finalized_rhythm_region_commands:
             made_progress = False
             for finalized_rhythm_region_command in self.score_specification.finalized_rhythm_region_commands[:]:
                 assert isinstance(finalized_rhythm_region_command, settingtools.FinalizedRhythmRegionCommand)
-                rhythm_region_product = finalized_rhythm_region_command._evaluate(self.score_specification)
-                if rhythm_region_product is not None:
-                    assert isinstance(rhythm_region_product, settingtools.StartPositionedRhythmProduct)
+                rhythm_product = finalized_rhythm_region_command._evaluate(self.score_specification)
+                if rhythm_product is not None:
+                    assert isinstance(rhythm_product, settingtools.StartPositionedRhythmProduct)
                     made_progress = True
                     self.score_specification.finalized_rhythm_region_commands.remove(finalized_rhythm_region_command)
                     voice_name = finalized_rhythm_region_command.voice_name
                     voice_proxy = self.score_specification.contexts[voice_name]
-                    voice_rhythm_region_products = voice_proxy.rhythm_region_products
-                    voice_rhythm_region_products = voice_rhythm_region_products - rhythm_region_product.timespan
-                    voice_rhythm_region_products.append(rhythm_region_product)
-                    voice_rhythm_region_products.sort()
+                    voice_rhythm_products = voice_proxy.rhythm_products
+                    voice_rhythm_products = voice_rhythm_products - rhythm_product.timespan
+                    voice_rhythm_products.append(rhythm_product)
+                    voice_rhythm_products.sort()
             if not made_progress:
                 raise Exception('cyclic rhythm specification.')
 
@@ -236,8 +236,8 @@ class ConcreteInterpreter(Interpreter):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = settingtools.DivisionList([], voice.name)
             voice_proxy = self.score_specification.contexts[voice.name]
-            region_products = voice_proxy.division_region_products
-            divisions = [x.payload.divisions for x in region_products]
+            products = voice_proxy.division_products
+            divisions = [x.payload.divisions for x in products]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)
             start_offset = durationtools.Offset(0)
             for division in divisions:

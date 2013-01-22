@@ -49,9 +49,9 @@ class DivisionRegionCommand(RegionCommand):
         else:
             divisions = [settingtools.Division(x) for x in payload]
         divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, self.timespan.duration)
-        division_region_product = settingtools.StartPositionedDivisionProduct(
+        division_product = settingtools.StartPositionedDivisionProduct(
             divisions, self.voice_name, self.timespan.start_offset)
-        return [division_region_product]
+        return [division_product]
 
     ## READ-ONLY PUBLIC PROPERTIES ###
 

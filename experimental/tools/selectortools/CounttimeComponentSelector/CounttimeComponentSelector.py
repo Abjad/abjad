@@ -85,19 +85,19 @@ class CounttimeComponentSelector(Selector):
         voice_name = None
         anchor_timespan = score_specification.get_anchor_timespan(self, self.voice_name)
         voice_proxy = score_specification.contexts[self.voice_name]
-        rhythm_region_products = voice_proxy.rhythm_region_products
+        rhythm_products = voice_proxy.rhythm_products
         time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
-        rhythm_region_products = rhythm_region_products.get_timespans_that_satisfy_time_relation(time_relation)
-        if not rhythm_region_products:
+        rhythm_products = rhythm_products.get_timespans_that_satisfy_time_relation(time_relation)
+        if not rhythm_products:
             return None
-        rhythm_region_products = copy.deepcopy(rhythm_region_products)
-        rhythm_region_products = timespantools.TimespanInventory(rhythm_region_products)
-        rhythm_region_products.sort()
+        rhythm_products = copy.deepcopy(rhythm_products)
+        rhythm_products = timespantools.TimespanInventory(rhythm_products)
+        rhythm_products.sort()
         assert anchor_timespan.is_well_formed, repr(anchor_timespan)
-        rhythm_region_products &= anchor_timespan
+        rhythm_products &= anchor_timespan
         result = settingtools.StartPositionedRhythmProduct(voice_name=voice_name, start_offset=anchor_timespan.start_offset)
-        for rhythm_region_product in rhythm_region_products:
-            result.payload.extend(rhythm_region_product.payload)
+        for rhythm_product in rhythm_products:
+            result.payload.extend(rhythm_product.payload)
         assert wellformednesstools.is_well_formed_component(result.payload)
         result, new_start_offset = self._apply_callbacks(result, result.start_offset)
         assert isinstance(result, settingtools.StartPositionedRhythmProduct), repr(result)

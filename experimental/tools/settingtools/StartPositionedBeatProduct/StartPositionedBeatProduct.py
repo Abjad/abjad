@@ -9,11 +9,11 @@ class StartPositionedBeatProduct(StartPositionedDivisionProduct):
     ::
 
         >>> payload = [(6, 8), (6, 8), (3, 4)]
-        >>> beat_region_product = settingtools.StartPositionedBeatProduct(payload, 'Voice 1', Offset(0))
+        >>> beat_product = settingtools.StartPositionedBeatProduct(payload, 'Voice 1', Offset(0))
 
     ::
 
-        >>> z(beat_region_product)
+        >>> z(beat_product)
         settingtools.StartPositionedBeatProduct(
             payload=settingtools.DivisionList(
                 [Division('[6, 8]', start_offset=Offset(0, 1)),                 

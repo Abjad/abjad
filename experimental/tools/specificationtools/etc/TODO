@@ -122,9 +122,9 @@
     and an (already evaluated) StartPositionedProduct.
 
 23. Implement _getitem() on all region products.
-    Change _getitem() output signature from (elements, start_offset) to just new_region_product.
+    Change _getitem() output signature from (elements, start_offset) to just new_product.
     Implement complete set of payload callbacks on all region products.
-    Set output signature of all region product payload callback methods to just a new_region_product.
+    Set output signature of all region product payload callback methods to just a new_product.
 
 24. Make all _evaluate() methods assert expression output.
 

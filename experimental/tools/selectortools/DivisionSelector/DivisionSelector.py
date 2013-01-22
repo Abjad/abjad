@@ -47,12 +47,12 @@ class DivisionSelector(Selector):
         voice_name = None
         anchor_timespan = score_specification.get_anchor_timespan(self, self.voice_name)
         voice_proxy = score_specification.contexts[self.voice_name]
-        division_region_products = voice_proxy.division_region_products
-        if division_region_products is None:
+        division_products = voice_proxy.division_products
+        if division_products is None:
             return None
         existing_voice_divisions = []
-        for division_region_product in division_region_products:
-            existing_voice_divisions.extend(division_region_product.payload.divisions)
+        for division_product in division_products:
+            existing_voice_divisions.extend(division_product.payload.divisions)
         timespan_1 = anchor_timespan
         if self.time_relation is None:
             time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)

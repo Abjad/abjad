@@ -47,9 +47,9 @@ class StartPositionedPayloadCallbackMixin(NonstartPositionedPayloadCallbackMixin
                 expression = [mathtools.NonreducedFraction(x) for x in expression]
             if original_start_offset is None:
                 original_start_offset = durationtools.Offset(0)
-            division_region_product = settingtools.StartPositionedDivisionProduct(
+            division_product = settingtools.StartPositionedDivisionProduct(
                 payload=expression, voice_name='dummy voice name', start_offset=original_start_offset)
-            result = division_region_product & timespan
+            result = division_product & timespan
             result = result[0]
             divisions = result.payload.divisions
             return divisions, result.start_offset

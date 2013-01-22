@@ -7,14 +7,14 @@ class ContextProxy(AbjadObject, OrderedDict):
 
     ### INITIALIZER ###
 
-    # TODO: add public rhythm_region_products timespan inventory
+    # TODO: add public rhythm_products timespan inventory
     def __init__(self):
         from experimental.tools import settingtools
         OrderedDict.__init__(self)
         self._division_region_commands = settingtools.RegionCommandInventory()
-        self._division_region_products = settingtools.RegionCommandInventory()
+        self._division_products = settingtools.RegionCommandInventory()
         self._rhythm_region_commands = settingtools.RegionCommandInventory()
-        self._rhythm_region_products = settingtools.RegionCommandInventory()
+        self._rhythm_products = settingtools.RegionCommandInventory()
         self._voice_division_list = None
 
     ### SPECIAL METHODS ###
@@ -43,12 +43,12 @@ class ContextProxy(AbjadObject, OrderedDict):
         return self._division_region_commands
 
     @property
-    def division_region_products(self):
+    def division_products(self):
         '''Context proxy division region products.
 
         Return region product inventory.
         '''
-        return self._division_region_products
+        return self._division_products
 
     @property
     def rhythm_region_commands(self):
@@ -59,12 +59,12 @@ class ContextProxy(AbjadObject, OrderedDict):
         return self._rhythm_region_commands
 
     @property
-    def rhythm_region_products(self):
+    def rhythm_products(self):
         '''Context proxy rhythm region products.
 
         Return region product inventory.
         '''
-        return self._rhythm_region_products
+        return self._rhythm_products
 
     @property
     def voice_division_list(self):

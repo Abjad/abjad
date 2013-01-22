@@ -22,16 +22,16 @@ class ParseableStringRhythmRegionCommand(FinalizedRhythmRegionCommand):
         # ignore voice_name input parameter
         voice_name = None
         component = iotools.p(self.parseable_string)
-        rhythm_region_product = settingtools.StartPositionedRhythmProduct(
+        rhythm_product = settingtools.StartPositionedRhythmProduct(
             payload=[component], voice_name=self.voice_name, start_offset=self.start_offset)
         # TODO: maybe create timespan here instead of just offset
         stop_offset = self.start_offset + self.total_duration
         # TODO: maybe use timespan comparisons here instead offset comparisons
-        if rhythm_region_product.timespan.stops_before_offset(stop_offset):
-            rhythm_region_product.repeat_to_stop_offset(stop_offset)
-        elif rhythm_region_product.timespan.stops_after_offset(stop_offset):
-            rhythm_region_product.set_offsets(stop_offset=stop_offset)
-        return rhythm_region_product
+        if rhythm_product.timespan.stops_before_offset(stop_offset):
+            rhythm_product.repeat_to_stop_offset(stop_offset)
+        elif rhythm_product.timespan.stops_after_offset(stop_offset):
+            rhythm_product.set_offsets(stop_offset=stop_offset)
+        return rhythm_product
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
