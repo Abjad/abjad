@@ -10,6 +10,13 @@ class Expression(AbjadObject):
 
     __metaclass__ = abc.ABCMeta
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        if not self._positional_argument_values == expr._positional_argument_values:
+            return False
+        return self._keyword_argument_values == expr._keyword_argument_values
+
     ### PRIVATE METHODS ###
 
     @abc.abstractmethod

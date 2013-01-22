@@ -43,7 +43,7 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.SelectorRhythmRegionCommand.SelectorRhythmRegionCommand.SelectorRhythmRegionCommand.__eq__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
 .. automethod:: experimental.tools.settingtools.SelectorRhythmRegionCommand.SelectorRhythmRegionCommand.SelectorRhythmRegionCommand.__ge__
    :noindex:

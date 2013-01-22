@@ -118,7 +118,7 @@ Special Methods
 .. automethod:: experimental.tools.selectortools.TimeSignatureSelector.TimeSignatureSelector.TimeSignatureSelector.__eq__
    :noindex:
 
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
 .. automethod:: experimental.tools.selectortools.TimeSignatureSelector.TimeSignatureSelector.TimeSignatureSelector.__ge__
    :noindex:

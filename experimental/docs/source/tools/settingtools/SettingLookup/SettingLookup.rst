@@ -112,7 +112,7 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.SettingLookup.SettingLookup.SettingLookup.__eq__
    :noindex:
 
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
 .. automethod:: experimental.tools.settingtools.SettingLookup.SettingLookup.SettingLookup.__ge__
    :noindex:

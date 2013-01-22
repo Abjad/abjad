@@ -37,6 +37,9 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
         if isinstance(payload, list):
             payload = tuple(payload)
         self._payload = payload
+        #from experimental.tools import settingtools
+        #callbacks = callbacks or []
+        #self._callbacks = settingtools.CallbackInventory(callbacks)
 
     ### SPECIAL METHODS ###
 
@@ -95,6 +98,7 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
         Return callback inventory.
         '''
         return PayloadCallbackMixin.callbacks.fget(self)
+        #return self._callbacks
 
     @property
     def payload(self):
@@ -122,7 +126,8 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
 
         Return string.
         '''
-        return PayloadCallbackMixin.storage_format.fget(self)
+        #return PayloadCallbackMixin.storage_format.fget(self)
+        return Expression.storage_format.fget(self)
 
     ### PUBLIC METHODS ###
 

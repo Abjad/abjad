@@ -26,8 +26,6 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.Expression.Expression.Expression.__eq__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.settingtools.Expression.Expression.Expression.__ge__
    :noindex:
 

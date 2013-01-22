@@ -16,16 +16,6 @@ class PayloadCallbackMixin(CallbackMixin):
         callback = 'result = self.___and__(expression, {!r})'.format(timespan)
         return self._copy_and_append_callback(callback)
 
-    def __eq__(self, expression):
-        '''True when mandatory and keyword arguments compare equal.
-        Otherwise false.
-
-        Return boolean.
-        '''
-        if not self._positional_argument_values == expression._positional_argument_values:
-            return False
-        return self._keyword_argument_values == expression._keyword_argument_values
-
     def __getitem__(self, expression):
         '''Return copy of expression with appended callback.
         '''
