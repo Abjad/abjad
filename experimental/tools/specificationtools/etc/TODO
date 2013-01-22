@@ -113,20 +113,9 @@
         score_specification = settingtools.ScoreSpecificationInterface(score_template)
     ... so that composers only ever interact with interfaces.
 
-22. Extend AbsoluteExpression with start_offset property for offset-positioning.
-    This will create the idea of a start-positioned expression.
-    Then change StartPositionedPayloadCallbackMixin._apply_callbacks(elements, start_offset)
-    to StartPositionedPayloadCallbackMixin._apply_callbacks(start_positioned_expression).
-    Why not just use StartPositionedProduct as start-positioned expression?
-    Because there's a difference between a (not-yet-evaluated) expression
-    and an (already evaluated) StartPositionedProduct.
-
-23. Implement _getitem() on all region products.
+22. Implement _getitem() on all region products.
     Change _getitem() output signature from (elements, start_offset) to just new_product.
     Implement complete set of payload callbacks on all region products.
     Set output signature of all region product payload callback methods to just a new_product.
 
-24. Clarify return types of all _evaluate() methods.
-
-25. First make all _apply_callbacks(expression, start_offset) into _apply_callbacks(expression).
-    Then make all _apply_callbacks(expression) into zero-argument _apply_callbacks().
+23. Clarify return types of all _evaluate() methods.
