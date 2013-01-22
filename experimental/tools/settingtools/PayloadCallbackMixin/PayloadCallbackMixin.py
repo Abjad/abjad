@@ -150,7 +150,7 @@ class PayloadCallbackMixin(CallbackMixin):
 
     def _rotate(self, expression, n):
         if hasattr(expression, 'rotate'):
-            expression.rotate(n)
+            expression = expression.rotate(n) or expression
         else:
             expression = sequencetools.rotate_sequence(expression, n)
         return expression

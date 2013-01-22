@@ -17,10 +17,8 @@ class SingleContextTimeSignatureSetting(SingleContextSetting):
         from experimental.tools import settingtools
         if hasattr(self.expression, '_evaluate_early'):
             expression = self.expression._evaluate_early(score_specification)
-            # TODO: eventually assert the following
-            #assert isinstance(expression, settingtools.AbsoluteExpression), repr(expression)
-            #time_signatures = expression.payload
-            time_signatures = expression.payload.divisions
+            assert isinstance(expression, settingtools.AbsoluteExpression), repr(expression)
+            time_signatures = expression.payload
         else:
             time_signatures = self.expression._evaluate(score_specification)
         if time_signatures:
