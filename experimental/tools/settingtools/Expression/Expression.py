@@ -27,6 +27,17 @@ class Expression(AbjadObject):
     def _evaluate(self):
         pass
 
+    def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
+        '''Do not show empty callbacks list.
+        '''
+        filtered_result = []
+        result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
+            self, is_indented=is_indented)
+        for string in result:
+            if not 'callbacks=settingtools.CallbackInventory([])' in string:
+                filtered_result.append(string)
+        return filtered_result
+
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):

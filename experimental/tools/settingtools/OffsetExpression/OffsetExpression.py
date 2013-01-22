@@ -59,17 +59,6 @@ class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixi
         offset = self._apply_callbacks(offset)
         return offset
 
-    def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty callback inventory.
-        '''
-        filtered_result = []
-        result = AnchoredExpression._get_tools_package_qualified_keyword_argument_repr_pieces(
-            self, is_indented=is_indented)
-        for string in result:
-            if not 'callbacks=settingtools.CallbackInventory([])' in string:
-                filtered_result.append(string)
-        return filtered_result
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

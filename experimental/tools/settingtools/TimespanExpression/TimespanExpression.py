@@ -47,14 +47,3 @@ class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethod
         anchor_timespan = score_specification.get_anchor_timespan(self, context_name)
         timespan = self._apply_callbacks(anchor_timespan)
         return timespan
-
-    def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty callback inventory.
-        '''
-        filtered_result = []
-        result = AnchoredExpression._get_tools_package_qualified_keyword_argument_repr_pieces(
-            self, is_indented=is_indented)
-        for string in result:
-            if not 'callbacks=settingtools.CallbackInventory([])' in string:
-                filtered_result.append(string)
-        return filtered_result
