@@ -35,14 +35,6 @@ class ContextProxy(AbjadObject, OrderedDict):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def division_region_commands(self):
-        '''Context proxy division region commands.
-
-        Return region command inventory.
-        '''
-        return self._division_region_commands
-
-    @property
     def division_products(self):
         '''Context proxy division region products.
 
@@ -51,12 +43,12 @@ class ContextProxy(AbjadObject, OrderedDict):
         return self._division_products
 
     @property
-    def rhythm_region_commands(self):
-        '''Context proxy rhythm region commands.
+    def division_region_commands(self):
+        '''Context proxy division region commands.
 
         Return region command inventory.
         '''
-        return self._rhythm_region_commands
+        return self._division_region_commands
 
     @property
     def rhythm_products(self):
@@ -65,6 +57,14 @@ class ContextProxy(AbjadObject, OrderedDict):
         Return region product inventory.
         '''
         return self._rhythm_products
+
+    @property
+    def rhythm_region_commands(self):
+        '''Context proxy rhythm region commands.
+
+        Return region command inventory.
+        '''
+        return self._rhythm_region_commands
 
     @property
     def voice_division_list(self):
