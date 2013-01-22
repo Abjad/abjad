@@ -6,7 +6,7 @@ from experimental.tools.settingtools.CallbackMixin import CallbackMixin
 
 
 class PayloadCallbackMixin(CallbackMixin):
-    '''Nonstart-positioned payload callback mixin.
+    '''Payload callback mixin.
     '''
     
     ### SPECIAL METHODS ###
@@ -46,6 +46,7 @@ class PayloadCallbackMixin(CallbackMixin):
         result = result[0]
         return result
 
+    # TODO: remove branching in this method
     def ___getitem__(self, expression, s):
         assert isinstance(s, slice)
         if hasattr(expression, '_getitem'):
@@ -78,47 +79,21 @@ class PayloadCallbackMixin(CallbackMixin):
             expression = evaluation_context['result']
         return expression
 
-    def _duration_helper(self, expression):
-        if hasattr(expression, 'duration'):
-            return expression.duration
-        elif hasattr(expression, 'prolated_duration'):
-            return expression.prolated_duration
-        else:
-            duration = durationtools.Duration(expression)
-            return duration
-
     def _partition_by_ratio(self, expression, ratio, part):
-        if hasattr(expression, 'partition_by_ratio'):
-            parts = expression.partition_by_ratio(ratio)
-            selected_part = parts[part]
-            return selected_part
-        else:
-            parts = sequencetools.partition_sequence_by_ratio_of_lengths(expression, ratio)
-            selected_part = parts[part]
-            return selected_part
+        assert hasattr(expression, 'partition_by_ratio')
+        parts = expression.partition_by_ratio(ratio)
+        selected_part = parts[part]
+        return selected_part
 
     def _partition_by_ratio_of_durations(self, expression, ratio, part):
-        if hasattr(expression, 'partition_by_ratio_of_durations'):
-            parts = expression.partition_by_ratio_of_durations(ratio)
-            selected_part = parts[part]
-            return selected_part
-        else:
-            element_durations = [self._duration_helper(x) for x in expression]
-            element_tokens = durationtools.durations_to_integers(element_durations)
-            token_parts = sequencetools.partition_sequence_by_ratio_of_weights(element_tokens, ratio)
-            part_lengths = [len(x) for x in token_parts]
-            duration_parts = sequencetools.partition_sequence_by_counts(element_durations, part_lengths)
-            element_parts = sequencetools.partition_sequence_by_counts(expression, part_lengths)
-            selected_part = element_parts[part]
-            return selected_part
+        assert hasattr(expression, 'partition_by_ratio_of_durations')
+        parts = expression.partition_by_ratio_of_durations(ratio)
+        selected_part = parts[part]
+        return selected_part
 
     def _reflect(self, expression):
-        if hasattr(expression, 'reflect'):
-            expression = expression.reflect() or expression
-        elif expression.__class__.__name__ in ('tuple', 'list'):
-            expression = type(expression)(reversed(expression))
-        else:
-            expression = expression.reverse() or expression
+        assert hasattr(expression, 'reflect'), repr(expression)
+        expression = expression.reflect() or expression
         return expression
 
     def _repeat_to_duration(self, expression, duration):

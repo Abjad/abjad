@@ -6,6 +6,7 @@ from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallback
 
 
 class AbsoluteExpression(Expression, PayloadCallbackMixin):
+#class AbsoluteExpression(Expression):
     r'''Absolute expression.
 
     ::
