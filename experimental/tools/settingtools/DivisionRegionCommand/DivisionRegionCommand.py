@@ -46,6 +46,8 @@ class DivisionRegionCommand(RegionCommand):
             return
         elif isinstance(payload, settingtools.StartPositionedDivisionProduct):
             divisions = payload.payload.divisions[:]
+        elif isinstance(payload, list) and len(payload) == 1 and isinstance(payload[0], tuple):
+            divisions = payload[0][:]
         else:
             divisions = [settingtools.Division(x) for x in payload]
         divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, self.timespan.duration)

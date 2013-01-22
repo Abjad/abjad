@@ -37,6 +37,28 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
             payload = tuple(payload)
         self._payload = payload
 
+    ### SPECIAL METHODS ###
+
+    def __and__(self, timespan):
+        '''Logical AND of absolute expression and `timespan`.
+
+        Return newly constructed absolute expression.
+        '''
+        from experimental.tools import settingtools
+        if not sequencetools.all_are_numbers(self.payload):
+            payload = [mathtools.NonreducedFraction(x) for x in self.payload]
+        else:
+            payload = self.payload
+        division_product = settingtools.StartPositionedDivisionProduct(
+            payload=payload, voice_name='dummy voice name', start_offset=0)
+        result = division_product & timespan
+        assert len(result) in (0, 1)
+        if result:
+            divisions = result[0].payload.divisions
+            expression = self.new(payload=divisions)
+            result[0] = expression
+        return result
+
     ### PRIVATE METHODS ###
 
     def _duration_helper(self, expression):
