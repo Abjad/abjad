@@ -183,6 +183,8 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.__eq__
    :noindex:
 
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.__ge__
    :noindex:
 

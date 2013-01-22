@@ -26,28 +26,6 @@ class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethod
         AnchoredExpression.__init__(self, anchor=anchor)
         TimespanCallbackMixin.__init__(self, callbacks=callbacks)
 
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, expr):
-        '''True when mandatory and keyword arguments compare equal.
-        Otherwise false.
-
-            >>> red_segment.timespan == red_segment.timespan
-            True
-
-        Otherwise false::
-
-            >>> red_segment.timespan == blue_segment.timespan
-            False
-
-        Return boolean.
-        '''
-        if not isinstance(expr, type(self)):
-            return False
-        if not self._positional_argument_values == expr._positional_argument_values:
-            return False
-        return self._keyword_argument_values == expr._keyword_argument_values
-
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property

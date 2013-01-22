@@ -13,9 +13,13 @@ class Expression(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        if not isinstance(expr, type(self)):
+            return False
         if not self._positional_argument_values == expr._positional_argument_values:
             return False
-        return self._keyword_argument_values == expr._keyword_argument_values
+        if not self._keyword_argument_values == expr._keyword_argument_values:
+            return False
+        return True
 
     ### PRIVATE METHODS ###
 

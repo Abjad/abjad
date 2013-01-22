@@ -47,25 +47,6 @@ class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixi
         OffsetCallbackMixin.__init__(self, callbacks=callbacks)
         self._edge = edge
 
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, expr):
-        '''True when `expr` is a offset with anchor
-        and edge equal to offset those of offset expression.
-        
-        Otherwise false.
-
-        Return boolean.
-        '''
-        if not isinstance(expr, type(self)):
-            return False
-        elif not self.anchor == expr.anchor:
-            return False
-        elif not self.edge == expr.edge:
-            return False
-        else:
-            return True
-
     ### PRIVATE METHODS ###
 
     def _evaluate(self, score_specification, context_name):

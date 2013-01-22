@@ -86,6 +86,8 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.__eq__
    :noindex:
 
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. automethod:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.__ge__
    :noindex:
 

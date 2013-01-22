@@ -70,17 +70,6 @@ class MixedSourceTimespanExpression(TimespanExpression):
         self._start_offset = start_offset
         self._stop_offset = stop_offset
 
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, expr):
-        '''True when `expr` equals self. Otherwise false.
-
-        Return boolean.
-        '''
-        if isintance(expr, type(self)):
-            return self.is_congruent_to_expr(expr)
-        return False
-
     ### PRIVATE METHODS ###
 
     def _evaluate(self, score_specification, context_name):
