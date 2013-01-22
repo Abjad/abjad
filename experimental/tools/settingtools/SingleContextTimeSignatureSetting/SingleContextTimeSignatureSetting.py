@@ -15,8 +15,10 @@ class SingleContextTimeSignatureSetting(SingleContextSetting):
 
     def make_time_signatures(self, score_specification):
         if hasattr(self.expression, '_evaluate_early'):
-            product = self.expression._evaluate_early(score_specification)
-            time_signatures = product.payload.divisions
+            expression = self.expression._evaluate_early(score_specification)
+            # TODO: eventually assert the following
+            #assert isinstance(expression, settingtools.AbsoluteExpression), repr(expression)
+            time_signatures = expression.payload.divisions
         else:
             time_signatures = self.expression._evaluate(score_specification)
         if time_signatures:
