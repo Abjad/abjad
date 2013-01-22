@@ -339,7 +339,6 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
       tools/settingtools/StartPositionedObject/StartPositionedObject
-      tools/settingtools/StartPositionedPayloadCallbackMixin/StartPositionedPayloadCallbackMixin
       tools/settingtools/StartPositionedProduct/StartPositionedProduct
       tools/settingtools/StartPositionedSegmentProduct/StartPositionedSegmentProduct
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
@@ -411,7 +410,6 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
       tools/settingtools/StartPositionedObject/StartPositionedObject
-      tools/settingtools/StartPositionedPayloadCallbackMixin/StartPositionedPayloadCallbackMixin
       tools/settingtools/StartPositionedProduct/StartPositionedProduct
       tools/settingtools/StartPositionedSegmentProduct/StartPositionedSegmentProduct
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
