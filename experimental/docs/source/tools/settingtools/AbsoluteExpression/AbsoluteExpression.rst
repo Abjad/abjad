@@ -45,16 +45,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.___and__
-   :noindex:
-
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
-
-.. automethod:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.___getitem__
-   :noindex:
-
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
-
 .. automethod:: experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression.__and__
    :noindex:
 

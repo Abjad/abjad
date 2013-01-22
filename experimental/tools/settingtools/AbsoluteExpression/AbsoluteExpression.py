@@ -2,11 +2,9 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from experimental.tools.settingtools.Expression import Expression
-from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class AbsoluteExpression(Expression, PayloadCallbackMixin):
-#class AbsoluteExpression(Expression):
+class AbsoluteExpression(Expression):
     r'''Absolute expression.
 
     ::
@@ -16,7 +14,7 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
     ::
 
         >>> expression
-        AbsoluteExpression(((4, 16), (2, 16)))
+        AbsoluteExpression(((4, 16), (2, 16)), callbacks=CallbackInventory([]))
 
     ::
 
@@ -33,13 +31,12 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
     def __init__(self, payload, callbacks=None):
         assert isinstance(payload, (str, tuple, list)), repr(payload)
         Expression.__init__(self)
-        PayloadCallbackMixin.__init__(self, callbacks=callbacks)
         if isinstance(payload, list):
             payload = tuple(payload)
         self._payload = payload
-        #from experimental.tools import settingtools
-        #callbacks = callbacks or []
-        #self._callbacks = settingtools.CallbackInventory(callbacks)
+        from experimental.tools import settingtools
+        callbacks = callbacks or []
+        self._callbacks = settingtools.CallbackInventory(callbacks)
 
     ### SPECIAL METHODS ###
 
@@ -97,8 +94,7 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
 
         Return callback inventory.
         '''
-        return PayloadCallbackMixin.callbacks.fget(self)
-        #return self._callbacks
+        return self._callbacks
 
     @property
     def payload(self):
@@ -126,7 +122,6 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
 
         Return string.
         '''
-        #return PayloadCallbackMixin.storage_format.fget(self)
         return Expression.storage_format.fget(self)
 
     ### PUBLIC METHODS ###
