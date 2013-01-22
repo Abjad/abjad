@@ -5,7 +5,7 @@ from abjad.tools import timespantools
 from experimental.tools.settingtools.CallbackMixin import CallbackMixin
 
 
-class NonstartPositionedPayloadCallbackMixin(CallbackMixin):
+class PayloadCallbackMixin(CallbackMixin):
     '''Nonstart-positioned payload callback mixin.
     '''
     

@@ -1,9 +1,9 @@
 from experimental.tools.settingtools.AbsoluteExpression import AbsoluteExpression
 from experimental.tools.settingtools.StartPositionedObject import StartPositionedObject
-from experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin import NonstartPositionedPayloadCallbackMixin
+from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObject, NonstartPositionedPayloadCallbackMixin):
+class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObject, PayloadCallbackMixin):
     '''Start-positioned absolute expression.
 
         >>> expression = settingtools.StartPositionedAbsoluteExpression(
@@ -33,7 +33,7 @@ class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObjec
     def __init__(self, payload, start_offset=None, callbacks=None):
         AbsoluteExpression.__init__(self, payload=payload)
         StartPositionedObject.__init__(self, start_offset=start_offset)
-        NonstartPositionedPayloadCallbackMixin.__init__(self, callbacks=callbacks)
+        PayloadCallbackMixin.__init__(self, callbacks=callbacks)
 
     ### PRIVATE METHODS ###
 

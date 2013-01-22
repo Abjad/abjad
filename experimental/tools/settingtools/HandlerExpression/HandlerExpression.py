@@ -1,9 +1,9 @@
 from experimental.tools import handlertools
 from experimental.tools.settingtools.Expression import Expression
-from experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin import NonstartPositionedPayloadCallbackMixin
+from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class HandlerExpression(Expression, NonstartPositionedPayloadCallbackMixin):
+class HandlerExpression(Expression, PayloadCallbackMixin):
     r'''Handler request.
 
     The purpose of a handler request is to function as the source of a setting.
@@ -14,7 +14,7 @@ class HandlerExpression(Expression, NonstartPositionedPayloadCallbackMixin):
     def __init__(self, handler=None, callbacks=None):
         assert isinstance(handler, handlertools.Handler), repr(handler)
         Expression.__init__(self)
-        NonstartPositionedPayloadCallbackMixin.__init__(self, callbacks=callbacks)
+        PayloadCallbackMixin.__init__(self, callbacks=callbacks)
         self._handler = handler
 
     ### PRIVATE METHODS ###

@@ -1,8 +1,8 @@
 from experimental.tools.settingtools.Expression import Expression
-from experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin import NonstartPositionedPayloadCallbackMixin
+from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class AbsoluteExpression(Expression, NonstartPositionedPayloadCallbackMixin):
+class AbsoluteExpression(Expression, PayloadCallbackMixin):
     r'''Absolute expression.
 
     ::
@@ -29,7 +29,7 @@ class AbsoluteExpression(Expression, NonstartPositionedPayloadCallbackMixin):
     def __init__(self, payload, callbacks=None):
         assert isinstance(payload, (str, tuple, list)), repr(payload)
         Expression.__init__(self)
-        NonstartPositionedPayloadCallbackMixin.__init__(self, callbacks=callbacks)
+        PayloadCallbackMixin.__init__(self, callbacks=callbacks)
         if isinstance(payload, list):
             payload = tuple(payload)
         self._payload = payload
@@ -64,7 +64,7 @@ class AbsoluteExpression(Expression, NonstartPositionedPayloadCallbackMixin):
 
         Return callback inventory.
         '''
-        return NonstartPositionedPayloadCallbackMixin.callbacks.fget(self)
+        return PayloadCallbackMixin.callbacks.fget(self)
 
     @property
     def payload(self):
@@ -92,7 +92,7 @@ class AbsoluteExpression(Expression, NonstartPositionedPayloadCallbackMixin):
 
         Return string.
         '''
-        return NonstartPositionedPayloadCallbackMixin.storage_format.fget(self)
+        return PayloadCallbackMixin.storage_format.fget(self)
 
     ### PUBLIC METHODS ###
 
