@@ -126,10 +126,24 @@
     Implement complete set of payload callbacks on all region products.
     Set output signature of all region product payload callback methods to just a new_region_product.
 
-24. Make RegionProduct inherit from some type of Expression.
-    Callbacks apply to RegionProduct classes.
-    This means that RegionProduct is some type of Expression.
+24. Make all _evaluate() methods assert expression output.
 
-25. Make all _evaluate() methods assert expression output.
+25. Make all _apply_callbacks() methods assert expression input.
 
-26. Make all _apply_callbacks() methods assert expression input.
+26. Change RegionProduct to StartPositionedProduct.
+    Change these classes:
+        BeatRegionProduct
+        DivisionRegionProduct
+        MeasureRegionProduct
+        RegionProduct
+        RhythmRegionProduct
+        SegmentRegionProduct
+    To these:
+        StartPositionedBeatProduct
+        StartPositionedDivisionProduct
+        StartPositionedMeasureProduct
+        StartPositionedProduct
+        StartPositionedRhythmProduct
+        StartPositionedSegmentProduct
+    Products should not inherit from Expression.
+    Products implement transforms. But this is not the same thing as implement a CallbackMixin.

@@ -46,6 +46,10 @@ class AbsoluteExpression(Expression, NonstartPositionedPayloadCallbackMixin):
             raise TypeError(self.payload)
         result = self._apply_callbacks(result)
         return result
+        # TODO: use these three lines instead of the code above
+        #assert isinstance(self.payload, (str, tuple))
+        #result = self._apply_callbacks(self)
+        #return result
 
     ### READ-ONLY PROPERTIES ###
 

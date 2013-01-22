@@ -132,13 +132,14 @@ class ConcreteInterpreter(Interpreter):
                     division_region_products = division_region_command._evaluate(self.score_specification)
                     if division_region_products is not None:
                         assert isinstance(division_region_products, list)
+                        assert all([isinstance(x, settingtools.DivisionRegionProduct) for x in division_region_products])
                         made_progress = True
                         voice_division_region_products.extend(division_region_products)
                     else:
                         voice_division_region_commands_to_reattempt.append(division_region_command)
                         redo = True
                 voice_division_region_commands[:] = voice_division_region_commands_to_reattempt[:]
-                # sort may have to happen as each product adds in, above
+                # sort may have to happen as each adds in, above
                 voice_division_region_products.sort()
             if voice_division_region_commands and not made_progress:
                 raise Exception('cyclic division specification.')
@@ -219,6 +220,7 @@ class ConcreteInterpreter(Interpreter):
                 assert isinstance(finalized_rhythm_region_command, settingtools.FinalizedRhythmRegionCommand)
                 rhythm_region_product = finalized_rhythm_region_command._evaluate(self.score_specification)
                 if rhythm_region_product is not None:
+                    assert isinstance(rhythm_region_product, settingtools.RhythmRegionProduct)
                     made_progress = True
                     self.score_specification.finalized_rhythm_region_commands.remove(finalized_rhythm_region_command)
                     voice_name = finalized_rhythm_region_command.voice_name
@@ -234,8 +236,8 @@ class ConcreteInterpreter(Interpreter):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = settingtools.DivisionList([], voice.name)
             voice_proxy = self.score_specification.contexts[voice.name]
-            products = voice_proxy.division_region_products
-            divisions = [product.payload.divisions for product in products]
+            region_products = voice_proxy.division_region_products
+            divisions = [x.payload.divisions for x in region_products]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)
             start_offset = durationtools.Offset(0)
             for division in divisions:
