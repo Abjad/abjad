@@ -115,3 +115,8 @@
 
 23. Clarify return types of all _evaluate() methods.
     Perhaps all _evaluate() methods should return some type of built-in, like list or tuple.
+
+24. Assert that callbacks apply only expressions.
+    Right now they appear to apply to expressions and to start-positioned products.
+    Either stop callbacks from applying to start-positioned products.
+    Or make StartPositionedProduct inherit from Expression.
