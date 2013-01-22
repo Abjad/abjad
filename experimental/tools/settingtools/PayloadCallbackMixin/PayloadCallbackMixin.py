@@ -39,21 +39,12 @@ class PayloadCallbackMixin(CallbackMixin):
 
     def ___and__(self, expression, timespan):
         from experimental.tools import settingtools
-        if hasattr(expression, '__and__'):
-            result = expression & timespan
-            assert isinstance(result, timespantools.TimespanInventory), repr(result)
-            assert len(result) == 1, repr(result)
-            result = result[0]
-            return result
-        else:
-            if not sequencetools.all_are_numbers(expression):
-                expression = [mathtools.NonreducedFraction(x) for x in expression]
-            division_product = settingtools.StartPositionedDivisionProduct(
-                payload=expression, voice_name='dummy voice name', start_offset=durationtools.Offset(0))
-            result = division_product & timespan
-            result = result[0]
-            divisions = result.payload.divisions
-            return divisions
+        assert hasattr(expression, '__and__')
+        result = expression & timespan
+        assert isinstance(result, timespantools.TimespanInventory), repr(result)
+        assert len(result) == 1, repr(result)
+        result = result[0]
+        return result
 
     def ___getitem__(self, expression, s):
         assert isinstance(s, slice)
@@ -131,28 +122,17 @@ class PayloadCallbackMixin(CallbackMixin):
         return expression
 
     def _repeat_to_duration(self, expression, duration):
-        if hasattr(expression, 'repeat_to_duration'):
-            result = expression.repeat_to_duration(duration)
-            return result
-        else:
-            if not sequencetools.all_are_numbers(expression):
-                expression = [mathtools.NonreducedFraction(x) for x in expression]
-            expression = sequencetools.repeat_sequence_to_weight_exactly(expression, duration)
-            return expression
+        assert hasattr(expression, 'repeat_to_duration')
+        result = expression.repeat_to_duration(duration)
+        return result
 
     def _repeat_to_length(self, expression, length):
-        if hasattr(expression, 'repeat_to_length'):
-            result = expression.repeat_to_length(length)
-            return result
-        else:
-            expression = sequencetools.repeat_sequence_to_length(expression, length)
-            return expression
+        assert hasattr(expression, 'repeat_to_length')
+        result = expression.repeat_to_length(length)
+        return result
 
     def _rotate(self, expression, n):
-        if hasattr(expression, 'rotate'):
-            expression = expression.rotate(n) or expression
-        else:
-            expression = sequencetools.rotate_sequence(expression, n)
+        expression = expression.rotate(n) or expression
         return expression
 
     ### PUBLIC METHODS ###
