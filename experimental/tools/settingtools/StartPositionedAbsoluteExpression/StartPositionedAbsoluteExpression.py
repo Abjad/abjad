@@ -17,11 +17,8 @@ class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObjec
 
         >>> z(expression)
         settingtools.StartPositionedAbsoluteExpression(
-            ((4, 16), (2, 16)),
-            start_offset=durationtools.Offset(5, 1),
-            callbacks=settingtools.CallbackInventory([
-                'result = self._repeat_to_length(expression, 6)'
-                ])
+            ((4, 16), (2, 16), (4, 16), (2, 16), (4, 16), (2, 16)),
+            start_offset=durationtools.Offset(5, 1)
             )
 
     Start-positioned absolute expressions are assumed to evaluate

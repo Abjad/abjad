@@ -119,3 +119,5 @@
     Set output signature of all region product payload callback methods to just a new_product.
 
 23. Clarify return types of all _evaluate() methods.
+
+24. Change _getitem() to getitem().

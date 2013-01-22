@@ -1,3 +1,6 @@
+from abjad.tools import durationtools
+from abjad.tools import mathtools
+from abjad.tools import sequencetools
 from experimental.tools.settingtools.Expression import Expression
 from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
@@ -36,6 +39,15 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
 
     ### PRIVATE METHODS ###
 
+    def _duration_helper(self, expression):
+        if hasattr(expression, 'duration'):
+            return expression.duration
+        elif hasattr(expression, 'prolated_duration'):
+            return expression.prolated_duration
+        else:
+            duration = durationtools.Duration(expression)
+            return duration
+
     def _evaluate(self, score_specification=None, voice_name=None):
         from experimental.tools import settingtools
         # ignore voice_name input parameter
@@ -50,6 +62,15 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
         #assert isinstance(self.payload, (str, tuple))
         #result = self._apply_callbacks(self)
         #return result
+
+    def _getitem(self, expr):
+        '''Get item.
+
+        Return newly constructed absolute expression.
+        '''
+        payload = self.payload.__getitem__(expr)
+        result = self.new(payload=payload)
+        return result
 
     ### READ-ONLY PROPERTIES ###
 
@@ -113,6 +134,35 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
         result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
         return result
 
+    def partition_by_ratio(self, ratio):
+        '''Partition by ratio.
+
+        Return newly constructed absolute expression.
+        '''
+        parts = sequencetools.partition_sequence_by_ratio_of_lengths(self.payload, ratio)
+        result = []
+        for part in parts:
+            part = self.new(payload=part)
+            result.append(part)
+        return result
+
+    def partition_by_ratio_of_durations(self, ratio):
+        '''Partition by ratio of durations.
+
+        Return newly constructed absolute expression.
+        '''
+        element_durations = [self._duration_helper(x) for x in self.payload]
+        element_tokens = durationtools.durations_to_integers(element_durations)
+        token_parts = sequencetools.partition_sequence_by_ratio_of_weights(element_tokens, ratio)
+        part_lengths = [len(x) for x in token_parts]
+        duration_parts = sequencetools.partition_sequence_by_counts(element_durations, part_lengths)
+        element_parts = sequencetools.partition_sequence_by_counts(self.payload, part_lengths)
+        result = []
+        for part in element_parts:
+            part = self.new(payload=part)
+            result.append(part)
+        return result
+
     def reflect(self):
         '''Reflect.
 
@@ -130,3 +180,34 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
             return self
         else:
             raise TypeError(self.payload)
+
+    def repeat_to_duration(self, duration):
+        '''Repeat to duration.
+
+        Return newly constructed absolute expression.
+        '''
+        if not sequencetools.all_are_numbers(self.payload):
+            payload = [mathtools.NonreducedFraction(x) for x in self.payload]
+        else:
+            payload = self.payload
+        payload = sequencetools.repeat_sequence_to_weight_exactly(payload, duration)
+        result = self.new(payload=payload)
+        return result
+
+    def repeat_to_length(self, length):
+        '''Repeat to length.
+
+        Return newly constructed absolute expression.
+        '''
+        payload = sequencetools.repeat_sequence_to_length(self.payload, length)
+        result = self.new(payload=payload)
+        return result
+
+    def rotate(self, n):
+        '''Rotate.
+
+        Return newly constructed absolute expression.
+        '''
+        payload = sequencetools.rotate_sequence(self.payload, n)
+        result = self.new(payload=payload)
+        return result

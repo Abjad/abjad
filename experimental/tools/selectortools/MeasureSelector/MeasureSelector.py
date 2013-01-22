@@ -85,14 +85,16 @@ class MeasureSelector(Selector):
         start_segment_specification = score_specification.get_start_segment_specification(self)
         time_signatures = start_segment_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
+
         # TODO: eventually use something not start-positioned
         result = settingtools.StartPositionedMeasureProduct(
             time_signatures, voice_name=self.voice_name, start_offset=0)
         result = self._apply_callbacks(result)
         assert isinstance(result, settingtools.StartPositionedMeasureProduct), repr(result)
         return result
+
         # TODO: eventually use lines below
-        #result = settingtools.AbsoluteExpression(time_signatures)
-        #result = self._apply_callbacks(result)
-        #assert isinstance(result, settingtools.AbsoluteExpression), repr(result)
-        #return result
+        #expression = settingtools.AbsoluteExpression(time_signatures)
+        #expression = self._apply_callbacks(expression)
+        #assert isinstance(expression, settingtools.AbsoluteExpression), repr(expression)
+        #return expression

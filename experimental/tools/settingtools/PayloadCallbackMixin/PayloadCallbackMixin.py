@@ -81,7 +81,6 @@ class PayloadCallbackMixin(CallbackMixin):
             'sequencetools': sequencetools,
             }
         for callback in self.callbacks:
-            print callback
             assert 'expression' in callback
             evaluation_context['expression'] = expression
             exec(callback, evaluation_context)
