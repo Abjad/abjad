@@ -52,6 +52,9 @@ class PayloadCallbackMixin(CallbackMixin):
         if hasattr(expression, '_getitem'):
             result = expression._getitem(s) 
             return result
+        elif hasattr(expression, '__getitem__'):
+            result = expression.__getitem__(s)
+            return result
         else:
             start_index, stop_index, stride = s.indices(len(expression))
             selected_expression = expression[s]

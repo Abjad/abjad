@@ -81,15 +81,6 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
         voice_name = None
         return self.payload[:]
 
-    def _getitem(self, expr):
-        '''Get item.
-
-        Return newly constructed absolute expression.
-        '''
-        payload = self.payload.__getitem__(expr)
-        result = self.new(payload=payload)
-        return result
-
     ### READ-ONLY PROPERTIES ###
 
     @property
