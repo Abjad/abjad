@@ -70,32 +70,32 @@ Methods
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.partition_by_ratio
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadCallbackMixin <experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.partition_by_ratio_of_durations
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadCallbackMixin <experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.reflect
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadCallbackMixin <experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.repeat_to_duration
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadCallbackMixin <experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.repeat_to_length
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadCallbackMixin <experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.rotate
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadCallbackMixin <experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
 Special Methods
 ---------------
@@ -103,17 +103,17 @@ Special Methods
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.___and__
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadCallbackMixin <experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.___getitem__
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadCallbackMixin <experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.__and__
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadCallbackMixin <experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.__eq__
    :noindex:
@@ -128,7 +128,7 @@ Special Methods
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.__getitem__
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadCallbackMixin <experimental.tools.settingtools.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin.StartPositionedPayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.NonstartPositionedPayloadCallbackMixin <experimental.tools.settingtools.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin.NonstartPositionedPayloadCallbackMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.__gt__
    :noindex:

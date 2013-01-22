@@ -72,6 +72,6 @@ class DivisionSelector(Selector):
         if self.time_relation is None:
             result &= anchor_timespan
             result = result[0]
-        result, new_start_offset = self._apply_callbacks(result, result.start_offset)
+        result = self._apply_callbacks(result)
         assert isinstance(result, settingtools.StartPositionedDivisionProduct), repr(result)
         return result

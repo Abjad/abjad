@@ -99,7 +99,7 @@ class CounttimeComponentSelector(Selector):
         for rhythm_product in rhythm_products:
             result.payload.extend(rhythm_product.payload)
         assert wellformednesstools.is_well_formed_component(result.payload)
-        result, new_start_offset = self._apply_callbacks(result, result.start_offset)
+        result = self._apply_callbacks(result)
         assert isinstance(result, settingtools.StartPositionedRhythmProduct), repr(result)
         return result
 

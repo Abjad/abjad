@@ -51,7 +51,7 @@ class MeasureSelector(Selector):
                 anchor=selectortools.SegmentSelector(
                     voice_name='Voice 1',
                     callbacks=settingtools.CallbackInventory([
-                        "result = self.___getitem__(expression, start_offset, slice('red', ('red', 3), None))"
+                        "result = self.___getitem__(expression, slice('red', ('red', 3), None))"
                         ])
                     )
                 ),
@@ -73,7 +73,7 @@ class MeasureSelector(Selector):
         start_offset = start_segment_specification.timespan.start_offset
         result = settingtools.StartPositionedMeasureProduct(
             time_signatures, voice_name=self.voice_name, start_offset=start_offset)
-        result, dummy = self._apply_callbacks(result, result.start_offset)
+        result = self._apply_callbacks(result)
         assert isinstance(result, settingtools.StartPositionedMeasureProduct), repr(result)
         return result
 
@@ -88,12 +88,11 @@ class MeasureSelector(Selector):
         # TODO: eventually use something not start-positioned
         result = settingtools.StartPositionedMeasureProduct(
             time_signatures, voice_name=self.voice_name, start_offset=0)
-        # TODO: eventually change to result = self._apply_callbacks(result)
-        result, dummy = self._apply_callbacks(result, result.start_offset)
+        result = self._apply_callbacks(result)
         assert isinstance(result, settingtools.StartPositionedMeasureProduct), repr(result)
         return result
         # TODO: eventually use lines below
         #result = settingtools.AbsoluteExpression(time_signatures)
-        #result, dummy = self._apply_callbacks(result, 0)
+        #result = self._apply_callbacks(result)
         #assert isinstance(result, settingtools.AbsoluteExpression), repr(result)
         #return result

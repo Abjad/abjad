@@ -33,7 +33,7 @@ class SegmentSelector(Selector):
         selectortools.SegmentSelector(
             voice_name='Voice 1',
             callbacks=settingtools.CallbackInventory([
-                'result = self.___getitem__(expression, start_offset, slice(None, 2, None))'
+                'result = self.___getitem__(expression, slice(None, 2, None))'
                 ])
             )
 
@@ -47,7 +47,7 @@ class SegmentSelector(Selector):
         selectortools.SegmentSelector(
             voice_name='Voice 1',
             callbacks=settingtools.CallbackInventory([
-                "result = self.___getitem__(expression, start_offset, slice(None, 'green', None))"
+                "result = self.___getitem__(expression, slice(None, 'green', None))"
                 ])
             )
 
@@ -61,7 +61,7 @@ class SegmentSelector(Selector):
         selectortools.SegmentSelector(
             voice_name='Voice 1',
             callbacks=settingtools.CallbackInventory([
-                "result = self.___getitem__(expression, start_offset, slice(None, ('green', 1), None))"
+                "result = self.___getitem__(expression, slice(None, ('green', 1), None))"
                 ])
             )
 
@@ -75,7 +75,7 @@ class SegmentSelector(Selector):
         selectortools.SegmentSelector(
             voice_name='Voice 1',
             callbacks=settingtools.CallbackInventory([
-                "result = self.___getitem__(expression, start_offset, slice('red', ('red', 1), None))"
+                "result = self.___getitem__(expression, slice('red', ('red', 1), None))"
                 ])
             )
 
