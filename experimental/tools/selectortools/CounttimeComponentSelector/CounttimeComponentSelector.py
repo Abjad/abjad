@@ -83,7 +83,7 @@ class CounttimeComponentSelector(Selector):
         from experimental.tools import settingtools
         # ignore voice_name input parameter
         voice_name = None
-        anchor_timespan = score_specification.get_anchor_timespan(self, self.voice_name)
+        anchor_timespan = score_specification.get_anchor_timespan(self)
         voice_proxy = score_specification.contexts[self.voice_name]
         rhythm_products = voice_proxy.rhythm_products
         time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)

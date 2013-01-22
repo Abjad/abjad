@@ -26,13 +26,14 @@ class SingleContextTimeSignatureSetting(SingleContextSetting):
             segment_specification._time_signatures = time_signatures[:]
             return time_signatures
 
+    # TODO: remove voice_name input parameter altogether
     def to_command(self, score_specification, voice_name):
         '''Change single-context time signature setting to command.
 
         Return command.
         '''
         from experimental.tools import settingtools
-        anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
+        anchor_timespan = score_specification.get_anchor_timespan(self)
         command = settingtools.TimeSignatureRegionCommand(
             self.expression, self.context_name, anchor_timespan, fresh=self.fresh)
         return command

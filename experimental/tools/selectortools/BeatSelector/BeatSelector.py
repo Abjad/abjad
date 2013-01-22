@@ -42,10 +42,8 @@ class BeatSelector(Selector):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification, voice_name=None):
+    def _evaluate(self, score_specification):
         from experimental.tools import settingtools
-        # ignore voice_name input parameter
-        voice_name = None
         time_signatures = score_specification.time_signatures
         assert time_signatures
         timespan = score_specification.timespan

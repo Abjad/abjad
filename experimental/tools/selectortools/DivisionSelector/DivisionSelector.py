@@ -45,7 +45,7 @@ class DivisionSelector(Selector):
         from experimental.tools import settingtools
         # ignore voice_name input parameter
         voice_name = None
-        anchor_timespan = score_specification.get_anchor_timespan(self, self.voice_name)
+        anchor_timespan = score_specification.get_anchor_timespan(self)
         voice_proxy = score_specification.contexts[self.voice_name]
         division_products = voice_proxy.division_products
         if division_products is None:

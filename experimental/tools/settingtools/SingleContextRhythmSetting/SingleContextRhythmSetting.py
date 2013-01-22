@@ -13,13 +13,14 @@ class SingleContextRhythmSetting(SingleContextSetting):
 
     ### PUBLIC METHODS ###
 
+    # TODO: remove voice_name altogether
     def to_command(self, score_specification, voice_name):
         '''Change single-context time signature setting to command.
 
         Return command.
         '''
         from experimental.tools import settingtools
-        anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
+        anchor_timespan = score_specification.get_anchor_timespan(self)
         command = settingtools.RhythmRegionCommand(
             self.expression, self.context_name, anchor_timespan, fresh=self.fresh)
         return command

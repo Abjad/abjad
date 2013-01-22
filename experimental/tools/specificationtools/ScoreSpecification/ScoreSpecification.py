@@ -523,10 +523,11 @@ class ScoreSpecification(Specification):
         if attribute in self.single_context_settings_by_context[context_name]:
             del(self.single_context_settings_by_context[context_name][attribute])
 
-    def get_anchor_timespan(self, expr, voice_name):
+    # TODO: move to ExpressionAnchoredObject
+    def get_anchor_timespan(self, expr):
         '''Get timespan of ``expr.anchor``.
 
-            >>> score_specification.get_anchor_timespan(orange_segment.timespan, None)
+            >>> score_specification.get_anchor_timespan(orange_segment.timespan)
             Timespan(start_offset=Offset(9, 8), stop_offset=Offset(13, 8))
 
         Return timespan.
@@ -536,7 +537,7 @@ class ScoreSpecification(Specification):
             return self[expr.anchor].timespan
         elif expr.anchor is None:
             return self.timespan
-        result = expr.anchor._evaluate(self, voice_name)
+        result = expr.anchor._evaluate(self)
         assert isinstance(result, (settingtools.Expression, settingtools.StartPositionedProduct, timespantools.Timespan)) 
         if isinstance(result, timespantools.Timespan):
             return result
