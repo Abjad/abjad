@@ -96,7 +96,7 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.__getitem__
    :noindex:
 
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.AbsoluteExpression <experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression>`
 
 .. automethod:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.__gt__
    :noindex:

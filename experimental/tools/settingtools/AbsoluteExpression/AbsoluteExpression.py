@@ -59,6 +59,11 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
             result[0] = expression
         return result
 
+    def __getitem__(self, expr):
+        payload = self.payload.__getitem__(expr)
+        result = self.new(payload=payload)
+        return result
+
     ### PRIVATE METHODS ###
 
     def _duration_helper(self, expression):
@@ -70,20 +75,10 @@ class AbsoluteExpression(Expression, PayloadCallbackMixin):
             duration = durationtools.Duration(expression)
             return duration
 
-    def _evaluate(self, score_specification=None, voice_name=None):
-        from experimental.tools import settingtools
+    def _evaluate(self, score_specification, voice_name=None):
         # ignore voice_name input parameter
         voice_name = None
-        if isinstance(self.payload, (str, tuple)):
-            result = self.payload
-        else:
-            raise TypeError(self.payload)
-        result = self._apply_callbacks(result)
-        return result
-        # TODO: use these three lines instead of the code above
-        #assert isinstance(self.payload, (str, tuple))
-        #result = self._apply_callbacks(self)
-        #return result
+        return self.payload[:]
 
     def _getitem(self, expr):
         '''Get item.
