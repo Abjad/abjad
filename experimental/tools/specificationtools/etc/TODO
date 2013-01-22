@@ -113,11 +113,7 @@
         score_specification = settingtools.ScoreSpecificationInterface(score_template)
     ... so that composers only ever interact with interfaces.
 
-22. Implement _getitem() on all region products.
-    Change _getitem() output signature from (elements, start_offset) to just new_product.
-    Implement complete set of payload callbacks on all region products.
-    Set output signature of all region product payload callback methods to just a new_product.
-
 23. Clarify return types of all _evaluate() methods.
 
 24. Change _getitem() to getitem().
+    Or change _getitem() to __getitem__().
