@@ -22,8 +22,6 @@ class PayloadCallbackMixin(CallbackMixin):
 
         Return boolean.
         '''
-        if not isinstance(expression, type(self)):
-            return False
         if not self._positional_argument_values == expression._positional_argument_values:
             return False
         return self._keyword_argument_values == expression._keyword_argument_values
