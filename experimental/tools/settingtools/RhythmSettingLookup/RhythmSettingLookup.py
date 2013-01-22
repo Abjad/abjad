@@ -38,11 +38,7 @@ class RhythmSettingLookup(SettingLookup):
         #   that the call to self._apply_callbacks() is unnecessary, or
         #   that the call must appear in both branches.
         if isinstance(source_command.expression, settingtools.RhythmMakerExpression):
-            # TODO: assert is not necessary
-            assert isinstance(source_command.expression.payload, rhythmmakertools.RhythmMaker)
-            # TODO: deepcopy is not necessary
-            expression = copy.deepcopy(source_command.expression)
-            result = self._apply_callbacks(expression)
+            result = self._apply_callbacks(source_command.expression)
             # TODO: eventually return RhythmMakerExpression instead of rhythm-maker
             rhythm_maker = result.payload
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
