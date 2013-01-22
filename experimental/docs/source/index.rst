@@ -332,8 +332,6 @@ Unstable packages (load manually)
       tools/settingtools/NonstartPositionedPayloadCallbackMixin/NonstartPositionedPayloadCallbackMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/settingtools/RegionCommand/RegionCommand
-      tools/settingtools/RegionProduct/RegionProduct
-      tools/settingtools/SegmentRegionProduct/SegmentRegionProduct
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin
       tools/settingtools/Setting/Setting
@@ -342,6 +340,8 @@ Unstable packages (load manually)
       tools/settingtools/SpecificationInterface/SpecificationInterface
       tools/settingtools/StartPositionedObject/StartPositionedObject
       tools/settingtools/StartPositionedPayloadCallbackMixin/StartPositionedPayloadCallbackMixin
+      tools/settingtools/StartPositionedProduct/StartPositionedProduct
+      tools/settingtools/StartPositionedSegmentProduct/StartPositionedSegmentProduct
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
 
    --------
@@ -351,18 +351,15 @@ Unstable packages (load manually)
 
       tools/settingtools/AbsoluteExpression/AbsoluteExpression
       tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
-      tools/settingtools/BeatRegionProduct/BeatRegionProduct
       tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/ClassInventory/ClassInventory
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
-      tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
       tools/settingtools/DivisionSettingLookup/DivisionSettingLookup
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/HandlerExpression/HandlerExpression
       tools/settingtools/MaterialManager/MaterialManager
-      tools/settingtools/MeasureRegionProduct/MeasureRegionProduct
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
       tools/settingtools/OffsetExpression/OffsetExpression
@@ -371,7 +368,6 @@ Unstable packages (load manually)
       tools/settingtools/RhythmMakerExpression/RhythmMakerExpression
       tools/settingtools/RhythmMakerRhythmRegionCommand/RhythmMakerRhythmRegionCommand
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
-      tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
       tools/settingtools/RhythmSettingLookup/RhythmSettingLookup
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
@@ -383,6 +379,10 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
       tools/settingtools/StartPositionedAbsoluteExpression/StartPositionedAbsoluteExpression
+      tools/settingtools/StartPositionedBeatProduct/StartPositionedBeatProduct
+      tools/settingtools/StartPositionedDivisionProduct/StartPositionedDivisionProduct
+      tools/settingtools/StartPositionedMeasureProduct/StartPositionedMeasureProduct
+      tools/settingtools/StartPositionedRhythmProduct/StartPositionedRhythmProduct
       tools/settingtools/StatalServer/StatalServer
       tools/settingtools/StatalServerExpression/StatalServerExpression
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
@@ -404,8 +404,6 @@ Unstable packages (load manually)
       tools/settingtools/NonstartPositionedPayloadCallbackMixin/NonstartPositionedPayloadCallbackMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/settingtools/RegionCommand/RegionCommand
-      tools/settingtools/RegionProduct/RegionProduct
-      tools/settingtools/SegmentRegionProduct/SegmentRegionProduct
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin
       tools/settingtools/Setting/Setting
@@ -414,6 +412,8 @@ Unstable packages (load manually)
       tools/settingtools/SpecificationInterface/SpecificationInterface
       tools/settingtools/StartPositionedObject/StartPositionedObject
       tools/settingtools/StartPositionedPayloadCallbackMixin/StartPositionedPayloadCallbackMixin
+      tools/settingtools/StartPositionedProduct/StartPositionedProduct
+      tools/settingtools/StartPositionedSegmentProduct/StartPositionedSegmentProduct
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
 
    Concrete Classes
@@ -423,18 +423,15 @@ Unstable packages (load manually)
 
       tools/settingtools/AbsoluteExpression/AbsoluteExpression
       tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
-      tools/settingtools/BeatRegionProduct/BeatRegionProduct
       tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/ClassInventory/ClassInventory
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
-      tools/settingtools/DivisionRegionProduct/DivisionRegionProduct
       tools/settingtools/DivisionSettingLookup/DivisionSettingLookup
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/HandlerExpression/HandlerExpression
       tools/settingtools/MaterialManager/MaterialManager
-      tools/settingtools/MeasureRegionProduct/MeasureRegionProduct
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
       tools/settingtools/OffsetExpression/OffsetExpression
@@ -443,7 +440,6 @@ Unstable packages (load manually)
       tools/settingtools/RhythmMakerExpression/RhythmMakerExpression
       tools/settingtools/RhythmMakerRhythmRegionCommand/RhythmMakerRhythmRegionCommand
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
-      tools/settingtools/RhythmRegionProduct/RhythmRegionProduct
       tools/settingtools/RhythmSettingLookup/RhythmSettingLookup
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
@@ -455,6 +451,10 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
       tools/settingtools/StartPositionedAbsoluteExpression/StartPositionedAbsoluteExpression
+      tools/settingtools/StartPositionedBeatProduct/StartPositionedBeatProduct
+      tools/settingtools/StartPositionedDivisionProduct/StartPositionedDivisionProduct
+      tools/settingtools/StartPositionedMeasureProduct/StartPositionedMeasureProduct
+      tools/settingtools/StartPositionedRhythmProduct/StartPositionedRhythmProduct
       tools/settingtools/StatalServer/StatalServer
       tools/settingtools/StatalServerExpression/StatalServerExpression
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup

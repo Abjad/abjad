@@ -537,7 +537,7 @@ class ScoreSpecification(Specification):
         elif expr.anchor is None:
             return self.timespan
         result = expr.anchor._evaluate(self, voice_name)
-        assert isinstance(result, (settingtools.Expression, settingtools.RegionProduct, timespantools.Timespan)) 
+        assert isinstance(result, (settingtools.Expression, settingtools.StartPositionedProduct, timespantools.Timespan)) 
         if isinstance(result, timespantools.Timespan):
             return result
         else:

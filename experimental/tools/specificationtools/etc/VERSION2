@@ -20,7 +20,7 @@
 
 6. Implement TimespanInventory.rotate(Duration(-4, 1)).
 
-7.  Extend RhythmRegionProduct.rotate() with a new 'level=-1' keyword.
+7.  Extend StartPositionedRhythmProduct.rotate() with a new 'level=-1' keyword.
     The keyword will specify the score-tree level at which rotation should happen.
     The keyword will be an attribute of the RotationIndicator class.
 

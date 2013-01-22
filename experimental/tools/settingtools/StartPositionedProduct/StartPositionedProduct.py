@@ -11,7 +11,7 @@ from abjad.tools import wellformednesstools
 from experimental.tools.settingtools.StartPositionedObject import StartPositionedObject
 
 
-class RegionProduct(StartPositionedObject):
+class StartPositionedProduct(StartPositionedObject):
     r'''Region product.
 
     Start-positioned product.

@@ -117,9 +117,9 @@
     This will create the idea of a start-positioned expression.
     Then change StartPositionedPayloadCallbackMixin._apply_callbacks(elements, start_offset)
     to StartPositionedPayloadCallbackMixin._apply_callbacks(start_positioned_expression).
-    Why not just use RegionProduct as start-positioned expression?
+    Why not just use StartPositionedProduct as start-positioned expression?
     Because there's a difference between a (not-yet-evaluated) expression
-    and an (already evaluated) RegionProduct.
+    and an (already evaluated) StartPositionedProduct.
 
 23. Implement _getitem() on all region products.
     Change _getitem() output signature from (elements, start_offset) to just new_region_product.
@@ -130,14 +130,14 @@
 
 25. Make all _apply_callbacks() methods assert expression input.
 
-26. Change RegionProduct to StartPositionedProduct.
+26. Change StartPositionedProduct to StartPositionedProduct.
     Change these classes:
-        BeatRegionProduct
-        DivisionRegionProduct
-        MeasureRegionProduct
-        RegionProduct
-        RhythmRegionProduct
-        SegmentRegionProduct
+        StartPositionedBeatProduct
+        StartPositionedDivisionProduct
+        StartPositionedMeasureProduct
+        StartPositionedProduct
+        StartPositionedRhythmProduct
+        StartPositionedSegmentProduct
     To these:
         StartPositionedBeatProduct
         StartPositionedDivisionProduct

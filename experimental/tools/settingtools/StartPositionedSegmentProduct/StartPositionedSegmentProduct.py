@@ -1,7 +1,7 @@
-from experimental.tools.settingtools.RegionProduct import RegionProduct
+from experimental.tools.settingtools.StartPositionedProduct import StartPositionedProduct
 
 
-class SegmentRegionProduct(RegionProduct):
+class StartPositionedSegmentProduct(StartPositionedProduct):
     '''Segment region product:
 
     .. note:: add example.

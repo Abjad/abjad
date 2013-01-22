@@ -58,8 +58,8 @@ class BeatSelector(Selector):
             naive_beats, weights, cyclic=False, overhang=False)
         result = shards[1]
         start_offset = durationtools.Offset(sum(shards[0]))
-        result = settingtools.BeatRegionProduct(
+        result = settingtools.StartPositionedBeatProduct(
             result, voice_name=self.voice_name, start_offset=start_offset)
         result, start_offset = self._apply_callbacks(result, result.start_offset)
-        assert isinstance(result, settingtools.BeatRegionProduct), repr(result)
+        assert isinstance(result, settingtools.StartPositionedBeatProduct), repr(result)
         return result

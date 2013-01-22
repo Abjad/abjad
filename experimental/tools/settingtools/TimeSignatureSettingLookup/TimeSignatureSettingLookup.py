@@ -19,7 +19,7 @@ class TimeSignatureSettingLookup(SettingLookup):
         voice_name = None
         segment_specification = score_specification.get_start_segment_specification(self.offset)
         time_signatures = segment_specification.time_signatures[:]
-        result = settingtools.MeasureRegionProduct(
+        result = settingtools.StartPositionedMeasureProduct(
             time_signatures, voice_name='dummy voice name', start_offset=0)
         result = self._apply_callbacks(result)
         # TODO: eventually return TimeSignatureRegionProduct instead of tuple of time signatures

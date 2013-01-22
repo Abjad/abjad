@@ -38,7 +38,7 @@ class DivisionList(BoundedObject):
     ::
 
         >>> z(score_specification.contexts['Voice 1'].division_region_products[0])
-        settingtools.DivisionRegionProduct(
+        settingtools.StartPositionedDivisionProduct(
             payload=settingtools.DivisionList(
                [Division('[3, 16]', start_offset=Offset(0, 1)), 
                 Division('[3, 16]', start_offset=Offset(3, 16)), 

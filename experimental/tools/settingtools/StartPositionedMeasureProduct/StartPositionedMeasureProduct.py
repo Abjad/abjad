@@ -1,19 +1,19 @@
 from abjad.tools import durationtools
-from experimental.tools.settingtools.DivisionRegionProduct import DivisionRegionProduct
+from experimental.tools.settingtools.StartPositionedDivisionProduct import StartPositionedDivisionProduct
 
 
-class MeasureRegionProduct(DivisionRegionProduct):
+class StartPositionedMeasureProduct(StartPositionedDivisionProduct):
     '''Measure region product:
 
     ::
 
         >>> payload = [(6, 8), (6, 8), (3, 4)]
-        >>> measure_region_product = settingtools.MeasureRegionProduct(payload, 'Voice 1', Offset(0))
+        >>> measure_region_product = settingtools.StartPositionedMeasureProduct(payload, 'Voice 1', Offset(0))
 
     ::
 
         >>> z(measure_region_product)
-        settingtools.MeasureRegionProduct(
+        settingtools.StartPositionedMeasureProduct(
             payload=settingtools.DivisionList(
                 [Division('[6, 8]', start_offset=Offset(0, 1)), 
                 Division('[6, 8]', start_offset=Offset(3, 4)), 

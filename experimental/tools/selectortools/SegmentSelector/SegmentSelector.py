@@ -91,10 +91,10 @@ class SegmentSelector(Selector):
         start_segment_identifier = self.start_segment_identifier
         segment = score_specification[start_segment_identifier]
         start_offset = segment.start_offset
-        result = settingtools.SegmentRegionProduct(
+        result = settingtools.StartPositionedSegmentProduct(
             [segment], voice_name=self.voice_name, start_offset=start_offset)
         result = self._apply_callbacks(result)
-        assert isinstance(result, settingtools.SegmentRegionProduct), repr(result)
+        assert isinstance(result, settingtools.StartPositionedSegmentProduct), repr(result)
         return result
 
     def _make_identifier_expression(self, segment_name, addendum):

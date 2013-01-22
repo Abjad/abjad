@@ -22,7 +22,7 @@ class ParseableStringRhythmRegionCommand(FinalizedRhythmRegionCommand):
         # ignore voice_name input parameter
         voice_name = None
         component = iotools.p(self.parseable_string)
-        rhythm_region_product = settingtools.RhythmRegionProduct(
+        rhythm_region_product = settingtools.StartPositionedRhythmProduct(
             payload=[component], voice_name=self.voice_name, start_offset=self.start_offset)
         # TODO: maybe create timespan here instead of just offset
         stop_offset = self.start_offset + self.total_duration

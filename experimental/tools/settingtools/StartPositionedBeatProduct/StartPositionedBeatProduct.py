@@ -1,20 +1,20 @@
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from experimental.tools.settingtools.DivisionRegionProduct import DivisionRegionProduct
+from experimental.tools.settingtools.StartPositionedDivisionProduct import StartPositionedDivisionProduct
 
 
-class BeatRegionProduct(DivisionRegionProduct):
+class StartPositionedBeatProduct(StartPositionedDivisionProduct):
     '''Beat region product:
 
     ::
 
         >>> payload = [(6, 8), (6, 8), (3, 4)]
-        >>> beat_region_product = settingtools.BeatRegionProduct(payload, 'Voice 1', Offset(0))
+        >>> beat_region_product = settingtools.StartPositionedBeatProduct(payload, 'Voice 1', Offset(0))
 
     ::
 
         >>> z(beat_region_product)
-        settingtools.BeatRegionProduct(
+        settingtools.StartPositionedBeatProduct(
             payload=settingtools.DivisionList(
                 [Division('[6, 8]', start_offset=Offset(0, 1)),                 
                 Division('[6, 8]', start_offset=Offset(3, 4)), 

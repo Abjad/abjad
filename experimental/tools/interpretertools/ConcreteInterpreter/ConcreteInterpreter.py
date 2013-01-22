@@ -132,7 +132,7 @@ class ConcreteInterpreter(Interpreter):
                     division_region_products = division_region_command._evaluate(self.score_specification)
                     if division_region_products is not None:
                         assert isinstance(division_region_products, list)
-                        assert all([isinstance(x, settingtools.DivisionRegionProduct) for x in division_region_products])
+                        assert all([isinstance(x, settingtools.StartPositionedDivisionProduct) for x in division_region_products])
                         made_progress = True
                         voice_division_region_products.extend(division_region_products)
                     else:
@@ -220,7 +220,7 @@ class ConcreteInterpreter(Interpreter):
                 assert isinstance(finalized_rhythm_region_command, settingtools.FinalizedRhythmRegionCommand)
                 rhythm_region_product = finalized_rhythm_region_command._evaluate(self.score_specification)
                 if rhythm_region_product is not None:
-                    assert isinstance(rhythm_region_product, settingtools.RhythmRegionProduct)
+                    assert isinstance(rhythm_region_product, settingtools.StartPositionedRhythmProduct)
                     made_progress = True
                     self.score_specification.finalized_rhythm_region_commands.remove(finalized_rhythm_region_command)
                     voice_name = finalized_rhythm_region_command.voice_name

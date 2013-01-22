@@ -95,12 +95,12 @@ class CounttimeComponentSelector(Selector):
         rhythm_region_products.sort()
         assert anchor_timespan.is_well_formed, repr(anchor_timespan)
         rhythm_region_products &= anchor_timespan
-        result = settingtools.RhythmRegionProduct(voice_name=voice_name, start_offset=anchor_timespan.start_offset)
+        result = settingtools.StartPositionedRhythmProduct(voice_name=voice_name, start_offset=anchor_timespan.start_offset)
         for rhythm_region_product in rhythm_region_products:
             result.payload.extend(rhythm_region_product.payload)
         assert wellformednesstools.is_well_formed_component(result.payload)
         result, new_start_offset = self._apply_callbacks(result, result.start_offset)
-        assert isinstance(result, settingtools.RhythmRegionProduct), repr(result)
+        assert isinstance(result, settingtools.StartPositionedRhythmProduct), repr(result)
         return result
 
     def _is_counttime_component_class_expr(self, expr):

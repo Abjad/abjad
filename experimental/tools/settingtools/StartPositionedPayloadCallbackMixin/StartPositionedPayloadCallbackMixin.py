@@ -47,7 +47,7 @@ class StartPositionedPayloadCallbackMixin(NonstartPositionedPayloadCallbackMixin
                 expression = [mathtools.NonreducedFraction(x) for x in expression]
             if original_start_offset is None:
                 original_start_offset = durationtools.Offset(0)
-            division_region_product = settingtools.DivisionRegionProduct(
+            division_region_product = settingtools.StartPositionedDivisionProduct(
                 payload=expression, voice_name='dummy voice name', start_offset=original_start_offset)
             result = division_region_product & timespan
             result = result[0]
@@ -73,7 +73,7 @@ class StartPositionedPayloadCallbackMixin(NonstartPositionedPayloadCallbackMixin
 
     def _apply_callbacks(self, expression, start_offset):
         from experimental.tools import settingtools
-        assert isinstance(expression, (settingtools.Expression, settingtools.RegionProduct)), repr(expression)
+        assert isinstance(expression, (settingtools.Expression, settingtools.StartPositionedProduct)), repr(expression)
         evaluation_context = {
             'Duration': durationtools.Duration,
             'NonreducedFraction': mathtools.NonreducedFraction,
