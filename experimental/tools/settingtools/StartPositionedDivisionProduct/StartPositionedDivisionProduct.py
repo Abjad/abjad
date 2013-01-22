@@ -137,6 +137,16 @@ class StartPositionedDivisionProduct(StartPositionedProduct):
         '''
         return StartPositionedProduct.__and__(self, timespan)
 
+    def __getitem__(self, expr):
+        assert isinstance(expr, slice), repr(expr)
+        divisions = self.payload.__getitem__(expr)
+        if divisions:
+            start_offset = divisions[0].start_offset
+        else:
+            start_offset = durationtools.Offset(0)
+        result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=start_offset)
+        return result
+
     def __or__(self, expr):
         '''Logical OR of two division region products:
 
@@ -299,16 +309,6 @@ class StartPositionedDivisionProduct(StartPositionedProduct):
         return self.payload.divisions
 
     ### PRIVATE METHODS ###
-
-    def _getitem(self, expr):
-        assert isinstance(expr, slice), repr(expr)
-        divisions = self.payload.__getitem__(expr)
-        if divisions:
-            start_offset = divisions[0].start_offset
-        else:
-            start_offset = durationtools.Offset(0)
-        result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=start_offset)
-        return result
 
     def _split_payload_at_offsets(self, offsets):
         from experimental.tools import settingtools

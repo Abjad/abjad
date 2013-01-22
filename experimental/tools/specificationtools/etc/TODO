@@ -114,6 +114,4 @@
     ... so that composers only ever interact with interfaces.
 
 23. Clarify return types of all _evaluate() methods.
-
-24. Change _getitem() to getitem().
-    Or change _getitem() to __getitem__().
+    Perhaps all _evaluate() methods should return some type of built-in, like list or tuple.

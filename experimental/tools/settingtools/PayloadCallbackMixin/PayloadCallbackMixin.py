@@ -46,19 +46,11 @@ class PayloadCallbackMixin(CallbackMixin):
         result = result[0]
         return result
 
-    # TODO: remove branching in this method
     def ___getitem__(self, expression, s):
         assert isinstance(s, slice)
-        if hasattr(expression, '_getitem'):
-            result = expression._getitem(s) 
-            return result
-        elif hasattr(expression, '__getitem__'):
-            result = expression.__getitem__(s)
-            return result
-        else:
-            start_index, stop_index, stride = s.indices(len(expression))
-            selected_expression = expression[s]
-            return selected_expression
+        assert hasattr(expression, '__getitem__')
+        result = expression.__getitem__(s)
+        return result
 
     def _apply_callbacks(self, expression):
         from experimental.tools import settingtools

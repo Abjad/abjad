@@ -72,6 +72,9 @@ Special Methods
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. automethod:: experimental.tools.settingtools.StartPositionedDivisionProduct.StartPositionedDivisionProduct.StartPositionedDivisionProduct.__getitem__
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.StartPositionedDivisionProduct.StartPositionedDivisionProduct.StartPositionedDivisionProduct.__gt__
    :noindex:
 

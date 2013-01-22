@@ -100,6 +100,11 @@ Special Methods
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. automethod:: experimental.tools.settingtools.StartPositionedBeatProduct.StartPositionedBeatProduct.StartPositionedBeatProduct.__getitem__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.StartPositionedDivisionProduct <experimental.tools.settingtools.StartPositionedDivisionProduct.StartPositionedDivisionProduct.StartPositionedDivisionProduct>`
+
 .. automethod:: experimental.tools.settingtools.StartPositionedBeatProduct.StartPositionedBeatProduct.StartPositionedBeatProduct.__gt__
    :noindex:
 
