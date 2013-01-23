@@ -15,14 +15,13 @@ class SingleContextDivisionSetting(SingleContextSetting):
 
     ### PUBLIC METHODS ###
 
-    # TODO: eventually remove score_specification input parameter altogether
-    def to_command(self, score_specification):
+    def to_command(self):
         '''Change single-context time signature setting to command.
 
         Return command.
         '''
         from experimental.tools import settingtools
-        anchor_timespan = score_specification.get_anchor_timespan(self)
+        anchor_timespan = self.get_anchor_timespan()
         command = settingtools.DivisionRegionExpression(
             self.expression, self.context_name, anchor_timespan, fresh=self.fresh, truncate=self.truncate)
         return command

@@ -106,7 +106,7 @@ class SingleContextSetting(Setting):
         return new_setting
 
     @abc.abstractmethod
-    def to_command(self, score_specification):
+    def to_command(self):
         '''Change single-context setting to command.
 
         Return command.

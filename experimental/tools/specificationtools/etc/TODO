@@ -121,6 +121,4 @@
 24. Finish locking down selector evaluation.
     Use the right payload expression classes at the right moments in all selector _evaluate() methods.
 
-25. Migrate ScoreSpecification.get_anchor_timespan() to ExpressionAnchoredObject.
-
-26. Rename ExpressionAnchoredObject to AnchoredObject.
+25. Rename ExpressionAnchoredObject to AnchoredObject.

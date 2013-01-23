@@ -523,28 +523,6 @@ class ScoreSpecification(Specification):
         if attribute in self.single_context_settings_by_context[context_name]:
             del(self.single_context_settings_by_context[context_name][attribute])
 
-    # TODO: move to ExpressionAnchoredObject
-    def get_anchor_timespan(self, expr):
-        '''Get timespan of ``expr.anchor``.
-
-            >>> score_specification.get_anchor_timespan(orange_segment.timespan)
-            Timespan(start_offset=Offset(9, 8), stop_offset=Offset(13, 8))
-
-        Return timespan.
-        '''
-        assert isinstance(expr, settingtools.ExpressionAnchoredObject), repr(expr)
-        assert hasattr(expr, 'anchor')
-        if isinstance(expr.anchor, str):
-            return self[expr.anchor].timespan
-        elif expr.anchor is None:
-            return self.timespan
-        result = expr.anchor._evaluate()
-        assert isinstance(result, (settingtools.Expression, timespantools.Timespan)) 
-        if isinstance(result, timespantools.Timespan):
-            return result
-        else:
-            return result.timespan
-        
     def get_region_commands_for_voice(self, attribute, context_name):
         commands = settingtools.RegionExpressionInventory()
         for segment_specification in self.segment_specifications:
@@ -552,7 +530,7 @@ class ScoreSpecification(Specification):
                 segment_specification.get_single_context_settings_that_start_during_segment(
                 context_name, attribute, include_improper_parentage=True)
             for single_context_setting in single_context_settings:
-                command = single_context_setting.to_command(self)
+                command = single_context_setting.to_command()
                 # make sure setting was setting for timespan that exists in current segment
                 if command.timespan.is_well_formed:
                     commands.append(command)

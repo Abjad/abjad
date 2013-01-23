@@ -13,13 +13,13 @@ class SingleContextRhythmSetting(SingleContextSetting):
 
     ### PUBLIC METHODS ###
 
-    def to_command(self, score_specification):
+    def to_command(self):
         '''Change single-context time signature setting to command.
 
         Return command.
         '''
         from experimental.tools import settingtools
-        anchor_timespan = score_specification.get_anchor_timespan(self)
+        anchor_timespan = self.get_anchor_timespan()
         command = settingtools.RhythmRegionExpression(
             self.expression, self.context_name, anchor_timespan, fresh=self.fresh)
         return command
