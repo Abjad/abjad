@@ -42,7 +42,7 @@ class PayloadCallbackMixin(CallbackMixin):
 
     def _apply_callbacks(self, expression):
         from experimental.tools import settingtools
-        assert isinstance(expression, (settingtools.Expression, settingtools.VoicedStartPositionedPayloadExpression)), repr(expression)
+        assert isinstance(expression, (settingtools.PayloadExpression, settingtools.RhythmMakerExpression)), repr(expression)
         evaluation_context = {
             'Duration': durationtools.Duration,
             'NonreducedFraction': mathtools.NonreducedFraction,
