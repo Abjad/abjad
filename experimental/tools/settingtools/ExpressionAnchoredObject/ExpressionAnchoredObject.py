@@ -1,5 +1,6 @@
 import abc
 import copy
+from abjad.tools import timespantools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -104,3 +105,24 @@ class ExpressionAnchoredObject(AbjadObject):
         result = settingtools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
         result._score_specification = self.score_specification
         return result
+
+    ### PUBLIC METHODS ###
+
+    # TODO: maybe change name to self.(_)evaluate_anchor_timespan
+    def get_anchor_timespan(self):
+        '''Get timespan of expression-anchored object.
+
+        Return timespan.
+        '''
+        from experimental.tools import settingtools
+        if isinstance(self.anchor, str):
+            return self.score_specification[self.anchor].timespan
+        elif self.anchor is None:
+            return self.score_specification.timespan
+        result = self.anchor._evaluate()
+        if isinstance(result, timespantools.Timespan):
+            return result
+        elif isinstance(result, settingtools.Expression):
+            return result.timespan
+        else:
+            raise TypeError(result)

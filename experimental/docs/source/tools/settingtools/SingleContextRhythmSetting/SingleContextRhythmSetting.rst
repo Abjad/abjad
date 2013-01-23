@@ -77,6 +77,11 @@ Methods
 
    Inherited from :py:class:`settingtools.SingleContextSetting <experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
 
+.. automethod:: experimental.tools.settingtools.SingleContextRhythmSetting.SingleContextRhythmSetting.SingleContextRhythmSetting.get_anchor_timespan
+   :noindex:
+
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+
 .. automethod:: experimental.tools.settingtools.SingleContextRhythmSetting.SingleContextRhythmSetting.SingleContextRhythmSetting.to_command
    :noindex:
 

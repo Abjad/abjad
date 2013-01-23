@@ -62,6 +62,11 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.get_anchor_timespan
+   :noindex:
+
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+
 .. automethod:: experimental.tools.settingtools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.new
    :noindex:
 

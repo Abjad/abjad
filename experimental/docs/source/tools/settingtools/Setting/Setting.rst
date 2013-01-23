@@ -54,6 +54,14 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.truncate
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.settingtools.Setting.Setting.Setting.get_anchor_timespan
+   :noindex:
+
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+
 Special Methods
 ---------------
 

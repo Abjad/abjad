@@ -51,7 +51,7 @@ class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixi
 
     def _evaluate(self):
         edge = self.edge or Left
-        anchor_timespan = self.score_specification.get_anchor_timespan(self)
+        anchor_timespan = self.get_anchor_timespan()
         if edge == Left:
             offset = anchor_timespan.start_offset
         else:

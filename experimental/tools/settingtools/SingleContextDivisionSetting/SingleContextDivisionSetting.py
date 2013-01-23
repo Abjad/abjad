@@ -15,6 +15,7 @@ class SingleContextDivisionSetting(SingleContextSetting):
 
     ### PUBLIC METHODS ###
 
+    # TODO: eventually remove score_specification input parameter altogether
     def to_command(self, score_specification):
         '''Change single-context time signature setting to command.
 

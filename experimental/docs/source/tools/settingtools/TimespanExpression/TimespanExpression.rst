@@ -52,6 +52,11 @@ Methods
 
    Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
+.. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.get_anchor_timespan
+   :noindex:
+
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+
 .. automethod:: experimental.tools.settingtools.TimespanExpression.TimespanExpression.TimespanExpression.new
    :noindex:
 

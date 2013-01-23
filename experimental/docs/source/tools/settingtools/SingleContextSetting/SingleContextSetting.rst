@@ -71,6 +71,11 @@ Methods
 .. automethod:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.copy_setting_to_segment_name
    :noindex:
 
+.. automethod:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.get_anchor_timespan
+   :noindex:
+
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+
 .. automethod:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.to_command
    :noindex:
 

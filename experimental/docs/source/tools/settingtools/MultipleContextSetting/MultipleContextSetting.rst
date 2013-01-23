@@ -70,6 +70,11 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.get_anchor_timespan
+   :noindex:
+
+   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+
 .. automethod:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.unpack
    :noindex:
 
