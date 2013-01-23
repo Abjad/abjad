@@ -70,10 +70,12 @@ class CounttimeComponentSelector(Selector):
     
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification):
+    def _evaluate(self, score_specification='foo'):
         from experimental.tools import settingtools
-        anchor_timespan = score_specification.get_anchor_timespan(self)
-        voice_proxy = score_specification.contexts[self.voice_name]
+        #anchor_timespan = score_specification.get_anchor_timespan(self)
+        #voice_proxy = score_specification.contexts[self.voice_name]
+        anchor_timespan = self.score_specification.get_anchor_timespan(self)
+        voice_proxy = self.score_specification.contexts[self.voice_name]
         rhythm_products = voice_proxy.rhythm_products
         time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
         rhythm_products = rhythm_products.get_timespans_that_satisfy_time_relation(time_relation)

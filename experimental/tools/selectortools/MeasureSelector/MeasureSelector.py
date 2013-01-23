@@ -63,9 +63,10 @@ class MeasureSelector(Selector):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification):
+    def _evaluate(self, score_specification='foo'):
         from experimental.tools import settingtools
-        start_segment_specification = score_specification.get_start_segment_specification(self)
+        #start_segment_specification = score_specification.get_start_segment_specification(self)
+        start_segment_specification = self.score_specification.get_start_segment_specification(self)
         time_signatures = start_segment_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
         start_offset = start_segment_specification.timespan.start_offset
@@ -76,9 +77,10 @@ class MeasureSelector(Selector):
         return result
 
     # special definition because time signatures can be evaluated without knowing the timespan they occupy
-    def _evaluate_early(self, score_specification):
+    def _evaluate_early(self, score_specification='foo'):
         from experimental.tools import settingtools
-        start_segment_specification = score_specification.get_start_segment_specification(self)
+        #start_segment_specification = score_specification.get_start_segment_specification(self)
+        start_segment_specification = self.score_specification.get_start_segment_specification(self)
         time_signatures = start_segment_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
         expression = settingtools.PayloadExpression(time_signatures)

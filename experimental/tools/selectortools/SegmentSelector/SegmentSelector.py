@@ -84,10 +84,11 @@ class SegmentSelector(Selector):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification):
+    def _evaluate(self, score_specification='foo'):
         from experimental.tools import settingtools
         start_segment_identifier = self.start_segment_identifier
-        segment = score_specification[start_segment_identifier]
+        #segment = score_specification[start_segment_identifier]
+        segment = self.score_specification[start_segment_identifier]
         start_offset = segment.start_offset
         result = settingtools.VoicedStartPositionedPayloadExpression(
             [segment], voice_name=self.voice_name, start_offset=start_offset)
