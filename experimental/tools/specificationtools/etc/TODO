@@ -130,14 +130,11 @@
     Perhaps an _execute() method? Or perhaps a different pattern altogether?
 
 25. Probably possible to eliminate ...
-        StartPositionedBeatProduct
         StartPositionedDivisionProduct
-        StartPositionedMeasureProduct
         StartPositionedProduct
         StartPositionedRhythmProduct
-        StartPositionedSegmentProduct
-    ... in favor of StartPositionedAbsoluteExpression.
-    Or at most to keep only StartPositionedProduct.
-    Make StartPositionedProduct concrete.
-    Have StartPositionedProduct inherit from StartPositionedAbsoluteExpression.
-    Have StartPositionedProduct extend StartPositionedAbsoluteExpression with only voice_name.
+    ... in favor of StartPositionedPayloadExpression.
+    Make StartPositionedProduct inherit from PayloadExpression (in addition to StartPositionedObject).
+    Change StartPositionedProduct to StartPositionedPayloadExpression.
+    Implement VoicedStartPositionedPayloadExpression.
+    Have VoicedStartPositionePayloadExpression extend StartPositionedPayloadExpression with only voice_name.
