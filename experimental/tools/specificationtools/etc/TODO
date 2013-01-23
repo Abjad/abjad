@@ -124,3 +124,16 @@
 25. Why do RegionCommand concrete classes implement an _evaluate() method?
     RegionCommand classes are not expressions.
     Perhaps an _execute() method? Or perhaps a different pattern altogether?
+
+25. Probably possible to eliminate ...
+        StartPositionedBeatProduct
+        StartPositionedDivisionProduct
+        StartPositionedMeasureProduct
+        StartPositionedProduct
+        StartPositionedRhythmProduct
+        StartPositionedSegmentProduct
+    ... in favor of StartPositionedAbsoluteExpression.
+    Or at most to keep only StartPositionedProduct.
+    Make StartPositionedProduct concrete.
+    Have StartPositionedProduct inherit from StartPositionedAbsoluteExpression.
+    Have StartPositionedProduct extend StartPositionedAbsoluteExpression with only voice_name.
