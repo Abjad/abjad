@@ -80,14 +80,14 @@ class RhythmRegionCommand(RegionCommand):
 
     ### PUBLIC METHODS ###
 
-    # TODO: maybe implement finalize() methods on PayloadExpression, RhythmMakerExpression, etc.
+    # TODO: maybe implement finalize() methods on PayloadExpression, RhythmMakerPayloadExpression, etc.
     def finalize(self, score_specification, voice_name, start_offset, division_list):
         from experimental.tools import selectortools
         from experimental.tools import settingtools
         assert isinstance(start_offset, durationtools.Offset), repr(start_offset)
         assert isinstance(division_list, settingtools.DivisionList), repr(division_list)
         assert isinstance(voice_name, str), repr(voice_name)
-        if isinstance(self.expression, settingtools.RhythmMakerExpression):
+        if isinstance(self.expression, settingtools.RhythmMakerPayloadExpression):
             rhythm_maker = self.expression.payload
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             command = settingtools.RhythmMakerRhythmRegionCommand(

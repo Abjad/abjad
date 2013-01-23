@@ -2,7 +2,7 @@ from abjad.tools import rhythmmakertools
 from experimental.tools.settingtools.PayloadExpression import PayloadExpression
 
 
-class RhythmMakerExpression(PayloadExpression):
+class RhythmMakerPayloadExpression(PayloadExpression):
     r'''Rhythm-maker expression.
     '''
 

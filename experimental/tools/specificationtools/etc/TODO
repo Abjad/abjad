@@ -123,11 +123,3 @@
     Perhaps an _execute() method? Or perhaps a different pattern altogether?
 
 25. Assert that callbacks apply only to payload expressions.
-
-26. Do something about RhythmMakeExpression.
-    Right now the class inherits from Expression.
-    But the _evaluate() method is set to raise NotImplementedError.
-    So perhaps the class is not really an expression?
-    The class is also sometimes the target of callback application.
-    Is there a way to make this not be the case?
-    Ideally only payload expressions should be the target of callback application.

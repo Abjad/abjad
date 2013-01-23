@@ -361,7 +361,7 @@ Unstable packages (load manually)
       tools/settingtools/ParseableStringRhythmRegionCommand/ParseableStringRhythmRegionCommand
       tools/settingtools/PayloadExpression/PayloadExpression
       tools/settingtools/RegionCommandInventory/RegionCommandInventory
-      tools/settingtools/RhythmMakerExpression/RhythmMakerExpression
+      tools/settingtools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
       tools/settingtools/RhythmMakerRhythmRegionCommand/RhythmMakerRhythmRegionCommand
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmSettingLookup/RhythmSettingLookup
@@ -428,7 +428,7 @@ Unstable packages (load manually)
       tools/settingtools/ParseableStringRhythmRegionCommand/ParseableStringRhythmRegionCommand
       tools/settingtools/PayloadExpression/PayloadExpression
       tools/settingtools/RegionCommandInventory/RegionCommandInventory
-      tools/settingtools/RhythmMakerExpression/RhythmMakerExpression
+      tools/settingtools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
       tools/settingtools/RhythmMakerRhythmRegionCommand/RhythmMakerRhythmRegionCommand
       tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
       tools/settingtools/RhythmSettingLookup/RhythmSettingLookup

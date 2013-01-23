@@ -37,7 +37,7 @@ class SetMethodMixin(AbjadObject):
         elif isinstance(expr, (str, tuple, list)):
             return settingtools.PayloadExpression(expr)
         elif isinstance(expr, rhythmmakertools.RhythmMaker):
-            return settingtools.RhythmMakerExpression(expr)
+            return settingtools.RhythmMakerPayloadExpression(expr)
         else:
             raise TypeError('do not know how to change {!r} to expression.'.format(expr))
 
@@ -183,7 +183,7 @@ class SetMethodMixin(AbjadObject):
             >>> z(setting)
             settingtools.MultipleContextSetting(
                 attribute='rhythm',
-                expression=settingtools.RhythmMakerExpression(
+                expression=settingtools.RhythmMakerPayloadExpression(
                     payload=rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
