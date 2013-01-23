@@ -40,7 +40,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
                     anchor='red',
                     voice_name='Voice 1',
                     callbacks=settingtools.CallbackInventory([
-                        'result = self.___getitem__(expression, slice(-1, None, None))'
+                        'result = self.___getitem__(payload_expression, slice(-1, None, None))'
                         ])
                     )
                 ),
@@ -49,7 +49,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
                     anchor='blue',
                     voice_name='Voice 1',
                     callbacks=settingtools.CallbackInventory([
-                        'result = self.___getitem__(expression, slice(None, 1, None))'
+                        'result = self.___getitem__(payload_expression, slice(None, 1, None))'
                         ])
                     ),
                 edge=Right

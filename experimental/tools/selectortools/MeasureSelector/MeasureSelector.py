@@ -51,7 +51,7 @@ class MeasureSelector(Selector):
                 anchor=selectortools.SegmentSelector(
                     voice_name='Voice 1',
                     callbacks=settingtools.CallbackInventory([
-                        "result = self.___getitem__(expression, slice('red', ('red', 3), None))"
+                        "result = self.___getitem__(payload_expression, slice('red', ('red', 3), None))"
                         ])
                     )
                 ),

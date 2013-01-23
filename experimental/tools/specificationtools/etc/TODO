@@ -121,5 +121,3 @@
 24. Why do RegionCommand concrete classes implement an _evaluate() method?
     RegionCommand classes are not expressions.
     Perhaps an _execute() method? Or perhaps a different pattern altogether?
-
-25. Assert that callbacks apply only to payload expressions.
