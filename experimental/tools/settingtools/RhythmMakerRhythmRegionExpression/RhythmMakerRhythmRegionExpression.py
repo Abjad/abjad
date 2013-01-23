@@ -30,7 +30,7 @@ class RhythmMakerRhythmRegionExpression(FinalizedRhythmRegionExpression):
                 beamtools.DuratedComplexBeamSpanner(
                     [rhythm_container], [rhythm_container.prolated_duration], span=1)
 
-    def _evaluate(self, score_specification=None):
+    def _evaluate(self, score_specification='foo'):
         from experimental.tools import settingtools
         if self.rhythm_region_division_list:
             leaf_lists = self.rhythm_maker(self.rhythm_region_division_list.pairs)

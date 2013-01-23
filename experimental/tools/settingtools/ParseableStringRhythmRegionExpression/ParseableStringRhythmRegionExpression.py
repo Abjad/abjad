@@ -17,7 +17,7 @@ class ParseableStringRhythmRegionExpression(FinalizedRhythmRegionExpression):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification=None):
+    def _evaluate(self, score_specification='foo'):
         from experimental.tools import settingtools
         component = iotools.p(self.parseable_string)
         rhythm_product = settingtools.VoicedStartPositionedRhythmPayloadExpression(

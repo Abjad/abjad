@@ -28,11 +28,11 @@ class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethod
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification):
+    def _evaluate(self, score_specification='foo'):
         '''Evaluate timespan expression when applied to `score_specification`.
 
         Return timespan.
         '''
-        anchor_timespan = score_specification.get_anchor_timespan(self)
+        anchor_timespan = self.score_specification.get_anchor_timespan(self)
         timespan = self._apply_callbacks(anchor_timespan)
         return timespan
