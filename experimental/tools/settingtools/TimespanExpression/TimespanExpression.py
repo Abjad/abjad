@@ -38,12 +38,10 @@ class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethod
 
     ### PRIVATE METHODS ###
 
-    # TODO: remove context_name input parameter altogether
-    def _evaluate(self, score_specification, context_name=None):
-        '''Evaluate timespan expression when 
-        applied to `context_name` in `score_specification`.
+    def _evaluate(self, score_specification):
+        '''Evaluate timespan expression when applied to `score_specification`.
 
-        Return pair.
+        Return timespan.
         '''
         anchor_timespan = score_specification.get_anchor_timespan(self)
         timespan = self._apply_callbacks(anchor_timespan)

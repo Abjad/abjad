@@ -106,7 +106,7 @@ class SingleContextSetting(Setting):
         return new_setting
 
     @abc.abstractmethod
-    def to_command(self, score_specification, voice_name):
+    def to_command(self, score_specification):
         '''Change single-context setting to command.
 
         Return command.

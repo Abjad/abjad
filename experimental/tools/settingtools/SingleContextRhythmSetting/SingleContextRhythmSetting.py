@@ -13,8 +13,7 @@ class SingleContextRhythmSetting(SingleContextSetting):
 
     ### PUBLIC METHODS ###
 
-    # TODO: remove voice_name altogether
-    def to_command(self, score_specification, voice_name):
+    def to_command(self, score_specification):
         '''Change single-context time signature setting to command.
 
         Return command.

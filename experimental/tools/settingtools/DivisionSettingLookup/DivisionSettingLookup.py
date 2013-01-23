@@ -53,7 +53,7 @@ class DivisionSettingLookup(SettingLookup):
         # ignore voice_name input parameter
         voice_name = None
         start_segment_identifier = self.offset.start_segment_identifier
-        offset = self.offset._evaluate(score_specification, self.voice_name)
+        offset = self.offset._evaluate(score_specification)
         timespan_inventory = timespantools.TimespanInventory()
         for division_region_command in score_specification.division_region_commands:
             if not division_region_command.expression == self:

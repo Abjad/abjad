@@ -532,6 +532,7 @@ class ScoreSpecification(Specification):
 
         Return timespan.
         '''
+        assert isinstance(expr, settingtools.ExpressionAnchoredObject), repr(expr)
         assert hasattr(expr, 'anchor')
         if isinstance(expr.anchor, str):
             return self[expr.anchor].timespan
@@ -551,7 +552,7 @@ class ScoreSpecification(Specification):
                 segment_specification.get_single_context_settings_that_start_during_segment(
                 context_name, attribute, include_improper_parentage=True)
             for single_context_setting in single_context_settings:
-                command = single_context_setting.to_command(self, context_name)
+                command = single_context_setting.to_command(self)
                 # make sure setting was setting for timespan that exists in current segment
                 if command.timespan.is_well_formed:
                     commands.append(command)

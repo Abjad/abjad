@@ -26,8 +26,7 @@ class SingleContextTimeSignatureSetting(SingleContextSetting):
             segment_specification._time_signatures = time_signatures[:]
             return time_signatures
 
-    # TODO: remove voice_name input parameter altogether
-    def to_command(self, score_specification, voice_name):
+    def to_command(self, score_specification):
         '''Change single-context time signature setting to command.
 
         Return command.
