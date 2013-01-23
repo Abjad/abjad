@@ -16,7 +16,7 @@ class RhythmRegionCommand(RegionCommand):
     def __sub__(self, timespan):
         '''Subtract `timespan` from rhythm region command.
 
-            >>> expression = settingtools.AbsoluteExpression("{ c'16 [ c'8 ] }")
+            >>> expression = settingtools.PayloadExpression("{ c'16 [ c'8 ] }")
             >>> timespan = timespantools.Timespan(0, 20)
             >>> rhythm_region_command = settingtools.RhythmRegionCommand(
             ...     expression, 'Voice 1', timespan)
@@ -30,7 +30,7 @@ class RhythmRegionCommand(RegionCommand):
             >>> z(result)
             settingtools.RegionCommandInventory([
                 settingtools.RhythmRegionCommand(
-                    expression=settingtools.AbsoluteExpression(
+                    expression=settingtools.PayloadExpression(
                         "{ c'16 [ c'8 ] }"
                         ),
                     context_name='Voice 1',
@@ -40,7 +40,7 @@ class RhythmRegionCommand(RegionCommand):
                         )
                     ),
                 settingtools.RhythmRegionCommand(
-                    expression=settingtools.AbsoluteExpression(
+                    expression=settingtools.PayloadExpression(
                         "{ c'16 [ c'8 ] }"
                         ),
                     context_name='Voice 1',
@@ -80,14 +80,14 @@ class RhythmRegionCommand(RegionCommand):
 
     ### PUBLIC METHODS ###
 
-    # TODO: maybe implement finalize() methods on AbsoluteExpression, RhythmMakerExpression, etc.
+    # TODO: maybe implement finalize() methods on PayloadExpression, RhythmMakerExpression, etc.
     def finalize(self, score_specification, voice_name, start_offset, division_list):
         from experimental.tools import selectortools
         from experimental.tools import settingtools
         assert isinstance(start_offset, durationtools.Offset), repr(start_offset)
         assert isinstance(division_list, settingtools.DivisionList), repr(division_list)
         assert isinstance(voice_name, str), repr(voice_name)
-        if isinstance(self.expression, settingtools.AbsoluteExpression):
+        if isinstance(self.expression, settingtools.PayloadExpression):
             parseable_string = self.expression.payload
             assert isinstance(parseable_string, str), repr(parseable_string)
             command = settingtools.ParseableStringRhythmRegionCommand(

@@ -1,11 +1,11 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from experimental.tools.settingtools.AbsoluteExpression import AbsoluteExpression
+from experimental.tools.settingtools.PayloadExpression import PayloadExpression
 from experimental.tools.settingtools.StartPositionedObject import StartPositionedObject
 
 
-class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObject):
+class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject):
     '''Start-positioned absolute expression.
 
         >>> expression = settingtools.StartPositionedAbsoluteExpression(
@@ -30,7 +30,7 @@ class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObjec
     ### INITIALIZER ###
 
     def __init__(self, payload=None, start_offset=None):
-        AbsoluteExpression.__init__(self, payload=payload)
+        PayloadExpression.__init__(self, payload=payload)
         StartPositionedObject.__init__(self, start_offset=start_offset)
 
     ### PRIVATE METHODS ###
@@ -160,7 +160,7 @@ class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObjec
 
         Return newly constructed start-positioned absolute expression.
         '''
-        expression = AbsoluteExpression.reflect(self)
+        expression = PayloadExpression.reflect(self)
         payload = expression.payload
         result = type(self)(payload=payload, start_offset=self.start_offset)
         return result
@@ -212,7 +212,7 @@ class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObjec
 
         Return newly constructed start-positioned absolute expression.
         '''
-        expression = AbsoluteExpression.repeat_to_length(self, length)
+        expression = PayloadExpression.repeat_to_length(self, length)
         result = type(self)(payload=expression.payload, start_offset=self.start_offset)
         return result
 
@@ -231,7 +231,7 @@ class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObjec
         
         Return newly constructed start-positioned absolute expression.
         '''
-        expression = AbsoluteExpression.rotate(self, rotation)
+        expression = PayloadExpression.rotate(self, rotation)
         result = type(self)(payload=expression.payload, start_offset=self.start_offset)
         return result
 

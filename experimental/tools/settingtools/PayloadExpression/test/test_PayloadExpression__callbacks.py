@@ -1,7 +1,7 @@
 from experimental import *
 
 
-def test_AbsoluteExpression__callbacks_01():
+def test_PayloadExpression__callbacks_01():
     '''Slice absolute expression.
     '''
 
@@ -21,7 +21,7 @@ def test_AbsoluteExpression__callbacks_01():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_AbsoluteExpression__callbacks_02():
+def test_PayloadExpression__callbacks_02():
     '''Partition absolute expression elements by ratio.
     '''
 
@@ -41,7 +41,7 @@ def test_AbsoluteExpression__callbacks_02():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_AbsoluteExpression__callbacks_03():
+def test_PayloadExpression__callbacks_03():
     '''Partition absolute expression elements by ratio of durations.
     '''
 
@@ -61,7 +61,7 @@ def test_AbsoluteExpression__callbacks_03():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_AbsoluteExpression__callbacks_04():
+def test_PayloadExpression__callbacks_04():
     '''Repeat divisions to truncating duration.
     '''
 
@@ -81,7 +81,7 @@ def test_AbsoluteExpression__callbacks_04():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_AbsoluteExpression__callbacks_05():
+def test_PayloadExpression__callbacks_05():
     '''Repeat divisions to extended duration.
     '''
 
@@ -101,7 +101,7 @@ def test_AbsoluteExpression__callbacks_05():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_AbsoluteExpression__callbacks_06():
+def test_PayloadExpression__callbacks_06():
     '''Repeat divisions to truncating length.
     '''
 
@@ -121,7 +121,7 @@ def test_AbsoluteExpression__callbacks_06():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_AbsoluteExpression__callbacks_07():
+def test_PayloadExpression__callbacks_07():
     '''Repeat divisions to extended length.
     '''
 
@@ -141,7 +141,7 @@ def test_AbsoluteExpression__callbacks_07():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_AbsoluteExpression__callbacks_08():
+def test_PayloadExpression__callbacks_08():
     '''Reflect divisions.
     '''
 
@@ -161,7 +161,7 @@ def test_AbsoluteExpression__callbacks_08():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_AbsoluteExpression__callbacks_09():
+def test_PayloadExpression__callbacks_09():
     '''Rotate divisions.
     '''
 
@@ -181,7 +181,7 @@ def test_AbsoluteExpression__callbacks_09():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_AbsoluteExpression__callbacks_10():
+def test_PayloadExpression__callbacks_10():
     '''Logical AND of divisions and timespan.
     '''
 

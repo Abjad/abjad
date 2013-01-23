@@ -41,7 +41,7 @@ class RhythmSettingLookup(SettingLookup):
             rhythm_maker = result.payload
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             return rhythm_maker
-        elif isinstance(source_command.expression, settingtools.AbsoluteExpression):
+        elif isinstance(source_command.expression, settingtools.PayloadExpression):
             assert isinstance(source_command.expression.payload, str)
             return source_command.expression.payload
         else:

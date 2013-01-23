@@ -22,7 +22,7 @@ class MultipleContextSetting(Setting):
         >>> z(multiple_context_setting)
         settingtools.MultipleContextSetting(
             attribute='time_signatures',
-            expression=settingtools.AbsoluteExpression(
+            expression=settingtools.PayloadExpression(
                 ((4, 8), (3, 8))
                 ),
             anchor='red',

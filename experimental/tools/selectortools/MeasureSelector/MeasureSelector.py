@@ -81,7 +81,7 @@ class MeasureSelector(Selector):
         start_segment_specification = score_specification.get_start_segment_specification(self)
         time_signatures = start_segment_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
-        expression = settingtools.AbsoluteExpression(time_signatures)
+        expression = settingtools.PayloadExpression(time_signatures)
         expression = self._apply_callbacks(expression)
-        assert isinstance(expression, settingtools.AbsoluteExpression), repr(expression)
+        assert isinstance(expression, settingtools.PayloadExpression), repr(expression)
         return expression

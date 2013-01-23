@@ -14,4 +14,4 @@ class MaterialManager(AbjadObject):
 
     def register_material(self, material):
         from experimental.tools import settingtools
-        return settingtools.AbsoluteExpression(material)
+        return settingtools.PayloadExpression(material)

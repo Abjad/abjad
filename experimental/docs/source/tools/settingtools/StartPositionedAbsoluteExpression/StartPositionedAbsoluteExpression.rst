@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.payload
    :noindex:
 
-   Inherited from :py:class:`settingtools.AbsoluteExpression <experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. autoattribute:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.start_offset
    :noindex:
@@ -20,7 +20,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.storage_format
    :noindex:
 
-   Inherited from :py:class:`settingtools.AbsoluteExpression <experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 Methods
 -------
@@ -28,7 +28,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.new
    :noindex:
 
-   Inherited from :py:class:`settingtools.AbsoluteExpression <experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.partition_by_ratio
    :noindex:
@@ -57,7 +57,7 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.__and__
    :noindex:
 
-   Inherited from :py:class:`settingtools.AbsoluteExpression <experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.__eq__
    :noindex:
@@ -72,7 +72,7 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.__getitem__
    :noindex:
 
-   Inherited from :py:class:`settingtools.AbsoluteExpression <experimental.tools.settingtools.AbsoluteExpression.AbsoluteExpression.AbsoluteExpression>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.StartPositionedAbsoluteExpression.__gt__
    :noindex:

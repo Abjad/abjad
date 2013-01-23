@@ -33,7 +33,7 @@ class SingleContextSetting(Setting):
 
         >>> z(single_context_setting)
         settingtools.SingleContextDivisionSetting(
-            expression=settingtools.AbsoluteExpression(
+            expression=settingtools.PayloadExpression(
                 ((3, 16),)
                 ),
             anchor='red',
@@ -75,7 +75,7 @@ class SingleContextSetting(Setting):
 
             >>> z(single_context_setting)
             settingtools.SingleContextDivisionSetting(
-                expression=settingtools.AbsoluteExpression(
+                expression=settingtools.PayloadExpression(
                     ((3, 16),)
                     ),
                 anchor='red',

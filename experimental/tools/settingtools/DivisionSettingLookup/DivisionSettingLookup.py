@@ -63,7 +63,7 @@ class DivisionSettingLookup(SettingLookup):
             candidate_commands, self.voice_name, include_improper_parentage=True)
         assert source_command is not None
         expression = source_command.expression
-        assert isinstance(expression, settingtools.AbsoluteExpression), repr(expression)
+        assert isinstance(expression, settingtools.PayloadExpression), repr(expression)
         result = self._apply_callbacks(expression)
-        # TODO: eventually return AbsoluteExpression instead of tuple of divisions
+        # TODO: eventually return PayloadExpression instead of tuple of divisions
         return result.payload

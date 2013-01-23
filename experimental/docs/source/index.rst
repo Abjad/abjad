@@ -346,7 +346,6 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/settingtools/AbsoluteExpression/AbsoluteExpression
       tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/ClassInventory/ClassInventory
@@ -361,6 +360,7 @@ Unstable packages (load manually)
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
       tools/settingtools/OffsetExpression/OffsetExpression
       tools/settingtools/ParseableStringRhythmRegionCommand/ParseableStringRhythmRegionCommand
+      tools/settingtools/PayloadExpression/PayloadExpression
       tools/settingtools/RegionCommandInventory/RegionCommandInventory
       tools/settingtools/RhythmMakerExpression/RhythmMakerExpression
       tools/settingtools/RhythmMakerRhythmRegionCommand/RhythmMakerRhythmRegionCommand
@@ -417,7 +417,6 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/settingtools/AbsoluteExpression/AbsoluteExpression
       tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/ClassInventory/ClassInventory
@@ -432,6 +431,7 @@ Unstable packages (load manually)
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
       tools/settingtools/OffsetExpression/OffsetExpression
       tools/settingtools/ParseableStringRhythmRegionCommand/ParseableStringRhythmRegionCommand
+      tools/settingtools/PayloadExpression/PayloadExpression
       tools/settingtools/RegionCommandInventory/RegionCommandInventory
       tools/settingtools/RhythmMakerExpression/RhythmMakerExpression
       tools/settingtools/RhythmMakerRhythmRegionCommand/RhythmMakerRhythmRegionCommand

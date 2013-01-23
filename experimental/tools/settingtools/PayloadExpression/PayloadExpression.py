@@ -4,22 +4,22 @@ from abjad.tools import sequencetools
 from experimental.tools.settingtools.Expression import Expression
 
 
-class AbsoluteExpression(Expression):
+class PayloadExpression(Expression):
     r'''Absolute expression.
 
     ::
 
-        >>> expression = settingtools.AbsoluteExpression([(4, 16), (2, 16)])
+        >>> expression = settingtools.PayloadExpression([(4, 16), (2, 16)])
 
     ::
 
         >>> expression
-        AbsoluteExpression(((4, 16), (2, 16)))
+        PayloadExpression(((4, 16), (2, 16)))
 
     ::
 
         >>> z(expression)
-        settingtools.AbsoluteExpression(
+        settingtools.PayloadExpression(
             ((4, 16), (2, 16))
             )
 
@@ -98,7 +98,7 @@ class AbsoluteExpression(Expression):
         ::
 
             >>> z(expression)
-            settingtools.AbsoluteExpression(
+            settingtools.PayloadExpression(
                 ((4, 16), (2, 16))
                 )
 
@@ -166,7 +166,7 @@ class AbsoluteExpression(Expression):
             result = self.new(payload=payload)
             return result
         # TODO: This is probably the source of the "can't look up parseable string rhythm setting" bug.
-        #       Means that parseable strings shouldn't be passed around as AbsoluteExpression objects.
+        #       Means that parseable strings shouldn't be passed around as PayloadExpression objects.
         elif isinstance(self.payload, str):
             return self
         else:
