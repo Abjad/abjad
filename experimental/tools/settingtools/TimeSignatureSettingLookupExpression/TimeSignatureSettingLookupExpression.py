@@ -1,14 +1,14 @@
-from experimental.tools.settingtools.SettingLookup import SettingLookup
+from experimental.tools.settingtools.SettingLookupExpression import SettingLookupExpression
 
 
-class TimeSignatureSettingLookup(SettingLookup):
+class TimeSignatureSettingLookupExpression(SettingLookupExpression):
     '''Time signature setting lookup.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, voice_name=None, offset=None, callbacks=None):
-        SettingLookup.__init__(self, attribute='time_signatures', voice_name=voice_name, 
+        SettingLookupExpression.__init__(self, attribute='time_signatures', voice_name=voice_name, 
             offset=offset, callbacks=callbacks)
 
     ### PUBLIC METHODS ###

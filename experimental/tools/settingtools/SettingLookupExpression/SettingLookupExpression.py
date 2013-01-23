@@ -3,7 +3,7 @@ from experimental.tools.settingtools.AnchoredExpression import AnchoredExpressio
 from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class SettingLookup(AnchoredExpression, PayloadCallbackMixin):
+class SettingLookupExpression(AnchoredExpression, PayloadCallbackMixin):
     r'''Setting lookup.
 
     Look up `attribute` setting active at `offset` in `voice_name`.

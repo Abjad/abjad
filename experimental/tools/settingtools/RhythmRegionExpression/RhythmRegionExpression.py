@@ -103,7 +103,7 @@ class RhythmRegionExpression(RegionExpression):
             assert isinstance(parseable_string, str), repr(parseable_string)
             command = settingtools.ParseableStringRhythmRegionExpression(
                 parseable_string, voice_name, start_offset, division_list.duration)
-        elif isinstance(self.expression, settingtools.RhythmSettingLookup):
+        elif isinstance(self.expression, settingtools.RhythmSettingLookupExpression):
             rhythm_maker = self.expression._evaluate()
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             command = settingtools.RhythmMakerRhythmRegionExpression(

@@ -24,7 +24,7 @@ class LookupMethodMixin(AbjadObject):
         ::
 
             >>> z(lookup)
-            settingtools.DivisionSettingLookup(
+            settingtools.DivisionSettingLookupExpression(
                 voice_name='Voice 1',
                 offset=settingtools.OffsetExpression(
                     anchor=settingtools.TimespanExpression(
@@ -36,7 +36,7 @@ class LookupMethodMixin(AbjadObject):
         Return setting lookup.        
         '''
         from experimental.tools import settingtools
-        lookup = settingtools.DivisionSettingLookup(voice, offset=self)
+        lookup = settingtools.DivisionSettingLookupExpression(voice, offset=self)
         lookup._score_specification = self.score_specification
         return lookup
 
@@ -49,7 +49,7 @@ class LookupMethodMixin(AbjadObject):
         ::
 
             >>> z(lookup)
-            settingtools.RhythmSettingLookup(
+            settingtools.RhythmSettingLookupExpression(
                 voice_name='Voice 1',
                 offset=settingtools.OffsetExpression(
                     anchor=settingtools.TimespanExpression(
@@ -61,7 +61,7 @@ class LookupMethodMixin(AbjadObject):
         Return setting lookup.        
         '''
         from experimental.tools import settingtools
-        lookup = settingtools.RhythmSettingLookup(voice, offset=self)
+        lookup = settingtools.RhythmSettingLookupExpression(voice, offset=self)
         lookup._score_specification = self.score_specification
         return lookup
 
@@ -74,7 +74,7 @@ class LookupMethodMixin(AbjadObject):
         ::
 
             >>> z(lookup)
-            settingtools.TimeSignatureSettingLookup(
+            settingtools.TimeSignatureSettingLookupExpression(
                 voice_name='Voice 1',
                 offset=settingtools.OffsetExpression(
                     anchor=settingtools.TimespanExpression(
@@ -86,6 +86,6 @@ class LookupMethodMixin(AbjadObject):
         Return setting lookup.
         '''
         from experimental.tools import settingtools
-        lookup = settingtools.TimeSignatureSettingLookup(voice, offset=self)
+        lookup = settingtools.TimeSignatureSettingLookupExpression(voice, offset=self)
         lookup._score_specification = self.score_specification
         return lookup

@@ -335,7 +335,7 @@ Unstable packages (load manually)
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin
       tools/settingtools/Setting/Setting
-      tools/settingtools/SettingLookup/SettingLookup
+      tools/settingtools/SettingLookupExpression/SettingLookupExpression
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
@@ -351,7 +351,7 @@ Unstable packages (load manually)
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
-      tools/settingtools/DivisionSettingLookup/DivisionSettingLookup
+      tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/HandlerExpression/HandlerExpression
       tools/settingtools/MaterialManager/MaterialManager
@@ -364,7 +364,7 @@ Unstable packages (load manually)
       tools/settingtools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
       tools/settingtools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
       tools/settingtools/RhythmRegionExpression/RhythmRegionExpression
-      tools/settingtools/RhythmSettingLookup/RhythmSettingLookup
+      tools/settingtools/RhythmSettingLookupExpression/RhythmSettingLookupExpression
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
@@ -377,7 +377,7 @@ Unstable packages (load manually)
       tools/settingtools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
       tools/settingtools/StatalServer/StatalServer
       tools/settingtools/StatalServerExpression/StatalServerExpression
-      tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
+      tools/settingtools/TimeSignatureSettingLookupExpression/TimeSignatureSettingLookupExpression
       tools/settingtools/TimespanExpression/TimespanExpression
       tools/settingtools/VoicedStartPositionedDivisionPayloadExpression/VoicedStartPositionedDivisionPayloadExpression
       tools/settingtools/VoicedStartPositionedPayloadExpression/VoicedStartPositionedPayloadExpression
@@ -402,7 +402,7 @@ Unstable packages (load manually)
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin
       tools/settingtools/Setting/Setting
-      tools/settingtools/SettingLookup/SettingLookup
+      tools/settingtools/SettingLookupExpression/SettingLookupExpression
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
@@ -418,7 +418,7 @@ Unstable packages (load manually)
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
-      tools/settingtools/DivisionSettingLookup/DivisionSettingLookup
+      tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/HandlerExpression/HandlerExpression
       tools/settingtools/MaterialManager/MaterialManager
@@ -431,7 +431,7 @@ Unstable packages (load manually)
       tools/settingtools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
       tools/settingtools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
       tools/settingtools/RhythmRegionExpression/RhythmRegionExpression
-      tools/settingtools/RhythmSettingLookup/RhythmSettingLookup
+      tools/settingtools/RhythmSettingLookupExpression/RhythmSettingLookupExpression
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
@@ -444,7 +444,7 @@ Unstable packages (load manually)
       tools/settingtools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
       tools/settingtools/StatalServer/StatalServer
       tools/settingtools/StatalServerExpression/StatalServerExpression
-      tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
+      tools/settingtools/TimeSignatureSettingLookupExpression/TimeSignatureSettingLookupExpression
       tools/settingtools/TimespanExpression/TimespanExpression
       tools/settingtools/VoicedStartPositionedDivisionPayloadExpression/VoicedStartPositionedDivisionPayloadExpression
       tools/settingtools/VoicedStartPositionedPayloadExpression/VoicedStartPositionedPayloadExpression
