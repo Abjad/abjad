@@ -132,7 +132,7 @@ class ConcreteInterpreter(Interpreter):
                     division_products = division_region_command._evaluate(self.score_specification)
                     if division_products is not None:
                         assert isinstance(division_products, list)
-                        assert all([isinstance(x, settingtools.VoicedStartPositionedPayloadExpression) for x in division_products])
+                        assert all([isinstance(x, settingtools.VoicedStartPositionedDivisionPayloadExpression) for x in division_products])
                         made_progress = True
                         voice_division_products.extend(division_products)
                     else:

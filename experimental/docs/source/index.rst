@@ -380,7 +380,7 @@ Unstable packages (load manually)
       tools/settingtools/StatalServerExpression/StatalServerExpression
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
       tools/settingtools/TimespanExpression/TimespanExpression
-      tools/settingtools/VoicedStartPositionedPayloadExpression/VoicedStartPositionedPayloadExpression
+      tools/settingtools/VoicedStartPositionedDivisionPayloadExpression/VoicedStartPositionedDivisionPayloadExpression
       tools/settingtools/VoicedStartPositionedProduct/VoicedStartPositionedProduct
       tools/settingtools/VoicedStartPositionedRhythmPayloadExpression/VoicedStartPositionedRhythmPayloadExpression
 
@@ -448,7 +448,7 @@ Unstable packages (load manually)
       tools/settingtools/StatalServerExpression/StatalServerExpression
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
       tools/settingtools/TimespanExpression/TimespanExpression
-      tools/settingtools/VoicedStartPositionedPayloadExpression/VoicedStartPositionedPayloadExpression
+      tools/settingtools/VoicedStartPositionedDivisionPayloadExpression/VoicedStartPositionedDivisionPayloadExpression
       tools/settingtools/VoicedStartPositionedProduct/VoicedStartPositionedProduct
       tools/settingtools/VoicedStartPositionedRhythmPayloadExpression/VoicedStartPositionedRhythmPayloadExpression
 

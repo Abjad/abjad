@@ -4,18 +4,18 @@ from abjad.tools import sequencetools
 from experimental.tools.settingtools.VoicedStartPositionedProduct import VoicedStartPositionedProduct
 
 
-class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
+class VoicedStartPositionedDivisionPayloadExpression(VoicedStartPositionedProduct):
     r'''Division region product:
 
     ::
 
         >>> payload = [(6, 8), (6, 8), (3, 4)]
-        >>> product = settingtools.VoicedStartPositionedPayloadExpression(payload, 'Voice 1', Offset(0))
+        >>> product = settingtools.VoicedStartPositionedDivisionPayloadExpression(payload, 'Voice 1', Offset(0))
 
     ::
 
         >>> z(product)
-        settingtools.VoicedStartPositionedPayloadExpression(
+        settingtools.VoicedStartPositionedDivisionPayloadExpression(
             payload=settingtools.DivisionList(
                 [Division('[6, 8]', start_offset=Offset(0, 1)), 
                 Division('[6, 8]', start_offset=Offset(3, 4)), 
@@ -54,14 +54,14 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.VoicedStartPositionedPayloadExpression(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedDivisionPayloadExpression(payload, 'Voice 1', Offset(0))
             >>> result = product & timespantools.Timespan(0, Offset(1, 8))
 
         ::
 
             >>> z(result)
             timespantools.TimespanInventory([
-                settingtools.VoicedStartPositionedPayloadExpression(
+                settingtools.VoicedStartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[1, 8]', start_offset=Offset(0, 1))],
                         voice_name='Voice 1',
@@ -77,14 +77,14 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.VoicedStartPositionedPayloadExpression(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedDivisionPayloadExpression(payload, 'Voice 1', Offset(0))
             >>> result = product & timespantools.Timespan(Offset(17, 8), 100)
 
         ::
 
             >>> z(result)
             timespantools.TimespanInventory([
-                settingtools.VoicedStartPositionedPayloadExpression(
+                settingtools.VoicedStartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[1, 8]', start_offset=Offset(17, 8))],
                         voice_name='Voice 1',
@@ -100,14 +100,14 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.VoicedStartPositionedPayloadExpression(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedDivisionPayloadExpression(payload, 'Voice 1', Offset(0))
             >>> result = product & timespantools.Timespan(Offset(1, 8), Offset(17, 8))
 
         ::
 
             >>> z(result)
             timespantools.TimespanInventory([
-                settingtools.VoicedStartPositionedPayloadExpression(
+                settingtools.VoicedStartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[5, 8]', start_offset=Offset(1, 8)), 
                         Division('[6, 8]', start_offset=Offset(3, 4)), 
@@ -125,7 +125,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.VoicedStartPositionedPayloadExpression(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedDivisionPayloadExpression(payload, 'Voice 1', Offset(0))
             >>> result = product & timespantools.Timespan(100, 200)
 
         ::
@@ -152,9 +152,9 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
 
         ::
 
-            >>> product_1 = settingtools.VoicedStartPositionedPayloadExpression(2 * [(3, 16)], 'Voice 1', Offset(0))
+            >>> product_1 = settingtools.VoicedStartPositionedDivisionPayloadExpression(2 * [(3, 16)], 'Voice 1', Offset(0))
             >>> timespan = timespantools.Timespan(Offset(6, 16))
-            >>> product_2 = settingtools.VoicedStartPositionedPayloadExpression(
+            >>> product_2 = settingtools.VoicedStartPositionedDivisionPayloadExpression(
             ...     2 * [(2, 16)], 'Voice 1', Offset(6, 16))
 
         ::
@@ -170,7 +170,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         
             >>> z(result)
             timespantools.TimespanInventory([
-                settingtools.VoicedStartPositionedPayloadExpression(
+                settingtools.VoicedStartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[3, 16]', start_offset=Offset(0, 1)), 
                         Division('[3, 16]', start_offset=Offset(3, 16)), 
@@ -195,14 +195,14 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.VoicedStartPositionedPayloadExpression(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedDivisionPayloadExpression(payload, 'Voice 1', Offset(0))
             >>> result = product - timespantools.Timespan(0, Offset(1, 8))
 
         ::
 
             >>> z(result)
             timespantools.TimespanInventory([
-                settingtools.VoicedStartPositionedPayloadExpression(
+                settingtools.VoicedStartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[5, 8]', start_offset=Offset(1, 8)), 
                         Division('[6, 8]', start_offset=Offset(3, 4)), 
@@ -220,14 +220,14 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.VoicedStartPositionedPayloadExpression(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedDivisionPayloadExpression(payload, 'Voice 1', Offset(0))
             >>> result = product - timespantools.Timespan(Offset(17, 8), 100)
 
         ::
 
             >>> z(result)
             timespantools.TimespanInventory([
-                settingtools.VoicedStartPositionedPayloadExpression(
+                settingtools.VoicedStartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[6, 8]', start_offset=Offset(0, 1)), 
                         Division('[6, 8]', start_offset=Offset(3, 4)), 
@@ -245,14 +245,14 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.VoicedStartPositionedPayloadExpression(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedDivisionPayloadExpression(payload, 'Voice 1', Offset(0))
             >>> result = product - timespantools.Timespan(Offset(1, 8), Offset(17, 8))
 
         ::
 
             >>> z(result)
             timespantools.TimespanInventory([
-                settingtools.VoicedStartPositionedPayloadExpression(
+                settingtools.VoicedStartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[1, 8]', start_offset=Offset(0, 1))],
                         voice_name='Voice 1',
@@ -261,7 +261,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(0, 1)
                     ),
-                settingtools.VoicedStartPositionedPayloadExpression(
+                settingtools.VoicedStartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[1, 8]', start_offset=Offset(17, 8))],
                         voice_name='Voice 1',
@@ -278,14 +278,14 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.VoicedStartPositionedPayloadExpression(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedDivisionPayloadExpression(payload, 'Voice 1', Offset(0))
             >>> result = product - timespantools.Timespan(100, 200)
 
         ::
 
             >>> z(result)
             timespantools.TimespanInventory([
-                settingtools.VoicedStartPositionedPayloadExpression(
+                settingtools.VoicedStartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[6, 8]', start_offset=Offset(0, 1)), 
                         Division('[6, 8]', start_offset=Offset(3, 4)), 
@@ -371,7 +371,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> z(product)
-            settingtools.VoicedStartPositionedPayloadExpression(
+            settingtools.VoicedStartPositionedDivisionPayloadExpression(
                 payload=settingtools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)), 
                     Division('[6, 8]', start_offset=Offset(3, 4)), 
@@ -421,7 +421,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (6, 8), (6, 8), (6, 4), (6, 4)]
-            >>> product = settingtools.VoicedStartPositionedPayloadExpression(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedDivisionPayloadExpression(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -431,7 +431,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
 
             >>> z(result)
             settingtools.RegionCommandInventory([
-                settingtools.VoicedStartPositionedPayloadExpression(
+                settingtools.VoicedStartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[6, 8]', start_offset=Offset(0, 1)), 
                         Division('[6, 8]', start_offset=Offset(3, 4)), 
@@ -442,7 +442,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(0, 1)
                     ),
-                settingtools.VoicedStartPositionedPayloadExpression(
+                settingtools.VoicedStartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[6, 8]', start_offset=Offset(9, 4)), 
                         Division('[6, 4]', start_offset=Offset(3, 1)), 
@@ -465,7 +465,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (6, 8), (6, 8), (6, 4), (6, 4)]
-            >>> product = settingtools.VoicedStartPositionedPayloadExpression(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedDivisionPayloadExpression(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -475,7 +475,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
 
             >>> z(result)
             settingtools.RegionCommandInventory([
-                settingtools.VoicedStartPositionedPayloadExpression(
+                settingtools.VoicedStartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[6, 8]', start_offset=Offset(0, 1)), 
                         Division('[6, 8]', start_offset=Offset(3, 4)), 
@@ -487,7 +487,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(0, 1)
                     ),
-                settingtools.VoicedStartPositionedPayloadExpression(
+                settingtools.VoicedStartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[6, 4]', start_offset=Offset(3, 1)), 
                         Division('[6, 4]', start_offset=Offset(9, 2))],
@@ -509,7 +509,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.VoicedStartPositionedPayloadExpression(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedDivisionPayloadExpression(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -518,7 +518,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> z(product)
-            settingtools.VoicedStartPositionedPayloadExpression(
+            settingtools.VoicedStartPositionedDivisionPayloadExpression(
                 payload=settingtools.DivisionList(
                     [Division('[3, 4]', start_offset=Offset(0, 1)), 
                     Division('[6, 8]', start_offset=Offset(3, 4)), 
@@ -552,7 +552,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.VoicedStartPositionedPayloadExpression(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedDivisionPayloadExpression(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -561,7 +561,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> z(product)
-            settingtools.VoicedStartPositionedPayloadExpression(
+            settingtools.VoicedStartPositionedDivisionPayloadExpression(
                 payload=settingtools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)), 
                     Division('[3, 4]', start_offset=Offset(3, 4)), 
@@ -583,7 +583,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = settingtools.VoicedStartPositionedPayloadExpression(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedDivisionPayloadExpression(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -592,7 +592,7 @@ class VoicedStartPositionedPayloadExpression(VoicedStartPositionedProduct):
         ::
 
             >>> z(result)
-            settingtools.VoicedStartPositionedPayloadExpression(
+            settingtools.VoicedStartPositionedDivisionPayloadExpression(
                 payload=settingtools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(10, 1)), 
                     Division('[6, 8]', start_offset=Offset(43, 4)), 

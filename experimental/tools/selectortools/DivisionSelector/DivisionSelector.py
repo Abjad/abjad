@@ -65,11 +65,11 @@ class DivisionSelector(Selector):
         if not divisions:
             return None
         start_offset = divisions[0].start_offset
-        result = settingtools.VoicedStartPositionedPayloadExpression(
+        result = settingtools.VoicedStartPositionedDivisionPayloadExpression(
             divisions, voice_name=self.voice_name, start_offset=start_offset)
         if self.time_relation is None:
             result &= anchor_timespan
             result = result[0]
         result = self._apply_callbacks(result)
-        assert isinstance(result, settingtools.VoicedStartPositionedPayloadExpression), repr(result)
+        assert isinstance(result, settingtools.VoicedStartPositionedDivisionPayloadExpression), repr(result)
         return result
