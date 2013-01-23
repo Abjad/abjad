@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_PayloadExpression__callbacks_01():
-    '''Slice absolute expression.
+    '''Slice payload expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -22,7 +22,7 @@ def test_PayloadExpression__callbacks_01():
 
 
 def test_PayloadExpression__callbacks_02():
-    '''Partition absolute expression elements by ratio.
+    '''Partition payload expression elements by ratio.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -42,7 +42,7 @@ def test_PayloadExpression__callbacks_02():
 
 
 def test_PayloadExpression__callbacks_03():
-    '''Partition absolute expression elements by ratio of durations.
+    '''Partition payload expression elements by ratio of durations.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

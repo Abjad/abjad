@@ -5,7 +5,7 @@ from experimental.tools.settingtools.Expression import Expression
 
 
 class PayloadExpression(Expression):
-    r'''Absolute expression.
+    r'''Payload expression.
 
     ::
 
@@ -23,7 +23,7 @@ class PayloadExpression(Expression):
             ((4, 16), (2, 16))
             )
 
-    Absolute expressions are assumed to evaluate to a list or other iterable.
+    Payload expressions are assumed to evaluate to a list or other iterable.
     '''
 
     ### INTIAILIZER ###
@@ -38,9 +38,9 @@ class PayloadExpression(Expression):
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
-        '''Logical AND of absolute expression and `timespan`.
+        '''Logical AND of payload expression and `timespan`.
 
-        Return newly constructed absolute expression.
+        Return newly constructed payload expression.
         '''
         from experimental.tools import settingtools
         if not sequencetools.all_are_numbers(self.payload):
@@ -80,7 +80,7 @@ class PayloadExpression(Expression):
 
     @property
     def payload(self):
-        '''Absolute expression payload:
+        '''Payload expression payload:
 
         ::
 
@@ -93,7 +93,7 @@ class PayloadExpression(Expression):
 
     @property
     def storage_format(self):
-        '''Absolute expression storage format:
+        '''Payload expression storage format:
 
         ::
 
@@ -128,7 +128,7 @@ class PayloadExpression(Expression):
     def partition_by_ratio(self, ratio):
         '''Partition by ratio.
 
-        Return newly constructed absolute expression.
+        Return newly constructed payload expression.
         '''
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(self.payload, ratio)
         result = []
@@ -140,7 +140,7 @@ class PayloadExpression(Expression):
     def partition_by_ratio_of_durations(self, ratio):
         '''Partition by ratio of durations.
 
-        Return newly constructed absolute expression.
+        Return newly constructed payload expression.
         '''
         element_durations = [self._duration_helper(x) for x in self.payload]
         element_tokens = durationtools.durations_to_integers(element_durations)
@@ -157,7 +157,7 @@ class PayloadExpression(Expression):
     def reflect(self):
         '''Reflect.
 
-        Return newly constructed absolute expression.
+        Return newly constructed payload expression.
         '''
         # TODO: eventually allow only tuple or list
         #assert isinstance(self.payload, (tuple, list)), repr(self.payload)
@@ -175,7 +175,7 @@ class PayloadExpression(Expression):
     def repeat_to_duration(self, duration):
         '''Repeat to duration.
 
-        Return newly constructed absolute expression.
+        Return newly constructed payload expression.
         '''
         if not sequencetools.all_are_numbers(self.payload):
             payload = [mathtools.NonreducedFraction(x) for x in self.payload]
@@ -188,7 +188,7 @@ class PayloadExpression(Expression):
     def repeat_to_length(self, length):
         '''Repeat to length.
 
-        Return newly constructed absolute expression.
+        Return newly constructed payload expression.
         '''
         payload = sequencetools.repeat_sequence_to_length(self.payload, length)
         result = self.new(payload=payload)
@@ -197,7 +197,7 @@ class PayloadExpression(Expression):
     def rotate(self, n):
         '''Rotate.
 
-        Return newly constructed absolute expression.
+        Return newly constructed payload expression.
         '''
         payload = sequencetools.rotate_sequence(self.payload, n)
         result = self.new(payload=payload)

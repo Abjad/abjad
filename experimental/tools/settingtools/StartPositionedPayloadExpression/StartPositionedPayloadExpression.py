@@ -6,7 +6,7 @@ from experimental.tools.settingtools.StartPositionedObject import StartPositione
 
 
 class StartPositionedPayloadExpression(PayloadExpression, StartPositionedObject):
-    '''Start-positioned absolute expression.
+    '''Start-positioned payload expression.
 
         >>> expression = settingtools.StartPositionedPayloadExpression(
         ...     [(4, 16), (2, 16)], start_offset=Offset(40, 8))
@@ -23,7 +23,7 @@ class StartPositionedPayloadExpression(PayloadExpression, StartPositionedObject)
             start_offset=durationtools.Offset(5, 1)
             )
 
-    Start-positioned absolute expressions are assumed to evaluate
+    Start-positioned payload expressions are assumed to evaluate
     to a list or other iterable.
     '''
 
@@ -46,7 +46,7 @@ class StartPositionedPayloadExpression(PayloadExpression, StartPositionedObject)
 
     @property
     def start_offset(self):
-        '''Start-positioned absolute expression start offset:
+        '''Start-positioned payload expression start offset:
 
         ::
 
@@ -84,7 +84,7 @@ class StartPositionedPayloadExpression(PayloadExpression, StartPositionedObject)
                 start_offset=durationtools.Offset(9, 4)
                 )
 
-        Return newly constructed start-positioned absolute expression.
+        Return newly constructed start-positioned payload expression.
         '''
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(self.payload, ratio)
         number_payload = self._change_payload_to_numbers()
@@ -122,7 +122,7 @@ class StartPositionedPayloadExpression(PayloadExpression, StartPositionedObject)
                 start_offset=durationtools.Offset(3, 1)
                 )
 
-        Return newly constructed start-positioned absolute expression.
+        Return newly constructed start-positioned payload expression.
         '''
         payload = self._change_payload_to_numbers()
         integers = durationtools.durations_to_integers(payload)
@@ -158,7 +158,7 @@ class StartPositionedPayloadExpression(PayloadExpression, StartPositionedObject)
                 start_offset=durationtools.Offset(2, 1)
                 )
 
-        Return newly constructed start-positioned absolute expression.
+        Return newly constructed start-positioned payload expression.
         '''
         expression = PayloadExpression.reflect(self)
         payload = expression.payload
@@ -185,7 +185,7 @@ class StartPositionedPayloadExpression(PayloadExpression, StartPositionedObject)
                 start_offset=durationtools.Offset(2, 1)
                 )
         
-        Return newly constructed start-positioned absolute expression.
+        Return newly constructed start-positioned payload expression.
         '''
         payload = self._change_payload_to_numbers()
         payload = sequencetools.repeat_sequence_to_weight_exactly(payload, duration)
@@ -210,7 +210,7 @@ class StartPositionedPayloadExpression(PayloadExpression, StartPositionedObject)
                 start_offset=durationtools.Offset(2, 1)
                 )
 
-        Return newly constructed start-positioned absolute expression.
+        Return newly constructed start-positioned payload expression.
         '''
         expression = PayloadExpression.repeat_to_length(self, length)
         result = type(self)(payload=expression.payload, start_offset=self.start_offset)
@@ -229,7 +229,7 @@ class StartPositionedPayloadExpression(PayloadExpression, StartPositionedObject)
             >>> result = expression.rotate(-1)    
 
         
-        Return newly constructed start-positioned absolute expression.
+        Return newly constructed start-positioned payload expression.
         '''
         expression = PayloadExpression.rotate(self, rotation)
         result = type(self)(payload=expression.payload, start_offset=self.start_offset)
@@ -252,7 +252,7 @@ class StartPositionedPayloadExpression(PayloadExpression, StartPositionedObject)
                 start_offset=durationtools.Offset(1, 1)
                 )
 
-        Return newly constructed start-positioned absolute expression.
+        Return newly constructed start-positioned payload expression.
         '''
         new_start_offset = self.start_offset + translation
         result = type(self)(payload=self.payload, start_offset=new_start_offset)
