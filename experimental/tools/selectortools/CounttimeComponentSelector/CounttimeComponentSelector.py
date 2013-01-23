@@ -56,18 +56,9 @@ class CounttimeComponentSelector(Selector):
 
     ### INITIALIZER ###
 
-    #def __init__(self, anchor=None, classes=None, 
-    #    voice_name=None, time_relation=None, callbacks=None, callbacks=None):
     def __init__(self, anchor=None, classes=None, voice_name=None, time_relation=None, callbacks=None):
-        from experimental.tools import selectortools
         from experimental.tools import settingtools
         assert classes is None or self._is_counttime_component_class_expr(classes), repr(classes)
-        #Selector.__init__(self, 
-        #    anchor=anchor, 
-        #    voice_name=voice_name, 
-        #    time_relation=time_relation, 
-        #    callbacks=callbacks,
-        #    callbacks=callbacks)
         Selector.__init__(self, 
             anchor=anchor, 
             voice_name=voice_name, 
@@ -79,10 +70,8 @@ class CounttimeComponentSelector(Selector):
     
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification, voice_name=None):
+    def _evaluate(self, score_specification):
         from experimental.tools import settingtools
-        # ignore voice_name input parameter
-        voice_name = None
         anchor_timespan = score_specification.get_anchor_timespan(self)
         voice_proxy = score_specification.contexts[self.voice_name]
         rhythm_products = voice_proxy.rhythm_products
@@ -95,7 +84,8 @@ class CounttimeComponentSelector(Selector):
         rhythm_products.sort()
         assert anchor_timespan.is_well_formed, repr(anchor_timespan)
         rhythm_products &= anchor_timespan
-        result = settingtools.StartPositionedRhythmProduct(voice_name=voice_name, start_offset=anchor_timespan.start_offset)
+        result = settingtools.StartPositionedRhythmProduct(
+            voice_name=self.voice_name, start_offset=anchor_timespan.start_offset)
         for rhythm_product in rhythm_products:
             result.payload.extend(rhythm_product.payload)
         assert wellformednesstools.is_well_formed_component(result.payload)

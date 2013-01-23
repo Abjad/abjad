@@ -84,10 +84,8 @@ class SegmentSelector(Selector):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification, voice_name=None):
+    def _evaluate(self, score_specification):
         from experimental.tools import settingtools
-        # ignore voice_name input parameter
-        voice_name = None
         start_segment_identifier = self.start_segment_identifier
         segment = score_specification[start_segment_identifier]
         start_offset = segment.start_offset

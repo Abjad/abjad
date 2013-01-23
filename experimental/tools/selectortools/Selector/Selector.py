@@ -43,9 +43,8 @@ class Selector(AnchoredExpression, PayloadCallbackMixin):
     ### PRIVATE METHODS ###
 
     @abc.abstractmethod
-    def _evaluate(self, score_specification, voice_name=None):
-        # ignore voice_name input parameter
-        voice_name = None
+    def _evaluate(self, score_specification):
+        pass
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
