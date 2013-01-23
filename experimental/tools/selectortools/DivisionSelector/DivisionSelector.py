@@ -41,10 +41,8 @@ class DivisionSelector(Selector):
     
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification='foo'):
+    def _evaluate(self):
         from experimental.tools import settingtools
-        #anchor_timespan = score_specification.get_anchor_timespan(self)
-        #voice_proxy = score_specification.contexts[self.voice_name]
         anchor_timespan = self.score_specification.get_anchor_timespan(self)
         voice_proxy = self.score_specification.contexts[self.voice_name]
         division_products = voice_proxy.division_products
@@ -60,10 +58,6 @@ class DivisionSelector(Selector):
             time_relation = self.time_relation.new(timespan_1=anchor_timespan)
         divisions = []
         for division in existing_voice_divisions:
-            #if time_relation(timespan_2=division, 
-            #    score_specification=score_specification, 
-            #    context_name=self.voice_name):
-            #    divisions.append(division)
             if time_relation(timespan_2=division, 
                 score_specification=self.score_specification, 
                 context_name=self.voice_name):

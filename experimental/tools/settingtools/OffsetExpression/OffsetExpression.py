@@ -49,9 +49,8 @@ class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixi
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification='foo'):
+    def _evaluate(self):
         edge = self.edge or Left
-        #anchor_timespan = score_specification.get_anchor_timespan(self)
         anchor_timespan = self.score_specification.get_anchor_timespan(self)
         if edge == Left:
             offset = anchor_timespan.start_offset

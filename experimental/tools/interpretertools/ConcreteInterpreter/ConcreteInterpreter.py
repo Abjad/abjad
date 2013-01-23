@@ -129,7 +129,7 @@ class ConcreteInterpreter(Interpreter):
                 voice_division_region_commands_to_reattempt = []
                 for division_region_command in voice_division_region_commands:
                     #self._debug(division_region_command, 'division region command')
-                    division_products = division_region_command._evaluate(self.score_specification)
+                    division_products = division_region_command._evaluate()
                     if division_products is not None:
                         assert isinstance(division_products, list)
                         assert all([isinstance(x, settingtools.VoicedStartPositionedDivisionPayloadExpression) for x in division_products])
@@ -218,7 +218,7 @@ class ConcreteInterpreter(Interpreter):
             made_progress = False
             for finalized_rhythm_region_command in self.score_specification.finalized_rhythm_region_commands[:]:
                 assert isinstance(finalized_rhythm_region_command, settingtools.FinalizedRhythmRegionExpression)
-                rhythm_product = finalized_rhythm_region_command._evaluate(self.score_specification)
+                rhythm_product = finalized_rhythm_region_command._evaluate()
                 if rhythm_product is not None:
                     assert isinstance(rhythm_product, settingtools.VoicedStartPositionedRhythmPayloadExpression)
                     made_progress = True

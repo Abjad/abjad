@@ -18,9 +18,8 @@ class SelectorRhythmRegionExpression(FinalizedRhythmRegionExpression):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification='foo'):
+    def _evaluate(self):
         from experimental.tools import settingtools
-        #result = self.selector._evaluate(score_specification)
         result = self.selector._evaluate()
         if result is None:
             return

@@ -42,14 +42,10 @@ class BeatSelector(Selector):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification='foo'):
+    def _evaluate(self):
         from experimental.tools import settingtools
-        # ignore score_specification input argument
-        score_specification = None
-        #time_signatures = score_specification.time_signatures
         time_signatures = self.score_specification.time_signatures
         assert time_signatures
-        #timespan = score_specification.timespan
         timespan = self.score_specification.timespan
         naive_beats = []
         for time_signature in time_signatures:

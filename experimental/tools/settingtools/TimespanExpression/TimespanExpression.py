@@ -28,7 +28,7 @@ class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethod
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification='foo'):
+    def _evaluate(self):
         '''Evaluate timespan expression when applied to `score_specification`.
 
         Return timespan.

@@ -78,7 +78,7 @@ class PayloadExpression(Expression):
             duration = durationtools.Duration(expression)
             return duration
 
-    def _evaluate(self, score_specification='foo'):
+    def _evaluate(self):
         return self.payload[:]
 
     ### READ-ONLY PROPERTIES ###

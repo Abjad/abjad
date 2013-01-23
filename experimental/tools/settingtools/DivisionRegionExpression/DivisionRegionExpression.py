@@ -34,9 +34,8 @@ class DivisionRegionExpression(RegionExpression):
             return False
         return True
 
-    def _evaluate(self, score_specification='foo'):
+    def _evaluate(self):
         from experimental.tools import settingtools
-        #result = self.expression._evaluate(score_specification)
         result = self.expression._evaluate()
         if result is None:
             return
