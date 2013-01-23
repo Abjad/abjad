@@ -9,18 +9,15 @@ settingtools.RhythmMakerExpression
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.callbacks
-   :noindex:
-
-   Inherited from :py:class:`settingtools.CallbackMixin <experimental.tools.settingtools.CallbackMixin.CallbackMixin.CallbackMixin>`
-
 .. autoattribute:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.payload
    :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. autoattribute:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.storage_format
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 Methods
 -------
@@ -28,17 +25,17 @@ Methods
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.new
    :noindex:
 
-   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.partition_by_ratio
    :noindex:
 
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.partition_by_ratio_of_durations
    :noindex:
 
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.reflect
    :noindex:
@@ -46,35 +43,25 @@ Methods
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.repeat_to_duration
    :noindex:
 
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.repeat_to_length
    :noindex:
 
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.rotate
    :noindex:
 
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.___and__
-   :noindex:
-
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
-
-.. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.___getitem__
-   :noindex:
-
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
-
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__and__
    :noindex:
 
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__eq__
    :noindex:
@@ -89,7 +76,7 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__getitem__
    :noindex:
 
-   Inherited from :py:class:`settingtools.PayloadCallbackMixin <experimental.tools.settingtools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__gt__
    :noindex:

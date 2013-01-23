@@ -87,16 +87,18 @@ class RhythmRegionCommand(RegionCommand):
         assert isinstance(start_offset, durationtools.Offset), repr(start_offset)
         assert isinstance(division_list, settingtools.DivisionList), repr(division_list)
         assert isinstance(voice_name, str), repr(voice_name)
-        if isinstance(self.expression, settingtools.PayloadExpression):
-            parseable_string = self.expression.payload
-            assert isinstance(parseable_string, str), repr(parseable_string)
-            command = settingtools.ParseableStringRhythmRegionCommand(
-                parseable_string, voice_name, start_offset, division_list.duration)
-        elif isinstance(self.expression, settingtools.RhythmMakerExpression):
+        if isinstance(self.expression, settingtools.RhythmMakerExpression):
             rhythm_maker = self.expression.payload
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             command = settingtools.RhythmMakerRhythmRegionCommand(
                 rhythm_maker, voice_name, start_offset, division_list)
+        # TODO: change the test of this branch to test for something like ParseableStringPayloadExpression
+        #       or perhaps even ScoreComponentPayloadExpression, either of which will have to be newly implemented
+        elif isinstance(self.expression, settingtools.PayloadExpression):
+            parseable_string = self.expression.payload
+            assert isinstance(parseable_string, str), repr(parseable_string)
+            command = settingtools.ParseableStringRhythmRegionCommand(
+                parseable_string, voice_name, start_offset, division_list.duration)
         elif isinstance(self.expression, settingtools.RhythmSettingLookup):
             rhythm_maker = self.expression._evaluate(score_specification)
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)

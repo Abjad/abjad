@@ -1,32 +1,16 @@
 from abjad.tools import rhythmmakertools
-from experimental.tools.settingtools.Expression import Expression
-from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallbackMixin
+from experimental.tools.settingtools.PayloadExpression import PayloadExpression
 
 
-class RhythmMakerExpression(Expression, PayloadCallbackMixin):
+class RhythmMakerExpression(PayloadExpression):
     r'''Rhythm-maker expression.
-
-    Create behind-the-scenes at setting-time.
     '''
 
     ### INTIAILIZER ###
 
-    def __init__(self, payload=None, callbacks=None):
+    def __init__(self, payload=None):
         assert isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
-        Expression.__init__(self)
-        PayloadCallbackMixin.__init__(self, callbacks=callbacks)
-        self._payload = payload
-
-    ### PRIVATE METHODS ###
-
-    def _evaluate(self, score_specification=None):
-        raise NotImplementedError
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def payload(self):
-        return self._payload
+        PayloadExpression.__init__(self, payload=payload)
 
     ### PUBLIC METHODS ###
 
