@@ -36,7 +36,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
         >>> z(timespan)
         settingtools.MixedSourceTimespanExpression(
             start_offset=settingtools.OffsetExpression(
-                anchor=selectortools.MeasureSelector(
+                anchor=settingtools.MeasureSelectExpression(
                     anchor='red',
                     voice_name='Voice 1',
                     callbacks=settingtools.CallbackInventory([
@@ -45,7 +45,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
                     )
                 ),
             stop_offset=settingtools.OffsetExpression(
-                anchor=selectortools.MeasureSelector(
+                anchor=settingtools.MeasureSelectExpression(
                     anchor='blue',
                     voice_name='Voice 1',
                     callbacks=settingtools.CallbackInventory([

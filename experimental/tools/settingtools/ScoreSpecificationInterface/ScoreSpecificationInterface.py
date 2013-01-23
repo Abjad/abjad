@@ -89,13 +89,13 @@ class ScoreSpecificationInterface(SpecificationInterface):
         ::
 
             >>> z(selector)
-            selectortools.SegmentSelector(
+            settingtools.SegmentSelectExpression(
                 voice_name='Voice 1'
                 )
 
         Return segment selector.
         '''
-        from experimental.tools import selectortools
-        selector = selectortools.SegmentSelector(voice_name=voice_name)
+        from experimental.tools import settingtools
+        selector = settingtools.SegmentSelectExpression(voice_name=voice_name)
         selector._score_specification = self
         return selector

@@ -24,7 +24,7 @@ class DivisionSettingLookupExpression(SettingLookupExpression):
         settingtools.DivisionSettingLookupExpression(
             voice_name='Voice 1',
             offset=settingtools.OffsetExpression(
-                anchor=selectortools.MeasureSelector(
+                anchor=settingtools.MeasureSelectExpression(
                     anchor='red',
                     voice_name='Voice 1',
                     callbacks=settingtools.CallbackInventory([

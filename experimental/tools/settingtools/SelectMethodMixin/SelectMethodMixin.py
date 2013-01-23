@@ -24,15 +24,15 @@ class SelectMethodMixin(AbjadObject):
         ::
 
             >>> z(beats)
-            selectortools.BeatSelector(
+            settingtools.BeatSelectExpression(
                 anchor='red',
                 voice_name='Voice 1'
                 )
 
         Return beat selector.
         '''
-        from experimental.tools import selectortools
-        selector = selectortools.BeatSelector(
+        from experimental.tools import settingtools
+        selector = settingtools.BeatSelectExpression(
             anchor=self._anchor_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation
@@ -48,15 +48,15 @@ class SelectMethodMixin(AbjadObject):
         ::
             
             >>> z(divisions)
-            selectortools.DivisionSelector(
+            settingtools.DivisionSelectExpression(
                 anchor='red',
                 voice_name='Voice 1'
                 )
 
         Return division selector.
         '''
-        from experimental.tools import selectortools
-        selector = selectortools.DivisionSelector(
+        from experimental.tools import settingtools
+        selector = settingtools.DivisionSelectExpression(
             anchor=self._anchor_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation
@@ -72,7 +72,7 @@ class SelectMethodMixin(AbjadObject):
         ::
 
             >>> z(leaves)
-            selectortools.CounttimeComponentSelector(
+            settingtools.CounttimeComponentSelectExpression(
                 anchor='red',
                 classes=settingtools.ClassInventory([
                     leaftools.Leaf
@@ -82,8 +82,8 @@ class SelectMethodMixin(AbjadObject):
 
         Return counttime component selector.
         '''
-        from experimental.tools import selectortools
-        selector = selectortools.CounttimeComponentSelector(
+        from experimental.tools import settingtools
+        selector = settingtools.CounttimeComponentSelectExpression(
             anchor=self._anchor_abbreviation,
             time_relation=time_relation, 
             classes=(leaftools.Leaf, ), 
@@ -101,15 +101,15 @@ class SelectMethodMixin(AbjadObject):
         ::
 
             >>> z(measures)
-            selectortools.MeasureSelector(
+            settingtools.MeasureSelectExpression(
                 anchor='red',
                 voice_name='Voice 1'
                 )
 
         Return measure selector.
         '''
-        from experimental.tools import selectortools
-        selector = selectortools.MeasureSelector(
+        from experimental.tools import settingtools
+        selector = settingtools.MeasureSelectExpression(
             anchor=self._anchor_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation
@@ -125,7 +125,7 @@ class SelectMethodMixin(AbjadObject):
         ::
 
             >>> z(notes_and_chords)
-            selectortools.CounttimeComponentSelector(
+            settingtools.CounttimeComponentSelectExpression(
                 anchor='red',
                 classes=settingtools.ClassInventory([
                     notetools.Note,
@@ -136,8 +136,8 @@ class SelectMethodMixin(AbjadObject):
 
         Return counttime component selector.
         '''
-        from experimental.tools import selectortools
-        selector = selectortools.CounttimeComponentSelector(
+        from experimental.tools import settingtools
+        selector = settingtools.CounttimeComponentSelectExpression(
             anchor=self._anchor_abbreviation,
             time_relation=time_relation, 
             classes=(notetools.Note, chordtools.Chord),
@@ -154,15 +154,15 @@ class SelectMethodMixin(AbjadObject):
         ::
 
             >>> z(time_signatures)
-            selectortools.TimeSignatureSelector(
+            settingtools.TimeSignatureSelectExpression(
                 anchor='red',
                 voice_name='Voice 1'
                 )
 
         Return time signature selector.
         '''
-        from experimental.tools import selectortools
-        selector = selectortools.TimeSignatureSelector(
+        from experimental.tools import settingtools
+        selector = settingtools.TimeSignatureSelectExpression(
             anchor=self._anchor_abbreviation,
             time_relation=time_relation, 
             voice_name=voice_name

@@ -22,7 +22,7 @@ class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixi
 
         >>> z(offset)
         settingtools.OffsetExpression(
-            anchor=selectortools.CounttimeComponentSelector(
+            anchor=settingtools.CounttimeComponentSelectExpression(
                 anchor='red',
                 classes=settingtools.ClassInventory([
                     notetools.Note,

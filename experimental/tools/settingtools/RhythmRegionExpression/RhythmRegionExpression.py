@@ -86,7 +86,6 @@ class RhythmRegionExpression(RegionExpression):
 
     # TODO: maybe implement finalize() methods on PayloadExpression, RhythmMakerPayloadExpression, etc.
     def finalize(self, score_specification, voice_name, start_offset, division_list):
-        from experimental.tools import selectortools
         from experimental.tools import settingtools
         assert isinstance(start_offset, durationtools.Offset), repr(start_offset)
         assert isinstance(division_list, settingtools.DivisionList), repr(division_list)
@@ -108,7 +107,7 @@ class RhythmRegionExpression(RegionExpression):
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             command = settingtools.RhythmMakerRhythmRegionExpression(
                 rhythm_maker, voice_name, start_offset, division_list)
-        elif isinstance(self.expression, selectortools.CounttimeComponentSelector):
+        elif isinstance(self.expression, settingtools.CounttimeComponentSelectExpression):
             total_duration = self.timespan.duration
             command_start_offset = self.timespan.start_offset
             command = settingtools.SelectorRhythmRegionExpression(

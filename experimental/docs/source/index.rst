@@ -272,49 +272,6 @@ Unstable packages (load manually)
 
       tools/parsertools/ENPParser/ENPParser
 
-:py:mod:`selectortools <experimental.tools.selectortools>`
-==========================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/selectortools/Selector/Selector
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/selectortools/BeatSelector/BeatSelector
-      tools/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
-      tools/selectortools/DivisionSelector/DivisionSelector
-      tools/selectortools/MeasureSelector/MeasureSelector
-      tools/selectortools/SegmentSelector/SegmentSelector
-      tools/selectortools/TimeSignatureSelector/TimeSignatureSelector
-
-.. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/selectortools/Selector/Selector
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/selectortools/BeatSelector/BeatSelector
-      tools/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
-      tools/selectortools/DivisionSelector/DivisionSelector
-      tools/selectortools/MeasureSelector/MeasureSelector
-      tools/selectortools/SegmentSelector/SegmentSelector
-      tools/selectortools/TimeSignatureSelector/TimeSignatureSelector
-
 :py:mod:`settingtools <experimental.tools.settingtools>`
 ========================================================
 
@@ -332,6 +289,7 @@ Unstable packages (load manually)
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
       tools/settingtools/RegionExpression/RegionExpression
+      tools/settingtools/SelectExpression/SelectExpression
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin
       tools/settingtools/Setting/Setting
@@ -346,15 +304,19 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
+      tools/settingtools/BeatSelectExpression/BeatSelectExpression
       tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/ClassInventory/ClassInventory
+      tools/settingtools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
+      tools/settingtools/DivisionSelectExpression/DivisionSelectExpression
       tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/HandlerExpression/HandlerExpression
       tools/settingtools/MaterialManager/MaterialManager
+      tools/settingtools/MeasureSelectExpression/MeasureSelectExpression
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
       tools/settingtools/OffsetExpression/OffsetExpression
@@ -368,6 +330,7 @@ Unstable packages (load manually)
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
+      tools/settingtools/SegmentSelectExpression/SegmentSelectExpression
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/settingtools/SelectorRhythmRegionExpression/SelectorRhythmRegionExpression
       tools/settingtools/SettingInventory/SettingInventory
@@ -377,6 +340,7 @@ Unstable packages (load manually)
       tools/settingtools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
       tools/settingtools/StatalServer/StatalServer
       tools/settingtools/StatalServerExpression/StatalServerExpression
+      tools/settingtools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
       tools/settingtools/TimeSignatureSettingLookupExpression/TimeSignatureSettingLookupExpression
       tools/settingtools/TimespanExpression/TimespanExpression
       tools/settingtools/VoicedStartPositionedDivisionPayloadExpression/VoicedStartPositionedDivisionPayloadExpression
@@ -399,6 +363,7 @@ Unstable packages (load manually)
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
       tools/settingtools/RegionExpression/RegionExpression
+      tools/settingtools/SelectExpression/SelectExpression
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin
       tools/settingtools/Setting/Setting
@@ -413,15 +378,19 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
+      tools/settingtools/BeatSelectExpression/BeatSelectExpression
       tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/ClassInventory/ClassInventory
+      tools/settingtools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
+      tools/settingtools/DivisionSelectExpression/DivisionSelectExpression
       tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/HandlerExpression/HandlerExpression
       tools/settingtools/MaterialManager/MaterialManager
+      tools/settingtools/MeasureSelectExpression/MeasureSelectExpression
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
       tools/settingtools/OffsetExpression/OffsetExpression
@@ -435,6 +404,7 @@ Unstable packages (load manually)
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
+      tools/settingtools/SegmentSelectExpression/SegmentSelectExpression
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/settingtools/SelectorRhythmRegionExpression/SelectorRhythmRegionExpression
       tools/settingtools/SettingInventory/SettingInventory
@@ -444,6 +414,7 @@ Unstable packages (load manually)
       tools/settingtools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
       tools/settingtools/StatalServer/StatalServer
       tools/settingtools/StatalServerExpression/StatalServerExpression
+      tools/settingtools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
       tools/settingtools/TimeSignatureSettingLookupExpression/TimeSignatureSettingLookupExpression
       tools/settingtools/TimespanExpression/TimespanExpression
       tools/settingtools/VoicedStartPositionedDivisionPayloadExpression/VoicedStartPositionedDivisionPayloadExpression

@@ -5,7 +5,7 @@ from experimental.tools.settingtools.FinalizedRhythmRegionExpression import Fina
 
 
 class SelectorRhythmRegionExpression(FinalizedRhythmRegionExpression):
-    '''Selector rhythm region command.
+    '''SelectExpression rhythm region command.
     '''
 
     ### INITIALIZER ###
