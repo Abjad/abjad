@@ -30,22 +30,6 @@ class Selector(AnchoredExpression, PayloadCallbackMixin):
         self._voice_name = voice_name
         self._time_relation = time_relation
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
-
-    @property
-    def _keyword_argument_name_value_strings(self):
-        result = PayloadCallbackMixin._keyword_argument_name_value_strings.fget(self)
-        if 'callbacks=CallbackInventory([])' in result:
-            result = list(result)
-            result.remove('callbacks=CallbackInventory([])')
-        return tuple(result)
-
-    ### PRIVATE METHODS ###
-
-    @abc.abstractmethod
-    def _evaluate(self, score_specification):
-        pass
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

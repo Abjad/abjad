@@ -26,16 +26,6 @@ class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethod
         AnchoredExpression.__init__(self, anchor=anchor)
         TimespanCallbackMixin.__init__(self, callbacks=callbacks)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
-
-    @property
-    def _keyword_argument_name_value_strings(self):
-        result = AnchoredExpression._keyword_argument_name_value_strings.fget(self)
-        if 'callbacks=CallbackInventory([])' in result:
-            result = list(result)
-            result.remove('callbacks=CallbackInventory([])')
-        return tuple(result)
-
     ### PRIVATE METHODS ###
 
     def _evaluate(self, score_specification):

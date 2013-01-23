@@ -38,6 +38,14 @@ class Expression(AbjadObject):
                 filtered_result.append(string)
         return filtered_result
 
+    @property
+    def _keyword_argument_name_value_strings(self):
+        result = AbjadObject._keyword_argument_name_value_strings.fget(self)
+        if 'callbacks=CallbackInventory([])' in result:
+            result = list(result)
+            result.remove('callbacks=CallbackInventory([])')
+        return tuple(result)
+
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):

@@ -24,16 +24,6 @@ class CallbackMixin(AbjadObject):
         callbacks = callbacks or []
         self._callbacks = settingtools.CallbackInventory(callbacks)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
-
-    @property
-    def _keyword_argument_name_value_strings(self):
-        result = AbjadObject._keyword_argument_name_value_strings.fget(self)
-        if 'callbacks=CallbackInventory([])' in result:
-            result = list(result)
-            result.remove('callbacks=CallbackInventory([])')
-        return tuple(result)
-
     ### PRIVATE METHODS ###
 
     @abc.abstractmethod
