@@ -13,9 +13,10 @@ class TimeSignatureSettingLookup(SettingLookup):
 
     ### PUBLIC METHODS ###
 
-    def _evaluate(self, score_specification):
+    def _evaluate(self, score_specification='foo'):
         from experimental.tools import settingtools
-        segment_specification = score_specification.get_start_segment_specification(self.offset)
+        #segment_specification = score_specification.get_start_segment_specification(self.offset)
+        segment_specification = self.score_specification.get_start_segment_specification(self.offset)
         time_signatures = segment_specification.time_signatures[:]
         # TODO: maybe use PayloadExpression here instead to avoid dummy start positioning?
         # TODO: use start_offset of segment_specification?

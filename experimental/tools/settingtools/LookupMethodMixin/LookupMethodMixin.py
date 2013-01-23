@@ -36,7 +36,9 @@ class LookupMethodMixin(AbjadObject):
         Return setting lookup.        
         '''
         from experimental.tools import settingtools
-        return settingtools.DivisionSettingLookup(voice, offset=self)
+        lookup = settingtools.DivisionSettingLookup(voice, offset=self)
+        lookup._score_specification = self.score_specification
+        return lookup
 
     def look_up_rhythm_setting(self, voice):
         r'''StartPositionedPayloadCallbackMixin voice ``1`` rhythm command 
@@ -59,7 +61,9 @@ class LookupMethodMixin(AbjadObject):
         Return setting lookup.        
         '''
         from experimental.tools import settingtools
-        return settingtools.RhythmSettingLookup(voice, offset=self)
+        lookup = settingtools.RhythmSettingLookup(voice, offset=self)
+        lookup._score_specification = self.score_specification
+        return lookup
 
     def look_up_time_signature_setting(self, voice):
         r'''StartPositionedPayloadCallbackMixin voice ``1`` time signature command
@@ -82,4 +86,6 @@ class LookupMethodMixin(AbjadObject):
         Return setting lookup.
         '''
         from experimental.tools import settingtools
-        return settingtools.TimeSignatureSettingLookup(voice, offset=self)
+        lookup = settingtools.TimeSignatureSettingLookup(voice, offset=self)
+        lookup._score_specification = self.score_specification
+        return lookup

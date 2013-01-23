@@ -71,7 +71,7 @@ class RhythmRegionExpression(RegionExpression):
         return True
 
     # TODO: maybe make RhythmRegionExpression abstract and make this method abstract
-    def _evaluate(self, score_specification):
+    def _evaluate(self):
         raise NotImplemented
 
     ### READ-ONLY PUBLIC PROPERTIES ###

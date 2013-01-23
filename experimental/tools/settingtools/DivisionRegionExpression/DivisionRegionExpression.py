@@ -34,9 +34,10 @@ class DivisionRegionExpression(RegionExpression):
             return False
         return True
 
-    def _evaluate(self, score_specification):
+    def _evaluate(self, score_specification='foo'):
         from experimental.tools import settingtools
-        result = self.expression._evaluate(score_specification)
+        #result = self.expression._evaluate(score_specification)
+        result = self.expression._evaluate()
         if result is None:
             return
         assert isinstance(result, (settingtools.PayloadExpression, tuple, list)), repr(result)

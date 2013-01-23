@@ -48,17 +48,20 @@ class DivisionSettingLookup(SettingLookup):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification):
+    def _evaluate(self, score_specification='foo'):
         from experimental.tools import settingtools
         start_segment_identifier = self.offset.start_segment_identifier
-        offset = self.offset._evaluate(score_specification)
+        #offset = self.offset._evaluate(score_specification)
+        offset = self.offset._evaluate()
         timespan_inventory = timespantools.TimespanInventory()
-        for division_region_command in score_specification.division_region_commands:
+        #for division_region_command in score_specification.division_region_commands:
+        for division_region_command in self.score_specification.division_region_commands:
             if not division_region_command.expression == self:
                 timespan_inventory.append(division_region_command)
         timespan_time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_time_relation)
-        segment_specification = score_specification.get_start_segment_specification(start_segment_identifier)
+        #segment_specification = score_specification.get_start_segment_specification(start_segment_identifier)
+        segment_specification = self.score_specification.get_start_segment_specification(start_segment_identifier)
         source_command = segment_specification._get_first_element_in_expr_by_parentage(
             candidate_commands, self.voice_name, include_improper_parentage=True)
         assert source_command is not None
