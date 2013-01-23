@@ -338,7 +338,6 @@ Unstable packages (load manually)
       tools/settingtools/SettingLookup/SettingLookup
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
-      tools/settingtools/StartPositionedObject/StartPositionedObject
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
 
    --------
@@ -406,7 +405,6 @@ Unstable packages (load manually)
       tools/settingtools/SettingLookup/SettingLookup
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
-      tools/settingtools/StartPositionedObject/StartPositionedObject
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
 
    Concrete Classes

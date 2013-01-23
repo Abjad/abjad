@@ -118,16 +118,8 @@
     Some _evaluate() methods return lists or tuples.
     Perhaps these are the only two acceptable evaluation return types.
 
-24. Assert that callbacks apply only expressions.
-    Right now they appear to apply to expressions and to start-positioned products.
-    Stop callbacks from applying to start-positioned products.
-    Make callbacks apply to StartPositionedPayloadExpression instead.
-    Implement StartPositionedRhythmExpression.
-    Allow callbacks to apply to StartPositionedRhythmExpression.
-
-25. Why do RegionCommand concrete classes implement an _evaluate() method?
+24. Why do RegionCommand concrete classes implement an _evaluate() method?
     RegionCommand classes are not expressions.
     Perhaps an _execute() method? Or perhaps a different pattern altogether?
 
-26. May be possible to eliminate StartPositionedObject altogether.
-    Just implement as an initialized attribute on StartPositionedPayloadExpression.
+25. Assert that callbacks apply only to payload expressions.

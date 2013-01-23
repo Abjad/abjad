@@ -2,10 +2,9 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from experimental.tools.settingtools.PayloadExpression import PayloadExpression
-from experimental.tools.settingtools.StartPositionedObject import StartPositionedObject
 
 
-class StartPositionedPayloadExpression(PayloadExpression, StartPositionedObject):
+class StartPositionedPayloadExpression(PayloadExpression):
     '''Start-positioned payload expression.
 
         >>> expression = settingtools.StartPositionedPayloadExpression(
@@ -31,7 +30,8 @@ class StartPositionedPayloadExpression(PayloadExpression, StartPositionedObject)
 
     def __init__(self, payload=None, start_offset=None):
         PayloadExpression.__init__(self, payload=payload)
-        StartPositionedObject.__init__(self, start_offset=start_offset)
+        start_offset = durationtools.Offset(start_offset)
+        self._start_offset = start_offset
 
     ### PRIVATE METHODS ###
 
@@ -55,7 +55,7 @@ class StartPositionedPayloadExpression(PayloadExpression, StartPositionedObject)
 
         Return offset.
         '''
-        return StartPositionedObject.start_offset.fget(self)
+        return self._start_offset
 
     ### PUBLIC METHODS ###
 
