@@ -34,10 +34,8 @@ class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObjec
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification=None, voice_name=None):
+    def _evaluate(self, score_specification=None):
         from experimental.tools import settingtools
-        # ignore voice_name input parameter
-        voice_name = None
         if isinstance(self.payload, (str, tuple)):
             result = self.payload
         else:

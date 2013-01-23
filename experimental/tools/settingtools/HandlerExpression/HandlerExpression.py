@@ -19,9 +19,7 @@ class HandlerExpression(Expression, PayloadCallbackMixin):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification=None, voice_name=None):
-        # ignore voice_name input parameter
-        voice_name = None
+    def _evaluate(self, score_specification=None):
         raise NotImplementedError
 
     ### READ-ONLY PROPERTIES ###

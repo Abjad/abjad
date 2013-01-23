@@ -17,10 +17,8 @@ class ParseableStringRhythmRegionCommand(FinalizedRhythmRegionCommand):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification=None, voice_name=None):
+    def _evaluate(self, score_specification=None):
         from experimental.tools import settingtools
-        # ignore voice_name input parameter
-        voice_name = None
         component = iotools.p(self.parseable_string)
         rhythm_product = settingtools.StartPositionedRhythmProduct(
             payload=[component], voice_name=self.voice_name, start_offset=self.start_offset)
