@@ -118,6 +118,12 @@
     Some _evaluate() methods return lists or tuples.
     Perhaps these are the only two acceptable evaluation return types.
 
-24. Why do RegionCommand concrete classes implement an _evaluate() method?
-    RegionCommand classes are not expressions.
-    Perhaps an _execute() method? Or perhaps a different pattern altogether?
+24. Finish locking down selector evaluation.
+    Use the right payload expression classes at the right moments in all selector _evaluate() methods.
+
+25. It may be possible to eliminate the score_specification input parameter from all _evaluate() methods.
+
+26. Migrate ScoreSpecification.get_anchor_timespan() to AnchoredObject.
+
+27. Rename RegionCommand classes because RegionCommand classes are expressions that evaluate to fill a timespan.
+    Then make RegionCommand inherit from Expression.

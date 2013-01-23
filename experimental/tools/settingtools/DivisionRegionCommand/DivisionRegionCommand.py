@@ -36,25 +36,23 @@ class DivisionRegionCommand(RegionCommand):
 
     def _evaluate(self, score_specification):
         from experimental.tools import settingtools
-        if hasattr(self.expression, '_evaluate'):
-            payload = self.expression._evaluate(score_specification)
-        else:
-            payload = self.expression._evaluate(score_specification)
-        if payload is None:
+        result = self.expression._evaluate(score_specification)
+        if result is None:
             return
+        assert isinstance(result, (settingtools.PayloadExpression, tuple, list)), repr(result)
         # TODO: eventually remove this branch in favor of the next branch
-        elif isinstance(payload, settingtools.VoicedStartPositionedDivisionPayloadExpression):
-            divisions = payload.payload.divisions[:]
-        elif isinstance(payload, settingtools.VoicedStartPositionedPayloadExpression):
-            divisions = payload._payload_elements[:]
-        elif isinstance(payload, list) and len(payload) == 1 and isinstance(payload[0], tuple):
-            divisions = payload[0][:]
+        if isinstance(result, settingtools.VoicedStartPositionedDivisionPayloadExpression):
+            divisions = result.payload.divisions[:]
+        elif isinstance(result, settingtools.VoicedStartPositionedPayloadExpression):
+            divisions = result._payload_elements[:]
+        elif isinstance(result, list) and len(result) == 1 and isinstance(result[0], tuple):
+            divisions = result[0][:]
         else:
-            divisions = [settingtools.Division(x) for x in payload]
+            divisions = [settingtools.Division(x) for x in result]
         divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, self.timespan.duration)
-        division_product = settingtools.VoicedStartPositionedDivisionPayloadExpression(
+        result = settingtools.VoicedStartPositionedDivisionPayloadExpression(
             divisions, self.voice_name, self.timespan.start_offset)
-        return [division_product]
+        return [result]
 
     ## READ-ONLY PUBLIC PROPERTIES ###
 
