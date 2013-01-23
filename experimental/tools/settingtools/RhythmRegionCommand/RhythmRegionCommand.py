@@ -70,6 +70,10 @@ class RhythmRegionCommand(RegionCommand):
             return False
         return True
 
+    # TODO: maybe make RhythmRegionCommand abstract and make this method abstract
+    def _evaluate(self, score_specification):
+        raise NotImplemented
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

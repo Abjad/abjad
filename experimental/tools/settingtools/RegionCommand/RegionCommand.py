@@ -1,12 +1,11 @@
 import abc
-import copy
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools 
 from abjad.tools import timespantools 
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.tools.settingtools.Expression import Expression
 
 
-class RegionCommand(AbjadObject):
+class RegionCommand(Expression):
     '''Region command.
 
     Durated period of time to which an attribute-maker will apply.
