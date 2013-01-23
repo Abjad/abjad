@@ -381,7 +381,7 @@ Unstable packages (load manually)
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
       tools/settingtools/TimespanExpression/TimespanExpression
       tools/settingtools/VoicedStartPositionedDivisionPayloadExpression/VoicedStartPositionedDivisionPayloadExpression
-      tools/settingtools/VoicedStartPositionedProduct/VoicedStartPositionedProduct
+      tools/settingtools/VoicedStartPositionedPayloadExpression/VoicedStartPositionedPayloadExpression
       tools/settingtools/VoicedStartPositionedRhythmPayloadExpression/VoicedStartPositionedRhythmPayloadExpression
 
 .. only:: latex
@@ -449,7 +449,7 @@ Unstable packages (load manually)
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
       tools/settingtools/TimespanExpression/TimespanExpression
       tools/settingtools/VoicedStartPositionedDivisionPayloadExpression/VoicedStartPositionedDivisionPayloadExpression
-      tools/settingtools/VoicedStartPositionedProduct/VoicedStartPositionedProduct
+      tools/settingtools/VoicedStartPositionedPayloadExpression/VoicedStartPositionedPayloadExpression
       tools/settingtools/VoicedStartPositionedRhythmPayloadExpression/VoicedStartPositionedRhythmPayloadExpression
 
 :py:mod:`specificationtools <experimental.tools.specificationtools>`

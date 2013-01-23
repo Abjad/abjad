@@ -45,7 +45,7 @@ class DivisionRegionCommand(RegionCommand):
         # TODO: eventually remove this branch in favor of the next branch
         elif isinstance(payload, settingtools.VoicedStartPositionedDivisionPayloadExpression):
             divisions = payload.payload.divisions[:]
-        elif isinstance(payload, settingtools.VoicedStartPositionedProduct):
+        elif isinstance(payload, settingtools.VoicedStartPositionedPayloadExpression):
             divisions = payload._payload_elements[:]
         elif isinstance(payload, list) and len(payload) == 1 and isinstance(payload[0], tuple):
             divisions = payload[0][:]

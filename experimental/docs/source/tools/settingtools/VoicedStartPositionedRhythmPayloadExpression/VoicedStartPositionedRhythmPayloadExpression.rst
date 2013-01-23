@@ -33,7 +33,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedRhythmPayloadExpression.VoicedStartPositionedRhythmPayloadExpression.VoicedStartPositionedRhythmPayloadExpression.new
    :noindex:
 
-   Inherited from :py:class:`settingtools.VoicedStartPositionedProduct <experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct>`
+   Inherited from :py:class:`settingtools.VoicedStartPositionedPayloadExpression <experimental.tools.settingtools.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedRhythmPayloadExpression.VoicedStartPositionedRhythmPayloadExpression.VoicedStartPositionedRhythmPayloadExpression.partition_by_ratio
    :noindex:
@@ -94,7 +94,7 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedRhythmPayloadExpression.VoicedStartPositionedRhythmPayloadExpression.VoicedStartPositionedRhythmPayloadExpression.__lt__
    :noindex:
 
-   Inherited from :py:class:`settingtools.VoicedStartPositionedProduct <experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct>`
+   Inherited from :py:class:`settingtools.VoicedStartPositionedPayloadExpression <experimental.tools.settingtools.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedRhythmPayloadExpression.VoicedStartPositionedRhythmPayloadExpression.VoicedStartPositionedRhythmPayloadExpression.__ne__
    :noindex:

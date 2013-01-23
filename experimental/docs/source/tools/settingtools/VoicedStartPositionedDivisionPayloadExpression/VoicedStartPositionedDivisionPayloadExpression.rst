@@ -33,7 +33,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedDivisionPayloadExpression.VoicedStartPositionedDivisionPayloadExpression.VoicedStartPositionedDivisionPayloadExpression.new
    :noindex:
 
-   Inherited from :py:class:`settingtools.VoicedStartPositionedProduct <experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct>`
+   Inherited from :py:class:`settingtools.VoicedStartPositionedPayloadExpression <experimental.tools.settingtools.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedDivisionPayloadExpression.VoicedStartPositionedDivisionPayloadExpression.VoicedStartPositionedDivisionPayloadExpression.partition_by_ratio
    :noindex:
@@ -88,12 +88,12 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedDivisionPayloadExpression.VoicedStartPositionedDivisionPayloadExpression.VoicedStartPositionedDivisionPayloadExpression.__len__
    :noindex:
 
-   Inherited from :py:class:`settingtools.VoicedStartPositionedProduct <experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct>`
+   Inherited from :py:class:`settingtools.VoicedStartPositionedPayloadExpression <experimental.tools.settingtools.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedDivisionPayloadExpression.VoicedStartPositionedDivisionPayloadExpression.VoicedStartPositionedDivisionPayloadExpression.__lt__
    :noindex:
 
-   Inherited from :py:class:`settingtools.VoicedStartPositionedProduct <experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct>`
+   Inherited from :py:class:`settingtools.VoicedStartPositionedPayloadExpression <experimental.tools.settingtools.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedDivisionPayloadExpression.VoicedStartPositionedDivisionPayloadExpression.VoicedStartPositionedDivisionPayloadExpression.__ne__
    :noindex:

@@ -10,10 +10,10 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
-from experimental.tools.settingtools.VoicedStartPositionedProduct import VoicedStartPositionedProduct
+from experimental.tools.settingtools.VoicedStartPositionedPayloadExpression import VoicedStartPositionedPayloadExpression
 
 
-class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedProduct):
+class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedPayloadExpression):
     r'''Rhythm region product:
 
     ::
@@ -46,7 +46,7 @@ class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedProduct)
 
     def __init__(self, payload=None, voice_name=None, start_offset=None):
         payload = containertools.Container(music=payload)
-        VoicedStartPositionedProduct.__init__(self, payload=payload, voice_name=voice_name, start_offset=start_offset)
+        VoicedStartPositionedPayloadExpression.__init__(self, payload=payload, voice_name=voice_name, start_offset=start_offset)
 
     ### SPECIAL METHODS ###
 
@@ -131,7 +131,7 @@ class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedProduct)
 
         Operate in place and return timespan inventory.
         '''
-        return VoicedStartPositionedProduct.__and__(self, timespan)
+        return VoicedStartPositionedPayloadExpression.__and__(self, timespan)
 
     def __copy__(self, *args):
         new = type(self)(voice_name=self.voice_name, start_offset=self.start_offset)
@@ -223,7 +223,7 @@ class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedProduct)
 
         Return region command inventory.
         '''
-        return VoicedStartPositionedProduct.__or__(self, expr)
+        return VoicedStartPositionedPayloadExpression.__or__(self, expr)
 
     def __sub__(self, timespan):
         '''Subtract `timespan` from rhythm region product.
@@ -321,7 +321,7 @@ class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedProduct)
 
         Operate in place and return timespan inventory.
         '''
-        return VoicedStartPositionedProduct.__sub__(self, timespan)
+        return VoicedStartPositionedPayloadExpression.__sub__(self, timespan)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -360,7 +360,7 @@ class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedProduct)
 
         Return container.
         '''
-        return VoicedStartPositionedProduct.payload.fget(self)
+        return VoicedStartPositionedPayloadExpression.payload.fget(self)
 
     @property
     def start_offset(self):
@@ -373,7 +373,7 @@ class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedProduct)
 
         Return offset.
         '''
-        return VoicedStartPositionedProduct.start_offset.fget(self)
+        return VoicedStartPositionedPayloadExpression.start_offset.fget(self)
 
     @property
     def stop_offset(self):
@@ -386,7 +386,7 @@ class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedProduct)
 
         Return offset.
         '''
-        return VoicedStartPositionedProduct.stop_offset.fget(self)
+        return VoicedStartPositionedPayloadExpression.stop_offset.fget(self)
 
     @property
     def storage_format(self):
@@ -405,7 +405,7 @@ class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedProduct)
 
         Return string.
         '''
-        return VoicedStartPositionedProduct.storage_format.fget(self)
+        return VoicedStartPositionedPayloadExpression.storage_format.fget(self)
 
     @property
     def timespan(self):
@@ -418,7 +418,7 @@ class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedProduct)
 
         Return timespan.
         '''
-        return VoicedStartPositionedProduct.timespan.fget(self)
+        return VoicedStartPositionedPayloadExpression.timespan.fget(self)
 
     @property
     def voice_name(self):
@@ -431,7 +431,7 @@ class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedProduct)
 
         Return string.
         '''
-        return VoicedStartPositionedProduct.voice_name.fget(self)
+        return VoicedStartPositionedPayloadExpression.voice_name.fget(self)
 
     ### PUBLIC METHODS ###
 
@@ -476,7 +476,7 @@ class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedProduct)
 
         Operate in place and return newly constructed region command inventory.
         '''
-        return VoicedStartPositionedProduct.partition_by_ratio(self, ratio)
+        return VoicedStartPositionedPayloadExpression.partition_by_ratio(self, ratio)
 
     def partition_by_ratio_of_durations(self, ratio):
         '''Partition leaves by `ratio` of durations:
@@ -512,7 +512,7 @@ class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedProduct)
 
         Operate in place and return newly constructed region command inventory.
         '''
-        return VoicedStartPositionedProduct.partition_by_ratio_of_durations(self, ratio)
+        return VoicedStartPositionedPayloadExpression.partition_by_ratio_of_durations(self, ratio)
 
     def reflect(self):
         '''Reflect rhythm about axis:
@@ -855,4 +855,4 @@ class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedProduct)
 
         Operate in place and return rhythm region product.
         '''
-        return VoicedStartPositionedProduct.translate(self, translation)
+        return VoicedStartPositionedPayloadExpression.translate(self, translation)

@@ -10,7 +10,7 @@ from abjad.tools import wellformednesstools
 from experimental.tools.settingtools.StartPositionedPayloadExpression import StartPositionedPayloadExpression
 
 
-class VoicedStartPositionedProduct(StartPositionedPayloadExpression):
+class VoicedStartPositionedPayloadExpression(StartPositionedPayloadExpression):
     r'''Voiced, start-positioned product.
     ''' 
 
