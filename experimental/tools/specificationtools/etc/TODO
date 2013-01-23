@@ -122,3 +122,7 @@
     Or make StartPositionedProduct inherit from Expression.
 
 25. Remove duplicate _keyword_argument_name_value_strings definitions in favor of one on Expression.
+
+26. Why do RegionCommand concrete classes implement an _evaluate() method?
+    RegionCommand classes are not expressions.
+    Perhaps an _execute() method? Or perhaps a different pattern altogether?

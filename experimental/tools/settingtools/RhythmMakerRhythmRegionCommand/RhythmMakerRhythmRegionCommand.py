@@ -30,10 +30,8 @@ class RhythmMakerRhythmRegionCommand(FinalizedRhythmRegionCommand):
                 beamtools.DuratedComplexBeamSpanner(
                     [rhythm_container], [rhythm_container.prolated_duration], span=1)
 
-    def _evaluate(self, score_specification=None, voice_name=None):
+    def _evaluate(self, score_specification=None):
         from experimental.tools import settingtools
-        # ignore voice_name input parameter
-        voice_name = None
         if self.rhythm_region_division_list:
             leaf_lists = self.rhythm_maker(self.rhythm_region_division_list.pairs)
             rhythm_containers = [containertools.Container(x) for x in leaf_lists]

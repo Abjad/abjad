@@ -48,10 +48,8 @@ class DivisionSettingLookup(SettingLookup):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self, score_specification, voice_name=None):
+    def _evaluate(self, score_specification):
         from experimental.tools import settingtools
-        # ignore voice_name input parameter
-        voice_name = None
         start_segment_identifier = self.offset.start_segment_identifier
         offset = self.offset._evaluate(score_specification)
         timespan_inventory = timespantools.TimespanInventory()

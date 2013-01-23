@@ -13,12 +13,11 @@ class TimeSignatureSettingLookup(SettingLookup):
 
     ### PUBLIC METHODS ###
 
-    def _evaluate(self, score_specification, voice_name=None):
+    def _evaluate(self, score_specification):
         from experimental.tools import settingtools
-        # ignore voice_name input parameter
-        voice_name = None
         segment_specification = score_specification.get_start_segment_specification(self.offset)
         time_signatures = segment_specification.time_signatures[:]
+        # TODO: maybe use AbsoluteExpression here instead to avoid dummy start positioning?
         result = settingtools.StartPositionedMeasureProduct(
             time_signatures, voice_name='dummy voice name', start_offset=0)
         result = self._apply_callbacks(result)
