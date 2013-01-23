@@ -327,11 +327,11 @@ Unstable packages (load manually)
       tools/settingtools/CallbackMixin/CallbackMixin
       tools/settingtools/Expression/Expression
       tools/settingtools/ExpressionAnchoredObject/ExpressionAnchoredObject
-      tools/settingtools/FinalizedRhythmRegionCommand/FinalizedRhythmRegionCommand
+      tools/settingtools/FinalizedRhythmRegionExpression/FinalizedRhythmRegionExpression
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
-      tools/settingtools/RegionCommand/RegionCommand
+      tools/settingtools/RegionExpression/RegionExpression
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin
       tools/settingtools/Setting/Setting
@@ -350,7 +350,7 @@ Unstable packages (load manually)
       tools/settingtools/ClassInventory/ClassInventory
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
-      tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
+      tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
       tools/settingtools/DivisionSettingLookup/DivisionSettingLookup
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/HandlerExpression/HandlerExpression
@@ -358,18 +358,18 @@ Unstable packages (load manually)
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
       tools/settingtools/OffsetExpression/OffsetExpression
-      tools/settingtools/ParseableStringRhythmRegionCommand/ParseableStringRhythmRegionCommand
+      tools/settingtools/ParseableStringRhythmRegionExpression/ParseableStringRhythmRegionExpression
       tools/settingtools/PayloadExpression/PayloadExpression
-      tools/settingtools/RegionCommandInventory/RegionCommandInventory
+      tools/settingtools/RegionExpressionInventory/RegionExpressionInventory
       tools/settingtools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
-      tools/settingtools/RhythmMakerRhythmRegionCommand/RhythmMakerRhythmRegionCommand
-      tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
+      tools/settingtools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
+      tools/settingtools/RhythmRegionExpression/RhythmRegionExpression
       tools/settingtools/RhythmSettingLookup/RhythmSettingLookup
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
-      tools/settingtools/SelectorRhythmRegionCommand/SelectorRhythmRegionCommand
+      tools/settingtools/SelectorRhythmRegionExpression/SelectorRhythmRegionExpression
       tools/settingtools/SettingInventory/SettingInventory
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
@@ -394,11 +394,11 @@ Unstable packages (load manually)
       tools/settingtools/CallbackMixin/CallbackMixin
       tools/settingtools/Expression/Expression
       tools/settingtools/ExpressionAnchoredObject/ExpressionAnchoredObject
-      tools/settingtools/FinalizedRhythmRegionCommand/FinalizedRhythmRegionCommand
+      tools/settingtools/FinalizedRhythmRegionExpression/FinalizedRhythmRegionExpression
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
-      tools/settingtools/RegionCommand/RegionCommand
+      tools/settingtools/RegionExpression/RegionExpression
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin
       tools/settingtools/Setting/Setting
@@ -417,7 +417,7 @@ Unstable packages (load manually)
       tools/settingtools/ClassInventory/ClassInventory
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
-      tools/settingtools/DivisionRegionCommand/DivisionRegionCommand
+      tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
       tools/settingtools/DivisionSettingLookup/DivisionSettingLookup
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/HandlerExpression/HandlerExpression
@@ -425,18 +425,18 @@ Unstable packages (load manually)
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/settingtools/MultipleContextSetting/MultipleContextSetting
       tools/settingtools/OffsetExpression/OffsetExpression
-      tools/settingtools/ParseableStringRhythmRegionCommand/ParseableStringRhythmRegionCommand
+      tools/settingtools/ParseableStringRhythmRegionExpression/ParseableStringRhythmRegionExpression
       tools/settingtools/PayloadExpression/PayloadExpression
-      tools/settingtools/RegionCommandInventory/RegionCommandInventory
+      tools/settingtools/RegionExpressionInventory/RegionExpressionInventory
       tools/settingtools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
-      tools/settingtools/RhythmMakerRhythmRegionCommand/RhythmMakerRhythmRegionCommand
-      tools/settingtools/RhythmRegionCommand/RhythmRegionCommand
+      tools/settingtools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
+      tools/settingtools/RhythmRegionExpression/RhythmRegionExpression
       tools/settingtools/RhythmSettingLookup/RhythmSettingLookup
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
-      tools/settingtools/SelectorRhythmRegionCommand/SelectorRhythmRegionCommand
+      tools/settingtools/SelectorRhythmRegionExpression/SelectorRhythmRegionExpression
       tools/settingtools/SettingInventory/SettingInventory
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting

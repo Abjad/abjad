@@ -249,7 +249,7 @@ class VoicedStartPositionedPayloadExpression(StartPositionedPayloadExpression):
         payload_parts = self._split_payload_at_offsets(durations)
         start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
         start_offsets = [self.start_offset + start_offset for start_offset in start_offsets]
-        products = settingtools.RegionCommandInventory()
+        products = settingtools.RegionExpressionInventory()
         for payload_part, start_offset in zip(payload_parts, start_offsets):
             timespan = timespantools.Timespan(start_offset)
             product = type(self)([], self.voice_name, timespan.start_offset)
@@ -272,7 +272,7 @@ class VoicedStartPositionedPayloadExpression(StartPositionedPayloadExpression):
         payload_parts = self._split_payload_at_offsets(durations)
         start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
         start_offsets = [self.start_offset + start_offset for start_offset in start_offsets]
-        products = settingtools.RegionCommandInventory()
+        products = settingtools.RegionExpressionInventory()
         for payload_part, start_offset in zip(payload_parts, start_offsets):
             timespan = timespantools.Timespan(start_offset)
             product = type(self)([], self.voice_name, timespan.start_offset)

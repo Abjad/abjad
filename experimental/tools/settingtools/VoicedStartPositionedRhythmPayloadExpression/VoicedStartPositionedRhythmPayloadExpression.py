@@ -450,7 +450,7 @@ class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedPayloadE
         ::
 
             >>> z(result)
-            settingtools.RegionCommandInventory([
+            settingtools.RegionExpressionInventory([
                 settingtools.VoicedStartPositionedRhythmPayloadExpression(
                     payload=containertools.Container(
                         music=({c'8},)
@@ -493,7 +493,7 @@ class VoicedStartPositionedRhythmPayloadExpression(VoicedStartPositionedPayloadE
         ::
 
             >>> z(result)
-            settingtools.RegionCommandInventory([
+            settingtools.RegionExpressionInventory([
                 settingtools.VoicedStartPositionedRhythmPayloadExpression(
                     payload=containertools.Container(
                         music=({c'2},)

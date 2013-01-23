@@ -123,7 +123,4 @@
 
 25. It may be possible to eliminate the score_specification input parameter from all _evaluate() methods.
 
-26. Migrate ScoreSpecification.get_anchor_timespan() to AnchoredObject.
-
-27. Rename RegionCommand classes because RegionCommand classes are expressions that evaluate to fill a timespan.
-    Then make RegionCommand inherit from Expression.
+26. Migrate ScoreSpecification.get_anchor_timespan() to ExpressionAnchoredObject.

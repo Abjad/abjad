@@ -217,7 +217,7 @@ class ConcreteInterpreter(Interpreter):
         while self.score_specification.finalized_rhythm_region_commands:
             made_progress = False
             for finalized_rhythm_region_command in self.score_specification.finalized_rhythm_region_commands[:]:
-                assert isinstance(finalized_rhythm_region_command, settingtools.FinalizedRhythmRegionCommand)
+                assert isinstance(finalized_rhythm_region_command, settingtools.FinalizedRhythmRegionExpression)
                 rhythm_product = finalized_rhythm_region_command._evaluate(self.score_specification)
                 if rhythm_product is not None:
                     assert isinstance(rhythm_product, settingtools.VoicedStartPositionedRhythmPayloadExpression)
@@ -250,7 +250,7 @@ class ConcreteInterpreter(Interpreter):
     def merge_prolonging_finalized_rhythm_region_commands(self, finalized_rhythm_region_commands):
         result = []
         for finalized_rhythm_region_command in finalized_rhythm_region_commands:
-            if result and isinstance(finalized_rhythm_region_command, settingtools.SelectorRhythmRegionCommand) and \
+            if result and isinstance(finalized_rhythm_region_command, settingtools.SelectorRhythmRegionExpression) and \
                 finalized_rhythm_region_command.prolongs_expr(result[-1]):
                 current_stop_offset = finalized_rhythm_region_command.start_offset
                 current_stop_offset += finalized_rhythm_region_command.total_duration

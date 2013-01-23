@@ -20,6 +20,6 @@ class SingleContextRhythmSetting(SingleContextSetting):
         '''
         from experimental.tools import settingtools
         anchor_timespan = score_specification.get_anchor_timespan(self)
-        command = settingtools.RhythmRegionCommand(
+        command = settingtools.RhythmRegionExpression(
             self.expression, self.context_name, anchor_timespan, fresh=self.fresh)
         return command

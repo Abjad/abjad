@@ -31,7 +31,7 @@ class RhythmSettingLookup(SettingLookup):
         source_command = segment_specification._get_first_element_in_expr_by_parentage(
             candidate_commands, self.voice_name, include_improper_parentage=True)
         assert source_command is not None
-        assert isinstance(source_command, settingtools.RegionCommand)
+        assert isinstance(source_command, settingtools.RegionExpression)
         # TODO: the lack of symmtery between these two branches means either:
         #   that the call to self._apply_callbacks() is unnecessary, or
         #   that the call must appear in both branches.

@@ -11,10 +11,10 @@ class ContextProxy(AbjadObject, OrderedDict):
     def __init__(self):
         from experimental.tools import settingtools
         OrderedDict.__init__(self)
-        self._division_region_commands = settingtools.RegionCommandInventory()
-        self._division_products = settingtools.RegionCommandInventory()
-        self._rhythm_region_commands = settingtools.RegionCommandInventory()
-        self._rhythm_products = settingtools.RegionCommandInventory()
+        self._division_region_commands = settingtools.RegionExpressionInventory()
+        self._division_products = settingtools.RegionExpressionInventory()
+        self._rhythm_region_commands = settingtools.RegionExpressionInventory()
+        self._rhythm_products = settingtools.RegionExpressionInventory()
         self._voice_division_list = None
 
     ### SPECIAL METHODS ###

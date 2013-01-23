@@ -148,7 +148,7 @@ class ScoreSpecification(Specification):
 
             >>> for x in score_specification.division_region_commands:
             ...     z(x)
-            settingtools.DivisionRegionCommand(
+            settingtools.DivisionRegionExpression(
                 expression=settingtools.PayloadExpression(
                     ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
                     ),
@@ -160,7 +160,7 @@ class ScoreSpecification(Specification):
                 fresh=True,
                 truncate=True
                 )
-            settingtools.DivisionRegionCommand(
+            settingtools.DivisionRegionExpression(
                 expression=settingtools.PayloadExpression(
                     ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
                     ),
@@ -262,7 +262,7 @@ class ScoreSpecification(Specification):
 
             >>> for x in score_specification.rhythm_region_commands:
             ...     z(x)
-            settingtools.RhythmRegionCommand(
+            settingtools.RhythmRegionExpression(
                 expression=settingtools.RhythmMakerPayloadExpression(
                     payload=rhythmmakertools.TaleaRhythmMaker(
                         [1],
@@ -546,7 +546,7 @@ class ScoreSpecification(Specification):
             return result.timespan
         
     def get_region_commands_for_voice(self, attribute, context_name):
-        commands = settingtools.RegionCommandInventory()
+        commands = settingtools.RegionExpressionInventory()
         for segment_specification in self.segment_specifications:
             single_context_settings = \
                 segment_specification.get_single_context_settings_that_start_during_segment(
@@ -613,7 +613,7 @@ class ScoreSpecification(Specification):
             raise ValueError(attribute)
 
     def make_skip_token_rhythm_region_command(self, voice_name, timespan):
-        return settingtools.RhythmRegionCommand(
+        return settingtools.RhythmRegionExpression(
             settingtools.RhythmMakerPayloadExpression(library.skip_tokens),
             voice_name,
             timespan,
@@ -622,7 +622,7 @@ class ScoreSpecification(Specification):
 
     def make_time_signature_division_command(self, voice_name, timespan):
         divisions = self.get_time_signature_slice(timespan)
-        return settingtools.DivisionRegionCommand(
+        return settingtools.DivisionRegionExpression(
             settingtools.PayloadExpression(divisions),
             voice_name,
             timespan,

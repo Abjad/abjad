@@ -430,7 +430,7 @@ class VoicedStartPositionedDivisionPayloadExpression(VoicedStartPositionedPayloa
         ::
 
             >>> z(result)
-            settingtools.RegionCommandInventory([
+            settingtools.RegionExpressionInventory([
                 settingtools.VoicedStartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[6, 8]', start_offset=Offset(0, 1)), 
@@ -474,7 +474,7 @@ class VoicedStartPositionedDivisionPayloadExpression(VoicedStartPositionedPayloa
         ::
 
             >>> z(result)
-            settingtools.RegionCommandInventory([
+            settingtools.RegionExpressionInventory([
                 settingtools.VoicedStartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[6, 8]', start_offset=Offset(0, 1)), 
