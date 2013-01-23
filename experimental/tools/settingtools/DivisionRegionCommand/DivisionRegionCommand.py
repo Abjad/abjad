@@ -43,16 +43,16 @@ class DivisionRegionCommand(RegionCommand):
         if payload is None:
             return
         # TODO: eventually remove this branch in favor of the next branch
-        elif isinstance(payload, settingtools.StartPositionedDivisionProduct):
+        elif isinstance(payload, settingtools.VoicedStartPositionedDivisionProduct):
             divisions = payload.payload.divisions[:]
-        elif isinstance(payload, settingtools.StartPositionedProduct):
+        elif isinstance(payload, settingtools.VoicedStartPositionedProduct):
             divisions = payload._payload_elements[:]
         elif isinstance(payload, list) and len(payload) == 1 and isinstance(payload[0], tuple):
             divisions = payload[0][:]
         else:
             divisions = [settingtools.Division(x) for x in payload]
         divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, self.timespan.duration)
-        division_product = settingtools.StartPositionedDivisionProduct(
+        division_product = settingtools.VoicedStartPositionedDivisionProduct(
             divisions, self.voice_name, self.timespan.start_offset)
         return [division_product]
 

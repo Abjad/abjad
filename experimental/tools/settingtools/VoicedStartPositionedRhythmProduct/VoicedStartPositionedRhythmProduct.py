@@ -10,21 +10,21 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
-from experimental.tools.settingtools.StartPositionedProduct import StartPositionedProduct
+from experimental.tools.settingtools.VoicedStartPositionedProduct import VoicedStartPositionedProduct
 
 
-class StartPositionedRhythmProduct(StartPositionedProduct):
+class VoicedStartPositionedRhythmProduct(VoicedStartPositionedProduct):
     r'''Rhythm region product:
 
     ::
 
         >>> payload = [Container("c'8 d'8 e'8 f'8")]
-        >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(10))
+        >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(10))
 
     ::
 
         >>> z(product)
-        settingtools.StartPositionedRhythmProduct(
+        settingtools.VoicedStartPositionedRhythmProduct(
             payload=containertools.Container(
                 music=({c'8, d'8, e'8, f'8},)
                 ),
@@ -46,7 +46,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
 
     def __init__(self, payload=None, voice_name=None, start_offset=None):
         payload = containertools.Container(music=payload)
-        StartPositionedProduct.__init__(self, payload=payload, voice_name=voice_name, start_offset=start_offset)
+        VoicedStartPositionedProduct.__init__(self, payload=payload, voice_name=voice_name, start_offset=start_offset)
 
     ### SPECIAL METHODS ###
 
@@ -58,14 +58,14 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
             >>> result = product & timespantools.Timespan(Offset(-1, 8), Offset(3, 8))
 
         ::
 
             >>> z(result)
             timespantools.TimespanInventory([
-                settingtools.StartPositionedRhythmProduct(
+                settingtools.VoicedStartPositionedRhythmProduct(
                     payload=containertools.Container(
                         music=({c'8, d'8, e'8},)
                         ),
@@ -79,14 +79,14 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
             >>> result = product & timespantools.Timespan(Offset(1, 8), Offset(5, 8))
 
         ::
 
             >>> z(result)
             timespantools.TimespanInventory([
-                settingtools.StartPositionedRhythmProduct(
+                settingtools.VoicedStartPositionedRhythmProduct(
                     payload=containertools.Container(
                         music=({d'8, e'8, f'8},)
                         ),
@@ -100,14 +100,14 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
             >>> result = product & timespantools.Timespan(Offset(1, 8), Offset(3, 8))
 
         ::
 
             >>> z(result)
             timespantools.TimespanInventory([
-                settingtools.StartPositionedRhythmProduct(
+                settingtools.VoicedStartPositionedRhythmProduct(
                     payload=containertools.Container(
                         music=({d'8, e'8},)
                         ),
@@ -121,7 +121,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
             >>> result = product & timespantools.Timespan(100, 200)
 
         ::
@@ -131,7 +131,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
 
         Operate in place and return timespan inventory.
         '''
-        return StartPositionedProduct.__and__(self, timespan)
+        return VoicedStartPositionedProduct.__and__(self, timespan)
 
     def __copy__(self, *args):
         new = type(self)(voice_name=self.voice_name, start_offset=self.start_offset)
@@ -166,12 +166,12 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product_1 = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product_1 = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
 
         ::
 
             >>> payload = [Container("g'8 a'8 b'8 c''8")]
-            >>> product_2 = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(4, 8))
+            >>> product_2 = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(4, 8))
 
         ::
 
@@ -186,7 +186,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         
             >>> z(result)
             timespantools.TimespanInventory([
-                settingtools.StartPositionedRhythmProduct(
+                settingtools.VoicedStartPositionedRhythmProduct(
                     payload=containertools.Container(
                         music=({c'8, d'8, e'8, f'8, g'8, a'8, b'8, c''8},)
                         ),
@@ -200,7 +200,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> z(product_1)
-            settingtools.StartPositionedRhythmProduct(
+            settingtools.VoicedStartPositionedRhythmProduct(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'8, f'8},)
                     ),
@@ -213,7 +213,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> z(product_2)
-            settingtools.StartPositionedRhythmProduct(
+            settingtools.VoicedStartPositionedRhythmProduct(
                 payload=containertools.Container(
                     music=({g'8, a'8, b'8, c''8},)
                     ),
@@ -223,7 +223,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
 
         Return region command inventory.
         '''
-        return StartPositionedProduct.__or__(self, expr)
+        return VoicedStartPositionedProduct.__or__(self, expr)
 
     def __sub__(self, timespan):
         '''Subtract `timespan` from rhythm region product.
@@ -233,14 +233,14 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
             >>> result = product - timespantools.Timespan(0, Offset(1, 8))
 
         ::
 
                 >>> z(result)
                 timespantools.TimespanInventory([
-                    settingtools.StartPositionedRhythmProduct(
+                    settingtools.VoicedStartPositionedRhythmProduct(
                         payload=containertools.Container(
                             music=({d'8, e'8, f'8},)
                             ),
@@ -254,14 +254,14 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
             >>> result = product - timespantools.Timespan(Offset(3, 8), 100)
 
         ::
 
             >>> z(result)
             timespantools.TimespanInventory([
-                settingtools.StartPositionedRhythmProduct(
+                settingtools.VoicedStartPositionedRhythmProduct(
                     payload=containertools.Container(
                         music=({c'8, d'8, e'8},)
                         ),
@@ -275,21 +275,21 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
             >>> result = product - timespantools.Timespan(Offset(1, 8), Offset(3, 8))
 
         ::
 
             >>> z(result)
             timespantools.TimespanInventory([
-                settingtools.StartPositionedRhythmProduct(
+                settingtools.VoicedStartPositionedRhythmProduct(
                     payload=containertools.Container(
                         music=({c'8},)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(0, 1)
                     ),
-                settingtools.StartPositionedRhythmProduct(
+                settingtools.VoicedStartPositionedRhythmProduct(
                     payload=containertools.Container(
                         music=({f'8},)
                         ),
@@ -303,14 +303,14 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
             >>> result = product - timespantools.Timespan(100, 200)
 
         ::
 
             >>> z(result)
             timespantools.TimespanInventory([
-                settingtools.StartPositionedRhythmProduct(
+                settingtools.VoicedStartPositionedRhythmProduct(
                     payload=containertools.Container(
                         music=({c'8, d'8, e'8, f'8},)
                         ),
@@ -321,7 +321,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
 
         Operate in place and return timespan inventory.
         '''
-        return StartPositionedProduct.__sub__(self, timespan)
+        return VoicedStartPositionedProduct.__sub__(self, timespan)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -360,7 +360,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
 
         Return container.
         '''
-        return StartPositionedProduct.payload.fget(self)
+        return VoicedStartPositionedProduct.payload.fget(self)
 
     @property
     def start_offset(self):
@@ -373,7 +373,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
 
         Return offset.
         '''
-        return StartPositionedProduct.start_offset.fget(self)
+        return VoicedStartPositionedProduct.start_offset.fget(self)
 
     @property
     def stop_offset(self):
@@ -386,7 +386,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
 
         Return offset.
         '''
-        return StartPositionedProduct.stop_offset.fget(self)
+        return VoicedStartPositionedProduct.stop_offset.fget(self)
 
     @property
     def storage_format(self):
@@ -395,7 +395,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> z(product)
-            settingtools.StartPositionedRhythmProduct(
+            settingtools.VoicedStartPositionedRhythmProduct(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'8, f'8},)
                     ),
@@ -405,7 +405,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
 
         Return string.
         '''
-        return StartPositionedProduct.storage_format.fget(self)
+        return VoicedStartPositionedProduct.storage_format.fget(self)
 
     @property
     def timespan(self):
@@ -418,7 +418,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
 
         Return timespan.
         '''
-        return StartPositionedProduct.timespan.fget(self)
+        return VoicedStartPositionedProduct.timespan.fget(self)
 
     @property
     def voice_name(self):
@@ -431,7 +431,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
 
         Return string.
         '''
-        return StartPositionedProduct.voice_name.fget(self)
+        return VoicedStartPositionedProduct.voice_name.fget(self)
 
     ### PUBLIC METHODS ###
 
@@ -441,7 +441,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(10))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(10))
 
         ::
 
@@ -451,21 +451,21 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
 
             >>> z(result)
             settingtools.RegionCommandInventory([
-                settingtools.StartPositionedRhythmProduct(
+                settingtools.VoicedStartPositionedRhythmProduct(
                     payload=containertools.Container(
                         music=({c'8},)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(10, 1)
                     ),
-                settingtools.StartPositionedRhythmProduct(
+                settingtools.VoicedStartPositionedRhythmProduct(
                     payload=containertools.Container(
                         music=({d'8, e'8},)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(81, 8)
                     ),
-                settingtools.StartPositionedRhythmProduct(
+                settingtools.VoicedStartPositionedRhythmProduct(
                     payload=containertools.Container(
                         music=({f'8},)
                         ),
@@ -476,7 +476,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
 
         Operate in place and return newly constructed region command inventory.
         '''
-        return StartPositionedProduct.partition_by_ratio(self, ratio)
+        return VoicedStartPositionedProduct.partition_by_ratio(self, ratio)
 
     def partition_by_ratio_of_durations(self, ratio):
         '''Partition leaves by `ratio` of durations:
@@ -484,7 +484,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'2 d'8 e'8 f'4")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(10))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(10))
 
         ::
 
@@ -494,14 +494,14 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
 
             >>> z(result)
             settingtools.RegionCommandInventory([
-                settingtools.StartPositionedRhythmProduct(
+                settingtools.VoicedStartPositionedRhythmProduct(
                     payload=containertools.Container(
                         music=({c'2},)
                         ),
                     voice_name='Voice 1',
                     start_offset=durationtools.Offset(10, 1)
                     ),
-                settingtools.StartPositionedRhythmProduct(
+                settingtools.VoicedStartPositionedRhythmProduct(
                     payload=containertools.Container(
                         music=({d'8, e'8, f'4},)
                         ),
@@ -512,7 +512,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
 
         Operate in place and return newly constructed region command inventory.
         '''
-        return StartPositionedProduct.partition_by_ratio_of_durations(self, ratio)
+        return VoicedStartPositionedProduct.partition_by_ratio_of_durations(self, ratio)
 
     def reflect(self):
         '''Reflect rhythm about axis:
@@ -520,7 +520,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -529,7 +529,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> z(product)
-            settingtools.StartPositionedRhythmProduct(
+            settingtools.VoicedStartPositionedRhythmProduct(
                 payload=containertools.Container(
                     music=({f'8, e'8, d'8, c'8},)
                     ),
@@ -553,7 +553,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -562,7 +562,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> z(product)
-            settingtools.StartPositionedRhythmProduct(
+            settingtools.VoicedStartPositionedRhythmProduct(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'16},)
                     ),
@@ -575,7 +575,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -584,7 +584,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> z(product)
-            settingtools.StartPositionedRhythmProduct(
+            settingtools.VoicedStartPositionedRhythmProduct(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'8, f'8}, {c'8, d'8, e'16})
                     ),
@@ -615,7 +615,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -624,7 +624,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> z(product)
-            settingtools.StartPositionedRhythmProduct(
+            settingtools.VoicedStartPositionedRhythmProduct(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'8},)
                     ),
@@ -637,7 +637,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -646,7 +646,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> z(product)
-            settingtools.StartPositionedRhythmProduct(
+            settingtools.VoicedStartPositionedRhythmProduct(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'8, f'8}, {c'8, d'8, e'8})
                     ),
@@ -667,7 +667,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -676,7 +676,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> z(product)
-            settingtools.StartPositionedRhythmProduct(
+            settingtools.VoicedStartPositionedRhythmProduct(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'8, f'8}, {c'8, d'8, e'8, f'8}, {c'16})
                     ),
@@ -714,7 +714,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -723,7 +723,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> z(product)
-            settingtools.StartPositionedRhythmProduct(
+            settingtools.VoicedStartPositionedRhythmProduct(
                 payload=containertools.Container(
                     music=({d'8, e'8, f'8}, {c'8})
                     ),
@@ -736,7 +736,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -745,7 +745,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> z(product)
-            settingtools.StartPositionedRhythmProduct(
+            settingtools.VoicedStartPositionedRhythmProduct(
                 payload=containertools.Container(
                     music=({d'16, e'8, f'8}, {c'8, d'16})
                     ),
@@ -836,7 +836,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = settingtools.StartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
+            >>> product = settingtools.VoicedStartPositionedRhythmProduct(payload, 'Voice 1', Offset(0))
 
         ::
 
@@ -845,7 +845,7 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
         ::
 
             >>> z(product)
-            settingtools.StartPositionedRhythmProduct(
+            settingtools.VoicedStartPositionedRhythmProduct(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'8, f'8},)
                     ),
@@ -855,4 +855,4 @@ class StartPositionedRhythmProduct(StartPositionedProduct):
 
         Operate in place and return rhythm region product.
         '''
-        return StartPositionedProduct.translate(self, translation)
+        return VoicedStartPositionedProduct.translate(self, translation)

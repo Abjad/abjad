@@ -10,7 +10,7 @@ from abjad.tools import wellformednesstools
 from experimental.tools.settingtools.StartPositionedObject import StartPositionedObject
 
 
-class StartPositionedProduct(StartPositionedObject):
+class VoicedStartPositionedProduct(StartPositionedObject):
     r'''Start-positioned product.
     ''' 
 

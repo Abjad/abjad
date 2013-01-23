@@ -376,13 +376,13 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
       tools/settingtools/StartPositionedAbsoluteExpression/StartPositionedAbsoluteExpression
-      tools/settingtools/StartPositionedDivisionProduct/StartPositionedDivisionProduct
-      tools/settingtools/StartPositionedProduct/StartPositionedProduct
-      tools/settingtools/StartPositionedRhythmProduct/StartPositionedRhythmProduct
       tools/settingtools/StatalServer/StatalServer
       tools/settingtools/StatalServerExpression/StatalServerExpression
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
       tools/settingtools/TimespanExpression/TimespanExpression
+      tools/settingtools/VoicedStartPositionedDivisionProduct/VoicedStartPositionedDivisionProduct
+      tools/settingtools/VoicedStartPositionedProduct/VoicedStartPositionedProduct
+      tools/settingtools/VoicedStartPositionedRhythmProduct/VoicedStartPositionedRhythmProduct
 
 .. only:: latex
 
@@ -444,13 +444,13 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
       tools/settingtools/StartPositionedAbsoluteExpression/StartPositionedAbsoluteExpression
-      tools/settingtools/StartPositionedDivisionProduct/StartPositionedDivisionProduct
-      tools/settingtools/StartPositionedProduct/StartPositionedProduct
-      tools/settingtools/StartPositionedRhythmProduct/StartPositionedRhythmProduct
       tools/settingtools/StatalServer/StatalServer
       tools/settingtools/StatalServerExpression/StatalServerExpression
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
       tools/settingtools/TimespanExpression/TimespanExpression
+      tools/settingtools/VoicedStartPositionedDivisionProduct/VoicedStartPositionedDivisionProduct
+      tools/settingtools/VoicedStartPositionedProduct/VoicedStartPositionedProduct
+      tools/settingtools/VoicedStartPositionedRhythmProduct/VoicedStartPositionedRhythmProduct
 
 :py:mod:`specificationtools <experimental.tools.specificationtools>`
 ====================================================================

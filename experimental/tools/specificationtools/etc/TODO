@@ -114,7 +114,7 @@
     ... so that composers only ever interact with interfaces.
 
 23. Clarify return types of all _evaluate() methods.
-    Some _evaluate() methods returns StartPositionedProduct objects.
+    Some _evaluate() methods returns VoicedStartPositionedProduct objects.
     Some _evaluate() methods return lists or tuples.
     Perhaps these are the only two acceptable evaluation return types.
 
@@ -130,11 +130,11 @@
     Perhaps an _execute() method? Or perhaps a different pattern altogether?
 
 25. Probably possible to eliminate ...
-        StartPositionedDivisionProduct
-        StartPositionedProduct
-        StartPositionedRhythmProduct
+        VoicedStartPositionedDivisionProduct
+        VoicedStartPositionedProduct
+        VoicedStartPositionedRhythmProduct
     ... in favor of StartPositionedPayloadExpression.
-    Make StartPositionedProduct inherit from PayloadExpression (in addition to StartPositionedObject).
-    Change StartPositionedProduct to StartPositionedPayloadExpression.
+    Make VoicedStartPositionedProduct inherit from PayloadExpression (in addition to StartPositionedObject).
+    Change VoicedStartPositionedProduct to StartPositionedPayloadExpression.
     Implement VoicedStartPositionedPayloadExpression.
     Have VoicedStartPositionePayloadExpression extend StartPositionedPayloadExpression with only voice_name.
