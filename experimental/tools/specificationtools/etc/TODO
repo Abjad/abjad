@@ -121,7 +121,7 @@
 24. Assert that callbacks apply only expressions.
     Right now they appear to apply to expressions and to start-positioned products.
     Stop callbacks from applying to start-positioned products.
-    Make callbacks apply to StartPositionedAbsoluteExpression instead.
+    Make callbacks apply to StartPositionedPayloadExpression instead.
     Implement StartPositionedRhythmExpression.
     Allow callbacks to apply to StartPositionedRhythmExpression.
 

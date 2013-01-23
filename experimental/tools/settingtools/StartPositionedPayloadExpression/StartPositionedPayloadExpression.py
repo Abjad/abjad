@@ -5,10 +5,10 @@ from experimental.tools.settingtools.PayloadExpression import PayloadExpression
 from experimental.tools.settingtools.StartPositionedObject import StartPositionedObject
 
 
-class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject):
+class StartPositionedPayloadExpression(PayloadExpression, StartPositionedObject):
     '''Start-positioned absolute expression.
 
-        >>> expression = settingtools.StartPositionedAbsoluteExpression(
+        >>> expression = settingtools.StartPositionedPayloadExpression(
         ...     [(4, 16), (2, 16)], start_offset=Offset(40, 8))
 
     ::
@@ -18,7 +18,7 @@ class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject
     ::
 
         >>> z(expression)
-        settingtools.StartPositionedAbsoluteExpression(
+        settingtools.StartPositionedPayloadExpression(
             payload=((4, 16), (2, 16), (4, 16), (2, 16), (4, 16), (2, 16)),
             start_offset=durationtools.Offset(5, 1)
             )
@@ -65,7 +65,7 @@ class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject
         ::
 
             >>> payload = [(6, 8), (6, 8), (6, 8), (6, 8), (6, 4), (6, 4)]
-            >>> expression = settingtools.StartPositionedAbsoluteExpression(payload, Offset(2))
+            >>> expression = settingtools.StartPositionedPayloadExpression(payload, Offset(2))
 
         ::
 
@@ -75,11 +75,11 @@ class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject
     
             >>> for x in result:
             ...     z(x)
-            settingtools.StartPositionedAbsoluteExpression(
+            settingtools.StartPositionedPayloadExpression(
                 payload=((6, 8), (6, 8), (6, 8)),
                 start_offset=durationtools.Offset(0, 1)
                 )
-            settingtools.StartPositionedAbsoluteExpression(
+            settingtools.StartPositionedPayloadExpression(
                 payload=((6, 8), (6, 4), (6, 4)),
                 start_offset=durationtools.Offset(9, 4)
                 )
@@ -103,7 +103,7 @@ class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject
         ::
 
             >>> payload = [(6, 8), (6, 8), (6, 8), (6, 8), (6, 4), (6, 4)]
-            >>> expression = settingtools.StartPositionedAbsoluteExpression(payload, Offset(2))
+            >>> expression = settingtools.StartPositionedPayloadExpression(payload, Offset(2))
 
         ::
 
@@ -113,11 +113,11 @@ class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject
     
             >>> for x in result:
             ...     z(x)
-            settingtools.StartPositionedAbsoluteExpression(
+            settingtools.StartPositionedPayloadExpression(
                 payload=((6, 8), (6, 8), (6, 8), (6, 8)),
                 start_offset=durationtools.Offset(0, 1)
                 )
-            settingtools.StartPositionedAbsoluteExpression(
+            settingtools.StartPositionedPayloadExpression(
                 payload=((6, 4), (6, 4)),
                 start_offset=durationtools.Offset(3, 1)
                 )
@@ -144,7 +144,7 @@ class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> expression = settingtools.StartPositionedAbsoluteExpression(payload, Offset(2))
+            >>> expression = settingtools.StartPositionedPayloadExpression(payload, Offset(2))
 
         ::
 
@@ -153,7 +153,7 @@ class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject
         ::
 
             >>> z(result)
-            settingtools.StartPositionedAbsoluteExpression(
+            settingtools.StartPositionedPayloadExpression(
                 payload=((3, 4), (6, 8), (6, 8)),
                 start_offset=durationtools.Offset(2, 1)
                 )
@@ -169,7 +169,7 @@ class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject
         '''Repeat payload to `duration`:
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> expression = settingtools.StartPositionedAbsoluteExpression(payload, Offset(2))
+            >>> expression = settingtools.StartPositionedPayloadExpression(payload, Offset(2))
 
         ::
 
@@ -178,7 +178,7 @@ class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject
         ::
     
             >>> z(result)
-            settingtools.StartPositionedAbsoluteExpression(
+            settingtools.StartPositionedPayloadExpression(
                 payload=(NonreducedFraction(6, 8), NonreducedFraction(6, 8), 
                     NonreducedFraction(3, 4), NonreducedFraction(6, 8), 
                     NonreducedFraction(6, 8), NonreducedFraction(4, 8)),
@@ -196,7 +196,7 @@ class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject
         '''Repeat payload to `length`:
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> expression = settingtools.StartPositionedAbsoluteExpression(payload, Offset(2))
+            >>> expression = settingtools.StartPositionedPayloadExpression(payload, Offset(2))
 
         ::
 
@@ -205,7 +205,7 @@ class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject
         ::
     
             >>> z(result)
-            settingtools.StartPositionedAbsoluteExpression(
+            settingtools.StartPositionedPayloadExpression(
                 payload=((6, 8), (6, 8), (3, 4), (6, 8), (6, 8)),
                 start_offset=durationtools.Offset(2, 1)
                 )
@@ -222,7 +222,7 @@ class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> expression = settingtools.StartPositionedAbsoluteExpression(payload, Offset(2))
+            >>> expression = settingtools.StartPositionedPayloadExpression(payload, Offset(2))
 
         ::
 
@@ -239,7 +239,7 @@ class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject
         '''Translate division region product by `translation`:
         
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> expression = settingtools.StartPositionedAbsoluteExpression(payload, Offset(2))
+            >>> expression = settingtools.StartPositionedPayloadExpression(payload, Offset(2))
 
         ::
 
@@ -247,7 +247,7 @@ class StartPositionedAbsoluteExpression(PayloadExpression, StartPositionedObject
 
         ::
             >>> z(result)
-            settingtools.StartPositionedAbsoluteExpression(
+            settingtools.StartPositionedPayloadExpression(
                 payload=((6, 8), (6, 8), (3, 4)),
                 start_offset=durationtools.Offset(1, 1)
                 )
