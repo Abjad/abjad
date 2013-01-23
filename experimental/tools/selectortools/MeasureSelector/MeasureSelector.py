@@ -69,10 +69,10 @@ class MeasureSelector(Selector):
         time_signatures = start_segment_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
         start_offset = start_segment_specification.timespan.start_offset
-        result = settingtools.VoicedStartPositionedDivisionProduct(
+        result = settingtools.VoicedStartPositionedPayloadExpression(
             time_signatures, voice_name=self.voice_name, start_offset=start_offset)
         result = self._apply_callbacks(result)
-        assert isinstance(result, settingtools.VoicedStartPositionedDivisionProduct), repr(result)
+        assert isinstance(result, settingtools.VoicedStartPositionedPayloadExpression), repr(result)
         return result
 
     # special definition because time signatures can be evaluated without knowing the timespan they occupy

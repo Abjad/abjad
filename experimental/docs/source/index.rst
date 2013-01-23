@@ -380,9 +380,9 @@ Unstable packages (load manually)
       tools/settingtools/StatalServerExpression/StatalServerExpression
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
       tools/settingtools/TimespanExpression/TimespanExpression
-      tools/settingtools/VoicedStartPositionedDivisionProduct/VoicedStartPositionedDivisionProduct
+      tools/settingtools/VoicedStartPositionedPayloadExpression/VoicedStartPositionedPayloadExpression
       tools/settingtools/VoicedStartPositionedProduct/VoicedStartPositionedProduct
-      tools/settingtools/VoicedStartPositionedRhythmProduct/VoicedStartPositionedRhythmProduct
+      tools/settingtools/VoicedStartPositionedRhythmPayloadExpression/VoicedStartPositionedRhythmPayloadExpression
 
 .. only:: latex
 
@@ -448,9 +448,9 @@ Unstable packages (load manually)
       tools/settingtools/StatalServerExpression/StatalServerExpression
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
       tools/settingtools/TimespanExpression/TimespanExpression
-      tools/settingtools/VoicedStartPositionedDivisionProduct/VoicedStartPositionedDivisionProduct
+      tools/settingtools/VoicedStartPositionedPayloadExpression/VoicedStartPositionedPayloadExpression
       tools/settingtools/VoicedStartPositionedProduct/VoicedStartPositionedProduct
-      tools/settingtools/VoicedStartPositionedRhythmProduct/VoicedStartPositionedRhythmProduct
+      tools/settingtools/VoicedStartPositionedRhythmPayloadExpression/VoicedStartPositionedRhythmPayloadExpression
 
 :py:mod:`specificationtools <experimental.tools.specificationtools>`
 ====================================================================

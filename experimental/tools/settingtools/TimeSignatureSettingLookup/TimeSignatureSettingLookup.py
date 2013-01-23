@@ -19,7 +19,7 @@ class TimeSignatureSettingLookup(SettingLookup):
         time_signatures = segment_specification.time_signatures[:]
         # TODO: maybe use PayloadExpression here instead to avoid dummy start positioning?
         # TODO: use start_offset of segment_specification?
-        result = settingtools.VoicedStartPositionedDivisionProduct(
+        result = settingtools.VoicedStartPositionedPayloadExpression(
             time_signatures, voice_name='dummy voice name', start_offset=0)
         result = self._apply_callbacks(result)
         # TODO: eventually return TimeSignatureRegionProduct instead of tuple of time signatures

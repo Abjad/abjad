@@ -32,7 +32,7 @@ class SelectorRhythmRegionCommand(FinalizedRhythmRegionCommand):
         assert isinstance(result, timespantools.TimespanInventory), repr(result)
         assert len(result) == 1
         result = result[0]
-        assert isinstance(result, settingtools.VoicedStartPositionedRhythmProduct), repr(result)
+        assert isinstance(result, settingtools.VoicedStartPositionedRhythmPayloadExpression), repr(result)
         result.repeat_to_stop_offset(stop_offset)
         return result
 

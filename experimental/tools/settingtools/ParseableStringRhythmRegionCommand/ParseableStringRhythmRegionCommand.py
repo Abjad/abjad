@@ -20,7 +20,7 @@ class ParseableStringRhythmRegionCommand(FinalizedRhythmRegionCommand):
     def _evaluate(self, score_specification=None):
         from experimental.tools import settingtools
         component = iotools.p(self.parseable_string)
-        rhythm_product = settingtools.VoicedStartPositionedRhythmProduct(
+        rhythm_product = settingtools.VoicedStartPositionedRhythmPayloadExpression(
             payload=[component], voice_name=self.voice_name, start_offset=self.start_offset)
         # TODO: maybe create timespan here instead of just offset
         stop_offset = self.start_offset + self.total_duration

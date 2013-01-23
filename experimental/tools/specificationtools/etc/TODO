@@ -130,9 +130,9 @@
     Perhaps an _execute() method? Or perhaps a different pattern altogether?
 
 25. Probably possible to eliminate ...
-        VoicedStartPositionedDivisionProduct
+        VoicedStartPositionedPayloadExpression
         VoicedStartPositionedProduct
-        VoicedStartPositionedRhythmProduct
+        VoicedStartPositionedRhythmPayloadExpression
     ... in favor of StartPositionedPayloadExpression.
     Make VoicedStartPositionedProduct inherit from StartPositionedPayloadExpression.
 
