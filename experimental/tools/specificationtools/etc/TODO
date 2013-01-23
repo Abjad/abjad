@@ -118,7 +118,6 @@
     Some _evaluate() methods return lists or tuples.
     Perhaps these are the only two acceptable evaluation return types.
 
-24. Finish locking down selector evaluation.
-    Use the right payload expression classes at the right moments in all selector _evaluate() methods.
-
-25. Rename ExpressionAnchoredObject to AnchoredObject.
+24. Finish locking down select expression evaluation.
+    Use the right payload expression classes at the right moments 
+    in all select expression _evaluate() methods.

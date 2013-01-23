@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression.attribute
    :noindex:
@@ -28,22 +28,22 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression.score_specification
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression.stop_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression.storage_format
    :noindex:
@@ -59,7 +59,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression.get_anchor_timespan
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. automethod:: experimental.tools.settingtools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression.new
    :noindex:

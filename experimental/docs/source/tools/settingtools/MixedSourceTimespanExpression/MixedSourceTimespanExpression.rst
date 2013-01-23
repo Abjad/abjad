@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.callbacks
    :noindex:
@@ -22,7 +22,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.score_specification
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.start_offset
    :noindex:
@@ -30,7 +30,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.stop_offset
    :noindex:
@@ -51,7 +51,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.get_anchor_timespan
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. automethod:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.new
    :noindex:

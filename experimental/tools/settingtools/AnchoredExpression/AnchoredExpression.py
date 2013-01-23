@@ -1,8 +1,8 @@
-from experimental.tools.settingtools.ExpressionAnchoredObject import ExpressionAnchoredObject
+from experimental.tools.settingtools.AnchoredObject import AnchoredObject
 from experimental.tools.settingtools.Expression import Expression
 
 
-class AnchoredExpression(Expression, ExpressionAnchoredObject):
+class AnchoredExpression(Expression, AnchoredObject):
     '''Anchored expression.
     '''
 
@@ -10,4 +10,4 @@ class AnchoredExpression(Expression, ExpressionAnchoredObject):
 
     def __init__(self, anchor=None):
         Expression.__init__(self)
-        ExpressionAnchoredObject.__init__(self, anchor=anchor)
+        AnchoredObject.__init__(self, anchor=anchor)

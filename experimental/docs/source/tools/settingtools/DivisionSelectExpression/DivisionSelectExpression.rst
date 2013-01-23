@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.callbacks
    :noindex:
@@ -22,22 +22,22 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.score_specification
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.stop_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.storage_format
    :noindex:
@@ -65,7 +65,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.get_anchor_timespan
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. automethod:: experimental.tools.settingtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.new
    :noindex:

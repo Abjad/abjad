@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.SelectExpression.SelectExpression.SelectExpression.anchor
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SelectExpression.SelectExpression.SelectExpression.callbacks
    :noindex:
@@ -22,22 +22,22 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.SelectExpression.SelectExpression.SelectExpression.score_specification
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SelectExpression.SelectExpression.SelectExpression.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SelectExpression.SelectExpression.SelectExpression.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SelectExpression.SelectExpression.SelectExpression.stop_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SelectExpression.SelectExpression.SelectExpression.storage_format
    :noindex:
@@ -59,7 +59,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.SelectExpression.SelectExpression.SelectExpression.get_anchor_timespan
    :noindex:
 
-   Inherited from :py:class:`settingtools.ExpressionAnchoredObject <experimental.tools.settingtools.ExpressionAnchoredObject.ExpressionAnchoredObject.ExpressionAnchoredObject>`
+   Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
 .. automethod:: experimental.tools.settingtools.SelectExpression.SelectExpression.SelectExpression.new
    :noindex:

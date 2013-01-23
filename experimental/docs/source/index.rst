@@ -281,9 +281,9 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/settingtools/AnchoredExpression/AnchoredExpression
+      tools/settingtools/AnchoredObject/AnchoredObject
       tools/settingtools/CallbackMixin/CallbackMixin
       tools/settingtools/Expression/Expression
-      tools/settingtools/ExpressionAnchoredObject/ExpressionAnchoredObject
       tools/settingtools/FinalizedRhythmRegionExpression/FinalizedRhythmRegionExpression
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
@@ -355,9 +355,9 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/settingtools/AnchoredExpression/AnchoredExpression
+      tools/settingtools/AnchoredObject/AnchoredObject
       tools/settingtools/CallbackMixin/CallbackMixin
       tools/settingtools/Expression/Expression
-      tools/settingtools/ExpressionAnchoredObject/ExpressionAnchoredObject
       tools/settingtools/FinalizedRhythmRegionExpression/FinalizedRhythmRegionExpression
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin

@@ -4,7 +4,7 @@ from abjad.tools import timespantools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class ExpressionAnchoredObject(AbjadObject):
+class AnchoredObject(AbjadObject):
     '''Anchored object.
     '''
 
