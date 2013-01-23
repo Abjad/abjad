@@ -54,6 +54,7 @@ class SetMethodMixin(AbjadObject):
             persist=persist,
             truncate=truncate
             )
+        multiple_context_setting._score_specification = self.score_specification
         self.score_specification.multiple_context_settings.append(multiple_context_setting)
         return multiple_context_setting
 

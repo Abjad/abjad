@@ -21,6 +21,15 @@ class ExpressionAnchoredObject(AbjadObject):
         self._anchor = anchor
         self._score_specification = None
 
+    ### SPECIAL METHODS ###
+
+    def __deepcopy__(self, memo):
+        '''Remove score specification and then reattach score specification.
+        '''
+        result = type(self)(*self._input_argument_values)
+        result._score_specification = self.score_specification
+        return result
+
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property

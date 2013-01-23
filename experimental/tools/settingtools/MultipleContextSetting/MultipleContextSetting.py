@@ -78,6 +78,7 @@ class MultipleContextSetting(Setting):
                 anchor,
                 context_name=None,
                 persist=self.persist)
+            single_context_setting._score_specification = self.score_specification
             single_context_settings.append(single_context_setting)
         else:
             for context_name in self.context_names:
@@ -87,6 +88,7 @@ class MultipleContextSetting(Setting):
                     anchor,
                     context_name=context_name,
                     persist=self.persist)
+                single_context_setting._score_specification = self.score_specification
                 single_context_settings.append(single_context_setting)
         if self.attribute == 'divisions':
             for single_context_setting in single_context_settings:
