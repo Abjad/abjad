@@ -339,8 +339,6 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
       tools/settingtools/StartPositionedObject/StartPositionedObject
-      tools/settingtools/StartPositionedProduct/StartPositionedProduct
-      tools/settingtools/StartPositionedSegmentProduct/StartPositionedSegmentProduct
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
 
    --------
@@ -381,7 +379,9 @@ Unstable packages (load manually)
       tools/settingtools/StartPositionedBeatProduct/StartPositionedBeatProduct
       tools/settingtools/StartPositionedDivisionProduct/StartPositionedDivisionProduct
       tools/settingtools/StartPositionedMeasureProduct/StartPositionedMeasureProduct
+      tools/settingtools/StartPositionedProduct/StartPositionedProduct
       tools/settingtools/StartPositionedRhythmProduct/StartPositionedRhythmProduct
+      tools/settingtools/StartPositionedSegmentProduct/StartPositionedSegmentProduct
       tools/settingtools/StatalServer/StatalServer
       tools/settingtools/StatalServerExpression/StatalServerExpression
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup
@@ -410,8 +410,6 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
       tools/settingtools/StartPositionedObject/StartPositionedObject
-      tools/settingtools/StartPositionedProduct/StartPositionedProduct
-      tools/settingtools/StartPositionedSegmentProduct/StartPositionedSegmentProduct
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
 
    Concrete Classes
@@ -452,7 +450,9 @@ Unstable packages (load manually)
       tools/settingtools/StartPositionedBeatProduct/StartPositionedBeatProduct
       tools/settingtools/StartPositionedDivisionProduct/StartPositionedDivisionProduct
       tools/settingtools/StartPositionedMeasureProduct/StartPositionedMeasureProduct
+      tools/settingtools/StartPositionedProduct/StartPositionedProduct
       tools/settingtools/StartPositionedRhythmProduct/StartPositionedRhythmProduct
+      tools/settingtools/StartPositionedSegmentProduct/StartPositionedSegmentProduct
       tools/settingtools/StatalServer/StatalServer
       tools/settingtools/StatalServerExpression/StatalServerExpression
       tools/settingtools/TimeSignatureSettingLookup/TimeSignatureSettingLookup

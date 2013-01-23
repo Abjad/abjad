@@ -1,4 +1,3 @@
-import abc
 import copy
 import numbers
 from abjad.tools import componenttools
@@ -12,18 +11,11 @@ from experimental.tools.settingtools.StartPositionedObject import StartPositione
 
 
 class StartPositionedProduct(StartPositionedObject):
-    r'''Region product.
-
-    Start-positioned product.
+    r'''Start-positioned product.
     ''' 
-
-    ### CLASS ATTRIBUTES ###
-
-    __metaclass__ = abc.ABCMeta
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
     def __init__(self, payload=None, voice_name=None, start_offset=None):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         StartPositionedObject.__init__(self, start_offset=start_offset)
@@ -160,9 +152,9 @@ class StartPositionedProduct(StartPositionedObject):
         else:
             return self._get_duration_of_list(self.payload)
 
-    @abc.abstractproperty
+    @property
     def _payload_elements(self):
-        pass
+        return self.payload
 
     @property
     def _stop_offset(self):
@@ -192,9 +184,9 @@ class StartPositionedProduct(StartPositionedObject):
             duration += self._get_duration_of_expr(element)
         return duration
 
-    @abc.abstractmethod
-    def _split_payload_at_offsets(self, offsets):
-        pass
+#    @abc.abstractmethod
+#    def _split_payload_at_offsets(self, offsets):
+#        pass
         
     ### READ-ONLY PUBLIC PROPERTIES ###
 

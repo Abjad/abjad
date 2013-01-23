@@ -42,8 +42,11 @@ class DivisionRegionCommand(RegionCommand):
             payload = self.expression._evaluate(score_specification)
         if payload is None:
             return
+        # TODO: eventually remove this branch in favor of the next branch
         elif isinstance(payload, settingtools.StartPositionedDivisionProduct):
             divisions = payload.payload.divisions[:]
+        elif isinstance(payload, settingtools.StartPositionedProduct):
+            divisions = payload._payload_elements[:]
         elif isinstance(payload, list) and len(payload) == 1 and isinstance(payload[0], tuple):
             divisions = payload[0][:]
         else:
