@@ -1,3 +1,4 @@
+from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
@@ -29,7 +30,9 @@ class PayloadExpression(Expression):
     ### INTIAILIZER ###
 
     def __init__(self, payload):
-        assert isinstance(payload, (str, tuple, list)), repr(payload)
+        from experimental.tools import settingtools
+        assert isinstance(payload, (str, tuple, list, 
+            settingtools.DivisionList, containertools.Container)), repr(payload)
         Expression.__init__(self)
         if isinstance(payload, list):
             payload = tuple(payload)

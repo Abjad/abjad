@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedObject <experimental.tools.settingtools.StartPositionedObject.StartPositionedObject.StartPositionedObject>`
+   Inherited from :py:class:`settingtools.StartPositionedPayloadExpression <experimental.tools.settingtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression>`
 
 .. autoattribute:: experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct.stop_offset
    :noindex:
@@ -23,7 +23,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct.storage_format
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. autoattribute:: experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct.timespan
    :noindex:
@@ -46,6 +46,16 @@ Methods
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct.reflect
    :noindex:
 
+.. automethod:: experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct.repeat_to_duration
+   :noindex:
+
+   Inherited from :py:class:`settingtools.StartPositionedPayloadExpression <experimental.tools.settingtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression>`
+
+.. automethod:: experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct.repeat_to_length
+   :noindex:
+
+   Inherited from :py:class:`settingtools.StartPositionedPayloadExpression <experimental.tools.settingtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression>`
+
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct.rotate
    :noindex:
 
@@ -61,12 +71,17 @@ Special Methods
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct.__eq__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct.__ge__
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct.__getitem__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedProduct.VoicedStartPositionedProduct.VoicedStartPositionedProduct.__gt__
    :noindex:

@@ -134,7 +134,7 @@
         VoicedStartPositionedProduct
         VoicedStartPositionedRhythmProduct
     ... in favor of StartPositionedPayloadExpression.
-    Make VoicedStartPositionedProduct inherit from PayloadExpression (in addition to StartPositionedObject).
-    Change VoicedStartPositionedProduct to StartPositionedPayloadExpression.
-    Implement VoicedStartPositionedPayloadExpression.
-    Have VoicedStartPositionePayloadExpression extend StartPositionedPayloadExpression with only voice_name.
+    Make VoicedStartPositionedProduct inherit from StartPositionedPayloadExpression.
+
+26. May be possible to eliminate StartPositionedObject altogether.
+    Just implement as an initialized attribute on StartPositionedPayloadExpression.
