@@ -1,3 +1,4 @@
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from experimental.tools.settingtools.AbsoluteExpression import AbsoluteExpression
@@ -32,6 +33,15 @@ class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObjec
         AbsoluteExpression.__init__(self, payload=payload)
         StartPositionedObject.__init__(self, start_offset=start_offset)
 
+    ### PRIVATE METHODS ###
+
+    def _change_payload_to_numbers(self):
+        if not sequencetools.all_are_numbers(self.payload):
+            payload = [mathtools.NonreducedFraction(x) for x in self.payload]
+        else:
+            payload = self.payload
+        return payload
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -59,12 +69,33 @@ class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObjec
 
         ::
 
-            >>> result = expression.partition_by_ratio((1, 1)) # doctest: +SKIP
+            >>> result = expression.partition_by_ratio((1, 1))
 
+        ::
+    
+            >>> for x in result:
+            ...     z(x)
+            settingtools.StartPositionedAbsoluteExpression(
+                payload=((6, 8), (6, 8), (6, 8)),
+                start_offset=durationtools.Offset(0, 1)
+                )
+            settingtools.StartPositionedAbsoluteExpression(
+                payload=((6, 8), (6, 4), (6, 4)),
+                start_offset=durationtools.Offset(9, 4)
+                )
 
         Return newly constructed start-positioned absolute expression.
         '''
-        raise NotImplementedError
+        parts = sequencetools.partition_sequence_by_ratio_of_lengths(self.payload, ratio)
+        number_payload = self._change_payload_to_numbers()
+        number_parts = sequencetools.partition_sequence_by_ratio_of_lengths(number_payload, ratio)
+        durations = [sum(number_part) for number_part in number_parts]
+        start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
+        result = []
+        for part, start_offset in zip(parts, start_offsets):
+            expression = type(self)(payload=part, start_offset=start_offset)
+            result.append(expression)
+        return result
 
     def partition_by_ratio_of_durations(self, ratio):
         '''Partition payload by `ratio` of durations:
@@ -76,12 +107,36 @@ class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObjec
 
         ::
 
-            >>> result = expression.partition_by_ratio_of_durations((1, 1)) # doctest: +SKIP
+            >>> result = expression.partition_by_ratio_of_durations((1, 1))
 
+        ::
+    
+            >>> for x in result:
+            ...     z(x)
+            settingtools.StartPositionedAbsoluteExpression(
+                payload=((6, 8), (6, 8), (6, 8), (6, 8)),
+                start_offset=durationtools.Offset(0, 1)
+                )
+            settingtools.StartPositionedAbsoluteExpression(
+                payload=((6, 4), (6, 4)),
+                start_offset=durationtools.Offset(3, 1)
+                )
 
         Return newly constructed start-positioned absolute expression.
         '''
-        raise NotImplementedError
+        payload = self._change_payload_to_numbers()
+        integers = durationtools.durations_to_integers(payload)
+        parts = sequencetools.partition_sequence_by_ratio_of_weights(integers, ratio)
+        part_lengths = [len(part) for part in parts]
+        number_parts = sequencetools.partition_sequence_by_counts(payload, part_lengths)
+        parts = sequencetools.partition_sequence_by_counts(self.payload, part_lengths)
+        durations = [sum(number_part) for number_part in number_parts]
+        start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
+        result = []
+        for part, start_offset in zip(parts, start_offsets):
+            expression = type(self)(payload=part, start_offset=start_offset)
+            result.append(expression)
+        return result
 
     def reflect(self):
         '''Reflect payload about axis:
@@ -132,10 +187,7 @@ class StartPositionedAbsoluteExpression(AbsoluteExpression, StartPositionedObjec
         
         Return newly constructed start-positioned absolute expression.
         '''
-        if not sequencetools.all_are_numbers(self.payload):
-            payload = [mathtools.NonreducedFraction(x) for x in self.payload]
-        else:
-            paylad = self.payload
+        payload = self._change_payload_to_numbers()
         payload = sequencetools.repeat_sequence_to_weight_exactly(payload, duration)
         result = type(self)(payload=payload, start_offset=self.start_offset)
         return result

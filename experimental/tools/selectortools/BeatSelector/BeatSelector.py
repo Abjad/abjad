@@ -58,6 +58,9 @@ class BeatSelector(Selector):
         start_offset = durationtools.Offset(sum(shards[0]))
         result = settingtools.StartPositionedBeatProduct(
             result, voice_name=self.voice_name, start_offset=start_offset)
+        #result = settingtools.StartPositionedAbsoluteExpression(result, start_offset)
         result = self._apply_callbacks(result)
-        assert isinstance(result, settingtools.StartPositionedBeatProduct), repr(result)
+        #assert isinstance(result, settingtools.StartPositionedBeatProduct), repr(result)
+        #result = settingtools.StartPositionedBeatProduct(
+        #    result.payload, voice_name=self.voice_name, start_offset=result.start_offset)
         return result
