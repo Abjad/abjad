@@ -107,7 +107,7 @@ def test_single_segment_solo__overlapping_division_selectors_05():
 def test_single_segment_solo__overlapping_division_selectors_06():
     '''Second division sits in the middle of the first.
     Three division regions result.
-    Same as above but with a different selector.
+    Same as above but with a different select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -126,7 +126,7 @@ def test_single_segment_solo__overlapping_division_selectors_06():
 
 
 def test_single_segment_solo__overlapping_division_selectors_07():
-    '''Three division selectors sitting exactly on top of each other.
+    '''Three division select expressions sitting exactly on top of each other.
     Only the topmost (ie, lexically last) is expressed.
     '''
 
@@ -146,7 +146,7 @@ def test_single_segment_solo__overlapping_division_selectors_07():
 
 
 def test_single_segment_solo__overlapping_division_selectors_08():
-    '''Two fractional division selectors sitting exactly on top of each other.
+    '''Two fractional division select expressions sitting exactly on top of each other.
     Only the topmost is expressed.
     '''
 
@@ -167,7 +167,7 @@ def test_single_segment_solo__overlapping_division_selectors_08():
 
 
 def test_single_segment_solo__overlapping_division_selectors_09():
-    '''Two fractional division selectors partially overlapping.
+    '''Two fractional division select expressions partially overlapping.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

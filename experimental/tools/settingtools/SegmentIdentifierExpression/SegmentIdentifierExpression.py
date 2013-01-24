@@ -13,7 +13,7 @@ class SegmentIdentifierExpression(AbjadObject):
 
     Delays evaluation of string argument until later in interpretation.
 
-    Used primarily as arguments to slice selector start and stop keywords.
+    Used primarily as arguments to segment select expressions.
 
     All held expression properties are read-only.
     '''

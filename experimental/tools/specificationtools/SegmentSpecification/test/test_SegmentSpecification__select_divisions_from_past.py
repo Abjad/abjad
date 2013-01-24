@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__select_divisions_from_past_01():
-    '''From-past division selector.
+    '''From-past division select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -22,7 +22,7 @@ def test_SegmentSpecification__select_divisions_from_past_01():
 
 
 def test_SegmentSpecification__select_divisions_from_past_02():
-    '''From-past division selector with reverse callback.
+    '''From-past division select expression with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -43,7 +43,7 @@ def test_SegmentSpecification__select_divisions_from_past_02():
 
 
 def test_SegmentSpecification__select_divisions_from_past_03():
-    '''From-past division selector with set-time reverse.
+    '''From-past division select expression with set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -64,7 +64,7 @@ def test_SegmentSpecification__select_divisions_from_past_03():
 
 
 def test_SegmentSpecification__select_divisions_from_past_04():
-    '''From-past division selector with reverse callbacks.
+    '''From-past division select expression with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -86,7 +86,7 @@ def test_SegmentSpecification__select_divisions_from_past_04():
 
 
 def test_SegmentSpecification__select_divisions_from_past_05():
-    '''From-past division selector with region break preservation.
+    '''From-past division select expression with region break preservation.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

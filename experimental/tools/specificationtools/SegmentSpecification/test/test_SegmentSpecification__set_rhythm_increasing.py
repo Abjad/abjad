@@ -3,7 +3,7 @@ from experimental import *
 
 def test_SegmentSpecification__set_rhythm_increasing_01():
     '''Remake of schematic example X3.
-    Uses division selectors instead of rhythm selectors.
+    Uses division select expressions instead of rhythm select expressions.
     Necessitates setting decreasing=False on rhythm maker.
     '''
 

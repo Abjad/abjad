@@ -2,7 +2,7 @@ from experimental.tools.settingtools.MeasureSelectExpression import MeasureSelec
 
 
 class TimeSignatureSelectExpression(MeasureSelectExpression):
-    '''Time signature selector.
+    '''Time signature select expression.
     '''
 
     pass

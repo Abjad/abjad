@@ -10,8 +10,8 @@ class SelectExpressionRhythmRegionExpression(FinalizedRhythmRegionExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, selector=None, voice_name=None, start_offset=None, total_duration=None):
-        self._selector = selector
+    def __init__(self, select_expression=None, voice_name=None, start_offset=None, total_duration=None):
+        self._select_expression = select_expression
         self._voice_name = voice_name
         self._start_offset = start_offset
         self._total_duration = total_duration
@@ -20,7 +20,7 @@ class SelectExpressionRhythmRegionExpression(FinalizedRhythmRegionExpression):
 
     def _evaluate(self):
         from experimental.tools import settingtools
-        result = self.selector._evaluate()
+        result = self.select_expression._evaluate()
         if result is None:
             return
         result._start_offset = self.start_offset
@@ -39,8 +39,8 @@ class SelectExpressionRhythmRegionExpression(FinalizedRhythmRegionExpression):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def selector(self):
-        return self._selector
+    def select_expression(self):
+        return self._select_expression
 
     @property
     def start_offset(self):
@@ -58,6 +58,6 @@ class SelectExpressionRhythmRegionExpression(FinalizedRhythmRegionExpression):
 
     def prolongs_expr(self, expr):
         if isinstance(expr, type(self)):
-            if self.selector == expr.selector:
+            if self.select_expression == expr.select_expression:
                 return True
         return False

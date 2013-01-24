@@ -40,7 +40,7 @@ def test_single_segment_solo__incomplete_division_coverage_02():
 
 
 def test_single_segment_solo__incomplete_division_coverage_03():
-    '''Contexts and selector work together.
+    '''Contexts and select expression work together.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -59,7 +59,7 @@ def test_single_segment_solo__incomplete_division_coverage_03():
 
 
 def test_single_segment_solo__incomplete_division_coverage_04():
-    '''Contexts and selector work together.
+    '''Contexts and select expression work together.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -79,7 +79,7 @@ def test_single_segment_solo__incomplete_division_coverage_04():
 
 
 def test_single_segment_solo__incomplete_division_coverage_05():
-    '''One selector partially covers the other.
+    '''One select expression partially covers the other.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -99,7 +99,7 @@ def test_single_segment_solo__incomplete_division_coverage_05():
 
 
 def test_single_segment_solo__incomplete_division_coverage_06():
-    '''One selector partially covers the other. Works with contexts.
+    '''One select expression partially covers the other. Works with contexts.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -119,7 +119,7 @@ def test_single_segment_solo__incomplete_division_coverage_06():
 
 
 def test_single_segment_solo__incomplete_division_coverage_07():
-    '''One selector more important than the other.
+    '''One select expression more important than the other.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -139,15 +139,15 @@ def test_single_segment_solo__incomplete_division_coverage_07():
 
 
 def test_single_segment_solo__incomplete_division_coverage_08():
-    '''Division selector cuts fractional chunks out of time signatures.
+    '''Division select expression cuts fractional chunks out of time signatures.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(4, 8)])
-    selector = red_segment.timespan.set_offsets((10, 16), (13, 16))
-    selector.set_divisions([(2, 32)])
+    select_expression = red_segment.timespan.set_offsets((10, 16), (13, 16))
+    select_expression.set_divisions([(2, 32)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 

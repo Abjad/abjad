@@ -111,8 +111,3 @@
     Then audit all expression evaluation methods to make sure they return expressions.
 
 22. Audit all expression evaluation methods.
-
-23. Search globally for 'selector' and replace.
-
-24. Maybe FinalizedRhythmRegionExpression can be removed in favor of RhythmRegionExpression?
-    If FinalizedRhythmRegionExpression stays, then remove code duplicated in concrete subclasses.

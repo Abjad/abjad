@@ -40,7 +40,7 @@ def test_single_segment_solo__incomplete_rhythm_coverage_02():
 
 
 def test_single_segment_solo__incomplete_rhythm_coverage_03():
-    '''Contexts and selector work together.
+    '''Contexts and select expression work together.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -59,7 +59,7 @@ def test_single_segment_solo__incomplete_rhythm_coverage_03():
 
 
 def test_single_segment_solo__incomplete_rhythm_coverage_04():
-    '''Contexts and selector work together.
+    '''Contexts and select expression work together.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -79,7 +79,7 @@ def test_single_segment_solo__incomplete_rhythm_coverage_04():
 
 
 def test_single_segment_solo__incomplete_rhythm_coverage_05():
-    '''One selector partially covers the other.
+    '''One select expression partially covers the other.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -99,7 +99,7 @@ def test_single_segment_solo__incomplete_rhythm_coverage_05():
 
 
 def test_single_segment_solo__incomplete_rhythm_coverage_06():
-    '''One selector partially covers the other. Works with contexts.
+    '''One select expression partially covers the other. Works with contexts.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -119,7 +119,7 @@ def test_single_segment_solo__incomplete_rhythm_coverage_06():
 
 
 def test_single_segment_solo__incomplete_rhythm_coverage_07():
-    '''One selector more important than the other.
+    '''One select expression more important than the other.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

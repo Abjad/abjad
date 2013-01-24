@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__select_leaves_01():
-    '''Select leaves composited on leaf selector.
+    '''Select leaves composited on leaf select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -20,7 +20,7 @@ def test_SegmentSpecification__select_leaves_01():
 
 
 def test_SegmentSpecification__select_leaves_02():
-    '''Rotate leaf selector.
+    '''Rotate leaf select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

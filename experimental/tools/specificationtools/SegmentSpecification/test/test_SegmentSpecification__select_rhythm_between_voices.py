@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__select_rhythm_between_voices_01():
-    '''Rhythm selector between voices.
+    '''Rhythm select expression between voices.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -21,7 +21,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_01():
 
 
 def test_SegmentSpecification__select_rhythm_between_voices_02():
-    '''Rhythm selector between voices with reverse callback.
+    '''Rhythm select expression between voices with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -41,7 +41,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_02():
 
 
 def test_SegmentSpecification__select_rhythm_between_voices_03():
-    '''Rhythm selector between voices with set-time reverse.
+    '''Rhythm select expression between voices with set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -61,7 +61,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_03():
 
 
 def test_SegmentSpecification__select_rhythm_between_voices_04():
-    '''Rhythm selector between voices with reverse callbacks.
+    '''Rhythm select expression between voices with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -82,7 +82,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_04():
 
 
 def test_SegmentSpecification__select_rhythm_between_voices_05():
-    '''Rhythm selector between voices with multiple in-voice application.
+    '''Rhythm select expression between voices with multiple in-voice application.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

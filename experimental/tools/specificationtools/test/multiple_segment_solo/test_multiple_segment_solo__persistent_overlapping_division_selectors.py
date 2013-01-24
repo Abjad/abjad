@@ -3,7 +3,7 @@ import py
 
 
 def test_multiple_segment_solo__persistent_overlapping_division_selectors_01():
-    '''Persistent overlapping measure division selector.
+    '''Persistent overlapping measure division select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -24,7 +24,7 @@ def test_multiple_segment_solo__persistent_overlapping_division_selectors_01():
 
 
 def test_multiple_segment_solo__persistent_overlapping_division_selectors_02():
-    '''Persistent overlapping measures ratio part division selector.
+    '''Persistent overlapping measures ratio part division select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -46,7 +46,7 @@ def test_multiple_segment_solo__persistent_overlapping_division_selectors_02():
 
 
 def test_multiple_segment_solo__persistent_overlapping_division_selectors_03():
-    '''Persistent overlapping segment offsets division selector.
+    '''Persistent overlapping segment offsets division select expression.
     '''
     py.test.skip('FIXME')
 
@@ -68,7 +68,7 @@ def test_multiple_segment_solo__persistent_overlapping_division_selectors_03():
 
 
 def test_multiple_segment_solo__persistent_overlapping_division_selectors_04():
-    '''Persistent overlapping segment ratio part division selector.
+    '''Persistent overlapping segment ratio part division select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -89,7 +89,7 @@ def test_multiple_segment_solo__persistent_overlapping_division_selectors_04():
 
 
 def test_multiple_segment_solo__persistent_overlapping_division_selectors_05():
-    '''Persistent overlapping measure division selector can be overwritten.
+    '''Persistent overlapping measure division select expression can be overwritten.
     '''
     py.test.skip('working on this one now.')
     

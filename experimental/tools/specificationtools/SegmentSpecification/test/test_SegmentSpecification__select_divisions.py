@@ -24,7 +24,7 @@ def test_SegmentSpecification__select_divisions_01():
 
 
 def test_SegmentSpecification__select_divisions_02():
-    '''Overlapping division selectors work across segment boundary.
+    '''Overlapping division select expressions work across segment boundary.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

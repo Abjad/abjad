@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_single_segment_solo__nonoverlapping_division_selectors_01():
-    '''Nonoverlapping measure selectors.
+    '''Nonoverlapping measure select expressions.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

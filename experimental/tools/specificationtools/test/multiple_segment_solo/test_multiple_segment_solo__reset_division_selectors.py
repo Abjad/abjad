@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_multiple_segment_solo__reset_division_selectors_01():
-    '''Reset persistent selectors.
+    '''Reset persistent select expressions.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -24,7 +24,7 @@ def test_multiple_segment_solo__reset_division_selectors_01():
 
 
 def test_multiple_segment_solo__reset_division_selectors_02():
-    '''Reset nonpersistent selectors.
+    '''Reset nonpersistent select expressions.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
