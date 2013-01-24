@@ -81,18 +81,18 @@ class ConcreteInterpreter(Interpreter):
             for rhythm_product in voice_proxy.rhythm_products:
                 voice.extend(rhythm_product.payload)
 
-    def get_region_commands_for_voice(self, attribute, voice_name):
-        region_commands = self.score_specification.get_region_commands_for_voice(attribute, voice_name)
-        region_commands.sort_and_split_commands()
-        region_commands.compute_logical_or()
-        region_commands.supply_missing_commands(attribute, self.score_specification, voice_name)
-        return region_commands
+    def get_region_expressions_for_voice(self, attribute, voice_name):
+        region_expressions = self.score_specification.get_region_expressions_for_voice(attribute, voice_name)
+        region_expressions.sort_and_split_commands()
+        region_expressions.compute_logical_or()
+        region_expressions.supply_missing_commands(attribute, self.score_specification, voice_name)
+        return region_expressions
 
     def interpret_additional_parameters(self):
         pass
 
     def interpret_divisions(self):
-        self.make_region_commands('divisions')
+        self.make_region_expressions('divisions')
         self.make_division_products()
         self.make_voice_division_lists()
 
@@ -103,10 +103,10 @@ class ConcreteInterpreter(Interpreter):
         pass
 
     def interpret_rhythm(self):
-        self.make_region_commands('rhythm')
-        #self._debug_values(self.score_specification.rhythm_region_commands, 'rhythm region commands')
-        self.make_finalized_rhythm_region_commands()
-        #self._debug_values(self.score_specification.finalized_rhythm_region_commands, 'finalized rhythm commands')
+        self.make_region_expressions('rhythm')
+        #self._debug_values(self.score_specification.rhythm_region_expressions, 'rhythm region commands')
+        self.make_finalized_rhythm_region_expressions()
+        #self._debug_values(self.score_specification.finalized_rhythm_region_expressions, 'finalized rhythm commands')
         self.make_rhythm_products()
         self.dump_rhythm_products_into_voices()
 
@@ -123,104 +123,104 @@ class ConcreteInterpreter(Interpreter):
             made_progress = False
             for voice in iterationtools.iterate_voices_in_expr(self.score):
                 voice_proxy = self.score_specification.contexts[voice.name]
-                voice_division_region_commands = voice_proxy.division_region_commands
+                voice_division_region_expressions = voice_proxy.division_region_expressions
                 voice_division_products = voice_proxy.division_products 
-                voice_division_region_commands_to_reattempt = []
-                for division_region_command in voice_division_region_commands:
-                    division_product = division_region_command._evaluate()
+                voice_division_region_expressions_to_reattempt = []
+                for division_region_expression in voice_division_region_expressions:
+                    division_product = division_region_expression._evaluate()
                     if division_product is not None:
                         assert isinstance(division_product, settingtools.StartPositionedDivisionPayloadExpression)
                         made_progress = True
                         voice_division_products.append(division_product)
                     else:
-                        voice_division_region_commands_to_reattempt.append(division_region_command)
+                        voice_division_region_expressions_to_reattempt.append(division_region_expression)
                         redo = True
-                voice_division_region_commands[:] = voice_division_region_commands_to_reattempt[:]
+                voice_division_region_expressions[:] = voice_division_region_expressions_to_reattempt[:]
                 # sort may have to happen as each adds in, above
                 voice_division_products.sort()
-            if voice_division_region_commands and not made_progress:
+            if voice_division_region_expressions and not made_progress:
                 raise Exception('cyclic division specification.')
 
-    def make_finalized_rhythm_region_commands(self):
+    def make_finalized_rhythm_region_expressions(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            finalized_rhythm_region_commands = self.make_finalized_rhythm_region_commands_for_voice(voice.name)
-            self.score_specification.finalized_rhythm_region_commands.extend(finalized_rhythm_region_commands)
+            finalized_rhythm_region_expressions = self.make_finalized_rhythm_region_expressions_for_voice(voice.name)
+            self.score_specification.finalized_rhythm_region_expressions.extend(finalized_rhythm_region_expressions)
 
-    def make_finalized_rhythm_region_commands_for_voice(self, voice_name):
+    def make_finalized_rhythm_region_expressions_for_voice(self, voice_name):
         voice_proxy = self.score_specification.contexts[voice_name]
         voice_division_list = voice_proxy.voice_division_list
         division_products = voice_proxy.division_products
-        rhythm_region_commands = voice_proxy.rhythm_region_commands
+        rhythm_region_expressions = voice_proxy.rhythm_region_expressions
         if not voice_division_list:
             return []
         division_region_durations = [x.timespan.duration for x in division_products]
-        rhythm_region_command_durations = [x.timespan.duration for x in rhythm_region_commands]
-        assert sum(division_region_durations) == sum(rhythm_region_command_durations)
-        rhythm_region_command_merged_durations = sequencetools.merge_duration_sequences(
-            division_region_durations, rhythm_region_command_durations)
+        rhythm_region_expression_durations = [x.timespan.duration for x in rhythm_region_expressions]
+        assert sum(division_region_durations) == sum(rhythm_region_expression_durations)
+        rhythm_region_expression_merged_durations = sequencetools.merge_duration_sequences(
+            division_region_durations, rhythm_region_expression_durations)
         # assert that rhythm commands cover rhythm regions exactly
         assert sequencetools.partition_sequence_by_weights_exactly(
-            rhythm_region_command_merged_durations, rhythm_region_command_durations)
+            rhythm_region_expression_merged_durations, rhythm_region_expression_durations)
         rhythm_region_start_division_duration_lists = \
                 sequencetools.partition_sequence_by_backgrounded_weights(
-                voice_division_list.divisions, rhythm_region_command_merged_durations)
+                voice_division_list.divisions, rhythm_region_expression_merged_durations)
         #self._debug_values(rhythm_region_start_division_duration_lists, 'rrsddls')
-        assert len(rhythm_region_start_division_duration_lists) == len(rhythm_region_command_merged_durations)
+        assert len(rhythm_region_start_division_duration_lists) == len(rhythm_region_expression_merged_durations)
         rhythm_region_start_division_counts = [len(l) for l in rhythm_region_start_division_duration_lists]
         rhythm_region_division_lists = sequencetools.partition_sequence_by_counts(
             voice_division_list.divisions, rhythm_region_start_division_counts, cyclic=False, overhang=False)
         rhythm_region_division_lists = [
             settingtools.DivisionList(x, voice_name=voice_name) for x in rhythm_region_division_lists]
-        assert len(rhythm_region_division_lists) == len(rhythm_region_command_merged_durations)
+        assert len(rhythm_region_division_lists) == len(rhythm_region_expression_merged_durations)
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
         rhythm_region_durations = [x.duration for x in rhythm_region_division_lists]
         #self._debug(rhythm_region_durations, 'rrds')
         cumulative_sums = mathtools.cumulative_sums_zero(rhythm_region_durations)
         rhythm_region_start_offsets = cumulative_sums[:-1]
         rhythm_region_start_offsets = [durationtools.Offset(x) for x in rhythm_region_start_offsets]
-        rhythm_region_command_duration_pairs = [(x, x.timespan.duration) for x in rhythm_region_commands]
-        #self._debug_values(rhythm_region_command_duration_pairs, 'rhythm command / duration pairs')
-        merged_duration_rhythm_region_command_pairs = \
+        rhythm_region_expression_duration_pairs = [(x, x.timespan.duration) for x in rhythm_region_expressions]
+        #self._debug_values(rhythm_region_expression_duration_pairs, 'rhythm command / duration pairs')
+        merged_duration_rhythm_region_expression_pairs = \
             sequencetools.pair_duration_sequence_elements_with_input_pair_values(
-            rhythm_region_command_merged_durations, rhythm_region_command_duration_pairs)
+            rhythm_region_expression_merged_durations, rhythm_region_expression_duration_pairs)
         # the first column in pairs is not used for anything further at all is discarded
-        rhythm_region_commands = [x[-1] for x in merged_duration_rhythm_region_command_pairs]
-        assert len(rhythm_region_commands) == len(rhythm_region_division_lists)
-        finalized_rhythm_region_commands = []
-        for rhythm_region_command, rhythm_region_start_offset, rhythm_region_division_list in zip(
-            rhythm_region_commands, rhythm_region_start_offsets, rhythm_region_division_lists):
-            finalized_rhythm_region_command = rhythm_region_command.finalize(
+        rhythm_region_expressions = [x[-1] for x in merged_duration_rhythm_region_expression_pairs]
+        assert len(rhythm_region_expressions) == len(rhythm_region_division_lists)
+        finalized_rhythm_region_expressions = []
+        for rhythm_region_expression, rhythm_region_start_offset, rhythm_region_division_list in zip(
+            rhythm_region_expressions, rhythm_region_start_offsets, rhythm_region_division_lists):
+            finalized_rhythm_region_expression = rhythm_region_expression.finalize(
                 self.score_specification, voice_name, rhythm_region_start_offset, rhythm_region_division_list)
-            finalized_rhythm_region_commands.append(finalized_rhythm_region_command)
-        finalized_rhythm_region_commands = self.merge_prolonging_finalized_rhythm_region_commands(
-            finalized_rhythm_region_commands)
-        return finalized_rhythm_region_commands
+            finalized_rhythm_region_expressions.append(finalized_rhythm_region_expression)
+        finalized_rhythm_region_expressions = self.merge_prolonging_finalized_rhythm_region_expressions(
+            finalized_rhythm_region_expressions)
+        return finalized_rhythm_region_expressions
 
-    def make_region_commands(self, attribute):
+    def make_region_expressions(self, attribute):
         if self.score_specification.segment_specifications:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
                 voice_proxy = self.score_specification.contexts[voice.name]
-                region_commands = self.get_region_commands_for_voice(attribute, voice.name)
+                region_expressions = self.get_region_expressions_for_voice(attribute, voice.name)
                 singular_attribute = attribute.rstrip('s')
-                key = '{}_region_commands'.format(singular_attribute)
-                region_command_inventory = getattr(voice_proxy, key)
-                region_command_inventory[:] = region_commands[:]
-                score_region_commands = getattr(self.score_specification, key)
-                for region_command in region_commands:
-                    if region_command not in score_region_commands:
-                        score_region_commands.append(region_command)
+                key = '{}_region_expressions'.format(singular_attribute)
+                region_expression_inventory = getattr(voice_proxy, key)
+                region_expression_inventory[:] = region_expressions[:]
+                score_region_expressions = getattr(self.score_specification, key)
+                for region_expression in region_expressions:
+                    if region_expression not in score_region_expressions:
+                        score_region_expressions.append(region_expression)
 
     def make_rhythm_products(self):
-        while self.score_specification.finalized_rhythm_region_commands:
+        while self.score_specification.finalized_rhythm_region_expressions:
             made_progress = False
-            for finalized_rhythm_region_command in self.score_specification.finalized_rhythm_region_commands[:]:
-                assert isinstance(finalized_rhythm_region_command, settingtools.FinalizedRhythmRegionExpression)
-                rhythm_product = finalized_rhythm_region_command._evaluate()
+            for finalized_rhythm_region_expression in self.score_specification.finalized_rhythm_region_expressions[:]:
+                assert isinstance(finalized_rhythm_region_expression, settingtools.FinalizedRhythmRegionExpression)
+                rhythm_product = finalized_rhythm_region_expression._evaluate()
                 if rhythm_product is not None:
                     assert isinstance(rhythm_product, settingtools.StartPositionedRhythmPayloadExpression)
                     made_progress = True
-                    self.score_specification.finalized_rhythm_region_commands.remove(finalized_rhythm_region_command)
-                    voice_name = finalized_rhythm_region_command.voice_name
+                    self.score_specification.finalized_rhythm_region_expressions.remove(finalized_rhythm_region_expression)
+                    voice_name = finalized_rhythm_region_expression.voice_name
                     voice_proxy = self.score_specification.contexts[voice_name]
                     voice_rhythm_products = voice_proxy.rhythm_products
                     voice_rhythm_products = voice_rhythm_products - rhythm_product.timespan
@@ -244,22 +244,22 @@ class ConcreteInterpreter(Interpreter):
                 voice_division_list.divisions.append(division)
             voice_proxy._voice_division_list = voice_division_list
 
-    def merge_prolonging_finalized_rhythm_region_commands(self, finalized_rhythm_region_commands):
+    def merge_prolonging_finalized_rhythm_region_expressions(self, finalized_rhythm_region_expressions):
         result = []
-        for finalized_rhythm_region_command in finalized_rhythm_region_commands:
-            if result and isinstance(finalized_rhythm_region_command, settingtools.SelectExpressionRhythmRegionExpression) and \
-                finalized_rhythm_region_command.prolongs_expr(result[-1]):
-                current_stop_offset = finalized_rhythm_region_command.start_offset
-                current_stop_offset += finalized_rhythm_region_command.total_duration
+        for finalized_rhythm_region_expression in finalized_rhythm_region_expressions:
+            if result and isinstance(finalized_rhythm_region_expression, settingtools.SelectExpressionRhythmRegionExpression) and \
+                finalized_rhythm_region_expression.prolongs_expr(result[-1]):
+                current_stop_offset = finalized_rhythm_region_expression.start_offset
+                current_stop_offset += finalized_rhythm_region_expression.total_duration
                 previous_stop_offset = result[-1].start_offset + result[-1].total_duration
                 extra_duration = current_stop_offset - previous_stop_offset
                 assert 0 <= extra_duration
                 result[-1]._total_duration += extra_duration
             else:
-                result.append(finalized_rhythm_region_command)
+                result.append(finalized_rhythm_region_expression)
         return result
 
-    # TODO: eventually merge with self.make_region_commands()
+    # TODO: eventually merge with self.make_region_expressions()
     def populate_time_signature_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
             time_signature_settings = \

@@ -17,18 +17,11 @@ class RhythmSettingLookupExpression(SettingLookupExpression):
 
     ### PUBLIC METHODS ###
 
-    def _get_rhythm_region_commands(self):
-        result = timespantools.TimespanInventory()
-        for rhythm_region_command in self.score_specification.rhythm_region_commands:
-            if not rhythm_region_command.expression == self:
-                result.append(rhythm_region_command)
-        return result
-
     def _evaluate(self):
         from experimental.tools import settingtools
         start_segment_identifier = self.offset.start_segment_identifier
         offset = self.offset._evaluate()
-        timespan_inventory = self._get_rhythm_region_commands()
+        timespan_inventory = self._get_rhythm_region_expressions()
         timespan_time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_time_relation)
         segment_specification = self.score_specification[start_segment_identifier]
@@ -47,3 +40,10 @@ class RhythmSettingLookupExpression(SettingLookupExpression):
             return expression
         else:
             raise TypeError(expression)
+
+    def _get_rhythm_region_expressions(self):
+        result = timespantools.TimespanInventory()
+        for rhythm_region_expression in self.score_specification.rhythm_region_expressions:
+            if not rhythm_region_expression.expression == self:
+                result.append(rhythm_region_expression)
+        return result

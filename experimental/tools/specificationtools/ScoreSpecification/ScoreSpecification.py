@@ -38,9 +38,9 @@ class ScoreSpecification(Specification):
     def __init__(self, score_template):
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
-        self._division_region_commands = []
-        self._finalized_rhythm_region_commands = []
-        self._rhythm_region_commands = []
+        self._division_region_expressions = []
+        self._finalized_rhythm_region_expressions = []
+        self._rhythm_region_expressions = []
         self._time_signature_settings = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
@@ -143,10 +143,10 @@ class ScoreSpecification(Specification):
         return Specification.contexts.fget(self)
 
     @property
-    def division_region_commands(self):
+    def division_region_expressions(self):
         '''Read-only list of all division region commands::
 
-            >>> for x in score_specification.division_region_commands:
+            >>> for x in score_specification.division_region_expressions:
             ...     z(x)
             settingtools.DivisionRegionExpression(
                 expression=settingtools.PayloadExpression(
@@ -177,22 +177,22 @@ class ScoreSpecification(Specification):
 
         Return list.
         '''
-        return self._division_region_commands
+        return self._division_region_expressions
 
     @property
-    def finalized_rhythm_region_commands(self):
+    def finalized_rhythm_region_expressions(self):
         '''Read-only list of finalized rhythm commands:
 
         ::
 
-            >>> for x in score_specification.finalized_rhythm_region_commands:
+            >>> for x in score_specification.finalized_rhythm_region_expressions:
             ...     z(x)
 
         Popluate during interpretation. Then consume during interpretation.
 
         Return list.
         '''
-        return self._finalized_rhythm_region_commands
+        return self._finalized_rhythm_region_expressions
 
     @property
     def interface(self):
@@ -257,10 +257,10 @@ class ScoreSpecification(Specification):
         return Specification.multiple_context_settings.fget(self)
     
     @property
-    def rhythm_region_commands(self):
+    def rhythm_region_expressions(self):
         '''Read-only list of all rhythm region commands.
 
-            >>> for x in score_specification.rhythm_region_commands:
+            >>> for x in score_specification.rhythm_region_expressions:
             ...     z(x)
             settingtools.RhythmRegionExpression(
                 expression=settingtools.RhythmMakerPayloadExpression(
@@ -285,7 +285,7 @@ class ScoreSpecification(Specification):
 
         Return list.
         '''
-        return self._rhythm_region_commands
+        return self._rhythm_region_expressions
 
     @property
     def score_model(self):
@@ -523,7 +523,7 @@ class ScoreSpecification(Specification):
         if attribute in self.single_context_settings_by_context[context_name]:
             del(self.single_context_settings_by_context[context_name][attribute])
 
-    def get_region_commands_for_voice(self, attribute, context_name):
+    def get_region_expressions_for_voice(self, attribute, context_name):
         commands = settingtools.RegionExpressionInventory()
         for segment_specification in self.segment_specifications:
             single_context_settings = \
@@ -582,15 +582,15 @@ class ScoreSpecification(Specification):
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
-    def make_default_region_command(self, attribute, voice_name, timespan):
+    def make_default_region_expression(self, attribute, voice_name, timespan):
         if attribute == 'divisions':
             return self.make_time_signature_division_command(voice_name, timespan)
         elif attribute == 'rhythm':
-            return self.make_skip_token_rhythm_region_command(voice_name, timespan)
+            return self.make_skip_token_rhythm_region_expression(voice_name, timespan)
         else:
             raise ValueError(attribute)
 
-    def make_skip_token_rhythm_region_command(self, voice_name, timespan):
+    def make_skip_token_rhythm_region_expression(self, voice_name, timespan):
         return settingtools.RhythmRegionExpression(
             settingtools.RhythmMakerPayloadExpression(library.skip_tokens),
             voice_name,

@@ -18,12 +18,12 @@ class RhythmRegionExpression(RegionExpression):
 
             >>> expression = settingtools.PayloadExpression("{ c'16 [ c'8 ] }")
             >>> timespan = timespantools.Timespan(0, 20)
-            >>> rhythm_region_command = settingtools.RhythmRegionExpression(
+            >>> rhythm_region_expression = settingtools.RhythmRegionExpression(
             ...     expression, 'Voice 1', timespan)
 
         ::
 
-            >>> result = rhythm_region_command - timespantools.Timespan(5, 15)
+            >>> result = rhythm_region_expression - timespantools.Timespan(5, 15)
 
         ::
 

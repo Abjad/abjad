@@ -70,8 +70,8 @@ class RegionExpression(Expression):
         timespans = self.timespan - timespan
         result = settingtools.RegionExpressionInventory()
         for timespan in timespans:
-            region_command = self.new(timespan=timespan)
-            result.append(region_command)
+            region_expression = self.new(timespan=timespan)
+            result.append(region_expression)
         return result
 
     ### PRIVATE METHODS ###

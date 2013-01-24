@@ -48,18 +48,11 @@ class DivisionSettingLookupExpression(SettingLookupExpression):
 
     ### PRIVATE METHODS ###
 
-    def _get_division_region_commands(self):
-        result = timespantools.TimespanInventory()
-        for division_region_command in self.score_specification.division_region_commands:
-            if not division_region_command.expression == self:
-                result.append(division_region_command)
-        return result
-
     def _evaluate(self):
         from experimental.tools import settingtools
         start_segment_identifier = self.offset.start_segment_identifier
         offset = self.offset._evaluate()
-        timespan_inventory = self._get_division_region_commands()
+        timespan_inventory = self._get_division_region_expressions()
         timespan_time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_time_relation)
         segment_specification = self.score_specification.get_start_segment_specification(start_segment_identifier)
@@ -70,3 +63,10 @@ class DivisionSettingLookupExpression(SettingLookupExpression):
         assert isinstance(expression, settingtools.PayloadExpression), repr(expression)
         expression = self._apply_callbacks(expression)
         return expression
+
+    def _get_division_region_expressions(self):
+        result = timespantools.TimespanInventory()
+        for division_region_expression in self.score_specification.division_region_expressions:
+            if not division_region_expression.expression == self:
+                result.append(division_region_expression)
+        return result

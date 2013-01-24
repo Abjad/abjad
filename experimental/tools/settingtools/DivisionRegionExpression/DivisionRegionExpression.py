@@ -45,6 +45,7 @@ class DivisionRegionExpression(RegionExpression):
             divisions = result._payload_elements[:]
         # TODO: eventually hunt down the source of this branch and remove
         elif isinstance(result, list) and len(result) == 1 and isinstance(result[0], tuple):
+            #raise Exception(result)
             divisions = result[0][:]
         else:
             divisions = result
