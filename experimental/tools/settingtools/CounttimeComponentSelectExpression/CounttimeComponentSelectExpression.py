@@ -84,13 +84,13 @@ class CounttimeComponentSelectExpression(SelectExpression):
         rhythm_products.sort()
         assert anchor_timespan.is_well_formed, repr(anchor_timespan)
         rhythm_products &= anchor_timespan
-        result = settingtools.VoicedStartPositionedRhythmPayloadExpression(
+        result = settingtools.StartPositionedRhythmPayloadExpression(
             voice_name=self.voice_name, start_offset=anchor_timespan.start_offset)
         for rhythm_product in rhythm_products:
             result.payload.extend(rhythm_product.payload)
         assert wellformednesstools.is_well_formed_component(result.payload)
         result = self._apply_callbacks(result)
-        assert isinstance(result, settingtools.VoicedStartPositionedRhythmPayloadExpression), repr(result)
+        assert isinstance(result, settingtools.StartPositionedRhythmPayloadExpression), repr(result)
         return result
 
     def _is_counttime_component_class_expr(self, expr):

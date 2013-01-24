@@ -338,14 +338,14 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
+      tools/settingtools/StartPositionedDivisionPayloadExpression/StartPositionedDivisionPayloadExpression
+      tools/settingtools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
+      tools/settingtools/StartPositionedRhythmPayloadExpression/StartPositionedRhythmPayloadExpression
       tools/settingtools/StatalServer/StatalServer
       tools/settingtools/StatalServerExpression/StatalServerExpression
       tools/settingtools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
       tools/settingtools/TimeSignatureSettingLookupExpression/TimeSignatureSettingLookupExpression
       tools/settingtools/TimespanExpression/TimespanExpression
-      tools/settingtools/VoicedStartPositionedDivisionPayloadExpression/VoicedStartPositionedDivisionPayloadExpression
-      tools/settingtools/VoicedStartPositionedPayloadExpression/VoicedStartPositionedPayloadExpression
-      tools/settingtools/VoicedStartPositionedRhythmPayloadExpression/VoicedStartPositionedRhythmPayloadExpression
 
 .. only:: latex
 
@@ -412,14 +412,14 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
       tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
+      tools/settingtools/StartPositionedDivisionPayloadExpression/StartPositionedDivisionPayloadExpression
+      tools/settingtools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
+      tools/settingtools/StartPositionedRhythmPayloadExpression/StartPositionedRhythmPayloadExpression
       tools/settingtools/StatalServer/StatalServer
       tools/settingtools/StatalServerExpression/StatalServerExpression
       tools/settingtools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
       tools/settingtools/TimeSignatureSettingLookupExpression/TimeSignatureSettingLookupExpression
       tools/settingtools/TimespanExpression/TimespanExpression
-      tools/settingtools/VoicedStartPositionedDivisionPayloadExpression/VoicedStartPositionedDivisionPayloadExpression
-      tools/settingtools/VoicedStartPositionedPayloadExpression/VoicedStartPositionedPayloadExpression
-      tools/settingtools/VoicedStartPositionedRhythmPayloadExpression/VoicedStartPositionedRhythmPayloadExpression
 
 :py:mod:`specificationtools <experimental.tools.specificationtools>`
 ====================================================================

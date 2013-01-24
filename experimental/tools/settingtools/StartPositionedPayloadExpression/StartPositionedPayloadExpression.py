@@ -10,7 +10,7 @@ from abjad.tools import wellformednesstools
 from experimental.tools.settingtools.Flamingo import Flamingo
 
 
-class VoicedStartPositionedPayloadExpression(Flamingo):
+class StartPositionedPayloadExpression(Flamingo):
     r'''Voiced, start-positioned product.
     ''' 
 

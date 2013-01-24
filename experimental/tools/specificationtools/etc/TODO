@@ -114,7 +114,7 @@
     ... so that composers only ever interact with interfaces.
 
 22. Clarify return types of all _evaluate() methods.
-    Some _evaluate() methods returns VoicedStartPositionedPayloadExpression objects.
+    Some _evaluate() methods returns StartPositionedPayloadExpression objects.
     Some _evaluate() methods return lists or tuples.
     Perhaps these are the only two acceptable evaluation return types.
 
