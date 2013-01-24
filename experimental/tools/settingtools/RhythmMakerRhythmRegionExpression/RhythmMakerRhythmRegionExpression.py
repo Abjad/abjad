@@ -11,11 +11,11 @@ class RhythmMakerRhythmRegionExpression(FinalizedRhythmRegionExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, rhythm_maker=None, voice_name=None, start_offset=None, rhythm_region_division_list=None):
+    def __init__(self, rhythm_maker=None, voice_name=None, start_offset=None, division_list=None):
         self._rhythm_maker = rhythm_maker
         self._voice_name = voice_name
         self._start_offset = start_offset
-        self._rhythm_region_division_list = rhythm_region_division_list
+        self._division_list = division_list
 
     ### PRIVATE METHODS ###
 
@@ -32,25 +32,25 @@ class RhythmMakerRhythmRegionExpression(FinalizedRhythmRegionExpression):
 
     def _evaluate(self):
         from experimental.tools import settingtools
-        if not self.rhythm_region_division_list:
+        if not self.division_list:
             return
-        leaf_lists = self.rhythm_maker(self.rhythm_region_division_list.pairs)
+        leaf_lists = self.rhythm_maker(self.division_list.pairs)
         rhythm_containers = [containertools.Container(x) for x in leaf_lists]
         expression = settingtools.StartPositionedRhythmPayloadExpression(
             payload=rhythm_containers, start_offset=self.start_offset)
         self._conditionally_beam_rhythm_containers(rhythm_containers)
-        expression._voice_name = self.rhythm_region_division_list.voice_name
+        expression._voice_name = self.division_list.voice_name
         return expression
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def rhythm_maker(self):
-        return self._rhythm_maker
+    def division_list(self):
+        return self._division_list
 
     @property
-    def rhythm_region_division_list(self):
-        return self._rhythm_region_division_list
+    def rhythm_maker(self):
+        return self._rhythm_maker
 
     @property
     def start_offset(self):

@@ -20,21 +20,22 @@ class SelectExpressionRhythmRegionExpression(FinalizedRhythmRegionExpression):
 
     def _evaluate(self):
         from experimental.tools import settingtools
-        result = self.select_expression._evaluate()
-        if result is None:
+        expression = self.select_expression._evaluate()
+        if expression is None:
             return
-        result._start_offset = self.start_offset
+        assert isinstance(expression, settingtools.StartPositionedRhythmPayloadExpression), repr(expression)
+        expression._start_offset = self.start_offset
         start_offset, stop_offset = self.start_offset, self.start_offset + self.total_duration
         keep_timespan = timespantools.Timespan(start_offset, stop_offset)
-        assert not keep_timespan.starts_before_timespan_starts(result.timespan), repr((result.timespan, keep_timespan))
-        assert result.timespan.start_offset == keep_timespan.start_offset, repr((result.timespan, keep_timespan))
-        result = result & keep_timespan
-        assert isinstance(result, timespantools.TimespanInventory), repr(result)
-        assert len(result) == 1
-        result = result[0]
-        assert isinstance(result, settingtools.StartPositionedRhythmPayloadExpression), repr(result)
-        result.repeat_to_stop_offset(stop_offset)
-        return result
+        timespan = expression.timespan
+        assert not keep_timespan.starts_before_timespan_starts(timespan), repr((timespan, keep_timespan))
+        assert timespan.start_offset == keep_timespan.start_offset, repr((timespan, keep_timespan))
+        inventory = expression & keep_timespan
+        assert len(inventory) == 1
+        expression = inventory[0]
+        assert isinstance(expression, settingtools.StartPositionedRhythmPayloadExpression), repr(expression)
+        expression.repeat_to_stop_offset(stop_offset)
+        return expression
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

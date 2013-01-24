@@ -36,6 +36,7 @@ class DivisionRegionExpression(RegionExpression):
 
     def _evaluate(self):
         from experimental.tools import settingtools
+        # TODO: should return an expression or none but not a list or tuple
         result = self.expression._evaluate()
         if result is None:
             return

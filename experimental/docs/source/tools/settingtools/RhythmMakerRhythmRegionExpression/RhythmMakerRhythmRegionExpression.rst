@@ -9,10 +9,10 @@ settingtools.RhythmMakerRhythmRegionExpression
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.settingtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.rhythm_maker
+.. autoattribute:: experimental.tools.settingtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.division_list
    :noindex:
 
-.. autoattribute:: experimental.tools.settingtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.rhythm_region_division_list
+.. autoattribute:: experimental.tools.settingtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.rhythm_maker
    :noindex:
 
 .. autoattribute:: experimental.tools.settingtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.start_offset
