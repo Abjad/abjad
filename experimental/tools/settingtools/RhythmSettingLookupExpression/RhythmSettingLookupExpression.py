@@ -41,11 +41,8 @@ class RhythmSettingLookupExpression(SettingLookupExpression):
         #   that the call must appear in both branches.
         expression = source_command.expression
         if isinstance(expression, settingtools.RhythmMakerPayloadExpression):
-            result = self._apply_callbacks(expression)
-            # TODO: eventually return RhythmMakerPayloadExpression instead of rhythm-maker
-            rhythm_maker = result.payload
-            assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
-            return rhythm_maker
+            expression = self._apply_callbacks(expression)
+            return expression
         elif isinstance(expression, settingtools.PayloadExpression):
             assert isinstance(expression.payload, str)
             # TODO: Do not return parseable string.
