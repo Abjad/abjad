@@ -84,18 +84,18 @@ class ScoreSpecificationInterface(SpecificationInterface):
     def select_segments(self, voice_name):
         '''Select voice ``1`` segments in score::
 
-            >>> selector = score_specification.interface.select_segments('Voice 1')
+            >>> select_expression = score_specification.interface.select_segments('Voice 1')
 
         ::
 
-            >>> z(selector)
+            >>> z(select_expression)
             settingtools.SegmentSelectExpression(
                 voice_name='Voice 1'
                 )
 
-        Return segment selector.
+        Return segment select expression.
         '''
         from experimental.tools import settingtools
-        selector = settingtools.SegmentSelectExpression(voice_name=voice_name)
-        selector._score_specification = self
-        return selector
+        select_expression = settingtools.SegmentSelectExpression(voice_name=voice_name)
+        select_expression._score_specification = self
+        return select_expression

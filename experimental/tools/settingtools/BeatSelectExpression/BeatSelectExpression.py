@@ -6,7 +6,7 @@ from experimental.tools.settingtools.SelectExpression import SelectExpression
 
 
 class BeatSelectExpression(SelectExpression):
-    '''Beat selector:
+    '''Beat select expression:
 
     ::
 
@@ -16,28 +16,28 @@ class BeatSelectExpression(SelectExpression):
     
     Select voice ``1`` beats that start during score::
 
-        >>> selector = score_specification.interface.select_beats('Voice 1')
+        >>> select_expression = score_specification.interface.select_beats('Voice 1')
 
     ::
 
-        >>> z(selector)
+        >>> z(select_expression)
         settingtools.BeatSelectExpression(
             voice_name='Voice 1'
             )
 
     Select voice ``1`` beats that start during segment ``'red'``::
 
-        >>> selector = red_segment.select_beats('Voice 1')
+        >>> select_expression = red_segment.select_beats('Voice 1')
 
     ::
 
-        >>> z(selector)
+        >>> z(select_expression)
         settingtools.BeatSelectExpression(
             anchor='red',
             voice_name='Voice 1'
             )
 
-    Beat selectors are to be treated as immutable.
+    Beat select expressions are to be treated as immutable.
     '''
 
     ### PRIVATE METHODS ###

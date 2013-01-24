@@ -29,16 +29,16 @@ class SelectMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return beat selector.
+        Return beat select expression.
         '''
         from experimental.tools import settingtools
-        selector = settingtools.BeatSelectExpression(
+        select_expression = settingtools.BeatSelectExpression(
             anchor=self._anchor_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation
             )
-        selector._score_specification = self.score_specification
-        return selector
+        select_expression._score_specification = self.score_specification
+        return select_expression
 
     def select_divisions(self, voice_name, time_relation=None):
         '''Select voice ``1`` divisions that start during segment ``'red'``::
@@ -53,16 +53,16 @@ class SelectMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return division selector.
+        Return division select expression.
         '''
         from experimental.tools import settingtools
-        selector = settingtools.DivisionSelectExpression(
+        select_expression = settingtools.DivisionSelectExpression(
             anchor=self._anchor_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation
             )
-        selector._score_specification = self.score_specification
-        return selector
+        select_expression._score_specification = self.score_specification
+        return select_expression
 
     def select_leaves(self, voice_name, time_relation=None):
         '''Select voice ``1`` leaves that start during segment ``'red'``::
@@ -80,17 +80,17 @@ class SelectMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return counttime component selector.
+        Return counttime component select expression.
         '''
         from experimental.tools import settingtools
-        selector = settingtools.CounttimeComponentSelectExpression(
+        select_expression = settingtools.CounttimeComponentSelectExpression(
             anchor=self._anchor_abbreviation,
             time_relation=time_relation, 
             classes=(leaftools.Leaf, ), 
             voice_name=voice_name
             )
-        selector._score_specification = self.score_specification
-        return selector
+        select_expression._score_specification = self.score_specification
+        return select_expression
 
     def select_measures(self, voice_name, time_relation=None):
         '''Select voice ``1`` measures 
@@ -106,16 +106,16 @@ class SelectMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return measure selector.
+        Return measure select expression.
         '''
         from experimental.tools import settingtools
-        selector = settingtools.MeasureSelectExpression(
+        select_expression = settingtools.MeasureSelectExpression(
             anchor=self._anchor_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation
             )
-        selector._score_specification = self.score_specification
-        return selector
+        select_expression._score_specification = self.score_specification
+        return select_expression
 
     def select_notes_and_chords(self, voice_name, time_relation=None):
         '''Select voice ``1`` notes and chords that start during segment ``'red'``::
@@ -134,17 +134,17 @@ class SelectMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return counttime component selector.
+        Return counttime component select expression.
         '''
         from experimental.tools import settingtools
-        selector = settingtools.CounttimeComponentSelectExpression(
+        select_expression = settingtools.CounttimeComponentSelectExpression(
             anchor=self._anchor_abbreviation,
             time_relation=time_relation, 
             classes=(notetools.Note, chordtools.Chord),
             voice_name=voice_name
             )
-        selector._score_specification = self.score_specification
-        return selector
+        select_expression._score_specification = self.score_specification
+        return select_expression
 
     def select_time_signatures(self, voice_name, time_relation=None):
         '''Select voice ``1`` time signatures that start during segment ``'red'``::
@@ -159,13 +159,13 @@ class SelectMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return time signature selector.
+        Return time signature select expression.
         '''
         from experimental.tools import settingtools
-        selector = settingtools.TimeSignatureSelectExpression(
+        select_expression = settingtools.TimeSignatureSelectExpression(
             anchor=self._anchor_abbreviation,
             time_relation=time_relation, 
             voice_name=voice_name
             )
-        selector._score_specification = self.score_specification
-        return selector
+        select_expression._score_specification = self.score_specification
+        return select_expression

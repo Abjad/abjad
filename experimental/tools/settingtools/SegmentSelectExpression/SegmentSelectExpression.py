@@ -2,7 +2,7 @@ from experimental.tools.settingtools.SelectExpression import SelectExpression
 
 
 class SegmentSelectExpression(SelectExpression):
-    r'''Segment selector.
+    r'''Segment select expression.
 
     ::
 
@@ -14,22 +14,22 @@ class SegmentSelectExpression(SelectExpression):
 
     Select voice ``1`` segments in score::
 
-        >>> selector = score_specification.interface.select_segments('Voice 1')
+        >>> select_expression = score_specification.interface.select_segments('Voice 1')
 
     ::
 
-        >>> z(selector)
+        >>> z(select_expression)
         settingtools.SegmentSelectExpression(
             voice_name='Voice 1'
             )
 
     Select the first two voice ``1`` segments in score::
 
-        >>> selector = score_specification.interface.select_segments('Voice 1')[:2]
+        >>> select_expression = score_specification.interface.select_segments('Voice 1')[:2]
 
     ::
 
-        >>> z(selector)
+        >>> z(select_expression)
         settingtools.SegmentSelectExpression(
             voice_name='Voice 1',
             callbacks=settingtools.CallbackInventory([
@@ -39,11 +39,11 @@ class SegmentSelectExpression(SelectExpression):
 
     Select voice ``1`` segments up to but not including ``'green'``::
 
-        >>> selector = score_specification.interface.select_segments('Voice 1')[:'green']
+        >>> select_expression = score_specification.interface.select_segments('Voice 1')[:'green']
 
     ::
 
-        >>> z(selector)
+        >>> z(select_expression)
         settingtools.SegmentSelectExpression(
             voice_name='Voice 1',
             callbacks=settingtools.CallbackInventory([
@@ -53,11 +53,11 @@ class SegmentSelectExpression(SelectExpression):
 
     Select voice ``1`` segments up to and including ``'green'``::
 
-        >>> selector = score_specification.interface.select_segments('Voice 1')[:('green', 1)]
+        >>> select_expression = score_specification.interface.select_segments('Voice 1')[:('green', 1)]
 
     ::
 
-        >>> z(selector)
+        >>> z(select_expression)
         settingtools.SegmentSelectExpression(
             voice_name='Voice 1',
             callbacks=settingtools.CallbackInventory([
@@ -67,11 +67,11 @@ class SegmentSelectExpression(SelectExpression):
 
     Select voice ``1`` segment ``'red'``::
 
-        >>> selector = score_specification.interface.select_segments('Voice 1')['red':('red', 1)]
+        >>> select_expression = score_specification.interface.select_segments('Voice 1')['red':('red', 1)]
 
     ::
 
-        >>> z(selector)
+        >>> z(select_expression)
         settingtools.SegmentSelectExpression(
             voice_name='Voice 1',
             callbacks=settingtools.CallbackInventory([
@@ -79,7 +79,7 @@ class SegmentSelectExpression(SelectExpression):
                 ])
             )
 
-    Segment selector properties are read only.
+    Segment select expression properties are read only.
     '''
 
     ### PRIVATE METHODS ###

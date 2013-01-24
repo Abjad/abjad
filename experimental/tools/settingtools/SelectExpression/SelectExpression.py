@@ -9,9 +9,9 @@ from experimental.tools.settingtools.PayloadCallbackMixin import PayloadCallback
 
 
 class SelectExpression(AnchoredExpression, PayloadCallbackMixin):
-    r'''SelectExpression.
+    r'''Select expression.
 
-    Abstract base class from which concrete selectors inherit.
+    Abstract base class from which concrete select expressions inherit.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -34,7 +34,7 @@ class SelectExpression(AnchoredExpression, PayloadCallbackMixin):
 
     @property
     def time_relation(self):
-        '''Time relation of selector.
+        '''Time relation of select expression.
         
         Return time relation or none.
         '''
@@ -53,7 +53,7 @@ class SelectExpression(AnchoredExpression, PayloadCallbackMixin):
 
     @property
     def voice_name(self):
-        '''Voice name of selector.
+        '''Voice name of select expression.
 
         Return string.
         '''

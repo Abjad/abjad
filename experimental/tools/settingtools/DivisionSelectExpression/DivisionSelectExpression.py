@@ -5,7 +5,7 @@ from experimental.tools.settingtools.SelectExpression import SelectExpression
 
 
 class DivisionSelectExpression(SelectExpression):
-    r'''Division selector:
+    r'''Division select expression:
 
     ::
 
@@ -15,28 +15,28 @@ class DivisionSelectExpression(SelectExpression):
 
     Select voice ``1`` divisions that start during score::
 
-        >>> selector = score_specification.interface.select_divisions('Voice 1')
+        >>> select_expression = score_specification.interface.select_divisions('Voice 1')
 
     ::
         
-        >>> z(selector)
+        >>> z(select_expression)
         settingtools.DivisionSelectExpression(
             voice_name='Voice 1'
             )
 
     Select voice ``1`` divisions that start during segment ``'red'``::
 
-        >>> selector = red_segment.select_divisions('Voice 1')
+        >>> select_expression = red_segment.select_divisions('Voice 1')
 
     ::
 
-        >>> z(selector)
+        >>> z(select_expression)
         settingtools.DivisionSelectExpression(
             anchor='red',
             voice_name='Voice 1'
             )
 
-    Division selectors are immutable.
+    Division select expressions are immutable.
     '''
     
     ### PRIVATE METHODS ###

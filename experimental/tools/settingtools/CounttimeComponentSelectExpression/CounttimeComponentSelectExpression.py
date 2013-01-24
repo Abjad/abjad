@@ -14,7 +14,7 @@ from experimental.tools.settingtools.SelectExpression import SelectExpression
 
 
 class CounttimeComponentSelectExpression(SelectExpression):
-    r'''Counttime component selector.
+    r'''Counttime component select expression.
 
     ::
 
@@ -24,11 +24,11 @@ class CounttimeComponentSelectExpression(SelectExpression):
 
     Select voice ``1`` leaves that start during score::
 
-        >>> selector = score_specification.interface.select_leaves('Voice 1')
+        >>> select_expression = score_specification.interface.select_leaves('Voice 1')
 
     ::
         
-        >>> z(selector)
+        >>> z(select_expression)
         settingtools.CounttimeComponentSelectExpression(
             classes=settingtools.ClassInventory([
                 leaftools.Leaf
@@ -38,11 +38,11 @@ class CounttimeComponentSelectExpression(SelectExpression):
 
     Select voice ``1`` leaves that start during segment ``'red'``::
 
-        >>> selector = red_segment.select_leaves('Voice 1')
+        >>> select_expression = red_segment.select_leaves('Voice 1')
 
     ::
 
-        >>> z(selector)
+        >>> z(select_expression)
         settingtools.CounttimeComponentSelectExpression(
             anchor='red',
             classes=settingtools.ClassInventory([
@@ -51,7 +51,7 @@ class CounttimeComponentSelectExpression(SelectExpression):
             voice_name='Voice 1'
             )
 
-    Counttime component selectors are immutable.
+    Counttime component select expressions are immutable.
     '''
 
     ### INITIALIZER ###
@@ -109,7 +109,7 @@ class CounttimeComponentSelectExpression(SelectExpression):
 
     @property
     def classes(self):
-        '''Classes of counttime component selector.
+        '''Classes of counttime component select expression.
 
         Return class inventory or none.
         '''

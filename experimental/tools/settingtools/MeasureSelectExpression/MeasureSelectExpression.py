@@ -7,7 +7,7 @@ from experimental.tools.settingtools.SelectExpression import SelectExpression
 
 
 class MeasureSelectExpression(SelectExpression):
-    r'''Measure selector.
+    r'''Measure select expression.
 
     ::
 
@@ -58,7 +58,7 @@ class MeasureSelectExpression(SelectExpression):
             voice_name='Voice 1'
             )
 
-    Measure selectors are immutable.
+    Measure select expressions are immutable.
     '''
 
     ### PRIVATE METHODS ###
