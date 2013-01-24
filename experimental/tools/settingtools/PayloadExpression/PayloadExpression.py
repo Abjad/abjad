@@ -86,7 +86,7 @@ class PayloadExpression(Expression):
             return duration
 
     def _evaluate(self):
-        return self.payload[:]
+        return self
 
     ### READ-ONLY PROPERTIES ###
 
