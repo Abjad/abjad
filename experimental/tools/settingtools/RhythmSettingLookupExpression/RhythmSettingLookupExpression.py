@@ -43,10 +43,12 @@ class RhythmSettingLookupExpression(SettingLookupExpression):
         if isinstance(expression, settingtools.RhythmMakerPayloadExpression):
             expression = self._apply_callbacks(expression)
             return expression
+        # TODO: this should be replace in favor of a test for (StartPositioned)RhythmPayloadExpression
         elif isinstance(expression, settingtools.PayloadExpression):
-            assert isinstance(expression.payload, str)
-            # TODO: Do not return parseable string.
-            #       Interpret parseable string, apply callbacks, and return expression instead. 
-            return expression.payload
+#            assert isinstance(expression.payload, str)
+#            # TODO: Do not return parseable string.
+#            #       Interpret parseable string, apply callbacks, and return expression instead. 
+#            return expression.payload
+            raise Exception
         else:
             raise TypeError(expression)

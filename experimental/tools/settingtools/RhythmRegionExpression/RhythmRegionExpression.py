@@ -95,14 +95,14 @@ class RhythmRegionExpression(RegionExpression):
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             command = settingtools.RhythmMakerRhythmRegionExpression(
                 rhythm_maker, voice_name, start_offset, division_list)
-        # TODO: change the test of this branch to test for something like ParseableStringPayloadExpression
-        #       or perhaps even ScoreComponentPayloadExpression, either of which will have to be newly implemented
+        # TODO: this case should be removed once CounttimeComponentPayloadExpression is implemented.
         elif isinstance(self.expression, settingtools.PayloadExpression):
             parseable_string = self.expression.payload
             assert isinstance(parseable_string, str), repr(parseable_string)
             command = settingtools.ParseableStringRhythmRegionExpression(
                 parseable_string, voice_name, start_offset, division_list.duration)
         elif isinstance(self.expression, settingtools.RhythmSettingLookupExpression):
+            # TODO: both RhythmMakerExpression and CounttimeComponentPayloadExpression should come back here
             expression = self.expression._evaluate()
             rhythm_maker = expression.payload
             command = settingtools.RhythmMakerRhythmRegionExpression(

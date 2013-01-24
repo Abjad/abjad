@@ -121,3 +121,8 @@
 23. Audit all expression evaluation methods.
 
 24. Straighten out RhythmSettingLookupExpression._evaluate().
+    Doing this will mean no longer storing parseable strings in PayloadExpression objects.
+    Parse strings in _expr_to_expression().    
+    Then sotre in a new type of CounttimeComponentPayloadExpression.
+    Or maybe just store in the exiting StartPositionedRhythmPayloadExpression.
+    Which also suggests a RhythmPayloadExpression that is not yet start-positioned.
