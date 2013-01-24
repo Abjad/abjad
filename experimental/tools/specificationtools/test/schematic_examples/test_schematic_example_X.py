@@ -196,9 +196,7 @@ def test_schematic_example_X_05():
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm("{ c'32 [ c'16 c'16. ] }", contexts=['Voice 1'])
     first_division = red_segment.select_divisions('Voice 1')[:1]
-    voice_1_rhythmic_cell = first_division.timespan.select_leaves('Voice 1')
-    # TODO: make this line work
-    #voice_1_rhythmic_cell = first_division.start_offset.look_up_rhythm_setting('Voice 1')
+    voice_1_rhythmic_cell = first_division.start_offset.look_up_rhythm_setting('Voice 1')
     indicator = settingtools.RotationIndicator(Duration(-1, 32), fracture_spanners=False)
     red_segment.set_rhythm(voice_1_rhythmic_cell.rotate(indicator), contexts=['Voice 2'])
     indicator = settingtools.RotationIndicator(Duration(-2, 32), fracture_spanners=False)
@@ -207,7 +205,6 @@ def test_schematic_example_X_05():
     red_segment.set_rhythm(voice_1_rhythmic_cell.rotate(indicator), contexts=['Voice 4'])
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures(2 * [(1, 8)])
-    
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
