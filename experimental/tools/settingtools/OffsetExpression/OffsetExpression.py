@@ -50,6 +50,7 @@ class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixi
     ### PRIVATE METHODS ###
 
     def _evaluate(self):
+        from experimental.tools import settingtools
         edge = self.edge or Left
         anchor_timespan = self.get_anchor_timespan()
         if edge == Left:
@@ -57,7 +58,8 @@ class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixi
         else:
             offset = anchor_timespan.stop_offset
         offset = self._apply_callbacks(offset)
-        return offset
+        expression = settingtools.PayloadExpression([offset])
+        return expression
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

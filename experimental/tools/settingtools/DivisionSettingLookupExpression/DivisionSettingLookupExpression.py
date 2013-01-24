@@ -51,7 +51,8 @@ class DivisionSettingLookupExpression(SettingLookupExpression):
     def _evaluate(self):
         from experimental.tools import settingtools
         start_segment_identifier = self.offset.start_segment_identifier
-        offset = self.offset._evaluate()
+        expression = self.offset._evaluate()
+        offset = expression.payload[0]
         timespan_inventory = self._get_division_region_expressions()
         timespan_time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_time_relation)
