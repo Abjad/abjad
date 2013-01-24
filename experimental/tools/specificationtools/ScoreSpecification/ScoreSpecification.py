@@ -238,15 +238,7 @@ class ScoreSpecification(Specification):
             settingtools.MultipleContextSetting(
                 attribute='rhythm',
                 expression=settingtools.RhythmMakerPayloadExpression(
-                    payload=rhythmmakertools.TaleaRhythmMaker(
-                        [1],
-                        16,
-                        prolation_addenda=[],
-                        secondary_divisions=[],
-                        beam_each_cell=False,
-                        beam_cells_together=True,
-                        tie_split_notes=False
-                        )
+                    payload=(TaleaRhythmMaker('sixteenths'),)
                     ),
                 anchor='red',
                 persist=True
@@ -264,15 +256,7 @@ class ScoreSpecification(Specification):
             ...     z(x)
             settingtools.RhythmRegionExpression(
                 expression=settingtools.RhythmMakerPayloadExpression(
-                    payload=rhythmmakertools.TaleaRhythmMaker(
-                        [1],
-                        16,
-                        prolation_addenda=[],
-                        secondary_divisions=[],
-                        beam_each_cell=False,
-                        beam_cells_together=True,
-                        tie_split_notes=False
-                        )
+                    payload=(TaleaRhythmMaker('sixteenths'),)
                     ),
                 timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -389,15 +373,7 @@ class ScoreSpecification(Specification):
                 )
             settingtools.SingleContextRhythmSetting(
                 expression=settingtools.RhythmMakerPayloadExpression(
-                    payload=rhythmmakertools.TaleaRhythmMaker(
-                        [1],
-                        16,
-                        prolation_addenda=[],
-                        secondary_divisions=[],
-                        beam_each_cell=False,
-                        beam_cells_together=True,
-                        tie_split_notes=False
-                        )
+                    payload=(TaleaRhythmMaker('sixteenths'),)
                     ),
                 anchor='red',
                 fresh=True,

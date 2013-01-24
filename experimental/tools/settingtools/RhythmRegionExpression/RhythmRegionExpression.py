@@ -16,7 +16,8 @@ class RhythmRegionExpression(RegionExpression):
     def __sub__(self, timespan):
         '''Subtract `timespan` from rhythm region command.
 
-            >>> expression = settingtools.PayloadExpression("{ c'16 [ c'8 ] }")
+            >>> expression = settingtools.StartPositionedRhythmPayloadExpression(
+            ...     "{ c'16 [ c'8 ] }", start_offset=0)
             >>> timespan = timespantools.Timespan(0, 20)
             >>> rhythm_region_expression = settingtools.RhythmRegionExpression(
             ...     expression, 'Voice 1', timespan)
@@ -30,8 +31,11 @@ class RhythmRegionExpression(RegionExpression):
             >>> z(result)
             settingtools.RegionExpressionInventory([
                 settingtools.RhythmRegionExpression(
-                    expression=settingtools.PayloadExpression(
-                        "{ c'16 [ c'8 ] }"
+                    expression=settingtools.StartPositionedRhythmPayloadExpression(
+                        payload=containertools.Container(
+                            music=({c'16, c'8},)
+                            ),
+                        start_offset=durationtools.Offset(0, 1)
                         ),
                     context_name='Voice 1',
                     timespan=timespantools.Timespan(
@@ -40,8 +44,11 @@ class RhythmRegionExpression(RegionExpression):
                         )
                     ),
                 settingtools.RhythmRegionExpression(
-                    expression=settingtools.PayloadExpression(
-                        "{ c'16 [ c'8 ] }"
+                    expression=settingtools.StartPositionedRhythmPayloadExpression(
+                        payload=containertools.Container(
+                            music=({c'16, c'8},)
+                            ),
+                        start_offset=durationtools.Offset(0, 1)
                         ),
                     context_name='Voice 1',
                     timespan=timespantools.Timespan(
@@ -91,7 +98,7 @@ class RhythmRegionExpression(RegionExpression):
         assert isinstance(division_list, settingtools.DivisionList), repr(division_list)
         assert isinstance(voice_name, str), repr(voice_name)
         if isinstance(self.expression, settingtools.RhythmMakerPayloadExpression):
-            rhythm_maker = self.expression.payload
+            rhythm_maker = self.expression.payload[0]
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             command = settingtools.RhythmMakerRhythmRegionExpression(
                 rhythm_maker, voice_name, start_offset, division_list)
@@ -104,7 +111,7 @@ class RhythmRegionExpression(RegionExpression):
         elif isinstance(self.expression, settingtools.RhythmSettingLookupExpression):
             expression = self.expression._evaluate()
             if isinstance(expression, settingtools.RhythmMakerPayloadExpression):
-                rhythm_maker = expression.payload
+                rhythm_maker = expression.payload[0]
                 command = settingtools.RhythmMakerRhythmRegionExpression(
                     rhythm_maker, voice_name, start_offset, division_list)
             elif isinstance(expression, settingtools.StartPositionedRhythmPayloadExpression):

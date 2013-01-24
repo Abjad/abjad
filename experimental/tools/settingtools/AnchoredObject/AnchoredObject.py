@@ -128,10 +128,10 @@ class AnchoredObject(AbjadObject):
             return self.score_specification[self.anchor].timespan
         elif self.anchor is None:
             return self.score_specification.timespan
-        result = self.anchor._evaluate()
-        if isinstance(result, timespantools.Timespan):
-            return result
-        elif isinstance(result, settingtools.Expression):
-            return result.timespan
+        expression = self.anchor._evaluate()
+        if hasattr(expression, 'timespan'):
+            return expression.timespan
+        elif isinstance(expression.payload[0], timespantools.Timespan):
+            return expression.payload[0]
         else:
-            raise TypeError(result)
+            raise TypeError(expression)

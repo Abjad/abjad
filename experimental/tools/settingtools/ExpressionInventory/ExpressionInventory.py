@@ -23,14 +23,12 @@ class ExpressionInventory(ObjectInventory, Expression):
         from experimental.tools import settingtools
         result = []
         for expression in self:
-            # TODO: should only evaluate as (payload) expression and not as list or tuple
             expression = expression._evaluate()
             # TODO: eventually remove this branch
             if isinstance(expression, (list, tuple)):
                 result.extend(expression)
-            # TODO: eventually remove this branch
-            elif isinstance(expression, timespantools.Timespan):
-                result.append(expression)
+            elif isinstance(expression, settingtools.PayloadExpression):
+                result.extend(expression.payload)
             elif isinstance(expression, settingtools.Expression):
                 result.append(expression)
             else:

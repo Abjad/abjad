@@ -189,15 +189,7 @@ class SetMethodMixin(AbjadObject):
             settingtools.MultipleContextSetting(
                 attribute='rhythm',
                 expression=settingtools.RhythmMakerPayloadExpression(
-                    payload=rhythmmakertools.TaleaRhythmMaker(
-                        [1],
-                        16,
-                        prolation_addenda=[],
-                        secondary_divisions=[],
-                        beam_each_cell=False,
-                        beam_cells_together=True,
-                        tie_split_notes=False
-                        )
+                    payload=(TaleaRhythmMaker('sixteenths'),)
                     ),
                 anchor='red',
                 persist=True

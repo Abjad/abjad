@@ -32,9 +32,10 @@ class PayloadExpression(Expression):
 
     def __init__(self, payload):
         from experimental.tools import settingtools
+        assert not isinstance(payload, str), repr(payload)
+        assert not isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
         assert isinstance(payload, (str, tuple, list, 
-            settingtools.DivisionList, containertools.Container,
-            rhythmmakertools.RhythmMaker)), repr(payload)
+            settingtools.DivisionList, containertools.Container)), repr(payload)
         Expression.__init__(self)
         if isinstance(payload, list):
             payload = tuple(payload)

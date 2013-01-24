@@ -10,7 +10,7 @@ class RhythmMakerPayloadExpression(PayloadExpression):
 
     def __init__(self, payload=None):
         assert isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
-        PayloadExpression.__init__(self, payload=payload)
+        PayloadExpression.__init__(self, payload=[payload])
 
     ### PUBLIC METHODS ###
 
@@ -21,6 +21,7 @@ class RhythmMakerPayloadExpression(PayloadExpression):
         
         Return newly constructed rhythm-maker expression.
         '''
-        rhythm_maker = self.payload.reverse()
+        #rhythm_maker = self.payload.reverse()
+        rhythm_maker = self.payload[0].reverse()
         result = self.new(payload=rhythm_maker) 
         return result

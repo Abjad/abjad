@@ -33,6 +33,8 @@ class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethod
 
         Return timespan.
         '''
+        from experimental.tools import settingtools
         anchor_timespan = self.get_anchor_timespan()
         timespan = self._apply_callbacks(anchor_timespan)
-        return timespan
+        expression = settingtools.PayloadExpression([timespan])
+        return expression
