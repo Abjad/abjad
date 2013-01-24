@@ -36,19 +36,12 @@ class RhythmSettingLookupExpression(SettingLookupExpression):
             candidate_commands, self.voice_name, include_improper_parentage=True)
         assert source_command is not None
         assert isinstance(source_command, settingtools.RegionExpression)
-        # TODO: the lack of symmtery between these two branches means either:
-        #   that the call to self._apply_callbacks() is unnecessary, or
-        #   that the call must appear in both branches.
         expression = source_command.expression
         if isinstance(expression, settingtools.RhythmMakerPayloadExpression):
             expression = self._apply_callbacks(expression)
             return expression
-        # TODO: this should be replace in favor of a test for (StartPositioned)RhythmPayloadExpression
-        elif isinstance(expression, settingtools.PayloadExpression):
-#            assert isinstance(expression.payload, str)
-#            # TODO: Do not return parseable string.
-#            #       Interpret parseable string, apply callbacks, and return expression instead. 
-#            return expression.payload
-            raise Exception
+        elif isinstance(expression, settingtools.StartPositionedRhythmPayloadExpression):
+            expression = self._apply_callbacks(expression)
+            return expression
         else:
             raise TypeError(expression)

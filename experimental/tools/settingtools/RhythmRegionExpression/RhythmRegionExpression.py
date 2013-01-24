@@ -102,11 +102,19 @@ class RhythmRegionExpression(RegionExpression):
             command = settingtools.CounttimeComponentRhythmRegionExpression(
                 wrapped_component, voice_name, start_offset, total_duration)
         elif isinstance(self.expression, settingtools.RhythmSettingLookupExpression):
-            # TODO: both RhythmMakerExpression and CounttimeComponentPayloadExpression should come back here
             expression = self.expression._evaluate()
-            rhythm_maker = expression.payload
-            command = settingtools.RhythmMakerRhythmRegionExpression(
-                rhythm_maker, voice_name, start_offset, division_list)
+            if isinstance(expression, settingtools.RhythmMakerPayloadExpression):
+                rhythm_maker = expression.payload
+                command = settingtools.RhythmMakerRhythmRegionExpression(
+                    rhythm_maker, voice_name, start_offset, division_list)
+            elif isinstance(expression, settingtools.StartPositionedRhythmPayloadExpression):
+                wrapped_component = componenttools.copy_components_and_covered_spanners([expression.payload])[0]
+                total_duration = self.timespan.duration
+                command_start_offset = self.timespan.start_offset
+                command = settingtools.CounttimeComponentRhythmRegionExpression(
+                    wrapped_component, voice_name, start_offset, total_duration)
+            else:
+                raise TypeError(expression)
         elif isinstance(self.expression, settingtools.CounttimeComponentSelectExpression):
             total_duration = self.timespan.duration
             command_start_offset = self.timespan.start_offset
