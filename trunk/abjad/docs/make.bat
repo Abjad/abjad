@@ -1,6 +1,6 @@
 @ECHO OFF
 
-REM RegionCommand file for Sphinx documentation
+REM RegionExpression file for Sphinx documentation
 
 if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=sphinx-build
