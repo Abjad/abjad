@@ -21,7 +21,7 @@ class ExpressionInventory(ObjectInventory, Expression):
     def _evaluate(self):
         from abjad.tools import timespantools
         from experimental.tools import settingtools
-        result = []
+        result = type(self)()
         for expression in self:
             expression = expression._evaluate()
             # TODO: eventually remove this branch
