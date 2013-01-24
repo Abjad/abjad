@@ -7,19 +7,21 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
-from experimental.tools.settingtools.Flamingo import Flamingo
+from experimental.tools.settingtools.PayloadExpression import PayloadExpression
 
 
-class StartPositionedPayloadExpression(Flamingo):
-    r'''Voiced, start-positioned product.
+class StartPositionedPayloadExpression(PayloadExpression):
+    r'''Start-positioned payload expression.
     ''' 
 
     ### INITIALIZER ###
 
     def __init__(self, payload=None, voice_name=None, start_offset=None):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
-        Flamingo.__init__(self, payload=payload, start_offset=start_offset)
+        PayloadExpression.__init__(self, payload=payload)
         self._voice_name = voice_name
+        start_offset = durationtools.Offset(start_offset)
+        self._start_offset = start_offset
 
     ### SPECIAL METHODS ###
 
@@ -194,6 +196,14 @@ class StartPositionedPayloadExpression(Flamingo):
         '''Region product payload.
         '''
         return self._payload
+
+    @property
+    def start_offset(self):
+        '''Region product start offset.
+
+        Return offset.
+        '''
+        return self._start_offset
 
     @property
     def stop_offset(self):
