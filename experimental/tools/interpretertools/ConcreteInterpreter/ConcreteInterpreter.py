@@ -247,7 +247,7 @@ class ConcreteInterpreter(Interpreter):
     def merge_prolonging_finalized_rhythm_region_commands(self, finalized_rhythm_region_commands):
         result = []
         for finalized_rhythm_region_command in finalized_rhythm_region_commands:
-            if result and isinstance(finalized_rhythm_region_command, settingtools.SelectorRhythmRegionExpression) and \
+            if result and isinstance(finalized_rhythm_region_command, settingtools.SelectExpressionRhythmRegionExpression) and \
                 finalized_rhythm_region_command.prolongs_expr(result[-1]):
                 current_stop_offset = finalized_rhythm_region_command.start_offset
                 current_stop_offset += finalized_rhythm_region_command.total_duration

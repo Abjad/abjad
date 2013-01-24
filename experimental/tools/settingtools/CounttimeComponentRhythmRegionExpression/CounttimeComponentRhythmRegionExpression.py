@@ -5,7 +5,7 @@ from abjad.tools import wellformednesstools
 from experimental.tools.settingtools.FinalizedRhythmRegionExpression import FinalizedRhythmRegionExpression
 
 
-# TODO: maybe inherit from SelectorRhythmRegionExpression?
+# TODO: maybe inherit from SelectExpressionRhythmRegionExpression?
 class CounttimeComponentRhythmRegionExpression(FinalizedRhythmRegionExpression):
     '''Counttime component rhythm region expression.
     '''

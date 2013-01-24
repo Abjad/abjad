@@ -18,31 +18,31 @@
 
 4.  Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
-        selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
-        rhythm = red_segment.select_leaves('Voice 1', timespan=selector)
+        timespan = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
+        rhythm = red_segment.select_leaves('Voice 1', timespan=timespan)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 1'])
-        rhythm = red_segment.select_leaves('Voice 2', timespan=selector)
+        rhythm = red_segment.select_leaves('Voice 2', timespan=timespan)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 2'])
-        rhythm = red_segment.select_leaves('Voice 3', timespan=selector)
+        rhythm = red_segment.select_leaves('Voice 3', timespan=timespan)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 3'])
-        rhythm = red_segment.select_leaves('Voice 4', timespan=selector)
+        rhythm = red_segment.select_leaves('Voice 4', timespan=timespan)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 4'])
     ... when it might be possible to use ...
-        selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
+        timespan = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         selected_voices = ['Voice 1', 'Voice 2', 'Voice 3', 'Voice 4']
-        rhythm = red_segment.select_leaves(selected_voices, timespan=selector)
+        rhythm = red_segment.select_leaves(selected_voices, timespan=timespan)
         blue_segment.set_rhythm(rhythm, contexts=selected_voices)
     ... instead.
     This will simplify the X9 composer interface.
 
 5.  Unskip all experimental tests before 2.11 build.
 
-6.  Author tests to make sure that persistent overlapping division selectors 
+6.  Author tests to make sure that persistent overlapping division select expressions
     can be overwritten in a subsequent segment.
-    See test_multiple_segment_solo__persistent_overlapping_division_selectors_05().
+    See test_multiple_segment_solo__persistent_overlapping_division_select_expressions_05().
 
 7.  Looks like callback stacks may not be copied over from segment to segment for persistent settings.
-    Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
+    Fix test_multiple_segment_solo__persistent_overlapping_division_select_expressions_03() to debug.
 
 8.  Finish timerelationtools class docstrings before 2.11 build.
 
@@ -54,8 +54,8 @@
     Modifier methods include OffsetExpression.translate() and possibly others.
 
 12. Add a test to show this:
-        note_selector = red_segment.select_notes_and_chords('Voice 1')[10:11]
-        offset = note_selector.stop_offset
+        notes = red_segment.select_notes_and_chords('Voice 1')[10:11]
+        offset = notes.stop_offset
 
 13. Add some tests to show this:
         measures = red_segment.select_measures('Voice 1')
@@ -112,8 +112,7 @@
 
 22. Audit all expression evaluation methods.
 
-23. Rename SelectorRhythmRegionExpression to SelectExpressionRhythmRegionExpression.
-    Search globally for 'Selector' and 'selector' and replace.
+23. Search globally for 'selector' and replace.
 
 24. Maybe FinalizedRhythmRegionExpression can be removed in favor of RhythmRegionExpression?
     If FinalizedRhythmRegionExpression stays, then remove code duplicated in concrete subclasses.

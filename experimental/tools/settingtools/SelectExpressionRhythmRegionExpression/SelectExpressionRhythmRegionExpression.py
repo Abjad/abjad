@@ -4,7 +4,7 @@ from abjad.tools import wellformednesstools
 from experimental.tools.settingtools.FinalizedRhythmRegionExpression import FinalizedRhythmRegionExpression
 
 
-class SelectorRhythmRegionExpression(FinalizedRhythmRegionExpression):
+class SelectExpressionRhythmRegionExpression(FinalizedRhythmRegionExpression):
     '''SelectExpression rhythm region command.
     '''
 

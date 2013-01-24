@@ -118,7 +118,7 @@ class RhythmRegionExpression(RegionExpression):
         elif isinstance(self.expression, settingtools.CounttimeComponentSelectExpression):
             total_duration = self.timespan.duration
             command_start_offset = self.timespan.start_offset
-            command = settingtools.SelectorRhythmRegionExpression(
+            command = settingtools.SelectExpressionRhythmRegionExpression(
                 self.expression, voice_name, command_start_offset, total_duration)
         else:
             raise TypeError(self.expression)

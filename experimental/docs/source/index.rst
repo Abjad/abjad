@@ -334,7 +334,7 @@ Unstable packages (load manually)
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
       tools/settingtools/SegmentSelectExpression/SegmentSelectExpression
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
-      tools/settingtools/SelectorRhythmRegionExpression/SelectorRhythmRegionExpression
+      tools/settingtools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
       tools/settingtools/SettingInventory/SettingInventory
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
@@ -409,7 +409,7 @@ Unstable packages (load manually)
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
       tools/settingtools/SegmentSelectExpression/SegmentSelectExpression
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
-      tools/settingtools/SelectorRhythmRegionExpression/SelectorRhythmRegionExpression
+      tools/settingtools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
       tools/settingtools/SettingInventory/SettingInventory
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
       tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
