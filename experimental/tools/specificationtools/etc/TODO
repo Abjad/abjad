@@ -113,7 +113,11 @@
         score_specification = settingtools.ScoreSpecificationInterface(score_template)
     ... so that composers only ever interact with interfaces.
 
-22. Finish locking down all expression evaluation methods.
 
-23. It is possible that payload expressions should evaluate to themselves.
+22. It is possible that payload expressions should evaluate to themselves.
     Then all expressions will evaluate to an expression.
+    Then audit all expression evaluation methods to make sure they return expressions.
+
+23. Audit all expression evaluation methods.
+
+24. Straighten out RhythmSettingLookupExpression._evaluate().

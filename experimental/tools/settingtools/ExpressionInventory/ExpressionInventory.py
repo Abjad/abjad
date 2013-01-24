@@ -19,8 +19,8 @@ class ExpressionInventory(ObjectInventory, Expression):
     ### PRIVATE METHODS ###
 
     def _evaluate(self):
-        results = []
+        result = []
         for expression in self:
-            result = expression._evaluate()
-            results.append(result)
-        return results
+            expression = expression._evaluate()
+            result.append(expression)
+        return result

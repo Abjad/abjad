@@ -32,15 +32,15 @@ class RhythmMakerRhythmRegionExpression(FinalizedRhythmRegionExpression):
 
     def _evaluate(self):
         from experimental.tools import settingtools
-        if self.rhythm_region_division_list:
-            leaf_lists = self.rhythm_maker(self.rhythm_region_division_list.pairs)
-            rhythm_containers = [containertools.Container(x) for x in leaf_lists]
-            rhythm_product = settingtools.StartPositionedRhythmPayloadExpression(
-                payload=rhythm_containers,
-                start_offset=self.start_offset,
-                voice_name=self.rhythm_region_division_list.voice_name)
-            self._conditionally_beam_rhythm_containers(rhythm_containers)
-            return rhythm_product
+        if not self.rhythm_region_division_list:
+            return
+        leaf_lists = self.rhythm_maker(self.rhythm_region_division_list.pairs)
+        rhythm_containers = [containertools.Container(x) for x in leaf_lists]
+        expression = settingtools.StartPositionedRhythmPayloadExpression(
+            payload=rhythm_containers, start_offset=self.start_offset)
+        self._conditionally_beam_rhythm_containers(rhythm_containers)
+        expression._voice_name = self.rhythm_region_division_list.voice_name
+        return expression
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
