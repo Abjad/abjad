@@ -69,10 +69,9 @@ class MeasureSelectExpression(SelectExpression):
         time_signatures = start_segment_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
         start_offset = start_segment_specification.timespan.start_offset
-        result = settingtools.StartPositionedDivisionPayloadExpression(
-            time_signatures, start_offset=start_offset, voice_name=self.voice_name)
-        result = self._apply_callbacks(result)
-        return result
+        expression = settingtools.StartPositionedDivisionPayloadExpression(time_signatures, start_offset=start_offset)
+        expression = self._apply_callbacks(expression)
+        return expression
 
     # special definition because time signatures can be evaluated without knowing the timespan they occupy
     def _evaluate_early(self):

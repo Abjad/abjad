@@ -89,11 +89,9 @@ class SegmentSelectExpression(SelectExpression):
         start_segment_identifier = self.start_segment_identifier
         segment = self.score_specification[start_segment_identifier]
         start_offset = segment.start_offset
-        result = settingtools.StartPositionedPayloadExpression(
-            [segment], voice_name=self.voice_name, start_offset=start_offset)
-        result = self._apply_callbacks(result)
-        assert isinstance(result, settingtools.StartPositionedPayloadExpression), repr(result)
-        return result
+        expression = settingtools.StartPositionedPayloadExpression([segment], start_offset=start_offset)
+        expression = self._apply_callbacks(expression)
+        return expression
 
     def _make_identifier_expression(self, segment_name, addendum):
         assert isinstance(segment_name, str)

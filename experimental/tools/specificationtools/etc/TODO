@@ -113,11 +113,4 @@
         score_specification = settingtools.ScoreSpecificationInterface(score_template)
     ... so that composers only ever interact with interfaces.
 
-22. Clarify return types of all _evaluate() methods.
-    Some _evaluate() methods returns StartPositionedPayloadExpression objects.
-    Some _evaluate() methods return lists or tuples.
-    Perhaps these are the only two acceptable evaluation return types.
-
-23. Finish locking down select expression evaluation.
-    Use the right payload expression classes at the right moments 
-    in all select expression _evaluate() methods.
+22. Finish locking down all expression evaluation methods.
