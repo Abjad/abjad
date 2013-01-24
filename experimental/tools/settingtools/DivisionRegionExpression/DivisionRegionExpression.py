@@ -40,12 +40,14 @@ class DivisionRegionExpression(RegionExpression):
         if result is None:
             return
         assert isinstance(result, (settingtools.PayloadExpression, tuple, list)), repr(result)
-        if isinstance(result, settingtools.StartPositionedPayloadExpression):
+        if isinstance(result, settingtools.PayloadExpression):
             divisions = result._payload_elements[:]
+        # TODO: eventually hunt down the source of this branch and remove
         elif isinstance(result, list) and len(result) == 1 and isinstance(result[0], tuple):
             divisions = result[0][:]
         else:
-            divisions = [settingtools.Division(x) for x in result]
+            divisions = result
+        divisions = [settingtools.Division(x) for x in divisions]
         divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, self.timespan.duration)
         expression = settingtools.StartPositionedDivisionPayloadExpression(
             payload=divisions, start_offset=self.timespan.start_offset, voice_name=self.voice_name)

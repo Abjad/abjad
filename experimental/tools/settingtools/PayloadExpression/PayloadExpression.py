@@ -67,6 +67,12 @@ class PayloadExpression(Expression):
         result = self.new(payload=payload)
         return result
 
+    ### READ-ONLY PRIVATE PROPERTIES ##
+
+    @property
+    def _payload_elements(self):
+        return self.payload[:]
+
     ### PRIVATE METHODS ###
 
     def _duration_helper(self, expression):
