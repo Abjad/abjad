@@ -113,7 +113,6 @@
         score_specification = settingtools.ScoreSpecificationInterface(score_template)
     ... so that composers only ever interact with interfaces.
 
-
 22. It is possible that payload expressions should evaluate to themselves.
     Then all expressions will evaluate to an expression.
     Then audit all expression evaluation methods to make sure they return expressions.
@@ -121,8 +120,9 @@
 23. Audit all expression evaluation methods.
 
 24. Straighten out RhythmSettingLookupExpression._evaluate().
-    Doing this will mean no longer storing parseable strings in PayloadExpression objects.
-    Parse strings in _expr_to_expression().    
-    Then sotre in a new type of CounttimeComponentPayloadExpression.
-    Or maybe just store in the exiting StartPositionedRhythmPayloadExpression.
-    Which also suggests a RhythmPayloadExpression that is not yet start-positioned.
+
+25. Rename SelectorRhythmRegionExpression to SelectExpressionRhythmRegionExpression.
+    Search globally for 'Selector' and 'selector' and replace.
+
+26. Maybe FinalizedRhythmRegionExpression can be removed in favor of RhythmRegionExpression?
+    If FinalizedRhythmRegionExpression stays, then remove code duplicated in concrete subclasses.

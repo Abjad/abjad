@@ -1,4 +1,4 @@
-import copy
+from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools import rhythmmakertools
 from experimental.tools.settingtools.RegionExpression import RegionExpression
@@ -95,12 +95,12 @@ class RhythmRegionExpression(RegionExpression):
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             command = settingtools.RhythmMakerRhythmRegionExpression(
                 rhythm_maker, voice_name, start_offset, division_list)
-        # TODO: this case should be removed once CounttimeComponentPayloadExpression is implemented.
-        elif isinstance(self.expression, settingtools.PayloadExpression):
-            parseable_string = self.expression.payload
-            assert isinstance(parseable_string, str), repr(parseable_string)
-            command = settingtools.ParseableStringRhythmRegionExpression(
-                parseable_string, voice_name, start_offset, division_list.duration)
+        elif isinstance(self.expression, settingtools.StartPositionedRhythmPayloadExpression):
+            wrapped_component = componenttools.copy_components_and_covered_spanners([self.expression.payload])[0]
+            total_duration = self.timespan.duration
+            command_start_offset = self.timespan.start_offset
+            command = settingtools.CounttimeComponentRhythmRegionExpression(
+                wrapped_component, voice_name, start_offset, total_duration)
         elif isinstance(self.expression, settingtools.RhythmSettingLookupExpression):
             # TODO: both RhythmMakerExpression and CounttimeComponentPayloadExpression should come back here
             expression = self.expression._evaluate()

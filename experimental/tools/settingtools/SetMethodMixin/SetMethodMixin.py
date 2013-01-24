@@ -1,4 +1,5 @@
 import copy
+from abjad.tools import iotools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -34,8 +35,11 @@ class SetMethodMixin(AbjadObject):
             return expr
         elif self._all_are_expressions(expr):
             return settingtools.ExpressionInventory(expr)
-        elif isinstance(expr, (str, tuple, list)):
+        elif isinstance(expr, (tuple, list)):
             return settingtools.PayloadExpression(expr)
+        elif isinstance(expr, (str)):
+            component = iotools.p(expr)
+            return settingtools.StartPositionedRhythmPayloadExpression([component], start_offset=0)
         elif isinstance(expr, rhythmmakertools.RhythmMaker):
             return settingtools.RhythmMakerPayloadExpression(expr)
         else:
