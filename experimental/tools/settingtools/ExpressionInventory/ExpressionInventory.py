@@ -19,8 +19,20 @@ class ExpressionInventory(ObjectInventory, Expression):
     ### PRIVATE METHODS ###
 
     def _evaluate(self):
+        from abjad.tools import timespantools
+        from experimental.tools import settingtools
         result = []
         for expression in self:
+            # TODO: should only evaluate as (payload) expression and not as list or tuple
             expression = expression._evaluate()
-            result.append(expression)
+            # TODO: eventually remove this branch
+            if isinstance(expression, (list, tuple)):
+                result.extend(expression)
+            # TODO: eventually remove this branch
+            elif isinstance(expression, timespantools.Timespan):
+                result.append(expression)
+            elif isinstance(expression, settingtools.Expression):
+                result.append(expression)
+            else:
+                raise TypeError(expression)
         return result

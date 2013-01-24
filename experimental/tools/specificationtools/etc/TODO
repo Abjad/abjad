@@ -111,3 +111,7 @@
     Then audit all expression evaluation methods to make sure they return expressions.
 
 22. Audit all expression evaluation methods.
+
+23. Make TimespanExpression evaluate to PayloadExpression with [timespan] as payload.
+    Make OffsetExpression evaluate to PayloadExpression with [offset] as payload.
+    Remove RhythmMakerPayloadExpression in favor of PayloadExpression with [rhythm_maker] as payload.

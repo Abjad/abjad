@@ -4,9 +4,9 @@ from experimental.tools.settingtools.RegionExpression import RegionExpression
 
 
 class DivisionRegionExpression(RegionExpression):
-    r'''Division region command.
+    r'''Division region expression.
 
-    Region command indicating durated period of time 
+    Region expression indicating durated period of time 
     to which a division-maker will apply.
     '''
 
@@ -43,10 +43,7 @@ class DivisionRegionExpression(RegionExpression):
         assert isinstance(result, (settingtools.PayloadExpression, tuple, list)), repr(result)
         if isinstance(result, settingtools.PayloadExpression):
             divisions = result._payload_elements[:]
-        # TODO: eventually hunt down the source of this branch and remove
-        elif isinstance(result, list) and len(result) == 1 and isinstance(result[0], tuple):
-            #raise Exception(result)
-            divisions = result[0][:]
+        # TODO: eventually remove this branch when expressions evaluate only as expressions
         else:
             divisions = result
         divisions = [settingtools.Division(x) for x in divisions]
@@ -71,7 +68,7 @@ class DivisionRegionExpression(RegionExpression):
 
     @property
     def voice_name(self):
-        '''Aliased to division region command `context_name`.
+        '''Aliased to division region expression `context_name`.
 
         Return string.
         '''
