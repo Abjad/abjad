@@ -78,7 +78,7 @@ class CounttimeComponentSelectExpression(SelectExpression):
         time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
         rhythm_products = rhythm_products.get_timespans_that_satisfy_time_relation(time_relation)
         if not rhythm_products:
-            return None
+            return
         rhythm_products = copy.deepcopy(rhythm_products)
         rhythm_products = timespantools.TimespanInventory(rhythm_products)
         rhythm_products.sort()

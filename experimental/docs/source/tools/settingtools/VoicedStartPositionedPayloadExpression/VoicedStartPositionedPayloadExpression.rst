@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression.start_offset
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadExpression <experimental.tools.settingtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression>`
+   Inherited from :py:class:`settingtools.Flamingo <experimental.tools.settingtools.Flamingo.Flamingo.Flamingo>`
 
 .. autoattribute:: experimental.tools.settingtools.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression.stop_offset
    :noindex:
@@ -49,12 +49,12 @@ Methods
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression.repeat_to_duration
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadExpression <experimental.tools.settingtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression>`
+   Inherited from :py:class:`settingtools.Flamingo <experimental.tools.settingtools.Flamingo.Flamingo.Flamingo>`
 
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression.repeat_to_length
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadExpression <experimental.tools.settingtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression>`
+   Inherited from :py:class:`settingtools.Flamingo <experimental.tools.settingtools.Flamingo.Flamingo.Flamingo>`
 
 .. automethod:: experimental.tools.settingtools.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression.VoicedStartPositionedPayloadExpression.rotate
    :noindex:

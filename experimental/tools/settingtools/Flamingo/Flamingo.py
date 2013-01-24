@@ -4,10 +4,10 @@ from abjad.tools import sequencetools
 from experimental.tools.settingtools.PayloadExpression import PayloadExpression
 
 
-class StartPositionedPayloadExpression(PayloadExpression):
+class Flamingo(PayloadExpression):
     '''Start-positioned payload expression.
 
-        >>> expression = settingtools.StartPositionedPayloadExpression(
+        >>> expression = settingtools.Flamingo(
         ...     [(4, 16), (2, 16)], start_offset=Offset(40, 8))
 
     ::
@@ -17,7 +17,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
     ::
 
         >>> z(expression)
-        settingtools.StartPositionedPayloadExpression(
+        settingtools.Flamingo(
             payload=((4, 16), (2, 16), (4, 16), (2, 16), (4, 16), (2, 16)),
             start_offset=durationtools.Offset(5, 1)
             )
@@ -65,7 +65,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         ::
 
             >>> payload = [(6, 8), (6, 8), (6, 8), (6, 8), (6, 4), (6, 4)]
-            >>> expression = settingtools.StartPositionedPayloadExpression(payload, Offset(2))
+            >>> expression = settingtools.Flamingo(payload, Offset(2))
 
         ::
 
@@ -75,11 +75,11 @@ class StartPositionedPayloadExpression(PayloadExpression):
     
             >>> for x in result:
             ...     z(x)
-            settingtools.StartPositionedPayloadExpression(
+            settingtools.Flamingo(
                 payload=((6, 8), (6, 8), (6, 8)),
                 start_offset=durationtools.Offset(0, 1)
                 )
-            settingtools.StartPositionedPayloadExpression(
+            settingtools.Flamingo(
                 payload=((6, 8), (6, 4), (6, 4)),
                 start_offset=durationtools.Offset(9, 4)
                 )
@@ -103,7 +103,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         ::
 
             >>> payload = [(6, 8), (6, 8), (6, 8), (6, 8), (6, 4), (6, 4)]
-            >>> expression = settingtools.StartPositionedPayloadExpression(payload, Offset(2))
+            >>> expression = settingtools.Flamingo(payload, Offset(2))
 
         ::
 
@@ -113,11 +113,11 @@ class StartPositionedPayloadExpression(PayloadExpression):
     
             >>> for x in result:
             ...     z(x)
-            settingtools.StartPositionedPayloadExpression(
+            settingtools.Flamingo(
                 payload=((6, 8), (6, 8), (6, 8), (6, 8)),
                 start_offset=durationtools.Offset(0, 1)
                 )
-            settingtools.StartPositionedPayloadExpression(
+            settingtools.Flamingo(
                 payload=((6, 4), (6, 4)),
                 start_offset=durationtools.Offset(3, 1)
                 )
@@ -144,7 +144,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> expression = settingtools.StartPositionedPayloadExpression(payload, Offset(2))
+            >>> expression = settingtools.Flamingo(payload, Offset(2))
 
         ::
 
@@ -153,7 +153,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         ::
 
             >>> z(result)
-            settingtools.StartPositionedPayloadExpression(
+            settingtools.Flamingo(
                 payload=((3, 4), (6, 8), (6, 8)),
                 start_offset=durationtools.Offset(2, 1)
                 )
@@ -169,7 +169,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         '''Repeat payload to `duration`:
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> expression = settingtools.StartPositionedPayloadExpression(payload, Offset(2))
+            >>> expression = settingtools.Flamingo(payload, Offset(2))
 
         ::
 
@@ -178,7 +178,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         ::
     
             >>> z(result)
-            settingtools.StartPositionedPayloadExpression(
+            settingtools.Flamingo(
                 payload=(NonreducedFraction(6, 8), NonreducedFraction(6, 8), 
                     NonreducedFraction(3, 4), NonreducedFraction(6, 8), 
                     NonreducedFraction(6, 8), NonreducedFraction(4, 8)),
@@ -196,7 +196,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         '''Repeat payload to `length`:
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> expression = settingtools.StartPositionedPayloadExpression(payload, Offset(2))
+            >>> expression = settingtools.Flamingo(payload, Offset(2))
 
         ::
 
@@ -205,7 +205,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         ::
     
             >>> z(result)
-            settingtools.StartPositionedPayloadExpression(
+            settingtools.Flamingo(
                 payload=((6, 8), (6, 8), (3, 4), (6, 8), (6, 8)),
                 start_offset=durationtools.Offset(2, 1)
                 )
@@ -222,7 +222,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> expression = settingtools.StartPositionedPayloadExpression(payload, Offset(2))
+            >>> expression = settingtools.Flamingo(payload, Offset(2))
 
         ::
 
@@ -239,7 +239,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         '''Translate division region product by `translation`:
         
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> expression = settingtools.StartPositionedPayloadExpression(payload, Offset(2))
+            >>> expression = settingtools.Flamingo(payload, Offset(2))
 
         ::
 
@@ -247,7 +247,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
 
         ::
             >>> z(result)
-            settingtools.StartPositionedPayloadExpression(
+            settingtools.Flamingo(
                 payload=((6, 8), (6, 8), (3, 4)),
                 start_offset=durationtools.Offset(1, 1)
                 )

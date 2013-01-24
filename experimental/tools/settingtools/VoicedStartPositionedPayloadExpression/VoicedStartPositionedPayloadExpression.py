@@ -7,10 +7,10 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
-from experimental.tools.settingtools.StartPositionedPayloadExpression import StartPositionedPayloadExpression
+from experimental.tools.settingtools.Flamingo import Flamingo
 
 
-class VoicedStartPositionedPayloadExpression(StartPositionedPayloadExpression):
+class VoicedStartPositionedPayloadExpression(Flamingo):
     r'''Voiced, start-positioned product.
     ''' 
 
@@ -18,7 +18,7 @@ class VoicedStartPositionedPayloadExpression(StartPositionedPayloadExpression):
 
     def __init__(self, payload=None, voice_name=None, start_offset=None):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
-        StartPositionedPayloadExpression.__init__(self, payload=payload, start_offset=start_offset)
+        Flamingo.__init__(self, payload=payload, start_offset=start_offset)
         self._voice_name = voice_name
 
     ### SPECIAL METHODS ###
