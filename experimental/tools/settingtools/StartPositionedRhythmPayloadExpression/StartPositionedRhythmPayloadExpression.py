@@ -324,6 +324,12 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     ### PRIVATE METHODS ###
 
+    def _clone(self):
+        wrapped_component = componenttools.copy_components_and_covered_spanners([self.payload])[0]
+        new = type(self)([], start_offset=self.start_offset, voice_name=self.voice_name)
+        new._payload = wrapped_component
+        return new
+        
     def _split_payload_at_offsets(self, offsets):
         assert isinstance(self.payload, containertools.Container)
         music = self.payload

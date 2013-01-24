@@ -41,6 +41,8 @@ class RhythmSettingLookupExpression(SettingLookupExpression):
             expression = self._apply_callbacks(expression)
             return expression
         elif isinstance(expression, settingtools.StartPositionedRhythmPayloadExpression):
+            # clone to prevent callbacks from inadvertantly changing source expression
+            expression = expression._clone()
             expression = self._apply_callbacks(expression)
             return expression
         else:

@@ -79,3 +79,65 @@ def test_SegmentSpecification__look_up_rhythm_setting_between_voices_04():
     current_function_name = introspectiontools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification__look_up_rhythm_setting_between_voices_05():
+    '''Rhythm setting lookup between voices. From parseable string.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
+    red_segment.set_divisions([(1, 8)])
+    voice_2_rhythm_command = red_segment.timespan.start_offset.look_up_rhythm_setting('Voice 2')
+    red_segment.set_rhythm(voice_2_rhythm_command, contexts=['Voice 1'])
+    red_segment.set_rhythm("{ c'16 [ c'8 c'8. ] }", contexts=['Voice 2'])
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification__look_up_rhythm_setting_between_voices_06():
+    '''Rhythm setting lookup between voices with reflect callback.
+    From parseable string.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
+    red_segment.set_divisions([(1, 8)])
+    voice_2_rhythm_command = red_segment.timespan.start_offset.look_up_rhythm_setting('Voice 2')
+    voice_2_rhythm_command = voice_2_rhythm_command.reflect()
+    red_segment.set_rhythm(voice_2_rhythm_command, contexts=['Voice 1'])
+    red_segment.set_rhythm("{ c'16 [ c'8 c'8. ] }", contexts=['Voice 2'])
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification__look_up_rhythm_setting_between_voices_07():
+    '''Rhythm setting lookup between voices with canceling successive reflect callbacks.
+    From parseable string.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
+    red_segment.set_divisions([(1, 8)])
+    voice_2_rhythm_command = red_segment.timespan.start_offset.look_up_rhythm_setting('Voice 2')
+    voice_2_rhythm_command = voice_2_rhythm_command.reflect()
+    voice_2_rhythm_command = voice_2_rhythm_command.reflect()
+    red_segment.set_rhythm(voice_2_rhythm_command, contexts=['Voice 1'])
+    red_segment.set_rhythm("{ c'16 [ c'8 c'8. ] }", contexts=['Voice 2'])
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
