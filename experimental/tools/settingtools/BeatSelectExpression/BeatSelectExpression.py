@@ -56,9 +56,10 @@ class BeatSelectExpression(SelectExpression):
             naive_beats, weights, cyclic=False, overhang=False)
         result = shards[1]
         start_offset = durationtools.Offset(sum(shards[0]))
-        expression = settingtools.StartPositionedDivisionPayloadExpression(
-            payload=result, start_offset=start_offset)
+        expression = settingtools.StartPositionedDivisionPayloadExpression(payload=result, start_offset=start_offset)
         expression = self._apply_callbacks(expression)
-        result = settingtools.StartPositionedDivisionPayloadExpression(
-            payload=expression.payload, voice_name=self.voice_name, start_offset=expression.start_offset)
-        return result
+        #result = settingtools.StartPositionedDivisionPayloadExpression(
+        #    payload=expression.payload, voice_name=self.voice_name, start_offset=expression.start_offset)
+        #return result
+        expression._voice_name = self.voice_name
+        return expression

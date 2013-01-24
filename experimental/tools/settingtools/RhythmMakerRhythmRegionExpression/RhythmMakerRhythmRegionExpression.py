@@ -37,8 +37,8 @@ class RhythmMakerRhythmRegionExpression(FinalizedRhythmRegionExpression):
             rhythm_containers = [containertools.Container(x) for x in leaf_lists]
             rhythm_product = settingtools.StartPositionedRhythmPayloadExpression(
                 payload=rhythm_containers,
-                voice_name=self.rhythm_region_division_list.voice_name,
-                start_offset=self.start_offset)
+                start_offset=self.start_offset,
+                voice_name=self.rhythm_region_division_list.voice_name)
             self._conditionally_beam_rhythm_containers(rhythm_containers)
             return rhythm_product
 

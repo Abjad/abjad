@@ -233,7 +233,7 @@ class ConcreteInterpreter(Interpreter):
 
     def make_voice_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_division_list = settingtools.DivisionList([], voice.name)
+            voice_division_list = settingtools.DivisionList([], voice_name=voice.name)
             voice_proxy = self.score_specification.contexts[voice.name]
             products = voice_proxy.division_products
             divisions = [x.payload.divisions for x in products]

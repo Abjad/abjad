@@ -54,11 +54,11 @@ class DivisionList(BoundedObject):
                 Division('[3, 16]', start_offset=Offset(33, 16)), 
                 Division('[3, 16]', start_offset=Offset(9, 4)), 
                 Division('[3, 16]', start_offset=Offset(39, 16))],
-                voice_name='Voice 1',
-                start_offset=durationtools.Offset(0, 1)
+                start_offset=durationtools.Offset(0, 1),
+                voice_name='Voice 1'
                 ),
-            voice_name='Voice 1',
-            start_offset=durationtools.Offset(0, 1)
+            start_offset=durationtools.Offset(0, 1),
+            voice_name='Voice 1'
             )
 
     The reason that ``'Voice 1'`` has only one division region division list is that the 
@@ -73,7 +73,7 @@ class DivisionList(BoundedObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, divisions, voice_name=None, start_offset=None):
+    def __init__(self, divisions, start_offset=None, voice_name=None):
         from experimental.tools import settingtools
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         if start_offset is not None:

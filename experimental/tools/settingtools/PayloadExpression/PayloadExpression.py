@@ -53,7 +53,7 @@ class PayloadExpression(Expression):
         else:
             payload = self.payload
         division_product = settingtools.StartPositionedDivisionPayloadExpression(
-            payload=payload, voice_name='dummy voice name', start_offset=0)
+            payload=payload, start_offset=0, voice_name='dummy voice name')
         result = division_product & timespan
         assert len(result) in (0, 1)
         if result:

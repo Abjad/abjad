@@ -51,7 +51,7 @@ class DivisionRegionExpression(RegionExpression):
             divisions = [settingtools.Division(x) for x in result]
         divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, self.timespan.duration)
         result = settingtools.StartPositionedDivisionPayloadExpression(
-            divisions, self.voice_name, self.timespan.start_offset)
+            payload=divisions, start_offset=self.timespan.start_offset, voice_name=self.voice_name)
         return [result]
 
     ## READ-ONLY PUBLIC PROPERTIES ###

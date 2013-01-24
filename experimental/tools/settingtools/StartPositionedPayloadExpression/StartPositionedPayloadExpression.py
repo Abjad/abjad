@@ -16,12 +16,12 @@ class StartPositionedPayloadExpression(PayloadExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, payload=None, voice_name=None, start_offset=None):
+    def __init__(self, payload=None, start_offset=None, voice_name=None):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         PayloadExpression.__init__(self, payload=payload)
-        self._voice_name = voice_name
         start_offset = durationtools.Offset(start_offset)
         self._start_offset = start_offset
+        self._voice_name = voice_name
 
     ### SPECIAL METHODS ###
 
@@ -55,7 +55,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
             middle_payload = result[1]
             middle_timespan = timespantools.Timespan(*timespan.offsets)
             middle_product = type(self)(
-                payload=[], voice_name=self.voice_name, start_offset=middle_timespan.start_offset)
+                payload=[], start_offset=middle_timespan.start_offset, voice_name=self.voice_name)
             middle_product._payload = middle_payload
             result = timespantools.TimespanInventory([middle_product])
         else:
@@ -94,7 +94,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         '''
         assert self._can_fuse(expr)
         payload = self.payload + expr.payload
-        result = type(self)([], voice_name=self.voice_name, start_offset=self.timespan.start_offset)
+        result = type(self)([], start_offset=self.timespan.start_offset, voice_name=self.voice_name)
         result._payload = payload
         return timespantools.TimespanInventory([result])
 
@@ -132,11 +132,11 @@ class StartPositionedPayloadExpression(PayloadExpression):
             right_payload = result[-1]
             left_timespan = timespantools.Timespan(self.start_offset)
             left_product = type(self)(
-                payload=[], voice_name=self.voice_name, start_offset=left_timespan.start_offset)
+                payload=[], start_offset=left_timespan.start_offset, voice_name=self.voice_name)
             left_product._payload = left_payload
             right_timespan = timespantools.Timespan(timespan.stop_offset)
             right_product = type(self)(
-                payload=[], voice_name=self.voice_name, start_offset=right_timespan.start_offset)
+                payload=[], start_offset=right_timespan.start_offset, voice_name=self.voice_name)
             right_product._payload = right_payload
             products = [left_product, right_product]
             result = timespantools.TimespanInventory(products)
@@ -262,7 +262,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         products = settingtools.RegionExpressionInventory()
         for payload_part, start_offset in zip(payload_parts, start_offsets):
             timespan = timespantools.Timespan(start_offset)
-            product = type(self)([], self.voice_name, timespan.start_offset)
+            product = type(self)([], start_offset=timespan.start_offset, voice_name=self.voice_name)
             product._payload = payload_part
             products.append(product)
         return products
@@ -285,7 +285,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         products = settingtools.RegionExpressionInventory()
         for payload_part, start_offset in zip(payload_parts, start_offsets):
             timespan = timespantools.Timespan(start_offset)
-            product = type(self)([], self.voice_name, timespan.start_offset)
+            product = type(self)([], start_offset=timespan.start_offset, voice_name=self.voice_name)
             product._payload = payload_part
             products.append(product)
         return products
