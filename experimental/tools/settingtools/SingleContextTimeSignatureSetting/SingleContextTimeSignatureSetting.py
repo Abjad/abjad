@@ -20,7 +20,14 @@ class SingleContextTimeSignatureSetting(SingleContextSetting):
             assert isinstance(expression, settingtools.PayloadExpression), repr(expression)
             time_signatures = expression.payload
         else:
-            time_signatures = self.expression._evaluate()
+            expression = self.expression._evaluate()
+            if isinstance(expression, settingtools.PayloadExpression):
+                time_signatures = expression.payload[:]
+            # TODO: eventually remove this branch
+            elif isinstance(expression, (tuple, list)):
+                time_signatures = expression
+            else:
+                raise TypeError(expression)
         if time_signatures:
             segment_specification = score_specification.get_start_segment_specification(self.anchor)
             segment_specification._time_signatures = time_signatures[:]

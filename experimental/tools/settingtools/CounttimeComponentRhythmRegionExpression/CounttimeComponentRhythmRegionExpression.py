@@ -22,21 +22,22 @@ class CounttimeComponentRhythmRegionExpression(FinalizedRhythmRegionExpression):
 
     def _evaluate(self):
         from experimental.tools import settingtools
-        result = settingtools.StartPositionedRhythmPayloadExpression(
+        expression = settingtools.StartPositionedRhythmPayloadExpression(
             [], start_offset=self.start_offset, voice_name=self.voice_name)
         wrapped_component = componenttools.copy_components_and_covered_spanners([self.payload])[0]
-        result._payload = wrapped_component
+        expression._payload = wrapped_component
         start_offset, stop_offset = self.start_offset, self.start_offset + self.total_duration
         keep_timespan = timespantools.Timespan(start_offset, stop_offset)
-        assert not keep_timespan.starts_before_timespan_starts(result.timespan), repr((result.timespan, keep_timespan))
-        assert result.timespan.start_offset == keep_timespan.start_offset, repr((result.timespan, keep_timespan))
-        result = result & keep_timespan
-        assert isinstance(result, timespantools.TimespanInventory), repr(result)
-        assert len(result) == 1
-        result = result[0]
-        assert isinstance(result, settingtools.StartPositionedRhythmPayloadExpression), repr(result)
-        result.repeat_to_stop_offset(stop_offset)
-        return result
+        timespan = expression.timespan
+        assert not keep_timespan.starts_before_timespan_starts(timespan), repr((timespan, keep_timespan))
+        assert timespan.start_offset == keep_timespan.start_offset, repr((timespan, keep_timespan))
+        expression = expression & keep_timespan
+        assert isinstance(expression, timespantools.TimespanInventory), repr(expression)
+        assert len(expression) == 1
+        expression = expression[0]
+        assert isinstance(expression, settingtools.StartPositionedRhythmPayloadExpression), repr(expression)
+        expression.repeat_to_stop_offset(stop_offset)
+        return expression
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
