@@ -127,13 +127,11 @@ class ConcreteInterpreter(Interpreter):
                 voice_division_products = voice_proxy.division_products 
                 voice_division_region_commands_to_reattempt = []
                 for division_region_command in voice_division_region_commands:
-                    #self._debug(division_region_command, 'division region command')
-                    division_products = division_region_command._evaluate()
-                    if division_products is not None:
-                        assert isinstance(division_products, list)
-                        assert all([isinstance(x, settingtools.StartPositionedDivisionPayloadExpression) for x in division_products])
+                    division_product = division_region_command._evaluate()
+                    if division_product is not None:
+                        assert isinstance(division_product, settingtools.StartPositionedDivisionPayloadExpression)
                         made_progress = True
-                        voice_division_products.extend(division_products)
+                        voice_division_products.append(division_product)
                     else:
                         voice_division_region_commands_to_reattempt.append(division_region_command)
                         redo = True
