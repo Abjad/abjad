@@ -34,7 +34,7 @@ class TimespanScopedSingleContextRhythmSetting(TimespanScopedSingleContextSettin
         ::
 
             >>> z(result)
-            settingtools.RegionExpressionInventory([
+            settingtools.TimespanScopedSingleContextSettingInventory([
                 settingtools.TimespanScopedSingleContextRhythmSetting(
                     expression=settingtools.StartPositionedRhythmPayloadExpression(
                         payload=containertools.Container(

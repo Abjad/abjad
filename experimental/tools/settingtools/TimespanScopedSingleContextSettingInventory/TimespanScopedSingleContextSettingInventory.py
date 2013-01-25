@@ -4,7 +4,7 @@ from abjad.tools import timespantools
 from abjad.tools.timespantools.TimespanInventory import TimespanInventory
 
 
-class RegionExpressionInventory(TimespanInventory):
+class TimespanScopedSingleContextSettingInventory(TimespanInventory):
     '''Region command inventory.
 
     Methods to do things region command collections.
@@ -15,6 +15,8 @@ class RegionExpressionInventory(TimespanInventory):
     def sort_and_split_commands(self):
         '''Operate in place and return region command inventory.
         '''
+        from experimental.tools import settingtools
+        assert all([isinstance(x, settingtools.TimespanScopedSingleContextSetting) for x in self])
         cooked_commands = []
         for raw_command in self[:]:
             command_was_delayed, command_was_split = False, False
@@ -70,12 +72,14 @@ class RegionExpressionInventory(TimespanInventory):
     def supply_missing_commands(self, attribute, score_specification, voice_name):
         '''Operate in place and return region command inventory.
         '''
+        from experimental.tools import settingtools
+        assert all([isinstance(x, settingtools.TimespanScopedSingleContextSetting) for x in self])
         assert self.is_sorted
         if not self and not score_specification.time_signatures:
             return self
         elif not self and score_specification.time_signatures:
             timespan = score_specification.timespan
-            region_expression = score_specification.make_default_region_expression(
+            region_expression = score_specification.make_default_timespan_scoped_single_context_setting(
                 attribute, voice_name, timespan)
             self[:] = [region_expression]
             return self
@@ -83,7 +87,7 @@ class RegionExpressionInventory(TimespanInventory):
         timespans.append(score_specification.timespan)
         missing_region_timespans = timespans.compute_logical_xor() 
         for missing_region_timespan in missing_region_timespans:
-            missing_region_expression = score_specification.make_default_region_expression(
+            missing_region_expression = score_specification.make_default_timespan_scoped_single_context_setting(
                 attribute, voice_name, missing_region_timespan)
             self.append(missing_region_expression)
         self.sort()

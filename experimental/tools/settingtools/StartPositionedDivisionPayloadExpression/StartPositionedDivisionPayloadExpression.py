@@ -409,7 +409,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> z(result)
-            settingtools.RegionExpressionInventory([
+            settingtools.TimespanScopedSingleContextSettingInventory([
                 settingtools.StartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[6, 8]', start_offset=Offset(0, 1)), 
@@ -449,7 +449,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> z(result)
-            settingtools.RegionExpressionInventory([
+            settingtools.TimespanScopedSingleContextSettingInventory([
                 settingtools.StartPositionedDivisionPayloadExpression(
                     payload=settingtools.DivisionList(
                         [Division('[6, 8]', start_offset=Offset(0, 1)), 

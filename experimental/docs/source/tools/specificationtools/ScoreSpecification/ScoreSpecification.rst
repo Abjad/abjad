@@ -90,13 +90,13 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interpret
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_default_region_expression
+.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_default_timespan_scoped_single_context_division_setting
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_skip_token_rhythm_region_expression
+.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_default_timespan_scoped_single_context_rhythm_setting
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_time_signature_division_command
+.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_default_timespan_scoped_single_context_setting
    :noindex:
 
 Special Methods

@@ -500,7 +500,7 @@ class ScoreSpecification(Specification):
             del(self.single_context_settings_by_context[context_name][attribute])
 
     def get_region_expressions_for_voice(self, attribute, context_name):
-        commands = settingtools.RegionExpressionInventory()
+        commands = settingtools.TimespanScopedSingleContextSettingInventory()
         for segment_specification in self.segment_specifications:
             single_context_settings = \
                 segment_specification.get_single_context_settings_that_start_during_segment(
@@ -558,23 +558,15 @@ class ScoreSpecification(Specification):
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
-    def make_default_region_expression(self, attribute, voice_name, timespan):
+    def make_default_timespan_scoped_single_context_setting(self, attribute, voice_name, timespan):
         if attribute == 'divisions':
-            return self.make_time_signature_division_command(voice_name, timespan)
+            return self.make_default_timespan_scoped_single_context_division_setting(voice_name, timespan)
         elif attribute == 'rhythm':
-            return self.make_skip_token_rhythm_region_expression(voice_name, timespan)
+            return self.make_default_timespan_scoped_single_context_rhythm_setting(voice_name, timespan)
         else:
             raise ValueError(attribute)
 
-    def make_skip_token_rhythm_region_expression(self, voice_name, timespan):
-        return settingtools.TimespanScopedSingleContextRhythmSetting(
-            expression=settingtools.RhythmMakerPayloadExpression(library.skip_tokens),
-            timespan=timespan,
-            context_name=voice_name,
-            fresh=True
-            )
-
-    def make_time_signature_division_command(self, voice_name, timespan):
+    def make_default_timespan_scoped_single_context_division_setting(self, voice_name, timespan):
         divisions = self.get_time_signature_slice(timespan)
         return settingtools.TimespanScopedSingleContextDivisionSetting(
             expression=settingtools.PayloadExpression(divisions),
@@ -582,4 +574,12 @@ class ScoreSpecification(Specification):
             context_name=voice_name,
             fresh=True,
             truncate=True
+            )
+
+    def make_default_timespan_scoped_single_context_rhythm_setting(self, voice_name, timespan):
+        return settingtools.TimespanScopedSingleContextRhythmSetting(
+            expression=settingtools.RhythmMakerPayloadExpression(library.skip_tokens),
+            timespan=timespan,
+            context_name=voice_name,
+            fresh=True
             )

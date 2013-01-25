@@ -67,7 +67,7 @@ class TimespanScopedSingleContextSetting(AbjadObject):
         '''
         from experimental.tools import settingtools
         timespans = self.timespan - timespan
-        result = settingtools.RegionExpressionInventory()
+        result = settingtools.TimespanScopedSingleContextSettingInventory()
         for timespan in timespans:
             region_expression = self.new(timespan=timespan)
             result.append(region_expression)

@@ -323,7 +323,6 @@ Unstable packages (load manually)
       tools/settingtools/OffsetExpression/OffsetExpression
       tools/settingtools/ParseableStringRhythmRegionExpression/ParseableStringRhythmRegionExpression
       tools/settingtools/PayloadExpression/PayloadExpression
-      tools/settingtools/RegionExpressionInventory/RegionExpressionInventory
       tools/settingtools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
       tools/settingtools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
       tools/settingtools/RhythmSettingLookupExpression/RhythmSettingLookupExpression
@@ -347,6 +346,7 @@ Unstable packages (load manually)
       tools/settingtools/TimespanExpression/TimespanExpression
       tools/settingtools/TimespanScopedSingleContextDivisionSetting/TimespanScopedSingleContextDivisionSetting
       tools/settingtools/TimespanScopedSingleContextRhythmSetting/TimespanScopedSingleContextRhythmSetting
+      tools/settingtools/TimespanScopedSingleContextSettingInventory/TimespanScopedSingleContextSettingInventory
 
 .. only:: latex
 
@@ -398,7 +398,6 @@ Unstable packages (load manually)
       tools/settingtools/OffsetExpression/OffsetExpression
       tools/settingtools/ParseableStringRhythmRegionExpression/ParseableStringRhythmRegionExpression
       tools/settingtools/PayloadExpression/PayloadExpression
-      tools/settingtools/RegionExpressionInventory/RegionExpressionInventory
       tools/settingtools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
       tools/settingtools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
       tools/settingtools/RhythmSettingLookupExpression/RhythmSettingLookupExpression
@@ -422,6 +421,7 @@ Unstable packages (load manually)
       tools/settingtools/TimespanExpression/TimespanExpression
       tools/settingtools/TimespanScopedSingleContextDivisionSetting/TimespanScopedSingleContextDivisionSetting
       tools/settingtools/TimespanScopedSingleContextRhythmSetting/TimespanScopedSingleContextRhythmSetting
+      tools/settingtools/TimespanScopedSingleContextSettingInventory/TimespanScopedSingleContextSettingInventory
 
 :py:mod:`specificationtools <experimental.tools.specificationtools>`
 ====================================================================
