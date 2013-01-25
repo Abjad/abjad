@@ -106,9 +106,9 @@ class SingleContextSetting(Setting):
         return new_setting
 
     @abc.abstractmethod
-    def to_command(self):
-        '''Change single-context setting to command.
+    def to_timespan_scoped_setting(self):
+        '''Evaluate timespan of single-context setting.
 
-        Return command.
+        Return timespan-scoped single-context setting.
         '''
         pass

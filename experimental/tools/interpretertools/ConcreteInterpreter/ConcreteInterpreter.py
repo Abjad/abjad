@@ -81,18 +81,19 @@ class ConcreteInterpreter(Interpreter):
             for rhythm_product in voice_proxy.rhythm_products:
                 voice.extend(rhythm_product.payload)
 
-    def get_region_expressions_for_voice(self, attribute, voice_name):
-        region_expressions = self.score_specification.get_region_expressions_for_voice(attribute, voice_name)
-        region_expressions.sort_and_split_commands()
-        region_expressions.compute_logical_or()
-        region_expressions.supply_missing_commands(attribute, self.score_specification, voice_name)
-        return region_expressions
+    def get_timespan_scoped_single_context_settings_for_voice(self, attribute, voice_name):
+        settings = self.score_specification.get_timespan_scoped_single_context_settings_for_voice(
+            attribute, voice_name)
+        settings.sort_and_split_settings()
+        settings.compute_logical_or()
+        settings.supply_missing_settings(attribute, self.score_specification, voice_name)
+        return settings
 
     def interpret_additional_parameters(self):
         pass
 
     def interpret_divisions(self):
-        self.make_region_expressions('divisions')
+        self.make_timespan_scoped_single_context_settings('divisions')
         self.make_division_products()
         self.make_voice_division_lists()
 
@@ -103,7 +104,7 @@ class ConcreteInterpreter(Interpreter):
         pass
 
     def interpret_rhythm(self):
-        self.make_region_expressions('rhythm')
+        self.make_timespan_scoped_single_context_settings('rhythm')
         #self._debug_values(self.score_specification.rhythm_region_expressions, 'rhythm region commands')
         self.make_finalized_rhythm_region_expressions()
         #self._debug_values(self.score_specification.finalized_rhythm_region_expressions, 'finalized rhythm commands')
@@ -196,11 +197,11 @@ class ConcreteInterpreter(Interpreter):
             finalized_rhythm_region_expressions)
         return finalized_rhythm_region_expressions
 
-    def make_region_expressions(self, attribute):
+    def make_timespan_scoped_single_context_settings(self, attribute):
         if self.score_specification.segment_specifications:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
                 voice_proxy = self.score_specification.contexts[voice.name]
-                region_expressions = self.get_region_expressions_for_voice(attribute, voice.name)
+                region_expressions = self.get_timespan_scoped_single_context_settings_for_voice(attribute, voice.name)
                 singular_attribute = attribute.rstrip('s')
                 key = '{}_region_expressions'.format(singular_attribute)
                 region_expression_inventory = getattr(voice_proxy, key)
@@ -259,7 +260,7 @@ class ConcreteInterpreter(Interpreter):
                 result.append(finalized_rhythm_region_expression)
         return result
 
-    # TODO: eventually merge with self.make_region_expressions()
+    # TODO: eventually merge with self.make_timespan_scoped_single_context_settings()
     def populate_time_signature_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
             time_signature_settings = \

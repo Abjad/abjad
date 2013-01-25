@@ -82,7 +82,7 @@ Methods
 
    Inherited from :py:class:`settingtools.AnchoredObject <experimental.tools.settingtools.AnchoredObject.AnchoredObject.AnchoredObject>`
 
-.. automethod:: experimental.tools.settingtools.SingleContextRhythmSetting.SingleContextRhythmSetting.SingleContextRhythmSetting.to_command
+.. automethod:: experimental.tools.settingtools.SingleContextRhythmSetting.SingleContextRhythmSetting.SingleContextRhythmSetting.to_timespan_scoped_setting
    :noindex:
 
 Special Methods

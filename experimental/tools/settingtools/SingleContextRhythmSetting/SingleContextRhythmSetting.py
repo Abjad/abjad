@@ -13,10 +13,10 @@ class SingleContextRhythmSetting(SingleContextSetting):
 
     ### PUBLIC METHODS ###
 
-    def to_command(self):
-        '''Change single-context time signature setting to command.
+    def to_timespan_scoped_setting(self):
+        '''Evaluate timespan of single-context rhythm setting.
 
-        Return command.
+        Return timespan-scoped single-context rhythm setting.
         '''
         from experimental.tools import settingtools
         timespan = self.get_anchor_timespan()

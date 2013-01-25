@@ -499,19 +499,19 @@ class ScoreSpecification(Specification):
         if attribute in self.single_context_settings_by_context[context_name]:
             del(self.single_context_settings_by_context[context_name][attribute])
 
-    def get_region_expressions_for_voice(self, attribute, context_name):
-        commands = settingtools.TimespanScopedSingleContextSettingInventory()
+    def get_timespan_scoped_single_context_settings_for_voice(self, attribute, context_name):
+        timespan_scoped_settings = settingtools.TimespanScopedSingleContextSettingInventory()
         for segment_specification in self.segment_specifications:
             single_context_settings = \
                 segment_specification.get_single_context_settings_that_start_during_segment(
                 context_name, attribute, include_improper_parentage=True)
             for single_context_setting in single_context_settings:
-                command = single_context_setting.to_command()
+                timespan_scoped_setting = single_context_setting.to_timespan_scoped_setting()
                 # make sure setting was setting for timespan that exists in current segment
-                if command.timespan.is_well_formed:
-                    commands.append(command)
-        assert commands.all_are_well_formed
-        return commands
+                if timespan_scoped_setting.timespan.is_well_formed:
+                    timespan_scoped_settings.append(timespan_scoped_setting)
+        assert timespan_scoped_settings.all_are_well_formed
+        return timespan_scoped_settings
 
     # TODO: possibly remove in favor of self.get_anchor_timespan().
     def get_start_segment_specification(self, expr):

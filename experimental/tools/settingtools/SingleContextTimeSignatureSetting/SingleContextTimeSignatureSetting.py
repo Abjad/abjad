@@ -33,10 +33,10 @@ class SingleContextTimeSignatureSetting(SingleContextSetting):
             segment_specification._time_signatures = time_signatures[:]
             return time_signatures
 
-    def to_command(self):
-        '''Change single-context time signature setting to command.
+    def to_timespan_scoped_setting(self):
+        '''Evaluate timespan of single-context time signataure setting.
 
-        Return command.
+        Return timespan-scoped single-context time signature setting.
         '''
         from experimental.tools import settingtools
         anchor_timespan = self.get_anchor_timespan()

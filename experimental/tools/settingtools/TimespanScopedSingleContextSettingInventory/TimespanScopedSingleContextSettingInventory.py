@@ -5,90 +5,84 @@ from abjad.tools.timespantools.TimespanInventory import TimespanInventory
 
 
 class TimespanScopedSingleContextSettingInventory(TimespanInventory):
-    '''Region command inventory.
-
-    Methods to do things region command collections.
+    '''Timespan-scoped single-context setting inventory.
     '''
 
     ### PUBLIC METHODS ###
 
-    def sort_and_split_commands(self):
-        '''Operate in place and return region command inventory.
+    def sort_and_split_settings(self):
+        '''Operate in place and return timespan-scoped single-context setting inventory.
         '''
-        from experimental.tools import settingtools
-        assert all([isinstance(x, settingtools.TimespanScopedSingleContextSetting) for x in self])
-        cooked_commands = []
-        for raw_command in self[:]:
-            command_was_delayed, command_was_split = False, False
-            commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split = [], [], [], []
-            for cooked_command in cooked_commands:
-                if raw_command.timespan.contains_timespan_improperly(cooked_command):
-                    commands_to_remove.append(cooked_command)
-                elif raw_command.timespan.delays_timespan(cooked_command):
-                    commands_to_delay.append(cooked_command)
-                elif raw_command.timespan.curtails_timespan(cooked_command):
-                    commands_to_curtail.append(cooked_command)
-                elif raw_command.timespan.trisects_timespan(cooked_command):
-                    commands_to_split.append(cooked_command)
-            #print commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split
-            for command_to_remove in commands_to_remove:
-                cooked_commands.remove(command_to_remove)
-            for command_to_curtail in commands_to_curtail:
+        cooked_settings = []
+        for raw_setting in self[:]:
+            setting_was_delayed, setting_was_split = False, False
+            settings_to_remove, settings_to_curtail, settings_to_delay, settings_to_split = [], [], [], []
+            for cooked_setting in cooked_settings:
+                if raw_setting.timespan.contains_timespan_improperly(cooked_setting):
+                    settings_to_remove.append(cooked_setting)
+                elif raw_setting.timespan.delays_timespan(cooked_setting):
+                    settings_to_delay.append(cooked_setting)
+                elif raw_setting.timespan.curtails_timespan(cooked_setting):
+                    settings_to_curtail.append(cooked_setting)
+                elif raw_setting.timespan.trisects_timespan(cooked_setting):
+                    settings_to_split.append(cooked_setting)
+            #print settings_to_remove, settings_to_curtail, settings_to_delay, settings_to_split
+            for setting_to_remove in settings_to_remove:
+                cooked_settings.remove(setting_to_remove)
+            for setting_to_curtail in settings_to_curtail:
                 timespan = timespantools.Timespan(
-                    command_to_curtail.timespan.start_offset, raw_command.timespan.start_offset)
-                command_to_curtail._timespan = timespan
-            for command_to_delay in commands_to_delay:
+                    setting_to_curtail.timespan.start_offset, raw_setting.timespan.start_offset)
+                setting_to_curtail._timespan = timespan
+            for setting_to_delay in settings_to_delay:
                 timespan = timespantools.Timespan(
-                    raw_command.timespan.stop_offset, command_to_delay.timespan.stop_offset)
-                command_to_delay._timespan = timespan
-                command_was_delayed = True
+                    raw_setting.timespan.stop_offset, setting_to_delay.timespan.stop_offset)
+                setting_to_delay._timespan = timespan
+                setting_was_delayed = True
             # TODO: branch inside and implement a method to split while treating cyclic payload smartly.
-            # or, alternatively, special-case for commands that cover the entire duration of score.
-            for command_to_split in commands_to_split:
-                left_command = command_to_split
-                middle_command = raw_command
-                right_command = copy.deepcopy(left_command)
+            # or, alternatively, special-case for settings that cover the entire duration of score.
+            for setting_to_split in settings_to_split:
+                left_setting = setting_to_split
+                middle_setting = raw_setting
+                right_setting = copy.deepcopy(left_setting)
                 timespan = timespantools.Timespan(
-                    left_command.timespan.start_offset, middle_command.timespan.start_offset)
-                left_command._timespan = timespan
+                    left_setting.timespan.start_offset, middle_setting.timespan.start_offset)
+                left_setting._timespan = timespan
                 timespan = timespantools.Timespan(
-                    middle_command.timespan.stop_offset, right_command.timespan.stop_offset)
-                right_command._timespan = timespan
-                command_was_split = True
-            if command_was_delayed:
-                index = cooked_commands.index(cooked_command)
-                cooked_commands.insert(index, raw_command)
-            elif command_was_split:
-                cooked_commands.append(middle_command)
-                cooked_commands.append(right_command)
+                    middle_setting.timespan.stop_offset, right_setting.timespan.stop_offset)
+                right_setting._timespan = timespan
+                setting_was_split = True
+            if setting_was_delayed:
+                index = cooked_settings.index(cooked_setting)
+                cooked_settings.insert(index, raw_setting)
+            elif setting_was_split:
+                cooked_settings.append(middle_setting)
+                cooked_settings.append(right_setting)
             else:
-                cooked_commands.append(raw_command)
-            cooked_commands.sort()
-            #self._debug_values(cooked_commands, 'cooked')
-        #self._debug_values(cooked_commands, 'cooked')
-        self[:] = cooked_commands
+                cooked_settings.append(raw_setting)
+            cooked_settings.sort()
+            #self._debug_values(cooked_settings, 'cooked')
+        #self._debug_values(cooked_settings, 'cooked')
+        self[:] = cooked_settings
         return self
 
-    def supply_missing_commands(self, attribute, score_specification, voice_name):
-        '''Operate in place and return region command inventory.
+    def supply_missing_settings(self, attribute, score_specification, voice_name):
+        '''Operate in place and return timespan-scoped single-context setting inventory.
         '''
-        from experimental.tools import settingtools
-        assert all([isinstance(x, settingtools.TimespanScopedSingleContextSetting) for x in self])
         assert self.is_sorted
         if not self and not score_specification.time_signatures:
             return self
         elif not self and score_specification.time_signatures:
             timespan = score_specification.timespan
-            region_expression = score_specification.make_default_timespan_scoped_single_context_setting(
+            setting = score_specification.make_default_timespan_scoped_single_context_setting(
                 attribute, voice_name, timespan)
-            self[:] = [region_expression]
+            self[:] = [setting]
             return self
         timespans = timespantools.TimespanInventory([expr.timespan for expr in self])
         timespans.append(score_specification.timespan)
         missing_region_timespans = timespans.compute_logical_xor() 
         for missing_region_timespan in missing_region_timespans:
-            missing_region_expression = score_specification.make_default_timespan_scoped_single_context_setting(
+            missing_setting = score_specification.make_default_timespan_scoped_single_context_setting(
                 attribute, voice_name, missing_region_timespan)
-            self.append(missing_region_expression)
+            self.append(missing_setting)
         self.sort()
         return self

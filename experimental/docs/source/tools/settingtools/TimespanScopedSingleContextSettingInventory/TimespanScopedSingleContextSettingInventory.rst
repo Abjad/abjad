@@ -165,7 +165,7 @@ Methods
 
    Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: experimental.tools.settingtools.TimespanScopedSingleContextSettingInventory.TimespanScopedSingleContextSettingInventory.TimespanScopedSingleContextSettingInventory.sort_and_split_commands
+.. automethod:: experimental.tools.settingtools.TimespanScopedSingleContextSettingInventory.TimespanScopedSingleContextSettingInventory.TimespanScopedSingleContextSettingInventory.sort_and_split_settings
    :noindex:
 
 .. automethod:: experimental.tools.settingtools.TimespanScopedSingleContextSettingInventory.TimespanScopedSingleContextSettingInventory.TimespanScopedSingleContextSettingInventory.stretch
@@ -173,7 +173,7 @@ Methods
 
    Inherited from :py:class:`abjad.tools.timespantools.TimespanInventory <abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory>`
 
-.. automethod:: experimental.tools.settingtools.TimespanScopedSingleContextSettingInventory.TimespanScopedSingleContextSettingInventory.TimespanScopedSingleContextSettingInventory.supply_missing_commands
+.. automethod:: experimental.tools.settingtools.TimespanScopedSingleContextSettingInventory.TimespanScopedSingleContextSettingInventory.TimespanScopedSingleContextSettingInventory.supply_missing_settings
    :noindex:
 
 .. automethod:: experimental.tools.settingtools.TimespanScopedSingleContextSettingInventory.TimespanScopedSingleContextSettingInventory.TimespanScopedSingleContextSettingInventory.translate

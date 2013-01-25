@@ -85,7 +85,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.make_time_signatures
    :noindex:
 
-.. automethod:: experimental.tools.settingtools.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.to_command
+.. automethod:: experimental.tools.settingtools.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.SingleContextTimeSignatureSetting.to_timespan_scoped_setting
    :noindex:
 
 Special Methods

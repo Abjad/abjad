@@ -15,10 +15,10 @@ class SingleContextDivisionSetting(SingleContextSetting):
 
     ### PUBLIC METHODS ###
 
-    def to_command(self):
-        '''Change single-context time signature setting to command.
+    def to_timespan_scoped_setting(self):
+        '''Evaluate timespan of single-context division setting.
 
-        Return command.
+        Return timespan-scoped single-context division setting.
         '''
         from experimental.tools import settingtools
         anchor_timespan = self.get_anchor_timespan()
