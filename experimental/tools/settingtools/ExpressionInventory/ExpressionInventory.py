@@ -16,21 +16,20 @@ class ExpressionInventory(ObjectInventory, Expression):
         result = type(self)(tokens=tokens, name=self.name)
         return result
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _payload_elements(self):
+        result = []
+        for expression in self:
+            result.extend(expression._payload_elements)
+        return result
+
     ### PRIVATE METHODS ###
 
     def _evaluate(self):
-        from abjad.tools import timespantools
-        from experimental.tools import settingtools
         result = type(self)()
         for expression in self:
             expression = expression._evaluate()
-            # TODO: eventually remove this branch
-            if isinstance(expression, (list, tuple)):
-                result.extend(expression)
-            elif isinstance(expression, settingtools.PayloadExpression):
-                result.extend(expression.payload)
-            elif isinstance(expression, settingtools.Expression):
-                result.append(expression)
-            else:
-                raise TypeError(expression)
+            result.append(expression)
         return result

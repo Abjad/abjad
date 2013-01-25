@@ -36,16 +36,10 @@ class DivisionRegionExpression(RegionExpression):
 
     def _evaluate(self):
         from experimental.tools import settingtools
-        # TODO: should return an expression or none but not a list or tuple
-        result = self.expression._evaluate()
-        if result is None:
+        expression = self.expression._evaluate()
+        if expression is None:
             return
-        assert isinstance(result, (settingtools.PayloadExpression, tuple, list)), repr(result)
-        if isinstance(result, settingtools.PayloadExpression):
-            divisions = result._payload_elements[:]
-        # TODO: eventually remove this branch when expressions evaluate only as expressions
-        else:
-            divisions = result
+        divisions = expression._payload_elements[:]
         divisions = [settingtools.Division(x) for x in divisions]
         divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, self.timespan.duration)
         expression = settingtools.StartPositionedDivisionPayloadExpression(
