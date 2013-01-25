@@ -23,5 +23,6 @@ class SingleContextDivisionSetting(SingleContextSetting):
         from experimental.tools import settingtools
         anchor_timespan = self.get_anchor_timespan()
         command = settingtools.DivisionRegionExpression(
-            self.expression, self.context_name, anchor_timespan, fresh=self.fresh, truncate=self.truncate)
+            expression=self.expression, timespan=anchor_timespan, 
+            context_name=self.context_name, fresh=self.fresh, truncate=self.truncate)
         return command

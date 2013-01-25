@@ -152,11 +152,11 @@ class ScoreSpecification(Specification):
                 expression=settingtools.PayloadExpression(
                     ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
                     ),
-                context_name='Voice 1',
                 timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(9, 4)
                     ),
+                context_name='Voice 1',
                 fresh=True,
                 truncate=True
                 )
@@ -164,11 +164,11 @@ class ScoreSpecification(Specification):
                 expression=settingtools.PayloadExpression(
                     ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
                     ),
-                context_name='Voice 2',
                 timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(9, 4)
                     ),
+                context_name='Voice 2',
                 fresh=True,
                 truncate=True
                 )
@@ -568,18 +568,18 @@ class ScoreSpecification(Specification):
 
     def make_skip_token_rhythm_region_expression(self, voice_name, timespan):
         return settingtools.RhythmRegionExpression(
-            settingtools.RhythmMakerPayloadExpression(library.skip_tokens),
-            voice_name,
-            timespan,
+            expression=settingtools.RhythmMakerPayloadExpression(library.skip_tokens),
+            timespan=timespan,
+            context_name=voice_name,
             fresh=True
             )
 
     def make_time_signature_division_command(self, voice_name, timespan):
         divisions = self.get_time_signature_slice(timespan)
         return settingtools.DivisionRegionExpression(
-            settingtools.PayloadExpression(divisions),
-            voice_name,
-            timespan,
+            expression=settingtools.PayloadExpression(divisions),
+            timespan=timespan,
+            context_name=voice_name,
             fresh=True,
             truncate=True
             )

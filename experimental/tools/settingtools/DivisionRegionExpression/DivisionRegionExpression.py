@@ -12,8 +12,9 @@ class DivisionRegionExpression(RegionExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, expression=None, context_name=None, timespan=None, fresh=None, truncate=None):
-        RegionExpression.__init__(self, expression, context_name, timespan, fresh=fresh)
+    def __init__(self, expression=None, timespan=None, context_name=None, fresh=None, truncate=None):
+        RegionExpression.__init__(self, 
+            expression=expression, timespan=timespan, context_name=context_name, fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate
 

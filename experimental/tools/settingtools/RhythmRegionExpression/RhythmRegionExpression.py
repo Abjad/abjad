@@ -1,3 +1,4 @@
+import abc
 from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools import rhythmmakertools
@@ -11,6 +12,10 @@ class RhythmRegionExpression(RegionExpression):
     over which a rhythm-maker will apply.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __metaclass__ = abc.ABCMeta
+
     ### SPECIAL METHODS ###
 
     def __sub__(self, timespan):
@@ -20,7 +25,7 @@ class RhythmRegionExpression(RegionExpression):
             ...     "{ c'16 [ c'8 ] }", start_offset=0)
             >>> timespan = timespantools.Timespan(0, 20)
             >>> rhythm_region_expression = settingtools.RhythmRegionExpression(
-            ...     expression, 'Voice 1', timespan)
+            ...     expression, timespan, 'Voice 1')
 
         ::
 
@@ -37,11 +42,11 @@ class RhythmRegionExpression(RegionExpression):
                             ),
                         start_offset=durationtools.Offset(0, 1)
                         ),
-                    context_name='Voice 1',
                     timespan=timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
                         stop_offset=durationtools.Offset(5, 1)
-                        )
+                        ),
+                    context_name='Voice 1'
                     ),
                 settingtools.RhythmRegionExpression(
                     expression=settingtools.StartPositionedRhythmPayloadExpression(
@@ -50,11 +55,11 @@ class RhythmRegionExpression(RegionExpression):
                             ),
                         start_offset=durationtools.Offset(0, 1)
                         ),
-                    context_name='Voice 1',
                     timespan=timespantools.Timespan(
                         start_offset=durationtools.Offset(15, 1),
                         stop_offset=durationtools.Offset(20, 1)
-                        )
+                        ),
+                    context_name='Voice 1'
                     )
                 ])
 
@@ -78,8 +83,10 @@ class RhythmRegionExpression(RegionExpression):
         return True
 
     # TODO: maybe make RhythmRegionExpression abstract and make this method abstract
+    #@abc.abstractmethod
     def _evaluate(self):
         raise NotImplemented
+        #pass
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -91,7 +98,7 @@ class RhythmRegionExpression(RegionExpression):
 
     ### PUBLIC METHODS ###
 
-    # TODO: maybe implement finalize() methods on PayloadExpression, RhythmMakerPayloadExpression, etc.
+    # TODO: maybe implement finalize() methods on RhythmMakerPayloadExpression, etc.
     def finalize(self, score_specification, voice_name, start_offset, division_list):
         from experimental.tools import settingtools
         assert isinstance(start_offset, durationtools.Offset), repr(start_offset)
@@ -130,3 +137,6 @@ class RhythmRegionExpression(RegionExpression):
         else:
             raise TypeError(self.expression)
         return command
+
+    def _evaluate(self):
+        raise Exception(self)

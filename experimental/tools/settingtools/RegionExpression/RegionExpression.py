@@ -19,16 +19,15 @@ class RegionExpression(Expression):
 
     ### INTIAILIZER ###
 
-    def __init__(self, expression=None, context_name=None, timespan=None, fresh=None):
-        from experimental.tools import settingtools 
+    def __init__(self, expression=None, timespan=None, context_name=None, fresh=None):
         from experimental.tools import settingtools
         assert isinstance(expression, (settingtools.Expression)), repr(expression)
-        assert isinstance(context_name, (str, type(None))), repr(context_name)
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
+        assert isinstance(context_name, (str, type(None))), repr(context_name)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
         self._expression = expression
-        self._context_name = context_name
         self._timespan = timespan
+        self._context_name = context_name
         self._fresh = fresh
 
     ### SPECIAL METHODS ###
@@ -157,3 +156,6 @@ class RegionExpression(Expression):
             positional_argument_values.append(positional_argument_value)
         result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
         return result
+
+    def _evaluate(self):
+        raise Exception(self)

@@ -106,8 +106,16 @@
         score_specification = settingtools.ScoreSpecificationInterface(score_template)
     ... so that composers only ever interact with interfaces.
 
-21. It is possible that payload expressions should evaluate to themselves.
-    Then all expressions will evaluate to an expression.
-    Then audit all expression evaluation methods to make sure they return expressions.
+21. Audit all expression evaluation methods.
 
-22. Audit all expression evaluation methods.
+22. Rename all to_command() methods to something else.
+
+23. Maybe RegionExpression is not really an Expression class.
+    The system never calls _evaluate() on RegionExpression.
+    The same is true for RhythmRegionExpression.
+    But the system does call _evaluate() on DivisionRegionExpression.
+    Probably DivisionRegionExpression needs to be broken out.
+    Then
+        RegionExpression ==> TimespanScopedSingleContextSetting
+        DivisionRegionExpression ==> TimespanScopedSingleContextDivisionSetting
+        RhythmRegionExpression ==> TimespanScopedSingleContextRhythmSetting
