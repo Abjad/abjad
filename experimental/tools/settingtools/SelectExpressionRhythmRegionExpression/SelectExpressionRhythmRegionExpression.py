@@ -1,10 +1,10 @@
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
-from experimental.tools.settingtools.FinalizedRhythmRegionExpression import FinalizedRhythmRegionExpression
+from experimental.tools.settingtools.RhythmRegionExpression import RhythmRegionExpression
 
 
-class SelectExpressionRhythmRegionExpression(FinalizedRhythmRegionExpression):
+class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
     '''SelectExpression rhythm region command.
     '''
 

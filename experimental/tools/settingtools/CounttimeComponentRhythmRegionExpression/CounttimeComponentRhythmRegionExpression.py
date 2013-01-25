@@ -2,11 +2,11 @@ from abjad.tools import componenttools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
-from experimental.tools.settingtools.FinalizedRhythmRegionExpression import FinalizedRhythmRegionExpression
+from experimental.tools.settingtools.RhythmRegionExpression import RhythmRegionExpression
 
 
 # TODO: maybe inherit from SelectExpressionRhythmRegionExpression?
-class CounttimeComponentRhythmRegionExpression(FinalizedRhythmRegionExpression):
+class CounttimeComponentRhythmRegionExpression(RhythmRegionExpression):
     '''Counttime component rhythm region expression.
     '''
 

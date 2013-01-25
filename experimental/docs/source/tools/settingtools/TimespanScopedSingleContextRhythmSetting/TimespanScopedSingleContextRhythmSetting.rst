@@ -50,13 +50,13 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.settingtools.TimespanScopedSingleContextRhythmSetting.TimespanScopedSingleContextRhythmSetting.TimespanScopedSingleContextRhythmSetting.finalize
-   :noindex:
-
 .. automethod:: experimental.tools.settingtools.TimespanScopedSingleContextRhythmSetting.TimespanScopedSingleContextRhythmSetting.TimespanScopedSingleContextRhythmSetting.new
    :noindex:
 
    Inherited from :py:class:`settingtools.TimespanScopedSingleContextSetting <experimental.tools.settingtools.TimespanScopedSingleContextSetting.TimespanScopedSingleContextSetting.TimespanScopedSingleContextSetting>`
+
+.. automethod:: experimental.tools.settingtools.TimespanScopedSingleContextRhythmSetting.TimespanScopedSingleContextRhythmSetting.TimespanScopedSingleContextRhythmSetting.to_rhythm_region_expression
+   :noindex:
 
 Special Methods
 ---------------

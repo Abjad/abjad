@@ -3,10 +3,10 @@ from abjad.tools import containertools
 from abjad.tools import rhythmmakertools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
-from experimental.tools.settingtools.FinalizedRhythmRegionExpression import FinalizedRhythmRegionExpression
+from experimental.tools.settingtools.RhythmRegionExpression import RhythmRegionExpression
 
 
-class RhythmMakerRhythmRegionExpression(FinalizedRhythmRegionExpression):
+class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
     '''Rhythm-maker rhythm region command.
     '''
 

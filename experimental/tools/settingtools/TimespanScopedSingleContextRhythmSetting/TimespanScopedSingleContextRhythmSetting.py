@@ -92,8 +92,8 @@ class TimespanScopedSingleContextRhythmSetting(TimespanScopedSingleContextSettin
 
     ### PUBLIC METHODS ###
 
-    # TODO: maybe implement finalize() methods on RhythmMakerPayloadExpression, etc.
-    def finalize(self, score_specification, voice_name, start_offset, division_list):
+    # TODO: maybe implement to_rhythm_region_expression() methods on RhythmMakerPayloadExpression, etc.
+    def to_rhythm_region_expression(self, score_specification, voice_name, start_offset, division_list):
         from experimental.tools import settingtools
         assert isinstance(start_offset, durationtools.Offset), repr(start_offset)
         assert isinstance(division_list, settingtools.DivisionList), repr(division_list)

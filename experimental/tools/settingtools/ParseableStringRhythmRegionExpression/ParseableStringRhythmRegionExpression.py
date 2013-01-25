@@ -1,9 +1,9 @@
 from abjad.tools import iotools
 from abjad.tools import timespantools
-from experimental.tools.settingtools.FinalizedRhythmRegionExpression import FinalizedRhythmRegionExpression
+from experimental.tools.settingtools.RhythmRegionExpression import RhythmRegionExpression
 
 
-class ParseableStringRhythmRegionExpression(FinalizedRhythmRegionExpression):
+class ParseableStringRhythmRegionExpression(RhythmRegionExpression):
     '''Parseable string rhythm region command.
     '''
 

@@ -181,7 +181,7 @@ class ScoreSpecification(Specification):
 
     @property
     def rhythm_region_expressions(self):
-        '''Read-only list of finalized rhythm commands:
+        '''Read-only list of rhythm region expressions:
 
         ::
 

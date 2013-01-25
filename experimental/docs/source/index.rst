@@ -284,10 +284,10 @@ Unstable packages (load manually)
       tools/settingtools/AnchoredObject/AnchoredObject
       tools/settingtools/CallbackMixin/CallbackMixin
       tools/settingtools/Expression/Expression
-      tools/settingtools/FinalizedRhythmRegionExpression/FinalizedRhythmRegionExpression
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
+      tools/settingtools/RhythmRegionExpression/RhythmRegionExpression
       tools/settingtools/SelectExpression/SelectExpression
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin
@@ -359,10 +359,10 @@ Unstable packages (load manually)
       tools/settingtools/AnchoredObject/AnchoredObject
       tools/settingtools/CallbackMixin/CallbackMixin
       tools/settingtools/Expression/Expression
-      tools/settingtools/FinalizedRhythmRegionExpression/FinalizedRhythmRegionExpression
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
+      tools/settingtools/RhythmRegionExpression/RhythmRegionExpression
       tools/settingtools/SelectExpression/SelectExpression
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin

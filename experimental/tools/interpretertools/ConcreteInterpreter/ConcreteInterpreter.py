@@ -105,9 +105,7 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_rhythm(self):
         self.make_timespan_scoped_single_context_settings('rhythm')
-        #self._debug_values(self.score_specification.timespan_scoped_single_context_rhythm_settings, 'rhythm region commands')
         self.make_rhythm_region_expressions()
-        #self._debug_values(self.score_specification.rhythm_region_expressions, 'finalized rhythm commands')
         self.make_rhythm_products()
         self.dump_rhythm_products_into_voices()
 
@@ -190,7 +188,7 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_expressions = []
         for timespan_scoped_single_context_rhythm_setting, rhythm_region_start_offset, rhythm_region_division_list in zip(
             timespan_scoped_single_context_rhythm_settings, rhythm_region_start_offsets, rhythm_region_division_lists):
-            rhythm_region_expression = timespan_scoped_single_context_rhythm_setting.finalize(
+            rhythm_region_expression = timespan_scoped_single_context_rhythm_setting.to_rhythm_region_expression(
                 self.score_specification, voice_name, rhythm_region_start_offset, rhythm_region_division_list)
             rhythm_region_expressions.append(rhythm_region_expression)
         rhythm_region_expressions = self.merge_prolonging_rhythm_region_expressions(
@@ -215,7 +213,7 @@ class ConcreteInterpreter(Interpreter):
         while self.score_specification.rhythm_region_expressions:
             made_progress = False
             for rhythm_region_expression in self.score_specification.rhythm_region_expressions[:]:
-                assert isinstance(rhythm_region_expression, settingtools.FinalizedRhythmRegionExpression)
+                assert isinstance(rhythm_region_expression, settingtools.RhythmRegionExpression)
                 rhythm_product = rhythm_region_expression._evaluate()
                 if rhythm_product is not None:
                     assert isinstance(rhythm_product, settingtools.StartPositionedRhythmPayloadExpression)

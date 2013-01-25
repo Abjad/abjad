@@ -1,7 +1,7 @@
 from experimental.tools.settingtools.Expression import Expression
 
 
-class FinalizedRhythmRegionExpression(Expression):
+class RhythmRegionExpression(Expression):
     '''Finalized rhythm region command.
     '''
 
