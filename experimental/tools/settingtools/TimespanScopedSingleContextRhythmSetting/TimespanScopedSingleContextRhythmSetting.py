@@ -24,12 +24,12 @@ class TimespanScopedSingleContextRhythmSetting(TimespanScopedSingleContextSettin
             >>> expression = settingtools.StartPositionedRhythmPayloadExpression(
             ...     "{ c'16 [ c'8 ] }", start_offset=0)
             >>> timespan = timespantools.Timespan(0, 20)
-            >>> rhythm_region_expression = settingtools.TimespanScopedSingleContextRhythmSetting(
+            >>> timespan_scoped_single_context_rhythm_setting = settingtools.TimespanScopedSingleContextRhythmSetting(
             ...     expression, timespan, 'Voice 1')
 
         ::
 
-            >>> result = rhythm_region_expression - timespantools.Timespan(5, 15)
+            >>> result = timespan_scoped_single_context_rhythm_setting - timespantools.Timespan(5, 15)
 
         ::
 

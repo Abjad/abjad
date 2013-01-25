@@ -108,9 +108,4 @@
 
 21. Audit all expression evaluation methods.
 
-22. Rename all to_command() methods to something else.
-
-23. Recreate DivisionRegionExpression.
-
-24. Change ScoreSpecification.rhythm_region_expressions to
-    ScoreSpecification.timespan_specified_single_context_rhythm_settings.
+22. Recreate DivisionRegionExpression.

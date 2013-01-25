@@ -12,19 +12,19 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.division_products
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.division_region_expressions
-   :noindex:
-
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.rhythm_products
-   :noindex:
-
-.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.rhythm_region_expressions
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.storage_format
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.timespan_scoped_single_context_division_settings
+   :noindex:
+
+.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.timespan_scoped_single_context_rhythm_settings
+   :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.voice_division_list
    :noindex:

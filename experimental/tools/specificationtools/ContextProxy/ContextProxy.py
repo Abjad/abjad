@@ -11,9 +11,9 @@ class ContextProxy(AbjadObject, OrderedDict):
     def __init__(self):
         from experimental.tools import settingtools
         OrderedDict.__init__(self)
-        self._division_region_expressions = settingtools.TimespanScopedSingleContextSettingInventory()
+        self._timespan_scoped_single_context_division_settings = settingtools.TimespanScopedSingleContextSettingInventory()
         self._division_products = settingtools.TimespanScopedSingleContextSettingInventory()
-        self._rhythm_region_expressions = settingtools.TimespanScopedSingleContextSettingInventory()
+        self._timespan_scoped_single_context_rhythm_settings = settingtools.TimespanScopedSingleContextSettingInventory()
         self._rhythm_products = settingtools.TimespanScopedSingleContextSettingInventory()
         self._voice_division_list = None
 
@@ -43,12 +43,12 @@ class ContextProxy(AbjadObject, OrderedDict):
         return self._division_products
 
     @property
-    def division_region_expressions(self):
+    def timespan_scoped_single_context_division_settings(self):
         '''Context proxy division region commands.
 
         Return region command inventory.
         '''
-        return self._division_region_expressions
+        return self._timespan_scoped_single_context_division_settings
 
     @property
     def rhythm_products(self):
@@ -59,12 +59,12 @@ class ContextProxy(AbjadObject, OrderedDict):
         return self._rhythm_products
 
     @property
-    def rhythm_region_expressions(self):
+    def timespan_scoped_single_context_rhythm_settings(self):
         '''Context proxy rhythm region commands.
 
         Return region command inventory.
         '''
-        return self._rhythm_region_expressions
+        return self._timespan_scoped_single_context_rhythm_settings
 
     @property
     def voice_division_list(self):

@@ -53,7 +53,7 @@ class DivisionSettingLookupExpression(SettingLookupExpression):
         start_segment_identifier = self.offset.start_segment_identifier
         expression = self.offset._evaluate()
         offset = expression.payload[0]
-        timespan_inventory = self._get_division_region_expressions()
+        timespan_inventory = self._get_timespan_scoped_single_context_division_settings()
         timespan_time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_time_relation)
         segment_specification = self.score_specification.get_start_segment_specification(start_segment_identifier)
@@ -65,9 +65,9 @@ class DivisionSettingLookupExpression(SettingLookupExpression):
         expression = self._apply_callbacks(expression)
         return expression
 
-    def _get_division_region_expressions(self):
+    def _get_timespan_scoped_single_context_division_settings(self):
         result = timespantools.TimespanInventory()
-        for division_region_expression in self.score_specification.division_region_expressions:
-            if not division_region_expression.expression == self:
-                result.append(division_region_expression)
+        for timespan_scoped_single_context_division_setting in self.score_specification.timespan_scoped_single_context_division_settings:
+            if not timespan_scoped_single_context_division_setting.expression == self:
+                result.append(timespan_scoped_single_context_division_setting)
         return result

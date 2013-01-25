@@ -38,9 +38,9 @@ class ScoreSpecification(Specification):
     def __init__(self, score_template):
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
-        self._division_region_expressions = []
-        self._finalized_rhythm_region_expressions = []
+        self._timespan_scoped_single_context_division_settings = []
         self._rhythm_region_expressions = []
+        self._timespan_scoped_single_context_rhythm_settings = []
         self._time_signature_settings = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
@@ -143,10 +143,10 @@ class ScoreSpecification(Specification):
         return Specification.contexts.fget(self)
 
     @property
-    def division_region_expressions(self):
+    def timespan_scoped_single_context_division_settings(self):
         '''Read-only list of all division region commands::
 
-            >>> for x in score_specification.division_region_expressions:
+            >>> for x in score_specification.timespan_scoped_single_context_division_settings:
             ...     z(x)
             settingtools.TimespanScopedSingleContextDivisionSetting(
                 expression=settingtools.PayloadExpression(
@@ -177,22 +177,22 @@ class ScoreSpecification(Specification):
 
         Return list.
         '''
-        return self._division_region_expressions
+        return self._timespan_scoped_single_context_division_settings
 
     @property
-    def finalized_rhythm_region_expressions(self):
+    def rhythm_region_expressions(self):
         '''Read-only list of finalized rhythm commands:
 
         ::
 
-            >>> for x in score_specification.finalized_rhythm_region_expressions:
+            >>> for x in score_specification.rhythm_region_expressions:
             ...     z(x)
 
         Popluate during interpretation. Then consume during interpretation.
 
         Return list.
         '''
-        return self._finalized_rhythm_region_expressions
+        return self._rhythm_region_expressions
 
     @property
     def interface(self):
@@ -249,10 +249,10 @@ class ScoreSpecification(Specification):
         return Specification.multiple_context_settings.fget(self)
     
     @property
-    def rhythm_region_expressions(self):
+    def timespan_scoped_single_context_rhythm_settings(self):
         '''Read-only list of all rhythm region commands.
 
-            >>> for x in score_specification.rhythm_region_expressions:
+            >>> for x in score_specification.timespan_scoped_single_context_rhythm_settings:
             ...     z(x)
             settingtools.TimespanScopedSingleContextRhythmSetting(
                 expression=settingtools.RhythmMakerPayloadExpression(
@@ -269,7 +269,7 @@ class ScoreSpecification(Specification):
 
         Return list.
         '''
-        return self._rhythm_region_expressions
+        return self._timespan_scoped_single_context_rhythm_settings
 
     @property
     def score_model(self):
