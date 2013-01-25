@@ -1,9 +1,9 @@
 import copy
 from abjad.tools import sequencetools
-from experimental.tools.settingtools.RegionExpression import RegionExpression
+from experimental.tools.settingtools.TimespanScopedSingleContextSetting import TimespanScopedSingleContextSetting
 
 
-class DivisionRegionExpression(RegionExpression):
+class TimespanScopedSingleContextDivisionSetting(TimespanScopedSingleContextSetting):
     r'''Division region expression.
 
     Region expression indicating durated period of time 
@@ -13,7 +13,7 @@ class DivisionRegionExpression(RegionExpression):
     ### INITIALIZER ###
 
     def __init__(self, expression=None, timespan=None, context_name=None, fresh=None, truncate=None):
-        RegionExpression.__init__(self, 
+        TimespanScopedSingleContextSetting.__init__(self, 
             expression=expression, timespan=timespan, context_name=context_name, fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate

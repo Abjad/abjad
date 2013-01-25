@@ -29,7 +29,7 @@ class RhythmSettingLookupExpression(SettingLookupExpression):
         source_command = segment_specification._get_first_element_in_expr_by_parentage(
             candidate_commands, self.voice_name, include_improper_parentage=True)
         assert source_command is not None
-        assert isinstance(source_command, settingtools.RegionExpression)
+        assert isinstance(source_command, settingtools.TimespanScopedSingleContextSetting)
         expression = source_command.expression
         if isinstance(expression, settingtools.RhythmMakerPayloadExpression):
             expression = self._apply_callbacks(expression)

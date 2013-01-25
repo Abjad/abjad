@@ -2,10 +2,10 @@ import abc
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools 
 from abjad.tools import timespantools 
-from experimental.tools.settingtools.Expression import Expression
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class RegionExpression(Expression):
+class TimespanScopedSingleContextSetting(AbjadObject):
     '''Region command.
 
     Durated period of time to which an attribute-maker will apply.
@@ -156,6 +156,3 @@ class RegionExpression(Expression):
             positional_argument_values.append(positional_argument_value)
         result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
         return result
-
-    def _evaluate(self):
-        raise Exception(self)

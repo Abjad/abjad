@@ -2,10 +2,10 @@ import abc
 from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools import rhythmmakertools
-from experimental.tools.settingtools.RegionExpression import RegionExpression
+from experimental.tools.settingtools.TimespanScopedSingleContextSetting import TimespanScopedSingleContextSetting
 
 
-class RhythmRegionExpression(RegionExpression):
+class TimespanScopedSingleContextRhythmSetting(TimespanScopedSingleContextSetting):
     r'''Rhythm region command.
 
     Region command indicating durated period of time 
@@ -24,7 +24,7 @@ class RhythmRegionExpression(RegionExpression):
             >>> expression = settingtools.StartPositionedRhythmPayloadExpression(
             ...     "{ c'16 [ c'8 ] }", start_offset=0)
             >>> timespan = timespantools.Timespan(0, 20)
-            >>> rhythm_region_expression = settingtools.RhythmRegionExpression(
+            >>> rhythm_region_expression = settingtools.TimespanScopedSingleContextRhythmSetting(
             ...     expression, timespan, 'Voice 1')
 
         ::
@@ -35,7 +35,7 @@ class RhythmRegionExpression(RegionExpression):
 
             >>> z(result)
             settingtools.RegionExpressionInventory([
-                settingtools.RhythmRegionExpression(
+                settingtools.TimespanScopedSingleContextRhythmSetting(
                     expression=settingtools.StartPositionedRhythmPayloadExpression(
                         payload=containertools.Container(
                             music=({c'16, c'8},)
@@ -48,7 +48,7 @@ class RhythmRegionExpression(RegionExpression):
                         ),
                     context_name='Voice 1'
                     ),
-                settingtools.RhythmRegionExpression(
+                settingtools.TimespanScopedSingleContextRhythmSetting(
                     expression=settingtools.StartPositionedRhythmPayloadExpression(
                         payload=containertools.Container(
                             music=({c'16, c'8},)
@@ -65,7 +65,7 @@ class RhythmRegionExpression(RegionExpression):
 
         Return region command inventory.
         '''
-        return RegionExpression.__sub__(self, timespan)
+        return TimespanScopedSingleContextSetting.__sub__(self, timespan)
     
     ### PRIVATE METHODS ###
 
@@ -81,12 +81,6 @@ class RhythmRegionExpression(RegionExpression):
         if expr.expression != self.expression:
             return False
         return True
-
-    # TODO: maybe make RhythmRegionExpression abstract and make this method abstract
-    #@abc.abstractmethod
-    def _evaluate(self):
-        raise NotImplemented
-        #pass
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -137,6 +131,3 @@ class RhythmRegionExpression(RegionExpression):
         else:
             raise TypeError(self.expression)
         return command
-
-    def _evaluate(self):
-        raise Exception(self)

@@ -288,7 +288,6 @@ Unstable packages (load manually)
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
-      tools/settingtools/RegionExpression/RegionExpression
       tools/settingtools/SelectExpression/SelectExpression
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin
@@ -297,6 +296,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
+      tools/settingtools/TimespanScopedSingleContextSetting/TimespanScopedSingleContextSetting
 
    --------
 
@@ -311,7 +311,6 @@ Unstable packages (load manually)
       tools/settingtools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
-      tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
       tools/settingtools/DivisionSelectExpression/DivisionSelectExpression
       tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
@@ -327,7 +326,6 @@ Unstable packages (load manually)
       tools/settingtools/RegionExpressionInventory/RegionExpressionInventory
       tools/settingtools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
       tools/settingtools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
-      tools/settingtools/RhythmRegionExpression/RhythmRegionExpression
       tools/settingtools/RhythmSettingLookupExpression/RhythmSettingLookupExpression
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
@@ -347,6 +345,8 @@ Unstable packages (load manually)
       tools/settingtools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
       tools/settingtools/TimeSignatureSettingLookupExpression/TimeSignatureSettingLookupExpression
       tools/settingtools/TimespanExpression/TimespanExpression
+      tools/settingtools/TimespanScopedSingleContextDivisionSetting/TimespanScopedSingleContextDivisionSetting
+      tools/settingtools/TimespanScopedSingleContextRhythmSetting/TimespanScopedSingleContextRhythmSetting
 
 .. only:: latex
 
@@ -363,7 +363,6 @@ Unstable packages (load manually)
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
-      tools/settingtools/RegionExpression/RegionExpression
       tools/settingtools/SelectExpression/SelectExpression
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
       tools/settingtools/SetMethodMixin/SetMethodMixin
@@ -372,6 +371,7 @@ Unstable packages (load manually)
       tools/settingtools/SingleContextSetting/SingleContextSetting
       tools/settingtools/SpecificationInterface/SpecificationInterface
       tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
+      tools/settingtools/TimespanScopedSingleContextSetting/TimespanScopedSingleContextSetting
 
    Concrete Classes
    ----------------
@@ -386,7 +386,6 @@ Unstable packages (load manually)
       tools/settingtools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
-      tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
       tools/settingtools/DivisionSelectExpression/DivisionSelectExpression
       tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
@@ -402,7 +401,6 @@ Unstable packages (load manually)
       tools/settingtools/RegionExpressionInventory/RegionExpressionInventory
       tools/settingtools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
       tools/settingtools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
-      tools/settingtools/RhythmRegionExpression/RhythmRegionExpression
       tools/settingtools/RhythmSettingLookupExpression/RhythmSettingLookupExpression
       tools/settingtools/RotationIndicator/RotationIndicator
       tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
@@ -422,6 +420,8 @@ Unstable packages (load manually)
       tools/settingtools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
       tools/settingtools/TimeSignatureSettingLookupExpression/TimeSignatureSettingLookupExpression
       tools/settingtools/TimespanExpression/TimespanExpression
+      tools/settingtools/TimespanScopedSingleContextDivisionSetting/TimespanScopedSingleContextDivisionSetting
+      tools/settingtools/TimespanScopedSingleContextRhythmSetting/TimespanScopedSingleContextRhythmSetting
 
 :py:mod:`specificationtools <experimental.tools.specificationtools>`
 ====================================================================

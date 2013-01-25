@@ -20,6 +20,6 @@ class SingleContextRhythmSetting(SingleContextSetting):
         '''
         from experimental.tools import settingtools
         timespan = self.get_anchor_timespan()
-        command = settingtools.RhythmRegionExpression(
+        command = settingtools.TimespanScopedSingleContextRhythmSetting(
             expression=self.expression, timespan=timespan, context_name=self.context_name, fresh=self.fresh)
         return command
