@@ -101,9 +101,9 @@ class TestAndRebuildScript(DeveloperScript):
 
     def process_args(self, args):
         iotools.clear_terminal()
-        if not self.run_pytest(args):
+        if not self.run_doctest(args):
             print
-            if not self.run_doctest(args):
+            if not self.run_pytest(args):
                 print
                 self.rebuild_docs(args)
 
