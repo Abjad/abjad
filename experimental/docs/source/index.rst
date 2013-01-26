@@ -315,7 +315,6 @@ Unstable packages (load manually)
       tools/settingtools/DivisionSelectExpression/DivisionSelectExpression
       tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
-      tools/settingtools/Flamingo/Flamingo
       tools/settingtools/HandlerExpression/HandlerExpression
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MeasureSelectExpression/MeasureSelectExpression
@@ -390,7 +389,6 @@ Unstable packages (load manually)
       tools/settingtools/DivisionSelectExpression/DivisionSelectExpression
       tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
-      tools/settingtools/Flamingo/Flamingo
       tools/settingtools/HandlerExpression/HandlerExpression
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MeasureSelectExpression/MeasureSelectExpression
