@@ -147,6 +147,7 @@ class ConcreteInterpreter(Interpreter):
 
     def make_division_region_expressions(self):
         pass
+
 #    def make_division_region_expressions(self):
 #        for voice in iterationtools.iterate_voices_in_expr(self.score):
 #            division_region_expressions = self.make_division_region_expressions_for_voice(voice.name)
@@ -157,9 +158,16 @@ class ConcreteInterpreter(Interpreter):
 #        timespan_scoped_single_context_division_settings = voice_proxy.timespan_scoped_single_context_division_settings
 #        result = []
 #        for timespan_scoped_single_context_division_setting in timespan_scoped_single_context_division_settings:
-#            # TODO NEXT: foo, bar
+#            expression = timespan_scoped_single_context_division_setting.expression._evaluate()
+#            # maybe this isn't right
+#            if expression is None:
+#                raise Exception
+#                return
+#            divisions = expression._payload_elements[:]
+#            divisions = [settingtools.Division(x) for x in divisions]
+#            timespan = timespan_scoped_single_context_division_setting.timespan
 #            division_region_expression = timespan_scoped_single_context_division_setting.to_region_expression(
-#                foo, bar)
+#                divisions, timespan.start_offset, timespan.duration, voice_name)
 #            result.append(division_region_expression)
 #        return result
 
@@ -248,15 +256,15 @@ class ConcreteInterpreter(Interpreter):
         if self.score_specification.segment_specifications:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
                 voice_proxy = self.score_specification.contexts[voice.name]
-                region_expressions = self.get_timespan_scoped_single_context_settings_for_voice(attribute, voice.name)
+                settings = self.get_timespan_scoped_single_context_settings_for_voice(attribute, voice.name)
                 singular_attribute = attribute.rstrip('s')
                 key = 'timespan_scoped_single_context_{}_settings'.format(singular_attribute)
-                region_expression_inventory = getattr(voice_proxy, key)
-                region_expression_inventory[:] = region_expressions[:]
-                score_region_expressions = getattr(self.score_specification, key)
-                for region_expression in region_expressions:
-                    if region_expression not in score_region_expressions:
-                        score_region_expressions.append(region_expression)
+                inventory = getattr(voice_proxy, key)
+                inventory[:] = settings[:]
+                score_settings = getattr(self.score_specification, key)
+                for setting in settings:
+                    if setting not in score_settings:
+                        score_settings.append(setting)
 
     def make_voice_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
