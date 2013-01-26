@@ -308,7 +308,6 @@ Unstable packages (load manually)
       tools/settingtools/BeatSelectExpression/BeatSelectExpression
       tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/ClassInventory/ClassInventory
-      tools/settingtools/CounttimeComponentRhythmRegionExpression/CounttimeComponentRhythmRegionExpression
       tools/settingtools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
@@ -317,6 +316,7 @@ Unstable packages (load manually)
       tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/HandlerExpression/HandlerExpression
+      tools/settingtools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MeasureSelectExpression/MeasureSelectExpression
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
@@ -383,7 +383,6 @@ Unstable packages (load manually)
       tools/settingtools/BeatSelectExpression/BeatSelectExpression
       tools/settingtools/CallbackInventory/CallbackInventory
       tools/settingtools/ClassInventory/ClassInventory
-      tools/settingtools/CounttimeComponentRhythmRegionExpression/CounttimeComponentRhythmRegionExpression
       tools/settingtools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
@@ -392,6 +391,7 @@ Unstable packages (load manually)
       tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/HandlerExpression/HandlerExpression
+      tools/settingtools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MeasureSelectExpression/MeasureSelectExpression
       tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression

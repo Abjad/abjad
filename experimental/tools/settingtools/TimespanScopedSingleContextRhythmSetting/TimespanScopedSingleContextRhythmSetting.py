@@ -100,7 +100,7 @@ class TimespanScopedSingleContextRhythmSetting(TimespanScopedSingleContextSettin
             wrapped_component = componenttools.copy_components_and_covered_spanners([self.expression.payload])[0]
             total_duration = self.timespan.duration
             region_expression_start_offset = self.timespan.start_offset
-            region_expression = settingtools.CounttimeComponentRhythmRegionExpression(
+            region_expression = settingtools.LiteralRhythmRegionExpression(
                 wrapped_component, voice_name, start_offset, total_duration)
         elif isinstance(self.expression, settingtools.RhythmSettingLookupExpression):
             expression = self.expression._evaluate()
@@ -112,7 +112,7 @@ class TimespanScopedSingleContextRhythmSetting(TimespanScopedSingleContextSettin
                 wrapped_component = componenttools.copy_components_and_covered_spanners([expression.payload])[0]
                 total_duration = self.timespan.duration
                 region_expression_start_offset = self.timespan.start_offset
-                region_expression = settingtools.CounttimeComponentRhythmRegionExpression(
+                region_expression = settingtools.LiteralRhythmRegionExpression(
                     wrapped_component, voice_name, start_offset, total_duration)
             else:
                 raise TypeError(expression)

@@ -6,7 +6,7 @@ from experimental.tools.settingtools.RhythmRegionExpression import RhythmRegionE
 
 
 # TODO: maybe inherit from SelectExpressionRhythmRegionExpression?
-class CounttimeComponentRhythmRegionExpression(RhythmRegionExpression):
+class LiteralRhythmRegionExpression(RhythmRegionExpression):
     '''Counttime component rhythm region expression.
     '''
 
