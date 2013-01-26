@@ -59,19 +59,6 @@ class TimespanScopedSingleContextDivisionSetting(TimespanScopedSingleContextSett
 
     ### PUBLIC METHODS ###
 
-    def evaluate(self):
-        #raise Exception
-        from experimental.tools import settingtools
-        expression = self.expression.evaluate()
-        if expression is None:
-            return
-        divisions = expression.elements[:]
-        divisions = [settingtools.Division(x) for x in divisions]
-        divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, self.timespan.duration)
-        expression = settingtools.StartPositionedDivisionPayloadExpression(
-            payload=divisions, start_offset=self.timespan.start_offset, voice_name=self.voice_name)
-        return expression
-
     def to_region_expression(self, voice_name):
         from experimental.tools import settingtools
         start_offset, total_duration = self.timespan.start_offset, self.timespan.duration
@@ -82,7 +69,7 @@ class TimespanScopedSingleContextDivisionSetting(TimespanScopedSingleContextSett
             expression = self.expression.evaluate()
             assert isinstance(expression, settingtools.PayloadExpression)
             divisions = expression.elements
-            region_expression = settingtools.SelectExpressionDivisionRegionExpression(
+            region_expression = settingtools.LiteralDivisionRegionExpression(
                 divisions, start_offset, total_duration, voice_name)
         elif isinstance(self.expression, settingtools.PayloadExpression):
             divisions = self.expression.elements

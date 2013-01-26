@@ -115,34 +115,25 @@ class ConcreteInterpreter(Interpreter):
         self.add_time_signatures_to_score()
         self.calculate_score_and_segment_timespans()
 
-    # TODO: harmonize self.make_division_payload_expressions(), self.make_rhythm_payload_expressions()
     def make_division_payload_expressions(self):
-        redo = True
-        while redo:
-            redo = False
+        while self.score_specification.division_region_expressions:
             made_progress = False
-            for voice in iterationtools.iterate_voices_in_expr(self.score):
-                voice_proxy = self.score_specification.contexts[voice.name]
-                voice_timespan_scoped_single_context_division_settings = \
-                    voice_proxy.timespan_scoped_single_context_division_settings
-                voice_division_payload_expressions = voice_proxy.division_payload_expressions 
-                voice_timespan_scoped_single_context_division_settings_to_reattempt = []
-                for timespan_scoped_single_context_division_setting in \
-                    voice_timespan_scoped_single_context_division_settings:
-                    division_payload_expression = timespan_scoped_single_context_division_setting.evaluate()
-                    if division_payload_expression is not None:
-                        assert isinstance(division_payload_expression, settingtools.StartPositionedDivisionPayloadExpression)
-                        made_progress = True
-                        voice_division_payload_expressions.append(division_payload_expression)
-                    else:
-                        voice_timespan_scoped_single_context_division_settings_to_reattempt.append(
-                            timespan_scoped_single_context_division_setting)
-                        redo = True
-                voice_timespan_scoped_single_context_division_settings[:] = \
-                    voice_timespan_scoped_single_context_division_settings_to_reattempt[:]
-                # sort may have to happen as each adds in, above
-                voice_division_payload_expressions.sort()
-            if voice_timespan_scoped_single_context_division_settings and not made_progress:
+            for division_region_expression in self.score_specification.division_region_expressions[:]:
+                assert isinstance(division_region_expression, settingtools.DivisionRegionExpression)
+                division_payload_expression = division_region_expression.evaluate()
+                if division_payload_expression is not None:
+                    assert isinstance(division_payload_expression, 
+                        settingtools.StartPositionedDivisionPayloadExpression)
+                    made_progress = True
+                    self.score_specification.division_region_expressions.remove(division_region_expression)
+                    voice_name = division_region_expression.voice_name
+                    voice_proxy = self.score_specification.contexts[voice_name]
+                    voice_division_payload_expressions = voice_proxy.division_payload_expressions
+                    voice_division_payload_expressions = \
+                        voice_division_payload_expressions - division_payload_expression.timespan
+                    voice_division_payload_expressions.append(division_payload_expression)
+                    voice_division_payload_expressions.sort()
+            if not made_progress:
                 raise Exception('cyclic division specification.')
 
     def make_division_region_expressions(self):

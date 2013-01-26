@@ -108,6 +108,4 @@
 
 21. Audit all expression evaluation methods.
 
-22. Recreate DivisionRegionExpression.
-
-23. Maybe ExpressionInventory should inherit from PayloadExpression.
+22. Make all setting classes into expressions.
