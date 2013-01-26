@@ -147,6 +147,40 @@ class ConcreteInterpreter(Interpreter):
 
     def make_division_region_expressions(self):
         pass
+#    def make_division_region_expressions(self):
+#        for voice in iterationtools.iterate_voices_in_expr(self.score):
+#            division_region_expressions = self.make_division_region_expressions_for_voice(voice.name)
+#            self.score_specification.division_region_expressions.extend(division_region_expressions)
+#
+#    def make_division_region_expressions_for_voice(self, voice_name):
+#        voice_proxy = self.score_specification.contexts[voice_name]
+#        timespan_scoped_single_context_division_settings = voice_proxy.timespan_scoped_single_context_division_settings
+#        result = []
+#        for timespan_scoped_single_context_division_setting in timespan_scoped_single_context_division_settings:
+#            # TODO NEXT: foo, bar
+#            division_region_expression = timespan_scoped_single_context_division_setting.to_region_expression(
+#                foo, bar)
+#            result.append(division_region_expression)
+#        return result
+
+    def make_rhythm_payload_expressions(self):
+        while self.score_specification.rhythm_region_expressions:
+            made_progress = False
+            for rhythm_region_expression in self.score_specification.rhythm_region_expressions[:]:
+                assert isinstance(rhythm_region_expression, settingtools.RhythmRegionExpression)
+                rhythm_payload_expression = rhythm_region_expression._evaluate()
+                if rhythm_payload_expression is not None:
+                    assert isinstance(rhythm_payload_expression, settingtools.StartPositionedRhythmPayloadExpression)
+                    made_progress = True
+                    self.score_specification.rhythm_region_expressions.remove(rhythm_region_expression)
+                    voice_name = rhythm_region_expression.voice_name
+                    voice_proxy = self.score_specification.contexts[voice_name]
+                    voice_rhythm_payload_expressions = voice_proxy.rhythm_payload_expressions
+                    voice_rhythm_payload_expressions = voice_rhythm_payload_expressions - rhythm_payload_expression.timespan
+                    voice_rhythm_payload_expressions.append(rhythm_payload_expression)
+                    voice_rhythm_payload_expressions.sort()
+            if not made_progress:
+                raise Exception('cyclic rhythm specification.')
 
     def make_rhythm_region_expressions(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
@@ -223,25 +257,6 @@ class ConcreteInterpreter(Interpreter):
                 for region_expression in region_expressions:
                     if region_expression not in score_region_expressions:
                         score_region_expressions.append(region_expression)
-
-    def make_rhythm_payload_expressions(self):
-        while self.score_specification.rhythm_region_expressions:
-            made_progress = False
-            for rhythm_region_expression in self.score_specification.rhythm_region_expressions[:]:
-                assert isinstance(rhythm_region_expression, settingtools.RhythmRegionExpression)
-                rhythm_payload_expression = rhythm_region_expression._evaluate()
-                if rhythm_payload_expression is not None:
-                    assert isinstance(rhythm_payload_expression, settingtools.StartPositionedRhythmPayloadExpression)
-                    made_progress = True
-                    self.score_specification.rhythm_region_expressions.remove(rhythm_region_expression)
-                    voice_name = rhythm_region_expression.voice_name
-                    voice_proxy = self.score_specification.contexts[voice_name]
-                    voice_rhythm_payload_expressions = voice_proxy.rhythm_payload_expressions
-                    voice_rhythm_payload_expressions = voice_rhythm_payload_expressions - rhythm_payload_expression.timespan
-                    voice_rhythm_payload_expressions.append(rhythm_payload_expression)
-                    voice_rhythm_payload_expressions.sort()
-            if not made_progress:
-                raise Exception('cyclic rhythm specification.')
 
     def make_voice_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):

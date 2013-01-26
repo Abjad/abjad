@@ -2,7 +2,8 @@ from collections import OrderedDict
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-# TODO: do not inherit from OrderedDict; use custom class attributes instead
+# TODO: Change to *have a* settings OrderedDict rather than *being an* OrderedDict.
+#       This will mean adding a 'settings' property.
 class ContextProxy(AbjadObject, OrderedDict):
 
     ### INITIALIZER ###

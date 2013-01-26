@@ -39,6 +39,7 @@ class ScoreSpecification(Specification):
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
         self._timespan_scoped_single_context_division_settings = []
+        self._division_region_expressions = []
         self._rhythm_region_expressions = []
         self._timespan_scoped_single_context_rhythm_settings = []
         self._time_signature_settings = []
@@ -143,56 +144,19 @@ class ScoreSpecification(Specification):
         return Specification.contexts.fget(self)
 
     @property
-    def timespan_scoped_single_context_division_settings(self):
-        '''Read-only list of all division region commands::
-
-            >>> for x in score_specification.timespan_scoped_single_context_division_settings:
-            ...     z(x)
-            settingtools.TimespanScopedSingleContextDivisionSetting(
-                expression=settingtools.PayloadExpression(
-                    ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
-                    ),
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(9, 4)
-                    ),
-                context_name='Voice 1',
-                fresh=True,
-                truncate=True
-                )
-            settingtools.TimespanScopedSingleContextDivisionSetting(
-                expression=settingtools.PayloadExpression(
-                    ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
-                    ),
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(9, 4)
-                    ),
-                context_name='Voice 2',
-                fresh=True,
-                truncate=True
-                )
-
-        Populate during interpretation.
-
-        Return list.
-        '''
-        return self._timespan_scoped_single_context_division_settings
-
-    @property
-    def rhythm_region_expressions(self):
-        '''Read-only list of rhythm region expressions:
+    def division_region_expressions(self):
+        '''Read-only list of division region expressions:
 
         ::
 
-            >>> for x in score_specification.rhythm_region_expressions:
+            >>> for x in score_specification.division_region_expressions:
             ...     z(x)
 
         Popluate during interpretation. Then consume during interpretation.
 
         Return list.
         '''
-        return self._rhythm_region_expressions
+        return self._division_region_expressions
 
     @property
     def interface(self):
@@ -249,27 +213,19 @@ class ScoreSpecification(Specification):
         return Specification.multiple_context_settings.fget(self)
     
     @property
-    def timespan_scoped_single_context_rhythm_settings(self):
-        '''Read-only list of all rhythm region commands.
+    def rhythm_region_expressions(self):
+        '''Read-only list of rhythm region expressions:
 
-            >>> for x in score_specification.timespan_scoped_single_context_rhythm_settings:
+        ::
+
+            >>> for x in score_specification.rhythm_region_expressions:
             ...     z(x)
-            settingtools.TimespanScopedSingleContextRhythmSetting(
-                expression=settingtools.RhythmMakerPayloadExpression(
-                    payload=(TaleaRhythmMaker('sixteenths'),)
-                    ),
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(9, 4)
-                    ),
-                fresh=True
-                )
 
-        Populate during interpretation
+        Popluate during interpretation. Then consume during interpretation.
 
         Return list.
         '''
-        return self._timespan_scoped_single_context_rhythm_settings
+        return self._rhythm_region_expressions
 
     @property
     def score_model(self):
@@ -475,6 +431,67 @@ class ScoreSpecification(Specification):
         '''
         return Specification.timespan.fget(self)
 
+    @property
+    def timespan_scoped_single_context_division_settings(self):
+        '''Read-only list of all division region commands::
+
+            >>> for x in score_specification.timespan_scoped_single_context_division_settings:
+            ...     z(x)
+            settingtools.TimespanScopedSingleContextDivisionSetting(
+                expression=settingtools.PayloadExpression(
+                    ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
+                    ),
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(9, 4)
+                    ),
+                context_name='Voice 1',
+                fresh=True,
+                truncate=True
+                )
+            settingtools.TimespanScopedSingleContextDivisionSetting(
+                expression=settingtools.PayloadExpression(
+                    ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
+                    ),
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(9, 4)
+                    ),
+                context_name='Voice 2',
+                fresh=True,
+                truncate=True
+                )
+
+        Populate during interpretation.
+
+        Return list.
+        '''
+        return self._timespan_scoped_single_context_division_settings
+
+    @property
+    def timespan_scoped_single_context_rhythm_settings(self):
+        '''Read-only list of all rhythm region commands.
+
+            >>> for x in score_specification.timespan_scoped_single_context_rhythm_settings:
+            ...     z(x)
+            settingtools.TimespanScopedSingleContextRhythmSetting(
+                expression=settingtools.RhythmMakerPayloadExpression(
+                    payload=(TaleaRhythmMaker('sixteenths'),)
+                    ),
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(9, 4)
+                    ),
+                fresh=True
+                )
+
+        Populate during interpretation
+
+        Return list.
+        '''
+        return self._timespan_scoped_single_context_rhythm_settings
+
+
     ### PUBLIC METHODS ###
 
     def append_segment(self, name=None):
@@ -498,20 +515,6 @@ class ScoreSpecification(Specification):
     def clear_persistent_single_context_settings_by_context(self, context_name, attribute):
         if attribute in self.single_context_settings_by_context[context_name]:
             del(self.single_context_settings_by_context[context_name][attribute])
-
-    def get_timespan_scoped_single_context_settings_for_voice(self, attribute, context_name):
-        timespan_scoped_settings = settingtools.TimespanScopedSingleContextSettingInventory()
-        for segment_specification in self.segment_specifications:
-            single_context_settings = \
-                segment_specification.get_single_context_settings_that_start_during_segment(
-                context_name, attribute, include_improper_parentage=True)
-            for single_context_setting in single_context_settings:
-                timespan_scoped_setting = single_context_setting.to_timespan_scoped_setting()
-                # make sure setting was setting for timespan that exists in current segment
-                if timespan_scoped_setting.timespan.is_well_formed:
-                    timespan_scoped_settings.append(timespan_scoped_setting)
-        assert timespan_scoped_settings.all_are_well_formed
-        return timespan_scoped_settings
 
     # TODO: possibly remove in favor of self.get_anchor_timespan().
     def get_start_segment_specification(self, expr):
@@ -548,6 +551,20 @@ class ScoreSpecification(Specification):
         result = [x.pair for x in result]
         return result
 
+    def get_timespan_scoped_single_context_settings_for_voice(self, attribute, context_name):
+        timespan_scoped_settings = settingtools.TimespanScopedSingleContextSettingInventory()
+        for segment_specification in self.segment_specifications:
+            single_context_settings = \
+                segment_specification.get_single_context_settings_that_start_during_segment(
+                context_name, attribute, include_improper_parentage=True)
+            for single_context_setting in single_context_settings:
+                timespan_scoped_setting = single_context_setting.to_timespan_scoped_setting()
+                # make sure setting was setting for timespan that exists in current segment
+                if timespan_scoped_setting.timespan.is_well_formed:
+                    timespan_scoped_settings.append(timespan_scoped_setting)
+        assert timespan_scoped_settings.all_are_well_formed
+        return timespan_scoped_settings
+
     def interpret(self):
         r'''Interpret score specification.
 
@@ -557,14 +574,6 @@ class ScoreSpecification(Specification):
 
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
-
-    def make_default_timespan_scoped_single_context_setting(self, attribute, voice_name, timespan):
-        if attribute == 'divisions':
-            return self.make_default_timespan_scoped_single_context_division_setting(voice_name, timespan)
-        elif attribute == 'rhythm':
-            return self.make_default_timespan_scoped_single_context_rhythm_setting(voice_name, timespan)
-        else:
-            raise ValueError(attribute)
 
     def make_default_timespan_scoped_single_context_division_setting(self, voice_name, timespan):
         divisions = self.get_time_signature_slice(timespan)
@@ -583,3 +592,11 @@ class ScoreSpecification(Specification):
             context_name=voice_name,
             fresh=True
             )
+
+    def make_default_timespan_scoped_single_context_setting(self, attribute, voice_name, timespan):
+        if attribute == 'divisions':
+            return self.make_default_timespan_scoped_single_context_division_setting(voice_name, timespan)
+        elif attribute == 'rhythm':
+            return self.make_default_timespan_scoped_single_context_rhythm_setting(voice_name, timespan)
+        else:
+            raise ValueError(attribute)
