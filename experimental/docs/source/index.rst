@@ -313,9 +313,11 @@ Unstable packages (load manually)
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
       tools/settingtools/DivisionSelectExpression/DivisionSelectExpression
+      tools/settingtools/DivisionSelectExpressionDivisionRegionExpression/DivisionSelectExpressionDivisionRegionExpression
       tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/HandlerExpression/HandlerExpression
+      tools/settingtools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
       tools/settingtools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MeasureSelectExpression/MeasureSelectExpression
@@ -388,9 +390,11 @@ Unstable packages (load manually)
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
       tools/settingtools/DivisionSelectExpression/DivisionSelectExpression
+      tools/settingtools/DivisionSelectExpressionDivisionRegionExpression/DivisionSelectExpressionDivisionRegionExpression
       tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/HandlerExpression/HandlerExpression
+      tools/settingtools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
       tools/settingtools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
       tools/settingtools/MaterialManager/MaterialManager
       tools/settingtools/MeasureSelectExpression/MeasureSelectExpression
