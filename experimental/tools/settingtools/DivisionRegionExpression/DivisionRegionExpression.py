@@ -17,7 +17,7 @@ class DivisionRegionExpression(RegionExpression):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self):
+    def evaluate(self):
         from experimental.tools import settingtools
         divisions = self.payload[:]
         divisions = [settingtools.Division(x) for x in divisions]

@@ -62,6 +62,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.TimeSignatureSettingLookupExpression.TimeSignatureSettingLookupExpression.TimeSignatureSettingLookupExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.TimeSignatureSettingLookupExpression.TimeSignatureSettingLookupExpression.TimeSignatureSettingLookupExpression.get_anchor_timespan
    :noindex:
 

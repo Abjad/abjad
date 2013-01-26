@@ -62,6 +62,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.get_anchor_timespan
    :noindex:
 

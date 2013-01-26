@@ -29,6 +29,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.new
    :noindex:
 

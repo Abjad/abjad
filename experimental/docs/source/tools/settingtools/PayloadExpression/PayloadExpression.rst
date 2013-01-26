@@ -21,6 +21,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression.new
    :noindex:
 

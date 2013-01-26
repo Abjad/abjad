@@ -17,6 +17,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.Expression.Expression.Expression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.Expression.Expression.Expression.new
    :noindex:
 

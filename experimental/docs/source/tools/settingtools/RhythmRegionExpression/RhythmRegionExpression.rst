@@ -17,6 +17,11 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression.evaluate
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. automethod:: experimental.tools.settingtools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression.new
    :noindex:
 

@@ -22,14 +22,15 @@ class ExpressionInventory(ObjectInventory, Expression):
     def elements(self):
         result = []
         for expression in self:
+            expresion = expression.evaluate()
             result.extend(expression.elements)
         return result
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self):
+    def evaluate(self):
         result = type(self)()
         for expression in self:
-            expression = expression._evaluate()
+            expression = expression.evaluate()
             result.append(expression)
         return result

@@ -20,9 +20,9 @@ class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self):
+    def evaluate(self):
         from experimental.tools import settingtools
-        expression = self.select_expression._evaluate()
+        expression = self.select_expression.evaluate()
         if expression is None:
             return
         assert isinstance(expression, settingtools.StartPositionedRhythmPayloadExpression), repr(expression)

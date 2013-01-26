@@ -70,28 +70,6 @@ class CounttimeComponentSelectExpression(SelectExpression):
     
     ### PRIVATE METHODS ###
 
-    def _evaluate(self):
-        from experimental.tools import settingtools
-        anchor_timespan = self.get_anchor_timespan()
-        voice_proxy = self.score_specification.contexts[self.voice_name]
-        rhythm_payload_expressions = voice_proxy.rhythm_payload_expressions
-        time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
-        rhythm_payload_expressions = rhythm_payload_expressions.get_timespans_that_satisfy_time_relation(time_relation)
-        if not rhythm_payload_expressions:
-            return
-        rhythm_payload_expressions = copy.deepcopy(rhythm_payload_expressions)
-        rhythm_payload_expressions = timespantools.TimespanInventory(rhythm_payload_expressions)
-        rhythm_payload_expressions.sort()
-        assert anchor_timespan.is_well_formed, repr(anchor_timespan)
-        rhythm_payload_expressions &= anchor_timespan
-        expression = settingtools.StartPositionedRhythmPayloadExpression(start_offset=anchor_timespan.start_offset)
-        for rhythm_payload_expression in rhythm_payload_expressions:
-            expression.payload.extend(rhythm_payload_expression.payload)
-        assert wellformednesstools.is_well_formed_component(expression.payload)
-        expression = self._apply_callbacks(expression)
-        expression._voice_name = self.voice_name
-        return expression
-
     def _is_counttime_component_class_expr(self, expr):
         from experimental.tools import settingtools
         if isinstance(expr, tuple) and all([self._is_counttime_component_class_expr(x) for x in expr]):
@@ -114,3 +92,28 @@ class CounttimeComponentSelectExpression(SelectExpression):
         Return class inventory or none.
         '''
         return self._classes
+
+    ### PUBLIC METHODS ###
+
+    def evaluate(self):
+        from experimental.tools import settingtools
+        anchor_timespan = self.get_anchor_timespan()
+        voice_proxy = self.score_specification.contexts[self.voice_name]
+        rhythm_payload_expressions = voice_proxy.rhythm_payload_expressions
+        time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
+        rhythm_payload_expressions = rhythm_payload_expressions.get_timespans_that_satisfy_time_relation(
+            time_relation)
+        if not rhythm_payload_expressions:
+            return
+        rhythm_payload_expressions = copy.deepcopy(rhythm_payload_expressions)
+        rhythm_payload_expressions = timespantools.TimespanInventory(rhythm_payload_expressions)
+        rhythm_payload_expressions.sort()
+        assert anchor_timespan.is_well_formed, repr(anchor_timespan)
+        rhythm_payload_expressions &= anchor_timespan
+        expression = settingtools.StartPositionedRhythmPayloadExpression(start_offset=anchor_timespan.start_offset)
+        for rhythm_payload_expression in rhythm_payload_expressions:
+            expression.payload.extend(rhythm_payload_expression.payload)
+        assert wellformednesstools.is_well_formed_component(expression.payload)
+        expression = self._apply_callbacks(expression)
+        expression._voice_name = self.voice_name
+        return expression

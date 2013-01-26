@@ -28,7 +28,7 @@ class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethod
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self):
+    def evaluate(self):
         '''Evaluate timespan expression.
 
         Return timespan.

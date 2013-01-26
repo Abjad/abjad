@@ -48,10 +48,19 @@ class DivisionSettingLookupExpression(SettingLookupExpression):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self):
+    def _get_timespan_scoped_single_context_division_settings(self):
+        result = timespantools.TimespanInventory()
+        for timespan_scoped_single_context_division_setting in self.score_specification.timespan_scoped_single_context_division_settings:
+            if not timespan_scoped_single_context_division_setting.expression == self:
+                result.append(timespan_scoped_single_context_division_setting)
+        return result
+
+    ### PUBLIC METHODS ###
+
+    def evaluate(self):
         from experimental.tools import settingtools
         start_segment_identifier = self.offset.start_segment_identifier
-        expression = self.offset._evaluate()
+        expression = self.offset.evaluate()
         offset = expression.payload[0]
         timespan_inventory = self._get_timespan_scoped_single_context_division_settings()
         timespan_time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
@@ -64,10 +73,3 @@ class DivisionSettingLookupExpression(SettingLookupExpression):
         assert isinstance(expression, settingtools.PayloadExpression), repr(expression)
         expression = self._apply_callbacks(expression)
         return expression
-
-    def _get_timespan_scoped_single_context_division_settings(self):
-        result = timespantools.TimespanInventory()
-        for timespan_scoped_single_context_division_setting in self.score_specification.timespan_scoped_single_context_division_settings:
-            if not timespan_scoped_single_context_division_setting.expression == self:
-                result.append(timespan_scoped_single_context_division_setting)
-        return result

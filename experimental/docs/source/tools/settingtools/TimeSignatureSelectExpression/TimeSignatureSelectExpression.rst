@@ -62,6 +62,16 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.evaluate
+   :noindex:
+
+   Inherited from :py:class:`settingtools.MeasureSelectExpression <experimental.tools.settingtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression>`
+
+.. automethod:: experimental.tools.settingtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.evaluate_early
+   :noindex:
+
+   Inherited from :py:class:`settingtools.MeasureSelectExpression <experimental.tools.settingtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression>`
+
 .. automethod:: experimental.tools.settingtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.get_anchor_timespan
    :noindex:
 

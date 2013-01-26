@@ -20,7 +20,7 @@ class LiteralRhythmRegionExpression(RhythmRegionExpression):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self):
+    def evaluate(self):
         from experimental.tools import settingtools
         expression = settingtools.StartPositionedRhythmPayloadExpression(
             [], start_offset=self.start_offset, voice_name=self.voice_name)

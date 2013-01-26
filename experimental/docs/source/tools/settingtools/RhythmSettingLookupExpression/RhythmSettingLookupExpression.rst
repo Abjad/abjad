@@ -62,6 +62,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.RhythmSettingLookupExpression.RhythmSettingLookupExpression.RhythmSettingLookupExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.RhythmSettingLookupExpression.RhythmSettingLookupExpression.RhythmSettingLookupExpression.get_anchor_timespan
    :noindex:
 

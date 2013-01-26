@@ -32,7 +32,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
                 beamtools.DuratedComplexBeamSpanner(
                     [rhythm_container], [rhythm_container.prolated_duration], span=1)
 
-    def _evaluate(self):
+    def evaluate(self):
         from experimental.tools import settingtools
         if not self.division_list:
             return

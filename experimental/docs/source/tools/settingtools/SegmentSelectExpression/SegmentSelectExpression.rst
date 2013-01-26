@@ -62,6 +62,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.get_anchor_timespan
    :noindex:
 

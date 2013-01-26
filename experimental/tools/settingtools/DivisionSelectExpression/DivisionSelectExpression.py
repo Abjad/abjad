@@ -41,7 +41,26 @@ class DivisionSelectExpression(SelectExpression):
     
     ### PRIVATE METHODS ###
 
-    def _evaluate(self):
+    def _get_divisions_that_satisfy_time_relation(self, divisions, time_relation):
+        result = []
+        for division in divisions:
+            if time_relation(
+                timespan_2=division, 
+                score_specification=self.score_specification, 
+                context_name=self.voice_name):
+                result.append(division)
+        return result
+
+    def _get_time_relation(self, anchor_timespan):
+        if self.time_relation is None:
+            time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
+        else:
+            time_relation = self.time_relation.new(timespan_1=anchor_timespan)
+        return time_relation
+
+    ### PUBLIC METHODS ###
+
+    def evaluate(self):
         from experimental.tools import settingtools
         anchor_timespan = self.get_anchor_timespan()
         voice_proxy = self.score_specification.contexts[self.voice_name]
@@ -63,20 +82,3 @@ class DivisionSelectExpression(SelectExpression):
         expression = self._apply_callbacks(expression)
         expression._voice_name = self.voice_name 
         return expression
-
-    def _get_divisions_that_satisfy_time_relation(self, divisions, time_relation):
-        result = []
-        for division in divisions:
-            if time_relation(
-                timespan_2=division, 
-                score_specification=self.score_specification, 
-                context_name=self.voice_name):
-                result.append(division)
-        return result
-
-    def _get_time_relation(self, anchor_timespan):
-        if self.time_relation is None:
-            time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
-        else:
-            time_relation = self.time_relation.new(timespan_1=anchor_timespan)
-        return time_relation

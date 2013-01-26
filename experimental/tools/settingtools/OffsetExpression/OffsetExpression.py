@@ -49,7 +49,7 @@ class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixi
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self):
+    def evaluate(self):
         from experimental.tools import settingtools
         edge = self.edge or Left
         anchor_timespan = self.get_anchor_timespan()

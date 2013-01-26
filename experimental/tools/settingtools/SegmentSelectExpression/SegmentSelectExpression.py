@@ -84,15 +84,6 @@ class SegmentSelectExpression(SelectExpression):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self):
-        from experimental.tools import settingtools
-        start_segment_identifier = self.start_segment_identifier
-        segment = self.score_specification[start_segment_identifier]
-        start_offset = segment.start_offset
-        expression = settingtools.StartPositionedPayloadExpression([segment], start_offset=start_offset)
-        expression = self._apply_callbacks(expression)
-        return expression
-
     def _make_identifier_expression(self, segment_name, addendum):
         assert isinstance(segment_name, str)
         assert isinstance(addendum, int)
@@ -100,3 +91,14 @@ class SegmentSelectExpression(SelectExpression):
             return settingtools.SegmentIdentifierExpression('{!r} + {!r}'.format(segment_name, addendum))
         else:
             return settingtools.SegmentIdentifierExpression('{!r} - {!r}'.format(segment_name, addendum))
+    
+    ### PUBLIC METHODS ###
+
+    def evaluate(self):
+        from experimental.tools import settingtools
+        start_segment_identifier = self.start_segment_identifier
+        segment = self.score_specification[start_segment_identifier]
+        start_offset = segment.start_offset
+        expression = settingtools.StartPositionedPayloadExpression([segment], start_offset=start_offset)
+        expression = self._apply_callbacks(expression)
+        return expression

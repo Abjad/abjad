@@ -23,10 +23,6 @@ class Expression(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    @abc.abstractmethod
-    def _evaluate(self):
-        pass
-
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty callbacks list.
         '''
@@ -47,6 +43,10 @@ class Expression(AbjadObject):
         return tuple(result)
 
     ### PUBLIC METHODS ###
+
+    @abc.abstractmethod
+    def evaluate(self):
+        pass
 
     def new(self, **kwargs):
         positional_argument_dictionary = self._positional_argument_dictionary

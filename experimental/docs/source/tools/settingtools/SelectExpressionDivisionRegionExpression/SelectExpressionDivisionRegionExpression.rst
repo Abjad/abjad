@@ -37,6 +37,11 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.evaluate
+   :noindex:
+
+   Inherited from :py:class:`settingtools.DivisionRegionExpression <experimental.tools.settingtools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression>`
+
 .. automethod:: experimental.tools.settingtools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.new
    :noindex:
 

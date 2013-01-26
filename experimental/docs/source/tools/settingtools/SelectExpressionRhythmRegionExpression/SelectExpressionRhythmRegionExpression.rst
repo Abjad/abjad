@@ -29,6 +29,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.new
    :noindex:
 

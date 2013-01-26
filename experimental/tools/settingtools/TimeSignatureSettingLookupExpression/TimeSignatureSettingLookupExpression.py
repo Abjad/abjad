@@ -13,7 +13,7 @@ class TimeSignatureSettingLookupExpression(SettingLookupExpression):
 
     ### PUBLIC METHODS ###
 
-    def _evaluate(self):
+    def evaluate(self):
         from experimental.tools import settingtools
         segment_specification = self.score_specification.get_start_segment_specification(self.offset)
         time_signatures = segment_specification.time_signatures[:]

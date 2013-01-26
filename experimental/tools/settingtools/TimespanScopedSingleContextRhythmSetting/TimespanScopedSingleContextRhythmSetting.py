@@ -102,7 +102,7 @@ class TimespanScopedSingleContextRhythmSetting(TimespanScopedSingleContextSettin
             region_expression = settingtools.LiteralRhythmRegionExpression(
                 wrapped_component, voice_name, start_offset, total_duration)
         elif isinstance(self.expression, settingtools.RhythmSettingLookupExpression):
-            expression = self.expression._evaluate()
+            expression = self.expression.evaluate()
             if isinstance(expression, settingtools.RhythmMakerPayloadExpression):
                 rhythm_maker = expression.payload[0]
                 region_expression = settingtools.RhythmMakerRhythmRegionExpression(

@@ -19,7 +19,7 @@ class HandlerExpression(Expression, PayloadCallbackMixin):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self):
+    def evaluate(self):
         raise NotImplementedError
 
     ### READ-ONLY PROPERTIES ###

@@ -66,5 +66,5 @@ class SettingLookupExpression(AnchoredExpression, PayloadCallbackMixin):
     ### PRIVATE METHODS ###
     
     @abc.abstractmethod
-    def _evaluate(self):
+    def evaluate(self):
         pass

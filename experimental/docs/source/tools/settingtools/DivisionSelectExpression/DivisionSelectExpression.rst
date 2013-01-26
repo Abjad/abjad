@@ -62,6 +62,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.get_anchor_timespan
    :noindex:
 

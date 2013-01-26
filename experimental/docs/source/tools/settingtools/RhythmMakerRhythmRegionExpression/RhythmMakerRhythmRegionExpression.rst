@@ -29,6 +29,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.new
    :noindex:
 

@@ -129,7 +129,7 @@ class ConcreteInterpreter(Interpreter):
                 voice_timespan_scoped_single_context_division_settings_to_reattempt = []
                 for timespan_scoped_single_context_division_setting in \
                     voice_timespan_scoped_single_context_division_settings:
-                    division_payload_expression = timespan_scoped_single_context_division_setting._evaluate()
+                    division_payload_expression = timespan_scoped_single_context_division_setting.evaluate()
                     if division_payload_expression is not None:
                         assert isinstance(division_payload_expression, settingtools.StartPositionedDivisionPayloadExpression)
                         made_progress = True
@@ -160,7 +160,7 @@ class ConcreteInterpreter(Interpreter):
 #        while uninterpreted_settings:
 #            made_progress = False
 #            for setting in uninterpreted_settings[:]:
-#                expression = setting.expression._evaluate()
+#                expression = setting.expression.evaluate()
 #                if expression is None:
 #                    continue
 #                divisions = expression.elements[:]
@@ -189,7 +189,7 @@ class ConcreteInterpreter(Interpreter):
             made_progress = False
             for rhythm_region_expression in self.score_specification.rhythm_region_expressions[:]:
                 assert isinstance(rhythm_region_expression, settingtools.RhythmRegionExpression)
-                rhythm_payload_expression = rhythm_region_expression._evaluate()
+                rhythm_payload_expression = rhythm_region_expression.evaluate()
                 if rhythm_payload_expression is not None:
                     assert isinstance(rhythm_payload_expression, 
                         settingtools.StartPositionedRhythmPayloadExpression)

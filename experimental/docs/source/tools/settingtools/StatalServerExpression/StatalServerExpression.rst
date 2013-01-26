@@ -25,6 +25,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.StatalServerExpression.StatalServerExpression.StatalServerExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.StatalServerExpression.StatalServerExpression.StatalServerExpression.new
    :noindex:
 

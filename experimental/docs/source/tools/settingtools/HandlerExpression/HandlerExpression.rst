@@ -25,6 +25,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.HandlerExpression.HandlerExpression.HandlerExpression.new
    :noindex:
 

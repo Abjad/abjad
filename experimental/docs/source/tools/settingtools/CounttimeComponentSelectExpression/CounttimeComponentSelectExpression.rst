@@ -65,6 +65,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.get_anchor_timespan
    :noindex:
 

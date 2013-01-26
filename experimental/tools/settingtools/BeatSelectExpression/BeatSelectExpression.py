@@ -42,7 +42,16 @@ class BeatSelectExpression(SelectExpression):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self):
+    def _time_signatures_to_naive_beats(self, time_signatures):
+        naive_beats = []
+        for time_signature in time_signatures:
+            numerator, denominator = time_signature.pair
+            naive_beats.extend(numerator * [mathtools.NonreducedFraction(1, denominator)])
+        return naive_beats
+    
+    ### PUBLIC METHODS ###
+
+    def evaluate(self):
         from experimental.tools import settingtools
         time_signatures = self.score_specification.time_signatures
         timespan = self.score_specification.timespan
@@ -55,10 +64,3 @@ class BeatSelectExpression(SelectExpression):
         expression = self._apply_callbacks(expression)
         expression._voice_name = self.voice_name
         return expression
-
-    def _time_signatures_to_naive_beats(self, time_signatures):
-        naive_beats = []
-        for time_signature in time_signatures:
-            numerator, denominator = time_signature.pair
-            naive_beats.extend(numerator * [mathtools.NonreducedFraction(1, denominator)])
-        return naive_beats

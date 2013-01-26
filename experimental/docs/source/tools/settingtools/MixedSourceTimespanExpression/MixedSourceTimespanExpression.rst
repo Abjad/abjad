@@ -48,6 +48,9 @@ Methods
 
    Inherited from :py:class:`settingtools.TimespanCallbackMixin <experimental.tools.settingtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
 
+.. automethod:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.get_anchor_timespan
    :noindex:
 

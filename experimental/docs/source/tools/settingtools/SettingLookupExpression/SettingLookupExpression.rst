@@ -56,6 +56,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression.get_anchor_timespan
    :noindex:
 

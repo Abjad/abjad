@@ -38,6 +38,9 @@ Methods
 
    Inherited from :py:class:`__builtin__.list`
 
+.. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.extend
    :noindex:
 

@@ -37,6 +37,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.new
    :noindex:
 

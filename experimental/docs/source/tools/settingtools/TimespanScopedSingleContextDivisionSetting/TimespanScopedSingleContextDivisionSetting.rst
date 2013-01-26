@@ -56,6 +56,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.TimespanScopedSingleContextDivisionSetting.TimespanScopedSingleContextDivisionSetting.TimespanScopedSingleContextDivisionSetting.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.TimespanScopedSingleContextDivisionSetting.TimespanScopedSingleContextDivisionSetting.TimespanScopedSingleContextDivisionSetting.new
    :noindex:
 

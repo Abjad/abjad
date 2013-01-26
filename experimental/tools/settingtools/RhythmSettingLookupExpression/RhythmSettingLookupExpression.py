@@ -15,12 +15,21 @@ class RhythmSettingLookupExpression(SettingLookupExpression):
         SettingLookupExpression.__init__(self, attribute='rhythm', voice_name=voice_name, 
             offset=offset, callbacks=callbacks)
 
+    ### PRIVATE METHODS ###
+
+    def _get_timespan_scoped_single_context_rhythm_settings(self):
+        result = timespantools.TimespanInventory()
+        for timespan_scoped_single_context_rhythm_setting in self.score_specification.timespan_scoped_single_context_rhythm_settings:
+            if not timespan_scoped_single_context_rhythm_setting.expression == self:
+                result.append(timespan_scoped_single_context_rhythm_setting)
+        return result
+
     ### PUBLIC METHODS ###
 
-    def _evaluate(self):
+    def evaluate(self):
         from experimental.tools import settingtools
         start_segment_identifier = self.offset.start_segment_identifier
-        expression = self.offset._evaluate()
+        expression = self.offset.evaluate()
         offset = expression.payload[0]
         timespan_inventory = self._get_timespan_scoped_single_context_rhythm_settings()
         timespan_time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
@@ -41,10 +50,3 @@ class RhythmSettingLookupExpression(SettingLookupExpression):
             return expression
         else:
             raise TypeError(expression)
-
-    def _get_timespan_scoped_single_context_rhythm_settings(self):
-        result = timespantools.TimespanInventory()
-        for timespan_scoped_single_context_rhythm_setting in self.score_specification.timespan_scoped_single_context_rhythm_settings:
-            if not timespan_scoped_single_context_rhythm_setting.expression == self:
-                result.append(timespan_scoped_single_context_rhythm_setting)
-        return result

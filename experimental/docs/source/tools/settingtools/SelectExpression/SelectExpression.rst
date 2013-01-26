@@ -56,6 +56,11 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.SelectExpression.SelectExpression.SelectExpression.evaluate
+   :noindex:
+
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. automethod:: experimental.tools.settingtools.SelectExpression.SelectExpression.SelectExpression.get_anchor_timespan
    :noindex:
 

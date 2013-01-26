@@ -63,7 +63,7 @@ class MeasureSelectExpression(SelectExpression):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate(self):
+    def evaluate(self):
         from experimental.tools import settingtools
         start_segment_specification = self.score_specification.get_start_segment_specification(self)
         time_signatures = start_segment_specification.time_signatures[:]
@@ -74,7 +74,7 @@ class MeasureSelectExpression(SelectExpression):
         return expression
 
     # special definition because time signatures can be evaluated without knowing the timespan they occupy
-    def _evaluate_early(self):
+    def evaluate_early(self):
         from experimental.tools import settingtools
         start_segment_specification = self.score_specification.get_start_segment_specification(self)
         time_signatures = start_segment_specification.time_signatures[:]

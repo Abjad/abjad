@@ -50,6 +50,9 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.settingtools.OffsetExpression.OffsetExpression.OffsetExpression.get_anchor_timespan
    :noindex:
 
