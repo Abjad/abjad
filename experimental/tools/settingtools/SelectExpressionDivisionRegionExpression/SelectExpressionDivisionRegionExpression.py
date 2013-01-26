@@ -1,7 +1,7 @@
 from experimental.tools.settingtools.DivisionRegionExpression import DivisionRegionExpression
 
 
-class DivisionSelectExpressionDivisionRegionExpression(DivisionRegionExpression):
+class SelectExpressionDivisionRegionExpression(DivisionRegionExpression):
     '''Division select expression division region expression.
     '''
 

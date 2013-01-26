@@ -313,7 +313,6 @@ Unstable packages (load manually)
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
       tools/settingtools/DivisionSelectExpression/DivisionSelectExpression
-      tools/settingtools/DivisionSelectExpressionDivisionRegionExpression/DivisionSelectExpressionDivisionRegionExpression
       tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/HandlerExpression/HandlerExpression
@@ -333,6 +332,7 @@ Unstable packages (load manually)
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
       tools/settingtools/SegmentSelectExpression/SegmentSelectExpression
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
+      tools/settingtools/SelectExpressionDivisionRegionExpression/SelectExpressionDivisionRegionExpression
       tools/settingtools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
       tools/settingtools/SettingInventory/SettingInventory
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
@@ -390,7 +390,6 @@ Unstable packages (load manually)
       tools/settingtools/DivisionList/DivisionList
       tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
       tools/settingtools/DivisionSelectExpression/DivisionSelectExpression
-      tools/settingtools/DivisionSelectExpressionDivisionRegionExpression/DivisionSelectExpressionDivisionRegionExpression
       tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
       tools/settingtools/HandlerExpression/HandlerExpression
@@ -410,6 +409,7 @@ Unstable packages (load manually)
       tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
       tools/settingtools/SegmentSelectExpression/SegmentSelectExpression
       tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
+      tools/settingtools/SelectExpressionDivisionRegionExpression/SelectExpressionDivisionRegionExpression
       tools/settingtools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
       tools/settingtools/SettingInventory/SettingInventory
       tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
