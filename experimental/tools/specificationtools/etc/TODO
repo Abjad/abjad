@@ -109,5 +109,3 @@
 21. Audit all expression evaluation methods.
 
 22. Recreate DivisionRegionExpression.
-
-23. Intelligently search ConcreteInterpreter for 'product' and replace with something else.

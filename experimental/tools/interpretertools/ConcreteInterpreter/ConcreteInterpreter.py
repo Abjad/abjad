@@ -115,7 +115,7 @@ class ConcreteInterpreter(Interpreter):
         self.add_time_signatures_to_score()
         self.calculate_score_and_segment_timespans()
 
-    # TODO: structure like self.make_rhythm_payload_expressions()
+    # TODO: harmonize self.make_division_payload_expressions(), self.make_rhythm_payload_expressions()
     def make_division_payload_expressions(self):
         redo = True
         while redo:
@@ -155,20 +155,24 @@ class ConcreteInterpreter(Interpreter):
 #
 #    def make_division_region_expressions_for_voice(self, voice_name):
 #        voice_proxy = self.score_specification.contexts[voice_name]
-#        timespan_scoped_single_context_division_settings = voice_proxy.timespan_scoped_single_context_division_settings
+#        uninterpreted_settings = voice_proxy.timespan_scoped_single_context_division_settings[:]
 #        result = []
-#        for timespan_scoped_single_context_division_setting in timespan_scoped_single_context_division_settings:
-#            expression = timespan_scoped_single_context_division_setting.expression._evaluate()
-#            # maybe this isn't right
-#            if expression is None:
-#                raise Exception
-#                return
-#            divisions = expression._payload_elements[:]
-#            divisions = [settingtools.Division(x) for x in divisions]
-#            timespan = timespan_scoped_single_context_division_setting.timespan
-#            division_region_expression = timespan_scoped_single_context_division_setting.to_region_expression(
-#                divisions, timespan.start_offset, timespan.duration, voice_name)
-#            result.append(division_region_expression)
+#        while uninterpreted_settings:
+#            made_progress = False
+#            for setting in uninterpreted_settings[:]:
+#                expression = setting.expression._evaluate()
+#                if expression is None:
+#                    continue
+#                divisions = expression._payload_elements[:]
+#                divisions = [settingtools.Division(x) for x in divisions]
+#                start_offset, total_duration = setting.timespan.start_offset, setting.timespan.duration
+#                division_region_expression = setting.to_region_expression(
+#                    divisions, start_offset, total_duration, voice_name)
+#                result.append(division_region_expression)
+#                uninterpreted_settings.remove(setting)
+#                made_progress = True
+#            if not made_progress:
+#                raise Exception('cyclic division specification.')
 #        return result
 
     def make_rhythm_payload_expressions(self):
@@ -270,8 +274,8 @@ class ConcreteInterpreter(Interpreter):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = settingtools.DivisionList([], voice_name=voice.name)
             voice_proxy = self.score_specification.contexts[voice.name]
-            products = voice_proxy.division_payload_expressions
-            divisions = [x.payload.divisions for x in products]
+            expressions = voice_proxy.division_payload_expressions
+            divisions = [x.payload.divisions for x in expressions]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)
             start_offset = durationtools.Offset(0)
             for division in divisions:

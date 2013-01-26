@@ -145,14 +145,9 @@ class ScoreSpecification(Specification):
 
     @property
     def division_region_expressions(self):
-        '''Read-only list of division region expressions:
+        '''Read-only list of division region expressions.
 
-        ::
-
-            >>> for x in score_specification.division_region_expressions:
-            ...     z(x)
-
-        Popluate during interpretation. Then consume during interpretation.
+        Popluate during interpretation.
 
         Return list.
         '''
