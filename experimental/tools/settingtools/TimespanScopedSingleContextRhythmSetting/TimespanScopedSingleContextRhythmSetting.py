@@ -5,12 +5,8 @@ from abjad.tools import rhythmmakertools
 from experimental.tools.settingtools.TimespanScopedSingleContextSetting import TimespanScopedSingleContextSetting
 
 
-# TODO: remove 'command' from classfile
 class TimespanScopedSingleContextRhythmSetting(TimespanScopedSingleContextSetting):
-    r'''Rhythm region command.
-
-    Region command indicating durated period of time 
-    over which a rhythm-maker will apply.
+    r'''Timespan-scoped single-context rhythm setting.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -20,7 +16,7 @@ class TimespanScopedSingleContextRhythmSetting(TimespanScopedSingleContextSettin
     ### SPECIAL METHODS ###
 
     def __sub__(self, timespan):
-        '''Subtract `timespan` from rhythm region command.
+        '''Subtract `timespan` from setting.
 
             >>> expression = settingtools.StartPositionedRhythmPayloadExpression(
             ...     "{ c'16 [ c'8 ] }", start_offset=0)
@@ -64,17 +60,13 @@ class TimespanScopedSingleContextRhythmSetting(TimespanScopedSingleContextSettin
                     )
                 ])
 
-        Return region command inventory.
+        Return timespan-scoped single-context setting inventory.
         '''
         return TimespanScopedSingleContextSetting.__sub__(self, timespan)
     
     ### PRIVATE METHODS ###
 
     def _can_fuse(self, expr):
-        '''True when self can fuse `expr` to the end of self. Otherwise false.
-
-        Return boolean.
-        '''
         if not isinstance(expr, type(self)):
             return False
         if expr.fresh:
@@ -102,33 +94,33 @@ class TimespanScopedSingleContextRhythmSetting(TimespanScopedSingleContextSettin
         if isinstance(self.expression, settingtools.RhythmMakerPayloadExpression):
             rhythm_maker = self.expression.payload[0]
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
-            command = settingtools.RhythmMakerRhythmRegionExpression(
+            region_expression = settingtools.RhythmMakerRhythmRegionExpression(
                 rhythm_maker, voice_name, start_offset, division_list)
         elif isinstance(self.expression, settingtools.StartPositionedRhythmPayloadExpression):
             wrapped_component = componenttools.copy_components_and_covered_spanners([self.expression.payload])[0]
             total_duration = self.timespan.duration
-            command_start_offset = self.timespan.start_offset
-            command = settingtools.CounttimeComponentRhythmRegionExpression(
+            region_expression_start_offset = self.timespan.start_offset
+            region_expression = settingtools.CounttimeComponentRhythmRegionExpression(
                 wrapped_component, voice_name, start_offset, total_duration)
         elif isinstance(self.expression, settingtools.RhythmSettingLookupExpression):
             expression = self.expression._evaluate()
             if isinstance(expression, settingtools.RhythmMakerPayloadExpression):
                 rhythm_maker = expression.payload[0]
-                command = settingtools.RhythmMakerRhythmRegionExpression(
+                region_expression = settingtools.RhythmMakerRhythmRegionExpression(
                     rhythm_maker, voice_name, start_offset, division_list)
             elif isinstance(expression, settingtools.StartPositionedRhythmPayloadExpression):
                 wrapped_component = componenttools.copy_components_and_covered_spanners([expression.payload])[0]
                 total_duration = self.timespan.duration
-                command_start_offset = self.timespan.start_offset
-                command = settingtools.CounttimeComponentRhythmRegionExpression(
+                region_expression_start_offset = self.timespan.start_offset
+                region_expression = settingtools.CounttimeComponentRhythmRegionExpression(
                     wrapped_component, voice_name, start_offset, total_duration)
             else:
                 raise TypeError(expression)
         elif isinstance(self.expression, settingtools.CounttimeComponentSelectExpression):
             total_duration = self.timespan.duration
-            command_start_offset = self.timespan.start_offset
-            command = settingtools.SelectExpressionRhythmRegionExpression(
-                self.expression, voice_name, command_start_offset, total_duration)
+            region_expression_start_offset = self.timespan.start_offset
+            region_expression = settingtools.SelectExpressionRhythmRegionExpression(
+                self.expression, voice_name, region_expression_start_offset, total_duration)
         else:
             raise TypeError(self.expression)
-        return command
+        return region_expression

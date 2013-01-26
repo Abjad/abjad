@@ -36,6 +36,7 @@ class TimespanScopedSingleContextDivisionSetting(TimespanScopedSingleContextSett
         return True
 
     def _evaluate(self):
+        #raise Exception
         from experimental.tools import settingtools
         expression = self.expression._evaluate()
         if expression is None:

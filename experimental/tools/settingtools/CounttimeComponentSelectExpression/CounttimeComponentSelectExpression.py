@@ -74,19 +74,19 @@ class CounttimeComponentSelectExpression(SelectExpression):
         from experimental.tools import settingtools
         anchor_timespan = self.get_anchor_timespan()
         voice_proxy = self.score_specification.contexts[self.voice_name]
-        rhythm_products = voice_proxy.rhythm_products
+        rhythm_payload_expressions = voice_proxy.rhythm_payload_expressions
         time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
-        rhythm_products = rhythm_products.get_timespans_that_satisfy_time_relation(time_relation)
-        if not rhythm_products:
+        rhythm_payload_expressions = rhythm_payload_expressions.get_timespans_that_satisfy_time_relation(time_relation)
+        if not rhythm_payload_expressions:
             return
-        rhythm_products = copy.deepcopy(rhythm_products)
-        rhythm_products = timespantools.TimespanInventory(rhythm_products)
-        rhythm_products.sort()
+        rhythm_payload_expressions = copy.deepcopy(rhythm_payload_expressions)
+        rhythm_payload_expressions = timespantools.TimespanInventory(rhythm_payload_expressions)
+        rhythm_payload_expressions.sort()
         assert anchor_timespan.is_well_formed, repr(anchor_timespan)
-        rhythm_products &= anchor_timespan
+        rhythm_payload_expressions &= anchor_timespan
         expression = settingtools.StartPositionedRhythmPayloadExpression(start_offset=anchor_timespan.start_offset)
-        for rhythm_product in rhythm_products:
-            expression.payload.extend(rhythm_product.payload)
+        for rhythm_payload_expression in rhythm_payload_expressions:
+            expression.payload.extend(rhythm_payload_expression.payload)
         assert wellformednesstools.is_well_formed_component(expression.payload)
         expression = self._apply_callbacks(expression)
         expression._voice_name = self.voice_name

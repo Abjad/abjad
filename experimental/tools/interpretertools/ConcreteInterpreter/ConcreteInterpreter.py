@@ -75,11 +75,11 @@ class ConcreteInterpreter(Interpreter):
                 timespan = timespantools.Timespan(start_offset, stop_offset)
                 segment_specification._timespan = timespan
 
-    def dump_rhythm_products_into_voices(self):
+    def dump_rhythm_payload_expressions_into_voices(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_proxy = self.score_specification.contexts[voice.name]
-            for rhythm_product in voice_proxy.rhythm_products:
-                voice.extend(rhythm_product.payload)
+            for rhythm_payload_expression in voice_proxy.rhythm_payload_expressions:
+                voice.extend(rhythm_payload_expression.payload)
 
     def get_timespan_scoped_single_context_settings_for_voice(self, attribute, voice_name):
         settings = self.score_specification.get_timespan_scoped_single_context_settings_for_voice(
@@ -106,15 +106,15 @@ class ConcreteInterpreter(Interpreter):
     def interpret_rhythm(self):
         self.make_timespan_scoped_single_context_settings('rhythm')
         self.make_rhythm_region_expressions()
-        self.make_rhythm_products()
-        self.dump_rhythm_products_into_voices()
+        self.make_rhythm_payload_expressions()
+        self.dump_rhythm_payload_expressions_into_voices()
 
     def interpret_time_signatures(self):
         self.populate_time_signature_settings()
         self.add_time_signatures_to_score()
         self.calculate_score_and_segment_timespans()
 
-    # TODO: structure like self.make_rhythm_products()
+    # TODO: structure like self.make_rhythm_payload_expressions()
     def make_division_products(self):
         redo = True
         while redo:
@@ -122,19 +122,23 @@ class ConcreteInterpreter(Interpreter):
             made_progress = False
             for voice in iterationtools.iterate_voices_in_expr(self.score):
                 voice_proxy = self.score_specification.contexts[voice.name]
-                voice_timespan_scoped_single_context_division_settings = voice_proxy.timespan_scoped_single_context_division_settings
+                voice_timespan_scoped_single_context_division_settings = \
+                    voice_proxy.timespan_scoped_single_context_division_settings
                 voice_division_products = voice_proxy.division_products 
                 voice_timespan_scoped_single_context_division_settings_to_reattempt = []
-                for timespan_scoped_single_context_division_setting in voice_timespan_scoped_single_context_division_settings:
+                for timespan_scoped_single_context_division_setting in \
+                    voice_timespan_scoped_single_context_division_settings:
                     division_product = timespan_scoped_single_context_division_setting._evaluate()
                     if division_product is not None:
                         assert isinstance(division_product, settingtools.StartPositionedDivisionPayloadExpression)
                         made_progress = True
                         voice_division_products.append(division_product)
                     else:
-                        voice_timespan_scoped_single_context_division_settings_to_reattempt.append(timespan_scoped_single_context_division_setting)
+                        voice_timespan_scoped_single_context_division_settings_to_reattempt.append(
+                            timespan_scoped_single_context_division_setting)
                         redo = True
-                voice_timespan_scoped_single_context_division_settings[:] = voice_timespan_scoped_single_context_division_settings_to_reattempt[:]
+                voice_timespan_scoped_single_context_division_settings[:] = \
+                    voice_timespan_scoped_single_context_division_settings_to_reattempt[:]
                 # sort may have to happen as each adds in, above
                 voice_division_products.sort()
             if voice_timespan_scoped_single_context_division_settings and not made_progress:
@@ -182,7 +186,8 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_start_offsets = [durationtools.Offset(x) for x in rhythm_region_start_offsets]
         timespan_scoped_single_context_rhythm_setting_duration_pairs = [
             (x, x.timespan.duration) for x in timespan_scoped_single_context_rhythm_settings]
-        #self._debug_values(timespan_scoped_single_context_rhythm_setting_duration_pairs, 'rhythm command / duration pairs')
+        #self._debug_values(timespan_scoped_single_context_rhythm_setting_duration_pairs, 
+        #    'rhythm command / duration pairs')
         merged_duration_timespan_scoped_single_context_rhythm_setting_pairs = \
             sequencetools.pair_duration_sequence_elements_with_input_pair_values(
             timespan_scoped_single_context_rhythm_setting_merged_durations, 
@@ -215,22 +220,22 @@ class ConcreteInterpreter(Interpreter):
                     if region_expression not in score_region_expressions:
                         score_region_expressions.append(region_expression)
 
-    def make_rhythm_products(self):
+    def make_rhythm_payload_expressions(self):
         while self.score_specification.rhythm_region_expressions:
             made_progress = False
             for rhythm_region_expression in self.score_specification.rhythm_region_expressions[:]:
                 assert isinstance(rhythm_region_expression, settingtools.RhythmRegionExpression)
-                rhythm_product = rhythm_region_expression._evaluate()
-                if rhythm_product is not None:
-                    assert isinstance(rhythm_product, settingtools.StartPositionedRhythmPayloadExpression)
+                rhythm_payload_expression = rhythm_region_expression._evaluate()
+                if rhythm_payload_expression is not None:
+                    assert isinstance(rhythm_payload_expression, settingtools.StartPositionedRhythmPayloadExpression)
                     made_progress = True
                     self.score_specification.rhythm_region_expressions.remove(rhythm_region_expression)
                     voice_name = rhythm_region_expression.voice_name
                     voice_proxy = self.score_specification.contexts[voice_name]
-                    voice_rhythm_products = voice_proxy.rhythm_products
-                    voice_rhythm_products = voice_rhythm_products - rhythm_product.timespan
-                    voice_rhythm_products.append(rhythm_product)
-                    voice_rhythm_products.sort()
+                    voice_rhythm_payload_expressions = voice_proxy.rhythm_payload_expressions
+                    voice_rhythm_payload_expressions = voice_rhythm_payload_expressions - rhythm_payload_expression.timespan
+                    voice_rhythm_payload_expressions.append(rhythm_payload_expression)
+                    voice_rhythm_payload_expressions.sort()
             if not made_progress:
                 raise Exception('cyclic rhythm specification.')
 
