@@ -9,7 +9,7 @@ specificationtools.ContextProxy
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.division_products
+.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.division_payload_expressions
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.rhythm_payload_expressions

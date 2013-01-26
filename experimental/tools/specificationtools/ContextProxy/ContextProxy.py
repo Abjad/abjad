@@ -7,14 +7,17 @@ class ContextProxy(AbjadObject, OrderedDict):
 
     ### INITIALIZER ###
 
-    # TODO: add public rhythm_payload_expressions timespan inventory
     def __init__(self):
         from experimental.tools import settingtools
         OrderedDict.__init__(self)
-        self._timespan_scoped_single_context_division_settings = settingtools.TimespanScopedSingleContextSettingInventory()
-        self._division_products = settingtools.TimespanScopedSingleContextSettingInventory()
-        self._timespan_scoped_single_context_rhythm_settings = settingtools.TimespanScopedSingleContextSettingInventory()
-        self._rhythm_payload_expressions = settingtools.TimespanScopedSingleContextSettingInventory()
+        self._division_payload_expressions = \
+            settingtools.TimespanScopedSingleContextSettingInventory()
+        self._rhythm_payload_expressions = \
+            settingtools.TimespanScopedSingleContextSettingInventory()
+        self._timespan_scoped_single_context_division_settings = \
+            settingtools.TimespanScopedSingleContextSettingInventory()
+        self._timespan_scoped_single_context_rhythm_settings = \
+            settingtools.TimespanScopedSingleContextSettingInventory()
         self._voice_division_list = None
 
     ### SPECIAL METHODS ###
@@ -35,40 +38,42 @@ class ContextProxy(AbjadObject, OrderedDict):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def division_products(self):
-        '''Context proxy division region products.
+    def division_payload_expressions(self):
+        '''Context proxy division payload expressions.
 
-        Return region product inventory.
+        Return inventory.
         '''
-        return self._division_products
-
-    @property
-    def timespan_scoped_single_context_division_settings(self):
-        '''Context proxy division region commands.
-
-        Return region command inventory.
-        '''
-        return self._timespan_scoped_single_context_division_settings
+        return self._division_payload_expressions
 
     @property
     def rhythm_payload_expressions(self):
-        '''Context proxy rhythm region products.
+        '''Context proxy rhythm payload expressions.
 
-        Return region product inventory.
+        Return inventory.
         '''
         return self._rhythm_payload_expressions
 
     @property
-    def timespan_scoped_single_context_rhythm_settings(self):
-        '''Context proxy rhythm region commands.
+    def timespan_scoped_single_context_division_settings(self):
+        '''Context proxy timespan-scoped
+        single-context division settings.
 
-        Return region command inventory.
+        Return inventory.
+        '''
+        return self._timespan_scoped_single_context_division_settings
+
+    @property
+    def timespan_scoped_single_context_rhythm_settings(self):
+        '''Context proxy timespan-scoped
+        single-context rhythm settings.
+
+        Return inventory.
         '''
         return self._timespan_scoped_single_context_rhythm_settings
 
     @property
     def voice_division_list(self):
-        '''Context proxy voice divisionlist.
+        '''Context proxy voice division list.
 
         Return voice division list.
         '''
@@ -85,13 +90,9 @@ class ContextProxy(AbjadObject, OrderedDict):
         assert len(settings) == 1
         return settings[0]
 
-    # the if-clause can be removed once context proxies always store multiple settings per attribute
     def get_settings(self, attribute=None):
         result = []
         for key, value in self.iteritems():
             if attribute is None or key == attribute:
-                if isinstance(value, list):
-                    result.extend(value)
-                else:
-                    result.append(value)
+                result.extend(value)
         return result

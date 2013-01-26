@@ -45,12 +45,12 @@ class DivisionSelectExpression(SelectExpression):
         from experimental.tools import settingtools
         anchor_timespan = self.get_anchor_timespan()
         voice_proxy = self.score_specification.contexts[self.voice_name]
-        division_products = voice_proxy.division_products
-        if division_products is None:
+        division_payload_expressions = voice_proxy.division_payload_expressions
+        if division_payload_expressions is None:
             return
         existing_voice_divisions = []
-        for division_product in division_products:
-            existing_voice_divisions.extend(division_product.payload.divisions)
+        for division_payload_expression in division_payload_expressions:
+            existing_voice_divisions.extend(division_payload_expression.payload.divisions)
         time_relation = self._get_time_relation(anchor_timespan)
         divisions = self._get_divisions_that_satisfy_time_relation(existing_voice_divisions, time_relation)
         if not divisions:

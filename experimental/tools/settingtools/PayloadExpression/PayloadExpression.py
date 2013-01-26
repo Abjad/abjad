@@ -53,9 +53,9 @@ class PayloadExpression(Expression):
             payload = [mathtools.NonreducedFraction(x) for x in self.payload]
         else:
             payload = self.payload
-        division_product = settingtools.StartPositionedDivisionPayloadExpression(
+        division_payload_expression = settingtools.StartPositionedDivisionPayloadExpression(
             payload=payload, start_offset=0, voice_name='dummy voice name')
-        result = division_product & timespan
+        result = division_payload_expression & timespan
         assert len(result) in (0, 1)
         if result:
             divisions = result[0].payload.divisions

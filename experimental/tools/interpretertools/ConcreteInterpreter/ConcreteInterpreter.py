@@ -94,7 +94,8 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_divisions(self):
         self.make_timespan_scoped_single_context_settings('divisions')
-        self.make_division_products()
+        self.make_division_region_expressions()
+        self.make_division_payload_expressions()
         self.make_voice_division_lists()
 
     def interpret_pitch_classes(self):
@@ -115,7 +116,7 @@ class ConcreteInterpreter(Interpreter):
         self.calculate_score_and_segment_timespans()
 
     # TODO: structure like self.make_rhythm_payload_expressions()
-    def make_division_products(self):
+    def make_division_payload_expressions(self):
         redo = True
         while redo:
             redo = False
@@ -124,15 +125,15 @@ class ConcreteInterpreter(Interpreter):
                 voice_proxy = self.score_specification.contexts[voice.name]
                 voice_timespan_scoped_single_context_division_settings = \
                     voice_proxy.timespan_scoped_single_context_division_settings
-                voice_division_products = voice_proxy.division_products 
+                voice_division_payload_expressions = voice_proxy.division_payload_expressions 
                 voice_timespan_scoped_single_context_division_settings_to_reattempt = []
                 for timespan_scoped_single_context_division_setting in \
                     voice_timespan_scoped_single_context_division_settings:
-                    division_product = timespan_scoped_single_context_division_setting._evaluate()
-                    if division_product is not None:
-                        assert isinstance(division_product, settingtools.StartPositionedDivisionPayloadExpression)
+                    division_payload_expression = timespan_scoped_single_context_division_setting._evaluate()
+                    if division_payload_expression is not None:
+                        assert isinstance(division_payload_expression, settingtools.StartPositionedDivisionPayloadExpression)
                         made_progress = True
-                        voice_division_products.append(division_product)
+                        voice_division_payload_expressions.append(division_payload_expression)
                     else:
                         voice_timespan_scoped_single_context_division_settings_to_reattempt.append(
                             timespan_scoped_single_context_division_setting)
@@ -140,9 +141,12 @@ class ConcreteInterpreter(Interpreter):
                 voice_timespan_scoped_single_context_division_settings[:] = \
                     voice_timespan_scoped_single_context_division_settings_to_reattempt[:]
                 # sort may have to happen as each adds in, above
-                voice_division_products.sort()
+                voice_division_payload_expressions.sort()
             if voice_timespan_scoped_single_context_division_settings and not made_progress:
                 raise Exception('cyclic division specification.')
+
+    def make_division_region_expressions(self):
+        pass
 
     def make_rhythm_region_expressions(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
@@ -152,11 +156,11 @@ class ConcreteInterpreter(Interpreter):
     def make_rhythm_region_expressions_for_voice(self, voice_name):
         voice_proxy = self.score_specification.contexts[voice_name]
         voice_division_list = voice_proxy.voice_division_list
-        division_products = voice_proxy.division_products
+        division_payload_expressions = voice_proxy.division_payload_expressions
         timespan_scoped_single_context_rhythm_settings = voice_proxy.timespan_scoped_single_context_rhythm_settings
         if not voice_division_list:
             return []
-        division_region_durations = [x.timespan.duration for x in division_products]
+        division_region_durations = [x.timespan.duration for x in division_payload_expressions]
         timespan_scoped_single_context_rhythm_setting_durations = [
             x.timespan.duration for x in timespan_scoped_single_context_rhythm_settings]
         assert sum(division_region_durations) == sum(timespan_scoped_single_context_rhythm_setting_durations)
@@ -243,7 +247,7 @@ class ConcreteInterpreter(Interpreter):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = settingtools.DivisionList([], voice_name=voice.name)
             voice_proxy = self.score_specification.contexts[voice.name]
-            products = voice_proxy.division_products
+            products = voice_proxy.division_payload_expressions
             divisions = [x.payload.divisions for x in products]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)
             start_offset = durationtools.Offset(0)

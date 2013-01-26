@@ -32,12 +32,12 @@ class DivisionList(BoundedObject):
 
     ``'Voice 1'`` has only one division region division list::
 
-        >>> len(score_specification.contexts['Voice 1'].division_products)
+        >>> len(score_specification.contexts['Voice 1'].division_payload_expressions)
         1
 
     ::
 
-        >>> z(score_specification.contexts['Voice 1'].division_products[0])
+        >>> z(score_specification.contexts['Voice 1'].division_payload_expressions[0])
         settingtools.StartPositionedDivisionPayloadExpression(
             payload=settingtools.DivisionList(
                [Division('[3, 16]', start_offset=Offset(0, 1)), 
