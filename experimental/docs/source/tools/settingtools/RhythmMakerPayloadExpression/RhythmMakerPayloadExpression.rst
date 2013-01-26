@@ -9,6 +9,11 @@ settingtools.RhythmMakerPayloadExpression
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.settingtools.RhythmMakerPayloadExpression.RhythmMakerPayloadExpression.RhythmMakerPayloadExpression.elements
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
+
 .. autoattribute:: experimental.tools.settingtools.RhythmMakerPayloadExpression.RhythmMakerPayloadExpression.RhythmMakerPayloadExpression.payload
    :noindex:
 

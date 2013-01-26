@@ -9,6 +9,9 @@ settingtools.ExpressionInventory
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.elements
+   :noindex:
+
 .. autoattribute:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.storage_format
    :noindex:
 

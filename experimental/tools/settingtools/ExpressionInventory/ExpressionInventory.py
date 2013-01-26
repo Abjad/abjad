@@ -19,10 +19,10 @@ class ExpressionInventory(ObjectInventory, Expression):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
-    def _payload_elements(self):
+    def elements(self):
         result = []
         for expression in self:
-            result.extend(expression._payload_elements)
+            result.extend(expression.elements)
         return result
 
     ### PRIVATE METHODS ###

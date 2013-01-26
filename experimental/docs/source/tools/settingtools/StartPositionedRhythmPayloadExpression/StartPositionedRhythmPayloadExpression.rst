@@ -9,6 +9,9 @@ settingtools.StartPositionedRhythmPayloadExpression
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.settingtools.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.elements
+   :noindex:
+
 .. autoattribute:: experimental.tools.settingtools.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.payload
    :noindex:
 

@@ -9,6 +9,9 @@ settingtools.StartPositionedPayloadExpression
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.settingtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.elements
+   :noindex:
+
 .. autoattribute:: experimental.tools.settingtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.payload
    :noindex:
 

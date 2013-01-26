@@ -286,7 +286,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
-    def _payload_elements(self):
+    def elements(self):
         return self.payload.divisions
 
     ### PRIVATE METHODS ###

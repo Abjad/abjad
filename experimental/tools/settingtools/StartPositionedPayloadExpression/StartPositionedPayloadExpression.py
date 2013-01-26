@@ -154,10 +154,6 @@ class StartPositionedPayloadExpression(PayloadExpression):
             return self._get_duration_of_list(self.payload)
 
     @property
-    def _payload_elements(self):
-        return self.payload
-
-    @property
     def _stop_offset(self):
         return self.start_offset + self._duration
 
@@ -185,21 +181,23 @@ class StartPositionedPayloadExpression(PayloadExpression):
             duration += self._get_duration_of_expr(element)
         return duration
 
-#    @abc.abstractmethod
-#    def _split_payload_at_offsets(self, offsets):
-#        pass
-        
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def elements(self):
+        '''Start-positioned payload expression elements.
+        '''
+        return self.payload
+
+    @property
     def payload(self):
-        '''Region product payload.
+        '''Start-postioned payload expression payload.
         '''
         return self._payload
 
     @property
     def start_offset(self):
-        '''Region product start offset.
+        '''Start-positioned payload expression start-offset.
 
         Return offset.
         '''
@@ -207,7 +205,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
 
     @property
     def stop_offset(self):
-        '''Region product stop offset.
+        '''Start-positioned payload expression stop-offset.
 
         Return offset.
         '''
@@ -215,7 +213,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
 
     @property
     def timespan(self):
-        '''Region product timespan.
+        '''Start-positioned payload expression timespan.
 
         Return timespan.
         '''
@@ -223,7 +221,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
 
     @property
     def voice_name(self):
-        '''Region product voice name.
+        '''Start-positioned payload expression voice name.
 
         Return string.
         '''
@@ -231,6 +229,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
 
     ### PUBLIC METHODS ###
     
+    # TODO: maybe remove in favor of Expression.new()?
     def new(self, **kwargs):
         positional_argument_dictionary = self._positional_argument_dictionary
         keyword_argument_dictionary = self._keyword_argument_dictionary
@@ -254,7 +253,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         Operate in place and return newly constructed inventory.
         '''
         from experimental.tools import settingtools
-        parts = sequencetools.partition_sequence_by_ratio_of_lengths(self._payload_elements, ratio)
+        parts = sequencetools.partition_sequence_by_ratio_of_lengths(self.elements, ratio)
         durations = [self._get_duration_of_list(part) for part in parts]
         payload_parts = self._split_payload_at_offsets(durations)
         start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
@@ -273,11 +272,11 @@ class StartPositionedPayloadExpression(PayloadExpression):
         Operate in place and return newly constructed inventory.
         '''
         from experimental.tools import settingtools
-        element_durations = [self._get_duration_of_expr(leaf) for leaf in self._payload_elements]
+        element_durations = [self._get_duration_of_expr(leaf) for leaf in self.elements]
         integers = durationtools.durations_to_integers(element_durations)
         parts = sequencetools.partition_sequence_by_ratio_of_weights(integers, ratio)
         part_lengths = [len(part) for part in parts]
-        parts = sequencetools.partition_sequence_by_counts(self._payload_elements, part_lengths)
+        parts = sequencetools.partition_sequence_by_counts(self.elements, part_lengths)
         durations = [self._get_duration_of_list(part) for part in parts]
         payload_parts = self._split_payload_at_offsets(durations)
         start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]

@@ -41,7 +41,7 @@ class TimespanScopedSingleContextDivisionSetting(TimespanScopedSingleContextSett
         expression = self.expression._evaluate()
         if expression is None:
             return
-        divisions = expression._payload_elements[:]
+        divisions = expression.elements[:]
         divisions = [settingtools.Division(x) for x in divisions]
         divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, self.timespan.duration)
         expression = settingtools.StartPositionedDivisionPayloadExpression(
@@ -82,11 +82,11 @@ class TimespanScopedSingleContextDivisionSetting(TimespanScopedSingleContextSett
             raise NotImplementedError(self.expression)
         # TODO: maybe combine the following two branches?
         elif isinstance(self.expression, settingtools.PayloadExpression):
-            divisions = self.expression._payload_elements
+            divisions = self.expression.elements
             region_expression = settingtools.LiteralDivisionRegionExpression(
                 divisions, start_offset, total_duration, voice_name)
         elif isinstance(self.expression, settingtools.ExpressionInventory):
-            divisions = self.expression._payload_elements
+            divisions = self.expression.elements
             region_expression = settingtools.LiteralDivisionRegionExpression(
                 divisions, start_offset, total_duration, voice_name)
         else:

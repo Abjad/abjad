@@ -9,6 +9,9 @@ settingtools.PayloadExpression
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression.elements
+   :noindex:
+
 .. autoattribute:: experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression.payload
    :noindex:
 

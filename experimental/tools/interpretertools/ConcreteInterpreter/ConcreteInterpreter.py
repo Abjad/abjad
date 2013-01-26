@@ -163,7 +163,7 @@ class ConcreteInterpreter(Interpreter):
 #                expression = setting.expression._evaluate()
 #                if expression is None:
 #                    continue
-#                divisions = expression._payload_elements[:]
+#                divisions = expression.elements[:]
 #                divisions = [settingtools.Division(x) for x in divisions]
 #                start_offset, total_duration = setting.timespan.start_offset, setting.timespan.duration
 #                division_region_expression = setting.to_region_expression(

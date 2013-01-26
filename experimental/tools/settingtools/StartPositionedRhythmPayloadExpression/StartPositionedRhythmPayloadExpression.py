@@ -319,7 +319,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return self.payload.prolated_duration
 
     @property
-    def _payload_elements(self):
+    def elements(self):
         return self.payload.leaves
 
     ### PRIVATE METHODS ###
