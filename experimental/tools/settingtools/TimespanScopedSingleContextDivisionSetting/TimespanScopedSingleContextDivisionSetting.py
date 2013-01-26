@@ -84,8 +84,10 @@ class TimespanScopedSingleContextDivisionSetting(TimespanScopedSingleContextSett
             divisions = expression.elements
             region_expression = settingtools.SelectExpressionDivisionRegionExpression(
                 divisions, start_offset, total_duration, voice_name)
-        else:
+        elif isinstance(self.expression, settingtools.PayloadExpression):
             divisions = self.expression.elements
             region_expression = settingtools.LiteralDivisionRegionExpression(
                 divisions, start_offset, total_duration, voice_name)
+        else:
+            raise TypeError(self.expression)
         return region_expression

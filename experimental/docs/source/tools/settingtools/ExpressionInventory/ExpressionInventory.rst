@@ -12,10 +12,15 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.elements
    :noindex:
 
+.. autoattribute:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.payload
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
+
 .. autoattribute:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.storage_format
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 Read/write Properties
 ---------------------
@@ -61,20 +66,50 @@ Methods
 
    Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
+.. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.partition_by_ratio
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
+
+.. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.partition_by_ratio_of_durations
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
+
 .. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.pop
    :noindex:
 
    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.reflect
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.remove
    :noindex:
 
    Inherited from :py:class:`__builtin__.list`
 
+.. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.repeat_to_duration
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
+
+.. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.repeat_to_length
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
+
 .. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.reverse
    :noindex:
 
    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.rotate
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.sort
    :noindex:
@@ -88,6 +123,11 @@ Special Methods
    :noindex:
 
    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.__and__
+   :noindex:
+
+   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. automethod:: experimental.tools.settingtools.ExpressionInventory.ExpressionInventory.ExpressionInventory.__contains__
    :noindex:
