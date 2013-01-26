@@ -287,6 +287,7 @@ Unstable packages (load manually)
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
+      tools/settingtools/RegionExpression/RegionExpression
       tools/settingtools/RhythmRegionExpression/RhythmRegionExpression
       tools/settingtools/SelectExpression/SelectExpression
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
@@ -361,6 +362,7 @@ Unstable packages (load manually)
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
+      tools/settingtools/RegionExpression/RegionExpression
       tools/settingtools/RhythmRegionExpression/RhythmRegionExpression
       tools/settingtools/SelectExpression/SelectExpression
       tools/settingtools/SelectMethodMixin/SelectMethodMixin
