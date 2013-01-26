@@ -85,7 +85,6 @@ class TimespanScopedSingleContextRhythmSetting(TimespanScopedSingleContextSettin
 
     ### PUBLIC METHODS ###
 
-    # TODO: maybe implement to_region_expression() methods on RhythmMakerPayloadExpression, etc.
     def to_region_expression(self, division_list, start_offset, voice_name):
         from experimental.tools import settingtools
         assert isinstance(division_list, settingtools.DivisionList), repr(division_list)

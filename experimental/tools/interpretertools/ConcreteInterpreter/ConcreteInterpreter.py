@@ -148,11 +148,11 @@ class ConcreteInterpreter(Interpreter):
     def make_division_region_expressions(self):
         pass
 
-#    def make_division_region_expressions(self):
-#        for voice in iterationtools.iterate_voices_in_expr(self.score):
-#            division_region_expressions = self.make_division_region_expressions_for_voice(voice.name)
-#            self.score_specification.division_region_expressions.extend(division_region_expressions)
-#
+    #def make_division_region_expressions(self):
+    #    for voice in iterationtools.iterate_voices_in_expr(self.score):
+    #        division_region_expressions = self.make_division_region_expressions_for_voice(voice.name)
+    #        self.score_specification.division_region_expressions.extend(division_region_expressions)
+
 #    def make_division_region_expressions_for_voice(self, voice_name):
 #        voice_proxy = self.score_specification.contexts[voice_name]
 #        uninterpreted_settings = voice_proxy.timespan_scoped_single_context_division_settings[:]
@@ -175,6 +175,15 @@ class ConcreteInterpreter(Interpreter):
 #                raise Exception('cyclic division specification.')
 #        return result
 
+    def make_division_region_expressions_for_voice(self, voice_name):
+        voice_proxy = self.score_specification.contexts[voice_name]
+        settings = voice_proxy.timespan_scoped_single_context_division_settings[:]
+        region_expressions = []
+        for setting in settings:
+            region_expression = setting.to_region_expression(voice_name)
+            region_expressions.append(region_expression)
+        return region_expressions
+
     def make_rhythm_payload_expressions(self):
         while self.score_specification.rhythm_region_expressions:
             made_progress = False
@@ -182,13 +191,15 @@ class ConcreteInterpreter(Interpreter):
                 assert isinstance(rhythm_region_expression, settingtools.RhythmRegionExpression)
                 rhythm_payload_expression = rhythm_region_expression._evaluate()
                 if rhythm_payload_expression is not None:
-                    assert isinstance(rhythm_payload_expression, settingtools.StartPositionedRhythmPayloadExpression)
+                    assert isinstance(rhythm_payload_expression, 
+                        settingtools.StartPositionedRhythmPayloadExpression)
                     made_progress = True
                     self.score_specification.rhythm_region_expressions.remove(rhythm_region_expression)
                     voice_name = rhythm_region_expression.voice_name
                     voice_proxy = self.score_specification.contexts[voice_name]
                     voice_rhythm_payload_expressions = voice_proxy.rhythm_payload_expressions
-                    voice_rhythm_payload_expressions = voice_rhythm_payload_expressions - rhythm_payload_expression.timespan
+                    voice_rhythm_payload_expressions = \
+                        voice_rhythm_payload_expressions - rhythm_payload_expression.timespan
                     voice_rhythm_payload_expressions.append(rhythm_payload_expression)
                     voice_rhythm_payload_expressions.sort()
             if not made_progress:
@@ -227,7 +238,8 @@ class ConcreteInterpreter(Interpreter):
             voice_division_list.divisions, rhythm_region_start_division_counts, cyclic=False, overhang=False)
         rhythm_region_division_lists = [
             settingtools.DivisionList(x, voice_name=voice_name) for x in rhythm_region_division_lists]
-        assert len(rhythm_region_division_lists) == len(timespan_scoped_single_context_rhythm_setting_merged_durations)
+        assert len(rhythm_region_division_lists) == \
+            len(timespan_scoped_single_context_rhythm_setting_merged_durations)
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
         rhythm_region_durations = [x.duration for x in rhythm_region_division_lists]
         #self._debug(rhythm_region_durations, 'rrds')

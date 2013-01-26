@@ -109,3 +109,5 @@
 21. Audit all expression evaluation methods.
 
 22. Recreate DivisionRegionExpression.
+
+23. Replace self.expression._payload_elements with self.expression.payload.elements.
