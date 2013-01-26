@@ -283,6 +283,7 @@ Unstable packages (load manually)
       tools/settingtools/AnchoredExpression/AnchoredExpression
       tools/settingtools/AnchoredObject/AnchoredObject
       tools/settingtools/CallbackMixin/CallbackMixin
+      tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
       tools/settingtools/Expression/Expression
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
@@ -357,6 +358,7 @@ Unstable packages (load manually)
       tools/settingtools/AnchoredExpression/AnchoredExpression
       tools/settingtools/AnchoredObject/AnchoredObject
       tools/settingtools/CallbackMixin/CallbackMixin
+      tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
       tools/settingtools/Expression/Expression
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
