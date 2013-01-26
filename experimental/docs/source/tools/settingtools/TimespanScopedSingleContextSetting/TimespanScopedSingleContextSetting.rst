@@ -41,6 +41,9 @@ Methods
 .. automethod:: experimental.tools.settingtools.TimespanScopedSingleContextSetting.TimespanScopedSingleContextSetting.TimespanScopedSingleContextSetting.new
    :noindex:
 
+.. automethod:: experimental.tools.settingtools.TimespanScopedSingleContextSetting.TimespanScopedSingleContextSetting.TimespanScopedSingleContextSetting.to_region_expression
+   :noindex:
+
 Special Methods
 ---------------
 

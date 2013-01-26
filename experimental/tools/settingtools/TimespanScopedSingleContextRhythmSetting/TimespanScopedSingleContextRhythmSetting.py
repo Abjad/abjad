@@ -5,6 +5,7 @@ from abjad.tools import rhythmmakertools
 from experimental.tools.settingtools.TimespanScopedSingleContextSetting import TimespanScopedSingleContextSetting
 
 
+# TODO: remove 'command' from classfile
 class TimespanScopedSingleContextRhythmSetting(TimespanScopedSingleContextSetting):
     r'''Rhythm region command.
 
@@ -92,11 +93,11 @@ class TimespanScopedSingleContextRhythmSetting(TimespanScopedSingleContextSettin
 
     ### PUBLIC METHODS ###
 
-    # TODO: maybe implement to_rhythm_region_expression() methods on RhythmMakerPayloadExpression, etc.
-    def to_rhythm_region_expression(self, score_specification, voice_name, start_offset, division_list):
+    # TODO: maybe implement to_region_expression() methods on RhythmMakerPayloadExpression, etc.
+    def to_region_expression(self, division_list, start_offset, voice_name):
         from experimental.tools import settingtools
-        assert isinstance(start_offset, durationtools.Offset), repr(start_offset)
         assert isinstance(division_list, settingtools.DivisionList), repr(division_list)
+        assert isinstance(start_offset, durationtools.Offset), repr(start_offset)
         assert isinstance(voice_name, str), repr(voice_name)
         if isinstance(self.expression, settingtools.RhythmMakerPayloadExpression):
             rhythm_maker = self.expression.payload[0]

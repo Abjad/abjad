@@ -68,3 +68,12 @@ class TimespanScopedSingleContextDivisionSetting(TimespanScopedSingleContextSett
         Return string.
         '''
         return self.context_name
+
+    ### PUBLIC METHODS ###
+
+    def to_region_expression(self, divisions, start_offset, total_duration, voice_name):
+        from experimental.tools import settingtools
+        expression = settingtools.DivisionRegionExpression(
+            payload=divisions, start_offset=start_offset, 
+            total_duration=total_duration, voice_name=voice_name)
+        return expression

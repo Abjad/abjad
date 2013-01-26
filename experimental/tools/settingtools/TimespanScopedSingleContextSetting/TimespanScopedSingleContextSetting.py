@@ -5,6 +5,7 @@ from abjad.tools import timespantools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
+# TODO: inherit from some type of Setting class
 class TimespanScopedSingleContextSetting(AbjadObject):
     '''Region command.
 
@@ -156,3 +157,7 @@ class TimespanScopedSingleContextSetting(AbjadObject):
             positional_argument_values.append(positional_argument_value)
         result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
         return result
+
+    @abc.abstractmethod
+    def to_region_expression(self):
+        pass

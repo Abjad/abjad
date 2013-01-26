@@ -55,7 +55,7 @@ Methods
 
    Inherited from :py:class:`settingtools.TimespanScopedSingleContextSetting <experimental.tools.settingtools.TimespanScopedSingleContextSetting.TimespanScopedSingleContextSetting.TimespanScopedSingleContextSetting>`
 
-.. automethod:: experimental.tools.settingtools.TimespanScopedSingleContextRhythmSetting.TimespanScopedSingleContextRhythmSetting.TimespanScopedSingleContextRhythmSetting.to_rhythm_region_expression
+.. automethod:: experimental.tools.settingtools.TimespanScopedSingleContextRhythmSetting.TimespanScopedSingleContextRhythmSetting.TimespanScopedSingleContextRhythmSetting.to_region_expression
    :noindex:
 
 Special Methods
