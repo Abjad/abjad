@@ -79,7 +79,13 @@ class TimespanScopedSingleContextDivisionSetting(TimespanScopedSingleContextSett
             region_expression = settingtools.SelectExpressionDivisionRegionExpression(
                 self.expression, start_offset, total_duration, voice_name)
         elif isinstance(self.expression, settingtools.DivisionSettingLookupExpression):
-            raise NotImplementedError(self.expression)
+            expression = self.expression.evaluate()
+            if isinstance(expression, settingtools.PayloadExpression):
+                divisions = expression.elements
+                region_expression = settingtools.SelectExpressionDivisionRegionExpression(
+                    divisions, start_offset, total_duration, voice_name)
+            else:
+                raise TypeError(expression)
         # TODO: maybe combine the following two branches?
         elif isinstance(self.expression, settingtools.PayloadExpression):
             divisions = self.expression.elements

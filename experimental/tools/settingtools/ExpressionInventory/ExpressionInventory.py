@@ -22,7 +22,7 @@ class ExpressionInventory(ObjectInventory, Expression):
     def elements(self):
         result = []
         for expression in self:
-            expresion = expression.evaluate()
+            expression = expression.evaluate()
             result.extend(expression.elements)
         return result
 

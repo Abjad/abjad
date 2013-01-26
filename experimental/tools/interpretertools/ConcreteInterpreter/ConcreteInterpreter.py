@@ -146,34 +146,9 @@ class ConcreteInterpreter(Interpreter):
                 raise Exception('cyclic division specification.')
 
     def make_division_region_expressions(self):
-        pass
-
-    #def make_division_region_expressions(self):
-    #    for voice in iterationtools.iterate_voices_in_expr(self.score):
-    #        division_region_expressions = self.make_division_region_expressions_for_voice(voice.name)
-    #        self.score_specification.division_region_expressions.extend(division_region_expressions)
-
-#    def make_division_region_expressions_for_voice(self, voice_name):
-#        voice_proxy = self.score_specification.contexts[voice_name]
-#        uninterpreted_settings = voice_proxy.timespan_scoped_single_context_division_settings[:]
-#        result = []
-#        while uninterpreted_settings:
-#            made_progress = False
-#            for setting in uninterpreted_settings[:]:
-#                expression = setting.expression.evaluate()
-#                if expression is None:
-#                    continue
-#                divisions = expression.elements[:]
-#                divisions = [settingtools.Division(x) for x in divisions]
-#                start_offset, total_duration = setting.timespan.start_offset, setting.timespan.duration
-#                division_region_expression = setting.to_region_expression(
-#                    divisions, start_offset, total_duration, voice_name)
-#                result.append(division_region_expression)
-#                uninterpreted_settings.remove(setting)
-#                made_progress = True
-#            if not made_progress:
-#                raise Exception('cyclic division specification.')
-#        return result
+        for voice in iterationtools.iterate_voices_in_expr(self.score):
+            division_region_expressions = self.make_division_region_expressions_for_voice(voice.name)
+            self.score_specification.division_region_expressions.extend(division_region_expressions)
 
     def make_division_region_expressions_for_voice(self, voice_name):
         voice_proxy = self.score_specification.contexts[voice_name]
