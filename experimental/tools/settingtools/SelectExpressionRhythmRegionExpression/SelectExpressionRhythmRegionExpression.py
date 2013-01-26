@@ -10,6 +10,8 @@ class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
 
     ### INITIALIZER ###
 
+    # TODO: reorder to select_expression, start_offset, total_duration, voice_name
+    # TODO: change to select_expression, timespan, voice_name
     def __init__(self, select_expression=None, voice_name=None, start_offset=None, total_duration=None):
         self._select_expression = select_expression
         self._voice_name = voice_name

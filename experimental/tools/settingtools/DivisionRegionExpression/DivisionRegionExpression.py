@@ -1,3 +1,4 @@
+import abc
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools import timespantools
@@ -9,6 +10,10 @@ class DivisionRegionExpression(RegionExpression):
 
     Expression to evaluate to a start-positioned division payload expression.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
+    __metaclass__ = abc.ABCMeta
 
     ### PRIVATE METHODS ###
 

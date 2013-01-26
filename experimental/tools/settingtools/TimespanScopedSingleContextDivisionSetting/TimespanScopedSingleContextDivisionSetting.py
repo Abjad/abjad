@@ -74,7 +74,15 @@ class TimespanScopedSingleContextDivisionSetting(TimespanScopedSingleContextSett
 
     def to_region_expression(self, divisions, start_offset, total_duration, voice_name):
         from experimental.tools import settingtools
-        expression = settingtools.DivisionRegionExpression(
-            payload=divisions, start_offset=start_offset, 
-            total_duration=total_duration, voice_name=voice_name)
-        return expression
+        if isinstance(self.expression, settingtools.DivisionPayloadExpression):
+            divisions = self.expression._payload_elements
+        elif isinstance(self.expression, settingtools.DivisionSettingLookupExpression):
+            raise NotImplementedError(self.expression)
+        elif isinstance(self.expression, settingtools.DivisionSelectExpression):
+            total_duration = self.timespan.duration
+            start_offset = self.timespan.start_offset
+            region_expression = settingtools.DivisionSelectExpressionDivisionRegionExpression(
+                self.expression, start_offset, total_duration, voice_name)
+        else:
+            raise TypeError(self.expression)
+        return region_expression
