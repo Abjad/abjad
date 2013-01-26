@@ -283,7 +283,6 @@ Unstable packages (load manually)
       tools/settingtools/AnchoredExpression/AnchoredExpression
       tools/settingtools/AnchoredObject/AnchoredObject
       tools/settingtools/CallbackMixin/CallbackMixin
-      tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
       tools/settingtools/Expression/Expression
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
@@ -313,6 +312,7 @@ Unstable packages (load manually)
       tools/settingtools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
+      tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
       tools/settingtools/DivisionSelectExpression/DivisionSelectExpression
       tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
@@ -358,7 +358,6 @@ Unstable packages (load manually)
       tools/settingtools/AnchoredExpression/AnchoredExpression
       tools/settingtools/AnchoredObject/AnchoredObject
       tools/settingtools/CallbackMixin/CallbackMixin
-      tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
       tools/settingtools/Expression/Expression
       tools/settingtools/LookupMethodMixin/LookupMethodMixin
       tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
@@ -388,6 +387,7 @@ Unstable packages (load manually)
       tools/settingtools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
       tools/settingtools/Division/Division
       tools/settingtools/DivisionList/DivisionList
+      tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
       tools/settingtools/DivisionSelectExpression/DivisionSelectExpression
       tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/settingtools/ExpressionInventory/ExpressionInventory
