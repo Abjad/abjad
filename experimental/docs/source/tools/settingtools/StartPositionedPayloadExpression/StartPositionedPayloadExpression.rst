@@ -38,6 +38,8 @@ Methods
 .. automethod:: experimental.tools.settingtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.new
    :noindex:
 
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. automethod:: experimental.tools.settingtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.partition_by_ratio
    :noindex:
 

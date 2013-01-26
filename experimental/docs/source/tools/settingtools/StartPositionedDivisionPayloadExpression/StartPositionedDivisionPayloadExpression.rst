@@ -36,7 +36,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.new
    :noindex:
 
-   Inherited from :py:class:`settingtools.StartPositionedPayloadExpression <experimental.tools.settingtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression>`
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
 .. automethod:: experimental.tools.settingtools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.partition_by_ratio
    :noindex:

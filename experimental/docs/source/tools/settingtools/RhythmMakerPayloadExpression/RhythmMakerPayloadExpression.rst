@@ -30,7 +30,7 @@ Methods
 .. automethod:: experimental.tools.settingtools.RhythmMakerPayloadExpression.RhythmMakerPayloadExpression.RhythmMakerPayloadExpression.new
    :noindex:
 
-   Inherited from :py:class:`settingtools.PayloadExpression <experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression>`
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
 
 .. automethod:: experimental.tools.settingtools.RhythmMakerPayloadExpression.RhythmMakerPayloadExpression.RhythmMakerPayloadExpression.partition_by_ratio
    :noindex:

@@ -24,6 +24,8 @@ Methods
 .. automethod:: experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression.new
    :noindex:
 
+   Inherited from :py:class:`settingtools.Expression <experimental.tools.settingtools.Expression.Expression.Expression>`
+
 .. automethod:: experimental.tools.settingtools.PayloadExpression.PayloadExpression.PayloadExpression.partition_by_ratio
    :noindex:
 
