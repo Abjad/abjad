@@ -113,7 +113,4 @@
     Update variable names.
     Remove duplicate code.
 
-23. What's needed seems to be both AnchoredSetExpression and AnchoredSetExpression classes.
-    Then AnchoredSetExpression can alias target_timespan to anchor.
-    While (unachored) AnchoredSetExpression can manage (literal) target_timespan by hand.
-    Then finally change TimespanScopedSingleContextSetExpression.timespan to target_timespan.
+23. Remove TimespanScopedSingleContextSetExpression.timespan in favor of target_timespan.
