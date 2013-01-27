@@ -1,9 +1,9 @@
 import abc
 import copy
-from experimental.tools.expressiontools.BaseSetExpression import BaseSetExpression
+from experimental.tools.expressiontools.SetExpression import SetExpression
 
 
-class InputSetExpression(BaseSetExpression):
+class InputSetExpression(SetExpression):
     r'''Set expression.
     '''
 
@@ -22,7 +22,7 @@ class InputSetExpression(BaseSetExpression):
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))
-        BaseSetExpression.__init__(self, source=source, anchor=anchor)
+        SetExpression.__init__(self, source=source, anchor=anchor)
         self._attribute = attribute
         self._fresh = fresh
         self._persist = persist

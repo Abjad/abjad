@@ -40,7 +40,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.source
    :noindex:
 
-   Inherited from :py:class:`expressiontools.BaseSetExpression <experimental.tools.expressiontools.BaseSetExpression.BaseSetExpression.BaseSetExpression>`
+   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.start_offset
    :noindex:

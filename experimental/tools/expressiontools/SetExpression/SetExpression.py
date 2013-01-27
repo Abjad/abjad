@@ -2,7 +2,7 @@ import abc
 from experimental.tools.expressiontools.AnchoredExpression import AnchoredExpression
 
 
-class BaseSetExpression(AnchoredExpression):
+class SetExpression(AnchoredExpression):
     '''Base set expression.
     '''
 

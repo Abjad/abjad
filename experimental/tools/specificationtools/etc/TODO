@@ -116,8 +116,6 @@
 23. Remove make_division_region_expressions(), make_rhythm_region_expressions().
     Replace with make_region_expressions().
 
-24. Rename InputSetExpression to something descriptive.
-    Then change BaseSetExpression to InputSetExpression.
-    Then change InputSetExpression 'anchor' to 'target_timespan'.
-    Then change InputSetExpression 'context_names' to 'target_context_names'.
-    Then possible rewire all expression classes to inherit from Expression instead of AnchoredExpression.
+24. Change SetExpression 'anchor' to 'target_timespan'.
+    Change SetExpression 'context_names' to 'target_context_names'.
+    Possibly rewire SetExpression to inherit from Expression instead of AnchoredExpression.
