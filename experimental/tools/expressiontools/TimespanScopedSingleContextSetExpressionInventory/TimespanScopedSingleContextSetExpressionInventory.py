@@ -73,16 +73,16 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
             return self
         elif not self and score_specification.time_signatures:
             timespan = score_specification.timespan
-            setting = score_specification.make_default_timespan_scoped_single_context_set_expression(
+            set_expression = score_specification.make_default_timespan_scoped_single_context_set_expression(
                 attribute, voice_name, timespan)
-            self[:] = [setting]
+            self[:] = [set_expression]
             return self
         timespans = timespantools.TimespanInventory([expr.timespan for expr in self])
         timespans.append(score_specification.timespan)
         missing_region_timespans = timespans.compute_logical_xor() 
         for missing_region_timespan in missing_region_timespans:
-            missing_setting = score_specification.make_default_timespan_scoped_single_context_set_expression(
+            missing_set_expression = score_specification.make_default_timespan_scoped_single_context_set_expression(
                 attribute, voice_name, missing_region_timespan)
-            self.append(missing_setting)
+            self.append(missing_set_expression)
         self.sort()
         return self

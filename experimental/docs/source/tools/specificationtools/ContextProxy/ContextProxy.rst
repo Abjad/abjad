@@ -47,10 +47,10 @@ Methods
 
    Inherited from :py:class:`__builtin__.dict`
 
-.. automethod:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.get_setting
+.. automethod:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.get_set_expression
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.get_settings
+.. automethod:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.get_set_expressions
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.has_key

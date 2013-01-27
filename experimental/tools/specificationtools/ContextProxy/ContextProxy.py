@@ -82,8 +82,8 @@ class ContextProxy(AbjadObject, OrderedDict):
 
     ### PUBLIC METHODS ###
 
-    def get_setting(self, attribute=None):
-        settings = self.get_settings(attribute=attribute)
+    def get_set_expression(self, attribute=None):
+        settings = self.get_set_expressions(attribute=attribute)
         if not settings:
             raise Exception('no settings for {!r} found.'.format(attribute))
         elif 1 < len(settings):
@@ -91,7 +91,7 @@ class ContextProxy(AbjadObject, OrderedDict):
         assert len(settings) == 1
         return settings[0]
 
-    def get_settings(self, attribute=None):
+    def get_set_expressions(self, attribute=None):
         result = []
         for key, value in self.iteritems():
             if attribute is None or key == attribute:

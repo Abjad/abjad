@@ -91,13 +91,13 @@ class SingleContextSetExpression(SetExpression):
     ### PUBLIC METHODS ###
 
     def copy_setting_to_segment_name(self, segment_name):
-        '''Create new setting. 
+        '''Create new set expression. 
 
-        Set new setting start segment identifier to `segment_name`.
+        Set new set expression start segment identifier to `segment_name`.
 
-        Set new setting `fresh` to false.
+        Set new set expression `fresh` to false.
 
-        Return new setting.
+        Return new set expression.
         '''
         assert isinstance(segment_name, str)
         new_setting = copy.deepcopy(self)

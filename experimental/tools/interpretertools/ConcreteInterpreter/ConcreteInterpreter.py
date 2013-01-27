@@ -282,7 +282,7 @@ class ConcreteInterpreter(Interpreter):
     def populate_time_signature_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
             time_signature_settings = \
-                segment_specification.single_context_set_expressions_by_context.score_context_proxy.get_settings(
+                segment_specification.single_context_set_expressions_by_context.score_context_proxy.get_set_expressions(
                 attribute='time_signatures')
             if not time_signature_settings:
                 continue

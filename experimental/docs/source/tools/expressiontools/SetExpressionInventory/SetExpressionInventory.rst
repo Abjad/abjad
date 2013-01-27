@@ -40,10 +40,10 @@ Methods
 
    Inherited from :py:class:`abjad.tools.datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 
-.. automethod:: experimental.tools.expressiontools.SetExpressionInventory.SetExpressionInventory.SetExpressionInventory.get_setting
+.. automethod:: experimental.tools.expressiontools.SetExpressionInventory.SetExpressionInventory.SetExpressionInventory.get_set_expression
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetExpressionInventory.SetExpressionInventory.SetExpressionInventory.get_settings
+.. automethod:: experimental.tools.expressiontools.SetExpressionInventory.SetExpressionInventory.SetExpressionInventory.get_set_expressions
    :noindex:
 
 .. automethod:: experimental.tools.expressiontools.SetExpressionInventory.SetExpressionInventory.SetExpressionInventory.index

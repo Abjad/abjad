@@ -70,7 +70,7 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
         except:
             return False
 
-    def get_settings(self, attribute=None, context_name=None):
+    def get_set_expressions(self, attribute=None, context_name=None):
         #self._debug(attribute, 'attribute')
         #self._debug(context_name, 'context_name')
         if context_name is None:
@@ -83,7 +83,7 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
         for context_proxy in context_proxies:
             # old behavior
             if isinstance(context_proxy, ContextProxy):
-                settings.extend(context_proxy.get_settings(attribute=attribute))
+                settings.extend(context_proxy.get_set_expressions(attribute=attribute))
             # new behavior
             elif isinstance(context_proxy, list):
                 for setting in context_proxy:

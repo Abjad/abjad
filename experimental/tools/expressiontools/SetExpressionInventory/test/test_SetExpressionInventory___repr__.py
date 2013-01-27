@@ -14,10 +14,10 @@ def test_SetExpressionInventory___repr___01():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
 
-    setting_inventory_1 = score_specification['red'].single_context_set_expressions
-    setting_inventory_2 = eval(repr(setting_inventory_1))
+    set_expression_inventory_1 = score_specification['red'].single_context_set_expressions
+    set_expression_inventory_2 = eval(repr(set_expression_inventory_1))
 
-    assert isinstance(setting_inventory_1, SetExpressionInventory)
-    assert isinstance(setting_inventory_2, SetExpressionInventory)
-    assert not setting_inventory_1 is setting_inventory_2
-    assert setting_inventory_1 == setting_inventory_2
+    assert isinstance(set_expression_inventory_1, SetExpressionInventory)
+    assert isinstance(set_expression_inventory_2, SetExpressionInventory)
+    assert not set_expression_inventory_1 is set_expression_inventory_2
+    assert set_expression_inventory_1 == set_expression_inventory_2

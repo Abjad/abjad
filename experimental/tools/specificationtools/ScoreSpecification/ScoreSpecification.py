@@ -21,10 +21,10 @@ class ScoreSpecification(Specification):
 
     ::
 
-        >>> setting = red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
-        >>> setting = orange_segment.set_time_signatures([(4, 16), (4, 16)])
-        >>> setting = yellow_segment.set_time_signatures([(5, 16), (5, 16)])
-        >>> setting = red_segment.set_rhythm(library.sixteenths)
+        >>> set_expression = red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
+        >>> set_expression = orange_segment.set_time_signatures([(4, 16), (4, 16)])
+        >>> set_expression = yellow_segment.set_time_signatures([(5, 16), (5, 16)])
+        >>> set_expression = red_segment.set_rhythm(library.sixteenths)
 
     ::
 

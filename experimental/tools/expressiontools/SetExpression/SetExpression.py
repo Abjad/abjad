@@ -64,7 +64,7 @@ class SetExpression(AnchoredExpression):
 
     @property
     def fresh(self):
-        '''True when setting results from explicit composer command.
+        '''True when set expression results from explicit composer command.
         Otherwise false.
 
         Return boolean.
@@ -73,7 +73,7 @@ class SetExpression(AnchoredExpression):
 
     @property
     def persist(self):
-        '''True when setting should persist.
+        '''True when set expression should persist.
          
         Return boolean.
         '''
@@ -81,7 +81,7 @@ class SetExpression(AnchoredExpression):
 
     @property
     def truncate(self):
-        '''True when setting should truncate.
+        '''True when set expression should truncate.
 
         Return boolean.
         '''

@@ -12,7 +12,7 @@ class SetMethodMixin(AbjadObject):
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
-    Equips classes with the composer setting-maker interface.
+    Equips classes with the composer set interface.
     '''
 
     ### PRIVATE METHODS ###
@@ -94,11 +94,11 @@ class SetMethodMixin(AbjadObject):
     def set_divisions(self, source, contexts=None, persist=True, truncate=None):
         r'''Set divisions `contexts` to `source`::
 
-            >>> setting = red_segment.set_divisions([(3, 16)], contexts=['Voice 1', 'Voice 3'])
+            >>> set_expression = red_segment.set_divisions([(3, 16)], contexts=['Voice 1', 'Voice 3'])
 
         ::
 
-            >>> z(setting)
+            >>> z(set_expression)
             expressiontools.MultipleContextSetExpression(
                 attribute='divisions',
                 expression=expressiontools.PayloadExpression(
@@ -181,11 +181,11 @@ class SetMethodMixin(AbjadObject):
     def set_rhythm(self, source, contexts=None, persist=True):
         r'''Set rhythm of `contexts` to `source`.
 
-            >>> setting = red_segment.set_rhythm(library.sixteenths)
+            >>> set_expression = red_segment.set_rhythm(library.sixteenths)
 
         ::
 
-            >>> z(setting)
+            >>> z(set_expression)
             expressiontools.MultipleContextSetExpression(
                 attribute='rhythm',
                 expression=expressiontools.RhythmMakerPayloadExpression(
@@ -212,11 +212,11 @@ class SetMethodMixin(AbjadObject):
     def set_time_signatures(self, source, contexts=None, persist=True):
         r'''Set time signatures of `contexts` to `source`.
 
-            >>> setting = red_segment.set_time_signatures([(3, 8), (4, 8)])
+            >>> set_expression = red_segment.set_time_signatures([(3, 8), (4, 8)])
 
         ::
 
-            >>> z(setting)
+            >>> z(set_expression)
             expressiontools.MultipleContextSetExpression(
                 attribute='time_signatures',
                 expression=expressiontools.PayloadExpression(

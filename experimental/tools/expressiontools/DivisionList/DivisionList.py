@@ -16,9 +16,9 @@ class DivisionList(BoundedObject):
 
     ::
 
-        >>> setting = red_segment.set_time_signatures([(4, 8), (3, 8)])
-        >>> setting = red_segment.set_divisions([(3, 16)], contexts=['Voice 1'])
-        >>> setting = red_segment.set_rhythm(library.thirty_seconds)
+        >>> set_expression = red_segment.set_time_signatures([(4, 8), (3, 8)])
+        >>> set_expression = red_segment.set_divisions([(3, 16)], contexts=['Voice 1'])
+        >>> set_expression = red_segment.set_rhythm(library.thirty_seconds)
 
     ::
 

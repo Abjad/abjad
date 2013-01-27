@@ -15,9 +15,9 @@ class TimespanCallbackMixin(CallbackMixin):
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
-        >>> setting = red_segment.set_time_signatures([(4, 8), (3, 8)])
+        >>> set_expression = red_segment.set_time_signatures([(4, 8), (3, 8)])
         >>> blue_segment = score_specification.append_segment(name='blue')
-        >>> setting = blue_segment.set_time_signatures([(9, 16), (3, 16)])
+        >>> set_expression = blue_segment.set_time_signatures([(9, 16), (3, 16)])
 
     The examples below refer to the score and segment specifications defined above.
     '''

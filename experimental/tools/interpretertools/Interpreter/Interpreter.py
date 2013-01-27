@@ -41,9 +41,9 @@ class Interpreter(AbjadObject):
 
     def store_single_context_attribute_settings_by_context(self, attribute):
         for segment_specification in self.score_specification.segment_specifications:
-            new_settings = segment_specification.single_context_set_expressions.get_settings(attribute=attribute)
+            new_settings = segment_specification.single_context_set_expressions.get_set_expressions(attribute=attribute)
             existing_settings = \
-                self.score_specification.single_context_set_expressions_by_context.get_settings(
+                self.score_specification.single_context_set_expressions_by_context.get_set_expressions(
                 attribute=attribute)
             new_context_names = [x.context_name for x in new_settings]
             forwarded_existing_settings = []
