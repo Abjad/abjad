@@ -3,7 +3,7 @@ from experimental.tools.expressiontools.AttributeNameEnumeration import Attribut
 
 
 class SetExpressionInventory(ObjectInventory):
-    r'''Single inventory.
+    r'''Set expression inventory.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -12,10 +12,9 @@ class SetExpressionInventory(ObjectInventory):
 
     ### PUBLIC METHODS ###
 
-    # TODO: reorder parameters attribute, timespan, target_context_name, persist
-    def get_set_expression(self, attribute=None, target_context_name=None, persist=None, timespan=None):
+    def get_set_expression(self, attribute=None, timespan=None, target_context_name=None, persist=None):
         set_expressions = self.get_set_expressions(attribute=attribute, 
-            target_context_name=target_context_name, persist=persist, timespan=timespan)
+            timespan=timespan, target_context_name=target_context_name, persist=persist)
         if not set_expressions:
             error ='no set expressions for {!r} found.'.format(attribute)
             raise Exception(error)
@@ -25,8 +24,7 @@ class SetExpressionInventory(ObjectInventory):
         assert len(set_expressions) == 1
         return set_expressions[0]
 
-    # TODO: reorder input parameters
-    def get_set_expressions(self, attribute=None, target_context_name=None, persist=None, timespan=None):
+    def get_set_expressions(self, attribute=None, timespan=None, target_context_name=None, persist=None):
         assert attribute in self.attributes, repr(attribute)
         set_expressions = []
         for set_expression in self:
