@@ -154,18 +154,10 @@ class PayloadExpression(Expression):
 
         Return newly constructed payload expression.
         '''
-        # TODO: eventually allow only tuple or list
-        #assert isinstance(self.payload, (tuple, list)), repr(self.payload)
-        if isinstance(self.payload, (tuple, list)):
-            payload = type(self.payload)(reversed(self.payload))
-            result = self.new(payload=payload)
-            return result
-        # TODO: This is probably the source of the "can't look up parseable string set-rhythm expression" bug.
-        #       Means that parseable strings shouldn't be passed around as PayloadExpression objects.
-        elif isinstance(self.payload, str):
-            return self
-        else:
-            raise TypeError(self.payload)
+        assert isinstance(self.payload, tuple), repr(self.payload)
+        payload = type(self.payload)(reversed(self.payload))
+        result = self.new(payload=payload)
+        return result
 
     def repeat_to_duration(self, duration):
         '''Repeat to duration.
