@@ -60,11 +60,11 @@ class Interpreter(AbjadObject):
     def store_single_context_set_expression_by_context(self, single_context_set_expression, clear_persistent_first=False):
         '''Copy single-context setting.
 
-        Find single-context setting start segment.
+        Find single-context set expression start segment.
 
-        Store copied single-context setting by context in start segment.
+        Store copied single-context set expression by context in start segment.
 
-        If setting persists then store setting by context in score, too.
+        If set expression persists then store set expression by context in score, too.
         '''
         single_context_set_expression = copy.deepcopy(single_context_set_expression)
         anchor = single_context_set_expression.anchor

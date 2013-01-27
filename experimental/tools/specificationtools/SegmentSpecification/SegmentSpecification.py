@@ -116,7 +116,7 @@ class SegmentSpecification(Specification):
             >>> for x in red_segment.multiple_context_set_expressions:
             ...     z(x)
 
-        Return setting inventory.
+        Return set expression inventory.
         '''
         return Specification.multiple_context_set_expressions.fget(self)
 
@@ -187,13 +187,13 @@ class SegmentSpecification(Specification):
                 persist=True
                 )
 
-        Return single-context setting inventory.
+        Return single-context set expression inventory.
         '''
         return Specification.single_context_set_expressions.fget(self)
 
     @property
     def single_context_set_expressions_by_context(self):
-        r'''Segment specification single-context settings by context::
+        r'''Segment specification single-context set expressions by context::
 
             >>> for key in red_segment.single_context_set_expressions_by_context:
             ...     key

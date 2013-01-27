@@ -165,7 +165,7 @@ Methods
 
    Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.sort_and_split_settings
+.. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.sort_and_split_set_expressions
    :noindex:
 
 .. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.stretch
@@ -173,7 +173,7 @@ Methods
 
    Inherited from :py:class:`abjad.tools.timespantools.TimespanInventory <abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory>`
 
-.. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.supply_missing_settings
+.. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.supply_missing_set_expressions
    :noindex:
 
 .. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.translate

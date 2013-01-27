@@ -5,68 +5,68 @@ from abjad.tools.timespantools.TimespanInventory import TimespanInventory
 
 
 class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
-    '''Timespan-scoped single-context setting inventory.
+    '''Timespan-scoped single-context set expression inventory.
     '''
 
     ### PUBLIC METHODS ###
 
-    def sort_and_split_settings(self):
-        '''Operate in place and return timespan-scoped single-context setting inventory.
+    def sort_and_split_set_expressions(self):
+        '''Operate in place and return inventory.
         '''
-        cooked_settings = []
-        for raw_setting in self[:]:
-            setting_was_delayed, setting_was_split = False, False
-            settings_to_remove, settings_to_curtail, settings_to_delay, settings_to_split = [], [], [], []
-            for cooked_setting in cooked_settings:
-                if raw_setting.timespan.contains_timespan_improperly(cooked_setting):
-                    settings_to_remove.append(cooked_setting)
-                elif raw_setting.timespan.delays_timespan(cooked_setting):
-                    settings_to_delay.append(cooked_setting)
-                elif raw_setting.timespan.curtails_timespan(cooked_setting):
-                    settings_to_curtail.append(cooked_setting)
-                elif raw_setting.timespan.trisects_timespan(cooked_setting):
-                    settings_to_split.append(cooked_setting)
-            #print settings_to_remove, settings_to_curtail, settings_to_delay, settings_to_split
-            for setting_to_remove in settings_to_remove:
-                cooked_settings.remove(setting_to_remove)
-            for setting_to_curtail in settings_to_curtail:
+        cooked_set_expressions = []
+        for raw_set_expression in self[:]:
+            set_expression_was_delayed, set_expression_was_split = False, False
+            set_expressions_to_remove, set_expressions_to_curtail = [], []
+            set_expressions_to_delay, set_expressions_to_split = [], []
+            for cooked_set_expression in cooked_set_expressions:
+                if raw_set_expression.timespan.contains_timespan_improperly(cooked_set_expression):
+                    set_expressions_to_remove.append(cooked_set_expression)
+                elif raw_set_expression.timespan.delays_timespan(cooked_set_expression):
+                    set_expressions_to_delay.append(cooked_set_expression)
+                elif raw_set_expression.timespan.curtails_timespan(cooked_set_expression):
+                    set_expressions_to_curtail.append(cooked_set_expression)
+                elif raw_set_expression.timespan.trisects_timespan(cooked_set_expression):
+                    set_expressions_to_split.append(cooked_set_expression)
+            for set_expression_to_remove in set_expressions_to_remove:
+                cooked_set_expressions.remove(set_expression_to_remove)
+            for set_expression_to_curtail in set_expressions_to_curtail:
                 timespan = timespantools.Timespan(
-                    setting_to_curtail.timespan.start_offset, raw_setting.timespan.start_offset)
-                setting_to_curtail._timespan = timespan
-            for setting_to_delay in settings_to_delay:
+                    set_expression_to_curtail.timespan.start_offset, raw_set_expression.timespan.start_offset)
+                set_expression_to_curtail._timespan = timespan
+            for set_expression_to_delay in set_expressions_to_delay:
                 timespan = timespantools.Timespan(
-                    raw_setting.timespan.stop_offset, setting_to_delay.timespan.stop_offset)
-                setting_to_delay._timespan = timespan
-                setting_was_delayed = True
+                    raw_set_expression.timespan.stop_offset, set_expression_to_delay.timespan.stop_offset)
+                set_expression_to_delay._timespan = timespan
+                set_expression_was_delayed = True
             # TODO: branch inside and implement a method to split while treating cyclic payload smartly.
-            # or, alternatively, special-case for settings that cover the entire duration of score.
-            for setting_to_split in settings_to_split:
-                left_setting = setting_to_split
-                middle_setting = raw_setting
-                right_setting = copy.deepcopy(left_setting)
+            # or, alternatively, special-case for set_expressions that cover the entire duration of score.
+            for set_expression_to_split in set_expressions_to_split:
+                left_set_expression = set_expression_to_split
+                middle_set_expression = raw_set_expression
+                right_set_expression = copy.deepcopy(left_set_expression)
                 timespan = timespantools.Timespan(
-                    left_setting.timespan.start_offset, middle_setting.timespan.start_offset)
-                left_setting._timespan = timespan
+                    left_set_expression.timespan.start_offset, middle_set_expression.timespan.start_offset)
+                left_set_expression._timespan = timespan
                 timespan = timespantools.Timespan(
-                    middle_setting.timespan.stop_offset, right_setting.timespan.stop_offset)
-                right_setting._timespan = timespan
-                setting_was_split = True
-            if setting_was_delayed:
-                index = cooked_settings.index(cooked_setting)
-                cooked_settings.insert(index, raw_setting)
-            elif setting_was_split:
-                cooked_settings.append(middle_setting)
-                cooked_settings.append(right_setting)
+                    middle_set_expression.timespan.stop_offset, right_set_expression.timespan.stop_offset)
+                right_set_expression._timespan = timespan
+                set_expression_was_split = True
+            if set_expression_was_delayed:
+                index = cooked_set_expressions.index(cooked_set_expression)
+                cooked_set_expressions.insert(index, raw_set_expression)
+            elif set_expression_was_split:
+                cooked_set_expressions.append(middle_set_expression)
+                cooked_set_expressions.append(right_set_expression)
             else:
-                cooked_settings.append(raw_setting)
-            cooked_settings.sort()
-            #self._debug_values(cooked_settings, 'cooked')
-        #self._debug_values(cooked_settings, 'cooked')
-        self[:] = cooked_settings
+                cooked_set_expressions.append(raw_set_expression)
+            cooked_set_expressions.sort()
+            #self._debug_values(cooked_set_expressions, 'cooked')
+        #self._debug_values(cooked_set_expressions, 'cooked')
+        self[:] = cooked_set_expressions
         return self
 
-    def supply_missing_settings(self, attribute, score_specification, voice_name):
-        '''Operate in place and return timespan-scoped single-context setting inventory.
+    def supply_missing_set_expressions(self, attribute, score_specification, voice_name):
+        '''Operate in place and return inventory.
         '''
         assert self.is_sorted
         if not self and not score_specification.time_signatures:

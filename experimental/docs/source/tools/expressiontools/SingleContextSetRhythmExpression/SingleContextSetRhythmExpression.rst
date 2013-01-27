@@ -92,7 +92,7 @@ Methods
 
    Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
 
-.. automethod:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.to_timespan_scoped_setting
+.. automethod:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.to_timespan_scoped_set_expression
    :noindex:
 
 Special Methods

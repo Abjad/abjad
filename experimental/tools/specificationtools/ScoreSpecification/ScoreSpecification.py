@@ -203,7 +203,7 @@ class ScoreSpecification(Specification):
                 persist=True
                 )
 
-        Return context setting proxy.
+        Return context set expression proxy.
         '''
         return Specification.multiple_context_set_expressions.fget(self)
     
@@ -331,13 +331,13 @@ class ScoreSpecification(Specification):
                 persist=True
                 )
 
-        Return single-context setting inventory.
+        Return single-context set expression inventory.
         '''
         return Specification.single_context_set_expressions.fget(self)
 
     @property
     def single_context_set_expressions_by_context(self):
-        r'''Score specification single-context settings by context::
+        r'''Score specification single-context set expressions by context::
 
             >>> for key in score_specification.single_context_set_expressions_by_context:
             ...     key
@@ -547,18 +547,18 @@ class ScoreSpecification(Specification):
         return result
 
     def get_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, context_name):
-        timespan_scoped_settings = expressiontools.TimespanScopedSingleContextSetExpressionInventory()
+        timespan_scoped_set_expressions = expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for segment_specification in self.segment_specifications:
             single_context_set_expressions = \
                 segment_specification.get_single_context_set_expressions_that_start_during_segment(
                 context_name, attribute, include_improper_parentage=True)
             for single_context_set_expression in single_context_set_expressions:
-                timespan_scoped_setting = single_context_set_expression.to_timespan_scoped_setting()
-                # make sure setting was setting for timespan that exists in current segment
-                if timespan_scoped_setting.timespan.is_well_formed:
-                    timespan_scoped_settings.append(timespan_scoped_setting)
-        assert timespan_scoped_settings.all_are_well_formed
-        return timespan_scoped_settings
+                timespan_scoped_set_expression = single_context_set_expression.to_timespan_scoped_set_expression()
+                # make sure set expression was set expression for timespan that exists in current segment
+                if timespan_scoped_set_expression.timespan.is_well_formed:
+                    timespan_scoped_set_expressions.append(timespan_scoped_set_expression)
+        assert timespan_scoped_set_expressions.all_are_well_formed
+        return timespan_scoped_set_expressions
 
     def interpret(self):
         r'''Interpret score specification.

@@ -60,7 +60,7 @@ class TimespanScopedSingleContextSetRhythmExpression(TimespanScopedSingleContext
                     )
                 ])
 
-        Return timespan-scoped single-context setting inventory.
+        Return timespan-scoped single-context set expression inventory.
         '''
         return TimespanScopedSingleContextSetExpression.__sub__(self, timespan)
     

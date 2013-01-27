@@ -109,7 +109,7 @@ class SingleContextSetExpression(SetExpression):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def to_timespan_scoped_setting(self):
+    def to_timespan_scoped_set_expression(self):
         '''Evaluate timespan of single-context setting.
 
         Return timespan-scoped single-context setting.

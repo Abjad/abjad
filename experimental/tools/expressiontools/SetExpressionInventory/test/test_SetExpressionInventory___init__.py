@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_SetExpressionInventory___init___01():
-    '''Init from other setting inventory.
+    '''Init from other set expression inventory.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

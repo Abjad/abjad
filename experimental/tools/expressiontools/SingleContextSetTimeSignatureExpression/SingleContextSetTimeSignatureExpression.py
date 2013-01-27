@@ -33,7 +33,7 @@ class SingleContextSetTimeSignatureExpression(SingleContextSetExpression):
             segment_specification._time_signatures = time_signatures[:]
             return time_signatures
 
-    def to_timespan_scoped_setting(self):
+    def to_timespan_scoped_set_expression(self):
         '''Evaluate timespan of single-context time signataure setting.
 
         Return timespan-scoped single-context set-time signature expression.

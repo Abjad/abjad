@@ -3,7 +3,7 @@ from experimental import *
 
 def test_single_segment_solo__rhythm_context_cascade_01():
     '''Settings made against lower-level contexts override 
-    settings made against higher-level contexts.
+    set expressions made against higher-level contexts.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -63,7 +63,7 @@ def test_single_segment_solo__rhythm_context_cascade_03():
 
 
 def test_single_segment_solo__rhythm_context_cascade_04():
-    '''Lexically later settings don't matter if they 
+    '''Lexically later set expressions don't matter if they 
     are made against a higher-level context.
     '''
 

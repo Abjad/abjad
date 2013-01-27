@@ -79,21 +79,21 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
             context_proxies = [self[context_name]]
         #for context_proxy in context_proxies:
         #    self._debug(context_proxy)
-        settings = []
+        set_expressions = []
         for context_proxy in context_proxies:
             # old behavior
             if isinstance(context_proxy, ContextProxy):
-                settings.extend(context_proxy.get_set_expressions(attribute=attribute))
+                set_expressions.extend(context_proxy.get_set_expressions(attribute=attribute))
             # new behavior
             elif isinstance(context_proxy, list):
-                for setting in context_proxy:
+                for set_expression in context_proxy:
                     if setting.attribute == attribute or attribute is None:
-                        settings.append(setting)
+                        set_expressions.append(setting)
             else:
                 raise ValueError
-        #self._debug(settings, 'settings')
+        #self._debug(set_expressions, 'set_expressions')
         #print ''
-        return settings 
+        return set_expressions 
 
     def show(self):
         for context_name in self:

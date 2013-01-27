@@ -4,7 +4,7 @@ from experimental import *
 def test_SegmentSpecification__set_rhythm_increasing_01():
     '''Remake of schematic example X3.
     Uses division select expressions instead of rhythm select expressions.
-    Necessitates setting decreasing=False on rhythm maker.
+    Necessitates set expression decreasing=False on rhythm maker.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
