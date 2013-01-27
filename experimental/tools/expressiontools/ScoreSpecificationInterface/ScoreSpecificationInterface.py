@@ -2,7 +2,7 @@ from experimental.tools.expressiontools.SpecificationInterface import Specificat
 
 
 class ScoreSpecificationInterface(SpecificationInterface):
-    r'''Score setting interface.
+    r'''Score specification interface.
 
     Score specification:
 
@@ -19,7 +19,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
         >>> orange_segment = score_specification.append_segment(name='orange')
         >>> yellow_segment = score_specification.append_segment(name='yellow')
 
-    All score setting interface properties are read-only.
+    All score specification interface properties are read-only.
     '''
 
     ### INITIALIZER ###
@@ -31,7 +31,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     @property
     def score_specification(self):
-        '''Score setting interface score specification reference::
+        '''Score specification interface score specification reference::
 
             >>> score_specification.interface.score_specification
             ScoreSpecification('red', 'orange', 'yellow')
@@ -42,7 +42,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     @property
     def specification_name(self):
-        '''Score setting interface specification name::
+        '''Score specification interface specification name::
 
             >>> score_specification.interface.specification_name is None
             True
@@ -53,7 +53,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     @property
     def storage_format(self):
-        '''Score setting interface storage format::
+        '''Score specification interface storage format::
 
             >>> z(score_specification.interface)
             expressiontools.ScoreSpecificationInterface(
@@ -70,7 +70,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     @property
     def timespan(self):
-        '''Score setting interface timespan::
+        '''Score specification interface timespan::
 
             >>> score_specification.interface.timespan
             TimespanExpression()

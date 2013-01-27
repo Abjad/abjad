@@ -45,12 +45,12 @@ class SetMethodMixin(AbjadObject):
         else:
             raise TypeError('do not know how to change {!r} to expression.'.format(expr))
 
-    def _store_multiple_context_setting(self, attribute, source, contexts=None, persist=True, truncate=None):
+    def _store_multiple_context_set_expression(self, attribute, source, contexts=None, persist=True, truncate=None):
         from experimental.tools import expressiontools
         expression = self._expr_to_expression(source)
         assert self.score_specification is not None
         context_names = self.score_specification._context_token_to_context_names(contexts)
-        multiple_context_setting = expressiontools.MultipleContextSetExpression(
+        multiple_context_set_expression = expressiontools.MultipleContextSetExpression(
             attribute=attribute,
             expression=expression,
             anchor=self._anchor_abbreviation,
@@ -58,9 +58,9 @@ class SetMethodMixin(AbjadObject):
             persist=persist,
             truncate=truncate
             )
-        multiple_context_setting._score_specification = self.score_specification
-        self.score_specification.multiple_context_settings.append(multiple_context_setting)
-        return multiple_context_setting
+        multiple_context_set_expression._score_specification = self.score_specification
+        self.score_specification.multiple_context_set_expressions.append(multiple_context_set_expression)
+        return multiple_context_set_expression
 
     ### PUBLIC METHODS ###
 
@@ -70,7 +70,7 @@ class SetMethodMixin(AbjadObject):
         Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'aggregate'
-        return self._store_multiple_context_setting(attribute, source, 
+        return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_articulations(self, source, contexts=None, persist=True):
@@ -79,7 +79,7 @@ class SetMethodMixin(AbjadObject):
         Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'articulations'
-        return self._store_multiple_context_setting(attribute, source, 
+        return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_chord_treatment(self, source, contexts=None, persist=True):
@@ -88,7 +88,7 @@ class SetMethodMixin(AbjadObject):
         Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'chord_treatment'
-        return self._store_multiple_context_setting(attribute, source, 
+        return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_divisions(self, source, contexts=None, persist=True, truncate=None):
@@ -112,7 +112,7 @@ class SetMethodMixin(AbjadObject):
         Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'divisions'
-        return self._store_multiple_context_setting(attribute, source,
+        return self._store_multiple_context_set_expression(attribute, source,
             contexts=contexts, truncate=truncate, persist=persist)
 
     def set_dynamics(self, source, contexts=None, persist=True):
@@ -121,7 +121,7 @@ class SetMethodMixin(AbjadObject):
         Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'dynamics'
-        return self._store_multiple_context_setting(attribute, source, 
+        return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_marks(self, source, contexts=None, persist=True):
@@ -130,7 +130,7 @@ class SetMethodMixin(AbjadObject):
         Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'marks'
-        return self._store_multiple_context_setting(attribute, source, 
+        return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_markup(self, source, contexts=None, persist=True):
@@ -139,7 +139,7 @@ class SetMethodMixin(AbjadObject):
         Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'markup'
-        return self._store_multiple_context_setting(attribute, source, 
+        return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_pitch_class_application(self, source, contexts=None, persist=True):
@@ -148,7 +148,7 @@ class SetMethodMixin(AbjadObject):
         Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'pitch_class_application'
-        return self._store_multiple_context_setting(attribute, source, 
+        return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_pitch_class_transform(self, source, contexts=None, persist=True):
@@ -157,7 +157,7 @@ class SetMethodMixin(AbjadObject):
         Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'pitch_class_transform'
-        return self._store_multiple_context_setting(attribute, source, 
+        return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_pitch_classes(self, source, contexts=None, persist=True):
@@ -166,7 +166,7 @@ class SetMethodMixin(AbjadObject):
         Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'pitch_classes'
-        return self._store_multiple_context_setting(attribute, source, 
+        return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_registration(self, source, contexts=None, persist=True):
@@ -175,7 +175,7 @@ class SetMethodMixin(AbjadObject):
         Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'registration'
-        return self._store_multiple_context_setting(attribute, source, 
+        return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_rhythm(self, source, contexts=None, persist=True):
@@ -198,7 +198,7 @@ class SetMethodMixin(AbjadObject):
         Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'rhythm'
-        return self._store_multiple_context_setting(attribute, source, contexts=contexts, persist=persist)
+        return self._store_multiple_context_set_expression(attribute, source, contexts=contexts, persist=persist)
 
     def set_tempo(self, source, contexts=None, persist=True):
         r'''Set tempo of `contexts` to `source`.
@@ -206,7 +206,7 @@ class SetMethodMixin(AbjadObject):
         Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'tempo'
-        return self._store_multiple_context_setting(attribute, source, 
+        return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_time_signatures(self, source, contexts=None, persist=True):
@@ -229,4 +229,4 @@ class SetMethodMixin(AbjadObject):
         Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'time_signatures'
-        return self._store_multiple_context_setting(attribute, source, contexts=contexts, persist=persist)
+        return self._store_multiple_context_set_expression(attribute, source, contexts=contexts, persist=persist)

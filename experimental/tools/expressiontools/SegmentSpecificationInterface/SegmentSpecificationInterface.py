@@ -2,7 +2,7 @@ from experimental.tools.expressiontools.SpecificationInterface import Specificat
 
 
 class SegmentSpecificationInterface(SpecificationInterface):
-    r'''Segment setting interface.
+    r'''Segment specification interface.
 
     The examples below reference the following segment specification::
 
@@ -37,7 +37,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     @property
     def score_specification(self):
-        '''Segment setting interface score specification reference::
+        '''Segment specification interface score specification reference::
 
             >>> z(red_segment.score_specification)
             specificationtools.ScoreSpecification(
@@ -76,7 +76,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     @property
     def storage_format(self):
-        '''Segment setting interface storage format::
+        '''Segment specification interface storage format::
 
             >>> z(red_segment)
             expressiontools.SegmentSpecificationInterface(
@@ -94,7 +94,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     @property
     def timespan(self):
-        '''Segment setting interface timespan::
+        '''Segment specification interface timespan::
 
             >>> red_segment.timespan
             TimespanExpression(anchor='red')

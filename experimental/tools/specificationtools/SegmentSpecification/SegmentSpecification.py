@@ -52,12 +52,12 @@ class SegmentSpecification(Specification):
             >>> red_segment['Voice 1']
             ContextProxy()
 
-        Also get multiple-context setting with integer `expr`.
+        Also get multiple-context set-expression with integer `expr`.
 
-        Return multiple-context setting or context proxy.
+        Return multiple-context set-expression or context proxy.
         '''
         if isinstance(expr, int):
-            return self.multiple_context_settings.__getitem__(expr)
+            return self.multiple_context_set_expressions.__getitem__(expr)
         else:
             return self.contexts.__getitem__(expr) 
         
@@ -110,15 +110,15 @@ class SegmentSpecification(Specification):
         return Specification.contexts.fget(self)
 
     @property
-    def multiple_context_settings(self):
-        '''Segment specification multiple-context settings::
+    def multiple_context_set_expressions(self):
+        '''Segment specification multiple-context set-expressions::
 
-            >>> for x in red_segment.multiple_context_settings:
+            >>> for x in red_segment.multiple_context_set_expressions:
             ...     z(x)
 
         Return setting inventory.
         '''
-        return Specification.multiple_context_settings.fget(self)
+        return Specification.multiple_context_set_expressions.fget(self)
 
     @property
     def score_model(self):

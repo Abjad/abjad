@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__set_time_signatures_corner_cases_01():
-    '''Multiple time signature settings are allowed for a single segment.
+    '''Multiple set-time signature expressions are allowed for a single segment.
 
     Interpreter ignores all but the last.
     '''

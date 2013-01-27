@@ -15,9 +15,9 @@ class ContextProxy(AbjadObject, OrderedDict):
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         self._rhythm_payload_expressions = \
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
-        self._timespan_scoped_single_context_division_settings = \
+        self._timespan_scoped_single_context_set_division_expressions = \
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
-        self._timespan_scoped_single_context_rhythm_settings = \
+        self._timespan_scoped_single_context_set_rhythm_expressions = \
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         self._voice_division_list = None
 
@@ -55,22 +55,22 @@ class ContextProxy(AbjadObject, OrderedDict):
         return self._rhythm_payload_expressions
 
     @property
-    def timespan_scoped_single_context_division_settings(self):
+    def timespan_scoped_single_context_set_division_expressions(self):
         '''Context proxy timespan-scoped
         single-context set-division expressions.
 
         Return inventory.
         '''
-        return self._timespan_scoped_single_context_division_settings
+        return self._timespan_scoped_single_context_set_division_expressions
 
     @property
-    def timespan_scoped_single_context_rhythm_settings(self):
+    def timespan_scoped_single_context_set_rhythm_expressions(self):
         '''Context proxy timespan-scoped
         single-context set-rhythm expressions.
 
         Return inventory.
         '''
-        return self._timespan_scoped_single_context_rhythm_settings
+        return self._timespan_scoped_single_context_set_rhythm_expressions
 
     @property
     def voice_division_list(self):

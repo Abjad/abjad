@@ -2,7 +2,7 @@ from experimental.tools.expressiontools.SingleContextSetExpression import Single
 
 
 class SingleContextSetRhythmExpression(SingleContextSetExpression):
-    r'''Single-context time signature setting.
+    r'''Single-context set-time signature expression.
     '''
 
     ### INITIALIZER ###

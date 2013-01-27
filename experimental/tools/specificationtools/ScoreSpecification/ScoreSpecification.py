@@ -38,10 +38,10 @@ class ScoreSpecification(Specification):
     def __init__(self, score_template):
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
-        self._timespan_scoped_single_context_division_settings = []
+        self._timespan_scoped_single_context_set_division_expressions = []
         self._division_region_expressions = []
         self._rhythm_region_expressions = []
-        self._timespan_scoped_single_context_rhythm_settings = []
+        self._timespan_scoped_single_context_set_rhythm_expressions = []
         self._time_signature_settings = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
@@ -155,20 +155,20 @@ class ScoreSpecification(Specification):
 
     @property
     def interface(self):
-        '''Read-only reference to score setting interface::
+        '''Read-only reference to score specification interface::
 
             >>> score_specification.interface
             ScoreSpecificationInterface()
 
-        Return score setting interface.
+        Return score specification interface.
         '''
         return self._interface
 
     @property
-    def multiple_context_settings(self):
+    def multiple_context_set_expressions(self):
         '''Read-only reference to multiple context settings::
 
-            >>> for x in score_specification.multiple_context_settings:
+            >>> for x in score_specification.multiple_context_set_expressions:
             ...     z(x)
             expressiontools.MultipleContextSetExpression(
                 attribute='time_signatures',
@@ -205,7 +205,7 @@ class ScoreSpecification(Specification):
 
         Return context setting proxy.
         '''
-        return Specification.multiple_context_settings.fget(self)
+        return Specification.multiple_context_set_expressions.fget(self)
     
     @property
     def rhythm_region_expressions(self):
@@ -383,7 +383,7 @@ class ScoreSpecification(Specification):
 
     @property
     def time_signature_settings(self):
-        '''Read-only list of all time signature settings.
+        '''Read-only list of all set-time signature expressions.
 
             >>> for x in score_specification.time_signature_settings:
             ...     z(x)
@@ -427,10 +427,10 @@ class ScoreSpecification(Specification):
         return Specification.timespan.fget(self)
 
     @property
-    def timespan_scoped_single_context_division_settings(self):
+    def timespan_scoped_single_context_set_division_expressions(self):
         '''Read-only list of all division region commands::
 
-            >>> for x in score_specification.timespan_scoped_single_context_division_settings:
+            >>> for x in score_specification.timespan_scoped_single_context_set_division_expressions:
             ...     z(x)
             expressiontools.TimespanScopedSingleContextSetDivisionExpression(
                 expression=expressiontools.PayloadExpression(
@@ -461,13 +461,13 @@ class ScoreSpecification(Specification):
 
         Return list.
         '''
-        return self._timespan_scoped_single_context_division_settings
+        return self._timespan_scoped_single_context_set_division_expressions
 
     @property
-    def timespan_scoped_single_context_rhythm_settings(self):
+    def timespan_scoped_single_context_set_rhythm_expressions(self):
         '''Read-only list of all rhythm region commands.
 
-            >>> for x in score_specification.timespan_scoped_single_context_rhythm_settings:
+            >>> for x in score_specification.timespan_scoped_single_context_set_rhythm_expressions:
             ...     z(x)
             expressiontools.TimespanScopedSingleContextSetRhythmExpression(
                 expression=expressiontools.RhythmMakerPayloadExpression(
@@ -484,7 +484,7 @@ class ScoreSpecification(Specification):
 
         Return list.
         '''
-        return self._timespan_scoped_single_context_rhythm_settings
+        return self._timespan_scoped_single_context_set_rhythm_expressions
 
 
     ### PUBLIC METHODS ###
@@ -570,7 +570,7 @@ class ScoreSpecification(Specification):
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
-    def make_default_timespan_scoped_single_context_division_setting(self, voice_name, timespan):
+    def make_default_timespan_scoped_single_context_set_division_expression(self, voice_name, timespan):
         divisions = self.get_time_signature_slice(timespan)
         return expressiontools.TimespanScopedSingleContextSetDivisionExpression(
             expression=expressiontools.PayloadExpression(divisions),
@@ -580,7 +580,7 @@ class ScoreSpecification(Specification):
             truncate=True
             )
 
-    def make_default_timespan_scoped_single_context_rhythm_setting(self, voice_name, timespan):
+    def make_default_timespan_scoped_single_context_set_rhythm_expression(self, voice_name, timespan):
         return expressiontools.TimespanScopedSingleContextSetRhythmExpression(
             expression=expressiontools.RhythmMakerPayloadExpression(library.skip_tokens),
             timespan=timespan,
@@ -590,8 +590,8 @@ class ScoreSpecification(Specification):
 
     def make_default_timespan_scoped_single_context_set_expression(self, attribute, voice_name, timespan):
         if attribute == 'divisions':
-            return self.make_default_timespan_scoped_single_context_division_setting(voice_name, timespan)
+            return self.make_default_timespan_scoped_single_context_set_division_expression(voice_name, timespan)
         elif attribute == 'rhythm':
-            return self.make_default_timespan_scoped_single_context_rhythm_setting(voice_name, timespan)
+            return self.make_default_timespan_scoped_single_context_set_rhythm_expression(voice_name, timespan)
         else:
             raise ValueError(attribute)

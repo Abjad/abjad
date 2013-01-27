@@ -143,7 +143,7 @@ class ConcreteInterpreter(Interpreter):
 
     def make_division_region_expressions_for_voice(self, voice_name):
         voice_proxy = self.score_specification.contexts[voice_name]
-        settings = voice_proxy.timespan_scoped_single_context_division_settings[:]
+        settings = voice_proxy.timespan_scoped_single_context_set_division_expressions[:]
         region_expressions = []
         for setting in settings:
             region_expression = setting.to_region_expression(voice_name)
@@ -180,54 +180,54 @@ class ConcreteInterpreter(Interpreter):
         voice_proxy = self.score_specification.contexts[voice_name]
         voice_division_list = voice_proxy.voice_division_list
         division_payload_expressions = voice_proxy.division_payload_expressions
-        timespan_scoped_single_context_rhythm_settings = voice_proxy.timespan_scoped_single_context_rhythm_settings
+        timespan_scoped_single_context_set_rhythm_expressions = voice_proxy.timespan_scoped_single_context_set_rhythm_expressions
         if not voice_division_list:
             return []
         division_region_durations = [x.timespan.duration for x in division_payload_expressions]
-        timespan_scoped_single_context_rhythm_setting_durations = [
-            x.timespan.duration for x in timespan_scoped_single_context_rhythm_settings]
-        assert sum(division_region_durations) == sum(timespan_scoped_single_context_rhythm_setting_durations)
-        timespan_scoped_single_context_rhythm_setting_merged_durations = sequencetools.merge_duration_sequences(
-            division_region_durations, timespan_scoped_single_context_rhythm_setting_durations)
+        timespan_scoped_single_context_set_rhythm_expression_durations = [
+            x.timespan.duration for x in timespan_scoped_single_context_set_rhythm_expressions]
+        assert sum(division_region_durations) == sum(timespan_scoped_single_context_set_rhythm_expression_durations)
+        timespan_scoped_single_context_set_rhythm_expression_merged_durations = sequencetools.merge_duration_sequences(
+            division_region_durations, timespan_scoped_single_context_set_rhythm_expression_durations)
         # assert that rhythm commands cover rhythm regions exactly
         assert sequencetools.partition_sequence_by_weights_exactly(
-            timespan_scoped_single_context_rhythm_setting_merged_durations, 
-            timespan_scoped_single_context_rhythm_setting_durations)
+            timespan_scoped_single_context_set_rhythm_expression_merged_durations, 
+            timespan_scoped_single_context_set_rhythm_expression_durations)
         rhythm_region_start_division_duration_lists = \
                 sequencetools.partition_sequence_by_backgrounded_weights(
-                voice_division_list.divisions, timespan_scoped_single_context_rhythm_setting_merged_durations)
+                voice_division_list.divisions, timespan_scoped_single_context_set_rhythm_expression_merged_durations)
         #self._debug_values(rhythm_region_start_division_duration_lists, 'rrsddls')
         assert len(rhythm_region_start_division_duration_lists) == \
-            len(timespan_scoped_single_context_rhythm_setting_merged_durations)
+            len(timespan_scoped_single_context_set_rhythm_expression_merged_durations)
         rhythm_region_start_division_counts = [len(l) for l in rhythm_region_start_division_duration_lists]
         rhythm_region_division_lists = sequencetools.partition_sequence_by_counts(
             voice_division_list.divisions, rhythm_region_start_division_counts, cyclic=False, overhang=False)
         rhythm_region_division_lists = [
             expressiontools.DivisionList(x, voice_name=voice_name) for x in rhythm_region_division_lists]
         assert len(rhythm_region_division_lists) == \
-            len(timespan_scoped_single_context_rhythm_setting_merged_durations)
+            len(timespan_scoped_single_context_set_rhythm_expression_merged_durations)
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
         rhythm_region_durations = [x.duration for x in rhythm_region_division_lists]
         #self._debug(rhythm_region_durations, 'rrds')
         cumulative_sums = mathtools.cumulative_sums_zero(rhythm_region_durations)
         rhythm_region_start_offsets = cumulative_sums[:-1]
         rhythm_region_start_offsets = [durationtools.Offset(x) for x in rhythm_region_start_offsets]
-        timespan_scoped_single_context_rhythm_setting_duration_pairs = [
-            (x, x.timespan.duration) for x in timespan_scoped_single_context_rhythm_settings]
-        #self._debug_values(timespan_scoped_single_context_rhythm_setting_duration_pairs, 
+        timespan_scoped_single_context_set_rhythm_expression_duration_pairs = [
+            (x, x.timespan.duration) for x in timespan_scoped_single_context_set_rhythm_expressions]
+        #self._debug_values(timespan_scoped_single_context_set_rhythm_expression_duration_pairs, 
         #    'rhythm command / duration pairs')
-        merged_duration_timespan_scoped_single_context_rhythm_setting_pairs = \
+        merged_duration_timespan_scoped_single_context_set_rhythm_expression_pairs = \
             sequencetools.pair_duration_sequence_elements_with_input_pair_values(
-            timespan_scoped_single_context_rhythm_setting_merged_durations, 
-            timespan_scoped_single_context_rhythm_setting_duration_pairs)
+            timespan_scoped_single_context_set_rhythm_expression_merged_durations, 
+            timespan_scoped_single_context_set_rhythm_expression_duration_pairs)
         # the first column in pairs is not used for anything further at all is discarded
-        timespan_scoped_single_context_rhythm_settings = [
-            x[-1] for x in merged_duration_timespan_scoped_single_context_rhythm_setting_pairs]
-        assert len(timespan_scoped_single_context_rhythm_settings) == len(rhythm_region_division_lists)
+        timespan_scoped_single_context_set_rhythm_expressions = [
+            x[-1] for x in merged_duration_timespan_scoped_single_context_set_rhythm_expression_pairs]
+        assert len(timespan_scoped_single_context_set_rhythm_expressions) == len(rhythm_region_division_lists)
         rhythm_region_expressions = []
-        for timespan_scoped_single_context_rhythm_setting, rhythm_region_start_offset, rhythm_region_division_list in zip(
-            timespan_scoped_single_context_rhythm_settings, rhythm_region_start_offsets, rhythm_region_division_lists):
-            rhythm_region_expression = timespan_scoped_single_context_rhythm_setting.to_region_expression(
+        for timespan_scoped_single_context_set_rhythm_expression, rhythm_region_start_offset, rhythm_region_division_list in zip(
+            timespan_scoped_single_context_set_rhythm_expressions, rhythm_region_start_offsets, rhythm_region_division_lists):
+            rhythm_region_expression = timespan_scoped_single_context_set_rhythm_expression.to_region_expression(
                 rhythm_region_division_list, rhythm_region_start_offset, voice_name)
             rhythm_region_expressions.append(rhythm_region_expression)
         rhythm_region_expressions = self.merge_prolonging_rhythm_region_expressions(
@@ -240,7 +240,7 @@ class ConcreteInterpreter(Interpreter):
                 voice_proxy = self.score_specification.contexts[voice.name]
                 settings = self.get_timespan_scoped_single_context_set_expressions_for_voice(attribute, voice.name)
                 singular_attribute = attribute.rstrip('s')
-                key = 'timespan_scoped_single_context_{}_settings'.format(singular_attribute)
+                key = 'timespan_scoped_single_context_set_{}_expressions'.format(singular_attribute)
                 inventory = getattr(voice_proxy, key)
                 inventory[:] = settings[:]
                 score_settings = getattr(self.score_specification, key)

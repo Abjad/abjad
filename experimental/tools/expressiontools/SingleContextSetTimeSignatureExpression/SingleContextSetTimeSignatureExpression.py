@@ -2,7 +2,7 @@ from experimental.tools.expressiontools.SingleContextSetExpression import Single
 
 
 class SingleContextSetTimeSignatureExpression(SingleContextSetExpression):
-    r'''Single-context time signature setting.
+    r'''Single-context set-time signature expression.
     '''
 
     ### INITIALIZER ###
@@ -36,7 +36,7 @@ class SingleContextSetTimeSignatureExpression(SingleContextSetExpression):
     def to_timespan_scoped_setting(self):
         '''Evaluate timespan of single-context time signataure setting.
 
-        Return timespan-scoped single-context time signature setting.
+        Return timespan-scoped single-context set-time signature expression.
         '''
         from experimental.tools import expressiontools
         anchor_timespan = self.get_anchor_timespan()

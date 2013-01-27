@@ -33,7 +33,7 @@ class Specification(AbjadObject):
         self._score_model = score_template()
         self._abbreviated_context_names = []
         self._context_names = []
-        self._multiple_context_settings = expressiontools.SetExpressionInventory()
+        self._multiple_context_set_expressions = expressiontools.SetExpressionInventory()
         self._single_context_set_expressions_by_context = specificationtools.ContextProxyDictionary(score_template())
         self._initialize_context_name_abbreviations()
         self._contexts = specificationtools.ContextProxyDictionary(score_template())
@@ -112,8 +112,8 @@ class Specification(AbjadObject):
         return self._contexts
 
     @property
-    def multiple_context_settings(self):
-        return self._multiple_context_settings
+    def multiple_context_set_expressions(self):
+        return self._multiple_context_set_expressions
 
     @property
     def score_model(self):

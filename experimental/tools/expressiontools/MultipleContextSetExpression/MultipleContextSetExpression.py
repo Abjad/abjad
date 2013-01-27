@@ -3,7 +3,7 @@ from experimental.tools.expressiontools.SetExpression import SetExpression
 
 
 class MultipleContextSetExpression(SetExpression):
-    r'''Multiple-context setting.
+    r'''Multiple-context set-expression.
 
     Set `attribute` to `expression` for multiple-context `anchor`:
 
@@ -15,11 +15,11 @@ class MultipleContextSetExpression(SetExpression):
 
     ::
 
-        >>> multiple_context_setting = red_segment.set_time_signatures([(4, 8), (3, 8)])
+        >>> multiple_context_set_expression = red_segment.set_time_signatures([(4, 8), (3, 8)])
 
     ::
 
-        >>> z(multiple_context_setting)
+        >>> z(multiple_context_set_expression)
         expressiontools.MultipleContextSetExpression(
             attribute='time_signatures',
             expression=expressiontools.PayloadExpression(
@@ -29,11 +29,11 @@ class MultipleContextSetExpression(SetExpression):
             persist=True
             )
 
-    Composers create multiple-context settings at specification-time.
+    Composers create multiple-context set-expressions at specification-time.
 
-    Composers create multiple-context settings with ``SegmentSpecification`` setter methods.
+    Composers create multiple-context set-expressions with ``SegmentSpecification`` setter methods.
 
-    Multiple-context settings capture composers' musical intent.
+    Multiple-context set-expressions capture composers' musical intent.
     '''
 
     ### INITIAILIZER ###
@@ -59,7 +59,7 @@ class MultipleContextSetExpression(SetExpression):
 
     @property
     def context_names(self):
-        '''Multiple-context setting context names.
+        '''Multiple-context set-expression context names.
     
         Return list of strings or none.
         '''

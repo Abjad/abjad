@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.contexts
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.multiple_context_settings
+.. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.multiple_context_set_expressions
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_model

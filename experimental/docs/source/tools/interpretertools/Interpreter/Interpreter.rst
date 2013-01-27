@@ -32,7 +32,7 @@ Methods
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_single_context_set_expressions_by_context
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.unpack_multiple_context_settings_for_score
+.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.unpack_multiple_context_set_expressions_for_score
    :noindex:
 
 Special Methods

@@ -4,7 +4,7 @@ from experimental.tools.expressiontools.SetExpression import SetExpression
 
 
 class SingleContextSetExpression(SetExpression):
-    r'''Single-context setting.
+    r'''Single-context set-expression.
 
     Set `attribute` to `expression` for single-context `anchor`::
 
@@ -14,12 +14,12 @@ class SingleContextSetExpression(SetExpression):
 
     ::
 
-        >>> multiple_context_setting = red_segment.set_time_signatures([(4, 8), (3, 8)])
+        >>> multiple_context_set_expression = red_segment.set_time_signatures([(4, 8), (3, 8)])
 
     ::
 
         >>> contexts = ['Voice 1', 'Voice 3']
-        >>> multiple_context_setting = red_segment.set_divisions([(3, 16)], contexts=contexts)
+        >>> multiple_context_set_expression = red_segment.set_divisions([(3, 16)], contexts=contexts)
 
     ::
 
@@ -42,11 +42,11 @@ class SingleContextSetExpression(SetExpression):
             persist=True
             )
 
-    Composer set() methods product multiple-context settings.
+    Composer set() methods product multiple-context set-expressions.
 
-    Multiple-context settings produce single-context settings.
+    Multiple-context set-expressions produce single-context settings.
 
-    Single-context settings produce region commands.
+    Single-context set-expressions produce region commands.
     '''
 
     ### INITIALIZER ###
@@ -63,7 +63,7 @@ class SingleContextSetExpression(SetExpression):
 
     @property
     def context_name(self):
-        '''Single-context setting context name.
+        '''Single-context set-expression context name.
 
         Return string or none.
         '''
@@ -71,7 +71,7 @@ class SingleContextSetExpression(SetExpression):
 
     @property
     def storage_format(self):
-        '''Single-context setting storage format::
+        '''Single-context set-expression storage format::
 
             >>> z(single_context_set_expression)
             expressiontools.SingleContextSetDivisionExpression(
