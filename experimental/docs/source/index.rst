@@ -133,6 +133,7 @@ Unstable packages (load manually)
       tools/expressiontools/RhythmRegionExpression/RhythmRegionExpression
       tools/expressiontools/SelectExpression/SelectExpression
       tools/expressiontools/SelectMethodMixin/SelectMethodMixin
+      tools/expressiontools/SetExpression/SetExpression
       tools/expressiontools/SetExpressionLookupExpression/SetExpressionLookupExpression
       tools/expressiontools/SetMethodMixin/SetMethodMixin
       tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression
@@ -210,6 +211,7 @@ Unstable packages (load manually)
       tools/expressiontools/RhythmRegionExpression/RhythmRegionExpression
       tools/expressiontools/SelectExpression/SelectExpression
       tools/expressiontools/SelectMethodMixin/SelectMethodMixin
+      tools/expressiontools/SetExpression/SetExpression
       tools/expressiontools/SetExpressionLookupExpression/SetExpressionLookupExpression
       tools/expressiontools/SetMethodMixin/SetMethodMixin
       tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression

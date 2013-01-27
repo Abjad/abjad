@@ -1,9 +1,10 @@
 import abc
 import copy
 from experimental.tools.expressiontools.AnchoredExpression import AnchoredExpression
+from experimental.tools.expressiontools.SetExpression import SetExpression
 
 
-class AnchoredSetExpression(AnchoredExpression):
+class AnchoredSetExpression(SetExpression, AnchoredExpression):
     '''Anchored set expression.
     '''
 
@@ -15,14 +16,10 @@ class AnchoredSetExpression(AnchoredExpression):
 
     @abc.abstractmethod
     def __init__(self, source=None, target_timespan=None):
+        SetExpression.__init__(self, source=source)
         AnchoredExpression.__init__(self, anchor=target_timespan)
-        self._source = source
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def source(self):
-        return self._source
 
     @property
     def target_timespan(self):

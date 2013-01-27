@@ -31,7 +31,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.source
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredSetExpression <experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression>`
+   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.start_offset
    :noindex:
