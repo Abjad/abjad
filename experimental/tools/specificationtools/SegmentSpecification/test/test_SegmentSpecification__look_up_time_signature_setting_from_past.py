@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__look_up_time_signature_setting_from_past_01():
-    '''From-past time signature command reqeust.
+    '''From-past time signature set expression lookup expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -10,8 +10,8 @@ def test_SegmentSpecification__look_up_time_signature_setting_from_past_01():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment = score_specification.append_segment(name='blue')
-    red_time_signature_command = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
-    blue_segment.set_time_signatures(red_time_signature_command)
+    red_time_signature_set_expression = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
+    blue_segment.set_time_signatures(red_time_signature_set_expression)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -20,7 +20,7 @@ def test_SegmentSpecification__look_up_time_signature_setting_from_past_01():
 
 
 def test_SegmentSpecification__look_up_time_signature_setting_from_past_02():
-    '''From-past time signature command reqeust with reverse callback.
+    '''From-past time signature set expression lookup expression with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -28,9 +28,9 @@ def test_SegmentSpecification__look_up_time_signature_setting_from_past_02():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment = score_specification.append_segment(name='blue')
-    red_time_signature_command = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
-    red_time_signature_command = red_time_signature_command.reflect()
-    blue_segment.set_time_signatures(red_time_signature_command)
+    red_time_signature_set_expression = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
+    red_time_signature_set_expression = red_time_signature_set_expression.reflect()
+    blue_segment.set_time_signatures(red_time_signature_set_expression)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -39,7 +39,7 @@ def test_SegmentSpecification__look_up_time_signature_setting_from_past_02():
 
 
 def test_SegmentSpecification__look_up_time_signature_setting_from_past_03():
-    '''From-past time signature command reqeust with set-time reverse.
+    '''From-past time signature set expression lookup expression with set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -47,9 +47,9 @@ def test_SegmentSpecification__look_up_time_signature_setting_from_past_03():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment = score_specification.append_segment(name='blue')
-    red_time_signature_command = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
-    red_time_signature_command = red_time_signature_command.reflect()
-    blue_segment.set_time_signatures(red_time_signature_command)
+    red_time_signature_set_expression = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
+    red_time_signature_set_expression = red_time_signature_set_expression.reflect()
+    blue_segment.set_time_signatures(red_time_signature_set_expression)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -66,10 +66,10 @@ def test_SegmentSpecification__look_up_time_signature_setting_from_past_04():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment = score_specification.append_segment(name='blue')
-    red_time_signature_command = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
-    red_time_signature_command = red_time_signature_command.reflect()
-    red_time_signature_command = red_time_signature_command.reflect()
-    blue_segment.set_time_signatures(red_time_signature_command)
+    red_time_signature_set_expression = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
+    red_time_signature_set_expression = red_time_signature_set_expression.reflect()
+    red_time_signature_set_expression = red_time_signature_set_expression.reflect()
+    blue_segment.set_time_signatures(red_time_signature_set_expression)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

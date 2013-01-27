@@ -215,7 +215,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(1, 2)
                 )
 
-        Return region command inventory.
+        Return region expression inventory.
         '''
         return StartPositionedPayloadExpression.__or__(self, expr)
 
@@ -465,7 +465,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                     )
                 ])
 
-        Operate in place and return newly constructed region command inventory.
+        Operate in place and return newly constructed region expression inventory.
         '''
         return StartPositionedPayloadExpression.partition_by_ratio(self, ratio)
 
@@ -499,7 +499,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                     )
                 ])
 
-        Operate in place and return newly constructed region command inventory.
+        Operate in place and return newly constructed region expression inventory.
         '''
         return StartPositionedPayloadExpression.partition_by_ratio_of_durations(self, ratio)
 

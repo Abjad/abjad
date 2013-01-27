@@ -7,7 +7,7 @@ from experimental.tools.expressiontools.RhythmRegionExpression import RhythmRegi
 
 
 class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
-    '''Rhythm-maker rhythm region command.
+    '''Rhythm-maker rhythm region expression.
     '''
 
     ### INITIALIZER ###

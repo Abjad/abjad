@@ -428,7 +428,9 @@ class ScoreSpecification(Specification):
 
     @property
     def timespan_scoped_single_context_division_set_expressions(self):
-        '''Read-only list of all division region commands::
+        '''Read-only list of all timespan-scoped single-context division set expressions:
+
+        ::
 
             >>> for x in score_specification.timespan_scoped_single_context_division_set_expressions:
             ...     z(x)
@@ -465,7 +467,9 @@ class ScoreSpecification(Specification):
 
     @property
     def timespan_scoped_single_context_rhythm_set_expressions(self):
-        '''Read-only list of all rhythm region commands.
+        '''Read-only list of all timespan-scoped single-context rhythm set expressions:
+    
+        ::
 
             >>> for x in score_specification.timespan_scoped_single_context_rhythm_set_expressions:
             ...     z(x)

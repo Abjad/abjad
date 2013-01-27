@@ -40,11 +40,11 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         return False
 
     def __or__(self, command):
-        '''Logical OR of region command and `command`.
+        '''Logical OR of region expression and `command`.
 
-        Return newly constructed region command.
+        Return newly constructed region expression.
 
-        Raise exception when region command can not fuse with `command`.
+        Raise exception when region expression can not fuse with `command`.
         '''
         assert self._can_fuse(command)
         stop_offset = self.target_timespan.stop_offset + command.target_timespan.duration
@@ -53,9 +53,9 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         return timespantools.TimespanInventory([result])
 
     def __sub__(self, timespan):
-        '''Subtract `timespan` from region command.
+        '''Subtract `timespan` from region expression.
 
-        Operate in place and return region command inventory.
+        Operate in place and return region expression inventory.
         '''
         from experimental.tools import expressiontools
         timespans = self.target_timespan - timespan
@@ -83,7 +83,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
 
     @property
     def fresh(self):
-        '''True when region command was generated in response 
+        '''True when region expression was generated in response 
         to an explicit user command. Otherwise false.
 
         Return boolean.

@@ -5,7 +5,7 @@ from experimental.tools.expressiontools.RhythmRegionExpression import RhythmRegi
 
 
 class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
-    '''SelectExpression rhythm region command.
+    '''SelectExpression rhythm region expression.
     '''
 
     ### INITIALIZER ###

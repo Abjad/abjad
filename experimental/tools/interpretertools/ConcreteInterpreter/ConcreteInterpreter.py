@@ -185,7 +185,7 @@ class ConcreteInterpreter(Interpreter):
         assert sum(division_region_durations) == sum(timespan_scoped_single_context_rhythm_set_expression_durations)
         timespan_scoped_single_context_rhythm_set_expression_merged_durations = sequencetools.merge_duration_sequences(
             division_region_durations, timespan_scoped_single_context_rhythm_set_expression_durations)
-        # assert that rhythm commands cover rhythm regions exactly
+        # assert that rhythm set expressions cover rhythm regions exactly
         assert sequencetools.partition_sequence_by_weights_exactly(
             timespan_scoped_single_context_rhythm_set_expression_merged_durations, 
             timespan_scoped_single_context_rhythm_set_expression_durations)
@@ -211,7 +211,7 @@ class ConcreteInterpreter(Interpreter):
         timespan_scoped_single_context_rhythm_set_expression_duration_pairs = [
             (x, x.target_timespan.duration) for x in timespan_scoped_single_context_rhythm_set_expressions]
         #self._debug_values(timespan_scoped_single_context_rhythm_set_expression_duration_pairs, 
-        #    'rhythm command / duration pairs')
+        #    'rhythm expression / duration pairs')
         merged_duration_timespan_scoped_single_context_rhythm_set_expression_pairs = \
             sequencetools.pair_duration_sequence_elements_with_input_pair_values(
             timespan_scoped_single_context_rhythm_set_expression_merged_durations, 

@@ -46,7 +46,7 @@ class SingleContextSetExpression(InputSetExpression):
 
     Multiple-context set expressions produce single-context settings.
 
-    Single-context set expressions produce region commands.
+    Single-context set expressions produce region expressions.
     '''
 
     ### INITIALIZER ###
