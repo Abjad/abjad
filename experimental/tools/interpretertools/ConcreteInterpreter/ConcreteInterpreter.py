@@ -109,8 +109,7 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_divisions(self):
         self.make_timespan_scoped_single_context_set_expressions('divisions')
-        # TODO: replace with self.make_region_epxressions('divisions')
-        self.make_division_region_expressions()
+        self.make_region_expressions('divisions')
         self.make_payload_expressions('divisions')
         self.add_division_lists_to_score()
 
@@ -122,8 +121,7 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_rhythm(self):
         self.make_timespan_scoped_single_context_set_expressions('rhythm')
-        # TODO: replace with self.make_region_epxressions('rhythm')
-        self.make_rhythm_region_expressions()
+        self.make_region_expressions('rhythm')
         self.make_payload_expressions('rhythm')
         self.add_rhythms_to_score()
 
@@ -131,11 +129,6 @@ class ConcreteInterpreter(Interpreter):
         self.populate_time_signature_settings()
         self.add_time_signatures_to_score()
         self.calculate_score_and_segment_timespans()
-
-    def make_division_region_expressions(self):
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
-            division_region_expressions = self.make_division_region_expressions_for_voice(voice.name)
-            self.score_specification.division_region_expressions.extend(division_region_expressions)
 
     def make_division_region_expressions_for_voice(self, voice_name):
         voice_proxy = self.score_specification.contexts[voice_name]
@@ -169,10 +162,14 @@ class ConcreteInterpreter(Interpreter):
             if not made_progress:
                 raise Exception('cyclic specification.')
 
-    def make_rhythm_region_expressions(self):
+    def make_region_expressions(self, attribute):
+        attribute = attribute.rstrip('s')
+        method_key = 'make_{}_region_expressions_for_voice'.format(attribute)
+        score_region_expressions_key = '{}_region_expressions'.format(attribute)
+        score_region_expressions = getattr(self.score_specification, score_region_expressions_key)
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            rhythm_region_expressions = self.make_rhythm_region_expressions_for_voice(voice.name)
-            self.score_specification.rhythm_region_expressions.extend(rhythm_region_expressions)
+            region_expressions = getattr(self, method_key)(voice.name)
+            score_region_expressions.extend(region_expressions)
 
     def make_rhythm_region_expressions_for_voice(self, voice_name):
         voice_proxy = self.score_specification.contexts[voice_name]
@@ -267,9 +264,8 @@ class ConcreteInterpreter(Interpreter):
     # TODO: eventually merge with self.make_timespan_scoped_single_context_set_expressions()
     def populate_time_signature_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
-            time_signature_settings = \
-                segment_specification.single_context_set_expressions_by_context.score_context_proxy.get_set_expressions(
-                attribute='time_signatures')
+            score_proxy = segment_specification.single_context_set_expressions_by_context.score_context_proxy
+            time_signature_settings = score_proxy.get_set_expressions(attribute='time_signatures')
             if not time_signature_settings:
                 continue
             time_signature_setting = time_signature_settings[-1]

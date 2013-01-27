@@ -62,14 +62,6 @@ class SingleContextSetExpression(InputSetExpression):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def target_context_name(self):
-        '''Single-context set expression context name.
-
-        Return string or none.
-        '''
-        return self._target_context_name
-
-    @property
     def storage_format(self):
         '''Single-context set expression storage format::
 
@@ -87,6 +79,14 @@ class SingleContextSetExpression(InputSetExpression):
         Return string.
         '''
         return InputSetExpression.storage_format.fget(self)
+
+    @property
+    def target_context_name(self):
+        '''Single-context set expression context name.
+
+        Return string or none.
+        '''
+        return self._target_context_name
 
     ### PUBLIC METHODS ###
 

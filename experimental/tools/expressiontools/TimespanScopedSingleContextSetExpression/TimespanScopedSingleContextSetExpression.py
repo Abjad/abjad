@@ -86,15 +86,6 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         '''
         pass
 
-    # TODO: remove in favor of SingleContextSetExpression.target_context_name
-    @property
-    def target_context_name(self):
-        '''Set expression context name.
-    
-        Return string.
-        '''
-        return self._target_context_name
-
     @property
     def fresh(self):
         '''True when region command was generated in response 
@@ -119,6 +110,15 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         Return offset.
         '''
         return self.timespan.stop_offset
+
+    # TODO: eventually remove in favor of SingleContextSetExpression.target_context_name?
+    @property
+    def target_context_name(self):
+        '''Set expression context name.
+    
+        Return string.
+        '''
+        return self._target_context_name
 
     @property
     def timespan(self):
