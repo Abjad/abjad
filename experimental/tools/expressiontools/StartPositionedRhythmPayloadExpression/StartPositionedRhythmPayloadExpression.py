@@ -444,7 +444,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> z(result)
-            expressiontools.TimespanScopedSingleContextSettingInventory([
+            expressiontools.TimespanScopedSingleContextSetExpressionInventory([
                 expressiontools.StartPositionedRhythmPayloadExpression(
                     payload=containertools.Container(
                         music=({c'8},)
@@ -484,7 +484,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> z(result)
-            expressiontools.TimespanScopedSingleContextSettingInventory([
+            expressiontools.TimespanScopedSingleContextSetExpressionInventory([
                 expressiontools.StartPositionedRhythmPayloadExpression(
                     payload=containertools.Container(
                         music=({c'2},)

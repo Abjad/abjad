@@ -4,11 +4,11 @@ from experimental.tools.expressiontools.PayloadCallbackMixin import PayloadCallb
 
 
 class SettingLookupExpression(AnchoredExpression, PayloadCallbackMixin):
-    r'''Setting lookup.
+    r'''SetExpression lookup.
 
     Look up `attribute` setting active at `offset` in `voice_name`.
 
-    Setting is assumed to resolve to a list or other iterable payload.
+    SetExpression is assumed to resolve to a list or other iterable payload.
 
     Because of this setting lookups afford payload callbacks.
 
@@ -41,7 +41,7 @@ class SettingLookupExpression(AnchoredExpression, PayloadCallbackMixin):
 
     @property
     def attribute(self):
-        '''Setting lookup attribute.
+        '''SetExpression lookup attribute.
 
         Return string.
         '''
@@ -49,7 +49,7 @@ class SettingLookupExpression(AnchoredExpression, PayloadCallbackMixin):
 
     @property
     def offset(self):
-        '''Setting lookup offset.
+        '''SetExpression lookup offset.
 
         Return offset expression.
         '''
@@ -57,7 +57,7 @@ class SettingLookupExpression(AnchoredExpression, PayloadCallbackMixin):
 
     @property
     def voice_name(self):
-        '''Setting lookup voice name.
+        '''SetExpression lookup voice name.
 
         Return string.
         '''

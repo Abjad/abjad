@@ -1,6 +1,6 @@
 @ECHO OFF
 
-REM TimespanScopedSingleContextSetting file for Sphinx documentation
+REM TimespanScopedSingleContextSetExpression file for Sphinx documentation
 
 if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=sphinx-build

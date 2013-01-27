@@ -24,7 +24,7 @@ class LookupMethodMixin(AbjadObject):
         ::
 
             >>> z(lookup)
-            expressiontools.DivisionSettingLookupExpression(
+            expressiontools.SetDivisionLookupExpression(
                 voice_name='Voice 1',
                 offset=expressiontools.OffsetExpression(
                     anchor=expressiontools.TimespanExpression(
@@ -36,7 +36,7 @@ class LookupMethodMixin(AbjadObject):
         Return setting lookup.        
         '''
         from experimental.tools import expressiontools
-        lookup = expressiontools.DivisionSettingLookupExpression(voice, offset=self)
+        lookup = expressiontools.SetDivisionLookupExpression(voice, offset=self)
         lookup._score_specification = self.score_specification
         return lookup
 
@@ -49,7 +49,7 @@ class LookupMethodMixin(AbjadObject):
         ::
 
             >>> z(lookup)
-            expressiontools.RhythmSettingLookupExpression(
+            expressiontools.SetRhythmLookupExpression(
                 voice_name='Voice 1',
                 offset=expressiontools.OffsetExpression(
                     anchor=expressiontools.TimespanExpression(
@@ -61,7 +61,7 @@ class LookupMethodMixin(AbjadObject):
         Return setting lookup.        
         '''
         from experimental.tools import expressiontools
-        lookup = expressiontools.RhythmSettingLookupExpression(voice, offset=self)
+        lookup = expressiontools.SetRhythmLookupExpression(voice, offset=self)
         lookup._score_specification = self.score_specification
         return lookup
 
@@ -74,7 +74,7 @@ class LookupMethodMixin(AbjadObject):
         ::
 
             >>> z(lookup)
-            expressiontools.TimeSignatureSettingLookupExpression(
+            expressiontools.SetTimeSignatureLookupExpression(
                 voice_name='Voice 1',
                 offset=expressiontools.OffsetExpression(
                     anchor=expressiontools.TimespanExpression(
@@ -86,6 +86,6 @@ class LookupMethodMixin(AbjadObject):
         Return setting lookup.
         '''
         from experimental.tools import expressiontools
-        lookup = expressiontools.TimeSignatureSettingLookupExpression(voice, offset=self)
+        lookup = expressiontools.SetTimeSignatureLookupExpression(voice, offset=self)
         lookup._score_specification = self.score_specification
         return lookup

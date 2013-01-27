@@ -132,13 +132,13 @@ Unstable packages (load manually)
       tools/expressiontools/RhythmRegionExpression/RhythmRegionExpression
       tools/expressiontools/SelectExpression/SelectExpression
       tools/expressiontools/SelectMethodMixin/SelectMethodMixin
+      tools/expressiontools/SetExpression/SetExpression
       tools/expressiontools/SetMethodMixin/SetMethodMixin
-      tools/expressiontools/Setting/Setting
       tools/expressiontools/SettingLookupExpression/SettingLookupExpression
-      tools/expressiontools/SingleContextSetting/SingleContextSetting
+      tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression
       tools/expressiontools/SpecificationInterface/SpecificationInterface
       tools/expressiontools/TimespanCallbackMixin/TimespanCallbackMixin
-      tools/expressiontools/TimespanScopedSingleContextSetting/TimespanScopedSingleContextSetting
+      tools/expressiontools/TimespanScopedSingleContextSetExpression/TimespanScopedSingleContextSetExpression
 
    --------
 
@@ -154,7 +154,6 @@ Unstable packages (load manually)
       tools/expressiontools/DivisionList/DivisionList
       tools/expressiontools/DivisionRegionExpression/DivisionRegionExpression
       tools/expressiontools/DivisionSelectExpression/DivisionSelectExpression
-      tools/expressiontools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/expressiontools/ExpressionInventory/ExpressionInventory
       tools/expressiontools/HandlerExpression/HandlerExpression
       tools/expressiontools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
@@ -162,12 +161,11 @@ Unstable packages (load manually)
       tools/expressiontools/MaterialManager/MaterialManager
       tools/expressiontools/MeasureSelectExpression/MeasureSelectExpression
       tools/expressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
-      tools/expressiontools/MultipleContextSetting/MultipleContextSetting
+      tools/expressiontools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/expressiontools/OffsetExpression/OffsetExpression
       tools/expressiontools/PayloadExpression/PayloadExpression
       tools/expressiontools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
       tools/expressiontools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
-      tools/expressiontools/RhythmSettingLookupExpression/RhythmSettingLookupExpression
       tools/expressiontools/RotationIndicator/RotationIndicator
       tools/expressiontools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/expressiontools/SegmentIdentifierExpression/SegmentIdentifierExpression
@@ -175,21 +173,23 @@ Unstable packages (load manually)
       tools/expressiontools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/expressiontools/SelectExpressionDivisionRegionExpression/SelectExpressionDivisionRegionExpression
       tools/expressiontools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
-      tools/expressiontools/SettingInventory/SettingInventory
-      tools/expressiontools/SingleContextDivisionSetting/SingleContextDivisionSetting
-      tools/expressiontools/SingleContextRhythmSetting/SingleContextRhythmSetting
-      tools/expressiontools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
+      tools/expressiontools/SetDivisionLookupExpression/SetDivisionLookupExpression
+      tools/expressiontools/SetExpressionInventory/SetExpressionInventory
+      tools/expressiontools/SetRhythmLookupExpression/SetRhythmLookupExpression
+      tools/expressiontools/SetTimeSignatureLookupExpression/SetTimeSignatureLookupExpression
+      tools/expressiontools/SingleContextSetDivisionExpression/SingleContextSetDivisionExpression
+      tools/expressiontools/SingleContextSetRhythmExpression/SingleContextSetRhythmExpression
+      tools/expressiontools/SingleContextSetTimeSignatureExpression/SingleContextSetTimeSignatureExpression
       tools/expressiontools/StartPositionedDivisionPayloadExpression/StartPositionedDivisionPayloadExpression
       tools/expressiontools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
       tools/expressiontools/StartPositionedRhythmPayloadExpression/StartPositionedRhythmPayloadExpression
       tools/expressiontools/StatalServer/StatalServer
       tools/expressiontools/StatalServerExpression/StatalServerExpression
       tools/expressiontools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
-      tools/expressiontools/TimeSignatureSettingLookupExpression/TimeSignatureSettingLookupExpression
       tools/expressiontools/TimespanExpression/TimespanExpression
-      tools/expressiontools/TimespanScopedSingleContextDivisionSetting/TimespanScopedSingleContextDivisionSetting
-      tools/expressiontools/TimespanScopedSingleContextRhythmSetting/TimespanScopedSingleContextRhythmSetting
-      tools/expressiontools/TimespanScopedSingleContextSettingInventory/TimespanScopedSingleContextSettingInventory
+      tools/expressiontools/TimespanScopedSingleContextSetDivisionExpression/TimespanScopedSingleContextSetDivisionExpression
+      tools/expressiontools/TimespanScopedSingleContextSetExpressionInventory/TimespanScopedSingleContextSetExpressionInventory
+      tools/expressiontools/TimespanScopedSingleContextSetRhythmExpression/TimespanScopedSingleContextSetRhythmExpression
 
 .. only:: latex
 
@@ -209,13 +209,13 @@ Unstable packages (load manually)
       tools/expressiontools/RhythmRegionExpression/RhythmRegionExpression
       tools/expressiontools/SelectExpression/SelectExpression
       tools/expressiontools/SelectMethodMixin/SelectMethodMixin
+      tools/expressiontools/SetExpression/SetExpression
       tools/expressiontools/SetMethodMixin/SetMethodMixin
-      tools/expressiontools/Setting/Setting
       tools/expressiontools/SettingLookupExpression/SettingLookupExpression
-      tools/expressiontools/SingleContextSetting/SingleContextSetting
+      tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression
       tools/expressiontools/SpecificationInterface/SpecificationInterface
       tools/expressiontools/TimespanCallbackMixin/TimespanCallbackMixin
-      tools/expressiontools/TimespanScopedSingleContextSetting/TimespanScopedSingleContextSetting
+      tools/expressiontools/TimespanScopedSingleContextSetExpression/TimespanScopedSingleContextSetExpression
 
    Concrete Classes
    ----------------
@@ -231,7 +231,6 @@ Unstable packages (load manually)
       tools/expressiontools/DivisionList/DivisionList
       tools/expressiontools/DivisionRegionExpression/DivisionRegionExpression
       tools/expressiontools/DivisionSelectExpression/DivisionSelectExpression
-      tools/expressiontools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
       tools/expressiontools/ExpressionInventory/ExpressionInventory
       tools/expressiontools/HandlerExpression/HandlerExpression
       tools/expressiontools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
@@ -239,12 +238,11 @@ Unstable packages (load manually)
       tools/expressiontools/MaterialManager/MaterialManager
       tools/expressiontools/MeasureSelectExpression/MeasureSelectExpression
       tools/expressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
-      tools/expressiontools/MultipleContextSetting/MultipleContextSetting
+      tools/expressiontools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/expressiontools/OffsetExpression/OffsetExpression
       tools/expressiontools/PayloadExpression/PayloadExpression
       tools/expressiontools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
       tools/expressiontools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
-      tools/expressiontools/RhythmSettingLookupExpression/RhythmSettingLookupExpression
       tools/expressiontools/RotationIndicator/RotationIndicator
       tools/expressiontools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/expressiontools/SegmentIdentifierExpression/SegmentIdentifierExpression
@@ -252,21 +250,23 @@ Unstable packages (load manually)
       tools/expressiontools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/expressiontools/SelectExpressionDivisionRegionExpression/SelectExpressionDivisionRegionExpression
       tools/expressiontools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
-      tools/expressiontools/SettingInventory/SettingInventory
-      tools/expressiontools/SingleContextDivisionSetting/SingleContextDivisionSetting
-      tools/expressiontools/SingleContextRhythmSetting/SingleContextRhythmSetting
-      tools/expressiontools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
+      tools/expressiontools/SetDivisionLookupExpression/SetDivisionLookupExpression
+      tools/expressiontools/SetExpressionInventory/SetExpressionInventory
+      tools/expressiontools/SetRhythmLookupExpression/SetRhythmLookupExpression
+      tools/expressiontools/SetTimeSignatureLookupExpression/SetTimeSignatureLookupExpression
+      tools/expressiontools/SingleContextSetDivisionExpression/SingleContextSetDivisionExpression
+      tools/expressiontools/SingleContextSetRhythmExpression/SingleContextSetRhythmExpression
+      tools/expressiontools/SingleContextSetTimeSignatureExpression/SingleContextSetTimeSignatureExpression
       tools/expressiontools/StartPositionedDivisionPayloadExpression/StartPositionedDivisionPayloadExpression
       tools/expressiontools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
       tools/expressiontools/StartPositionedRhythmPayloadExpression/StartPositionedRhythmPayloadExpression
       tools/expressiontools/StatalServer/StatalServer
       tools/expressiontools/StatalServerExpression/StatalServerExpression
       tools/expressiontools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
-      tools/expressiontools/TimeSignatureSettingLookupExpression/TimeSignatureSettingLookupExpression
       tools/expressiontools/TimespanExpression/TimespanExpression
-      tools/expressiontools/TimespanScopedSingleContextDivisionSetting/TimespanScopedSingleContextDivisionSetting
-      tools/expressiontools/TimespanScopedSingleContextRhythmSetting/TimespanScopedSingleContextRhythmSetting
-      tools/expressiontools/TimespanScopedSingleContextSettingInventory/TimespanScopedSingleContextSettingInventory
+      tools/expressiontools/TimespanScopedSingleContextSetDivisionExpression/TimespanScopedSingleContextSetDivisionExpression
+      tools/expressiontools/TimespanScopedSingleContextSetExpressionInventory/TimespanScopedSingleContextSetExpressionInventory
+      tools/expressiontools/TimespanScopedSingleContextSetRhythmExpression/TimespanScopedSingleContextSetRhythmExpression
 
 :py:mod:`handlertools <experimental.tools.handlertools>`
 ========================================================

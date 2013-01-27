@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class SetMethodMixin(AbjadObject):
-    '''Setting-maker mix-in.
+    '''SetExpression-maker mix-in.
 
     Examples below use the score and segment specification defined here::
 
@@ -50,7 +50,7 @@ class SetMethodMixin(AbjadObject):
         expression = self._expr_to_expression(source)
         assert self.score_specification is not None
         context_names = self.score_specification._context_token_to_context_names(contexts)
-        multiple_context_setting = expressiontools.MultipleContextSetting(
+        multiple_context_setting = expressiontools.MultipleContextSetExpression(
             attribute=attribute,
             expression=expression,
             anchor=self._anchor_abbreviation,
@@ -67,7 +67,7 @@ class SetMethodMixin(AbjadObject):
     def set_aggregate(self, source, contexts=None, persist=True):
         r'''Set aggregate of `contexts` to `source`.
 
-        Create, store and return ``MultipleContextSetting``.
+        Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'aggregate'
         return self._store_multiple_context_setting(attribute, source, 
@@ -76,7 +76,7 @@ class SetMethodMixin(AbjadObject):
     def set_articulations(self, source, contexts=None, persist=True):
         r'''Set articulations of `contexts` to `source`.
 
-        Create, store and return ``MultipleContextSetting``.
+        Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'articulations'
         return self._store_multiple_context_setting(attribute, source, 
@@ -85,7 +85,7 @@ class SetMethodMixin(AbjadObject):
     def set_chord_treatment(self, source, contexts=None, persist=True):
         r'''Set chord treatment of `contexts` to `source`.
 
-        Create, store and return ``MultipleContextSetting``.
+        Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'chord_treatment'
         return self._store_multiple_context_setting(attribute, source, 
@@ -99,7 +99,7 @@ class SetMethodMixin(AbjadObject):
         ::
 
             >>> z(setting)
-            expressiontools.MultipleContextSetting(
+            expressiontools.MultipleContextSetExpression(
                 attribute='divisions',
                 expression=expressiontools.PayloadExpression(
                     ((3, 16),)
@@ -109,7 +109,7 @@ class SetMethodMixin(AbjadObject):
                 persist=True
                 )
 
-        Create, store and return ``MultipleContextSetting``.
+        Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'divisions'
         return self._store_multiple_context_setting(attribute, source,
@@ -118,7 +118,7 @@ class SetMethodMixin(AbjadObject):
     def set_dynamics(self, source, contexts=None, persist=True):
         r'''Set dynamics of `contexts` to `source`.
 
-        Create, store and return ``MultipleContextSetting``.
+        Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'dynamics'
         return self._store_multiple_context_setting(attribute, source, 
@@ -127,7 +127,7 @@ class SetMethodMixin(AbjadObject):
     def set_marks(self, source, contexts=None, persist=True):
         r'''Set marks of `contexts` to `source`.
 
-        Create, store and return ``MultipleContextSetting``.
+        Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'marks'
         return self._store_multiple_context_setting(attribute, source, 
@@ -136,7 +136,7 @@ class SetMethodMixin(AbjadObject):
     def set_markup(self, source, contexts=None, persist=True):
         r'''Set markup of `contexts` to `source`.
 
-        Create, store and return ``MultipleContextSetting``.
+        Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'markup'
         return self._store_multiple_context_setting(attribute, source, 
@@ -145,7 +145,7 @@ class SetMethodMixin(AbjadObject):
     def set_pitch_class_application(self, source, contexts=None, persist=True):
         r'''Set pitch-class application of `contexts` to `source`.
 
-        Create, store and return ``MultipleContextSetting``.
+        Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'pitch_class_application'
         return self._store_multiple_context_setting(attribute, source, 
@@ -154,7 +154,7 @@ class SetMethodMixin(AbjadObject):
     def set_pitch_class_transform(self, source, contexts=None, persist=True):
         r'''Set pitch-class transform of `contexts` to `source`.
 
-        Create, store and return ``MultipleContextSetting``.
+        Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'pitch_class_transform'
         return self._store_multiple_context_setting(attribute, source, 
@@ -163,7 +163,7 @@ class SetMethodMixin(AbjadObject):
     def set_pitch_classes(self, source, contexts=None, persist=True):
         r'''Set pitch-classes of `contexts` to `source`.
 
-        Create, store and return ``MultipleContextSetting``.
+        Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'pitch_classes'
         return self._store_multiple_context_setting(attribute, source, 
@@ -172,7 +172,7 @@ class SetMethodMixin(AbjadObject):
     def set_registration(self, source, contexts=None, persist=True):
         r'''Set registration of `contexts` to `source`.
 
-        Create, store and return ``MultipleContextSetting``.
+        Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'registration'
         return self._store_multiple_context_setting(attribute, source, 
@@ -186,7 +186,7 @@ class SetMethodMixin(AbjadObject):
         ::
 
             >>> z(setting)
-            expressiontools.MultipleContextSetting(
+            expressiontools.MultipleContextSetExpression(
                 attribute='rhythm',
                 expression=expressiontools.RhythmMakerPayloadExpression(
                     payload=(TaleaRhythmMaker('sixteenths'),)
@@ -195,7 +195,7 @@ class SetMethodMixin(AbjadObject):
                 persist=True
                 )
 
-        Create, store and return ``MultipleContextSetting``.
+        Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'rhythm'
         return self._store_multiple_context_setting(attribute, source, contexts=contexts, persist=persist)
@@ -203,7 +203,7 @@ class SetMethodMixin(AbjadObject):
     def set_tempo(self, source, contexts=None, persist=True):
         r'''Set tempo of `contexts` to `source`.
 
-        Create, store and return ``MultipleContextSetting``.
+        Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'tempo'
         return self._store_multiple_context_setting(attribute, source, 
@@ -217,7 +217,7 @@ class SetMethodMixin(AbjadObject):
         ::
 
             >>> z(setting)
-            expressiontools.MultipleContextSetting(
+            expressiontools.MultipleContextSetExpression(
                 attribute='time_signatures',
                 expression=expressiontools.PayloadExpression(
                     ((3, 8), (4, 8))
@@ -226,7 +226,7 @@ class SetMethodMixin(AbjadObject):
                 persist=True
                 )
 
-        Create, store and return ``MultipleContextSetting``.
+        Create, store and return ``MultipleContextSetExpression``.
         '''
         attribute = 'time_signatures'
         return self._store_multiple_context_setting(attribute, source, contexts=contexts, persist=persist)

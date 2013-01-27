@@ -12,13 +12,13 @@ class ContextProxy(AbjadObject, OrderedDict):
         from experimental.tools import expressiontools
         OrderedDict.__init__(self)
         self._division_payload_expressions = \
-            expressiontools.TimespanScopedSingleContextSettingInventory()
+            expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         self._rhythm_payload_expressions = \
-            expressiontools.TimespanScopedSingleContextSettingInventory()
+            expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         self._timespan_scoped_single_context_division_settings = \
-            expressiontools.TimespanScopedSingleContextSettingInventory()
+            expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         self._timespan_scoped_single_context_rhythm_settings = \
-            expressiontools.TimespanScopedSingleContextSettingInventory()
+            expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         self._voice_division_list = None
 
     ### SPECIAL METHODS ###
