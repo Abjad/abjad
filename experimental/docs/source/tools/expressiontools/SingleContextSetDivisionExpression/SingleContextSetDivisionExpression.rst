@@ -80,8 +80,6 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SingleContextSetDivisionExpression.SingleContextSetDivisionExpression.SingleContextSetDivisionExpression.evaluate
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SingleContextSetExpression <experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression>`
-
 .. automethod:: experimental.tools.expressiontools.SingleContextSetDivisionExpression.SingleContextSetDivisionExpression.SingleContextSetDivisionExpression.evaluate_anchor_timespan
    :noindex:
 
@@ -91,9 +89,6 @@ Methods
    :noindex:
 
    Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
-
-.. automethod:: experimental.tools.expressiontools.SingleContextSetDivisionExpression.SingleContextSetDivisionExpression.SingleContextSetDivisionExpression.to_timespan_scoped_set_expression
-   :noindex:
 
 Special Methods
 ---------------

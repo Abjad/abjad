@@ -85,7 +85,11 @@ class TimespanScopedSingleContextSetRhythmExpression(TimespanScopedSingleContext
 
     ### PUBLIC METHODS ###
 
-    def to_region_expression(self, division_list, start_offset, voice_name):
+    def evaluate(self, division_list, start_offset, voice_name):
+        '''Evaluate timespan-scoped single-context set-rhythm expression.
+
+        Return rhythm region expression.
+        '''
         from experimental.tools import expressiontools
         assert isinstance(division_list, expressiontools.DivisionList), repr(division_list)
         assert isinstance(start_offset, durationtools.Offset), repr(start_offset)

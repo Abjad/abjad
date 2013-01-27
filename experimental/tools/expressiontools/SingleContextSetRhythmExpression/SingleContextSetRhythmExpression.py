@@ -13,7 +13,7 @@ class SingleContextSetRhythmExpression(SingleContextSetExpression):
 
     ### PUBLIC METHODS ###
 
-    def to_timespan_scoped_set_expression(self):
+    def evaluate(self):
         '''Evaluate timespan of single-context set-rhythm expression.
 
         Return timespan-scoped single-context set-rhythm expression.

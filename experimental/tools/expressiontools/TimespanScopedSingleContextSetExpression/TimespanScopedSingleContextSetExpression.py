@@ -159,5 +159,9 @@ class TimespanScopedSingleContextSetExpression(AbjadObject):
         return result
 
     @abc.abstractmethod
-    def to_region_expression(self):
+    def evaluate(self):
+        '''Evaluate timespan-scoped single-context set expression.
+        
+        Return region expression.
+        '''
         pass

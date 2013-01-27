@@ -146,7 +146,7 @@ class ConcreteInterpreter(Interpreter):
         set_expressions = voice_proxy.timespan_scoped_single_context_set_division_expressions[:]
         region_expressions = []
         for set_expression in set_expressions:
-            region_expression = set_expression.to_region_expression(voice_name)
+            region_expression = set_expression.evaluate(voice_name)
             region_expressions.append(region_expression)
         return region_expressions
 
@@ -227,7 +227,7 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_expressions = []
         for timespan_scoped_single_context_set_rhythm_expression, rhythm_region_start_offset, rhythm_region_division_list in zip(
             timespan_scoped_single_context_set_rhythm_expressions, rhythm_region_start_offsets, rhythm_region_division_lists):
-            rhythm_region_expression = timespan_scoped_single_context_set_rhythm_expression.to_region_expression(
+            rhythm_region_expression = timespan_scoped_single_context_set_rhythm_expression.evaluate(
                 rhythm_region_division_list, rhythm_region_start_offset, voice_name)
             rhythm_region_expressions.append(rhythm_region_expression)
         rhythm_region_expressions = self.merge_prolonging_rhythm_region_expressions(

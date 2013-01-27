@@ -59,7 +59,11 @@ class TimespanScopedSingleContextSetDivisionExpression(TimespanScopedSingleConte
 
     ### PUBLIC METHODS ###
 
-    def to_region_expression(self, voice_name):
+    def evaluate(self, voice_name):
+        '''Evaluate timespan-scoped single-context set-division expression.
+        
+        Return division region expression.
+        '''
         from experimental.tools import expressiontools
         start_offset, total_duration = self.timespan.start_offset, self.timespan.duration
         if isinstance(self.expression, expressiontools.SelectExpression):

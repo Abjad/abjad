@@ -56,13 +56,13 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextSetDivisionExpression.TimespanScopedSingleContextSetDivisionExpression.TimespanScopedSingleContextSetDivisionExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextSetDivisionExpression.TimespanScopedSingleContextSetDivisionExpression.TimespanScopedSingleContextSetDivisionExpression.new
    :noindex:
 
    Inherited from :py:class:`expressiontools.TimespanScopedSingleContextSetExpression <experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression>`
-
-.. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextSetDivisionExpression.TimespanScopedSingleContextSetDivisionExpression.TimespanScopedSingleContextSetDivisionExpression.to_region_expression
-   :noindex:
 
 Special Methods
 ---------------

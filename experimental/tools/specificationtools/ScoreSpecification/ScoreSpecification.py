@@ -553,7 +553,7 @@ class ScoreSpecification(Specification):
                 segment_specification.get_single_context_set_expressions_that_start_during_segment(
                 context_name, attribute, include_improper_parentage=True)
             for single_context_set_expression in single_context_set_expressions:
-                timespan_scoped_set_expression = single_context_set_expression.to_timespan_scoped_set_expression()
+                timespan_scoped_set_expression = single_context_set_expression.evaluate()
                 # make sure set expression was set expression for timespan that exists in current segment
                 if timespan_scoped_set_expression.timespan.is_well_formed:
                     timespan_scoped_set_expressions.append(timespan_scoped_set_expression)

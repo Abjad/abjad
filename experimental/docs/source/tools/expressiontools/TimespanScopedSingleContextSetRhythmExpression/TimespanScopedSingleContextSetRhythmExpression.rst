@@ -50,13 +50,13 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextSetRhythmExpression.TimespanScopedSingleContextSetRhythmExpression.TimespanScopedSingleContextSetRhythmExpression.evaluate
+   :noindex:
+
 .. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextSetRhythmExpression.TimespanScopedSingleContextSetRhythmExpression.TimespanScopedSingleContextSetRhythmExpression.new
    :noindex:
 
    Inherited from :py:class:`expressiontools.TimespanScopedSingleContextSetExpression <experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression>`
-
-.. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextSetRhythmExpression.TimespanScopedSingleContextSetRhythmExpression.TimespanScopedSingleContextSetRhythmExpression.to_region_expression
-   :noindex:
 
 Special Methods
 ---------------
