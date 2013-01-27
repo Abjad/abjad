@@ -119,7 +119,7 @@ class TimespanScopedSingleContextSetRhythmExpression(TimespanScopedSingleContext
             total_duration = self.timespan.duration
             region_expression_start_offset = self.timespan.start_offset
             region_expression = expressiontools.SelectExpressionRhythmRegionExpression(
-                self.expression, voice_name, region_expression_start_offset, total_duration)
+                self.expression, region_expression_start_offset, total_duration, voice_name)
         else:
             raise TypeError(self.expression)
         return region_expression

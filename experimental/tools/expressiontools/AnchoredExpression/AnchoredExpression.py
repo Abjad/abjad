@@ -27,7 +27,7 @@ class AnchoredExpression(Expression):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
-    def _anchor_abbreviation(self):
+    def _expression_abbreviation(self):
         '''Form of anchored expression suitable for inclusion in storage format.
         '''
         return self
@@ -79,7 +79,7 @@ class AnchoredExpression(Expression):
         Return offset expression.
         '''
         from experimental.tools import expressiontools
-        result = expressiontools.OffsetExpression(anchor=self._anchor_abbreviation)
+        result = expressiontools.OffsetExpression(anchor=self._expression_abbreviation)
         result._score_specification = self.score_specification
         return result
 
@@ -103,15 +103,14 @@ class AnchoredExpression(Expression):
         Return offset expression.
         '''
         from experimental.tools import expressiontools
-        result = expressiontools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
+        result = expressiontools.OffsetExpression(anchor=self._expression_abbreviation, edge=Right)
         result._score_specification = self.score_specification
         return result
 
     ### PUBLIC METHODS ###
 
-    # TODO: maybe change name to self.(_)evaluate_anchor_timespan
-    def get_anchor_timespan(self):
-        '''Get timespan of expression-anchored object.
+    def evaluate_anchor_timespan(self):
+        '''Evaluate anchor timespan.
 
         Return timespan.
         '''

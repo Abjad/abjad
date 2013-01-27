@@ -29,7 +29,7 @@ class SpecificationInterface(SelectMethodMixin, SetMethodMixin):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
-    def _anchor_abbreviation(self):
+    def _expression_abbreviation(self):
         return self.specification_name
 
     ### READ-ONLY PUBLIC PROPERTIES ###

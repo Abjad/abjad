@@ -41,13 +41,6 @@ class Specification(AbjadObject):
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
-    # TODO: remove in favor of SpecificationInterface._anchor_abbreviation
-    @property
-    def _anchor_abbreviation(self):
-        '''Form of specification suitable for writing to disk.
-        '''
-        return self.specification_name
-
     def _context_name_to_parentage_names(self, context_name, proper=True):
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
         if proper:

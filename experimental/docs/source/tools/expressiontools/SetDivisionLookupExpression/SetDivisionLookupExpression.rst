@@ -65,7 +65,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SetDivisionLookupExpression.SetDivisionLookupExpression.SetDivisionLookupExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetDivisionLookupExpression.SetDivisionLookupExpression.SetDivisionLookupExpression.get_anchor_timespan
+.. automethod:: experimental.tools.expressiontools.SetDivisionLookupExpression.SetDivisionLookupExpression.SetDivisionLookupExpression.evaluate_anchor_timespan
    :noindex:
 
    Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`

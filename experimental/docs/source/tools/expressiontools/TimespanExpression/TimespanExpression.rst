@@ -55,7 +55,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.get_anchor_timespan
+.. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.evaluate_anchor_timespan
    :noindex:
 
    Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`

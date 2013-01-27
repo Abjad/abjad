@@ -65,7 +65,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.get_anchor_timespan
+.. automethod:: experimental.tools.expressiontools.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.evaluate_anchor_timespan
    :noindex:
 
    Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`

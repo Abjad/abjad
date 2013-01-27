@@ -65,7 +65,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SetRhythmLookupExpression.SetRhythmLookupExpression.SetRhythmLookupExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetRhythmLookupExpression.SetRhythmLookupExpression.SetRhythmLookupExpression.get_anchor_timespan
+.. automethod:: experimental.tools.expressiontools.SetRhythmLookupExpression.SetRhythmLookupExpression.SetRhythmLookupExpression.evaluate_anchor_timespan
    :noindex:
 
    Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`

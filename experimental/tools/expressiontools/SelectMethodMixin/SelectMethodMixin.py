@@ -33,7 +33,7 @@ class SelectMethodMixin(AbjadObject):
         '''
         from experimental.tools import expressiontools
         select_expression = expressiontools.BeatSelectExpression(
-            anchor=self._anchor_abbreviation,
+            anchor=self._expression_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation
             )
@@ -57,7 +57,7 @@ class SelectMethodMixin(AbjadObject):
         '''
         from experimental.tools import expressiontools
         select_expression = expressiontools.DivisionSelectExpression(
-            anchor=self._anchor_abbreviation,
+            anchor=self._expression_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation
             )
@@ -84,7 +84,7 @@ class SelectMethodMixin(AbjadObject):
         '''
         from experimental.tools import expressiontools
         select_expression = expressiontools.CounttimeComponentSelectExpression(
-            anchor=self._anchor_abbreviation,
+            anchor=self._expression_abbreviation,
             time_relation=time_relation, 
             classes=(leaftools.Leaf, ), 
             voice_name=voice_name
@@ -110,7 +110,7 @@ class SelectMethodMixin(AbjadObject):
         '''
         from experimental.tools import expressiontools
         select_expression = expressiontools.MeasureSelectExpression(
-            anchor=self._anchor_abbreviation,
+            anchor=self._expression_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation
             )
@@ -138,7 +138,7 @@ class SelectMethodMixin(AbjadObject):
         '''
         from experimental.tools import expressiontools
         select_expression = expressiontools.CounttimeComponentSelectExpression(
-            anchor=self._anchor_abbreviation,
+            anchor=self._expression_abbreviation,
             time_relation=time_relation, 
             classes=(notetools.Note, chordtools.Chord),
             voice_name=voice_name
@@ -163,7 +163,7 @@ class SelectMethodMixin(AbjadObject):
         '''
         from experimental.tools import expressiontools
         select_expression = expressiontools.TimeSignatureSelectExpression(
-            anchor=self._anchor_abbreviation,
+            anchor=self._expression_abbreviation,
             time_relation=time_relation, 
             voice_name=voice_name
             )

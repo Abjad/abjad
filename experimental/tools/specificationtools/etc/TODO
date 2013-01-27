@@ -108,4 +108,17 @@
 
 21. Audit all expression evaluation methods.
 
-22. Change _anchor_abbreviation to _expression_abbreviation.
+22. Rewire TimespanScopedSingleContextSetExpression to inherit from a SetExpression class.
+    Doing this will require inserting a class between SetExpression and SetDivisionExpression.
+    SetExpression will need to remove expression, anchor.
+    Or maybe not. Maybe SetExpression will rename expression, anchor to source, target.
+    Then the types of source, target can change through the evaluation chain.
+
+23. Change SetExpression.expression to SetExpression.source.
+
+24. Give all SetExpression classes a true evaluate() method.
+    Replace the various to_whatever() methods.
+
+25. Audit entire interpreter.
+    Update variable names.
+    Remove duplicate code.

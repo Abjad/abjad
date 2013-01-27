@@ -52,7 +52,7 @@ class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixi
     def evaluate(self):
         from experimental.tools import expressiontools
         edge = self.edge or Left
-        anchor_timespan = self.get_anchor_timespan()
+        anchor_timespan = self.evaluate_anchor_timespan()
         if edge == Left:
             offset = anchor_timespan.start_offset
         else:

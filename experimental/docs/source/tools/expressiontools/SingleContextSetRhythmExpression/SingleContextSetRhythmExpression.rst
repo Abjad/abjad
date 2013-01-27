@@ -82,7 +82,7 @@ Methods
 
    Inherited from :py:class:`expressiontools.SingleContextSetExpression <experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression>`
 
-.. automethod:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.get_anchor_timespan
+.. automethod:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.evaluate_anchor_timespan
    :noindex:
 
    Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`

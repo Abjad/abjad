@@ -8,7 +8,6 @@ class SelectExpressionDivisionRegionExpression(DivisionRegionExpression):
 
     ### INITIALIZER ###
 
-    # TODO: reorder input arguments
     def __init__(self, payload=None, start_offset=None, total_duration=None, voice_name=None):
         from experimental.tools import expressiontools
         assert isinstance(payload, expressiontools.SelectExpression)

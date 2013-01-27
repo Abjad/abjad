@@ -17,7 +17,6 @@ class SetExpression(AnchoredExpression):
     @abc.abstractmethod
     def __init__(self, attribute=None, expression=None, anchor=None, fresh=True, persist=True, truncate=None):
         from experimental.tools import expressiontools
-        from experimental.tools import expressiontools
         assert isinstance(attribute, str)
         assert isinstance(expression, (expressiontools.Expression)), repr(expression)
         assert isinstance(fresh, bool)

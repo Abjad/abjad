@@ -511,7 +511,7 @@ class ScoreSpecification(Specification):
         if attribute in self.single_context_set_expressions_by_context[context_name]:
             del(self.single_context_set_expressions_by_context[context_name][attribute])
 
-    # TODO: possibly remove in favor of self.get_anchor_timespan().
+    # TODO: possibly remove in favor of self.evaluate_anchor_timespan().
     def get_start_segment_specification(self, expr):
         r'''Get start segment specification from `expr`::
 

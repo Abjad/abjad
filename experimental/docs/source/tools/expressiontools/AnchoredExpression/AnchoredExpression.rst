@@ -37,7 +37,7 @@ Methods
 
    Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
 
-.. automethod:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.get_anchor_timespan
+.. automethod:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.evaluate_anchor_timespan
    :noindex:
 
 .. automethod:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.new

@@ -53,7 +53,7 @@ class SetMethodMixin(AbjadObject):
         multiple_context_set_expression = expressiontools.MultipleContextSetExpression(
             attribute=attribute,
             expression=expression,
-            anchor=self._anchor_abbreviation,
+            anchor=self._expression_abbreviation,
             context_names=context_names,
             persist=persist,
             truncate=truncate
