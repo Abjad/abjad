@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_from_past_between_voices_01():
-    '''From-past rhythm setting lookup between voices.
+    '''From-past set-rhythm lookup expression between voices.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -24,7 +24,7 @@ def test_SegmentSpecification__look_up_rhythm_setting_from_past_between_voices_0
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_from_past_between_voices_02():
-    '''From-past rhythm setting lookup between voices with reverse callback.
+    '''From-past set-rhythm lookup expression between voices with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -47,7 +47,7 @@ def test_SegmentSpecification__look_up_rhythm_setting_from_past_between_voices_0
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_from_past_between_voices_03():
-    '''From-past rhythm setting lookup between voices with set-time reverse.
+    '''From-past set-rhythm lookup expression between voices with set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -70,7 +70,7 @@ def test_SegmentSpecification__look_up_rhythm_setting_from_past_between_voices_0
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_from_past_between_voices_04():
-    '''From-past rhythm setting lookup between voices with reverse callbacks.
+    '''From-past set-rhythm lookup expression between voices with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

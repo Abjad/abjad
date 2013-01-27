@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_from_future_01():
-    '''From-future rhythm setting lookup.
+    '''From-future set-rhythm lookup expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -23,7 +23,7 @@ def test_SegmentSpecification__look_up_rhythm_setting_from_future_01():
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_from_future_02():
-    '''From-future rhythm setting lookup with reverse callback.
+    '''From-future set-rhythm lookup expression with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -45,7 +45,7 @@ def test_SegmentSpecification__look_up_rhythm_setting_from_future_02():
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_from_future_03():
-    '''From-future rhythm setting lookup with set-time reverse.
+    '''From-future set-rhythm lookup expression with set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -67,7 +67,7 @@ def test_SegmentSpecification__look_up_rhythm_setting_from_future_03():
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_from_future_04():
-    '''From-future rhythm setting lookup with reverse callbacks.
+    '''From-future set-rhythm lookup expression with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

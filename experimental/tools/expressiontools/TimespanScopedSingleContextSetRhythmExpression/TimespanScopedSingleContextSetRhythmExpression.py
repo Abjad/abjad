@@ -6,7 +6,7 @@ from experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression
 
 
 class TimespanScopedSingleContextSetRhythmExpression(TimespanScopedSingleContextSetExpression):
-    r'''Timespan-scoped single-context rhythm setting.
+    r'''Timespan-scoped single-context set-rhythm expression.
     '''
 
     ### CLASS ATTRIBUTES ###

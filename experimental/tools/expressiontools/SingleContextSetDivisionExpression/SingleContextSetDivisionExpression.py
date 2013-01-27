@@ -2,7 +2,7 @@ from experimental.tools.expressiontools.SingleContextSetExpression import Single
 
 
 class SingleContextSetDivisionExpression(SingleContextSetExpression):
-    r'''Single-context division setting.
+    r'''Single-context set-division expression.
     '''
 
     ### INITIALIZER ###
@@ -16,9 +16,9 @@ class SingleContextSetDivisionExpression(SingleContextSetExpression):
     ### PUBLIC METHODS ###
 
     def to_timespan_scoped_setting(self):
-        '''Evaluate timespan of single-context division setting.
+        '''Evaluate timespan of single-context set-division expression.
 
-        Return timespan-scoped single-context division setting.
+        Return timespan-scoped single-context set-division expression.
         '''
         from experimental.tools import expressiontools
         anchor_timespan = self.get_anchor_timespan()

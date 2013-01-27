@@ -14,9 +14,9 @@ class SingleContextSetRhythmExpression(SingleContextSetExpression):
     ### PUBLIC METHODS ###
 
     def to_timespan_scoped_setting(self):
-        '''Evaluate timespan of single-context rhythm setting.
+        '''Evaluate timespan of single-context set-rhythm expression.
 
-        Return timespan-scoped single-context rhythm setting.
+        Return timespan-scoped single-context set-rhythm expression.
         '''
         from experimental.tools import expressiontools
         timespan = self.get_anchor_timespan()

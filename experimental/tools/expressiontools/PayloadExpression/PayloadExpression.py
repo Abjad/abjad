@@ -160,7 +160,7 @@ class PayloadExpression(Expression):
             payload = type(self.payload)(reversed(self.payload))
             result = self.new(payload=payload)
             return result
-        # TODO: This is probably the source of the "can't look up parseable string rhythm setting" bug.
+        # TODO: This is probably the source of the "can't look up parseable string set-rhythm expression" bug.
         #       Means that parseable strings shouldn't be passed around as PayloadExpression objects.
         elif isinstance(self.payload, str):
             return self
