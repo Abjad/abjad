@@ -16,7 +16,6 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
     ### INTIAILIZER ###
 
     def __init__(self, source=None, target_timespan=None, target_context_name=None, fresh=None):
-        from experimental.tools import expressiontools
         assert isinstance(target_context_name, (str, type(None))), repr(target_context_name)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
         SetExpression.__init__(self, source=source, target_timespan=target_timespan)
@@ -28,8 +27,8 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             if self.source == expr.source and \
-                self.target_context_name == expr.target_context_name and \
-                self.target_timespan == expr.target_timespan:
+                self.target_timespan == expr.target_timespan and \
+                self.target_context_name == expr.target_context_name:
                 return True
         return False
 
@@ -114,21 +113,6 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         Return string.
         '''
         return self._target_context_name
-
-    @apply
-    def _timespan():
-        def fget(self):
-            #return self._timespan
-            #return self.target_timespan
-            raise Exception
-        def fset(self, expr):
-            raise Exception
-        return property(**locals())
-
-    @property
-    def timespan(self):
-        #return self.target_timespan
-        raise Exception
 
     ### PUBLIC METHODS ###
 

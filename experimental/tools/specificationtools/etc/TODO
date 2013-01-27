@@ -106,13 +106,11 @@
         score_specification = expressiontools.ScoreSpecificationInterface(score_template)
     ... so that composers only ever interact with interfaces.
 
-21. Audit all expressions.
-    Complete all expression docstrings.
-
-22. Audit entire interpreter.
+21. Audit entire interpreter.
     Update variable names.
     Remove duplicate code.
 
-23. Remove TimespanScopedSingleContextSetExpression.timespan in favor of target_timespan.
+22. Audit all expressions.
+    Complete all expression docstrings.
 
-24. Globally search and replace 'command'.
+23. Globally search and replace 'command'.

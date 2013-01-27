@@ -47,11 +47,6 @@ Read-only Properties
 
    Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
 
-.. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.timespan
-   :noindex:
-
-   Inherited from :py:class:`expressiontools.TimespanScopedSingleContextSetExpression <experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression>`
-
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.truncate
    :noindex:
 
