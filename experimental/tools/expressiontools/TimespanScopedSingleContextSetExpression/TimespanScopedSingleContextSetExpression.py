@@ -2,12 +2,9 @@ import abc
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools 
 from abjad.tools import timespantools 
-#from experimental.tools.expressiontools.AnchoredSetExpression import AnchoredSetExpression
 from experimental.tools.expressiontools.SetExpression import SetExpression
 
 
-# TODO: maybe doesn't need to inherit (indirectly) from AnchoredExpression; no longer has anchor
-#class TimespanScopedSingleContextSetExpression(AnchoredSetExpression):
 class TimespanScopedSingleContextSetExpression(SetExpression):
     '''Timespan-scoped single-context set expression.
     '''
@@ -25,7 +22,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         assert isinstance(target_context_name, (str, type(None))), repr(target_context_name)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
         # TODO: remove self.timespan in favor of self.target_timespan
-        self._timespan = timespan
+        #self._timespan = timespan
         SetExpression.__init__(self, source=source, target_timespan=timespan)
         self._target_context_name = target_context_name
         self._fresh = fresh
@@ -114,7 +111,6 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         '''
         return self.timespan.stop_offset
 
-    # TODO: eventually remove in favor of SingleContextSetExpression.target_context_name?
     @property
     def target_context_name(self):
         '''Set expression context name.
@@ -123,13 +119,18 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         '''
         return self._target_context_name
 
+    @apply
+    def _timespan():
+        def fget(self):
+            #return self._timespan
+            return self.target_timespan
+        def fset(self, expr):
+            raise Exception
+        return property(**locals())
+
     @property
     def timespan(self):
-        '''Set expression timespan.
-
-        Return timespan.
-        '''
-        return self._timespan
+        return self.target_timespan
 
     ### PUBLIC METHODS ###
 
