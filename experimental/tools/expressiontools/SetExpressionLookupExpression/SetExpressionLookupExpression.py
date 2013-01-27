@@ -22,7 +22,7 @@ class SetExpressionLookupExpression(AnchoredExpression, PayloadCallbackMixin):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute=None, voice_name=None, offset=None, callbacks=None):
+    def __init__(self, attribute=None, offset=None, voice_name=None, callbacks=None):
         from experimental.tools import expressiontools
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
@@ -30,8 +30,8 @@ class SetExpressionLookupExpression(AnchoredExpression, PayloadCallbackMixin):
         AnchoredExpression.__init__(self, anchor=offset)
         PayloadCallbackMixin.__init__(self, callbacks=callbacks)
         self._attribute = attribute
-        self._voice_name = voice_name
         self._offset = offset
+        self._voice_name = voice_name
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

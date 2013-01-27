@@ -25,18 +25,18 @@ class LookupMethodMixin(AbjadObject):
 
             >>> z(lookup)
             expressiontools.DivisionSetExpressionLookupExpression(
-                voice_name='Voice 1',
                 offset=expressiontools.OffsetExpression(
                     anchor=expressiontools.TimespanExpression(
                         anchor='red'
                         )
-                    )
+                    ),
+                voice_name='Voice 1'
                 )
 
         Return lookup expression.        
         '''
         from experimental.tools import expressiontools
-        lookup = expressiontools.DivisionSetExpressionLookupExpression(voice, offset=self)
+        lookup = expressiontools.DivisionSetExpressionLookupExpression(offset=self, voice_name=voice)
         lookup._score_specification = self.score_specification
         return lookup
 
@@ -50,18 +50,18 @@ class LookupMethodMixin(AbjadObject):
 
             >>> z(lookup)
             expressiontools.RhythmSetExpressionLookupExpression(
-                voice_name='Voice 1',
                 offset=expressiontools.OffsetExpression(
                     anchor=expressiontools.TimespanExpression(
                         anchor='red'
                         )
-                    )
+                    ),
+                voice_name='Voice 1'
                 )
 
         Return lookup expression.        
         '''
         from experimental.tools import expressiontools
-        lookup = expressiontools.RhythmSetExpressionLookupExpression(voice, offset=self)
+        lookup = expressiontools.RhythmSetExpressionLookupExpression(offset=self, voice_name=voice)
         lookup._score_specification = self.score_specification
         return lookup
 
@@ -75,17 +75,17 @@ class LookupMethodMixin(AbjadObject):
 
             >>> z(lookup)
             expressiontools.TimeSignatureSetExpressionLookupExpression(
-                voice_name='Voice 1',
                 offset=expressiontools.OffsetExpression(
                     anchor=expressiontools.TimespanExpression(
                         anchor='red'
                         )
-                    )
+                    ),
+                voice_name='Voice 1'
                 )
 
         Return lookup expression.
         '''
         from experimental.tools import expressiontools
-        lookup = expressiontools.TimeSignatureSetExpressionLookupExpression(voice, offset=self)
+        lookup = expressiontools.TimeSignatureSetExpressionLookupExpression(offset=self, voice_name=voice)
         lookup._score_specification = self.score_specification
         return lookup

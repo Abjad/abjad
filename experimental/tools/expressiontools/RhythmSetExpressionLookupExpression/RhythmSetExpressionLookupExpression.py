@@ -11,9 +11,9 @@ class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, voice_name=None, offset=None, callbacks=None):
-        SetExpressionLookupExpression.__init__(self, attribute='rhythm', voice_name=voice_name, 
-            offset=offset, callbacks=callbacks)
+    def __init__(self, offset=None, voice_name=None, callbacks=None):
+        SetExpressionLookupExpression.__init__(self, attribute='rhythm', 
+            offset=offset, voice_name=voice_name, callbacks=callbacks)
 
     ### PRIVATE METHODS ###
 

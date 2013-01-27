@@ -22,7 +22,6 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
 
         >>> z(set_expression)
         expressiontools.DivisionSetExpressionLookupExpression(
-            voice_name='Voice 1',
             offset=expressiontools.OffsetExpression(
                 anchor=expressiontools.MeasureSelectExpression(
                     anchor='red',
@@ -31,7 +30,8 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
                         'result = self.___getitem__(payload_expression, slice(4, 5, None))'
                         ])
                     )
-                )
+                ),
+            voice_name='Voice 1'
             )
 
     Composers create set-division lookup expressions during specification time.
@@ -42,9 +42,9 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, voice_name=None, offset=None, callbacks=None):
-        SetExpressionLookupExpression.__init__(self, attribute='divisions', voice_name=voice_name, 
-            offset=offset, callbacks=callbacks)
+    def __init__(self, offset=None, voice_name=None, callbacks=None):
+        SetExpressionLookupExpression.__init__(self, attribute='divisions', 
+            offset=offset, voice_name=voice_name, callbacks=callbacks)
 
     ### PRIVATE METHODS ###
 
