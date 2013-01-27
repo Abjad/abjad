@@ -37,7 +37,7 @@ class SetExpressionLookupExpression(AnchoredExpression, PayloadCallbackMixin):
 
     @property
     def attribute(self):
-        '''SetExpression lookup attribute.
+        '''InputSetExpression lookup attribute.
 
         Return string.
         '''
@@ -45,7 +45,7 @@ class SetExpressionLookupExpression(AnchoredExpression, PayloadCallbackMixin):
 
     @property
     def offset(self):
-        '''SetExpression lookup offset.
+        '''InputSetExpression lookup offset.
 
         Return offset expression.
         '''
@@ -53,7 +53,7 @@ class SetExpressionLookupExpression(AnchoredExpression, PayloadCallbackMixin):
 
     @property
     def voice_name(self):
-        '''SetExpression lookup voice name.
+        '''InputSetExpression lookup voice name.
 
         Return string.
         '''

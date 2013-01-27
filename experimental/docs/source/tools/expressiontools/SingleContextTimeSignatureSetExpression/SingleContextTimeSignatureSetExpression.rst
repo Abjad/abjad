@@ -17,7 +17,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.attribute
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.context_name
    :noindex:
@@ -27,12 +27,12 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.fresh
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.persist
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.score_specification
    :noindex:
@@ -67,7 +67,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.truncate
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 Methods
 -------
@@ -99,7 +99,7 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.__eq__
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. automethod:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.__ge__
    :noindex:

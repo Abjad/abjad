@@ -17,7 +17,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.attribute
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.context_name
    :noindex:
@@ -27,12 +27,12 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.fresh
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.persist
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.score_specification
    :noindex:
@@ -67,7 +67,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.truncate
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 Methods
 -------
@@ -96,7 +96,7 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.__eq__
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. automethod:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.__ge__
    :noindex:

@@ -6,7 +6,7 @@ from abjad.tools import timespantools
 from experimental.tools.expressiontools.BaseSetExpression import BaseSetExpression
 
 
-# TODO: inherit from some type of SetExpression class
+# TODO: inherit from some type of InputSetExpression class
 #class TimespanScopedSingleContextSetExpression(AbjadObject):
 # TODO: maybe doesn't need to inherit (indirectly) from AnchoredExpression; no longer has anchor
 class TimespanScopedSingleContextSetExpression(BaseSetExpression):

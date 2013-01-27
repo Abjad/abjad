@@ -125,6 +125,7 @@ Unstable packages (load manually)
       tools/expressiontools/BaseSetExpression/BaseSetExpression
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
+      tools/expressiontools/InputSetExpression/InputSetExpression
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
       tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/expressiontools/PayloadCallbackMixin/PayloadCallbackMixin
@@ -132,7 +133,6 @@ Unstable packages (load manually)
       tools/expressiontools/RhythmRegionExpression/RhythmRegionExpression
       tools/expressiontools/SelectExpression/SelectExpression
       tools/expressiontools/SelectMethodMixin/SelectMethodMixin
-      tools/expressiontools/SetExpression/SetExpression
       tools/expressiontools/SetExpressionLookupExpression/SetExpressionLookupExpression
       tools/expressiontools/SetMethodMixin/SetMethodMixin
       tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression
@@ -202,6 +202,7 @@ Unstable packages (load manually)
       tools/expressiontools/BaseSetExpression/BaseSetExpression
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
+      tools/expressiontools/InputSetExpression/InputSetExpression
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
       tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/expressiontools/PayloadCallbackMixin/PayloadCallbackMixin
@@ -209,7 +210,6 @@ Unstable packages (load manually)
       tools/expressiontools/RhythmRegionExpression/RhythmRegionExpression
       tools/expressiontools/SelectExpression/SelectExpression
       tools/expressiontools/SelectMethodMixin/SelectMethodMixin
-      tools/expressiontools/SetExpression/SetExpression
       tools/expressiontools/SetExpressionLookupExpression/SetExpressionLookupExpression
       tools/expressiontools/SetMethodMixin/SetMethodMixin
       tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression

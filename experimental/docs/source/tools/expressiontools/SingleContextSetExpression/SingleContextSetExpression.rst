@@ -17,7 +17,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.attribute
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.context_name
    :noindex:
@@ -25,12 +25,12 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.fresh
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.persist
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.score_specification
    :noindex:
@@ -63,7 +63,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.truncate
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 Methods
 -------
@@ -90,7 +90,7 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.__eq__
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. automethod:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.__ge__
    :noindex:

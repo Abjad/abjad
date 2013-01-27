@@ -1,8 +1,8 @@
 import copy
-from experimental.tools.expressiontools.SetExpression import SetExpression
+from experimental.tools.expressiontools.InputSetExpression import InputSetExpression
 
 
-class MultipleContextSetExpression(SetExpression):
+class MultipleContextSetExpression(InputSetExpression):
     r'''Multiple-context set expression.
 
     Set `attribute` to `source` for `anchor` target timespan over all `contexts`:
@@ -36,7 +36,7 @@ class MultipleContextSetExpression(SetExpression):
 
     def __init__(self, attribute=None, source=None, anchor=None, context_names=None, 
             persist=True, truncate=None):
-        SetExpression.__init__(self, attribute=attribute, source=source, anchor=anchor, 
+        InputSetExpression.__init__(self, attribute=attribute, source=source, anchor=anchor, 
             persist=persist, truncate=truncate)
         assert isinstance(context_names, (list, type(None))), repr(context_names)
         self._context_names = context_names

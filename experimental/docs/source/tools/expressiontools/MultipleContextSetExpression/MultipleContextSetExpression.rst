@@ -17,7 +17,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.attribute
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.context_names
    :noindex:
@@ -25,12 +25,12 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.fresh
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.persist
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.score_specification
    :noindex:
@@ -65,7 +65,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.truncate
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 Methods
 -------
@@ -89,7 +89,7 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__eq__
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
 .. automethod:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__ge__
    :noindex:

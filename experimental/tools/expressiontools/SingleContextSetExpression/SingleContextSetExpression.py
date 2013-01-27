@@ -1,9 +1,9 @@
 import abc
 import copy
-from experimental.tools.expressiontools.SetExpression import SetExpression
+from experimental.tools.expressiontools.InputSetExpression import InputSetExpression
 
 
-class SingleContextSetExpression(SetExpression):
+class SingleContextSetExpression(InputSetExpression):
     r'''Single-context set expression.
 
     Set `attribute` to `expression` for single-context `anchor`::
@@ -54,7 +54,7 @@ class SingleContextSetExpression(SetExpression):
     @abc.abstractmethod
     def __init__(self, attribute=None, source=None, anchor=None, context_name=None, 
         fresh=True, persist=True, truncate=None):
-        SetExpression.__init__(self, attribute=attribute, source=source, anchor=anchor, 
+        InputSetExpression.__init__(self, attribute=attribute, source=source, anchor=anchor, 
             fresh=fresh, persist=persist, truncate=truncate)
         assert isinstance(context_name, (str, type(None)))
         self._context_name = context_name
@@ -86,7 +86,7 @@ class SingleContextSetExpression(SetExpression):
 
         Return string.
         '''
-        return SetExpression.storage_format.fget(self)
+        return InputSetExpression.storage_format.fget(self)
 
     ### PUBLIC METHODS ###
 

@@ -4,7 +4,7 @@ from experimental.tools.expressiontools.SelectMethodMixin import SelectMethodMix
 
 
 class SpecificationInterface(SelectMethodMixin, SetMethodMixin):
-    r'''SetExpression interface.
+    r'''InputSetExpression interface.
 
     Score and segment set expression interfaces constitute the primary vehicle of composition.
 

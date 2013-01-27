@@ -3,7 +3,7 @@ import copy
 from experimental.tools.expressiontools.BaseSetExpression import BaseSetExpression
 
 
-class SetExpression(BaseSetExpression):
+class InputSetExpression(BaseSetExpression):
     r'''Set expression.
     '''
 

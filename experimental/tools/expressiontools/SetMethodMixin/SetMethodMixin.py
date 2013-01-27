@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class SetMethodMixin(AbjadObject):
-    '''SetExpression-maker mix-in.
+    '''InputSetExpression-maker mix-in.
 
     Examples below use the score and segment specification defined here::
 
