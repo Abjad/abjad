@@ -42,6 +42,27 @@ class ConcreteInterpreter(Interpreter):
 
     ### PUBLIC METHODS ###
 
+    def add_division_lists_to_score(self):
+        for voice in iterationtools.iterate_voices_in_expr(self.score):
+            voice_division_list = expressiontools.DivisionList([], voice_name=voice.name)
+            voice_proxy = self.score_specification.contexts[voice.name]
+            expressions = voice_proxy.division_payload_expressions
+            divisions = [x.payload.divisions for x in expressions]
+            divisions = sequencetools.flatten_sequence(divisions, depth=1)
+            start_offset = durationtools.Offset(0)
+            for division in divisions:
+                division = copy.deepcopy(division)
+                division._start_offset = durationtools.Offset(start_offset)
+                start_offset += division.duration
+                voice_division_list.divisions.append(division)
+            voice_proxy._voice_division_list = voice_division_list
+
+    def add_rhythms_to_score(self):
+        for voice in iterationtools.iterate_voices_in_expr(self.score):
+            voice_proxy = self.score_specification.contexts[voice.name]
+            for rhythm_payload_expression in voice_proxy.rhythm_payload_expressions:
+                voice.extend(rhythm_payload_expression.payload)
+
     def add_time_signatures_to_score(self):
         while self.score_specification.time_signature_settings[:]:
             for time_signature_setting in self.score_specification.time_signature_settings:
@@ -75,12 +96,6 @@ class ConcreteInterpreter(Interpreter):
                 timespan = timespantools.Timespan(start_offset, stop_offset)
                 segment_specification._timespan = timespan
 
-    def dump_rhythm_payload_expressions_into_voices(self):
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_proxy = self.score_specification.contexts[voice.name]
-            for rhythm_payload_expression in voice_proxy.rhythm_payload_expressions:
-                voice.extend(rhythm_payload_expression.payload)
-
     def get_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, voice_name):
         set_expressions = self.score_specification.get_timespan_scoped_single_context_set_expressions_for_voice(
             attribute, voice_name)
@@ -94,10 +109,10 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_divisions(self):
         self.make_timespan_scoped_single_context_set_expressions('divisions')
+        # TODO: replace with self.make_region_epxressions('divisions')
         self.make_division_region_expressions()
-        #self.make_division_payload_expressions()
         self.make_payload_expressions('divisions')
-        self.make_voice_division_lists()
+        self.add_division_lists_to_score()
 
     def interpret_pitch_classes(self):
         pass
@@ -107,10 +122,10 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_rhythm(self):
         self.make_timespan_scoped_single_context_set_expressions('rhythm')
+        # TODO: replace with self.make_region_epxressions('rhythm')
         self.make_rhythm_region_expressions()
-        #self.make_rhythm_payload_expressions()
         self.make_payload_expressions('rhythm')
-        self.dump_rhythm_payload_expressions_into_voices()
+        self.add_rhythms_to_score()
 
     def interpret_time_signatures(self):
         self.populate_time_signature_settings()
@@ -163,7 +178,8 @@ class ConcreteInterpreter(Interpreter):
         voice_proxy = self.score_specification.contexts[voice_name]
         voice_division_list = voice_proxy.voice_division_list
         division_payload_expressions = voice_proxy.division_payload_expressions
-        timespan_scoped_single_context_set_rhythm_expressions = voice_proxy.timespan_scoped_single_context_set_rhythm_expressions
+        timespan_scoped_single_context_set_rhythm_expressions = \
+            voice_proxy.timespan_scoped_single_context_set_rhythm_expressions
         if not voice_division_list:
             return []
         division_region_durations = [x.timespan.duration for x in division_payload_expressions]
@@ -221,7 +237,8 @@ class ConcreteInterpreter(Interpreter):
         if self.score_specification.segment_specifications:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
                 voice_proxy = self.score_specification.contexts[voice.name]
-                set_expressions = self.get_timespan_scoped_single_context_set_expressions_for_voice(attribute, voice.name)
+                set_expressions = self.get_timespan_scoped_single_context_set_expressions_for_voice(
+                    attribute, voice.name)
                 singular_attribute = attribute.rstrip('s')
                 key = 'timespan_scoped_single_context_set_{}_expressions'.format(singular_attribute)
                 inventory = getattr(voice_proxy, key)
@@ -231,25 +248,11 @@ class ConcreteInterpreter(Interpreter):
                     if set_expression not in score_set_expressions:
                         score_set_expressions.append(set_expression)
 
-    def make_voice_division_lists(self):
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_division_list = expressiontools.DivisionList([], voice_name=voice.name)
-            voice_proxy = self.score_specification.contexts[voice.name]
-            expressions = voice_proxy.division_payload_expressions
-            divisions = [x.payload.divisions for x in expressions]
-            divisions = sequencetools.flatten_sequence(divisions, depth=1)
-            start_offset = durationtools.Offset(0)
-            for division in divisions:
-                division = copy.deepcopy(division)
-                division._start_offset = durationtools.Offset(start_offset)
-                start_offset += division.duration
-                voice_division_list.divisions.append(division)
-            voice_proxy._voice_division_list = voice_division_list
-
     def merge_prolonging_rhythm_region_expressions(self, rhythm_region_expressions):
         result = []
         for rhythm_region_expression in rhythm_region_expressions:
-            if result and isinstance(rhythm_region_expression, expressiontools.SelectExpressionRhythmRegionExpression) and \
+            if result and isinstance(
+                rhythm_region_expression, expressiontools.SelectExpressionRhythmRegionExpression) and \
                 rhythm_region_expression.prolongs_expr(result[-1]):
                 current_stop_offset = rhythm_region_expression.start_offset
                 current_stop_offset += rhythm_region_expression.total_duration
@@ -273,8 +276,8 @@ class ConcreteInterpreter(Interpreter):
             self.score_specification.time_signature_settings.append(time_signature_setting)
 
     def store_interpreter_specific_single_context_set_expressions_by_context(self):
-        self.store_single_context_attribute_settings_by_context('time_signatures')
-        self.store_single_context_attribute_settings_by_context('divisions')
-        self.store_single_context_attribute_settings_by_context('rhythm')
-        self.store_single_context_attribute_settings_by_context('pitch_classes')
-        self.store_single_context_attribute_settings_by_context('registration')
+        self.store_single_context_attribute_set_expressions_by_context('time_signatures')
+        self.store_single_context_attribute_set_expressions_by_context('divisions')
+        self.store_single_context_attribute_set_expressions_by_context('rhythm')
+        self.store_single_context_attribute_set_expressions_by_context('pitch_classes')
+        self.store_single_context_attribute_set_expressions_by_context('registration')

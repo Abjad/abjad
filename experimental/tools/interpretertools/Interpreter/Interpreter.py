@@ -24,10 +24,18 @@ class Interpreter(AbjadObject):
         '''
         self.score_specification = score_specification
         self.score = self.instantiate_score()
-        self.unpack_multiple_context_set_expressions_for_score()
+        self.evaluate_multiple_context_set_expressions_for_score()
         self.store_interpreter_specific_single_context_set_expressions_by_context()
         
     ### PUBLIC METHODS ###
+
+    def evaluate_multiple_context_set_expressions_for_score(self):
+        for multiple_context_set_expression in self.score_specification.multiple_context_set_expressions:
+            segment_specification = self.score_specification.get_start_segment_specification(
+                multiple_context_set_expression.anchor)
+            single_context_set_expressions = multiple_context_set_expression.evaluate()
+            segment_specification.single_context_set_expressions.extend(single_context_set_expressions)
+            self.score_specification.single_context_set_expressions.extend(single_context_set_expressions)
 
     def instantiate_score(self):
         score = self.score_specification.score_template()
@@ -39,7 +47,7 @@ class Interpreter(AbjadObject):
     def store_interpreter_specific_single_context_set_expressions_by_context(self):
         pass
 
-    def store_single_context_attribute_settings_by_context(self, attribute):
+    def store_single_context_attribute_set_expressions_by_context(self, attribute):
         for segment_specification in self.score_specification.segment_specifications:
             new_settings = segment_specification.single_context_set_expressions.get_set_expressions(attribute=attribute)
             existing_settings = \
@@ -98,11 +106,3 @@ class Interpreter(AbjadObject):
             for single_context_set_expression in single_context_set_expressions[1:]:
                 self.store_single_context_set_expression_by_context(
                     single_context_set_expression, clear_persistent_first=False)
-
-    def unpack_multiple_context_set_expressions_for_score(self):
-        for multiple_context_set_expression in self.score_specification.multiple_context_set_expressions:
-            segment_specification = self.score_specification.get_start_segment_specification(
-                multiple_context_set_expression.anchor)
-            single_context_set_expressions = multiple_context_set_expression.evaluate()
-            segment_specification.single_context_set_expressions.extend(single_context_set_expressions)
-            self.score_specification.single_context_set_expressions.extend(single_context_set_expressions)

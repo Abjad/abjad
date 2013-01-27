@@ -106,7 +106,8 @@
         score_specification = expressiontools.ScoreSpecificationInterface(score_template)
     ... so that composers only ever interact with interfaces.
 
-21. Audit all expression evaluation methods.
+21. Audit all expressions.
+    Complete all expression docstrings.
 
 22. Rewire TimespanScopedSingleContextSetExpression to inherit from a SetExpression class.
     Doing this will require inserting a class between SetExpression and SetDivisionExpression.
@@ -119,3 +120,6 @@
 24. Audit entire interpreter.
     Update variable names.
     Remove duplicate code.
+
+25. Remove make_division_region_expressions(), make_rhythm_region_expressions().
+    Replace with make_region_expressions().

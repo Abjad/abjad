@@ -17,14 +17,22 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.add_division_lists_to_score
+   :noindex:
+
+.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.add_rhythms_to_score
+   :noindex:
+
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.add_time_signatures_to_score
    :noindex:
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.calculate_score_and_segment_timespans
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.dump_rhythm_payload_expressions_into_voices
+.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.evaluate_multiple_context_set_expressions_for_score
    :noindex:
+
+   Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_timespan_scoped_single_context_set_expressions_for_voice
    :noindex:
@@ -70,9 +78,6 @@ Methods
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_timespan_scoped_single_context_set_expressions
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_voice_division_lists
-   :noindex:
-
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.merge_prolonging_rhythm_region_expressions
    :noindex:
 
@@ -82,7 +87,7 @@ Methods
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.store_interpreter_specific_single_context_set_expressions_by_context
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.store_single_context_attribute_settings_by_context
+.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.store_single_context_attribute_set_expressions_by_context
    :noindex:
 
    Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
@@ -93,11 +98,6 @@ Methods
    Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.store_single_context_set_expressions_by_context
-   :noindex:
-
-   Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
-
-.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.unpack_multiple_context_set_expressions_for_score
    :noindex:
 
    Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
