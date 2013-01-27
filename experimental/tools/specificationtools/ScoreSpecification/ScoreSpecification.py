@@ -436,7 +436,7 @@ class ScoreSpecification(Specification):
                 source=expressiontools.PayloadExpression(
                     ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
                     ),
-                timespan=timespantools.Timespan(
+                target_timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(9, 4)
                     ),
@@ -448,7 +448,7 @@ class ScoreSpecification(Specification):
                 source=expressiontools.PayloadExpression(
                     ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
                     ),
-                timespan=timespantools.Timespan(
+                target_timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(9, 4)
                     ),
@@ -473,7 +473,7 @@ class ScoreSpecification(Specification):
                 source=expressiontools.RhythmMakerPayloadExpression(
                     payload=(TaleaRhythmMaker('sixteenths'),)
                     ),
-                timespan=timespantools.Timespan(
+                target_timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(9, 4)
                     ),
@@ -555,7 +555,7 @@ class ScoreSpecification(Specification):
             for single_context_set_expression in single_context_set_expressions:
                 timespan_scoped_set_expression = single_context_set_expression.evaluate()
                 # make sure set expression was set expression for timespan that exists in current segment
-                if timespan_scoped_set_expression.timespan.is_well_formed:
+                if timespan_scoped_set_expression.target_timespan.is_well_formed:
                     timespan_scoped_set_expressions.append(timespan_scoped_set_expression)
         assert timespan_scoped_set_expressions.all_are_well_formed
         return timespan_scoped_set_expressions
@@ -570,30 +570,30 @@ class ScoreSpecification(Specification):
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
-    def make_default_timespan_scoped_single_context_division_set_expression(self, timespan, voice_name):
-        divisions = self.get_time_signature_slice(timespan)
+    def make_default_timespan_scoped_single_context_division_set_expression(self, target_timespan, voice_name):
+        divisions = self.get_time_signature_slice(target_timespan)
         return expressiontools.TimespanScopedSingleContextDivisionSetExpression(
             source=expressiontools.PayloadExpression(divisions),
-            timespan=timespan,
+            target_timespan=target_timespan,
             target_context_name=voice_name,
             fresh=True,
             truncate=True
             )
 
-    def make_default_timespan_scoped_single_context_rhythm_set_expression(self, timespan, voice_name):
+    def make_default_timespan_scoped_single_context_rhythm_set_expression(self, target_timespan, voice_name):
         return expressiontools.TimespanScopedSingleContextRhythmSetExpression(
             source=expressiontools.RhythmMakerPayloadExpression(library.skip_tokens),
-            timespan=timespan,
+            target_timespan=target_timespan,
             target_context_name=voice_name,
             fresh=True
             )
 
-    def make_default_timespan_scoped_single_context_set_expression(self, attribute, timespan, voice_name):
+    def make_default_timespan_scoped_single_context_set_expression(self, attribute, target_timespan, voice_name):
         if attribute == 'divisions':
             return self.make_default_timespan_scoped_single_context_division_set_expression(
-                timespan, voice_name)
+                target_timespan, voice_name)
         elif attribute == 'rhythm':
             return self.make_default_timespan_scoped_single_context_rhythm_set_expression(
-                timespan, voice_name)
+                target_timespan, voice_name)
         else:
             raise ValueError(attribute)

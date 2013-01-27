@@ -23,9 +23,9 @@ class SingleContextDivisionSetExpression(SingleContextSetExpression):
         Return timespan-scoped single-context division set expression.
         '''
         from experimental.tools import expressiontools
-        anchor_timespan = self.evaluate_anchor_timespan()
+        target_timespan = self.evaluate_anchor_timespan()
         command = expressiontools.TimespanScopedSingleContextDivisionSetExpression(
-            source=self.source, timespan=anchor_timespan, 
+            source=self.source, target_timespan=target_timespan, 
             target_context_name=self.target_context_name, 
             fresh=self.fresh, truncate=self.truncate)
         return command

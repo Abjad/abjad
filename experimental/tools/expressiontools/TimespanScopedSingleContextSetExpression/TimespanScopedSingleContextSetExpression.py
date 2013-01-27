@@ -15,15 +15,11 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
 
     ### INTIAILIZER ###
 
-    def __init__(self, source=None, timespan=None, target_context_name=None, fresh=None):
+    def __init__(self, source=None, target_timespan=None, target_context_name=None, fresh=None):
         from experimental.tools import expressiontools
-        assert isinstance(source, (expressiontools.Expression)), repr(sourcd)
-        assert isinstance(timespan, timespantools.Timespan), repr(timespan)
         assert isinstance(target_context_name, (str, type(None))), repr(target_context_name)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
-        # TODO: remove self.timespan in favor of self.target_timespan
-        #self._timespan = timespan
-        SetExpression.__init__(self, source=source, target_timespan=timespan)
+        SetExpression.__init__(self, source=source, target_timespan=target_timespan)
         self._target_context_name = target_context_name
         self._fresh = fresh
 
@@ -33,15 +29,15 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         if isinstance(expr, type(self)):
             if self.source == expr.source and \
                 self.target_context_name == expr.target_context_name and \
-                self.timespan == expr.timespan:
+                self.target_timespan == expr.target_timespan:
                 return True
         return False
 
     def __lt__(self, expr):
-        if self.timespan.starts_before_timespan_starts(expr):
+        if self.target_timespan.starts_before_timespan_starts(expr):
             return True
-        elif self.timespan.starts_when_timespan_starts(expr):
-            return self.timespan.stops_before_timespan_stops(expr)
+        elif self.target_timespan.starts_when_timespan_starts(expr):
+            return self.target_timespan.stops_before_timespan_stops(expr)
         return False
 
     def __or__(self, command):
@@ -52,9 +48,9 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         Raise exception when region command can not fuse with `command`.
         '''
         assert self._can_fuse(command)
-        stop_offset = self.timespan.stop_offset + command.timespan.duration
-        timespan = self.timespan.new(stop_offset=stop_offset) 
-        result = self.new(timespan=timespan)
+        stop_offset = self.target_timespan.stop_offset + command.target_timespan.duration
+        target_timespan = self.target_timespan.new(stop_offset=stop_offset) 
+        result = self.new(target_timespan=target_timespan)
         return timespantools.TimespanInventory([result])
 
     def __sub__(self, timespan):
@@ -63,10 +59,10 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         Operate in place and return region command inventory.
         '''
         from experimental.tools import expressiontools
-        timespans = self.timespan - timespan
+        timespans = self.target_timespan - timespan
         result = expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for timespan in timespans:
-            region_expression = self.new(timespan=timespan)
+            region_expression = self.new(target_timespan=timespan)
             result.append(region_expression)
         return result
 
@@ -101,7 +97,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
 
         Return offset.
         '''
-        return self.timespan.start_offset
+        return self.target_timespan.start_offset
 
     @property
     def stop_offset(self):
@@ -109,7 +105,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
 
         Return offset.
         '''
-        return self.timespan.stop_offset
+        return self.target_timespan.stop_offset
 
     @property
     def target_context_name(self):
@@ -123,14 +119,16 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
     def _timespan():
         def fget(self):
             #return self._timespan
-            return self.target_timespan
+            #return self.target_timespan
+            raise Exception
         def fset(self, expr):
             raise Exception
         return property(**locals())
 
     @property
     def timespan(self):
-        return self.target_timespan
+        #return self.target_timespan
+        raise Exception
 
     ### PUBLIC METHODS ###
 

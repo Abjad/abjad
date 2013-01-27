@@ -181,7 +181,7 @@ class ConcreteInterpreter(Interpreter):
             return []
         division_region_durations = [x.timespan.duration for x in division_payload_expressions]
         timespan_scoped_single_context_rhythm_set_expression_durations = [
-            x.timespan.duration for x in timespan_scoped_single_context_rhythm_set_expressions]
+            x.target_timespan.duration for x in timespan_scoped_single_context_rhythm_set_expressions]
         assert sum(division_region_durations) == sum(timespan_scoped_single_context_rhythm_set_expression_durations)
         timespan_scoped_single_context_rhythm_set_expression_merged_durations = sequencetools.merge_duration_sequences(
             division_region_durations, timespan_scoped_single_context_rhythm_set_expression_durations)
@@ -209,7 +209,7 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_start_offsets = cumulative_sums[:-1]
         rhythm_region_start_offsets = [durationtools.Offset(x) for x in rhythm_region_start_offsets]
         timespan_scoped_single_context_rhythm_set_expression_duration_pairs = [
-            (x, x.timespan.duration) for x in timespan_scoped_single_context_rhythm_set_expressions]
+            (x, x.target_timespan.duration) for x in timespan_scoped_single_context_rhythm_set_expressions]
         #self._debug_values(timespan_scoped_single_context_rhythm_set_expression_duration_pairs, 
         #    'rhythm command / duration pairs')
         merged_duration_timespan_scoped_single_context_rhythm_set_expression_pairs = \

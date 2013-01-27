@@ -114,3 +114,5 @@
     Remove duplicate code.
 
 23. Remove TimespanScopedSingleContextSetExpression.timespan in favor of target_timespan.
+
+24. Globally search and replace 'command'.

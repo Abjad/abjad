@@ -10,9 +10,10 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
 
     ### INITIALIZER ###
 
-    def __init__(self, source=None, timespan=None, target_context_name=None, fresh=None, truncate=None):
+    def __init__(self, source=None, target_timespan=None, target_context_name=None, fresh=None, truncate=None):
         TimespanScopedSingleContextSetExpression.__init__(self, 
-            source=source, timespan=timespan, target_context_name=target_context_name, fresh=fresh)
+            source=source, target_timespan=target_timespan, 
+            target_context_name=target_context_name, fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate
 
@@ -63,7 +64,7 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
         Return division region expression.
         '''
         from experimental.tools import expressiontools
-        start_offset, total_duration = self.timespan.start_offset, self.timespan.duration
+        start_offset, total_duration = self.target_timespan.start_offset, self.target_timespan.duration
         if isinstance(self.source, expressiontools.SelectExpression):
             region_expression = expressiontools.SelectExpressionDivisionRegionExpression(
                 self.source, start_offset, total_duration, voice_name)

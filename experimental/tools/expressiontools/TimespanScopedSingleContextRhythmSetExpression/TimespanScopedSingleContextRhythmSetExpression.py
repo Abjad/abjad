@@ -41,7 +41,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
                             ),
                         start_offset=durationtools.Offset(0, 1)
                         ),
-                    timespan=timespantools.Timespan(
+                    target_timespan=timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
                         stop_offset=durationtools.Offset(5, 1)
                         ),
@@ -54,7 +54,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
                             ),
                         start_offset=durationtools.Offset(0, 1)
                         ),
-                    timespan=timespantools.Timespan(
+                    target_timespan=timespantools.Timespan(
                         start_offset=durationtools.Offset(15, 1),
                         stop_offset=durationtools.Offset(20, 1)
                         ),
@@ -103,8 +103,8 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
                 rhythm_maker, voice_name, start_offset, division_list)
         elif isinstance(self.source, expressiontools.StartPositionedRhythmPayloadExpression):
             wrapped_component = componenttools.copy_components_and_covered_spanners([self.source.payload])[0]
-            total_duration = self.timespan.duration
-            region_expression_start_offset = self.timespan.start_offset
+            total_duration = self.target_timespan.duration
+            region_expression_start_offset = self.target_timespan.start_offset
             region_expression = expressiontools.LiteralRhythmRegionExpression(
                 wrapped_component, voice_name, start_offset, total_duration)
         elif isinstance(self.source, expressiontools.RhythmSetExpressionLookupExpression):
@@ -115,15 +115,15 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
                     rhythm_maker, voice_name, start_offset, division_list)
             elif isinstance(expression, expressiontools.StartPositionedRhythmPayloadExpression):
                 wrapped_component = componenttools.copy_components_and_covered_spanners([expression.payload])[0]
-                total_duration = self.timespan.duration
-                region_expression_start_offset = self.timespan.start_offset
+                total_duration = self.target_timespan.duration
+                region_expression_start_offset = self.target_timespan.start_offset
                 region_expression = expressiontools.LiteralRhythmRegionExpression(
                     wrapped_component, voice_name, start_offset, total_duration)
             else:
                 raise TypeError(expression)
         elif isinstance(self.source, expressiontools.CounttimeComponentSelectExpression):
-            total_duration = self.timespan.duration
-            region_expression_start_offset = self.timespan.start_offset
+            total_duration = self.target_timespan.duration
+            region_expression_start_offset = self.target_timespan.start_offset
             region_expression = expressiontools.SelectExpressionRhythmRegionExpression(
                 self.source, region_expression_start_offset, total_duration, voice_name)
         else:

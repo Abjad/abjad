@@ -20,8 +20,8 @@ class SingleContextRhythmSetExpression(SingleContextSetExpression):
         Return timespan-scoped single-context rhythm set expression.
         '''
         from experimental.tools import expressiontools
-        timespan = self.evaluate_anchor_timespan()
-        command = expressiontools.TimespanScopedSingleContextRhythmSetExpression(
-            source=self.source, timespan=timespan, target_context_name=self.target_context_name, 
-            fresh=self.fresh)
-        return command
+        target_timespan = self.evaluate_anchor_timespan()
+        expression = expressiontools.TimespanScopedSingleContextRhythmSetExpression(
+            source=self.source, target_timespan=target_timespan, 
+            target_context_name=self.target_context_name, fresh=self.fresh)
+        return expression
