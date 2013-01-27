@@ -2,11 +2,14 @@ import abc
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools 
 from abjad.tools import timespantools 
-from abjad.tools.abctools.AbjadObject import AbjadObject
+#from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.tools.expressiontools.BaseSetExpression import BaseSetExpression
 
 
 # TODO: inherit from some type of SetExpression class
-class TimespanScopedSingleContextSetExpression(AbjadObject):
+#class TimespanScopedSingleContextSetExpression(AbjadObject):
+# TODO: maybe doesn't need to inherit (indirectly) from AnchoredExpression; no longer has anchor
+class TimespanScopedSingleContextSetExpression(BaseSetExpression):
     '''Timespan-scoped single-context set expression.
     '''
 
@@ -22,7 +25,7 @@ class TimespanScopedSingleContextSetExpression(AbjadObject):
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
-        self._source = source
+        BaseSetExpression.__init__(self, source=source)
         self._timespan = timespan
         self._context_name = context_name
         self._fresh = fresh
@@ -104,12 +107,6 @@ class TimespanScopedSingleContextSetExpression(AbjadObject):
         return self._fresh
 
     @property
-    def source(self):
-        '''Set expression source.
-        ''' 
-        return self._source
-
-    @property
     def start_offset(self):
         '''Set expression start offset.
 
@@ -142,21 +139,3 @@ class TimespanScopedSingleContextSetExpression(AbjadObject):
         Return region expression.
         '''
         pass
-
-    # TODO: remove in favor of Expression.new()
-    def new(self, **kwargs):
-        positional_argument_dictionary = self._positional_argument_dictionary
-        keyword_argument_dictionary = self._keyword_argument_dictionary
-        for key, value in kwargs.iteritems():
-            if key in positional_argument_dictionary:
-                positional_argument_dictionary[key] = value
-            elif key in keyword_argument_dictionary:
-                keyword_argument_dictionary[key] = value
-            else:
-                raise KeyError(key)
-        positional_argument_values = []
-        for positional_argument_name in self._positional_argument_names:
-            positional_argument_value = positional_argument_dictionary[positional_argument_name]
-            positional_argument_values.append(positional_argument_value)
-        result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
-        return result

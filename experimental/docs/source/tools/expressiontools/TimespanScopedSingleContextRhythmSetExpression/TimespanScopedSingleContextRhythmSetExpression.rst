@@ -9,6 +9,11 @@ expressiontools.TimespanScopedSingleContextRhythmSetExpression
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.anchor
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.attribute
    :noindex:
 
@@ -22,15 +27,25 @@ Read-only Properties
 
    Inherited from :py:class:`expressiontools.TimespanScopedSingleContextSetExpression <experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression>`
 
+.. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.score_specification
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.source
    :noindex:
 
-   Inherited from :py:class:`expressiontools.TimespanScopedSingleContextSetExpression <experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression>`
+   Inherited from :py:class:`expressiontools.BaseSetExpression <experimental.tools.expressiontools.BaseSetExpression.BaseSetExpression.BaseSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.start_offset
    :noindex:
 
    Inherited from :py:class:`expressiontools.TimespanScopedSingleContextSetExpression <experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression>`
+
+.. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.start_segment_identifier
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.stop_offset
    :noindex:
@@ -53,10 +68,15 @@ Methods
 .. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.evaluate
    :noindex:
 
+.. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.evaluate_anchor_timespan
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
 .. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.new
    :noindex:
 
-   Inherited from :py:class:`expressiontools.TimespanScopedSingleContextSetExpression <experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression>`
+   Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
 
 Special Methods
 ---------------
