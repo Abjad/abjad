@@ -298,7 +298,7 @@ class ScoreSpecification(Specification):
 
             >>> for x in score_specification.single_context_set_expressions:
             ...     z(x)
-            expressiontools.SingleContextSetTimeSignatureExpression(
+            expressiontools.SingleContextTimeSignatureSetExpression(
                 expression=expressiontools.PayloadExpression(
                     ((2, 8), (3, 8), (4, 8))
                     ),
@@ -306,7 +306,7 @@ class ScoreSpecification(Specification):
                 fresh=True,
                 persist=True
                 )
-            expressiontools.SingleContextSetTimeSignatureExpression(
+            expressiontools.SingleContextTimeSignatureSetExpression(
                 expression=expressiontools.PayloadExpression(
                     ((4, 16), (4, 16))
                     ),
@@ -314,7 +314,7 @@ class ScoreSpecification(Specification):
                 fresh=True,
                 persist=True
                 )
-            expressiontools.SingleContextSetTimeSignatureExpression(
+            expressiontools.SingleContextTimeSignatureSetExpression(
                 expression=expressiontools.PayloadExpression(
                     ((5, 16), (5, 16))
                     ),
@@ -322,7 +322,7 @@ class ScoreSpecification(Specification):
                 fresh=True,
                 persist=True
                 )
-            expressiontools.SingleContextSetRhythmExpression(
+            expressiontools.SingleContextRhythmSetExpression(
                 expression=expressiontools.RhythmMakerPayloadExpression(
                     payload=(TaleaRhythmMaker('sixteenths'),)
                     ),
@@ -432,7 +432,7 @@ class ScoreSpecification(Specification):
 
             >>> for x in score_specification.timespan_scoped_single_context_set_division_expressions:
             ...     z(x)
-            expressiontools.TimespanScopedSingleContextSetDivisionExpression(
+            expressiontools.TimespanScopedSingleContextDivisionSetExpression(
                 expression=expressiontools.PayloadExpression(
                     ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
                     ),
@@ -444,7 +444,7 @@ class ScoreSpecification(Specification):
                 fresh=True,
                 truncate=True
                 )
-            expressiontools.TimespanScopedSingleContextSetDivisionExpression(
+            expressiontools.TimespanScopedSingleContextDivisionSetExpression(
                 expression=expressiontools.PayloadExpression(
                     ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
                     ),
@@ -469,7 +469,7 @@ class ScoreSpecification(Specification):
 
             >>> for x in score_specification.timespan_scoped_single_context_set_rhythm_expressions:
             ...     z(x)
-            expressiontools.TimespanScopedSingleContextSetRhythmExpression(
+            expressiontools.TimespanScopedSingleContextRhythmSetExpression(
                 expression=expressiontools.RhythmMakerPayloadExpression(
                     payload=(TaleaRhythmMaker('sixteenths'),)
                     ),
@@ -572,7 +572,7 @@ class ScoreSpecification(Specification):
 
     def make_default_timespan_scoped_single_context_set_division_expression(self, voice_name, timespan):
         divisions = self.get_time_signature_slice(timespan)
-        return expressiontools.TimespanScopedSingleContextSetDivisionExpression(
+        return expressiontools.TimespanScopedSingleContextDivisionSetExpression(
             expression=expressiontools.PayloadExpression(divisions),
             timespan=timespan,
             context_name=voice_name,
@@ -591,7 +591,7 @@ class ScoreSpecification(Specification):
             raise ValueError(attribute)
 
     def make_default_timespan_scoped_single_context_set_rhythm_expression(self, voice_name, timespan):
-        return expressiontools.TimespanScopedSingleContextSetRhythmExpression(
+        return expressiontools.TimespanScopedSingleContextRhythmSetExpression(
             expression=expressiontools.RhythmMakerPayloadExpression(library.skip_tokens),
             timespan=timespan,
             context_name=voice_name,

@@ -24,7 +24,7 @@ class LookupMethodMixin(AbjadObject):
         ::
 
             >>> z(lookup)
-            expressiontools.SetDivisionLookupExpression(
+            expressiontools.DivisionSetExpressionLookupExpression(
                 voice_name='Voice 1',
                 offset=expressiontools.OffsetExpression(
                     anchor=expressiontools.TimespanExpression(
@@ -36,7 +36,7 @@ class LookupMethodMixin(AbjadObject):
         Return lookup expression.        
         '''
         from experimental.tools import expressiontools
-        lookup = expressiontools.SetDivisionLookupExpression(voice, offset=self)
+        lookup = expressiontools.DivisionSetExpressionLookupExpression(voice, offset=self)
         lookup._score_specification = self.score_specification
         return lookup
 
@@ -49,7 +49,7 @@ class LookupMethodMixin(AbjadObject):
         ::
 
             >>> z(lookup)
-            expressiontools.SetRhythmLookupExpression(
+            expressiontools.RhythmSetExpressionLookupExpression(
                 voice_name='Voice 1',
                 offset=expressiontools.OffsetExpression(
                     anchor=expressiontools.TimespanExpression(
@@ -61,7 +61,7 @@ class LookupMethodMixin(AbjadObject):
         Return lookup expression.        
         '''
         from experimental.tools import expressiontools
-        lookup = expressiontools.SetRhythmLookupExpression(voice, offset=self)
+        lookup = expressiontools.RhythmSetExpressionLookupExpression(voice, offset=self)
         lookup._score_specification = self.score_specification
         return lookup
 
@@ -74,7 +74,7 @@ class LookupMethodMixin(AbjadObject):
         ::
 
             >>> z(lookup)
-            expressiontools.SetTimeSignatureLookupExpression(
+            expressiontools.TimeSignatureSetExpressionLookupExpression(
                 voice_name='Voice 1',
                 offset=expressiontools.OffsetExpression(
                     anchor=expressiontools.TimespanExpression(
@@ -86,6 +86,6 @@ class LookupMethodMixin(AbjadObject):
         Return lookup expression.
         '''
         from experimental.tools import expressiontools
-        lookup = expressiontools.SetTimeSignatureLookupExpression(voice, offset=self)
+        lookup = expressiontools.TimeSignatureSetExpressionLookupExpression(voice, offset=self)
         lookup._score_specification = self.score_specification
         return lookup

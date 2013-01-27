@@ -13,7 +13,7 @@ class SetExpression(AnchoredExpression):
 
     ### INITIALIZER ###
 
-    # TODO: eventually remove 'truncate' in favor of SingleContextSetDivisionExpression.truncate
+    # TODO: eventually remove 'truncate' in favor of SingleContextDivisionSetExpression.truncate
     @abc.abstractmethod
     def __init__(self, attribute=None, expression=None, anchor=None, fresh=True, persist=True, truncate=None):
         from experimental.tools import expressiontools

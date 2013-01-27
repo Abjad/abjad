@@ -32,7 +32,7 @@ class SingleContextSetExpression(SetExpression):
     ::
 
         >>> z(single_context_set_expression)
-        expressiontools.SingleContextSetDivisionExpression(
+        expressiontools.SingleContextDivisionSetExpression(
             expression=expressiontools.PayloadExpression(
                 ((3, 16),)
                 ),
@@ -74,7 +74,7 @@ class SingleContextSetExpression(SetExpression):
         '''Single-context set-expression storage format::
 
             >>> z(single_context_set_expression)
-            expressiontools.SingleContextSetDivisionExpression(
+            expressiontools.SingleContextDivisionSetExpression(
                 expression=expressiontools.PayloadExpression(
                     ((3, 16),)
                     ),

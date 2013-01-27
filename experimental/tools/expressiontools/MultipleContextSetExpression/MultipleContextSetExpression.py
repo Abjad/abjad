@@ -50,9 +50,9 @@ class MultipleContextSetExpression(SetExpression):
     def _attribute_to_single_context_set_expression_class(self, attribute):
         from experimental.tools import expressiontools
         return {
-            'time_signatures': expressiontools.SingleContextSetTimeSignatureExpression,
-            'divisions': expressiontools.SingleContextSetDivisionExpression,
-            'rhythm': expressiontools.SingleContextSetRhythmExpression,
+            'time_signatures': expressiontools.SingleContextTimeSignatureSetExpression,
+            'divisions': expressiontools.SingleContextDivisionSetExpression,
+            'rhythm': expressiontools.SingleContextRhythmSetExpression,
             }[attribute]
         
     ### READ-ONLY PUBLIC PROPERTIES ###
