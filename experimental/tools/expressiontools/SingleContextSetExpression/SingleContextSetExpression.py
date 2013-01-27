@@ -105,6 +105,9 @@ class SingleContextSetExpression(SetExpression):
         new_setting._fresh = False
         return new_setting
 
+    def evaluate(self):
+        raise NotImplementedError
+
     @abc.abstractmethod
     def to_timespan_scoped_setting(self):
         '''Evaluate timespan of single-context setting.

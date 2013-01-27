@@ -57,10 +57,20 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.evaluate
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
+
 .. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.get_anchor_timespan
    :noindex:
 
    Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+
+.. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.new
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
 
 Special Methods
 ---------------

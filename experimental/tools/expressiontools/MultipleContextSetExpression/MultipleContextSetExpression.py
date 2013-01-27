@@ -67,7 +67,7 @@ class MultipleContextSetExpression(SetExpression):
 
     ### PUBLIC METHODS ###
 
-    def unpack(self):
+    def evaluate(self):
         single_context_settings = []
         single_context_setting_class = \
             self._attribute_to_single_context_setting_class(self.attribute)

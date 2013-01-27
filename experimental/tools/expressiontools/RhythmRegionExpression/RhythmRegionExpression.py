@@ -1,8 +1,8 @@
-from experimental.tools.expressiontools.Expression import Expression
+from experimental.tools.expressiontools.RegionExpression import RegionExpression
 
 
-class RhythmRegionExpression(Expression):
-    '''Finalized rhythm region command.
+class RhythmRegionExpression(RegionExpression):
+    '''Rhythm region expression.
     '''
 
     pass

@@ -1,12 +1,10 @@
 import abc
 import copy
-from experimental.tools.expressiontools.AnchoredObject import AnchoredObject
+from experimental.tools.expressiontools.AnchoredExpression import AnchoredExpression
 
 
-class SetExpression(AnchoredObject):
-    r'''SetExpression.
-
-    Abstract setting class from which concrete settings inherit.
+class SetExpression(AnchoredExpression):
+    r'''Set expression.
     '''
 
     ### CLASS ATTRIBUTES ##
@@ -25,7 +23,7 @@ class SetExpression(AnchoredObject):
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))
-        AnchoredObject.__init__(self, anchor=anchor)
+        AnchoredExpression.__init__(self, anchor=anchor)
         self._attribute = attribute
         self._expression = expression
         self._fresh = fresh

@@ -12,6 +12,11 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.division_list
    :noindex:
 
+.. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.payload
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.RegionExpression <experimental.tools.expressiontools.RegionExpression.RegionExpression.RegionExpression>`
+
 .. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.rhythm_maker
    :noindex:
 
@@ -22,6 +27,11 @@ Read-only Properties
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.total_duration
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.RegionExpression <experimental.tools.expressiontools.RegionExpression.RegionExpression.RegionExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.voice_name
    :noindex:

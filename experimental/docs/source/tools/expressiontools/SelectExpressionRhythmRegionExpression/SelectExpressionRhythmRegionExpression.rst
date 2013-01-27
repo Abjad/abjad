@@ -9,6 +9,11 @@ expressiontools.SelectExpressionRhythmRegionExpression
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.payload
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.RegionExpression <experimental.tools.expressiontools.RegionExpression.RegionExpression.RegionExpression>`
+
 .. autoattribute:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.select_expression
    :noindex:
 

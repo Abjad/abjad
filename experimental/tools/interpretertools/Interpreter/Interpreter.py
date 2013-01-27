@@ -103,6 +103,6 @@ class Interpreter(AbjadObject):
         for multiple_context_setting in self.score_specification.multiple_context_settings:
             segment_specification = self.score_specification.get_start_segment_specification(
                 multiple_context_setting.anchor)
-            single_context_settings = multiple_context_setting.unpack()
+            single_context_settings = multiple_context_setting.evaluate()
             segment_specification.single_context_settings.extend(single_context_settings)
             self.score_specification.single_context_settings.extend(single_context_settings)

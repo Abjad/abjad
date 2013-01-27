@@ -77,10 +77,20 @@ Methods
 
    Inherited from :py:class:`expressiontools.SingleContextSetExpression <experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression>`
 
+.. automethod:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.evaluate
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SingleContextSetExpression <experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression>`
+
 .. automethod:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.get_anchor_timespan
    :noindex:
 
    Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+
+.. automethod:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.new
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
 
 .. automethod:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.to_timespan_scoped_setting
    :noindex:

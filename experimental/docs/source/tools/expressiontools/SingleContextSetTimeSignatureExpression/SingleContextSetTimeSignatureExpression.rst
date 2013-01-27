@@ -77,6 +77,11 @@ Methods
 
    Inherited from :py:class:`expressiontools.SingleContextSetExpression <experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression>`
 
+.. automethod:: experimental.tools.expressiontools.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.evaluate
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SingleContextSetExpression <experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression>`
+
 .. automethod:: experimental.tools.expressiontools.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.get_anchor_timespan
    :noindex:
 
@@ -84,6 +89,11 @@ Methods
 
 .. automethod:: experimental.tools.expressiontools.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.make_time_signatures
    :noindex:
+
+.. automethod:: experimental.tools.expressiontools.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.new
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
 
 .. automethod:: experimental.tools.expressiontools.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.to_timespan_scoped_setting
    :noindex:
