@@ -17,9 +17,6 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.attribute
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.expression
-   :noindex:
-
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.fresh
    :noindex:
 
@@ -30,6 +27,9 @@ Read-only Properties
    :noindex:
 
    Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
+.. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.source
+   :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.start_offset
    :noindex:

@@ -15,16 +15,16 @@ class SetExpression(AnchoredExpression):
 
     # TODO: eventually remove 'truncate' in favor of SingleContextDivisionSetExpression.truncate
     @abc.abstractmethod
-    def __init__(self, attribute=None, expression=None, anchor=None, fresh=True, persist=True, truncate=None):
+    def __init__(self, attribute=None, source=None, anchor=None, fresh=True, persist=True, truncate=None):
         from experimental.tools import expressiontools
         assert isinstance(attribute, str)
-        assert isinstance(expression, (expressiontools.Expression)), repr(expression)
+        assert isinstance(source, (expressiontools.Expression)), repr(expression)
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))
         AnchoredExpression.__init__(self, anchor=anchor)
         self._attribute = attribute
-        self._expression = expression
+        self._source = source
         self._fresh = fresh
         self._persist = persist
         self._truncate = truncate
@@ -47,19 +47,11 @@ class SetExpression(AnchoredExpression):
 
     @property
     def attribute(self):
-        '''SetExpression attribute.
+        '''Set expression attribute.
 
         Return string.
         '''
         return self._attribute
-
-    @property
-    def expression(self):
-        '''SetExpression expression.
-
-        Return expression.
-        '''
-        return self._expression
 
     @property
     def fresh(self):
@@ -77,6 +69,14 @@ class SetExpression(AnchoredExpression):
         Return boolean.
         '''
         return self._persist
+
+    @property
+    def source(self):
+        '''Set expression source.
+
+        Return expression.
+        '''
+        return self._source
 
     @property
     def truncate(self):

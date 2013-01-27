@@ -2,27 +2,27 @@ from experimental.tools.expressiontools.SingleContextSetExpression import Single
 
 
 class SingleContextDivisionSetExpression(SingleContextSetExpression):
-    r'''Single-context set-division expression.
+    r'''Single-context division set expression.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, expression=None, anchor=None, context_name=None, fresh=True, persist=True, truncate=None):
+    def __init__(self, source=None, anchor=None, context_name=None, fresh=True, persist=True, truncate=None):
         assert isinstance(truncate, (bool, type(None)))
-        SingleContextSetExpression.__init__(self, attribute='divisions', expression=expression, 
+        SingleContextSetExpression.__init__(self, attribute='divisions', source=source, 
             anchor=anchor, context_name=context_name, fresh=fresh, persist=persist)
         self._truncate = truncate
 
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        '''Evaluate timespan of single-context set-division expression.
+        '''Evaluate timespan of single-context division set expression.
 
-        Return timespan-scoped single-context set-division expression.
+        Return timespan-scoped single-context division set expression.
         '''
         from experimental.tools import expressiontools
         anchor_timespan = self.evaluate_anchor_timespan()
         command = expressiontools.TimespanScopedSingleContextDivisionSetExpression(
-            expression=self.expression, timespan=anchor_timespan, 
+            source=self.source, timespan=anchor_timespan, 
             context_name=self.context_name, fresh=self.fresh, truncate=self.truncate)
         return command

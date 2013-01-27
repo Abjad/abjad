@@ -1,20 +1,18 @@
 import copy
 from abjad.tools import sequencetools
-from experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression import TimespanScopedSingleContextSetExpression
+from experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression import \
+    TimespanScopedSingleContextSetExpression
 
 
 class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleContextSetExpression):
-    r'''Division region expression.
-
-    Region expression indicating durated period of time 
-    to which a division-maker will apply.
+    r'''Timespan-scoped single-context division set expression.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, expression=None, timespan=None, context_name=None, fresh=None, truncate=None):
+    def __init__(self, source=None, timespan=None, context_name=None, fresh=None, truncate=None):
         TimespanScopedSingleContextSetExpression.__init__(self, 
-            expression=expression, timespan=timespan, context_name=context_name, fresh=fresh)
+            source=source, timespan=timespan, context_name=context_name, fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate
 
@@ -31,7 +29,7 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
             return False
         if expr.fresh or expr.truncate:
             return False
-        if expr.expression != self.expression:
+        if expr.source != self.source:
             return False
         return True
 
@@ -51,7 +49,7 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
 
     @property
     def voice_name(self):
-        '''Aliased to division region expression `context_name`.
+        '''Aliased to `context_name`.
 
         Return string.
         '''
@@ -60,25 +58,25 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
     ### PUBLIC METHODS ###
 
     def evaluate(self, voice_name):
-        '''Evaluate timespan-scoped single-context set-division expression.
+        '''Evaluate timespan-scoped single-context division set expression.
         
         Return division region expression.
         '''
         from experimental.tools import expressiontools
         start_offset, total_duration = self.timespan.start_offset, self.timespan.duration
-        if isinstance(self.expression, expressiontools.SelectExpression):
+        if isinstance(self.source, expressiontools.SelectExpression):
             region_expression = expressiontools.SelectExpressionDivisionRegionExpression(
-                self.expression, start_offset, total_duration, voice_name)
-        elif isinstance(self.expression, expressiontools.DivisionSetExpressionLookupExpression):
-            expression = self.expression.evaluate()
+                self.source, start_offset, total_duration, voice_name)
+        elif isinstance(self.source, expressiontools.DivisionSetExpressionLookupExpression):
+            expression = self.source.evaluate()
             assert isinstance(expression, expressiontools.PayloadExpression)
             divisions = expression.elements
             region_expression = expressiontools.LiteralDivisionRegionExpression(
                 divisions, start_offset, total_duration, voice_name)
-        elif isinstance(self.expression, expressiontools.PayloadExpression):
-            divisions = self.expression.elements
+        elif isinstance(self.source, expressiontools.PayloadExpression):
+            divisions = self.source.elements
             region_expression = expressiontools.LiteralDivisionRegionExpression(
                 divisions, start_offset, total_duration, voice_name)
         else:
-            raise TypeError(self.expression)
+            raise TypeError(self.source)
         return region_expression

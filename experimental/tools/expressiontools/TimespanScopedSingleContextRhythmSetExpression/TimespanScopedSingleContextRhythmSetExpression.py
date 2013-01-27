@@ -2,11 +2,12 @@ import abc
 from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools import rhythmmakertools
-from experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression import TimespanScopedSingleContextSetExpression
+from experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression import \
+    TimespanScopedSingleContextSetExpression
 
 
 class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContextSetExpression):
-    r'''Timespan-scoped single-context set-rhythm expression.
+    r'''Timespan-scoped single-context rhythm set expression.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -18,11 +19,12 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
     def __sub__(self, timespan):
         '''Subtract `timespan` from setting.
 
-            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(
+            >>> source = expressiontools.StartPositionedRhythmPayloadExpression(
             ...     "{ c'16 [ c'8 ] }", start_offset=0)
             >>> timespan = timespantools.Timespan(0, 20)
-            >>> timespan_scoped_single_context_set_rhythm_expression = expressiontools.TimespanScopedSingleContextRhythmSetExpression(
-            ...     expression, timespan, 'Voice 1')
+            >>> timespan_scoped_single_context_set_rhythm_expression = \
+            ...     expressiontools.TimespanScopedSingleContextRhythmSetExpression(
+            ...     source, timespan, 'Voice 1')
 
         ::
 
@@ -33,7 +35,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
             >>> z(result)
             expressiontools.TimespanScopedSingleContextSetExpressionInventory([
                 expressiontools.TimespanScopedSingleContextRhythmSetExpression(
-                    expression=expressiontools.StartPositionedRhythmPayloadExpression(
+                    source=expressiontools.StartPositionedRhythmPayloadExpression(
                         payload=containertools.Container(
                             music=({c'16, c'8},)
                             ),
@@ -46,7 +48,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
                     context_name='Voice 1'
                     ),
                 expressiontools.TimespanScopedSingleContextRhythmSetExpression(
-                    expression=expressiontools.StartPositionedRhythmPayloadExpression(
+                    source=expressiontools.StartPositionedRhythmPayloadExpression(
                         payload=containertools.Container(
                             music=({c'16, c'8},)
                             ),
@@ -71,7 +73,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
             return False
         if expr.fresh:
             return False
-        if expr.expression != self.expression:
+        if expr.source != self.source:
             return False
         return True
 
@@ -86,7 +88,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
     ### PUBLIC METHODS ###
 
     def evaluate(self, division_list, start_offset, voice_name):
-        '''Evaluate timespan-scoped single-context set-rhythm expression.
+        '''Evaluate timespan-scoped single-context rhythm set expression.
 
         Return rhythm region expression.
         '''
@@ -94,19 +96,19 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
         assert isinstance(division_list, expressiontools.DivisionList), repr(division_list)
         assert isinstance(start_offset, durationtools.Offset), repr(start_offset)
         assert isinstance(voice_name, str), repr(voice_name)
-        if isinstance(self.expression, expressiontools.RhythmMakerPayloadExpression):
-            rhythm_maker = self.expression.payload[0]
+        if isinstance(self.source, expressiontools.RhythmMakerPayloadExpression):
+            rhythm_maker = self.source.payload[0]
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             region_expression = expressiontools.RhythmMakerRhythmRegionExpression(
                 rhythm_maker, voice_name, start_offset, division_list)
-        elif isinstance(self.expression, expressiontools.StartPositionedRhythmPayloadExpression):
-            wrapped_component = componenttools.copy_components_and_covered_spanners([self.expression.payload])[0]
+        elif isinstance(self.source, expressiontools.StartPositionedRhythmPayloadExpression):
+            wrapped_component = componenttools.copy_components_and_covered_spanners([self.source.payload])[0]
             total_duration = self.timespan.duration
             region_expression_start_offset = self.timespan.start_offset
             region_expression = expressiontools.LiteralRhythmRegionExpression(
                 wrapped_component, voice_name, start_offset, total_duration)
-        elif isinstance(self.expression, expressiontools.RhythmSetExpressionLookupExpression):
-            expression = self.expression.evaluate()
+        elif isinstance(self.source, expressiontools.RhythmSetExpressionLookupExpression):
+            expression = self.source.evaluate()
             if isinstance(expression, expressiontools.RhythmMakerPayloadExpression):
                 rhythm_maker = expression.payload[0]
                 region_expression = expressiontools.RhythmMakerRhythmRegionExpression(
@@ -119,11 +121,11 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
                     wrapped_component, voice_name, start_offset, total_duration)
             else:
                 raise TypeError(expression)
-        elif isinstance(self.expression, expressiontools.CounttimeComponentSelectExpression):
+        elif isinstance(self.source, expressiontools.CounttimeComponentSelectExpression):
             total_duration = self.timespan.duration
             region_expression_start_offset = self.timespan.start_offset
             region_expression = expressiontools.SelectExpressionRhythmRegionExpression(
-                self.expression, region_expression_start_offset, total_duration, voice_name)
+                self.source, region_expression_start_offset, total_duration, voice_name)
         else:
-            raise TypeError(self.expression)
+            raise TypeError(self.source)
         return region_expression

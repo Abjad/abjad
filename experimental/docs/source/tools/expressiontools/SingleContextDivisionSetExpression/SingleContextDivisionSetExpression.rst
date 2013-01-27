@@ -24,11 +24,6 @@ Read-only Properties
 
    Inherited from :py:class:`expressiontools.SingleContextSetExpression <experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression>`
 
-.. autoattribute:: experimental.tools.expressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.expression
-   :noindex:
-
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
-
 .. autoattribute:: experimental.tools.expressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.fresh
    :noindex:
 
@@ -43,6 +38,11 @@ Read-only Properties
    :noindex:
 
    Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
+.. autoattribute:: experimental.tools.expressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.source
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.start_offset
    :noindex:

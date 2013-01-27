@@ -7,11 +7,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 # TODO: inherit from some type of SetExpression class
 class TimespanScopedSingleContextSetExpression(AbjadObject):
-    '''Region command.
-
-    Durated period of time to which an attribute-maker will apply.
-
-    Interpreter byproduct.
+    '''Timespan-scoped single-context set expression.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -20,13 +16,13 @@ class TimespanScopedSingleContextSetExpression(AbjadObject):
 
     ### INTIAILIZER ###
 
-    def __init__(self, expression=None, timespan=None, context_name=None, fresh=None):
+    def __init__(self, source=None, timespan=None, context_name=None, fresh=None):
         from experimental.tools import expressiontools
-        assert isinstance(expression, (expressiontools.Expression)), repr(expression)
+        assert isinstance(source, (expressiontools.Expression)), repr(sourcd)
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
-        self._expression = expression
+        self._source = source
         self._timespan = timespan
         self._context_name = context_name
         self._fresh = fresh
@@ -35,7 +31,7 @@ class TimespanScopedSingleContextSetExpression(AbjadObject):
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            if self.expression == expr.expression and \
+            if self.source == expr.source and \
                 self.context_name == expr.context_name and \
                 self.timespan == expr.timespan:
                 return True
@@ -84,7 +80,7 @@ class TimespanScopedSingleContextSetExpression(AbjadObject):
 
     @abc.abstractproperty
     def attribute(self):
-        '''Region command attribute.
+        '''Set expression attribute.
 
         Return string.
         '''
@@ -92,19 +88,11 @@ class TimespanScopedSingleContextSetExpression(AbjadObject):
 
     @property
     def context_name(self):
-        '''Region command context name.
+        '''Set expression context name.
     
         Return string.
         '''
         return self._context_name
-
-    @property
-    def expression(self):
-        '''Region command expression.
-        
-        Return expression.
-        ''' 
-        return self._expression
 
     @property
     def fresh(self):
@@ -116,8 +104,14 @@ class TimespanScopedSingleContextSetExpression(AbjadObject):
         return self._fresh
 
     @property
+    def source(self):
+        '''Set expression source.
+        ''' 
+        return self._source
+
+    @property
     def start_offset(self):
-        '''Region command start offset.
+        '''Set expression start offset.
 
         Return offset.
         '''
@@ -125,7 +119,7 @@ class TimespanScopedSingleContextSetExpression(AbjadObject):
 
     @property
     def stop_offset(self):
-        '''Region command stop offset.
+        '''Set expression stop offset.
 
         Return offset.
         '''
@@ -133,7 +127,7 @@ class TimespanScopedSingleContextSetExpression(AbjadObject):
 
     @property
     def timespan(self):
-        '''Region command timespan.
+        '''Set expression timespan.
 
         Return timespan.
         '''

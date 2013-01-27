@@ -4,7 +4,7 @@ from experimental.tools.expressiontools.SetExpression import SetExpression
 
 
 class SingleContextSetExpression(SetExpression):
-    r'''Single-context set-expression.
+    r'''Single-context set expression.
 
     Set `attribute` to `expression` for single-context `anchor`::
 
@@ -33,7 +33,7 @@ class SingleContextSetExpression(SetExpression):
 
         >>> z(single_context_set_expression)
         expressiontools.SingleContextDivisionSetExpression(
-            expression=expressiontools.PayloadExpression(
+            source=expressiontools.PayloadExpression(
                 ((3, 16),)
                 ),
             anchor='red',
@@ -42,19 +42,19 @@ class SingleContextSetExpression(SetExpression):
             persist=True
             )
 
-    Composer set() methods product multiple-context set-expressions.
+    Composer set() methods product multiple-context set expressions.
 
-    Multiple-context set-expressions produce single-context settings.
+    Multiple-context set expressions produce single-context settings.
 
-    Single-context set-expressions produce region commands.
+    Single-context set expressions produce region commands.
     '''
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute=None, expression=None, anchor=None, context_name=None, 
+    def __init__(self, attribute=None, source=None, anchor=None, context_name=None, 
         fresh=True, persist=True, truncate=None):
-        SetExpression.__init__(self, attribute=attribute, expression=expression, anchor=anchor, 
+        SetExpression.__init__(self, attribute=attribute, source=source, anchor=anchor, 
             fresh=fresh, persist=persist, truncate=truncate)
         assert isinstance(context_name, (str, type(None)))
         self._context_name = context_name
@@ -63,7 +63,7 @@ class SingleContextSetExpression(SetExpression):
 
     @property
     def context_name(self):
-        '''Single-context set-expression context name.
+        '''Single-context set expression context name.
 
         Return string or none.
         '''
@@ -71,11 +71,11 @@ class SingleContextSetExpression(SetExpression):
 
     @property
     def storage_format(self):
-        '''Single-context set-expression storage format::
+        '''Single-context set expression storage format::
 
             >>> z(single_context_set_expression)
             expressiontools.SingleContextDivisionSetExpression(
-                expression=expressiontools.PayloadExpression(
+                source=expressiontools.PayloadExpression(
                     ((3, 16),)
                     ),
                 anchor='red',
@@ -107,7 +107,7 @@ class SingleContextSetExpression(SetExpression):
 
     @abc.abstractmethod
     def evaluate(self):
-        '''Evaluate single-context-set expression.
+        '''Evaluate single-context set expression.
 
         Return timespan-scoped single-context set expression.
         '''

@@ -171,7 +171,7 @@ class SegmentSpecification(Specification):
             >>> for x in red_segment.single_context_set_expressions:
             ...     z(x)
             expressiontools.SingleContextTimeSignatureSetExpression(
-                expression=expressiontools.PayloadExpression(
+                source=expressiontools.PayloadExpression(
                     ((2, 8), (3, 8), (4, 8))
                     ),
                 anchor='red',
@@ -179,7 +179,7 @@ class SegmentSpecification(Specification):
                 persist=True
                 )
             expressiontools.SingleContextRhythmSetExpression(
-                expression=expressiontools.RhythmMakerPayloadExpression(
+                source=expressiontools.RhythmMakerPayloadExpression(
                     payload=(TaleaRhythmMaker('sixteenths'),)
                     ),
                 anchor='red',

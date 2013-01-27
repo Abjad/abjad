@@ -2,13 +2,13 @@ from experimental.tools.expressiontools.SingleContextSetExpression import Single
 
 
 class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
-    r'''Single-context set-time signature expression.
+    r'''Single-context time signature set expression.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, expression=None, anchor=None, context_name=None, fresh=True, persist=True):
-        SingleContextSetExpression.__init__(self, attribute='time_signatures', expression=expression, 
+    def __init__(self, source=None, anchor=None, context_name=None, fresh=True, persist=True):
+        SingleContextSetExpression.__init__(self, attribute='time_signatures', source=source, 
             anchor=anchor, context_name=context_name, fresh=fresh, persist=persist)
 
     ### PUBLIC METHODS ###
@@ -16,22 +16,22 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
     def evaluate(self):
         '''Evaluate timespan of single-context time signataure setting.
 
-        Return timespan-scoped single-context set-time signature expression.
+        Return timespan-scoped single-context time signature set expression.
         '''
         from experimental.tools import expressiontools
         anchor_timespan = self.evaluate_anchor_timespan()
         command = expressiontools.TimeSignatureRegionCommand(
-            self.expression, self.context_name, anchor_timespan, fresh=self.fresh)
+            self.source, self.context_name, anchor_timespan, fresh=self.fresh)
         return command
 
     def make_time_signatures(self, score_specification):
         from experimental.tools import expressiontools
-        if hasattr(self.expression, 'evaluate_early'):
-            expression = self.expression.evaluate_early()
+        if hasattr(self.source, 'evaluate_early'):
+            expression = self.source.evaluate_early()
             assert isinstance(expression, expressiontools.PayloadExpression), repr(expression)
             time_signatures = expression.payload
         else:
-            expression = self.expression.evaluate()
+            expression = self.source.evaluate()
             assert isinstance(expression, expressiontools.PayloadExpression)
             time_signatures = expression.payload[:]
         if time_signatures:

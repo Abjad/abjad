@@ -47,12 +47,12 @@ class SetMethodMixin(AbjadObject):
 
     def _store_multiple_context_set_expression(self, attribute, source, contexts=None, persist=True, truncate=None):
         from experimental.tools import expressiontools
-        expression = self._expr_to_expression(source)
+        source = self._expr_to_expression(source)
         assert self.score_specification is not None
         context_names = self.score_specification._context_token_to_context_names(contexts)
         multiple_context_set_expression = expressiontools.MultipleContextSetExpression(
             attribute=attribute,
-            expression=expression,
+            source=source,
             anchor=self._expression_abbreviation,
             context_names=context_names,
             persist=persist,
@@ -101,7 +101,7 @@ class SetMethodMixin(AbjadObject):
             >>> z(set_expression)
             expressiontools.MultipleContextSetExpression(
                 attribute='divisions',
-                expression=expressiontools.PayloadExpression(
+                source=expressiontools.PayloadExpression(
                     ((3, 16),)
                     ),
                 anchor='red',
@@ -188,7 +188,7 @@ class SetMethodMixin(AbjadObject):
             >>> z(set_expression)
             expressiontools.MultipleContextSetExpression(
                 attribute='rhythm',
-                expression=expressiontools.RhythmMakerPayloadExpression(
+                source=expressiontools.RhythmMakerPayloadExpression(
                     payload=(TaleaRhythmMaker('sixteenths'),)
                     ),
                 anchor='red',
@@ -219,7 +219,7 @@ class SetMethodMixin(AbjadObject):
             >>> z(set_expression)
             expressiontools.MultipleContextSetExpression(
                 attribute='time_signatures',
-                expression=expressiontools.PayloadExpression(
+                source=expressiontools.PayloadExpression(
                     ((3, 8), (4, 8))
                     ),
                 anchor='red',

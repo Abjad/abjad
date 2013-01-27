@@ -50,8 +50,9 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
 
     def _get_timespan_scoped_single_context_set_division_expressions(self):
         result = timespantools.TimespanInventory()
-        for timespan_scoped_single_context_set_division_expression in self.score_specification.timespan_scoped_single_context_set_division_expressions:
-            if not timespan_scoped_single_context_set_division_expression.expression == self:
+        for timespan_scoped_single_context_set_division_expression in \
+            self.score_specification.timespan_scoped_single_context_set_division_expressions:
+            if not timespan_scoped_single_context_set_division_expression.source == self:
                 result.append(timespan_scoped_single_context_set_division_expression)
         return result
 
@@ -63,13 +64,14 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
         expression = self.offset.evaluate()
         offset = expression.payload[0]
         timespan_inventory = self._get_timespan_scoped_single_context_set_division_expressions()
-        timespan_time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
-        candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_time_relation)
-        segment_specification = self.score_specification.get_start_segment_specification(start_segment_identifier)
+        time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
+        candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(time_relation)
+        segment_specification = self.score_specification.get_start_segment_specification(
+            start_segment_identifier)
         source_command = segment_specification._get_first_element_in_expr_by_parentage(
             candidate_commands, self.voice_name, include_improper_parentage=True)
         assert source_command is not None
-        expression = source_command.expression
+        expression = source_command.source
         assert isinstance(expression, expressiontools.PayloadExpression), repr(expression)
         expression = self._apply_callbacks(expression)
         return expression

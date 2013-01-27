@@ -115,11 +115,9 @@
     Or maybe not. Maybe SetExpression will rename expression, anchor to source, target.
     Then the types of source, target can change through the evaluation chain.
 
-23. Change SetExpression.expression to SetExpression.source.
-
-24. Audit entire interpreter.
+23. Audit entire interpreter.
     Update variable names.
     Remove duplicate code.
 
-25. Remove make_division_region_expressions(), make_rhythm_region_expressions().
+24. Remove make_division_region_expressions(), make_rhythm_region_expressions().
     Replace with make_region_expressions().

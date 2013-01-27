@@ -3,9 +3,9 @@ from experimental.tools.expressiontools.SetExpression import SetExpression
 
 
 class MultipleContextSetExpression(SetExpression):
-    r'''Multiple-context set-expression.
+    r'''Multiple-context set expression.
 
-    Set `attribute` to `expression` for multiple-context `anchor`:
+    Set `attribute` to `source` for `anchor` target timespan over all `contexts`:
 
     ::
 
@@ -22,25 +22,21 @@ class MultipleContextSetExpression(SetExpression):
         >>> z(multiple_context_set_expression)
         expressiontools.MultipleContextSetExpression(
             attribute='time_signatures',
-            expression=expressiontools.PayloadExpression(
+            source=expressiontools.PayloadExpression(
                 ((4, 8), (3, 8))
                 ),
             anchor='red',
             persist=True
             )
 
-    Composers create multiple-context set-expressions at specification-time.
-
-    Composers create multiple-context set-expressions with ``SegmentSpecification`` setter methods.
-
-    Multiple-context set-expressions capture composers' musical intent.
+    Composers create multiple-context set expressions with set methods.
     '''
 
     ### INITIAILIZER ###
 
-    def __init__(self, attribute=None, expression=None, anchor=None, context_names=None, 
+    def __init__(self, attribute=None, source=None, anchor=None, context_names=None, 
             persist=True, truncate=None):
-        SetExpression.__init__(self, attribute=attribute, expression=expression, anchor=anchor, 
+        SetExpression.__init__(self, attribute=attribute, source=source, anchor=anchor, 
             persist=persist, truncate=truncate)
         assert isinstance(context_names, (list, type(None))), repr(context_names)
         self._context_names = context_names
@@ -59,7 +55,7 @@ class MultipleContextSetExpression(SetExpression):
 
     @property
     def context_names(self):
-        '''Multiple-context set-expression context names.
+        '''Multiple-context set expression context names.
     
         Return list of strings or none.
         '''
@@ -74,7 +70,7 @@ class MultipleContextSetExpression(SetExpression):
         if self.context_names is None:
             anchor = copy.deepcopy(self.anchor)
             single_context_set_expression = single_context_set_expression_class(
-                self.expression, 
+                self.source, 
                 anchor,
                 context_name=None,
                 persist=self.persist)
@@ -84,7 +80,7 @@ class MultipleContextSetExpression(SetExpression):
             for context_name in self.context_names:
                 anchor = copy.deepcopy(self.anchor)
                 single_context_set_expression = single_context_set_expression_class(
-                    self.expression, 
+                    self.source, 
                     anchor,
                     context_name=context_name,
                     persist=self.persist)
