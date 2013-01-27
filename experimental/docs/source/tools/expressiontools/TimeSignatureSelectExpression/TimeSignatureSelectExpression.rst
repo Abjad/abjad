@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.anchor
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.callbacks
    :noindex:
@@ -22,22 +22,22 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.score_specification
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.start_offset
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.stop_offset
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.storage_format
    :noindex:
@@ -75,7 +75,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.get_anchor_timespan
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. automethod:: experimental.tools.expressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.new
    :noindex:

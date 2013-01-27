@@ -122,7 +122,6 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/expressiontools/AnchoredExpression/AnchoredExpression
-      tools/expressiontools/AnchoredObject/AnchoredObject
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
@@ -199,7 +198,6 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/expressiontools/AnchoredExpression/AnchoredExpression
-      tools/expressiontools/AnchoredObject/AnchoredObject
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin

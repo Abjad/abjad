@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.anchor
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.attribute
    :noindex:
@@ -29,22 +29,22 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.score_specification
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.start_offset
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.stop_offset
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.storage_format
    :noindex:
@@ -65,7 +65,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.get_anchor_timespan
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.new
    :noindex:

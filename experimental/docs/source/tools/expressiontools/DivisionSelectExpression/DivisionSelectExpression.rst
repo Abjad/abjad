@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.anchor
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.callbacks
    :noindex:
@@ -22,22 +22,22 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.score_specification
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.start_offset
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.stop_offset
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.storage_format
    :noindex:
@@ -68,7 +68,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.get_anchor_timespan
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. automethod:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.new
    :noindex:

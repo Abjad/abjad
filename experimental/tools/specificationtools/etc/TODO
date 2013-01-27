@@ -108,4 +108,4 @@
 
 21. Audit all expression evaluation methods.
 
-22. Make all setting classes into expressions.
+22. Change _anchor_abbreviation to _expression_abbreviation.

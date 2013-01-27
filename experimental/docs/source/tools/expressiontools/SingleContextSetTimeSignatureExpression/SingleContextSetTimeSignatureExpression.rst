@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.anchor
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.attribute
    :noindex:
@@ -42,22 +42,22 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.score_specification
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.start_offset
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.stop_offset
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.storage_format
    :noindex:
@@ -85,7 +85,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.get_anchor_timespan
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. automethod:: experimental.tools.expressiontools.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.SingleContextSetTimeSignatureExpression.make_time_signatures
    :noindex:

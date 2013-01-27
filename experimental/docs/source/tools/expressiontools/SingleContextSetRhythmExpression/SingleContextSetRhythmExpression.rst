@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.anchor
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.attribute
    :noindex:
@@ -42,22 +42,22 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.score_specification
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.start_offset
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.start_segment_identifier
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.stop_offset
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.storage_format
    :noindex:
@@ -85,7 +85,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.get_anchor_timespan
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredObject <experimental.tools.expressiontools.AnchoredObject.AnchoredObject.AnchoredObject>`
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. automethod:: experimental.tools.expressiontools.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.SingleContextSetRhythmExpression.new
    :noindex:
