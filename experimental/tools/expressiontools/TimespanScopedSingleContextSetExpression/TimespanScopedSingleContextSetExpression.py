@@ -16,15 +16,15 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
 
     ### INTIAILIZER ###
 
-    def __init__(self, source=None, timespan=None, context_name=None, fresh=None):
+    def __init__(self, source=None, timespan=None, target_context_name=None, fresh=None):
         from experimental.tools import expressiontools
         assert isinstance(source, (expressiontools.Expression)), repr(sourcd)
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
-        assert isinstance(context_name, (str, type(None))), repr(context_name)
+        assert isinstance(target_context_name, (str, type(None))), repr(target_context_name)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
         SetExpression.__init__(self, source=source)
         self._timespan = timespan
-        self._context_name = context_name
+        self._target_context_name = target_context_name
         self._fresh = fresh
 
     ### SPECIAL METHODS ###
@@ -32,7 +32,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             if self.source == expr.source and \
-                self.context_name == expr.context_name and \
+                self.target_context_name == expr.target_context_name and \
                 self.timespan == expr.timespan:
                 return True
         return False
@@ -86,13 +86,14 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         '''
         pass
 
+    # TODO: remove in favor of SingleContextSetExpression.target_context_name
     @property
-    def context_name(self):
+    def target_context_name(self):
         '''Set expression context name.
     
         Return string.
         '''
-        return self._context_name
+        return self._target_context_name
 
     @property
     def fresh(self):

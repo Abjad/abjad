@@ -7,9 +7,9 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, source=None, target_timespan=None, context_name=None, fresh=True, persist=True):
+    def __init__(self, source=None, target_timespan=None, target_context_name=None, fresh=True, persist=True):
         SingleContextSetExpression.__init__(self, attribute='time_signatures', source=source, 
-            target_timespan=target_timespan, context_name=context_name, fresh=fresh, persist=persist)
+            target_timespan=target_timespan, target_context_name=target_context_name, fresh=fresh, persist=persist)
 
     ### PUBLIC METHODS ###
 
@@ -21,7 +21,7 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
         from experimental.tools import expressiontools
         anchor_timespan = self.evaluate_anchor_timespan()
         command = expressiontools.TimeSignatureRegionCommand(
-            self.source, self.context_name, anchor_timespan, fresh=self.fresh)
+            self.source, self.target_context_name, anchor_timespan, fresh=self.fresh)
         return command
 
     def make_time_signatures(self, score_specification):

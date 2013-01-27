@@ -17,11 +17,6 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.attribute
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.context_name
-   :noindex:
-
-   Inherited from :py:class:`expressiontools.TimespanScopedSingleContextSetExpression <experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression>`
-
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.fresh
    :noindex:
 
@@ -56,6 +51,11 @@ Read-only Properties
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.target_context_name
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.TimespanScopedSingleContextSetExpression <experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.target_timespan
    :noindex:

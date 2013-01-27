@@ -7,11 +7,12 @@ class SingleContextDivisionSetExpression(SingleContextSetExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, source=None, target_timespan=None, context_name=None, 
+    def __init__(self, source=None, target_timespan=None, target_context_name=None, 
         fresh=True, persist=True, truncate=None):
         assert isinstance(truncate, (bool, type(None)))
         SingleContextSetExpression.__init__(self, attribute='divisions', source=source, 
-            target_timespan=target_timespan, context_name=context_name, fresh=fresh, persist=persist)
+            target_timespan=target_timespan, target_context_name=target_context_name, 
+            fresh=fresh, persist=persist)
         self._truncate = truncate
 
     ### PUBLIC METHODS ###
@@ -25,5 +26,6 @@ class SingleContextDivisionSetExpression(SingleContextSetExpression):
         anchor_timespan = self.evaluate_anchor_timespan()
         command = expressiontools.TimespanScopedSingleContextDivisionSetExpression(
             source=self.source, timespan=anchor_timespan, 
-            context_name=self.context_name, fresh=self.fresh, truncate=self.truncate)
+            target_context_name=self.target_context_name, 
+            fresh=self.fresh, truncate=self.truncate)
         return command

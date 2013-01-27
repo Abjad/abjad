@@ -116,8 +116,7 @@
 23. Remove make_division_region_expressions(), make_rhythm_region_expressions().
     Replace with make_region_expressions().
 
-24. Change SetExpression 'context_names' to 'target_context_names'.
-    Change TimespanScopedSingleContextSetExpression.timespan to target_timespan.
+24. Change TimespanScopedSingleContextSetExpression.timespan to target_timespan.
     Possibly rewire SetExpression to inherit from Expression instead of AnchoredExpression.
 
 25. Probably change evaluate_anchor_timespan() to evaluate_target_timespan().

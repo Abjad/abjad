@@ -45,7 +45,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
                         start_offset=durationtools.Offset(0, 1),
                         stop_offset=durationtools.Offset(5, 1)
                         ),
-                    context_name='Voice 1'
+                    target_context_name='Voice 1'
                     ),
                 expressiontools.TimespanScopedSingleContextRhythmSetExpression(
                     source=expressiontools.StartPositionedRhythmPayloadExpression(
@@ -58,7 +58,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
                         start_offset=durationtools.Offset(15, 1),
                         stop_offset=durationtools.Offset(20, 1)
                         ),
-                    context_name='Voice 1'
+                    target_context_name='Voice 1'
                     )
                 ])
 

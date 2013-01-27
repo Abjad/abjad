@@ -7,9 +7,10 @@ class SingleContextRhythmSetExpression(SingleContextSetExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, source=None, target_timespan=None, context_name=None, fresh=True, persist=True):
+    def __init__(self, source=None, target_timespan=None, target_context_name=None, fresh=True, persist=True):
         SingleContextSetExpression.__init__(self, attribute='rhythm', source=source, 
-            target_timespan=target_timespan, context_name=context_name, fresh=fresh, persist=persist)
+            target_timespan=target_timespan, target_context_name=target_context_name, 
+            fresh=fresh, persist=persist)
 
     ### PUBLIC METHODS ###
 
@@ -21,5 +22,6 @@ class SingleContextRhythmSetExpression(SingleContextSetExpression):
         from experimental.tools import expressiontools
         timespan = self.evaluate_anchor_timespan()
         command = expressiontools.TimespanScopedSingleContextRhythmSetExpression(
-            source=self.source, timespan=timespan, context_name=self.context_name, fresh=self.fresh)
+            source=self.source, timespan=timespan, target_context_name=self.target_context_name, 
+            fresh=self.fresh)
         return command

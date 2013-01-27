@@ -10,9 +10,9 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
 
     ### INITIALIZER ###
 
-    def __init__(self, source=None, timespan=None, context_name=None, fresh=None, truncate=None):
+    def __init__(self, source=None, timespan=None, target_context_name=None, fresh=None, truncate=None):
         TimespanScopedSingleContextSetExpression.__init__(self, 
-            source=source, timespan=timespan, context_name=context_name, fresh=fresh)
+            source=source, timespan=timespan, target_context_name=target_context_name, fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate
 
@@ -49,11 +49,11 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
 
     @property
     def voice_name(self):
-        '''Aliased to `context_name`.
+        '''Aliased to `target_context_name`.
 
         Return string.
         '''
-        return self.context_name
+        return self.target_context_name
 
     ### PUBLIC METHODS ###
 

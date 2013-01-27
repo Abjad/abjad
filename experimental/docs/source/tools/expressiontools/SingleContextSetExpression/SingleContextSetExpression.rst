@@ -19,9 +19,6 @@ Read-only Properties
 
    Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
-.. autoattribute:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.context_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.fresh
    :noindex:
 
@@ -58,6 +55,9 @@ Read-only Properties
    Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.storage_format
+   :noindex:
+
+.. autoattribute:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.target_context_name
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.target_timespan

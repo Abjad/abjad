@@ -19,11 +19,6 @@ Read-only Properties
 
    Inherited from :py:class:`expressiontools.InputSetExpression <experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression>`
 
-.. autoattribute:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.context_name
-   :noindex:
-
-   Inherited from :py:class:`expressiontools.SingleContextSetExpression <experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression>`
-
 .. autoattribute:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.fresh
    :noindex:
 
@@ -60,6 +55,11 @@ Read-only Properties
    Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.storage_format
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SingleContextSetExpression <experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression>`
+
+.. autoattribute:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.target_context_name
    :noindex:
 
    Inherited from :py:class:`expressiontools.SingleContextSetExpression <experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression>`

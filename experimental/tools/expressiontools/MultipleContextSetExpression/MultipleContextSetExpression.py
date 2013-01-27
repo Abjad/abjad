@@ -72,7 +72,7 @@ class MultipleContextSetExpression(InputSetExpression):
             single_context_set_expression = single_context_set_expression_class(
                 source=self.source, 
                 target_timespan=target_timespan,
-                context_name=None,
+                target_context_name=None,
                 persist=self.persist)
             single_context_set_expression._score_specification = self.score_specification
             single_context_set_expressions.append(single_context_set_expression)
@@ -82,7 +82,7 @@ class MultipleContextSetExpression(InputSetExpression):
                 single_context_set_expression = single_context_set_expression_class(
                     source=self.source, 
                     target_timespan=target_timespan,
-                    context_name=target_context_name,
+                    target_context_name=target_context_name,
                     persist=self.persist)
                 single_context_set_expression._score_specification = self.score_specification
                 single_context_set_expressions.append(single_context_set_expression)

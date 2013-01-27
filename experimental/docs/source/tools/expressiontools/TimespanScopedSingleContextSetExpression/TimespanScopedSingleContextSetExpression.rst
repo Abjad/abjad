@@ -17,9 +17,6 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.attribute
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.context_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.fresh
    :noindex:
 
@@ -48,6 +45,9 @@ Read-only Properties
    :noindex:
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.target_context_name
+   :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.target_timespan
    :noindex:

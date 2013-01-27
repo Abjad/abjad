@@ -440,7 +440,7 @@ class ScoreSpecification(Specification):
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(9, 4)
                     ),
-                context_name='Voice 1',
+                target_context_name='Voice 1',
                 fresh=True,
                 truncate=True
                 )
@@ -452,7 +452,7 @@ class ScoreSpecification(Specification):
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(9, 4)
                     ),
-                context_name='Voice 2',
+                target_context_name='Voice 2',
                 fresh=True,
                 truncate=True
                 )
@@ -576,7 +576,7 @@ class ScoreSpecification(Specification):
         return expressiontools.TimespanScopedSingleContextDivisionSetExpression(
             source=expressiontools.PayloadExpression(divisions),
             timespan=timespan,
-            context_name=voice_name,
+            target_context_name=voice_name,
             fresh=True,
             truncate=True
             )
@@ -597,6 +597,6 @@ class ScoreSpecification(Specification):
         return expressiontools.TimespanScopedSingleContextRhythmSetExpression(
             source=expressiontools.RhythmMakerPayloadExpression(library.skip_tokens),
             timespan=timespan,
-            context_name=voice_name,
+            target_context_name=voice_name,
             fresh=True
             )

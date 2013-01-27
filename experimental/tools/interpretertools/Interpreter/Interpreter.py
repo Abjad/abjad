@@ -53,10 +53,10 @@ class Interpreter(AbjadObject):
             existing_settings = \
                 self.score_specification.single_context_set_expressions_by_context.get_set_expressions(
                 attribute=attribute)
-            new_context_names = [x.context_name for x in new_settings]
+            new_context_names = [x.target_context_name for x in new_settings]
             forwarded_existing_settings = []
             for existing_setting in existing_settings[:]:
-                if existing_setting.context_name in new_context_names:
+                if existing_setting.target_context_name in new_context_names:
                     existing_settings.remove(existing_setting)
                 else:
                     forwarded_existing_setting = existing_setting.copy_setting_to_segment_name(
@@ -65,7 +65,8 @@ class Interpreter(AbjadObject):
             settings_to_store = new_settings + forwarded_existing_settings
             self.store_single_context_set_expressions_by_context(settings_to_store, clear_persistent_first=True)
 
-    def store_single_context_set_expression_by_context(self, single_context_set_expression, clear_persistent_first=False):
+    def store_single_context_set_expression_by_context(self, single_context_set_expression, 
+        clear_persistent_first=False):
         '''Copy single-context setting.
 
         Find single-context set expression start segment.
@@ -78,7 +79,7 @@ class Interpreter(AbjadObject):
         anchor = single_context_set_expression.anchor
         segment_specification = self.score_specification.get_start_segment_specification(anchor)
         assert segment_specification is not None
-        context_name = single_context_set_expression.context_name
+        context_name = single_context_set_expression.target_context_name
         if context_name is None:
             context_name = segment_specification.single_context_set_expressions_by_context.score_name
         attribute = single_context_set_expression.attribute

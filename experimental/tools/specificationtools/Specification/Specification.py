@@ -56,9 +56,9 @@ class Specification(AbjadObject):
             context_names = self._context_name_to_parentage_names(context_name, proper=False)
         for context_name in context_names:
             for element in expr:
-                if element.context_name is None:
+                if element.target_context_name is None:
                     return element
-                if element.context_name == context_name:
+                if element.target_context_name == context_name:
                     return element
 
     ### PRIVATE METHODS ###

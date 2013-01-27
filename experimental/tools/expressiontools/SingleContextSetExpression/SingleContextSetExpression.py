@@ -37,7 +37,7 @@ class SingleContextSetExpression(InputSetExpression):
                 ((3, 16),)
                 ),
             target_timespan='red',
-            context_name='Voice 1',
+            target_context_name='Voice 1',
             fresh=True,
             persist=True
             )
@@ -52,22 +52,22 @@ class SingleContextSetExpression(InputSetExpression):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute=None, source=None, target_timespan=None, context_name=None, 
+    def __init__(self, attribute=None, source=None, target_timespan=None, target_context_name=None, 
         fresh=True, persist=True, truncate=None):
         InputSetExpression.__init__(self, attribute=attribute, source=source, 
             target_timespan=target_timespan, fresh=fresh, persist=persist, truncate=truncate)
-        assert isinstance(context_name, (str, type(None)))
-        self._context_name = context_name
+        assert isinstance(target_context_name, (str, type(None)))
+        self._target_context_name = target_context_name
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def context_name(self):
+    def target_context_name(self):
         '''Single-context set expression context name.
 
         Return string or none.
         '''
-        return self._context_name
+        return self._target_context_name
 
     @property
     def storage_format(self):
@@ -79,7 +79,7 @@ class SingleContextSetExpression(InputSetExpression):
                     ((3, 16),)
                     ),
                 target_timespan='red',
-                context_name='Voice 1',
+                target_context_name='Voice 1',
                 fresh=True,
                 persist=True
                 )
