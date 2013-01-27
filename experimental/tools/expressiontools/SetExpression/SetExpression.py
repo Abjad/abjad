@@ -1,9 +1,9 @@
 import abc
 import copy
-from experimental.tools.expressiontools.AnchoredExpression import AnchoredExpression
+from experimental.tools.expressiontools.BaseSetExpression import BaseSetExpression
 
 
-class SetExpression(AnchoredExpression):
+class SetExpression(BaseSetExpression):
     r'''Set expression.
     '''
 
@@ -22,9 +22,8 @@ class SetExpression(AnchoredExpression):
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))
-        AnchoredExpression.__init__(self, anchor=anchor)
+        BaseSetExpression.__init__(self, source=source, anchor=anchor)
         self._attribute = attribute
-        self._source = source
         self._fresh = fresh
         self._persist = persist
         self._truncate = truncate
@@ -69,14 +68,6 @@ class SetExpression(AnchoredExpression):
         Return boolean.
         '''
         return self._persist
-
-    @property
-    def source(self):
-        '''Set expression source.
-
-        Return expression.
-        '''
-        return self._source
 
     @property
     def truncate(self):

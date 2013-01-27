@@ -42,7 +42,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.source
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.BaseSetExpression <experimental.tools.expressiontools.BaseSetExpression.BaseSetExpression.BaseSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.start_offset
    :noindex:

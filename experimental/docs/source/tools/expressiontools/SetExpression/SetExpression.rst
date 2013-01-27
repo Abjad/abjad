@@ -31,6 +31,8 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.source
    :noindex:
 
+   Inherited from :py:class:`expressiontools.BaseSetExpression <experimental.tools.expressiontools.BaseSetExpression.BaseSetExpression.BaseSetExpression>`
+
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.start_offset
    :noindex:
 
