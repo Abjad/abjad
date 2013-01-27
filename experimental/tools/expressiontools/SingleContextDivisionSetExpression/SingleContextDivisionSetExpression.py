@@ -24,8 +24,8 @@ class SingleContextDivisionSetExpression(SingleContextSetExpression):
         '''
         from experimental.tools import expressiontools
         target_timespan = self.evaluate_anchor_timespan()
-        command = expressiontools.TimespanScopedSingleContextDivisionSetExpression(
+        expression = expressiontools.TimespanScopedSingleContextDivisionSetExpression(
             source=self.source, target_timespan=target_timespan, 
             target_context_name=self.target_context_name, 
             fresh=self.fresh, truncate=self.truncate)
-        return command
+        return expression

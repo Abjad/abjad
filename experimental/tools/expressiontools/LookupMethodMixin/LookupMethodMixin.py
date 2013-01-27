@@ -16,8 +16,10 @@ class LookupMethodMixin(AbjadObject):
     ### PUBLIC METHODS ###
 
     def look_up_division_setting(self, voice):
-        r'''Look up voice ``1`` division command
-        active at start of segment ``'red'``::
+        r'''Look up division set expression active at 
+        start of segment ``'red'`` in voice ``1``:
+
+        ::
 
             >>> lookup = red_segment.timespan.start_offset.look_up_division_setting('Voice 1')
 
@@ -41,8 +43,10 @@ class LookupMethodMixin(AbjadObject):
         return lookup
 
     def look_up_rhythm_setting(self, voice):
-        r'''StartPositionedPayloadCallbackMixin voice ``1`` rhythm command 
-        active at start of segment ``'red'``::
+        r'''Look up rhythm set expression active at
+        start of segment ``'red'`` in voice ``1``:
+
+        ::
 
             >>> lookup = red_segment.timespan.start_offset.look_up_rhythm_setting('Voice 1')
 
@@ -66,8 +70,10 @@ class LookupMethodMixin(AbjadObject):
         return lookup
 
     def look_up_time_signature_setting(self, voice):
-        r'''StartPositionedPayloadCallbackMixin voice ``1`` time signature command
-        active at start of segment ``'red'``::
+        r'''Look up time signature set expression active at
+        start of segment ``'red'`` in voice ``1``:
+
+        :: 
 
             >>> lookup = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
 

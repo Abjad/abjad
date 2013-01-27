@@ -55,7 +55,7 @@ class InputSetExpression(AnchoredSetExpression):
 
     @property
     def fresh(self):
-        '''True when set expression results from explicit composer command.
+        '''True when set expression results from explicit composer input.
         Otherwise false.
 
         Return boolean.

@@ -39,23 +39,23 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
             return self.target_timespan.stops_before_timespan_stops(expr)
         return False
 
-    def __or__(self, command):
-        '''Logical OR of region expression and `command`.
+    def __or__(self, set_expression):
+        '''Logical OR of set expression and `set_expression`.
 
-        Return newly constructed region expression.
+        Return newly constructed set expression.
 
-        Raise exception when region expression can not fuse with `command`.
+        Raise exception when set expression can not fuse with `set_expression`.
         '''
-        assert self._can_fuse(command)
-        stop_offset = self.target_timespan.stop_offset + command.target_timespan.duration
+        assert self._can_fuse(set_expression)
+        stop_offset = self.target_timespan.stop_offset + set_expression.target_timespan.duration
         target_timespan = self.target_timespan.new(stop_offset=stop_offset) 
         result = self.new(target_timespan=target_timespan)
         return timespantools.TimespanInventory([result])
 
     def __sub__(self, timespan):
-        '''Subtract `timespan` from region expression.
+        '''Subtract `timespan` from set expression.
 
-        Operate in place and return region expression inventory.
+        Operate in place and return set expression inventory.
         '''
         from experimental.tools import expressiontools
         timespans = self.target_timespan - timespan
@@ -83,8 +83,8 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
 
     @property
     def fresh(self):
-        '''True when region expression was generated in response 
-        to an explicit user command. Otherwise false.
+        '''True when set expression was generated in response 
+        to explicit user input. Otherwise false.
 
         Return boolean.
         '''
@@ -120,6 +120,6 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
     def evaluate(self):
         '''Evaluate timespan-scoped single-context set expression.
         
-        Return region expression.
+        Return set expression.
         '''
         pass
