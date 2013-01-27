@@ -175,7 +175,7 @@ class ScoreSpecification(Specification):
                 source=expressiontools.PayloadExpression(
                     ((2, 8), (3, 8), (4, 8))
                     ),
-                anchor='red',
+                target_timespan='red',
                 persist=True
                 )
             expressiontools.MultipleContextSetExpression(
@@ -183,7 +183,7 @@ class ScoreSpecification(Specification):
                 source=expressiontools.PayloadExpression(
                     ((4, 16), (4, 16))
                     ),
-                anchor='orange',
+                target_timespan='orange',
                 persist=True
                 )
             expressiontools.MultipleContextSetExpression(
@@ -191,7 +191,7 @@ class ScoreSpecification(Specification):
                 source=expressiontools.PayloadExpression(
                     ((5, 16), (5, 16))
                     ),
-                anchor='yellow',
+                target_timespan='yellow',
                 persist=True
                 )
             expressiontools.MultipleContextSetExpression(
@@ -199,7 +199,7 @@ class ScoreSpecification(Specification):
                 source=expressiontools.RhythmMakerPayloadExpression(
                     payload=(TaleaRhythmMaker('sixteenths'),)
                     ),
-                anchor='red',
+                target_timespan='red',
                 persist=True
                 )
 
@@ -302,7 +302,7 @@ class ScoreSpecification(Specification):
                 source=expressiontools.PayloadExpression(
                     ((2, 8), (3, 8), (4, 8))
                     ),
-                anchor='red',
+                target_timespan='red',
                 fresh=True,
                 persist=True
                 )
@@ -310,7 +310,7 @@ class ScoreSpecification(Specification):
                 source=expressiontools.PayloadExpression(
                     ((4, 16), (4, 16))
                     ),
-                anchor='orange',
+                target_timespan='orange',
                 fresh=True,
                 persist=True
                 )
@@ -318,7 +318,7 @@ class ScoreSpecification(Specification):
                 source=expressiontools.PayloadExpression(
                     ((5, 16), (5, 16))
                     ),
-                anchor='yellow',
+                target_timespan='yellow',
                 fresh=True,
                 persist=True
                 )
@@ -326,7 +326,7 @@ class ScoreSpecification(Specification):
                 source=expressiontools.RhythmMakerPayloadExpression(
                     payload=(TaleaRhythmMaker('sixteenths'),)
                     ),
-                anchor='red',
+                target_timespan='red',
                 fresh=True,
                 persist=True
                 )

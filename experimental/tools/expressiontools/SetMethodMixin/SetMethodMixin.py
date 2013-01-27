@@ -53,7 +53,7 @@ class SetMethodMixin(AbjadObject):
         multiple_context_set_expression = expressiontools.MultipleContextSetExpression(
             attribute=attribute,
             source=source,
-            anchor=self._expression_abbreviation,
+            target_timespan=self._expression_abbreviation,
             context_names=context_names,
             persist=persist,
             truncate=truncate
@@ -104,7 +104,7 @@ class SetMethodMixin(AbjadObject):
                 source=expressiontools.PayloadExpression(
                     ((3, 16),)
                     ),
-                anchor='red',
+                target_timespan='red',
                 context_names=['Voice 1', 'Voice 3'],
                 persist=True
                 )
@@ -191,7 +191,7 @@ class SetMethodMixin(AbjadObject):
                 source=expressiontools.RhythmMakerPayloadExpression(
                     payload=(TaleaRhythmMaker('sixteenths'),)
                     ),
-                anchor='red',
+                target_timespan='red',
                 persist=True
                 )
 
@@ -222,7 +222,7 @@ class SetMethodMixin(AbjadObject):
                 source=expressiontools.PayloadExpression(
                     ((3, 8), (4, 8))
                     ),
-                anchor='red',
+                target_timespan='red',
                 persist=True
                 )
 

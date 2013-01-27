@@ -53,6 +53,11 @@ Read-only Properties
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.target_timespan
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.truncate
    :noindex:
 

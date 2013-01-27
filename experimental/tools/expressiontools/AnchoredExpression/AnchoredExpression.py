@@ -34,6 +34,7 @@ class AnchoredExpression(Expression):
 
     ### PRIVATE METHODS ###
 
+    # TODO: maybe rename something that talks explicitly about setting anchor
     def _set_start_segment_identifier(self, segment_identifier):
         assert isinstance(segment_identifier, str)
         if isinstance(self.anchor, str):

@@ -174,7 +174,7 @@ class SegmentSpecification(Specification):
                 source=expressiontools.PayloadExpression(
                     ((2, 8), (3, 8), (4, 8))
                     ),
-                anchor='red',
+                target_timespan='red',
                 fresh=True,
                 persist=True
                 )
@@ -182,7 +182,7 @@ class SegmentSpecification(Specification):
                 source=expressiontools.RhythmMakerPayloadExpression(
                     payload=(TaleaRhythmMaker('sixteenths'),)
                     ),
-                anchor='red',
+                target_timespan='red',
                 fresh=True,
                 persist=True
                 )

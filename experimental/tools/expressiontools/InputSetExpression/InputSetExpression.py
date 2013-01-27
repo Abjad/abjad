@@ -15,14 +15,15 @@ class InputSetExpression(SetExpression):
 
     # TODO: eventually remove 'truncate' in favor of SingleContextDivisionSetExpression.truncate
     @abc.abstractmethod
-    def __init__(self, attribute=None, source=None, anchor=None, fresh=True, persist=True, truncate=None):
+    def __init__(self, attribute=None, source=None, target_timespan=None, 
+        fresh=True, persist=True, truncate=None):
         from experimental.tools import expressiontools
         assert isinstance(attribute, str)
         assert isinstance(source, (expressiontools.Expression)), repr(expression)
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))
-        SetExpression.__init__(self, source=source, anchor=anchor)
+        SetExpression.__init__(self, source=source, target_timespan=target_timespan)
         self._attribute = attribute
         self._fresh = fresh
         self._persist = persist

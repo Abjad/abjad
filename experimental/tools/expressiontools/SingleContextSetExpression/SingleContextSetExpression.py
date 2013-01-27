@@ -6,7 +6,7 @@ from experimental.tools.expressiontools.InputSetExpression import InputSetExpres
 class SingleContextSetExpression(InputSetExpression):
     r'''Single-context set expression.
 
-    Set `attribute` to `expression` for single-context `anchor`::
+    Set `attribute` to `source` for single-context `target_timespan`::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
@@ -36,13 +36,13 @@ class SingleContextSetExpression(InputSetExpression):
             source=expressiontools.PayloadExpression(
                 ((3, 16),)
                 ),
-            anchor='red',
+            target_timespan='red',
             context_name='Voice 1',
             fresh=True,
             persist=True
             )
 
-    Composer set() methods product multiple-context set expressions.
+    Composers create multiple-context set expressions with set methods.
 
     Multiple-context set expressions produce single-context settings.
 
@@ -52,10 +52,10 @@ class SingleContextSetExpression(InputSetExpression):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute=None, source=None, anchor=None, context_name=None, 
+    def __init__(self, attribute=None, source=None, target_timespan=None, context_name=None, 
         fresh=True, persist=True, truncate=None):
-        InputSetExpression.__init__(self, attribute=attribute, source=source, anchor=anchor, 
-            fresh=fresh, persist=persist, truncate=truncate)
+        InputSetExpression.__init__(self, attribute=attribute, source=source, 
+            target_timespan=target_timespan, fresh=fresh, persist=persist, truncate=truncate)
         assert isinstance(context_name, (str, type(None)))
         self._context_name = context_name
 
@@ -78,7 +78,7 @@ class SingleContextSetExpression(InputSetExpression):
                 source=expressiontools.PayloadExpression(
                     ((3, 16),)
                     ),
-                anchor='red',
+                target_timespan='red',
                 context_name='Voice 1',
                 fresh=True,
                 persist=True

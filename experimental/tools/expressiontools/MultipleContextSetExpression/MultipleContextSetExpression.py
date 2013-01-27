@@ -25,7 +25,7 @@ class MultipleContextSetExpression(InputSetExpression):
             source=expressiontools.PayloadExpression(
                 ((4, 8), (3, 8))
                 ),
-            anchor='red',
+            target_timespan='red',
             persist=True
             )
 
@@ -34,10 +34,10 @@ class MultipleContextSetExpression(InputSetExpression):
 
     ### INITIAILIZER ###
 
-    def __init__(self, attribute=None, source=None, anchor=None, context_names=None, 
+    def __init__(self, attribute=None, source=None, target_timespan=None, context_names=None, 
             persist=True, truncate=None):
-        InputSetExpression.__init__(self, attribute=attribute, source=source, anchor=anchor, 
-            persist=persist, truncate=truncate)
+        InputSetExpression.__init__(self, attribute=attribute, source=source, 
+            target_timespan=target_timespan, persist=persist, truncate=truncate)
         assert isinstance(context_names, (list, type(None))), repr(context_names)
         self._context_names = context_names
 
@@ -68,20 +68,20 @@ class MultipleContextSetExpression(InputSetExpression):
         single_context_set_expression_class = \
             self._attribute_to_single_context_set_expression_class(self.attribute)
         if self.context_names is None:
-            anchor = copy.deepcopy(self.anchor)
+            target_timespan = copy.deepcopy(self.target_timespan)
             single_context_set_expression = single_context_set_expression_class(
-                self.source, 
-                anchor,
+                source=self.source, 
+                target_timespan=target_timespan,
                 context_name=None,
                 persist=self.persist)
             single_context_set_expression._score_specification = self.score_specification
             single_context_set_expressions.append(single_context_set_expression)
         else:
             for context_name in self.context_names:
-                anchor = copy.deepcopy(self.anchor)
+                target_timespan = copy.deepcopy(self.target_timespan)
                 single_context_set_expression = single_context_set_expression_class(
-                    self.source, 
-                    anchor,
+                    source=self.source, 
+                    target_timespan=target_timespan,
                     context_name=context_name,
                     persist=self.persist)
                 single_context_set_expression._score_specification = self.score_specification
