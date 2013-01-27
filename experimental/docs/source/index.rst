@@ -122,6 +122,7 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/expressiontools/AnchoredExpression/AnchoredExpression
+      tools/expressiontools/AnchoredSetExpression/AnchoredSetExpression
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
       tools/expressiontools/InputSetExpression/InputSetExpression
@@ -132,7 +133,6 @@ Unstable packages (load manually)
       tools/expressiontools/RhythmRegionExpression/RhythmRegionExpression
       tools/expressiontools/SelectExpression/SelectExpression
       tools/expressiontools/SelectMethodMixin/SelectMethodMixin
-      tools/expressiontools/SetExpression/SetExpression
       tools/expressiontools/SetExpressionLookupExpression/SetExpressionLookupExpression
       tools/expressiontools/SetMethodMixin/SetMethodMixin
       tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression
@@ -199,6 +199,7 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/expressiontools/AnchoredExpression/AnchoredExpression
+      tools/expressiontools/AnchoredSetExpression/AnchoredSetExpression
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
       tools/expressiontools/InputSetExpression/InputSetExpression
@@ -209,7 +210,6 @@ Unstable packages (load manually)
       tools/expressiontools/RhythmRegionExpression/RhythmRegionExpression
       tools/expressiontools/SelectExpression/SelectExpression
       tools/expressiontools/SelectMethodMixin/SelectMethodMixin
-      tools/expressiontools/SetExpression/SetExpression
       tools/expressiontools/SetExpressionLookupExpression/SetExpressionLookupExpression
       tools/expressiontools/SetMethodMixin/SetMethodMixin
       tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression

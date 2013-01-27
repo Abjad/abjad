@@ -2,11 +2,11 @@ import abc
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools 
 from abjad.tools import timespantools 
-from experimental.tools.expressiontools.SetExpression import SetExpression
+from experimental.tools.expressiontools.AnchoredSetExpression import AnchoredSetExpression
 
 
 # TODO: maybe doesn't need to inherit (indirectly) from AnchoredExpression; no longer has anchor
-class TimespanScopedSingleContextSetExpression(SetExpression):
+class TimespanScopedSingleContextSetExpression(AnchoredSetExpression):
     '''Timespan-scoped single-context set expression.
     '''
 
@@ -22,7 +22,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
         assert isinstance(target_context_name, (str, type(None))), repr(target_context_name)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
-        SetExpression.__init__(self, source=source)
+        AnchoredSetExpression.__init__(self, source=source)
         self._timespan = timespan
         self._target_context_name = target_context_name
         self._fresh = fresh

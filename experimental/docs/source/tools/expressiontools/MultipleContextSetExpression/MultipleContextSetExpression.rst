@@ -37,7 +37,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.source
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.AnchoredSetExpression <experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.start_offset
    :noindex:
@@ -65,7 +65,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.target_timespan
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.AnchoredSetExpression <experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.truncate
    :noindex:

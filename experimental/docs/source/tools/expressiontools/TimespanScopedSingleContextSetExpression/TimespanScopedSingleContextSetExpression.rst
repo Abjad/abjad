@@ -28,7 +28,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.source
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.AnchoredSetExpression <experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.start_offset
    :noindex:
@@ -52,7 +52,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.target_timespan
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
+   Inherited from :py:class:`expressiontools.AnchoredSetExpression <experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.timespan
    :noindex:
