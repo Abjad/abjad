@@ -141,6 +141,15 @@ class TimespanScopedSingleContextSetExpression(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    @abc.abstractmethod
+    def evaluate(self):
+        '''Evaluate timespan-scoped single-context set expression.
+        
+        Return region expression.
+        '''
+        pass
+
+    # TODO: remove in favor of Expression.new()
     def new(self, **kwargs):
         positional_argument_dictionary = self._positional_argument_dictionary
         keyword_argument_dictionary = self._keyword_argument_dictionary
@@ -157,11 +166,3 @@ class TimespanScopedSingleContextSetExpression(AbjadObject):
             positional_argument_values.append(positional_argument_value)
         result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
         return result
-
-    @abc.abstractmethod
-    def evaluate(self):
-        '''Evaluate timespan-scoped single-context set expression.
-        
-        Return region expression.
-        '''
-        pass

@@ -580,6 +580,16 @@ class ScoreSpecification(Specification):
             truncate=True
             )
 
+    def make_default_timespan_scoped_single_context_set_expression(self, attribute, voice_name, timespan):
+        if attribute == 'divisions':
+            return self.make_default_timespan_scoped_single_context_set_division_expression(
+                voice_name, timespan)
+        elif attribute == 'rhythm':
+            return self.make_default_timespan_scoped_single_context_set_rhythm_expression(
+                voice_name, timespan)
+        else:
+            raise ValueError(attribute)
+
     def make_default_timespan_scoped_single_context_set_rhythm_expression(self, voice_name, timespan):
         return expressiontools.TimespanScopedSingleContextSetRhythmExpression(
             expression=expressiontools.RhythmMakerPayloadExpression(library.skip_tokens),
@@ -587,11 +597,3 @@ class ScoreSpecification(Specification):
             context_name=voice_name,
             fresh=True
             )
-
-    def make_default_timespan_scoped_single_context_set_expression(self, attribute, voice_name, timespan):
-        if attribute == 'divisions':
-            return self.make_default_timespan_scoped_single_context_set_division_expression(voice_name, timespan)
-        elif attribute == 'rhythm':
-            return self.make_default_timespan_scoped_single_context_set_rhythm_expression(voice_name, timespan)
-        else:
-            raise ValueError(attribute)
