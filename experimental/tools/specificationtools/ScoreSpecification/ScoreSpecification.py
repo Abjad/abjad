@@ -293,10 +293,10 @@ class ScoreSpecification(Specification):
         return self._segment_specifications
 
     @property
-    def single_context_settings(self):
+    def single_context_set_expressions(self):
         r'''Score specification single-context settings::
 
-            >>> for x in score_specification.single_context_settings:
+            >>> for x in score_specification.single_context_set_expressions:
             ...     z(x)
             expressiontools.SingleContextSetTimeSignatureExpression(
                 expression=expressiontools.PayloadExpression(
@@ -333,13 +333,13 @@ class ScoreSpecification(Specification):
 
         Return single-context setting inventory.
         '''
-        return Specification.single_context_settings.fget(self)
+        return Specification.single_context_set_expressions.fget(self)
 
     @property
-    def single_context_settings_by_context(self):
+    def single_context_set_expressions_by_context(self):
         r'''Score specification single-context settings by context::
 
-            >>> for key in score_specification.single_context_settings_by_context:
+            >>> for key in score_specification.single_context_set_expressions_by_context:
             ...     key
             ... 
             'Grouped Rhythmic Staves Score'
@@ -351,7 +351,7 @@ class ScoreSpecification(Specification):
 
         Return context proxy dictionary.
         '''
-        return Specification.single_context_settings_by_context.fget(self)
+        return Specification.single_context_set_expressions_by_context.fget(self)
 
     @property
     def specification_name(self):
@@ -507,9 +507,9 @@ class ScoreSpecification(Specification):
         segment_setting_interface = expressiontools.SegmentSpecificationInterface(self, name)
         return segment_setting_interface
 
-    def clear_persistent_single_context_settings_by_context(self, context_name, attribute):
-        if attribute in self.single_context_settings_by_context[context_name]:
-            del(self.single_context_settings_by_context[context_name][attribute])
+    def clear_persistent_single_context_set_expressions_by_context(self, context_name, attribute):
+        if attribute in self.single_context_set_expressions_by_context[context_name]:
+            del(self.single_context_set_expressions_by_context[context_name][attribute])
 
     # TODO: possibly remove in favor of self.get_anchor_timespan().
     def get_start_segment_specification(self, expr):
@@ -546,14 +546,14 @@ class ScoreSpecification(Specification):
         result = [x.pair for x in result]
         return result
 
-    def get_timespan_scoped_single_context_settings_for_voice(self, attribute, context_name):
+    def get_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, context_name):
         timespan_scoped_settings = expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for segment_specification in self.segment_specifications:
-            single_context_settings = \
-                segment_specification.get_single_context_settings_that_start_during_segment(
+            single_context_set_expressions = \
+                segment_specification.get_single_context_set_expressions_that_start_during_segment(
                 context_name, attribute, include_improper_parentage=True)
-            for single_context_setting in single_context_settings:
-                timespan_scoped_setting = single_context_setting.to_timespan_scoped_setting()
+            for single_context_set_expression in single_context_set_expressions:
+                timespan_scoped_setting = single_context_set_expression.to_timespan_scoped_setting()
                 # make sure setting was setting for timespan that exists in current segment
                 if timespan_scoped_setting.timespan.is_well_formed:
                     timespan_scoped_settings.append(timespan_scoped_setting)
@@ -588,7 +588,7 @@ class ScoreSpecification(Specification):
             fresh=True
             )
 
-    def make_default_timespan_scoped_single_context_setting(self, attribute, voice_name, timespan):
+    def make_default_timespan_scoped_single_context_set_expression(self, attribute, voice_name, timespan):
         if attribute == 'divisions':
             return self.make_default_timespan_scoped_single_context_division_setting(voice_name, timespan)
         elif attribute == 'rhythm':

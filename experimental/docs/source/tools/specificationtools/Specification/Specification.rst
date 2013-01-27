@@ -27,10 +27,10 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.score_template
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.single_context_settings
+.. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.single_context_set_expressions
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.single_context_settings_by_context
+.. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.single_context_set_expressions_by_context
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.storage_format

@@ -20,16 +20,16 @@ Methods
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.instantiate_score
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_interpreter_specific_single_context_settings_by_context
+.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_interpreter_specific_single_context_set_expressions_by_context
    :noindex:
 
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_single_context_attribute_settings_by_context
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_single_context_setting_by_context
+.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_single_context_set_expression_by_context
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_single_context_settings_by_context
+.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_single_context_set_expressions_by_context
    :noindex:
 
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.unpack_multiple_context_settings_for_score

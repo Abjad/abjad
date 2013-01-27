@@ -13,7 +13,7 @@ def test_SetExpressionInventory_storage_format_01():
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     score_specification.interpret()
 
-    setting_inventory_1 = score_specification['red'].single_context_settings
+    setting_inventory_1 = score_specification['red'].single_context_set_expressions
     storage_format = setting_inventory_1.storage_format
     setting_inventory_2 = eval(storage_format)
 

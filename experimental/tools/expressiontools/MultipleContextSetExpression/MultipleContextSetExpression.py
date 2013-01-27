@@ -47,7 +47,7 @@ class MultipleContextSetExpression(SetExpression):
 
     ### PRIVATE METHODS ###
     
-    def _attribute_to_single_context_setting_class(self, attribute):
+    def _attribute_to_single_context_set_expression_class(self, attribute):
         from experimental.tools import expressiontools
         return {
             'time_signatures': expressiontools.SingleContextSetTimeSignatureExpression,
@@ -68,29 +68,29 @@ class MultipleContextSetExpression(SetExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        single_context_settings = []
-        single_context_setting_class = \
-            self._attribute_to_single_context_setting_class(self.attribute)
+        single_context_set_expressions = []
+        single_context_set_expression_class = \
+            self._attribute_to_single_context_set_expression_class(self.attribute)
         if self.context_names is None:
             anchor = copy.deepcopy(self.anchor)
-            single_context_setting = single_context_setting_class(
+            single_context_set_expression = single_context_set_expression_class(
                 self.expression, 
                 anchor,
                 context_name=None,
                 persist=self.persist)
-            single_context_setting._score_specification = self.score_specification
-            single_context_settings.append(single_context_setting)
+            single_context_set_expression._score_specification = self.score_specification
+            single_context_set_expressions.append(single_context_set_expression)
         else:
             for context_name in self.context_names:
                 anchor = copy.deepcopy(self.anchor)
-                single_context_setting = single_context_setting_class(
+                single_context_set_expression = single_context_set_expression_class(
                     self.expression, 
                     anchor,
                     context_name=context_name,
                     persist=self.persist)
-                single_context_setting._score_specification = self.score_specification
-                single_context_settings.append(single_context_setting)
+                single_context_set_expression._score_specification = self.score_specification
+                single_context_set_expressions.append(single_context_set_expression)
         if self.attribute == 'divisions':
-            for single_context_setting in single_context_settings:
-                single_context_setting._truncate = self.truncate
-        return single_context_settings
+            for single_context_set_expression in single_context_set_expressions:
+                single_context_set_expression._truncate = self.truncate
+        return single_context_set_expressions

@@ -165,10 +165,10 @@ class SegmentSpecification(Specification):
         return self._segment_name
 
     @property
-    def single_context_settings(self):
+    def single_context_set_expressions(self):
         r'''Segment specification single-context settings::
 
-            >>> for x in red_segment.single_context_settings:
+            >>> for x in red_segment.single_context_set_expressions:
             ...     z(x)
             expressiontools.SingleContextSetTimeSignatureExpression(
                 expression=expressiontools.PayloadExpression(
@@ -189,13 +189,13 @@ class SegmentSpecification(Specification):
 
         Return single-context setting inventory.
         '''
-        return Specification.single_context_settings.fget(self)
+        return Specification.single_context_set_expressions.fget(self)
 
     @property
-    def single_context_settings_by_context(self):
+    def single_context_set_expressions_by_context(self):
         r'''Segment specification single-context settings by context::
 
-            >>> for key in red_segment.single_context_settings_by_context:
+            >>> for key in red_segment.single_context_set_expressions_by_context:
             ...     key
             ... 
             'Grouped Rhythmic Staves Score'
@@ -207,7 +207,7 @@ class SegmentSpecification(Specification):
 
         Return context proxy dictionary.
         '''
-        return Specification.single_context_settings_by_context.fget(self)
+        return Specification.single_context_set_expressions_by_context.fget(self)
 
     @property
     def specification_name(self):
@@ -262,14 +262,14 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    def get_single_context_settings_that_start_during_segment(self, context_name, attribute, 
+    def get_single_context_set_expressions_that_start_during_segment(self, context_name, attribute, 
         include_improper_parentage=False):
         result = []
         context_names = [context_name]
         if include_improper_parentage:
             context_names.extend(self._context_name_to_parentage_names(context_name))
         for context_name in reversed(context_names):
-            single_context_settings = self.single_context_settings_by_context[context_name]
-            single_context_settings = single_context_settings.get_settings(attribute=attribute)
-            result.extend(single_context_settings)
+            single_context_set_expressions = self.single_context_set_expressions_by_context[context_name]
+            single_context_set_expressions = single_context_set_expressions.get_settings(attribute=attribute)
+            result.extend(single_context_set_expressions)
         return result

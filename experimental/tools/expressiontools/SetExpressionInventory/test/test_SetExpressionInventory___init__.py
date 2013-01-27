@@ -11,7 +11,7 @@ def test_SetExpressionInventory___init___01():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
 
-    setting_inventory_1 = score_specification['red'].single_context_settings
+    setting_inventory_1 = score_specification['red'].single_context_set_expressions
     setting_inventory_2 = expressiontools.SetExpressionInventory(setting_inventory_1)
 
     assert isinstance(setting_inventory_1, expressiontools.SetExpressionInventory)
