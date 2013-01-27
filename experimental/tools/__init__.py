@@ -7,5 +7,5 @@ import library
 import lyrictools
 import metricmodulationtools
 import parsertools
-import settingtools
+import expressiontools
 import specificationtools

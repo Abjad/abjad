@@ -153,9 +153,9 @@ def test_schematic_example_X_04():
     middle.timespan.set_rhythm(library.equal_divisions(8), contexts=['Voice 1'])
     right.timespan.set_rhythm(library.equal_divisions(4), contexts=['Voice 1'])
     voice_1_rhythm = red_segment.select_leaves('Voice 1')
-    indicator = settingtools.RotationIndicator(-1, 1)
+    indicator = expressiontools.RotationIndicator(-1, 1)
     red_segment.set_rhythm(voice_1_rhythm.rotate(indicator), contexts=['Voice 2'])
-    indicator = settingtools.RotationIndicator(-2, 1)
+    indicator = expressiontools.RotationIndicator(-2, 1)
     red_segment.set_rhythm(voice_1_rhythm.rotate(indicator), contexts=['Voice 3'])
     naive_beats = red_segment.select_beats('Voice 1')
     red_segment.set_divisions(naive_beats, contexts=['Voice 4'])
@@ -197,11 +197,11 @@ def test_schematic_example_X_05():
     red_segment.set_rhythm("{ c'32 [ c'16 c'16. ] }", contexts=['Voice 1'])
     first_division = red_segment.select_divisions('Voice 1')[:1]
     voice_1_rhythmic_cell = first_division.start_offset.look_up_rhythm_setting('Voice 1')
-    indicator = settingtools.RotationIndicator(Duration(-1, 32), fracture_spanners=False)
+    indicator = expressiontools.RotationIndicator(Duration(-1, 32), fracture_spanners=False)
     red_segment.set_rhythm(voice_1_rhythmic_cell.rotate(indicator), contexts=['Voice 2'])
-    indicator = settingtools.RotationIndicator(Duration(-2, 32), fracture_spanners=False)
+    indicator = expressiontools.RotationIndicator(Duration(-2, 32), fracture_spanners=False)
     red_segment.set_rhythm(voice_1_rhythmic_cell.rotate(indicator), contexts=['Voice 3'])
-    indicator = settingtools.RotationIndicator(Duration(-3, 32), fracture_spanners=False)
+    indicator = expressiontools.RotationIndicator(Duration(-3, 32), fracture_spanners=False)
     red_segment.set_rhythm(voice_1_rhythmic_cell.rotate(indicator), contexts=['Voice 4'])
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures(2 * [(1, 8)])
@@ -232,11 +232,11 @@ def test_schematic_example_X_06():
     red_segment.set_rhythm("{ c'32 [ c'16 c'16. c'8 ] }", contexts=['Voice 1'])
     first_division = red_segment.select_divisions('Voice 1')[:1]
     rhythmic_cell = first_division.timespan.select_leaves('Voice 1')
-    indicator = settingtools.RotationIndicator(-1, fracture_spanners=False)
+    indicator = expressiontools.RotationIndicator(-1, fracture_spanners=False)
     red_segment.set_rhythm(rhythmic_cell.rotate(indicator), contexts=['Voice 2'])
-    indicator = settingtools.RotationIndicator(-2, fracture_spanners=False)
+    indicator = expressiontools.RotationIndicator(-2, fracture_spanners=False)
     red_segment.set_rhythm(rhythmic_cell.rotate(indicator), contexts=['Voice 3'])
-    indicator = settingtools.RotationIndicator(-3, fracture_spanners=False)
+    indicator = expressiontools.RotationIndicator(-3, fracture_spanners=False)
     red_segment.set_rhythm(rhythmic_cell.rotate(indicator), contexts=['Voice 4'])
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures(2 * [(1, 8)])
@@ -366,7 +366,7 @@ def test_schematic_example_X_09():
     voice_1_rhythm = red_segment.select_leaves('Voice 1')
     # TODO: extend RotationIndicator to allow for symoblic rotation by portion of total duration
     # This will remove hard-coded duration values in the three lines below.
-    # Might look like rotation=settingtools.RotationIndicator((-1, 3)).
+    # Might look like rotation=expressiontools.RotationIndicator((-1, 3)).
     # Or like rotation=(-1, 3), rotation=(-2, 2), rotation(-3, 1).
     # This also suggests a companion procedure that rotates based on ratio of total count of elements.
     red_segment.set_rhythm(voice_1_rhythm.rotate(Duration(-7, 32)), contexts=['Voice 2'])

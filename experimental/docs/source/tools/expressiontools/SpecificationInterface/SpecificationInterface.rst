@@ -1,0 +1,163 @@
+expressiontools.SpecificationInterface
+======================================
+
+.. abjad-lineage:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface
+
+.. autoclass:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface
+   :noindex:
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.score_specification
+   :noindex:
+
+.. autoattribute:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.specification_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.storage_format
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.timespan
+   :noindex:
+
+Methods
+-------
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_beats
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SelectMethodMixin <experimental.tools.expressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_divisions
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SelectMethodMixin <experimental.tools.expressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_leaves
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SelectMethodMixin <experimental.tools.expressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_measures
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SelectMethodMixin <experimental.tools.expressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_notes_and_chords
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SelectMethodMixin <experimental.tools.expressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_time_signatures
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SelectMethodMixin <experimental.tools.expressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_aggregate
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetMethodMixin <experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_articulations
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetMethodMixin <experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_chord_treatment
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetMethodMixin <experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_divisions
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetMethodMixin <experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_dynamics
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetMethodMixin <experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_marks
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetMethodMixin <experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_markup
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetMethodMixin <experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_pitch_class_application
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetMethodMixin <experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_pitch_class_transform
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetMethodMixin <experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_pitch_classes
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetMethodMixin <experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_registration
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetMethodMixin <experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_rhythm
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetMethodMixin <experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_tempo
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetMethodMixin <experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_time_signatures
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.SetMethodMixin <experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+Special Methods
+---------------
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__eq__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__ge__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__gt__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__le__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__lt__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__ne__
+   :noindex:
+
+   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__repr__
+   :noindex:

@@ -1,7 +1,7 @@
 import copy
 from abjad.tools import *
 from experimental.tools import library
-from experimental.tools import settingtools
+from experimental.tools import expressiontools
 from experimental.tools import specificationtools
 from experimental.tools.interpretertools.Interpreter import Interpreter
 
@@ -119,11 +119,11 @@ class ConcreteInterpreter(Interpreter):
         while self.score_specification.division_region_expressions:
             made_progress = False
             for division_region_expression in self.score_specification.division_region_expressions[:]:
-                assert isinstance(division_region_expression, settingtools.DivisionRegionExpression)
+                assert isinstance(division_region_expression, expressiontools.DivisionRegionExpression)
                 division_payload_expression = division_region_expression.evaluate()
                 if division_payload_expression is not None:
                     assert isinstance(division_payload_expression, 
-                        settingtools.StartPositionedDivisionPayloadExpression)
+                        expressiontools.StartPositionedDivisionPayloadExpression)
                     made_progress = True
                     self.score_specification.division_region_expressions.remove(division_region_expression)
                     voice_name = division_region_expression.voice_name
@@ -154,11 +154,11 @@ class ConcreteInterpreter(Interpreter):
         while self.score_specification.rhythm_region_expressions:
             made_progress = False
             for rhythm_region_expression in self.score_specification.rhythm_region_expressions[:]:
-                assert isinstance(rhythm_region_expression, settingtools.RhythmRegionExpression)
+                assert isinstance(rhythm_region_expression, expressiontools.RhythmRegionExpression)
                 rhythm_payload_expression = rhythm_region_expression.evaluate()
                 if rhythm_payload_expression is not None:
                     assert isinstance(rhythm_payload_expression, 
-                        settingtools.StartPositionedRhythmPayloadExpression)
+                        expressiontools.StartPositionedRhythmPayloadExpression)
                     made_progress = True
                     self.score_specification.rhythm_region_expressions.remove(rhythm_region_expression)
                     voice_name = rhythm_region_expression.voice_name
@@ -203,7 +203,7 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_division_lists = sequencetools.partition_sequence_by_counts(
             voice_division_list.divisions, rhythm_region_start_division_counts, cyclic=False, overhang=False)
         rhythm_region_division_lists = [
-            settingtools.DivisionList(x, voice_name=voice_name) for x in rhythm_region_division_lists]
+            expressiontools.DivisionList(x, voice_name=voice_name) for x in rhythm_region_division_lists]
         assert len(rhythm_region_division_lists) == \
             len(timespan_scoped_single_context_rhythm_setting_merged_durations)
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
@@ -250,7 +250,7 @@ class ConcreteInterpreter(Interpreter):
 
     def make_voice_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_division_list = settingtools.DivisionList([], voice_name=voice.name)
+            voice_division_list = expressiontools.DivisionList([], voice_name=voice.name)
             voice_proxy = self.score_specification.contexts[voice.name]
             expressions = voice_proxy.division_payload_expressions
             divisions = [x.payload.divisions for x in expressions]
@@ -266,7 +266,7 @@ class ConcreteInterpreter(Interpreter):
     def merge_prolonging_rhythm_region_expressions(self, rhythm_region_expressions):
         result = []
         for rhythm_region_expression in rhythm_region_expressions:
-            if result and isinstance(rhythm_region_expression, settingtools.SelectExpressionRhythmRegionExpression) and \
+            if result and isinstance(rhythm_region_expression, expressiontools.SelectExpressionRhythmRegionExpression) and \
                 rhythm_region_expression.prolongs_expr(result[-1]):
                 current_stop_offset = rhythm_region_expression.start_offset
                 current_stop_offset += rhythm_region_expression.total_duration

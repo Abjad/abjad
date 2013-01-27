@@ -113,6 +113,161 @@ Unstable packages (load manually)
       tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
       tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
+:py:mod:`expressiontools <experimental.tools.expressiontools>`
+==============================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/expressiontools/AnchoredExpression/AnchoredExpression
+      tools/expressiontools/AnchoredObject/AnchoredObject
+      tools/expressiontools/CallbackMixin/CallbackMixin
+      tools/expressiontools/Expression/Expression
+      tools/expressiontools/LookupMethodMixin/LookupMethodMixin
+      tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
+      tools/expressiontools/PayloadCallbackMixin/PayloadCallbackMixin
+      tools/expressiontools/RegionExpression/RegionExpression
+      tools/expressiontools/RhythmRegionExpression/RhythmRegionExpression
+      tools/expressiontools/SelectExpression/SelectExpression
+      tools/expressiontools/SelectMethodMixin/SelectMethodMixin
+      tools/expressiontools/SetMethodMixin/SetMethodMixin
+      tools/expressiontools/Setting/Setting
+      tools/expressiontools/SettingLookupExpression/SettingLookupExpression
+      tools/expressiontools/SingleContextSetting/SingleContextSetting
+      tools/expressiontools/SpecificationInterface/SpecificationInterface
+      tools/expressiontools/TimespanCallbackMixin/TimespanCallbackMixin
+      tools/expressiontools/TimespanScopedSingleContextSetting/TimespanScopedSingleContextSetting
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/expressiontools/AttributeNameEnumeration/AttributeNameEnumeration
+      tools/expressiontools/BeatSelectExpression/BeatSelectExpression
+      tools/expressiontools/CallbackInventory/CallbackInventory
+      tools/expressiontools/ClassInventory/ClassInventory
+      tools/expressiontools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
+      tools/expressiontools/Division/Division
+      tools/expressiontools/DivisionList/DivisionList
+      tools/expressiontools/DivisionRegionExpression/DivisionRegionExpression
+      tools/expressiontools/DivisionSelectExpression/DivisionSelectExpression
+      tools/expressiontools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
+      tools/expressiontools/ExpressionInventory/ExpressionInventory
+      tools/expressiontools/HandlerExpression/HandlerExpression
+      tools/expressiontools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
+      tools/expressiontools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
+      tools/expressiontools/MaterialManager/MaterialManager
+      tools/expressiontools/MeasureSelectExpression/MeasureSelectExpression
+      tools/expressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
+      tools/expressiontools/MultipleContextSetting/MultipleContextSetting
+      tools/expressiontools/OffsetExpression/OffsetExpression
+      tools/expressiontools/PayloadExpression/PayloadExpression
+      tools/expressiontools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
+      tools/expressiontools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
+      tools/expressiontools/RhythmSettingLookupExpression/RhythmSettingLookupExpression
+      tools/expressiontools/RotationIndicator/RotationIndicator
+      tools/expressiontools/ScoreSpecificationInterface/ScoreSpecificationInterface
+      tools/expressiontools/SegmentIdentifierExpression/SegmentIdentifierExpression
+      tools/expressiontools/SegmentSelectExpression/SegmentSelectExpression
+      tools/expressiontools/SegmentSpecificationInterface/SegmentSpecificationInterface
+      tools/expressiontools/SelectExpressionDivisionRegionExpression/SelectExpressionDivisionRegionExpression
+      tools/expressiontools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
+      tools/expressiontools/SettingInventory/SettingInventory
+      tools/expressiontools/SingleContextDivisionSetting/SingleContextDivisionSetting
+      tools/expressiontools/SingleContextRhythmSetting/SingleContextRhythmSetting
+      tools/expressiontools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
+      tools/expressiontools/StartPositionedDivisionPayloadExpression/StartPositionedDivisionPayloadExpression
+      tools/expressiontools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
+      tools/expressiontools/StartPositionedRhythmPayloadExpression/StartPositionedRhythmPayloadExpression
+      tools/expressiontools/StatalServer/StatalServer
+      tools/expressiontools/StatalServerExpression/StatalServerExpression
+      tools/expressiontools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
+      tools/expressiontools/TimeSignatureSettingLookupExpression/TimeSignatureSettingLookupExpression
+      tools/expressiontools/TimespanExpression/TimespanExpression
+      tools/expressiontools/TimespanScopedSingleContextDivisionSetting/TimespanScopedSingleContextDivisionSetting
+      tools/expressiontools/TimespanScopedSingleContextRhythmSetting/TimespanScopedSingleContextRhythmSetting
+      tools/expressiontools/TimespanScopedSingleContextSettingInventory/TimespanScopedSingleContextSettingInventory
+
+.. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/expressiontools/AnchoredExpression/AnchoredExpression
+      tools/expressiontools/AnchoredObject/AnchoredObject
+      tools/expressiontools/CallbackMixin/CallbackMixin
+      tools/expressiontools/Expression/Expression
+      tools/expressiontools/LookupMethodMixin/LookupMethodMixin
+      tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
+      tools/expressiontools/PayloadCallbackMixin/PayloadCallbackMixin
+      tools/expressiontools/RegionExpression/RegionExpression
+      tools/expressiontools/RhythmRegionExpression/RhythmRegionExpression
+      tools/expressiontools/SelectExpression/SelectExpression
+      tools/expressiontools/SelectMethodMixin/SelectMethodMixin
+      tools/expressiontools/SetMethodMixin/SetMethodMixin
+      tools/expressiontools/Setting/Setting
+      tools/expressiontools/SettingLookupExpression/SettingLookupExpression
+      tools/expressiontools/SingleContextSetting/SingleContextSetting
+      tools/expressiontools/SpecificationInterface/SpecificationInterface
+      tools/expressiontools/TimespanCallbackMixin/TimespanCallbackMixin
+      tools/expressiontools/TimespanScopedSingleContextSetting/TimespanScopedSingleContextSetting
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/expressiontools/AttributeNameEnumeration/AttributeNameEnumeration
+      tools/expressiontools/BeatSelectExpression/BeatSelectExpression
+      tools/expressiontools/CallbackInventory/CallbackInventory
+      tools/expressiontools/ClassInventory/ClassInventory
+      tools/expressiontools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
+      tools/expressiontools/Division/Division
+      tools/expressiontools/DivisionList/DivisionList
+      tools/expressiontools/DivisionRegionExpression/DivisionRegionExpression
+      tools/expressiontools/DivisionSelectExpression/DivisionSelectExpression
+      tools/expressiontools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
+      tools/expressiontools/ExpressionInventory/ExpressionInventory
+      tools/expressiontools/HandlerExpression/HandlerExpression
+      tools/expressiontools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
+      tools/expressiontools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
+      tools/expressiontools/MaterialManager/MaterialManager
+      tools/expressiontools/MeasureSelectExpression/MeasureSelectExpression
+      tools/expressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
+      tools/expressiontools/MultipleContextSetting/MultipleContextSetting
+      tools/expressiontools/OffsetExpression/OffsetExpression
+      tools/expressiontools/PayloadExpression/PayloadExpression
+      tools/expressiontools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
+      tools/expressiontools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
+      tools/expressiontools/RhythmSettingLookupExpression/RhythmSettingLookupExpression
+      tools/expressiontools/RotationIndicator/RotationIndicator
+      tools/expressiontools/ScoreSpecificationInterface/ScoreSpecificationInterface
+      tools/expressiontools/SegmentIdentifierExpression/SegmentIdentifierExpression
+      tools/expressiontools/SegmentSelectExpression/SegmentSelectExpression
+      tools/expressiontools/SegmentSpecificationInterface/SegmentSpecificationInterface
+      tools/expressiontools/SelectExpressionDivisionRegionExpression/SelectExpressionDivisionRegionExpression
+      tools/expressiontools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
+      tools/expressiontools/SettingInventory/SettingInventory
+      tools/expressiontools/SingleContextDivisionSetting/SingleContextDivisionSetting
+      tools/expressiontools/SingleContextRhythmSetting/SingleContextRhythmSetting
+      tools/expressiontools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
+      tools/expressiontools/StartPositionedDivisionPayloadExpression/StartPositionedDivisionPayloadExpression
+      tools/expressiontools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
+      tools/expressiontools/StartPositionedRhythmPayloadExpression/StartPositionedRhythmPayloadExpression
+      tools/expressiontools/StatalServer/StatalServer
+      tools/expressiontools/StatalServerExpression/StatalServerExpression
+      tools/expressiontools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
+      tools/expressiontools/TimeSignatureSettingLookupExpression/TimeSignatureSettingLookupExpression
+      tools/expressiontools/TimespanExpression/TimespanExpression
+      tools/expressiontools/TimespanScopedSingleContextDivisionSetting/TimespanScopedSingleContextDivisionSetting
+      tools/expressiontools/TimespanScopedSingleContextRhythmSetting/TimespanScopedSingleContextRhythmSetting
+      tools/expressiontools/TimespanScopedSingleContextSettingInventory/TimespanScopedSingleContextSettingInventory
+
 :py:mod:`handlertools <experimental.tools.handlertools>`
 ========================================================
 
@@ -271,161 +426,6 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/parsertools/ENPParser/ENPParser
-
-:py:mod:`settingtools <experimental.tools.settingtools>`
-========================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/settingtools/AnchoredExpression/AnchoredExpression
-      tools/settingtools/AnchoredObject/AnchoredObject
-      tools/settingtools/CallbackMixin/CallbackMixin
-      tools/settingtools/Expression/Expression
-      tools/settingtools/LookupMethodMixin/LookupMethodMixin
-      tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
-      tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
-      tools/settingtools/RegionExpression/RegionExpression
-      tools/settingtools/RhythmRegionExpression/RhythmRegionExpression
-      tools/settingtools/SelectExpression/SelectExpression
-      tools/settingtools/SelectMethodMixin/SelectMethodMixin
-      tools/settingtools/SetMethodMixin/SetMethodMixin
-      tools/settingtools/Setting/Setting
-      tools/settingtools/SettingLookupExpression/SettingLookupExpression
-      tools/settingtools/SingleContextSetting/SingleContextSetting
-      tools/settingtools/SpecificationInterface/SpecificationInterface
-      tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
-      tools/settingtools/TimespanScopedSingleContextSetting/TimespanScopedSingleContextSetting
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
-      tools/settingtools/BeatSelectExpression/BeatSelectExpression
-      tools/settingtools/CallbackInventory/CallbackInventory
-      tools/settingtools/ClassInventory/ClassInventory
-      tools/settingtools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
-      tools/settingtools/Division/Division
-      tools/settingtools/DivisionList/DivisionList
-      tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
-      tools/settingtools/DivisionSelectExpression/DivisionSelectExpression
-      tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
-      tools/settingtools/ExpressionInventory/ExpressionInventory
-      tools/settingtools/HandlerExpression/HandlerExpression
-      tools/settingtools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
-      tools/settingtools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
-      tools/settingtools/MaterialManager/MaterialManager
-      tools/settingtools/MeasureSelectExpression/MeasureSelectExpression
-      tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
-      tools/settingtools/MultipleContextSetting/MultipleContextSetting
-      tools/settingtools/OffsetExpression/OffsetExpression
-      tools/settingtools/PayloadExpression/PayloadExpression
-      tools/settingtools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
-      tools/settingtools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
-      tools/settingtools/RhythmSettingLookupExpression/RhythmSettingLookupExpression
-      tools/settingtools/RotationIndicator/RotationIndicator
-      tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
-      tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
-      tools/settingtools/SegmentSelectExpression/SegmentSelectExpression
-      tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
-      tools/settingtools/SelectExpressionDivisionRegionExpression/SelectExpressionDivisionRegionExpression
-      tools/settingtools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
-      tools/settingtools/SettingInventory/SettingInventory
-      tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
-      tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
-      tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
-      tools/settingtools/StartPositionedDivisionPayloadExpression/StartPositionedDivisionPayloadExpression
-      tools/settingtools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
-      tools/settingtools/StartPositionedRhythmPayloadExpression/StartPositionedRhythmPayloadExpression
-      tools/settingtools/StatalServer/StatalServer
-      tools/settingtools/StatalServerExpression/StatalServerExpression
-      tools/settingtools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
-      tools/settingtools/TimeSignatureSettingLookupExpression/TimeSignatureSettingLookupExpression
-      tools/settingtools/TimespanExpression/TimespanExpression
-      tools/settingtools/TimespanScopedSingleContextDivisionSetting/TimespanScopedSingleContextDivisionSetting
-      tools/settingtools/TimespanScopedSingleContextRhythmSetting/TimespanScopedSingleContextRhythmSetting
-      tools/settingtools/TimespanScopedSingleContextSettingInventory/TimespanScopedSingleContextSettingInventory
-
-.. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/settingtools/AnchoredExpression/AnchoredExpression
-      tools/settingtools/AnchoredObject/AnchoredObject
-      tools/settingtools/CallbackMixin/CallbackMixin
-      tools/settingtools/Expression/Expression
-      tools/settingtools/LookupMethodMixin/LookupMethodMixin
-      tools/settingtools/OffsetCallbackMixin/OffsetCallbackMixin
-      tools/settingtools/PayloadCallbackMixin/PayloadCallbackMixin
-      tools/settingtools/RegionExpression/RegionExpression
-      tools/settingtools/RhythmRegionExpression/RhythmRegionExpression
-      tools/settingtools/SelectExpression/SelectExpression
-      tools/settingtools/SelectMethodMixin/SelectMethodMixin
-      tools/settingtools/SetMethodMixin/SetMethodMixin
-      tools/settingtools/Setting/Setting
-      tools/settingtools/SettingLookupExpression/SettingLookupExpression
-      tools/settingtools/SingleContextSetting/SingleContextSetting
-      tools/settingtools/SpecificationInterface/SpecificationInterface
-      tools/settingtools/TimespanCallbackMixin/TimespanCallbackMixin
-      tools/settingtools/TimespanScopedSingleContextSetting/TimespanScopedSingleContextSetting
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/settingtools/AttributeNameEnumeration/AttributeNameEnumeration
-      tools/settingtools/BeatSelectExpression/BeatSelectExpression
-      tools/settingtools/CallbackInventory/CallbackInventory
-      tools/settingtools/ClassInventory/ClassInventory
-      tools/settingtools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
-      tools/settingtools/Division/Division
-      tools/settingtools/DivisionList/DivisionList
-      tools/settingtools/DivisionRegionExpression/DivisionRegionExpression
-      tools/settingtools/DivisionSelectExpression/DivisionSelectExpression
-      tools/settingtools/DivisionSettingLookupExpression/DivisionSettingLookupExpression
-      tools/settingtools/ExpressionInventory/ExpressionInventory
-      tools/settingtools/HandlerExpression/HandlerExpression
-      tools/settingtools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
-      tools/settingtools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
-      tools/settingtools/MaterialManager/MaterialManager
-      tools/settingtools/MeasureSelectExpression/MeasureSelectExpression
-      tools/settingtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
-      tools/settingtools/MultipleContextSetting/MultipleContextSetting
-      tools/settingtools/OffsetExpression/OffsetExpression
-      tools/settingtools/PayloadExpression/PayloadExpression
-      tools/settingtools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
-      tools/settingtools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
-      tools/settingtools/RhythmSettingLookupExpression/RhythmSettingLookupExpression
-      tools/settingtools/RotationIndicator/RotationIndicator
-      tools/settingtools/ScoreSpecificationInterface/ScoreSpecificationInterface
-      tools/settingtools/SegmentIdentifierExpression/SegmentIdentifierExpression
-      tools/settingtools/SegmentSelectExpression/SegmentSelectExpression
-      tools/settingtools/SegmentSpecificationInterface/SegmentSpecificationInterface
-      tools/settingtools/SelectExpressionDivisionRegionExpression/SelectExpressionDivisionRegionExpression
-      tools/settingtools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
-      tools/settingtools/SettingInventory/SettingInventory
-      tools/settingtools/SingleContextDivisionSetting/SingleContextDivisionSetting
-      tools/settingtools/SingleContextRhythmSetting/SingleContextRhythmSetting
-      tools/settingtools/SingleContextTimeSignatureSetting/SingleContextTimeSignatureSetting
-      tools/settingtools/StartPositionedDivisionPayloadExpression/StartPositionedDivisionPayloadExpression
-      tools/settingtools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
-      tools/settingtools/StartPositionedRhythmPayloadExpression/StartPositionedRhythmPayloadExpression
-      tools/settingtools/StatalServer/StatalServer
-      tools/settingtools/StatalServerExpression/StatalServerExpression
-      tools/settingtools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
-      tools/settingtools/TimeSignatureSettingLookupExpression/TimeSignatureSettingLookupExpression
-      tools/settingtools/TimespanExpression/TimespanExpression
-      tools/settingtools/TimespanScopedSingleContextDivisionSetting/TimespanScopedSingleContextDivisionSetting
-      tools/settingtools/TimespanScopedSingleContextRhythmSetting/TimespanScopedSingleContextRhythmSetting
-      tools/settingtools/TimespanScopedSingleContextSettingInventory/TimespanScopedSingleContextSettingInventory
 
 :py:mod:`specificationtools <experimental.tools.specificationtools>`
 ====================================================================

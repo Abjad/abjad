@@ -9,16 +9,16 @@ class ContextProxy(AbjadObject, OrderedDict):
     ### INITIALIZER ###
 
     def __init__(self):
-        from experimental.tools import settingtools
+        from experimental.tools import expressiontools
         OrderedDict.__init__(self)
         self._division_payload_expressions = \
-            settingtools.TimespanScopedSingleContextSettingInventory()
+            expressiontools.TimespanScopedSingleContextSettingInventory()
         self._rhythm_payload_expressions = \
-            settingtools.TimespanScopedSingleContextSettingInventory()
+            expressiontools.TimespanScopedSingleContextSettingInventory()
         self._timespan_scoped_single_context_division_settings = \
-            settingtools.TimespanScopedSingleContextSettingInventory()
+            expressiontools.TimespanScopedSingleContextSettingInventory()
         self._timespan_scoped_single_context_rhythm_settings = \
-            settingtools.TimespanScopedSingleContextSettingInventory()
+            expressiontools.TimespanScopedSingleContextSettingInventory()
         self._voice_division_list = None
 
     ### SPECIAL METHODS ###

@@ -1,7 +1,7 @@
 import abc
 from abjad.tools import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.tools import settingtools
+from experimental.tools import expressiontools
 
 
 class Specification(AbjadObject):
@@ -21,23 +21,23 @@ class Specification(AbjadObject):
 
     __metaclass__ = abc.ABCMeta
 
-    attributes = settingtools.AttributeNameEnumeration()
+    attributes = expressiontools.AttributeNameEnumeration()
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
     def __init__(self, score_template):
-        from experimental.tools import settingtools
+        from experimental.tools import expressiontools
         from experimental.tools import specificationtools
         self._score_template = score_template
         self._score_model = score_template()
         self._abbreviated_context_names = []
         self._context_names = []
-        self._multiple_context_settings = settingtools.SettingInventory()
+        self._multiple_context_settings = expressiontools.SettingInventory()
         self._single_context_settings_by_context = specificationtools.ContextProxyDictionary(score_template())
         self._initialize_context_name_abbreviations()
         self._contexts = specificationtools.ContextProxyDictionary(score_template())
-        self._single_context_settings = settingtools.SettingInventory()
+        self._single_context_settings = expressiontools.SettingInventory()
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

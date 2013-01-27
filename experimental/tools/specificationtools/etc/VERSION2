@@ -29,6 +29,6 @@
     Fill in missing spannertools docstrings before doing this.
 
 9.  Extend RotationIndicator to allow for symoblic rotation by portion of total duration.
-    Might look like rotation=settingtools.RotationIndicator((-1, 3)).
+    Might look like rotation=expressiontools.RotationIndicator((-1, 3)).
     Or like rotation=(-1, 3), rotation=(-2, 2), rotation(-3, 1).
     This also suggests a companion procedure that rotates based on ratio of total count of elements.

@@ -2,7 +2,7 @@ from collections import OrderedDict
 from abjad.tools import iterationtools
 from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.tools import settingtools
+from experimental.tools import expressiontools
 from experimental.tools.specificationtools.ContextProxy import ContextProxy
 
 
@@ -100,7 +100,7 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
             print context_name
             for setting_name in self[context_name]:
                 item = self[context_name][setting_name]
-                if isinstance(item, settingtools.Setting):
+                if isinstance(item, expressiontools.Setting):
                     print '\t{}'.format(self[context_name][setting_name])
                 else:
                     print '\t{}: {}'.format(setting_name, self[context_name][setting_name])
