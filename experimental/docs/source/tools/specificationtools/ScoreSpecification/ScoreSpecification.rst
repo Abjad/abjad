@@ -66,10 +66,10 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.timespan
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.timespan_scoped_single_context_set_division_expressions
+.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.timespan_scoped_single_context_division_set_expressions
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.timespan_scoped_single_context_set_rhythm_expressions
+.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.timespan_scoped_single_context_rhythm_set_expressions
    :noindex:
 
 Methods
@@ -93,13 +93,13 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interpret
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_default_timespan_scoped_single_context_set_division_expression
+.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_default_timespan_scoped_single_context_division_set_expression
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_default_timespan_scoped_single_context_rhythm_set_expression
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_default_timespan_scoped_single_context_set_expression
-   :noindex:
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_default_timespan_scoped_single_context_set_rhythm_expression
    :noindex:
 
 Special Methods

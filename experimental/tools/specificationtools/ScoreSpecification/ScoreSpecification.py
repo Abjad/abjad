@@ -38,10 +38,10 @@ class ScoreSpecification(Specification):
     def __init__(self, score_template):
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
-        self._timespan_scoped_single_context_set_division_expressions = []
+        self._timespan_scoped_single_context_division_set_expressions = []
         self._division_region_expressions = []
         self._rhythm_region_expressions = []
-        self._timespan_scoped_single_context_set_rhythm_expressions = []
+        self._timespan_scoped_single_context_rhythm_set_expressions = []
         self._time_signature_settings = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
@@ -427,10 +427,10 @@ class ScoreSpecification(Specification):
         return Specification.timespan.fget(self)
 
     @property
-    def timespan_scoped_single_context_set_division_expressions(self):
+    def timespan_scoped_single_context_division_set_expressions(self):
         '''Read-only list of all division region commands::
 
-            >>> for x in score_specification.timespan_scoped_single_context_set_division_expressions:
+            >>> for x in score_specification.timespan_scoped_single_context_division_set_expressions:
             ...     z(x)
             expressiontools.TimespanScopedSingleContextDivisionSetExpression(
                 source=expressiontools.PayloadExpression(
@@ -461,13 +461,13 @@ class ScoreSpecification(Specification):
 
         Return list.
         '''
-        return self._timespan_scoped_single_context_set_division_expressions
+        return self._timespan_scoped_single_context_division_set_expressions
 
     @property
-    def timespan_scoped_single_context_set_rhythm_expressions(self):
+    def timespan_scoped_single_context_rhythm_set_expressions(self):
         '''Read-only list of all rhythm region commands.
 
-            >>> for x in score_specification.timespan_scoped_single_context_set_rhythm_expressions:
+            >>> for x in score_specification.timespan_scoped_single_context_rhythm_set_expressions:
             ...     z(x)
             expressiontools.TimespanScopedSingleContextRhythmSetExpression(
                 source=expressiontools.RhythmMakerPayloadExpression(
@@ -484,7 +484,7 @@ class ScoreSpecification(Specification):
 
         Return list.
         '''
-        return self._timespan_scoped_single_context_set_rhythm_expressions
+        return self._timespan_scoped_single_context_rhythm_set_expressions
 
 
     ### PUBLIC METHODS ###
@@ -571,7 +571,7 @@ class ScoreSpecification(Specification):
         return interpreter(self)
 
     # TODO: reorder input args to timespan, voice_name
-    def make_default_timespan_scoped_single_context_set_division_expression(self, voice_name, timespan):
+    def make_default_timespan_scoped_single_context_division_set_expression(self, voice_name, timespan):
         divisions = self.get_time_signature_slice(timespan)
         return expressiontools.TimespanScopedSingleContextDivisionSetExpression(
             source=expressiontools.PayloadExpression(divisions),
@@ -584,16 +584,16 @@ class ScoreSpecification(Specification):
     # TODO: reorder input args to attribute, timespan, voice_name
     def make_default_timespan_scoped_single_context_set_expression(self, attribute, voice_name, timespan):
         if attribute == 'divisions':
-            return self.make_default_timespan_scoped_single_context_set_division_expression(
+            return self.make_default_timespan_scoped_single_context_division_set_expression(
                 voice_name, timespan)
         elif attribute == 'rhythm':
-            return self.make_default_timespan_scoped_single_context_set_rhythm_expression(
+            return self.make_default_timespan_scoped_single_context_rhythm_set_expression(
                 voice_name, timespan)
         else:
             raise ValueError(attribute)
 
     # TODO: reorder input args to timespan, voice_name
-    def make_default_timespan_scoped_single_context_set_rhythm_expression(self, voice_name, timespan):
+    def make_default_timespan_scoped_single_context_rhythm_set_expression(self, voice_name, timespan):
         return expressiontools.TimespanScopedSingleContextRhythmSetExpression(
             source=expressiontools.RhythmMakerPayloadExpression(library.skip_tokens),
             timespan=timespan,

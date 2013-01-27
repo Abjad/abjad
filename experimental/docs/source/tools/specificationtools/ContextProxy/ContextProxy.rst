@@ -20,10 +20,10 @@ Read-only Properties
 
    Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.timespan_scoped_single_context_set_division_expressions
+.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.timespan_scoped_single_context_division_set_expressions
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.timespan_scoped_single_context_set_rhythm_expressions
+.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.timespan_scoped_single_context_rhythm_set_expressions
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.voice_division_list

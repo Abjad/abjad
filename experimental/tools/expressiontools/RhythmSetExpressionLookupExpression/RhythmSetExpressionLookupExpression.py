@@ -17,12 +17,12 @@ class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
 
     ### PRIVATE METHODS ###
 
-    def _get_timespan_scoped_single_context_set_rhythm_expressions(self):
+    def _get_timespan_scoped_single_context_rhythm_set_expressions(self):
         result = timespantools.TimespanInventory()
-        for timespan_scoped_single_context_set_rhythm_expression in \
-            self.score_specification.timespan_scoped_single_context_set_rhythm_expressions:
-            if not timespan_scoped_single_context_set_rhythm_expression.source == self:
-                result.append(timespan_scoped_single_context_set_rhythm_expression)
+        for timespan_scoped_single_context_rhythm_set_expression in \
+            self.score_specification.timespan_scoped_single_context_rhythm_set_expressions:
+            if not timespan_scoped_single_context_rhythm_set_expression.source == self:
+                result.append(timespan_scoped_single_context_rhythm_set_expression)
         return result
 
     ### PUBLIC METHODS ###
@@ -32,7 +32,7 @@ class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
         start_segment_identifier = self.offset.start_segment_identifier
         expression = self.offset.evaluate()
         offset = expression.payload[0]
-        timespan_inventory = self._get_timespan_scoped_single_context_set_rhythm_expressions()
+        timespan_inventory = self._get_timespan_scoped_single_context_rhythm_set_expressions()
         time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(time_relation)
         segment_specification = self.score_specification[start_segment_identifier]

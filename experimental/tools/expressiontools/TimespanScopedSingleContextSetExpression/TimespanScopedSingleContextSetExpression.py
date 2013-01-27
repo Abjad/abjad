@@ -2,12 +2,9 @@ import abc
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools 
 from abjad.tools import timespantools 
-#from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools.expressiontools.SetExpression import SetExpression
 
 
-# TODO: inherit from some type of InputSetExpression class
-#class TimespanScopedSingleContextSetExpression(AbjadObject):
 # TODO: maybe doesn't need to inherit (indirectly) from AnchoredExpression; no longer has anchor
 class TimespanScopedSingleContextSetExpression(SetExpression):
     '''Timespan-scoped single-context set expression.
