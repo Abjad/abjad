@@ -1,10 +1,10 @@
 from experimental.tools import timerelationtools
 from experimental.tools import timespantools
-from experimental.tools.expressiontools.SettingLookupExpression import SettingLookupExpression
+from experimental.tools.expressiontools.SetLookupExpression import SetLookupExpression
 
 
-class SetDivisionLookupExpression(SettingLookupExpression):
-    '''Division setting lookup.
+class SetDivisionLookupExpression(SetLookupExpression):
+    '''Set-division lookup expression.
 
     Example. Look up set-division expression active at start of measure 4 in ``'Voice 1'``::
 
@@ -43,7 +43,7 @@ class SetDivisionLookupExpression(SettingLookupExpression):
     ### INITIALIZER ###
 
     def __init__(self, voice_name=None, offset=None, callbacks=None):
-        SettingLookupExpression.__init__(self, attribute='divisions', voice_name=voice_name, 
+        SetLookupExpression.__init__(self, attribute='divisions', voice_name=voice_name, 
             offset=offset, callbacks=callbacks)
 
     ### PRIVATE METHODS ###

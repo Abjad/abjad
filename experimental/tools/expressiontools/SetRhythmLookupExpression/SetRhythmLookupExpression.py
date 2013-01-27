@@ -2,17 +2,17 @@ import copy
 from abjad.tools import rhythmmakertools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
-from experimental.tools.expressiontools.SettingLookupExpression import SettingLookupExpression
+from experimental.tools.expressiontools.SetLookupExpression import SetLookupExpression
 
 
-class SetRhythmLookupExpression(SettingLookupExpression):
-    '''Rhythm setting lookup.
+class SetRhythmLookupExpression(SetLookupExpression):
+    '''Set-rhythm lookup expression.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, voice_name=None, offset=None, callbacks=None):
-        SettingLookupExpression.__init__(self, attribute='rhythm', voice_name=voice_name, 
+        SetLookupExpression.__init__(self, attribute='rhythm', voice_name=voice_name, 
             offset=offset, callbacks=callbacks)
 
     ### PRIVATE METHODS ###

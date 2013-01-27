@@ -17,7 +17,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.attribute
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SettingLookupExpression <experimental.tools.expressiontools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression>`
+   Inherited from :py:class:`expressiontools.SetLookupExpression <experimental.tools.expressiontools.SetLookupExpression.SetLookupExpression.SetLookupExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.callbacks
    :noindex:
@@ -27,7 +27,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.offset
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SettingLookupExpression <experimental.tools.expressiontools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression>`
+   Inherited from :py:class:`expressiontools.SetLookupExpression <experimental.tools.expressiontools.SetLookupExpression.SetLookupExpression.SetLookupExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.score_specification
    :noindex:
@@ -57,7 +57,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.SetTimeSignatureLookupExpression.voice_name
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SettingLookupExpression <experimental.tools.expressiontools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression>`
+   Inherited from :py:class:`expressiontools.SetLookupExpression <experimental.tools.expressiontools.SetLookupExpression.SetLookupExpression.SetLookupExpression>`
 
 Methods
 -------

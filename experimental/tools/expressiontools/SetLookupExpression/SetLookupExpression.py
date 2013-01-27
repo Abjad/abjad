@@ -3,20 +3,16 @@ from experimental.tools.expressiontools.AnchoredExpression import AnchoredExpres
 from experimental.tools.expressiontools.PayloadCallbackMixin import PayloadCallbackMixin
 
 
-class SettingLookupExpression(AnchoredExpression, PayloadCallbackMixin):
-    r'''SetExpression lookup.
+class SetLookupExpression(AnchoredExpression, PayloadCallbackMixin):
+    r'''Set / lookup expression.
 
-    Look up `attribute` setting active at `offset` in `voice_name`.
+    Look up `attribute` set expression active at `offset` in `voice_name`.
 
-    SetExpression is assumed to resolve to a list or other iterable payload.
+    Lookup expression is assumed to resolve to a list or other iterable payload.
 
-    Because of this setting lookups afford payload callbacks.
+    Because of this lookup expressions afford payload callbacks.
 
-    Composers create concrete setting lookup classes during specification.
-
-    Composers create concrete setting lookup classes with lookup methods.
-
-    All lookup methods implement against ``OffsetExpression``.
+    Composers create concrete lookup expressions with lookup methods.
     '''
 
     ### INITIALIZER ###

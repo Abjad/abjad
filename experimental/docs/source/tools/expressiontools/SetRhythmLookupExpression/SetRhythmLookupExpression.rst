@@ -17,7 +17,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SetRhythmLookupExpression.SetRhythmLookupExpression.SetRhythmLookupExpression.attribute
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SettingLookupExpression <experimental.tools.expressiontools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression>`
+   Inherited from :py:class:`expressiontools.SetLookupExpression <experimental.tools.expressiontools.SetLookupExpression.SetLookupExpression.SetLookupExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SetRhythmLookupExpression.SetRhythmLookupExpression.SetRhythmLookupExpression.callbacks
    :noindex:
@@ -27,7 +27,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SetRhythmLookupExpression.SetRhythmLookupExpression.SetRhythmLookupExpression.offset
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SettingLookupExpression <experimental.tools.expressiontools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression>`
+   Inherited from :py:class:`expressiontools.SetLookupExpression <experimental.tools.expressiontools.SetLookupExpression.SetLookupExpression.SetLookupExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SetRhythmLookupExpression.SetRhythmLookupExpression.SetRhythmLookupExpression.score_specification
    :noindex:
@@ -57,7 +57,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SetRhythmLookupExpression.SetRhythmLookupExpression.SetRhythmLookupExpression.voice_name
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SettingLookupExpression <experimental.tools.expressiontools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression>`
+   Inherited from :py:class:`expressiontools.SetLookupExpression <experimental.tools.expressiontools.SetLookupExpression.SetLookupExpression.SetLookupExpression>`
 
 Methods
 -------

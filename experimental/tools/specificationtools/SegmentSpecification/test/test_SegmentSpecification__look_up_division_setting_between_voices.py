@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__look_up_division_setting_between_voices_01():
-    '''Division setting lookup between voices.
+    '''Set-division lookup expression between voices.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -21,7 +21,7 @@ def test_SegmentSpecification__look_up_division_setting_between_voices_01():
 
 
 def test_SegmentSpecification__look_up_division_setting_between_voices_02():
-    '''Division setting lookup between voices with reverse callback.
+    '''Set-division lookup expression between voices with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -41,7 +41,7 @@ def test_SegmentSpecification__look_up_division_setting_between_voices_02():
 
 
 def test_SegmentSpecification__look_up_division_setting_between_voices_03():
-    '''Division setting lookup between voices with set-time reverse.
+    '''Set-division lookup expression between voices with set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -61,7 +61,7 @@ def test_SegmentSpecification__look_up_division_setting_between_voices_03():
 
 
 def test_SegmentSpecification__look_up_division_setting_between_voices_04():
-    '''Division setting lookup between voices with reverse callbacks.
+    '''Set-division lookup expression between voices with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

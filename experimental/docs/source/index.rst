@@ -132,8 +132,8 @@ Unstable packages (load manually)
       tools/expressiontools/SelectExpression/SelectExpression
       tools/expressiontools/SelectMethodMixin/SelectMethodMixin
       tools/expressiontools/SetExpression/SetExpression
+      tools/expressiontools/SetLookupExpression/SetLookupExpression
       tools/expressiontools/SetMethodMixin/SetMethodMixin
-      tools/expressiontools/SettingLookupExpression/SettingLookupExpression
       tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression
       tools/expressiontools/SpecificationInterface/SpecificationInterface
       tools/expressiontools/TimespanCallbackMixin/TimespanCallbackMixin
@@ -208,8 +208,8 @@ Unstable packages (load manually)
       tools/expressiontools/SelectExpression/SelectExpression
       tools/expressiontools/SelectMethodMixin/SelectMethodMixin
       tools/expressiontools/SetExpression/SetExpression
+      tools/expressiontools/SetLookupExpression/SetLookupExpression
       tools/expressiontools/SetMethodMixin/SetMethodMixin
-      tools/expressiontools/SettingLookupExpression/SettingLookupExpression
       tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression
       tools/expressiontools/SpecificationInterface/SpecificationInterface
       tools/expressiontools/TimespanCallbackMixin/TimespanCallbackMixin

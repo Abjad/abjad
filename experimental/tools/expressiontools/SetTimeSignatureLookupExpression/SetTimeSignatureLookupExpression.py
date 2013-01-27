@@ -1,14 +1,14 @@
-from experimental.tools.expressiontools.SettingLookupExpression import SettingLookupExpression
+from experimental.tools.expressiontools.SetLookupExpression import SetLookupExpression
 
 
-class SetTimeSignatureLookupExpression(SettingLookupExpression):
-    '''Time signature setting lookup.
+class SetTimeSignatureLookupExpression(SetLookupExpression):
+    '''Set-time signature lookup expression.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, voice_name=None, offset=None, callbacks=None):
-        SettingLookupExpression.__init__(self, attribute='time_signatures', voice_name=voice_name, 
+        SetLookupExpression.__init__(self, attribute='time_signatures', voice_name=voice_name, 
             offset=offset, callbacks=callbacks)
 
     ### PUBLIC METHODS ###

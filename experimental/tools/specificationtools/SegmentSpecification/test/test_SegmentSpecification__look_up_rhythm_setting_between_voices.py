@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_between_voices_01():
-    '''Rhythm setting lookup between voices.
+    '''Set-rhythm lookup expression between voices.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -21,7 +21,7 @@ def test_SegmentSpecification__look_up_rhythm_setting_between_voices_01():
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_between_voices_02():
-    '''Rhythm setting lookup between voices with reverse callback.
+    '''Set-rhythm lookup expression between voices with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -41,7 +41,7 @@ def test_SegmentSpecification__look_up_rhythm_setting_between_voices_02():
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_between_voices_03():
-    '''Rhythm setting lookup between voices with set-time reverse.
+    '''Set-rhythm lookup expression between voices with set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -61,7 +61,7 @@ def test_SegmentSpecification__look_up_rhythm_setting_between_voices_03():
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_between_voices_04():
-    '''Rhythm setting lookup between voices with reverse callbacks.
+    '''Set-rhythm lookup expression between voices with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -82,7 +82,7 @@ def test_SegmentSpecification__look_up_rhythm_setting_between_voices_04():
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_between_voices_05():
-    '''Rhythm setting lookup between voices. From parseable string.
+    '''Set-rhythm lookup expression between voices. From parseable string.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -101,7 +101,7 @@ def test_SegmentSpecification__look_up_rhythm_setting_between_voices_05():
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_between_voices_06():
-    '''Rhythm setting lookup between voices with reflect callback.
+    '''Set-rhythm lookup expression between voices with reflect callback.
     From parseable string.
     '''
 
@@ -122,7 +122,7 @@ def test_SegmentSpecification__look_up_rhythm_setting_between_voices_06():
 
 
 def test_SegmentSpecification__look_up_rhythm_setting_between_voices_07():
-    '''Rhythm setting lookup between voices with canceling successive reflect callbacks.
+    '''Set-rhythm lookup expression between voices with canceling successive reflect callbacks.
     From parseable string.
     '''
 

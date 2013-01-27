@@ -17,7 +17,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SetDivisionLookupExpression.SetDivisionLookupExpression.SetDivisionLookupExpression.attribute
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SettingLookupExpression <experimental.tools.expressiontools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression>`
+   Inherited from :py:class:`expressiontools.SetLookupExpression <experimental.tools.expressiontools.SetLookupExpression.SetLookupExpression.SetLookupExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SetDivisionLookupExpression.SetDivisionLookupExpression.SetDivisionLookupExpression.callbacks
    :noindex:
@@ -27,7 +27,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SetDivisionLookupExpression.SetDivisionLookupExpression.SetDivisionLookupExpression.offset
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SettingLookupExpression <experimental.tools.expressiontools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression>`
+   Inherited from :py:class:`expressiontools.SetLookupExpression <experimental.tools.expressiontools.SetLookupExpression.SetLookupExpression.SetLookupExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SetDivisionLookupExpression.SetDivisionLookupExpression.SetDivisionLookupExpression.score_specification
    :noindex:
@@ -57,7 +57,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SetDivisionLookupExpression.SetDivisionLookupExpression.SetDivisionLookupExpression.voice_name
    :noindex:
 
-   Inherited from :py:class:`expressiontools.SettingLookupExpression <experimental.tools.expressiontools.SettingLookupExpression.SettingLookupExpression.SettingLookupExpression>`
+   Inherited from :py:class:`expressiontools.SetLookupExpression <experimental.tools.expressiontools.SetLookupExpression.SetLookupExpression.SetLookupExpression>`
 
 Methods
 -------

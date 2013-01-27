@@ -33,7 +33,7 @@ class LookupMethodMixin(AbjadObject):
                     )
                 )
 
-        Return setting lookup.        
+        Return lookup expression.        
         '''
         from experimental.tools import expressiontools
         lookup = expressiontools.SetDivisionLookupExpression(voice, offset=self)
@@ -58,7 +58,7 @@ class LookupMethodMixin(AbjadObject):
                     )
                 )
 
-        Return setting lookup.        
+        Return lookup expression.        
         '''
         from experimental.tools import expressiontools
         lookup = expressiontools.SetRhythmLookupExpression(voice, offset=self)
@@ -83,7 +83,7 @@ class LookupMethodMixin(AbjadObject):
                     )
                 )
 
-        Return setting lookup.
+        Return lookup expression.
         '''
         from experimental.tools import expressiontools
         lookup = expressiontools.SetTimeSignatureLookupExpression(voice, offset=self)
