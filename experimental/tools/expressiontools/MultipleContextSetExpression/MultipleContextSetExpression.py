@@ -34,12 +34,12 @@ class MultipleContextSetExpression(InputSetExpression):
 
     ### INITIAILIZER ###
 
-    def __init__(self, attribute=None, source=None, target_timespan=None, context_names=None, 
+    def __init__(self, attribute=None, source=None, target_timespan=None, target_context_names=None, 
             persist=True, truncate=None):
         InputSetExpression.__init__(self, attribute=attribute, source=source, 
             target_timespan=target_timespan, persist=persist, truncate=truncate)
-        assert isinstance(context_names, (list, type(None))), repr(context_names)
-        self._context_names = context_names
+        assert isinstance(target_context_names, (list, type(None))), repr(target_context_names)
+        self._target_context_names = target_context_names
 
     ### PRIVATE METHODS ###
     
@@ -54,12 +54,12 @@ class MultipleContextSetExpression(InputSetExpression):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def context_names(self):
+    def target_context_names(self):
         '''Multiple-context set expression context names.
     
         Return list of strings or none.
         '''
-        return self._context_names
+        return self._target_context_names
 
     ### PUBLIC METHODS ###
 
@@ -67,7 +67,7 @@ class MultipleContextSetExpression(InputSetExpression):
         single_context_set_expressions = []
         single_context_set_expression_class = \
             self._attribute_to_single_context_set_expression_class(self.attribute)
-        if self.context_names is None:
+        if self.target_context_names is None:
             target_timespan = copy.deepcopy(self.target_timespan)
             single_context_set_expression = single_context_set_expression_class(
                 source=self.source, 
@@ -77,12 +77,12 @@ class MultipleContextSetExpression(InputSetExpression):
             single_context_set_expression._score_specification = self.score_specification
             single_context_set_expressions.append(single_context_set_expression)
         else:
-            for context_name in self.context_names:
+            for target_context_name in self.target_context_names:
                 target_timespan = copy.deepcopy(self.target_timespan)
                 single_context_set_expression = single_context_set_expression_class(
                     source=self.source, 
                     target_timespan=target_timespan,
-                    context_name=context_name,
+                    context_name=target_context_name,
                     persist=self.persist)
                 single_context_set_expression._score_specification = self.score_specification
                 single_context_set_expressions.append(single_context_set_expression)

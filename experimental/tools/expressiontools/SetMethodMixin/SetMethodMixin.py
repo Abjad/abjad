@@ -49,12 +49,12 @@ class SetMethodMixin(AbjadObject):
         from experimental.tools import expressiontools
         source = self._expr_to_expression(source)
         assert self.score_specification is not None
-        context_names = self.score_specification._context_token_to_context_names(contexts)
+        target_context_names = self.score_specification._context_token_to_context_names(contexts)
         multiple_context_set_expression = expressiontools.MultipleContextSetExpression(
             attribute=attribute,
             source=source,
             target_timespan=self._expression_abbreviation,
-            context_names=context_names,
+            target_context_names=target_context_names,
             persist=persist,
             truncate=truncate
             )
@@ -105,7 +105,7 @@ class SetMethodMixin(AbjadObject):
                     ((3, 16),)
                     ),
                 target_timespan='red',
-                context_names=['Voice 1', 'Voice 3'],
+                target_context_names=['Voice 1', 'Voice 3'],
                 persist=True
                 )
 
