@@ -22,7 +22,7 @@ def test_single_segment_solo__overlapping_division_selectors_01():
 
 def test_single_segment_solo__overlapping_division_selectors_02():
     '''Second set-division expression overrides first set-division expression.
-    First set expression smaller than second setting.
+    First set expression smaller than second set expression.
     Settings start at same time.
     '''
 
@@ -43,8 +43,8 @@ def test_single_segment_solo__overlapping_division_selectors_02():
 
 def test_single_segment_solo__overlapping_division_selectors_03():
     '''Second set-division expression overrides first set-division expression.
-    First set expression smaller than second setting.
-    First set expression starts after second setting.
+    First set expression smaller than second set expression.
+    First set expression starts after second set expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

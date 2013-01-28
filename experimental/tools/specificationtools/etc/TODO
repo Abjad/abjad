@@ -41,7 +41,7 @@
     can be overwritten in a subsequent segment.
     See test_multiple_segment_solo__persistent_overlapping_division_select_expressions_05().
 
-7.  Looks like callback stacks may not be copied over from segment to segment for persistent settings.
+7.  Looks like callback stacks may not be copied over from segment to segment for persistent set expressions.
     Fix test_multiple_segment_solo__persistent_overlapping_division_select_expressions_03() to debug.
 
 8.  Finish timerelationtools class docstrings before 2.11 build.
@@ -114,5 +114,3 @@
     Complete all expression docstrings.
 
 23. Maybe make time signature interpretation mirror division and region interpretation.
-
-24. Globally search and replace 'setting', including the lookup methods.

@@ -44,7 +44,7 @@ class SingleContextSetExpression(InputSetExpression):
 
     Composers create multiple-context set expressions with set methods.
 
-    Multiple-context set expressions produce single-context settings.
+    Multiple-context set expressions produce single-context set expressions.
 
     Single-context set expressions produce region expressions.
     '''
@@ -90,7 +90,7 @@ class SingleContextSetExpression(InputSetExpression):
 
     ### PUBLIC METHODS ###
 
-    def copy_setting_to_segment_name(self, segment_name):
+    def copy_set_expression_to_segment_name(self, segment_name):
         '''Create new set expression. 
 
         Set new set expression start segment identifier to `segment_name`.
@@ -100,10 +100,10 @@ class SingleContextSetExpression(InputSetExpression):
         Return new set expression.
         '''
         assert isinstance(segment_name, str)
-        new_setting = copy.deepcopy(self)
-        new_setting._set_start_segment_identifier(segment_name)
-        new_setting._fresh = False
-        return new_setting
+        new_set_expression = copy.deepcopy(self)
+        new_set_expression._set_start_segment_identifier(segment_name)
+        new_set_expression._fresh = False
+        return new_set_expression
 
     @abc.abstractmethod
     def evaluate(self):

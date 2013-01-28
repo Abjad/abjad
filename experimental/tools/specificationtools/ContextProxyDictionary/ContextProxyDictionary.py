@@ -87,8 +87,8 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
             # new behavior
             elif isinstance(context_proxy, list):
                 for set_expression in context_proxy:
-                    if setting.attribute == attribute or attribute is None:
-                        set_expressions.append(setting)
+                    if set_expression.attribute == attribute or attribute is None:
+                        set_expressions.append(set_expression)
             else:
                 raise ValueError
         #self._debug(set_expressions, 'set_expressions')
@@ -98,9 +98,9 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
     def show(self):
         for context_name in self:
             print context_name
-            for setting_name in self[context_name]:
-                item = self[context_name][setting_name]
+            for set_expression_name in self[context_name]:
+                item = self[context_name][set_expression_name]
                 if isinstance(item, expressiontools.InputSetExpression):
-                    print '\t{}'.format(self[context_name][setting_name])
+                    print '\t{}'.format(self[context_name][set_expression_name])
                 else:
-                    print '\t{}: {}'.format(setting_name, self[context_name][setting_name])
+                    print '\t{}: {}'.format(set_expression_name, self[context_name][set_expression_name])

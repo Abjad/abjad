@@ -73,7 +73,7 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.copy_setting_to_segment_name
+.. automethod:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.copy_set_expression_to_segment_name
    :noindex:
 
 .. automethod:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.evaluate

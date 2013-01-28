@@ -166,7 +166,7 @@ class ScoreSpecification(Specification):
 
     @property
     def multiple_context_set_expressions(self):
-        '''Read-only reference to multiple context settings::
+        '''Read-only reference to multiple context set expressions::
 
             >>> for x in score_specification.multiple_context_set_expressions:
             ...     z(x)
@@ -294,7 +294,7 @@ class ScoreSpecification(Specification):
 
     @property
     def single_context_set_expressions(self):
-        r'''Score specification single-context settings::
+        r'''Score specification single-context set expressions::
 
             >>> for x in score_specification.single_context_set_expressions:
             ...     z(x)
@@ -532,8 +532,8 @@ class ScoreSpecification(Specification):
         segment_specification = self.segment_specification_class(self.score_template, name)
         segment_specification._score_specification = self
         self.segment_specifications.append(segment_specification)
-        segment_setting_interface = expressiontools.SegmentSpecificationInterface(self, name)
-        return segment_setting_interface
+        segment_specification_interface = expressiontools.SegmentSpecificationInterface(self, name)
+        return segment_specification_interface
 
     def clear_persistent_single_context_set_expressions_by_context(self, context_name, attribute):
         if attribute in self.single_context_set_expressions_by_context[context_name]:

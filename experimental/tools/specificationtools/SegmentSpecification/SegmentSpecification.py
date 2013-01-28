@@ -166,7 +166,7 @@ class SegmentSpecification(Specification):
 
     @property
     def single_context_set_expressions(self):
-        r'''Segment specification single-context settings::
+        r'''Segment specification single-context set expressions::
 
             >>> for x in red_segment.single_context_set_expressions:
             ...     z(x)

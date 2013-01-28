@@ -17,7 +17,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
     ### SPECIAL METHODS ###
 
     def __sub__(self, timespan):
-        '''Subtract `timespan` from setting.
+        '''Subtract `timespan` from set expression.
 
             >>> source = expressiontools.StartPositionedRhythmPayloadExpression(
             ...     "{ c'16 [ c'8 ] }", start_offset=0)

@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 # TODO: Change to *have a* set expressions OrderedDict rather than *being an* OrderedDict.
-#       This will mean adding a 'settings' property.
+#       This will mean adding a 'set_expressions' property.
 class ContextProxy(AbjadObject, OrderedDict):
 
     ### INITIALIZER ###
@@ -84,12 +84,12 @@ class ContextProxy(AbjadObject, OrderedDict):
 
     def get_set_expression(self, attribute=None):
         set_expressions = self.get_set_expressions(attribute=attribute)
-        if not settings:
+        if not set_expressions:
             raise Exception('no set expressions for {!r} found.'.format(attribute))
-        elif 1 < len(settings):
+        elif 1 < len(set_expressions):
             raise Exception('multiple set expressions for {!r} found.'.format(attribute))
-        assert len(settings) == 1
-        return settings[0]
+        assert len(set_expressions) == 1
+        return set_expressions[0]
 
     def get_set_expressions(self, attribute=None):
         result = []

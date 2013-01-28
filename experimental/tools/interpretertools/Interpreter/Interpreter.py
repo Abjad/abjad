@@ -49,26 +49,28 @@ class Interpreter(AbjadObject):
 
     def store_single_context_attribute_set_expressions_by_context(self, attribute):
         for segment_specification in self.score_specification.segment_specifications:
-            new_settings = segment_specification.single_context_set_expressions.get_set_expressions(
+            new_set_expressions = segment_specification.single_context_set_expressions.get_set_expressions(
             attribute=attribute)
-            existing_settings = \
+            existing_set_expressions = \
                 self.score_specification.single_context_set_expressions_by_context.get_set_expressions(
                 attribute=attribute)
-            new_context_names = [x.target_context_name for x in new_settings]
-            forwarded_existing_settings = []
-            for existing_setting in existing_settings[:]:
-                if existing_setting.target_context_name in new_context_names:
-                    existing_settings.remove(existing_setting)
+            new_context_names = [x.target_context_name for x in new_set_expressions]
+            forwarded_existing_set_expressions = []
+            for existing_set_expression in existing_set_expressions[:]:
+                if existing_set_expression.target_context_name in new_context_names:
+                    existing_set_expressions.remove(existing_set_expression)
                 else:
-                    forwarded_existing_setting = existing_setting.copy_setting_to_segment_name(
+                    forwarded_existing_set_expression = \
+                        existing_set_expression.copy_set_expression_to_segment_name(
                         segment_specification.segment_name)
-                    forwarded_existing_settings.append(forwarded_existing_setting)
-            settings_to_store = new_settings + forwarded_existing_settings
-            self.store_single_context_set_expressions_by_context(settings_to_store, clear_persistent_first=True)
+                    forwarded_existing_set_expressions.append(forwarded_existing_set_expression)
+            set_expressions_to_store = new_set_expressions + forwarded_existing_set_expressions
+            self.store_single_context_set_expressions_by_context(
+                set_expressions_to_store, clear_persistent_first=True)
 
     def store_single_context_set_expression_by_context(self, single_context_set_expression, 
         clear_persistent_first=False):
-        '''Copy single-context setting.
+        '''Copy single-context set expression.
 
         Find single-context set expression start segment.
 
@@ -101,7 +103,8 @@ class Interpreter(AbjadObject):
                 self.score_specification.single_context_set_expressions_by_context[context_name][attribute] = [
                     single_context_set_expression]
 
-    def store_single_context_set_expressions_by_context(self, single_context_set_expressions, clear_persistent_first=False):
+    def store_single_context_set_expressions_by_context(self, 
+        single_context_set_expressions, clear_persistent_first=False):
         if single_context_set_expressions:
             self.store_single_context_set_expression_by_context(
                 single_context_set_expressions[0], clear_persistent_first=clear_persistent_first)
