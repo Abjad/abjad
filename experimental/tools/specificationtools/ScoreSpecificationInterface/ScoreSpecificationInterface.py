@@ -106,9 +106,22 @@ class ScoreSpecificationInterface(SpecificationInterface):
         '''
         return self.score_specification.append_segment(name=name)
 
-    # TODO: write tests for me
     def get_offset(self, offset):
-        '''Get score offset.
+        '''Get offset:
+
+        ::
+
+            >>> offset_expression = score_specification.get_offset(Offset(3, 8))
+
+        ::
+
+            >>> z(offset_expression)
+            expressiontools.OffsetExpression(
+                anchor=expressiontools.TimespanExpression(),
+                callbacks=expressiontools.CallbackInventory([
+                    'self._translate(offset, Duration(3, 8))'
+                    ])
+                )
 
         Return offset expression.
         '''
