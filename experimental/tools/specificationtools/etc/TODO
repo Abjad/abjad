@@ -97,6 +97,10 @@
         first_half_of_red_segment = red_segment.timespan.divide_by_ratio((1, 1))[0]
         measures = first_half_of_red_segment.select_measures('Voice 1')
     This will show selecting measures that start during a duration-partitioned part of segment.
+    Then add some tests to show this:
+        first_half_of_red_segment = red_segment.timespan.divide_by_ratio((1, 1))[0]
+        time_relation = timerelationtools.timespan_2_stops_during_timespan_1()
+        measures = first_half_of_red_segment.select_measures('Voice 1', time_relation=time_relation)
 
 21. Reorder RhythmMakerRhythmRegionExpression input parameters:
         rhythm_maker, division_list, start_offset, voice_name

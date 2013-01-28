@@ -71,8 +71,6 @@ class MeasureSelectExpression(SelectExpression):
         start_offset = start_segment_specification.timespan.start_offset
         expression = expressiontools.StartPositionedDivisionPayloadExpression(
             time_signatures, start_offset=start_offset)
-        #expression = self._apply_callbacks(expression)
-        #return expression
         anchor_timespan = self.evaluate_anchor_timespan()
         time_relation = self._get_time_relation(anchor_timespan)
         time_signatures = expression.elements
