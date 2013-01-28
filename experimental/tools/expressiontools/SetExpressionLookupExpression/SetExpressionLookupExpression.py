@@ -4,7 +4,7 @@ from experimental.tools.expressiontools.PayloadCallbackMixin import PayloadCallb
 
 
 class SetExpressionLookupExpression(AnchoredExpression, PayloadCallbackMixin):
-    r'''Set / lookup expression.
+    r'''Set expression lookup expression.
 
     Look up `attribute` set expression active at `offset` in `voice_name`.
 
@@ -37,7 +37,7 @@ class SetExpressionLookupExpression(AnchoredExpression, PayloadCallbackMixin):
 
     @property
     def attribute(self):
-        '''InputSetExpression lookup attribute.
+        '''Set expression lookup expression attribute.
 
         Return string.
         '''
@@ -45,15 +45,15 @@ class SetExpressionLookupExpression(AnchoredExpression, PayloadCallbackMixin):
 
     @property
     def offset(self):
-        '''InputSetExpression lookup offset.
+        '''Set expression lookup expression offset.
 
         Return offset expression.
         '''
-        return self._offset
+        return self.anchor
 
     @property
     def voice_name(self):
-        '''InputSetExpression lookup voice name.
+        '''Set expression lookup expression voice name.
 
         Return string.
         '''

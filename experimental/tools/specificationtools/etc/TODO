@@ -118,6 +118,3 @@
 24. Globally search and replace 'request'.
 
 25. Globally search and replace 'setting', including the lookup methods.
-
-26. Allow OffsetExpression to implement 'offset' property as an alias of 'anchor'.
-    Make SetExpressionLookupExpression have 'offset' alias 'anchor', too.
