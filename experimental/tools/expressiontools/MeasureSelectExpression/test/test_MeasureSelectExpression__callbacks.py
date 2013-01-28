@@ -6,7 +6,7 @@ def test_MeasureSelectExpression__callbacks_01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
     red_segment.set_rhythm(library.sixteenths)
@@ -25,7 +25,7 @@ def test_MeasureSelectExpression__callbacks_02():
     '''
 
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(template)
+    score_specification = specificationtools.ScoreSpecificationInterface(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
     measures = red_segment.select_measures('Voice 1')
@@ -44,7 +44,7 @@ def test_MeasureSelectExpression__callbacks_03():
     '''
 
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(template)
+    score_specification = specificationtools.ScoreSpecificationInterface(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
     measures = red_segment.select_measures('Voice 1')
@@ -63,7 +63,7 @@ def test_MeasureSelectExpression__callbacks_04():
     '''
 
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(template)
+    score_specification = specificationtools.ScoreSpecificationInterface(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
     red_segment.set_rhythm(library.sixteenths)
@@ -83,7 +83,7 @@ def test_MeasureSelectExpression__callbacks_05():
     '''
 
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(template)
+    score_specification = specificationtools.ScoreSpecificationInterface(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
     red_segment.set_rhythm(library.sixteenths)
@@ -103,7 +103,7 @@ def test_MeasureSelectExpression__callbacks_06():
     '''
 
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(template)
+    score_specification = specificationtools.ScoreSpecificationInterface(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
     red_segment.set_rhythm(library.sixteenths)
@@ -123,7 +123,7 @@ def test_MeasureSelectExpression__callbacks_07():
     '''
 
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(template)
+    score_specification = specificationtools.ScoreSpecificationInterface(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
     red_segment.set_rhythm(library.sixteenths)
@@ -143,7 +143,7 @@ def test_MeasureSelectExpression__callbacks_08():
     '''
 
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(template)
+    score_specification = specificationtools.ScoreSpecificationInterface(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
     red_segment.set_rhythm(library.sixteenths)

@@ -6,7 +6,7 @@ def test_SegmentSpecification__select_rhythm_from_past_between_voices_01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
     red_segment.set_time_signatures([(2, 8), (2, 8)])
@@ -28,7 +28,7 @@ def test_SegmentSpecification__select_rhythm_from_past_between_voices_02():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
     red_segment.set_time_signatures([(2, 8), (2, 8)])
@@ -51,7 +51,7 @@ def test_SegmentSpecification__select_rhythm_from_past_between_voices_03():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
     red_segment.set_time_signatures([(2, 8), (2, 8)])
@@ -74,7 +74,7 @@ def test_SegmentSpecification__select_rhythm_from_past_between_voices_04():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
     red_segment.set_time_signatures([(2, 8), (2, 8)])

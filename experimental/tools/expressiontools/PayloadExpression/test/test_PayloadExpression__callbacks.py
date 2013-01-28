@@ -6,7 +6,7 @@ def test_PayloadExpression__callbacks_01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     material_manager = expressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(3, 8)])
@@ -26,7 +26,7 @@ def test_PayloadExpression__callbacks_02():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     material_manager = expressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(3, 8)])
@@ -46,7 +46,7 @@ def test_PayloadExpression__callbacks_03():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     material_manager = expressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(3, 8)])
@@ -66,7 +66,7 @@ def test_PayloadExpression__callbacks_04():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     material_manager = expressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(3, 8)])
@@ -86,7 +86,7 @@ def test_PayloadExpression__callbacks_05():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     material_manager = expressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(3, 8)])
@@ -106,7 +106,7 @@ def test_PayloadExpression__callbacks_06():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     material_manager = expressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(3, 8)])
@@ -126,7 +126,7 @@ def test_PayloadExpression__callbacks_07():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     material_manager = expressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(3, 8)])
@@ -146,7 +146,7 @@ def test_PayloadExpression__callbacks_08():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     material_manager = expressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(3, 8)])
@@ -166,7 +166,7 @@ def test_PayloadExpression__callbacks_09():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     material_manager = expressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(3, 8)])
@@ -186,7 +186,7 @@ def test_PayloadExpression__callbacks_10():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     material_manager = expressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(3, 8)])

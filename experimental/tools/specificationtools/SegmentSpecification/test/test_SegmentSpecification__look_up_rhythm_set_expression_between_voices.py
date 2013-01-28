@@ -6,7 +6,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_between_voices_01()
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
@@ -25,7 +25,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_between_voices_02()
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
@@ -45,7 +45,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_between_voices_03()
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
@@ -65,7 +65,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_between_voices_04()
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
@@ -86,7 +86,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_between_voices_05()
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
@@ -106,7 +106,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_between_voices_06()
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
@@ -127,7 +127,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_between_voices_07()
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])

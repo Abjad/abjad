@@ -11,7 +11,7 @@ class ScoreSpecification(Specification):
     The examples below reference the score specification defined here::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-        >>> score_specification = specificationtools.ScoreSpecification(template)
+        >>> score_specification = specificationtools.ScoreSpecificationInterface(template)
 
     ::
 
@@ -29,6 +29,12 @@ class ScoreSpecification(Specification):
     ::
 
         >>> score = score_specification.interpret()
+
+    The examples below use this redefinition:
+
+    ::
+
+        >>> score_specification = score_specification.score_specification
     
     Score specification properties are read-only.
     '''

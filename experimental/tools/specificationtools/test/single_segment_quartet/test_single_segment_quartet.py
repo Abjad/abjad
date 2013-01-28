@@ -13,7 +13,7 @@ def test_single_segment_quartet_01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
 
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(6, 8), (3, 8)])

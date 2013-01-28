@@ -6,7 +6,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_future
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
     blue_time_signature_set_expression = blue_segment.timespan.start_offset.look_up_time_signature_set_expression('Voice 1')
@@ -26,7 +26,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_future
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
     blue_time_signature_set_expression = blue_segment.timespan.start_offset.look_up_time_signature_set_expression('Voice 1')
@@ -47,7 +47,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_future
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
     blue_time_signature_set_expression = blue_segment.timespan.start_offset.look_up_time_signature_set_expression('Voice 1')
@@ -68,7 +68,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_future
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
     blue_time_signature_set_expression = blue_segment.timespan.start_offset.look_up_time_signature_set_expression('Voice 1')

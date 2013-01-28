@@ -98,17 +98,9 @@
         offset = score_specification.offset(Offset(32, 5))
         lookup = offset.look_up_rhythm_set_expression('Voice 1')
 
-20. Change primary usage pattern from ...
-        score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-        score_specification = specificationtools.ScoreSpecification(score_template)
-    ... to ...
-        score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-        score_specification = specificationtools.ScoreSpecificationInterface(score_template)
-    ... so that composers only ever interact with interfaces.
-
-21. Audit entire interpreter.
+20. Audit entire interpreter.
     Update variable names.
     Remove duplicate code.
 
-22. Audit all expressions.
+21. Audit all expressions.
     Complete all expression docstrings.

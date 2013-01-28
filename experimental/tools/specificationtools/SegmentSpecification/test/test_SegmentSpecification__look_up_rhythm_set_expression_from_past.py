@@ -6,7 +6,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8)])
     red_segment.set_divisions([(6, 16)])
@@ -27,7 +27,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_02():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
@@ -49,7 +49,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_03():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
@@ -71,7 +71,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_04():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])

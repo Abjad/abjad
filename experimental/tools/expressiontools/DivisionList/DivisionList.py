@@ -11,7 +11,7 @@ class DivisionList(BoundedObject):
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-        >>> score_specification = specificationtools.ScoreSpecification(score_template)
+        >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
     ::
@@ -32,12 +32,12 @@ class DivisionList(BoundedObject):
 
     ``'Voice 1'`` has only one division region division list::
 
-        >>> len(score_specification.contexts['Voice 1'].division_payload_expressions)
+        >>> len(score_specification.score_specification.contexts['Voice 1'].division_payload_expressions)
         1
 
     ::
 
-        >>> z(score_specification.contexts['Voice 1'].division_payload_expressions[0])
+        >>> z(score_specification.score_specification.contexts['Voice 1'].division_payload_expressions[0])
         expressiontools.StartPositionedDivisionPayloadExpression(
             payload=expressiontools.DivisionList(
                [Division('[3, 16]', start_offset=Offset(0, 1)), 

@@ -9,7 +9,7 @@ class SingleContextSetExpression(InputSetExpression):
     Set `attribute` to `source` for single-context `target_timespan`::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = specificationtools.ScoreSpecification(score_template)
+        >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
     ::
@@ -27,7 +27,8 @@ class SingleContextSetExpression(InputSetExpression):
 
     ::
 
-        >>> single_context_set_expression = score_specification.single_context_set_expressions[1]
+        >>> single_context_set_expression = \
+        ...     score_specification.score_specification.single_context_set_expressions[1]
 
     ::
 

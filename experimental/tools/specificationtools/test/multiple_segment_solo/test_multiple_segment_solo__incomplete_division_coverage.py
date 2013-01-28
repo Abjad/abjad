@@ -6,7 +6,7 @@ def test_multiple_segment_solo__incomplete_division_coverage_01():
     py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(6, 8), (3, 8)])
     left_measure = red_segment.select_measures('Voice 1')[:1]
@@ -20,7 +20,7 @@ def test_multiple_segment_solo__incomplete_division_coverage_02():
     py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(6, 8), (3, 8)])
     left_measure = red_segment.select_measures('Voice 1')[:1]

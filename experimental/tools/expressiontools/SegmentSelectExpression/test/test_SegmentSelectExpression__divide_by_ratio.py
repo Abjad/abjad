@@ -4,7 +4,7 @@ from experimental import *
 def test_SegmentSelectExpression__divide_by_ratio_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     second_half_of_segment = red_segment.timespan.divide_by_ratio((1, 1))[-1]
@@ -21,7 +21,7 @@ def test_SegmentSelectExpression__divide_by_ratio_01():
 def test_SegmentSelectExpression__divide_by_ratio_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     middle_third_of_segment = red_segment.timespan.divide_by_ratio((1, 1, 1))[1]
@@ -40,7 +40,7 @@ def test_SegmentSelectExpression__divide_by_ratio_03():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     divisions = red_segment.timespan.divide_by_ratio([1, 1, 1])
@@ -58,7 +58,7 @@ def test_SegmentSelectExpression__divide_by_ratio_04():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
 
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])

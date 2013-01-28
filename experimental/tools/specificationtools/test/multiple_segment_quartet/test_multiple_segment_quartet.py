@@ -17,7 +17,7 @@ def test_multiple_segment_quartet_01():
     '''
     
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (3, 8), (2, 8), (2, 8)])
     upper = ['Voice 1', 'Voice 2']
@@ -44,7 +44,7 @@ def test_multiple_segment_quartet_02():
     '''
     
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (3, 8), (2, 8), (2, 8)])
     upper = ['Voice 1', 'Voice 2']
@@ -71,7 +71,7 @@ def test_multiple_segment_quartet_03():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     first_measure = red_segment.select_measures('Voice 1')[:1]
@@ -99,7 +99,7 @@ def test_multiple_segment_quartet_04():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(3, 16)], contexts=['Voice 1'])

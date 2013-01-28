@@ -24,15 +24,17 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     ### INITIALIZER ###
 
-    #def __init__(self, score_specification):
-    #    SpecificationInterface.__init__(self, score_specification)
-
     def __init__(self, score_template):
         from experimental.tools import specificationtools
         self._score_template = score_template
         score_specification = specificationtools.ScoreSpecification(score_template)
         score_specification._interface = self
         self._score_specification = score_specification
+
+    ### SPECIAL METHODS ###
+
+    def __getitem__(self, expr):
+        return self.score_specification.__getitem__(expr)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -109,6 +111,14 @@ class ScoreSpecificationInterface(SpecificationInterface):
         '''
         return self.score_specification.interpret()
 
+    def pop(self, n=None):
+        '''Pop segment specification off of score specification.
+        '''
+        if n is None:
+            return self.score_specification.segment_specifications.pop()
+        else:
+            return self.score_specification.segment_specifications.pop(n)
+        
     def select_segments(self, voice_name):
         '''Select voice ``1`` segments in score::
 

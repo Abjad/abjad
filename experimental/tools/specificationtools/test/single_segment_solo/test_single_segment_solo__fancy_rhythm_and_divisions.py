@@ -6,7 +6,7 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(4, 8)])
     select_expression = red_segment.timespan.set_offsets((10, 16), (13, 16))
@@ -24,7 +24,7 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_02():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(4, 8)])
     select_expression = red_segment.timespan.set_offsets((10, 16), (13, 16))
@@ -43,7 +43,7 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_03():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     left, right = red_segment.timespan.divide_by_ratio((1, 1))
