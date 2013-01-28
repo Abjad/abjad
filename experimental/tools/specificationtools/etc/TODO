@@ -97,3 +97,19 @@
         first_half_of_red_segment = red_segment.timespan.divide_by_ratio((1, 1))[0]
         measures = first_half_of_red_segment.select_measures('Voice 1')
     This will show selecting measures that start during a duration-partitioned part of segment.
+
+21. Reorder RhythmMakerRhythmRegionExpression input parameters:
+        rhythm_maker, division_list, start_offset, voice_name
+
+22. Maybe compress this pattern ...
+        expression = expressiontools.StartPositionedDivisionPayloadExpression(divisions, start_offset=start_offset)
+        divisions = expression.elements
+        divisions = self._get_divisions_that_satisfy_time_relation(divisions, time_relation)
+        start_offset = divisions[0].start_offset
+        expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            divisions, start_offset=start_offset)
+    ... to this ...
+        expression = expressiontools.StartPositionedDivisionPayloadExpression(divisions, start_offset=start_offset)
+        expression = expression.get_divisions_that_satisfy_time_relation(time_relation)
+    ... with the new method implemented on the start-positioned payload expression.
+    Then streamline DivisionSelectExpression.evaluate(), MeasureSelectExpression.evaluate().

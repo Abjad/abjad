@@ -30,6 +30,25 @@ class SelectExpression(AnchoredExpression, PayloadCallbackMixin):
         self._voice_name = voice_name
         self._time_relation = time_relation
 
+    ### PRIVATE METHODS ###
+
+    def _get_divisions_that_satisfy_time_relation(self, divisions, time_relation):
+        result = []
+        for division in divisions:
+            if time_relation(
+                timespan_2=division,
+                score_specification=self.score_specification,
+                context_name=self.voice_name):
+                result.append(division)
+        return result
+
+    def _get_time_relation(self, anchor_timespan):
+        if self.time_relation is None:
+            time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
+        else:
+            time_relation = self.time_relation.new(timespan_1=anchor_timespan)
+        return time_relation
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

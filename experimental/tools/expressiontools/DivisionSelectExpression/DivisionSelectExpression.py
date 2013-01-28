@@ -39,25 +39,6 @@ class DivisionSelectExpression(SelectExpression):
     Division select expressions are immutable.
     '''
     
-    ### PRIVATE METHODS ###
-
-    def _get_divisions_that_satisfy_time_relation(self, divisions, time_relation):
-        result = []
-        for division in divisions:
-            if time_relation(
-                timespan_2=division, 
-                score_specification=self.score_specification, 
-                context_name=self.voice_name):
-                result.append(division)
-        return result
-
-    def _get_time_relation(self, anchor_timespan):
-        if self.time_relation is None:
-            time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
-        else:
-            time_relation = self.time_relation.new(timespan_1=anchor_timespan)
-        return time_relation
-
     ### PUBLIC METHODS ###
 
     def evaluate(self):
@@ -73,7 +54,7 @@ class DivisionSelectExpression(SelectExpression):
         time_relation = self._get_time_relation(anchor_timespan)
         divisions = self._get_divisions_that_satisfy_time_relation(existing_voice_divisions, time_relation)
         if not divisions:
-            return None
+            return
         start_offset = divisions[0].start_offset
         expression = expressiontools.StartPositionedDivisionPayloadExpression(divisions, start_offset=start_offset)
         if self.time_relation is None:

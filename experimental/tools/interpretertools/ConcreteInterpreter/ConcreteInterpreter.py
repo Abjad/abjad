@@ -100,7 +100,8 @@ class ConcreteInterpreter(Interpreter):
                 segment_specification._timespan = timespan
 
     def get_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, voice_name):
-        set_expressions = self.score_specification.get_timespan_scoped_single_context_set_expressions_for_voice(
+        set_expressions = \
+            self.score_specification.get_timespan_scoped_single_context_set_expressions_for_voice(
             attribute, voice_name)
         set_expressions.sort_and_split_set_expressions()
         set_expressions.compute_logical_or()
@@ -181,13 +182,16 @@ class ConcreteInterpreter(Interpreter):
         division_payload_expressions = voice_proxy.division_payload_expressions
         timespan_scoped_single_context_rhythm_set_expressions = \
             voice_proxy.timespan_scoped_single_context_rhythm_set_expressions
+        #self._debug_values(timespan_scoped_single_context_rhythm_set_expressions, 'tsscrsxs')
         if not voice_division_list:
             return []
         division_region_durations = [x.timespan.duration for x in division_payload_expressions]
         timespan_scoped_single_context_rhythm_set_expression_durations = [
             x.target_timespan.duration for x in timespan_scoped_single_context_rhythm_set_expressions]
-        assert sum(division_region_durations) == sum(timespan_scoped_single_context_rhythm_set_expression_durations)
-        timespan_scoped_single_context_rhythm_set_expression_merged_durations = sequencetools.merge_duration_sequences(
+        assert sum(division_region_durations) == \
+            sum(timespan_scoped_single_context_rhythm_set_expression_durations)
+        timespan_scoped_single_context_rhythm_set_expression_merged_durations = \
+            sequencetools.merge_duration_sequences(
             division_region_durations, timespan_scoped_single_context_rhythm_set_expression_durations)
         # assert that rhythm set expressions cover rhythm regions exactly
         assert sequencetools.partition_sequence_by_weights_exactly(
@@ -195,7 +199,8 @@ class ConcreteInterpreter(Interpreter):
             timespan_scoped_single_context_rhythm_set_expression_durations)
         rhythm_region_start_division_duration_lists = \
                 sequencetools.partition_sequence_by_backgrounded_weights(
-                voice_division_list.divisions, timespan_scoped_single_context_rhythm_set_expression_merged_durations)
+                voice_division_list.divisions, 
+                timespan_scoped_single_context_rhythm_set_expression_merged_durations)
         #self._debug_values(rhythm_region_start_division_duration_lists, 'rrsddls')
         assert len(rhythm_region_start_division_duration_lists) == \
             len(timespan_scoped_single_context_rhythm_set_expression_merged_durations)
@@ -232,8 +237,10 @@ class ConcreteInterpreter(Interpreter):
             rhythm_region_expression = timespan_scoped_single_context_rhythm_set_expression.evaluate(
                 rhythm_region_division_list, rhythm_region_start_offset, voice_name)
             rhythm_region_expressions.append(rhythm_region_expression)
+        #self._debug_values(rhythm_region_expressions, 'rrxs')
         rhythm_region_expressions = self.merge_prolonging_rhythm_region_expressions(
             rhythm_region_expressions)
+        #self._debug_values(rhythm_region_expressions, 'rrxs')
         return rhythm_region_expressions
 
     def make_timespan_scoped_single_context_set_expressions(self, attribute):

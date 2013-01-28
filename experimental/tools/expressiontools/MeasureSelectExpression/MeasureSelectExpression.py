@@ -69,7 +69,19 @@ class MeasureSelectExpression(SelectExpression):
         time_signatures = start_segment_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
         start_offset = start_segment_specification.timespan.start_offset
-        expression = expressiontools.StartPositionedDivisionPayloadExpression(time_signatures, start_offset=start_offset)
+        expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            time_signatures, start_offset=start_offset)
+        #expression = self._apply_callbacks(expression)
+        #return expression
+        anchor_timespan = self.evaluate_anchor_timespan()
+        time_relation = self._get_time_relation(anchor_timespan)
+        time_signatures = expression.elements
+        time_signatures = self._get_divisions_that_satisfy_time_relation(time_signatures, time_relation)
+        if not time_signatures:
+            return
+        start_offset = time_signatures[0].start_offset
+        expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            time_signatures, start_offset=start_offset)
         expression = self._apply_callbacks(expression)
         return expression
 
