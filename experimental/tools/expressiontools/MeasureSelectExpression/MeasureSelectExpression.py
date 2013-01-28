@@ -12,12 +12,12 @@ class MeasureSelectExpression(SelectExpression):
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+        >>> score_specification = expressiontools.ScoreSpecificationInterface(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
     Select voice ``1`` measures that start during score::
 
-        >>> measures = score_specification.interface.select_measures('Voice 1')
+        >>> measures = score_specification.select_measures('Voice 1')
 
     ::
 
@@ -40,7 +40,7 @@ class MeasureSelectExpression(SelectExpression):
 
     Select voice ``1`` measures that start during three contiguous segments::
 
-        >>> segments = score_specification.interface.select_segments('Voice 1')['red':('red', 3)]
+        >>> segments = score_specification.select_segments('Voice 1')['red':('red', 3)]
         >>> measures = segments.timespan.select_measures('Voice 1')
 
     ::

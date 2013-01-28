@@ -112,3 +112,5 @@
 
 22. Audit all expressions.
     Complete all expression docstrings.
+
+23. Move ScoreSpecificationInterface, SegmentSpecificationInterface to specificationtools.

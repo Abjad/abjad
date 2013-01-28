@@ -11,12 +11,12 @@ class BeatSelectExpression(SelectExpression):
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+        >>> score_specification = expressiontools.ScoreSpecificationInterface(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
     
     Select voice ``1`` beats that start during score::
 
-        >>> select_expression = score_specification.interface.select_beats('Voice 1')
+        >>> select_expression = score_specification.select_beats('Voice 1')
 
     ::
 

@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.score_specification
    :noindex:
 
+.. autoattribute:: experimental.tools.expressiontools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.score_template
+   :noindex:
+
 .. autoattribute:: experimental.tools.expressiontools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.specification_name
    :noindex:
 
@@ -23,6 +26,12 @@ Read-only Properties
 
 Methods
 -------
+
+.. automethod:: experimental.tools.expressiontools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.append_segment
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.interpret
+   :noindex:
 
 .. automethod:: experimental.tools.expressiontools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.select_beats
    :noindex:

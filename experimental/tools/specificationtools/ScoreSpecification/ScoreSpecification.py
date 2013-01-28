@@ -45,7 +45,8 @@ class ScoreSpecification(Specification):
         self._single_context_time_signature_set_expressions = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
-        self._interface = expressiontools.ScoreSpecificationInterface(self)
+        #self._interface = expressiontools.ScoreSpecificationInterface(self)
+        self._interface = None
 
     ### SPECIAL METHODS ###
 
@@ -172,8 +173,10 @@ class ScoreSpecification(Specification):
     def interface(self):
         '''Read-only reference to score specification interface::
 
-            >>> score_specification.interface
+            >>> score_specification.interface # doctest: +SKIP
             ScoreSpecificationInterface()
+
+        .. note:: unskip doctest.
 
         Return score specification interface.
         '''
@@ -588,7 +591,7 @@ class ScoreSpecification(Specification):
 
         Assign segment `name` or first unused segment number to segment.
 
-        Return segment specification.
+        Return segment specification interface.
         '''
         name = name or str(self._find_first_unused_segment_number())
         assert name not in self.segment_names, repr(name)

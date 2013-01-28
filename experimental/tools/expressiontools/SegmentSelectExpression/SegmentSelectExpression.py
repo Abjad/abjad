@@ -7,14 +7,14 @@ class SegmentSelectExpression(SelectExpression):
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+        >>> score_specification = expressiontools.ScoreSpecificationInterface(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
         >>> blue_segment = score_specification.append_segment(name='blue')
         >>> green_segment = score_specification.append_segment(name='green')
 
     Select voice ``1`` segments in score::
 
-        >>> select_expression = score_specification.interface.select_segments('Voice 1')
+        >>> select_expression = score_specification.select_segments('Voice 1')
 
     ::
 
@@ -25,7 +25,7 @@ class SegmentSelectExpression(SelectExpression):
 
     Select the first two voice ``1`` segments in score::
 
-        >>> select_expression = score_specification.interface.select_segments('Voice 1')[:2]
+        >>> select_expression = score_specification.select_segments('Voice 1')[:2]
 
     ::
 
@@ -39,7 +39,7 @@ class SegmentSelectExpression(SelectExpression):
 
     Select voice ``1`` segments up to but not including ``'green'``::
 
-        >>> select_expression = score_specification.interface.select_segments('Voice 1')[:'green']
+        >>> select_expression = score_specification.select_segments('Voice 1')[:'green']
 
     ::
 
@@ -53,7 +53,7 @@ class SegmentSelectExpression(SelectExpression):
 
     Select voice ``1`` segments up to and including ``'green'``::
 
-        >>> select_expression = score_specification.interface.select_segments('Voice 1')[:('green', 1)]
+        >>> select_expression = score_specification.select_segments('Voice 1')[:('green', 1)]
 
     ::
 
@@ -67,7 +67,7 @@ class SegmentSelectExpression(SelectExpression):
 
     Select voice ``1`` segment ``'red'``::
 
-        >>> select_expression = score_specification.interface.select_segments('Voice 1')['red':('red', 1)]
+        >>> select_expression = score_specification.select_segments('Voice 1')['red':('red', 1)]
 
     ::
 

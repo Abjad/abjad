@@ -8,8 +8,8 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     ::
 
-        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = specificationtools.ScoreSpecification(template)
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = expressiontools.ScoreSpecificationInterface(score_template=score_template)
 
     With three named segments:
 
@@ -24,8 +24,15 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     ### INITIALIZER ###
 
-    def __init__(self, score_specification):
-        SpecificationInterface.__init__(self, score_specification)
+    #def __init__(self, score_specification):
+    #    SpecificationInterface.__init__(self, score_specification)
+
+    def __init__(self, score_template):
+        from experimental.tools import specificationtools
+        self._score_template = score_template
+        score_specification = specificationtools.ScoreSpecification(score_template)
+        score_specification._interface = self
+        self._score_specification = score_specification
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -33,7 +40,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
     def score_specification(self):
         '''Score specification interface score specification reference::
 
-            >>> score_specification.interface.score_specification
+            >>> score_specification.score_specification
             ScoreSpecification('red', 'orange', 'yellow')
 
         Return score specification.
@@ -41,10 +48,18 @@ class ScoreSpecificationInterface(SpecificationInterface):
         return SpecificationInterface.score_specification.fget(self)
 
     @property
+    def score_template(self):
+        '''Score specification interface score template.
+        
+        Return score template.
+        '''
+        return self._score_template
+
+    @property
     def specification_name(self):
         '''Score specification interface specification name::
 
-            >>> score_specification.interface.specification_name is None
+            >>> score_specification.specification_name is None
             True
 
         Return none.
@@ -55,12 +70,10 @@ class ScoreSpecificationInterface(SpecificationInterface):
     def storage_format(self):
         '''Score specification interface storage format::
 
-            >>> z(score_specification.interface)
+            >>> z(score_specification)
             expressiontools.ScoreSpecificationInterface(
-                specificationtools.ScoreSpecification(
-                    scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                        staff_count=4
-                        )
+                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                    staff_count=4
                     )
                 )
 
@@ -72,7 +85,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
     def timespan(self):
         '''Score specification interface timespan::
 
-            >>> score_specification.interface.timespan
+            >>> score_specification.timespan
             TimespanExpression()
 
         Return timespan expression.
@@ -81,10 +94,25 @@ class ScoreSpecificationInterface(SpecificationInterface):
     
     ### PUBLIC METHODS ###
 
+    def append_segment(self, name=None):
+        '''Append segment.
+
+            >>> score_specification.append_segment(name='green')
+            SegmentSpecificationInterface('green')
+
+        Return segment specification interface.
+        '''
+        return self.score_specification.append_segment(name=name)
+
+    def interpret(self):
+        '''Interpret score.
+        '''
+        return self.score_specification.interpret()
+
     def select_segments(self, voice_name):
         '''Select voice ``1`` segments in score::
 
-            >>> select_expression = score_specification.interface.select_segments('Voice 1')
+            >>> select_expression = score_specification.select_segments('Voice 1')
 
         ::
 
