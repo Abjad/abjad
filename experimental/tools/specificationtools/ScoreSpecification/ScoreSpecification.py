@@ -51,8 +51,6 @@ class ScoreSpecification(Specification):
         self._single_context_time_signature_set_expressions = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
-        #self._interface = specificationtools.ScoreSpecificationInterface(self)
-        self._interface = None
 
     ### SPECIAL METHODS ###
 
@@ -611,24 +609,6 @@ class ScoreSpecification(Specification):
     def clear_persistent_single_context_set_expressions_by_context(self, context_name, attribute):
         if attribute in self.single_context_set_expressions_by_context[context_name]:
             del(self.single_context_set_expressions_by_context[context_name][attribute])
-
-    # TODO: possibly remove in favor of self.evaluate_anchor_timespan().
-    def get_start_segment_specification(self, expr):
-        r'''Get start segment specification from `expr`::
-
-            >>> score_specification.get_start_segment_specification(1)
-            SegmentSpecification('orange')
-
-        Return segment specification or raise key error when none is found.
-        '''
-        if isinstance(expr, (int, str)):
-            start_segment_identifier = expr
-        else:
-            start_segment_identifier = getattr(expr, 'start_segment_identifier', None)
-        if start_segment_identifier is None:
-            start_segment_identifier = getattr(expr, 'anchor', None)
-        assert isinstance(start_segment_identifier, (int, str)), repr(start_segment_identifier)
-        return self.segment_specifications[start_segment_identifier]
 
     def get_time_signature_slice(self, timespan):
         '''Get time signature slice::

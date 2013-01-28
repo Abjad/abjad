@@ -5,18 +5,9 @@
     then truncate will always effectively be interpreted as true.
 
 2.  Can start_segment_identifier properties eventually be completely removed from model?
-    What should be possible is for code to look at any timespan expression and get start segment specification.
-    There is in fact an Interpreter.get_start_segment_specification() method right now.
-    How does this relate to the "reanchoring" of set expressions during interpretation?
+    Does the notion of "start segment identifier" reduces to "anchor"?
 
-3.  Rename _set_start_segment_identifier().
-    Maybe should be called _set_anchor(). Not sure.
-    In fact it's possible that the entire notion of "start segment identifier" reduces to "anchor".
-    If that turns out to be the case then "start segment specification" is
-    something like "anchor segment specification".
-    And more generally we have "anchor specification" to allow both score- and segment-anchoring.
-
-4.  Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
+3.  Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         timespan = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         rhythm = red_segment.select_leaves('Voice 1', timespan=timespan)
@@ -35,60 +26,64 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-5.  Unskip all experimental tests before 2.11 build.
+4.  Unskip all experimental tests before 2.11 build.
 
-6.  Author tests to make sure that persistent overlapping division select expressions
+5.  Author tests to make sure that persistent overlapping division select expressions
     can be overwritten in a subsequent segment.
     See test_multiple_segment_solo__persistent_overlapping_division_select_expressions_05().
 
-7.  Looks like callback stacks may not be copied over from segment to segment for persistent set expressions.
+6.  Looks like callback stacks may not be copied over from segment to segment for persistent set expressions.
     Fix test_multiple_segment_solo__persistent_overlapping_division_select_expressions_03() to debug.
 
-8.  Finish timerelationtools class docstrings before 2.11 build.
+7.  Finish timerelationtools class docstrings before 2.11 build.
 
-9.  Finish timespantools package docstrings before 2.11 build.
+8.  Finish timespantools package docstrings before 2.11 build.
 
-10. Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
+9.  Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
 
-11. Audit entire interpreter.
+10. Audit entire interpreter.
     Update variable names.
     Remove duplicate code.
 
-12. Audit all expressions.
+11. Audit all expressions.
     Complete all expression docstrings.
 
-13. Add some tests to show this:
+12. Add some tests to show this:
         score_specification.set_rhythm(library.sixteenths)
 
-14. Add some tests to show this:
+13. Add some tests to show this:
         notes = red_segment.select_notes_and_chords('Voice 1')[10:11]
         offset = notes.stop_offset
 
-15. Add some tests to show this:
+14. Add some tests to show this:
         measures = red_segment.select_measures('Voice 1')
         measures = measures[10:20]
         measures = measures[2:4]
     This will show getitem composition.
 
-16. Add some tests to show this:
+15. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_part = segments.set_offset(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         middle_part.set_divisions([(3, 16)])
     This will show set expression divisions for (potentially) more than one segment.
 
-17. Add some tests to show this:
+16. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_measures = segments.select_measures('Voice 1')[3:6]
     This will show selecting measures from (potentially) more than one segment.
 
-18. Add some tests to show this:
+17. Add some tests to show this:
         measures = red_segment.select_measures('Voice 1')[10:20]
         middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
     This will show partitioning only part of a segment's measures.
 
-19. Add some tests to show this:
+18. Add some tests to show this:
         measures = red_segment.select_measures('Voice 1')
         middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
         measure = middle_third_of_measures[:1]
     This will show slice selection following partition.
+
+19. Possibly extend AnchoredExpression with start_segment_specification property.
+    Removes segment_specification = self.score_specification[self.start_segment_identifer]
+    from seven or eight places.

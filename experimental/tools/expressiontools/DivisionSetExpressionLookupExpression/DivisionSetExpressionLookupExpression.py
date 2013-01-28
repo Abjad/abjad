@@ -66,8 +66,7 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
         timespan_inventory = self._get_timespan_scoped_single_context_division_set_expressions()
         time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
         candidate_set_expressions = timespan_inventory.get_timespans_that_satisfy_time_relation(time_relation)
-        segment_specification = self.score_specification.get_start_segment_specification(
-            start_segment_identifier)
+        segment_specification = self.score_specification[start_segment_identifier]
         source_set_expression = segment_specification._get_first_element_in_expr_by_parentage(
             candidate_set_expressions, self.voice_name, include_improper_parentage=True)
         assert source_set_expression is not None

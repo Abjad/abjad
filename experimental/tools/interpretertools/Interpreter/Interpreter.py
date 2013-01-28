@@ -31,8 +31,8 @@ class Interpreter(AbjadObject):
 
     def evaluate_multiple_context_set_expressions_for_score(self):
         for multiple_context_set_expression in self.score_specification.multiple_context_set_expressions:
-            segment_specification = self.score_specification.get_start_segment_specification(
-                multiple_context_set_expression.anchor)
+            segment_specification = multiple_context_set_expression.score_specification[
+                multiple_context_set_expression.start_segment_identifier]
             single_context_set_expressions = multiple_context_set_expression.evaluate()
             segment_specification.single_context_set_expressions.extend(single_context_set_expressions)
             self.score_specification.single_context_set_expressions.extend(single_context_set_expressions)
@@ -79,8 +79,8 @@ class Interpreter(AbjadObject):
         If set expression persists then store set expression by context in score, too.
         '''
         single_context_set_expression = copy.deepcopy(single_context_set_expression)
-        anchor = single_context_set_expression.anchor
-        segment_specification = self.score_specification.get_start_segment_specification(anchor)
+        segment_specification = single_context_set_expression.score_specification[
+            single_context_set_expression.start_segment_identifier]
         assert segment_specification is not None
         context_name = single_context_set_expression.target_context_name
         if context_name is None:
