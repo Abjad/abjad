@@ -68,7 +68,7 @@ class DivisionList(BoundedObject):
     This results in an arbitrary number of division regions per voice.
 
     Composers do not create division lists because division lists 
-    arise as a byproduct of interpretation.
+    arise as an intermediate epxression during interpretation.
     '''
 
     ### INITIALIZER ###

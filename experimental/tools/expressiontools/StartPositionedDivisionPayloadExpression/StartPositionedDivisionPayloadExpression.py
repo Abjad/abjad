@@ -1,20 +1,22 @@
 import copy
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from experimental.tools.expressiontools.StartPositionedPayloadExpression import StartPositionedPayloadExpression
+from experimental.tools.expressiontools.StartPositionedPayloadExpression import \
+    StartPositionedPayloadExpression
 
 
 class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression):
-    r'''Division region product:
+    r'''Start-positioned division payload expression:
 
     ::
 
         >>> payload = [(6, 8), (6, 8), (3, 4)]
-        >>> product = expressiontools.StartPositionedDivisionPayloadExpression(payload, Offset(0))
+        >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+        ...     payload, Offset(0))
 
     ::
 
-        >>> z(product)
+        >>> z(payload_expression)
         expressiontools.StartPositionedDivisionPayloadExpression(
             payload=expressiontools.DivisionList(
                 [Division('[6, 8]', start_offset=Offset(0, 1)), 
@@ -27,12 +29,12 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
     Contiguous block of one voice's divisions.
 
-    Division interpretation generates many division region products.
+    Division interpretation generates many division payload expressions.
     
     Division interpretation completes when contiguous division region
-    products exist to account for the duration of every voice.
+    payload_expressions exist to account for the duration of every voice.
 
-    Division region products may be constructed out of chronological order.
+    Start-positioned division payload expressions may be constructed out of chronological order.
     '''
 
     ### INITIALIZER ###
@@ -46,15 +48,16 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
-        '''Keep intersection of `timespan` and rhythm region product.
+        '''Keep intersection of `timespan` and rhythm payload expression.
 
         Example 1. Intersection on the left:
 
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = expressiontools.StartPositionedDivisionPayloadExpression(payload, Offset(0))
-            >>> result = product & timespantools.Timespan(0, Offset(1, 8))
+            >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     payload, Offset(0))
+            >>> result = payload_expression & timespantools.Timespan(0, Offset(1, 8))
 
         ::
 
@@ -74,8 +77,9 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = expressiontools.StartPositionedDivisionPayloadExpression(payload, Offset(0))
-            >>> result = product & timespantools.Timespan(Offset(17, 8), 100)
+            >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     payload, Offset(0))
+            >>> result = payload_expression & timespantools.Timespan(Offset(17, 8), 100)
 
         ::
 
@@ -95,8 +99,9 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = expressiontools.StartPositionedDivisionPayloadExpression(payload, Offset(0))
-            >>> result = product & timespantools.Timespan(Offset(1, 8), Offset(17, 8))
+            >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     payload, Offset(0))
+            >>> result = payload_expression & timespantools.Timespan(Offset(1, 8), Offset(17, 8))
 
         ::
 
@@ -118,8 +123,9 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = expressiontools.StartPositionedDivisionPayloadExpression(payload, Offset(0))
-            >>> result = product & timespantools.Timespan(100, 200)
+            >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     payload, Offset(0))
+            >>> result = payload_expression & timespantools.Timespan(100, 200)
 
         ::
 
@@ -141,22 +147,24 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         return result
 
     def __or__(self, expr):
-        '''Logical OR of two division region products:
+        '''Logical OR of two division payload expressions:
 
         ::
 
-            >>> product_1 = expressiontools.StartPositionedDivisionPayloadExpression(2 * [(3, 16)], Offset(0))
+            >>> payload_expression_1 = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     2 * [(3, 16)], Offset(0))
             >>> timespan = timespantools.Timespan(Offset(6, 16))
-            >>> product_2 = expressiontools.StartPositionedDivisionPayloadExpression(2 * [(2, 16)], Offset(6, 16))
+            >>> payload_expression_2 = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     2 * [(2, 16)], Offset(6, 16))
 
         ::
 
-            >>> product_1.timespan.stops_when_timespan_starts(product_2)
+            >>> payload_expression_1.timespan.stops_when_timespan_starts(payload_expression_2)
             True
 
         ::
 
-            >>> result = product_1 | product_2
+            >>> result = payload_expression_1 | payload_expression_2
 
         ::
         
@@ -179,15 +187,16 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         return StartPositionedPayloadExpression.__or__(self, expr)
 
     def __sub__(self, timespan):
-        '''Subtract `timespan` from division region product.
+        '''Subtract `timespan` from division payload expression.
 
         Example 1. Subtract from left:
 
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = expressiontools.StartPositionedDivisionPayloadExpression(payload, Offset(0))
-            >>> result = product - timespantools.Timespan(0, Offset(1, 8))
+            >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     payload, Offset(0))
+            >>> result = payload_expression - timespantools.Timespan(0, Offset(1, 8))
 
         ::
 
@@ -209,8 +218,9 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = expressiontools.StartPositionedDivisionPayloadExpression(payload, Offset(0))
-            >>> result = product - timespantools.Timespan(Offset(17, 8), 100)
+            >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     payload, Offset(0))
+            >>> result = payload_expression - timespantools.Timespan(Offset(17, 8), 100)
 
         ::
 
@@ -232,8 +242,9 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = expressiontools.StartPositionedDivisionPayloadExpression(payload, Offset(0))
-            >>> result = product - timespantools.Timespan(Offset(1, 8), Offset(17, 8))
+            >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     payload, Offset(0))
+            >>> result = payload_expression - timespantools.Timespan(Offset(1, 8), Offset(17, 8))
 
         ::
 
@@ -261,8 +272,9 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = expressiontools.StartPositionedDivisionPayloadExpression(payload, Offset(0))
-            >>> result = product - timespantools.Timespan(100, 200)
+            >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     payload, Offset(0))
+            >>> result = payload_expression - timespantools.Timespan(100, 200)
 
         ::
 
@@ -299,7 +311,8 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
             divisions, offsets, cyclic=False, overhang=True)
         result, total_duration = [], durationtools.Duration(0)
         for shard in shards:
-            shard = expressiontools.DivisionList(shard, voice_name=self.voice_name, start_offset=total_duration)
+            shard = expressiontools.DivisionList(
+                shard, voice_name=self.voice_name, start_offset=total_duration)
             result.append(shard)
             total_duration += shard.duration
         return result
@@ -308,11 +321,11 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
     @property
     def payload(self):
-        '''Division region product payload:
+        '''Start-positioned division payload expression payload:
 
         ::
 
-            >>> product.payload
+            >>> payload_expression.payload
             DivisionList('[6, 8], [6, 8], [3, 4]')
 
         Return division list.
@@ -321,11 +334,11 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
     @property
     def start_offset(self):
-        '''Division region product start offset:
+        '''Start-positioned division payload expression start offset:
 
         ::
 
-            >>> product.start_offset
+            >>> payload_expression.start_offset
             Offset(0, 1)
 
         Return offset.
@@ -334,11 +347,11 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
     @property
     def stop_offset(self):
-        '''Division region product stop offset:
+        '''Start-positioned division payload expression stop offset:
 
         ::
 
-            >>> product.stop_offset
+            >>> payload_expression.stop_offset
             Offset(9, 4)
 
         Return offset.
@@ -347,11 +360,11 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
     @property
     def storage_format(self):
-        '''Division region product storage format:
+        '''Start-positioned division payload expression storage format:
 
         ::
 
-            >>> z(product)
+            >>> z(payload_expression)
             expressiontools.StartPositionedDivisionPayloadExpression(
                 payload=expressiontools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)), 
@@ -368,11 +381,11 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
     @property
     def timespan(self):
-        '''Division region product timespan:
+        '''Start-positioned division payload expression timespan:
 
         ::
 
-            >>> product.timespan
+            >>> payload_expression.timespan
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(9, 4))
 
         Return timespan.
@@ -381,11 +394,11 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
     @property
     def voice_name(self):
-        '''Division region product voice name:
+        '''Start-positioned division payload expression voice name:
 
         ::
 
-            >>> product.voice_name is None
+            >>> payload_expression.voice_name is None
             True
 
         Return string.
@@ -400,11 +413,12 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (6, 8), (6, 8), (6, 4), (6, 4)]
-            >>> product = expressiontools.StartPositionedDivisionPayloadExpression(payload, Offset(0))
+            >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     payload, Offset(0))
 
         ::
 
-            >>> result = product.partition_by_ratio((1, 1))
+            >>> result = payload_expression.partition_by_ratio((1, 1))
 
         ::
 
@@ -440,11 +454,12 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (6, 8), (6, 8), (6, 4), (6, 4)]
-            >>> product = expressiontools.StartPositionedDivisionPayloadExpression(payload, Offset(0))
+            >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     payload, Offset(0))
 
         ::
 
-            >>> result = product.partition_by_ratio_of_durations((1, 1))
+            >>> result = payload_expression.partition_by_ratio_of_durations((1, 1))
 
         ::
 
@@ -480,15 +495,16 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = expressiontools.StartPositionedDivisionPayloadExpression(payload, Offset(0))
+            >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     payload, Offset(0))
 
         ::
 
-            >>> result = product.reflect()    
+            >>> result = payload_expression.reflect()    
 
         ::
 
-            >>> z(product)
+            >>> z(payload_expression)
             expressiontools.StartPositionedDivisionPayloadExpression(
                 payload=expressiontools.DivisionList(
                     [Division('[3, 4]', start_offset=Offset(0, 1)), 
@@ -499,7 +515,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Operate in place and return division region product.
+        Operate in place and return division payload expression.
         '''
         return StartPositionedPayloadExpression.reflect(self)
 
@@ -521,15 +537,16 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = expressiontools.StartPositionedDivisionPayloadExpression(payload, Offset(0))
+            >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     payload, Offset(0))
 
         ::
 
-            >>> result = product.rotate(-1)    
+            >>> result = payload_expression.rotate(-1)    
 
         ::
 
-            >>> z(product)
+            >>> z(payload_expression)
             expressiontools.StartPositionedDivisionPayloadExpression(
                 payload=expressiontools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)), 
@@ -540,21 +557,22 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
                 start_offset=durationtools.Offset(0, 1)
                 )
         
-        Operate in place and return division region product.
+        Operate in place and return division payload expression.
         '''
         return StartPositionedPayloadExpression.rotate(self, rotation)
 
     def translate(self, translation):
-        '''Translate division region product by `translation`:
+        '''Translate division payload expression by `translation`:
         
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> product = expressiontools.StartPositionedDivisionPayloadExpression(payload, Offset(0))
+            >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     payload, Offset(0))
 
         ::
 
-            >>> result = product.translate(10)
+            >>> result = payload_expression.translate(10)
 
         ::
 
@@ -569,7 +587,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
                 start_offset=durationtools.Offset(10, 1)
                 )
 
-        Operate in place and return division region product.
+        Operate in place and return division payload expression.
         '''
         new_start_offset = self.start_offset + translation
         result = type(self)(self.payload.divisions, voice_name=self.voice_name, start_offset=new_start_offset)

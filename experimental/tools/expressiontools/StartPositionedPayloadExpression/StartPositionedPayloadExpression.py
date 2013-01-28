@@ -27,7 +27,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
-        '''Keep intersection of `timespan` and region product.
+        '''Keep intersection of `timespan` and payload expression.
 
         Operate in place and return timespan inventory.
         '''
@@ -55,10 +55,10 @@ class StartPositionedPayloadExpression(PayloadExpression):
             result = self._split_payload_at_offsets(split_offsets)
             middle_payload = result[1]
             middle_timespan = timespantools.Timespan(*timespan.offsets)
-            middle_product = type(self)(
+            middle_payload_expression = type(self)(
                 payload=[], start_offset=middle_timespan.start_offset, voice_name=self.voice_name)
-            middle_product._payload = middle_payload
-            result = timespantools.TimespanInventory([middle_product])
+            middle_payload_expression._payload = middle_payload
+            result = timespantools.TimespanInventory([middle_payload_expression])
         else:
             result = timespantools.TimespanInventory()
         return result
@@ -71,10 +71,10 @@ class StartPositionedPayloadExpression(PayloadExpression):
         return len(self.payload)
 
     def __lt__(self, expr):        
-        '''True when rhythm region product starts before `expr`.
+        '''True when expression starts before `expr`.
 
-        Also true when rhythm region product starts when `expr` starts
-        but rhythm region product stops before `expr` stops.
+        Also true when expression starts when `expr` starts
+        but expression stops before `expr` stops.
 
         Otherwise false.
 
@@ -87,9 +87,9 @@ class StartPositionedPayloadExpression(PayloadExpression):
         return False
 
     def __or__(self, expr):
-        '''Logical OR of two region products.
+        '''Logical OR of two payload expressiongs.
 
-        Region products must be able to fuse.
+        Payload expression must be able to fuse.
         
         Return timespan inventory.
         '''
@@ -100,7 +100,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         return timespantools.TimespanInventory([result])
 
     def __sub__(self, timespan):
-        '''Subtract `timespan` from region product.
+        '''Subtract `timespan` from payload expressiong.
 
         Operate in place and return timespan inventory.
         '''
@@ -132,15 +132,15 @@ class StartPositionedPayloadExpression(PayloadExpression):
             left_payload = result[0]
             right_payload = result[-1]
             left_timespan = timespantools.Timespan(self.start_offset)
-            left_product = type(self)(
+            left_payload_expression = type(self)(
                 payload=[], start_offset=left_timespan.start_offset, voice_name=self.voice_name)
-            left_product._payload = left_payload
+            left_payload_expression._payload = left_payload
             right_timespan = timespantools.Timespan(timespan.stop_offset)
-            right_product = type(self)(
+            right_payload_expression = type(self)(
                 payload=[], start_offset=right_timespan.start_offset, voice_name=self.voice_name)
-            right_product._payload = right_payload
-            products = [left_product, right_product]
-            result = timespantools.TimespanInventory(products)
+            right_payload_expression._payload = right_payload
+            payload_expressions = [left_payload_expression, right_payload_expression]
+            result = timespantools.TimespanInventory(payload_expressions)
         else:
             result = timespantools.TimespanInventory([self])
         return result
@@ -247,7 +247,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
         return expression
     
     def partition_by_ratio(self, ratio):
-        '''Partition region product payload by ratio.
+        '''Partition payload expressiong payload by ratio.
 
         Operate in place and return newly constructed inventory.
         '''
@@ -257,16 +257,16 @@ class StartPositionedPayloadExpression(PayloadExpression):
         payload_parts = self._split_payload_at_offsets(durations)
         start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
         start_offsets = [self.start_offset + start_offset for start_offset in start_offsets]
-        products = expressiontools.TimespanScopedSingleContextSetExpressionInventory()
+        payload_expressions = expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for payload_part, start_offset in zip(payload_parts, start_offsets):
             timespan = timespantools.Timespan(start_offset)
-            product = type(self)([], start_offset=timespan.start_offset, voice_name=self.voice_name)
-            product._payload = payload_part
-            products.append(product)
-        return products
+            payload_expression = type(self)([], start_offset=timespan.start_offset, voice_name=self.voice_name)
+            payload_expression._payload = payload_part
+            payload_expressions.append(payload_expression)
+        return payload_expressions
 
     def partition_by_ratio_of_durations(self, ratio):
-        '''Partition region product payload by ratio of durations.
+        '''Partition payload expressiong payload by ratio of durations.
 
         Operate in place and return newly constructed inventory.
         '''
@@ -280,18 +280,18 @@ class StartPositionedPayloadExpression(PayloadExpression):
         payload_parts = self._split_payload_at_offsets(durations)
         start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
         start_offsets = [self.start_offset + start_offset for start_offset in start_offsets]
-        products = expressiontools.TimespanScopedSingleContextSetExpressionInventory()
+        payload_expressions = expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for payload_part, start_offset in zip(payload_parts, start_offsets):
             timespan = timespantools.Timespan(start_offset)
-            product = type(self)([], start_offset=timespan.start_offset, voice_name=self.voice_name)
-            product._payload = payload_part
-            products.append(product)
-        return products
+            payload_expression = type(self)([], start_offset=timespan.start_offset, voice_name=self.voice_name)
+            payload_expression._payload = payload_part
+            payload_expressions.append(payload_expression)
+        return payload_expressions
 
     def reflect(self):
-        '''Reflect payload about region product axis.
+        '''Reflect payload about payload expressiong axis.
 
-        Operate in place and return region product.
+        Operate in place and return payload expressiong.
         '''
         payload = self.payload.reflect()
         if payload is not None:
@@ -301,16 +301,16 @@ class StartPositionedPayloadExpression(PayloadExpression):
     def rotate(self, rotation):
         '''Rotate payload by `rotation`.
 
-        Operate in place and return region product.
+        Operate in place and return payload expressiong.
         '''
         payload = self.payload.rotate(rotation)
         self._payload = payload
         return self
 
     def translate(self, translation):
-        '''Translate region product by `translation`.
+        '''Translate payload expressiong by `translation`.
 
-        Operate in place and return region product.
+        Operate in place and return payload expressiong.
         '''
         translation = durationtools.Duration(translation)
         new_start_offset = self.start_offset + translation

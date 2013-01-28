@@ -1,6 +1,6 @@
 (1) How are spanning divisions to be handled?
 
-(2) Maybe the first thing to notice is that spanning divisions are a type of byproduct
+(2) Maybe the first thing to notice is that spanning divisions are a type of intermediate expression
 arising during interpretation. Composers specify only complete divisions. But differences
 between the pattern of divisions within a segment and the durations of adjacent segments
 may give rise to spanning divisions.

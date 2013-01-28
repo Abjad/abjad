@@ -10,20 +10,21 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
-from experimental.tools.expressiontools.StartPositionedPayloadExpression import StartPositionedPayloadExpression
+from experimental.tools.expressiontools.StartPositionedPayloadExpression import \
+    StartPositionedPayloadExpression
 
 
 class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
-    r'''Rhythm region product:
+    r'''Start-positioned rhythm payload expression:
 
     ::
 
         >>> payload = [Container("c'8 d'8 e'8 f'8")]
-        >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(10))
+        >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(10))
 
     ::
 
-        >>> z(product)
+        >>> z(expression)
         expressiontools.StartPositionedRhythmPayloadExpression(
             payload=containertools.Container(
                 music=({c'8, d'8, e'8, f'8},)
@@ -33,12 +34,12 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     Contiguous block of one voice's counttime components.
 
-    Rhythm interpretation generates many rhythm region products.
+    Rhythm interpretation generates many start-positioned rhythm payload expressions.
 
-    Rhythm interpretation completes when contiguous rhythm region
-    products exist to account for the duration of every voice.
+    Rhythm interpretation completes when contiguous start-positioned
+    rhythm region expression exist to account for the duration of every voice.
 
-    Rhythm region products may be constructed out of chronological order.
+    Start-positioned rhythm payload expressions may be constructed out of chronological order.
     '''
 
     ### INITIALIZER ###
@@ -51,15 +52,15 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
-        '''Intersection of `timespan` and rhythm region product.
+        '''Intersection of `timespan` and start-positioned rhythm payload expression.
 
         Example 1. Intersection on the left:
 
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
-            >>> result = product & timespantools.Timespan(Offset(-1, 8), Offset(3, 8))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> result = expression & timespantools.Timespan(Offset(-1, 8), Offset(3, 8))
 
         ::
 
@@ -78,8 +79,8 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
-            >>> result = product & timespantools.Timespan(Offset(1, 8), Offset(5, 8))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> result = expression & timespantools.Timespan(Offset(1, 8), Offset(5, 8))
 
         ::
 
@@ -98,8 +99,8 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
-            >>> result = product & timespantools.Timespan(Offset(1, 8), Offset(3, 8))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> result = expression & timespantools.Timespan(Offset(1, 8), Offset(3, 8))
 
         ::
 
@@ -118,8 +119,8 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
-            >>> result = product & timespantools.Timespan(100, 200)
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> result = expression & timespantools.Timespan(100, 200)
 
         ::
 
@@ -158,26 +159,26 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return len(self.payload.leaves)
 
     def __or__(self, expr):
-        '''Logical OR of two rhythm region products:
+        '''Logical OR of two start-positioned rhythm payload expressions:
 
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product_1 = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> expression_1 = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
 
         ::
 
             >>> payload = [Container("g'8 a'8 b'8 c''8")]
-            >>> product_2 = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(4, 8))
+            >>> expression_2 = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(4, 8))
 
         ::
 
-            >>> product_1.timespan.stops_when_timespan_starts(product_2)
+            >>> expression_1.timespan.stops_when_timespan_starts(expression_2)
             True
 
         ::
 
-            >>> result = product_1 | product_2
+            >>> result = expression_1 | expression_2
 
         ::
         
@@ -191,11 +192,11 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                     )
                 ])
 
-        Leave rhythm region product unchanged:
+        Leave start-positioned rhythm payload expression unchanged:
 
         ::
 
-            >>> z(product_1)
+            >>> z(expression_1)
             expressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'8, f'8},)
@@ -207,7 +208,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(product_2)
+            >>> z(expression_2)
             expressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=({g'8, a'8, b'8, c''8},)
@@ -220,15 +221,15 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return StartPositionedPayloadExpression.__or__(self, expr)
 
     def __sub__(self, timespan):
-        '''Subtract `timespan` from rhythm region product.
+        '''Subtract `timespan` from start-positioned rhythm payload expression.
 
         Example 1. Subtract from left:
 
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
-            >>> result = product - timespantools.Timespan(0, Offset(1, 8))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> result = expression - timespantools.Timespan(0, Offset(1, 8))
 
         ::
 
@@ -247,8 +248,8 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
-            >>> result = product - timespantools.Timespan(Offset(3, 8), 100)
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> result = expression - timespantools.Timespan(Offset(3, 8), 100)
 
         ::
 
@@ -267,8 +268,8 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
-            >>> result = product - timespantools.Timespan(Offset(1, 8), Offset(3, 8))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> result = expression - timespantools.Timespan(Offset(1, 8), Offset(3, 8))
 
         ::
 
@@ -293,8 +294,8 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
-            >>> result = product - timespantools.Timespan(100, 200)
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> result = expression - timespantools.Timespan(100, 200)
 
         ::
 
@@ -346,11 +347,11 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def payload(self):
-        '''Rhythm region product payload:
+        '''Start-positioned rhythm payload expression payload:
 
         ::
 
-            >>> product.payload
+            >>> expression.payload
             {{c'8, d'8, e'8, f'8}}
 
         Return container.
@@ -359,11 +360,11 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def start_offset(self):
-        '''Rhythm region product start offset:
+        '''Start-positioned rhythm payload expression start offset:
 
         ::
 
-            >>> product.start_offset
+            >>> expression.start_offset
             Offset(0, 1)
 
         Return offset.
@@ -372,11 +373,11 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def stop_offset(self):
-        '''Rhythm region product stop offset:
+        '''Start-positioned rhythm payload expression stop offset:
 
         ::
 
-            >>> product.stop_offset
+            >>> expression.stop_offset
             Offset(1, 2)
 
         Return offset.
@@ -385,11 +386,11 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def storage_format(self):
-        '''Rhythm region product storage format:
+        '''Start-positioned rhythm payload expression storage format:
 
         ::
 
-            >>> z(product)
+            >>> z(expression)
             expressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'8, f'8},)
@@ -403,11 +404,11 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def timespan(self):
-        '''Rhythm region product timespan:
+        '''Start-positioned rhythm payload expression timespan:
 
         ::
 
-            >>> product.timespan
+            >>> expression.timespan
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(1, 2))
 
         Return timespan.
@@ -416,11 +417,11 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def voice_name(self):
-        '''Rhythm region product voice name:
+        '''Start-positioned rhythm payload expression voice name:
 
         ::
 
-            >>> product.voice_name is None
+            >>> expression.voice_name is None
             True
 
         Return string.
@@ -435,11 +436,11 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(10))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(10))
 
         ::
 
-            >>> result = product.partition_by_ratio((1, 2, 1))
+            >>> result = expression.partition_by_ratio((1, 2, 1))
 
         ::
 
@@ -475,11 +476,11 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> payload = [Container("c'2 d'8 e'8 f'4")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(10))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(10))
 
         ::
 
-            >>> result = product.partition_by_ratio_of_durations((1, 1))
+            >>> result = expression.partition_by_ratio_of_durations((1, 1))
 
         ::
 
@@ -509,15 +510,15 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
 
         ::
 
-            >>> result = product.reflect()    
+            >>> result = expression.reflect()    
 
         ::
 
-            >>> z(product)
+            >>> z(expression)
             expressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=({f'8, e'8, d'8, c'8},)
@@ -525,7 +526,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Operate in place and return rhythm region product.
+        Operate in place and return start-positioned rhythm payload expression.
         '''
         for container in iterationtools.iterate_containers_in_expr(self.payload):
             container._music.reverse()
@@ -536,20 +537,20 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
     def repeat_to_duration(self, duration):
         '''Repeat to `duration`.
 
-        Example 1. Repeat to duration less than rhythm region product:
+        Example 1. Repeat to duration less than start-positioned rhythm payload expression:
 
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
 
         ::
 
-            >>> result = product.repeat_to_duration(Duration(5, 16))
+            >>> result = expression.repeat_to_duration(Duration(5, 16))
 
         ::
 
-            >>> z(product)
+            >>> z(expression)
             expressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'16},)
@@ -557,20 +558,20 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Example 2. Repeat to duration greater than rhythm region product:
+        Example 2. Repeat to duration greater than start-positioned rhythm payload expression:
 
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
 
         ::
 
-            >>> result = product.repeat_to_duration(Duration(13, 16))
+            >>> result = expression.repeat_to_duration(Duration(13, 16))
 
         ::
 
-            >>> z(product)
+            >>> z(expression)
             expressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'8, f'8}, {c'8, d'8, e'16})
@@ -578,7 +579,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Operate in place and return rhythm region product.
+        Operate in place and return start-positioned rhythm payload expression.
         '''
         if self.timespan.duration < duration:
             stop_offset = self.start_offset + duration
@@ -596,20 +597,20 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
     def repeat_to_length(self, length):
         '''Repeat to leaf `length`.
 
-        Example 1. Repeat to `length` less than rhythm region product:
+        Example 1. Repeat to `length` less than start-positioned rhythm payload expression:
     
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
 
         ::
 
-            >>> result = product.repeat_to_length(3)
+            >>> result = expression.repeat_to_length(3)
 
         ::
 
-            >>> z(product)
+            >>> z(expression)
             expressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'8},)
@@ -617,20 +618,20 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Example 2. Repeat to `length` greater than rhythm region product:
+        Example 2. Repeat to `length` greater than start-positioned rhythm payload expression:
     
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
 
         ::
 
-            >>> result = product.repeat_to_length(7)
+            >>> result = expression.repeat_to_length(7)
 
         ::
 
-            >>> z(product)
+            >>> z(expression)
             expressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'8, f'8}, {c'8, d'8, e'8})
@@ -638,7 +639,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Operate in place and return rhythm region product.
+        Operate in place and return start-positioned rhythm payload expression.
         '''
         leaves = sequencetools.CyclicTuple(self.payload.leaves)
         leaves = leaves[:length]
@@ -646,20 +647,20 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return self.repeat_to_duration(duration)
 
     def repeat_to_stop_offset(self, stop_offset):
-        '''Repeat rhythm region product to `stop_offset`:
+        '''Repeat start-positioned rhythm payload expression to `stop_offset`:
 
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
 
         ::
 
-            >>> result = product.repeat_to_stop_offset(Offset(17, 16))    
+            >>> result = expression.repeat_to_stop_offset(Offset(17, 16))    
 
         ::
 
-            >>> z(product)
+            >>> z(expression)
             expressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'8, f'8}, {c'8, d'8, e'8, f'8}, {c'16})
@@ -667,7 +668,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Operate in place and return rhythm region product.
+        Operate in place and return start-positioned rhythm payload expression.
         '''
         stop_offset = durationtools.Offset(stop_offset)
         assert self.stop_offset <= stop_offset, repr((self.stop_offset, stop_offset))
@@ -690,22 +691,22 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return self
 
     def rotate(self, n, fracture_spanners=True):
-        '''Rotate rhythm region product payload.
+        '''Rotate start-positioned rhythm payload expression payload.
 
         Example 1. Rotate by count:
 
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
 
         ::
 
-            >>> result = product.rotate(-1)
+            >>> result = expression.rotate(-1)
 
         ::
 
-            >>> z(product)
+            >>> z(expression)
             expressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=({d'8, e'8, f'8}, {c'8})
@@ -718,15 +719,15 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
 
         ::
 
-            >>> result = product.rotate(-Duration(3, 16))
+            >>> result = expression.rotate(-Duration(3, 16))
 
         ::
 
-            >>> z(product)
+            >>> z(expression)
             expressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=({d'16, e'8, f'8}, {c'8, d'16})
@@ -734,7 +735,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Operate in place and return rhythm region product.
+        Operate in place and return start-positioned rhythm payload expression.
         '''
         from experimental.tools import expressiontools
         if isinstance(n, int):
@@ -812,20 +813,20 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return self
 
     def translate(self, translation):
-        '''Translate rhythm region product by `translation`:
+        '''Translate start-positioned rhythm payload expression by `translation`:
         
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> product = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
+            >>> expression = expressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
 
         ::
 
-            >>> result = product.translate(10)
+            >>> result = expression.translate(10)
 
         ::
 
-            >>> z(product)
+            >>> z(expression)
             expressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=({c'8, d'8, e'8, f'8},)
@@ -833,6 +834,6 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(10, 1)
                 )
 
-        Operate in place and return rhythm region product.
+        Operate in place and return start-positioned rhythm payload expression.
         '''
         return StartPositionedPayloadExpression.translate(self, translation)

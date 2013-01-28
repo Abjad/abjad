@@ -92,5 +92,3 @@
         middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
         measure = middle_third_of_measures[:1]
     This will show slice selection following partition.
-
-20. Globally search and replace 'product'.
