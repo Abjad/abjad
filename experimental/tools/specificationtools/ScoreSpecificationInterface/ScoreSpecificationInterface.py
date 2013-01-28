@@ -1,4 +1,4 @@
-from experimental.tools.expressiontools.SpecificationInterface import SpecificationInterface
+from experimental.tools.specificationtools.SpecificationInterface import SpecificationInterface
 
 
 class ScoreSpecificationInterface(SpecificationInterface):
@@ -9,7 +9,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = expressiontools.ScoreSpecificationInterface(score_template=score_template)
+        >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
 
     With three named segments:
 
@@ -71,7 +71,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
         '''Score specification interface storage format::
 
             >>> z(score_specification)
-            expressiontools.ScoreSpecificationInterface(
+            specificationtools.ScoreSpecificationInterface(
                 scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
                     staff_count=4
                     )

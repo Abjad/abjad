@@ -1,4 +1,4 @@
-from experimental.tools.expressiontools.SpecificationInterface import SpecificationInterface
+from experimental.tools.specificationtools.SpecificationInterface import SpecificationInterface
 
 
 class SegmentSpecificationInterface(SpecificationInterface):
@@ -79,7 +79,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
         '''Segment specification interface storage format::
 
             >>> z(red_segment)
-            expressiontools.SegmentSpecificationInterface(
+            specificationtools.SegmentSpecificationInterface(
                 specificationtools.ScoreSpecification(
                     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
                         staff_count=4

@@ -45,7 +45,7 @@ class ScoreSpecification(Specification):
         self._single_context_time_signature_set_expressions = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
-        #self._interface = expressiontools.ScoreSpecificationInterface(self)
+        #self._interface = specificationtools.ScoreSpecificationInterface(self)
         self._interface = None
 
     ### SPECIAL METHODS ###
@@ -593,12 +593,13 @@ class ScoreSpecification(Specification):
 
         Return segment specification interface.
         '''
+        from experimental.tools import specificationtools
         name = name or str(self._find_first_unused_segment_number())
         assert name not in self.segment_names, repr(name)
         segment_specification = self.segment_specification_class(self.score_template, name)
         segment_specification._score_specification = self
         self.segment_specifications.append(segment_specification)
-        segment_specification_interface = expressiontools.SegmentSpecificationInterface(self, name)
+        segment_specification_interface = specificationtools.SegmentSpecificationInterface(self, name)
         return segment_specification_interface
 
     def clear_persistent_single_context_set_expressions_by_context(self, context_name, attribute):

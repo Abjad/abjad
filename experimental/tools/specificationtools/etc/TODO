@@ -103,7 +103,7 @@
         score_specification = specificationtools.ScoreSpecification(score_template)
     ... to ...
         score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-        score_specification = expressiontools.ScoreSpecificationInterface(score_template)
+        score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     ... so that composers only ever interact with interfaces.
 
 21. Audit entire interpreter.
@@ -112,5 +112,3 @@
 
 22. Audit all expressions.
     Complete all expression docstrings.
-
-23. Move ScoreSpecificationInterface, SegmentSpecificationInterface to specificationtools.

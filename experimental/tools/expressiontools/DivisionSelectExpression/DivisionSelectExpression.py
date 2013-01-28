@@ -10,7 +10,7 @@ class DivisionSelectExpression(SelectExpression):
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = expressiontools.ScoreSpecificationInterface(score_template=score_template)
+        >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
     Select voice ``1`` divisions that start during score::
