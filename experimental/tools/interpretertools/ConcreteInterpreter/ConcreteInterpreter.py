@@ -64,12 +64,12 @@ class ConcreteInterpreter(Interpreter):
                 voice.extend(rhythm_payload_expression.payload)
 
     def add_time_signatures_to_score(self):
-        time_signature_settings = self.score_specification.time_signature_settings[:]
-        while time_signature_settings:
-            for time_signature_setting in time_signature_settings[:]:
-                time_signatures = time_signature_setting.make_time_signatures(self.score_specification)
+        single_context_time_signature_set_expressions = self.score_specification.single_context_time_signature_set_expressions[:]
+        while single_context_time_signature_set_expressions:
+            for single_context_time_signature_set_expression in single_context_time_signature_set_expressions[:]:
+                time_signatures = single_context_time_signature_set_expression.make_time_signatures(self.score_specification)
                 if time_signatures:
-                    time_signature_settings.remove(time_signature_setting)
+                    single_context_time_signature_set_expressions.remove(single_context_time_signature_set_expression)
         time_signatures = self.score_specification.time_signatures
         measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
         context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
@@ -128,7 +128,7 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_time_signatures(self):
         #self.make_timespan_scoped_single_context_set_expressions('time_signatures')
-        self.populate_time_signature_settings()
+        self.populate_single_context_time_signature_set_expressions()
         self.add_time_signatures_to_score()
         self.calculate_score_and_segment_timespans()
 
@@ -266,14 +266,14 @@ class ConcreteInterpreter(Interpreter):
         return result
 
     # TODO: eventually merge with self.make_timespan_scoped_single_context_set_expressions()
-    def populate_time_signature_settings(self):
+    def populate_single_context_time_signature_set_expressions(self):
         for segment_specification in self.score_specification.segment_specifications:
             score_proxy = segment_specification.single_context_set_expressions_by_context.score_context_proxy
-            time_signature_settings = score_proxy.get_set_expressions(attribute='time_signatures')
-            if not time_signature_settings:
+            single_context_time_signature_set_expressions = score_proxy.get_set_expressions(attribute='time_signatures')
+            if not single_context_time_signature_set_expressions:
                 continue
-            time_signature_setting = time_signature_settings[-1]
-            self.score_specification.time_signature_settings.append(time_signature_setting)
+            single_context_time_signature_set_expression = single_context_time_signature_set_expressions[-1]
+            self.score_specification.single_context_time_signature_set_expressions.append(single_context_time_signature_set_expression)
 
     def store_interpreter_specific_single_context_set_expressions_by_context(self):
         self.store_single_context_attribute_set_expressions_by_context('time_signatures')

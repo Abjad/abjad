@@ -42,7 +42,7 @@ class ScoreSpecification(Specification):
         self._division_region_expressions = []
         self._rhythm_region_expressions = []
         self._timespan_scoped_single_context_rhythm_set_expressions = []
-        self._time_signature_settings = []
+        self._single_context_time_signature_set_expressions = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
         self._interface = expressiontools.ScoreSpecificationInterface(self)
@@ -354,38 +354,10 @@ class ScoreSpecification(Specification):
         return Specification.single_context_set_expressions_by_context.fget(self)
 
     @property
-    def specification_name(self):
-        '''Generalized way of refering to both score and segment specifications.
-
-            >>> score_specification.specification_name is None
-            True
-        
-        Specification name of score is always none.
-
-        Return none.
-        '''
-        return
-
-    @property
-    def storage_format(self):
-        r'''Score specification storage format::
-
-            >>> z(score_specification)
-            specificationtools.ScoreSpecification(
-                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                    staff_count=2
-                    )
-                )
-
-        Return string.
-        '''
-        return Specification.storage_format.fget(self)
-
-    @property
-    def time_signature_settings(self):
+    def single_context_time_signature_set_expressions(self):
         '''Read-only list of all set-time signature expressions.
 
-            >>> for x in score_specification.time_signature_settings:
+            >>> for x in score_specification.single_context_time_signature_set_expressions:
             ...     z(x)
             expressiontools.SingleContextTimeSignatureSetExpression(
                 source=expressiontools.PayloadExpression(
@@ -416,7 +388,35 @@ class ScoreSpecification(Specification):
 
         Return list.
         '''
-        return self._time_signature_settings
+        return self._single_context_time_signature_set_expressions
+
+    @property
+    def specification_name(self):
+        '''Generalized way of refering to both score and segment specifications.
+
+            >>> score_specification.specification_name is None
+            True
+        
+        Specification name of score is always none.
+
+        Return none.
+        '''
+        return
+
+    @property
+    def storage_format(self):
+        r'''Score specification storage format::
+
+            >>> z(score_specification)
+            specificationtools.ScoreSpecification(
+                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                    staff_count=2
+                    )
+                )
+
+        Return string.
+        '''
+        return Specification.storage_format.fget(self)
 
     @property
     def time_signatures(self):
