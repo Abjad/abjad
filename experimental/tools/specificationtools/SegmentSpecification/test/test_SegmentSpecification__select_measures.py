@@ -157,3 +157,43 @@ def test_SegmentSpecification__select_measures_08():
     current_function_name = introspectiontools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification__select_measures_09():
+    '''Measure select expression dependent on divided timespan.
+    With explicit time-relation.
+    '''
+    
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8), (5, 8)])
+    left_half = red_segment.timespan.divide_by_ratio((1, 1))[0]
+    time_relation = timerelationtools.timespan_2_stops_during_timespan_1()
+    left_measures = left_half.select_measures('Voice 1', time_relation=time_relation)
+    left_measures.timespan.set_rhythm(library.eighths)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification__select_measures_10():
+    '''Measure select expression dependent on divided timespan.
+    With explicit time-relation.
+    '''
+    
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8), (5, 8)])
+    left_half = red_segment.timespan.divide_by_ratio((1, 1))[0]
+    time_relation = timerelationtools.timespan_2_overlaps_stop_of_timespan_1()
+    left_measures = left_half.select_measures('Voice 1', time_relation=time_relation)
+    left_measures.timespan.set_rhythm(library.eighths)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
