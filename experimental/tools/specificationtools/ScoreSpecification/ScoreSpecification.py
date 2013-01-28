@@ -387,8 +387,32 @@ class ScoreSpecification(Specification):
 
             >>> for x in score_specification.time_signature_settings:
             ...     z(x)
+            expressiontools.SingleContextTimeSignatureSetExpression(
+                source=expressiontools.PayloadExpression(
+                    ((2, 8), (3, 8), (4, 8))
+                    ),
+                target_timespan='red',
+                fresh=True,
+                persist=True
+                )
+            expressiontools.SingleContextTimeSignatureSetExpression(
+                source=expressiontools.PayloadExpression(
+                    ((4, 16), (4, 16))
+                    ),
+                target_timespan='orange',
+                fresh=True,
+                persist=True
+                )
+            expressiontools.SingleContextTimeSignatureSetExpression(
+                source=expressiontools.PayloadExpression(
+                    ((5, 16), (5, 16))
+                    ),
+                target_timespan='yellow',
+                fresh=True,
+                persist=True
+                )
 
-        Populate during interpretation. Then consume during interpretation.
+        Populate during interpretation.
 
         Return list.
         '''

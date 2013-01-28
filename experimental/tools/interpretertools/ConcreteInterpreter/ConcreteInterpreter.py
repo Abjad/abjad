@@ -64,11 +64,12 @@ class ConcreteInterpreter(Interpreter):
                 voice.extend(rhythm_payload_expression.payload)
 
     def add_time_signatures_to_score(self):
-        while self.score_specification.time_signature_settings[:]:
-            for time_signature_setting in self.score_specification.time_signature_settings:
+        time_signature_settings = self.score_specification.time_signature_settings[:]
+        while time_signature_settings:
+            for time_signature_setting in time_signature_settings[:]:
                 time_signatures = time_signature_setting.make_time_signatures(self.score_specification)
                 if time_signatures:
-                    self.score_specification.time_signature_settings.remove(time_signature_setting)
+                    time_signature_settings.remove(time_signature_setting)
         time_signatures = self.score_specification.time_signatures
         measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
         context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
@@ -126,6 +127,7 @@ class ConcreteInterpreter(Interpreter):
         self.add_rhythms_to_score()
 
     def interpret_time_signatures(self):
+        #self.make_timespan_scoped_single_context_set_expressions('time_signatures')
         self.populate_time_signature_settings()
         self.add_time_signatures_to_score()
         self.calculate_score_and_segment_timespans()
@@ -221,8 +223,10 @@ class ConcreteInterpreter(Interpreter):
             x[-1] for x in merged_duration_timespan_scoped_single_context_rhythm_set_expression_pairs]
         assert len(timespan_scoped_single_context_rhythm_set_expressions) == len(rhythm_region_division_lists)
         rhythm_region_expressions = []
-        for timespan_scoped_single_context_rhythm_set_expression, rhythm_region_start_offset, rhythm_region_division_list in zip(
-            timespan_scoped_single_context_rhythm_set_expressions, rhythm_region_start_offsets, rhythm_region_division_lists):
+        for timespan_scoped_single_context_rhythm_set_expression, \
+            rhythm_region_start_offset, rhythm_region_division_list in zip(
+            timespan_scoped_single_context_rhythm_set_expressions, 
+            rhythm_region_start_offsets, rhythm_region_division_lists):
             rhythm_region_expression = timespan_scoped_single_context_rhythm_set_expression.evaluate(
                 rhythm_region_division_list, rhythm_region_start_offset, voice_name)
             rhythm_region_expressions.append(rhythm_region_expression)
