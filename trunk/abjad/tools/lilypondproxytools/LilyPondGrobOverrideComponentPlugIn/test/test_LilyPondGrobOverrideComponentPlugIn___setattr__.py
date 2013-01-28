@@ -1317,7 +1317,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___60():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___61():
-    '''Setting attribute on erroneous grob name raises exception.
+    '''InputSetExpression attribute on erroneous grob name raises exception.
     '''
 
     note = Note("c'8")

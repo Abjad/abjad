@@ -117,7 +117,7 @@ def test_contexttools_get_effective_clef_07():
 
 
 def test_contexttools_get_effective_clef_08():
-    '''Setting and then clearing works as expected.'''
+    '''InputSetExpression and then clearing works as expected.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
     contexttools.ClefMark('alto')(t[0])

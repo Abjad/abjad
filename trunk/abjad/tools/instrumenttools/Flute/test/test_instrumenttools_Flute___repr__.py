@@ -27,7 +27,7 @@ def test_instrumenttools_Flute___repr___02():
 
 
 def test_instrumenttools_Flute___repr___03():
-    '''Setting combinations.
+    '''InputSetExpression combinations.
     '''
 
     flute = instrumenttools.Flute()

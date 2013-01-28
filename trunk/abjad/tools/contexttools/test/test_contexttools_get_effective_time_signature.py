@@ -42,7 +42,7 @@ def test_contexttools_get_effective_time_signature_02():
 
 
 def test_contexttools_get_effective_time_signature_03():
-    '''Setting and then clearing works as expected.'''
+    '''InputSetExpression and then clearing works as expected.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
     time_signature = contexttools.TimeSignatureMark((2, 8))(t[0])
