@@ -4,9 +4,9 @@ from experimental.tools.expressiontools.PayloadCallbackMixin import PayloadCallb
 
 
 class HandlerExpression(Expression, PayloadCallbackMixin):
-    r'''Handler request.
+    r'''Handler expression.
 
-    The purpose of a handler request is to function as the source of a setting.
+    The purpose of a handler expression is to function as the source of a setting.
     '''
 
     ### INITIALIZER ###

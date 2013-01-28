@@ -13,26 +13,26 @@ N1 resolves. Because N1 is cursor-relative to TSS1, we must check to see whether
 the segments that precede T1 contain a setting that specifies a cursor-relative read against
 TSS1. Since there are no segments that precede T1 in S, this step is trivial and we find
 that TSS1 is in the correct state to be read here in T1. We return to N1 and examine the
-count argument given in the statal server request specified as the source of N1. Suppose
+count argument given in the statal server expression specified as the source of N1. Suppose
 that the statal server specified as the source of N1 specifies a count of 10
 time signatures. Since TSS1 is in the correct state to be read in N1, we call the statal
-server request against TSS1 and receive a reference to the 10 time signatures TSS1 returns.
+server expression against TSS1 and receive a reference to the 10 time signatures TSS1 returns.
 We now set these 10 time signatures as the time signatures of T1. This determines the
 total (relative) duration of T1. To complete the time signature interpretation of T1 we must now
 mark N1 as complete so that segments T2, T3, T4 will be able to determine that the statal
-server request N1 contains has been made. So we mark N1 as complete. Then we must reexamine
+server expression N1 contains has been made. So we mark N1 as complete. Then we must reexamine
 N1 and find out whether or not N1 is marked persistent. If N1 is not marked persistent we
 have nothing left to do; on the other hand, if N1 is marked persistent then we must add
 the source of N1 to the global setting inventory for use by future segments.
 Suppose that N1 is marked persistent. Then what part of the source of N1 do we add
-to the global setting inventory? The source of N1 is a statal server request that
+to the global setting inventory? The source of N1 is a statal server expression that
 specified the forward-read of 10 time signatures from TSS1. We should probably add this
-entire statal server request to the global setting inventory; future segments will
+entire statal server expression to the global setting inventory; future segments will
 then be able to specify at least three different things with respect to this statal
-server request that was specified as the source of N1: future segments may replay
-the statal server request exactly (and be handed back the next 10 time signatures in TSS1
+server expression that was specified as the source of N1: future segments may replay
+the statal server expression exactly (and be handed back the next 10 time signatures in TSS1
 in the forward direction); or future segments may make use of only the fact that the 
-statal server request specifies TSS1 and then combine TSS1 wiht a request for a different 
+statal server expression specifies TSS1 and then combine TSS1 wiht a expression for a different 
 number of time signatures to be taken either forward or backward from the current offset in TSS1;
 or future segments may reset the current offset in TSS1 (and accept the next 10 or previous 10
 time signatures in TSS1 from this new offset in TSS1); or future segments may reset
@@ -70,7 +70,7 @@ calls against TSS1. We iterate the settings of T1, T2 and find no *pending* sett
 that specify cursor-relative calls against TSS1. This means that our cursor against TSS1
 is in the right state to be called in T3. We call our cursor against TSS1 and receive the
 next 10 time signatures from TSS1. We set these as the time signatures of T3 and we leave
-this statal server request specifying the next 10 forward time signatures from TSS1 in
+this statal server expression specifying the next 10 forward time signatures from TSS1 in
 the persistent settings inventory. (We do this in part because no setting found in T3 tells
 us to remove any time signature setting from the persistent settings inventory.)
 The time signature interpretation of T3 is complete.

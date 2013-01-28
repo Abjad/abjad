@@ -115,6 +115,4 @@
 
 23. Maybe make time signature interpretation mirror division and region interpretation.
 
-24. Globally search and replace 'request'.
-
-25. Globally search and replace 'setting', including the lookup methods.
+24. Globally search and replace 'setting', including the lookup methods.

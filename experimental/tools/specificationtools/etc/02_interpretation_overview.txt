@@ -75,7 +75,7 @@ more kn, each equal to a (cyclic) integer offset in W. This then percolates up t
 and demands that statal server specification always be accompanied by either the designation of
 one of the kn in W or else by an indication of an 'absolute' read (from) W. Specification of
 absolute read from W comprises (cyclic) integer offset in W together with optional read direction.
-Note that the interfaces to absolute and cursor-relative requests match: optional (cyclic)
+Note that the interfaces to absolute and cursor-relative expressions match: optional (cyclic)
 integer offset together with optional read direction. The only difference between the two
 is whether the offset of last read is stored in the persistent namespace of the interpreted
 context(s) or not.

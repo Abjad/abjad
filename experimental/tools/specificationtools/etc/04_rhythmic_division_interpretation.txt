@@ -117,7 +117,7 @@ measures[1](bar)
 segment.set_divisions(measures)
 
 We have so far allowed for division specification sources set equal to manifest values or to
-callables. We have not yet discussed division specification sources set equal to requests 
+callables. We have not yet discussed division specification sources set equal to expressions 
 against statal servers. We will do this at some point for this round of implementation.
 
 A third case arises in the possibility of settting a division specification source

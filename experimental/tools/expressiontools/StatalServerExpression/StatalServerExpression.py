@@ -3,9 +3,9 @@ from experimental.tools.expressiontools.PayloadCallbackMixin import PayloadCallb
 
 
 class StatalServerExpression(Expression, PayloadCallbackMixin):
-    r'''Statal server request.
+    r'''Statal server expression.
 
-    The purpose of a statal server request is to function as the source of a setting.
+    The purpose of a statal server expression is to function as the source of a setting.
     '''
 
     ### INITIALIZER ###

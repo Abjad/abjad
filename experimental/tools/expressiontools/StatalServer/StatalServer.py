@@ -12,15 +12,15 @@ class StatalServer(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, request):
+    def __call__(self, expression):
         result = []
-        assert not (request.count is not None and request.index is not None)
-        if request.count is not None:
-            for x in range(request.count):
+        assert not (expression.count is not None and expression.index is not None)
+        if expression.count is not None:
+            for x in range(expression.count):
                 result.append(self.iterable[self.next_index])
                 self.next_index += 1
-        elif request.index is not None:
-            result.append(self.iterable[request.index])
+        elif expression.index is not None:
+            result.append(self.iterable[expression.index])
         return result
 
     ### READ-ONLY PUBLIC PROPERTIES ###

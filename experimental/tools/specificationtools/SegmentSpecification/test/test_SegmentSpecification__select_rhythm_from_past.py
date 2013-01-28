@@ -124,7 +124,7 @@ def test_SegmentSpecification__select_rhythm_from_past_05():
 
 
 def test_SegmentSpecification__select_rhythm_from_past_06():
-    '''From-past rhythm select expression with request-time rotation.
+    '''From-past rhythm select expression with rotation.
     '''    
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -171,7 +171,7 @@ def test_SegmentSpecification__select_rhythm_from_past_07():
 
 
 def test_SegmentSpecification__select_rhythm_from_past_08():
-    '''From-past rhythm select expression with both request- and set-time rotation.
+    '''From-past rhythm select expression with paired rotation.
     '''    
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
