@@ -32,16 +32,6 @@ class SelectExpression(AnchoredExpression, PayloadCallbackMixin):
 
     ### PRIVATE METHODS ###
 
-    def _get_divisions_that_satisfy_time_relation(self, divisions, time_relation):
-        result = []
-        for division in divisions:
-            if time_relation(
-                timespan_2=division,
-                score_specification=self.score_specification,
-                context_name=self.voice_name):
-                result.append(division)
-        return result
-
     def _get_time_relation(self, anchor_timespan):
         if self.time_relation is None:
             time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)

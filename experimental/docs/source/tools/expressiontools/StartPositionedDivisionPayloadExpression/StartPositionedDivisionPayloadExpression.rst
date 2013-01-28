@@ -38,6 +38,11 @@ Methods
 
    Inherited from :py:class:`expressiontools.PayloadExpression <experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
+.. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.get_elements_that_satisfy_time_relation
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.StartPositionedPayloadExpression <experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression>`
+
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.new
    :noindex:
 

@@ -40,6 +40,9 @@ Methods
 
    Inherited from :py:class:`expressiontools.PayloadExpression <experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
+.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.get_elements_that_satisfy_time_relation
+   :noindex:
+
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.new
    :noindex:
 

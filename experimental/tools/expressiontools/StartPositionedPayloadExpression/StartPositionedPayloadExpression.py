@@ -5,6 +5,7 @@ from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
+from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
 from experimental.tools.expressiontools.PayloadExpression import PayloadExpression
@@ -228,6 +229,22 @@ class StartPositionedPayloadExpression(PayloadExpression):
         return self._voice_name
 
     ### PUBLIC METHODS ###
+
+    def get_elements_that_satisfy_time_relation(self, time_relation):
+        '''Get elements that satisfy `time_relation`.
+
+        Return newly constructed start-positioned payload expression.
+        '''
+        assert isinstance(time_relation, timerelationtools.TimeRelation), repr(time_relation)
+        elements = []
+        for element in self.elements:
+            if time_relation(timespan_2=element, context_name=self.voice_name):
+                elements.append(element)
+        if not elements:
+            return
+        start_offset = elements[0].start_offset
+        expression = self.new(payload=elements, start_offset=start_offset)
+        return expression
     
     def partition_by_ratio(self, ratio):
         '''Partition region product payload by ratio.

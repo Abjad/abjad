@@ -51,12 +51,13 @@ class DivisionSelectExpression(SelectExpression):
         existing_voice_divisions = []
         for division_payload_expression in division_payload_expressions:
             existing_voice_divisions.extend(division_payload_expression.payload.divisions)
-        time_relation = self._get_time_relation(anchor_timespan)
-        divisions = self._get_divisions_that_satisfy_time_relation(existing_voice_divisions, time_relation)
-        if not divisions:
+        if not existing_voice_divisions:
             return
-        start_offset = divisions[0].start_offset
-        expression = expressiontools.StartPositionedDivisionPayloadExpression(divisions, start_offset=start_offset)
+        start_offset = existing_voice_divisions[0].start_offset
+        expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            existing_voice_divisions, start_offset=start_offset)
+        time_relation = self._get_time_relation(anchor_timespan)
+        expression = expression.get_elements_that_satisfy_time_relation(time_relation)
         if self.time_relation is None:
             inventory = expression & anchor_timespan
             expression = inventory[0]
