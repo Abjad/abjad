@@ -2,7 +2,7 @@ from abjad.tools import *
 from experimental.tools import specificationtools
 
 
-def test_ScoreSpecification_single_context_set_expressions_01():
+def test_ScoreSpecification_single_context_settings_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)

@@ -106,6 +106,15 @@ class ScoreSpecificationInterface(SpecificationInterface):
         '''
         return self.score_specification.append_segment(name=name)
 
+    # TODO: write tests for me
+    def get_offset(self, offset):
+        '''Get score offset.
+
+        Return offset expression.
+        '''
+        offset = self.timespan.start_offset.translate(offset)
+        return offset
+        
     def interpret(self):
         '''Interpret score.
         '''

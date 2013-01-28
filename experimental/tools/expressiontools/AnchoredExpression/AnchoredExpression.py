@@ -94,6 +94,8 @@ class AnchoredExpression(Expression):
         '''
         if isinstance(self.anchor, str):
             return self.anchor
+        elif self.anchor is None:
+            return self.score_specification.segment_specifications[0].segment_name
         else:
             return self.anchor.start_segment_identifier
 
