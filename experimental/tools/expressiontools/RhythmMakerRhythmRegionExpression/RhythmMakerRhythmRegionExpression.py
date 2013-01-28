@@ -1,5 +1,6 @@
 from abjad.tools import beamtools
 from abjad.tools import containertools
+from abjad.tools import durationtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
@@ -12,12 +13,16 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, rhythm_maker=None, voice_name=None, start_offset=None, division_list=None):
+    def __init__(self, rhythm_maker=None, division_list=None, start_offset=None, voice_name=None):
+        from experimental.tools import expressiontools
         assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
+        assert isinstance(division_list, expressiontools.DivisionList), repr(division_list)
+        assert isinstance(voice_name, str), repr(voice_name)
+        start_offset = durationtools.Offset(start_offset)
         self._rhythm_maker = rhythm_maker
-        self._voice_name = voice_name
         self._start_offset = start_offset
         self._division_list = division_list
+        self._voice_name = voice_name
 
     ### PRIVATE METHODS ###
 

@@ -102,10 +102,7 @@
         time_relation = timerelationtools.timespan_2_stops_during_timespan_1()
         measures = first_half_of_red_segment.select_measures('Voice 1', time_relation=time_relation)
 
-21. Reorder RhythmMakerRhythmRegionExpression input parameters:
-        rhythm_maker, division_list, start_offset, voice_name
-
-22. Maybe compress this pattern ...
+21. Maybe compress this pattern ...
         expression = expressiontools.StartPositionedDivisionPayloadExpression(divisions, start_offset=start_offset)
         divisions = expression.elements
         divisions = self._get_divisions_that_satisfy_time_relation(divisions, time_relation)

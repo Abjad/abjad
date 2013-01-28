@@ -12,11 +12,12 @@ class LiteralRhythmRegionExpression(RhythmRegionExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, payload=None, voice_name=None, start_offset=None, total_duration=None):
+    # TODO: change to payload, timespan, voice_name
+    def __init__(self, payload=None, start_offset=None, total_duration=None, voice_name=None):
         self._payload = payload
-        self._voice_name = voice_name
         self._start_offset = start_offset
         self._total_duration = total_duration
+        self._voice_name = voice_name
 
     ### PRIVATE METHODS ###
 

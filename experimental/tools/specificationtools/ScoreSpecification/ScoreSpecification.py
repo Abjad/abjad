@@ -249,8 +249,6 @@ class ScoreSpecification(Specification):
                     beam_cells_together=True,
                     tie_split_notes=False
                     ),
-                voice_name='Voice 1',
-                start_offset=durationtools.Offset(0, 1),
                 division_list=expressiontools.DivisionList(
                     [Division('[2, 8]', start_offset=Offset(0, 1)), 
                     Division('[3, 8]', start_offset=Offset(1, 4)), 
@@ -261,7 +259,9 @@ class ScoreSpecification(Specification):
                     Division('[5, 16]', start_offset=Offset(31, 16))],
                     start_offset=durationtools.Offset(0, 1),
                     voice_name='Voice 1'
-                    )
+                    ),
+                start_offset=durationtools.Offset(0, 1),
+                voice_name='Voice 1'
                 )
             expressiontools.RhythmMakerRhythmRegionExpression(
                 rhythm_maker=rhythmmakertools.TaleaRhythmMaker(
@@ -273,8 +273,6 @@ class ScoreSpecification(Specification):
                     beam_cells_together=True,
                     tie_split_notes=False
                     ),
-                voice_name='Voice 2',
-                start_offset=durationtools.Offset(0, 1),
                 division_list=expressiontools.DivisionList(
                     [Division('[2, 8]', start_offset=Offset(0, 1)), 
                     Division('[3, 8]', start_offset=Offset(1, 4)), 
@@ -285,7 +283,9 @@ class ScoreSpecification(Specification):
                     Division('[5, 16]', start_offset=Offset(31, 16))],
                     start_offset=durationtools.Offset(0, 1),
                     voice_name='Voice 2'
-                    )
+                    ),
+                start_offset=durationtools.Offset(0, 1),
+                voice_name='Voice 2'
                 )
 
         Popluate during interpretation.
