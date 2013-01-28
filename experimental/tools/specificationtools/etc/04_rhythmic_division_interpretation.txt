@@ -70,7 +70,7 @@ division specification admits.
 *Targets of division specification.* Suppose segment T comprises time signatures 
 [(2, 8), (2, 8), (2, 8)], with total duration Duration(6, 8). The act of specifying divisions
 for any of the contexts in T is equivalent to partitioning the (6, 8) of total time
-any of the contexts in T consumes. The simplest case obtains in any manifest list of
+any of the contexts in T subtends. The simplest case obtains in any manifest list of
 durations. It is possible, for example, the specify the divisions of the violin 1 voice
 in T manifestly equal to the durations [(3, 8), (3, 8)]; such a set expression applies to the
 entire duration of the violin 1 voice in T and implies a target selection equal to

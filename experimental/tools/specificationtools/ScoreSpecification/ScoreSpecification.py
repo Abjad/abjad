@@ -145,9 +145,24 @@ class ScoreSpecification(Specification):
 
     @property
     def division_region_expressions(self):
-        '''Read-only list of division region expressions.
+        '''Read-only list of division region expressions:
 
-        Popluate during interpretation.
+        ::
+
+            >>> for x in score_specification.division_region_expressions:
+            ...     z(x)
+            expressiontools.LiteralDivisionRegionExpression(
+                payload=((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)),
+                start_offset=durationtools.Offset(0, 1),
+                total_duration=durationtools.Duration(9, 4),
+                voice_name='Voice 1'
+                )
+            expressiontools.LiteralDivisionRegionExpression(
+                payload=((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)),
+                start_offset=durationtools.Offset(0, 1),
+                total_duration=durationtools.Duration(9, 4),
+                voice_name='Voice 2'
+                )
 
         Return list.
         '''
@@ -215,8 +230,56 @@ class ScoreSpecification(Specification):
 
             >>> for x in score_specification.rhythm_region_expressions:
             ...     z(x)
+            expressiontools.RhythmMakerRhythmRegionExpression(
+                rhythm_maker=rhythmmakertools.TaleaRhythmMaker(
+                    [1],
+                    16,
+                    prolation_addenda=[],
+                    secondary_divisions=[],
+                    beam_each_cell=False,
+                    beam_cells_together=True,
+                    tie_split_notes=False
+                    ),
+                voice_name='Voice 1',
+                start_offset=durationtools.Offset(0, 1),
+                division_list=expressiontools.DivisionList(
+                    [Division('[2, 8]', start_offset=Offset(0, 1)), 
+                    Division('[3, 8]', start_offset=Offset(1, 4)), 
+                    Division('[4, 8]', start_offset=Offset(5, 8)), 
+                    Division('[4, 16]', start_offset=Offset(9, 8)), 
+                    Division('[4, 16]', start_offset=Offset(11, 8)), 
+                    Division('[5, 16]', start_offset=Offset(13, 8)), 
+                    Division('[5, 16]', start_offset=Offset(31, 16))],
+                    start_offset=durationtools.Offset(0, 1),
+                    voice_name='Voice 1'
+                    )
+                )
+            expressiontools.RhythmMakerRhythmRegionExpression(
+                rhythm_maker=rhythmmakertools.TaleaRhythmMaker(
+                    [1],
+                    16,
+                    prolation_addenda=[],
+                    secondary_divisions=[],
+                    beam_each_cell=False,
+                    beam_cells_together=True,
+                    tie_split_notes=False
+                    ),
+                voice_name='Voice 2',
+                start_offset=durationtools.Offset(0, 1),
+                division_list=expressiontools.DivisionList(
+                    [Division('[2, 8]', start_offset=Offset(0, 1)), 
+                    Division('[3, 8]', start_offset=Offset(1, 4)), 
+                    Division('[4, 8]', start_offset=Offset(5, 8)), 
+                    Division('[4, 16]', start_offset=Offset(9, 8)), 
+                    Division('[4, 16]', start_offset=Offset(11, 8)), 
+                    Division('[5, 16]', start_offset=Offset(13, 8)), 
+                    Division('[5, 16]', start_offset=Offset(31, 16))],
+                    start_offset=durationtools.Offset(0, 1),
+                    voice_name='Voice 2'
+                    )
+                )
 
-        Popluate during interpretation. Then consume during interpretation.
+        Popluate during interpretation.
 
         Return list.
         '''

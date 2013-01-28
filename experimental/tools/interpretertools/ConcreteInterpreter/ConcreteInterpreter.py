@@ -64,10 +64,12 @@ class ConcreteInterpreter(Interpreter):
                 voice.extend(rhythm_payload_expression.payload)
 
     def add_time_signatures_to_score(self):
-        single_context_time_signature_set_expressions = self.score_specification.single_context_time_signature_set_expressions[:]
+        single_context_time_signature_set_expressions = \
+            self.score_specification.single_context_time_signature_set_expressions[:]
         while single_context_time_signature_set_expressions:
             for single_context_time_signature_set_expression in single_context_time_signature_set_expressions[:]:
-                time_signatures = single_context_time_signature_set_expression.make_time_signatures(self.score_specification)
+                time_signatures = single_context_time_signature_set_expression.make_time_signatures(
+                    self.score_specification)
                 if time_signatures:
                     single_context_time_signature_set_expressions.remove(single_context_time_signature_set_expression)
         time_signatures = self.score_specification.time_signatures
@@ -127,7 +129,6 @@ class ConcreteInterpreter(Interpreter):
         self.add_rhythms_to_score()
 
     def interpret_time_signatures(self):
-        #self.make_timespan_scoped_single_context_set_expressions('time_signatures')
         self.populate_single_context_time_signature_set_expressions()
         self.add_time_signatures_to_score()
         self.calculate_score_and_segment_timespans()
@@ -146,9 +147,10 @@ class ConcreteInterpreter(Interpreter):
         region_expression_key = '{}_region_expressions'.format(attribute)
         payload_expression_key = '{}_payload_expressions'.format(attribute)
         score_region_expressions = getattr(self.score_specification, region_expression_key)
+        score_region_expressions = score_region_expressions[:]
         while score_region_expressions:
             made_progress = False
-            for region_expression in getattr(self.score_specification, region_expression_key)[:]:
+            for region_expression in score_region_expressions[:]:
                 assert isinstance(region_expression, expressiontools.RegionExpression)
                 payload_expression = region_expression.evaluate()
                 if payload_expression is not None:
@@ -265,15 +267,16 @@ class ConcreteInterpreter(Interpreter):
                 result.append(rhythm_region_expression)
         return result
 
-    # TODO: eventually merge with self.make_timespan_scoped_single_context_set_expressions()
     def populate_single_context_time_signature_set_expressions(self):
         for segment_specification in self.score_specification.segment_specifications:
             score_proxy = segment_specification.single_context_set_expressions_by_context.score_context_proxy
-            single_context_time_signature_set_expressions = score_proxy.get_set_expressions(attribute='time_signatures')
+            single_context_time_signature_set_expressions = score_proxy.get_set_expressions(
+                attribute='time_signatures')
             if not single_context_time_signature_set_expressions:
                 continue
             single_context_time_signature_set_expression = single_context_time_signature_set_expressions[-1]
-            self.score_specification.single_context_time_signature_set_expressions.append(single_context_time_signature_set_expression)
+            self.score_specification.single_context_time_signature_set_expressions.append(
+                single_context_time_signature_set_expression)
 
     def store_interpreter_specific_single_context_set_expressions_by_context(self):
         self.store_single_context_attribute_set_expressions_by_context('time_signatures')
