@@ -17,13 +17,13 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.look_up_division_setting
+.. automethod:: experimental.tools.expressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.look_up_division_set_expression
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.look_up_rhythm_setting
+.. automethod:: experimental.tools.expressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.look_up_rhythm_set_expression
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.look_up_time_signature_setting
+.. automethod:: experimental.tools.expressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.look_up_time_signature_set_expression
    :noindex:
 
 Special Methods

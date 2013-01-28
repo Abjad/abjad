@@ -14,7 +14,7 @@ def test_OffsetExpression__callbacks_01():
     red_segment.set_rhythm(library.sixteenths)
     blue_segment.set_rhythm(library.thirty_seconds)
     offset = blue_segment.timespan.start_offset.translate(Duration(-1, 8))
-    lookup = offset.look_up_rhythm_setting('Voice 1')
+    lookup = offset.look_up_rhythm_set_expression('Voice 1')
     green_segment.set_rhythm(lookup)
     score = score_specification.interpret()
 
@@ -36,7 +36,7 @@ def test_OffsetExpression__callbacks_02():
     red_segment.set_rhythm(library.sixteenths)
     blue_segment.set_rhythm(library.thirty_seconds)
     offset = blue_segment.timespan.start_offset.scale(Multiplier(1, 2))
-    lookup = offset.look_up_rhythm_setting('Voice 1')
+    lookup = offset.look_up_rhythm_set_expression('Voice 1')
     green_segment.set_rhythm(lookup)
     score = score_specification.interpret()
 

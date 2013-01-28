@@ -16,7 +16,7 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
     ::
 
         >>> measure = red_segment.select_measures('Voice 1')[4:5]
-        >>> set_expression = measure.start_offset.look_up_division_setting('Voice 1')
+        >>> set_expression = measure.start_offset.look_up_division_set_expression('Voice 1')
 
     ::
 

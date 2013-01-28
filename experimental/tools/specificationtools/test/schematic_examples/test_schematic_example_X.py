@@ -91,14 +91,14 @@ def test_schematic_example_X_03():
 
     left_half, right_half = red_segment.timespan.divide_by_ratio((1, 1))
 
-    voice_1_left_division_set_expression = left_measure.start_offset.look_up_division_setting('Voice 1')
-    voice_1_right_division_set_expression = right_measure.start_offset.look_up_division_setting('Voice 1')
+    voice_1_left_division_set_expression = left_measure.start_offset.look_up_division_set_expression('Voice 1')
+    voice_1_right_division_set_expression = right_measure.start_offset.look_up_division_set_expression('Voice 1')
 
     left_half.set_divisions(voice_1_left_division_set_expression, contexts=['Voice 3'])
     right_half.set_divisions(voice_1_right_division_set_expression, contexts=['Voice 3'])
 
-    voice_2_left_division_set_expression = left_measure.start_offset.look_up_division_setting('Voice 2')
-    voice_2_right_division_set_expression = right_measure.start_offset.look_up_division_setting('Voice 2')
+    voice_2_left_division_set_expression = left_measure.start_offset.look_up_division_set_expression('Voice 2')
+    voice_2_right_division_set_expression = right_measure.start_offset.look_up_division_set_expression('Voice 2')
 
     left_half.set_divisions(voice_2_left_division_set_expression, contexts=['Voice 4'])
     right_half.set_divisions(voice_2_right_division_set_expression, contexts=['Voice 4'])
@@ -196,7 +196,7 @@ def test_schematic_example_X_05():
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm("{ c'32 [ c'16 c'16. ] }", contexts=['Voice 1'])
     first_division = red_segment.select_divisions('Voice 1')[:1]
-    voice_1_rhythmic_cell = first_division.start_offset.look_up_rhythm_setting('Voice 1')
+    voice_1_rhythmic_cell = first_division.start_offset.look_up_rhythm_set_expression('Voice 1')
     indicator = expressiontools.RotationIndicator(Duration(-1, 32), fracture_spanners=False)
     red_segment.set_rhythm(voice_1_rhythmic_cell.rotate(indicator), contexts=['Voice 2'])
     indicator = expressiontools.RotationIndicator(Duration(-2, 32), fracture_spanners=False)

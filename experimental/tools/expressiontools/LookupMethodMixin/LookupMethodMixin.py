@@ -15,13 +15,13 @@ class LookupMethodMixin(AbjadObject):
     
     ### PUBLIC METHODS ###
 
-    def look_up_division_setting(self, voice):
+    def look_up_division_set_expression(self, voice):
         r'''Look up division set expression active at 
         start of segment ``'red'`` in voice ``1``:
 
         ::
 
-            >>> lookup = red_segment.timespan.start_offset.look_up_division_setting('Voice 1')
+            >>> lookup = red_segment.timespan.start_offset.look_up_division_set_expression('Voice 1')
 
         ::
 
@@ -42,13 +42,13 @@ class LookupMethodMixin(AbjadObject):
         lookup._score_specification = self.score_specification
         return lookup
 
-    def look_up_rhythm_setting(self, voice):
+    def look_up_rhythm_set_expression(self, voice):
         r'''Look up rhythm set expression active at
         start of segment ``'red'`` in voice ``1``:
 
         ::
 
-            >>> lookup = red_segment.timespan.start_offset.look_up_rhythm_setting('Voice 1')
+            >>> lookup = red_segment.timespan.start_offset.look_up_rhythm_set_expression('Voice 1')
 
         ::
 
@@ -69,13 +69,13 @@ class LookupMethodMixin(AbjadObject):
         lookup._score_specification = self.score_specification
         return lookup
 
-    def look_up_time_signature_setting(self, voice):
+    def look_up_time_signature_set_expression(self, voice):
         r'''Look up time signature set expression active at
         start of segment ``'red'`` in voice ``1``:
 
         :: 
 
-            >>> lookup = red_segment.timespan.start_offset.look_up_time_signature_setting('Voice 1')
+            >>> lookup = red_segment.timespan.start_offset.look_up_time_signature_set_expression('Voice 1')
 
         ::
 

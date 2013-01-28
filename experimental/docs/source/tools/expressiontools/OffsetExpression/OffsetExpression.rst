@@ -58,17 +58,17 @@ Methods
 
    Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_division_setting
+.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_division_set_expression
    :noindex:
 
    Inherited from :py:class:`expressiontools.LookupMethodMixin <experimental.tools.expressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin>`
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_rhythm_setting
+.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_rhythm_set_expression
    :noindex:
 
    Inherited from :py:class:`expressiontools.LookupMethodMixin <experimental.tools.expressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin>`
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_time_signature_setting
+.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_time_signature_set_expression
    :noindex:
 
    Inherited from :py:class:`expressiontools.LookupMethodMixin <experimental.tools.expressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin>`
