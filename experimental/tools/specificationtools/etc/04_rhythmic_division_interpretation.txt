@@ -36,7 +36,7 @@ and to leave right-initiated application for a future version of the system.
 We return to the specification of these divisions of S. What form should such a specification take?
 
 Perhaps simply T1.set_divisions([(3, 8)]) with segment-level context and the persistence
-of the setting implied by the default values of the method's keyword arguments.
+of the set expression implied by the default values of the method's keyword arguments.
 
 How will the specification interpret? Perhaps exactly as shown with the 'open' and 'closed'
 divisions of each segment modeled explicitly.
@@ -72,7 +72,7 @@ division specification admits.
 for any of the contexts in T is equivalent to partitioning the (6, 8) of total time
 any of the contexts in T consumes. The simplest case obtains in any manifest list of
 durations. It is possible, for example, the specify the divisions of the violin 1 voice
-in T manifestly equal to the durations [(3, 8), (3, 8)]; such a setting applies to the
+in T manifestly equal to the durations [(3, 8), (3, 8)]; such a set expression applies to the
 entire duration of the violin 1 voice in T and implies a target selection equal to
 the entirety of the violin 1 voice in T. It is more likely to specify the divisions of
 the violin 1 voice in T in terms of a callable. (We define a callable equal to any function,
@@ -82,7 +82,7 @@ voice in T equal to the output of callable foo(). In the case that the entirety 
 duration of the violin 1 voice in T is set equal to the output of callable foo(), the
 time token list [(2, 8), (2, 8), (2, 8)] will be passed as input to foo(). It is also possible
 to set the divisions of only the first two measures of the violin 1 voice in T equal to
-the output of foo() while setting the divisions of the last measure of the violin 1 voice in T
+the output of foo() while set expression the divisions of the last measure of the violin 1 voice in T
 equal to the output bar(); in this case, the time token list [(2, 8), (2, 8)] will be 
 passed as input to foo() and the time token list [(2, 8)] will be passed as input to bar().
 It is also possible to specify the divisions of duration-partitioned parts of the violin 1
@@ -109,7 +109,7 @@ measures[1](bar)
 measures[2](foo)
 segment.set_divisions(measures)
 
-Or the specification interface might allow for simple setting cascades like this:
+Or the specification interface might allow for simple set expression cascades like this:
 
 measures = segment.select_measures(segment, part=[1, 1, 1])
 measures(foo)
@@ -123,11 +123,11 @@ against statal servers. We will do this at some point for this round of implemen
 A third case arises in the possibility of settting a division specification source
 equal to a callable specified elsewhere in the score.
 
-A fourth case arises in the possibility of setting a division specification source
+A fourth case arises in the possibility of set expression a division specification source
 equal to a (potentially indefinitely long) series of actual divisions read (forward or
 backward) from any other division elsewhere in the score.
 
-A fifth case arises in the possibility of setting a division specification source to
+A fifth case arises in the possibility of set expression a division specification source to
 a finite series of divisions (to be read cyclically either forward or backward) from any
 other context elsewhere in the score.
 

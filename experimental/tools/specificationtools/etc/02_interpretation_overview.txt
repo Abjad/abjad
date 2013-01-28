@@ -31,7 +31,7 @@ score segment. Call these left-to-right (score) passes, for further reference.
 
 (3) Because relative references play a crucial role in score specification,
 segment interpretation proceeds only as far as is 'resolvable' for each segment.
-The first nonresolvable setting encountered during segment interpretation 
+The first nonresolvable set expression encountered during segment interpretation 
 causes interpretation to pass to the next segment in score.
 
 (4) Segment resolvability refers to which of the four broadly structured segment 
@@ -40,15 +40,15 @@ For example, if segment time signatures resolve then interpretation proceeds to
 the resolution of rhythmic divisions for each segment voice. But if segment time 
 signatures do not resolve then interpretation passes to the next segment in score.
 
-(5) What causes settings to resolve? All settings are classified as either absolute
-or relative. Absolute settings comprise an absolute source. All absolute settings resolve
-directly with no need to consult other settings made anywhere else in score. Relative
-settings are made with reference to either another setting or to a statal server.
-Whether or not any given relative setting resolves can only be determined by further
-inspection of the setting's source. Examples follow.
+(5) What causes set expressions to resolve? All set expressions are classified as either absolute
+or relative. Absolute set expressions comprise an absolute source. All absolute set expressions resolve
+directly with no need to consult other set expressions made anywhere else in score. Relative
+set expressions are made with reference to either another set expression or to a statal server.
+Whether or not any given relative set expression resolves can only be determined by further
+inspection of the set expression's source. Examples follow.
 
 (6) Suppose interpretation has arrived at the determination of pitch-classes for 
-segment T, that only pitch-class setting N has
+segment T, that only pitch-class set expression N has
 been found for segment T, and that N specifies the timewise determination of pitch-classes
 for all pitch-carriers in T according to statal pitch-class server PCS. We know that the
 rhythm of all pitch-carriers in T has been determined because we have arrived at
@@ -102,8 +102,8 @@ if T1, T2, T3 make no cursor-relative reads against PCS) then T4 may cursor-read
 
 (12) The same holds for all statal server cursor-reads.
 
-(13) What if T4 contains a pitch-class setting made relative to a selection elsewhere in S?
-In this case we allow a single lookup. What will pitch-class setting N in T4 look like
+(13) What if T4 contains a pitch-class set expression made relative to a selection elsewhere in S?
+In this case we allow a single lookup. What will pitch-class set expression N in T4 look like
 if N specifies pitch-class information to be taken from elsewhere in S? N will specify
 a 'start component' somewhere in S together with the combination of a list of one or
 more source context names from which to read, together with an optional read direction.

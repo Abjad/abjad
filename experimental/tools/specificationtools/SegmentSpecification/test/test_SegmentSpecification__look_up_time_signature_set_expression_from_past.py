@@ -10,7 +10,8 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_0
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment = score_specification.append_segment(name='blue')
-    red_time_signature_set_expression = red_segment.timespan.start_offset.look_up_time_signature_set_expression('Voice 1')
+    red_time_signature_set_expression = \
+        red_segment.timespan.start_offset.look_up_time_signature_set_expression('Voice 1')
     blue_segment.set_time_signatures(red_time_signature_set_expression)
     score = score_specification.interpret()
 
@@ -28,7 +29,8 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_0
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment = score_specification.append_segment(name='blue')
-    red_time_signature_set_expression = red_segment.timespan.start_offset.look_up_time_signature_set_expression('Voice 1')
+    red_time_signature_set_expression = \
+        red_segment.timespan.start_offset.look_up_time_signature_set_expression('Voice 1')
     red_time_signature_set_expression = red_time_signature_set_expression.reflect()
     blue_segment.set_time_signatures(red_time_signature_set_expression)
     score = score_specification.interpret()
@@ -47,7 +49,8 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_0
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment = score_specification.append_segment(name='blue')
-    red_time_signature_set_expression = red_segment.timespan.start_offset.look_up_time_signature_set_expression('Voice 1')
+    red_time_signature_set_expression = \
+        red_segment.timespan.start_offset.look_up_time_signature_set_expression('Voice 1')
     red_time_signature_set_expression = red_time_signature_set_expression.reflect()
     blue_segment.set_time_signatures(red_time_signature_set_expression)
     score = score_specification.interpret()
@@ -66,7 +69,8 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_0
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment = score_specification.append_segment(name='blue')
-    red_time_signature_set_expression = red_segment.timespan.start_offset.look_up_time_signature_set_expression('Voice 1')
+    red_time_signature_set_expression = \
+        red_segment.timespan.start_offset.look_up_time_signature_set_expression('Voice 1')
     red_time_signature_set_expression = red_time_signature_set_expression.reflect()
     red_time_signature_set_expression = red_time_signature_set_expression.reflect()
     blue_segment.set_time_signatures(red_time_signature_set_expression)

@@ -33,7 +33,7 @@ as equal to meters i through j of segment K, allowing for positive, negative and
 Statal meter specification assumes a hierarchical statal server that is duration-aware.
 (Many other variations are left for later implementation.)
 
-*Settings.* Define setting t equal the 6-tuple (σ, ν, κ, n, s, p) with segment name σ,
+*Set expressions.* Define set expression t equal the 6-tuple (σ, ν, κ, n, s, p) with segment name σ,
 context name ν, timespan κ, attribute name n, source s, and persistence indicator p.
 This is equivalent to context selection ξ equal to (σ, ν, κ), defined below, together
 with three further values n, s, p.

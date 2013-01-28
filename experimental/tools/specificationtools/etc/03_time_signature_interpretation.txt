@@ -3,14 +3,14 @@ Time signature interpretation.
                                              * * *
 
 Example 1. Suppose S comprises segments T1, T2, T3, T4. We interpret S by finding the
-time signatures of T1, T2, T3, T4. We start at T1 and ask what time signature setting
-exists for T1. Some time signature setting must exist for T1 or else T1 can not interpret.
-Suppose we find that T1 contains a setting N1 that specifies time signatures cursor-relative
+time signatures of T1, T2, T3, T4. We start at T1 and ask what time signature set expression
+exists for T1. Some time signature set expression must exist for T1 or else T1 can not interpret.
+Suppose we find that T1 contains a set expression N1 that specifies time signatures cursor-relative
 to time signature server TSS1. This is a good thing and we now hope that N1 is resolvable
-and that T1 contains no further time signature settings. Suppose that we check and find
-that, indeed, T1 contains no further time signature settings. Now we must determine whether
+and that T1 contains no further time signature set expressions. Suppose that we check and find
+that, indeed, T1 contains no further time signature set expressions. Now we must determine whether
 N1 resolves. Because N1 is cursor-relative to TSS1, we must check to see whether any of
-the segments that precede T1 contain a setting that specifies a cursor-relative read against
+the segments that precede T1 contain a set expression that specifies a cursor-relative read against
 TSS1. Since there are no segments that precede T1 in S, this step is trivial and we find
 that TSS1 is in the correct state to be read here in T1. We return to N1 and examine the
 count argument given in the statal server expression specified as the source of N1. Suppose
@@ -23,11 +23,11 @@ mark N1 as complete so that segments T2, T3, T4 will be able to determine that t
 server expression N1 contains has been made. So we mark N1 as complete. Then we must reexamine
 N1 and find out whether or not N1 is marked persistent. If N1 is not marked persistent we
 have nothing left to do; on the other hand, if N1 is marked persistent then we must add
-the source of N1 to the global setting inventory for use by future segments.
+the source of N1 to the global set expression inventory for use by future segments.
 Suppose that N1 is marked persistent. Then what part of the source of N1 do we add
-to the global setting inventory? The source of N1 is a statal server expression that
+to the global set expression inventory? The source of N1 is a statal server expression that
 specified the forward-read of 10 time signatures from TSS1. We should probably add this
-entire statal server expression to the global setting inventory; future segments will
+entire statal server expression to the global set expression inventory; future segments will
 then be able to specify at least three different things with respect to this statal
 server expression that was specified as the source of N1: future segments may replay
 the statal server expression exactly (and be handed back the next 10 time signatures in TSS1
@@ -38,15 +38,15 @@ or future segments may reset the current offset in TSS1 (and accept the next 10 
 time signatures in TSS1 from this new offset in TSS1); or future segments may reset
 the current offset in TSS1 and specify a totally new number time signatures from TSS1, either
 forward or backward. In other words, after interpreting the cursor-relative read
-for 10 time signatures against TSS1 specified in N1, the setting inventory will contain
+for 10 time signatures against TSS1 specified in N1, the set expression inventory will contain
 a segment-level entry for time signature-determination set equal to offset 10 of TSS1 in
 the forward direction. Future segments may specify the reuse of all, some or none of the 
-parameters of this segment-level setting for time signature-determination. Because N1 is
+parameters of this segment-level set expression for time signature-determination. Because N1 is
 marked as persistent we add a segment-level entry for time signature-determination to the
-setting inventory set equal to offset 10 of TSS1 in the forward direction.
+set expression inventory set equal to offset 10 of TSS1 in the forward direction.
 
 Interpretation advances and we begin the time signature interpretation of T2.
-We ask what time signature setting exists for T2 and find that exactly one setting, N2,
+We ask what time signature set expression exists for T2 and find that exactly one set expression, N2,
 specifies the time signatures for T2. The source specified in N2 will be either manifest, 
 server-positioned, cursor-relative or score-relative. Suppose N2 specifies a time signature
 source for T2 score-relative to T4. We are not yet able to resolve this score-relative
@@ -55,48 +55,48 @@ because we can not resolve the source of N2.
 
 Interpretation advances and we check to see whether the time signatures of T3
 have been determined. We find that the time signatures of T3 have not been determined
-and so we ask what time signature settings exist for T3. Suppose we find that no time
-signature settings exist in T3. We check the setting inventory to see if any segment-level
-time signature setting persists. (The setting inventory implements a get_settings() method.)
-We find that the setting inventory contains a segment-level setting that sets time signatures
+and so we ask what time signature set expressions exist for T3. Suppose we find that no time
+signature set expressions exist in T3. We check the set expression inventory to see if any segment-level
+time signature set expression persists. (The set expression inventory implements a get_set expressions() method.)
+We find that the set expression inventory contains a segment-level set expression that sets time signatures
 equal to a statal server call of the next 10 time signatures from TSS1 in the forward direction.
-Because we have no setting in T3 to specify otherwise (nor to augment the time signature setting
-taken from the persistent settings inventory) we consider replaying the time signature setting
-taken from the persistent settings inventory exactly. In order to do this we must check
-to see whether the time signature setting taken from the persistent settings inventory is
+Because we have no set expression in T3 to specify otherwise (nor to augment the time signature set expression
+taken from the persistent set expressions inventory) we consider replaying the time signature set expression
+taken from the persistent set expressions inventory exactly. In order to do this we must check
+to see whether the time signature set expression taken from the persistent set expressions inventory is
 in the right state to be called. We do this by examining the segments T1, T2 prior to T3
-and checking to see whether T1, T2 contain *pending* settings that specify cursor-relative
-calls against TSS1. We iterate the settings of T1, T2 and find no *pending* settings
+and checking to see whether T1, T2 contain *pending* set expressions that specify cursor-relative
+calls against TSS1. We iterate the set expressions of T1, T2 and find no *pending* set expressions
 that specify cursor-relative calls against TSS1. This means that our cursor against TSS1
 is in the right state to be called in T3. We call our cursor against TSS1 and receive the
 next 10 time signatures from TSS1. We set these as the time signatures of T3 and we leave
 this statal server expression specifying the next 10 forward time signatures from TSS1 in
-the persistent settings inventory. (We do this in part because no setting found in T3 tells
-us to remove any time signature setting from the persistent settings inventory.)
+the persistent set expressions inventory. (We do this in part because no set expression found in T3 tells
+us to remove any time signature set expression from the persistent set expressions inventory.)
 The time signature interpretation of T3 is complete.
 
 Interpretation advances and we find that the time signatures of T4 have not yet been determined.
-We find that setting N3 in T4 sets the time signatures of T4 equal to the next 2 time signatures
-from whatever time signature server persists in the persistent setting inventory. We interrogate
-the persistent setting inventory and find the segment-level time signature setting that
+We find that set expression N3 in T4 sets the time signatures of T4 equal to the next 2 time signatures
+from whatever time signature server persists in the persistent set expression inventory. We interrogate
+the persistent set expression inventory and find the segment-level time signature set expression that
 specifies offset 20 of TSS1 read in the forward direction. We check T1, T2, T3 to see if TSS1 is
 in the right state to be read in T4 and find that TSS1 is indeed in the right state to be read
 in T4. We read the next two time signatures from TSS1 and set these equal to the time signatures
 of T4. We then reexamine the source of N3 to see whether the interpretation of N3 should persist.
 If we find that the interpretation of N3 should not persist then we are done; on the other hand, 
 if we find that the interpretation of N3 should persist then we must modify the segment-level
-time signature setting in the persistent setting inventory and update that setting to reflect
+time signature set expression in the persistent set expression inventory and update that set expression to reflect
 offset 22 of TSS1 read 2 time signatures at a time in the forward direction.
 
 T2 remains in the list of time signature-uninterpreted segments. So interpretation advances
 from T4 to T2, passing over T1. We begin to interpret the time signatures for T2 anew.
-We find that T2 contains setting N2 that specifies time signatures score-relative to T4.
+We find that T2 contains set expression N2 that specifies time signatures score-relative to T4.
 We check and find that T4 has been time signature-interpreted. So we copy T4's 2 time 
 signatures to T2. We reexamine N2 to find whether N2 is marked persistent.
-(Note that it is an open question whether or not score-relative settings may be marked persistent.
-In fact we provisionally declare that score-relative settings may not persist.)
+(Note that it is an open question whether or not score-relative set expressions may be marked persistent.
+In fact we provisionally declare that score-relative set expressions may not persist.)
 Here we will suppose that N2 is not marked persistent. This means that we do not need to
-adjust the setting inventory. We remove T2 from the list of time signature-uninterpreted segments.
+adjust the set expression inventory. We remove T2 from the list of time signature-uninterpreted segments.
 
 The list of time signature-uninterpreted segments in S is empty.
 
@@ -109,34 +109,34 @@ Example 2. Suppose S equals T1, T2, T3, T4, T5, T6.
 Interpretation begins. We add T1, ..., T6 to the list of time signature-uninterpreted segments in S.
 
 Interpretation advances to the first segment, T1, in the list of time signature-uninterpreted
-segments in S. We find that T1 contains setting T1n1 that sets the time signatures of T1
+segments in S. We find that T1 contains set expression T1n1 that sets the time signatures of T1
 manifestly to [(2, 8), (2, 8), (2, 8)]. We set the time signatures of T1 to [(2, 8), (2, 8), (2, 8)].
-T1n1 is set at the segment-level and is set to persist. So we clear the setting inventory of
-any time signature settings made at the segment level. (The setting inventory implements
-a remove_settings() method. The setting inventory implements an add_setting() method.) This
-call to remove settings from the persistent settings inventory does nothing because the
-settings inventory currently contains no settings. We then make a 'resolved copy' of T1n1
-and add the resolved copy of T1n1 to the persistent settings inventory. We mark T1n1 as complete
+T1n1 is set at the segment-level and is set to persist. So we clear the set expression inventory of
+any time signature set expressions made at the segment level. (The set expression inventory implements
+a remove_set expressions() method. The set expression inventory implements an add_set expression() method.) This
+call to remove set expressions from the persistent set expressions inventory does nothing because the
+set expressions inventory currently contains no set expressions. We then make a 'resolved copy' of T1n1
+and add the resolved copy of T1n1 to the persistent set expressions inventory. We mark T1n1 as complete
 and remove T1 from the list of time signature-uninterpreted segments in S.
 
 Interpretation advances to the next segment in the list of time signature-uninterpreted segments in S.
-This is T2. We find that T2 contains setting T2n1 that sets the time signatures of T2 manifestly
+This is T2. We find that T2 contains set expression T2n1 that sets the time signatures of T2 manifestly
 to [(3, 8), (3, 8), (3, 8)] and we set the time signatures of T2 accordingly. Because T2n1 is set 
-to persist at the segment level we remove any segment-level time signature settings from the
-setting inventory and add a resolved copy of T2n1 to the setting inventory. We mark T2n1 as complete
+to persist at the segment level we remove any segment-level time signature set expressions from the
+set expression inventory and add a resolved copy of T2n1 to the set expression inventory. We mark T2n1 as complete
 and remove T2 from the list of time signature-uninterpreted segments in S.
 
 Interpretation advances to the next segment in the list of time signature-uninterpreted segments in S.
-This is T3. We find that T3 contains setting T3n1 that sets the time signatures of T3 manifestly
+This is T3. We find that T3 contains set expression T3n1 that sets the time signatures of T3 manifestly
 to [(4, 8), (4, 8), (4, 8)] and we set the time signatures of T3 accordingly. Because T3n1 is set
-to persist at the segment level we remove any segment-level time signature settings from the setting
-inventory and add a resolved copy of T3n1 to the setting inventory. We mark T3n1 as complete
+to persist at the segment level we remove any segment-level time signature set expressions from the set expression
+inventory and add a resolved copy of T3n1 to the set expression inventory. We mark T3n1 as complete
 and remove T3 from the list of time signature-uninterpreted segments in S.
 
 Interpretation advances to the next segment in the list of time signature-uninterpreted segments in S.
-This is T4. We find that T4 contains setting T4n1 that sets the time signatures of T4 score-relative 
+This is T4. We find that T4 contains set expression T4n1 that sets the time signatures of T4 score-relative 
 to the first 7 segment-level time signatures starting from offset 0 in T1. We check to see if we
-can resolve this setting and indeed we can. The first 7 segment-level time signatures starting
+can resolve this set expression and indeed we can. The first 7 segment-level time signatures starting
 from T1 time signature 0 are [(2, 8), (2, 8), (2, 8), (3, 8), (3, 8), (3, 8), (4, 8)]. And so we
 set these 7 time signatures as the source of time signatures to use for T4. Does T4n1 specify
 a way to read this time signature source? We find that T4n1 specifies the first 11 values from
@@ -144,18 +144,18 @@ this list of 7 time signatures, read forward from offset 0. So we set the time s
 to [(2, 8), (2, 8), (2, 8), (3, 8), (3, 8), (3, 8), (4, 8), (2, 8), (2, 8), (2, 8), (3, 8)].
 (We have effectively created a temporary statal server and read from it.) We then check T4n1
 and find that T4n1 is not set to persist. So we discard this temporary statal server, leave
-the setting inventory unchanged, mark T4n1 as complete, and remove T4 from the list of time
+the set expression inventory unchanged, mark T4n1 as complete, and remove T4 from the list of time
 signature-uninterpreted segments in S.
 
 Interpretation advances to the next segment in the list of time signature-uninterpreted segments in S.
-This is T5. We find no time signature specification setting in T5. We consult the setting
+This is T5. We find no time signature specification set expression in T5. We consult the set expression
 inventory and find the resolved version of T3n1. The resolved version of T3n1 gives
 [(4, 8), (4, 8), (4, 8)] and so we set the time signatures of T5 accordingly. Since we found
-no time signature setting in T5, we remove T5 from the list of time signature-
+no time signature set expression in T5, we remove T5 from the list of time signature-
 uninterpreted segments in S and leave everything else the same.
 
 Interpretation advances to the next segment in the list of time signature-uninterpreted segments in S.
-This is T6. We find that T6 contains setting T6n1 that sets the time signatures of T6 score-relative
+This is T6. We find that T6 contains set expression T6n1 that sets the time signatures of T6 score-relative
 to the first 5 time signatures of T2 read forward from time signature 0 in T2. This resolves
 to [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)] and we set the time signatures of T6 accordingly.
 Because T6n1 is not marked to persist we mark T6n1 as complete and remove T6 from the list of

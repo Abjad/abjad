@@ -42,7 +42,7 @@ division calculate can not proceed correctly once interpretation advances from T
 (10) Does other information need to be recorded upon spanning division discovery? Yes.
 Interpretation needs to record that d is right-spanning. Three options present themselves here.
 Either, (a) division d itself may bear some type of is-spanning indicator. Or, (b), interpretation may add
-an is-right-spanning indicator to the generative setting that specified the creation of the
+an is-right-spanning indicator to the generative set expression that specified the creation of the
 divisions in the first place. Or, (c), interpretation may maintain some type of mapping
 data structure that models just such information about spanning and nonspanning divisions.
 Option (c) seems less good. Maybe it makes sense to proceed with both options (a) and (b) 
@@ -95,7 +95,7 @@ taken in isolation. And the correct observation seems to be that there's no
 no guarantee of interpretability of the time signature content of any segment
 taken in isolation. The reason for this limitation is clear: the composer's
 choices are free to move from segment to segment and selection to selection during
-specification. So the collection of settings that appear after directives are unpacked
+specification. So the collection of set expressions that appear after directives are unpacked
 and that relate to the specification of time signatures for an arbitrary segment
 may reference any arbitrary number of other segments (or, indeed, statal sources). 
 But also important to note is that in some special cases, it may indeed be possible
