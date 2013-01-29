@@ -197,3 +197,61 @@ def test_SegmentSpecification__select_measures_10():
     current_function_name = introspectiontools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification__select_measures_11():
+    '''Measure select expression with composed getitem callbacks.
+    '''
+    
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures(2 * [(2, 8), (3, 8), (4, 8), (5, 8)])
+    red_segment.set_rhythm(library.eighths)
+    measures = red_segment.select_measures('Voice 1')[2:6][1:3]
+    measures.timespan.set_rhythm(library.sixteenths)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification__select_measures_12():
+    '''Measure select expression with composed getitem and partition callbacks.
+    '''
+    
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures(2 * [(1, 8), (2, 8), (3, 8), (4, 8), (5, 8)])
+    red_segment.set_rhythm(library.eighths)
+    measures = red_segment.select_measures('Voice 1')
+    measures = measures.partition_by_ratio((1, 1, 1))[1]
+    measures = measures[:2]
+    measures.timespan.set_rhythm(library.sixteenths)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification__select_measures_13():
+    '''Measure select expression with composed partition and getitem callbacks.
+    '''
+    
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures(2 * [(1, 8), (2, 8), (3, 8), (4, 8), (5, 8)])
+    red_segment.set_rhythm(library.eighths)
+    measures = red_segment.select_measures('Voice 1')
+    measures = measures[2:8]
+    measures = measures.partition_by_ratio((1, 1, 1))[1]
+    measures.timespan.set_rhythm(library.sixteenths)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)

@@ -56,30 +56,13 @@
         offset = notes.stop_offset
 
 14. Add some tests to show this:
-        measures = red_segment.select_measures('Voice 1')
-        measures = measures[10:20]
-        measures = measures[2:4]
-    This will show getitem composition.
-
-15. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_part = segments.set_offset(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         middle_part.set_divisions([(3, 16)])
     This will show set expression divisions for (potentially) more than one segment.
 
-16. Add some tests to show this:
+15. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_measures = segments.select_measures('Voice 1')[3:6]
     This will show selecting measures from (potentially) more than one segment.
-
-17. Add some tests to show this:
-        measures = red_segment.select_measures('Voice 1')[10:20]
-        middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
-    This will show partitioning only part of a segment's measures.
-
-18. Add some tests to show this:
-        measures = red_segment.select_measures('Voice 1')
-        middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
-        measure = middle_third_of_measures[:1]
-    This will show slice selection following partition.
