@@ -121,6 +121,8 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
                 region_expression_start_offset = self.target_timespan.start_offset
                 region_expression = expressiontools.LiteralRhythmRegionExpression(
                     wrapped_component, start_offset, total_duration, voice_name)
+            elif expression is None:
+                raise Exception('Initialize LookupExpressionRhythmRegionExpression here.')
             else:
                 raise TypeError(expression)
         elif isinstance(self.source, expressiontools.CounttimeComponentSelectExpression):

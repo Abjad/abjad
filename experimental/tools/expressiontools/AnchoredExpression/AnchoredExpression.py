@@ -129,6 +129,8 @@ class AnchoredExpression(Expression):
         elif self.anchor is None:
             return self.score_specification.timespan
         expression = self.anchor.evaluate()
+        if expression is None:
+            return
         if hasattr(expression, 'timespan'):
             return expression.timespan
         elif isinstance(expression.payload[0], timespantools.Timespan):

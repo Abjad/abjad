@@ -110,7 +110,8 @@ class CounttimeComponentSelectExpression(SelectExpression):
         rhythm_payload_expressions.sort()
         assert anchor_timespan.is_well_formed, repr(anchor_timespan)
         rhythm_payload_expressions &= anchor_timespan
-        expression = expressiontools.StartPositionedRhythmPayloadExpression(start_offset=anchor_timespan.start_offset)
+        expression = expressiontools.StartPositionedRhythmPayloadExpression(
+            start_offset=anchor_timespan.start_offset)
         for rhythm_payload_expression in rhythm_payload_expressions:
             expression.payload.extend(rhythm_payload_expression.payload)
         assert wellformednesstools.is_well_formed_component(expression.payload)

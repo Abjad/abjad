@@ -30,6 +30,8 @@ class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
     def evaluate(self):
         from experimental.tools import expressiontools
         expression = self.offset.evaluate()
+        if expression is None:
+            return
         offset = expression.payload[0]
         timespan_inventory = self._get_timespan_scoped_single_context_rhythm_set_expressions()
         time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
