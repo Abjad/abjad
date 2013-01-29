@@ -13,7 +13,6 @@ class RegionExpression(Expression):
 
     ### INITIALIZER ###
 
-    # TODO: change to self.__init__(payload, timespan, voice_name)
     def __init__(self, payload=None, start_offset=None, total_duration=None, voice_name=None):
         assert isinstance(voice_name, str), repr(voice_name)
         start_offset = durationtools.Offset(start_offset)

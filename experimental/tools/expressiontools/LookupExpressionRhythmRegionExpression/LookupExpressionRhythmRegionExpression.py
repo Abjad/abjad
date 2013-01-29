@@ -5,17 +5,15 @@ from abjad.tools import wellformednesstools
 from experimental.tools.expressiontools.RhythmRegionExpression import RhythmRegionExpression
 
 
-# TODO: inherit from SelectExpressionRhythmRegionExpression to remove duplicate code?
 class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
     '''Lookup expression rhythm region expression.
     '''
 
     ### INITIALIZER ###
 
-    # TODO: change to lookup_expression, timespan, voice_name
-    def __init__(self, lookup_expression=None, division_list=None, 
+    def __init__(self, source=None, division_list=None, 
         region_start_offset=None, start_offset=None, total_duration=None, voice_name=None):
-        self._lookup_expression = lookup_expression
+        self._source = source
         self._division_list = division_list
         self._region_start_offset = region_start_offset
         self._start_offset = start_offset
@@ -26,7 +24,7 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
 
     def evaluate(self):
         from experimental.tools import expressiontools
-        expression = self.lookup_expression.evaluate()
+        expression = self.source.evaluate()
         if expression is None:
             return
         if isinstance(expression, expressiontools.RhythmMakerPayloadExpression):
@@ -52,8 +50,8 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
         return self._division_list
 
     @property
-    def lookup_expression(self):
-        return self._lookup_expression
+    def source(self):
+        return self._source
 
     @property
     def region_start_offset(self):
@@ -70,11 +68,3 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
     @property
     def voice_name(self):
         return self._voice_name
-
-    ### PUBLIC METHODS ###
-
-    def prolongs_expr(self, expr):
-        if isinstance(expr, type(self)):
-            if self.lookup_expression == expr.lookup_expression:
-                return True
-        return False

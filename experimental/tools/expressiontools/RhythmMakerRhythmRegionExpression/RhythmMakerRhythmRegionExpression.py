@@ -13,13 +13,13 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, rhythm_maker=None, division_list=None, start_offset=None, voice_name=None):
+    def __init__(self, source=None, division_list=None, start_offset=None, voice_name=None):
         from experimental.tools import expressiontools
-        assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
+        assert isinstance(source, rhythmmakertools.RhythmMaker), repr(source)
         assert isinstance(division_list, expressiontools.DivisionList), repr(division_list)
         assert isinstance(voice_name, str), repr(voice_name)
         start_offset = durationtools.Offset(start_offset)
-        self._rhythm_maker = rhythm_maker
+        self._source = source
         self._start_offset = start_offset
         self._division_list = division_list
         self._voice_name = voice_name
@@ -27,11 +27,11 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
     ### PRIVATE METHODS ###
 
     def _conditionally_beam_rhythm_containers(self, rhythm_containers):
-        if getattr(self.rhythm_maker, 'beam_cells_together', False):
+        if getattr(self.source, 'beam_cells_together', False):
             spannertools.destroy_spanners_attached_to_components_in_expr(rhythm_containers)
             durations = [x.prolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
-        elif getattr(self.rhythm_maker, 'beam_each_cell', False):
+        elif getattr(self.source, 'beam_each_cell', False):
             spannertools.destroy_spanners_attached_to_components_in_expr(rhythm_containers)
             for rhythm_container in rhythm_containers:
                 beamtools.DuratedComplexBeamSpanner(
@@ -41,7 +41,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
         from experimental.tools import expressiontools
         if not self.division_list:
             return
-        leaf_lists = self.rhythm_maker(self.division_list.pairs)
+        leaf_lists = self.source(self.division_list.pairs)
         rhythm_containers = [containertools.Container(x) for x in leaf_lists]
         expression = expressiontools.StartPositionedRhythmPayloadExpression(
             payload=rhythm_containers, start_offset=self.start_offset)
@@ -56,8 +56,8 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
         return self._division_list
 
     @property
-    def rhythm_maker(self):
-        return self._rhythm_maker
+    def source(self):
+        return self._source
 
     @property
     def start_offset(self):

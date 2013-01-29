@@ -5,14 +5,13 @@ from experimental.tools.expressiontools.RhythmRegionExpression import RhythmRegi
 
 
 class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
-    '''SelectExpression rhythm region expression.
+    '''Select expression rhythm region expression.
     '''
 
     ### INITIALIZER ###
 
-    # TODO: change to select_expression, timespan, voice_name
-    def __init__(self, select_expression=None, start_offset=None, total_duration=None, voice_name=None):
-        self._select_expression = select_expression
+    def __init__(self, source=None, start_offset=None, total_duration=None, voice_name=None):
+        self._source = source
         self._voice_name = voice_name
         self._start_offset = start_offset
         self._total_duration = total_duration
@@ -21,7 +20,7 @@ class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
 
     def evaluate(self):
         from experimental.tools import expressiontools
-        expression = self.select_expression.evaluate()
+        expression = self.source.evaluate()
         if expression is None:
             return
         assert isinstance(expression, 
@@ -43,8 +42,8 @@ class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def select_expression(self):
-        return self._select_expression
+    def source(self):
+        return self._source
 
     @property
     def start_offset(self):
@@ -57,11 +56,3 @@ class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
     @property
     def voice_name(self):
         return self._voice_name
-
-    ### PUBLIC METHODS ###
-
-    def prolongs_expr(self, expr):
-        if isinstance(expr, type(self)):
-            if self.select_expression == expr.select_expression:
-                return True
-        return False

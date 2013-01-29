@@ -47,6 +47,9 @@ Methods
 
    Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
 
+.. automethod:: experimental.tools.expressiontools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression.prolongs_expr
+   :noindex:
+
 Special Methods
 ---------------
 

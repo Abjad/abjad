@@ -14,7 +14,7 @@ Read-only Properties
 
    Inherited from :py:class:`expressiontools.RegionExpression <experimental.tools.expressiontools.RegionExpression.RegionExpression.RegionExpression>`
 
-.. autoattribute:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.select_expression
+.. autoattribute:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.source
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.start_offset
@@ -44,6 +44,8 @@ Methods
 
 .. automethod:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.prolongs_expr
    :noindex:
+
+   Inherited from :py:class:`expressiontools.RhythmRegionExpression <experimental.tools.expressiontools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression>`
 
 Special Methods
 ---------------

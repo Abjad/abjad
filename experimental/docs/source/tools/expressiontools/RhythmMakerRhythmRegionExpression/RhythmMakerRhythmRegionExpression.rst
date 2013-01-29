@@ -17,7 +17,7 @@ Read-only Properties
 
    Inherited from :py:class:`expressiontools.RegionExpression <experimental.tools.expressiontools.RegionExpression.RegionExpression.RegionExpression>`
 
-.. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.rhythm_maker
+.. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.source
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.start_offset
@@ -46,6 +46,11 @@ Methods
    :noindex:
 
    Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
+
+.. automethod:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.prolongs_expr
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.RhythmRegionExpression <experimental.tools.expressiontools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression>`
 
 Special Methods
 ---------------

@@ -7,14 +7,13 @@ from experimental.tools.expressiontools.RhythmRegionExpression import RhythmRegi
 
 # TODO: maybe inherit from SelectExpressionRhythmRegionExpression?
 class LiteralRhythmRegionExpression(RhythmRegionExpression):
-    '''Counttime component rhythm region expression.
+    '''Literal rhythm region expression.
     '''
 
     ### INITIALIZER ###
 
-    # TODO: change to payload, timespan, voice_name
-    def __init__(self, payload=None, start_offset=None, total_duration=None, voice_name=None):
-        self._payload = payload
+    def __init__(self, source=None, start_offset=None, total_duration=None, voice_name=None):
+        self._source = source
         self._start_offset = start_offset
         self._total_duration = total_duration
         self._voice_name = voice_name
@@ -25,7 +24,7 @@ class LiteralRhythmRegionExpression(RhythmRegionExpression):
         from experimental.tools import expressiontools
         expression = expressiontools.StartPositionedRhythmPayloadExpression(
             [], start_offset=self.start_offset, voice_name=self.voice_name)
-        wrapped_component = componenttools.copy_components_and_covered_spanners([self.payload])[0]
+        wrapped_component = componenttools.copy_components_and_covered_spanners([self.source])[0]
         expression._payload = wrapped_component
         start_offset, stop_offset = self.start_offset, self.start_offset + self.total_duration
         keep_timespan = timespantools.Timespan(start_offset, stop_offset)
@@ -43,8 +42,8 @@ class LiteralRhythmRegionExpression(RhythmRegionExpression):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def payload(self):
-        return self._payload
+    def source(self):
+        return self._source
 
     @property
     def start_offset(self):

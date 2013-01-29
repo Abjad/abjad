@@ -5,4 +5,10 @@ class RhythmRegionExpression(RegionExpression):
     '''Rhythm region expression.
     '''
 
-    pass
+    ### PUBLIC METHODS ###
+    
+    def prolongs_expr(self, expr):
+        if isinstance(expr, type(self)):
+            if self.source == expr.source:
+                return True
+        return False

@@ -238,7 +238,7 @@ class ScoreSpecification(Specification):
             >>> for x in score_specification.rhythm_region_expressions:
             ...     z(x)
             expressiontools.RhythmMakerRhythmRegionExpression(
-                rhythm_maker=rhythmmakertools.TaleaRhythmMaker(
+                source=rhythmmakertools.TaleaRhythmMaker(
                     [1],
                     16,
                     prolation_addenda=[],
@@ -262,7 +262,7 @@ class ScoreSpecification(Specification):
                 voice_name='Voice 1'
                 )
             expressiontools.RhythmMakerRhythmRegionExpression(
-                rhythm_maker=rhythmmakertools.TaleaRhythmMaker(
+                source=rhythmmakertools.TaleaRhythmMaker(
                     [1],
                     16,
                     prolation_addenda=[],
