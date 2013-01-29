@@ -157,13 +157,13 @@ class ScoreSpecification(Specification):
             >>> for x in score_specification.division_region_expressions:
             ...     z(x)
             expressiontools.LiteralDivisionRegionExpression(
-                payload=((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)),
+                source=((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)),
                 start_offset=durationtools.Offset(0, 1),
                 total_duration=durationtools.Duration(9, 4),
                 voice_name='Voice 1'
                 )
             expressiontools.LiteralDivisionRegionExpression(
-                payload=((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)),
+                source=((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)),
                 start_offset=durationtools.Offset(0, 1),
                 total_duration=durationtools.Duration(9, 4),
                 voice_name='Voice 2'

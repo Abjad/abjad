@@ -8,14 +8,6 @@ class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
     '''Select expression rhythm region expression.
     '''
 
-    ### INITIALIZER ###
-
-    def __init__(self, source=None, start_offset=None, total_duration=None, voice_name=None):
-        self._source = source
-        self._voice_name = voice_name
-        self._start_offset = start_offset
-        self._total_duration = total_duration
-
     ### PRIVATE METHODS ###
 
     def evaluate(self):
@@ -38,21 +30,3 @@ class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
             expressiontools.StartPositionedRhythmPayloadExpression), repr(expression)
         expression.repeat_to_stop_offset(stop_offset)
         return expression
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def source(self):
-        return self._source
-
-    @property
-    def start_offset(self):
-        return self._start_offset
-
-    @property
-    def total_duration(self):
-        return self._total_duration
-
-    @property
-    def voice_name(self):
-        return self._voice_name

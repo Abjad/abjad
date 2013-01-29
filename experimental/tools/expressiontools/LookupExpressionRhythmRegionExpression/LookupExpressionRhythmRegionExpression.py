@@ -13,12 +13,10 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
 
     def __init__(self, source=None, division_list=None, 
         region_start_offset=None, start_offset=None, total_duration=None, voice_name=None):
-        self._source = source
+        RhythmRegionExpression.__init__(self, source=source, 
+            start_offset=start_offset, total_duration=total_duration, voice_name=voice_name)
         self._division_list = division_list
         self._region_start_offset = region_start_offset
-        self._start_offset = start_offset
-        self._total_duration = total_duration
-        self._voice_name = voice_name
 
     ### PRIVATE METHODS ###
 
@@ -50,21 +48,5 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
         return self._division_list
 
     @property
-    def source(self):
-        return self._source
-
-    @property
     def region_start_offset(self):
         return self._region_start_offset
-
-    @property
-    def start_offset(self):
-        return self._start_offset
-
-    @property
-    def total_duration(self):
-        return self._total_duration
-
-    @property
-    def voice_name(self):
-        return self._voice_name

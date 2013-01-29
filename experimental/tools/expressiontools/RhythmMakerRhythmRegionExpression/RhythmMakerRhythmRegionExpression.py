@@ -17,12 +17,9 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
         from experimental.tools import expressiontools
         assert isinstance(source, rhythmmakertools.RhythmMaker), repr(source)
         assert isinstance(division_list, expressiontools.DivisionList), repr(division_list)
-        assert isinstance(voice_name, str), repr(voice_name)
-        start_offset = durationtools.Offset(start_offset)
-        self._source = source
-        self._start_offset = start_offset
+        RhythmRegionExpression.__init__(self, source=source, start_offset=start_offset, 
+            total_duration=division_list.duration, voice_name=voice_name)
         self._division_list = division_list
-        self._voice_name = voice_name
 
     ### PRIVATE METHODS ###
 
@@ -54,15 +51,3 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
     @property
     def division_list(self):
         return self._division_list
-
-    @property
-    def source(self):
-        return self._source
-
-    @property
-    def start_offset(self):
-        return self._start_offset
-
-    @property
-    def voice_name(self):
-        return self._voice_name

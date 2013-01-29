@@ -8,17 +8,17 @@ class SelectExpressionDivisionRegionExpression(DivisionRegionExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, payload=None, start_offset=None, total_duration=None, voice_name=None):
+    def __init__(self, source=None, start_offset=None, total_duration=None, voice_name=None):
         from experimental.tools import expressiontools
-        assert isinstance(payload, expressiontools.SelectExpression)
-        DivisionRegionExpression.__init__(self, payload=payload,
+        assert isinstance(source, expressiontools.SelectExpression)
+        DivisionRegionExpression.__init__(self, source=source,
             start_offset=start_offset, total_duration=total_duration, voice_name=voice_name)
 
     ### PRIVATE METHODS ###
 
     def evaluate(self):
         from experimental.tools import expressiontools
-        expression = self.payload.evaluate()
+        expression = self.source.evaluate()
         if expression is not None:
             divisions = expression.elements
             divisions = [expressiontools.Division(x) for x in divisions]

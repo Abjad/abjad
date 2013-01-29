@@ -62,7 +62,3 @@
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_measures = segments.select_measures('Voice 1')[3:6]
     This will show selecting measures from (potentially) more than one segment.
-
-15. Tighten RhythmRegionExpression class hierarchy.
-    Hoist properties up to RhythmRegionExpression.
-    Maybe rename first property as 'source' in all cases.

@@ -5,18 +5,9 @@ from abjad.tools import wellformednesstools
 from experimental.tools.expressiontools.RhythmRegionExpression import RhythmRegionExpression
 
 
-# TODO: maybe inherit from SelectExpressionRhythmRegionExpression?
 class LiteralRhythmRegionExpression(RhythmRegionExpression):
     '''Literal rhythm region expression.
     '''
-
-    ### INITIALIZER ###
-
-    def __init__(self, source=None, start_offset=None, total_duration=None, voice_name=None):
-        self._source = source
-        self._start_offset = start_offset
-        self._total_duration = total_duration
-        self._voice_name = voice_name
 
     ### PRIVATE METHODS ###
 
@@ -38,21 +29,3 @@ class LiteralRhythmRegionExpression(RhythmRegionExpression):
         assert isinstance(expression, expressiontools.StartPositionedRhythmPayloadExpression), repr(expression)
         expression.repeat_to_stop_offset(stop_offset)
         return expression
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def source(self):
-        return self._source
-
-    @property
-    def start_offset(self):
-        return self._start_offset
-
-    @property
-    def total_duration(self):
-        return self._total_duration
-
-    @property
-    def voice_name(self):
-        return self._voice_name

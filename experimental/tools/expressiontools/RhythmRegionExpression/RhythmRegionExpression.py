@@ -4,7 +4,7 @@ from experimental.tools.expressiontools.RegionExpression import RegionExpression
 class RhythmRegionExpression(RegionExpression):
     '''Rhythm region expression.
     '''
-
+    
     ### PUBLIC METHODS ###
     
     def prolongs_expr(self, expr):

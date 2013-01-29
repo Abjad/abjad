@@ -9,7 +9,7 @@ expressiontools.DivisionRegionExpression
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.payload
+.. autoattribute:: experimental.tools.expressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.source
    :noindex:
 
    Inherited from :py:class:`expressiontools.RegionExpression <experimental.tools.expressiontools.RegionExpression.RegionExpression.RegionExpression>`
