@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_past_01():
-    '''From-past set-division lookup expression.
+    '''From-past division set expression lookup expression.
     '''
     
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -23,7 +23,7 @@ def test_SegmentSpecification__look_up_division_set_expression_from_past_01():
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_past_02():
-    '''From-past set-division lookup expression with reverse callback.
+    '''From-past division set expression lookup expression with reverse callback.
     '''
     
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -45,7 +45,7 @@ def test_SegmentSpecification__look_up_division_set_expression_from_past_02():
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_past_03():
-    '''From-past set-division lookup expression with set-time reverse.
+    '''From-past division set expression lookup expression with reverse callback.
     '''
     
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -67,7 +67,7 @@ def test_SegmentSpecification__look_up_division_set_expression_from_past_03():
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_past_04():
-    '''From-past set-division lookup expression with reverse callbacks.
+    '''From-past division set expression lookup expression with reverse callbacks.
     '''
     
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

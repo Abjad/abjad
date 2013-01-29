@@ -43,7 +43,7 @@ def test_SegmentSpecification__select_divisions_from_past_02():
 
 
 def test_SegmentSpecification__select_divisions_from_past_03():
-    '''From-past division select expression with set-time reverse.
+    '''From-past division select expression with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

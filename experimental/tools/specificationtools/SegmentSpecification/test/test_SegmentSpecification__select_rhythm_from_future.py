@@ -45,7 +45,7 @@ def test_SegmentSpecification__select_rhythm_from_future_02():
 
 
 def test_SegmentSpecification__select_rhythm_from_future_03():
-    '''From-future rhythm select expression with set-time reverse.
+    '''From-future rhythm select expression with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

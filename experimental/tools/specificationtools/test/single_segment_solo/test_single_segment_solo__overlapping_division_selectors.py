@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_single_segment_solo__overlapping_division_selectors_01():
-    '''Second set-division expression overwrites first set-division expression.
+    '''Second division set expression overwrites first division set expression.
     Settings stop and start at same time.
     '''
 
@@ -21,7 +21,7 @@ def test_single_segment_solo__overlapping_division_selectors_01():
 
 
 def test_single_segment_solo__overlapping_division_selectors_02():
-    '''Second set-division expression overrides first set-division expression.
+    '''Second division set expression overrides first division set expression.
     First set expression smaller than second set expression.
     Settings start at same time.
     '''
@@ -42,7 +42,7 @@ def test_single_segment_solo__overlapping_division_selectors_02():
 
 
 def test_single_segment_solo__overlapping_division_selectors_03():
-    '''Second set-division expression overrides first set-division expression.
+    '''Second division set expression overrides first division set expression.
     First set expression smaller than second set expression.
     First set expression starts after second set expression.
     '''

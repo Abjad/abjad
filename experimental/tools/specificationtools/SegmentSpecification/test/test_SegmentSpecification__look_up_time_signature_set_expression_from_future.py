@@ -22,7 +22,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_future
 
 
 def test_SegmentSpecification__look_up_time_signature_set_expression_from_future_02():
-    '''From-future set-time signature lookup expression with reverse callback.
+    '''From-future time signature set expression lookup expression with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -43,7 +43,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_future
 
 
 def test_SegmentSpecification__look_up_time_signature_set_expression_from_future_03():
-    '''From-future set-time signature lookup expression with set-time reverse.
+    '''From-future time signature set expression lookup expression with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -64,7 +64,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_future
 
 
 def test_SegmentSpecification__look_up_time_signature_set_expression_from_future_04():
-    '''From-future set-time signature lookup expression with reverse callbacks.
+    '''From-future time signature set expression lookup expression with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

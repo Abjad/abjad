@@ -82,5 +82,3 @@
         rhythm_set_expression = leaves.timespan.start_offset.look_up_rhythm_set_expression('Voice 1')
         measures.timespan.set_rhythm(rhythm_set_expression)
         score = score_specification.interpret()
-
-17. Globally search and replace 'set-rhythm', 'set-division' 'set-time'.

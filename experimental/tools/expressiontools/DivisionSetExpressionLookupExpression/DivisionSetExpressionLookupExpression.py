@@ -6,7 +6,7 @@ from experimental.tools.expressiontools.SetExpressionLookupExpression import Set
 class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
     '''Set-division lookup expression.
 
-    Example. Look up set-division expression active at start of measure 4 in ``'Voice 1'``::
+    Example. Look up division set expression active at start of measure 4 in ``'Voice 1'``::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
         ...     staff_count=1)
@@ -34,9 +34,9 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
             voice_name='Voice 1'
             )
 
-    Composers create set-division lookup expressions during specification time.
+    Composers create division set expression lookup expressions during specification time.
 
-    Composers create set-division lookup expressions through a method
+    Composers create division set expression lookup expressions through a method
     implemented on ``OffsetExpression``.
     '''
 

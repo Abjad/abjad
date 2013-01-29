@@ -75,7 +75,7 @@ def test_SegmentSpecification__select_rhythm_from_past_03():
 
 
 def test_SegmentSpecification__select_rhythm_from_past_04():
-    '''From-past rhythm select expression with set-time reverse.
+    '''From-past rhythm select expression with reverse callback.
     '''    
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -148,7 +148,7 @@ def test_SegmentSpecification__select_rhythm_from_past_06():
 
 
 def test_SegmentSpecification__select_rhythm_from_past_07():
-    '''From-past rhythm select expression with set-time rotation.
+    '''From-past rhythm select expression with rotation callback.
     '''    
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

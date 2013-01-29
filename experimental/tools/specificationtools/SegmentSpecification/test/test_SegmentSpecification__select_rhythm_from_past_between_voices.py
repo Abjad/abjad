@@ -47,7 +47,7 @@ def test_SegmentSpecification__select_rhythm_from_past_between_voices_02():
 
 
 def test_SegmentSpecification__select_rhythm_from_past_between_voices_03():
-    '''From-past rhythm select expression between voices with set-time reverse.
+    '''From-past rhythm select expression between voices with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

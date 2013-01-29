@@ -425,7 +425,7 @@ class ScoreSpecification(Specification):
 
     @property
     def single_context_time_signature_set_expressions(self):
-        '''Read-only list of all set-time signature expressions.
+        '''Read-only list of all time signature set expressions.
 
             >>> for x in score_specification.single_context_time_signature_set_expressions:
             ...     z(x)

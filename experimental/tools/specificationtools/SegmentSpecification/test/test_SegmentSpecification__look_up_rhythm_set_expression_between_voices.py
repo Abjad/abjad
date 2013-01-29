@@ -41,7 +41,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_between_voices_02()
 
 
 def test_SegmentSpecification__look_up_rhythm_set_expression_between_voices_03():
-    '''Set-rhythm lookup expression between voices with set-time reverse.
+    '''Set-rhythm lookup expression between voices with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

@@ -43,7 +43,7 @@ def test_SegmentSpecification__select_time_signatures_from_future_02():
 
 
 def test_SegmentSpecification__select_time_signatures_from_future_03():
-    '''From-future time signature select expression with set-time reverse.
+    '''From-future time signature select expression with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

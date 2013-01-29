@@ -57,7 +57,7 @@ class ContextProxy(AbjadObject, OrderedDict):
     @property
     def timespan_scoped_single_context_division_set_expressions(self):
         '''Context proxy timespan-scoped
-        single-context set-division expressions.
+        single-context division set expressions.
 
         Return inventory.
         '''
@@ -66,7 +66,7 @@ class ContextProxy(AbjadObject, OrderedDict):
     @property
     def timespan_scoped_single_context_rhythm_set_expressions(self):
         '''Context proxy timespan-scoped
-        single-context set-rhythm expressions.
+        single-context rhythm set expressions.
 
         Return inventory.
         '''

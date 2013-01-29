@@ -47,7 +47,7 @@ def test_SegmentSpecification__select_divisions_from_past_between_voices_02():
 
 
 def test_SegmentSpecification__select_divisions_from_past_between_voices_03():
-    '''From-past division select expression between voices with set-time reverse.
+    '''From-past division select expression between voices with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
