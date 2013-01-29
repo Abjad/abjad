@@ -157,5 +157,5 @@ class ScoreSpecificationInterface(SpecificationInterface):
         '''
         from experimental.tools import expressiontools
         select_expression = expressiontools.SegmentSelectExpression(voice_name=voice_name)
-        select_expression._score_specification = self
+        select_expression._score_specification = self.score_specification
         return select_expression

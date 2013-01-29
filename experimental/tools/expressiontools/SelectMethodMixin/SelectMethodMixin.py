@@ -146,6 +146,25 @@ class SelectMethodMixin(AbjadObject):
         select_expression._score_specification = self.score_specification
         return select_expression
 
+#    def select_segments(self, voice_name):
+#        '''Select voice ``1`` segments in score::
+#
+#            >>> select_expression = score_specification.select_segments('Voice 1')
+#
+#        ::
+#
+#            >>> z(select_expression)
+#            expressiontools.SegmentSelectExpression(
+#                voice_name='Voice 1'
+#                )
+#
+#        Return segment select expression.
+#        '''
+#        from experimental.tools import expressiontools
+#        select_expression = expressiontools.SegmentSelectExpression(voice_name=voice_name)
+#        select_expression._score_specification = self.score_specification
+#        return select_expression
+
     def select_time_signatures(self, voice_name, time_relation=None):
         '''Select voice ``1`` time signatures that start during segment ``'red'``::
 

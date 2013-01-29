@@ -173,6 +173,8 @@ class StartPositionedPayloadExpression(PayloadExpression):
             return expr.prolated_duration
         elif isinstance(expr, numbers.Number):
             return durationtools.Duration(expr)
+        elif hasattr(expr, 'timespan'):
+            return expr.timespan.duration
         else:
             return durationtools.Duration(expr)
 

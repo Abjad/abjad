@@ -37,7 +37,9 @@ class AnchoredExpression(Expression):
     # TODO: maybe rename something that talks explicitly about changing (fundamental) anchor
     def _set_start_segment_identifier(self, segment_identifier):
         assert isinstance(segment_identifier, str)
-        if isinstance(self.anchor, str):
+        if self.anchor is None:
+            pass
+        elif isinstance(self.anchor, str):
             self._anchor = segment_identifier
         else:
             anchor = copy.deepcopy(self.anchor)

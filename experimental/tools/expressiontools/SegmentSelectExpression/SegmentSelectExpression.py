@@ -1,3 +1,4 @@
+from abjad.tools import durationtools
 from experimental.tools.expressiontools.SelectExpression import SelectExpression
 
 
@@ -96,8 +97,11 @@ class SegmentSelectExpression(SelectExpression):
 
     def evaluate(self):
         from experimental.tools import expressiontools
-        segment = self.start_segment_specification
-        start_offset = segment.start_offset
-        expression = expressiontools.StartPositionedPayloadExpression([segment], start_offset=start_offset)
+        #segment = self.start_segment_specification
+        #start_offset = segment.timespan.start_offset
+        segments = self.score_specification.segment_specifications[:]
+        #expression = expressiontools.StartPositionedPayloadExpression([segment], start_offset=start_offset)
+        start_offset = durationtools.Offset(0)
+        expression = expressiontools.StartPositionedPayloadExpression(segments, start_offset=start_offset)
         expression = self._apply_callbacks(expression)
         return expression
