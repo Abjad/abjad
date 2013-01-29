@@ -132,32 +132,14 @@ def scan_doctree_for_abjad_literal_blocks(doctree):
     return abjad_literal_blocks, should_process
 
 
-def on_doctree_read(app, doctree):
-    transform_path = app.config.abjad_book_transform_path
-    docname = doctree['source'][:-4].partition(app.srcdir)[-1][1:]
-
-    if not docname.startswith(transform_path):
-        return
-
+def process_literal_block_pairs(literal_block_pairs):
     environment = {'__builtins__': __builtins__}
     exec('from abjad import *\n', environment)
-
-    result_a = scan_doctree_for_literal_blocks(doctree)
-    result_b = scan_doctree_for_abjad_literal_blocks(doctree)
-
-    should_process = result_a[1] or result_b[1]
-    if not should_process:
-        return
-
-    literal_blocks_pairs = result_a[0]
-    abjad_literal_blocks = result_b[0]
-
     for literal_block, all_lines in literal_block_pairs:
         original_lines = literal_block[0].splitlines()
         replacement_blocks = []
         lines_to_execute = []
         previous_line_number = 0
-
         for i, line in all_lines:
             lines_to_execute.append(line)
             if line.startswith('__abjad_book__ ='):
@@ -179,7 +161,6 @@ def on_doctree_read(app, doctree):
                 replacement_blocks.extend([new_literal_block, new_abjad_book_block])
                 lines_to_execute = []
                 previous_line_number = i + 1
-
         if lines_to_execute:
             try:
                 exec('\n'.join(lines_to_execute), environment)
@@ -192,9 +173,28 @@ def on_doctree_read(app, doctree):
                 new_literal_block[0].rawsource = text
                 new_literal_block[0].text = text
                 replacement_blocks.append(new_literal_block)
-
         if replacement_blocks:
             literal_block.replace_self(replacement_blocks)
+
+
+def process_abjad_literal_blocks(abjad_literal_blocks):
+    pass
+
+
+def on_doctree_read(app, doctree):
+    transform_path = app.config.abjad_book_transform_path
+    docname = doctree['source'][:-4].partition(app.srcdir)[-1][1:]
+    if not docname.startswith(transform_path):
+        return
+    result_a = scan_doctree_for_literal_blocks(doctree)
+    result_b = scan_doctree_for_abjad_literal_blocks(doctree)
+    should_process = result_a[1] or result_b[1]
+    if not should_process:
+        return
+    literal_block_pairs = result_a[0]
+    abjad_literal_blocks = result_b[0]
+    process_literal_block_pairs(literal_block_pairs)
+    process_abjad_literal_blocks(abjad_literal_blocks)
 
 
 def on_build_finished(app, exc):
