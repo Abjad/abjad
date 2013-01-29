@@ -121,7 +121,8 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
                     wrapped_component, start_offset, total_duration, voice_name)
             elif expression is None:
                 region_expression = expressiontools.LookupExpressionRhythmRegionExpression(
-                    self.source, self.target_timespan.start_offset, total_duration, voice_name)
+                    self.source, division_list, self.target_timespan.start_offset, 
+                    start_offset, total_duration, voice_name)
             else:
                 raise TypeError(expression)
         elif isinstance(self.source, expressiontools.CounttimeComponentSelectExpression):

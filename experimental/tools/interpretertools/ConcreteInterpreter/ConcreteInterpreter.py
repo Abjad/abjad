@@ -127,6 +127,7 @@ class ConcreteInterpreter(Interpreter):
     def interpret_rhythm(self):
         self.make_timespan_scoped_single_context_set_expressions('rhythm')
         self.make_region_expressions('rhythm')
+        #self._debug_values(self.score_specification.rhythm_region_expressions, 'rrxs')
         self.make_payload_expressions('rhythm')
         self.add_rhythms_to_score()
 

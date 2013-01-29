@@ -9,6 +9,9 @@ expressiontools.LookupExpressionRhythmRegionExpression
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.expressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.division_list
+   :noindex:
+
 .. autoattribute:: experimental.tools.expressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.lookup_expression
    :noindex:
 
@@ -16,6 +19,9 @@ Read-only Properties
    :noindex:
 
    Inherited from :py:class:`expressiontools.RegionExpression <experimental.tools.expressiontools.RegionExpression.RegionExpression.RegionExpression>`
+
+.. autoattribute:: experimental.tools.expressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.region_start_offset
+   :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.start_offset
    :noindex:

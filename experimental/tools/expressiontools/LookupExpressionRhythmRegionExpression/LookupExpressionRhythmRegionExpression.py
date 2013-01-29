@@ -12,11 +12,14 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
     ### INITIALIZER ###
 
     # TODO: change to lookup_expression, timespan, voice_name
-    def __init__(self, lookup_expression=None, start_offset=None, total_duration=None, voice_name=None):
+    def __init__(self, lookup_expression=None, division_list=None, 
+        region_start_offset=None, start_offset=None, total_duration=None, voice_name=None):
         self._lookup_expression = lookup_expression
-        self._voice_name = voice_name
+        self._division_list = division_list
+        self._region_start_offset = region_start_offset
         self._start_offset = start_offset
         self._total_duration = total_duration
+        self._voice_name = voice_name
 
     ### PRIVATE METHODS ###
 
@@ -25,26 +28,29 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
         expression = self.lookup_expression.evaluate()
         if expression is None:
             return
-        assert isinstance(expression, 
-            expressiontools.StartPositionedRhythmPayloadExpression), repr(expression)
-        expression._start_offset = self.start_offset
-        start_offset, stop_offset = self.start_offset, self.start_offset + self.total_duration
-        keep_timespan = timespantools.Timespan(start_offset, stop_offset)
-        timespan = expression.timespan
-        assert not keep_timespan.starts_before_timespan_starts(timespan), repr((timespan, keep_timespan))
-        assert timespan.start_offset == keep_timespan.start_offset, repr((timespan, keep_timespan))
-        inventory = expression & keep_timespan
-        assert len(inventory) == 1
-        expression = inventory[0]
-        assert isinstance(expression, expressiontools.StartPositionedRhythmPayloadExpression), repr(expression)
-        expression.repeat_to_stop_offset(stop_offset)
-        return expression
+        if isinstance(expression, expressiontools.RhythmMakerPayloadExpression):
+            rhythm_maker = expression.payload[0]
+            region_expression = expressiontools.RhythmMakerRhythmRegionExpression(
+                rhythm_maker, self.division_list, self.start_offset, self.voice_name)
+            result = region_expression.evaluate()
+            assert isinstance(result, expressiontools.StartPositionedRhythmPayloadExpression), repr(result)
+            return result
+        else:
+            raise TypeError(expression)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def division_list(self):
+        return self._division_list
+
+    @property
     def lookup_expression(self):
         return self._lookup_expression
+
+    @property
+    def region_start_offset(self):
+        return self._region_start_offset
 
     @property
     def start_offset(self):

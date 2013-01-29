@@ -24,7 +24,8 @@ class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
         expression = self.select_expression.evaluate()
         if expression is None:
             return
-        assert isinstance(expression, expressiontools.StartPositionedRhythmPayloadExpression), repr(expression)
+        assert isinstance(expression, 
+            expressiontools.StartPositionedRhythmPayloadExpression), repr(expression)
         expression._start_offset = self.start_offset
         start_offset, stop_offset = self.start_offset, self.start_offset + self.total_duration
         keep_timespan = timespantools.Timespan(start_offset, stop_offset)
@@ -34,7 +35,8 @@ class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
         inventory = expression & keep_timespan
         assert len(inventory) == 1
         expression = inventory[0]
-        assert isinstance(expression, expressiontools.StartPositionedRhythmPayloadExpression), repr(expression)
+        assert isinstance(expression, 
+            expressiontools.StartPositionedRhythmPayloadExpression), repr(expression)
         expression.repeat_to_stop_offset(stop_offset)
         return expression
 
