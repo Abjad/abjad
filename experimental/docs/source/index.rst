@@ -159,6 +159,7 @@ Unstable packages (load manually)
       tools/expressiontools/HandlerExpression/HandlerExpression
       tools/expressiontools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
       tools/expressiontools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
+      tools/expressiontools/LookupExpressionRhythmRegionExpression/LookupExpressionRhythmRegionExpression
       tools/expressiontools/MaterialManager/MaterialManager
       tools/expressiontools/MeasureSelectExpression/MeasureSelectExpression
       tools/expressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
@@ -234,6 +235,7 @@ Unstable packages (load manually)
       tools/expressiontools/HandlerExpression/HandlerExpression
       tools/expressiontools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
       tools/expressiontools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
+      tools/expressiontools/LookupExpressionRhythmRegionExpression/LookupExpressionRhythmRegionExpression
       tools/expressiontools/MaterialManager/MaterialManager
       tools/expressiontools/MeasureSelectExpression/MeasureSelectExpression
       tools/expressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression

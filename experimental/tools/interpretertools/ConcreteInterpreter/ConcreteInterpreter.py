@@ -235,6 +235,7 @@ class ConcreteInterpreter(Interpreter):
             rhythm_region_start_offset, rhythm_region_division_list in zip(
             timespan_scoped_single_context_rhythm_set_expressions, 
             rhythm_region_start_offsets, rhythm_region_division_lists):
+            #self._debug(timespan_scoped_single_context_rhythm_set_expression, 'tsscrsx')
             rhythm_region_expression = timespan_scoped_single_context_rhythm_set_expression.evaluate(
                 rhythm_region_division_list, rhythm_region_start_offset, voice_name)
             rhythm_region_expressions.append(rhythm_region_expression)
