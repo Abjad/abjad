@@ -44,6 +44,11 @@ Read-only Properties
 
    Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
+.. autoattribute:: experimental.tools.expressiontools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.start_segment_specification
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
 .. autoattribute:: experimental.tools.expressiontools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.stop_offset
    :noindex:
 

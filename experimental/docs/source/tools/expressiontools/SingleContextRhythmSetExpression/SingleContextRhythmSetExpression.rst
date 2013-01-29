@@ -49,6 +49,11 @@ Read-only Properties
 
    Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
+.. autoattribute:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.start_segment_specification
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
 .. autoattribute:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.stop_offset
    :noindex:
 

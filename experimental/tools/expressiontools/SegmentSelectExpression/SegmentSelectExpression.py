@@ -96,8 +96,7 @@ class SegmentSelectExpression(SelectExpression):
 
     def evaluate(self):
         from experimental.tools import expressiontools
-        start_segment_identifier = self.start_segment_identifier
-        segment = self.score_specification[start_segment_identifier]
+        segment = self.start_segment_specification
         start_offset = segment.start_offset
         expression = expressiontools.StartPositionedPayloadExpression([segment], start_offset=start_offset)
         expression = self._apply_callbacks(expression)

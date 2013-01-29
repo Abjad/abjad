@@ -83,7 +83,3 @@
         middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
         measure = middle_third_of_measures[:1]
     This will show slice selection following partition.
-
-19. Possibly extend AnchoredExpression with start_segment_specification property.
-    Removes segment_specification = self.score_specification[self.start_segment_identifer]
-    from seven or eight places.

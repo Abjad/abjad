@@ -65,11 +65,9 @@ class MeasureSelectExpression(SelectExpression):
 
     def evaluate(self):
         from experimental.tools import expressiontools
-        start_segment_identifier = self.start_segment_identifier
-        start_segment_specification = self.score_specification[start_segment_identifier]
-        time_signatures = start_segment_specification.time_signatures[:]
+        time_signatures = self.start_segment_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
-        start_offset = start_segment_specification.timespan.start_offset
+        start_offset = self.start_segment_specification.timespan.start_offset
         expression = expressiontools.StartPositionedDivisionPayloadExpression(
             time_signatures, start_offset=start_offset)
         anchor_timespan = self.evaluate_anchor_timespan()
@@ -81,9 +79,7 @@ class MeasureSelectExpression(SelectExpression):
     # special definition because time signatures can be evaluated without knowing the timespan they occupy
     def evaluate_early(self):
         from experimental.tools import expressiontools
-        start_segment_identifier = self.start_segment_identifier
-        start_segment_specification = self.score_specification[start_segment_identifier]
-        time_signatures = start_segment_specification.time_signatures[:]
+        time_signatures = self.start_segment_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
         expression = expressiontools.PayloadExpression(time_signatures)
         expression = self._apply_callbacks(expression)

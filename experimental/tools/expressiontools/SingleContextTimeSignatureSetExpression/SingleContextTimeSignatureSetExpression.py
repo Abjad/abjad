@@ -26,8 +26,7 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
             target_context_name=self.target_context_name, fresh=self.fresh)
         return expression
 
-    # TODO: remove score_specification input parameter altogether
-    def make_time_signatures(self, score_specification):
+    def make_time_signatures(self):
         from experimental.tools import expressiontools
         if hasattr(self.source, 'evaluate_early'):
             expression = self.source.evaluate_early()
@@ -38,6 +37,5 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
             assert isinstance(expression, expressiontools.PayloadExpression)
             time_signatures = expression.payload[:]
         if time_signatures:
-            segment_specification = score_specification[self.start_segment_identifier]
-            segment_specification._time_signatures = time_signatures[:]
+            self.start_segment_specification._time_signatures = time_signatures[:]
             return time_signatures

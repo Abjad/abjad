@@ -100,6 +100,12 @@ class AnchoredExpression(Expression):
             return self.anchor.start_segment_identifier
 
     @property
+    def start_segment_specification(self):
+        '''Start segment specification.
+        '''
+        return self.score_specification[self.start_segment_identifier]
+
+    @property
     def stop_offset(self):
         '''Expression stop offset.
 

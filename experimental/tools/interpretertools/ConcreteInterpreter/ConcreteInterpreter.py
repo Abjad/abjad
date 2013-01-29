@@ -67,11 +67,12 @@ class ConcreteInterpreter(Interpreter):
         single_context_time_signature_set_expressions = \
             self.score_specification.single_context_time_signature_set_expressions[:]
         while single_context_time_signature_set_expressions:
-            for single_context_time_signature_set_expression in single_context_time_signature_set_expressions[:]:
-                time_signatures = single_context_time_signature_set_expression.make_time_signatures(
-                    self.score_specification)
+            for single_context_time_signature_set_expression in \
+                single_context_time_signature_set_expressions[:]:
+                time_signatures = single_context_time_signature_set_expression.make_time_signatures()
                 if time_signatures:
-                    single_context_time_signature_set_expressions.remove(single_context_time_signature_set_expression)
+                    single_context_time_signature_set_expressions.remove(
+                        single_context_time_signature_set_expression)
         time_signatures = self.score_specification.time_signatures
         measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
         context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')

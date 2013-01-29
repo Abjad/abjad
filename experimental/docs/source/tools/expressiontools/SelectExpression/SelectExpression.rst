@@ -34,6 +34,11 @@ Read-only Properties
 
    Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
+.. autoattribute:: experimental.tools.expressiontools.SelectExpression.SelectExpression.SelectExpression.start_segment_specification
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
 .. autoattribute:: experimental.tools.expressiontools.SelectExpression.SelectExpression.SelectExpression.stop_offset
    :noindex:
 
