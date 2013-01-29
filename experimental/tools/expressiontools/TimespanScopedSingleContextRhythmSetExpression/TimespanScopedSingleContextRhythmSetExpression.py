@@ -96,6 +96,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
         assert isinstance(division_list, expressiontools.DivisionList), repr(division_list)
         assert isinstance(start_offset, durationtools.Offset), repr(start_offset)
         assert isinstance(voice_name, str), repr(voice_name)
+        total_duration = self.target_timespan.duration
         if isinstance(self.source, expressiontools.RhythmMakerPayloadExpression):
             rhythm_maker = self.source.payload[0]
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
@@ -104,10 +105,9 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
         elif isinstance(self.source, expressiontools.StartPositionedRhythmPayloadExpression):
             wrapped_component = componenttools.copy_components_and_covered_spanners(
                 [self.source.payload])[0]
-            total_duration = self.target_timespan.duration
-            region_expression_start_offset = self.target_timespan.start_offset
             region_expression = expressiontools.LiteralRhythmRegionExpression(
                 wrapped_component, start_offset, total_duration, voice_name)
+        # TODO: remove the double indentation of the following branch
         elif isinstance(self.source, expressiontools.RhythmSetExpressionLookupExpression):
             expression = self.source.evaluate()
             if isinstance(expression, expressiontools.RhythmMakerPayloadExpression):
@@ -117,19 +117,16 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
             elif isinstance(expression, expressiontools.StartPositionedRhythmPayloadExpression):
                 wrapped_component = componenttools.copy_components_and_covered_spanners(
                     [expression.payload])[0]
-                total_duration = self.target_timespan.duration
-                region_expression_start_offset = self.target_timespan.start_offset
                 region_expression = expressiontools.LiteralRhythmRegionExpression(
                     wrapped_component, start_offset, total_duration, voice_name)
             elif expression is None:
-                raise Exception('Initialize LookupExpressionRhythmRegionExpression here.')
+                region_expression = expressiontools.LookupExpressionRhythmRegionExpression(
+                    self.source, self.target_timespan.start_offset, total_duration, voice_name)
             else:
                 raise TypeError(expression)
         elif isinstance(self.source, expressiontools.CounttimeComponentSelectExpression):
-            total_duration = self.target_timespan.duration
-            region_expression_start_offset = self.target_timespan.start_offset
             region_expression = expressiontools.SelectExpressionRhythmRegionExpression(
-                self.source, region_expression_start_offset, total_duration, voice_name)
+                self.source, self.target_timespan.start_offset, total_duration, voice_name)
         else:
             raise TypeError(self.source)
         return region_expression
