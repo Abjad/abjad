@@ -141,7 +141,7 @@ Remove music from dynamic measures the same as with other containers:
 .. image:: images/index-6.png
 
 
-InputSetExpression the denominator of dynamic measures
+Setting the denominator of dynamic measures
 -------------------------------------------
 
 You can set the denominator of dynamic measures to any integer power of ``2``:

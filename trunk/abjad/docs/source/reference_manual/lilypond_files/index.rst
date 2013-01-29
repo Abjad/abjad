@@ -43,7 +43,7 @@ that appear in file output:
    }
 
 
-InputSetExpression default paper size
+Setting default paper size
 --------------------------
 
 Set default LilyPond paper size like this:
@@ -75,7 +75,7 @@ Set default LilyPond paper size like this:
    }
 
 
-InputSetExpression global staff size
+Setting global staff size
 -------------------------
 
 Set global staff size like this:
