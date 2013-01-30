@@ -443,6 +443,7 @@ Unstable packages (load manually)
 
       tools/specificationtools/ContextProxy/ContextProxy
       tools/specificationtools/ContextProxyDictionary/ContextProxyDictionary
+      tools/specificationtools/InputSetExpressionDictionary/InputSetExpressionDictionary
       tools/specificationtools/ScoreSpecification/ScoreSpecification
       tools/specificationtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/specificationtools/SegmentSpecification/SegmentSpecification
@@ -466,6 +467,7 @@ Unstable packages (load manually)
 
       tools/specificationtools/ContextProxy/ContextProxy
       tools/specificationtools/ContextProxyDictionary/ContextProxyDictionary
+      tools/specificationtools/InputSetExpressionDictionary/InputSetExpressionDictionary
       tools/specificationtools/ScoreSpecification/ScoreSpecification
       tools/specificationtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/specificationtools/SegmentSpecification/SegmentSpecification
