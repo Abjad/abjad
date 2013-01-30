@@ -281,7 +281,8 @@ class ConcreteInterpreter(Interpreter):
     def populate_single_context_time_signature_set_expressions(self):
         for segment_specification in self.score_specification.segment_specifications:
             score_proxy = segment_specification.single_context_set_expressions_by_context.score_context_proxy
-            single_context_time_signature_set_expressions = score_proxy.get_set_expressions(
+            single_context_time_signature_set_expressions = \
+                score_proxy.input_set_expressions_by_attribute.get_set_expressions(
                 attribute='time_signatures')
             if not single_context_time_signature_set_expressions:
                 continue

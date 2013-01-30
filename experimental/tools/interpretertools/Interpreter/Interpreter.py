@@ -90,18 +90,24 @@ class Interpreter(AbjadObject):
         if clear_persistent_first:
             self.score_specification.clear_persistent_single_context_set_expressions_by_context(
                 context_name, attribute)
-        if attribute in segment_specification.single_context_set_expressions_by_context[context_name]:
-            segment_specification.single_context_set_expressions_by_context[context_name][attribute].append(
+        if attribute in segment_specification.single_context_set_expressions_by_context[
+            context_name].input_set_expressions_by_attribute:
+            segment_specification.single_context_set_expressions_by_context[
+                context_name].input_set_expressions_by_attribute[attribute].append(
                 single_context_set_expression)
         else:
-            segment_specification.single_context_set_expressions_by_context[context_name][attribute] = [
+            segment_specification.single_context_set_expressions_by_context[
+                context_name].input_set_expressions_by_attribute[attribute] = [
                 single_context_set_expression]
         if single_context_set_expression.persist:
-            if attribute in self.score_specification.single_context_set_expressions_by_context[context_name]:
-                self.score_specification.single_context_set_expressions_by_context[context_name][attribute].append(
+            if attribute in self.score_specification.single_context_set_expressions_by_context[
+                context_name].input_set_expressions_by_attribute:
+                self.score_specification.single_context_set_expressions_by_context[
+                    context_name].input_set_expressions_by_attribute[attribute].append(
                     single_context_set_expression)
             else:
-                self.score_specification.single_context_set_expressions_by_context[context_name][attribute] = [
+                self.score_specification.single_context_set_expressions_by_context[
+                    context_name].input_set_expressions_by_attribute[attribute] = [
                     single_context_set_expression]
 
     def store_single_context_set_expressions_by_context(self, 

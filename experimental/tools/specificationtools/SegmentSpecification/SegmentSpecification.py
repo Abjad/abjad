@@ -269,7 +269,7 @@ class SegmentSpecification(Specification):
         if include_improper_parentage:
             context_names.extend(self._context_name_to_parentage_names(context_name))
         for context_name in reversed(context_names):
-            single_context_set_expressions = self.single_context_set_expressions_by_context[context_name]
-            single_context_set_expressions = single_context_set_expressions.get_set_expressions(attribute=attribute)
+            single_context_set_expressions = self.single_context_set_expressions_by_context[
+                context_name].input_set_expressions_by_attribute.get_set_expressions(attribute=attribute)
             result.extend(single_context_set_expressions)
         return result

@@ -1,18 +1,17 @@
-from collections import OrderedDict
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-# TODO: Change to *have a* set expressions OrderedDict rather than *being an* OrderedDict.
-#       This will mean adding a 'set_expressions' property.
-class ContextProxy(AbjadObject, OrderedDict):
+class ContextProxy(AbjadObject):
 
     ### INITIALIZER ###
 
     def __init__(self):
         from experimental.tools import expressiontools
-        OrderedDict.__init__(self)
+        from experimental.tools import specificationtools
         self._division_payload_expressions = \
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
+        self._input_set_expressions_by_attribute = \
+            specificationtools.InputSetExpressionDictionary()
         self._rhythm_payload_expressions = \
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         self._timespan_scoped_single_context_division_set_expressions = \
@@ -20,21 +19,6 @@ class ContextProxy(AbjadObject, OrderedDict):
         self._timespan_scoped_single_context_rhythm_set_expressions = \
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         self._voice_division_list = None
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        return OrderedDict.__repr__(self)
-
-    def __setitem__(self, key, value):
-        assert isinstance(key, str)
-        OrderedDict.__setitem__(self, key, value)
-
-    ### READ-ONLY PRIVATE PROPERTIES ###
-
-    @property
-    def _positional_argument_values(self):
-        return self.items()
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -45,6 +29,14 @@ class ContextProxy(AbjadObject, OrderedDict):
         Return inventory.
         '''
         return self._division_payload_expressions
+
+    @property
+    def input_set_expressions_by_attribute(self):
+        '''Context proxy input set expressions by attribute.
+
+        Return input set expression dictionary.
+        '''
+        return self._input_set_expressions_by_attribute
 
     @property
     def rhythm_payload_expressions(self):
@@ -79,21 +71,3 @@ class ContextProxy(AbjadObject, OrderedDict):
         Return voice division list.
         '''
         return self._voice_division_list
-
-    ### PUBLIC METHODS ###
-
-    def get_set_expression(self, attribute=None):
-        set_expressions = self.get_set_expressions(attribute=attribute)
-        if not set_expressions:
-            raise Exception('no set expressions for {!r} found.'.format(attribute))
-        elif 1 < len(set_expressions):
-            raise Exception('multiple set expressions for {!r} found.'.format(attribute))
-        assert len(set_expressions) == 1
-        return set_expressions[0]
-
-    def get_set_expressions(self, attribute=None):
-        result = []
-        for key, value in self.iteritems():
-            if attribute is None or key == attribute:
-                result.extend(value)
-        return result

@@ -573,21 +573,29 @@ class ScoreSpecification(Specification):
         return segment_specification_interface
 
     def clear_persistent_single_context_set_expressions_by_context(self, context_name, attribute):
-        if attribute in self.single_context_set_expressions_by_context[context_name]:
-            del(self.single_context_set_expressions_by_context[context_name][attribute])
+        if attribute in self.single_context_set_expressions_by_context[
+            context_name].input_set_expressions_by_attribute:
+            del(self.single_context_set_expressions_by_context[
+                context_name].input_set_expressions_by_attribute[attribute])
 
     def get_segment_specification(self, expr):
-        '''Get segment specification from segment name::
+        '''Get segment specification from segment name:
+
+        ::
 
             >>> score_specification.get_segment_specification('yellow')
             SegmentSpecification('yellow')
 
-        Get segment specification from segment index::
+        Get segment specification from segment index:
+
+        ::
 
             >>> score_specification.get_segment_specification(2) 
             SegmentSpecification('yellow')
 
-        Get segment specification from segment identifier expression::
+        Get segment specification from segment identifier expression:
+
+        ::
 
             >>> expression = expressiontools.SegmentIdentifierExpression("'red' + 2")
             >>> score_specification.get_segment_specification(expression)

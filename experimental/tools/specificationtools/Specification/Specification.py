@@ -34,7 +34,8 @@ class Specification(AbjadObject):
         self._abbreviated_context_names = []
         self._context_names = []
         self._multiple_context_set_expressions = expressiontools.SetExpressionInventory()
-        self._single_context_set_expressions_by_context = specificationtools.ContextProxyDictionary(score_template())
+        self._single_context_set_expressions_by_context = \
+            specificationtools.ContextProxyDictionary(score_template())
         self._initialize_context_name_abbreviations()
         self._context_proxies = specificationtools.ContextProxyDictionary(score_template())
         self._single_context_set_expressions = expressiontools.SetExpressionInventory()
