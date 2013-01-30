@@ -54,41 +54,6 @@ class ScoreSpecification(Specification):
 
     ### SPECIAL METHODS ###
 
-    # TODO: change name to self.get_segment_specification()
-    def __getitem__(self, expr):
-        '''Get segment specification from segment name::
-
-            >>> score_specification['yellow'] # doctest: +SKIP
-            SegmentSpecification('yellow')
-
-        Get segment specification from segment index::
-
-            >>> score_specification[2] # doctest: +SKIP
-            SegmentSpecification('yellow')
-
-        Get segment specification from segment identifier expression::
-
-            >>> expression = expressiontools.SegmentIdentifierExpression("'red' + 2")
-            >>> score_specification[expression] # doctest: +SKIP
-            SegmentSpecification('yellow')
-
-        Return segment specification.
-        '''
-        raise Exception('migrating to new name')
-        if isinstance(expr, (str, int)):
-            return self.segment_specifications[expr]
-        else: 
-            quoted_string_pattern = re.compile(r"""(['"]{1}[a-zA-Z1-9 _]+['"]{1})""")
-            quoted_segment_names = quoted_string_pattern.findall(expr.string)
-            modified_string = str(expr.string)
-            for quoted_segment_name in quoted_segment_names:
-                segment_name = quoted_segment_name[1:-1]
-                segment_specification = self.segment_specifications[segment_name]
-                segment_index = self.segment_specifications.index(segment_specification)
-                modified_string = modified_string.replace(quoted_segment_name, str(segment_index))
-            segment_index = eval(modified_string)
-            return self.segment_specifications[segment_index]
-
     def __repr__(self):
         '''Score specification interpreter representation::
 
@@ -179,10 +144,8 @@ class ScoreSpecification(Specification):
     def interface(self):
         '''Read-only reference to score specification interface::
 
-            >>> score_specification.interface # doctest: +SKIP
+            >>> score_specification.interface 
             ScoreSpecificationInterface()
-
-        .. note:: unskip doctest.
 
         Return score specification interface.
         '''
@@ -611,6 +574,39 @@ class ScoreSpecification(Specification):
     def clear_persistent_single_context_set_expressions_by_context(self, context_name, attribute):
         if attribute in self.single_context_set_expressions_by_context[context_name]:
             del(self.single_context_set_expressions_by_context[context_name][attribute])
+
+    def get_segment_specification(self, expr):
+        '''Get segment specification from segment name::
+
+            >>> score_specification.get_segment_specification('yellow')
+            SegmentSpecification('yellow')
+
+        Get segment specification from segment index::
+
+            >>> score_specification.get_segment_specification(2) 
+            SegmentSpecification('yellow')
+
+        Get segment specification from segment identifier expression::
+
+            >>> expression = expressiontools.SegmentIdentifierExpression("'red' + 2")
+            >>> score_specification.get_segment_specification(expression)
+            SegmentSpecification('yellow')
+
+        Return segment specification.
+        '''
+        if isinstance(expr, (str, int)):
+            return self.segment_specifications[expr]
+        else: 
+            quoted_string_pattern = re.compile(r"""(['"]{1}[a-zA-Z1-9 _]+['"]{1})""")
+            quoted_segment_names = quoted_string_pattern.findall(expr.string)
+            modified_string = str(expr.string)
+            for quoted_segment_name in quoted_segment_names:
+                segment_name = quoted_segment_name[1:-1]
+                segment_specification = self.segment_specifications[segment_name]
+                segment_index = self.segment_specifications.index(segment_specification)
+                modified_string = modified_string.replace(quoted_segment_name, str(segment_index))
+            segment_index = eval(modified_string)
+            return self.segment_specifications[segment_index]
 
     def get_time_signature_slice(self, timespan):
         '''Get time signature slice::
