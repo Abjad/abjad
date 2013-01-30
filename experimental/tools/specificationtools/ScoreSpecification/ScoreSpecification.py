@@ -34,7 +34,7 @@ class ScoreSpecification(Specification):
 
     ::
 
-        >>> score_specification = score_specification.score_specification
+        >>> score_specification = score_specification.specification
     
     Score specification properties are read-only.
     '''

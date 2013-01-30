@@ -67,7 +67,7 @@
     Right now a dummy segment is required to allow interpretation to procede.
 
 16. Extend SpecificationInterface with read-only 'specification' property.
-    Then change all 'score_specification.score_specification' to 'score_specification.specification'.
+    Then change all 'score_specification.specification' to 'score_specification.specification'.
 
 17. Extend ScoreSpecification with timespan_scoped_single_context_set_expressions.
     Will contain ScoreSpecification.timespan_scoped_single_context_division_set_expressions

@@ -25,9 +25,9 @@ class SegmentSpecification(Specification):
 
     ::
 
-        >>> red_segment = score_specification.score_specification.segment_specifications['red']
-        >>> orange_segment = score_specification.score_specification.segment_specifications['orange']
-        >>> yellow_segment = score_specification.score_specification.segment_specifications['yellow']
+        >>> red_segment = score_specification.specification.segment_specifications['red']
+        >>> orange_segment = score_specification.specification.segment_specifications['orange']
+        >>> yellow_segment = score_specification.specification.segment_specifications['yellow']
 
     ::
 

@@ -42,7 +42,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
     def score_specification(self):
         '''Score specification interface score specification reference::
 
-            >>> score_specification.score_specification
+            >>> score_specification.specification
             ScoreSpecification('red', 'orange', 'yellow')
 
         Return score specification.

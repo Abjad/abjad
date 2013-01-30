@@ -13,7 +13,7 @@ def test_ScoreSpecification__select_segments_01():
     segments = score_specification.select_segments('Voice 1')[1:2]
     segments.timespan.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
-    score_specification = score_specification.score_specification
+    score_specification = score_specification.specification
 
     current_function_name = introspectiontools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)

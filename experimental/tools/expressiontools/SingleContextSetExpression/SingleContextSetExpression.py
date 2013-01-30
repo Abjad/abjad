@@ -28,7 +28,7 @@ class SingleContextSetExpression(InputSetExpression):
     ::
 
         >>> single_context_set_expression = \
-        ...     score_specification.score_specification.single_context_set_expressions[1]
+        ...     score_specification.specification.single_context_set_expressions[1]
 
     ::
 

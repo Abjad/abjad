@@ -14,7 +14,7 @@ def test_SetExpressionInventory___repr___01():
     red_segment.set_time_signatures([(4, 8), (3, 8)])
 
     set_expression_inventory_1 = \
-        score_specification.score_specification.segment_specifications['red'].single_context_set_expressions
+        score_specification.specification.segment_specifications['red'].single_context_set_expressions
     set_expression_inventory_2 = eval(repr(set_expression_inventory_1))
 
     assert isinstance(set_expression_inventory_1, SetExpressionInventory)
