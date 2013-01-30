@@ -64,6 +64,13 @@ class PayloadExpression(Expression):
         return result
 
     def __getitem__(self, expr):
+        '''Payload expression get item.
+
+        .. note:: add example.
+
+        Return newly constructed payload expression
+        with referenced payload.
+        '''
         payload = self.payload.__getitem__(expr)
         result = self.new(payload=payload)
         return result

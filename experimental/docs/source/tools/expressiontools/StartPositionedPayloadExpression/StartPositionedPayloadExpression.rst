@@ -92,8 +92,6 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__getitem__
    :noindex:
 
-   Inherited from :py:class:`expressiontools.PayloadExpression <experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression>`
-
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__gt__
    :noindex:
 

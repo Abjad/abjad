@@ -48,6 +48,7 @@ class Interpreter(AbjadObject):
 
     def store_single_context_attribute_set_expressions_by_context(self, attribute):
         for segment_specification in self.score_specification.segment_specifications:
+            #self._debug(segment_specification, 'SEG')
             new_set_expressions = segment_specification.single_context_set_expressions.get_set_expressions(
             attribute=attribute)
             existing_set_expressions = \
@@ -56,6 +57,7 @@ class Interpreter(AbjadObject):
             new_context_names = [x.target_context_name for x in new_set_expressions]
             forwarded_existing_set_expressions = []
             for existing_set_expression in existing_set_expressions[:]:
+                # TODO: stop copying score-anchored set expressions
                 if existing_set_expression.target_context_name in new_context_names:
                     existing_set_expressions.remove(existing_set_expression)
                 else:
@@ -64,6 +66,7 @@ class Interpreter(AbjadObject):
                         segment_specification.segment_name)
                     forwarded_existing_set_expressions.append(forwarded_existing_set_expression)
             set_expressions_to_store = new_set_expressions + forwarded_existing_set_expressions
+            #self._debug_values(set_expressions_to_store, 'sxts', blank=True)
             self.store_single_context_set_expressions_by_context(
                 set_expressions_to_store, clear_persistent_first=True)
 

@@ -102,7 +102,7 @@ class SingleContextSetExpression(InputSetExpression):
         '''
         assert isinstance(segment_name, str)
         new_set_expression = copy.deepcopy(self)
-        new_set_expression._set_start_segment_identifier(segment_name)
+        result = new_set_expression._set_start_segment_identifier(segment_name)
         new_set_expression._fresh = False
         return new_set_expression
 

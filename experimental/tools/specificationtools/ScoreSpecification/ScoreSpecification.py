@@ -627,12 +627,15 @@ class ScoreSpecification(Specification):
         result = [x.pair for x in result]
         return result
 
+    # TODO: rename without _for_voice because voice is not used
     def get_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, context_name):
         timespan_scoped_set_expressions = expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for segment_specification in self.segment_specifications:
+            #self._debug(segment_specification, 'segment')
             single_context_set_expressions = \
                 segment_specification.get_single_context_set_expressions_that_start_during_segment(
                 context_name, attribute, include_improper_parentage=True)
+            #self._debug_values(single_context_set_expressions, 'sc sxs')
             for single_context_set_expression in single_context_set_expressions:
                 timespan_scoped_set_expression = single_context_set_expression.evaluate()
                 # make sure set expression was set expression for timespan that exists in current segment

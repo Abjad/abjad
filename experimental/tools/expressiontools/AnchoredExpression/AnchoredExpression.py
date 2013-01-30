@@ -39,6 +39,7 @@ class AnchoredExpression(Expression):
         assert isinstance(segment_identifier, str)
         if self.anchor is None:
             pass
+            #return 'score-anchored expression'
         elif isinstance(self.anchor, str):
             self._anchor = segment_identifier
         else:
@@ -97,6 +98,8 @@ class AnchoredExpression(Expression):
         if isinstance(self.anchor, str):
             return self.anchor
         elif self.anchor is None:
+            # NEXT TODO: return none here to indicate score-anchored expression
+            #return
             return self.score_specification.segment_specifications[0].segment_name
         else:
             return self.anchor.start_segment_identifier
@@ -105,7 +108,8 @@ class AnchoredExpression(Expression):
     def start_segment_specification(self):
         '''Start segment specification.
         '''
-        return self.score_specification[self.start_segment_identifier]
+        if self.start_segment_identifier is not None:
+            return self.score_specification[self.start_segment_identifier]
 
     @property
     def stop_offset(self):

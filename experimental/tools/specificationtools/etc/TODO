@@ -49,16 +49,45 @@
     Complete all expression docstrings.
 
 12. Add some tests to show this:
-        score_specification.set_rhythm(library.sixteenths)
-
-13. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_part = segments.set_offset(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         middle_part.set_divisions([(3, 16)])
     This will show set expression divisions for (potentially) more than one segment.
 
-14. Add some tests to show this:
+13. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_measures = segments.select_measures('Voice 1')[3:6]
     This will show selecting measures from (potentially) more than one segment.
+
+14. Rename ScoreSpecification.get_timespan_scoped_single_context_set_expressions_for_voice()
+    to ScoreSpecification.get_timespan_scoped_single_context_set_expressions().
+    Voice is never used.
+
+15. Rename ScoreSpecification.contexts to ScoreSpecification.context_proxies.
+
+16. No more dictionary-like functionality of any class.
+    Provide classes with proper data structures to store context proxies and set expressions.
+    This will change self.score_specification[self.start_segment_identifer]
+    to self.score_specification.segment_specifications[self.start_segment_identifier].
+    This will also remove ScoreSpecification.__getitem__() definition.
+
+17. Change all ScoreSpecification test files to use double underscore after class in test file name.
+
+18. Extend interpreter to allow interpretation to procede absent segment specification.
+    Right now a dummy segment is required to allow interpretation to procede.
+
+19. Extend SpecificationInterface with read-only 'specification' property.
+
+20. Extend ScoreSpecification with timespan_scoped_single_context_set_expressions.
+    Will contain ScoreSpecification.timespan_scoped_single_context_division_set_expressions
+    together with ScoreSpecification.timespan_scoped_single_conext_rhythm_set_expressions.
+    Unified view of all timespan-scoped single-context set expressions.
+    Only for viewing now. Can be used to extend interpretation later.
+
+21. Check ScoreSpecification.single_context_set_expressions_by_context.
+    It looks like ScoreSpecification.single_context_set_expressions_by_context.get_set_expressions()
+    is only ever called with attribute=attribute.
+    It looks like the context_name=None keyword may never be used.
+    If this turns out to be the case then perhaps single_context_set_exressions_by_context is misnamed.
+    Perhaps this is a global trough of single-context set expressions.

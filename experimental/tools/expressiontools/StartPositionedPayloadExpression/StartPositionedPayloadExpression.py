@@ -63,6 +63,23 @@ class StartPositionedPayloadExpression(PayloadExpression):
             result = timespantools.TimespanInventory()
         return result
 
+    def __getitem__(self, expr):
+        '''Start-positioned payload expression get item.
+
+        .. note:: add example.
+
+        Return newly constructed start-positioned payload expression
+        with referenced payload.
+        '''
+        assert isinstance(expr, slice), repr(expr)
+        start, stop, stride = expr.indices(len(self.payload))
+        elements_before = self.payload[:start]
+        duration_before = self._get_duration_of_list(elements_before)
+        new_payload = self.payload.__getitem__(expr)
+        new_start_offset = self.start_offset + duration_before
+        result = self.new(payload=new_payload, start_offset=new_start_offset)
+        return result
+
     def __len__(self):
         '''Defined equal to length of payload.
 
