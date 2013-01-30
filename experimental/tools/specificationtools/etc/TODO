@@ -66,20 +66,18 @@
     to self.score_specification.segment_specifications[self.start_segment_identifier].
     This will also remove ScoreSpecification.__getitem__() definition.
 
-15. Change all ScoreSpecification test files to use double underscore after class in test file name.
-
-16. Extend interpreter to allow interpretation to procede absent segment specification.
+15. Extend interpreter to allow interpretation to procede absent segment specification.
     Right now a dummy segment is required to allow interpretation to procede.
 
-17. Extend SpecificationInterface with read-only 'specification' property.
+16. Extend SpecificationInterface with read-only 'specification' property.
 
-18. Extend ScoreSpecification with timespan_scoped_single_context_set_expressions.
+17. Extend ScoreSpecification with timespan_scoped_single_context_set_expressions.
     Will contain ScoreSpecification.timespan_scoped_single_context_division_set_expressions
     together with ScoreSpecification.timespan_scoped_single_conext_rhythm_set_expressions.
     Unified view of all timespan-scoped single-context set expressions.
     Only for viewing now. Can be used to extend interpretation later.
 
-19. Check ScoreSpecification.single_context_set_expressions_by_context.
+18. Check ScoreSpecification.single_context_set_expressions_by_context.
     It looks like ScoreSpecification.single_context_set_expressions_by_context.get_set_expressions()
     is only ever called with attribute=attribute.
     It looks like the context_name=None keyword may never be used.
