@@ -69,6 +69,19 @@ class ScoreSpecificationInterface(SpecificationInterface):
         return SpecificationInterface.specification_name.fget(self)
 
     @property
+    def specification(self):
+        '''Score specification interface specification:
+
+        ::
+
+            >>> score_specification.specification
+            ScoreSpecification('red', 'orange', 'yellow')
+
+        Return score specification.
+        '''
+        return self._score_specification
+
+    @property
     def storage_format(self):
         '''Score specification interface storage format::
 

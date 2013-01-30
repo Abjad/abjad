@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.score_specification
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.specification
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.specification_name
    :noindex:
 

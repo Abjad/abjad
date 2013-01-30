@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.segment_name
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.specification
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.specification_name
    :noindex:
 

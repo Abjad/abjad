@@ -569,6 +569,7 @@ class ScoreSpecification(Specification):
         segment_specification._score_specification = self
         self.segment_specifications.append(segment_specification)
         segment_specification_interface = specificationtools.SegmentSpecificationInterface(self, name)
+        segment_specification_interface._specification = segment_specification
         return segment_specification_interface
 
     def clear_persistent_single_context_set_expressions_by_context(self, context_name, attribute):

@@ -62,6 +62,19 @@ class SegmentSpecificationInterface(SpecificationInterface):
         return self._segment_name
 
     @property
+    def specification(self):
+        '''Segment specification interface specification:
+
+        ::
+
+            >>> red_segment.specification
+            SegmentSpecification('red')
+
+        Return segment specification.
+        '''
+        return self._specification
+
+    @property
     def specification_name(self):
         '''Generalized way of refering to both score and segment specifications::
 

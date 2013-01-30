@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.score_template
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.specification
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.specification_name
    :noindex:
 

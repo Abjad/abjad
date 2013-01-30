@@ -4,11 +4,11 @@ from experimental.tools.expressiontools.SelectMethodMixin import SelectMethodMix
 
 
 class SpecificationInterface(SelectMethodMixin, SetMethodMixin):
-    r'''InputSetExpression interface.
+    r'''Specification interface.
 
-    Score and segment set expression interfaces constitute the primary vehicle of composition.
+    Score and segment specification interfaces constitute the primary vehicle of composition.
 
-    Composers make set expressions against score and segment set expression interfaces.
+    Composers call many methods against score and segment specification interfaces.
     '''
 
     ### CLASS ATTRIBUTES ##
@@ -41,6 +41,14 @@ class SpecificationInterface(SelectMethodMixin, SetMethodMixin):
         Return score specification.
         '''
         return self._score_specification
+
+    @abc.abstractproperty
+    def specification(self):
+        '''Specification interface specification.
+
+        Return specification.
+        '''
+        return self._specification
 
     @property
     def specification_name(self):
