@@ -131,10 +131,10 @@ class ScoreSpecification(Specification):
         return Specification.context_names.fget(self)
 
     @property
-    def contexts(self):
+    def context_proxies(self):
         r'''Score specification context proxy dictionary::
 
-            >>> for key in score_specification.contexts:
+            >>> for key in score_specification.context_proxies:
             ...     key
             ... 
             'Grouped Rhythmic Staves Score'
@@ -146,7 +146,7 @@ class ScoreSpecification(Specification):
 
         Return context proxy dictionary.
         '''
-        return Specification.contexts.fget(self)
+        return Specification.context_proxies.fget(self)
 
     @property
     def division_region_expressions(self):
@@ -627,7 +627,6 @@ class ScoreSpecification(Specification):
         result = [x.pair for x in result]
         return result
 
-    # TODO: rename without _for_voice because voice is not used
     def get_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, context_name):
         timespan_scoped_set_expressions = expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for segment_specification in self.segment_specifications:

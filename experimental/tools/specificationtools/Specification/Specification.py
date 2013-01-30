@@ -36,7 +36,7 @@ class Specification(AbjadObject):
         self._multiple_context_set_expressions = expressiontools.SetExpressionInventory()
         self._single_context_set_expressions_by_context = specificationtools.ContextProxyDictionary(score_template())
         self._initialize_context_name_abbreviations()
-        self._contexts = specificationtools.ContextProxyDictionary(score_template())
+        self._context_proxies = specificationtools.ContextProxyDictionary(score_template())
         self._single_context_set_expressions = expressiontools.SetExpressionInventory()
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -101,8 +101,8 @@ class Specification(AbjadObject):
         return self._context_names
 
     @property
-    def contexts(self):
-        return self._contexts
+    def context_proxies(self):
+        return self._context_proxies
 
     @property
     def multiple_context_set_expressions(self):

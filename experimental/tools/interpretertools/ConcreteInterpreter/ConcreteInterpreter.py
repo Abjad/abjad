@@ -45,7 +45,7 @@ class ConcreteInterpreter(Interpreter):
     def add_division_lists_to_score(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = expressiontools.DivisionList([], voice_name=voice.name)
-            voice_proxy = self.score_specification.contexts[voice.name]
+            voice_proxy = self.score_specification.context_proxies[voice.name]
             expressions = voice_proxy.division_payload_expressions
             divisions = [x.payload.divisions for x in expressions]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)
@@ -59,7 +59,7 @@ class ConcreteInterpreter(Interpreter):
 
     def add_rhythms_to_score(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_proxy = self.score_specification.contexts[voice.name]
+            voice_proxy = self.score_specification.context_proxies[voice.name]
             for rhythm_payload_expression in voice_proxy.rhythm_payload_expressions:
                 voice.extend(rhythm_payload_expression.payload)
 
@@ -138,7 +138,7 @@ class ConcreteInterpreter(Interpreter):
         self.calculate_score_and_segment_timespans()
 
     def make_division_region_expressions_for_voice(self, voice_name):
-        voice_proxy = self.score_specification.contexts[voice_name]
+        voice_proxy = self.score_specification.context_proxies[voice_name]
         set_expressions = voice_proxy.timespan_scoped_single_context_division_set_expressions[:]
         region_expressions = []
         for set_expression in set_expressions:
@@ -162,7 +162,7 @@ class ConcreteInterpreter(Interpreter):
                     made_progress = True
                     score_region_expressions.remove(region_expression)
                     voice_name = region_expression.voice_name
-                    voice_proxy = self.score_specification.contexts[voice_name]
+                    voice_proxy = self.score_specification.context_proxies[voice_name]
                     voice_payload_expressions = getattr(voice_proxy, payload_expression_key)
                     voice_payload_expressions = voice_payload_expressions - payload_expression.timespan
                     voice_payload_expressions.append(payload_expression)
@@ -180,7 +180,7 @@ class ConcreteInterpreter(Interpreter):
             score_region_expressions.extend(region_expressions)
 
     def make_rhythm_region_expressions_for_voice(self, voice_name):
-        voice_proxy = self.score_specification.contexts[voice_name]
+        voice_proxy = self.score_specification.context_proxies[voice_name]
         voice_division_list = voice_proxy.voice_division_list
         division_payload_expressions = voice_proxy.division_payload_expressions
         timespan_scoped_single_context_rhythm_set_expressions = \
@@ -250,7 +250,7 @@ class ConcreteInterpreter(Interpreter):
     def make_timespan_scoped_single_context_set_expressions(self, attribute):
         if self.score_specification.segment_specifications:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
-                voice_proxy = self.score_specification.contexts[voice.name]
+                voice_proxy = self.score_specification.context_proxies[voice.name]
                 set_expressions = self.get_timespan_scoped_single_context_set_expressions_for_voice(
                     attribute, voice.name)
                 singular_attribute = attribute.rstrip('s')

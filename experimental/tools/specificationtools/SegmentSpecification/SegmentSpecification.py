@@ -59,7 +59,7 @@ class SegmentSpecification(Specification):
         if isinstance(expr, int):
             return self.multiple_context_set_expressions.__getitem__(expr)
         else:
-            return self.contexts.__getitem__(expr) 
+            return self.context_proxies.__getitem__(expr) 
         
     def __repr__(self):
         '''Segment specification interpreter representation::
@@ -92,10 +92,10 @@ class SegmentSpecification(Specification):
         return Specification.context_names.fget(self)
 
     @property
-    def contexts(self):
+    def context_proxies(self):
         r'''Segment specification context proxy dictionary::
 
-            >>> for key in red_segment.contexts:
+            >>> for key in red_segment.context_proxies:
             ...     key
             ... 
             'Grouped Rhythmic Staves Score'
@@ -107,7 +107,7 @@ class SegmentSpecification(Specification):
 
         Return context proxy dictionary.
         '''
-        return Specification.contexts.fget(self)
+        return Specification.context_proxies.fget(self)
 
     @property
     def multiple_context_set_expressions(self):

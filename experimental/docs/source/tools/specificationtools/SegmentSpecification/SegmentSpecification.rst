@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.context_names
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.contexts
+.. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.context_proxies
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.multiple_context_set_expressions
