@@ -66,16 +66,13 @@
 15. Extend interpreter to allow interpretation to procede absent segment specification.
     Right now a dummy segment is required to allow interpretation to procede.
 
-16. Extend SpecificationInterface with read-only 'specification' property.
-    Then change all 'score_specification.specification' to 'score_specification.specification'.
-
-17. Extend ScoreSpecification with timespan_scoped_single_context_set_expressions.
+16. Extend ScoreSpecification with timespan_scoped_single_context_set_expressions.
     Will contain ScoreSpecification.timespan_scoped_single_context_division_set_expressions
     together with ScoreSpecification.timespan_scoped_single_conext_rhythm_set_expressions.
     Unified view of all timespan-scoped single-context set expressions.
     Only for viewing now. Can be used to extend interpretation later.
 
-18. Check ScoreSpecification.single_context_set_expressions_by_context.
+17. Check ScoreSpecification.single_context_set_expressions_by_context.
     It looks like ScoreSpecification.single_context_set_expressions_by_context.get_set_expressions()
     is only ever called with attribute=attribute.
     It looks like the context_name=None keyword may never be used.

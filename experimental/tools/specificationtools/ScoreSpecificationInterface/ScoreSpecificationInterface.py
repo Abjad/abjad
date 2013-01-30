@@ -39,17 +39,6 @@ class ScoreSpecificationInterface(SpecificationInterface):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def score_specification(self):
-        '''Score specification interface score specification reference::
-
-            >>> score_specification.specification
-            ScoreSpecification('red', 'orange', 'yellow')
-
-        Return score specification.
-        '''
-        return SpecificationInterface.score_specification.fget(self)
-
-    @property
     def score_template(self):
         '''Score specification interface score template.
         

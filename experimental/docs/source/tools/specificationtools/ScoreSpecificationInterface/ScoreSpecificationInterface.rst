@@ -12,6 +12,8 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.score_specification
    :noindex:
 
+   Inherited from :py:class:`specificationtools.SpecificationInterface <experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface>`
+
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.score_template
    :noindex:
 
