@@ -62,14 +62,12 @@
 
 14. No more dictionary-like functionality of any class.
     Provide classes with proper data structures to store context proxies and set expressions.
-    This will change self.score_specification[self.start_segment_identifer]
-    to self.score_specification.segment_specifications[self.start_segment_identifier].
-    This will also remove ScoreSpecification.__getitem__() definition.
 
 15. Extend interpreter to allow interpretation to procede absent segment specification.
     Right now a dummy segment is required to allow interpretation to procede.
 
 16. Extend SpecificationInterface with read-only 'specification' property.
+    Then change all 'score_specification.score_specification' to 'score_specification.specification'.
 
 17. Extend ScoreSpecification with timespan_scoped_single_context_set_expressions.
     Will contain ScoreSpecification.timespan_scoped_single_context_division_set_expressions

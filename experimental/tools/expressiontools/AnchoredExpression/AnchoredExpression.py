@@ -109,7 +109,7 @@ class AnchoredExpression(Expression):
         '''Start segment specification.
         '''
         if self.start_segment_identifier is not None:
-            return self.score_specification[self.start_segment_identifier]
+            return self.score_specification.segment_specifications[self.start_segment_identifier]
 
     @property
     def stop_offset(self):
@@ -131,7 +131,7 @@ class AnchoredExpression(Expression):
         '''
         from experimental.tools import expressiontools
         if isinstance(self.anchor, str):
-            return self.score_specification[self.anchor].timespan
+            return self.score_specification.segment_specifications[self.anchor].timespan
         elif self.anchor is None:
             return self.score_specification.timespan
         expression = self.anchor.evaluate()

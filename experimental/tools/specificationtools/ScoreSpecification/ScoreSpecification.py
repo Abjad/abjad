@@ -54,25 +54,27 @@ class ScoreSpecification(Specification):
 
     ### SPECIAL METHODS ###
 
+    # TODO: change name to self.get_segment_specification()
     def __getitem__(self, expr):
         '''Get segment specification from segment name::
 
-            >>> score_specification['yellow']
+            >>> score_specification['yellow'] # doctest: +SKIP
             SegmentSpecification('yellow')
 
         Get segment specification from segment index::
 
-            >>> score_specification[2]
+            >>> score_specification[2] # doctest: +SKIP
             SegmentSpecification('yellow')
 
         Get segment specification from segment identifier expression::
 
             >>> expression = expressiontools.SegmentIdentifierExpression("'red' + 2")
-            >>> score_specification[expression]
+            >>> score_specification[expression] # doctest: +SKIP
             SegmentSpecification('yellow')
 
         Return segment specification.
         '''
+        raise Exception('migrating to new name')
         if isinstance(expr, (str, int)):
             return self.segment_specifications[expr]
         else: 
