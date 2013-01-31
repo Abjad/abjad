@@ -101,14 +101,15 @@ class ConcreteInterpreter(Interpreter):
                 segment_specification._timespan = timespan
 
     def get_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, voice_name):
-        set_expressions = \
+        timespan_scoped_single_context_set_expressions = \
             self.score_specification.get_timespan_scoped_single_context_set_expressions_for_voice(
             attribute, voice_name)
-        #self._debug_values(set_expressions, 'FFF', blank=True)
-        set_expressions.sort_and_split_set_expressions()
-        set_expressions.compute_logical_or()
-        set_expressions.supply_missing_set_expressions(attribute, self.score_specification, voice_name)
-        return set_expressions
+        #self._debug_values(timespan_scoped_single_context_set_expressions, 'FFF', blank=True)
+        timespan_scoped_single_context_set_expressions.sort_and_split_set_expressions()
+        timespan_scoped_single_context_set_expressions.compute_logical_or()
+        timespan_scoped_single_context_set_expressions.supply_missing_set_expressions(
+            attribute, self.score_specification, voice_name)
+        return timespan_scoped_single_context_set_expressions
 
     def interpret_additional_parameters(self):
         pass

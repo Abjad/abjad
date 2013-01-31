@@ -1,3 +1,4 @@
+from abjad.tools import timespantools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -9,15 +10,16 @@ class ContextProxy(AbjadObject):
         from experimental.tools import expressiontools
         from experimental.tools import specificationtools
         self._division_payload_expressions = \
-            expressiontools.TimespanScopedSingleContextSetExpressionInventory()
+            timespantools.TimespanInventory()
         self._single_context_set_expressions_by_attribute = \
             specificationtools.SingleContextSetExpressionAttributeDictionary()
         self._rhythm_payload_expressions = \
-            expressiontools.TimespanScopedSingleContextSetExpressionInventory()
+            timespantools.TimespanInventory()
         self._timespan_scoped_single_context_division_set_expressions = \
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         self._timespan_scoped_single_context_rhythm_set_expressions = \
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
+        # TODO: maybe add self._timespan_scoped_single_context_set_expressions inventory?
         self._voice_division_list = None
 
     ### READ-ONLY PUBLIC PROPERTIES ###
