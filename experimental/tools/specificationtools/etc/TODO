@@ -68,3 +68,6 @@
     It looks like the context_name=None keyword may never be used.
     If this turns out to be the case then perhaps single_context_set_expressions_by_context is misnamed.
     Perhaps this is a global trough of single-context set expressions.
+
+16. Rename Interpreter.evaluate_multiple_context_set_expressions_for_score()
+    to Interpreter.evaluate_multiple_context_set_expressions().

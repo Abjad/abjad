@@ -15,7 +15,7 @@ class TimeSignatureSetExpressionLookupExpression(SetExpressionLookupExpression):
 
     def evaluate(self):
         from experimental.tools import expressiontools
-        time_signatures = self.start_segment_specification.time_signatures[:]
+        time_signatures = self.root_segment_specification.time_signatures[:]
         expression = expressiontools.PayloadExpression(time_signatures)
         expression = self._apply_callbacks(expression)
         return expression

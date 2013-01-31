@@ -47,17 +47,6 @@ class ScoreSpecificationInterface(SpecificationInterface):
         return self._score_template
 
     @property
-    def specification_name(self):
-        '''Score specification interface specification name::
-
-            >>> score_specification.specification_name is None
-            True
-
-        Return none.
-        '''
-        return SpecificationInterface.specification_name.fget(self)
-
-    @property
     def specification(self):
         '''Score specification interface specification:
 
@@ -69,6 +58,17 @@ class ScoreSpecificationInterface(SpecificationInterface):
         Return score specification.
         '''
         return self._score_specification
+
+    @property
+    def specification_name(self):
+        '''Score specification interface specification name::
+
+            >>> score_specification.specification_name is None
+            True
+
+        Return none.
+        '''
+        return SpecificationInterface.specification_name.fget(self)
 
     @property
     def storage_format(self):

@@ -96,6 +96,32 @@ class AnchoredExpression(Expression):
         else:
             return self.anchor.root
         
+    # NEXT TODO: replace in favor of self.root
+    @property
+    def root_segment_identifier(self):
+        '''Return anchor when anchor is a string.
+
+        Otherwise return anchor start-segment identifier.
+
+        Return string name of segment.
+        '''
+        if isinstance(self.anchor, str):
+            return self.anchor
+        # NEXT TODO: do not return value for score-rooted expression
+        elif self.anchor is None:
+            return self.score_specification.segment_specifications[0].segment_name
+            #raise Exception('migrate me')
+        else:
+            return self.anchor.root_segment_identifier
+
+    @property
+    def root_segment_specification(self):
+        '''Root segment specification.
+        '''
+        # NEXT TODO: use self.root instead
+        if self.root_segment_identifier is not None:
+            return self.score_specification.segment_specifications[self.root_segment_identifier]
+
     @property
     def score_specification(self):
         '''Expression score specification.
@@ -114,30 +140,6 @@ class AnchoredExpression(Expression):
         result = expressiontools.OffsetExpression(anchor=self._expression_abbreviation)
         result._score_specification = self.score_specification
         return result
-
-    # NEXT TODO: rename and rework this concept to apply to segment-root expressions only
-    @property
-    def start_segment_identifier(self):
-        '''Return anchor when anchor is a string.
-
-        Otherwise return anchor start-segment identifier.
-
-        Return string name of segment.
-        '''
-        if isinstance(self.anchor, str):
-            return self.anchor
-        # NEXT TODO: do not return value for score-rooted expression
-        elif self.anchor is None:
-            return self.score_specification.segment_specifications[0].segment_name
-        else:
-            return self.anchor.start_segment_identifier
-
-    @property
-    def start_segment_specification(self):
-        '''Start segment specification.
-        '''
-        if self.start_segment_identifier is not None:
-            return self.score_specification.segment_specifications[self.start_segment_identifier]
 
     @property
     def stop_offset(self):

@@ -32,10 +32,14 @@ class Interpreter(AbjadObject):
     def evaluate_multiple_context_set_expressions_for_score(self):
         for multiple_context_set_expression in self.score_specification.multiple_context_set_expressions:
             single_context_set_expressions = multiple_context_set_expression.evaluate()
-            segment_specification = multiple_context_set_expression.start_segment_specification
-            segment_specification.single_context_set_expressions.extend(single_context_set_expressions)
+            root_segment_specification = multiple_context_set_expression.root_segment_specification
+            root_segment_specification.single_context_set_expressions.extend(single_context_set_expressions)
             self.score_specification.single_context_set_expressions.extend(single_context_set_expressions)
-
+            #if multiple_context_set_expression.is_segment_rooted:
+            #    root_segment_specification = multiple_context_set_expression.root_segment_specification
+            #    root_segment_specification.single_context_set_expressions.extend(
+            #        single_context_set_expressions)
+                
     def instantiate_score(self):
         score = self.score_specification.score_template()
         context = contexttools.Context(name='TimeSignatureContext', context_name='TimeSignatureContext')
@@ -81,22 +85,22 @@ class Interpreter(AbjadObject):
         If set expression persists then store set expression by context in score, too.
         '''
         single_context_set_expression = copy.deepcopy(single_context_set_expression)
-        segment_specification = single_context_set_expression.start_segment_specification
-        assert segment_specification is not None
+        root_segment_specification = single_context_set_expression.root_segment_specification
+        assert root_segment_specification is not None
         context_name = single_context_set_expression.target_context_name
         if context_name is None:
-            context_name = segment_specification.context_proxies.score_name
+            context_name = root_segment_specification.context_proxies.score_name
         attribute = single_context_set_expression.attribute
         if clear_persistent_first:
             self.score_specification.clear_persistent_single_context_set_expressions_by_context(
                 context_name, attribute)
-        if attribute in segment_specification.context_proxies[
+        if attribute in root_segment_specification.context_proxies[
             context_name].single_context_set_expressions_by_attribute:
-            segment_specification.context_proxies[
+            root_segment_specification.context_proxies[
                 context_name].single_context_set_expressions_by_attribute[attribute].append(
                 single_context_set_expression)
         else:
-            segment_specification.context_proxies[
+            root_segment_specification.context_proxies[
                 context_name].single_context_set_expressions_by_attribute[attribute] = [
                 single_context_set_expression]
         if single_context_set_expression.persist:

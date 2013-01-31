@@ -31,20 +31,20 @@ class ContextProxy(AbjadObject):
         return self._division_payload_expressions
 
     @property
-    def single_context_set_expressions_by_attribute(self):
-        '''Context proxy input set expressions by attribute.
-
-        Return input set expression dictionary.
-        '''
-        return self._single_context_set_expressions_by_attribute
-
-    @property
     def rhythm_payload_expressions(self):
         '''Context proxy rhythm payload expressions.
 
         Return inventory.
         '''
         return self._rhythm_payload_expressions
+
+    @property
+    def single_context_set_expressions_by_attribute(self):
+        '''Context proxy input set expressions by attribute.
+
+        Return input set expression dictionary.
+        '''
+        return self._single_context_set_expressions_by_attribute
 
     @property
     def timespan_scoped_single_context_division_set_expressions(self):
