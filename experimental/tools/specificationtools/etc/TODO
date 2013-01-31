@@ -62,6 +62,3 @@
 
 14. Is ScoreSpecification.context_proxies.single_context_set_expressions_by_context misnamed?
     Perhaps this is a global trough of single-context set expressions (not by context)?
-
-15. Remove ContextProxyDictionary.get_set_expressions().
-    Use some Specification property (or possibly method) instead.
