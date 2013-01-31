@@ -12,18 +12,6 @@ class SetExpressionInventory(ObjectInventory):
 
     ### PUBLIC METHODS ###
 
-    def get_set_expression(self, attribute=None, timespan=None, target_context_name=None, persist=None):
-        set_expressions = self.get_set_expressions(attribute=attribute, 
-            timespan=timespan, target_context_name=target_context_name, persist=persist)
-        if not set_expressions:
-            error ='no set expressions for {!r} found.'.format(attribute)
-            raise Exception(error)
-        elif 1 < len(set_expressions):
-            error = 'multiple set expressions for {!r} found.'.format(attribute)
-            raise Exception(error)
-        assert len(set_expressions) == 1
-        return set_expressions[0]
-
     def get_set_expressions(self, attribute=None, timespan=None, target_context_name=None, persist=None):
         assert attribute in self.attributes, repr(attribute)
         set_expressions = []
