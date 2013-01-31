@@ -84,7 +84,7 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
             # old behavior
             if isinstance(context_proxy, ContextProxy):
                 set_expressions.extend(
-                    context_proxy.input_set_expressions_by_attribute.get_set_expressions(
+                    context_proxy.single_context_set_expressions_by_attribute.get_set_expressions(
                     attribute=attribute))
             # new behavior
             elif isinstance(context_proxy, list):

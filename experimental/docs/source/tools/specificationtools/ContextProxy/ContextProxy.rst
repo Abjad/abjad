@@ -12,10 +12,10 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.division_payload_expressions
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.input_set_expressions_by_attribute
+.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.rhythm_payload_expressions
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.rhythm_payload_expressions
+.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.single_context_set_expressions_by_attribute
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.storage_format

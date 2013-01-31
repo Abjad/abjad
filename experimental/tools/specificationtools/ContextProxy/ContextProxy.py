@@ -10,7 +10,7 @@ class ContextProxy(AbjadObject):
         from experimental.tools import specificationtools
         self._division_payload_expressions = \
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
-        self._input_set_expressions_by_attribute = \
+        self._single_context_set_expressions_by_attribute = \
             specificationtools.InputSetExpressionDictionary()
         self._rhythm_payload_expressions = \
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
@@ -31,12 +31,12 @@ class ContextProxy(AbjadObject):
         return self._division_payload_expressions
 
     @property
-    def input_set_expressions_by_attribute(self):
+    def single_context_set_expressions_by_attribute(self):
         '''Context proxy input set expressions by attribute.
 
         Return input set expression dictionary.
         '''
-        return self._input_set_expressions_by_attribute
+        return self._single_context_set_expressions_by_attribute
 
     @property
     def rhythm_payload_expressions(self):

@@ -556,9 +556,9 @@ class ScoreSpecification(Specification):
 
     def clear_persistent_single_context_set_expressions_by_context(self, context_name, attribute):
         if attribute in self.context_proxies[
-            context_name].input_set_expressions_by_attribute:
+            context_name].single_context_set_expressions_by_attribute:
             del(self.context_proxies[
-                context_name].input_set_expressions_by_attribute[attribute])
+                context_name].single_context_set_expressions_by_attribute[attribute])
 
     def get_segment_specification(self, expr):
         '''Get segment specification from segment name:

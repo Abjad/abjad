@@ -91,23 +91,23 @@ class Interpreter(AbjadObject):
             self.score_specification.clear_persistent_single_context_set_expressions_by_context(
                 context_name, attribute)
         if attribute in segment_specification.context_proxies[
-            context_name].input_set_expressions_by_attribute:
+            context_name].single_context_set_expressions_by_attribute:
             segment_specification.context_proxies[
-                context_name].input_set_expressions_by_attribute[attribute].append(
+                context_name].single_context_set_expressions_by_attribute[attribute].append(
                 single_context_set_expression)
         else:
             segment_specification.context_proxies[
-                context_name].input_set_expressions_by_attribute[attribute] = [
+                context_name].single_context_set_expressions_by_attribute[attribute] = [
                 single_context_set_expression]
         if single_context_set_expression.persist:
             if attribute in self.score_specification.context_proxies[
-                context_name].input_set_expressions_by_attribute:
+                context_name].single_context_set_expressions_by_attribute:
                 self.score_specification.context_proxies[
-                    context_name].input_set_expressions_by_attribute[attribute].append(
+                    context_name].single_context_set_expressions_by_attribute[attribute].append(
                     single_context_set_expression)
             else:
                 self.score_specification.context_proxies[
-                    context_name].input_set_expressions_by_attribute[attribute] = [
+                    context_name].single_context_set_expressions_by_attribute[attribute] = [
                     single_context_set_expression]
 
     def store_single_context_set_expressions_by_context(self, 
