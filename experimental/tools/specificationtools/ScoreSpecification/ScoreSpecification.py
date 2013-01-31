@@ -42,16 +42,21 @@ class ScoreSpecification(Specification):
     ### INITIALIZER ###
 
     def __init__(self, score_template):
+        from experimental.tools import expressiontools
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
-        self._division_region_expressions = []
-        self._rhythm_region_expressions = []
+        self._division_region_expressions = expressiontools.ExpressionInventory()
+        self._rhythm_region_expressions = expressiontools.ExpressionInventory()
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
-        self._single_context_time_signature_set_expressions = []
-        self._timespan_scoped_single_context_division_set_expressions = []
-        self._timespan_scoped_single_context_rhythm_set_expressions = []
-        self._timespan_scoped_single_context_set_expressions = []
+        self._single_context_time_signature_set_expressions = \
+            expressiontools.SetExpressionInventory()
+        self._timespan_scoped_single_context_division_set_expressions = \
+            expressiontools.SetExpressionInventory()
+        self._timespan_scoped_single_context_rhythm_set_expressions = \
+            expressiontools.SetExpressionInventory()
+        self._timespan_scoped_single_context_set_expressions = \
+            expressiontools.SetExpressionInventory()
 
     ### SPECIAL METHODS ###
 
@@ -122,20 +127,21 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> for x in score_specification.division_region_expressions:
-            ...     z(x)
-            expressiontools.LiteralDivisionRegionExpression(
-                source=((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)),
-                start_offset=durationtools.Offset(0, 1),
-                total_duration=durationtools.Duration(9, 4),
-                voice_name='Voice 1'
-                )
-            expressiontools.LiteralDivisionRegionExpression(
-                source=((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)),
-                start_offset=durationtools.Offset(0, 1),
-                total_duration=durationtools.Duration(9, 4),
-                voice_name='Voice 2'
-                )
+            >>> z(score_specification.division_region_expressions)
+            expressiontools.ExpressionInventory([
+                expressiontools.LiteralDivisionRegionExpression(
+                    source=((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)),
+                    start_offset=durationtools.Offset(0, 1),
+                    total_duration=durationtools.Duration(9, 4),
+                    voice_name='Voice 1'
+                    ),
+                expressiontools.LiteralDivisionRegionExpression(
+                    source=((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)),
+                    start_offset=durationtools.Offset(0, 1),
+                    total_duration=durationtools.Duration(9, 4),
+                    voice_name='Voice 2'
+                    )
+                ])
 
         Return list.
         '''
@@ -156,42 +162,43 @@ class ScoreSpecification(Specification):
     def multiple_context_set_expressions(self):
         '''Read-only reference to multiple context set expressions::
 
-            >>> for x in score_specification.multiple_context_set_expressions:
-            ...     z(x)
-            expressiontools.MultipleContextSetExpression(
-                attribute='time_signatures',
-                source=expressiontools.PayloadExpression(
-                    ((2, 8), (3, 8), (4, 8))
+            >>> z(score_specification.multiple_context_set_expressions)
+            expressiontools.SetExpressionInventory([
+                expressiontools.MultipleContextSetExpression(
+                    attribute='time_signatures',
+                    source=expressiontools.PayloadExpression(
+                        ((2, 8), (3, 8), (4, 8))
+                        ),
+                    target_timespan='red',
+                    persist=True
                     ),
-                target_timespan='red',
-                persist=True
-                )
-            expressiontools.MultipleContextSetExpression(
-                attribute='time_signatures',
-                source=expressiontools.PayloadExpression(
-                    ((4, 16), (4, 16))
+                expressiontools.MultipleContextSetExpression(
+                    attribute='time_signatures',
+                    source=expressiontools.PayloadExpression(
+                        ((4, 16), (4, 16))
+                        ),
+                    target_timespan='orange',
+                    persist=True
                     ),
-                target_timespan='orange',
-                persist=True
-                )
-            expressiontools.MultipleContextSetExpression(
-                attribute='time_signatures',
-                source=expressiontools.PayloadExpression(
-                    ((5, 16), (5, 16))
+                expressiontools.MultipleContextSetExpression(
+                    attribute='time_signatures',
+                    source=expressiontools.PayloadExpression(
+                        ((5, 16), (5, 16))
+                        ),
+                    target_timespan='yellow',
+                    persist=True
                     ),
-                target_timespan='yellow',
-                persist=True
-                )
-            expressiontools.MultipleContextSetExpression(
-                attribute='rhythm',
-                source=expressiontools.RhythmMakerPayloadExpression(
-                    payload=(TaleaRhythmMaker('sixteenths'),)
-                    ),
-                target_timespan='red',
-                persist=True
-                )
+                expressiontools.MultipleContextSetExpression(
+                    attribute='rhythm',
+                    source=expressiontools.RhythmMakerPayloadExpression(
+                        payload=(TaleaRhythmMaker('sixteenths'),)
+                        ),
+                    target_timespan='red',
+                    persist=True
+                    )
+                ])
 
-        Return context set expression proxy.
+        Return set expression proxy.
         '''
         return Specification.multiple_context_set_expressions.fget(self)
     
@@ -201,60 +208,61 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> for x in score_specification.rhythm_region_expressions:
-            ...     z(x)
-            expressiontools.RhythmMakerRhythmRegionExpression(
-                source=rhythmmakertools.TaleaRhythmMaker(
-                    [1],
-                    16,
-                    prolation_addenda=[],
-                    secondary_divisions=[],
-                    beam_each_cell=False,
-                    beam_cells_together=True,
-                    tie_split_notes=False
-                    ),
-                division_list=expressiontools.DivisionList(
-                    [Division('[2, 8]', start_offset=Offset(0, 1)), 
-                    Division('[3, 8]', start_offset=Offset(1, 4)), 
-                    Division('[4, 8]', start_offset=Offset(5, 8)), 
-                    Division('[4, 16]', start_offset=Offset(9, 8)), 
-                    Division('[4, 16]', start_offset=Offset(11, 8)), 
-                    Division('[5, 16]', start_offset=Offset(13, 8)), 
-                    Division('[5, 16]', start_offset=Offset(31, 16))],
+            >>> z(score_specification.rhythm_region_expressions)
+            expressiontools.ExpressionInventory([
+                expressiontools.RhythmMakerRhythmRegionExpression(
+                    source=rhythmmakertools.TaleaRhythmMaker(
+                        [1],
+                        16,
+                        prolation_addenda=[],
+                        secondary_divisions=[],
+                        beam_each_cell=False,
+                        beam_cells_together=True,
+                        tie_split_notes=False
+                        ),
+                    division_list=expressiontools.DivisionList(
+                        [Division('[2, 8]', start_offset=Offset(0, 1)), 
+                        Division('[3, 8]', start_offset=Offset(1, 4)), 
+                        Division('[4, 8]', start_offset=Offset(5, 8)), 
+                        Division('[4, 16]', start_offset=Offset(9, 8)), 
+                        Division('[4, 16]', start_offset=Offset(11, 8)), 
+                        Division('[5, 16]', start_offset=Offset(13, 8)), 
+                        Division('[5, 16]', start_offset=Offset(31, 16))],
+                        start_offset=durationtools.Offset(0, 1),
+                        voice_name='Voice 1'
+                        ),
                     start_offset=durationtools.Offset(0, 1),
                     voice_name='Voice 1'
                     ),
-                start_offset=durationtools.Offset(0, 1),
-                voice_name='Voice 1'
-                )
-            expressiontools.RhythmMakerRhythmRegionExpression(
-                source=rhythmmakertools.TaleaRhythmMaker(
-                    [1],
-                    16,
-                    prolation_addenda=[],
-                    secondary_divisions=[],
-                    beam_each_cell=False,
-                    beam_cells_together=True,
-                    tie_split_notes=False
-                    ),
-                division_list=expressiontools.DivisionList(
-                    [Division('[2, 8]', start_offset=Offset(0, 1)), 
-                    Division('[3, 8]', start_offset=Offset(1, 4)), 
-                    Division('[4, 8]', start_offset=Offset(5, 8)), 
-                    Division('[4, 16]', start_offset=Offset(9, 8)), 
-                    Division('[4, 16]', start_offset=Offset(11, 8)), 
-                    Division('[5, 16]', start_offset=Offset(13, 8)), 
-                    Division('[5, 16]', start_offset=Offset(31, 16))],
+                expressiontools.RhythmMakerRhythmRegionExpression(
+                    source=rhythmmakertools.TaleaRhythmMaker(
+                        [1],
+                        16,
+                        prolation_addenda=[],
+                        secondary_divisions=[],
+                        beam_each_cell=False,
+                        beam_cells_together=True,
+                        tie_split_notes=False
+                        ),
+                    division_list=expressiontools.DivisionList(
+                        [Division('[2, 8]', start_offset=Offset(0, 1)), 
+                        Division('[3, 8]', start_offset=Offset(1, 4)), 
+                        Division('[4, 8]', start_offset=Offset(5, 8)), 
+                        Division('[4, 16]', start_offset=Offset(9, 8)), 
+                        Division('[4, 16]', start_offset=Offset(11, 8)), 
+                        Division('[5, 16]', start_offset=Offset(13, 8)), 
+                        Division('[5, 16]', start_offset=Offset(31, 16))],
+                        start_offset=durationtools.Offset(0, 1),
+                        voice_name='Voice 2'
+                        ),
                     start_offset=durationtools.Offset(0, 1),
                     voice_name='Voice 2'
-                    ),
-                start_offset=durationtools.Offset(0, 1),
-                voice_name='Voice 2'
-                )
+                    )
+                ])
 
         Popluate during interpretation.
 
-        Return list.
+        Return set expression inventory.
         '''
         return self._rhythm_region_expressions
 
@@ -332,42 +340,45 @@ class ScoreSpecification(Specification):
     def single_context_set_expressions(self):
         r'''Score specification single-context set expressions::
 
-            >>> for x in score_specification.single_context_set_expressions:
-            ...     z(x)
-            expressiontools.SingleContextTimeSignatureSetExpression(
-                source=expressiontools.PayloadExpression(
-                    ((2, 8), (3, 8), (4, 8))
+            >>> z(score_specification.single_context_set_expressions)
+            expressiontools.SetExpressionInventory([
+                expressiontools.SingleContextTimeSignatureSetExpression(
+                    source=expressiontools.PayloadExpression(
+                        ((2, 8), (3, 8), (4, 8))
+                        ),
+                    target_timespan='red',
+                    fresh=True,
+                    persist=True
                     ),
-                target_timespan='red',
-                fresh=True,
-                persist=True
-                )
-            expressiontools.SingleContextTimeSignatureSetExpression(
-                source=expressiontools.PayloadExpression(
-                    ((4, 16), (4, 16))
+                expressiontools.SingleContextTimeSignatureSetExpression(
+                    source=expressiontools.PayloadExpression(
+                        ((4, 16), (4, 16))
+                        ),
+                    target_timespan='orange',
+                    fresh=True,
+                    persist=True
                     ),
-                target_timespan='orange',
-                fresh=True,
-                persist=True
-                )
-            expressiontools.SingleContextTimeSignatureSetExpression(
-                source=expressiontools.PayloadExpression(
-                    ((5, 16), (5, 16))
+                expressiontools.SingleContextTimeSignatureSetExpression(
+                    source=expressiontools.PayloadExpression(
+                        ((5, 16), (5, 16))
+                        ),
+                    target_timespan='yellow',
+                    fresh=True,
+                    persist=True
                     ),
-                target_timespan='yellow',
-                fresh=True,
-                persist=True
-                )
-            expressiontools.SingleContextRhythmSetExpression(
-                source=expressiontools.RhythmMakerPayloadExpression(
-                    payload=(TaleaRhythmMaker('sixteenths'),)
-                    ),
-                target_timespan='red',
-                fresh=True,
-                persist=True
-                )
+                expressiontools.SingleContextRhythmSetExpression(
+                    source=expressiontools.RhythmMakerPayloadExpression(
+                        payload=(TaleaRhythmMaker('sixteenths'),)
+                        ),
+                    target_timespan='red',
+                    fresh=True,
+                    persist=True
+                    )
+                ])
+        
+        Populate during interpretation.
 
-        Return single-context set expression inventory.
+        Return set expression inventory.
         '''
         return Specification.single_context_set_expressions.fget(self)
 
@@ -375,36 +386,37 @@ class ScoreSpecification(Specification):
     def single_context_time_signature_set_expressions(self):
         '''Read-only list of all time signature set expressions.
 
-            >>> for x in score_specification.single_context_time_signature_set_expressions:
-            ...     z(x)
-            expressiontools.SingleContextTimeSignatureSetExpression(
-                source=expressiontools.PayloadExpression(
-                    ((2, 8), (3, 8), (4, 8))
+            >>> z(score_specification.single_context_time_signature_set_expressions)
+            expressiontools.SetExpressionInventory([
+                expressiontools.SingleContextTimeSignatureSetExpression(
+                    source=expressiontools.PayloadExpression(
+                        ((2, 8), (3, 8), (4, 8))
+                        ),
+                    target_timespan='red',
+                    fresh=True,
+                    persist=True
                     ),
-                target_timespan='red',
-                fresh=True,
-                persist=True
-                )
-            expressiontools.SingleContextTimeSignatureSetExpression(
-                source=expressiontools.PayloadExpression(
-                    ((4, 16), (4, 16))
+                expressiontools.SingleContextTimeSignatureSetExpression(
+                    source=expressiontools.PayloadExpression(
+                        ((4, 16), (4, 16))
+                        ),
+                    target_timespan='orange',
+                    fresh=True,
+                    persist=True
                     ),
-                target_timespan='orange',
-                fresh=True,
-                persist=True
-                )
-            expressiontools.SingleContextTimeSignatureSetExpression(
-                source=expressiontools.PayloadExpression(
-                    ((5, 16), (5, 16))
-                    ),
-                target_timespan='yellow',
-                fresh=True,
-                persist=True
-                )
+                expressiontools.SingleContextTimeSignatureSetExpression(
+                    source=expressiontools.PayloadExpression(
+                        ((5, 16), (5, 16))
+                        ),
+                    target_timespan='yellow',
+                    fresh=True,
+                    persist=True
+                    )
+                ])
 
         Populate during interpretation.
 
-        Return list.
+        Return set expression inventory.
         '''
         return self._single_context_time_signature_set_expressions
 
@@ -474,36 +486,37 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> for x in score_specification.timespan_scoped_single_context_division_set_expressions:
-            ...     z(x)
-            expressiontools.TimespanScopedSingleContextDivisionSetExpression(
-                source=expressiontools.PayloadExpression(
-                    ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
+            >>> z(score_specification.timespan_scoped_single_context_division_set_expressions)
+            expressiontools.SetExpressionInventory([
+                expressiontools.TimespanScopedSingleContextDivisionSetExpression(
+                    source=expressiontools.PayloadExpression(
+                        ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
+                        ),
+                    target_timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(9, 4)
+                        ),
+                    target_context_name='Voice 1',
+                    fresh=True,
+                    truncate=True
                     ),
-                target_timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(9, 4)
-                    ),
-                target_context_name='Voice 1',
-                fresh=True,
-                truncate=True
-                )
-            expressiontools.TimespanScopedSingleContextDivisionSetExpression(
-                source=expressiontools.PayloadExpression(
-                    ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
-                    ),
-                target_timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(9, 4)
-                    ),
-                target_context_name='Voice 2',
-                fresh=True,
-                truncate=True
-                )
+                expressiontools.TimespanScopedSingleContextDivisionSetExpression(
+                    source=expressiontools.PayloadExpression(
+                        ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
+                        ),
+                    target_timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(9, 4)
+                        ),
+                    target_context_name='Voice 2',
+                    fresh=True,
+                    truncate=True
+                    )
+                ])
 
         Populate during interpretation.
 
-        Return list.
+        Return set expression inventory.
         '''
         return self._timespan_scoped_single_context_division_set_expressions
 
@@ -513,22 +526,23 @@ class ScoreSpecification(Specification):
     
         ::
 
-            >>> for x in score_specification.timespan_scoped_single_context_rhythm_set_expressions:
-            ...     z(x)
-            expressiontools.TimespanScopedSingleContextRhythmSetExpression(
-                source=expressiontools.RhythmMakerPayloadExpression(
-                    payload=(TaleaRhythmMaker('sixteenths'),)
-                    ),
-                target_timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(9, 4)
-                    ),
-                fresh=True
-                )
+            >>> z(score_specification.timespan_scoped_single_context_rhythm_set_expressions)
+            expressiontools.SetExpressionInventory([
+                expressiontools.TimespanScopedSingleContextRhythmSetExpression(
+                    source=expressiontools.RhythmMakerPayloadExpression(
+                        payload=(TaleaRhythmMaker('sixteenths'),)
+                        ),
+                    target_timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(9, 4)
+                        ),
+                    fresh=True
+                    )
+                ])
 
-        Populate during interpretation
+        Populate during interpretation.
 
-        Return list.
+        Return set expression inventory.
         '''
         return self._timespan_scoped_single_context_rhythm_set_expressions
 
@@ -538,42 +552,43 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> for x in score_specification.timespan_scoped_single_context_set_expressions:
-            ...     z(x)
-            expressiontools.TimespanScopedSingleContextDivisionSetExpression(
-                source=expressiontools.PayloadExpression(
-                    ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
+            >>> z(score_specification.timespan_scoped_single_context_set_expressions)
+            expressiontools.SetExpressionInventory([
+                expressiontools.TimespanScopedSingleContextDivisionSetExpression(
+                    source=expressiontools.PayloadExpression(
+                        ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
+                        ),
+                    target_timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(9, 4)
+                        ),
+                    target_context_name='Voice 1',
+                    fresh=True,
+                    truncate=True
                     ),
-                target_timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(9, 4)
+                expressiontools.TimespanScopedSingleContextDivisionSetExpression(
+                    source=expressiontools.PayloadExpression(
+                        ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
+                        ),
+                    target_timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(9, 4)
+                        ),
+                    target_context_name='Voice 2',
+                    fresh=True,
+                    truncate=True
                     ),
-                target_context_name='Voice 1',
-                fresh=True,
-                truncate=True
-                )
-            expressiontools.TimespanScopedSingleContextDivisionSetExpression(
-                source=expressiontools.PayloadExpression(
-                    ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
-                    ),
-                target_timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(9, 4)
-                    ),
-                target_context_name='Voice 2',
-                fresh=True,
-                truncate=True
-                )
-            expressiontools.TimespanScopedSingleContextRhythmSetExpression(
-                source=expressiontools.RhythmMakerPayloadExpression(
-                    payload=(TaleaRhythmMaker('sixteenths'),)
-                    ),
-                target_timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(9, 4)
-                    ),
-                fresh=True
-                )
+                expressiontools.TimespanScopedSingleContextRhythmSetExpression(
+                    source=expressiontools.RhythmMakerPayloadExpression(
+                        payload=(TaleaRhythmMaker('sixteenths'),)
+                        ),
+                    target_timespan=timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(9, 4)
+                        ),
+                    fresh=True
+                    )
+                ])
 
         Return list.
         '''

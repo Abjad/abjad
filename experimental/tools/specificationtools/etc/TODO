@@ -68,12 +68,3 @@
     It looks like the context_name=None keyword may never be used.
     If this turns out to be the case then perhaps single_context_set_expressions_by_context is misnamed.
     Perhaps this is a global trough of single-context set expressions.
-
-16. Replace these ScoreSpecification list members ...
-        self._division_region_expressions = []
-        self._rhythm_region_expressions = []
-        self._single_context_time_signature_set_expressions = []
-        self._timespan_scoped_single_context_division_set_expressions = []
-        self._timespan_scoped_single_context_rhythm_set_expressions = []
-        self._timespan_scoped_single_context_set_expressions = []
-    ... with appropriate inventories.
