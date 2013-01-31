@@ -52,7 +52,7 @@ class Interpreter(AbjadObject):
             new_set_expressions = segment_specification.single_context_set_expressions.get_set_expressions(
             attribute=attribute)
             existing_set_expressions = \
-                self.score_specification.single_context_set_expressions_by_context.get_set_expressions(
+                self.score_specification.context_proxies.get_set_expressions(
                 attribute=attribute)
             new_context_names = [x.target_context_name for x in new_set_expressions]
             forwarded_existing_set_expressions = []
@@ -85,28 +85,28 @@ class Interpreter(AbjadObject):
         assert segment_specification is not None
         context_name = single_context_set_expression.target_context_name
         if context_name is None:
-            context_name = segment_specification.single_context_set_expressions_by_context.score_name
+            context_name = segment_specification.context_proxies.score_name
         attribute = single_context_set_expression.attribute
         if clear_persistent_first:
             self.score_specification.clear_persistent_single_context_set_expressions_by_context(
                 context_name, attribute)
-        if attribute in segment_specification.single_context_set_expressions_by_context[
+        if attribute in segment_specification.context_proxies[
             context_name].input_set_expressions_by_attribute:
-            segment_specification.single_context_set_expressions_by_context[
+            segment_specification.context_proxies[
                 context_name].input_set_expressions_by_attribute[attribute].append(
                 single_context_set_expression)
         else:
-            segment_specification.single_context_set_expressions_by_context[
+            segment_specification.context_proxies[
                 context_name].input_set_expressions_by_attribute[attribute] = [
                 single_context_set_expression]
         if single_context_set_expression.persist:
-            if attribute in self.score_specification.single_context_set_expressions_by_context[
+            if attribute in self.score_specification.context_proxies[
                 context_name].input_set_expressions_by_attribute:
-                self.score_specification.single_context_set_expressions_by_context[
+                self.score_specification.context_proxies[
                     context_name].input_set_expressions_by_attribute[attribute].append(
                     single_context_set_expression)
             else:
-                self.score_specification.single_context_set_expressions_by_context[
+                self.score_specification.context_proxies[
                     context_name].input_set_expressions_by_attribute[attribute] = [
                     single_context_set_expression]
 

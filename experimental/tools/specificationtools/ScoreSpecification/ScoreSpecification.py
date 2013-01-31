@@ -371,24 +371,6 @@ class ScoreSpecification(Specification):
         return Specification.single_context_set_expressions.fget(self)
 
     @property
-    def single_context_set_expressions_by_context(self):
-        r'''Score specification single-context set expressions by context::
-
-            >>> for key in score_specification.single_context_set_expressions_by_context:
-            ...     key
-            ... 
-            'Grouped Rhythmic Staves Score'
-            'Grouped Rhythmic Staves Staff Group'
-            'Staff 1'
-            'Staff 2'
-            'Voice 1'
-            'Voice 2'
-
-        Return context proxy dictionary.
-        '''
-        return Specification.single_context_set_expressions_by_context.fget(self)
-
-    @property
     def single_context_time_signature_set_expressions(self):
         '''Read-only list of all time signature set expressions.
 
@@ -573,9 +555,9 @@ class ScoreSpecification(Specification):
         return segment_specification_interface
 
     def clear_persistent_single_context_set_expressions_by_context(self, context_name, attribute):
-        if attribute in self.single_context_set_expressions_by_context[
+        if attribute in self.context_proxies[
             context_name].input_set_expressions_by_attribute:
-            del(self.single_context_set_expressions_by_context[
+            del(self.context_proxies[
                 context_name].input_set_expressions_by_attribute[attribute])
 
     def get_segment_specification(self, expr):

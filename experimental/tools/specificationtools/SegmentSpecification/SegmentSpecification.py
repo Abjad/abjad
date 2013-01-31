@@ -192,24 +192,6 @@ class SegmentSpecification(Specification):
         return Specification.single_context_set_expressions.fget(self)
 
     @property
-    def single_context_set_expressions_by_context(self):
-        r'''Segment specification single-context set expressions by context::
-
-            >>> for key in red_segment.single_context_set_expressions_by_context:
-            ...     key
-            ... 
-            'Grouped Rhythmic Staves Score'
-            'Grouped Rhythmic Staves Staff Group'
-            'Staff 1'
-            'Staff 2'
-            'Voice 1'
-            'Voice 2'
-
-        Return context proxy dictionary.
-        '''
-        return Specification.single_context_set_expressions_by_context.fget(self)
-
-    @property
     def specification_name(self):
         '''Generalized way of refering to both score and segment specifications::
 
@@ -269,7 +251,7 @@ class SegmentSpecification(Specification):
         if include_improper_parentage:
             context_names.extend(self._context_name_to_parentage_names(context_name))
         for context_name in reversed(context_names):
-            single_context_set_expressions = self.single_context_set_expressions_by_context[
+            single_context_set_expressions = self.context_proxies[
                 context_name].input_set_expressions_by_attribute.get_set_expressions(attribute=attribute)
             result.extend(single_context_set_expressions)
         return result
