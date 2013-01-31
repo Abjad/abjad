@@ -1,8 +1,8 @@
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.timespantools.TimespanInventory import TimespanInventory
 from experimental.tools.expressiontools.AttributeNameEnumeration import AttributeNameEnumeration
 
 
-class SetExpressionInventory(ObjectInventory):
+class SetExpressionInventory(TimespanInventory):
     r'''Set expression inventory.
     '''
 

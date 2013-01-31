@@ -1,10 +1,10 @@
 import copy
 from abjad.tools import sequencetools
 from abjad.tools import timespantools
-from abjad.tools.timespantools.TimespanInventory import TimespanInventory
+from experimental.tools.expressiontools.SetExpressionInventory import SetExpressionInventory
 
 
-class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
+class TimespanScopedSingleContextSetExpressionInventory(SetExpressionInventory):
     '''Timespan-scoped single-context set expression inventory.
     '''
 
@@ -31,11 +31,13 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
                 cooked_set_expressions.remove(set_expression_to_remove)
             for set_expression_to_curtail in set_expressions_to_curtail:
                 timespan = timespantools.Timespan(
-                    set_expression_to_curtail.target_timespan.start_offset, raw_set_expression.target_timespan.start_offset)
+                    set_expression_to_curtail.target_timespan.start_offset, 
+                    raw_set_expression.target_timespan.start_offset)
                 set_expression_to_curtail._target_timespan = timespan
             for set_expression_to_delay in set_expressions_to_delay:
                 timespan = timespantools.Timespan(
-                    raw_set_expression.target_timespan.stop_offset, set_expression_to_delay.target_timespan.stop_offset)
+                    raw_set_expression.target_timespan.stop_offset, 
+                    set_expression_to_delay.target_timespan.stop_offset)
                 set_expression_to_delay._target_timespan = timespan
                 set_expression_was_delayed = True
             # TODO: branch inside and implement a method to split while treating cyclic payload smartly.
@@ -45,10 +47,12 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
                 middle_set_expression = raw_set_expression
                 right_set_expression = copy.deepcopy(left_set_expression)
                 timespan = timespantools.Timespan(
-                    left_set_expression.target_timespan.start_offset, middle_set_expression.target_timespan.start_offset)
+                    left_set_expression.target_timespan.start_offset, 
+                    middle_set_expression.target_timespan.start_offset)
                 left_set_expression._target_timespan = timespan
                 timespan = timespantools.Timespan(
-                    middle_set_expression.target_timespan.stop_offset, right_set_expression.target_timespan.stop_offset)
+                    middle_set_expression.target_timespan.stop_offset, 
+                    right_set_expression.target_timespan.stop_offset)
                 right_set_expression._target_timespan = timespan
                 set_expression_was_split = True
             if set_expression_was_delayed:
