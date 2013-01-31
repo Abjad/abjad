@@ -29,6 +29,9 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.timespan_scoped_single_context_rhythm_set_expressions
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.timespan_scoped_single_context_set_expressions
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.voice_division_list
    :noindex:
 
