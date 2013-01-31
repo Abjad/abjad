@@ -32,12 +32,6 @@ Methods
 
    Inherited from :py:class:`__builtin__.dict`
 
-.. automethod:: experimental.tools.specificationtools.SingleContextSetExpressionAttributeDictionary.SingleContextSetExpressionAttributeDictionary.SingleContextSetExpressionAttributeDictionary.get_set_expression
-   :noindex:
-
-.. automethod:: experimental.tools.specificationtools.SingleContextSetExpressionAttributeDictionary.SingleContextSetExpressionAttributeDictionary.SingleContextSetExpressionAttributeDictionary.get_set_expressions
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.SingleContextSetExpressionAttributeDictionary.SingleContextSetExpressionAttributeDictionary.SingleContextSetExpressionAttributeDictionary.has_key
    :noindex:
 

@@ -252,6 +252,6 @@ class SegmentSpecification(Specification):
             context_names.extend(self._context_name_to_parentage_names(context_name))
         for context_name in reversed(context_names):
             single_context_set_expressions = self.context_proxies[
-                context_name].single_context_set_expressions_by_attribute.get_set_expressions(attribute=attribute)
+                context_name].single_context_set_expressions_by_attribute.get(attribute, [])
             result.extend(single_context_set_expressions)
         return result
