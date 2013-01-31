@@ -35,20 +35,13 @@ class AnchoredExpression(Expression):
     ### PRIVATE METHODS ###
 
     # TODO: change name to self._set_root(root_identifier)
-    def _set_start_segment_identifier(self, segment_identifier):
-        assert isinstance(segment_identifier, str)
-#        if self.anchor is None:
-#            return 'score-anchored expression'
-#        elif isinstance(self.anchor, str):
-#            self._anchor = segment_identifier
+    def _set_root(self, root):
+        assert isinstance(root, (str, type(None)))
         if isinstance(self.anchor, (str, type(None))):
-            self._anchor = segment_identifier
+            self._anchor = root
         else:
             anchor = copy.deepcopy(self.anchor)
-            anchor._set_start_segment_identifier(segment_identifier)
-            #result = anchor._set_start_segment_identifier(segment_identifier)
-            #if result == 'score-anchored expression':
-            #    return result
+            anchor._set_root(root)
             self._anchor = anchor
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -122,6 +115,7 @@ class AnchoredExpression(Expression):
         result._score_specification = self.score_specification
         return result
 
+    # NEXT TODO: rename and rework this concept to apply to segment-root expressions only
     @property
     def start_segment_identifier(self):
         '''Return anchor when anchor is a string.
@@ -132,9 +126,8 @@ class AnchoredExpression(Expression):
         '''
         if isinstance(self.anchor, str):
             return self.anchor
+        # NEXT TODO: do not return value for score-rooted expression
         elif self.anchor is None:
-            # NEXT TODO: return none here to indicate score-anchored expression
-            #return
             return self.score_specification.segment_specifications[0].segment_name
         else:
             return self.anchor.start_segment_identifier

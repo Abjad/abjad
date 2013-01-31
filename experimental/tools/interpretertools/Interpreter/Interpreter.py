@@ -57,17 +57,13 @@ class Interpreter(AbjadObject):
             new_context_names = [x.target_context_name for x in new_set_expressions]
             forwarded_existing_set_expressions = []
             for existing_set_expression in existing_set_expressions[:]:
-                # TODO: stop copying score-rooted set expressions
                 if existing_set_expression.is_score_rooted:
                     continue
                 if existing_set_expression.target_context_name in new_context_names:
                     existing_set_expressions.remove(existing_set_expression)
                 else:
                     forwarded_existing_set_expression = \
-                        existing_set_expression.copy_set_expression_to_segment_name(
-                        segment_specification.segment_name)
-                    #if not forwarded_existing_set_expression == 'score-anchored expression':
-                    #    forwarded_existing_set_expressions.append(forwarded_existing_set_expression)
+                        existing_set_expression.copy_and_set_root(segment_specification.segment_name)
                     forwarded_existing_set_expressions.append(forwarded_existing_set_expression)
             set_expressions_to_store = new_set_expressions + forwarded_existing_set_expressions
             #self._debug_values(set_expressions_to_store, 'sxts', blank=True)

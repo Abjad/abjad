@@ -97,7 +97,7 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.copy_set_expression_to_segment_name
+.. automethod:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.copy_and_set_root
    :noindex:
 
    Inherited from :py:class:`expressiontools.SingleContextSetExpression <experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression>`
