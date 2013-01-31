@@ -36,15 +36,19 @@ class AnchoredExpression(Expression):
 
     # TODO: maybe rename something that talks explicitly about changing (fundamental) anchor
     def _set_start_segment_identifier(self, segment_identifier):
+        #self._debug(self, 'ANCHORED EXPRESSION')
+        #self._debug(self.anchor, 'ANCHOR')
+        #self._debug(segment_identifier, 'SEGMENT IDENTIFIER')
         assert isinstance(segment_identifier, str)
         if self.anchor is None:
-            pass
-            #return 'score-anchored expression'
+            return 'score-anchored expression'
         elif isinstance(self.anchor, str):
             self._anchor = segment_identifier
         else:
             anchor = copy.deepcopy(self.anchor)
-            anchor._set_start_segment_identifier(segment_identifier)
+            result = anchor._set_start_segment_identifier(segment_identifier)
+            if result == 'score-anchored expression':
+                return result
             self._anchor = anchor
 
     ### READ-ONLY PUBLIC PROPERTIES ###

@@ -103,6 +103,9 @@ class SingleContextSetExpression(InputSetExpression):
         assert isinstance(segment_name, str)
         new_set_expression = copy.deepcopy(self)
         result = new_set_expression._set_start_segment_identifier(segment_name)
+        #self._debug(result, 'RESULT', blank=True)
+        if result == 'score-anchored expression':
+            return result
         new_set_expression._fresh = False
         return new_set_expression
 

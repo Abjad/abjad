@@ -64,7 +64,8 @@ class Interpreter(AbjadObject):
                     forwarded_existing_set_expression = \
                         existing_set_expression.copy_set_expression_to_segment_name(
                         segment_specification.segment_name)
-                    forwarded_existing_set_expressions.append(forwarded_existing_set_expression)
+                    if not forwarded_existing_set_expression == 'score-anchored expression':
+                        forwarded_existing_set_expressions.append(forwarded_existing_set_expression)
             set_expressions_to_store = new_set_expressions + forwarded_existing_set_expressions
             #self._debug_values(set_expressions_to_store, 'sxts', blank=True)
             self.store_single_context_set_expressions_by_context(
