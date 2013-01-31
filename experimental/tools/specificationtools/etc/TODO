@@ -4,10 +4,7 @@
     boolean 'restart' keyword to separate these functions. When restart=True
     then truncate will always effectively be interpreted as true.
 
-2.  Can start_segment_identifier properties eventually be completely removed from model?
-    Does the notion of "start segment identifier" reduces to "anchor"?
-
-3.  Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
+2.  Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         timespan = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         rhythm = red_segment.select_leaves('Voice 1', timespan=timespan)
@@ -26,48 +23,45 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-4.  Unskip all experimental tests before 2.11 build.
+3.  Unskip all experimental tests before 2.11 build.
 
-5.  Author tests to make sure that persistent overlapping division select expressions
+4.  Author tests to make sure that persistent overlapping division select expressions
     can be overwritten in a subsequent segment.
     See test_multiple_segment_solo__persistent_overlapping_division_select_expressions_05().
 
-6.  Looks like callback stacks may not be copied over from segment to segment for persistent set expressions.
+5.  Looks like callback stacks may not be copied over from segment to segment for persistent set expressions.
     Fix test_multiple_segment_solo__persistent_overlapping_division_select_expressions_03() to debug.
 
-7.  Finish timerelationtools class docstrings before 2.11 build.
+6.  Finish timerelationtools class docstrings before 2.11 build.
 
-8.  Finish timespantools package docstrings before 2.11 build.
+7.  Finish timespantools package docstrings before 2.11 build.
 
-9.  Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
+8.  Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
 
-10. Audit entire interpreter.
+9.  Audit entire interpreter.
     Update variable names.
     Remove duplicate code.
 
-11. Audit all expressions.
+10. Audit all expressions.
     Complete all expression docstrings.
 
-12. Add some tests to show this:
+11. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_part = segments.set_offset(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         middle_part.set_divisions([(3, 16)])
     This will show set expression divisions for (potentially) more than one segment.
 
-13. Add some tests to show this:
+12. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_measures = segments.select_measures('Voice 1')[3:6]
     This will show selecting measures from (potentially) more than one segment.
 
-14. Extend interpreter to allow interpretation to procede absent segment specification.
+13. Extend interpreter to allow interpretation to procede absent segment specification.
     Right now a dummy segment is required to allow interpretation to procede.
 
-15. Check ScoreSpecification.context_proxies.single_context_set_expressions_by_context.get_set_expressions().
+14. Check ScoreSpecification.context_proxies.single_context_set_expressions_by_context.get_set_expressions().
     Looks like it is only ever called with attribute=attribute.
     It looks like the context_name=None keyword may never be used.
     If this turns out to be the case then perhaps single_context_set_expressions_by_context is misnamed.
     Perhaps this is a global trough of single-context set expressions.
-
-16. Rename Interpreter.evaluate_multiple_context_set_expressions_for_score()
-    to Interpreter.evaluate_multiple_context_set_expressions().

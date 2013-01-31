@@ -17,7 +17,7 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.evaluate_multiple_context_set_expressions_for_score
+.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.evaluate_multiple_context_set_expressions
    :noindex:
 
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.instantiate_score

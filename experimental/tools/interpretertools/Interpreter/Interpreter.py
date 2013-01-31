@@ -24,12 +24,12 @@ class Interpreter(AbjadObject):
         '''
         self.score_specification = score_specification
         self.score = self.instantiate_score()
-        self.evaluate_multiple_context_set_expressions_for_score()
+        self.evaluate_multiple_context_set_expressions()
         self.store_interpreter_specific_single_context_set_expressions_by_context()
         
     ### PUBLIC METHODS ###
 
-    def evaluate_multiple_context_set_expressions_for_score(self):
+    def evaluate_multiple_context_set_expressions(self):
         for multiple_context_set_expression in self.score_specification.multiple_context_set_expressions:
             single_context_set_expressions = multiple_context_set_expression.evaluate()
             root_segment_specification = multiple_context_set_expression.root_segment_specification
