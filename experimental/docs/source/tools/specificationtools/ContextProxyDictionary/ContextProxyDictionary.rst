@@ -92,9 +92,6 @@ Methods
 
    Inherited from :py:class:`collections.OrderedDict`
 
-.. automethod:: experimental.tools.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary.show
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary.update
    :noindex:
 

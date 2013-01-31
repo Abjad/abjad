@@ -2,8 +2,6 @@ from collections import OrderedDict
 from abjad.tools import iterationtools
 from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.tools import expressiontools
-from experimental.tools.specificationtools.ContextProxy import ContextProxy
 
 
 class ContextProxyDictionary(AbjadObject, OrderedDict):
@@ -29,22 +27,22 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
         return '{}([{}])'.format(self._class_name, contents)
 
     def __setitem__(self, key, value):
-        #self._debug(key, 'key')
-        #self._debug(value, 'value')
+        from experimental.tools import specificationtools
         assert isinstance(key, str), repr(key)
-        assert isinstance(value, ContextProxy), repr(value)
+        assert isinstance(value, specificationtools.ContextProxy), repr(value)
         OrderedDict.__setitem__(self, key, value)
 
     ### PRIVATE METHODS ###
 
     def _initialize_context_proxies(self):
+        from experimental.tools import specificationtools
         context_names = []
         if self.score is not None:
             for context in iterationtools.iterate_contexts_in_expr(self.score):
                 assert context.context_name is not None, context.name_name
                 context_names.append(context.name)
         for context_name in sorted(context_names):
-            self[context_name] = ContextProxy()
+            self[context_name] = specificationtools.ContextProxy()
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -70,20 +68,12 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
         except:
             return False
 
+    # TODO: remove in favor of some Specification property (or method)
     def get_set_expressions(self, attribute=None):
+        #raise Exception('deprecated')
+        from experimental.tools import specificationtools
         set_expressions = []
         for context_proxy in self.itervalues():
-            assert isinstance(context_proxy, ContextProxy), repr(context_proxy)
-            set_expressions.extend(
-                context_proxy.single_context_set_expressions_by_attribute.get_set_expressions(attribute=attribute))
+            assert isinstance(context_proxy, specificationtools.ContextProxy), repr(context_proxy)
+            set_expressions.extend(context_proxy.single_context_set_expressions_by_attribute.get(attribute, []))
         return set_expressions 
-
-    def show(self):
-        for context_name in self:
-            print context_name
-            for set_expression_name in self[context_name]:
-                item = self[context_name][set_expression_name]
-                if isinstance(item, expressiontools.InputSetExpression):
-                    print '\t{}'.format(self[context_name][set_expression_name])
-                else:
-                    print '\t{}: {}'.format(set_expression_name, self[context_name][set_expression_name])

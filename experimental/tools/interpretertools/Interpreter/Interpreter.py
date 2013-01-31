@@ -52,12 +52,16 @@ class Interpreter(AbjadObject):
 
     def store_single_context_attribute_set_expressions_by_context(self, attribute):
         for segment_specification in self.score_specification.segment_specifications:
-            #self._debug(segment_specification, 'SEG')
-            new_set_expressions = segment_specification.single_context_set_expressions.get_set_expressions(
-            attribute=attribute)
+            new_set_expressions = \
+                segment_specification.single_context_set_expressions.get_set_expressions(
+                attribute=attribute)
             existing_set_expressions = \
                 self.score_specification.context_proxies.get_set_expressions(
                 attribute=attribute)
+            # TODO: eventually use assignment below in preference to assignment above
+            #existing_set_expressions = \
+            #    self.score_specification.single_context_set_expressions.get_set_expressions(
+            #    attribute=attribute)
             new_context_names = [x.target_context_name for x in new_set_expressions]
             forwarded_existing_set_expressions = []
             for existing_set_expression in existing_set_expressions[:]:
@@ -114,8 +118,8 @@ class Interpreter(AbjadObject):
                     context_name].single_context_set_expressions_by_attribute[attribute] = [
                     single_context_set_expression]
 
-    def store_single_context_set_expressions_by_context(self, 
-        single_context_set_expressions, clear_persistent_first=False):
+    def store_single_context_set_expressions_by_context(self, single_context_set_expressions, 
+        clear_persistent_first=False):
         if single_context_set_expressions:
             self.store_single_context_set_expression_by_context(
                 single_context_set_expressions[0], clear_persistent_first=clear_persistent_first)
