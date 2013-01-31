@@ -67,13 +67,3 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
             return all([x in self for x in expr])
         except:
             return False
-
-    # TODO: remove in favor of some Specification property (or method)
-    def get_set_expressions(self, attribute=None):
-        #raise Exception('deprecated')
-        from experimental.tools import specificationtools
-        set_expressions = []
-        for context_proxy in self.itervalues():
-            assert isinstance(context_proxy, specificationtools.ContextProxy), repr(context_proxy)
-            set_expressions.extend(context_proxy.single_context_set_expressions_by_attribute.get(attribute, []))
-        return set_expressions 

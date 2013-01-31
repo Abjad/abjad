@@ -35,6 +35,7 @@ class Specification(AbjadObject):
         self._multiple_context_set_expressions = expressiontools.SetExpressionInventory()
         self._score_template = score_template
         self._score_model = score_template()
+        # TODO: maybe remove in favor of self.context_proxies[].single_context_set_expression_attribute_dict?
         self._single_context_set_expressions = expressiontools.SetExpressionInventory()
         self._initialize_context_name_abbreviations()
 

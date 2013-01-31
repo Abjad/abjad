@@ -44,9 +44,6 @@ Methods
 
    Inherited from :py:class:`__builtin__.dict`
 
-.. automethod:: experimental.tools.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary.get_set_expressions
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary.has_key
    :noindex:
 
