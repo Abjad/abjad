@@ -63,14 +63,17 @@
 14. Extend interpreter to allow interpretation to procede absent segment specification.
     Right now a dummy segment is required to allow interpretation to procede.
 
-15. Extend ScoreSpecification with timespan_scoped_single_context_set_expressions.
-    Will contain ScoreSpecification.timespan_scoped_single_context_division_set_expressions
-    together with ScoreSpecification.timespan_scoped_single_conext_rhythm_set_expressions.
-    Unified view of all timespan-scoped single-context set expressions.
-    Only for viewing now. Can be used to extend interpretation later.
-
-16. Check ScoreSpecification.context_proxies.single_context_set_expressions_by_context.get_set_expressions().
+15. Check ScoreSpecification.context_proxies.single_context_set_expressions_by_context.get_set_expressions().
     Looks like it is only ever called with attribute=attribute.
     It looks like the context_name=None keyword may never be used.
     If this turns out to be the case then perhaps single_context_set_expressions_by_context is misnamed.
     Perhaps this is a global trough of single-context set expressions.
+
+16. Replace these ScoreSpecification list members ...
+        self._division_region_expressions = []
+        self._rhythm_region_expressions = []
+        self._single_context_time_signature_set_expressions = []
+        self._timespan_scoped_single_context_division_set_expressions = []
+        self._timespan_scoped_single_context_rhythm_set_expressions = []
+        self._timespan_scoped_single_context_set_expressions = []
+    ... with appropriate inventories.

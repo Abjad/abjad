@@ -69,6 +69,9 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.timespan_scoped_single_context_rhythm_set_expressions
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.timespan_scoped_single_context_set_expressions
+   :noindex:
+
 Methods
 -------
 

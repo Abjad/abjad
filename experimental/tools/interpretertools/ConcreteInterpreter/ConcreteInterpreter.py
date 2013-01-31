@@ -248,20 +248,23 @@ class ConcreteInterpreter(Interpreter):
         return rhythm_region_expressions
 
     def make_timespan_scoped_single_context_set_expressions(self, attribute):
+        attribute_key = 'timespan_scoped_single_context_{}_set_expressions'.format(attribute.rstrip('s'))
+        score_timespan_scoped_single_context_set_expressions = \
+            self.score_specification.timespan_scoped_single_context_set_expressions
         if self.score_specification.segment_specifications:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
                 voice_proxy = self.score_specification.context_proxies[voice.name]
                 set_expressions = self.get_timespan_scoped_single_context_set_expressions_for_voice(
                     attribute, voice.name)
-                singular_attribute = attribute.rstrip('s')
-                key = 'timespan_scoped_single_context_{}_set_expressions'.format(singular_attribute)
-                inventory = getattr(voice_proxy, key)
+                inventory = getattr(voice_proxy, attribute_key)
                 inventory[:] = set_expressions[:]
-                score_set_expressions = getattr(self.score_specification, key)
+                score_set_expressions = getattr(self.score_specification, attribute_key)
                 for set_expression in set_expressions:
                     if set_expression not in score_set_expressions:
                         score_set_expressions.append(set_expression)
-
+                    if set_expression not in score_timespan_scoped_single_context_set_expressions:
+                        score_timespan_scoped_single_context_set_expressions.append(set_expression)
+                        
     def merge_prolonging_rhythm_region_expressions(self, rhythm_region_expressions):
         result = []
         for rhythm_region_expression in rhythm_region_expressions:
