@@ -65,3 +65,14 @@
     It looks like the context_name=None keyword may never be used.
     If this turns out to be the case then perhaps single_context_set_expressions_by_context is misnamed.
     Perhaps this is a global trough of single-context set expressions.
+    This is in fact true; follow consequences.
+
+15. Rename ContextProxyDictionary to some other type of Dictionary.
+    Current name is not descriptive.
+    Parallel name of SingleContextSetExpressionAttributeDictionary.
+
+16. Change segment_specification.get_single_context_set_expressions_that_start_during_segment(
+        context_name, attribute, include_improper_parentage=True)
+    to segment_specification.get_single_context_set_expressions_that_start_during_segment(
+        attribute, context_name, include_improper_parentage=True)
+    ... so that 'attribute' comes first.

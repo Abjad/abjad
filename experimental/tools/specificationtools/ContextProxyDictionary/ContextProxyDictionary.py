@@ -70,7 +70,11 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
         except:
             return False
 
+    # TODO: remove context_name=None altogether
+    # TODO: chase down other simplifications in system
     def get_set_expressions(self, attribute=None, context_name=None):
+        # TODO: this assert means the input signature can remove conext_name=None
+        assert context_name is None, context_name
         #self._debug(attribute, 'attribute')
         #self._debug(context_name, 'context_name')
         if context_name is None:
