@@ -2,7 +2,7 @@ from collections import OrderedDict
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class InputSetExpressionDictionary(AbjadObject, OrderedDict):
+class SingleContextSetExpressionAttributeDictionary(AbjadObject, OrderedDict):
     '''Input set expression dictionary.
     '''
 

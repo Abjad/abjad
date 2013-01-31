@@ -11,7 +11,7 @@ class ContextProxy(AbjadObject):
         self._division_payload_expressions = \
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         self._single_context_set_expressions_by_attribute = \
-            specificationtools.InputSetExpressionDictionary()
+            specificationtools.SingleContextSetExpressionAttributeDictionary()
         self._rhythm_payload_expressions = \
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         self._timespan_scoped_single_context_division_set_expressions = \
