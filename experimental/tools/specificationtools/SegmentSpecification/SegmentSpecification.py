@@ -244,7 +244,7 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    def get_single_context_set_expressions_that_start_during_segment(self, context_name, attribute, 
+    def get_single_context_set_expressions_that_start_during_segment(self, attribute, context_name,
         include_improper_parentage=False):
         result = []
         context_names = [context_name]

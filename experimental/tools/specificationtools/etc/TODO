@@ -60,19 +60,9 @@
 13. Extend interpreter to allow interpretation to procede absent segment specification.
     Right now a dummy segment is required to allow interpretation to procede.
 
-14. Check ScoreSpecification.context_proxies.single_context_set_expressions_by_context.get_set_expressions().
-    Looks like it is only ever called with attribute=attribute.
-    It looks like the context_name=None keyword may never be used.
-    If this turns out to be the case then perhaps single_context_set_expressions_by_context is misnamed.
-    Perhaps this is a global trough of single-context set expressions.
-    This is in fact true; follow consequences.
+14. Is ScoreSpecification.context_proxies.single_context_set_expressions_by_context misnamed?
+    Perhaps this is a global trough of single-context set expressions (not by context)?
 
 15. Rename ContextProxyDictionary to some other type of Dictionary.
     Current name is not descriptive.
     Parallel name of SingleContextSetExpressionAttributeDictionary.
-
-16. Change segment_specification.get_single_context_set_expressions_that_start_during_segment(
-        context_name, attribute, include_improper_parentage=True)
-    to segment_specification.get_single_context_set_expressions_that_start_during_segment(
-        attribute, context_name, include_improper_parentage=True)
-    ... so that 'attribute' comes first.

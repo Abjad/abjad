@@ -70,35 +70,12 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
         except:
             return False
 
-    # TODO: remove context_name=None altogether
-    # TODO: chase down other simplifications in system
-    def get_set_expressions(self, attribute=None, context_name=None):
-        # TODO: this assert means the input signature can remove conext_name=None
-        assert context_name is None, context_name
-        #self._debug(attribute, 'attribute')
-        #self._debug(context_name, 'context_name')
-        if context_name is None:
-            context_proxies = list(self.itervalues())
-        else:
-            context_proxies = [self[context_name]]
-        #for context_proxy in context_proxies:
-        #    self._debug(context_proxy)
+    def get_set_expressions(self, attribute=None):
         set_expressions = []
-        for context_proxy in context_proxies:
-            # old behavior
-            if isinstance(context_proxy, ContextProxy):
-                set_expressions.extend(
-                    context_proxy.single_context_set_expressions_by_attribute.get_set_expressions(
-                    attribute=attribute))
-            # new behavior
-            elif isinstance(context_proxy, list):
-                for set_expression in context_proxy:
-                    if set_expression.attribute == attribute or attribute is None:
-                        set_expressions.append(set_expression)
-            else:
-                raise ValueError
-        #self._debug(set_expressions, 'set_expressions')
-        #print ''
+        for context_proxy in self.itervalues():
+            assert isinstance(context_proxy, ContextProxy), repr(context_proxy)
+            set_expressions.extend(
+                context_proxy.single_context_set_expressions_by_attribute.get_set_expressions(attribute=attribute))
         return set_expressions 
 
     def show(self):
