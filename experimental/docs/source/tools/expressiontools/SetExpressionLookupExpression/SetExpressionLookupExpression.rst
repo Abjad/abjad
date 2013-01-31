@@ -22,8 +22,23 @@ Read-only Properties
 
    Inherited from :py:class:`expressiontools.CallbackMixin <experimental.tools.expressiontools.CallbackMixin.CallbackMixin.CallbackMixin>`
 
+.. autoattribute:: experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.is_score_rooted
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
+.. autoattribute:: experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.is_segment_rooted
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
 .. autoattribute:: experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.offset
    :noindex:
+
+.. autoattribute:: experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.root
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.score_specification
    :noindex:

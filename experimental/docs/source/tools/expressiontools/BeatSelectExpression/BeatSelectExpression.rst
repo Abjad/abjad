@@ -19,6 +19,21 @@ Read-only Properties
 
    Inherited from :py:class:`expressiontools.CallbackMixin <experimental.tools.expressiontools.CallbackMixin.CallbackMixin.CallbackMixin>`
 
+.. autoattribute:: experimental.tools.expressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.is_score_rooted
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
+.. autoattribute:: experimental.tools.expressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.is_segment_rooted
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
+.. autoattribute:: experimental.tools.expressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.root
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
 .. autoattribute:: experimental.tools.expressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.score_specification
    :noindex:
 

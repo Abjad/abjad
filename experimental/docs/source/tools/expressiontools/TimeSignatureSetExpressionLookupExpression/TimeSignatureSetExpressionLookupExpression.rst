@@ -24,10 +24,25 @@ Read-only Properties
 
    Inherited from :py:class:`expressiontools.CallbackMixin <experimental.tools.expressiontools.CallbackMixin.CallbackMixin.CallbackMixin>`
 
+.. autoattribute:: experimental.tools.expressiontools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.is_score_rooted
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
+.. autoattribute:: experimental.tools.expressiontools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.is_segment_rooted
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
 .. autoattribute:: experimental.tools.expressiontools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.offset
    :noindex:
 
    Inherited from :py:class:`expressiontools.SetExpressionLookupExpression <experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression>`
+
+.. autoattribute:: experimental.tools.expressiontools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.root
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.score_specification
    :noindex:

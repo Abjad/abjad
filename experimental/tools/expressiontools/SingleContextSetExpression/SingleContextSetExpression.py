@@ -92,20 +92,19 @@ class SingleContextSetExpression(InputSetExpression):
     ### PUBLIC METHODS ###
 
     def copy_set_expression_to_segment_name(self, segment_name):
-        '''Create new set expression. 
+        '''Create new single-context set expression. 
 
-        Set new set expression start segment identifier to `segment_name`.
+        Set new single-context set expression start segment identifier to `segment_name`.
 
-        Set new set expression `fresh` to false.
+        Set new single-context set expression `fresh` to false.
 
-        Return new set expression.
+        Return new single-context set expression.
         '''
         assert isinstance(segment_name, str)
+        if self.is_score_rooted:
+            return 'score-anchored expression'
         new_set_expression = copy.deepcopy(self)
-        result = new_set_expression._set_start_segment_identifier(segment_name)
-        #self._debug(result, 'RESULT', blank=True)
-        if result == 'score-anchored expression':
-            return result
+        new_set_expression._set_start_segment_identifier(segment_name)
         new_set_expression._fresh = False
         return new_set_expression
 

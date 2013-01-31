@@ -34,21 +34,21 @@ class AnchoredExpression(Expression):
 
     ### PRIVATE METHODS ###
 
-    # TODO: maybe rename something that talks explicitly about changing (fundamental) anchor
+    # TODO: change name to self._set_root(root_identifier)
     def _set_start_segment_identifier(self, segment_identifier):
-        #self._debug(self, 'ANCHORED EXPRESSION')
-        #self._debug(self.anchor, 'ANCHOR')
-        #self._debug(segment_identifier, 'SEGMENT IDENTIFIER')
         assert isinstance(segment_identifier, str)
-        if self.anchor is None:
-            return 'score-anchored expression'
-        elif isinstance(self.anchor, str):
+#        if self.anchor is None:
+#            return 'score-anchored expression'
+#        elif isinstance(self.anchor, str):
+#            self._anchor = segment_identifier
+        if isinstance(self.anchor, (str, type(None))):
             self._anchor = segment_identifier
         else:
             anchor = copy.deepcopy(self.anchor)
-            result = anchor._set_start_segment_identifier(segment_identifier)
-            if result == 'score-anchored expression':
-                return result
+            anchor._set_start_segment_identifier(segment_identifier)
+            #result = anchor._set_start_segment_identifier(segment_identifier)
+            #if result == 'score-anchored expression':
+            #    return result
             self._anchor = anchor
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -72,6 +72,37 @@ class AnchoredExpression(Expression):
         '''
         return self._anchor
 
+    @property
+    def is_score_rooted(self):
+        '''True when anchored expression is score-rooted.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        return self.root is None
+
+    @property
+    def is_segment_rooted(self):
+        '''True when anchored expression is segment-rooted.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        return isinstance(self.root, str)
+
+    @property
+    def root(self):
+        '''Anchored expression root.
+
+        Segment-rooted expressions return string.
+
+        Score-rooted expressions return none.
+        '''
+        if isinstance(self.anchor, (str, type(None))):
+            return self.anchor
+        else:
+            return self.anchor.root
+        
     @property
     def score_specification(self):
         '''Expression score specification.

@@ -22,6 +22,21 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.edge
    :noindex:
 
+.. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.is_score_rooted
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
+.. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.is_segment_rooted
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
+.. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.root
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
 .. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.score_specification
    :noindex:
 

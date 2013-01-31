@@ -20,8 +20,23 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.fresh
    :noindex:
 
+.. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.is_score_rooted
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
+.. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.is_segment_rooted
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.persist
    :noindex:
+
+.. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.root
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.score_specification
    :noindex:
