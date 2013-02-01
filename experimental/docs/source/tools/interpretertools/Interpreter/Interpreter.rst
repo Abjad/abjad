@@ -23,10 +23,7 @@ Methods
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.instantiate_score
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_attribute_specified_single_context_set_expressions_by_segment_context_and_attribute
-   :noindex:
-
-.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_single_context_set_expressions_by_segment_context_and_attribute
+.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_single_context_set_expressions_in_segments_by_context_and_attribute
    :noindex:
 
 Special Methods

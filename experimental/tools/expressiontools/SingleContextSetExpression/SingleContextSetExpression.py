@@ -115,7 +115,7 @@ class SingleContextSetExpression(InputSetExpression):
         '''
         pass
 
-    def store_in_segment_by_context_and_attribute(self, clear_persistent_first=False):
+    def store_in_segment_by_context_and_attribute(self):
         '''Store single-context set expression in segment by context and attribute.
 
         If single-context set expression persists then also store 
@@ -125,9 +125,6 @@ class SingleContextSetExpression(InputSetExpression):
         # TODO: this will have to be changed to handle score-rooted expressions
         assert self.root_segment_specification is not None
         target_context_name = self.target_context_name or self.score_specification.context_proxies.score_name
-        if clear_persistent_first:
-            target_context_proxy = self.score_specification.context_proxies[target_context_name]
-            target_context_proxy.single_context_set_expressions_by_attribute[self.attribute][:] = []
         target_context_proxy = self.root_segment_specification.context_proxies[target_context_name]
         target_context_proxy.single_context_set_expressions_by_attribute[self.attribute].append(self)
         if self.persist:
