@@ -114,3 +114,39 @@ class SingleContextSetExpression(InputSetExpression):
         Return timespan-scoped single-context set expression.
         '''
         pass
+
+    def store_by_segment_context_and_attribute(self, clear_persistent_first=False):
+        '''Copy single-context set expression.
+
+        Find single-context set expression root segment specification.
+
+        Find single-context set expression target context.
+        
+        Find single-context set expression attribute.
+
+        Store copied single-context set expression first by segment,
+        then by context and finally by attribute.
+
+        If set expression persists then also store reference to 
+        single-context set expression in score specification
+        first by context and then by attribute.
+        '''
+        # TODO: maybe able to remove deepcopy?
+        single_context_set_expression = copy.deepcopy(self)
+        root_segment_specification = single_context_set_expression.root_segment_specification
+        # TODO: this will have to be extended to handle score-rooted expressions
+        assert root_segment_specification is not None
+        target_context_name = single_context_set_expression.target_context_name
+        if target_context_name is None:
+            target_context_name = root_segment_specification.context_proxies.score_name
+        attribute = single_context_set_expression.attribute
+        if clear_persistent_first:
+            self.score_specification.clear_persistent_single_context_set_expressions_by_context(
+                attribute, target_context_name)
+        root_segment_specification.context_proxies[
+            target_context_name].single_context_set_expressions_by_attribute[attribute].append(
+            single_context_set_expression)
+        if single_context_set_expression.persist:
+            self.score_specification.context_proxies[
+                target_context_name].single_context_set_expressions_by_attribute[attribute].append(
+                single_context_set_expression)

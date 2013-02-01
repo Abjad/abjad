@@ -294,10 +294,3 @@ class ConcreteInterpreter(Interpreter):
             single_context_time_signature_set_expression = single_context_time_signature_set_expressions[-1]
             self.score_specification.single_context_time_signature_set_expressions.append(
                 single_context_time_signature_set_expression)
-
-    def store_interpreter_specific_single_context_set_expressions_by_context(self):
-        self.store_single_context_attribute_set_expressions_by_context('time_signatures')
-        self.store_single_context_attribute_set_expressions_by_context('divisions')
-        self.store_single_context_attribute_set_expressions_by_context('rhythm')
-        self.store_single_context_attribute_set_expressions_by_context('pitch_classes')
-        self.store_single_context_attribute_set_expressions_by_context('registration')

@@ -109,6 +109,9 @@ Methods
 
    Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
 
+.. automethod:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.store_by_segment_context_and_attribute
+   :noindex:
+
 Special Methods
 ---------------
 
