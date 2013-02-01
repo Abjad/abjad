@@ -115,38 +115,21 @@ class SingleContextSetExpression(InputSetExpression):
         '''
         pass
 
-    def store_by_segment_context_and_attribute(self, clear_persistent_first=False):
-        '''Copy single-context set expression.
+    def store_in_segment_by_context_and_attribute(self, clear_persistent_first=False):
+        '''Store single-context set expression in segment by context and attribute.
 
-        Find single-context set expression root segment specification.
-
-        Find single-context set expression target context.
-        
-        Find single-context set expression attribute.
-
-        Store copied single-context set expression first by segment,
-        then by context and finally by attribute.
-
-        If set expression persists then also store reference to 
+        If single-context set expression persists then also store 
         single-context set expression in score specification
-        first by context and then by attribute.
+        by context and attribute.
         '''
-        # TODO: maybe able to remove deepcopy?
-        single_context_set_expression = copy.deepcopy(self)
-        root_segment_specification = single_context_set_expression.root_segment_specification
-        # TODO: this will have to be extended to handle score-rooted expressions
-        assert root_segment_specification is not None
-        target_context_name = single_context_set_expression.target_context_name
-        if target_context_name is None:
-            target_context_name = root_segment_specification.context_proxies.score_name
-        attribute = single_context_set_expression.attribute
+        # TODO: this will have to be changed to handle score-rooted expressions
+        assert self.root_segment_specification is not None
+        target_context_name = self.target_context_name or self.score_specification.context_proxies.score_name
         if clear_persistent_first:
             self.score_specification.clear_persistent_single_context_set_expressions_by_context(
-                attribute, target_context_name)
-        root_segment_specification.context_proxies[
-            target_context_name].single_context_set_expressions_by_attribute[attribute].append(
-            single_context_set_expression)
-        if single_context_set_expression.persist:
+                self.attribute, target_context_name)
+        self.root_segment_specification.context_proxies[
+            target_context_name].single_context_set_expressions_by_attribute[self.attribute].append(self)
+        if self.persist:
             self.score_specification.context_proxies[
-                target_context_name].single_context_set_expressions_by_attribute[attribute].append(
-                single_context_set_expression)
+                target_context_name].single_context_set_expressions_by_attribute[self.attribute].append(self)

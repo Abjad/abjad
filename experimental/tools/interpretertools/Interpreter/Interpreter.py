@@ -80,6 +80,6 @@ class Interpreter(AbjadObject):
             assert all([not x.fresh for x in holdover_set_expressions])
             set_expressions_to_store = fresh_set_expressions + holdover_set_expressions
             if set_expressions_to_store:
-                set_expressions_to_store[0].store_by_segment_context_and_attribute(clear_persistent_first=True)
+                set_expressions_to_store[0].store_in_segment_by_context_and_attribute(clear_persistent_first=True)
                 for set_expression_to_store in set_expressions_to_store[1:]:
-                    set_expression_to_store.store_by_segment_context_and_attribute(clear_persistent_first=False)
+                    set_expression_to_store.store_in_segment_by_context_and_attribute(clear_persistent_first=False)
