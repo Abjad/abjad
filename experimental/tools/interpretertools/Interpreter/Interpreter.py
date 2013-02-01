@@ -31,14 +31,17 @@ class Interpreter(AbjadObject):
 
     def evaluate_multiple_context_set_expressions(self):
         for multiple_context_set_expression in self.score_specification.multiple_context_set_expressions:
-            single_context_set_expressions = multiple_context_set_expression.evaluate()
+            fresh_single_context_set_expressions = multiple_context_set_expression.evaluate()
+            assert all([x.fresh for x in fresh_single_context_set_expressions])
             root_segment_specification = multiple_context_set_expression.root_segment_specification
-            root_segment_specification.single_context_set_expressions.extend(single_context_set_expressions)
-            self.score_specification.single_context_set_expressions.extend(single_context_set_expressions)
+            root_segment_specification.fresh_single_context_set_expressions.extend(
+                fresh_single_context_set_expressions)
+            self.score_specification.fresh_single_context_set_expressions.extend(
+                fresh_single_context_set_expressions)
             #if multiple_context_set_expression.is_segment_rooted:
             #    root_segment_specification = multiple_context_set_expression.root_segment_specification
-            #    root_segment_specification.single_context_set_expressions.extend(
-            #        single_context_set_expressions)
+            #    root_segment_specification.fresh_single_context_set_expressions.extend(
+            #        fresh_single_context_set_expressions)
                 
     def instantiate_score(self):
         score = self.score_specification.score_template()
@@ -53,7 +56,8 @@ class Interpreter(AbjadObject):
     def store_single_context_attribute_set_expressions_by_context(self, attribute):
         for segment_specification in self.score_specification.segment_specifications:
             fresh_set_expressions = \
-                segment_specification.single_context_set_expressions.get_set_expressions(attribute=attribute)
+                segment_specification.fresh_single_context_set_expressions.get_set_expressions(
+                    attribute=attribute)
             assert all([x.fresh for x in fresh_set_expressions])
             existing_set_expressions = []
             for context_proxy in self.score_specification.context_proxies.itervalues():

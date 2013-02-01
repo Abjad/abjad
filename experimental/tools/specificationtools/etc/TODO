@@ -59,3 +59,5 @@
 
 13. Extend interpreter to allow interpretation to procede absent segment specification.
     Right now a dummy segment is required to allow interpretation to procede.
+
+14. Globally search and replace z(x) with z() of whole inventory.

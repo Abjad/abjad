@@ -148,6 +148,52 @@ class ScoreSpecification(Specification):
         return self._division_region_expressions
 
     @property
+    def fresh_single_context_set_expressions(self):
+        r'''Score specification single-context set expressions::
+
+            >>> z(score_specification.fresh_single_context_set_expressions)
+            expressiontools.SetExpressionInventory([
+                expressiontools.SingleContextTimeSignatureSetExpression(
+                    source=expressiontools.PayloadExpression(
+                        ((2, 8), (3, 8), (4, 8))
+                        ),
+                    target_timespan='red',
+                    fresh=True,
+                    persist=True
+                    ),
+                expressiontools.SingleContextTimeSignatureSetExpression(
+                    source=expressiontools.PayloadExpression(
+                        ((4, 16), (4, 16))
+                        ),
+                    target_timespan='orange',
+                    fresh=True,
+                    persist=True
+                    ),
+                expressiontools.SingleContextTimeSignatureSetExpression(
+                    source=expressiontools.PayloadExpression(
+                        ((5, 16), (5, 16))
+                        ),
+                    target_timespan='yellow',
+                    fresh=True,
+                    persist=True
+                    ),
+                expressiontools.SingleContextRhythmSetExpression(
+                    source=expressiontools.RhythmMakerPayloadExpression(
+                        payload=(TaleaRhythmMaker('sixteenths'),)
+                        ),
+                    target_timespan='red',
+                    fresh=True,
+                    persist=True
+                    )
+                ])
+        
+        Populate during interpretation.
+
+        Return set expression inventory.
+        '''
+        return Specification.fresh_single_context_set_expressions.fget(self)
+
+    @property
     def interface(self):
         '''Read-only reference to score specification interface::
 
@@ -335,52 +381,6 @@ class ScoreSpecification(Specification):
         Return segment specification inventory.
         '''
         return self._segment_specifications
-
-    @property
-    def single_context_set_expressions(self):
-        r'''Score specification single-context set expressions::
-
-            >>> z(score_specification.single_context_set_expressions)
-            expressiontools.SetExpressionInventory([
-                expressiontools.SingleContextTimeSignatureSetExpression(
-                    source=expressiontools.PayloadExpression(
-                        ((2, 8), (3, 8), (4, 8))
-                        ),
-                    target_timespan='red',
-                    fresh=True,
-                    persist=True
-                    ),
-                expressiontools.SingleContextTimeSignatureSetExpression(
-                    source=expressiontools.PayloadExpression(
-                        ((4, 16), (4, 16))
-                        ),
-                    target_timespan='orange',
-                    fresh=True,
-                    persist=True
-                    ),
-                expressiontools.SingleContextTimeSignatureSetExpression(
-                    source=expressiontools.PayloadExpression(
-                        ((5, 16), (5, 16))
-                        ),
-                    target_timespan='yellow',
-                    fresh=True,
-                    persist=True
-                    ),
-                expressiontools.SingleContextRhythmSetExpression(
-                    source=expressiontools.RhythmMakerPayloadExpression(
-                        payload=(TaleaRhythmMaker('sixteenths'),)
-                        ),
-                    target_timespan='red',
-                    fresh=True,
-                    persist=True
-                    )
-                ])
-        
-        Populate during interpretation.
-
-        Return set expression inventory.
-        '''
-        return Specification.single_context_set_expressions.fget(self)
 
     @property
     def single_context_time_signature_set_expressions(self):

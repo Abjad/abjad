@@ -109,6 +109,34 @@ class SegmentSpecification(Specification):
         '''
         return Specification.context_proxies.fget(self)
 
+    # TODO: replace z(x) with just z() of whole inventory
+    @property
+    def fresh_single_context_set_expressions(self):
+        r'''Segment specification single-context set expressions::
+
+            >>> for x in red_segment.fresh_single_context_set_expressions:
+            ...     z(x)
+            expressiontools.SingleContextTimeSignatureSetExpression(
+                source=expressiontools.PayloadExpression(
+                    ((2, 8), (3, 8), (4, 8))
+                    ),
+                target_timespan='red',
+                fresh=True,
+                persist=True
+                )
+            expressiontools.SingleContextRhythmSetExpression(
+                source=expressiontools.RhythmMakerPayloadExpression(
+                    payload=(TaleaRhythmMaker('sixteenths'),)
+                    ),
+                target_timespan='red',
+                fresh=True,
+                persist=True
+                )
+
+        Return single-context set expression inventory.
+        '''
+        return Specification.fresh_single_context_set_expressions.fget(self)
+
     @property
     def multiple_context_set_expressions(self):
         '''Segment specification multiple-context set-expressions::
@@ -163,33 +191,6 @@ class SegmentSpecification(Specification):
         Return string.
         '''
         return self._segment_name
-
-    @property
-    def single_context_set_expressions(self):
-        r'''Segment specification single-context set expressions::
-
-            >>> for x in red_segment.single_context_set_expressions:
-            ...     z(x)
-            expressiontools.SingleContextTimeSignatureSetExpression(
-                source=expressiontools.PayloadExpression(
-                    ((2, 8), (3, 8), (4, 8))
-                    ),
-                target_timespan='red',
-                fresh=True,
-                persist=True
-                )
-            expressiontools.SingleContextRhythmSetExpression(
-                source=expressiontools.RhythmMakerPayloadExpression(
-                    payload=(TaleaRhythmMaker('sixteenths'),)
-                    ),
-                target_timespan='red',
-                fresh=True,
-                persist=True
-                )
-
-        Return single-context set expression inventory.
-        '''
-        return Specification.single_context_set_expressions.fget(self)
 
     @property
     def specification_name(self):

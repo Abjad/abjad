@@ -27,12 +27,12 @@ class SingleContextSetExpression(InputSetExpression):
 
     ::
 
-        >>> single_context_set_expression = \
-        ...     score_specification.specification.single_context_set_expressions[1]
+        >>> fresh_single_context_set_expression = \
+        ...     score_specification.specification.fresh_single_context_set_expressions[1]
 
     ::
 
-        >>> z(single_context_set_expression)
+        >>> z(fresh_single_context_set_expression)
         expressiontools.SingleContextDivisionSetExpression(
             source=expressiontools.PayloadExpression(
                 ((3, 16),)
@@ -66,7 +66,7 @@ class SingleContextSetExpression(InputSetExpression):
     def storage_format(self):
         '''Single-context set expression storage format::
 
-            >>> z(single_context_set_expression)
+            >>> z(fresh_single_context_set_expression)
             expressiontools.SingleContextDivisionSetExpression(
                 source=expressiontools.PayloadExpression(
                     ((3, 16),)

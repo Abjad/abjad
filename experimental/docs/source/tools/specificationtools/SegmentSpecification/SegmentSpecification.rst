@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.context_proxies
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.fresh_single_context_set_expressions
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.multiple_context_set_expressions
    :noindex:
 
@@ -28,9 +31,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.segment_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.single_context_set_expressions
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.specification_name

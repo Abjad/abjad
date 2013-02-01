@@ -1,4 +1,3 @@
-from abjad.tools import *
 from experimental import *
 from experimental.tools.expressiontools import SetExpressionInventory
 
@@ -14,7 +13,7 @@ def test_SetExpressionInventory_storage_format_01():
     score_specification.interpret()
 
     set_expression_inventory_1 = \
-        score_specification.specification.segment_specifications['red'].single_context_set_expressions
+        score_specification.specification.segment_specifications['red'].fresh_single_context_set_expressions
     storage_format = set_expression_inventory_1.storage_format
     set_expression_inventory_2 = eval(storage_format)
 

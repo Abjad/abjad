@@ -6,16 +6,16 @@ def test_ScoreSpecification_single_context_settings_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
-    assert not score_specification.specification.single_context_set_expressions
+    assert not score_specification.specification.fresh_single_context_set_expressions
 
     red_segment = score_specification.append_segment(name='red')
-    assert not score_specification.specification.single_context_set_expressions
-    assert not score_specification.specification.segment_specifications['red'].single_context_set_expressions
+    assert not score_specification.specification.fresh_single_context_set_expressions
+    assert not score_specification.specification.segment_specifications['red'].fresh_single_context_set_expressions
 
     red_segment.set_time_signatures([(4, 8), (3, 8)])
-    assert not score_specification.specification.single_context_set_expressions
-    assert not score_specification.specification.segment_specifications['red'].single_context_set_expressions
+    assert not score_specification.specification.fresh_single_context_set_expressions
+    assert not score_specification.specification.segment_specifications['red'].fresh_single_context_set_expressions
 
     score = score_specification.interpret()
-    assert len(score_specification.specification.single_context_set_expressions) == 1
-    assert len(score_specification.specification.segment_specifications['red'].single_context_set_expressions) == 1
+    assert len(score_specification.specification.fresh_single_context_set_expressions) == 1
+    assert len(score_specification.specification.segment_specifications['red'].fresh_single_context_set_expressions) == 1
