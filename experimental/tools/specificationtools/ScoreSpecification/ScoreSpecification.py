@@ -148,10 +148,22 @@ class ScoreSpecification(Specification):
         return self._division_region_expressions
 
     @property
-    def fresh_single_context_set_expressions(self):
+    def fresh_single_context_set_expressions_by_attribute(self):
         r'''Score specification single-context set expressions::
 
-            >>> z(score_specification.fresh_single_context_set_expressions)
+            >>> for x in score_specification.fresh_single_context_set_expressions_by_attribute.itervalues():
+            ...     if x:
+            ...         z(x)
+            expressiontools.SetExpressionInventory([
+                expressiontools.SingleContextRhythmSetExpression(
+                    source=expressiontools.RhythmMakerPayloadExpression(
+                        payload=(TaleaRhythmMaker('sixteenths'),)
+                        ),
+                    target_timespan='red',
+                    fresh=True,
+                    persist=True
+                    )
+                ])
             expressiontools.SetExpressionInventory([
                 expressiontools.SingleContextTimeSignatureSetExpression(
                     source=expressiontools.PayloadExpression(
@@ -176,22 +188,14 @@ class ScoreSpecification(Specification):
                     target_timespan='yellow',
                     fresh=True,
                     persist=True
-                    ),
-                expressiontools.SingleContextRhythmSetExpression(
-                    source=expressiontools.RhythmMakerPayloadExpression(
-                        payload=(TaleaRhythmMaker('sixteenths'),)
-                        ),
-                    target_timespan='red',
-                    fresh=True,
-                    persist=True
                     )
                 ])
-        
+
         Populate during interpretation.
 
         Return set expression inventory.
         '''
-        return Specification.fresh_single_context_set_expressions.fget(self)
+        return Specification.fresh_single_context_set_expressions_by_attribute.fget(self)
 
     @property
     def interface(self):

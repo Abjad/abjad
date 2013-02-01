@@ -33,8 +33,8 @@ class Specification(AbjadObject):
         self._context_names = []
         self._context_proxies = specificationtools.ContextProxyDictionary(score_template())
         # TODO: maybe remove in favor of self.context_proxies[].single_context_set_expression_attribute_dict?
-        # TODO: replace with SingleContextSetExpressionAttributeDictionary
-        self._fresh_single_context_set_expressions = expressiontools.SetExpressionInventory()
+        self._fresh_single_context_set_expressions_by_attribute = \
+            specificationtools.SingleContextSetExpressionAttributeDictionary()
         self._multiple_context_set_expressions = expressiontools.SetExpressionInventory()
         self._score_template = score_template
         self._score_model = score_template()
@@ -106,8 +106,8 @@ class Specification(AbjadObject):
         return self._context_proxies
 
     @property
-    def fresh_single_context_set_expressions(self):
-        return self._fresh_single_context_set_expressions
+    def fresh_single_context_set_expressions_by_attribute(self):
+        return self._fresh_single_context_set_expressions_by_attribute
 
     @property
     def multiple_context_set_expressions(self):

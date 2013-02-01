@@ -7,6 +7,7 @@ class SetExpressionInventory(TimespanInventory):
 
     ### PUBLIC METHODS ###
 
+    # TODO: remove
     def get_set_expressions(self, attribute=None):
         set_expressions = []
         for set_expression in self:

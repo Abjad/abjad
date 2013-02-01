@@ -28,7 +28,8 @@ class SingleContextSetExpression(InputSetExpression):
     ::
 
         >>> fresh_single_context_set_expression = \
-        ...     score_specification.specification.fresh_single_context_set_expressions[1]
+        ...     score_specification.specification.fresh_single_context_set_expressions_by_attribute[
+        ...     'divisions'][0]
 
     ::
 

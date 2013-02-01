@@ -61,3 +61,5 @@
     Right now a dummy segment is required to allow interpretation to procede.
 
 14. Globally search and replace z(x) with z() of whole inventory.
+
+15. Move SingleContextSetExpressionAttributeDictionary to expressiontools.

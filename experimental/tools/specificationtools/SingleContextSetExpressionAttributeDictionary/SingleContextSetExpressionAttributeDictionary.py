@@ -1,15 +1,23 @@
 from collections import OrderedDict
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.tools.expressiontools.AttributeNameEnumeration import AttributeNameEnumeration
 
 
 class SingleContextSetExpressionAttributeDictionary(AbjadObject, OrderedDict):
     '''Single-context set expression attribute dictionary.
     '''
 
+    ### CLASS ATTRIBUTES ##
+
+    attributes = AttributeNameEnumeration()
+
     ### INITIALIZER ###
 
     def __init__(self):
+        from experimental.tools import expressiontools
         OrderedDict.__init__(self)
+        for attribute in self.attributes:
+            self[attribute] = expressiontools.SetExpressionInventory()
 
     ### SPECIAL METHODS ###
 
