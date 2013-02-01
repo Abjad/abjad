@@ -128,8 +128,8 @@ class SingleContextSetExpression(InputSetExpression):
         if clear_persistent_first:
             self.score_specification.clear_persistent_single_context_set_expressions_by_context(
                 self.attribute, target_context_name)
-        self.root_segment_specification.context_proxies[
-            target_context_name].single_context_set_expressions_by_attribute[self.attribute].append(self)
+        target_context_proxy = self.root_segment_specification.context_proxies[target_context_name]
+        target_context_proxy.single_context_set_expressions_by_attribute[self.attribute].append(self)
         if self.persist:
-            self.score_specification.context_proxies[
-                target_context_name].single_context_set_expressions_by_attribute[self.attribute].append(self)
+            target_context_proxy = self.score_specification.context_proxies[target_context_name]
+            target_context_proxy.single_context_set_expressions_by_attribute[self.attribute].append(self)
