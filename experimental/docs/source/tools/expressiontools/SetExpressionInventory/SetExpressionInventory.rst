@@ -95,9 +95,6 @@ Methods
 
    Inherited from :py:class:`abjad.tools.datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 
-.. automethod:: experimental.tools.expressiontools.SetExpressionInventory.SetExpressionInventory.SetExpressionInventory.get_set_expressions
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.SetExpressionInventory.SetExpressionInventory.SetExpressionInventory.get_timespan_that_satisfies_time_relation
    :noindex:
 
