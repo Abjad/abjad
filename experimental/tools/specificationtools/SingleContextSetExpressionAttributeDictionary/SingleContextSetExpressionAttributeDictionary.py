@@ -18,6 +18,7 @@ class SingleContextSetExpressionAttributeDictionary(AbjadObject, OrderedDict):
         OrderedDict.__init__(self)
         for attribute in self.attributes:
             self[attribute] = expressiontools.SetExpressionInventory()
+        assert 'time_signatures' in self
 
     ### SPECIAL METHODS ###
 
