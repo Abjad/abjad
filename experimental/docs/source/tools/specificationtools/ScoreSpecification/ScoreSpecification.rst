@@ -78,9 +78,6 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.append_segment
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.clear_persistent_single_context_set_expressions_by_context
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_segment_specification
    :noindex:
 

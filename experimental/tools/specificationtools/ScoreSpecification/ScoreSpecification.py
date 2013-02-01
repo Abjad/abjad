@@ -620,12 +620,6 @@ class ScoreSpecification(Specification):
         segment_specification_interface._specification = segment_specification
         return segment_specification_interface
 
-    def clear_persistent_single_context_set_expressions_by_context(self, attribute, context_name):
-        if attribute in self.context_proxies[
-            context_name].single_context_set_expressions_by_attribute:
-            self.context_proxies[
-                context_name].single_context_set_expressions_by_attribute[attribute][:] = []
-
     def get_segment_specification(self, expr):
         '''Get segment specification from segment name:
 

@@ -126,8 +126,8 @@ class SingleContextSetExpression(InputSetExpression):
         assert self.root_segment_specification is not None
         target_context_name = self.target_context_name or self.score_specification.context_proxies.score_name
         if clear_persistent_first:
-            self.score_specification.clear_persistent_single_context_set_expressions_by_context(
-                self.attribute, target_context_name)
+            target_context_proxy = self.score_specification.context_proxies[target_context_name]
+            target_context_proxy.single_context_set_expressions_by_attribute[self.attribute][:] = []
         target_context_proxy = self.root_segment_specification.context_proxies[target_context_name]
         target_context_proxy.single_context_set_expressions_by_attribute[self.attribute].append(self)
         if self.persist:
