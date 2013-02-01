@@ -62,4 +62,5 @@
 
 14. Globally search and replace z(x) with z() of whole inventory.
 
-15. Move SingleContextSetExpressionAttributeDictionary to expressiontools.
+15. Maybe the specification single-context set expression storage order should be
+    attribute first and then context second?

@@ -177,6 +177,7 @@ Unstable packages (load manually)
       tools/expressiontools/SetExpressionInventory/SetExpressionInventory
       tools/expressiontools/SingleContextDivisionSetExpression/SingleContextDivisionSetExpression
       tools/expressiontools/SingleContextRhythmSetExpression/SingleContextRhythmSetExpression
+      tools/expressiontools/SingleContextSetExpressionAttributeDictionary/SingleContextSetExpressionAttributeDictionary
       tools/expressiontools/SingleContextTimeSignatureSetExpression/SingleContextTimeSignatureSetExpression
       tools/expressiontools/StartPositionedDivisionPayloadExpression/StartPositionedDivisionPayloadExpression
       tools/expressiontools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
@@ -253,6 +254,7 @@ Unstable packages (load manually)
       tools/expressiontools/SetExpressionInventory/SetExpressionInventory
       tools/expressiontools/SingleContextDivisionSetExpression/SingleContextDivisionSetExpression
       tools/expressiontools/SingleContextRhythmSetExpression/SingleContextRhythmSetExpression
+      tools/expressiontools/SingleContextSetExpressionAttributeDictionary/SingleContextSetExpressionAttributeDictionary
       tools/expressiontools/SingleContextTimeSignatureSetExpression/SingleContextTimeSignatureSetExpression
       tools/expressiontools/StartPositionedDivisionPayloadExpression/StartPositionedDivisionPayloadExpression
       tools/expressiontools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
@@ -448,7 +450,6 @@ Unstable packages (load manually)
       tools/specificationtools/SegmentSpecification/SegmentSpecification
       tools/specificationtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
-      tools/specificationtools/SingleContextSetExpressionAttributeDictionary/SingleContextSetExpressionAttributeDictionary
 
 .. only:: latex
 
@@ -472,4 +473,3 @@ Unstable packages (load manually)
       tools/specificationtools/SegmentSpecification/SegmentSpecification
       tools/specificationtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
-      tools/specificationtools/SingleContextSetExpressionAttributeDictionary/SingleContextSetExpressionAttributeDictionary

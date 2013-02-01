@@ -12,7 +12,7 @@ class ContextProxy(AbjadObject):
         self._division_payload_expressions = \
             timespantools.TimespanInventory()
         self._single_context_set_expressions_by_attribute = \
-            specificationtools.SingleContextSetExpressionAttributeDictionary()
+            expressiontools.SingleContextSetExpressionAttributeDictionary()
         self._rhythm_payload_expressions = \
             timespantools.TimespanInventory()
         self._timespan_scoped_single_context_division_set_expressions = \
