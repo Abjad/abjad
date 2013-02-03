@@ -732,10 +732,17 @@ class ScoreSpecification(Specification):
 
     def report_settings(self):
         for segment_specification in self.segment_specifications:
-            print segment_specification
+            print '### {} ### '.format(segment_specification)
             for key, context_proxy in segment_specification.context_proxies.items():
                 print key, context_proxy
                 for key, value in context_proxy.single_context_set_expressions_by_attribute.items():
                     if value:
                         print key, value.storage_format
             print ''
+        print '### SCORE ###'
+        print self
+        for key, context_proxy in self.context_proxies.items():
+            print key, context_proxy
+            for key, value in context_proxy.single_context_set_expressions_by_attribute.items():
+                if value:
+                    print key, value.storage_format

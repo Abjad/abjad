@@ -17,7 +17,7 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.deposit_single_context_set_expressions_in_segment_specifications
+.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.copy_persistent_segment_rooted_set_expressions_into_segment_specifications
    :noindex:
 
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.evaluate_multiple_context_set_expressions

@@ -28,11 +28,11 @@ class Interpreter(AbjadObject):
         self.score_specification = score_specification
         self.score = self.instantiate_score()
         self.evaluate_multiple_context_set_expressions()
-        self.deposit_single_context_set_expressions_in_segment_specifications()
+        self.copy_persistent_segment_rooted_set_expressions_into_segment_specifications()
         
     ### PUBLIC METHODS ###
 
-    def deposit_single_context_set_expressions_in_segment_specifications(self):
+    def copy_persistent_segment_rooted_set_expressions_into_segment_specifications(self):
         for segment_specification in self.score_specification.segment_specifications:
             for attribute in self.attributes:
                 fresh_single_context_set_expressions = \
