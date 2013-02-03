@@ -17,13 +17,13 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.deposit_single_context_set_expressions_in_segment_specifications
+   :noindex:
+
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.evaluate_multiple_context_set_expressions
    :noindex:
 
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.instantiate_score
-   :noindex:
-
-.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_single_context_set_expressions_in_segments_by_context_and_attribute
    :noindex:
 
 Special Methods

@@ -99,6 +99,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_default_timespan_scoped_single_context_set_expression
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.report_settings
+   :noindex:
+
 Special Methods
 ---------------
 
