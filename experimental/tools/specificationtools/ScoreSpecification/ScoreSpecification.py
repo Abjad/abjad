@@ -47,6 +47,8 @@ class ScoreSpecification(Specification):
         Specification.__init__(self, score_template)
         self._division_region_expressions = expressiontools.ExpressionInventory()
         self._rhythm_region_expressions = expressiontools.ExpressionInventory()
+        self._score_rooted_single_context_set_expressions_by_context = \
+            specificationtools.ContextProxyDictionary(score_template())
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
         self._single_context_time_signature_set_expressions = \
@@ -337,6 +339,16 @@ class ScoreSpecification(Specification):
         Return string.
         '''
         return Specification.score_name.fget(self)
+    
+    @property
+    def score_rooted_single_context_set_expressions_by_context(self):
+        '''Score specification score-rooted single-context set expressions by context.
+
+        .. note:: add example.
+
+        Return context proxy dictionary.
+        '''
+        return self._score_rooted_single_context_set_expressions_by_context
 
     @property
     def score_template(self):
@@ -659,6 +671,18 @@ class ScoreSpecification(Specification):
             segment_index = eval(modified_string)
             return self.segment_specifications[segment_index]
 
+    def get_single_context_set_expressions_rooted_to_specification(self, attribute, context_name,
+        include_improper_parentage=False):
+        result = []
+        context_names = [context_name]
+        if include_improper_parentage:
+            context_names.extend(self._context_name_to_parentage_names(context_name))
+        for context_name in reversed(context_names):
+            single_context_set_expressions = self.score_rooted_single_context_set_expressions_by_context[
+                context_name].single_context_set_expressions_by_attribute.get(attribute, [])
+            result.extend(single_context_set_expressions)
+        return result
+
     def get_time_signature_slice(self, timespan):
         '''Get time signature slice::
 
@@ -678,10 +702,11 @@ class ScoreSpecification(Specification):
 
     def get_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, context_name):
         timespan_scoped_set_expressions = expressiontools.TimespanScopedSingleContextSetExpressionInventory()
-        for segment_specification in self.segment_specifications:
+        #for segment_specification in self.segment_specifications:
+        for segment_specification in (self, ) + tuple(self.segment_specifications):
             #self._debug(segment_specification, 'segment')
             single_context_set_expressions = \
-                segment_specification.get_single_context_set_expressions_that_start_during_segment(
+                segment_specification.get_single_context_set_expressions_rooted_to_specification(
                 attribute, context_name, include_improper_parentage=True)
             #self._debug_values(single_context_set_expressions, 'sc sxs')
             for single_context_set_expression in single_context_set_expressions:
@@ -733,16 +758,34 @@ class ScoreSpecification(Specification):
     def report_settings(self):
         for segment_specification in self.segment_specifications:
             print '### {} ### '.format(segment_specification)
-            for key, context_proxy in segment_specification.context_proxies.items():
-                print key, context_proxy
+            for context_proxy_name, context_proxy in segment_specification.context_proxies.items():
+                printed_context_proxy_name = False
                 for key, value in context_proxy.single_context_set_expressions_by_attribute.items():
                     if value:
+                        if not printed_context_proxy_name:
+                            print context_proxy_name
+                            printed_context_proxy_name = True
                         print key, value.storage_format
             print ''
         print '### SCORE ###'
         print self
-        for key, context_proxy in self.context_proxies.items():
-            print key, context_proxy
+        for context_proxy_name, context_proxy in self.context_proxies.items():
+            #print key, context_proxy
+            printed_context_proxy_name = False
             for key, value in context_proxy.single_context_set_expressions_by_attribute.items():
                 if value:
+                    if not printed_context_proxy_name:
+                        print context_proxy_name
+                        printed_context_proxy_name = True
+                    print key, value.storage_format
+        print ''
+        print '### SCORE-ROOTED ###'
+        for context_proxy_name, context_proxy in \
+            self.score_rooted_single_context_set_expressions_by_context.items():
+            printed_context_proxy_name = False
+            for key, value in context_proxy.single_context_set_expressions_by_attribute.items():
+                if value:
+                    if not printed_context_proxy_name:
+                        print context_proxy_name
+                        printed_context_proxy_name = True
                     print key, value.storage_format

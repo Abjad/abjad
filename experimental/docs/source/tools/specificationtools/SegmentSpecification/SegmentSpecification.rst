@@ -48,7 +48,7 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.get_single_context_set_expressions_that_start_during_segment
+.. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.get_single_context_set_expressions_rooted_to_specification
    :noindex:
 
 Special Methods

@@ -250,7 +250,7 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    def get_single_context_set_expressions_that_start_during_segment(self, attribute, context_name,
+    def get_single_context_set_expressions_rooted_to_specification(self, attribute, context_name,
         include_improper_parentage=False):
         result = []
         context_names = [context_name]

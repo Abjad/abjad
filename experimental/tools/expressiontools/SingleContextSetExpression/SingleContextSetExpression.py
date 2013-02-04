@@ -127,14 +127,15 @@ class SingleContextSetExpression(InputSetExpression):
         target_context_name = self.target_context_name or self.score_specification.context_proxies.score_name
         target_context_proxy = self.root_segment_specification.context_proxies[target_context_name]
         expressions = target_context_proxy.single_context_set_expressions_by_attribute[self.attribute]
+        # TODO: maybe also hash expressions by timespan?
         for expression in expressions[:]:
             if expression.target_timespan == self.target_timespan:
                 expressions.remove(expression)
         expressions.append(self)
-        if self.persist:
-            target_context_proxy = self.score_specification.context_proxies[target_context_name]
-            expressions = target_context_proxy.single_context_set_expressions_by_attribute[self.attribute]
-            for expression in expressions[:]:
-                if expression.target_timespan == self.target_timespan:
-                    expressions.remove(expression)
-            expressions.append(self)
+#        if self.persist:
+#            target_context_proxy = self.score_specification.context_proxies[target_context_name]
+#            expressions = target_context_proxy.single_context_set_expressions_by_attribute[self.attribute]
+#            for expression in expressions[:]:
+#                if expression.target_timespan == self.target_timespan:
+#                    expressions.remove(expression)
+#            expressions.append(self)
