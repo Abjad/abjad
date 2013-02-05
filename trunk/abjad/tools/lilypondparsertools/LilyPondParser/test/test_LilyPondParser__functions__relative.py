@@ -1,4 +1,3 @@
-import py.test
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
@@ -193,7 +192,6 @@ def test_LilyPondParser__functions__relative_08():
 
 
 def test_LilyPondParser__functions__relative_09():
-    # py.test.skip('Abjad cannot yet diatonically transpose double-sharp or double-flat pitches.')
     # http://lilypond.org/doc/v2.15/Documentation/c6/lily-8d84e2b9.ly
     pitches = ["c''", "fs''", "c''", "gf'", "b'", "ess''", "b'", "fff'"]
     target = Container(notetools.make_notes(pitches, [(1, 2)]))

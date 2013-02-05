@@ -1,7 +1,5 @@
 from abjad import *
 import py.test
-#import py
-#py.test.skip('update me to use start_offset_in_seconds property.')
 
 
 def test_Component_start_offset_in_seconds_01():
