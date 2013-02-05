@@ -16,7 +16,7 @@ Abjad 2.11
        11. mainline doctest test results: Total modules: 1592
        12. experimental py.test test results: 352 passed, 9 skipped
        13. experimental doctest test results: Total modules: 129
-       14. sanity check test results: (everything OK)
+       14. sanity check test results: everything OK
        15. HTML build results: (OK)
        16. LaTeX build results: (OK)
        17. PDF build results: (Failed)

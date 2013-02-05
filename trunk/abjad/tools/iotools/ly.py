@@ -37,6 +37,7 @@ def ly(target=-1):
         last_lilypond = iotools.get_last_output_file_name()
         if last_lilypond:
             last_number = last_lilypond.replace('.ly', '')
+            last_number = last_number.replace('.pdf', '')
             target_number = int(last_number) + (target + 1)
             target_str = '%04d' % target_number
             target_ly = os.path.join(ABJADOUTPUT, target_str + '.ly')

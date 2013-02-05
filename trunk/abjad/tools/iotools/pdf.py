@@ -22,6 +22,7 @@ def pdf(target=-1):
         last_lilypond = iotools.get_last_output_file_name()
         if last_lilypond:
             last_number = last_lilypond.replace('.ly', '')
+            last_number = last_lilypond.replace('.pdf', '')
             target_number = int(last_number) + (target + 1)
             target_str = '%04d' % target_number
             target_pdf = os.path.join(ABJADOUTPUT, target_str + '.pdf')
