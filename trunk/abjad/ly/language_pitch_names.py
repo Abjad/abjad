@@ -3,7 +3,7 @@
 from abjad.tools.pitchtools import NamedChromaticPitchClass
 
 
-lilypond_version = "2.17.9"
+lilypond_version = "2.17.11"
 
 language_pitch_names = {
     'nederlands':  {

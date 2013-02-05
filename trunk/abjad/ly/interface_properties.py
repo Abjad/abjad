@@ -1,4 +1,4 @@
-lilypond_version = "2.17.9"
+lilypond_version = "2.17.11"
 
 interface_properties = {
     "accidental-interface": [
@@ -485,6 +485,7 @@ interface_properties = {
     "side-position-interface": [
         "add-stem-support",
         "direction",
+        "horizon-padding",
         "minimum-space",
         "padding",
         "side-axis",

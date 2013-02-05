@@ -1,4 +1,4 @@
-lilypond_version = "2.17.9"
+lilypond_version = "2.17.11"
 
 markup_functions = {
     'abs-fontsize': ('number?', 'cheap-markup?',),
@@ -22,6 +22,8 @@ markup_functions = {
     'doubleflat': (),
     'doublesharp': (),
     'draw-circle': ('number?', 'number?', 'boolean?',),
+    'draw-dashed-line': ('number-pair?',),
+    'draw-dotted-line': ('number-pair?',),
     'draw-hline': (),
     'draw-line': ('number-pair?',),
     'dynamic': ('cheap-markup?',),

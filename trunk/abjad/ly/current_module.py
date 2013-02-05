@@ -3,7 +3,7 @@ from abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration \
     import LilyPondDuration
 
 
-lilypond_version = "2.17.9"
+lilypond_version = "2.17.11"
 
 current_module = {
     '$current-book': '$current-book',
@@ -1914,10 +1914,9 @@ current_module = {
         'types': ('context-specification', 'general-music', 'music-wrapper-music',),
     },
     'thumb': {
-        'articulation-type': 'thumb',
-        'name': 'ArticulationEvent',
+        'name': 'FingeringEvent',
         'type': 'ly:prob?',
-        'types': ('general-music', 'post-event', 'event', 'articulation-event', 'script-event',),
+        'types': ('general-music', 'post-event', 'fingering-event', 'event',),
     },
     'tieDashPattern': {
         'signature': ('ly:music?', 'number?', 'number?',),
@@ -2028,6 +2027,10 @@ current_module = {
         'type': 'ly:prob?',
         'types': ('general-music', 'post-event', 'event', 'articulation-event', 'script-event',),
     },
+    'tuplet': {
+        'signature': ('ly:music?', 'fraction?', 'optional?', 'ly:duration?', 'ly:music?',),
+        'type': 'ly:music-function?',
+    },
     'tupletDown': {
         'context-type': 'Bottom',
         'name': 'ContextSpeccedMusic',
@@ -2039,6 +2042,10 @@ current_module = {
         'name': 'ContextSpeccedMusic',
         'type': 'ly:prob?',
         'types': ('context-specification', 'general-music', 'music-wrapper-music',),
+    },
+    'tupletSpan': {
+        'signature': ('ly:music?', 'optional?', 'ly:duration?',),
+        'type': 'ly:music-function?',
     },
     'tupletUp': {
         'context-type': 'Bottom',

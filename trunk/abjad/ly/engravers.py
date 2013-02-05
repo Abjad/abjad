@@ -1,4 +1,4 @@
-lilypond_version = "2.17.9"
+lilypond_version = "2.17.11"
 
 engravers = set([
     "Accidental_engraver",
@@ -53,7 +53,6 @@ engravers = set([
     "Grid_line_span_engraver",
     "Grid_point_engraver",
     "Grob_pq_engraver",
-    "Hara_kiri_engraver",
     "Horizontal_bracket_engraver",
     "Hyphen_engraver",
     "Instrument_name_engraver",
