@@ -1,4 +1,27 @@
 Abjad 2.11
+    Date of package: 2012-02-05
+    Revision of Abjad repository: r9356
+
+    Packaging environment:
+        1. uname -v: Darwin Kernel Version 11.4.2
+        2. svn --version: svn, version 1.6.17 (r1128011)
+        3. python --version: Python 2.7.3
+        4. pip --version:  pip 1.2.1
+        5. py.test --version: This is py.test version 2.3.4
+        6. sphinx-build --version: Sphinx v1.1.3
+        7. lilypond --version: GNU LilyPond 2.17.11
+        8. convert --version: ImageMagick 6.3.3
+        9. dot -V: graphviz version 2.28.0 (20111028.1807)
+       10. mainline py.test test results: 4745 passed, 1 skipped
+       11. mainline doctest test results: (Total modules: 1617)
+       12. experimental py.test test results: (317 passed, 7 skipped)
+       13. experimental doctest test results: (Total modules: 112)
+       14. sanity check test results: (everything OK)
+       15. HTML build results: (OK)
+       16. LaTeX build results: (OK)
+       17. PDF build results: (Failed)
+
+Abjad 2.11 (never announced to list)
     Date of package: 2012-12-17
     Revision of Abjad repository: r8369
 

@@ -37,7 +37,7 @@ Abjad packaging checklist:
 
 
  3. Author release notes:
-        Open docs/source/appendices/change_log/index.rst 
+        Open doc/source/start_here/versions/index.rst.
         Add a sentence giving the release date and repository revision number.
         Example: "Released 2009-05-21. Built from r5752."
         Run "ajv count tools ." and "scr/devel/count-source-lines".
@@ -54,7 +54,7 @@ Abjad packaging checklist:
         List adds first and extensions second.
         List changes in user syntax last.
     Also update change log:
-        Open doc/source/start_here/versions/index.rst.
+        Open docs/source/appendices/change_log/index.rst 
         Add entries for function, method and class names changed during development.
 
  4. Commit.
