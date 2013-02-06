@@ -6,7 +6,7 @@ from experimental.tools.expressiontools.AttributeNameEnumeration import Attribut
 
 
 class Interpreter(AbjadObject):
-    r'''
+    r'''Interpreter.
 
     Abstract interpreter class from which conrete interpreters inherit.
     ''' 
@@ -100,6 +100,12 @@ class Interpreter(AbjadObject):
                         attribute].append(fresh_single_context_set_expression)
                 
     def instantiate_score(self):
+        '''Instantiate score.
+
+        Include time signature context.
+        
+        Return score.
+        '''
         score = self.score_specification.score_template()
         context = contexttools.Context(name='TimeSignatureContext', context_name='TimeSignatureContext')
         score.insert(0, context)

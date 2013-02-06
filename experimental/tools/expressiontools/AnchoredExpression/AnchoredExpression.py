@@ -141,13 +141,14 @@ class AnchoredExpression(Expression):
     def evaluate_anchor_timespan(self):
         '''Evaluate anchor timespan.
 
-        Return timespan.
+        Return timespan when anchor timespan is evaluable.
+
+        Return none when anchor timespan is not evaluable.
         '''
-        from experimental.tools import expressiontools
         if isinstance(self.anchor, str):
-            return self.score_specification.segment_specifications[self.anchor].timespan
+            return self.root_specification.timespan
         elif self.anchor is None:
-            return self.score_specification.timespan
+            return self.root_specification.timespan
         expression = self.anchor.evaluate()
         if expression is None:
             return
