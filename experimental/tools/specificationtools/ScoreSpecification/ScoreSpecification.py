@@ -671,13 +671,9 @@ class ScoreSpecification(Specification):
             segment_index = eval(modified_string)
             return self.segment_specifications[segment_index]
 
-    def get_single_context_set_expressions_rooted_to_specification(self, attribute, context_name,
-        include_improper_parentage=False):
-        assert include_improper_parentage
+    def get_single_context_set_expressions_rooted_to_specification(self, attribute, context_name):
         result = []
-        context_names = [context_name]
-        if include_improper_parentage:
-            context_names = self._context_name_to_improper_parentage_names(context_name)
+        context_names = self._context_name_to_improper_parentage_names(context_name)
         for context_name in reversed(context_names):
             single_context_set_expressions = self.score_rooted_single_context_set_expressions_by_context[
                 context_name].single_context_set_expressions_by_attribute.get(attribute, [])
@@ -708,7 +704,7 @@ class ScoreSpecification(Specification):
             #self._debug(segment_specification, 'segment')
             single_context_set_expressions = \
                 segment_specification.get_single_context_set_expressions_rooted_to_specification(
-                attribute, context_name, include_improper_parentage=True)
+                attribute, context_name)
             #self._debug_values(single_context_set_expressions, 'sc sxs')
             for single_context_set_expression in single_context_set_expressions:
                 timespan_scoped_set_expression = single_context_set_expression.evaluate()
