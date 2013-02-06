@@ -47,7 +47,7 @@ class ScoreSpecification(Specification):
         Specification.__init__(self, score_template)
         self._division_region_expressions = expressiontools.ExpressionInventory()
         self._rhythm_region_expressions = expressiontools.ExpressionInventory()
-        self._score_rooted_single_context_set_expressions_by_context = \
+        self._fresh_single_context_set_expressions_by_context = \
             specificationtools.ContextProxyDictionary(score_template())
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
@@ -195,9 +195,19 @@ class ScoreSpecification(Specification):
 
         Populate during interpretation.
 
-        Return set expression inventory.
+        Return attribute dictionary.
         '''
         return Specification.fresh_single_context_set_expressions_by_attribute.fget(self)
+
+    @property
+    def fresh_single_context_set_expressions_by_context(self):
+        '''Score specification fresh single-context set expressions by context.
+
+        .. note:: add example.
+
+        Return context proxy dictionary.
+        '''
+        return self._fresh_single_context_set_expressions_by_context
 
     @property
     def interface(self):
@@ -340,16 +350,6 @@ class ScoreSpecification(Specification):
         '''
         return Specification.score_name.fget(self)
     
-    @property
-    def score_rooted_single_context_set_expressions_by_context(self):
-        '''Score specification score-rooted single-context set expressions by context.
-
-        .. note:: add example.
-
-        Return context proxy dictionary.
-        '''
-        return self._score_rooted_single_context_set_expressions_by_context
-
     @property
     def score_template(self):
         r'''Score specification score template::
@@ -677,7 +677,7 @@ class ScoreSpecification(Specification):
         result = []
         context_names = self._context_name_to_improper_parentage_names(context_name)
         for context_name in reversed(context_names):
-            single_context_set_expressions = self.score_rooted_single_context_set_expressions_by_context[
+            single_context_set_expressions = self.fresh_single_context_set_expressions_by_context[
                 context_name].single_context_set_expressions_by_attribute.get(attribute, [])
             result.extend(single_context_set_expressions)
         return result
@@ -777,7 +777,7 @@ class ScoreSpecification(Specification):
         print ''
         print '### SCORE-ROOTED ###'
         for context_proxy_name, context_proxy in \
-            self.score_rooted_single_context_set_expressions_by_context.items():
+            self.fresh_single_context_set_expressions_by_context.items():
             printed_context_proxy_name = False
             for key, value in context_proxy.single_context_set_expressions_by_attribute.items():
                 if value:

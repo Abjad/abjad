@@ -90,7 +90,7 @@ class Interpreter(AbjadObject):
             elif multiple_context_set_expression.is_score_rooted:
                 for fresh_single_context_set_expression in fresh_single_context_set_expressions:
                     target_context_name = fresh_single_context_set_expression.target_context_name
-                    root_specification.score_rooted_single_context_set_expressions_by_context[
+                    root_specification.fresh_single_context_set_expressions_by_context[
                         target_context_name].single_context_set_expressions_by_attribute[
                         attribute].append(fresh_single_context_set_expression)
             else:
