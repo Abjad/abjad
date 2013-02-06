@@ -42,19 +42,15 @@ class Specification(AbjadObject):
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
-    def _context_name_to_parentage_names(self, context_name, proper=True):
+    def _context_name_to_parentage_names(self, context_name):
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
-        if proper:
-            parentage = componenttools.get_proper_parentage_of_component(context)
-        else:
-            parentage = componenttools.get_improper_parentage_of_component(context)
+        parentage = componenttools.get_improper_parentage_of_component(context)
         context_names = [context.name for context in parentage]
         return context_names
 
     def _get_first_element_in_expr_by_parentage(self, expr, context_name, include_improper_parentage=False):
-        context_names = [context_name]
-        if include_improper_parentage:
-            context_names = self._context_name_to_parentage_names(context_name, proper=False)
+        assert include_improper_parentage == True
+        context_names = self._context_name_to_parentage_names(context_name)
         for context_name in context_names:
             for element in expr:
                 if element.target_context_name is None:
