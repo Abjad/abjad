@@ -671,7 +671,9 @@ class ScoreSpecification(Specification):
             segment_index = eval(modified_string)
             return self.segment_specifications[segment_index]
 
-    def get_single_context_set_expressions_rooted_to_specification(self, attribute, context_name):
+    # TODO: hoist to Specification
+    def get_single_context_set_expressions_rooted_to_specification_that_govern_context_name(
+        self, attribute, context_name):
         result = []
         context_names = self._context_name_to_improper_parentage_names(context_name)
         for context_name in reversed(context_names):
@@ -697,13 +699,12 @@ class ScoreSpecification(Specification):
         result = [x.pair for x in result]
         return result
 
-    def get_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, context_name):
+    def get_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, voice_name):
         timespan_scoped_set_expressions = expressiontools.TimespanScopedSingleContextSetExpressionInventory()
-        #for segment_specification in self.segment_specifications:
         for specification in (self, ) + tuple(self.segment_specifications):
             single_context_set_expressions = \
-                specification.get_single_context_set_expressions_rooted_to_specification(
-                attribute, context_name)
+                specification.get_single_context_set_expressions_rooted_to_specification_that_govern_context_name(
+                attribute, voice_name)
             for single_context_set_expression in single_context_set_expressions:
                 timespan_scoped_set_expression = single_context_set_expression.evaluate()
                 # make sure set expression was set expression for timespan that exists in current segment

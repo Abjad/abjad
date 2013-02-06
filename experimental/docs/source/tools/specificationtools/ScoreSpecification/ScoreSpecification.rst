@@ -84,7 +84,7 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_segment_specification
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_single_context_set_expressions_rooted_to_specification
+.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_single_context_set_expressions_rooted_to_specification_that_govern_context_name
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_time_signature_slice

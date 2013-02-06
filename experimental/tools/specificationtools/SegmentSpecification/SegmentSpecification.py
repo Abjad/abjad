@@ -250,7 +250,9 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    def get_single_context_set_expressions_rooted_to_specification(self, attribute, context_name):
+    # TODO: hoist to Specification
+    def get_single_context_set_expressions_rooted_to_specification_that_govern_context_name(
+        self, attribute, context_name):
         result = []
         context_names = self._context_name_to_improper_parentage_names(context_name)
         for context_name in reversed(context_names):
