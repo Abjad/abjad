@@ -23,6 +23,8 @@ def pdf(target=-1):
         if last_lilypond:
             last_number = last_lilypond.replace('.ly', '')
             last_number = last_lilypond.replace('.pdf', '')
+            last_number = last_number.replace('.midi', '')
+            last_number = last_number.replace('.mid', '')
             target_number = int(last_number) + (target + 1)
             target_str = '%04d' % target_number
             target_pdf = os.path.join(ABJADOUTPUT, target_str + '.pdf')
