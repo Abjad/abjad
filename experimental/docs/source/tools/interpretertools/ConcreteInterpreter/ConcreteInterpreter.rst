@@ -86,6 +86,11 @@ Methods
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.populate_single_context_time_signature_set_expressions
    :noindex:
 
+.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.store_score_rooted_single_context_set_expressions_by_context
+   :noindex:
+
+   Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
+
 Special Methods
 ---------------
 

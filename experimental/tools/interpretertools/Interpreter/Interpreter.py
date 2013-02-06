@@ -28,6 +28,7 @@ class Interpreter(AbjadObject):
         self.score_specification = score_specification
         self.score = self.instantiate_score()
         self.evaluate_multiple_context_set_expressions()
+        self.store_score_rooted_single_context_set_expressions_by_context()
         self.copy_persistent_segment_rooted_set_expressions_into_segment_specifications()
         
     ### PUBLIC METHODS ###
@@ -67,22 +68,12 @@ class Interpreter(AbjadObject):
 
     def evaluate_multiple_context_set_expressions(self):
         for multiple_context_set_expression in self.score_specification.multiple_context_set_expressions:
-            root_specification = multiple_context_set_expression.root_specification
-            attribute = multiple_context_set_expression.attribute
             fresh_single_context_set_expressions = multiple_context_set_expression.evaluate()
             assert all([x.fresh for x in fresh_single_context_set_expressions])
-            # TODO: make these two branches exactly parallel and see if branches can collapse into one
-            if multiple_context_set_expression.is_segment_rooted:
-                root_specification.fresh_single_context_set_expressions_by_attribute[
-                    attribute].extend(fresh_single_context_set_expressions)
-            else:
-                root_specification.fresh_single_context_set_expressions_by_attribute[
-                    attribute].extend(fresh_single_context_set_expressions)
-                for fresh_single_context_set_expression in fresh_single_context_set_expressions:
-                    target_context_name = fresh_single_context_set_expression.target_context_name
-                    root_specification.fresh_single_context_set_expressions_by_context[
-                        target_context_name].single_context_set_expressions_by_attribute[
-                        attribute].append(fresh_single_context_set_expression)
+            root_specification = multiple_context_set_expression.root_specification
+            attribute = multiple_context_set_expression.attribute
+            root_specification.fresh_single_context_set_expressions_by_attribute[
+                attribute].extend(fresh_single_context_set_expressions)
                 
     def instantiate_score(self):
         '''Instantiate score.
@@ -95,3 +86,12 @@ class Interpreter(AbjadObject):
         context = contexttools.Context(name='TimeSignatureContext', context_name='TimeSignatureContext')
         score.insert(0, context)
         return score
+
+    def store_score_rooted_single_context_set_expressions_by_context(self):
+        for attribute, fresh_single_context_set_expressions in \
+            self.score_specification.fresh_single_context_set_expressions_by_attribute.items():
+            for fresh_single_context_set_expression in fresh_single_context_set_expressions:
+                target_context_name = fresh_single_context_set_expression.target_context_name
+                self.score_specification.fresh_single_context_set_expressions_by_context[
+                    target_context_name].single_context_set_expressions_by_attribute[
+                    attribute].append(fresh_single_context_set_expression)

@@ -26,6 +26,9 @@ Methods
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.instantiate_score
    :noindex:
 
+.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_score_rooted_single_context_set_expressions_by_context
+   :noindex:
+
 Special Methods
 ---------------
 
