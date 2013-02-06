@@ -1,6 +1,6 @@
 Abjad 2.11
     Date of package: 2012-02-05
-    Revision of Abjad repository: r9356
+    Revision of Abjad repository: r9363
 
     Packaging environment:
         1. uname -v: Darwin Kernel Version 11.4.2
@@ -17,9 +17,18 @@ Abjad 2.11
        12. experimental py.test test results: 352 passed, 9 skipped
        13. experimental doctest test results: Total modules: 129
        14. sanity check test results: everything OK
-       15. HTML build results: (OK)
-       16. LaTeX build results: (OK)
-       17. PDF build results: (Failed)
+       15. experimental HTML build results: OK
+       16. mainline HTML build results: OK
+       17. LaTeX build results: OK
+       18. PDF build results: (Failed)
+            Chapter 51.
+            LaTeX Warning: File `graphviz-ca055027cf790e81ac833acbe050f39ad23fa5c8.pdf' not
+             found on input line 179914.
+            !pdfTeX error: pdflatex (file graphviz-ca055027cf790e81ac833acbe050f39ad23fa5c8
+            .pdf): cannot find image file
+             ==> Fatal error occurred, no output PDF file produced!
+            make: *** [AbjadAPI.pdf] Error 70
+
 
 Abjad 2.11 (never announced to list)
     Date of package: 2012-12-17

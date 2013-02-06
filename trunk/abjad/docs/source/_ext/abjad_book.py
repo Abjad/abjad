@@ -313,7 +313,7 @@ def visit_abjad_book_latex(self, node):
     paths = render_abjad_book_node(
         self, node['code'], node['kind'], file_format='pdf',
         keep_original=False)
-    self.body.append('\n\\includegraphics{' + primary_relative_path + '}\n')
+    self.body.append('\n\\includegraphics{' + paths['primary_relative_path'] + '}\n')
     raise docutils.nodes.SkipNode
 
 

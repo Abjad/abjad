@@ -113,40 +113,48 @@ Abjad packaging checklist:
     Check the revision number indicated there.
     Make sure the revision number equals current revision + 1.
 
-14. Change to abjad/docs and run 'make clean'.
+14. Change to abjad/docs.
+    Run 'make clean'.
     This step is important because failing to 'make clean' before building
     the docs can cause the doc tarball made below to exceed 25 megs.
     PyPI rejects doc tarballs greater than 25 megs.
 
-15. Run "ajv api -M". If any errors occur, fix, commit and go back to (6.)
+15. Change to experimental/docs.
+    Run "make clean".
+    Run "avj api -X". If any erros occur, fix, commit and go back to (6.)
+    Record experimental build results in the packaging transcript.
+
+16. Change back to abjad/docs.
+    Run "ajv api -M". If any errors occur, fix, commit and go back to (6.)
     Record HTML build results in the packaging transcript.
 
-16. Run "make latex". If any errors occur, fix, commit and go back to (6.)
+17. Run "make latex". 
+    If any errors occur, fix, commit and go back to (6.)
     Record the LaTeX build results in the packaging transcript.
 
-17. Change to docs/build/latex and run 'make all-pdf'.
+18. Run "make latexpdf". 
     If any errors occur, fix, commit and go back to (6.)
     Open the docs/build/latex/Abjad.pdf file that results.
     Click around some to make sure everything looks OK.
     Record PDF build results in the packaging transcript.
 
-18. Copy docs/build/latex/Abjad.pdf to docs/pdf/Abjad-x-y.pdf.
+19. Copy docs/build/latex/Abjad.pdf to docs/pdf/Abjad-x-y.pdf.
     Do this with 'cp' and not with 'svn cp'.
 
-19. Add docs/pdf/Abajd-x-y.pdf to svn.
+20. Add docs/pdf/Abajd-x-y.pdf to svn.
 
-20. Remove docs/pdf/Abjad-x-(y-1).pdf from svn.
+21. Remove docs/pdf/Abjad-x-(y-1).pdf from svn.
 
-21. Commit.
+22. Commit.
     All tests have now passed in the packaging environment.
     All documentation has now built in the packaging environment.
 
-22. For each additional test environment, repeat the following steps:
+23. For each additional test environment, repeat the following steps:
     [2] documenting the test environment.
     [5], [6], [7] recording py.test, doctest and sanity check test results.
     [12], [13], [14] recording HTML, LaTeX & PDF build results.
 
-23. Complete all addition platform testing.
+24. Complete all addition platform testing.
     Close and save the packaging transcript.
     Commit.
 
