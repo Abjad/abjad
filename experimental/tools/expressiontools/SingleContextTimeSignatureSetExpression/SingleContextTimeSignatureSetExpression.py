@@ -37,5 +37,5 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
             assert isinstance(expression, expressiontools.PayloadExpression)
             time_signatures = expression.payload[:]
         if time_signatures:
-            self.root_segment_specification._time_signatures = time_signatures[:]
+            self.root_specification._time_signatures = time_signatures[:]
             return time_signatures

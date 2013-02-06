@@ -95,16 +95,6 @@ class AnchoredExpression(Expression):
         else:
             return self.anchor.root_identifier
         
-    # TODO: replace with self.root_specification
-    @property
-    def root_segment_specification(self):
-        '''Anchored expression root segment specification.
-        '''
-        if self.is_segment_rooted:
-            return self.score_specification.segment_specifications[self.root_identifier]
-        else:
-            raise Exception
-
     @property
     def root_specification(self):
         '''Anchored expression root specification.

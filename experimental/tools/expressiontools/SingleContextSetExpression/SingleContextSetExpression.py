@@ -123,9 +123,9 @@ class SingleContextSetExpression(InputSetExpression):
         by context and attribute.
         '''
         # TODO: this will have to be changed to handle score-rooted expressions
-        assert self.root_segment_specification is not None
+        assert self.root_specification is not None
         target_context_name = self.target_context_name or self.score_specification.context_proxies.score_name
-        target_context_proxy = self.root_segment_specification.context_proxies[target_context_name]
+        target_context_proxy = self.root_specification.context_proxies[target_context_name]
         expressions = target_context_proxy.single_context_set_expressions_by_attribute[self.attribute]
         # TODO: maybe also hash expressions by timespan?
         for expression in expressions[:]:
