@@ -78,26 +78,23 @@ class Interpreter(AbjadObject):
 
     def evaluate_multiple_context_set_expressions(self):
         for multiple_context_set_expression in self.score_specification.multiple_context_set_expressions:
+            root_specification = multiple_context_set_expression.root_specification
             attribute = multiple_context_set_expression.attribute
             fresh_single_context_set_expressions = multiple_context_set_expression.evaluate()
             assert all([x.fresh for x in fresh_single_context_set_expressions])
+            self.score_specification.fresh_single_context_set_expressions_by_attribute[
+                attribute].extend(fresh_single_context_set_expressions)
             if multiple_context_set_expression.is_segment_rooted:
-                root_specification = multiple_context_set_expression.root_specification
                 root_specification.fresh_single_context_set_expressions_by_attribute[
                     attribute].extend(fresh_single_context_set_expressions)
-                self.score_specification.fresh_single_context_set_expressions_by_attribute[
-                    attribute].extend(fresh_single_context_set_expressions)
-            #if multiple_context_set_expression.is_segment_rooted:
-            #    root_specification = multiple_context_set_expression.root_specification
-            #    root_specification.fresh_single_context_set_expressions_by_attribute.[
-            #         attribute].extend(fresh_single_context_set_expressions)
-            for fresh_single_context_set_expression in fresh_single_context_set_expressions:
-                if fresh_single_context_set_expression.is_score_rooted:
+            elif multiple_context_set_expression.is_score_rooted:
+                for fresh_single_context_set_expression in fresh_single_context_set_expressions:
                     target_context_name = fresh_single_context_set_expression.target_context_name
-                    attribute = fresh_single_context_set_expression.attribute
-                    self.score_specification.score_rooted_single_context_set_expressions_by_context[
+                    root_specification.score_rooted_single_context_set_expressions_by_context[
                         target_context_name].single_context_set_expressions_by_attribute[
                         attribute].append(fresh_single_context_set_expression)
+            else:
+                raise ValueError(multiple_context_set_expression)
                 
     def instantiate_score(self):
         '''Instantiate score.
