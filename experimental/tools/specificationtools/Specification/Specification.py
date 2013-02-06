@@ -45,17 +45,17 @@ class Specification(AbjadObject):
     def _context_name_to_improper_parentage_names(self, context_name):
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
         parentage = componenttools.get_improper_parentage_of_component(context)
-        context_names = [context.name for context in parentage]
-        return context_names
+        parentage_names = [parent.name for parent in parentage]
+        return parentage_names
 
-    def _get_first_element_in_expr_by_parentage(self, expr, context_name):
-        context_names = self._context_name_to_improper_parentage_names(context_name)
-        for context_name in context_names:
-            for element in expr:
-                if element.target_context_name is None:
-                    return element
-                if element.target_context_name == context_name:
-                    return element
+    def _get_first_expression_for_context_name(self, expressions, context_name):
+        parentage_names = self._context_name_to_improper_parentage_names(context_name)
+        for parentage_name in parentage_names:
+            for expression in expressions:
+                if expression.target_context_name is None:
+                    return expression
+                elif expression.target_context_name == parentage_name:
+                    return expression
 
     ### PRIVATE METHODS ###
 

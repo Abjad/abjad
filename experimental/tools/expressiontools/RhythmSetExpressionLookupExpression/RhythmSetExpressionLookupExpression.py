@@ -36,7 +36,7 @@ class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
         timespan_inventory = self._get_timespan_scoped_single_context_rhythm_set_expressions()
         time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
         candidate_set_expressions = timespan_inventory.get_timespans_that_satisfy_time_relation(time_relation)
-        source_set_expression = self.root_segment_specification._get_first_element_in_expr_by_parentage(
+        source_set_expression = self.root_segment_specification._get_first_expression_for_context_name(
             candidate_set_expressions, self.voice_name)
         assert source_set_expression is not None
         assert isinstance(source_set_expression, expressiontools.TimespanScopedSingleContextSetExpression)
