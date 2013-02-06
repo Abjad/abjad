@@ -34,21 +34,20 @@ class AnchoredExpression(Expression):
 
     ### PRIVATE METHODS ###
 
-    # TODO: change name to self._set_root(root_identifier)
-    def _set_root(self, root):
-        assert isinstance(root, (str, type(None)))
+    def _set_root(self, root_identifier):
+        assert isinstance(root_identifier, (str, type(None)))
         if isinstance(self.anchor, (str, type(None))):
-            self._anchor = root
+            self._anchor = root_identifier
         else:
             anchor = copy.deepcopy(self.anchor)
-            anchor._set_root(root)
+            anchor._set_root(root_identifier)
             self._anchor = anchor
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def anchor(self):
-        '''Expression anchor.
+        '''Anchored expression anchor.
 
         Anchored expressions may be anchored to the entire score,
         to a single segment, or to another expression.
@@ -101,7 +100,7 @@ class AnchoredExpression(Expression):
     def root_segment_identifier(self):
         '''Return anchor when anchor is a string.
 
-        Otherwise return anchor start-segment identifier.
+        Otherwise return anchor root-segment identifier.
 
         Return string name of segment.
         '''
@@ -116,7 +115,7 @@ class AnchoredExpression(Expression):
 
     @property
     def root_segment_specification(self):
-        '''Root segment specification.
+        '''Anchored expression root segment specification.
         '''
         # NEXT TODO: use self.root instead
         if self.root_segment_identifier is not None:
@@ -124,7 +123,7 @@ class AnchoredExpression(Expression):
 
     @property
     def score_specification(self):
-        '''Expression score specification.
+        '''Anchored expression score specification.
 
         Return reference to score specification object.
         '''
@@ -132,7 +131,7 @@ class AnchoredExpression(Expression):
 
     @property
     def start_offset(self):
-        '''Expression start offset.
+        '''Anchored expression start offset.
 
         Return offset expression.
         '''
@@ -143,7 +142,7 @@ class AnchoredExpression(Expression):
 
     @property
     def stop_offset(self):
-        '''Expression stop offset.
+        '''Anchored expression stop offset.
 
         Return offset expression.
         '''
