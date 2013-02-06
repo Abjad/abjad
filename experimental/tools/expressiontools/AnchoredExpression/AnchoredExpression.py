@@ -100,7 +100,7 @@ class AnchoredExpression(Expression):
     def root_segment_identifier(self):
         '''Return anchor when anchor is a string.
 
-        Otherwise return anchor root-segment identifier.
+        Otherwise return anchor root segment identifier.
 
         Return string name of segment.
         '''
@@ -108,8 +108,8 @@ class AnchoredExpression(Expression):
             return self.anchor
         # NEXT TODO: do not return value for score-rooted expression
         elif self.anchor is None:
-            return self.score_specification.segment_specifications[0].segment_name
-            #raise Exception('migrate me')
+            #return self.score_specification.segment_specifications[0].segment_name
+            raise Exception('migrate me')
         else:
             return self.anchor.root_segment_identifier
 
@@ -120,6 +120,17 @@ class AnchoredExpression(Expression):
         # NEXT TODO: use self.root instead
         if self.root_segment_identifier is not None:
             return self.score_specification.segment_specifications[self.root_segment_identifier]
+
+    @property
+    def root_specification(self):
+        '''Anchored expression root specification.
+
+        Return score specification or segment specification.
+        '''
+        if self.is_segment_rooted:
+            return self.score_specification.segment_specifications[self.root]
+        else:
+            return self.score_specification
 
     @property
     def score_specification(self):
