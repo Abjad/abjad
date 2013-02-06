@@ -21,9 +21,6 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.root_identifier
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.root_segment_identifier
-   :noindex:
-
 .. autoattribute:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.root_segment_specification
    :noindex:
 
