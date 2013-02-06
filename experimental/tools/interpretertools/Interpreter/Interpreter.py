@@ -82,12 +82,12 @@ class Interpreter(AbjadObject):
             attribute = multiple_context_set_expression.attribute
             fresh_single_context_set_expressions = multiple_context_set_expression.evaluate()
             assert all([x.fresh for x in fresh_single_context_set_expressions])
-            self.score_specification.fresh_single_context_set_expressions_by_attribute[
-                attribute].extend(fresh_single_context_set_expressions)
             if multiple_context_set_expression.is_segment_rooted:
                 root_specification.fresh_single_context_set_expressions_by_attribute[
                     attribute].extend(fresh_single_context_set_expressions)
             elif multiple_context_set_expression.is_score_rooted:
+                root_specification.fresh_single_context_set_expressions_by_attribute[
+                    attribute].extend(fresh_single_context_set_expressions)
                 for fresh_single_context_set_expression in fresh_single_context_set_expressions:
                     target_context_name = fresh_single_context_set_expression.target_context_name
                     root_specification.fresh_single_context_set_expressions_by_context[

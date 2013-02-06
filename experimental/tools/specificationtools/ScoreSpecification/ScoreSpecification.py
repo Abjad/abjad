@@ -151,47 +151,13 @@ class ScoreSpecification(Specification):
 
     @property
     def fresh_single_context_set_expressions_by_attribute(self):
-        r'''Score specification single-context set expressions::
+        r'''Score specification single-context set expressions:
+
+        ::
 
             >>> for x in score_specification.fresh_single_context_set_expressions_by_attribute.itervalues():
             ...     if x:
             ...         z(x)
-            expressiontools.SetExpressionInventory([
-                expressiontools.SingleContextRhythmSetExpression(
-                    source=expressiontools.RhythmMakerPayloadExpression(
-                        payload=(TaleaRhythmMaker('sixteenths'),)
-                        ),
-                    target_timespan='red',
-                    fresh=True,
-                    persist=True
-                    )
-                ])
-            expressiontools.SetExpressionInventory([
-                expressiontools.SingleContextTimeSignatureSetExpression(
-                    source=expressiontools.PayloadExpression(
-                        ((2, 8), (3, 8), (4, 8))
-                        ),
-                    target_timespan='red',
-                    fresh=True,
-                    persist=True
-                    ),
-                expressiontools.SingleContextTimeSignatureSetExpression(
-                    source=expressiontools.PayloadExpression(
-                        ((4, 16), (4, 16))
-                        ),
-                    target_timespan='orange',
-                    fresh=True,
-                    persist=True
-                    ),
-                expressiontools.SingleContextTimeSignatureSetExpression(
-                    source=expressiontools.PayloadExpression(
-                        ((5, 16), (5, 16))
-                        ),
-                    target_timespan='yellow',
-                    fresh=True,
-                    persist=True
-                    )
-                ])
 
         Populate during interpretation.
 
