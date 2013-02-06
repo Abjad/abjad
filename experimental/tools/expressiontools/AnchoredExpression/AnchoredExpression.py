@@ -71,7 +71,7 @@ class AnchoredExpression(Expression):
 
         Return boolean.
         '''
-        return self.root is None
+        return self.root_identifier is None
 
     @property
     def is_segment_rooted(self):
@@ -80,11 +80,11 @@ class AnchoredExpression(Expression):
 
         Return boolean.
         '''
-        return isinstance(self.root, str)
+        return isinstance(self.root_identifier, str)
 
     @property
-    def root(self):
-        '''Anchored expression root.
+    def root_identifier(self):
+        '''Anchored expression root identifier.
 
         Segment-rooted expressions return string.
 
@@ -93,9 +93,9 @@ class AnchoredExpression(Expression):
         if isinstance(self.anchor, (str, type(None))):
             return self.anchor
         else:
-            return self.anchor.root
+            return self.anchor.root_identifier
         
-    # NEXT TODO: replace in favor of self.root
+    # NEXT TODO: replace in favor of self.root_identifier
     @property
     def root_segment_identifier(self):
         '''Return anchor when anchor is a string.
@@ -106,20 +106,18 @@ class AnchoredExpression(Expression):
         '''
         if isinstance(self.anchor, str):
             return self.anchor
-        # NEXT TODO: do not return value for score-rooted expression
-        elif self.anchor is None:
-            #return self.score_specification.segment_specifications[0].segment_name
-            raise Exception('migrate me')
         else:
             return self.anchor.root_segment_identifier
 
+    # TODO: replace with self.root_specification
     @property
     def root_segment_specification(self):
         '''Anchored expression root segment specification.
         '''
-        # NEXT TODO: use self.root instead
-        if self.root_segment_identifier is not None:
+        if self.is_segment_rooted:
             return self.score_specification.segment_specifications[self.root_segment_identifier]
+        else:
+            raise Exception
 
     @property
     def root_specification(self):
@@ -128,7 +126,7 @@ class AnchoredExpression(Expression):
         Return score specification or segment specification.
         '''
         if self.is_segment_rooted:
-            return self.score_specification.segment_specifications[self.root]
+            return self.score_specification.segment_specifications[self.root_identifier]
         else:
             return self.score_specification
 

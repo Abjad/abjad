@@ -39,7 +39,7 @@ Read-only Properties
 
    Inherited from :py:class:`expressiontools.SetExpressionLookupExpression <experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression>`
 
-.. autoattribute:: experimental.tools.expressiontools.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.root
+.. autoattribute:: experimental.tools.expressiontools.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.root_identifier
    :noindex:
 
    Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`

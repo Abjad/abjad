@@ -33,7 +33,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.persist
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.root
+.. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.root_identifier
    :noindex:
 
    Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
