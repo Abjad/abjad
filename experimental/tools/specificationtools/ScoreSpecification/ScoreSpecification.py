@@ -700,12 +700,10 @@ class ScoreSpecification(Specification):
     def get_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, context_name):
         timespan_scoped_set_expressions = expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         #for segment_specification in self.segment_specifications:
-        for segment_specification in (self, ) + tuple(self.segment_specifications):
-            #self._debug(segment_specification, 'segment')
+        for specification in (self, ) + tuple(self.segment_specifications):
             single_context_set_expressions = \
-                segment_specification.get_single_context_set_expressions_rooted_to_specification(
+                specification.get_single_context_set_expressions_rooted_to_specification(
                 attribute, context_name)
-            #self._debug_values(single_context_set_expressions, 'sc sxs')
             for single_context_set_expression in single_context_set_expressions:
                 timespan_scoped_set_expression = single_context_set_expression.evaluate()
                 # make sure set expression was set expression for timespan that exists in current segment

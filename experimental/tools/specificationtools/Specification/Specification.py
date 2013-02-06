@@ -48,7 +48,7 @@ class Specification(AbjadObject):
         parentage_names = [parent.name for parent in parentage]
         return parentage_names
 
-    def _get_first_expression_for_context_name(self, expressions, context_name):
+    def _get_first_expression_that_governs_context_name(self, expressions, context_name):
         parentage_names = self._context_name_to_improper_parentage_names(context_name)
         for parentage_name in parentage_names:
             for expression in expressions:
