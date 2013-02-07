@@ -62,9 +62,3 @@
 14. Extend interpreter to allow interpretation to procede absent segment specification.
     Right now a dummy segment is required to allow interpretation to procede.
     Score-rooted set expressions should suffice.
-
-15. Maybe the specification single-context set expression storage order should be
-    attribute first and then context second?
-
-16. Implement VoiceProxy and VoiceProxyDictionary.
-    Then ScoreSpecification.payload_expressions_by_voice can be VoiceProxyDictionary.

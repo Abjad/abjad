@@ -450,6 +450,8 @@ Unstable packages (load manually)
       tools/specificationtools/SegmentSpecification/SegmentSpecification
       tools/specificationtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
+      tools/specificationtools/VoiceProxy/VoiceProxy
+      tools/specificationtools/VoiceProxyDictionary/VoiceProxyDictionary
 
 .. only:: latex
 
@@ -473,3 +475,5 @@ Unstable packages (load manually)
       tools/specificationtools/SegmentSpecification/SegmentSpecification
       tools/specificationtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
+      tools/specificationtools/VoiceProxy/VoiceProxy
+      tools/specificationtools/VoiceProxyDictionary/VoiceProxyDictionary
