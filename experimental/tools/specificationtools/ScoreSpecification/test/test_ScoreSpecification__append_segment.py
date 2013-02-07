@@ -3,7 +3,7 @@ from experimental import *
 import py
 
 
-def test_ScoreSpecification_append_segment_01():
+def test_ScoreSpecification__append_segment_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
@@ -17,7 +17,7 @@ def test_ScoreSpecification_append_segment_01():
     assert len(score_specification.specification.segment_specifications) == 2
 
 
-def test_ScoreSpecification_append_segment_02():
+def test_ScoreSpecification__append_segment_02():
     '''Error on duplicate segment name.
     '''
     

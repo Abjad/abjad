@@ -2,7 +2,7 @@ from abjad.tools import *
 from experimental import *
 
 
-def test_ScoreSpecification_interpret_01():
+def test_ScoreSpecification__interpret_01():
     '''Empty score specification interprets.
     '''
 
@@ -27,7 +27,7 @@ def test_ScoreSpecification_interpret_01():
     assert score.lilypond_format == '\\context Score = "Grouped Rhythmic Staves Score" <<\n\t\\context TimeSignatureContext = "TimeSignatureContext" {\n\t}\n\t\\context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<\n\t\t\\context RhythmicStaff = "Staff 1" {\n\t\t\t\\context Voice = "Voice 1" {\n\t\t\t}\n\t\t}\n\t>>\n>>'
 
 
-def test_ScoreSpecification_interpret_02():
+def test_ScoreSpecification__interpret_02():
     '''Empty score specification with empty segment specification interprets.
     '''
 
@@ -43,7 +43,7 @@ def test_ScoreSpecification_interpret_02():
     assert score_1.lilypond_format == score_2.lilypond_format
 
 
-def test_ScoreSpecification_interpret_03():
+def test_ScoreSpecification__interpret_03():
     '''Time signatures only.
     '''
 

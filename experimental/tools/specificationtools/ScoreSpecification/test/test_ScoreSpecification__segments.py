@@ -2,14 +2,14 @@ from abjad.tools import *
 from experimental import *
 
 
-def test_ScoreSpecification_segments_01():
+def test_ScoreSpecification__segments_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     assert not score_specification.specification.segment_specifications
 
 
-def test_ScoreSpecification_segments_02():
+def test_ScoreSpecification__segments_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
