@@ -139,7 +139,7 @@ class ConcreteInterpreter(Interpreter):
         self.calculate_score_and_segment_timespans()
 
     def make_division_region_expressions_for_voice(self, voice_name):
-        voice_proxy = self.score_specification.context_proxies[voice_name]
+        voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice_name]
         set_expressions = voice_proxy.timespan_scoped_single_context_division_set_expressions[:]
         region_expressions = []
         for set_expression in set_expressions:
@@ -181,7 +181,7 @@ class ConcreteInterpreter(Interpreter):
             score_region_expressions.extend(region_expressions)
 
     def make_rhythm_region_expressions_for_voice(self, voice_name):
-        voice_proxy = self.score_specification.context_proxies[voice_name]
+        voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice_name]
         #voice_division_list = voice_proxy.voice_division_list
         #division_payload_expressions = voice_proxy.division_payload_expressions
         voice_division_list = self.score_specification.payload_expressions_by_voice[
@@ -256,7 +256,7 @@ class ConcreteInterpreter(Interpreter):
         attribute_key = 'timespan_scoped_single_context_{}_set_expressions'.format(attribute.rstrip('s'))
         if self.score_specification.segment_specifications:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
-                voice_proxy = self.score_specification.context_proxies[voice.name]
+                voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice.name]
                 set_expressions = self.get_timespan_scoped_single_context_set_expressions_for_voice(
                     attribute, voice.name)
                 inventory = getattr(voice_proxy, attribute_key)
@@ -290,7 +290,7 @@ class ConcreteInterpreter(Interpreter):
 
     def populate_single_context_time_signature_set_expressions(self):
         for segment_specification in self.score_specification.segment_specifications:
-            score_proxy = segment_specification.context_proxies.score_context_proxy
+            score_proxy = segment_specification.single_context_set_expressions_by_context.score_context_proxy
             single_context_time_signature_set_expressions = \
                 score_proxy.single_context_set_expressions_by_attribute.get('time_signatures', [])
             if not single_context_time_signature_set_expressions:

@@ -12,7 +12,7 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
         assert isinstance(score, scoretools.Score), repr(score)
         OrderedDict.__init__(self)
         self._score = score
-        self._initialize_context_proxies()
+        self._initialize_single_context_set_expressions_by_context()
 
     ### SPECIAL METHODS ###
 
@@ -34,7 +34,7 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
 
     ### PRIVATE METHODS ###
 
-    def _initialize_context_proxies(self):
+    def _initialize_single_context_set_expressions_by_context(self):
         from experimental.tools import specificationtools
         context_names = []
         if self.score is not None:

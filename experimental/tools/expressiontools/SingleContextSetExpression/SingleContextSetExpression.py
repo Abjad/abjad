@@ -132,7 +132,7 @@ class SingleContextSetExpression(InputSetExpression):
         '''
         assert self.is_segment_rooted
         target_context_name = self.target_context_name or self.score_specification.score_name
-        target_context_proxy = self.root_specification.context_proxies[target_context_name]
+        target_context_proxy = self.root_specification.single_context_set_expressions_by_context[target_context_name]
         expressions = target_context_proxy.single_context_set_expressions_by_attribute[self.attribute]
         for expression in expressions[:]:
             if expression.target_timespan == self.target_timespan:

@@ -59,7 +59,7 @@ class SegmentSpecification(Specification):
         if isinstance(expr, int):
             return self.multiple_context_set_expressions.__getitem__(expr)
         else:
-            return self.context_proxies.__getitem__(expr) 
+            return self.single_context_set_expressions_by_context.__getitem__(expr) 
         
     def __repr__(self):
         '''Segment specification interpreter representation::
@@ -90,24 +90,6 @@ class SegmentSpecification(Specification):
         Return list of strings.
         '''
         return Specification.context_names.fget(self)
-
-    @property
-    def context_proxies(self):
-        r'''Segment specification context proxy dictionary::
-
-            >>> for key in red_segment.context_proxies:
-            ...     key
-            ... 
-            'Grouped Rhythmic Staves Score'
-            'Grouped Rhythmic Staves Staff Group'
-            'Staff 1'
-            'Staff 2'
-            'Voice 1'
-            'Voice 2'
-
-        Return context proxy dictionary.
-        '''
-        return Specification.context_proxies.fget(self)
 
     # TODO: replace z(x) with just z() of whole inventory
     @property
@@ -198,6 +180,24 @@ class SegmentSpecification(Specification):
         return self._segment_name
 
     @property
+    def single_context_set_expressions_by_context(self):
+        r'''Segment specification context proxy dictionary::
+
+            >>> for key in red_segment.single_context_set_expressions_by_context:
+            ...     key
+            ... 
+            'Grouped Rhythmic Staves Score'
+            'Grouped Rhythmic Staves Staff Group'
+            'Staff 1'
+            'Staff 2'
+            'Voice 1'
+            'Voice 2'
+
+        Return context proxy dictionary.
+        '''
+        return Specification.single_context_set_expressions_by_context.fget(self)
+
+    @property
     def specification_name(self):
         '''Generalized way of refering to both score and segment specifications::
 
@@ -256,7 +256,7 @@ class SegmentSpecification(Specification):
         result = []
         context_names = self._context_name_to_improper_parentage_names(context_name)
         for context_name in reversed(context_names):
-            single_context_set_expressions = self.context_proxies[
+            single_context_set_expressions = self.single_context_set_expressions_by_context[
                 context_name].single_context_set_expressions_by_attribute.get(attribute, [])
             result.extend(single_context_set_expressions)
         return result

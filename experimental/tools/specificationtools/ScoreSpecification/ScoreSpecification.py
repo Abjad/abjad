@@ -108,24 +108,6 @@ class ScoreSpecification(Specification):
         return Specification.context_names.fget(self)
 
     @property
-    def context_proxies(self):
-        r'''Score specification context proxy dictionary::
-
-            >>> for key in score_specification.context_proxies:
-            ...     key
-            ... 
-            'Grouped Rhythmic Staves Score'
-            'Grouped Rhythmic Staves Staff Group'
-            'Staff 1'
-            'Staff 2'
-            'Voice 1'
-            'Voice 2'
-
-        Return context proxy dictionary.
-        '''
-        return Specification.context_proxies.fget(self)
-
-    @property
     def division_region_expressions(self):
         '''Read-only list of division region expressions:
 
@@ -375,6 +357,24 @@ class ScoreSpecification(Specification):
         Return segment specification inventory.
         '''
         return self._segment_specifications
+
+    @property
+    def single_context_set_expressions_by_context(self):
+        r'''Score specification context proxy dictionary::
+
+            >>> for key in score_specification.single_context_set_expressions_by_context:
+            ...     key
+            ... 
+            'Grouped Rhythmic Staves Score'
+            'Grouped Rhythmic Staves Staff Group'
+            'Staff 1'
+            'Staff 2'
+            'Voice 1'
+            'Voice 2'
+
+        Return context proxy dictionary.
+        '''
+        return Specification.single_context_set_expressions_by_context.fget(self)
 
     @property
     def single_context_time_signature_set_expressions(self):
@@ -732,7 +732,7 @@ class ScoreSpecification(Specification):
     def report_settings(self):
         for segment_specification in self.segment_specifications:
             print '### {} ### '.format(segment_specification)
-            for context_proxy_name, context_proxy in segment_specification.context_proxies.items():
+            for context_proxy_name, context_proxy in segment_specification.single_context_set_expressions_by_context.items():
                 printed_context_proxy_name = False
                 for key, value in context_proxy.single_context_set_expressions_by_attribute.items():
                     if value:
@@ -743,7 +743,7 @@ class ScoreSpecification(Specification):
             print ''
         print '### SCORE ###'
         print self
-        for context_proxy_name, context_proxy in self.context_proxies.items():
+        for context_proxy_name, context_proxy in self.single_context_set_expressions_by_context.items():
             #print key, context_proxy
             printed_context_proxy_name = False
             for key, value in context_proxy.single_context_set_expressions_by_attribute.items():

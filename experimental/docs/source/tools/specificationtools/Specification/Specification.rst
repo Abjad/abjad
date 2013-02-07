@@ -12,9 +12,6 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.context_names
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.context_proxies
-   :noindex:
-
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.fresh_single_context_set_expressions_by_attribute
    :noindex:
 
@@ -28,6 +25,9 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.score_template
+   :noindex:
+
+.. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.single_context_set_expressions_by_context
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.storage_format

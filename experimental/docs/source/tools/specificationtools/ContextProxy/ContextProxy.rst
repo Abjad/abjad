@@ -9,9 +9,6 @@ specificationtools.ContextProxy
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.rhythm_payload_expressions
-   :noindex:
-
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.single_context_set_expressions_by_attribute
    :noindex:
 
