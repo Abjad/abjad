@@ -59,7 +59,7 @@ class ConcreteInterpreter(Interpreter):
 
     def add_rhythms_to_score(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_proxy = self.score_specification.context_proxies[voice.name]
+            voice_proxy = self.score_specification.payload_expressions_by_voice[voice.name]
             for rhythm_payload_expression in voice_proxy.rhythm_payload_expressions:
                 voice.extend(rhythm_payload_expression.payload)
 
@@ -163,11 +163,7 @@ class ConcreteInterpreter(Interpreter):
                     made_progress = True
                     score_region_expressions.remove(region_expression)
                     voice_name = region_expression.voice_name
-                    if payload_expression_key == 'rhythm_payload_expressions':
-                        voice_proxy = self.score_specification.context_proxies[voice_name]
-                    else:
-                        assert payload_expression_key == 'division_payload_expressions'
-                        voice_proxy = self.score_specification.payload_expressions_by_voice[voice_name]
+                    voice_proxy = self.score_specification.payload_expressions_by_voice[voice_name]
                     voice_payload_expressions = getattr(voice_proxy, payload_expression_key)
                     voice_payload_expressions = voice_payload_expressions - payload_expression.timespan
                     voice_payload_expressions.append(payload_expression)
