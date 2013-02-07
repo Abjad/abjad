@@ -114,19 +114,26 @@ class SingleContextSetExpression(InputSetExpression):
         '''
         pass
 
-    def store_in_segment_specification_by_context_and_attribute(self):
-        '''Store single-context set expression in segment by context and attribute.
-
-        If single-context set expression persists then also store 
-        single-context set expression in score specification
-        by context and attribute.
+    def store_in_score_specification_by_context_and_attribute(self):
+        '''Store single-context set expression in score specification by context and attribute.
         '''
-        # TODO: this will have to be changed to handle score-rooted expressions
-        assert self.root_specification is not None
-        target_context_name = self.target_context_name or self.score_specification.context_proxies.score_name
+        assert self.is_score_rooted
+        target_context_name = self.target_context_name or self.score_specification.score_name
+        expressions = self.score_specification.fresh_single_context_set_expressions_by_context[
+            target_context_name].single_context_set_expressions_by_attribute[
+            self.attribute]
+        for expression in expressions[:]:
+            if expression.target_timespan == self.target_timespan:
+                expressions.remove(expression)
+        expressions.append(self)
+
+    def store_in_segment_specification_by_context_and_attribute(self):
+        '''Store single-context set expression in segment specification by context and attribute.
+        '''
+        assert self.is_segment_rooted
+        target_context_name = self.target_context_name or self.score_specification.score_name
         target_context_proxy = self.root_specification.context_proxies[target_context_name]
         expressions = target_context_proxy.single_context_set_expressions_by_attribute[self.attribute]
-        # TODO: maybe also hash expressions by timespan?
         for expression in expressions[:]:
             if expression.target_timespan == self.target_timespan:
                 expressions.remove(expression)

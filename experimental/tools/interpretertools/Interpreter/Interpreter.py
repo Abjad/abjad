@@ -55,16 +55,11 @@ class Interpreter(AbjadObject):
         return score
 
     def store_score_rooted_single_context_set_expressions_by_context(self):
-        #for attribute, fresh_single_context_set_expressions in \
-        #    self.score_specification.fresh_single_context_set_expressions_by_attribute.items():
         for attribute in self.attributes:
             fresh_single_context_set_expressions = \
                 self.score_specification.fresh_single_context_set_expressions_by_attribute[attribute]
             for fresh_single_context_set_expression in fresh_single_context_set_expressions:
-                target_context_name = fresh_single_context_set_expression.target_context_name
-                self.score_specification.fresh_single_context_set_expressions_by_context[
-                    target_context_name].single_context_set_expressions_by_attribute[
-                    attribute].append(fresh_single_context_set_expression)
+                fresh_single_context_set_expression.store_in_score_specification_by_context_and_attribute()
 
     def store_segment_rooted_single_context_set_expressions_by_context(self):
         from experimental.tools import specificationtools
