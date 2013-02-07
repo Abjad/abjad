@@ -95,8 +95,8 @@ class SegmentSpecification(Specification):
     def multiple_context_set_expressions(self):
         '''Segment specification multiple-context set-expressions::
 
-            >>> for x in red_segment.multiple_context_set_expressions:
-            ...     z(x)
+            >>> z(red_segment.multiple_context_set_expressions)
+            expressiontools.SetExpressionInventory([])
 
         Return set expression inventory.
         '''
