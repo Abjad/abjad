@@ -255,8 +255,10 @@ class ConcreteInterpreter(Interpreter):
             timespan_scoped_single_context_set_expressions = \
                 self.score_specification.make_timespan_scoped_single_context_set_expressions_for_voice(
                 attribute, voice.name)
-            #if 'rhythm' in attribute_key:
-            #    self._debug_values(timespan_scoped_single_context_set_expressions, 'tsscsxs')
+#            if 'rhythm' in attribute_key:
+#                self._debug_values(timespan_scoped_single_context_set_expressions, 'tsscsxs')
+#                xx = [x._lexical_rank for x in timespan_scoped_single_context_set_expressions]
+#                self._debug(xx, 'lexical ranks')
             timespan_scoped_single_context_set_expressions.sort_and_split_set_expressions()
             timespan_scoped_single_context_set_expressions.compute_logical_or()
             timespan_scoped_single_context_set_expressions.supply_missing_set_expressions(
@@ -264,8 +266,8 @@ class ConcreteInterpreter(Interpreter):
             voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice.name]
             inventory = getattr(voice_proxy, attribute_key)
             inventory[:] = timespan_scoped_single_context_set_expressions[:]
-            #if 'rhythm' in attribute_key:
-            #    self._debug_values(inventory, 'inv')
+#            if 'rhythm' in attribute_key:
+#                self._debug_values(inventory, 'inv')
                         
     def merge_prolonging_rhythm_region_expressions(self, rhythm_region_expressions):
         result = []

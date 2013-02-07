@@ -22,6 +22,8 @@ class AnchoredExpression(Expression):
         '''
         result = type(self)(*self._input_argument_values)
         result._score_specification = self.score_specification
+        if hasattr(self, '_lexical_rank'):
+            result._lexical_rank = self._lexical_rank
         return result
 
     ### READ-ONLY PRIVATE PROPERTIES ###

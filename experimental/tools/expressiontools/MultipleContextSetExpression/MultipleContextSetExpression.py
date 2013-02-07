@@ -79,6 +79,7 @@ class MultipleContextSetExpression(InputSetExpression):
                 target_context_name=target_context_name,
                 persist=self.persist)
             single_context_set_expression._score_specification = self.score_specification
+            single_context_set_expression._lexical_rank = self._lexical_rank
             single_context_set_expressions.append(single_context_set_expression)
         if self.attribute == 'divisions':
             for single_context_set_expression in single_context_set_expressions:

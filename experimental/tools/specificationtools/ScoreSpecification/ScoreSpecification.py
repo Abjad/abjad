@@ -575,7 +575,8 @@ class ScoreSpecification(Specification):
                 # make sure set expression was set expression for timespan that exists in current segment
                 if timespan_scoped_set_expression.target_timespan.is_well_formed:
                     timespan_scoped_set_expressions.append(timespan_scoped_set_expression)
-        # TODO: implement lexical rank; then sort result by lexical rank here before returning
+        # TODO: sort result by lexical rank 
+        #timespan_scoped_set_expressions.sort(lambda x, y: cmp(x._lexical_rank, y._lexical_rank))
         assert timespan_scoped_set_expressions.all_are_well_formed
         return timespan_scoped_set_expressions
 

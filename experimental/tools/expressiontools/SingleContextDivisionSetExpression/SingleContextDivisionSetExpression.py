@@ -28,4 +28,5 @@ class SingleContextDivisionSetExpression(SingleContextSetExpression):
             source=self.source, target_timespan=target_timespan, 
             target_context_name=self.target_context_name, 
             fresh=self.fresh, truncate=self.truncate)
+        expression._lexical_rank = self._lexical_rank
         return expression

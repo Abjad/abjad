@@ -25,6 +25,7 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
         expression = expressiontools.TimespanScopedSingleContextTimeSignatureExpression(
             source=self.source, target_timespan=target_timespan,
             target_context_name=self.target_context_name, fresh=self.fresh)
+        expression._lexical_rank = self._lexical_rank
         return expression
 
     def make_time_signatures(self):

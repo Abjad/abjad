@@ -24,4 +24,5 @@ class SingleContextRhythmSetExpression(SingleContextSetExpression):
         expression = expressiontools.TimespanScopedSingleContextRhythmSetExpression(
             source=self.source, target_timespan=target_timespan, 
             target_context_name=self.target_context_name, fresh=self.fresh)
+        expression._lexical_rank = self._lexical_rank
         return expression
