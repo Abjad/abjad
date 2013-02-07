@@ -50,6 +50,16 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.compare_context_names
+   :noindex:
+
+   Inherited from :py:class:`specificationtools.Specification <experimental.tools.specificationtools.Specification.Specification.Specification>`
+
+.. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.context_name_to_depth
+   :noindex:
+
+   Inherited from :py:class:`specificationtools.Specification <experimental.tools.specificationtools.Specification.Specification.Specification>`
+
 .. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.get_single_context_set_expressions_rooted_to_specification_that_govern_context_name
    :noindex:
 

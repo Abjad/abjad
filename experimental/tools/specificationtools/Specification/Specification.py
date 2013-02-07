@@ -127,8 +127,88 @@ class Specification(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def compare_context_names(self, x, y):
+        '''Compare context names.
+
+        Root context sorts first and voice contexts sort last.
+
+            >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+            >>> score_specification = specificationtools.ScoreSpecificationInterface(template)
+            >>> score_specification = score_specification.specification
+
+        ::
+
+            >>> score_specification.compare_context_names(None, 'Voice 1')
+            -1
+            
+        ::
+
+            >>> score_specification.compare_context_names('Voice 1', None)
+            1
+            
+        ::
+
+            >>> score_specification.compare_context_names('Voice 1', 'Voice 1')
+            0 
+
+        Return -1, 0 or 1.
+        '''
+        x_depth = self.context_name_to_depth(x)
+        y_depth = self.context_name_to_depth(y)
+        return cmp(x_depth, y_depth)
+
+    def context_name_to_depth(self, context_name):
+        '''Context name to context depth.
+
+        Score context evaluates to ``0``.
+        Nonscore contexts evaluate to greater than ``0``.
+        
+            >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+            >>> score_specification = specificationtools.ScoreSpecificationInterface(template)
+            >>> score_specification = score_specification.specification
+
+        ::
+
+            >>> score_specification.context_name_to_depth(None)
+            0
+
+        ::
+
+            >>> score_specification.context_name_to_depth('Grouped Rhythmic Staves Score')
+            0
+
+        ::
+
+            >>> score_specification.context_name_to_depth('Grouped Rhythmic Staves Staff Group')
+            1
+
+        ::
+
+            >>> score_specification.context_name_to_depth('Staff 1')
+            2
+
+        ::
+
+            >>> score_specification.context_name_to_depth('Voice 1')
+            3
+
+        Return nonzero integer.
+        '''
+        assert isinstance(context_name, (str, type(None))), repr(context_name)
+        if context_name is None:
+            return 0
+        elif context_name == self.score_model.name:
+            return 0
+        else:
+            context = self.score_model[context_name]
+            return context.parentage.depth
+
     def get_single_context_set_expressions_rooted_to_specification_that_govern_context_name(
         self, attribute, context_name):
+        '''Return list such that highest level (most general) context set expressions appear first.
+
+        Lowest level (most specific) context set expressions appear last.
+        '''
         result = []
         context_names = self._context_name_to_improper_parentage_names(context_name)
         for context_name in reversed(context_names):

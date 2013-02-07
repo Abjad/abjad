@@ -41,6 +41,12 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.compare_context_names
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.context_name_to_depth
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.get_single_context_set_expressions_rooted_to_specification_that_govern_context_name
    :noindex:
 
