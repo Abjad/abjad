@@ -20,9 +20,6 @@ Read-only Properties
 
    Inherited from :py:class:`specificationtools.Specification <experimental.tools.specificationtools.Specification.Specification.Specification>`
 
-.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.fresh_single_context_set_expressions_by_context
-   :noindex:
-
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interface
    :noindex:
 

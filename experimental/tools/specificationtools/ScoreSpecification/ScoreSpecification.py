@@ -45,14 +45,16 @@ class ScoreSpecification(Specification):
         from experimental.tools import expressiontools
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
-        self._division_region_expressions = expressiontools.ExpressionInventory()
+        self._division_region_expressions = \
+            expressiontools.ExpressionInventory()
         self._payload_expressions_by_voice = \
             specificationtools.VoiceProxyDictionary(score_template())
-        self._rhythm_region_expressions = expressiontools.ExpressionInventory()
-        self._fresh_single_context_set_expressions_by_context = \
-            specificationtools.ContextProxyDictionary(score_template())
-        self._segment_specifications = specificationtools.SegmentSpecificationInventory()
-        self._segment_specification_class = specificationtools.SegmentSpecification
+        self._rhythm_region_expressions = \
+            expressiontools.ExpressionInventory()
+        self._segment_specifications = \
+            specificationtools.SegmentSpecificationInventory()
+        self._segment_specification_class = \
+            specificationtools.SegmentSpecification
         self._single_context_time_signature_set_expressions = \
             expressiontools.SetExpressionInventory()
         self._timespan_scoped_single_context_division_set_expressions = \
@@ -132,16 +134,6 @@ class ScoreSpecification(Specification):
         Return list.
         '''
         return self._division_region_expressions
-
-    @property
-    def fresh_single_context_set_expressions_by_context(self):
-        '''Score specification fresh single-context set expressions by context.
-
-        .. note:: add example.
-
-        Return context proxy dictionary.
-        '''
-        return self._fresh_single_context_set_expressions_by_context
 
     @property
     def interface(self):
@@ -639,7 +631,7 @@ class ScoreSpecification(Specification):
         result = []
         context_names = self._context_name_to_improper_parentage_names(context_name)
         for context_name in reversed(context_names):
-            single_context_set_expressions = self.fresh_single_context_set_expressions_by_context[
+            single_context_set_expressions = self.single_context_set_expressions_by_context[
                 context_name].single_context_set_expressions_by_attribute.get(attribute, [])
             result.extend(single_context_set_expressions)
         return result
@@ -716,7 +708,8 @@ class ScoreSpecification(Specification):
     def report_settings(self):
         for segment_specification in self.segment_specifications:
             print '### {} ### '.format(segment_specification)
-            for context_proxy_name, context_proxy in segment_specification.single_context_set_expressions_by_context.items():
+            for context_proxy_name, context_proxy in \
+                segment_specification.single_context_set_expressions_by_context.items():
                 printed_context_proxy_name = False
                 for key, value in context_proxy.single_context_set_expressions_by_attribute.items():
                     if value:
@@ -728,7 +721,6 @@ class ScoreSpecification(Specification):
         print '### SCORE ###'
         print self
         for context_proxy_name, context_proxy in self.single_context_set_expressions_by_context.items():
-            #print key, context_proxy
             printed_context_proxy_name = False
             for key, value in context_proxy.single_context_set_expressions_by_attribute.items():
                 if value:
@@ -739,7 +731,7 @@ class ScoreSpecification(Specification):
         print ''
         print '### SCORE-ROOTED ###'
         for context_proxy_name, context_proxy in \
-            self.fresh_single_context_set_expressions_by_context.items():
+            self.single_context_set_expressions_by_context.items():
             printed_context_proxy_name = False
             for key, value in context_proxy.single_context_set_expressions_by_attribute.items():
                 if value:

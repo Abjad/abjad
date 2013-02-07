@@ -116,12 +116,8 @@ class SingleContextSetExpression(InputSetExpression):
         '''Store single-context set expression in root specification by context and attribute.
         '''
         target_context_name = self.target_context_name or self.score_specification.score_name
-        if self.is_score_rooted:
-            target_context_proxy = \
-                self.root_specification.fresh_single_context_set_expressions_by_context[target_context_name]
-        else:
-            target_context_proxy = \
-                self.root_specification.single_context_set_expressions_by_context[target_context_name]
+        target_context_proxy = \
+            self.root_specification.single_context_set_expressions_by_context[target_context_name]
         expressions = target_context_proxy.single_context_set_expressions_by_attribute[self.attribute]
         for expression in expressions[:]:
             if expression.target_timespan == self.target_timespan:

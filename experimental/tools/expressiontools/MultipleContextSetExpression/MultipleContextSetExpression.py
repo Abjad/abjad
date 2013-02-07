@@ -67,6 +67,7 @@ class MultipleContextSetExpression(InputSetExpression):
         single_context_set_expressions = []
         single_context_set_expression_class = \
             self._attribute_to_single_context_set_expression_class(self.attribute)
+        # TODO: combine these two branches by making [None] in the first case
         if self.target_context_names is None:
             target_timespan = copy.deepcopy(self.target_timespan)
             single_context_set_expression = single_context_set_expression_class(
