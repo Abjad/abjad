@@ -47,7 +47,7 @@ class ScoreSpecification(Specification):
         Specification.__init__(self, score_template)
         self._division_region_expressions = expressiontools.ExpressionInventory()
         self._payload_expressions_by_voice = \
-            specificationtools.ContextProxyDictionary(score_template())
+            specificationtools.VoiceProxyDictionary(score_template())
         self._rhythm_region_expressions = expressiontools.ExpressionInventory()
         self._fresh_single_context_set_expressions_by_context = \
             specificationtools.ContextProxyDictionary(score_template())

@@ -9,9 +9,6 @@ specificationtools.ContextProxy
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.division_payload_expressions
-   :noindex:
-
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.rhythm_payload_expressions
    :noindex:
 
@@ -30,9 +27,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.timespan_scoped_single_context_set_expressions
-   :noindex:
-
-.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.voice_division_list
    :noindex:
 
 Special Methods

@@ -9,8 +9,8 @@ class ContextProxy(AbjadObject):
     def __init__(self):
         from experimental.tools import expressiontools
         from experimental.tools import specificationtools
-        self._division_payload_expressions = \
-            timespantools.TimespanInventory()
+#        self._division_payload_expressions = \
+#            timespantools.TimespanInventory()
         self._single_context_set_expressions_by_attribute = \
             expressiontools.SingleContextSetExpressionAttributeDictionary()
         self._rhythm_payload_expressions = \
@@ -21,17 +21,17 @@ class ContextProxy(AbjadObject):
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         self._timespan_scoped_single_context_set_expressions = \
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
-        self._voice_division_list = None
+#        self._voice_division_list = None
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    @property
-    def division_payload_expressions(self):
-        '''Context proxy division payload expressions.
-
-        Return inventory.
-        '''
-        return self._division_payload_expressions
+#    @property
+#    def division_payload_expressions(self):
+#        '''Context proxy division payload expressions.
+#
+#        Return inventory.
+#        '''
+#        return self._division_payload_expressions
 
     @property
     def rhythm_payload_expressions(self):
@@ -76,10 +76,10 @@ class ContextProxy(AbjadObject):
         '''
         return self._timespan_scoped_single_context_set_expressions
 
-    @property
-    def voice_division_list(self):
-        '''Context proxy voice division list.
-
-        Return voice division list.
-        '''
-        return self._voice_division_list
+#    @property
+#    def voice_division_list(self):
+#        '''Context proxy voice division list.
+#
+#        Return voice division list.
+#        '''
+#        return self._voice_division_list

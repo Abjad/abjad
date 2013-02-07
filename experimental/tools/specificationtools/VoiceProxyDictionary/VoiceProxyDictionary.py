@@ -23,14 +23,14 @@ class VoiceProxyDictionary(AbjadObject, OrderedDict):
     def __setitem__(self, key, value):
         from experimental.tools import specificationtools
         assert isinstance(key, str), repr(key)
-        assert isinstance(value, specificationtools.ContextProxy), repr(value)
+        assert isinstance(value, specificationtools.VoiceProxy), repr(value)
         OrderedDict.__setitem__(self, key, value)
 
     ### PRIVATE METHODS ###
 
     def _initialize_voice_proxies(self):
         from experimental.tools import specificationtools
-        context_names = []
+        voice_names = []
         if self.score is not None:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
                 assert voice.context_name is not None, voice.name_name
