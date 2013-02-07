@@ -59,9 +59,5 @@
         middle_measures = segments.select_measures('Voice 1')[3:6]
     This will show selecting measures from (potentially) more than one segment.
 
-14. Extend interpreter to allow interpretation to procede absent segment specification.
-    Right now a dummy segment is required to allow interpretation to procede.
-    Score-rooted set expressions should suffice.
-
-15. Move ScoreSpecification.division_region_expressions to VoiceProxy.division_region_expressions.
+14. Move ScoreSpecification.division_region_expressions to VoiceProxy.division_region_expressions.
     Move ScoreSpecification.rhythm_region_expressions to VoiceProxy.rhythm_region_expressions.
