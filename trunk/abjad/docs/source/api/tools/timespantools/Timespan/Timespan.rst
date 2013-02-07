@@ -215,8 +215,6 @@ Special Methods
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.__gt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.__le__
    :noindex:
 
