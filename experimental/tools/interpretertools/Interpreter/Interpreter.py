@@ -35,13 +35,7 @@ class Interpreter(AbjadObject):
 
     def evaluate_multiple_context_set_expressions(self):
         for multiple_context_set_expression in self.score_specification.multiple_context_set_expressions:
-            # TODO: migrate all of this to MultipleContextSetExpression
-            fresh_single_context_set_expressions = multiple_context_set_expression.evaluate()
-            assert all([x.fresh for x in fresh_single_context_set_expressions])
-            root_specification = multiple_context_set_expression.root_specification
-            attribute = multiple_context_set_expression.attribute
-            root_specification.fresh_single_context_set_expressions.extend(
-                fresh_single_context_set_expressions)
+            multiple_context_set_expression.evaluate_and_store_in_root_specification()
                 
     def instantiate_score(self):
         '''Instantiate score.

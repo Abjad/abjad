@@ -90,3 +90,9 @@ class MultipleContextSetExpression(InputSetExpression):
             for single_context_set_expression in single_context_set_expressions:
                 single_context_set_expression._truncate = self.truncate
         return single_context_set_expressions
+
+    def evaluate_and_store_in_root_specification(self):
+        fresh_single_context_set_expressions = self.evaluate()
+        assert all([x.fresh for x in fresh_single_context_set_expressions])
+        self.root_specification.fresh_single_context_set_expressions.extend(
+            fresh_single_context_set_expressions)

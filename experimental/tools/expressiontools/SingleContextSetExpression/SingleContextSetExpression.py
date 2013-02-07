@@ -112,6 +112,7 @@ class SingleContextSetExpression(InputSetExpression):
         '''
         pass
 
+    # TODO: combine this method with the following method
     def store_in_score_specification_by_context_and_attribute(self):
         '''Store single-context set expression in score specification by context and attribute.
         '''
@@ -125,6 +126,7 @@ class SingleContextSetExpression(InputSetExpression):
                 expressions.remove(expression)
         expressions.append(self)
 
+    # TODO: combine this method with the previous method
     def store_in_segment_specification_by_context_and_attribute(self):
         '''Store single-context set expression in segment specification by context and attribute.
         '''
