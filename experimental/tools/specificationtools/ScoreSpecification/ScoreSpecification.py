@@ -575,28 +575,16 @@ class ScoreSpecification(Specification):
                 # make sure set expression was set expression for timespan that exists in current segment
                 if timespan_scoped_set_expression.target_timespan.is_well_formed:
                     timespan_scoped_set_expressions.append(timespan_scoped_set_expression)
-        #if attribute == 'rhythm':
-        #    self._debug_values(timespan_scoped_set_expressions, 'expressions')
-        # TODO: sort?
-        #timespan_scoped_set_expressions.sort(lambda x, y: -cmp(x._lexical_rank, y._lexical_rank))
-        #timespan_scoped_set_expressions.sort(self._compare_expressions)
-        #if attribute == 'rhythm':
-        #    self._debug_values(timespan_scoped_set_expressions, 'EXPRESSIONS')
+        timespan_scoped_set_expressions.sort(self._compare_expressions)
         assert timespan_scoped_set_expressions.all_are_well_formed
         return timespan_scoped_set_expressions
 
     def _compare_expressions(self, x, y):
-        if x.timespan.start_offset < y.timespan.start_offset:
-            return -1
-        if x.timespan.start_offset == y.timespan.start_offset:
-            if x.timespan.stop_offset < y.timespan.stop_offset:
-                return 1
-            elif x.timespan.stop_offset == y.timespan.stop_offset:
-                return 0
-            elif y.timespan.stop_offset < x.timespan.stop_offset:
-                return -1
-            else:
-                raise ValueError
+        result = self.compare_context_names(x.target_context_name, y.target_context_name)
+        if result in (-1, 1):
+            return result
+        else:
+            return cmp(x._lexical_rank, y._lexical_rank)
 
     def report_settings(self):
         for segment_specification in self.segment_specifications:
