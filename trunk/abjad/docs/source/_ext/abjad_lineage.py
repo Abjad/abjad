@@ -46,11 +46,57 @@ class AbjadLineage(Directive):
                 addresses=addresses,
                 lineage_addresses=((module_name, class_name),)
                 ) 
+            graphviz = lineage.graphviz_format
+
         except InheritanceException, err:
             return [node.document.reporter.warning(err.args[0],
                                                    line=self.lineno)]
 
-        node['code'] = lineage.graphviz_format
+        maximum_node_count = 25
+
+        # begin pruning
+        if maximum_node_count < len(lineage.graphviz_graph.nodes):
+            lineage = documentationtools.InheritanceGraph(
+                addresses=addresses,
+                lineage_addresses=((module_name, class_name),),
+                lineage_prune_distance=2,
+                )
+            graphviz = lineage.graphviz_format
+
+        # keep pruning if still too many nodes
+        if maximum_node_count < len(lineage.graphviz_graph.nodes):
+            lineage = documentationtools.InheritanceGraph(
+                addresses=addresses,
+                lineage_addresses=((module_name, class_name),),
+                lineage_prune_distance=1,
+                )
+            graphviz = lineage.graphviz_format
+
+        # finally, revert to subclass-less version if still too many nodes
+        if maximum_node_count < len(lineage.graphviz_graph.nodes):
+            lineage = documentationtools.InheritanceGraph(
+                addresses=((module_name, class_name),),
+                )
+            
+            def get_node_name(original_name):
+                parts = original_name.split('.')
+                name = [parts[0]]
+                for part in parts[1:]:
+                    if part != name[-1]:
+                        name.append(part)
+                if name[0] in ('abjad', 'experimental'):
+                    return str('.'.join(name[2:]))
+                return str('.'.join(name))
+
+            node_name = get_node_name(module_name + '.' + class_name)
+            graph = lineage.graphviz_graph
+            graph_node = graph[node_name]
+            graph_node.attributes['color'] = 'black'
+            graph_node.attributes['fontcolor'] = 'white'
+            graph_node.attributes['style'] = ('filled', 'rounded')
+            graphviz = graph.graphviz_format
+
+        node['code'] = graphviz
         node['kind'] = 'graphviz'
         node['keep_original'] = True
 

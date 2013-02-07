@@ -193,7 +193,7 @@ class TreeContainer(TreeNode):
             children = self._named_children[i]
             if 1 == len(children):
                 return tuple(children)[0]
-        raise ValueError
+        raise ValueError, repr(i)
 
     def __iter__(self):
         for child in self._children:

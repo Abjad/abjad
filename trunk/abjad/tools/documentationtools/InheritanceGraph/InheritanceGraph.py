@@ -414,7 +414,6 @@ class InheritanceGraph(AbjadObject):
                     parent_node = klass_nodes[parent]
                     child_node = klass_nodes[child]
                     documentationtools.GraphvizEdge()(parent_node, child_node)
-                
 
         for i, cluster in enumerate(sorted(graph.children, key=lambda x: x.name)):
             color = i % 9 + 1

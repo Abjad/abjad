@@ -178,7 +178,18 @@ def process_literal_block_pairs(literal_block_pairs):
 
 
 def process_abjad_literal_blocks(abjad_literal_blocks):
-    pass
+    # setup pipe
+    pipe = documentationtools.Pipe()
+    pipe.read_wait()
+    pipe.write('from abjad import *\n')
+    pipe.read_wait()
+
+    for abjad_literal_block in abjad_literal_blocks:
+        pass
+            
+    # cleanup pipe
+    pipe.write('quit()\n')
+    pipe.close()
 
 
 def on_doctree_read(app, doctree):
