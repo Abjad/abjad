@@ -29,11 +29,6 @@ Methods
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.calculate_score_and_segment_timespans
    :noindex:
 
-.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.copy_persistent_segment_rooted_set_expressions_into_segment_specifications
-   :noindex:
-
-   Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
-
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.evaluate_multiple_context_set_expressions
    :noindex:
 
@@ -87,6 +82,11 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.store_score_rooted_single_context_set_expressions_by_context
+   :noindex:
+
+   Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
+
+.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.store_segment_rooted_single_context_set_expressions_by_context
    :noindex:
 
    Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`

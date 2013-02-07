@@ -17,9 +17,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.copy_persistent_segment_rooted_set_expressions_into_segment_specifications
-   :noindex:
-
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.evaluate_multiple_context_set_expressions
    :noindex:
 
@@ -27,6 +24,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_score_rooted_single_context_set_expressions_by_context
+   :noindex:
+
+.. automethod:: experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter.store_segment_rooted_single_context_set_expressions_by_context
    :noindex:
 
 Special Methods

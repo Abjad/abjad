@@ -114,7 +114,7 @@ class SingleContextSetExpression(InputSetExpression):
         '''
         pass
 
-    def store_in_segment_by_context_and_attribute(self):
+    def store_in_segment_specification_by_context_and_attribute(self):
         '''Store single-context set expression in segment by context and attribute.
 
         If single-context set expression persists then also store 
@@ -131,10 +131,3 @@ class SingleContextSetExpression(InputSetExpression):
             if expression.target_timespan == self.target_timespan:
                 expressions.remove(expression)
         expressions.append(self)
-#        if self.persist:
-#            target_context_proxy = self.score_specification.context_proxies[target_context_name]
-#            expressions = target_context_proxy.single_context_set_expressions_by_attribute[self.attribute]
-#            for expression in expressions[:]:
-#                if expression.target_timespan == self.target_timespan:
-#                    expressions.remove(expression)
-#            expressions.append(self)
