@@ -252,22 +252,17 @@ class ConcreteInterpreter(Interpreter):
     def make_timespan_scoped_single_context_set_expressions(self, attribute):
         attribute_key = 'timespan_scoped_single_context_{}_set_expressions'.format(attribute.rstrip('s'))
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            set_expressions = self.make_timespan_scoped_single_context_set_expressions_for_voice(
+            timespan_scoped_single_context_set_expressions = \
+                self.score_specification.make_timespan_scoped_single_context_set_expressions_for_voice(
                 attribute, voice.name)
+            timespan_scoped_single_context_set_expressions.sort_and_split_set_expressions()
+            timespan_scoped_single_context_set_expressions.compute_logical_or()
+            timespan_scoped_single_context_set_expressions.supply_missing_set_expressions(
+                attribute, self.score_specification, voice.name)
             voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice.name]
             inventory = getattr(voice_proxy, attribute_key)
-            inventory[:] = set_expressions[:]
+            inventory[:] = timespan_scoped_single_context_set_expressions[:]
                         
-    def make_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, voice_name):
-        timespan_scoped_single_context_set_expressions = \
-            self.score_specification.make_timespan_scoped_single_context_set_expressions_for_voice(
-            attribute, voice_name)
-        timespan_scoped_single_context_set_expressions.sort_and_split_set_expressions()
-        timespan_scoped_single_context_set_expressions.compute_logical_or()
-        timespan_scoped_single_context_set_expressions.supply_missing_set_expressions(
-            attribute, self.score_specification, voice_name)
-        return timespan_scoped_single_context_set_expressions
-
     def merge_prolonging_rhythm_region_expressions(self, rhythm_region_expressions):
         result = []
         for rhythm_region_expression in rhythm_region_expressions:
