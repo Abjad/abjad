@@ -44,7 +44,7 @@ class DivisionSelectExpression(SelectExpression):
     def evaluate(self):
         from experimental.tools import expressiontools
         anchor_timespan = self.evaluate_anchor_timespan()
-        voice_proxy = self.score_specification.context_proxies[self.voice_name]
+        voice_proxy = self.score_specification.payload_expressions_by_voice[self.voice_name]
         division_payload_expressions = voice_proxy.division_payload_expressions
         if division_payload_expressions is None:
             return

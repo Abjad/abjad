@@ -45,7 +45,7 @@ class ConcreteInterpreter(Interpreter):
     def add_division_lists_to_score(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = expressiontools.DivisionList([], voice_name=voice.name)
-            voice_proxy = self.score_specification.context_proxies[voice.name]
+            voice_proxy = self.score_specification.payload_expressions_by_voice[voice.name]
             expressions = voice_proxy.division_payload_expressions
             divisions = [x.payload.divisions for x in expressions]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)
@@ -163,7 +163,11 @@ class ConcreteInterpreter(Interpreter):
                     made_progress = True
                     score_region_expressions.remove(region_expression)
                     voice_name = region_expression.voice_name
-                    voice_proxy = self.score_specification.context_proxies[voice_name]
+                    if payload_expression_key == 'rhythm_payload_expressions':
+                        voice_proxy = self.score_specification.context_proxies[voice_name]
+                    else:
+                        assert payload_expression_key == 'division_payload_expressions'
+                        voice_proxy = self.score_specification.payload_expressions_by_voice[voice_name]
                     voice_payload_expressions = getattr(voice_proxy, payload_expression_key)
                     voice_payload_expressions = voice_payload_expressions - payload_expression.timespan
                     voice_payload_expressions.append(payload_expression)
@@ -182,8 +186,12 @@ class ConcreteInterpreter(Interpreter):
 
     def make_rhythm_region_expressions_for_voice(self, voice_name):
         voice_proxy = self.score_specification.context_proxies[voice_name]
-        voice_division_list = voice_proxy.voice_division_list
-        division_payload_expressions = voice_proxy.division_payload_expressions
+        #voice_division_list = voice_proxy.voice_division_list
+        #division_payload_expressions = voice_proxy.division_payload_expressions
+        voice_division_list = self.score_specification.payload_expressions_by_voice[
+            voice_name].voice_division_list
+        division_payload_expressions = self.score_specification.payload_expressions_by_voice[
+            voice_name].division_payload_expressions
         timespan_scoped_single_context_rhythm_set_expressions = \
             voice_proxy.timespan_scoped_single_context_rhythm_set_expressions
         #self._debug_values(timespan_scoped_single_context_rhythm_set_expressions, 'tsscrsxs')
