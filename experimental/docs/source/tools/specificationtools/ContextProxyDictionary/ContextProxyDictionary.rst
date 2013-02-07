@@ -12,10 +12,10 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary.score
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary.score_context_proxy
+.. autoattribute:: experimental.tools.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary.score_name
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary.score_name
+.. autoattribute:: experimental.tools.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary.score_proxy
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary.storage_format

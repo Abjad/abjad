@@ -110,11 +110,11 @@ class ConcreteInterpreter(Interpreter):
                 timespan = timespantools.Timespan(start_offset, stop_offset)
                 segment_specification._timespan = timespan
 
+    # TODO: change name to self.make_...
     def get_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, voice_name):
         timespan_scoped_single_context_set_expressions = \
             self.score_specification.get_timespan_scoped_single_context_set_expressions_for_voice(
             attribute, voice_name)
-        #self._debug_values(timespan_scoped_single_context_set_expressions, 'FFF', blank=True)
         timespan_scoped_single_context_set_expressions.sort_and_split_set_expressions()
         timespan_scoped_single_context_set_expressions.compute_logical_or()
         timespan_scoped_single_context_set_expressions.supply_missing_set_expressions(
@@ -262,25 +262,16 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(rhythm_region_expressions, 'rrxs')
         return rhythm_region_expressions
 
+    # TODO: extend for score-rooted set expressions
     def make_timespan_scoped_single_context_set_expressions(self, attribute):
         attribute_key = 'timespan_scoped_single_context_{}_set_expressions'.format(attribute.rstrip('s'))
         if self.score_specification.segment_specifications:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
-                voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice.name]
                 set_expressions = self.get_timespan_scoped_single_context_set_expressions_for_voice(
                     attribute, voice.name)
+                voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice.name]
                 inventory = getattr(voice_proxy, attribute_key)
                 inventory[:] = set_expressions[:]
-                score_set_expressions = getattr(self.score_specification, attribute_key)
-                for set_expression in set_expressions:
-                    if set_expression not in score_set_expressions:
-                        score_set_expressions.append(set_expression)
-                    if set_expression not in \
-                        self.score_specification.timespan_scoped_single_context_set_expressions:
-                        self.score_specification.timespan_scoped_single_context_set_expressions.append(
-                            set_expression)
-                    if set_expression not in voice_proxy.timespan_scoped_single_context_set_expressions:
-                        voice_proxy.timespan_scoped_single_context_set_expressions.append(set_expression)
                         
     def merge_prolonging_rhythm_region_expressions(self, rhythm_region_expressions):
         result = []
@@ -299,7 +290,7 @@ class ConcreteInterpreter(Interpreter):
         return result
 
     def populate_single_context_time_signature_set_expressions(self):
-        score_proxy = self.score_specification.single_context_set_expressions_by_context.score_context_proxy
+        score_proxy = self.score_specification.single_context_set_expressions_by_context.score_proxy
         single_context_time_signature_set_expressions = \
             score_proxy.single_context_set_expressions_by_attribute.get('time_signatures', [])
         if single_context_time_signature_set_expressions:
@@ -308,7 +299,7 @@ class ConcreteInterpreter(Interpreter):
                 single_context_time_signature_set_expression)
             return
         for segment_specification in self.score_specification.segment_specifications:
-            score_proxy = segment_specification.single_context_set_expressions_by_context.score_context_proxy
+            score_proxy = segment_specification.single_context_set_expressions_by_context.score_proxy
             single_context_time_signature_set_expressions = \
                 score_proxy.single_context_set_expressions_by_attribute.get('time_signatures', [])
             if not single_context_time_signature_set_expressions:

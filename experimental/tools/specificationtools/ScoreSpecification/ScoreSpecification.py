@@ -57,12 +57,6 @@ class ScoreSpecification(Specification):
             specificationtools.SegmentSpecification
         self._single_context_time_signature_set_expressions = \
             expressiontools.SetExpressionInventory()
-        self._timespan_scoped_single_context_division_set_expressions = \
-            expressiontools.SetExpressionInventory()
-        self._timespan_scoped_single_context_rhythm_set_expressions = \
-            expressiontools.SetExpressionInventory()
-        self._timespan_scoped_single_context_set_expressions = \
-            expressiontools.SetExpressionInventory()
 
     ### SPECIAL METHODS ###
 
@@ -453,120 +447,6 @@ class ScoreSpecification(Specification):
         '''
         return Specification.timespan.fget(self)
 
-    @property
-    def timespan_scoped_single_context_division_set_expressions(self):
-        '''Read-only list of all timespan-scoped single-context division set expressions:
-
-        ::
-
-            >>> z(score_specification.timespan_scoped_single_context_division_set_expressions)
-            expressiontools.SetExpressionInventory([
-                expressiontools.TimespanScopedSingleContextDivisionSetExpression(
-                    source=expressiontools.PayloadExpression(
-                        ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
-                        ),
-                    target_timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(9, 4)
-                        ),
-                    target_context_name='Voice 1',
-                    fresh=True,
-                    truncate=True
-                    ),
-                expressiontools.TimespanScopedSingleContextDivisionSetExpression(
-                    source=expressiontools.PayloadExpression(
-                        ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
-                        ),
-                    target_timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(9, 4)
-                        ),
-                    target_context_name='Voice 2',
-                    fresh=True,
-                    truncate=True
-                    )
-                ])
-
-        Populate during interpretation.
-
-        Return set expression inventory.
-        '''
-        return self._timespan_scoped_single_context_division_set_expressions
-
-    @property
-    def timespan_scoped_single_context_rhythm_set_expressions(self):
-        '''Read-only list of all timespan-scoped single-context rhythm set expressions:
-    
-        ::
-
-            >>> z(score_specification.timespan_scoped_single_context_rhythm_set_expressions)
-            expressiontools.SetExpressionInventory([
-                expressiontools.TimespanScopedSingleContextRhythmSetExpression(
-                    source=expressiontools.RhythmMakerPayloadExpression(
-                        payload=(TaleaRhythmMaker('sixteenths'),)
-                        ),
-                    target_timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(9, 4)
-                        ),
-                    fresh=True
-                    )
-                ])
-
-        Populate during interpretation.
-
-        Return set expression inventory.
-        '''
-        return self._timespan_scoped_single_context_rhythm_set_expressions
-
-    @property
-    def timespan_scoped_single_context_set_expressions(self):
-        '''Timespan-scoped single-context set expressions:
-
-        ::
-
-            >>> z(score_specification.timespan_scoped_single_context_set_expressions)
-            expressiontools.SetExpressionInventory([
-                expressiontools.TimespanScopedSingleContextDivisionSetExpression(
-                    source=expressiontools.PayloadExpression(
-                        ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
-                        ),
-                    target_timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(9, 4)
-                        ),
-                    target_context_name='Voice 1',
-                    fresh=True,
-                    truncate=True
-                    ),
-                expressiontools.TimespanScopedSingleContextDivisionSetExpression(
-                    source=expressiontools.PayloadExpression(
-                        ((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16))
-                        ),
-                    target_timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(9, 4)
-                        ),
-                    target_context_name='Voice 2',
-                    fresh=True,
-                    truncate=True
-                    ),
-                expressiontools.TimespanScopedSingleContextRhythmSetExpression(
-                    source=expressiontools.RhythmMakerPayloadExpression(
-                        payload=(TaleaRhythmMaker('sixteenths'),)
-                        ),
-                    target_timespan=timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(9, 4)
-                        ),
-                    fresh=True
-                    )
-                ])
-
-        Return list.
-        '''
-        return self._timespan_scoped_single_context_set_expressions
-
     ### PUBLIC METHODS ###
 
     def append_segment(self, name=None):
@@ -645,6 +525,7 @@ class ScoreSpecification(Specification):
         result = [x.pair for x in result]
         return result
 
+    # TODO: change name to self.make_...
     def get_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, voice_name):
         timespan_scoped_set_expressions = expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for specification in (self, ) + tuple(self.segment_specifications):

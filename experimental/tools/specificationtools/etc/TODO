@@ -63,4 +63,5 @@
     Right now a dummy segment is required to allow interpretation to procede.
     Score-rooted set expressions should suffice.
 
-15. Globally change 'score_context_proxy' to 'score_proxy'.
+15. Move ScoreSpecification.division_region_expressions to VoiceProxy.division_region_expressions.
+    Move ScoreSpecification.rhythm_region_expressions to VoiceProxy.rhythm_region_expressions.

@@ -51,14 +51,14 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
         return self._score
 
     @property
-    def score_context_proxy(self):
-        return self[self.score_name]
-
-    @property
     def score_name(self):
         for context in iterationtools.iterate_contexts_in_expr(self.score):
             if isinstance(context, scoretools.Score):
                 return context.name
+
+    @property
+    def score_proxy(self):
+        return self[self.score_name]
 
     ### PUBLIC METHODS ###
 
