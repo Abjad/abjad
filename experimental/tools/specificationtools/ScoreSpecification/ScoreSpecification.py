@@ -46,6 +46,8 @@ class ScoreSpecification(Specification):
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
         self._division_region_expressions = expressiontools.ExpressionInventory()
+        self._payload_expressions_by_voice = \
+            specificationtools.ContextProxyDictionary(score_template())
         self._rhythm_region_expressions = expressiontools.ExpressionInventory()
         self._fresh_single_context_set_expressions_by_context = \
             specificationtools.ContextProxyDictionary(score_template())
@@ -230,6 +232,16 @@ class ScoreSpecification(Specification):
         '''
         return Specification.multiple_context_set_expressions.fget(self)
     
+    @property
+    def payload_expressions_by_voice(self):
+        '''Score specification payload expressions by voice.
+
+        .. note:: add example.
+
+        Return context proxy dictionary.
+        '''        
+        return self._payload_expressions_by_voice
+
     @property
     def rhythm_region_expressions(self):
         '''Read-only list of rhythm region expressions:

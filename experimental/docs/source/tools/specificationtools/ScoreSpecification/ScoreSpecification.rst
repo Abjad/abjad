@@ -30,6 +30,9 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.multiple_context_set_expressions
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.payload_expressions_by_voice
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.rhythm_region_expressions
    :noindex:
 

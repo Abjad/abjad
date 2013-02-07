@@ -45,27 +45,26 @@
 10. Audit all expressions.
     Complete all expression docstrings.
 
-11. Add some tests to show this:
+11. Globally search and replace z(x) with z() of whole inventory.
+
+12. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_part = segments.set_offset(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         middle_part.set_divisions([(3, 16)])
     This will show set expression divisions for (potentially) more than one segment.
 
-12. Add some tests to show this:
+13. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_measures = segments.select_measures('Voice 1')[3:6]
     This will show selecting measures from (potentially) more than one segment.
 
-13. Extend interpreter to allow interpretation to procede absent segment specification.
+14. Extend interpreter to allow interpretation to procede absent segment specification.
     Right now a dummy segment is required to allow interpretation to procede.
     Score-rooted set expressions should suffice.
-
-14. Globally search and replace z(x) with z() of whole inventory.
 
 15. Maybe the specification single-context set expression storage order should be
     attribute first and then context second?
 
-16. Do something to clear out duplicate single-context set expressions.
-    Maybe use test_multiple_segment_solo__persistent_overlapping_division_selectors_01() for debugging.
-    Also there's now ScoreSpecification.report_settings().
+16. Implement VoiceProxy and VoiceProxyDictionary.
+    Then ScoreSpecification.payload_expressions_by_voice can be VoiceProxyDictionary.

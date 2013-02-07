@@ -119,7 +119,7 @@ class SingleContextSetExpression(InputSetExpression):
         '''
         assert self.is_score_rooted
         target_context_name = self.target_context_name or self.score_specification.score_name
-        expressions = self.score_specification.fresh_single_context_set_expressions_by_context[
+        expressions = self.root_specification.fresh_single_context_set_expressions_by_context[
             target_context_name].single_context_set_expressions_by_attribute[
             self.attribute]
         for expression in expressions[:]:
