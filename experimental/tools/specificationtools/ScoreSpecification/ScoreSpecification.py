@@ -45,6 +45,7 @@ class ScoreSpecification(Specification):
         from experimental.tools import expressiontools
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
+        self._next_lexical_rank = 0
         self._division_region_expressions = \
             expressiontools.ExpressionInventory()
         self._payload_expressions_by_voice = \
@@ -574,6 +575,7 @@ class ScoreSpecification(Specification):
                 # make sure set expression was set expression for timespan that exists in current segment
                 if timespan_scoped_set_expression.target_timespan.is_well_formed:
                     timespan_scoped_set_expressions.append(timespan_scoped_set_expression)
+        # TODO: implement lexical rank; then sort result by lexical rank here before returning
         assert timespan_scoped_set_expressions.all_are_well_formed
         return timespan_scoped_set_expressions
 

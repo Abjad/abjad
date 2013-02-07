@@ -45,7 +45,8 @@ class SetMethodMixin(AbjadObject):
         else:
             raise TypeError('do not know how to change {!r} to expression.'.format(expr))
 
-    def _store_multiple_context_set_expression(self, attribute, source, contexts=None, persist=True, truncate=None):
+    def _store_multiple_context_set_expression(self, attribute, source, 
+        contexts=None, persist=True, truncate=None):
         from experimental.tools import expressiontools
         source = self._expr_to_expression(source)
         assert self.score_specification is not None
@@ -59,6 +60,8 @@ class SetMethodMixin(AbjadObject):
             truncate=truncate
             )
         multiple_context_set_expression._score_specification = self.score_specification
+        multiple_context_set_expression._lexical_rank = self.score_specification._next_lexical_rank
+        self.score_specification._next_lexical_rank += 1
         self.score_specification.multiple_context_set_expressions.append(multiple_context_set_expression)
         return multiple_context_set_expression
 

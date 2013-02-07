@@ -67,26 +67,19 @@ class MultipleContextSetExpression(InputSetExpression):
         single_context_set_expressions = []
         single_context_set_expression_class = \
             self._attribute_to_single_context_set_expression_class(self.attribute)
-        # TODO: combine these two branches by making [None] in the first case
         if self.target_context_names is None:
+            target_context_names = [None]
+        else:
+            target_context_names = self.target_context_names
+        for target_context_name in target_context_names:
             target_timespan = copy.deepcopy(self.target_timespan)
             single_context_set_expression = single_context_set_expression_class(
                 source=self.source, 
                 target_timespan=target_timespan,
-                target_context_name=None,
+                target_context_name=target_context_name,
                 persist=self.persist)
             single_context_set_expression._score_specification = self.score_specification
             single_context_set_expressions.append(single_context_set_expression)
-        else:
-            for target_context_name in self.target_context_names:
-                target_timespan = copy.deepcopy(self.target_timespan)
-                single_context_set_expression = single_context_set_expression_class(
-                    source=self.source, 
-                    target_timespan=target_timespan,
-                    target_context_name=target_context_name,
-                    persist=self.persist)
-                single_context_set_expression._score_specification = self.score_specification
-                single_context_set_expressions.append(single_context_set_expression)
         if self.attribute == 'divisions':
             for single_context_set_expression in single_context_set_expressions:
                 single_context_set_expression._truncate = self.truncate

@@ -18,6 +18,7 @@ class SetExpression(Expression):
         from experimental.tools import expressiontools
         assert isinstance(source, expressiontools.Expression), repr(source)
         assert isinstance(target_timespan, (timespantools.Timespan, type(None))), repr(target_timespan)
+        self._lexical_rank = None
         self._source = source
         self._target_timespan = target_timespan
 
