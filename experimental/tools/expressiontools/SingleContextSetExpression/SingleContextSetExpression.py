@@ -28,17 +28,16 @@ class SingleContextSetExpression(InputSetExpression):
     ::
 
         >>> fresh_single_context_set_expression = \
-        ...     red_segment.specification.fresh_single_context_set_expressions_by_attribute['divisions'][0]
+        ...     red_segment.specification.fresh_single_context_set_expressions[0]
 
     ::
 
         >>> z(fresh_single_context_set_expression)
-        expressiontools.SingleContextDivisionSetExpression(
+        expressiontools.SingleContextTimeSignatureSetExpression(
             source=expressiontools.PayloadExpression(
-                ((3, 16),)
+                ((4, 8), (3, 8))
                 ),
             target_timespan='red',
-            target_context_name='Voice 1',
             fresh=True,
             persist=True
             )
@@ -67,12 +66,11 @@ class SingleContextSetExpression(InputSetExpression):
         '''Single-context set expression storage format::
 
             >>> z(fresh_single_context_set_expression)
-            expressiontools.SingleContextDivisionSetExpression(
+            expressiontools.SingleContextTimeSignatureSetExpression(
                 source=expressiontools.PayloadExpression(
-                    ((3, 16),)
+                    ((4, 8), (3, 8))
                     ),
                 target_timespan='red',
-                target_context_name='Voice 1',
                 fresh=True,
                 persist=True
                 )

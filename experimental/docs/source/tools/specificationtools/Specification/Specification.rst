@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.context_names
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.fresh_single_context_set_expressions_by_attribute
+.. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.fresh_single_context_set_expressions
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.multiple_context_set_expressions

@@ -35,12 +35,13 @@ class Interpreter(AbjadObject):
 
     def evaluate_multiple_context_set_expressions(self):
         for multiple_context_set_expression in self.score_specification.multiple_context_set_expressions:
+            # TODO: migrate all of this to MultipleContextSetExpression
             fresh_single_context_set_expressions = multiple_context_set_expression.evaluate()
             assert all([x.fresh for x in fresh_single_context_set_expressions])
             root_specification = multiple_context_set_expression.root_specification
             attribute = multiple_context_set_expression.attribute
-            root_specification.fresh_single_context_set_expressions_by_attribute[
-                attribute].extend(fresh_single_context_set_expressions)
+            root_specification.fresh_single_context_set_expressions.extend(
+                fresh_single_context_set_expressions)
                 
     def instantiate_score(self):
         '''Instantiate score.
@@ -55,11 +56,8 @@ class Interpreter(AbjadObject):
         return score
 
     def store_score_rooted_single_context_set_expressions_by_context(self):
-        for attribute in self.attributes:
-            fresh_single_context_set_expressions = \
-                self.score_specification.fresh_single_context_set_expressions_by_attribute[attribute]
-            for fresh_single_context_set_expression in fresh_single_context_set_expressions:
-                fresh_single_context_set_expression.store_in_score_specification_by_context_and_attribute()
+        for fresh_single_context_set_expression in self.score_specification.fresh_single_context_set_expressions:
+            fresh_single_context_set_expression.store_in_score_specification_by_context_and_attribute()
 
     def store_segment_rooted_single_context_set_expressions_by_context(self):
         from experimental.tools import specificationtools
@@ -78,17 +76,15 @@ class Interpreter(AbjadObject):
                     segment_specification.segment_name)
                 persistent_single_context_set_expression.store_in_segment_specification_by_context_and_attribute()
             # store fresh single-context-set expressions in current segment specification
-            for attribute in self.attributes:
-                fresh_single_context_set_expressions = \
-                    segment_specification.fresh_single_context_set_expressions_by_attribute[attribute]
-                for fresh_single_context_set_expression in fresh_single_context_set_expressions:
-                    fresh_single_context_set_expression.store_in_segment_specification_by_context_and_attribute()
-                    if fresh_single_context_set_expression.persist:
-                        target_context_name = fresh_single_context_set_expression.target_context_name
-                        expressions = persistent_single_context_set_expressions_by_context[
-                            target_context_name].single_context_set_expressions_by_attribute[attribute]
-                        for expression in expressions[:]:
-                            if expression.target_timespan == \
-                                fresh_single_context_set_expression.target_timespan:
-                                expressions.remove(expression)
-                        expressions.append(fresh_single_context_set_expression)
+            for fresh_single_context_set_expression in segment_specification.fresh_single_context_set_expressions:
+                fresh_single_context_set_expression.store_in_segment_specification_by_context_and_attribute()
+                if fresh_single_context_set_expression.persist:
+                    target_context_name = fresh_single_context_set_expression.target_context_name
+                    attribute = fresh_single_context_set_expression.attribute
+                    expressions = persistent_single_context_set_expressions_by_context[
+                        target_context_name].single_context_set_expressions_by_attribute[attribute]
+                    for expression in expressions[:]:
+                        if expression.target_timespan == \
+                            fresh_single_context_set_expression.target_timespan:
+                            expressions.remove(expression)
+                    expressions.append(fresh_single_context_set_expression)

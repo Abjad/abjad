@@ -134,22 +134,6 @@ class ScoreSpecification(Specification):
         return self._division_region_expressions
 
     @property
-    def fresh_single_context_set_expressions_by_attribute(self):
-        r'''Score specification single-context set expressions:
-
-        ::
-
-            >>> for x in score_specification.fresh_single_context_set_expressions_by_attribute.itervalues():
-            ...     if x:
-            ...         z(x)
-
-        Populate during interpretation.
-
-        Return attribute dictionary.
-        '''
-        return Specification.fresh_single_context_set_expressions_by_attribute.fget(self)
-
-    @property
     def fresh_single_context_set_expressions_by_context(self):
         '''Score specification fresh single-context set expressions by context.
 

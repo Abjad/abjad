@@ -31,12 +31,14 @@ class Specification(AbjadObject):
         from experimental.tools import specificationtools
         self._abbreviated_context_names = []
         self._context_names = []
-        self._single_context_set_expressions_by_context = specificationtools.ContextProxyDictionary(score_template())
-        self._fresh_single_context_set_expressions_by_attribute = \
-            expressiontools.SingleContextSetExpressionAttributeDictionary()
-        self._multiple_context_set_expressions = expressiontools.SetExpressionInventory()
+        self._fresh_single_context_set_expressions = \
+            expressiontools.SetExpressionInventory()
+        self._multiple_context_set_expressions = \
+            expressiontools.SetExpressionInventory()
         self._score_template = score_template
         self._score_model = score_template()
+        self._single_context_set_expressions_by_context = \
+            specificationtools.ContextProxyDictionary(score_template())
         self._initialize_context_name_abbreviations()
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -96,8 +98,8 @@ class Specification(AbjadObject):
         return self._context_names
 
     @property
-    def fresh_single_context_set_expressions_by_attribute(self):
-        return self._fresh_single_context_set_expressions_by_attribute
+    def fresh_single_context_set_expressions(self):
+        return self._fresh_single_context_set_expressions
 
     @property
     def multiple_context_set_expressions(self):
