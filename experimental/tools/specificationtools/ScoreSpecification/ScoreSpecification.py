@@ -625,17 +625,6 @@ class ScoreSpecification(Specification):
             segment_index = eval(modified_string)
             return self.segment_specifications[segment_index]
 
-    # TODO: hoist to Specification
-    def get_single_context_set_expressions_rooted_to_specification_that_govern_context_name(
-        self, attribute, context_name):
-        result = []
-        context_names = self._context_name_to_improper_parentage_names(context_name)
-        for context_name in reversed(context_names):
-            single_context_set_expressions = self.single_context_set_expressions_by_context[
-                context_name].single_context_set_expressions_by_attribute.get(attribute, [])
-            result.extend(single_context_set_expressions)
-        return result
-
     def get_time_signature_slice(self, timespan):
         '''Get time signature slice::
 

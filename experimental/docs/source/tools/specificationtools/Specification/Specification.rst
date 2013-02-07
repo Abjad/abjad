@@ -38,6 +38,12 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.timespan
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.get_single_context_set_expressions_rooted_to_specification_that_govern_context_name
+   :noindex:
+
 Special Methods
 ---------------
 

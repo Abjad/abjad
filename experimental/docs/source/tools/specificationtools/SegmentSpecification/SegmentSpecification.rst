@@ -53,6 +53,8 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.get_single_context_set_expressions_rooted_to_specification_that_govern_context_name
    :noindex:
 
+   Inherited from :py:class:`specificationtools.Specification <experimental.tools.specificationtools.Specification.Specification.Specification>`
+
 Special Methods
 ---------------
 
