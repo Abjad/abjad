@@ -79,9 +79,19 @@ class ConcreteInterpreter(Interpreter):
         context.extend(measures)
 
     def calculate_score_and_segment_timespans(self):
-        segment_durations = [durationtools.Duration(sum(x.time_signatures)) 
-            for x in self.score_specification.segment_specifications]
-        if sequencetools.all_are_numbers(segment_durations):
+        if hasattr(self.score_specification, '_time_signatures'):
+            time_signatures = self.score_specification.time_signatures
+            score_duration = sum([durationtools.Duration(x) for x in time_signatures])
+            score_start_offset = durationtools.Offset(0)
+            score_stop_offset = durationtools.Offset(score_duration)
+            self.score_specification._start_offset = durationtools.Offset(0)
+            self.score_specification._stop_offset = durationtools.Offset(score_duration)
+            score_timespan = timespantools.Timespan(score_start_offset, score_stop_offset)
+            self.score_specification._timespan = score_timespan
+        else:
+            segment_durations = [durationtools.Duration(sum(x.time_signatures)) 
+                for x in self.score_specification.segment_specifications]
+            assert sequencetools.all_are_numbers(segment_durations)
             score_duration = sum(segment_durations)
             score_start_offset = durationtools.Offset(0)
             score_stop_offset = durationtools.Offset(score_duration)
@@ -289,6 +299,14 @@ class ConcreteInterpreter(Interpreter):
         return result
 
     def populate_single_context_time_signature_set_expressions(self):
+        score_proxy = self.score_specification.single_context_set_expressions_by_context.score_context_proxy
+        single_context_time_signature_set_expressions = \
+            score_proxy.single_context_set_expressions_by_attribute.get('time_signatures', [])
+        if single_context_time_signature_set_expressions:
+            single_context_time_signature_set_expression = single_context_time_signature_set_expressions[-1]
+            self.score_specification.single_context_time_signature_set_expressions.append(
+                single_context_time_signature_set_expression)
+            return
         for segment_specification in self.score_specification.segment_specifications:
             score_proxy = segment_specification.single_context_set_expressions_by_context.score_context_proxy
             single_context_time_signature_set_expressions = \

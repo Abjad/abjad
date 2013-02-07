@@ -434,10 +434,13 @@ class ScoreSpecification(Specification):
 
         Return list of zero or more nonreduced fractions.
         '''
-        result = []
-        for segment_specification in self.segment_specifications:
-            result.extend(segment_specification.time_signatures)
-        return result
+        if hasattr(self, '_time_signatures'):
+            return self._time_signatures
+        else:
+            result = []
+            for segment_specification in self.segment_specifications:
+                result.extend(segment_specification.time_signatures)
+            return result
 
     @property
     def timespan(self):

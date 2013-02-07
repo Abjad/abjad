@@ -62,3 +62,5 @@
 14. Extend interpreter to allow interpretation to procede absent segment specification.
     Right now a dummy segment is required to allow interpretation to procede.
     Score-rooted set expressions should suffice.
+
+15. Globally change 'score_context_proxy' to 'score_proxy'.
