@@ -1,19 +1,12 @@
-1.  Unskip all experimental tests before 2.11 build.
-
-2.  Author tests to make sure that persistent overlapping division select expressions
-    can be overwritten in a subsequent segment.
-    See test_multiple_segment_solo__persistent_overlapping_division_select_expressions_05().
-
-3.  Looks like callback stacks may not be copied over from segment to segment for persistent set expressions.
-    Fix test_multiple_segment_solo__persistent_overlapping_division_select_expressions_03() to debug.
-
-4.  Finish timerelationtools class docstrings before 2.11 build.
-
-5.  Finish timespantools package docstrings before 2.11 build.
-
-6.  Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
-
-7.  Move ScoreSpecification.division_region_expressions to VoiceProxy.division_region_expressions.
+1.  Move ScoreSpecification.division_region_expressions to VoiceProxy.division_region_expressions.
     Move ScoreSpecification.rhythm_region_expressions to VoiceProxy.rhythm_region_expressions.
 
-8.  Extend TimespanCallbackMixin with translate() method.
+2.  Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
+
+3.  Finish timerelationtools class docstrings before 2.11 build.
+
+4.  Finish timespantools package docstrings before 2.11 build.
+
+5.  Extend TimespanCallbackMixin with translate() method.
+
+6.  Fix all skipepd experimental tests before 2.11 build.
