@@ -15,3 +15,5 @@
 
 7.  Move ScoreSpecification.division_region_expressions to VoiceProxy.division_region_expressions.
     Move ScoreSpecification.rhythm_region_expressions to VoiceProxy.rhythm_region_expressions.
+
+8.  Extend TimespanCallbackMixin with translate() method.
