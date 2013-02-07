@@ -9,8 +9,6 @@ class ContextProxy(AbjadObject):
     def __init__(self):
         from experimental.tools import expressiontools
         from experimental.tools import specificationtools
-        # TODO: it's not at all clear that these need to be stored by attribute;
-        #       maybe just store in SetExpressionInventory?
         self._single_context_set_expressions_by_attribute = \
             expressiontools.SingleContextSetExpressionAttributeDictionary()
         self._timespan_scoped_single_context_division_set_expressions = \
@@ -24,9 +22,9 @@ class ContextProxy(AbjadObject):
 
     @property
     def single_context_set_expressions_by_attribute(self):
-        '''Context proxy input set expressions by attribute.
+        '''Context proxy single-context set expressions by attribute.
 
-        Return input set expression dictionary.
+        Return attribute dictionary.
         '''
         return self._single_context_set_expressions_by_attribute
 
@@ -35,7 +33,7 @@ class ContextProxy(AbjadObject):
         '''Context proxy timespan-scoped
         single-context division set expressions.
 
-        Return inventory.
+        Return timespan-scoped single-context set expression inventory.
         '''
         return self._timespan_scoped_single_context_division_set_expressions
 
@@ -44,7 +42,7 @@ class ContextProxy(AbjadObject):
         '''Context proxy timespan-scoped
         single-context rhythm set expressions.
 
-        Return inventory.
+        Return timespan-scoped single-context set expression inventory.
         '''
         return self._timespan_scoped_single_context_rhythm_set_expressions
 
@@ -53,6 +51,6 @@ class ContextProxy(AbjadObject):
         '''Context proxy timespan-scoped
         single-context set expressions.
 
-        Return inventory.
+        Return timespan-scoped single-context set expression inventory.
         '''
         return self._timespan_scoped_single_context_set_expressions

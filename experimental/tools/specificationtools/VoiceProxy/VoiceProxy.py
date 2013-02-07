@@ -19,24 +19,23 @@ class VoiceProxy(AbjadObject):
 
     @property
     def division_payload_expressions(self):
-        '''Context proxy division payload expressions.
+        '''Voice proxy division payload expressions.
 
-        Return inventory.
+        Return timespan inventory.
         '''
         return self._division_payload_expressions
 
     @property
     def rhythm_payload_expressions(self):
-        '''Context proxy rhythm payload expressions.
+        '''Voice proxy rhythm payload expressions.
 
-        Return inventory.
+        Return timespan inventory.
         '''
         return self._rhythm_payload_expressions
 
-    # TODO: rename to division_list
     @property
     def voice_division_list(self):
-        '''Context proxy voice division list.
+        '''Voice proxy voice division list.
 
         Return voice division list.
         '''
