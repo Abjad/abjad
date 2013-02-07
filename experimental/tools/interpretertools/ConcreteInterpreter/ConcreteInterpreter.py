@@ -110,17 +110,6 @@ class ConcreteInterpreter(Interpreter):
                 timespan = timespantools.Timespan(start_offset, stop_offset)
                 segment_specification._timespan = timespan
 
-    # TODO: change name to self.make_...
-    def get_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, voice_name):
-        timespan_scoped_single_context_set_expressions = \
-            self.score_specification.get_timespan_scoped_single_context_set_expressions_for_voice(
-            attribute, voice_name)
-        timespan_scoped_single_context_set_expressions.sort_and_split_set_expressions()
-        timespan_scoped_single_context_set_expressions.compute_logical_or()
-        timespan_scoped_single_context_set_expressions.supply_missing_set_expressions(
-            attribute, self.score_specification, voice_name)
-        return timespan_scoped_single_context_set_expressions
-
     def interpret_additional_parameters(self):
         pass
 
@@ -192,8 +181,6 @@ class ConcreteInterpreter(Interpreter):
 
     def make_rhythm_region_expressions_for_voice(self, voice_name):
         voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice_name]
-        #voice_division_list = voice_proxy.voice_division_list
-        #division_payload_expressions = voice_proxy.division_payload_expressions
         voice_division_list = self.score_specification.payload_expressions_by_voice[
             voice_name].voice_division_list
         division_payload_expressions = self.score_specification.payload_expressions_by_voice[
@@ -262,17 +249,25 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(rhythm_region_expressions, 'rrxs')
         return rhythm_region_expressions
 
-    # TODO: extend for score-rooted set expressions
     def make_timespan_scoped_single_context_set_expressions(self, attribute):
         attribute_key = 'timespan_scoped_single_context_{}_set_expressions'.format(attribute.rstrip('s'))
-        if self.score_specification.segment_specifications:
-            for voice in iterationtools.iterate_voices_in_expr(self.score):
-                set_expressions = self.get_timespan_scoped_single_context_set_expressions_for_voice(
-                    attribute, voice.name)
-                voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice.name]
-                inventory = getattr(voice_proxy, attribute_key)
-                inventory[:] = set_expressions[:]
+        for voice in iterationtools.iterate_voices_in_expr(self.score):
+            set_expressions = self.make_timespan_scoped_single_context_set_expressions_for_voice(
+                attribute, voice.name)
+            voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice.name]
+            inventory = getattr(voice_proxy, attribute_key)
+            inventory[:] = set_expressions[:]
                         
+    def make_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, voice_name):
+        timespan_scoped_single_context_set_expressions = \
+            self.score_specification.make_timespan_scoped_single_context_set_expressions_for_voice(
+            attribute, voice_name)
+        timespan_scoped_single_context_set_expressions.sort_and_split_set_expressions()
+        timespan_scoped_single_context_set_expressions.compute_logical_or()
+        timespan_scoped_single_context_set_expressions.supply_missing_set_expressions(
+            attribute, self.score_specification, voice_name)
+        return timespan_scoped_single_context_set_expressions
+
     def merge_prolonging_rhythm_region_expressions(self, rhythm_region_expressions):
         result = []
         for rhythm_region_expression in rhythm_region_expressions:
