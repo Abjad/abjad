@@ -47,12 +47,5 @@
 
 11. Globally search and replace z(x) with z() of whole inventory.
 
-12. Add some tests to show this:
-        segments = score_specification.select_segments()['red':('blue'+1)]
-        middle_part = segments.set_offset(start=(3, 4), stop=(-3, 4))
-        score_specification.set_divisions([(1, 16)])
-        middle_part.set_divisions([(3, 16)])
-    This will show set expression divisions for (potentially) more than one segment.
-
-13. Move ScoreSpecification.division_region_expressions to VoiceProxy.division_region_expressions.
+12. Move ScoreSpecification.division_region_expressions to VoiceProxy.division_region_expressions.
     Move ScoreSpecification.rhythm_region_expressions to VoiceProxy.rhythm_region_expressions.
