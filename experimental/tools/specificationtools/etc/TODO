@@ -8,5 +8,3 @@
 4.  Finish timespantools package docstrings before 2.11 build.
 
 5.  Extend TimespanCallbackMixin with translate() method.
-
-6.  Fix all skipepd experimental tests before 2.11 build.
