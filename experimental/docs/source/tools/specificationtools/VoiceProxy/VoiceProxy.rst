@@ -9,10 +9,7 @@ specificationtools.VoiceProxy
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.specificationtools.VoiceProxy.VoiceProxy.VoiceProxy.division_payload_expressions
-   :noindex:
-
-.. autoattribute:: experimental.tools.specificationtools.VoiceProxy.VoiceProxy.VoiceProxy.rhythm_payload_expressions
+.. autoattribute:: experimental.tools.specificationtools.VoiceProxy.VoiceProxy.VoiceProxy.payload_expressions_by_attribute
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.VoiceProxy.VoiceProxy.VoiceProxy.storage_format

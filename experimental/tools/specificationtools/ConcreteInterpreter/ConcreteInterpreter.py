@@ -45,7 +45,7 @@ class ConcreteInterpreter(Interpreter):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = expressiontools.DivisionList([], voice_name=voice.name)
             voice_proxy = self.score_specification.payload_expressions_by_voice[voice.name]
-            expressions = voice_proxy.division_payload_expressions
+            expressions = voice_proxy.payload_expressions_by_attribute['divisions']
             divisions = [x.payload.divisions for x in expressions]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)
             start_offset = durationtools.Offset(0)
@@ -59,7 +59,7 @@ class ConcreteInterpreter(Interpreter):
     def add_rhythms_to_score(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_proxy = self.score_specification.payload_expressions_by_voice[voice.name]
-            for rhythm_payload_expression in voice_proxy.rhythm_payload_expressions:
+            for rhythm_payload_expression in voice_proxy.payload_expressions_by_attribute['rhythm']:
                 voice.extend(rhythm_payload_expression.payload)
 
     def add_time_signatures_to_score(self):
@@ -145,43 +145,41 @@ class ConcreteInterpreter(Interpreter):
             region_expressions.append(region_expression)
         return region_expressions
 
-    # TODO: change local score_region_expressions to just region_expressions
     def make_payload_expressions(self, attribute):
-        # TODO: see if payload_expression_key can be removed
-        payload_expression_key = '{}_payload_expressions'.format(attribute.rstrip('s'))
-        score_region_expressions = self.score_specification.region_expressions_by_attribute[attribute][:]
-        while score_region_expressions:
+        region_expressions = self.score_specification.region_expressions_by_attribute[attribute][:]
+        while region_expressions:
             made_progress = False
-            for region_expression in score_region_expressions[:]:
+            for region_expression in region_expressions[:]:
                 assert isinstance(region_expression, expressiontools.RegionExpression)
                 payload_expression = region_expression.evaluate()
                 if payload_expression is not None:
                     assert isinstance(payload_expression, expressiontools.StartPositionedPayloadExpression)
                     made_progress = True
-                    score_region_expressions.remove(region_expression)
+                    region_expressions.remove(region_expression)
                     voice_name = region_expression.voice_name
                     voice_proxy = self.score_specification.payload_expressions_by_voice[voice_name]
-                    voice_payload_expressions = getattr(voice_proxy, payload_expression_key)
+                    voice_payload_expressions = voice_proxy.payload_expressions_by_attribute[attribute]
                     voice_payload_expressions = voice_payload_expressions - payload_expression.timespan
                     voice_payload_expressions.append(payload_expression)
                     voice_payload_expressions.sort()
             if not made_progress:
                 raise Exception('cyclic specification.')
 
-    # TODO: change local score_region_expressions to region_expressions
     def make_region_expressions(self, attribute):
+        # TODO: remove key and implement branchingm method instead
         method_key = 'make_{}_region_expressions_for_voice'.format(attribute.rstrip('s'))
-        score_region_expressions = self.score_specification.region_expressions_by_attribute[attribute]
+        region_expressions = self.score_specification.region_expressions_by_attribute[attribute]
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            region_expressions = getattr(self, method_key)(voice.name)
-            score_region_expressions.extend(region_expressions)
+            voice_region_expressions = getattr(self, method_key)(voice.name)
+            region_expressions.extend(voice_region_expressions)
 
+    # TODO: remove two-line dot-chains in first half of method
     def make_rhythm_region_expressions_for_voice(self, voice_name):
         voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice_name]
         voice_division_list = self.score_specification.payload_expressions_by_voice[
             voice_name].voice_division_list
         division_payload_expressions = self.score_specification.payload_expressions_by_voice[
-            voice_name].division_payload_expressions
+            voice_name].payload_expressions_by_attribute['divisions']
         timespan_scoped_single_context_rhythm_set_expressions = \
             voice_proxy.timespan_scoped_single_context_rhythm_set_expressions
         #self._debug_values(timespan_scoped_single_context_rhythm_set_expressions, 'tsscrsxs')

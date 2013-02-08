@@ -7,27 +7,23 @@ class VoiceProxy(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self):
-        self._division_payload_expressions = timespantools.TimespanInventory()
-        self._rhythm_payload_expressions = timespantools.TimespanInventory()
+        from experimental.tools import expressiontools
+        self._payload_expressions_by_attribute = expressiontools.AttributeDictionary()
+        for attribute in self._payload_expressions_by_attribute:
+            self._payload_expressions_by_attribute[attribute] = timespantools.TimespanInventory()
         self._voice_division_list = None
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def division_payload_expressions(self):
-        '''Voice proxy division payload expressions.
+    def payload_expressions_by_attribute(self):
+        '''Voice proxy payload expressions by attribute.
 
-        Return timespan inventory.
+        .. note:: add example.
+
+        Return attribute dictionary.
         '''
-        return self._division_payload_expressions
-
-    @property
-    def rhythm_payload_expressions(self):
-        '''Voice proxy rhythm payload expressions.
-
-        Return timespan inventory.
-        '''
-        return self._rhythm_payload_expressions
+        return self._payload_expressions_by_attribute
 
     @property
     def voice_division_list(self):
