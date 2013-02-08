@@ -1,7 +1,7 @@
-SELECTORS.
+SELECT EXPRESSIONS.
 
 
-The thinking in the previous doc (14_selectors.txt) goes off course where it tries
+The thinking in the previous doc (14_select expressions.txt) goes off course where it tries
 to accommodate (x, y, z)-style score-index component selection. Why is this?
 I think the reason is because (x, y, z)-style score-index component selection
 isn't really composerly. The logic in componenttools.component_to_score_index()
@@ -21,10 +21,10 @@ other items on the page around it. Examples of this are the following:
     * "all the toplevel tuplets in measures 45 - 48"
     * "all the notes starting / beginning / ending in timespan t"
 
-There's also a need for a thought-out process of selector reference nesting, too.
+There's also a need for a thought-out process of select expression reference nesting, too.
 In order to say things like "the last rest of the last tuplet starting in segment 'red'".
 How much nesting? We can safely leave contexts (like voices, staves, staff groups and scores)
-out of the selector reference regime. Why? Because composers reference context components 
+out of the select expression reference regime. Why? Because composers reference context components 
 by name. Also because context components do not interact with timespan inequalities interestingly.
-So our selector reference regime will need to be able to accommodate counttime component
+So our select expression reference regime will need to be able to accommodate counttime component
 nesting.

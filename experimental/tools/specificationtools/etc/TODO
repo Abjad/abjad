@@ -6,5 +6,3 @@
 3.  Finish timerelationtools class docstrings before 2.11 build.
 
 4.  Finish timespantools package docstrings before 2.11 build.
-
-5.  Globally replace 'selector' with 'select expression'.

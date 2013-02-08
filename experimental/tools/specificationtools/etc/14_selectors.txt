@@ -1,4 +1,4 @@
-SELECTORS.
+SELECT EXPRESSIONS.
 
 
 The purpose of this document is to list some of the different types of symbolic selection.
@@ -6,7 +6,7 @@ What is a symbolic selection? An indication to pick out a score object at some p
 during interpretation. Or an indication to pick out a collection of related score objects.
 
 
-*ComponentSelector.* Select a single component. What input parameters are available?
+*ComponentSelectExpression.* Select a single component. What input parameters are available?
 First, an optional timepsan defaulting to that of the entire score. Second, an optional
 timespan inequality defaulting to the first object that starts during timespan. Then an
 arbitrarily long list of ContainerIndicator objects which might eventually be implemented
@@ -14,7 +14,7 @@ as a ContainerIndicatorList.
 
 Select the first depth-0 tuplet in the last measure starting during segment 'red':
 
-    selector = ComponentSelector(
+    select_expression = ComponentSelectExpression(
         timespan=Timespan(klass=Division, name='red'),
         comparator=specificationtools.starts_during_timespan(),
         containment=[
@@ -22,7 +22,7 @@ Select the first depth-0 tuplet in the last measure starting during segment 'red
             ContainmentIndicator(klass=Tuplet, index=0, depth=0)]
 
 
-*SliceSelector.* Select zero or more container elements in sequence. Input parameters?
+*SliceSelectExpression.* Select zero or more container elements in sequence. Input parameters?
 First, an optional ContainerIndicator defaulting to the entire score. Then, optional
 start and stop indices each defaulting to none. The design goal is to mimic the Python
 slice interface as closely as possible. So only integer values and none are allowed.
@@ -30,7 +30,7 @@ Sequences of named objects like segments will have to be selected some other way
 
 Select the last three elements of the tuplet picked out above:
 
-    SliceSelector(selector, start=-3)
+    SliceSelectExpression(select_expression, start=-3)
 
 
 ### KINDS ###
