@@ -53,7 +53,7 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
         result = timespantools.TimespanInventory()
         for context_proxy in self.score_specification.single_context_set_expressions_by_context.itervalues():
             for timespan_scoped_single_context_division_set_expression in \
-                context_proxy.timespan_scoped_single_context_division_set_expressions:
+                context_proxy.timespan_scoped_single_context_set_expressions_by_attribute['divisions']:
                 if not timespan_scoped_single_context_division_set_expression.source == self:
                     result.append(timespan_scoped_single_context_division_set_expression)
         return result

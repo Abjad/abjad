@@ -11,10 +11,15 @@ class ContextProxy(AbjadObject):
         from experimental.tools import specificationtools
         self._single_context_set_expressions_by_attribute = \
             expressiontools.AttributeDictionary()
-        self._timespan_scoped_single_context_division_set_expressions = \
-            expressiontools.TimespanScopedSingleContextSetExpressionInventory()
-        self._timespan_scoped_single_context_rhythm_set_expressions = \
-            expressiontools.TimespanScopedSingleContextSetExpressionInventory()
+#        self._timespan_scoped_single_context_division_set_expressions = \
+#            expressiontools.TimespanScopedSingleContextSetExpressionInventory()
+#        self._timespan_scoped_single_context_rhythm_set_expressions = \
+#            expressiontools.TimespanScopedSingleContextSetExpressionInventory()
+        self._timespan_scoped_single_context_set_expressions_by_attribute = \
+            expressiontools.AttributeDictionary()
+        for attribute in self._timespan_scoped_single_context_set_expressions_by_attribute:
+            self._timespan_scoped_single_context_set_expressions_by_attribute[attribute] = \
+                expressiontools.TimespanScopedSingleContextSetExpressionInventory()
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -27,19 +32,12 @@ class ContextProxy(AbjadObject):
         return self._single_context_set_expressions_by_attribute
 
     @property
-    def timespan_scoped_single_context_division_set_expressions(self):
+    def timespan_scoped_single_context_set_expressions_by_attribute(self):
         '''Context proxy timespan-scoped
-        single-context division set expressions.
+        single-context set expressions by attribute.
 
-        Return timespan-scoped single-context set expression inventory.
+        .. note:: add example.
+
+        Return attribute dictionary.
         '''
-        return self._timespan_scoped_single_context_division_set_expressions
-
-    @property
-    def timespan_scoped_single_context_rhythm_set_expressions(self):
-        '''Context proxy timespan-scoped
-        single-context rhythm set expressions.
-
-        Return timespan-scoped single-context set expression inventory.
-        '''
-        return self._timespan_scoped_single_context_rhythm_set_expressions
+        return self._timespan_scoped_single_context_set_expressions_by_attribute
