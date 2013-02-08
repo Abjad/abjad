@@ -191,6 +191,11 @@ Methods
 
    Inherited from :py:class:`expressiontools.SetMethodMixin <experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
+.. automethod:: experimental.tools.expressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.translate
+   :noindex:
+
+   Inherited from :py:class:`expressiontools.TimespanCallbackMixin <experimental.tools.expressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
+
 .. automethod:: experimental.tools.expressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.translate_offsets
    :noindex:
 

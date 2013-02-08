@@ -34,6 +34,9 @@ Methods
 .. automethod:: experimental.tools.expressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.set_offsets
    :noindex:
 
+.. automethod:: experimental.tools.expressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.translate
+   :noindex:
+
 .. automethod:: experimental.tools.expressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.translate_offsets
    :noindex:
 

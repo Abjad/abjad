@@ -81,9 +81,21 @@ class TimespanCallbackMixin(CallbackMixin):
 
     def _translate_offsets(self, original_start_offset, original_stop_offset, 
         start_offset_translation, stop_offset_translation):
+        if start_offset_translation is None:
+            start_offset_translation = 0
+        else:
+            start_offset_translation = durationtools.Duration(start_offset_translation)
+        if stop_offset_translation is None:
+            stop_offset_translation = 0
+        else:
+            stop_offset_translation = durationtools.Duration(stop_offset_translation)
         new_start_offset = original_start_offset + start_offset_translation
         new_stop_offset = original_stop_offset + stop_offset_translation
         return new_start_offset, new_stop_offset
+
+    def _translate(self, original_start_offset, original_stop_offset, translation):
+        return self._translate_offsets(original_start_offset, original_stop_offset,
+            translation, translation)
 
     ### PUBLIC METHODS ###
 
@@ -205,6 +217,16 @@ class TimespanCallbackMixin(CallbackMixin):
         callback = \
             'self._set_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
         callback = callback.format(start_offset, stop_offset)
+        return self._copy_and_append_callback(callback)
+
+    def translate(self, translation=None):
+        '''Translate timespan by `translation`.
+
+        Return copy of timespan with appended callback.
+        '''
+        callback = \
+            'self._translate(original_start_offset, original_stop_offset, {!r})'
+        callback = callback.format(translation)
         return self._copy_and_append_callback(callback)
 
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):

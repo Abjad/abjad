@@ -7,4 +7,4 @@
 
 4.  Finish timespantools package docstrings before 2.11 build.
 
-5.  Extend TimespanCallbackMixin with translate() method.
+5.  Globally replace 'selector' with 'select expression'.

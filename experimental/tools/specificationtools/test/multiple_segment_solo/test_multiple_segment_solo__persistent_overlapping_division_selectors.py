@@ -1,5 +1,4 @@
 from experimental import *
-import py
 
 
 def test_multiple_segment_solo__persistent_overlapping_division_selectors_01():
@@ -54,7 +53,7 @@ def test_multiple_segment_solo__persistent_overlapping_division_selectors_03():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(3, 16)])
     red_segment.set_divisions([(1, 16)], truncate=True)
-    middle_two_measures = red_segment.timespan.translate_offsets(start_offset_translation=(3, 16))
+    middle_two_measures = red_segment.timespan.translate((3, 16))
     middle_two_measures = middle_two_measures.set_duration((6, 16))
     middle_two_measures.set_divisions([(2, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
