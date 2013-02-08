@@ -210,8 +210,8 @@ latex_elements = {
     'preamble': r'''
 \pdfminorversion=5
 \setcounter{tocdepth}{2}
-\let\Verbatim=\OriginalVerbatim
-\let\endVerbatim=\endOriginalVerbatim
+\definecolor{VerbatimColor}{rgb}{0.95,0.95,0.95}
+\definecolor{VerbatimBorderColor}{rgb}{1.0,1.0,1.0}
     ''',
 }
 
