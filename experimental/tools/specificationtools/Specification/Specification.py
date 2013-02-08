@@ -38,7 +38,7 @@ class Specification(AbjadObject):
         self._score_template = score_template
         self._score_model = score_template()
         self._single_context_set_expressions_by_context = \
-            specificationtools.ContextProxyDictionary(score_template())
+            specificationtools.ContextDictionary(score_template())
         self._initialize_context_name_abbreviations()
 
     ### READ-ONLY PRIVATE PROPERTIES ###

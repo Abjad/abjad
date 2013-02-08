@@ -4,7 +4,7 @@ from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class ContextProxyDictionary(AbjadObject, OrderedDict):
+class ContextDictionary(AbjadObject, OrderedDict):
 
     ### INITIALIZER ###
 

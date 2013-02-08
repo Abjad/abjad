@@ -412,15 +412,15 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/specificationtools/ConcreteInterpreter/ConcreteInterpreter
+      tools/specificationtools/ContextDictionary/ContextDictionary
       tools/specificationtools/ContextProxy/ContextProxy
-      tools/specificationtools/ContextProxyDictionary/ContextProxyDictionary
       tools/specificationtools/ScoreSpecification/ScoreSpecification
       tools/specificationtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/specificationtools/SegmentSpecification/SegmentSpecification
       tools/specificationtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
+      tools/specificationtools/VoiceDictionary/VoiceDictionary
       tools/specificationtools/VoiceProxy/VoiceProxy
-      tools/specificationtools/VoiceProxyDictionary/VoiceProxyDictionary
 
 .. only:: latex
 
@@ -439,12 +439,12 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/specificationtools/ConcreteInterpreter/ConcreteInterpreter
+      tools/specificationtools/ContextDictionary/ContextDictionary
       tools/specificationtools/ContextProxy/ContextProxy
-      tools/specificationtools/ContextProxyDictionary/ContextProxyDictionary
       tools/specificationtools/ScoreSpecification/ScoreSpecification
       tools/specificationtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/specificationtools/SegmentSpecification/SegmentSpecification
       tools/specificationtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
+      tools/specificationtools/VoiceDictionary/VoiceDictionary
       tools/specificationtools/VoiceProxy/VoiceProxy
-      tools/specificationtools/VoiceProxyDictionary/VoiceProxyDictionary

@@ -49,7 +49,7 @@ class ScoreSpecification(Specification):
         self._division_region_expressions = \
             expressiontools.ExpressionInventory()
         self._payload_expressions_by_voice = \
-            specificationtools.VoiceProxyDictionary(score_template())
+            specificationtools.VoiceDictionary(score_template())
         self._rhythm_region_expressions = \
             expressiontools.ExpressionInventory()
         self._segment_specifications = \
