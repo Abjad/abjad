@@ -364,7 +364,7 @@ def test_schematic_example_X_09():
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_rhythm("{ c'32 [ c'16 c'16. c'8 ] }", contexts=['Voice 1'])
     voice_1_rhythm = red_segment.select_leaves('Voice 1')
-    # TODO: extend RotationIndicator to allow for symoblic rotation by portion of total duration
+    # Extend RotationIndicator to allow for symoblic rotation by portion of total duration
     # This will remove hard-coded duration values in the three lines below.
     # Might look like rotation=expressiontools.RotationIndicator((-1, 3)).
     # Or like rotation=(-1, 3), rotation=(-2, 2), rotation(-3, 1).
@@ -372,8 +372,7 @@ def test_schematic_example_X_09():
     red_segment.set_rhythm(voice_1_rhythm.rotate(Duration(-7, 32)), contexts=['Voice 2'])
     red_segment.set_rhythm(voice_1_rhythm.rotate(Duration(-14, 32)), contexts=['Voice 3'])
     red_segment.set_rhythm(voice_1_rhythm.rotate(Duration(-21, 32)), contexts=['Voice 4'])
-    # TODO: implement a composer "cake slice" management interface on SegmentSpecification.
-    # See the TODO file for an example of what the interface might look like.
+    # Implement a composer "cake slice" management interface on SegmentSpecification.
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(3, 16)])
     timespan = red_segment.timespan.set_offsets(Offset(3, 16), Offset(6, 16))

@@ -13,7 +13,6 @@ class InputSetExpression(AnchoredSetExpression):
 
     ### INITIALIZER ###
 
-    # TODO: eventually remove 'truncate' in favor of SingleContextDivisionSetExpression.truncate
     @abc.abstractmethod
     def __init__(self, attribute=None, source=None, target_timespan=None, 
         fresh=True, persist=True, truncate=None):

@@ -17,6 +17,5 @@ def configure_multiple_voice_rhythmic_staves(lilypond_file):
             voice_2 = staff[1]
             voice_2.override.note_head.Y_offset = -0.5
             voice_2.override.stem.direction = Down 
-            # TODO: do this with (named) context blocks for each staff rather than directly on staff objects
             spacing_vector = layouttools.make_spacing_vector(0, 0, 6, 0)
             staff.override.vertical_axis_group.staff_staff_spacing = spacing_vector
