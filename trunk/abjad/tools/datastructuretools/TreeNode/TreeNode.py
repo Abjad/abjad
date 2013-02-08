@@ -35,11 +35,15 @@ class TreeNode(AbjadObject):
 
     def __getstate__(self):
         state = {}
-        for name in self._positional_argument_names:
-            state['_' + name] = getattr(self, name)
-        for name in self._keyword_argument_names:
-            state['_' + name] = getattr(self, name)
-        state['_parent'] = self._parent
+        #for name in self._positional_argument_names:
+        #    state['_' + name] = getattr(self, name)
+        #for name in self._keyword_argument_names:
+        #    state['_' + name] = getattr(self, name)
+        #state['_parent'] = self._parent
+        class_dir = set(dir(self.__class__))
+        self_dir = set(x for x in dir(self) if x.startswith('_') and not x.startswith('__'))
+        for name in self_dir.difference(class_dir):
+            state[name] = getattr(self, name)
         return state
 
     def __ne__(self, other):

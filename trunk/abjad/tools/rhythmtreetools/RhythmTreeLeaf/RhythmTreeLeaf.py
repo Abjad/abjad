@@ -35,10 +35,6 @@ class RhythmTreeLeaf(RhythmTreeNode):
     Return `RhythmTreeLeaf`.
     '''
 
-    ### CLASS ATTRIBUTES ###
-
-    __slots__ = ('_duration', '_offset', '_offsets_are_current', '_parent', '_is_pitched')
-
     ### INITIALIZER ###
 
     def __init__(self, duration=1, is_pitched=True, name=None):

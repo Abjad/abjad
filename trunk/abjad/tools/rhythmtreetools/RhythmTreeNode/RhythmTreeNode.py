@@ -15,6 +15,7 @@ class RhythmTreeNode(TreeNode):
     @abc.abstractmethod
     def __init__(self, duration=1, name=None):
         TreeNode.__init__(self, name=name)
+        self._duration = 0
         self._offset = durationtools.Offset(0)
         self._offsets_are_current = False
         self.duration = duration
