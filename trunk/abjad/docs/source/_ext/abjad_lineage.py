@@ -1,4 +1,5 @@
-import hashlib
+import importlib
+import pickle
 from docutils import nodes
 from docutils.parsers.rst import directives
 from sphinx.util.compat import Directive
@@ -42,6 +43,15 @@ class AbjadLineage(Directive):
                 raise InheritanceException(
                     'Could not import class {!r} specified for '
                     'inheritance diagram'.format(self.arguments[0]))
+            # The following is a hack.
+            # We need to guarantee that everything is imported before
+            # the first diagram in the entire document is drawn,
+            # otherwise the InheritanceGraph doesn't see anything... why?
+            module = importlib.import_module(module_name)
+            #lineage = documentationtools.InheritanceGraph(
+            #    addresses=addresses,
+            #    lineage_addresses=((module_name, class_name),)
+            #    ) 
             lineage = documentationtools.InheritanceGraph(
                 addresses=addresses,
                 lineage_addresses=((module_name, class_name),)
@@ -95,11 +105,9 @@ class AbjadLineage(Directive):
             graph_node.attributes['fontcolor'] = 'white'
             graph_node.attributes['style'] = ('filled', 'rounded')
 
-        graph.attributes['fontsize'] = 8
-        graph.attributes['size'] = [6, 4]
-
-        node['code'] = graph.unflattened_graphviz_format
+        node['code'] = pickle.dumps(graph)
         node['kind'] = 'graphviz'
+        node['is_pickled'] = True
         node['keep_original'] = True
 
         return [node]

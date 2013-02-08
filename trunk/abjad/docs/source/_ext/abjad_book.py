@@ -2,6 +2,7 @@ import docutils
 import hashlib
 import multiprocessing
 import os
+import pickle
 import posixpath
 import shutil
 import sphinx
@@ -213,17 +214,31 @@ def on_build_finished(app, exc):
         shutil.rmtree(app.builder._abjad_book_tempdir)
 
 
-def render_graphviz_image(self, code, paths, file_format='png', keep_original=False):
+def render_graphviz_image(self, code, paths, file_format='png',
+    is_latex=False, is_pickled=False, keep_original=False):
     assert file_format in ('png', 'pdf')
     primary_path = paths['primary_absolute_path']
     secondary_path = paths['secondary_absolute_path']
     tmp_path = os.path.join(self.builder._abjad_book_tempdir,
         os.path.basename(os.path.splitext(primary_path)[0])) + '.dot'
+    # if we pickled a documentationtools.GraphvizGraph instance
+    # in order to support conditional reformatting for LaTeX vs HTML...
+    if is_pickled:
+        graph = pickle.loads(code)
+        if is_latex:
+            graph.attributes['fontsize'] = 10
+            graph.attributes['ranksep'] = 0.25
+            graph.attributes['ratio'] = 'compress'
+            graph.attributes['size'] = 6.5
+            graph.node_attributes['fontsize'] = 8
+            graph.node_attributes['margin'] = (0.06, 0.06)
+        code = graph.unflattened_graphviz_format
     with open(tmp_path, 'w') as f:
         f.write(code)
     commands = []
     if file_format == 'pdf':
         commands.append('dot -Tpdf -o {} {}'.format(primary_path, tmp_path))
+        commands.append('pdfcrop {} {}'.format(primary_path, primary_path))
     elif file_format == 'png':
         commands.append('dot -Tpdf -o {} {}'.format(secondary_path, tmp_path))
         commands.append('dot -Tpng -o {} {}'.format(primary_path, tmp_path))
@@ -256,8 +271,11 @@ def render_lilypond_image(self, code, paths, file_format='png', keep_original=Fa
         subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
-def render_abjad_book_node(self, code, kind, file_format='png', linked=False,
-    keep_original=False):
+def render_abjad_book_node(self, node, file_format='png', linked=False):
+    code = node['code']
+    kind = node['kind']
+    keep_original = node.get('keep_original', False)
+    is_pickled = node.get('is_pickled', False)
     suffix = 'original'
     hashkey = code.encode('utf-8') + kind
     hexdigest = hashlib.sha1(hashkey).hexdigest()
@@ -268,6 +286,7 @@ def render_abjad_book_node(self, code, kind, file_format='png', linked=False,
         kind, hexdigest, suffix)
     paths = {}
     if hasattr(self.builder, 'imgpath'): # HTML
+        is_latex = False
         img_directory = os.path.join(self.builder.outdir, '_images')
         if not os.path.exists(img_directory):
             os.makedirs(img_directory)
@@ -280,6 +299,7 @@ def render_abjad_book_node(self, code, kind, file_format='png', linked=False,
         paths['secondary_absolute_path'] = os.path.join(
             self.builder.outdir, '_images', secondary_file_name)
     else: # LaTeX
+        is_latex = True
         paths['primary_relative_path'] = primary_file_name
         paths['primary_absolute_path'] = os.path.join(
             self.builder.outdir, primary_file_name)
@@ -293,21 +313,23 @@ def render_abjad_book_node(self, code, kind, file_format='png', linked=False,
             keep_original=keep_original)
     elif kind == 'graphviz':
         render_graphviz_image(self, code, paths, file_format,
-            keep_original=keep_original)
+            is_latex=is_latex,
+            is_pickled=is_pickled,
+            keep_original=keep_original,
+            )
     return paths
 
 
 def visit_abjad_book_html(self, node):
-    keep_original = node.get('keep_original', False)
     paths = render_abjad_book_node(
-        self, node['code'], node['kind'], file_format='png',
-        keep_original=keep_original)
+        self, node, file_format='png',
+        )
     wrapper = 'p'
     alt = self.encode(node['code']).strip()
     self.body.append(self.starttag(node, wrapper, CLASS='abjad_book'))
     img = '<img src="{}" alt="{}" />'.format(
         paths['primary_relative_path'], alt)
-    if keep_original:
+    if node.get('keep_original', False):
         figure = '<figure>{anchor}<figcaption>{caption}</figcaption></figure>' 
         anchor = '<a href="{}" alt="click for high-quality original">{}</a>'.format(
             paths["secondary_relative_path"], img)
@@ -322,8 +344,8 @@ def visit_abjad_book_html(self, node):
 
 def visit_abjad_book_latex(self, node):
     paths = render_abjad_book_node(
-        self, node['code'], node['kind'], file_format='pdf',
-        keep_original=False)
+        self, node, file_format='pdf',
+        )
     self.body.append('\n\\includegraphics{' + paths['primary_relative_path'] + '}\n')
     raise docutils.nodes.SkipNode
 

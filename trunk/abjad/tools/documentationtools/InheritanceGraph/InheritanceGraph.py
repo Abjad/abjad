@@ -318,7 +318,6 @@ class InheritanceGraph(AbjadObject):
             attributes={
                 'color': 'lightslategrey',
                 'fontname': 'Arial',
-                'fontsize': 12,
                 'overlap': 'prism',
                 'penwidth': 2,
                 #'ranksep': 0.5,
@@ -331,6 +330,7 @@ class InheritanceGraph(AbjadObject):
             node_attributes={
                 'colorscheme': 'pastel19',
                 'fontname': 'Arial',
+                'fontsize': 12,
                 'penwidth': 2,
                 'style': ('filled', 'rounded'),
             },
