@@ -46,18 +46,11 @@ class ScoreSpecification(Specification):
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
         self._next_lexical_rank = 0
-        self._division_region_expressions = \
-            expressiontools.ExpressionInventory()
-        self._payload_expressions_by_voice = \
-            specificationtools.VoiceDictionary(score_template())
-        self._rhythm_region_expressions = \
-            expressiontools.ExpressionInventory()
-        self._segment_specifications = \
-            specificationtools.SegmentSpecificationInventory()
-        self._segment_specification_class = \
-            specificationtools.SegmentSpecification
-        self._single_context_time_signature_set_expressions = \
-            expressiontools.SetExpressionInventory()
+        self._payload_expressions_by_voice = specificationtools.VoiceDictionary(score_template())
+        self._region_expressions_by_attribute = expressiontools.AttributeDictionary()
+        self._segment_specifications = specificationtools.SegmentSpecificationInventory()
+        self._segment_specification_class = specificationtools.SegmentSpecification
+        self._single_context_time_signature_set_expressions = expressiontools.SetExpressionInventory()
 
     ### SPECIAL METHODS ###
 
@@ -73,6 +66,13 @@ class ScoreSpecification(Specification):
         return '{}({})'.format(self._class_name, ', '.join(segment_specification_names))
 
     ### PRIVATE METHODS ###
+
+    def _compare_expressions(self, x, y):
+        result = self.compare_context_names(x.target_context_name, y.target_context_name)
+        if result in (-1, 1):
+            return result
+        else:
+            return cmp(x._lexical_rank, y._lexical_rank)
 
     def _find_first_unused_segment_number(self):
         candidate_segment_number = 1
@@ -103,32 +103,6 @@ class ScoreSpecification(Specification):
         Return list of strings.
         '''
         return Specification.context_names.fget(self)
-
-    @property
-    def division_region_expressions(self):
-        '''Read-only list of division region expressions:
-
-        ::
-
-            >>> z(score_specification.division_region_expressions)
-            expressiontools.ExpressionInventory([
-                expressiontools.LiteralDivisionRegionExpression(
-                    source=((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)),
-                    start_offset=durationtools.Offset(0, 1),
-                    total_duration=durationtools.Duration(9, 4),
-                    voice_name='Voice 1'
-                    ),
-                expressiontools.LiteralDivisionRegionExpression(
-                    source=((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)),
-                    start_offset=durationtools.Offset(0, 1),
-                    total_duration=durationtools.Duration(9, 4),
-                    voice_name='Voice 2'
-                    )
-                ])
-
-        Return list.
-        '''
-        return self._division_region_expressions
 
     @property
     def interface(self):
@@ -196,79 +170,14 @@ class ScoreSpecification(Specification):
         return self._payload_expressions_by_voice
 
     @property
-    def rhythm_region_expressions(self):
-        '''Read-only list of rhythm region expressions:
+    def region_expressions_by_attribute(self):
+        '''Score specification region expressions by attribute.
 
-        ::
+        .. note:: add example.
 
-            >>> z(score_specification.rhythm_region_expressions)
-            expressiontools.ExpressionInventory([
-                expressiontools.RhythmMakerRhythmRegionExpression(
-                    source=rhythmmakertools.TaleaRhythmMaker(
-                        [1],
-                        16,
-                        prolation_addenda=[],
-                        secondary_divisions=[],
-                        beam_each_cell=False,
-                        beam_cells_together=True,
-                        tie_split_notes=False
-                        ),
-                    division_list=expressiontools.DivisionList(
-                        [Division('[2, 8]', start_offset=Offset(0, 1)), 
-                        Division('[3, 8]', start_offset=Offset(1, 4)), 
-                        Division('[4, 8]', start_offset=Offset(5, 8)), 
-                        Division('[4, 16]', start_offset=Offset(9, 8)), 
-                        Division('[4, 16]', start_offset=Offset(11, 8)), 
-                        Division('[5, 16]', start_offset=Offset(13, 8)), 
-                        Division('[5, 16]', start_offset=Offset(31, 16))],
-                        start_offset=durationtools.Offset(0, 1),
-                        voice_name='Voice 1'
-                        ),
-                    start_offset=durationtools.Offset(0, 1),
-                    voice_name='Voice 1'
-                    ),
-                expressiontools.RhythmMakerRhythmRegionExpression(
-                    source=rhythmmakertools.TaleaRhythmMaker(
-                        [1],
-                        16,
-                        prolation_addenda=[],
-                        secondary_divisions=[],
-                        beam_each_cell=False,
-                        beam_cells_together=True,
-                        tie_split_notes=False
-                        ),
-                    division_list=expressiontools.DivisionList(
-                        [Division('[2, 8]', start_offset=Offset(0, 1)), 
-                        Division('[3, 8]', start_offset=Offset(1, 4)), 
-                        Division('[4, 8]', start_offset=Offset(5, 8)), 
-                        Division('[4, 16]', start_offset=Offset(9, 8)), 
-                        Division('[4, 16]', start_offset=Offset(11, 8)), 
-                        Division('[5, 16]', start_offset=Offset(13, 8)), 
-                        Division('[5, 16]', start_offset=Offset(31, 16))],
-                        start_offset=durationtools.Offset(0, 1),
-                        voice_name='Voice 2'
-                        ),
-                    start_offset=durationtools.Offset(0, 1),
-                    voice_name='Voice 2'
-                    )
-                ])
-
-        Popluate during interpretation.
-
-        Return set expression inventory.
+        Return attribute dictionary.
         '''
-        return self._rhythm_region_expressions
-
-    @property
-    def score_model(self):
-        '''Score specification score model::
-
-            >>> score_specification.score_model
-            Score-"Grouped Rhythmic Staves Score"<<1>>
-
-        Return Abjad score object.
-        '''
-        return Specification.score_model.fget(self)
+        return self._region_expressions_by_attribute
 
     @property
     def score_name(self):
@@ -581,13 +490,6 @@ class ScoreSpecification(Specification):
         timespan_scoped_set_expressions.sort(self._compare_expressions)
         assert timespan_scoped_set_expressions.all_are_well_formed
         return timespan_scoped_set_expressions
-
-    def _compare_expressions(self, x, y):
-        result = self.compare_context_names(x.target_context_name, y.target_context_name)
-        if result in (-1, 1):
-            return result
-        else:
-            return cmp(x._lexical_rank, y._lexical_rank)
 
     def report_settings(self):
         for segment_specification in self.segment_specifications:

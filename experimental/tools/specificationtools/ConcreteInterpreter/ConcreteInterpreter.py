@@ -145,12 +145,11 @@ class ConcreteInterpreter(Interpreter):
             region_expressions.append(region_expression)
         return region_expressions
 
+    # TODO: change local score_region_expressions to just region_expressions
     def make_payload_expressions(self, attribute):
-        attribute = attribute.rstrip('s')
-        region_expression_key = '{}_region_expressions'.format(attribute)
-        payload_expression_key = '{}_payload_expressions'.format(attribute)
-        score_region_expressions = getattr(self.score_specification, region_expression_key)
-        score_region_expressions = score_region_expressions[:]
+        # TODO: see if payload_expression_key can be removed
+        payload_expression_key = '{}_payload_expressions'.format(attribute.rstrip('s'))
+        score_region_expressions = self.score_specification.region_expressions_by_attribute[attribute][:]
         while score_region_expressions:
             made_progress = False
             for region_expression in score_region_expressions[:]:
@@ -169,11 +168,10 @@ class ConcreteInterpreter(Interpreter):
             if not made_progress:
                 raise Exception('cyclic specification.')
 
+    # TODO: change local score_region_expressions to region_expressions
     def make_region_expressions(self, attribute):
-        attribute = attribute.rstrip('s')
-        method_key = 'make_{}_region_expressions_for_voice'.format(attribute)
-        score_region_expressions_key = '{}_region_expressions'.format(attribute)
-        score_region_expressions = getattr(self.score_specification, score_region_expressions_key)
+        method_key = 'make_{}_region_expressions_for_voice'.format(attribute.rstrip('s'))
+        score_region_expressions = self.score_specification.region_expressions_by_attribute[attribute]
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             region_expressions = getattr(self, method_key)(voice.name)
             score_region_expressions.extend(region_expressions)
@@ -254,8 +252,6 @@ class ConcreteInterpreter(Interpreter):
             timespan_scoped_single_context_set_expressions = \
                 self.score_specification.make_timespan_scoped_single_context_set_expressions_for_voice(
                 attribute, voice.name)
-            #if 'division' in attribute_key:
-            #    self._debug_values(timespan_scoped_single_context_set_expressions, 'TTT')
             timespan_scoped_single_context_set_expressions.sort_and_split_set_expressions()
             timespan_scoped_single_context_set_expressions.compute_logical_or()
             timespan_scoped_single_context_set_expressions.supply_missing_set_expressions(
@@ -263,8 +259,6 @@ class ConcreteInterpreter(Interpreter):
             voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice.name]
             inventory = getattr(voice_proxy, attribute_key)
             inventory[:] = timespan_scoped_single_context_set_expressions[:]
-            #if 'division' in attribute_key:
-            #    self._debug_values(inventory, 'inventory')
                         
     def merge_prolonging_rhythm_region_expressions(self, rhythm_region_expressions):
         result = []

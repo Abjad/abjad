@@ -79,6 +79,10 @@ class TimespanCallbackMixin(CallbackMixin):
             new_stop_offset = original_stop_offset
         return new_start_offset, new_stop_offset
 
+    def _translate(self, original_start_offset, original_stop_offset, translation):
+        return self._translate_offsets(original_start_offset, original_stop_offset,
+            translation, translation)
+
     def _translate_offsets(self, original_start_offset, original_stop_offset, 
         start_offset_translation, stop_offset_translation):
         if start_offset_translation is None:
@@ -92,10 +96,6 @@ class TimespanCallbackMixin(CallbackMixin):
         new_start_offset = original_start_offset + start_offset_translation
         new_stop_offset = original_stop_offset + stop_offset_translation
         return new_start_offset, new_stop_offset
-
-    def _translate(self, original_start_offset, original_stop_offset, translation):
-        return self._translate_offsets(original_start_offset, original_stop_offset,
-            translation, translation)
 
     ### PUBLIC METHODS ###
 
