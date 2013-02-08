@@ -2,8 +2,7 @@ import copy
 from abjad.tools import *
 from experimental.tools import library
 from experimental.tools import expressiontools
-from experimental.tools import specificationtools
-from experimental.tools.interpretertools.Interpreter import Interpreter
+from experimental.tools.specificationtools.Interpreter import Interpreter
 
 
 class ConcreteInterpreter(Interpreter):

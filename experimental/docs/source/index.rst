@@ -327,39 +327,6 @@ Unstable packages (load manually)
       tools/handlertools/pitch/OctaveTranspositionHandler/OctaveTranspositionHandler
       tools/handlertools/pitch/TimewisePitchClassHandler/TimewisePitchClassHandler
 
-:py:mod:`interpretertools <experimental.tools.interpretertools>`
-================================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/interpretertools/Interpreter/Interpreter
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/interpretertools/ConcreteInterpreter/ConcreteInterpreter
-
-.. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/interpretertools/Interpreter/Interpreter
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/interpretertools/ConcreteInterpreter/ConcreteInterpreter
-
 :py:mod:`lyrictools <experimental.tools.lyrictools>`
 ====================================================
 
@@ -435,6 +402,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/specificationtools/Interpreter/Interpreter
       tools/specificationtools/Specification/Specification
       tools/specificationtools/SpecificationInterface/SpecificationInterface
 
@@ -443,6 +411,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/specificationtools/ConcreteInterpreter/ConcreteInterpreter
       tools/specificationtools/ContextProxy/ContextProxy
       tools/specificationtools/ContextProxyDictionary/ContextProxyDictionary
       tools/specificationtools/ScoreSpecification/ScoreSpecification
@@ -460,6 +429,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/specificationtools/Interpreter/Interpreter
       tools/specificationtools/Specification/Specification
       tools/specificationtools/SpecificationInterface/SpecificationInterface
 
@@ -468,6 +438,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/specificationtools/ConcreteInterpreter/ConcreteInterpreter
       tools/specificationtools/ContextProxy/ContextProxy
       tools/specificationtools/ContextProxyDictionary/ContextProxyDictionary
       tools/specificationtools/ScoreSpecification/ScoreSpecification

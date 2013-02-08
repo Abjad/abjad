@@ -531,9 +531,8 @@ class ScoreSpecification(Specification):
 
         Return Abjad score object.
         '''
-        from experimental.tools import interpretertools
-
-        interpreter = interpretertools.ConcreteInterpreter()
+        from experimental.tools import specificationtools
+        interpreter = specificationtools.ConcreteInterpreter()
         return interpreter(self)
 
     def make_default_timespan_scoped_single_context_division_set_expression(self, target_timespan, voice_name):
