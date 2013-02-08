@@ -570,13 +570,15 @@ class ScoreSpecification(Specification):
             single_context_set_expressions = \
                 specification.get_single_context_set_expressions_rooted_to_specification_that_govern_context_name(
                 attribute, voice_name)
-            #self._debug(specification, 'spc')
-            #self._debug_values(single_context_set_expressions, 'SSS')
+            #if attribute == 'divisions':
+            #    self._debug(specification, 'spc')
+            #    self._debug_values(single_context_set_expressions, 'SSS')
             for single_context_set_expression in single_context_set_expressions:
                 timespan_scoped_set_expression = single_context_set_expression.evaluate()
                 # make sure set expression was set expression for timespan that exists in current segment
                 if timespan_scoped_set_expression.target_timespan.is_well_formed:
                     timespan_scoped_set_expressions.append(timespan_scoped_set_expression)
+        #self._debug_values(timespan_scoped_set_expressions, 'TTT')
         timespan_scoped_set_expressions.sort(self._compare_expressions)
         assert timespan_scoped_set_expressions.all_are_well_formed
         return timespan_scoped_set_expressions

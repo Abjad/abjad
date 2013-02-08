@@ -75,6 +75,8 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
             return False
         if expr.source != self.source:
             return False
+        if not self.target_timespan.stops_when_timespan_starts(expr.target_timespan):
+            return False
         return True
 
     ### READ-ONLY PUBLIC PROPERTIES ###
