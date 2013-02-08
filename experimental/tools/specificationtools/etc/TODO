@@ -1,8 +1,5 @@
-1.  Move ScoreSpecification.division_region_expressions to VoiceProxy.division_region_expressions.
-    Move ScoreSpecification.rhythm_region_expressions to VoiceProxy.rhythm_region_expressions.
+1.  Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
 
-2.  Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
+2.  Finish timerelationtools class docstrings before 2.11 build.
 
-3.  Finish timerelationtools class docstrings before 2.11 build.
-
-4.  Finish timespantools package docstrings before 2.11 build.
+3.  Finish timespantools package docstrings before 2.11 build.

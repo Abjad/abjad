@@ -167,13 +167,16 @@ class ConcreteInterpreter(Interpreter):
                 raise Exception('cyclic specification.')
 
     def make_region_expressions(self, attribute):
-        # TODO: remove key and implement branchingm method instead
-        method_key = 'make_{}_region_expressions_for_voice'.format(attribute.rstrip('s'))
         region_expressions = self.score_specification.region_expressions_by_attribute[attribute]
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_region_expressions = getattr(self, method_key)(voice.name)
+            if attribute == 'divisions':
+                voice_region_expressions = self.make_division_region_expressions_for_voice(voice.name)
+            elif attribute == 'rhythm':
+                voice_region_expressions = self.make_rhythm_region_expressions_for_voice(voice.name)
+            else:
+                raise ValueError(attribute)
             region_expressions.extend(voice_region_expressions)
-
+    
     def make_rhythm_region_expressions_for_voice(self, voice_name):
         voice_proxy = self.score_specification.payload_expressions_by_voice[voice_name]
         division_payload_expressions = voice_proxy.payload_expressions_by_attribute['divisions']
@@ -244,7 +247,6 @@ class ConcreteInterpreter(Interpreter):
         return rhythm_region_expressions
 
     def make_timespan_scoped_single_context_set_expressions(self, attribute):
-        #attribute_key = 'timespan_scoped_single_context_{}_set_expressions'.format(attribute.rstrip('s'))
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             timespan_scoped_single_context_set_expressions = \
                 self.score_specification.make_timespan_scoped_single_context_set_expressions_for_voice(
@@ -254,7 +256,6 @@ class ConcreteInterpreter(Interpreter):
             timespan_scoped_single_context_set_expressions.supply_missing_set_expressions(
                 attribute, self.score_specification, voice.name)
             voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice.name]
-            #inventory = getattr(voice_proxy, attribute_key)
             inventory = voice_proxy.timespan_scoped_single_context_set_expressions_by_attribute[attribute]
             inventory[:] = timespan_scoped_single_context_set_expressions[:]
                         
