@@ -15,6 +15,16 @@ from abjad.tools import configurationtools
 import os
 import sys
 
+from sphinx.highlighting import PygmentsBridge
+from pygments.formatters.latex import LatexFormatter
+
+class CustomLatexFormatter(LatexFormatter):
+    def __init__(self, **options):
+        super(CustomLatexFormatter, self).__init__(**options)
+        self.verboptions = r"formatcom=\footnotesize"
+
+PygmentsBridge.latex_formatter = CustomLatexFormatter
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
