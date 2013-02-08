@@ -10,7 +10,7 @@ class ContextProxy(AbjadObject):
         from experimental.tools import expressiontools
         from experimental.tools import specificationtools
         self._single_context_set_expressions_by_attribute = \
-            expressiontools.SingleContextSetExpressionAttributeDictionary()
+            expressiontools.AttributeDictionary()
         self._timespan_scoped_single_context_division_set_expressions = \
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         self._timespan_scoped_single_context_rhythm_set_expressions = \

@@ -145,6 +145,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/expressiontools/AttributeDictionary/AttributeDictionary
       tools/expressiontools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/expressiontools/BeatSelectExpression/BeatSelectExpression
       tools/expressiontools/CallbackInventory/CallbackInventory
@@ -177,7 +178,6 @@ Unstable packages (load manually)
       tools/expressiontools/SetExpressionInventory/SetExpressionInventory
       tools/expressiontools/SingleContextDivisionSetExpression/SingleContextDivisionSetExpression
       tools/expressiontools/SingleContextRhythmSetExpression/SingleContextRhythmSetExpression
-      tools/expressiontools/SingleContextSetExpressionAttributeDictionary/SingleContextSetExpressionAttributeDictionary
       tools/expressiontools/SingleContextTimeSignatureSetExpression/SingleContextTimeSignatureSetExpression
       tools/expressiontools/StartPositionedDivisionPayloadExpression/StartPositionedDivisionPayloadExpression
       tools/expressiontools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
@@ -222,6 +222,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/expressiontools/AttributeDictionary/AttributeDictionary
       tools/expressiontools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/expressiontools/BeatSelectExpression/BeatSelectExpression
       tools/expressiontools/CallbackInventory/CallbackInventory
@@ -254,7 +255,6 @@ Unstable packages (load manually)
       tools/expressiontools/SetExpressionInventory/SetExpressionInventory
       tools/expressiontools/SingleContextDivisionSetExpression/SingleContextDivisionSetExpression
       tools/expressiontools/SingleContextRhythmSetExpression/SingleContextRhythmSetExpression
-      tools/expressiontools/SingleContextSetExpressionAttributeDictionary/SingleContextSetExpressionAttributeDictionary
       tools/expressiontools/SingleContextTimeSignatureSetExpression/SingleContextTimeSignatureSetExpression
       tools/expressiontools/StartPositionedDivisionPayloadExpression/StartPositionedDivisionPayloadExpression
       tools/expressiontools/StartPositionedPayloadExpression/StartPositionedPayloadExpression

@@ -7,12 +7,8 @@ class VoiceProxy(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self):
-        from experimental.tools import expressiontools
-        from experimental.tools import specificationtools
-        self._division_payload_expressions = \
-            timespantools.TimespanInventory()
-        self._rhythm_payload_expressions = \
-            timespantools.TimespanInventory()
+        self._division_payload_expressions = timespantools.TimespanInventory()
+        self._rhythm_payload_expressions = timespantools.TimespanInventory()
         self._voice_division_list = None
 
     ### READ-ONLY PUBLIC PROPERTIES ###

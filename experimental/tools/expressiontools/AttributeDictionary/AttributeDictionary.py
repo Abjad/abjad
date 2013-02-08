@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools.expressiontools.AttributeNameEnumeration import AttributeNameEnumeration
 
 
-class SingleContextSetExpressionAttributeDictionary(AbjadObject, OrderedDict):
+class AttributeDictionary(AbjadObject, OrderedDict):
     '''Single-context set expression attribute dictionary.
     '''
 
