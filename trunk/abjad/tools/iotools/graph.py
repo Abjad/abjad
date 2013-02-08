@@ -31,7 +31,10 @@ def graph(expr, image_format='pdf', layout='dot'):
     assert image_format in ('pdf', 'png')
     assert layout in ('circo', 'dot', 'fdp', 'neato', 'osage', 'sfdp', 'twopi')
 
-    graphviz_format = expr.graphviz_format
+    if isinstance(expr, str):
+        graphviz_format = expr
+    else:
+        graphviz_format = expr.graphviz_format
 
     current_directory = os.path.abspath('.')
     ABJADOUTPUT = ABJCFG['abjad_output']

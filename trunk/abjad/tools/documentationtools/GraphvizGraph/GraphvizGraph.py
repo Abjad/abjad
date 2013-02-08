@@ -1,4 +1,5 @@
 import copy
+import subprocess
 from abjad.tools.datastructuretools import TreeContainer
 from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
 
@@ -253,6 +254,18 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
     @property
     def node_attributes(self):
         return self._node_attributes
+
+    @property
+    def unflattened_graphviz_format(self):
+        graphviz_format = self.graphviz_format
+        process = subprocess.Popen('unflatten -l 4'.split(),
+            shell=False,
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+            )
+        result = process.communicate(graphviz_format)[0]
+        return result 
 
     ### READ/WRITE PUBLIC PROPERTIES ###
 
