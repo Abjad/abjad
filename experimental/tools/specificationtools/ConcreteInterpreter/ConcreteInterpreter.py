@@ -173,16 +173,14 @@ class ConcreteInterpreter(Interpreter):
             voice_region_expressions = getattr(self, method_key)(voice.name)
             region_expressions.extend(voice_region_expressions)
 
-    # TODO: remove two-line dot-chains in first half of method
     def make_rhythm_region_expressions_for_voice(self, voice_name):
+        voice_proxy = self.score_specification.payload_expressions_by_voice[voice_name]
+        division_payload_expressions = voice_proxy.payload_expressions_by_attribute['divisions']
         voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice_name]
-        voice_division_list = self.score_specification.payload_expressions_by_voice[
-            voice_name].voice_division_list
-        division_payload_expressions = self.score_specification.payload_expressions_by_voice[
-            voice_name].payload_expressions_by_attribute['divisions']
-        timespan_scoped_single_context_rhythm_set_expressions = \
-            voice_proxy.timespan_scoped_single_context_rhythm_set_expressions
-        #self._debug_values(timespan_scoped_single_context_rhythm_set_expressions, 'tsscrsxs')
+        expressions = voice_proxy.timespan_scoped_single_context_rhythm_set_expressions
+        timespan_scoped_single_context_rhythm_set_expressions = expressions
+        voice_proxy = self.score_specification.payload_expressions_by_voice[voice_name]
+        voice_division_list = voice_proxy.voice_division_list
         if not voice_division_list:
             return []
         division_region_durations = [x.timespan.duration for x in division_payload_expressions]

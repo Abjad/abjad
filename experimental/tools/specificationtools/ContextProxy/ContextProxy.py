@@ -15,8 +15,6 @@ class ContextProxy(AbjadObject):
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         self._timespan_scoped_single_context_rhythm_set_expressions = \
             expressiontools.TimespanScopedSingleContextSetExpressionInventory()
-        self._timespan_scoped_single_context_set_expressions = \
-            expressiontools.TimespanScopedSingleContextSetExpressionInventory()
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -45,12 +43,3 @@ class ContextProxy(AbjadObject):
         Return timespan-scoped single-context set expression inventory.
         '''
         return self._timespan_scoped_single_context_rhythm_set_expressions
-
-    @property
-    def timespan_scoped_single_context_set_expressions(self):
-        '''Context proxy timespan-scoped
-        single-context set expressions.
-
-        Return timespan-scoped single-context set expression inventory.
-        '''
-        return self._timespan_scoped_single_context_set_expressions
