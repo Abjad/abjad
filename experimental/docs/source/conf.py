@@ -20,7 +20,7 @@ from pygments.formatters.latex import LatexFormatter
 class CustomLatexFormatter(LatexFormatter):
     def __init__(self, **options):
         super(CustomLatexFormatter, self).__init__(**options)
-        self.verboptions = r"formatcom=\footnotesize"
+        self.verboptions = r'''formatcom=\footnotesize'''
 
 PygmentsBridge.latex_formatter = CustomLatexFormatter
 
@@ -223,6 +223,7 @@ latex_elements = {
 
     # Additional stuff for the LaTeX preamble.
     'preamble': r'''
+\usepackage{upquote}
 \pdfminorversion=5
 \setcounter{tocdepth}{2}
 \definecolor{VerbatimColor}{rgb}{0.95,0.95,0.95}
