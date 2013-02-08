@@ -222,10 +222,10 @@ def render_graphviz_image(self, code, paths, file_format='png', keep_original=Fa
     with open(tmp_path, 'w') as f:
         f.write(code)
     commands = []
-    commands.append('dot -Tpdf -o {} {}'.format(secondary_path, tmp_path))
     if file_format == 'pdf':
-        commands.append('pdfcrop {} {}'.format(secondary_path, primary_path))
+        commands.append('dot -Tpdf -o {} {}'.format(primary_path, tmp_path))
     elif file_format == 'png':
+        commands.append('dot -Tpdf -o {} {}'.format(secondary_path, tmp_path))
         commands.append('dot -Tpng -o {} {}'.format(primary_path, tmp_path))
         commands.append('convert -debug Exception -trim -resize 75% -resize 460x9999">" {} {}'.format(
             primary_path, primary_path))

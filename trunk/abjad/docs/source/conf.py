@@ -198,6 +198,7 @@ latex_elements = {
 
     # Additional stuff for the LaTeX preamble.
     'preamble': r'''
+\pdfminorversion=5
 \setcounter{tocdepth}{2}
 \let\Verbatim=\OriginalVerbatim
 \let\endVerbatim=\endOriginalVerbatim

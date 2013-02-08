@@ -81,6 +81,9 @@ Read-only Properties
 
    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph.unflattened_graphviz_format
+   :noindex:
+
 Read/write Properties
 ---------------------
 

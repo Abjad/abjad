@@ -46,34 +46,34 @@ class AbjadLineage(Directive):
                 addresses=addresses,
                 lineage_addresses=((module_name, class_name),)
                 ) 
-            graphviz = lineage.graphviz_format
+            graph = lineage.graphviz_graph
 
         except InheritanceException, err:
             return [node.document.reporter.warning(err.args[0],
                                                    line=self.lineno)]
 
-        maximum_node_count = 25
+        maximum_node_count = 30
 
         # begin pruning
-        if maximum_node_count < len(lineage.graphviz_graph.nodes):
+        if maximum_node_count < len(graph.leaves):
             lineage = documentationtools.InheritanceGraph(
                 addresses=addresses,
                 lineage_addresses=((module_name, class_name),),
                 lineage_prune_distance=2,
                 )
-            graphviz = lineage.graphviz_format
+            graph = lineage.graphviz_graph
 
         # keep pruning if still too many nodes
-        if maximum_node_count < len(lineage.graphviz_graph.nodes):
+        if maximum_node_count < len(graph.leaves):
             lineage = documentationtools.InheritanceGraph(
                 addresses=addresses,
                 lineage_addresses=((module_name, class_name),),
                 lineage_prune_distance=1,
                 )
-            graphviz = lineage.graphviz_format
+            graph = lineage.graphviz_graph
 
         # finally, revert to subclass-less version if still too many nodes
-        if maximum_node_count < len(lineage.graphviz_graph.nodes):
+        if maximum_node_count < len(graph.leaves):
             lineage = documentationtools.InheritanceGraph(
                 addresses=((module_name, class_name),),
                 )
@@ -94,9 +94,11 @@ class AbjadLineage(Directive):
             graph_node.attributes['color'] = 'black'
             graph_node.attributes['fontcolor'] = 'white'
             graph_node.attributes['style'] = ('filled', 'rounded')
-            graphviz = graph.graphviz_format
 
-        node['code'] = graphviz
+        graph.attributes['fontsize'] = 8
+        graph.attributes['size'] = [6, 4]
+
+        node['code'] = graph.unflattened_graphviz_format
         node['kind'] = 'graphviz'
         node['keep_original'] = True
 
