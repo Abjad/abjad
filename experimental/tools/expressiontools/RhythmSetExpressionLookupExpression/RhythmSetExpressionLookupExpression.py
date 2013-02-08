@@ -15,18 +15,6 @@ class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
         SetExpressionLookupExpression.__init__(self, attribute='rhythm', 
             offset=offset, voice_name=voice_name, callbacks=callbacks)
 
-    ### PRIVATE METHODS ###
-
-    # TODO: hoist to SetExpressionLookupExpression
-    def _get_timespan_scoped_single_context_rhythm_set_expressions(self):
-        result = timespantools.TimespanInventory()
-        for context_proxy in self.score_specification.single_context_set_expressions_by_context.itervalues():
-            for timespan_scoped_single_context_rhythm_set_expression in \
-                context_proxy.timespan_scoped_single_context_set_expressions_by_attribute['rhythm']:
-                if not timespan_scoped_single_context_rhythm_set_expression.source == self:
-                    result.append(timespan_scoped_single_context_rhythm_set_expression)
-        return result
-
     ### PUBLIC METHODS ###
 
     def evaluate(self):
@@ -35,7 +23,7 @@ class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
         if expression is None:
             return
         offset = expression.payload[0]
-        timespan_inventory = self._get_timespan_scoped_single_context_rhythm_set_expressions()
+        timespan_inventory = self._get_timespan_scoped_single_context_set_expressions(self.attribute)
         time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
         candidate_set_expressions = timespan_inventory.get_timespans_that_satisfy_time_relation(time_relation)
         source_set_expression = \

@@ -1,4 +1,5 @@
 import abc
+from abjad.tools import timespantools
 from experimental.tools.expressiontools.AnchoredExpression import AnchoredExpression
 from experimental.tools.expressiontools.PayloadCallbackMixin import PayloadCallbackMixin
 
@@ -33,6 +34,17 @@ class SetExpressionLookupExpression(AnchoredExpression, PayloadCallbackMixin):
         self._offset = offset
         self._voice_name = voice_name
 
+    ### PRIVATE METHODS ###
+
+    def _get_timespan_scoped_single_context_set_expressions(self, attribute):
+        result = timespantools.TimespanInventory()
+        for context_proxy in self.score_specification.single_context_set_expressions_by_context.itervalues():
+            expressions = context_proxy.timespan_scoped_single_context_set_expressions_by_attribute[attribute]
+            for timespan_scoped_single_context_set_expression in expressions:
+                if not timespan_scoped_single_context_set_expression.source == self:
+                    result.append(timespan_scoped_single_context_set_expression)
+        return result
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -59,7 +71,7 @@ class SetExpressionLookupExpression(AnchoredExpression, PayloadCallbackMixin):
         '''
         return self._voice_name
 
-    ### PRIVATE METHODS ###
+    ### PUBLIC METHODS ###
     
     @abc.abstractmethod
     def evaluate(self):

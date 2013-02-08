@@ -46,25 +46,13 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
         SetExpressionLookupExpression.__init__(self, attribute='divisions', 
             offset=offset, voice_name=voice_name, callbacks=callbacks)
 
-    ### PRIVATE METHODS ###
-
-    # TODO: hoist to SetExpressionLookupExpression
-    def _get_timespan_scoped_single_context_division_set_expressions(self):
-        result = timespantools.TimespanInventory()
-        for context_proxy in self.score_specification.single_context_set_expressions_by_context.itervalues():
-            for timespan_scoped_single_context_division_set_expression in \
-                context_proxy.timespan_scoped_single_context_set_expressions_by_attribute['divisions']:
-                if not timespan_scoped_single_context_division_set_expression.source == self:
-                    result.append(timespan_scoped_single_context_division_set_expression)
-        return result
-
     ### PUBLIC METHODS ###
 
     def evaluate(self):
         from experimental.tools import expressiontools
         expression = self.offset.evaluate()
         offset = expression.payload[0]
-        timespan_inventory = self._get_timespan_scoped_single_context_division_set_expressions()
+        timespan_inventory = self._get_timespan_scoped_single_context_set_expressions(self.attribute)
         time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
         candidate_set_expressions = timespan_inventory.get_timespans_that_satisfy_time_relation(time_relation)
         root_specification = self.root_specification
