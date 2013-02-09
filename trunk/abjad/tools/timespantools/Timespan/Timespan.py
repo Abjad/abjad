@@ -755,14 +755,71 @@ class Timespan(BoundedObject):
     ### PUBLIC METHODS ###
 
     def contains_timespan_improperly(self, timespan):
+        '''True when timespan contains `timespan` improperly. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 10)
+
+        ::
+
+            >>> timespan_1.contains_timespan_improperly(timespan_1)
+            True
+            >>> timespan_1.contains_timespan_improperly(timespan_2)
+            True
+            >>> timespan_2.contains_timespan_improperly(timespan_1)
+            False
+            >>> timespan_2.contains_timespan_improperly(timespan_2)
+            True 
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_contains_timespan_1_improperly(timespan, self)
 
     def curtails_timespan(self, timespan):
+        '''True when timespan curtails `timespan`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 10)
+
+        ::
+
+            >>> timespan_1.curtails_timespan(timespan_1)
+            False
+            >>> timespan_1.curtails_timespan(timespan_2)
+            False
+            >>> timespan_2.curtails_timespan(timespan_1)
+            True
+            >>> timespan_2.curtails_timespan(timespan_2)
+            False 
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_curtails_timespan_1(timespan, self)
 
     def delays_timespan(self, timespan):
+        '''True when timespan delays `timespan`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 15)
+            >>> timespan_3 = timespantools.Timespan(10, 20)
+
+        ::
+
+            >>> timespan_1.delays_timespan(timespan_2)
+            True
+            >>> timespan_2.delays_timespan(timespan_3)
+            True
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_delays_timespan_1(timespan, self)
 
@@ -792,6 +849,22 @@ class Timespan(BoundedObject):
         return tuple(result)
 
     def happens_during_timespan(self, timespan):
+        '''True when timespan happens during `timespan`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 10)
+
+        ::
+
+            >>> timespan_1.happens_during_timespan(timespan_1)
+            True
+            >>> timespan_1.happens_during_timespan(timespan_2)
+            False
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_happens_during_timespan_1(timespan, self)
 
