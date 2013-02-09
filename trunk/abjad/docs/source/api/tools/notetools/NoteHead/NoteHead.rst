@@ -18,8 +18,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.tweak
    :noindex:
 
@@ -41,32 +39,20 @@ Special Methods
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__eq__
    :noindex:
 
-   Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
-
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__ge__
    :noindex:
-
-   Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__gt__
    :noindex:
 
-   Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
-
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__le__
    :noindex:
-
-   Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__lt__
    :noindex:
 
-   Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
-
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__ne__
    :noindex:
-
-   Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__repr__
    :noindex:

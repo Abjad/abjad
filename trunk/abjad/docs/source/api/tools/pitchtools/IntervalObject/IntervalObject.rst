@@ -24,8 +24,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 Special Methods
 ---------------
 
@@ -35,20 +33,14 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject.__eq__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject.__float__
    :noindex:
 
 .. automethod:: abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject.__ge__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject.__gt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject.__hash__
    :noindex:
@@ -59,17 +51,11 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject.__le__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject.__lt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject.__ne__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject.__repr__
    :noindex:

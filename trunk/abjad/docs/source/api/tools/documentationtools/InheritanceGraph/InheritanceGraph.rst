@@ -51,8 +51,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.use_clusters
    :noindex:
 
@@ -65,34 +63,20 @@ Special Methods
 .. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__eq__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__ge__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__gt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__le__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__lt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__ne__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__repr__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

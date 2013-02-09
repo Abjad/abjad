@@ -39,8 +39,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.timespan
    :noindex:
 
@@ -92,12 +90,8 @@ Special Methods
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__eq__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__ge__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__getitem__
    :noindex:
@@ -105,12 +99,8 @@ Special Methods
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__gt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__le__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__len__
    :noindex:
@@ -120,8 +110,6 @@ Special Methods
 
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__ne__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__repr__
    :noindex:

@@ -66,12 +66,8 @@ Special Methods
 .. automethod:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__call__
    :noindex:
 
-   Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
-
 .. automethod:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__delattr__
    :noindex:
-
-   Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
 
 .. automethod:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__eq__
    :noindex:

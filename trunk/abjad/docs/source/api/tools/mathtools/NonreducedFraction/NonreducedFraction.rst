@@ -15,8 +15,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.imag
    :noindex:
 
-   Inherited from :py:class:`numbers.Real`
-
 .. autoattribute:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.numerator
    :noindex:
 
@@ -26,12 +24,8 @@ Read-only Properties
 .. autoattribute:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.real
    :noindex:
 
-   Inherited from :py:class:`numbers.Real`
-
 .. autoattribute:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.storage_format
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Methods
 -------
@@ -39,22 +33,14 @@ Methods
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.conjugate
    :noindex:
 
-   Inherited from :py:class:`numbers.Real`
-
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.from_decimal
    :noindex:
-
-   Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.from_float
    :noindex:
 
-   Inherited from :py:class:`fractions.Fraction`
-
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.limit_denominator
    :noindex:
-
-   Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.multiply_with_cross_cancelation
    :noindex:
@@ -86,15 +72,11 @@ Special Methods
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__complex__
    :noindex:
 
-   Inherited from :py:class:`numbers.Real`
-
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__div__
    :noindex:
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__divmod__
    :noindex:
-
-   Inherited from :py:class:`numbers.Real`
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__eq__
    :noindex:
@@ -102,12 +84,8 @@ Special Methods
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__float__
    :noindex:
 
-   Inherited from :py:class:`numbers.Rational`
-
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__floordiv__
    :noindex:
-
-   Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__ge__
    :noindex:
@@ -118,8 +96,6 @@ Special Methods
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__hash__
    :noindex:
 
-   Inherited from :py:class:`fractions.Fraction`
-
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__le__
    :noindex:
 
@@ -128,8 +104,6 @@ Special Methods
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__mod__
    :noindex:
-
-   Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__mul__
    :noindex:
@@ -143,17 +117,11 @@ Special Methods
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__nonzero__
    :noindex:
 
-   Inherited from :py:class:`fractions.Fraction`
-
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__pos__
    :noindex:
 
-   Inherited from :py:class:`fractions.Fraction`
-
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__pow__
    :noindex:
-
-   Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__radd__
    :noindex:
@@ -164,22 +132,14 @@ Special Methods
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__rdivmod__
    :noindex:
 
-   Inherited from :py:class:`numbers.Real`
-
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__repr__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__rfloordiv__
    :noindex:
 
-   Inherited from :py:class:`fractions.Fraction`
-
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__rmod__
    :noindex:
-
-   Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__rmul__
    :noindex:
@@ -187,15 +147,11 @@ Special Methods
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__rpow__
    :noindex:
 
-   Inherited from :py:class:`fractions.Fraction`
-
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__rsub__
    :noindex:
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__rtruediv__
    :noindex:
-
-   Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__str__
    :noindex:
@@ -206,9 +162,5 @@ Special Methods
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__truediv__
    :noindex:
 
-   Inherited from :py:class:`fractions.Fraction`
-
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__trunc__
    :noindex:
-
-   Inherited from :py:class:`fractions.Fraction`

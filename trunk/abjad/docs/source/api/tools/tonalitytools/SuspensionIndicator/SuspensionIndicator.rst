@@ -30,8 +30,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.title_string
    :noindex:
 
@@ -44,22 +42,14 @@ Special Methods
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__ge__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__gt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__le__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__lt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__ne__
    :noindex:

@@ -18,17 +18,11 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.is_closed
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
-
 .. autoattribute:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.is_half_closed
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
-
 .. autoattribute:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.is_half_open
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
 .. autoattribute:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.is_left_closed
    :noindex:
@@ -38,8 +32,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.is_open
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
 .. autoattribute:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.is_right_closed
    :noindex:
@@ -58,8 +50,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.storage_format
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. autoattribute:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.voice_name
    :noindex:
@@ -85,12 +75,8 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.__eq__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.__ge__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.__getitem__
    :noindex:
@@ -98,12 +84,8 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.__gt__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.__le__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.__len__
    :noindex:
@@ -111,12 +93,8 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.__lt__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.__ne__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.__repr__
    :noindex:

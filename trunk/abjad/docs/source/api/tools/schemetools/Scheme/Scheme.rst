@@ -18,8 +18,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.schemetools.Scheme.Scheme.Scheme.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 Special Methods
 ---------------
 
@@ -29,27 +27,17 @@ Special Methods
 .. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__ge__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__gt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__le__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__lt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__ne__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__repr__
    :noindex:

@@ -8,7 +8,8 @@ class SortableAttributeEqualityAbjadObject(AttributeEqualityAbjadObject):
     Abstact base class to confer sortable attribute-equality to any custom class.
 
     Sortable attribute-equality comparators implement ``__eq__``, ``__ne__``, 
-    ``__gt__``, ``__ge__``, ``__lt__``, ``__le__`` against a single comparison attribute.
+    ``__gt__``, ``__ge__``, ``__lt__``, ``__le__`` against a single comparison
+    attribute.
     '''
 
     ### CLASS ATTRIBUTES ###

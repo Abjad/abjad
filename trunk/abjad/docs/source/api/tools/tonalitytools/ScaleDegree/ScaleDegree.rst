@@ -24,8 +24,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.symbolic_string
    :noindex:
 
@@ -47,22 +45,14 @@ Special Methods
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__ge__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__gt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__le__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__lt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__ne__
    :noindex:

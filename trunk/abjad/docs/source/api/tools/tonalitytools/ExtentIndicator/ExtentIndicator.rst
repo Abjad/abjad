@@ -18,8 +18,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 Special Methods
 ---------------
 
@@ -29,22 +27,14 @@ Special Methods
 .. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__ge__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__gt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__le__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__lt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__ne__
    :noindex:

@@ -30,45 +30,29 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 Methods
 -------
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.copy
    :noindex:
 
-   Inherited from :py:class:`__builtin__.frozenset`
-
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.difference
    :noindex:
-
-   Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.intersection
    :noindex:
 
-   Inherited from :py:class:`__builtin__.frozenset`
-
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.isdisjoint
    :noindex:
-
-   Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.issubset
    :noindex:
 
-   Inherited from :py:class:`__builtin__.frozenset`
-
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.issuperset
    :noindex:
 
-   Inherited from :py:class:`__builtin__.frozenset`
-
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.symmetric_difference
    :noindex:
-
-   Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.transpose
    :noindex:
@@ -76,25 +60,17 @@ Methods
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.union
    :noindex:
 
-   Inherited from :py:class:`__builtin__.frozenset`
-
 Special Methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__and__
    :noindex:
 
-   Inherited from :py:class:`__builtin__.frozenset`
-
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__cmp__
    :noindex:
 
-   Inherited from :py:class:`__builtin__.frozenset`
-
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__contains__
    :noindex:
-
-   Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__eq__
    :noindex:
@@ -102,37 +78,23 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__ge__
    :noindex:
 
-   Inherited from :py:class:`__builtin__.frozenset`
-
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__gt__
    :noindex:
-
-   Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__hash__
    :noindex:
 
-   Inherited from :py:class:`__builtin__.frozenset`
-
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__iter__
    :noindex:
-
-   Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__le__
    :noindex:
 
-   Inherited from :py:class:`__builtin__.frozenset`
-
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__len__
    :noindex:
 
-   Inherited from :py:class:`__builtin__.frozenset`
-
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__lt__
    :noindex:
-
-   Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__ne__
    :noindex:
@@ -140,12 +102,8 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__or__
    :noindex:
 
-   Inherited from :py:class:`__builtin__.frozenset`
-
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__rand__
    :noindex:
-
-   Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__repr__
    :noindex:
@@ -153,17 +111,11 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__ror__
    :noindex:
 
-   Inherited from :py:class:`__builtin__.frozenset`
-
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__rsub__
    :noindex:
 
-   Inherited from :py:class:`__builtin__.frozenset`
-
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__rxor__
    :noindex:
-
-   Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__str__
    :noindex:
@@ -171,9 +123,5 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__sub__
    :noindex:
 
-   Inherited from :py:class:`__builtin__.frozenset`
-
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__xor__
    :noindex:
-
-   Inherited from :py:class:`__builtin__.frozenset`

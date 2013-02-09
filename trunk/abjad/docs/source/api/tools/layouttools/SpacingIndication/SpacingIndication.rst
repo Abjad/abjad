@@ -18,8 +18,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.tempo_indication
    :noindex:
 
@@ -32,27 +30,17 @@ Special Methods
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__ge__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__gt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__le__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__lt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__ne__
    :noindex:
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__repr__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

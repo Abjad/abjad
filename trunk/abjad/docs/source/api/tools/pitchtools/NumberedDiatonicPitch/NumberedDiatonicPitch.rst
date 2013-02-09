@@ -27,8 +27,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.NumberedDiatonicPitch.NumberedDiatonicPitch.NumberedDiatonicPitch.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 Special Methods
 ---------------
 
@@ -38,47 +36,29 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.NumberedDiatonicPitch.NumberedDiatonicPitch.NumberedDiatonicPitch.__eq__
    :noindex:
 
-   Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
-
 .. automethod:: abjad.tools.pitchtools.NumberedDiatonicPitch.NumberedDiatonicPitch.NumberedDiatonicPitch.__float__
    :noindex:
-
-   Inherited from :py:class:`pitchtools.DiatonicPitchObject <abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedDiatonicPitch.NumberedDiatonicPitch.NumberedDiatonicPitch.__ge__
    :noindex:
 
-   Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
-
 .. automethod:: abjad.tools.pitchtools.NumberedDiatonicPitch.NumberedDiatonicPitch.NumberedDiatonicPitch.__gt__
    :noindex:
-
-   Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedDiatonicPitch.NumberedDiatonicPitch.NumberedDiatonicPitch.__hash__
    :noindex:
 
-   Inherited from :py:class:`pitchtools.PitchObject <abjad.tools.pitchtools.PitchObject.PitchObject.PitchObject>`
-
 .. automethod:: abjad.tools.pitchtools.NumberedDiatonicPitch.NumberedDiatonicPitch.NumberedDiatonicPitch.__int__
    :noindex:
-
-   Inherited from :py:class:`pitchtools.DiatonicPitchObject <abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedDiatonicPitch.NumberedDiatonicPitch.NumberedDiatonicPitch.__le__
    :noindex:
 
-   Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
-
 .. automethod:: abjad.tools.pitchtools.NumberedDiatonicPitch.NumberedDiatonicPitch.NumberedDiatonicPitch.__lt__
    :noindex:
 
-   Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
-
 .. automethod:: abjad.tools.pitchtools.NumberedDiatonicPitch.NumberedDiatonicPitch.NumberedDiatonicPitch.__ne__
    :noindex:
-
-   Inherited from :py:class:`pitchtools.PitchObject <abjad.tools.pitchtools.PitchObject.PitchObject.PitchObject>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedDiatonicPitch.NumberedDiatonicPitch.NumberedDiatonicPitch.__repr__
    :noindex:

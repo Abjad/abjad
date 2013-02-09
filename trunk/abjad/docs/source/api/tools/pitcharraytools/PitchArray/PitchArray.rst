@@ -48,8 +48,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.voice_crossing_count
    :noindex:
 
@@ -107,15 +105,11 @@ Special Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__ge__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__getitem__
    :noindex:
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__gt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__iadd__
    :noindex:
@@ -123,12 +117,8 @@ Special Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__le__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__lt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__ne__
    :noindex:

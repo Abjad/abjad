@@ -39,8 +39,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.width
    :noindex:
 
@@ -92,28 +90,20 @@ Special Methods
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__ge__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__getitem__
    :noindex:
 
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__gt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__le__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__len__
    :noindex:
 
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__lt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__ne__
    :noindex:

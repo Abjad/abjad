@@ -39,8 +39,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.version
    :noindex:
 
@@ -62,34 +60,20 @@ Special Methods
 .. automethod:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__eq__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__ge__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__gt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__le__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__lt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__ne__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__repr__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

@@ -12,8 +12,6 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.anchor
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
-
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.attribute
    :noindex:
 
@@ -23,12 +21,8 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.is_score_rooted
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
-
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.is_segment_rooted
    :noindex:
-
-   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.persist
    :noindex:
@@ -36,42 +30,26 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.root_identifier
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
-
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.root_specification
    :noindex:
-
-   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.score_specification
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
-
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.source
    :noindex:
-
-   Inherited from :py:class:`expressiontools.SetExpression <experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.start_offset
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
-
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.stop_offset
    :noindex:
-
-   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.storage_format
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.target_timespan
    :noindex:
-
-   Inherited from :py:class:`expressiontools.AnchoredSetExpression <experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression>`
 
 .. autoattribute:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.truncate
    :noindex:
@@ -82,17 +60,11 @@ Methods
 .. automethod:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.evaluate
    :noindex:
 
-   Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
-
 .. automethod:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.evaluate_anchor_timespan
    :noindex:
 
-   Inherited from :py:class:`expressiontools.AnchoredExpression <experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
-
 .. automethod:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.new
    :noindex:
-
-   Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
 
 Special Methods
 ---------------
@@ -103,29 +75,17 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.__ge__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.__gt__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.__le__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.__lt__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.__ne__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.InputSetExpression.InputSetExpression.InputSetExpression.__repr__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

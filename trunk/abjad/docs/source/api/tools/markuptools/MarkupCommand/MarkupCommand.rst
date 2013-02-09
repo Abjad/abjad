@@ -21,8 +21,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 Special Methods
 ---------------
 
@@ -32,27 +30,17 @@ Special Methods
 .. automethod:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__ge__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__gt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__le__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__lt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__ne__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__repr__
    :noindex:

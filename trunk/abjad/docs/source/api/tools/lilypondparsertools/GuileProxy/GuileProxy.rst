@@ -12,8 +12,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 Methods
 -------
 
@@ -89,34 +87,20 @@ Special Methods
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__eq__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__ge__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__gt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__le__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__lt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__ne__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__repr__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

@@ -24,8 +24,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.tempo
    :noindex:
 
@@ -41,32 +39,20 @@ Special Methods
 .. automethod:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__eq__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__ge__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__gt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__le__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__lt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__ne__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__repr__
    :noindex:

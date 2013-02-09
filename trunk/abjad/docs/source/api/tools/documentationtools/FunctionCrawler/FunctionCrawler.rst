@@ -24,8 +24,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 Special Methods
 ---------------
 
@@ -35,34 +33,20 @@ Special Methods
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__eq__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__ge__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__gt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__le__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__lt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__ne__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__repr__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

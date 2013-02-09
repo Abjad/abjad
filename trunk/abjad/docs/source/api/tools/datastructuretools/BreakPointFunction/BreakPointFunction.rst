@@ -21,8 +21,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.x_center
    :noindex:
 
@@ -89,12 +87,8 @@ Special Methods
 .. automethod:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__eq__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__ge__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__getitem__
    :noindex:
@@ -102,25 +96,17 @@ Special Methods
 .. automethod:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__gt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__le__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__lt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__mul__
    :noindex:
 
 .. automethod:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__ne__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__repr__
    :noindex:

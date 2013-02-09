@@ -12,8 +12,6 @@ Read-only Properties
 .. autoattribute:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.storage_format
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 Read/write Properties
 ---------------------
 
@@ -35,34 +33,20 @@ Special Methods
 .. automethod:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__eq__
    :noindex:
 
-   Inherited from :py:class:`handlertools.Handler <experimental.tools.handlertools.Handler.Handler.Handler>`
-
 .. automethod:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__ge__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__gt__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__le__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__lt__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__ne__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__repr__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

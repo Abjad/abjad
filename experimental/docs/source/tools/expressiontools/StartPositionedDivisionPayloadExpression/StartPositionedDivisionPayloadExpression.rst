@@ -36,17 +36,11 @@ Methods
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.evaluate
    :noindex:
 
-   Inherited from :py:class:`expressiontools.PayloadExpression <experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression>`
-
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.get_elements_that_satisfy_time_relation
    :noindex:
 
-   Inherited from :py:class:`expressiontools.StartPositionedPayloadExpression <experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression>`
-
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.new
    :noindex:
-
-   Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
 
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.partition_by_ratio
    :noindex:
@@ -78,12 +72,8 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.__eq__
    :noindex:
 
-   Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
-
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.__ge__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.__getitem__
    :noindex:
@@ -91,35 +81,23 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.__gt__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.__le__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.__len__
    :noindex:
 
-   Inherited from :py:class:`expressiontools.StartPositionedPayloadExpression <experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression>`
-
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.__lt__
    :noindex:
 
-   Inherited from :py:class:`expressiontools.StartPositionedPayloadExpression <experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression>`
-
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.__ne__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.__or__
    :noindex:
 
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.__repr__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.__sub__
    :noindex:

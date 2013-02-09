@@ -36,8 +36,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.suspension
    :noindex:
 
@@ -53,22 +51,14 @@ Special Methods
 .. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__ge__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__gt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__le__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__lt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__ne__
    :noindex:

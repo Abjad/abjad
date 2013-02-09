@@ -33,8 +33,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.terminal_nodes
    :noindex:
 
@@ -56,27 +54,17 @@ Special Methods
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__ge__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__gt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__le__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__lt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__ne__
    :noindex:
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__repr__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

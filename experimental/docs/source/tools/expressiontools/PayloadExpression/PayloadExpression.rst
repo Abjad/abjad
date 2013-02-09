@@ -27,8 +27,6 @@ Methods
 .. automethod:: experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression.new
    :noindex:
 
-   Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
-
 .. automethod:: experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression.partition_by_ratio
    :noindex:
 
@@ -56,12 +54,8 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__eq__
    :noindex:
 
-   Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
-
 .. automethod:: experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__ge__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__getitem__
    :noindex:
@@ -69,24 +63,14 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__gt__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__le__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__lt__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__ne__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__repr__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

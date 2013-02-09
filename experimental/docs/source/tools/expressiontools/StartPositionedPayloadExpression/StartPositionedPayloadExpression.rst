@@ -24,8 +24,6 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.storage_format
    :noindex:
 
-   Inherited from :py:class:`expressiontools.PayloadExpression <experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression>`
-
 .. autoattribute:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.timespan
    :noindex:
 
@@ -38,15 +36,11 @@ Methods
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.evaluate
    :noindex:
 
-   Inherited from :py:class:`expressiontools.PayloadExpression <experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression>`
-
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.get_elements_that_satisfy_time_relation
    :noindex:
 
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.new
    :noindex:
-
-   Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
 
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.partition_by_ratio
    :noindex:
@@ -60,12 +54,8 @@ Methods
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.repeat_to_duration
    :noindex:
 
-   Inherited from :py:class:`expressiontools.PayloadExpression <experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression>`
-
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.repeat_to_length
    :noindex:
-
-   Inherited from :py:class:`expressiontools.PayloadExpression <experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression>`
 
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.rotate
    :noindex:
@@ -82,12 +72,8 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__eq__
    :noindex:
 
-   Inherited from :py:class:`expressiontools.Expression <experimental.tools.expressiontools.Expression.Expression.Expression>`
-
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__ge__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__getitem__
    :noindex:
@@ -95,12 +81,8 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__gt__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__le__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__len__
    :noindex:
@@ -111,15 +93,11 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__ne__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__or__
    :noindex:
 
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__repr__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__sub__
    :noindex:

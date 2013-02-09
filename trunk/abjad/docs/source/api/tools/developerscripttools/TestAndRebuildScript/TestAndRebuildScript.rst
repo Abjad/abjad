@@ -15,30 +15,20 @@ Read-only Properties
 .. autoattribute:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.argument_parser
    :noindex:
 
-   Inherited from :py:class:`developerscripttools.DeveloperScript <abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
-
 .. autoattribute:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.formatted_help
    :noindex:
-
-   Inherited from :py:class:`developerscripttools.DeveloperScript <abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.formatted_usage
    :noindex:
 
-   Inherited from :py:class:`developerscripttools.DeveloperScript <abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
-
 .. autoattribute:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.formatted_version
    :noindex:
-
-   Inherited from :py:class:`developerscripttools.DeveloperScript <abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.long_description
    :noindex:
 
 .. autoattribute:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.program_name
    :noindex:
-
-   Inherited from :py:class:`developerscripttools.DeveloperScript <abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.scripting_group
    :noindex:
@@ -48,8 +38,6 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.storage_format
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. autoattribute:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.version
    :noindex:
@@ -81,39 +69,23 @@ Special Methods
 .. automethod:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.__call__
    :noindex:
 
-   Inherited from :py:class:`developerscripttools.DeveloperScript <abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
-
 .. automethod:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.__eq__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.__ge__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.__gt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.__le__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.__lt__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.__ne__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.__repr__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

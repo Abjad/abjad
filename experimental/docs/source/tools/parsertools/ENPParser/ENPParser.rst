@@ -12,12 +12,8 @@ Read-only Properties
 .. autoattribute:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.debug
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
-
 .. autoattribute:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.lexer
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.lexer_rules_object
    :noindex:
@@ -25,22 +21,14 @@ Read-only Properties
 .. autoattribute:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.logger
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
-
 .. autoattribute:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.logger_path
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.output_path
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
-
 .. autoattribute:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.parser
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
 
 .. autoattribute:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.parser_rules_object
    :noindex:
@@ -48,12 +36,8 @@ Read-only Properties
 .. autoattribute:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.pickle_path
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
-
 .. autoattribute:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.storage_format
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Methods
 -------
@@ -124,47 +108,29 @@ Methods
 .. automethod:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.tokenize
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
-
 Special Methods
 ---------------
 
 .. automethod:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.__call__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
-
 .. automethod:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.__eq__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.__ge__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.__gt__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.__le__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.__lt__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.__ne__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.__repr__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

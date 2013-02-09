@@ -36,8 +36,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.storage_format
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. autoattribute:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.tempo
    :noindex:
 
@@ -50,32 +48,20 @@ Special Methods
 .. automethod:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__eq__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__ge__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__gt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__le__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__lt__
    :noindex:
 
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__ne__
    :noindex:
-
-   Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__repr__
    :noindex:

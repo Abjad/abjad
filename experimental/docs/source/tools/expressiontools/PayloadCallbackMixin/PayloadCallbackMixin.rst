@@ -12,12 +12,8 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.callbacks
    :noindex:
 
-   Inherited from :py:class:`expressiontools.CallbackMixin <experimental.tools.expressiontools.CallbackMixin.CallbackMixin.CallbackMixin>`
-
 .. autoattribute:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.storage_format
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Methods
 -------
@@ -55,12 +51,8 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.__eq__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.__ge__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.__getitem__
    :noindex:
@@ -68,24 +60,14 @@ Special Methods
 .. automethod:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.__gt__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.__le__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.__lt__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.__ne__
    :noindex:
 
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.__repr__
    :noindex:
-
-   Inherited from :py:class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
