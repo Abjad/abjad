@@ -120,7 +120,7 @@ class ClassDocumenter(Documenter):
                     directive='autoattribute',
                     options={'noindex': True},
                     )
-                autodoc.extend(self._format_inheritance_note(attr))
+                #autodoc.extend(self._format_inheritance_note(attr))
                 document.append(autodoc)
 
         if self.readwrite_properties:
@@ -137,7 +137,7 @@ class ClassDocumenter(Documenter):
                     directive='autoattribute',
                     options={'noindex': True},
                     )
-                autodoc.extend(self._format_inheritance_note(attr))
+                #autodoc.extend(self._format_inheritance_note(attr))
                 document.append(autodoc)
 
         if self.methods:
@@ -154,7 +154,7 @@ class ClassDocumenter(Documenter):
                     directive='automethod',
                     options={'noindex': True},
                     )
-                autodoc.extend(self._format_inheritance_note(attr))
+                #autodoc.extend(self._format_inheritance_note(attr))
                 document.append(autodoc)
 
         if self.special_methods:
@@ -171,7 +171,7 @@ class ClassDocumenter(Documenter):
                     directive='automethod',
                     options={'noindex': True},
                     )
-                autodoc.extend(self._format_inheritance_note(attr))
+                #autodoc.extend(self._format_inheritance_note(attr))
                 document.append(autodoc)
 
         #return '\n'.join(result)
