@@ -1,5 +1,3 @@
 1.  Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
 
 2.  Finish timerelationtools class docstrings before 2.11 build.
-
-3.  Finish timespantools package docstrings before 2.11 build.

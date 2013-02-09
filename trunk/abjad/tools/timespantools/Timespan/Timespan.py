@@ -101,6 +101,33 @@ class Timespan(BoundedObject):
             return self.offsets == timespan.offsets
         return False
 
+    def __ge__(self, expr):
+        '''True when `expr` start offset is greater or equal to timespan start offset:
+
+        ::
+
+            >>> timespan_2 >= timespan_3
+            True
+
+        Otherwise false:
+
+        ::
+
+            >>> timespan_1 >= timespan_2
+            False
+
+        Return boolean.
+        '''
+        assert hasattr(expr, 'start_offset'), repr(expr)
+        if hasattr(expr, 'stop_offset'):
+            if self.start_offset >= expr.start_offset:
+                return True
+            elif self.start_offset == expr.start_offset and \
+                self.stop_offset >= expr.stop_offset:
+                return True
+            return False
+        return self.start_offset >= expr.start_offset
+
     def __gt__(self, expr):
         '''True when `expr` start offset is greater than timespan start offset:
 
@@ -127,6 +154,33 @@ class Timespan(BoundedObject):
                 return True
             return False
         return self.start_offset > expr.start_offset
+
+    def __le__(self, expr):
+        '''True when `expr` start offset is less than or equal to timespan start offset:
+
+        ::
+
+            >>> timespan_2 <= timespan_3
+            False
+
+        Otherwise false:
+
+        ::
+
+            >>> timespan_1 <= timespan_2
+            True
+
+        Return boolean.
+        '''
+        assert hasattr(expr, 'start_offset'), repr(expr)
+        if hasattr(expr, 'stop_offset'):
+            if self.start_offset <= expr.start_offset:
+                return True
+            elif self.start_offset == expr.start_offset and \
+                self.stop_offset <= expr.stop_offset:
+                return True
+            return False
+        return self.start_offset <= expr.start_offset
 
     def __len__(self):
         '''Defined equal to ``1`` for all timespans:
@@ -862,6 +916,10 @@ class Timespan(BoundedObject):
             True
             >>> timespan_1.happens_during_timespan(timespan_2)
             False
+            >>> timespan_2.happens_during_timespan(timespan_1)
+            True
+            >>> timespan_2.happens_during_timespan(timespan_2)
+            True
         
         Return boolean.
         '''
@@ -869,30 +927,71 @@ class Timespan(BoundedObject):
             return timerelationtools.timespan_2_happens_during_timespan_1(timespan, self)
 
     def intersects_timespan(self, timespan):
+        '''True when timespan intersects `timespan`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 15)
+            >>> timespan_3 = timespantools.Timespan(10, 15)
+
+        ::
+
+            >>> timespan_1.intersects_timespan(timespan_1)
+            True
+            >>> timespan_1.intersects_timespan(timespan_2)
+            True
+            >>> timespan_1.intersects_timespan(timespan_3)
+            False
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_intersects_timespan_1(timespan, self)
 
     def is_congruent_to_timespan(self, timespan):
+        '''True when timespan is congruent to `timespan`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 15)
+
+        ::
+
+            >>> timespan_1.is_congruent_to_timespan(timespan_1)
+            True
+            >>> timespan_1.is_congruent_to_timespan(timespan_2)
+            False
+            >>> timespan_2.is_congruent_to_timespan(timespan_1)
+            False
+            >>> timespan_2.is_congruent_to_timespan(timespan_2)
+            True
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_is_congruent_to_timespan_1(timespan, self)
 
     def is_tangent_to_timespan(self, timespan):
-        '''True when `timespan` has offsets
-        and `self.stop_offset` equals `timespan.start_offset`::
+        '''True when timespan is tangent to `timespan`. Otherwise false:
 
-            >>> timespan_1.is_tangent_to_timespan(timespan_4)
-            True
+        ::
 
-        Or when `timespan.stop_offset` equals `self.start_offset`::
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(10, 20)
 
-            >>> timespan_4.is_tangent_to_timespan(timespan_1)
-            True    
-
-        Otherwise false::
+        ::
 
             >>> timespan_1.is_tangent_to_timespan(timespan_1)
             False
-
+            >>> timespan_1.is_tangent_to_timespan(timespan_2)
+            True
+            >>> timespan_2.is_tangent_to_timespan(timespan_1)
+            True
+            >>> timespan_2.is_tangent_to_timespan(timespan_2)
+            False
+        
         Return boolean.
         '''
         if hasattr(timespan, 'start_offset'):
@@ -930,22 +1029,129 @@ class Timespan(BoundedObject):
         return result
 
     def overlaps_all_of_timespan(self, timespan):
+        '''True when timespan overlaps all of `timespan`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 6)
+            >>> timespan_3 = timespantools.Timespan(5, 10)
+
+        ::
+
+            >>> timespan_1.overlaps_all_of_timespan(timespan_1)
+            False
+            >>> timespan_1.overlaps_all_of_timespan(timespan_2)
+            True
+            >>> timespan_1.overlaps_all_of_timespan(timespan_3)
+            False
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_overlaps_all_of_timespan_1(timespan, self)
 
     def overlaps_only_start_of_timespan(self, timespan):
+        '''True when timespan overlaps only start of `timespan`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(-5, 5)
+            >>> timespan_3 = timespantools.Timespan(4, 6)
+            >>> timespan_4 = timespantools.Timespan(5, 15)
+
+        ::
+
+            >>> timespan_1.overlaps_only_start_of_timespan(timespan_1)
+            False
+            >>> timespan_1.overlaps_only_start_of_timespan(timespan_2)
+            False
+            >>> timespan_1.overlaps_only_start_of_timespan(timespan_3)
+            False
+            >>> timespan_1.overlaps_only_start_of_timespan(timespan_4)
+            True
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_overlaps_only_start_of_timespan_1(timespan, self)
 
     def overlaps_only_stop_of_timespan(self, timespan):
+        '''True when timespan overlaps only stop of `timespan`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(-5, 5)
+            >>> timespan_3 = timespantools.Timespan(4, 6)
+            >>> timespan_4 = timespantools.Timespan(5, 15)
+
+        ::
+
+            >>> timespan_1.overlaps_only_stop_of_timespan(timespan_1)
+            False
+            >>> timespan_1.overlaps_only_stop_of_timespan(timespan_2)
+            True
+            >>> timespan_1.overlaps_only_stop_of_timespan(timespan_3)
+            False
+            >>> timespan_1.overlaps_only_stop_of_timespan(timespan_4)
+            False
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_overlaps_only_stop_of_timespan_1(timespan, self)
 
     def overlaps_start_of_timespan(self, timespan):
+        '''True when timespan overlaps start of `timespan`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(-5, 5)
+            >>> timespan_3 = timespantools.Timespan(4, 6)
+            >>> timespan_4 = timespantools.Timespan(5, 15)
+
+        ::
+
+            >>> timespan_1.overlaps_start_of_timespan(timespan_1)
+            False
+            >>> timespan_1.overlaps_start_of_timespan(timespan_2)
+            False
+            >>> timespan_1.overlaps_start_of_timespan(timespan_3)
+            True
+            >>> timespan_1.overlaps_start_of_timespan(timespan_4)
+            True
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_overlaps_start_of_timespan_1(timespan, self)
 
     def overlaps_stop_of_timespan(self, timespan):
+        '''True when timespan overlaps start of `timespan`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(-5, 5)
+            >>> timespan_3 = timespantools.Timespan(4, 6)
+            >>> timespan_4 = timespantools.Timespan(5, 15)
+
+        ::
+
+            >>> timespan_1.overlaps_stop_of_timespan(timespan_1)
+            False
+            >>> timespan_1.overlaps_stop_of_timespan(timespan_2)
+            True
+            >>> timespan_1.overlaps_stop_of_timespan(timespan_3)
+            True
+            >>> timespan_1.overlaps_stop_of_timespan(timespan_4)
+            False
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_overlaps_stop_of_timespan_1(timespan, self)
     
@@ -1103,98 +1309,550 @@ class Timespan(BoundedObject):
             return type(self)(self.start_offset, self.stop_offset)
 
     def starts_after_offset(self, offset):
+        '''True when timespan overlaps start of `timespan`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+
+        ::
+
+            >>> timespan_1.starts_after_offset(Offset(-5))
+            True
+            >>> timespan_1.starts_after_offset(Offset(0))
+            False
+            >>> timespan_1.starts_after_offset(Offset(5))
+            False
+        
+        Return boolean.
+        '''
         offset = durationtools.Offset(offset)
         return offset < self.start_offset
         
     def starts_after_timespan_starts(self, timespan):
+        '''True when timespan starts after `timespan` starts. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 15)
+
+        ::
+
+            >>> timespan_1.starts_after_timespan_starts(timespan_1)
+            False
+            >>> timespan_1.starts_after_timespan_starts(timespan_2)
+            False
+            >>> timespan_2.starts_after_timespan_starts(timespan_1)
+            True
+            >>> timespan_2.starts_after_timespan_starts(timespan_2)
+            False
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_starts_after_timespan_1_starts(timespan, self)
 
     def starts_after_timespan_stops(self, timespan):
+        '''True when timespan starts after `timespan` stops. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 15)
+            >>> timespan_3 = timespantools.Timespan(10, 20)
+            >>> timespan_4 = timespantools.Timespan(15, 25)
+
+        ::
+
+            >>> timespan_1.starts_after_timespan_stops(timespan_1)
+            False
+            >>> timespan_2.starts_after_timespan_stops(timespan_1)
+            False
+            >>> timespan_3.starts_after_timespan_stops(timespan_1)
+            True
+            >>> timespan_4.starts_after_timespan_stops(timespan_1)
+            True
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_starts_after_timespan_1_stops(timespan, self)
 
     def starts_at_offset(self, offset):
+        '''True when timespan starts at `offset`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+
+        ::
+
+            >>> timespan_1.starts_at_offset(Offset(-5))
+            False
+            >>> timespan_1.starts_at_offset(Offset(0))
+            True
+            >>> timespan_1.starts_at_offset(Offset(5))
+            False
+        
+        Return boolean.
+        '''
         offset = durationtools.Offset(offset)
         return self.start_offset == offset
 
     def starts_at_or_after_offset(self, offset):
+        '''True when timespan starts at or after `offset`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+
+        ::
+
+            >>> timespan_1.starts_at_or_after_offset(Offset(-5))
+            True
+            >>> timespan_1.starts_at_or_after_offset(Offset(0))
+            True
+            >>> timespan_1.starts_at_or_after_offset(Offset(5))
+            False
+        
+        Return boolean.
+        '''
         offset = durationtools.Offset(offset)
         return offset <= self.start_offset
 
     def starts_before_offset(self, offset):
+        '''True when timespan starts before `offset`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+
+        ::
+
+            >>> timespan_1.starts_before_offset(Offset(-5))
+            False
+            >>> timespan_1.starts_before_offset(Offset(0))
+            False
+            >>> timespan_1.starts_before_offset(Offset(5))
+            True
+        
+        Return boolean.
+        '''
         offset = durationtools.Offset(offset)
         return self.start_offset < offset
 
     def starts_before_or_at_offset(self, offset):
+        '''True when timespan starts before or at `offset`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+
+        ::
+
+            >>> timespan_1.starts_before_or_at_offset(Offset(-5))
+            False
+            >>> timespan_1.starts_before_or_at_offset(Offset(0))
+            True
+            >>> timespan_1.starts_before_or_at_offset(Offset(5))
+            True
+        
+        Return boolean.
+        '''
         offset = durationtools.Offset(offset)
         return self.start_offset <= offset
 
     def starts_before_timespan_starts(self, timespan):
+        '''True when timespan starts before `timespan` starts. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 15)
+
+        ::
+
+            >>> timespan_1.starts_before_timespan_starts(timespan_1)
+            False
+            >>> timespan_1.starts_before_timespan_starts(timespan_2)
+            True
+            >>> timespan_2.starts_before_timespan_starts(timespan_1)
+            False
+            >>> timespan_2.starts_before_timespan_starts(timespan_2)
+            False
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_starts_before_timespan_1_starts(timespan, self)
 
     def starts_before_timespan_stops(self, timespan):
+        '''True when timespan starts before `timespan` stops. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 15)
+
+        ::
+
+            >>> timespan_1.starts_before_timespan_stops(timespan_1)
+            True
+            >>> timespan_1.starts_before_timespan_stops(timespan_2)
+            True
+            >>> timespan_2.starts_before_timespan_stops(timespan_1)
+            True
+            >>> timespan_2.starts_before_timespan_stops(timespan_2)
+            True
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_starts_before_timespan_1_stops(timespan, self)
 
     def starts_during_timespan(self, timespan):
+        '''True when timespan starts during `timespan`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 15)
+
+        ::
+
+            >>> timespan_1.starts_during_timespan(timespan_1)
+            True
+            >>> timespan_1.starts_during_timespan(timespan_2)
+            False
+            >>> timespan_2.starts_during_timespan(timespan_1)
+            True
+            >>> timespan_2.starts_during_timespan(timespan_2)
+            True
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_starts_during_timespan_1(timespan, self)
 
     def starts_when_timespan_starts(self, timespan):
+        '''True when timespan starts when `timespan` starts. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 15)
+
+        ::
+
+            >>> timespan_1.starts_when_timespan_starts(timespan_1)
+            True
+            >>> timespan_1.starts_when_timespan_starts(timespan_2)
+            False
+            >>> timespan_2.starts_when_timespan_starts(timespan_1)
+            False
+            >>> timespan_2.starts_when_timespan_starts(timespan_2)
+            True
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_starts_when_timespan_1_starts(timespan, self)
 
     def starts_when_timespan_stops(self, timespan):
+        '''True when timespan starts when `timespan` stops. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(10, 20)
+
+        ::
+
+            >>> timespan_1.starts_when_timespan_stops(timespan_1)
+            False
+            >>> timespan_1.starts_when_timespan_stops(timespan_2)
+            False
+            >>> timespan_2.starts_when_timespan_stops(timespan_1)
+            True
+            >>> timespan_2.starts_when_timespan_stops(timespan_2)
+            False
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_starts_when_timespan_1_stops(timespan, self)
 
     def stops_after_offset(self, offset):
+        '''True when timespan stops after `offset`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+
+        ::
+
+            >>> timespan_1.starts_after_offset(Offset(-5))
+            True
+            >>> timespan_1.starts_after_offset(Offset(0))
+            False
+            >>> timespan_1.starts_after_offset(Offset(5))
+            False
+        
+        Return boolean.
+        '''
         offset = durationtools.Offset(offset)
         return offset < self.stop_offset
 
     def stops_after_timespan_starts(self, timespan):
+        '''True when timespan stops when `timespan` starts. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(10, 20)
+
+        ::
+
+            >>> timespan_1.stops_after_timespan_starts(timespan_1)
+            True
+            >>> timespan_1.stops_after_timespan_starts(timespan_2)
+            False
+            >>> timespan_2.stops_after_timespan_starts(timespan_1)
+            True
+            >>> timespan_2.stops_after_timespan_starts(timespan_2)
+            True
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_stops_after_timespan_1_starts(timespan, self)
 
     def stops_after_timespan_stops(self, timespan):
+        '''True when timespan stops when `timespan` stops. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(10, 20)
+
+        ::
+
+            >>> timespan_1.stops_after_timespan_stops(timespan_1)
+            False
+            >>> timespan_1.stops_after_timespan_stops(timespan_2)
+            False
+            >>> timespan_2.stops_after_timespan_stops(timespan_1)
+            True
+            >>> timespan_2.stops_after_timespan_stops(timespan_2)
+            False
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_stops_after_timespan_1_stops(timespan, self)
 
     def stops_at_offset(self, offset):
+        '''True when timespan stops at `offset`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+
+        ::
+
+            >>> timespan_1.stops_at_offset(Offset(-5))
+            False
+            >>> timespan_1.stops_at_offset(Offset(0))
+            False
+            >>> timespan_1.stops_at_offset(Offset(5))
+            False
+        
+        Return boolean.
+        '''
         offset = durationtools.Offset(offset)
         return self.stop_offset == offset
 
     def stops_at_or_after_offset(self, offset):
+        '''True when timespan stops at or after `offset`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+
+        ::
+
+            >>> timespan_1.stops_at_or_after_offset(Offset(-5))
+            True
+            >>> timespan_1.stops_at_or_after_offset(Offset(0))
+            True
+            >>> timespan_1.stops_at_or_after_offset(Offset(5))
+            True
+        
+        Return boolean.
+        '''
         offset = durationtools.Offset(offset)
         return offset <= self.stop_offset
 
     def stops_before_offset(self, offset):
+        '''True when timespan stops before `offset`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+
+        ::
+
+            >>> timespan_1.stops_before_offset(Offset(-5))
+            False
+            >>> timespan_1.stops_before_offset(Offset(0))
+            False
+            >>> timespan_1.stops_before_offset(Offset(5))
+            False
+        
+        Return boolean.
+        '''
         offset = durationtools.Offset(offset)
         return self.stop_offset < offset
 
     def stops_before_or_at_offset(self, offset):
+        '''True when timespan stops before or at `offset`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+
+        ::
+
+            >>> timespan_1.stops_before_or_at_offset(Offset(-5))
+            False
+            >>> timespan_1.stops_before_or_at_offset(Offset(0))
+            False
+            >>> timespan_1.stops_before_or_at_offset(Offset(5))
+            False
+        
+        Return boolean.
+        '''
         offset = durationtools.Offset(offset)
         return self.stop_offset <= offset
 
     def stops_before_timespan_starts(self, timespan):
+        '''True when timespan stops before `timespan` starts. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(10, 20)
+
+        ::
+
+            >>> timespan_1.stops_before_timespan_starts(timespan_1)
+            False
+            >>> timespan_1.stops_before_timespan_starts(timespan_2)
+            False
+            >>> timespan_2.stops_before_timespan_starts(timespan_1)
+            False
+            >>> timespan_2.stops_before_timespan_starts(timespan_2)
+            False
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_stops_before_timespan_1_starts(timespan, self)
 
     def stops_before_timespan_stops(self, timespan):
+        '''True when timespan stops before `timespan` stops. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(10, 20)
+
+        ::
+
+            >>> timespan_1.stops_before_timespan_stops(timespan_1)
+            False
+            >>> timespan_1.stops_before_timespan_stops(timespan_2)
+            True
+            >>> timespan_2.stops_before_timespan_stops(timespan_1)
+            False
+            >>> timespan_2.stops_before_timespan_stops(timespan_2)
+            False
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_stops_before_timespan_1_stops(timespan, self)
 
     def stops_during_timespan(self, timespan):
+        '''True when timespan stops during `timespan`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(10, 20)
+
+        ::
+
+            >>> timespan_1.stops_during_timespan(timespan_1)
+            True
+            >>> timespan_1.stops_during_timespan(timespan_2)
+            False
+            >>> timespan_2.stops_during_timespan(timespan_1)
+            False
+            >>> timespan_2.stops_during_timespan(timespan_2)
+            True
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_stops_during_timespan_1(timespan, self)
 
     def stops_when_timespan_starts(self, timespan):
+        '''True when timespan stops when `timespan` starts. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(10, 20)
+
+        ::
+
+            >>> timespan_1.stops_when_timespan_starts(timespan_1)
+            False
+            >>> timespan_1.stops_when_timespan_starts(timespan_2)
+            True
+            >>> timespan_2.stops_when_timespan_starts(timespan_1)
+            False
+            >>> timespan_2.stops_when_timespan_starts(timespan_2)
+            False
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_stops_when_timespan_1_starts(timespan, self)
 
     def stops_when_timespan_stops(self, timespan):
+        '''True when timespan stops when `timespan` stops. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(10, 20)
+
+        ::
+
+            >>> timespan_1.stops_when_timespan_stops(timespan_1)
+            True
+            >>> timespan_1.stops_when_timespan_stops(timespan_2)
+            False
+            >>> timespan_2.stops_when_timespan_stops(timespan_1)
+            False
+            >>> timespan_2.stops_when_timespan_stops(timespan_2)
+            True
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_stops_when_timespan_1_stops(timespan, self)
 
@@ -1273,5 +1931,25 @@ class Timespan(BoundedObject):
         return result
 
     def trisects_timespan(self, timespan):
+        '''True when timespan trisects `timespan`. Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 6)
+
+        ::
+
+            >>> timespan_1.trisects_timespan(timespan_1)
+            False
+            >>> timespan_1.trisects_timespan(timespan_2)
+            False
+            >>> timespan_2.trisects_timespan(timespan_1)
+            True
+            >>> timespan_2.trisects_timespan(timespan_2)
+            False
+        
+        Return boolean.
+        '''
         if self._implements_timespan_interface(timespan):
             return timerelationtools.timespan_2_trisects_timespan_1(timespan, self)
