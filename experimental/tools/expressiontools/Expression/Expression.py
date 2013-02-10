@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Expression(AbjadObject):
-    '''Expression base class.
+    '''Expression.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -13,6 +13,12 @@ class Expression(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        '''True expression and `expr` are of the same type
+        and when positional and keyword argument values equal.
+        Otherwise false.
+
+        Return boolean.
+        '''
         if not isinstance(expr, type(self)):
             return False
         if not self._positional_argument_values == expr._positional_argument_values:
@@ -24,8 +30,6 @@ class Expression(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty callbacks list.
-        '''
         filtered_result = []
         result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
@@ -46,9 +50,17 @@ class Expression(AbjadObject):
 
     @abc.abstractmethod
     def evaluate(self):
+        '''Evaluate expression.
+
+        Return new expression when evaluable.
+    
+        Return none when nonevaluable.
+        '''
         pass
 
     def new(self, **kwargs):
+        '''Initialize new expression with `kwargs`.
+        '''
         positional_argument_dictionary = self._positional_argument_dictionary
         keyword_argument_dictionary = self._keyword_argument_dictionary
         for key, value in kwargs.iteritems():

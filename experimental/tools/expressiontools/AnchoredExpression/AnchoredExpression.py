@@ -51,13 +51,6 @@ class AnchoredExpression(Expression):
     def anchor(self):
         '''Anchored expression anchor.
 
-        Anchored expressions may be anchored to the entire score,
-        to a single segment, or to another expression.
-
-        This ability of an anchored expression to be anchored
-        to another expression is primary source of recursion 
-        in the model.
-
         Return none when anchored expression is anchored to the entire score.
 
         Return string name of segment when anchored expression is anchored to a single segment.
@@ -112,7 +105,7 @@ class AnchoredExpression(Expression):
     def score_specification(self):
         '''Anchored expression score specification.
 
-        Return reference to score specification object.
+        Return score specification.
         '''
         return self._score_specification
 
@@ -145,7 +138,7 @@ class AnchoredExpression(Expression):
 
         Return timespan when anchor timespan is evaluable.
 
-        Return none when anchor timespan is not evaluable.
+        Return none when anchor timespan is nonevaluable.
         '''
         if isinstance(self.anchor, str):
             return self.root_specification.timespan
