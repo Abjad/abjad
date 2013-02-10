@@ -63,9 +63,6 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.evaluate_anchor_timespan
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.new
    :noindex:
 

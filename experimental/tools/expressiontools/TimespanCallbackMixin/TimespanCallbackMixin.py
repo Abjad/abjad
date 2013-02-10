@@ -100,7 +100,7 @@ class TimespanCallbackMixin(CallbackMixin):
     ### PUBLIC METHODS ###
 
     def divide_by_ratio(self, ratio):
-        '''Divide timespan by `ratio`::
+        '''Divide timespan expression by `ratio`::
 
             >>> timespans = red_segment.timespan.divide_by_ratio((2, 3))
 
@@ -158,7 +158,7 @@ class TimespanCallbackMixin(CallbackMixin):
                     ])
                 )
 
-        Return tuple of newly constructed timespans with appended callback.
+        Return tuple of newly constructed timespans with callback.
         '''
         result = []
         if mathtools.is_positive_integer_equivalent_number(ratio):
@@ -171,7 +171,7 @@ class TimespanCallbackMixin(CallbackMixin):
         return tuple(result)
 
     def scale(self, multiplier):
-        '''Scale timespan duration by `multiplier`.
+        '''Scale timespan expression duration by `multiplier`.
 
             >>> timespan = red_segment.timespan.scale(Multiplier(4, 5))
 
@@ -185,7 +185,7 @@ class TimespanCallbackMixin(CallbackMixin):
                     ])
                 )
 
-        Return copy of timespan with appended callback.
+        Return copy of timespan expression with callback.
         '''
         multiplier = durationtools.Multiplier(multiplier)
         callback = \
@@ -194,9 +194,9 @@ class TimespanCallbackMixin(CallbackMixin):
         return self._copy_and_append_callback(callback)
 
     def set_duration(self, duration):
-        '''Set timespan duration to `duration`.
+        '''Set timespan expression duration to `duration`.
 
-        Return copy of timespan with appended callback.
+        Return copy of timespan expression with callback.
         '''
         duration = durationtools.Duration(duration)
         callback = \
@@ -205,10 +205,10 @@ class TimespanCallbackMixin(CallbackMixin):
         return self._copy_and_append_callback(callback)
 
     def set_offsets(self, start_offset=None, stop_offset=None):
-        '''Set timespan start offset to `start_offset`
+        '''Set timespan expression start offset to `start_offset`
         and stop offset to `stop_offset`.
 
-        Return copy of timespan with appended callback.
+        Return copy of timespan expression with callback.
         '''
         if start_offset is not None:
             start_offset = durationtools.Offset(start_offset)
@@ -220,9 +220,9 @@ class TimespanCallbackMixin(CallbackMixin):
         return self._copy_and_append_callback(callback)
 
     def translate(self, translation=None):
-        '''Translate timespan by `translation`.
+        '''Translate timespan expression by `translation`.
 
-        Return copy of timespan with appended callback.
+        Return copy of timespan expression with callback.
         '''
         callback = \
             'self._translate(original_start_offset, original_stop_offset, {!r})'
@@ -230,10 +230,10 @@ class TimespanCallbackMixin(CallbackMixin):
         return self._copy_and_append_callback(callback)
 
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
-        '''Translate timespan start offset by `start_offset_translation`
+        '''Translate timespan expression start offset by `start_offset_translation`
         and stop offset by `stop_offset_translation`.
 
-        Return copy of timespan with appended callback.
+        Return copy of timespan expression with callback.
         '''
         start_offset_translation = start_offset_translation or 0
         stop_offset_translation = stop_offset_translation or 0

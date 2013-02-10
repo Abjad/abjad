@@ -54,9 +54,6 @@ Methods
 .. automethod:: experimental.tools.expressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.evaluate_anchor_timespan
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.new
    :noindex:
 

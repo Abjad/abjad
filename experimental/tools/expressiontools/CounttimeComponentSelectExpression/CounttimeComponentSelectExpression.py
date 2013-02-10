@@ -97,7 +97,7 @@ class CounttimeComponentSelectExpression(SelectExpression):
 
     def evaluate(self):
         from experimental.tools import expressiontools
-        anchor_timespan = self.evaluate_anchor_timespan()
+        anchor_timespan = self._evaluate_anchor_timespan()
         voice_proxy = self.score_specification.payload_expressions_by_voice[self.voice_name]
         rhythm_payload_expressions = voice_proxy.payload_expressions_by_attribute['rhythm']
         time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)

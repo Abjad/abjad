@@ -54,9 +54,6 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.evaluate_anchor_timespan
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.new
    :noindex:
 

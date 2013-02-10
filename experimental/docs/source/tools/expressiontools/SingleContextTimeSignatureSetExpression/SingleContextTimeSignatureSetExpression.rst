@@ -63,9 +63,6 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.evaluate_anchor_timespan
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.make_time_signatures
    :noindex:
 

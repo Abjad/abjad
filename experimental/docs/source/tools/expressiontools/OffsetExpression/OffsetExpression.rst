@@ -48,9 +48,6 @@ Methods
 .. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.evaluate_anchor_timespan
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_division_set_expression
    :noindex:
 

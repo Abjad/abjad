@@ -5,8 +5,30 @@ from experimental.tools.expressiontools.CallbackMixin import CallbackMixin
 class OffsetCallbackMixin(CallbackMixin):
     '''Offset callback mixin.
 
-    .. note:: add examples.
+    Score for examples:
 
+    ::
+
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
+        >>> red_segment = score_specification.append_segment(name='red')
+        >>> set_expression = red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
+
+    ::
+
+        >>> offset = red_segment.timespan.stop_offset
+
+    ::
+
+        >>> z(offset)
+        expressiontools.OffsetExpression(
+            anchor=expressiontools.TimespanExpression(
+                anchor='red'
+                ),
+            edge=Right
+            )
+
+    Add to classes that should implement offset callbacks.
     '''
 
     ### PRIVATE METHODS ###
@@ -36,12 +58,54 @@ class OffsetCallbackMixin(CallbackMixin):
     ### PUBLIC METHODS ###
 
     def scale(self, multiplier):
+        '''Scale offset expression by `multiplier`.
+
+        ::
+
+            >>> result = offset.scale(Multiplier(4, 5))
+
+        ::
+
+            >>> z(result)
+            expressiontools.OffsetExpression(
+                anchor=expressiontools.TimespanExpression(
+                    anchor='red'
+                    ),
+                edge=Right,
+                callbacks=expressiontools.CallbackInventory([
+                    'self._scale(offset, Multiplier(4, 5))'
+                    ])
+                )
+
+        Return offset expression copy with callback.
+        '''
         multiplier = durationtools.Multiplier(multiplier)
         callback = 'self._scale(offset, {!r})'
         callback = callback.format(multiplier)
         return self._copy_and_append_callback(callback)
 
     def translate(self, translation):
+        '''Translate offset expression by `translation`.
+
+        ::
+
+            >>> result = offset.translate(Duration(9, 2))
+
+        ::
+
+            >>> z(result)
+            expressiontools.OffsetExpression(
+                anchor=expressiontools.TimespanExpression(
+                    anchor='red'
+                    ),
+                edge=Right,
+                callbacks=expressiontools.CallbackInventory([
+                    'self._translate(offset, Duration(9, 2))'
+                    ])
+                )
+
+        Return offset expression copy with callback.
+        '''
         translation = durationtools.Duration(translation)
         callback = 'self._translate(offset, {!r})'
         callback = callback.format(translation)

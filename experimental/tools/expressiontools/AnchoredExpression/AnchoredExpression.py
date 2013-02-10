@@ -36,6 +36,27 @@ class AnchoredExpression(Expression):
 
     ### PRIVATE METHODS ###
 
+    def _evaluate_anchor_timespan(self):
+        '''Evaluate anchor timespan.
+
+        Return timespan when anchor timespan is evaluable.
+
+        Return none when anchor timespan is nonevaluable.
+        '''
+        if isinstance(self.anchor, str):
+            return self.root_specification.timespan
+        elif self.anchor is None:
+            return self.root_specification.timespan
+        expression = self.anchor.evaluate()
+        if expression is None:
+            return
+        if hasattr(expression, 'timespan'):
+            return expression.timespan
+        elif isinstance(expression.payload[0], timespantools.Timespan):
+            return expression.payload[0]
+        else:
+            raise TypeError(expression)
+
     def _set_root_specification(self, root_specification_identifier):
         assert isinstance(root_specification_identifier, (str, type(None)))
         if isinstance(self.anchor, (str, type(None))):
@@ -130,26 +151,3 @@ class AnchoredExpression(Expression):
         result = expressiontools.OffsetExpression(anchor=self._expression_abbreviation, edge=Right)
         result._score_specification = self.score_specification
         return result
-
-    ### PUBLIC METHODS ###
-
-    def evaluate_anchor_timespan(self):
-        '''Evaluate anchor timespan.
-
-        Return timespan when anchor timespan is evaluable.
-
-        Return none when anchor timespan is nonevaluable.
-        '''
-        if isinstance(self.anchor, str):
-            return self.root_specification.timespan
-        elif self.anchor is None:
-            return self.root_specification.timespan
-        expression = self.anchor.evaluate()
-        if expression is None:
-            return
-        if hasattr(expression, 'timespan'):
-            return expression.timespan
-        elif isinstance(expression.payload[0], timespantools.Timespan):
-            return expression.payload[0]
-        else:
-            raise TypeError(expression)

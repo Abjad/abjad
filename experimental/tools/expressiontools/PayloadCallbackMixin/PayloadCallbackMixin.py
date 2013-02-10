@@ -12,12 +12,18 @@ class PayloadCallbackMixin(CallbackMixin):
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
+        '''Logical AND of payload and `timespan`.
+
+        Return copy of expression with callback.
+        '''
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
         callback = 'result = self.___and__(payload_expression, {!r})'.format(timespan)
         return self._copy_and_append_callback(callback)
 
     def __getitem__(self, payload_expression):
-        '''Return copy of payload_expression with appended callback.
+        '''Get payload item.
+        
+        Return copy of expression with callback.
         '''
         callback = 'result = self.___getitem__(payload_expression, {!r})'
         callback = callback.format(payload_expression)
@@ -96,7 +102,9 @@ class PayloadCallbackMixin(CallbackMixin):
     ### PUBLIC METHODS ###
 
     def partition_by_ratio(self, ratio):
-        '''Return tuple of newly constructed payload_expressions with callbacks appended.
+        '''Partition payload by `ratio`.
+
+        Return tuple of newly constructed expressions with callbacks.
         '''
         result = []
         ratio = mathtools.Ratio(ratio)
@@ -108,6 +116,10 @@ class PayloadCallbackMixin(CallbackMixin):
         return tuple(result)
 
     def partition_by_ratio_of_durations(self, ratio):
+        '''Partition payload by `ratio` of durations.
+
+        Return tuple of newly constructed expressions with callbacks.
+        '''
         result = []
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
@@ -118,27 +130,35 @@ class PayloadCallbackMixin(CallbackMixin):
         return tuple(result)
 
     def reflect(self):
-        '''Return copy of payload_expression with appended callback.
+        '''Reflect payload.
+
+        Return copy of expression with callback.
         '''
         callback = 'result = self._reflect(payload_expression)'
         return self._copy_and_append_callback(callback)
 
     def repeat_to_duration(self, duration):
-        '''Return copy of payload_expression with appended callback.
+        '''Repeat payload to `duration`.
+
+        Return copy of expression with callback.
         '''
         duration = durationtools.Duration(duration)
         callback = 'result = self._repeat_to_duration(payload_expression, {!r})'.format(duration)
         return self._copy_and_append_callback(callback)
 
     def repeat_to_length(self, length):
-        '''Return copy of payload_expression with appended callback.
+        '''Repeat payload to `length`.
+    
+        Return copy of expression with callback.
         '''
         assert mathtools.is_nonnegative_integer(length)
         callback = 'result = self._repeat_to_length(payload_expression, {!r})'.format(length)
         return self._copy_and_append_callback(callback)
 
     def rotate(self, index):
-        '''Return copy of payload_expression with appended callback.
+        '''Rotate payload.
+
+        Return copy of expression with callback.
         '''
         from experimental.tools import expressiontools
         assert isinstance(index, (int, durationtools.Duration, expressiontools.RotationIndicator))

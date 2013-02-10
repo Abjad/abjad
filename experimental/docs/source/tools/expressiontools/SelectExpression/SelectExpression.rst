@@ -54,9 +54,6 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SelectExpression.SelectExpression.SelectExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SelectExpression.SelectExpression.SelectExpression.evaluate_anchor_timespan
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.SelectExpression.SelectExpression.SelectExpression.new
    :noindex:
 

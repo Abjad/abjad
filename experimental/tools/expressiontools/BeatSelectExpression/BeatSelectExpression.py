@@ -6,7 +6,7 @@ from experimental.tools.expressiontools.SelectExpression import SelectExpression
 
 
 class BeatSelectExpression(SelectExpression):
-    '''Beat select expression:
+    '''Beat select expression.
 
     ::
 
@@ -14,7 +14,9 @@ class BeatSelectExpression(SelectExpression):
         >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
     
-    Select voice ``1`` beats that start during score::
+    Select voice ``1`` beats that start during score:
+
+    ::
 
         >>> select_expression = score_specification.select_beats('Voice 1')
 
@@ -25,7 +27,9 @@ class BeatSelectExpression(SelectExpression):
             voice_name='Voice 1'
             )
 
-    Select voice ``1`` beats that start during segment ``'red'``::
+    Select voice ``1`` beats that start during segment ``'red'``:
+
+    ::
 
         >>> select_expression = red_segment.select_beats('Voice 1')
 
@@ -37,7 +41,7 @@ class BeatSelectExpression(SelectExpression):
             voice_name='Voice 1'
             )
 
-    Beat select expressions are to be treated as immutable.
+    Beat select expressions are immutable.
     '''
 
     ### PRIVATE METHODS ###
@@ -52,6 +56,12 @@ class BeatSelectExpression(SelectExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
+        '''Evaluate beat select expression.
+    
+        Return none when nonevaluable.
+
+        Return start-positioned division payload expression when evaluable.
+        '''
         from experimental.tools import expressiontools
         time_signatures = self.score_specification.time_signatures
         timespan = self.score_specification.timespan
@@ -60,7 +70,8 @@ class BeatSelectExpression(SelectExpression):
         shards = sequencetools.split_sequence_by_weights(beats, weights, cyclic=False, overhang=False)
         beats = shards[1]
         start_offset = durationtools.Offset(sum(shards[0]))
-        expression = expressiontools.StartPositionedDivisionPayloadExpression(payload=beats, start_offset=start_offset)
+        expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            payload=beats, start_offset=start_offset)
         expression = self._apply_callbacks(expression)
         expression._voice_name = self.voice_name
         return expression

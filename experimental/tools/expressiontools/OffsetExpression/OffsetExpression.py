@@ -34,8 +34,6 @@ class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixi
             )
 
     Offset expressions implement the lookup interface.
-
-    Offset expressions are immutable.
     '''
 
     ### INITIALIZER ###
@@ -47,12 +45,28 @@ class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixi
         OffsetCallbackMixin.__init__(self, callbacks=callbacks)
         self._edge = edge
 
-    ### PRIVATE METHODS ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def edge(self):
+        '''Offset expression edge.
+
+        Return boolean or none.
+        '''
+        return self._edge
+
+    ### PUBLIC METHODS ##
 
     def evaluate(self):
+        '''Evaluate offset expression.
+
+        Return none when nonevaluable.
+
+        Return payload expression when evaluable.
+        '''
         from experimental.tools import expressiontools
         edge = self.edge or Left
-        anchor_timespan = self.evaluate_anchor_timespan()
+        anchor_timespan = self._evaluate_anchor_timespan()
         if anchor_timespan is None:
             return
         if edge == Left:
@@ -62,20 +76,3 @@ class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixi
         offset = self._apply_callbacks(offset)
         expression = expressiontools.PayloadExpression([offset])
         return expression
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def edge(self):
-        '''Offset expression edge:
-
-        ::
-        
-            >>> offset.edge
-            Right
-
-        Value of none is interpreted as ``Left``.
-
-        Return boolean or none.
-        '''
-        return self._edge

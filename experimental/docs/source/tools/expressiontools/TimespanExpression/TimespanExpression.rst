@@ -48,9 +48,6 @@ Methods
 .. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.evaluate_anchor_timespan
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.new
    :noindex:
 

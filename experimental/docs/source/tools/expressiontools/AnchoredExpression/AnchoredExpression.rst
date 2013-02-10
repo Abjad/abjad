@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.evaluate_anchor_timespan
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.new
    :noindex:
 
