@@ -9,7 +9,7 @@ expressiontools.SelectExpressionRhythmRegionExpression
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.source
+.. autoattribute:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.source_expression
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.start_offset

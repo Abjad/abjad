@@ -8,8 +8,8 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, source=None, target_timespan=None, target_context_name=None, fresh=True, persist=True):
-        SingleContextSetExpression.__init__(self, attribute='time_signatures', source=source, 
+    def __init__(self, source_expression=None, target_timespan=None, target_context_name=None, fresh=True, persist=True):
+        SingleContextSetExpression.__init__(self, attribute='time_signatures', source_expression=source_expression, 
             target_timespan=target_timespan, target_context_name=target_context_name, 
             fresh=fresh, persist=persist)
 
@@ -23,19 +23,19 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
         from experimental.tools import expressiontools
         target_timespan = self._evaluate_anchor_timespan()
         expression = expressiontools.TimespanScopedSingleContextTimeSignatureExpression(
-            source=self.source, target_timespan=target_timespan,
+            source_expression=self.source_expression, target_timespan=target_timespan,
             target_context_name=self.target_context_name, fresh=self.fresh)
         expression._lexical_rank = self._lexical_rank
         return expression
 
     def make_time_signatures(self):
         from experimental.tools import expressiontools
-        if hasattr(self.source, 'evaluate_early'):
-            expression = self.source.evaluate_early()
+        if hasattr(self.source_expression, 'evaluate_early'):
+            expression = self.source_expression.evaluate_early()
             assert isinstance(expression, expressiontools.PayloadExpression), repr(expression)
             time_signatures = expression.payload
         else:
-            expression = self.source.evaluate()
+            expression = self.source_expression.evaluate()
             assert isinstance(expression, expressiontools.PayloadExpression)
             time_signatures = expression.payload[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]

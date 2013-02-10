@@ -7,8 +7,8 @@ class SingleContextRhythmSetExpression(SingleContextSetExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, source=None, target_timespan=None, target_context_name=None, fresh=True, persist=True):
-        SingleContextSetExpression.__init__(self, attribute='rhythm', source=source, 
+    def __init__(self, source_expression=None, target_timespan=None, target_context_name=None, fresh=True, persist=True):
+        SingleContextSetExpression.__init__(self, attribute='rhythm', source_expression=source_expression, 
             target_timespan=target_timespan, target_context_name=target_context_name, 
             fresh=fresh, persist=persist)
 
@@ -22,7 +22,7 @@ class SingleContextRhythmSetExpression(SingleContextSetExpression):
         from experimental.tools import expressiontools
         target_timespan = self._evaluate_anchor_timespan()
         expression = expressiontools.TimespanScopedSingleContextRhythmSetExpression(
-            source=self.source, target_timespan=target_timespan, 
+            source_expression=self.source_expression, target_timespan=target_timespan, 
             target_context_name=self.target_context_name, fresh=self.fresh)
         expression._lexical_rank = self._lexical_rank
         return expression

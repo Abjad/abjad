@@ -10,10 +10,10 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
 
     ### INITIALIZER ###
 
-    def __init__(self, source=None, target_timespan=None, target_context_name=None, 
+    def __init__(self, source_expression=None, target_timespan=None, target_context_name=None, 
         fresh=None, truncate=None):
         TimespanScopedSingleContextSetExpression.__init__(self, attribute='divisions',
-            source=source, target_timespan=target_timespan, 
+            source_expression=source_expression, target_timespan=target_timespan, 
             target_context_name=target_context_name, fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate
@@ -27,7 +27,7 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
             return False
         if expr.fresh or expr.truncate:
             return False
-        if expr.source != self.source:
+        if expr.source_expression != self.source_expression:
             return False
         if not self.target_timespan.stops_when_timespan_starts(expr.target_timespan):
             return False
@@ -62,19 +62,19 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
         '''
         from experimental.tools import expressiontools
         start_offset, total_duration = self.target_timespan.start_offset, self.target_timespan.duration
-        if isinstance(self.source, expressiontools.SelectExpression):
+        if isinstance(self.source_expression, expressiontools.SelectExpression):
             region_expression = expressiontools.SelectExpressionDivisionRegionExpression(
-                self.source, start_offset, total_duration, voice_name)
-        elif isinstance(self.source, expressiontools.DivisionSetExpressionLookupExpression):
-            expression = self.source.evaluate()
+                self.source_expression, start_offset, total_duration, voice_name)
+        elif isinstance(self.source_expression, expressiontools.DivisionSetExpressionLookupExpression):
+            expression = self.source_expression.evaluate()
             assert isinstance(expression, expressiontools.PayloadExpression)
             divisions = expression.elements
             region_expression = expressiontools.LiteralDivisionRegionExpression(
                 divisions, start_offset, total_duration, voice_name)
-        elif isinstance(self.source, expressiontools.PayloadExpression):
-            divisions = self.source.elements
+        elif isinstance(self.source_expression, expressiontools.PayloadExpression):
+            divisions = self.source_expression.elements
             region_expression = expressiontools.LiteralDivisionRegionExpression(
                 divisions, start_offset, total_duration, voice_name)
         else:
-            raise TypeError(self.source)
+            raise TypeError(self.source_expression)
         return region_expression

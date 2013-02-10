@@ -3,7 +3,7 @@ from experimental.tools.expressiontools.TimespanExpression import TimespanExpres
 
 
 class MixedSourceTimespanExpression(TimespanExpression):
-    r'''Mixed-source timespan expression.
+    r'''Mixed-source_expression timespan expression.
 
     ::
 
@@ -12,9 +12,9 @@ class MixedSourceTimespanExpression(TimespanExpression):
         >>> red_segment = score_specification.append_segment(name='red')
         >>> blue_segment = score_specification.append_segment(name='blue')
 
-    Mixed-source timespan.
+    Mixed-source_expression timespan.
 
-    Mixed-source timespan starting at the left edge of the last measure
+    Mixed-source_expression timespan starting at the left edge of the last measure
     that starts during segment ``'red'``
     and stoppding at the right edge of the first measure 
     that starts during segment ``'blue'``::
@@ -56,7 +56,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
                 )
             )
 
-    Mixed-source timespan expression properties are read-only.
+    Mixed-source_expression timespan expression properties are read-only.
     '''
 
     ### INITIALIZER ###
@@ -79,7 +79,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
 
     @property
     def start_offset(self):
-        '''Mixed-source timespan start offset specified by user.
+        '''Mixed-source_expression timespan start offset specified by user.
 
         Return offset or none.
         '''
@@ -87,7 +87,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
 
     @property
     def stop_offset(self):
-        '''Mixed-source timepsan stop offset specified by user.
+        '''Mixed-source_expression timepsan stop offset specified by user.
 
         Return offset or none.
         '''

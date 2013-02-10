@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.fresh
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.source
+.. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.source_expression
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.start_offset

@@ -33,7 +33,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.score_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.source
+.. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.source_expression
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.start_offset

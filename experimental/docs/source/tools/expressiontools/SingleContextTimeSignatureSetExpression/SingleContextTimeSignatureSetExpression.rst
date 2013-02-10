@@ -36,7 +36,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.score_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.source
+.. autoattribute:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.source_expression
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.start_offset

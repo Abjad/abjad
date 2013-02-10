@@ -41,7 +41,7 @@ class SetExpressionLookupExpression(AnchoredExpression, PayloadCallbackMixin):
         for context_proxy in self.score_specification.single_context_set_expressions_by_context.itervalues():
             expressions = context_proxy.timespan_scoped_single_context_set_expressions_by_attribute[attribute]
             for timespan_scoped_single_context_set_expression in expressions:
-                if not timespan_scoped_single_context_set_expression.source == self:
+                if not timespan_scoped_single_context_set_expression.source_expression == self:
                     result.append(timespan_scoped_single_context_set_expression)
         return result
 

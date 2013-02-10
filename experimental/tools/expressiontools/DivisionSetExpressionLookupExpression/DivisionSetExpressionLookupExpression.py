@@ -56,10 +56,10 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
         time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
         candidate_set_expressions = timespan_inventory.get_timespans_that_satisfy_time_relation(time_relation)
         root_specification = self.root_specification
-        source_set_expression = root_specification._get_first_expression_that_governs_context_name(
+        source_expression_set_expression = root_specification._get_first_expression_that_governs_context_name(
             candidate_set_expressions, self.voice_name)
-        assert source_set_expression is not None
-        expression = source_set_expression.source
+        assert source_expression_set_expression is not None
+        expression = source_expression_set_expression.source_expression
         assert isinstance(expression, expressiontools.PayloadExpression), repr(expression)
         expression = self._apply_callbacks(expression)
         return expression

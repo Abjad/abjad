@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.division_list
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.source
+.. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.source_expression
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.start_offset

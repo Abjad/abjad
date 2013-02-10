@@ -12,7 +12,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.attribute
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.source
+.. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.source_expression
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.storage_format

@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.region_start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.source
+.. autoattribute:: experimental.tools.expressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.source_expression
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.start_offset

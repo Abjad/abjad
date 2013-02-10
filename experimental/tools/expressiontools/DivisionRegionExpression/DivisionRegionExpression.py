@@ -19,7 +19,7 @@ class DivisionRegionExpression(RegionExpression):
 
     def evaluate(self):
         from experimental.tools import expressiontools
-        divisions = self.source[:]
+        divisions = self.source_expression[:]
         divisions = [expressiontools.Division(x) for x in divisions]
         divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, self.total_duration)
         expression = expressiontools.StartPositionedDivisionPayloadExpression(

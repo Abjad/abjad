@@ -14,14 +14,14 @@ class SetExpression(Expression):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute=None, source=None, target_timespan=None):
+    def __init__(self, attribute=None, source_expression=None, target_timespan=None):
         from experimental.tools import expressiontools
         assert isinstance(attribute, str), repr(attribute)
-        assert isinstance(source, expressiontools.Expression), repr(source)
+        assert isinstance(source_expression, expressiontools.Expression), repr(source_expression)
         assert isinstance(target_timespan, (timespantools.Timespan, expressiontools.TimespanExpression, 
             str, type(None))), repr(target_timespan)
         self._attribute = attribute
-        self._source = source
+        self._source_expression = source_expression
         self._target_timespan = target_timespan
         self._lexical_rank = None
 
@@ -36,12 +36,12 @@ class SetExpression(Expression):
         return self._attribute
 
     @property
-    def source(self):
-        '''Set expression source.
+    def source_expression(self):
+        '''Set expression source_expression.
 
         Return expression.
         '''
-        return self._source
+        return self._source_expression
 
     @property
     def target_timespan(self):

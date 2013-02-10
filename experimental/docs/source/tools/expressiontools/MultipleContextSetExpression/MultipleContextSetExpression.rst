@@ -33,7 +33,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.score_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.source
+.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.source_expression
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.start_offset

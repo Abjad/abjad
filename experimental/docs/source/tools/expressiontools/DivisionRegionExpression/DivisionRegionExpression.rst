@@ -9,7 +9,7 @@ expressiontools.DivisionRegionExpression
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.source
+.. autoattribute:: experimental.tools.expressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.source_expression
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.start_offset

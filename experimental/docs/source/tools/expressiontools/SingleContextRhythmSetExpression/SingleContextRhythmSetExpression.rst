@@ -36,7 +36,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.score_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.source
+.. autoattribute:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.source_expression
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.start_offset

@@ -9,7 +9,7 @@ expressiontools.RegionExpression
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.RegionExpression.RegionExpression.RegionExpression.source
+.. autoattribute:: experimental.tools.expressiontools.RegionExpression.RegionExpression.RegionExpression.source_expression
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.RegionExpression.RegionExpression.RegionExpression.start_offset

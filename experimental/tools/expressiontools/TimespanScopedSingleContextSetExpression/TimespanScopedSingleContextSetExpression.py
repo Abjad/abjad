@@ -15,11 +15,11 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
 
     ### INTIAILIZER ###
 
-    def __init__(self, attribute=None, source=None, target_timespan=None, target_context_name=None, 
+    def __init__(self, attribute=None, source_expression=None, target_timespan=None, target_context_name=None, 
         fresh=None):
         assert isinstance(target_context_name, (str, type(None))), repr(target_context_name)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
-        SetExpression.__init__(self, attribute=attribute, source=source, target_timespan=target_timespan)
+        SetExpression.__init__(self, attribute=attribute, source_expression=source_expression, target_timespan=target_timespan)
         self._target_context_name = target_context_name
         self._fresh = fresh
 
@@ -27,13 +27,13 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
 
     def __eq__(self, expr):
         '''True when `expr` is a timespan-scoped single-context set expression
-        with same source, target timespan and target context name.
+        with same source_expression, target timespan and target context name.
         Otherwise false.
 
         Return boolean.
         '''
         if isinstance(expr, type(self)):
-            if self.source == expr.source and \
+            if self.source_expression == expr.source_expression and \
                 self.target_timespan == expr.target_timespan and \
                 self.target_context_name == expr.target_context_name:
                 return True

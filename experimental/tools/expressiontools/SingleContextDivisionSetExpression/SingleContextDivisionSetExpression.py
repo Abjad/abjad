@@ -7,10 +7,10 @@ class SingleContextDivisionSetExpression(SingleContextSetExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, source=None, target_timespan=None, target_context_name=None, 
+    def __init__(self, source_expression=None, target_timespan=None, target_context_name=None, 
         fresh=True, persist=True, truncate=None):
         assert isinstance(truncate, (bool, type(None)))
-        SingleContextSetExpression.__init__(self, attribute='divisions', source=source, 
+        SingleContextSetExpression.__init__(self, attribute='divisions', source_expression=source_expression, 
             target_timespan=target_timespan, target_context_name=target_context_name, 
             fresh=fresh, persist=persist)
         self._truncate = truncate
@@ -25,7 +25,7 @@ class SingleContextDivisionSetExpression(SingleContextSetExpression):
         from experimental.tools import expressiontools
         target_timespan = self._evaluate_anchor_timespan()
         expression = expressiontools.TimespanScopedSingleContextDivisionSetExpression(
-            source=self.source, target_timespan=target_timespan, 
+            source_expression=self.source_expression, target_timespan=target_timespan, 
             target_context_name=self.target_context_name, 
             fresh=self.fresh, truncate=self.truncate)
         expression._lexical_rank = self._lexical_rank

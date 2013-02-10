@@ -9,12 +9,12 @@ class RhythmRegionExpression(RegionExpression):
     
     def prolongs_expr(self, expr):
         '''True when `expr` is a rhythm region expression
-        and `expr` source equals rhythm region expression source.
+        and `expr` source_expression equals rhythm region expression source_expression.
         Otherwise false.
 
         Return boolean.
         '''
         if isinstance(expr, type(self)):
-            if self.source == expr.source:
+            if self.source_expression == expr.source_expression:
                 return True
         return False

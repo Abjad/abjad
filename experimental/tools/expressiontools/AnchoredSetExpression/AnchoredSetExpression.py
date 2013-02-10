@@ -15,13 +15,13 @@ class AnchoredSetExpression(SetExpression, AnchoredExpression):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute=None, source=None, target_timespan=None, 
+    def __init__(self, attribute=None, source_expression=None, target_timespan=None, 
         persist=True, truncate=None):
         from experimental.tools import expressiontools
-        assert isinstance(source, (expressiontools.Expression)), repr(expression)
+        assert isinstance(source_expression, (expressiontools.Expression)), repr(expression)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))
-        SetExpression.__init__(self, attribute=attribute, source=source, target_timespan=target_timespan)
+        SetExpression.__init__(self, attribute=attribute, source_expression=source_expression, target_timespan=target_timespan)
         AnchoredExpression.__init__(self, anchor=target_timespan)
         self._persist = persist
         self._truncate = truncate

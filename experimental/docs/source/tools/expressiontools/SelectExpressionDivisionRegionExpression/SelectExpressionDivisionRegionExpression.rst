@@ -9,7 +9,7 @@ expressiontools.SelectExpressionDivisionRegionExpression
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.source
+.. autoattribute:: experimental.tools.expressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.source_expression
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.start_offset

@@ -5,7 +5,7 @@ from experimental.tools.expressiontools.AnchoredSetExpression import AnchoredSet
 class MultipleContextSetExpression(AnchoredSetExpression):
     r'''Multiple-context set expression.
 
-    Set `attribute` to `source` for `target_timespan` over all `contexts`:
+    Set `attribute` to `source_expression` for `target_timespan` over all `contexts`:
 
     ::
 
@@ -22,7 +22,7 @@ class MultipleContextSetExpression(AnchoredSetExpression):
         >>> z(multiple_context_set_expression)
         expressiontools.MultipleContextSetExpression(
             attribute='time_signatures',
-            source=expressiontools.PayloadExpression(
+            source_expression=expressiontools.PayloadExpression(
                 ((4, 8), (3, 8))
                 ),
             target_timespan='red',
@@ -34,9 +34,9 @@ class MultipleContextSetExpression(AnchoredSetExpression):
 
     ### INITIAILIZER ###
 
-    def __init__(self, attribute=None, source=None, target_timespan=None, target_context_names=None, 
+    def __init__(self, attribute=None, source_expression=None, target_timespan=None, target_context_names=None, 
             persist=True, truncate=None):
-        AnchoredSetExpression.__init__(self, attribute=attribute, source=source, 
+        AnchoredSetExpression.__init__(self, attribute=attribute, source_expression=source_expression, 
             target_timespan=target_timespan, persist=persist, truncate=truncate)
         assert isinstance(target_context_names, (list, type(None))), repr(target_context_names)
         self._target_context_names = target_context_names
@@ -78,7 +78,7 @@ class MultipleContextSetExpression(AnchoredSetExpression):
         for target_context_name in target_context_names:
             target_timespan = copy.deepcopy(self.target_timespan)
             single_context_set_expression = single_context_set_expression_class(
-                source=self.source, 
+                source_expression=self.source_expression, 
                 target_timespan=target_timespan,
                 target_context_name=target_context_name,
                 persist=self.persist)

@@ -27,7 +27,7 @@ def test_SegmentSpecification__select_rhythm_from_past_01():
 def test_SegmentSpecification__select_rhythm_from_past_02():
     '''From-past rhythm select expression.
 
-    Fit larger source into smaller target.
+    Fit larger source_expression into smaller target.
     '''    
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -198,7 +198,7 @@ def test_SegmentSpecification__select_rhythm_from_past_08():
 def test_SegmentSpecification__select_rhythm_from_past_09():
     '''From-past rhythm select expression.
 
-    Repeat smaller source to filler larger target.
+    Repeat smaller source_expression to filler larger target.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

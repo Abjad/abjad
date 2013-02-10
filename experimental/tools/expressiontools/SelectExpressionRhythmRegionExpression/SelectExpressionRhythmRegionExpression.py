@@ -12,7 +12,7 @@ class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
 
     def evaluate(self):
         from experimental.tools import expressiontools
-        expression = self.source.evaluate()
+        expression = self.source_expression.evaluate()
         if expression is None:
             return
         assert isinstance(expression, 

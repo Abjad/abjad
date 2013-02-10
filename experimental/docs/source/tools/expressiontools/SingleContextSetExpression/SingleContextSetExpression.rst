@@ -36,7 +36,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.score_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.source
+.. autoattribute:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.source_expression
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.start_offset

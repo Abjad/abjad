@@ -9,7 +9,7 @@ expressiontools.LiteralRhythmRegionExpression
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.source
+.. autoattribute:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.source_expression
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.start_offset
