@@ -50,7 +50,7 @@ class ScoreSpecification(Specification):
         self._region_expressions_by_attribute = expressiontools.AttributeDictionary()
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
-        self._single_context_time_signature_set_expressions = expressiontools.SetExpressionInventory()
+        self._single_context_time_signature_set_expressions = timespantools.TimespanInventory()
 
     ### SPECIAL METHODS ###
 
@@ -120,7 +120,7 @@ class ScoreSpecification(Specification):
         '''Read-only reference to multiple context set expressions::
 
             >>> z(score_specification.multiple_context_set_expressions)
-            expressiontools.SetExpressionInventory([
+            timespantools.TimespanInventory([
                 expressiontools.MultipleContextSetExpression(
                     attribute='time_signatures',
                     source_expression=expressiontools.PayloadExpression(
@@ -261,7 +261,7 @@ class ScoreSpecification(Specification):
         '''Read-only list of all time signature set expressions.
 
             >>> z(score_specification.single_context_time_signature_set_expressions)
-            expressiontools.SetExpressionInventory([
+            timespantools.TimespanInventory([
                 expressiontools.SingleContextTimeSignatureSetExpression(
                     source_expression=expressiontools.PayloadExpression(
                         ((2, 8), (3, 8), (4, 8))

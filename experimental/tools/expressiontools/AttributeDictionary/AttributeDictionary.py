@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from abjad.tools import timespantools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools.expressiontools.AttributeNameEnumeration import AttributeNameEnumeration
 
@@ -14,10 +15,9 @@ class AttributeDictionary(AbjadObject, OrderedDict):
     ### INITIALIZER ###
 
     def __init__(self):
-        from experimental.tools import expressiontools
         OrderedDict.__init__(self)
         for attribute in self.attributes:
-            self[attribute] = expressiontools.SetExpressionInventory()
+            self[attribute] = timespantools.TimespanInventory()
         assert 'time_signatures' in self
 
     ### SPECIAL METHODS ###

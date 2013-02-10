@@ -174,7 +174,6 @@ Unstable packages (load manually)
       tools/expressiontools/SegmentSelectExpression/SegmentSelectExpression
       tools/expressiontools/SelectExpressionDivisionRegionExpression/SelectExpressionDivisionRegionExpression
       tools/expressiontools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
-      tools/expressiontools/SetExpressionInventory/SetExpressionInventory
       tools/expressiontools/SingleContextDivisionSetExpression/SingleContextDivisionSetExpression
       tools/expressiontools/SingleContextRhythmSetExpression/SingleContextRhythmSetExpression
       tools/expressiontools/SingleContextTimeSignatureSetExpression/SingleContextTimeSignatureSetExpression
@@ -250,7 +249,6 @@ Unstable packages (load manually)
       tools/expressiontools/SegmentSelectExpression/SegmentSelectExpression
       tools/expressiontools/SelectExpressionDivisionRegionExpression/SelectExpressionDivisionRegionExpression
       tools/expressiontools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
-      tools/expressiontools/SetExpressionInventory/SetExpressionInventory
       tools/expressiontools/SingleContextDivisionSetExpression/SingleContextDivisionSetExpression
       tools/expressiontools/SingleContextRhythmSetExpression/SingleContextRhythmSetExpression
       tools/expressiontools/SingleContextTimeSignatureSetExpression/SingleContextTimeSignatureSetExpression

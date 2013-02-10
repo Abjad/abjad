@@ -1,10 +1,10 @@
 import copy
 from abjad.tools import sequencetools
 from abjad.tools import timespantools
-from experimental.tools.expressiontools.SetExpressionInventory import SetExpressionInventory
+from abjad.tools.timespantools.TimespanInventory import TimespanInventory
 
 
-class TimespanScopedSingleContextSetExpressionInventory(SetExpressionInventory):
+class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
     '''Timespan-scoped single-context set expression inventory.
     '''
 

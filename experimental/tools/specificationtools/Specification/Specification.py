@@ -31,10 +31,8 @@ class Specification(AbjadObject):
         from experimental.tools import specificationtools
         self._abbreviated_context_names = []
         self._context_names = []
-        self._fresh_single_context_set_expressions = \
-            expressiontools.SetExpressionInventory()
-        self._multiple_context_set_expressions = \
-            expressiontools.SetExpressionInventory()
+        self._fresh_single_context_set_expressions = timespantools.TimespanInventory()
+        self._multiple_context_set_expressions = timespantools.TimespanInventory()
         self._score_template = score_template
         self._score_model = score_template()
         self._single_context_set_expressions_by_context = \

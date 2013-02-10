@@ -96,7 +96,7 @@ class SegmentSpecification(Specification):
         '''Segment specification multiple-context set-expressions::
 
             >>> z(red_segment.multiple_context_set_expressions)
-            expressiontools.SetExpressionInventory([])
+            timespantools.TimespanInventory([])
 
         Return set expression inventory.
         '''
