@@ -64,6 +64,12 @@ class MeasureSelectExpression(SelectExpression):
     ### PRIVATE METHODS ###
 
     def evaluate(self):
+        '''Evaluate measure select expression.
+
+        Return none when nonevaluable.
+        
+        Return start-positioned division payload expression when evaluable.
+        '''
         from experimental.tools import expressiontools
         time_signatures = self.root_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
@@ -76,8 +82,14 @@ class MeasureSelectExpression(SelectExpression):
         expression = self._apply_callbacks(expression)
         return expression
 
-    # special definition because time signatures can be evaluated without knowing the timespan they occupy
     def evaluate_early(self):
+        '''Evaluate measure select expression early.
+
+        Special definition because time signatures can be evaluated
+        without knowing the timespan they occupy.
+
+        Return start-positioned division payload expression.
+        '''
         from experimental.tools import expressiontools
         time_signatures = self.root_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]

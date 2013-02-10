@@ -42,6 +42,12 @@ class DivisionSelectExpression(SelectExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
+        '''Evaluate division select expression.
+
+        Return none when nonevaluable.
+
+        Return start-positioned division payload expression when evaluable.
+        '''
         from experimental.tools import expressiontools
         anchor_timespan = self._evaluate_anchor_timespan()
         voice_proxy = self.score_specification.payload_expressions_by_voice[self.voice_name]

@@ -6,8 +6,6 @@ from experimental.tools.expressiontools.AttributeNameEnumeration import Attribut
 
 class CallbackMixin(AbjadObject):
     '''Callback mixin.
-
-    Base class from which other callback mixin classes inherit.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -39,9 +37,8 @@ class CallbackMixin(AbjadObject):
 
     @property
     def callbacks(self):
-        '''Read-only list of callbacks to be applied 
-        to expression during evaluation:
+        '''Read-only list of callbacks to be applied during evaluation.
 
-        Return callback inventory of zero or more strings.
+        Return callback inventory.
         '''
         return self._callbacks

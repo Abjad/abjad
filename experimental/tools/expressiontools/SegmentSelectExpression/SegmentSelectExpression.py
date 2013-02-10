@@ -96,6 +96,12 @@ class SegmentSelectExpression(SelectExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
+        '''Evaluate segment select expression.
+        
+        Return none when nonevaluable.
+
+        Return start-positioned payload expression when evaluable.
+        '''
         from experimental.tools import expressiontools
         segments = self.score_specification.segment_specifications[:]
         start_offset = durationtools.Offset(0)
