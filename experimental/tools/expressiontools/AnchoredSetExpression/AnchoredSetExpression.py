@@ -48,6 +48,10 @@ class AnchoredSetExpression(SetExpression, AnchoredExpression):
 
     @property
     def target_timespan(self):
+        '''Anchored set expression target timespan.
+
+        Return timespan.
+        '''
         return self.anchor
 
     @property

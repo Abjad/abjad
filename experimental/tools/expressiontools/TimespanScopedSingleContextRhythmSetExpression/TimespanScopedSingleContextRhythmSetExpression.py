@@ -14,6 +14,13 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
 
     __metaclass__ = abc.ABCMeta
 
+    ### INITIALIZER ###
+
+    def __init__(self, source=None, target_timespan=None, target_context_name=None, fresh=None):
+        TimespanScopedSingleContextSetExpression.__init__(self, attribute='rhythm',
+            source=source, target_timespan=target_timespan,
+            target_context_name=target_context_name, fresh=fresh)
+
     ### SPECIAL METHODS ###
 
     def __sub__(self, timespan):
@@ -78,14 +85,6 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
         if not self.target_timespan.stops_when_timespan_starts(expr.target_timespan):
             return False
         return True
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def attribute(self):
-        '''Return string.
-        '''
-        return 'rhythm'
 
     ### PUBLIC METHODS ###
 

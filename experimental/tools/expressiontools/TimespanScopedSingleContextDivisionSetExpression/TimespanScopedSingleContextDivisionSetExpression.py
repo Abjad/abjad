@@ -10,8 +10,9 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
 
     ### INITIALIZER ###
 
-    def __init__(self, source=None, target_timespan=None, target_context_name=None, fresh=None, truncate=None):
-        TimespanScopedSingleContextSetExpression.__init__(self, 
+    def __init__(self, source=None, target_timespan=None, target_context_name=None, 
+        fresh=None, truncate=None):
+        TimespanScopedSingleContextSetExpression.__init__(self, attribute='divisions',
             source=source, target_timespan=target_timespan, 
             target_context_name=target_context_name, fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
@@ -37,12 +38,6 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
         return True
 
     ## READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def attribute(self):
-        '''Return string.
-        '''
-        return 'divisions'
 
     @property
     def truncate(self):
