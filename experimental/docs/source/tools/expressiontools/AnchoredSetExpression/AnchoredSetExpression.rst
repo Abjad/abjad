@@ -12,10 +12,19 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.anchor
    :noindex:
 
+.. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.attribute
+   :noindex:
+
+.. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.fresh
+   :noindex:
+
 .. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.is_score_rooted
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.is_segment_rooted
+   :noindex:
+
+.. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.persist
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.root_identifier
@@ -40,6 +49,9 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.target_timespan
+   :noindex:
+
+.. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.truncate
    :noindex:
 
 Methods
