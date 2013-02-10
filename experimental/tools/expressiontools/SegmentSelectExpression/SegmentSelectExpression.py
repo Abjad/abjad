@@ -5,6 +5,8 @@ from experimental.tools.expressiontools.SelectExpression import SelectExpression
 class SegmentSelectExpression(SelectExpression):
     r'''Segment select expression.
 
+    Preliminary definitions:
+
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
@@ -13,7 +15,9 @@ class SegmentSelectExpression(SelectExpression):
         >>> blue_segment = score_specification.append_segment(name='blue')
         >>> green_segment = score_specification.append_segment(name='green')
 
-    Select voice ``1`` segments in score::
+    Example 1. Select voice ``1`` segments in score:
+
+    ::
 
         >>> select_expression = score_specification.select_segments('Voice 1')
 
@@ -24,7 +28,9 @@ class SegmentSelectExpression(SelectExpression):
             voice_name='Voice 1'
             )
 
-    Select the first two voice ``1`` segments in score::
+    Example 2. Select the first two voice ``1`` segments in score:
+
+    ::
 
         >>> select_expression = score_specification.select_segments('Voice 1')[:2]
 
@@ -38,7 +44,9 @@ class SegmentSelectExpression(SelectExpression):
                 ])
             )
 
-    Select voice ``1`` segments up to but not including ``'green'``::
+    Example 3. Select voice ``1`` segments up to but not including ``'green'``:
+
+    ::
 
         >>> select_expression = score_specification.select_segments('Voice 1')[:'green']
 
@@ -52,7 +60,9 @@ class SegmentSelectExpression(SelectExpression):
                 ])
             )
 
-    Select voice ``1`` segments up to and including ``'green'``::
+    Examle 4. Select voice ``1`` segments up to and including ``'green'``:
+
+    ::
 
         >>> select_expression = score_specification.select_segments('Voice 1')[:('green', 1)]
 
@@ -66,7 +76,9 @@ class SegmentSelectExpression(SelectExpression):
                 ])
             )
 
-    Select voice ``1`` segment ``'red'``::
+    Example 5. Select voice ``1`` segment ``'red'``:
+
+    ::
 
         >>> select_expression = score_specification.select_segments('Voice 1')['red':('red', 1)]
 
@@ -80,7 +92,7 @@ class SegmentSelectExpression(SelectExpression):
                 ])
             )
 
-    Segment select expression properties are read only.
+    Segment select expressions are immutable.
     '''
 
     ### PRIVATE METHODS ###

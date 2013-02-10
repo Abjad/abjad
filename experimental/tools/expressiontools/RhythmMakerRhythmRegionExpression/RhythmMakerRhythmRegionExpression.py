@@ -35,6 +35,12 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
                     [rhythm_container], [rhythm_container.prolated_duration], span=1)
 
     def evaluate(self):
+        '''Evaluate rhythm-maker rhythm region expression.
+
+        Return none when nonevaluable.
+
+        Return start-positioned rhythm payload expression when evaluable.
+        '''
         from experimental.tools import expressiontools
         if not self.division_list:
             return
@@ -50,4 +56,8 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
 
     @property
     def division_list(self):
+        '''Rhythm-maker rhythm region expression division list.
+
+        Return division list.
+        '''
         return self._division_list

@@ -17,6 +17,12 @@ class SelectExpressionDivisionRegionExpression(DivisionRegionExpression):
     ### PRIVATE METHODS ###
 
     def evaluate(self):
+        '''Evaluate select expression division region expression.
+
+        Return none when nonevaluable.
+
+        Return start-positioned division payload expression when evaluable.
+        '''
         from experimental.tools import expressiontools
         expression = self.source_expression.evaluate()
         if expression is not None:

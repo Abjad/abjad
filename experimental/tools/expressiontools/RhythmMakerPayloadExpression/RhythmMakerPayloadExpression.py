@@ -3,7 +3,7 @@ from experimental.tools.expressiontools.PayloadExpression import PayloadExpressi
 
 
 class RhythmMakerPayloadExpression(PayloadExpression):
-    r'''Rhythm-maker expression.
+    r'''Rhythm-maker payload expression.
     '''
 
     ### INTIAILIZER ###
@@ -15,13 +15,30 @@ class RhythmMakerPayloadExpression(PayloadExpression):
     ### PUBLIC METHODS ###
 
     def reflect(self):
-        '''Reflect.
+        '''Reflect rhythm maker payload expression.
         
-        .. note:: add example.
-        
-        Return newly constructed rhythm-maker expression.
+        ::
+    
+            >>> rhythm_maker = library.dotted_sixteenths
+            >>> payload_expression = expressiontools.RhythmMakerPayloadExpression(rhythm_maker)
+            >>> z(payload_expression)
+            expressiontools.RhythmMakerPayloadExpression(
+                payload=(TaleaRhythmMaker('dotted_sixteenths'),)
+                )
+
+        ::
+
+            >>> result = payload_expression.reflect()
+
+        ::
+
+            >>> z(result)
+            expressiontools.RhythmMakerPayloadExpression(
+                payload=(TaleaRhythmMaker('dotted_sixteenths'),)
+                )
+
+        Return newly constructed rhythm-maker payload expression.
         '''
-        #rhythm_maker = self.payload.reverse()
         rhythm_maker = self.payload[0].reverse()
         result = self.new(payload=rhythm_maker) 
         return result

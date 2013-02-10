@@ -4,18 +4,18 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class SegmentIdentifierExpression(AbjadObject):
     r'''Segment identifier expression.
 
-    Delayed evaluation wrapper similar to Mathematica ``Hold[]``:
+    ::
+
+        >>> segment_identifier_expression = expressiontools.SegmentIdentifierExpression("'red' + 3")
 
     ::
 
-        >>> expressiontools.SegmentIdentifierExpression("'red' + 3")
+        >>> segment_identifier_expression
         SegmentIdentifierExpression("'red' + 3")
 
-    Delays evaluation of string argument until later in interpretation.
+    Delayed evaluation wrapper similar to Mathematica ``Hold[]``.
 
-    Used primarily as arguments to segment select expressions.
-
-    All held expression properties are read-only.
+    Segment identifier expressions are immutable.
     '''
 
     ### INITIALIZER ###
@@ -48,7 +48,12 @@ class SegmentIdentifierExpression(AbjadObject):
 
     @property
     def string(self):
-        '''String initialized by user.
+        '''Segment identifier expresion string.
+
+        ::
+
+            >>> segment_identifier_expression.string
+            "'red' + 3"
 
         Return string.
         '''

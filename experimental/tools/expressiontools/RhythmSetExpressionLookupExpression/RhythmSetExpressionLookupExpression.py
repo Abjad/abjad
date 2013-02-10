@@ -6,7 +6,7 @@ from experimental.tools.expressiontools.SetExpressionLookupExpression import Set
 
 
 class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
-    '''Set-rhythm lookup expression.
+    '''Rhythm set expression lookup expression
     '''
 
     ### INITIALIZER ###
@@ -18,6 +18,12 @@ class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
+        '''Evaluate rhythm set expression lookup expression.
+
+        Return none when nonevaluable.
+
+        Return start-positioned rhythm payload expression when evaluable.
+        '''
         from experimental.tools import expressiontools
         expression = self.offset.evaluate()
         if expression is None:
@@ -30,7 +36,8 @@ class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
             self.root_specification._get_first_expression_that_governs_context_name(
             candidate_set_expressions, self.voice_name)
         assert source_expression_set_expression is not None
-        assert isinstance(source_expression_set_expression, expressiontools.TimespanScopedSingleContextSetExpression)
+        assert isinstance(source_expression_set_expression, 
+            expressiontools.TimespanScopedSingleContextSetExpression)
         expression = source_expression_set_expression.source_expression
         if isinstance(expression, expressiontools.RhythmMakerPayloadExpression):
             expression = self._apply_callbacks(expression)
