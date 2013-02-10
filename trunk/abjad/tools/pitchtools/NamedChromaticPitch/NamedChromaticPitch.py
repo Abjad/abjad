@@ -206,12 +206,6 @@ class NamedChromaticPitch(PitchObject):
             )
 
     @property
-    def _positional_argument_values(self):
-        return (
-            self.chromatic_pitch_name,
-            )
-
-    @property
     def _octave_tick_string(self):
         if self.octave_number is not None:
             if self.octave_number <= 2:
@@ -222,6 +216,12 @@ class NamedChromaticPitch(PitchObject):
                 return "'" * (self.octave_number - 3)
         else:
             return None
+
+    @property
+    def _positional_argument_values(self):
+        return (
+            self.chromatic_pitch_name,
+            )
 
     ### PRIVATE METHODS ###
 

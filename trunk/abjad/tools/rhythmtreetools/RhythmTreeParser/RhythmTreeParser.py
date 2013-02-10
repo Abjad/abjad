@@ -98,13 +98,13 @@ class RhythmTreeParser(Parser):
                 t.value = fraction
         return t
 
-    def t_newline(self, t):
-        r'\n+'
-        t.lexer.lineno += t.value.count("\n")
-
     def t_error(self, t):
         print("Illegal character '%s'" % t.value[0])
         t.lexer.skip(1)
+
+    def t_newline(self, t):
+        r'\n+'
+        t.lexer.lineno += t.value.count("\n")
 
     ### YACC METHODS ###
 
@@ -115,6 +115,12 @@ class RhythmTreeParser(Parser):
             children=p[3],
             duration=abs(p[2]),
             )
+
+    def p_error(self, p):
+        if p:
+            print("Syntax error at '%s'" % p.value)
+        else:
+            print("Syntax error at EOF")
 
     def p_leaf__INTEGER(self, p):
         '''leaf : DURATION'''
@@ -155,9 +161,3 @@ class RhythmTreeParser(Parser):
     def p_toplevel__toplevel__node(self, p):
         '''toplevel : toplevel node'''
         p[0] = p[1] + [p[2]]
-
-    def p_error(self, p):
-        if p:
-            print("Syntax error at '%s'" % p.value)
-        else:
-            print("Syntax error at EOF")

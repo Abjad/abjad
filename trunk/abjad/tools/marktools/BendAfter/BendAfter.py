@@ -39,10 +39,9 @@ class BendAfter(Mark):
         else:
             raise ValueError('can not initialize stem tremolo.')
 
-    ## OVERRIDE ##
+    ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        #return type(self)(self.bend_amount)
         new = type(self)(self.bend_amount)
         new.format_slot = self.format_slot
         return new
@@ -58,25 +57,13 @@ class BendAfter(Mark):
     def __str__(self):
         return r"- \bendAfter #'%s" % self.bend_amount
 
-    ### PRIVATE PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
         return '%s' % self.bend_amount
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def lilypond_format(self):
-        r'''Read-only LilyPond format string::
-
-            >>> bend = marktools.BendAfter(-4)
-            >>> bend.lilypond_format
-            "- \\bendAfter #'-4.0"
-
-        Return string.
-        '''
-        return str(self)
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @apply
     def bend_amount():
@@ -100,3 +87,15 @@ class BendAfter(Mark):
             assert isinstance(bend_amount, (int, float))
             self._bend_amount = float(bend_amount)
         return property(**locals())
+
+    @property
+    def lilypond_format(self):
+        r'''Read-only LilyPond format string::
+
+            >>> bend = marktools.BendAfter(-4)
+            >>> bend.lilypond_format
+            "- \\bendAfter #'-4.0"
+
+        Return string.
+        '''
+        return str(self)

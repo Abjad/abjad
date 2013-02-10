@@ -44,6 +44,20 @@ class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
 
     ### PRIVATE METHODS ###
 
+    def _get_attribute_tuples(self):
+        result = []
+        for name, value in vars(self).iteritems():
+            if isinstance(value, LilyPondContextProxy):
+                prefixed_context_name = name
+                context_name = prefixed_context_name.strip('_')
+                context_proxy = value
+                for attribute_name, attribute_value in context_proxy._get_attribute_pairs():
+                    result.append((context_name, attribute_name, attribute_value))
+            else:
+                attribute_name, attribute_value = name, value
+                result.append((attribute_name, attribute_value))
+        return result
+
     def _get_skeleton_strings(self):
         result = []
         for attribute_tuple in self._get_attribute_tuples():
@@ -57,18 +71,4 @@ class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
             else:
                 raise ValueError
         result = ['set__' + x for x in result]
-        return result
-
-    def _get_attribute_tuples(self):
-        result = []
-        for name, value in vars(self).iteritems():
-            if isinstance(value, LilyPondContextProxy):
-                prefixed_context_name = name
-                context_name = prefixed_context_name.strip('_')
-                context_proxy = value
-                for attribute_name, attribute_value in context_proxy._get_attribute_pairs():
-                    result.append((context_name, attribute_name, attribute_value))
-            else:
-                attribute_name, attribute_value = name, value
-                result.append((attribute_name, attribute_value))
         return result

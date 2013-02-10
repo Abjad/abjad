@@ -69,26 +69,26 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _keyword_argument_names(self):
-        return ()
-        
-    @property
     def _input_argument_token(self):
         return '({!r}, {})'.format(
             self.source_pitch_range.one_line_named_chromatic_pitch_repr, 
             self.target_octave_start_pitch)
     
     @property
+    def _keyword_argument_names(self):
+        return ()
+        
+    @property
+    def _one_line_menuing_summary(self):
+        return '{} => {}'.format(
+            self.source_pitch_range.one_line_named_chromatic_pitch_repr, self.target_octave_start_pitch)
+
+    @property
     def _positional_argument_values(self):
         result = []
         result.append(self.source_pitch_range)
         result.append(self.target_octave_start_pitch)
         return tuple(result)
-
-    @property
-    def _one_line_menuing_summary(self):
-        return '{} => {}'.format(
-            self.source_pitch_range.one_line_named_chromatic_pitch_repr, self.target_octave_start_pitch)
 
     ### READ / WRITE PROPERTIES ###
 

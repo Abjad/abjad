@@ -189,6 +189,12 @@ class VerticalMoment(Selection):
         return result
 
     @property
+    def offset(self):
+        '''Read-only rational-valued score offset
+        at which vertical moment is evaluated.'''
+        return self._offset
+
+    @property
     def overlap_components(self):
         '''Read-only tuple of components in vertical moment
         starting before vertical moment, ordered by score index.'''
@@ -258,12 +264,6 @@ class VerticalMoment(Selection):
         previous_vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(
             token_leaf)
         return previous_vertical_moment
-
-    @property
-    def offset(self):
-        '''Read-only rational-valued score offset
-        at which vertical moment is evaluated.'''
-        return self._offset
 
     @property
     def start_components(self):

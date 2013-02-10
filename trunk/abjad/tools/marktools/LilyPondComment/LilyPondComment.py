@@ -100,22 +100,6 @@ class LilyPondComment(Mark):
             self._contents_string = contents_string
         return property(**locals())
 
-    @property
-    def lilypond_format(self):
-        '''Read-only LilyPond input format of comment:
-
-        ::
-
-            >>> comment = marktools.LilyPondComment('this is a comment.')
-            >>> comment.lilypond_format
-            '% this is a comment.'
-
-        Return string.
-        '''
-        from abjad.tools import stringtools
-        command = stringtools.underscore_delimited_lowercase_to_lowercamelcase(self.contents_string)
-        return r'%% %s' % command
-
     @apply
     def format_slot():
         def fget(self):
@@ -146,3 +130,19 @@ class LilyPondComment(Mark):
             else:
                 self._format_slot = format_slot
         return property(**locals())
+
+    @property
+    def lilypond_format(self):
+        '''Read-only LilyPond input format of comment:
+
+        ::
+
+            >>> comment = marktools.LilyPondComment('this is a comment.')
+            >>> comment.lilypond_format
+            '% this is a comment.'
+
+        Return string.
+        '''
+        from abjad.tools import stringtools
+        command = stringtools.underscore_delimited_lowercase_to_lowercamelcase(self.contents_string)
+        return r'%% %s' % command

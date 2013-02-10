@@ -46,10 +46,6 @@ class NonattributedBlock(list, AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def lilypond_format(self):
-        return '\n'.join(self._format_pieces)
-
     @apply
     def is_formatted_when_empty():
         def fget(self):
@@ -60,3 +56,7 @@ class NonattributedBlock(list, AbjadObject):
             else:
                 raise TypeError
         return property(**locals())
+
+    @property
+    def lilypond_format(self):
+        return '\n'.join(self._format_pieces)

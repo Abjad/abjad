@@ -106,24 +106,6 @@ class LilyPondCommandMark(Mark):
             self._command_name = command_name
         return property(**locals())
 
-    @property
-    def lilypond_format(self):
-        '''Read-only LilyPond input format of LilyPond command mark::
-
-            >>> note = Note("c'4")
-            >>> lilypond_command = marktools.LilyPondCommandMark('slurDotted')(note)
-            >>> lilypond_command.lilypond_format
-            '\\slurDotted'
-
-        Return string.
-        '''
-        from abjad.tools import stringtools
-        command = self._command_name
-        if command.startswith('#'):
-            return command
-        else:
-            return '\\' + stringtools.underscore_delimited_lowercase_to_lowercamelcase(command)
-
     @apply
     def format_slot():
         def fget(self):
@@ -154,3 +136,21 @@ class LilyPondCommandMark(Mark):
             else:
                 self._format_slot = format_slot
         return property(**locals()) 
+
+    @property
+    def lilypond_format(self):
+        '''Read-only LilyPond input format of LilyPond command mark::
+
+            >>> note = Note("c'4")
+            >>> lilypond_command = marktools.LilyPondCommandMark('slurDotted')(note)
+            >>> lilypond_command.lilypond_format
+            '\\slurDotted'
+
+        Return string.
+        '''
+        from abjad.tools import stringtools
+        command = self._command_name
+        if command.startswith('#'):
+            return command
+        else:
+            return '\\' + stringtools.underscore_delimited_lowercase_to_lowercamelcase(command)

@@ -246,12 +246,6 @@ class LilyPondFile(list):
                 raise TypeError
         return property(**locals())
 
-    @property
-    def lilypond_format(self):
-        '''Format-time contribution of LilyPond file.
-        '''
-        return '\n\n'.join(self._format_pieces)
-
     @apply
     def global_staff_size():
         def fget(self):
@@ -261,3 +255,9 @@ class LilyPondFile(list):
             assert isinstance(arg, (int, float, long, type(None)))
             self._global_staff_size = arg
         return property(**locals())
+
+    @property
+    def lilypond_format(self):
+        '''Format-time contribution of LilyPond file.
+        '''
+        return '\n\n'.join(self._format_pieces)

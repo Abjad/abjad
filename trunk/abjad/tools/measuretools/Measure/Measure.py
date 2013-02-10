@@ -62,25 +62,6 @@ class Measure(FixedDurationContainer):
         new = measuretools.fuse_measures([self, arg])
         return new
 
-    # essentially the same as container version of method;
-    # the definition given here adds one line to remove
-    # time signature immediately after instantiation
-    # because the mark-copying code will then provide time signature.
-    def _copy_with_marks_but_without_children_or_spanners(self):
-        from abjad.tools import marktools
-        new = type(self)(*self.__getnewargs__())
-        # only the following line differs from Conatainer
-        contexttools.detach_time_signature_marks_attached_to_component(new)
-        if getattr(self, '_override', None) is not None:
-            new._override = copy.copy(self.override)
-        if getattr(self, '_set', None) is not None:
-            new._set = copy.copy(self.set)
-        for mark in marktools.get_marks_attached_to_component(self):
-            new_mark = copy.copy(mark)
-            new_mark.attach(new)
-        new.is_parallel = self.is_parallel
-        return new
-
     def __delitem__(self, i):
         '''Container item deletion with optional time signature adjustment.
         '''
@@ -145,6 +126,25 @@ class Measure(FixedDurationContainer):
         '''
         return '|%s(%s)|' % (contexttools.get_effective_time_signature(self), len(self))
 
+    # essentially the same as container version of method;
+    # the definition given here adds one line to remove
+    # time signature immediately after instantiation
+    # because the mark-copying code will then provide time signature.
+    def _copy_with_marks_but_without_children_or_spanners(self):
+        from abjad.tools import marktools
+        new = type(self)(*self.__getnewargs__())
+        # only the following line differs from Conatainer
+        contexttools.detach_time_signature_marks_attached_to_component(new)
+        if getattr(self, '_override', None) is not None:
+            new._override = copy.copy(self.override)
+        if getattr(self, '_set', None) is not None:
+            new._set = copy.copy(self.set)
+        for mark in marktools.get_marks_attached_to_component(self):
+            new_mark = copy.copy(mark)
+            new_mark.attach(new)
+        new.is_parallel = self.is_parallel
+        return new
+
     ### PRIVATE METHODS ###
 
     def _check_duration(self):
@@ -198,9 +198,22 @@ class Measure(FixedDurationContainer):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def lilypond_format(self):
-        self._check_duration()
-        return self._format_component()
+    def has_non_power_of_two_denominator(self):
+        '''True when measure time signature denominator is not an integer power of 2::
+
+            >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
+            >>> measure.has_non_power_of_two_denominator
+            True
+    
+        Otherwise false::
+
+            >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
+            >>> measure.has_non_power_of_two_denominator
+            False
+
+        Return boolean.
+        '''
+        return contexttools.get_effective_time_signature(self).has_non_power_of_two_denominator
 
     @property
     def has_power_of_two_denominator(self):
@@ -219,6 +232,21 @@ class Measure(FixedDurationContainer):
         Return boolean.
         '''
         return not self.has_non_power_of_two_denominator
+
+    @property
+    def implied_prolation(self):
+        '''Implied prolation of measure time signature::
+
+            >>> measure = Measure((5, 12), "c'8 d' e' f' g'")
+
+        ::
+
+            >>> measure.implied_prolation
+            Multiplier(2, 3)
+
+        Return multiplier.
+        '''
+        return contexttools.get_effective_time_signature(self).implied_prolation
 
     @property
     def is_full(self):
@@ -274,39 +302,6 @@ class Measure(FixedDurationContainer):
         return FixedDurationContainer.is_overfull.fget(self)
 
     @property
-    def has_non_power_of_two_denominator(self):
-        '''True when measure time signature denominator is not an integer power of 2::
-
-            >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
-            >>> measure.has_non_power_of_two_denominator
-            True
-    
-        Otherwise false::
-
-            >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
-            >>> measure.has_non_power_of_two_denominator
-            False
-
-        Return boolean.
-        '''
-        return contexttools.get_effective_time_signature(self).has_non_power_of_two_denominator
-
-    @property
-    def implied_prolation(self):
-        '''Implied prolation of measure time signature::
-
-            >>> measure = Measure((5, 12), "c'8 d' e' f' g'")
-
-        ::
-
-            >>> measure.implied_prolation
-            Multiplier(2, 3)
-
-        Return multiplier.
-        '''
-        return contexttools.get_effective_time_signature(self).implied_prolation
-
-    @property
     def is_overfull(self):
         '''.. versionadded:: 1.1
 
@@ -343,6 +338,11 @@ class Measure(FixedDurationContainer):
         Return boolean.
         '''
         return FixedDurationContainer.is_underfull.fget(self)
+
+    @property
+    def lilypond_format(self):
+        self._check_duration()
+        return self._format_component()
 
     @property
     def measure_number(self):

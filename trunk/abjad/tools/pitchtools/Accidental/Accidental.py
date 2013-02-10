@@ -182,18 +182,6 @@ class Accidental(AbjadObject):
         return self._alphabetic_accidental_abbreviation
 
     @property
-    def lilypond_format(self):
-        '''Read-only LilyPond input format of accidental::
-
-            >>> accidental = pitchtools.Accidental('s')
-            >>> accidental.lilypond_format
-            's'
-
-        Return string.
-        '''
-        return self._alphabetic_accidental_abbreviation
-
-    @property
     def is_adjusted(self):
         '''True for all accidentals equal to a nonzero number of semitones. False otherwise::
 
@@ -204,6 +192,18 @@ class Accidental(AbjadObject):
         Return boolean.
         '''
         return self._is_adjusted
+
+    @property
+    def lilypond_format(self):
+        '''Read-only LilyPond input format of accidental::
+
+            >>> accidental = pitchtools.Accidental('s')
+            >>> accidental.lilypond_format
+            's'
+
+        Return string.
+        '''
+        return self._alphabetic_accidental_abbreviation
 
     @property
     def name(self):

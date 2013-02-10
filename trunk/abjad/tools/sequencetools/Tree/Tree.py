@@ -165,12 +165,12 @@ class Tree(AbjadObject):
         return eval(str(self))
 
     @property
-    def _positional_argument_values(self):
-        return (self._input_argument, )
-
-    @property
     def _noncyclic_children(self):
         return list(self._children)
+
+    @property
+    def _positional_argument_values(self):
+        return (self._input_argument, )
 
     @property
     def _tools_package_qualified_repr(self):

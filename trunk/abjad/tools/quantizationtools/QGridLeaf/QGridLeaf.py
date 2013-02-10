@@ -82,16 +82,16 @@ class QGridLeaf(RhythmTreeNode):
         return graph
 
     @property
-    def rtm_format(self):
-        return str(self.duration)
-
-    @property
     def preceding_q_event_proxies(self):
         return [x for x in self._q_event_proxies if x.offset < self.start_offset]
 
     @property
     def q_event_proxies(self):
         return self._q_event_proxies
+
+    @property
+    def rtm_format(self):
+        return str(self.duration)
 
     @property
     def succeeding_q_event_proxies(self):

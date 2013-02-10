@@ -193,12 +193,6 @@ class PitchRange(AbjadObject):
         return tuple(result)
 
     @property
-    def _positional_argument_values(self):
-        result = []
-        result.append(self.one_line_named_chromatic_pitch_repr)
-        return tuple(result)
-
-    @property
     def _one_line_menuing_summary(self):
         return self.one_line_named_chromatic_pitch_repr
 
@@ -208,6 +202,12 @@ class PitchRange(AbjadObject):
             return '['
         else:
             return '('
+
+    @property
+    def _positional_argument_values(self):
+        result = []
+        result.append(self.one_line_named_chromatic_pitch_repr)
+        return tuple(result)
 
     ### PRIVATE METHODS ###
 

@@ -153,21 +153,46 @@ class Tuplet(Container):
 
     ### PRIVATE METHODS ###
 
+    def _format_after_slot(self, format_contributions):
+        '''Read-only tuple of format contributions to appear immediately after self closing.
+        '''
+        result = []
+        result.append(('grob reverts', format_contributions.get('grob reverts', [])))
+        result.append(('lilypond command marks', 
+            format_contributions.get('after', {}).get('lilypond command marks', [])))
+        result.append(('comments', format_contributions.get('after', {}).get('comments', [])))
+        return tuple(result)
+
+    def _format_before_slot(self, format_contributions):
+        result = []
+        result.append(('comments', format_contributions.get('before', {}).get('comments', [])))
+        result.append(('lilypond command marks', 
+            format_contributions.get('before', {}).get('lilypond command marks', [])))
+        result.append(('grob overrides', format_contributions.get('grob overrides', [])))
+        return tuple(result)
+
+    def _format_close_brackets_slot(self, format_contributions):
+        '''Read-only tuple of format contributions used to generate self closing.
+        '''
+        result = []
+        if self.multiplier:
+            result.append([('self_brackets', 'close'), '}'])
+        return tuple(result)
+
+    def _format_closing_slot(self, format_contributions):
+        '''Read-only tuple of format contributions to appear immediately before self closing.
+        '''
+        result = []
+        result.append(('lilypond command marks', 
+            format_contributions.get('closing', {}).get('lilypond command marks', [])))
+        result.append(('comments', format_contributions.get('closing', {}).get('comments', [])))
+        return self._format_slot_contributions_with_indent(result)
+
     def _format_lilypond_fraction_command_string(self):
         if self._is_visible:
             if self.is_augmentation or self.has_non_power_of_two_denominator or self.force_fraction:
                 return r'\fraction '
         return ''
-
-    def _format_before_slot(self, format_contributions):
-        result = []
-        result.append(('comments', format_contributions.get('before', {}).get('comments', [])))
-        result.append(('lilypond command marks', format_contributions.get('before', {}).get('lilypond command marks', [])))
-        result.append(('grob overrides', format_contributions.get('grob overrides', [])))
-        #result.append(formattools.get_comment_format_contributions_for_slot(self, 'before'))
-        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'before'))
-        #result.append(formattools.get_grob_override_format_contributions(self))
-        return tuple(result)
 
     def _format_open_brackets_slot(self, format_contributions):
         result = []
@@ -196,47 +221,38 @@ class Tuplet(Container):
         '''
         result = []
         result.append(('comments', format_contributions.get('opening', {}).get('comments', [])))
-        result.append(('lilypond command marks', format_contributions.get('opening', {}).get('lilypond command marks', [])))
-        #result.append(formattools.get_comment_format_contributions_for_slot(self, 'opening'))
-        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'opening'))
+        result.append(('lilypond command marks', 
+            format_contributions.get('opening', {}).get('lilypond command marks', [])))
         return self._format_slot_contributions_with_indent(result)
-
-    def _format_closing_slot(self, format_contributions):
-        '''Read-only tuple of format contributions to appear immediately before self closing.
-        '''
-        result = []
-        result.append(('lilypond command marks', format_contributions.get('closing', {}).get('lilypond command marks', [])))
-        result.append(('comments', format_contributions.get('closing', {}).get('comments', [])))
-        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'closing'))
-        #result.append(formattools.get_comment_format_contributions_for_slot(self, 'closing'))
-        return self._format_slot_contributions_with_indent(result)
-
-    def _format_close_brackets_slot(self, format_contributions):
-        '''Read-only tuple of format contributions used to generate self closing.
-        '''
-        result = []
-        if self.multiplier:
-            result.append([('self_brackets', 'close'), '}'])
-        return tuple(result)
-
-    def _format_after_slot(self, format_contributions):
-        '''Read-only tuple of format contributions to appear immediately after self closing.
-        '''
-        result = []
-        result.append(('grob reverts', format_contributions.get('grob reverts', [])))
-        result.append(('lilypond command marks', format_contributions.get('after', {}).get('lilypond command marks', [])))
-        result.append(('comments', format_contributions.get('after', {}).get('comments', [])))
-        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'after'))
-        #result.append(formattools.get_grob_revert_format_contributions(self))
-        #result.append(formattools.get_comment_format_contributions_for_slot(self, 'after'))
-        return tuple(result)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def lilypond_format(self):
-        self._update_marks_of_entire_score_tree_if_necessary()
-        return self._format_component()
+    def has_non_power_of_two_denominator(self):
+        '''Read-only boolean true when multiplier numerator is not power of two. Otherwise false::
+
+            >>> tuplet = Tuplet((3, 5), "c'8 d'8 e'8 f'8 g'8")
+            >>> tuplet.has_non_power_of_two_denominator
+            True
+
+        Return boolean.
+        '''
+        return not self.has_power_of_two_denominator
+
+    @property
+    def has_power_of_two_denominator(self):
+        '''Read-only boolean true when multiplier numerator is power of two. Otherwise false::
+
+            >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+            >>> tuplet.has_power_of_two_denominator
+            True
+
+        Return boolean.
+        '''
+        if self.multiplier:
+            return mathtools.is_nonnegative_integer_power_of_two(self.multiplier.numerator)
+        else:
+            return True
 
     @property
     def implied_prolation(self):
@@ -265,21 +281,6 @@ class Tuplet(Container):
             return False
 
     @property
-    def has_power_of_two_denominator(self):
-        '''Read-only boolean true when multiplier numerator is power of two. Otherwise false::
-
-            >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-            >>> tuplet.has_power_of_two_denominator
-            True
-
-        Return boolean.
-        '''
-        if self.multiplier:
-            return mathtools.is_nonnegative_integer_power_of_two(self.multiplier.numerator)
-        else:
-            return True
-
-    @property
     def is_diminution(self):
         '''True when multiplier is less than 1.  Otherwise false::
 
@@ -295,18 +296,6 @@ class Tuplet(Container):
             return False
 
     @property
-    def has_non_power_of_two_denominator(self):
-        '''Read-only boolean true when multiplier numerator is not power of two. Otherwise false::
-
-            >>> tuplet = Tuplet((3, 5), "c'8 d'8 e'8 f'8 g'8")
-            >>> tuplet.has_non_power_of_two_denominator
-            True
-
-        Return boolean.
-        '''
-        return not self.has_power_of_two_denominator
-
-    @property
     def is_trivial(self):
         '''True when tuplet multiplier is one. Otherwise false::
 
@@ -317,6 +306,11 @@ class Tuplet(Container):
         Return boolean.
         '''
         return self.multiplier == 1
+
+    @property
+    def lilypond_format(self):
+        self._update_marks_of_entire_score_tree_if_necessary()
+        return self._format_component()
 
     @property
     def multiplied_duration(self):

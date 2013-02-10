@@ -17,7 +17,6 @@ class QEvent(AbjadObject):
 
     __slots__ = ('_index', '_offset')
 
-
     ### INITIALIZER ###
 
     @abc.abstractmethod
@@ -27,9 +26,6 @@ class QEvent(AbjadObject):
         self._index = index
 
     ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        return '\n'.join(self._get_tools_package_qualified_repr_pieces())
 
     def __getstate__(self):
         state = {}
@@ -45,6 +41,9 @@ class QEvent(AbjadObject):
             if self.offset < other.offset:
                 return True
         return False
+
+    def __repr__(self):
+        return '\n'.join(self._get_tools_package_qualified_repr_pieces())
 
     def __setstate__(self, state):
         for key, value in state.iteritems():

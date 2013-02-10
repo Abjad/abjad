@@ -168,10 +168,6 @@ class BurnishedRhythmMaker(RhythmMaker):
             tietools.remove_tie_spanners_from_components_in_expr(part)
             tie_spanner.extend(part)
 
-    @abc.abstractmethod
-    def _burnish_division_parts(self, divisions, quintuplet):
-        pass
-
     def _burnish_division_part(self, division_part, indicator):
         assert len(division_part) == len(indicator)
         new_division_part = []
@@ -186,6 +182,10 @@ class BurnishedRhythmMaker(RhythmMaker):
                 raise ValueError
         new_division_part = type(division_part)(new_division_part)
         return new_division_part
+
+    @abc.abstractmethod
+    def _burnish_division_parts(self, divisions, quintuplet):
+        pass
 
     def _make_leaf_lists(self, numeric_map, talea_denominator):
         leaf_lists = []
