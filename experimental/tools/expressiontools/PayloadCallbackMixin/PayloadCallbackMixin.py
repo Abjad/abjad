@@ -17,7 +17,7 @@ class PayloadCallbackMixin(CallbackMixin):
         Return copy of expression with callback.
         '''
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
-        callback = 'result = self.___and__(payload_expression, {!r})'.format(timespan)
+        callback = 'result = self._and__(payload_expression, {!r})'.format(timespan)
         return self._copy_and_append_callback(callback)
 
     def __getitem__(self, payload_expression):
@@ -25,25 +25,19 @@ class PayloadCallbackMixin(CallbackMixin):
         
         Return copy of expression with callback.
         '''
-        callback = 'result = self.___getitem__(payload_expression, {!r})'
+        callback = 'result = self._getitem__(payload_expression, {!r})'
         callback = callback.format(payload_expression)
         return self._copy_and_append_callback(callback)
 
     ### PRIVATE METHODS ###
 
-    def ___and__(self, payload_expression, timespan):
+    def _and__(self, payload_expression, timespan):
         from experimental.tools import expressiontools
         assert hasattr(payload_expression, '__and__')
         result = payload_expression & timespan
         assert isinstance(result, timespantools.TimespanInventory), repr(result)
         assert len(result) == 1, repr(result)
         result = result[0]
-        return result
-
-    def ___getitem__(self, payload_expression, s):
-        assert isinstance(s, slice)
-        assert hasattr(payload_expression, '__getitem__')
-        result = payload_expression.__getitem__(s)
         return result
 
     def _apply_callbacks(self, payload_expression):
@@ -67,6 +61,12 @@ class PayloadCallbackMixin(CallbackMixin):
             exec(callback, evaluation_context)
             payload_expression = evaluation_context['result']
         return payload_expression
+
+    def _getitem__(self, payload_expression, s):
+        assert isinstance(s, slice)
+        assert hasattr(payload_expression, '__getitem__')
+        result = payload_expression.__getitem__(s)
+        return result
 
     def _partition_by_ratio(self, payload_expression, ratio, part):
         assert hasattr(payload_expression, 'partition_by_ratio')

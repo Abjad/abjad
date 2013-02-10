@@ -78,12 +78,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.___and__
-   :noindex:
-
-.. automethod:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.___getitem__
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__and__
    :noindex:
 

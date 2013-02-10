@@ -81,12 +81,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.___and__
-   :noindex:
-
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.___getitem__
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__and__
    :noindex:
 

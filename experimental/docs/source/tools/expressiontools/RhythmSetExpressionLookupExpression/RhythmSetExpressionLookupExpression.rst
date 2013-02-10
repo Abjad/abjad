@@ -78,12 +78,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.___and__
-   :noindex:
-
-.. automethod:: experimental.tools.expressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.___getitem__
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.__and__
    :noindex:
 

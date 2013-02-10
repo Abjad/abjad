@@ -99,6 +99,17 @@ class AnchoredExpression(Expression):
         return isinstance(self.root_specification_identifier, str)
 
     @property
+    def root_specification(self):
+        '''Anchored expression root specification.
+
+        Return specification.
+        '''
+        if self.is_segment_rooted:
+            return self.score_specification.segment_specifications[self.root_specification_identifier]
+        else:
+            return self.score_specification
+
+    @property
     def root_specification_identifier(self):
         '''Anchored expression root identifier.
 
@@ -111,17 +122,6 @@ class AnchoredExpression(Expression):
         else:
             return self.anchor.root_specification_identifier
         
-    @property
-    def root_specification(self):
-        '''Anchored expression root specification.
-
-        Return specification.
-        '''
-        if self.is_segment_rooted:
-            return self.score_specification.segment_specifications[self.root_specification_identifier]
-        else:
-            return self.score_specification
-
     @property
     def score_specification(self):
         '''Anchored expression score specification.

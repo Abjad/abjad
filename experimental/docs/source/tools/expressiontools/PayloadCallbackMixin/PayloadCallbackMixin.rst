@@ -39,12 +39,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.___and__
-   :noindex:
-
-.. automethod:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.___getitem__
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.__and__
    :noindex:
 

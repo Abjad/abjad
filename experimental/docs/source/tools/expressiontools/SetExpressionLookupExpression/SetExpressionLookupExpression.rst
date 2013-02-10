@@ -78,12 +78,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.___and__
-   :noindex:
-
-.. automethod:: experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.___getitem__
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.__and__
    :noindex:
 

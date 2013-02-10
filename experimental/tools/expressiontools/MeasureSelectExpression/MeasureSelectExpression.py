@@ -51,7 +51,7 @@ class MeasureSelectExpression(SelectExpression):
                 anchor=expressiontools.SegmentSelectExpression(
                     voice_name='Voice 1',
                     callbacks=expressiontools.CallbackInventory([
-                        "result = self.___getitem__(payload_expression, slice('red', ('red', 3), None))"
+                        "result = self._getitem__(payload_expression, slice('red', ('red', 3), None))"
                         ])
                     )
                 ),

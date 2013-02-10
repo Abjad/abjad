@@ -48,12 +48,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.StatalServerExpression.StatalServerExpression.StatalServerExpression.___and__
-   :noindex:
-
-.. automethod:: experimental.tools.expressiontools.StatalServerExpression.StatalServerExpression.StatalServerExpression.___getitem__
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.StatalServerExpression.StatalServerExpression.StatalServerExpression.__and__
    :noindex:
 

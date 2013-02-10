@@ -81,12 +81,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.___and__
-   :noindex:
-
-.. automethod:: experimental.tools.expressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.___getitem__
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.__and__
    :noindex:
 

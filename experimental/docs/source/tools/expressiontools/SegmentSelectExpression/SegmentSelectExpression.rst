@@ -78,12 +78,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.___and__
-   :noindex:
-
-.. automethod:: experimental.tools.expressiontools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.___getitem__
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.__and__
    :noindex:
 

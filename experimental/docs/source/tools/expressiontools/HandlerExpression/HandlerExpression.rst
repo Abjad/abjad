@@ -48,12 +48,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.___and__
-   :noindex:
-
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.___getitem__
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__and__
    :noindex:
 
