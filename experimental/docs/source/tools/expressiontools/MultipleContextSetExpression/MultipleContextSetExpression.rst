@@ -15,9 +15,6 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.attribute
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.fresh
-   :noindex:
-
 .. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.is_score_rooted
    :noindex:
 

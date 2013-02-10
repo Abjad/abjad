@@ -55,11 +55,21 @@ class SingleContextSetExpression(AnchoredSetExpression):
     def __init__(self, attribute=None, source=None, target_timespan=None, target_context_name=None, 
         fresh=True, persist=True, truncate=None):
         AnchoredSetExpression.__init__(self, attribute=attribute, source=source, 
-            target_timespan=target_timespan, fresh=fresh, persist=persist, truncate=truncate)
+            target_timespan=target_timespan, persist=persist, truncate=truncate)
         assert isinstance(target_context_name, (str, type(None)))
+        self._fresh = fresh
         self._target_context_name = target_context_name
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def fresh(self):
+        '''True when single-context set expression results from explicit composer input.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        return self._fresh
 
     @property
     def storage_format(self):

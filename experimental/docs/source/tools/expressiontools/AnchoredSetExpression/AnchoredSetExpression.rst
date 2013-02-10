@@ -15,9 +15,6 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.attribute
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.fresh
-   :noindex:
-
 .. autoattribute:: experimental.tools.expressiontools.AnchoredSetExpression.AnchoredSetExpression.AnchoredSetExpression.is_score_rooted
    :noindex:
 

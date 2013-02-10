@@ -51,11 +51,11 @@ class AnchoredExpression(Expression):
     def anchor(self):
         '''Anchored expression anchor.
 
-        Return none when anchored expression is anchored to the entire score.
+        Return none when anchored expression anchors to the entire score.
 
-        Return string name of segment when anchored expression is anchored to a single segment.
+        Return string name of segment when anchored expression anchors to a single segment.
 
-        Return expression when anchored expression is anchored to another expression.
+        Return expression when anchored expression anchors to another expression.
         '''
         return self._anchor
 
