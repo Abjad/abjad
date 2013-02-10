@@ -4,15 +4,17 @@ from abjad.tools.abctools import AbjadObject
 
 
 class SetMethodMixin(AbjadObject):
-    '''InputSetExpression-maker mix-in.
+    '''Set method mixin.
 
-    Examples below use the score and segment specification defined here::
+    Segment definition for examples:
+
+    ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
-    Equips classes with the composer set interface.
+    Add to classes that implement the set method interface.
     '''
 
     ### PRIVATE METHODS ###
@@ -68,34 +70,39 @@ class SetMethodMixin(AbjadObject):
     ### PUBLIC METHODS ###
 
     def set_aggregate(self, source, contexts=None, persist=True):
-        r'''Set aggregate of `contexts` to `source`.
+        r'''Set aggregate to `source` for target timespan over all `contexts`.
 
-        Create, store and return ``MultipleContextSetExpression``.
+        Return multiple-context set expression.
         '''
         attribute = 'aggregate'
         return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_articulations(self, source, contexts=None, persist=True):
-        r'''Set articulations of `contexts` to `source`.
+        r'''Set articulations to `source` for target timespan over all `contexts`.
 
-        Create, store and return ``MultipleContextSetExpression``.
+        Return multiple-context set expression.
         '''
         attribute = 'articulations'
         return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_chord_treatment(self, source, contexts=None, persist=True):
-        r'''Set chord treatment of `contexts` to `source`.
+        r'''Set chord treatment to `source` for target timespan over all `contexts`.
 
-        Create, store and return ``MultipleContextSetExpression``.
+        Return multiple-context set expression.
         '''
         attribute = 'chord_treatment'
         return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_divisions(self, source, contexts=None, persist=True, truncate=None):
-        r'''Set divisions `contexts` to `source`::
+        r'''Set divisions to `source` for target timespan over all `contexts`:
+
+        Example. Set divisions to ``3/16`` for red segment timespan over contexts
+        ``'Voice 1'`` and ``'Voice 3'``:
+
+        ::
 
             >>> set_expression = red_segment.set_divisions([(3, 16)], contexts=['Voice 1', 'Voice 3'])
 
@@ -112,77 +119,82 @@ class SetMethodMixin(AbjadObject):
                 persist=True
                 )
 
-        Create, store and return ``MultipleContextSetExpression``.
+        Return multiple-context set expression.
         '''
         attribute = 'divisions'
         return self._store_multiple_context_set_expression(attribute, source,
             contexts=contexts, truncate=truncate, persist=persist)
 
     def set_dynamics(self, source, contexts=None, persist=True):
-        r'''Set dynamics of `contexts` to `source`.
+        r'''Set dynamics to `source` for target timespan over all `contexts`.
 
-        Create, store and return ``MultipleContextSetExpression``.
+        Return multiple-context set expression.
         '''
         attribute = 'dynamics'
         return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_marks(self, source, contexts=None, persist=True):
-        r'''Set marks of `contexts` to `source`.
+        r'''Set marks to `source` for target timespan over all `contexts`.
 
-        Create, store and return ``MultipleContextSetExpression``.
+        Return multiple-context set expression.
         '''
         attribute = 'marks'
         return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_markup(self, source, contexts=None, persist=True):
-        r'''Set markup of `contexts` to `source`.
+        r'''Set markup to `source` for target timespan over all `contexts`.
 
-        Create, store and return ``MultipleContextSetExpression``.
+        Return multiple-context set expression.
         '''
         attribute = 'markup'
         return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_pitch_class_application(self, source, contexts=None, persist=True):
-        r'''Set pitch-class application of `contexts` to `source`.
+        r'''Set pitch-class application to `source` for target timespan over all `contexts`.
 
-        Create, store and return ``MultipleContextSetExpression``.
+        Return multiple-context set expression.
         '''
         attribute = 'pitch_class_application'
         return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_pitch_class_transform(self, source, contexts=None, persist=True):
-        r'''Set pitch-class transform of `contexts` to `source`.
+        r'''Set pitch-class transform to `source` for target timespan over all `contexts`.
 
-        Create, store and return ``MultipleContextSetExpression``.
+        Return multiple-context set expression.
         '''
         attribute = 'pitch_class_transform'
         return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_pitch_classes(self, source, contexts=None, persist=True):
-        r'''Set pitch-classes of `contexts` to `source`.
+        r'''Set pitch-classes to `source` for target timespan over all `contexts`.
 
-        Create, store and return ``MultipleContextSetExpression``.
+        Return multiple-context set expression.
         '''
         attribute = 'pitch_classes'
         return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_registration(self, source, contexts=None, persist=True):
-        r'''Set registration of `contexts` to `source`.
+        r'''Set registration to `source` for target timespan over all `contexts`.
 
-        Create, store and return ``MultipleContextSetExpression``.
+        Return multiple-context set expression.
         '''
         attribute = 'registration'
         return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_rhythm(self, source, contexts=None, persist=True):
-        r'''Set rhythm of `contexts` to `source`.
+        r'''Set rhythm to `source` for target timespan over all `contexts`.
+
+        Example. Set rhythm to sixteenths for red segment target timespan
+        over all contexts:
+
+        ::
 
             >>> set_expression = red_segment.set_rhythm(library.sixteenths)
 
@@ -198,22 +210,27 @@ class SetMethodMixin(AbjadObject):
                 persist=True
                 )
 
-        Create, store and return ``MultipleContextSetExpression``.
+        Return multiple-context set expression.
         '''
         attribute = 'rhythm'
         return self._store_multiple_context_set_expression(attribute, source, contexts=contexts, persist=persist)
 
     def set_tempo(self, source, contexts=None, persist=True):
-        r'''Set tempo of `contexts` to `source`.
+        r'''Set tempo to `source` for target timespan over all `contexts`.
 
-        Create, store and return ``MultipleContextSetExpression``.
+        Return multiple-context set expression.
         '''
         attribute = 'tempo'
         return self._store_multiple_context_set_expression(attribute, source, 
             contexts=contexts, persist=persist)
 
     def set_time_signatures(self, source, contexts=None, persist=True):
-        r'''Set time signatures of `contexts` to `source`.
+        r'''Set time signatures to `source` for target timespan over all `contexts`.
+
+        Example. Set time signatures to ``3/8``, ``4/8`` for red segment timespan
+        over all contexts:
+
+        ::
 
             >>> set_expression = red_segment.set_time_signatures([(3, 8), (4, 8)])
 
@@ -229,7 +246,7 @@ class SetMethodMixin(AbjadObject):
                 persist=True
                 )
 
-        Create, store and return ``MultipleContextSetExpression``.
+        Return multiple-context set expression.
         '''
         attribute = 'time_signatures'
         return self._store_multiple_context_set_expression(attribute, source, contexts=contexts, persist=persist)

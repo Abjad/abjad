@@ -6,7 +6,9 @@ from experimental.tools.expressiontools.AnchoredSetExpression import AnchoredSet
 class SingleContextSetExpression(AnchoredSetExpression):
     r'''Single-context set expression.
 
-    Set `attribute` to `source` for `target_timespan` in `target_context_name`:
+    Set `attribute` to `source` for `target_timespan` in `target_context_name`.
+
+    Example specification:
 
     ::
 
@@ -27,7 +29,9 @@ class SingleContextSetExpression(AnchoredSetExpression):
 
         >>> score = score_specification.interpret()
 
-    ::
+    Example. Set time signatures to ``4/8``, ``3/8`` for red segment timespan in score context:
+
+    :: 
 
         >>> fresh_single_context_set_expression = \
         ...     red_segment.specification.fresh_single_context_set_expressions[0]

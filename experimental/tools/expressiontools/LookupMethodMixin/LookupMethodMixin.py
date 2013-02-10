@@ -4,6 +4,8 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class LookupMethodMixin(AbjadObject):
     '''Lookup method mixin.
 
+    Definitions for examples:
+
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)

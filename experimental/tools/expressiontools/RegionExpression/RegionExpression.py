@@ -26,16 +26,32 @@ class RegionExpression(Expression):
 
     @property
     def source(self):
+        '''Region expression source.
+        
+        Return expression.
+        '''
         return self._source
 
     @property
     def start_offset(self):
+        '''Region expression start offset.
+
+        Return offset.
+        '''
         return self._start_offset
 
     @property
     def total_duration(self):
+        '''Region expression total duration.
+
+        Return duration.
+        '''
         return self._total_duration
 
     @property
     def voice_name(self):
+        '''Region expression voice name.
+    
+        Return string.
+        '''
         return self._voice_name

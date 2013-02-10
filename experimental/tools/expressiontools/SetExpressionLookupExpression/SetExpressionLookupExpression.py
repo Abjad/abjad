@@ -13,7 +13,7 @@ class SetExpressionLookupExpression(AnchoredExpression, PayloadCallbackMixin):
 
     Because of this lookup expressions afford payload callbacks.
 
-    Composers create concrete lookup expressions with lookup methods.
+    Lookup methods create set expression lookup expressions.
     '''
 
     ### INITIALIZER ###
@@ -75,4 +75,8 @@ class SetExpressionLookupExpression(AnchoredExpression, PayloadCallbackMixin):
     
     @abc.abstractmethod
     def evaluate(self):
+        '''Evaluate set expression lookup expression.
+
+        Return payload expression.
+        '''
         pass

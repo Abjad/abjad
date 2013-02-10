@@ -7,11 +7,15 @@ from abjad.tools.abctools import AbjadObject
 class SelectMethodMixin(AbjadObject):
     '''Select-method mix-in.
 
+    Definitions for examples, below:
+
+    ::
+
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
-    Select-method mix-ins are immutable.
+    Add to classes that implement the select method interface.
     '''
     
     ### PUBLIC METHODS ###

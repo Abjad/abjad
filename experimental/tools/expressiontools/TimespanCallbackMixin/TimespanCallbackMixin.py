@@ -10,16 +10,21 @@ from experimental.tools.expressiontools.CallbackMixin import CallbackMixin
 class TimespanCallbackMixin(CallbackMixin):
     '''Timespan callback mixin.
 
+    Example specifiction:
+
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
+
+    ::
+
         >>> red_segment = score_specification.append_segment(name='red')
         >>> set_expression = red_segment.set_time_signatures([(4, 8), (3, 8)])
         >>> blue_segment = score_specification.append_segment(name='blue')
         >>> set_expression = blue_segment.set_time_signatures([(9, 16), (3, 16)])
 
-    The examples below refer to the score and segment specifications defined above.
+    Add to classes that implement timespan callbacks.
     '''
 
     ### PRIVATE METHODS ###
@@ -194,7 +199,22 @@ class TimespanCallbackMixin(CallbackMixin):
         return self._copy_and_append_callback(callback)
 
     def set_duration(self, duration):
-        '''Set timespan expression duration to `duration`.
+        '''Set timespan expression duration to `duration`:
+
+        ::
+
+            >>> result = timespan.set_duration(Duration(6))
+
+        ::
+
+            >>> z(result)
+            expressiontools.TimespanExpression(
+                anchor='red',
+                callbacks=expressiontools.CallbackInventory([
+                    'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))',
+                    'self._set_duration(original_start_offset, original_stop_offset, Duration(6, 1))'
+                    ])
+                )
 
         Return copy of timespan expression with callback.
         '''
@@ -206,7 +226,22 @@ class TimespanCallbackMixin(CallbackMixin):
 
     def set_offsets(self, start_offset=None, stop_offset=None):
         '''Set timespan expression start offset to `start_offset`
-        and stop offset to `stop_offset`.
+        and stop offset to `stop_offset`:
+
+        ::
+
+            >>> result = timespan.set_offsets(Offset(3, 2), Offset(7, 2))
+
+        ::
+
+            >>> z(result)
+            expressiontools.TimespanExpression(
+                anchor='red',
+                callbacks=expressiontools.CallbackInventory([
+                    'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))',
+                    'self._set_offsets(original_start_offset, original_stop_offset, Offset(3, 2), Offset(7, 2))'
+                    ])
+                )
 
         Return copy of timespan expression with callback.
         '''
@@ -220,7 +255,22 @@ class TimespanCallbackMixin(CallbackMixin):
         return self._copy_and_append_callback(callback)
 
     def translate(self, translation=None):
-        '''Translate timespan expression by `translation`.
+        '''Translate timespan expression by `translation`:
+
+        ::
+
+            >>> result = timespan.translate(Duration(8))
+
+        ::
+
+            >>> z(result)
+            expressiontools.TimespanExpression(
+                anchor='red',
+                callbacks=expressiontools.CallbackInventory([
+                    'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))',
+                    'self._translate(original_start_offset, original_stop_offset, Duration(8, 1))'
+                    ])
+                )
 
         Return copy of timespan expression with callback.
         '''
@@ -231,7 +281,22 @@ class TimespanCallbackMixin(CallbackMixin):
 
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
         '''Translate timespan expression start offset by `start_offset_translation`
-        and stop offset by `stop_offset_translation`.
+        and stop offset by `stop_offset_translation`:
+
+        ::
+
+            >>> result = timespan.translate_offsets(Duration(1), Duration(3, 2))
+
+        ::
+
+            >>> z(result)
+            expressiontools.TimespanExpression(
+                anchor='red',
+                callbacks=expressiontools.CallbackInventory([
+                    'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))',
+                    'self._translate_offsets(original_start_offset, original_stop_offset, Duration(1, 1), Duration(3, 2))'
+                    ])
+                )
 
         Return copy of timespan expression with callback.
         '''
