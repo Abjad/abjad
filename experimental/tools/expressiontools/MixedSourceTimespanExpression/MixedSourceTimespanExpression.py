@@ -3,7 +3,9 @@ from experimental.tools.expressiontools.TimespanExpression import TimespanExpres
 
 
 class MixedSourceTimespanExpression(TimespanExpression):
-    r'''Mixed-source_expression timespan expression.
+    r'''Mixed-source timespan expression.
+
+    Definitions:
 
     ::
 
@@ -12,12 +14,12 @@ class MixedSourceTimespanExpression(TimespanExpression):
         >>> red_segment = score_specification.append_segment(name='red')
         >>> blue_segment = score_specification.append_segment(name='blue')
 
-    Mixed-source_expression timespan.
-
-    Mixed-source_expression timespan starting at the left edge of the last measure
+    Example. Mixed-source timespan starting at the left edge of the last measure
     that starts during segment ``'red'``
     and stoppding at the right edge of the first measure 
-    that starts during segment ``'blue'``::
+    that starts during segment ``'blue'``:
+
+    ::
 
         >>> measure = red_segment.select_measures('Voice 1')[-1:]
         >>> start_offset = measure.start_offset
@@ -56,7 +58,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
                 )
             )
 
-    Mixed-source_expression timespan expression properties are read-only.
+    Mixed-source timespan expressions are immutable.
     '''
 
     ### INITIALIZER ###
@@ -73,22 +75,26 @@ class MixedSourceTimespanExpression(TimespanExpression):
     ### PRIVATE METHODS ###
 
     def evaluate(self):
+        '''Evaluate mixed-suorce timespan expression.
+
+        Not yet implemented.
+        '''
         raise NotImplementedError
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def start_offset(self):
-        '''Mixed-source_expression timespan start offset specified by user.
+        '''Mixed-source timespan expression start offset.
 
-        Return offset or none.
+        Return offset expression.
         '''
         return self._start_offset
 
     @property
     def stop_offset(self):
-        '''Mixed-source_expression timepsan stop offset specified by user.
+        '''Mixed-source timespan expression stop offset.
 
-        Return offset or none.
+        Return offset expression.
         '''
         return self._stop_offset

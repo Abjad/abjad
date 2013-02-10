@@ -5,8 +5,6 @@ from experimental.tools.expressiontools.PayloadExpression import PayloadExpressi
 
 class ExpressionInventory(ObjectInventory, PayloadExpression):
     '''Expression inventory.
-
-    Each expression will be evaluated in turn.
     '''
     
     ### SPECIAL METHODS ###
@@ -20,6 +18,8 @@ class ExpressionInventory(ObjectInventory, PayloadExpression):
 
     @property
     def elements(self):
+        '''Expression inventory elements.
+        '''
         result = []
         for expression in self:
             expression = expression.evaluate()
@@ -29,6 +29,10 @@ class ExpressionInventory(ObjectInventory, PayloadExpression):
     ### PRIVATE METHODS ###
 
     def evaluate(self):
+        '''Evaluate expression inventory.
+
+        Return newly constructed expression inventory.
+        '''
         result = type(self)()
         for expression in self:
             expression = expression.evaluate()

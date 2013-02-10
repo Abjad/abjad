@@ -26,7 +26,7 @@ class RegionExpression(Expression):
 
     @property
     def source_expression(self):
-        '''Region expression source_expression.
+        '''Region expression source expression.
         
         Return expression.
         '''

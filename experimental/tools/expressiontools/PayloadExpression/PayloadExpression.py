@@ -11,16 +11,16 @@ class PayloadExpression(Expression):
 
     ::
 
-        >>> expression = expressiontools.PayloadExpression([(4, 16), (2, 16)])
+        >>> payload_expression = expressiontools.PayloadExpression([(4, 16), (2, 16)])
 
     ::
 
-        >>> expression
+        >>> payload_expression
         PayloadExpression(((4, 16), (2, 16)))
 
     ::
 
-        >>> z(expression)
+        >>> z(payload_expression)
         expressiontools.PayloadExpression(
             ((4, 16), (2, 16))
             )
@@ -46,6 +46,21 @@ class PayloadExpression(Expression):
     def __and__(self, timespan):
         '''Logical AND of payload expression and `timespan`.
 
+        ::
+
+            >>> timespan = timespantools.Timespan((1, 16), (5, 16))
+            >>> result = payload_expression & timespan
+
+        ::
+
+            >>> z(result)
+            timespantools.TimespanInventory([
+                expressiontools.PayloadExpression(
+                    (Division('[3, 16]', start_offset=Offset(1, 16)), 
+                    Division('[1, 16]', start_offset=Offset(1, 4)))
+                    )
+                ])
+
         Return newly constructed payload expression.
         '''
         from experimental.tools import expressiontools
@@ -66,7 +81,16 @@ class PayloadExpression(Expression):
     def __getitem__(self, expr):
         '''Payload expression get item.
 
-        .. note:: add example.
+        ::
+
+            >>> result = payload_expression[:1]
+
+        ::
+
+            >>> z(result)
+            expressiontools.PayloadExpression(
+                ((4, 16),)
+                )
 
         Return newly constructed payload expression
         with referenced payload.
@@ -79,6 +103,15 @@ class PayloadExpression(Expression):
 
     @property
     def elements(self):
+        '''Payload expression elements.
+
+        ::
+
+            >>> payload_expression.elements
+            ((4, 16), (2, 16))
+
+        Return tuple.
+        '''
         return self.payload[:]
 
     ### PRIVATE METHODS ###
@@ -93,6 +126,13 @@ class PayloadExpression(Expression):
             return duration
 
     def evaluate(self):
+        '''Evaluate payload expression.
+
+            >>> payload_expression.evaluate()
+            PayloadExpression(((4, 16), (2, 16)))
+
+        Return payload expression.
+        '''
         return self
 
     ### READ-ONLY PROPERTIES ###
@@ -103,7 +143,7 @@ class PayloadExpression(Expression):
 
         ::
 
-            >>> expression.payload
+            >>> payload_expression.payload
             ((4, 16), (2, 16))
 
         Return tuple or string.
@@ -116,7 +156,7 @@ class PayloadExpression(Expression):
 
         ::
 
-            >>> z(expression)
+            >>> z(payload_expression)
             expressiontools.PayloadExpression(
                 ((4, 16), (2, 16))
                 )
@@ -128,9 +168,24 @@ class PayloadExpression(Expression):
     ### PUBLIC METHODS ###
 
     def partition_by_ratio(self, ratio):
-        '''Partition by ratio.
+        '''Partition payload expression by ratio.
 
-        Return newly constructed payload expression.
+        ::
+
+            >>> result = payload_expression.partition_by_ratio((1, 1))
+
+        ::
+
+            >>> for element in result:
+            ...     z(element)
+            expressiontools.PayloadExpression(
+                ((4, 16),)
+                )
+            expressiontools.PayloadExpression(
+                ((2, 16),)
+                )
+
+        Return list of newly constructed payload expressions.
         '''
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(self.payload, ratio)
         result = []
@@ -140,7 +195,22 @@ class PayloadExpression(Expression):
         return result
 
     def partition_by_ratio_of_durations(self, ratio):
-        '''Partition by ratio of durations.
+        '''Partition payload expression by ratio of durations.
+
+        ::
+
+            >>> result = payload_expression.partition_by_ratio_of_durations((1, 1))
+
+        ::
+
+            >>> for element in result:
+            ...     z(element)
+            expressiontools.PayloadExpression(
+                ((4, 16),)
+                )
+            expressiontools.PayloadExpression(
+                ((2, 16),)
+                )
 
         Return newly constructed payload expression.
         '''
@@ -157,7 +227,18 @@ class PayloadExpression(Expression):
         return result
 
     def reflect(self):
-        '''Reflect.
+        '''Reflect payload expression.
+
+        ::
+
+            >>> result = payload_expression.reflect()
+
+        ::
+
+            >>> z(result)
+            expressiontools.PayloadExpression(
+                ((2, 16), (4, 16))
+                )
 
         Return newly constructed payload expression.
         '''
@@ -167,7 +248,22 @@ class PayloadExpression(Expression):
         return result
 
     def repeat_to_duration(self, duration):
-        '''Repeat to duration.
+        '''Repeat payload expression to duration.
+
+        ::
+
+            >>> result = payload_expression.repeat_to_duration(Duration(13, 16))
+
+        ::
+
+            >>> z(result)
+            expressiontools.PayloadExpression(
+                (NonreducedFraction(4, 16), 
+                NonreducedFraction(2, 16), 
+                NonreducedFraction(4, 16), 
+                NonreducedFraction(2, 16), 
+                NonreducedFraction(1, 16))
+                )
 
         Return newly constructed payload expression.
         '''
@@ -180,7 +276,18 @@ class PayloadExpression(Expression):
         return result
 
     def repeat_to_length(self, length):
-        '''Repeat to length.
+        '''Repeat payload expression to length.
+
+        ::
+
+            >>> result = payload_expression.repeat_to_length(4)
+
+        ::
+
+            >>> z(result)
+            expressiontools.PayloadExpression(
+                ((4, 16), (2, 16), (4, 16), (2, 16))
+                )
 
         Return newly constructed payload expression.
         '''
@@ -189,7 +296,18 @@ class PayloadExpression(Expression):
         return result
 
     def rotate(self, n):
-        '''Rotate.
+        '''Rotate payload expression.
+
+        ::
+
+            >>> result = payload_expression.rotate(-1)
+
+        ::
+
+            >>> z(result)
+            expressiontools.PayloadExpression(
+                ((2, 16), (4, 16))
+                )
 
         Return newly constructed payload expression.
         '''

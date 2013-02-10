@@ -5,8 +5,6 @@ from experimental.tools.expressiontools.PayloadCallbackMixin import PayloadCallb
 
 class HandlerExpression(Expression, PayloadCallbackMixin):
     r'''Handler expression.
-
-    The purpose of a handler expression is to function as the source_expression of a set expression.
     '''
 
     ### INITIALIZER ###
@@ -20,10 +18,14 @@ class HandlerExpression(Expression, PayloadCallbackMixin):
     ### PRIVATE METHODS ###
 
     def evaluate(self):
+        '''Evaluate handler expression.
+        '''
         raise NotImplementedError
 
     ### READ-ONLY PROPERTIES ###
 
     @property
     def handler(self):
+        '''Handler expression handler.
+        '''
         return self._handler

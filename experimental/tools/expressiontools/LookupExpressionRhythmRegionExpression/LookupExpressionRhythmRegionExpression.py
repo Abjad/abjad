@@ -21,6 +21,12 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
     ### PRIVATE METHODS ###
 
     def evaluate(self):
+        '''Evaluate lookup expression rhythm region expression.
+        
+        Return none when nonevaluable.
+
+        Return start-positioned rhythm payload expression when evaluable.
+        '''
         from experimental.tools import expressiontools
         expression = self.source_expression.evaluate()
         if expression is None:
@@ -45,8 +51,16 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
 
     @property
     def division_list(self):
+        '''Lookup expression rhythm region expression division list.
+
+        Return division list.
+        '''
         return self._division_list
 
     @property
     def region_start_offset(self):
+        '''Lookup expression rhythm region expression region start offset.
+
+        Return offset.
+        '''
         return self._region_start_offset

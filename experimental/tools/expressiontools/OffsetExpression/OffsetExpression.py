@@ -6,13 +6,15 @@ from experimental.tools.expressiontools.OffsetCallbackMixin import OffsetCallbac
 class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixin):
     r'''Offset expression.
 
+    Definitions:
+
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
-    Symbolic offset indicating the right edge of voice ``1`` note ``10`` that starts
+    Example. Symbolic offset indicating the right edge of voice ``1`` note ``10`` that starts
     during segment ``'red'``::
 
         >>> notes = red_segment.select_notes_and_chords('Voice 1')

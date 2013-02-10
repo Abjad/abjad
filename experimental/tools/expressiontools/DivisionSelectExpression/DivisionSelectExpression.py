@@ -5,7 +5,9 @@ from experimental.tools.expressiontools.SelectExpression import SelectExpression
 
 
 class DivisionSelectExpression(SelectExpression):
-    r'''Division select expression:
+    r'''Division select expression.
+
+    Definitions:
 
     ::
 
@@ -13,7 +15,9 @@ class DivisionSelectExpression(SelectExpression):
         >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
-    Select voice ``1`` divisions that start during score::
+    Example 1. Select voice ``1`` divisions that start during score:
+
+    ::
 
         >>> select_expression = score_specification.select_divisions('Voice 1')
 
@@ -24,7 +28,9 @@ class DivisionSelectExpression(SelectExpression):
             voice_name='Voice 1'
             )
 
-    Select voice ``1`` divisions that start during segment ``'red'``::
+    Example 2. Select voice ``1`` divisions that start during segment ``'red'``:
+
+    ::
 
         >>> select_expression = red_segment.select_divisions('Voice 1')
 

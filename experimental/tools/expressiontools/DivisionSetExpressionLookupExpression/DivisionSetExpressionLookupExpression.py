@@ -4,14 +4,18 @@ from experimental.tools.expressiontools.SetExpressionLookupExpression import Set
 
 
 class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
-    '''Set-division lookup expression.
+    '''Division set expression lookup expression.
 
-    Example. Look up division set expression active at start of measure 4 in ``'Voice 1'``::
+    Definitions:
+
+    ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
         ...     staff_count=1)
         >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template)
         >>> red_segment = score_specification.append_segment(name='red')
+
+    Example. Look up division set expression active at start of measure 4 in ``'Voice 1'``:
 
     ::
 
@@ -34,10 +38,7 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
             voice_name='Voice 1'
             )
 
-    Composers create division set expression lookup expressions during specification time.
-
-    Composers create division set expression lookup expressions through a method
-    implemented on ``OffsetExpression``.
+    Lookup methods create division set expression lookup expressions.
     '''
 
     ### INITIALIZER ###
@@ -49,6 +50,10 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
+        '''Evaluate division set expression lookup expression.
+
+        Return payload expression.
+        '''
         from experimental.tools import expressiontools
         expression = self.offset.evaluate()
         offset = expression.payload[0]

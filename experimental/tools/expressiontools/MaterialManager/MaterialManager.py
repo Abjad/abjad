@@ -14,8 +14,13 @@ class MaterialManager(AbjadObject):
     ### PUBLIC METHODS ###
 
     def register_material(self, material):
+        '''Register `material`.
+
+        Change tuple or list to payload expression.
+
+        Change parseable string to start-positioned rhythm payload expression.
+        '''
         from experimental.tools import expressiontools
-        #return expressiontools.PayloadExpression(material)
         if isinstance(material, (tuple, list)):
             return expressiontools.PayloadExpression(material)
         elif isinstance(material, (str)):
