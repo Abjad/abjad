@@ -125,7 +125,6 @@ Unstable packages (load manually)
       tools/expressiontools/AnchoredSetExpression/AnchoredSetExpression
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
-      tools/expressiontools/InputSetExpression/InputSetExpression
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
       tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/expressiontools/PayloadCallbackMixin/PayloadCallbackMixin
@@ -202,7 +201,6 @@ Unstable packages (load manually)
       tools/expressiontools/AnchoredSetExpression/AnchoredSetExpression
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
-      tools/expressiontools/InputSetExpression/InputSetExpression
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
       tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/expressiontools/PayloadCallbackMixin/PayloadCallbackMixin
