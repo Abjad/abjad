@@ -226,6 +226,32 @@ class TempoMark(ContextMark):
         return property(**locals())
 
     @property
+    def is_imprecise(self):
+        r'''True if tempo mark is entirely textual, or if tempo mark's
+        units_per_minute is a range:
+
+        ::
+
+            >>> contexttools.TempoMark(Duration(1, 4), 60).is_imprecise
+            False
+            >>> contexttools.TempoMark('Langsam', 4, 60).is_imprecise
+            False
+            >>> contexttools.TempoMark('Langsam').is_imprecise
+            True
+            >>> contexttools.TempoMark('Langsam', 4, (35, 50)).is_imprecise
+            True
+            >>> contexttools.TempoMark(Duration(1, 4), (35, 50)).is_imprecise
+            True
+
+        Return boolean.
+        '''
+        if self.duration is not None:
+            if self.units_per_minute is not None:
+                if not isinstance(self.units_per_minute, tuple):
+                    return False
+        return True
+
+    @property
     def lilypond_format(self):
         r'''Read-only LilyPond format of tempo mark:
 
@@ -265,32 +291,6 @@ class TempoMark(ContextMark):
             return r'\tempo %s' % text
         else:
             return r'\tempo \default'
-
-    @property
-    def is_imprecise(self):
-        r'''True if tempo mark is entirely textual, or if tempo mark's
-        units_per_minute is a range:
-
-        ::
-
-            >>> contexttools.TempoMark(Duration(1, 4), 60).is_imprecise
-            False
-            >>> contexttools.TempoMark('Langsam', 4, 60).is_imprecise
-            False
-            >>> contexttools.TempoMark('Langsam').is_imprecise
-            True
-            >>> contexttools.TempoMark('Langsam', 4, (35, 50)).is_imprecise
-            True
-            >>> contexttools.TempoMark(Duration(1, 4), (35, 50)).is_imprecise
-            True
-
-        Return boolean.
-        '''
-        if self.duration is not None:
-            if self.units_per_minute is not None:
-                if not isinstance(self.units_per_minute, tuple):
-                    return False
-        return True
 
     @property
     def quarters_per_minute(self):

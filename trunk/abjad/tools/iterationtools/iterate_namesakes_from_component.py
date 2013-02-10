@@ -76,17 +76,6 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
     '''
     from abjad.tools import iterationtools
 
-    def _forward_helper(component):
-        next_component = componenttools.get_nth_component_in_time_order_from_component(
-            component, 1)
-        if next_component is None:
-            return
-        dfs = iterationtools.iterate_components_depth_first(next_component, capped=False)
-        for node in dfs:
-            if type(node) == type(component) and \
-                node.parentage.parentage_signature == component.parentage.parentage_signature:
-                return node
-
     def _backward_helper(component):
         prev = componenttools.get_nth_component_in_time_order_from_component(component, -1)
         if prev is None:
@@ -97,6 +86,17 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
             if type(node) == type(component) and \
                 node.parentage.parentage_signature == \
                 component.parentage.parentage_signature:
+                return node
+
+    def _forward_helper(component):
+        next_component = componenttools.get_nth_component_in_time_order_from_component(
+            component, 1)
+        if next_component is None:
+            return
+        dfs = iterationtools.iterate_components_depth_first(next_component, capped=False)
+        for node in dfs:
+            if type(node) == type(component) and \
+                node.parentage.parentage_signature == component.parentage.parentage_signature:
                 return node
 
     current_component = component

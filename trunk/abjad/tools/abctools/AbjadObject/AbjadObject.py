@@ -136,6 +136,10 @@ class AbjadObject(object):
         return tuple(result)
 
     @property
+    def _one_line_menuing_summary(self):
+        return str(self)        
+
+    @property
     def _positional_argument_dictionary(self):
         names = self._positional_argument_names
         values = self._positional_argument_values
@@ -169,10 +173,6 @@ class AbjadObject(object):
         for name in self._positional_argument_names:
             result.append(getattr(self, name))
         return tuple(result)
-
-    @property
-    def _one_line_menuing_summary(self):
-        return str(self)        
 
     @property
     def _repr_pieces(self):

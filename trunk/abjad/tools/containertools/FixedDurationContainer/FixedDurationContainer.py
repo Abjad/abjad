@@ -60,13 +60,6 @@ class FixedDurationContainer(Container):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def lilypond_format(self):
-        '''Read-only LilyPond format of fixed-duration container.
-        '''
-        self._check_duration()
-        return self._format_component()
-
-    @property
     def is_full(self):
         '''True when preprolated duration equals target duration.
         '''
@@ -89,6 +82,13 @@ class FixedDurationContainer(Container):
         '''True when preprolated duration is less than target duration.
         '''
         return self.preprolated_duration < self.target_duration
+
+    @property
+    def lilypond_format(self):
+        '''Read-only LilyPond format of fixed-duration container.
+        '''
+        self._check_duration()
+        return self._format_component()
 
     ### READ / WRITE PUBLIC PROPERTIES ###
 

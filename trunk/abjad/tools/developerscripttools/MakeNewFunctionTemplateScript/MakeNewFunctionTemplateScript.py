@@ -48,16 +48,16 @@ class MakeNewFunctionTemplateScript(DeveloperScript):
 
     ### PRIVATE METHODS ###
 
+    def _get_function_names_in_tools_package(self, root, tools_package_name):
+        path = os.path.join(root, tools_package_name)
+        return tuple(sorted([x[:-3] for x in os.listdir(path)
+            if x.endswith('.py') and not x.startswith('__')]))
+
     def _get_function_text(self, function_name):
         return [
             'def {}():'.format(function_name),
             '    pass'
         ]
-
-    def _get_function_names_in_tools_package(self, root, tools_package_name):
-        path = os.path.join(root, tools_package_name)
-        return tuple(sorted([x[:-3] for x in os.listdir(path)
-            if x.endswith('.py') and not x.startswith('__')]))
 
     def _get_tools_package_names(self, root):
         names = []

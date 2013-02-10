@@ -35,14 +35,6 @@ class Leaf(Component):
     def __and__(self, arg):
         return self._operate(arg, operator.__and__)
 
-    def _copy_with_marks_but_without_children_or_spanners(self):
-        from abjad.tools import gracetools
-        new = Component._copy_with_marks_but_without_children_or_spanners(self)
-        for grace_container in gracetools.get_grace_containers_attached_to_leaf(self):
-            new_grace_container = copy.deepcopy(grace_container)
-            new_grace_container(new)
-        return new
-        
     def __copy__(self, *args):
         return self._copy_with_marks_but_without_children_or_spanners()
 
@@ -97,6 +89,23 @@ class Leaf(Component):
         if getattr(leaf, '_set', None) is not None:
             self._set = copy.copy(leaf.set)
 
+    def _copy_with_marks_but_without_children_or_spanners(self):
+        from abjad.tools import gracetools
+        new = Component._copy_with_marks_but_without_children_or_spanners(self)
+        for grace_container in gracetools.get_grace_containers_attached_to_leaf(self):
+            new_grace_container = copy.deepcopy(grace_container)
+            new_grace_container(new)
+        return new
+        
+    def _format_after_slot(leaf, format_contributions):
+        result = []
+        result.append(('spanners', format_contributions.get('after', {}).get('spanners', [])))
+        result.append(('context marks', format_contributions.get('after', {}).get('context marks', [])))
+        result.append(('lilypond command marks', 
+            format_contributions.get('after', {}).get('lilypond command marks', [])))
+        result.append(('comments', format_contributions.get('after', {}).get('comments', [])))
+        return result
+
     def _format_agrace_body(leaf):
         result = []
         if hasattr(leaf, '_after_grace'):
@@ -111,6 +120,37 @@ class Leaf(Component):
             if len(leaf.after_grace):
                 result.append(r'\afterGrace')
         return ['agrace opening', result]
+
+    def _format_before_slot(leaf, format_contributions):
+        result = []
+        result.append(leaf._format_grace_body())
+        result.append(('comments', format_contributions.get('before', {}).get('comments', [])))
+        result.append(('lilypond command marks', 
+            format_contributions.get('before', {}).get('lilypond command marks', [])))
+        result.append(('context marks', format_contributions.get('before', {}).get('context marks', [])))
+        result.append(('grob overrides', format_contributions.get('grob overrides', [])))
+        result.append(('context settings', format_contributions.get('context settings', [])))
+        result.append(('spanners', format_contributions.get('before', {}).get('spanners', [])))
+        return result
+
+    def _format_close_brackets_slot(leaf, format_contributions):
+        return []
+
+    def _format_closing_slot(leaf, format_contributions):
+        result = []
+        result.append(leaf._format_agrace_body())
+        result.append(('spanners', format_contributions.get('closing', {}).get('spanners', [])))
+        result.append(('lilypond command marks', 
+            format_contributions.get('closing', {}).get('lilypond command marks', [])))
+        result.append(('context marks', format_contributions.get('closing', {}).get('context marks', [])))
+        result.append(('comments', format_contributions.get('closing', {}).get('comments', [])))
+        return result
+
+    def _format_contents_slot(leaf, format_contributions):
+        result = []
+        result.append(leaf._format_leaf_body(format_contributions))
+        return result
+
 
     def _format_grace_body(leaf):
         result = []
@@ -163,55 +203,6 @@ class Leaf(Component):
         # single string, but wrapped in list bc contribution
         return ['nucleus', [result]]
 
-    def _format_after_slot(leaf, format_contributions):
-        result = []
-        result.append(('spanners', format_contributions.get('after', {}).get('spanners', [])))
-        result.append(('context marks', format_contributions.get('after', {}).get('context marks', [])))
-        result.append(('lilypond command marks', format_contributions.get('after', {}).get('lilypond command marks', [])))
-        result.append(('comments', format_contributions.get('after', {}).get('comments', [])))
-        #result.append(formattools.get_spanner_format_contributions_for_slot(leaf, 'after'))
-        #result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'after'))
-        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'after'))
-        #result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'after'))
-        return result
-
-    def _format_before_slot(leaf, format_contributions):
-        result = []
-        result.append(leaf._format_grace_body())
-        result.append(('comments', format_contributions.get('before', {}).get('comments', [])))
-        result.append(('lilypond command marks', format_contributions.get('before', {}).get('lilypond command marks', [])))
-        result.append(('context marks', format_contributions.get('before', {}).get('context marks', [])))
-        result.append(('grob overrides', format_contributions.get('grob overrides', [])))
-        result.append(('context settings', format_contributions.get('context settings', [])))
-        result.append(('spanners', format_contributions.get('before', {}).get('spanners', [])))
-        #result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'before'))
-        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'before'))
-        #result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'before'))
-        #result.append(formattools.get_grob_override_format_contributions(leaf))
-        #result.append(formattools.get_context_setting_format_contributions(leaf))
-        #result.append(formattools.get_spanner_format_contributions_for_slot(leaf, 'before'))
-        return result
-
-    def _format_close_brackets_slot(leaf, format_contributions):
-        return []
-
-    def _format_closing_slot(leaf, format_contributions):
-        result = []
-        result.append(leaf._format_agrace_body())
-        result.append(('spanners', format_contributions.get('closing', {}).get('spanners', [])))
-        result.append(('lilypond command marks', format_contributions.get('closing', {}).get('lilypond command marks', [])))
-        result.append(('context marks', format_contributions.get('closing', {}).get('context marks', [])))
-        result.append(('comments', format_contributions.get('closing', {}).get('comments', [])))
-        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'closing'))
-        #result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'closing'))
-        #result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'closing'))
-        return result
-
-    def _format_contents_slot(leaf, format_contributions):
-        result = []
-        result.append(leaf._format_leaf_body(format_contributions))
-        return result
-
     def _format_open_brackets_slot(leaf, format_contributions):
         return []
 
@@ -219,11 +210,9 @@ class Leaf(Component):
         result = []
         result.append(('comments', format_contributions.get('opening', {}).get('comments', [])))
         result.append(('context marks', format_contributions.get('opening', {}).get('context marks', [])))
-        result.append(('lilypond command marks', format_contributions.get('opening', {}).get('lilypond command marks', [])))
+        result.append(('lilypond command marks', 
+            format_contributions.get('opening', {}).get('lilypond command marks', [])))
         result.append(('spanners', format_contributions.get('opening', {}).get('spanners', [])))
-        #result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'opening'))
-        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'opening'))
-        #result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'opening'))
         result.append(leaf._format_agrace_opening())
         return result
 

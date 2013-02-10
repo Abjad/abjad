@@ -47,13 +47,17 @@ class TestAndRebuildScript(DeveloperScript):
             terminal_width = int(os.environ.get('COLUMNS', 80)) - 1
         return terminal_width
 
+    def process_args(self, args):
+        iotools.clear_terminal()
+        if not self.run_doctest(args):
+            print
+            if not self.run_pytest(args):
+                print
+                self.rebuild_docs(args)
+
     def rebuild_docs(self, args):
         from abjad.tools import developerscripttools
         developerscripttools.BuildApiScript()(['-X', '-M'])
-
-    def run_pytest(self, args):
-        options = ['-x', '-rf', '.']
-        return pytest.main(options)        
 
     def run_doctest(self, args):
         start_message = ' doctest session starts '
@@ -99,13 +103,9 @@ class TestAndRebuildScript(DeveloperScript):
 
         return False
 
-    def process_args(self, args):
-        iotools.clear_terminal()
-        if not self.run_doctest(args):
-            print
-            if not self.run_pytest(args):
-                print
-                self.rebuild_docs(args)
+    def run_pytest(self, args):
+        options = ['-x', '-rf', '.']
+        return pytest.main(options)        
 
     def setup_argument_parser(self, parser):
         pass

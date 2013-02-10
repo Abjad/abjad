@@ -48,15 +48,6 @@ class Context(Container):
 
     ### SPECIAL METHODS ###
 
-    def _copy_with_marks_but_without_children_or_spanners(self):
-        new = Container._copy_with_marks_but_without_children_or_spanners(self)
-        new._engraver_consists = copy.copy(self.engraver_consists)
-        new._engraver_removals = copy.copy(self.engraver_removals)
-        new.name = copy.copy(self.name)
-        new.is_nonsemantic = copy.copy(self.is_nonsemantic)
-        return new
-        return new
-
     def __repr__(self):
         '''.. versionchanged:: 2.0
 
@@ -85,6 +76,23 @@ class Context(Container):
 
     ### PRIVATE METHODS ###
 
+    def _copy_with_marks_but_without_children_or_spanners(self):
+        new = Container._copy_with_marks_but_without_children_or_spanners(self)
+        new._engraver_consists = copy.copy(self.engraver_consists)
+        new._engraver_removals = copy.copy(self.engraver_removals)
+        new.name = copy.copy(self.name)
+        new.is_nonsemantic = copy.copy(self.is_nonsemantic)
+        return new
+        return new
+
+    def _format_closing_slot(context, format_contributions):
+        result = []
+        result.append(['context marks', format_contributions.get('closing', {}).get('context marks', [])])
+        result.append(['lilypond command marks', 
+            format_contributions.get('closing', {}).get('lilypond command marks', [])])
+        result.append(['comments', format_contributions.get('closing', {}).get('comments', [])])
+        return context._format_slot_contributions_with_indent(result)
+
     def _format_engraver_consists(self):
         result = []
         for engraver in self.engraver_consists:
@@ -112,11 +120,7 @@ class Context(Container):
         engraver_removals = context._format_engraver_removals()
         engraver_consists = context._format_engraver_consists()
         overrides = format_contributions.get('grob overrides', [])
-        #overrides = formattools.get_grob_override_format_contributions(context)
-        #overrides = overrides[1]
         settings = format_contributions.get('context settings', [])
-        #settings = formattools.get_context_setting_format_contributions(context)
-        #settings = settings[1]
         if engraver_removals or engraver_consists or overrides or settings:
             contributions = [context._format_invocation() + r' \with {']
             result.append([('context_brackets', 'open'), contributions])
@@ -139,20 +143,8 @@ class Context(Container):
         result = []
         result.append(['comments', format_contributions.get('opening', {}).get('comments', [])])
         result.append(['context marks', format_contributions.get('opening', {}).get('context marks', [])])
-        result.append(['lilypond command marks', format_contributions.get('opening', {}).get('lilypond command marks', [])])
-        #result.append(formattools.get_comment_format_contributions_for_slot(context, 'opening'))
-        #result.append(formattools.get_context_mark_format_contributions_for_slot(context, 'opening'))
-        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(context, 'opening'))
-        return context._format_slot_contributions_with_indent(result)
-
-    def _format_closing_slot(context, format_contributions):
-        result = []
-        result.append(['context marks', format_contributions.get('closing', {}).get('context marks', [])])
-        result.append(['lilypond command marks', format_contributions.get('closing', {}).get('lilypond command marks', [])])
-        result.append(['comments', format_contributions.get('closing', {}).get('comments', [])])
-        #result.append(formattools.get_context_mark_format_contributions_for_slot(context, 'closing'))
-        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(context, 'closing'))
-        #result.append(formattools.get_comment_format_contributions_for_slot(context, 'closing'))
+        result.append(['lilypond command marks', 
+            format_contributions.get('opening', {}).get('lilypond command marks', [])])
         return context._format_slot_contributions_with_indent(result)
 
     def _initialize_keyword_values(self, **kwargs):
@@ -215,11 +207,6 @@ class Context(Container):
 
         '''
         return self._engraver_removals
-
-    @property
-    def lilypond_format(self):
-        self._update_marks_of_entire_score_tree_if_necessary()
-        return self._format_component()
 
     @apply
     def is_nonsemantic():
@@ -287,6 +274,11 @@ class Context(Container):
     @property
     def is_semantic(self):
         return not self.is_nonsemantic
+
+    @property
+    def lilypond_format(self):
+        self._update_marks_of_entire_score_tree_if_necessary()
+        return self._format_component()
 
     @apply
     def name():

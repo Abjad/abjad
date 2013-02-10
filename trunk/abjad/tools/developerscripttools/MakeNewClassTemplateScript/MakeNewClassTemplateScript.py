@@ -56,6 +56,12 @@ class MakeNewClassTemplateScript(DeveloperScript):
             "importtools.import_structured_package(__path__[0], globals(), package_root_name={!r})".format(package_root_name),
         ]
 
+    def _get_class_names_in_tools_package(self, root, tools_package_name):
+        path = os.path.join(root, tools_package_name)
+        crawler = documentationtools.ClassCrawler(path, include_private_objects=True)
+        objs = crawler()
+        return tuple(sorted([x.__name__ for x in objs]))
+
     def _get_class_text(self, class_name):
         return [
             'from abjad.tools.abctools import AbjadObject',
@@ -64,12 +70,6 @@ class MakeNewClassTemplateScript(DeveloperScript):
             'class {}(AbjadObject):'.format(class_name),
             '    pass'
         ]
-
-    def _get_class_names_in_tools_package(self, root, tools_package_name):
-        path = os.path.join(root, tools_package_name)
-        crawler = documentationtools.ClassCrawler(path, include_private_objects=True)
-        objs = crawler()
-        return tuple(sorted([x.__name__ for x in objs]))
 
     def _get_tools_package_names(self, root):
         names = []

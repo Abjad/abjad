@@ -100,15 +100,15 @@ class GraceContainer(Container):
         self._carrier = arg
         return arg
 
-    def _copy_with_marks_but_without_children_or_spanners(self):
-        new = Container._copy_with_marks_but_without_children_or_spanners(self)
-        new.kind = self.kind
-        return new
-
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._summary)
 
     ### PRIVATE METHODS ###
+
+    def _copy_with_marks_but_without_children_or_spanners(self):
+        new = Container._copy_with_marks_but_without_children_or_spanners(self)
+        new.kind = self.kind
+        return new
 
     def _format_open_brackets_slot(self, format_contributions):
         result = []

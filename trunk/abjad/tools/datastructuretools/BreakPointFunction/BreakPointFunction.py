@@ -139,6 +139,15 @@ class BreakPointFunction(AbjadObject):
         '''
         return self._operate(other, operator.mul)
 
+    def __repr__(self):
+        result = ['{}({{'.format(self._class_name)]
+        if 1 < len(self.x_values):
+            for x in self.x_values[:-1]:
+                result.append('\t{!r}: {!r},'.format(x, self._bpf[x]))
+        result.append('\t{!r}: {!r}'.format(self.x_values[-1], self._bpf[self.x_values[-1]]))
+        result.append('})')
+        return '\n'.join(result)
+
     def __sub__(self, other):
         '''Subtract `other` from all y-values in self:
 
@@ -169,16 +178,20 @@ class BreakPointFunction(AbjadObject):
         '''
         return self._operate(other, operator.sub)
 
-    def __repr__(self):
-        result = ['{}({{'.format(self._class_name)]
-        if 1 < len(self.x_values):
-            for x in self.x_values[:-1]:
-                result.append('\t{!r}: {!r},'.format(x, self._bpf[x]))
-        result.append('\t{!r}: {!r}'.format(self.x_values[-1], self._bpf[self.x_values[-1]]))
-        result.append('})')
-        return '\n'.join(result)
-
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def bpf(self):
+        '''A copy of the BreakPointFunction's internal data-structure:
+
+        ::
+
+            >>> datastructuretools.BreakPointFunction({0.: 0.25, 0.5: 1.3, 1.: 0.9}).bpf
+            {0.0: (0.25,), 0.5: (1.3,), 1.0: (0.9,)}
+
+        Return dict.
+        '''
+        return self._bpf.copy()
 
     @property
     def dc_bias(self):
@@ -194,19 +207,6 @@ class BreakPointFunction(AbjadObject):
         Return number.
         '''
         return self._dc_bias
-
-    @property
-    def bpf(self):
-        '''A copy of the BreakPointFunction's internal data-structure:
-
-        ::
-
-            >>> datastructuretools.BreakPointFunction({0.: 0.25, 0.5: 1.3, 1.: 0.9}).bpf
-            {0.0: (0.25,), 0.5: (1.3,), 1.0: (0.9,)}
-
-        Return dict.
-        '''
-        return self._bpf.copy()
 
     @property
     def gnuplot_format(self):
@@ -560,21 +560,6 @@ class BreakPointFunction(AbjadObject):
         '''
         return self.scale_x_axis().scale_y_axis()
 
-    def remove_dc_bias(self):
-        '''Remove dc-bias from a `BreakPointFunction`:
-
-        ::
-
-            >>> datastructuretools.BreakPointFunction({0.: 0., 1.: 1.}).remove_dc_bias()
-            BreakPointFunction({
-                0.0: (-0.5,),
-                1.0: (0.5,)
-            })
-
-        Emit new `BreakPointFunction` instance.
-        '''
-        return self - self.dc_bias
-
     def reflect(self, x_center=None):
         '''Reflect x values of a `BreakPointFunction`:
 
@@ -609,6 +594,21 @@ class BreakPointFunction(AbjadObject):
             new_x = (x_center - x) + x_center
             bpf[new_x] = tuple(reversed(ys))
         return type(self)(bpf)
+
+    def remove_dc_bias(self):
+        '''Remove dc-bias from a `BreakPointFunction`:
+
+        ::
+
+            >>> datastructuretools.BreakPointFunction({0.: 0., 1.: 1.}).remove_dc_bias()
+            BreakPointFunction({
+                0.0: (-0.5,),
+                1.0: (0.5,)
+            })
+
+        Emit new `BreakPointFunction` instance.
+        '''
+        return self - self.dc_bias
 
     def scale_x_axis(self, minimum=0, maximum=1):
         '''Scale x-axis between `minimum` and `maximum`:

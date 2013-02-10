@@ -146,11 +146,11 @@ class Duration(ImmutableAbjadObject, Fraction):
         else:
             return type(self)(Fraction.__mul__(self, *args))
 
-    def __neg__(self, *args):
-        return type(self)(Fraction.__neg__(self, *args))
-
     def __ne__(self, arg):
         return Fraction.__ne__(self, arg)
+
+    def __neg__(self, *args):
+        return type(self)(Fraction.__neg__(self, *args))
 
     def __pos__(self, *args):
         return type(self)(Fraction.__pos__(self, *args))

@@ -134,24 +134,6 @@ class InstrumentMark(ContextMark):
         '''
         return self._default_short_instrument_name
 
-    @property
-    def lilypond_format(self):
-        '''Read-only LilyPond input format of instrument mark:
-
-        ::
-
-            >>> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
-            >>> instrument.lilypond_format
-            ['\\set Staff.instrumentName = \\markup { Flute }', 
-                '\\set Staff.shortInstrumentName = \\markup { Fl. }']
-
-        Return list.
-        '''
-        result = []
-        result.append(r'\set %s.instrumentName = %s' % (self._target_context_name, self.instrument_name_markup))
-        result.append(r'\set %s.shortInstrumentName = %s' % (self._target_context_name, self.short_instrument_name_markup))
-        return result
-
     @apply
     def instrument_name():
         def fget(self):
@@ -208,6 +190,26 @@ class InstrumentMark(ContextMark):
             else:
                 self._instrument_name_markup = Markup(instrument_name_markup)
         return property(**locals())
+
+    @property
+    def lilypond_format(self):
+        '''Read-only LilyPond input format of instrument mark:
+
+        ::
+
+            >>> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
+            >>> instrument.lilypond_format
+            ['\\set Staff.instrumentName = \\markup { Flute }', 
+                '\\set Staff.shortInstrumentName = \\markup { Fl. }']
+
+        Return list.
+        '''
+        result = []
+        result.append(r'\set %s.instrumentName = %s' % (
+            self._target_context_name, self.instrument_name_markup))
+        result.append(r'\set %s.shortInstrumentName = %s' % (
+            self._target_context_name, self.short_instrument_name_markup))
+        return result
 
     @apply
     def short_instrument_name():

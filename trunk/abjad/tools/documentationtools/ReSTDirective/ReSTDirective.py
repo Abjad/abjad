@@ -56,10 +56,6 @@ class ReSTDirective(TreeContainer):
         raise NotImplemented
 
     @property
-    def options(self):
-        return self._options
-
-    @property
     def node_klass(self):
         from abjad.tools import documentationtools
         return (
@@ -68,6 +64,10 @@ class ReSTDirective(TreeContainer):
             documentationtools.ReSTHorizontalRule,
             documentationtools.ReSTParagraph,
             )
+
+    @property
+    def options(self):
+        return self._options
 
     @property
     def rest_format(self):

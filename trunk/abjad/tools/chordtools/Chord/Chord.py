@@ -73,14 +73,6 @@ class Chord(Leaf):
         note_head = NoteHead(written_pitch=arg)
         return note_head in self.note_heads
 
-    def _copy_with_marks_but_without_children_or_spanners(self):
-        new = Leaf._copy_with_marks_but_without_children_or_spanners(self)
-        new.clear()
-        for note_head in self.note_heads:
-            new_note_head = copy.copy(note_head)
-            new.append(new_note_head)
-        return new
-
     def __copy__(self, *args):
         return self._copy_with_marks_but_without_children_or_spanners()
 
@@ -123,6 +115,16 @@ class Chord(Leaf):
         '''Read-only string summary of noteh eads in chord.
         '''
         return ' '.join([str(x) for x in self.note_heads])
+
+    ### PRIVATE METHODS ###
+
+    def _copy_with_marks_but_without_children_or_spanners(self):
+        new = Leaf._copy_with_marks_but_without_children_or_spanners(self)
+        new.clear()
+        for note_head in self.note_heads:
+            new_note_head = copy.copy(note_head)
+            new.append(new_note_head)
+        return new
 
     ### PUBLIC PROPERTIES ### 
 

@@ -51,6 +51,25 @@ class ReplaceInFilesScript(DirectoryScript):
         return 'text'
 
     @property
+    def long_description(self):
+        return None
+
+    @property
+    def scripting_group(self):
+        return 'replace'
+
+    @property
+    def short_description(self):
+        return 'Replace text.'
+
+    @property
+    def skipped_directories(self):
+        return [
+            '.svn',
+            'build'
+        ]
+
+    @property
     def skipped_files(self):
         return [
             __file__,
@@ -73,29 +92,49 @@ class ReplaceInFilesScript(DirectoryScript):
         ]
 
     @property
-    def skipped_directories(self):
-        return [
-            '.svn',
-            'build'
-        ]
-
-    @property
-    def long_description(self):
-        return None
-
-    @property
-    def scripting_group(self):
-        return 'replace'
-
-    @property
-    def short_description(self):
-        return 'Replace text.'
-
-    @property
     def version(self):
         return 1.0
 
     ### PRIVATE METHODS ###
+
+    def _get_naive_search_callable(self, args):
+        class NaiveSearch(object):
+            def __init__(self, pattern):
+                self.pattern = pattern
+            def __call__(self, line, pos):
+                index = line.find(self.pattern, pos)
+                if 0 <= index:
+                    return index, len(self.pattern)
+                return -1, 0
+        return NaiveSearch(args.old)
+
+    def _get_regex_search_callable(self, args):
+        class RegexSearch(object):
+            def __init__(self, pattern, escaped=False, whole_words_only=False):
+                try:
+                    if escaped:
+                        pattern = re.escape(pattern)
+                    if whole_words_only:
+                        pattern += r'\b'
+                    self.pattern = re.compile(pattern)
+                    self.whole_words_only = whole_words_only
+                except:
+                    raise ValueError("Can't compile {!r} as a regex pattern.".format(pattern))
+
+            def __call__(self, line, pos):
+                start, length = self._search(line, pos)
+                if self.whole_words_only and 0 < start:
+                    while start != -1 and (line[start-1].isalnum() or line[start-1] == '_'):
+                        start, length = self._search(line, start + length)
+                return start, length
+
+            def _search(self, line, pos):
+                match = self.pattern.search(line, pos)
+                if match is None:
+                    return -1, 0
+                return match.start(), match.end() - match.start()
+
+        return RegexSearch(args.old, escaped=not args.regex, whole_words_only=args.whole_words_only)
 
     def _process_file(self, args, path):
 
@@ -161,45 +200,6 @@ class ReplaceInFilesScript(DirectoryScript):
             index, length = search(line, index)
 
         return line, changes
-
-    def _get_naive_search_callable(self, args):
-        class NaiveSearch(object):
-            def __init__(self, pattern):
-                self.pattern = pattern
-            def __call__(self, line, pos):
-                index = line.find(self.pattern, pos)
-                if 0 <= index:
-                    return index, len(self.pattern)
-                return -1, 0
-        return NaiveSearch(args.old)
-
-    def _get_regex_search_callable(self, args):
-        class RegexSearch(object):
-            def __init__(self, pattern, escaped=False, whole_words_only=False):
-                try:
-                    if escaped:
-                        pattern = re.escape(pattern)
-                    if whole_words_only:
-                        pattern += r'\b'
-                    self.pattern = re.compile(pattern)
-                    self.whole_words_only = whole_words_only
-                except:
-                    raise ValueError("Can't compile {!r} as a regex pattern.".format(pattern))
-
-            def __call__(self, line, pos):
-                start, length = self._search(line, pos)
-                if self.whole_words_only and 0 < start:
-                    while start != -1 and (line[start-1].isalnum() or line[start-1] == '_'):
-                        start, length = self._search(line, start + length)
-                return start, length
-
-            def _search(self, line, pos):
-                match = self.pattern.search(line, pos)
-                if match is None:
-                    return -1, 0
-                return match.start(), match.end() - match.start()
-
-        return RegexSearch(args.old, escaped=not args.regex, whole_words_only=args.whole_words_only)
 
     ### PUBLIC METHODS ###
 

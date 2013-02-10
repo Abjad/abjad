@@ -109,22 +109,12 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def ABJAD_PATH(self):
-        module_parts = self.__module__.split('.')
-        filepath_parts = os.path.abspath(__file__).rpartition('.py')[0].split(os.path.sep)
-        for part in reversed(module_parts):
-            if part == 'abjad':
-                break
-            filepath_parts.pop()
-        return os.path.sep.join(filepath_parts)
+    def ABJAD_CONFIG_DIRECTORY_PATH(self):
+        return os.path.join(self.HOME_PATH, '.abjad')
 
     @property
     def ABJAD_CONFIG_FILE_PATH(self):
         return os.path.join(self.ABJAD_CONFIG_DIRECTORY_PATH, 'abjad.cfg')
-
-    @property
-    def ABJAD_CONFIG_DIRECTORY_PATH(self):
-        return os.path.join(self.HOME_PATH, '.abjad')
 
     @property
     def ABJAD_EXPERIMENTAL_PATH(self):
@@ -133,6 +123,16 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
     @property
     def ABJAD_OUTPUT_PATH(self):
         return self._settings['abjad_output']
+
+    @property
+    def ABJAD_PATH(self):
+        module_parts = self.__module__.split('.')
+        filepath_parts = os.path.abspath(__file__).rpartition('.py')[0].split(os.path.sep)
+        for part in reversed(module_parts):
+            if part == 'abjad':
+                break
+            filepath_parts.pop()
+        return os.path.sep.join(filepath_parts)
 
     @property
     def ABJAD_ROOT_PATH(self):
@@ -147,6 +147,19 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
     def get_config_spec(self):
         specs = self.get_option_specs()
         return ['{} = {}'.format(key, value) for key, value in sorted(specs.items())]
+
+    def get_initial_comment(self):
+        return [
+            '-*- coding: utf-8 -*-',
+            ' ',
+            'Abjad configuration file, created by Abjad on {}.'.format(time.strftime("%d %B %Y %H:%M:%S")),
+            'This file is interpreted by ConfigObj, and should follow ini syntax.',
+        ]
+
+    def get_option_comments(self):
+        options = self.get_option_definitions()
+        comments = [(key, options[key]['comment']) for key in options]
+        return dict(comments)
 
     def get_option_definitions(self):
         options = {
@@ -217,21 +230,7 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
         }
         return options
 
-    def get_option_comments(self):
-        options = self.get_option_definitions()
-        comments = [(key, options[key]['comment']) for key in options]
-        return dict(comments)
-
     def get_option_specs(self):
         options = self.get_option_definitions()
         specs = [(key, options[key]['spec']) for key in options]
         return dict(specs)
-
-    def get_initial_comment(self):
-        return [
-            '-*- coding: utf-8 -*-',
-            ' ',
-            'Abjad configuration file, created by Abjad on {}.'.format(time.strftime("%d %B %Y %H:%M:%S")),
-            'This file is interpreted by ConfigObj, and should follow ini syntax.',
-        ]
-

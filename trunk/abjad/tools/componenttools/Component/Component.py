@@ -41,21 +41,6 @@ class Component(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def _copy_with_marks_but_without_children_or_spanners(self):
-        from abjad.tools import marktools
-        new = type(self)(*self.__getnewargs__())
-        if getattr(self, '_override', None) is not None:
-            new._override = copy.copy(self.override)
-        if getattr(self, '_set', None) is not None:
-            new._set = copy.copy(self.set)
-        for mark in marktools.get_marks_attached_to_component(self):
-            new_mark = copy.copy(mark)
-            new_mark.attach(new)
-        return new
-
-    def _copy_with_children_and_marks_but_without_spanners(self):
-        return self._copy_with_marks_but_without_children_or_spanners()
-
     def __copy__(self, *args):
         return self._copy_with_marks_but_without_children_or_spanners()
 
@@ -77,15 +62,30 @@ class Component(AbjadObject):
 
     ### PRIVATE PROPERTIES ###
 
+    def _copy_with_children_and_marks_but_without_spanners(self):
+        return self._copy_with_marks_but_without_children_or_spanners()
+
+    def _copy_with_marks_but_without_children_or_spanners(self):
+        from abjad.tools import marktools
+        new = type(self)(*self.__getnewargs__())
+        if getattr(self, '_override', None) is not None:
+            new._override = copy.copy(self.override)
+        if getattr(self, '_set', None) is not None:
+            new._set = copy.copy(self.set)
+        for mark in marktools.get_marks_attached_to_component(self):
+            new_mark = copy.copy(mark)
+            new_mark.attach(new)
+        return new
+
+    @property
+    def _format_pieces(self):
+        return self._format_component(pieces=True)
+
     @property
     def _id_string(self):
         lhs = self._class_name
         rhs = getattr(self, 'name', None) or id(self)
         return '{}-{!r}'.format(lhs, rhs)
-
-    @property
-    def _format_pieces(self):
-        return self._format_component(pieces=True)
 
     @property
     def _prolations(self):
@@ -98,15 +98,15 @@ class Component(AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
-    @abc.abstractproperty
-    def duration_in_seconds(self):
-        pass
-
     @property
     def descendants(self):
         '''Read-only reference to component descendants score selection.'''
         from abjad.tools import componenttools
         return componenttools.Descendants(self)
+
+    @abc.abstractproperty
+    def duration_in_seconds(self):
+        pass
 
     @property
     def lilypond_format(self):
@@ -212,6 +212,61 @@ class Component(AbjadObject):
             self.parent._music.pop(index)
         self._ignore()
 
+    def _format_after_slot(self, format_contributions):
+        pass
+
+    def _format_before_slot(self, format_contributions):
+        pass
+
+    def _format_close_brackets_slot(self, format_contributions):
+        pass
+
+    def _format_closing_slot(self, format_contributions):
+        pass
+
+    def _format_component(self, pieces=False):
+        result = []
+        format_contributions = formattools.get_all_format_contributions(self)
+        result.extend(self._format_before_slot(format_contributions))
+        result.extend(self._format_open_brackets_slot(format_contributions))
+        result.extend(self._format_opening_slot(format_contributions))
+        result.extend(self._format_contents_slot(format_contributions))
+        result.extend(self._format_closing_slot(format_contributions))
+        result.extend(self._format_close_brackets_slot(format_contributions))
+        result.extend(self._format_after_slot(format_contributions))
+        contributions = []
+        for contributor, contribution in result:
+            contributions.extend(contribution)
+        if pieces:
+            return contributions
+        else:
+            return '\n'.join(contributions)
+
+    def _format_contents_slot(self, format_contributions):
+        pass
+
+    def _format_open_brackets_slot(self, format_contributions):
+        pass
+
+    def _format_opening_slot(self, format_contributions):
+        pass
+
+    def _get_format_contributions_for_slot(self, n, format_contributions=None):
+        if format_contributions is None:
+            format_contributions = formattools.get_all_format_contributions(self)
+        result = []
+        slots = ('before', 'open_brackets', 'opening',
+            'contents', 'closing', 'close_brackets', 'after')
+        if isinstance(n, str):
+            n = n.replace(' ', '_')
+        elif isinstance(n, int):
+            n = slots[n-1]
+        attr = getattr(self, '_format_{}_slot'.format(n))
+        for source, contributions in attr(format_contributions):
+            result.extend(contributions)
+        return result
+
+    # TODO: change name to something self-documenting
     def _ignore(self):
         '''Component loses pointer to parent but parent preserves pointer to component.
         Not composer-safe.
@@ -219,6 +274,43 @@ class Component(AbjadObject):
         self._mark_entire_score_tree_for_later_update('prolated')
         self._parent = None
 
+    def _initialize_keyword_values(self, **kwargs):
+        for key, value in kwargs.iteritems():
+            self._set_keyword_value(key, value)
+
+    def _set_keyword_value(self, key, value):
+        attribute_chain = key.split('__')
+        plug_in_name = attribute_chain[0]
+        names = attribute_chain[1:]
+        if plug_in_name == 'duration':
+            attribute_name = names[0]
+            command = 'self.%s.%s = %r' % (plug_in_name, attribute_name, value)
+            print command
+            if 'multiplier' not in command:
+                exec(command)
+        elif plug_in_name == 'override':
+            if len(names) == 2:
+                grob_name, attribute_name = names
+                exec('self.override.%s.%s = %r' % (grob_name, attribute_name, value))
+            elif len(names) == 3:
+                context_name, grob_name, attribute_name = names
+                exec('self.override.%s.%s.%s = %r' % (
+                    context_name, grob_name, attribute_name, value))
+            else:
+                raise ValueError
+        elif plug_in_name == 'set':
+            if len(names) == 1:
+                setting_name = names[0]
+                exec('self.set.%s = %r' % (setting_name, value))
+            elif len(names) == 2:
+                context_name, setting_name = names
+                exec('self.set.%s.%s = %r' % (context_name, setting_name, value))
+            else:
+                raise ValueError
+        else:
+            raise ValueError('\n\t: Unknown keyword argument plug-in name: "%s".' % plug_in_name)
+
+    # TODO: rename to something self-documenting
     def _switch(self, new_parent):
         '''Component loses pointer to parent and parent loses pointer to component.
         Then assign component to new parent.
@@ -258,96 +350,6 @@ class Component(AbjadObject):
                         named_children[name] = copy.copy(name_dictionary[name])
 
         self._mark_entire_score_tree_for_later_update('prolated')
-
-    def _format_component(self, pieces=False):
-        result = []
-        format_contributions = formattools.get_all_format_contributions(self)
-        result.extend(self._format_before_slot(format_contributions))
-        result.extend(self._format_open_brackets_slot(format_contributions))
-        result.extend(self._format_opening_slot(format_contributions))
-        result.extend(self._format_contents_slot(format_contributions))
-        result.extend(self._format_closing_slot(format_contributions))
-        result.extend(self._format_close_brackets_slot(format_contributions))
-        result.extend(self._format_after_slot(format_contributions))
-        contributions = []
-        for contributor, contribution in result:
-            contributions.extend(contribution)
-        if pieces:
-            return contributions
-        else:
-            return '\n'.join(contributions)
-
-    def _format_after_slot(self, format_contributions):
-        pass
-
-    def _format_before_slot(self, format_contributions):
-        pass
-
-    def _format_close_brackets_slot(self, format_contributions):
-        pass
-
-    def _format_closing_slot(self, format_contributions):
-        pass
-
-    def _format_contents_slot(self, format_contributions):
-        pass
-
-    def _format_open_brackets_slot(self, format_contributions):
-        pass
-
-    def _format_opening_slot(self, format_contributions):
-        pass
-
-    def _get_format_contributions_for_slot(self, n, format_contributions=None):
-        if format_contributions is None:
-            format_contributions = formattools.get_all_format_contributions(self)
-        result = []
-        slots = ('before', 'open_brackets', 'opening',
-            'contents', 'closing', 'close_brackets', 'after')
-        if isinstance(n, str):
-            n = n.replace(' ', '_')
-        elif isinstance(n, int):
-            n = slots[n-1]
-        attr = getattr(self, '_format_{}_slot'.format(n))
-        for source, contributions in attr(format_contributions):
-            result.extend(contributions)
-        return result
-
-    def _initialize_keyword_values(self, **kwargs):
-        for key, value in kwargs.iteritems():
-            self._set_keyword_value(key, value)
-
-    def _set_keyword_value(self, key, value):
-        attribute_chain = key.split('__')
-        plug_in_name = attribute_chain[0]
-        names = attribute_chain[1:]
-        if plug_in_name == 'duration':
-            attribute_name = names[0]
-            command = 'self.%s.%s = %r' % (plug_in_name, attribute_name, value)
-            print command
-            if 'multiplier' not in command:
-                exec(command)
-        elif plug_in_name == 'override':
-            if len(names) == 2:
-                grob_name, attribute_name = names
-                exec('self.override.%s.%s = %r' % (grob_name, attribute_name, value))
-            elif len(names) == 3:
-                context_name, grob_name, attribute_name = names
-                exec('self.override.%s.%s.%s = %r' % (
-                    context_name, grob_name, attribute_name, value))
-            else:
-                raise ValueError
-        elif plug_in_name == 'set':
-            if len(names) == 1:
-                setting_name = names[0]
-                exec('self.set.%s = %r' % (setting_name, value))
-            elif len(names) == 2:
-                context_name, setting_name = names
-                exec('self.set.%s.%s = %r' % (context_name, setting_name, value))
-            else:
-                raise ValueError
-        else:
-            raise ValueError('\n\t: Unknown keyword argument plug-in name: "%s".' % plug_in_name)
 
     ### MANGLED METHODS ###
 

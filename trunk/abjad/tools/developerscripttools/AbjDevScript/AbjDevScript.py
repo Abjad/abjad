@@ -73,10 +73,6 @@ class AbjDevScript(DeveloperScript):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def long_description(self):
-        return None
-
-    @property
     def developer_script_aliases(self):
         scripting_groups = []
         aliases = {}
@@ -138,6 +134,10 @@ class AbjDevScript(DeveloperScript):
             instance = klass()
             program_names[instance.program_name] = klass
         return program_names
+
+    @property
+    def long_description(self):
+        return None
 
     @property
     def short_description(self):

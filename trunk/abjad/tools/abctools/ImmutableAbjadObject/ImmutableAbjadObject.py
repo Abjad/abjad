@@ -16,11 +16,11 @@ class ImmutableAbjadObject(AbjadObject):
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
-    def __new__(klass, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         pass
 
-    def __init__(self, *args, **kwargs):
+    @abc.abstractmethod
+    def __new__(klass, *args, **kwargs):
         pass
 
     ### PRIVATE READ-ONLY PROPERTIES ###

@@ -65,18 +65,6 @@ class Container(Component):
         else:
             return False
 
-    def _copy_with_marks_but_without_children_or_spanners(self):
-        new = Component._copy_with_marks_but_without_children_or_spanners(self)
-        new.is_parallel = self.is_parallel
-        return new
-
-    def _copy_with_children_and_marks_but_without_spanners(self):
-        new = self._copy_with_marks_but_without_children_or_spanners()
-        for component in self.music:
-            new_component = copy.deepcopy(component)
-            new.append(new_component)
-        return new
-
     def __deepcopy__(self, memo):
         return self._copy_with_children_and_marks_but_without_spanners()
 
@@ -182,6 +170,49 @@ class Container(Component):
         self._set_item(slice(len(self), len(self)), [component],
             withdraw_components_in_expr_from_crossing_spanners=False)
 
+    def _copy_with_children_and_marks_but_without_spanners(self):
+        new = self._copy_with_marks_but_without_children_or_spanners()
+        for component in self.music:
+            new_component = copy.deepcopy(component)
+            new.append(new_component)
+        return new
+
+    def _copy_with_marks_but_without_children_or_spanners(self):
+        new = Component._copy_with_marks_but_without_children_or_spanners(self)
+        new.is_parallel = self.is_parallel
+        return new
+
+    def _format_after_slot(self, format_contributions):
+        result = []
+        result.append(('lilypond command marks', 
+            format_contributions.get('after', {}).get('lilypond command marks', [])))
+        result.append(('comments', format_contributions.get('after', {}).get('comments', [])))
+        return tuple(result)
+
+    def _format_before_slot(self, format_contributions):
+        result = []
+        result.append(('comments', format_contributions.get('before', {}).get('comments', [])))
+        result.append(('lilypond command marks', 
+            format_contributions.get('before', {}).get('lilypond command marks', [])))
+        return tuple(result)
+
+    def _format_close_brackets_slot(self, format_contributions):
+        result = []
+        if self.is_parallel:
+            brackets_close = ['>>']
+        else:
+            brackets_close = ['}']
+        result.append([('close brackets', ''), brackets_close])
+        return tuple(result)
+
+    def _format_closing_slot(self, format_contributions):
+        result = []
+        result.append(('grob reverts', format_contributions.get('grob reverts', [])))
+        result.append(('lilypond command marks', 
+            format_contributions.get('closing', {}).get('lilypond command marks', [])))
+        result.append(('comments', format_contributions.get('closing', {}).get('comments', [])))
+        return self._format_slot_contributions_with_indent(result)
+
     def _format_content_pieces(self):
         result = []
         for m in self._music:
@@ -189,12 +220,9 @@ class Container(Component):
         result = ['\t' + x for x in result]
         return result
         
-    def _format_before_slot(self, format_contributions):
+    def _format_contents_slot(self, format_contributions):
         result = []
-        result.append(('comments', format_contributions.get('before', {}).get('comments', [])))
-        result.append(('lilypond command marks', format_contributions.get('before', {}).get('lilypond command marks', [])))
-        #result.append(formattools.get_comment_format_contributions_for_slot(self, 'before'))
-        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'before'))
+        result.append([('contents', '_contents'), self._format_content_pieces()])
         return tuple(result)
 
     def _format_open_brackets_slot(self, format_contributions):
@@ -209,46 +237,11 @@ class Container(Component):
     def _format_opening_slot(self, format_contributions):
         result = []
         result.append(('comments', format_contributions.get('opening', {}).get('comments', [])))
-        result.append(('lilypond command marks', format_contributions.get('opening', {}).get('lilypond command marks', [])))
+        result.append(('lilypond command marks', 
+            format_contributions.get('opening', {}).get('lilypond command marks', [])))
         result.append(('grob overrides', format_contributions.get('grob overrides', [])))
         result.append(('context settings', format_contributions.get('context settings', [])))
-        #result.append(formattools.get_comment_format_contributions_for_slot(self, 'opening'))
-        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'opening'))
-        #result.append(formattools.get_grob_override_format_contributions(self))
-        #result.append(formattools.get_context_setting_format_contributions(self))
         return self._format_slot_contributions_with_indent(result)
-
-    def _format_contents_slot(self, format_contributions):
-        result = []
-        result.append([('contents', '_contents'), self._format_content_pieces()])
-        return tuple(result)
-
-    def _format_closing_slot(self, format_contributions):
-        result = []
-        result.append(('grob reverts', format_contributions.get('grob reverts', [])))
-        result.append(('lilypond command marks', format_contributions.get('closing', {}).get('lilypond command marks', [])))
-        result.append(('comments', format_contributions.get('closing', {}).get('comments', [])))
-        #result.append(formattools.get_grob_revert_format_contributions(self))
-        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'closing'))
-        #result.append(formattools.get_comment_format_contributions_for_slot(self, 'closing'))
-        return self._format_slot_contributions_with_indent(result)
-
-    def _format_close_brackets_slot(self, format_contributions):
-        result = []
-        if self.is_parallel:
-            brackets_close = ['>>']
-        else:
-            brackets_close = ['}']
-        result.append([('close brackets', ''), brackets_close])
-        return tuple(result)
-
-    def _format_after_slot(self, format_contributions):
-        result = []
-        result.append(('lilypond command marks', format_contributions.get('after', {}).get('lilypond command marks', [])))
-        result.append(('comments', format_contributions.get('after', {}).get('comments', [])))
-        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'after'))
-        #result.append(formattools.get_comment_format_contributions_for_slot(self, 'after'))
-        return tuple(result)
 
     def _format_slot_contributions_with_indent(self, slot):
         result = []
