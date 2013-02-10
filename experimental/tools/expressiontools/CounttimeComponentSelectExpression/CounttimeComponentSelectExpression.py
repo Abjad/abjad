@@ -16,13 +16,17 @@ from experimental.tools.expressiontools.SelectExpression import SelectExpression
 class CounttimeComponentSelectExpression(SelectExpression):
     r'''Counttime component select expression.
 
+    Preparatory definitions:
+
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
-    Select voice ``1`` leaves that start during score::
+    Example 1. Select voice ``1`` leaves that start during score:
+
+    ::
 
         >>> select_expression = score_specification.select_leaves('Voice 1')
 
@@ -36,7 +40,9 @@ class CounttimeComponentSelectExpression(SelectExpression):
             voice_name='Voice 1'
             )
 
-    Select voice ``1`` leaves that start during segment ``'red'``::
+    Example 2. Select voice ``1`` leaves that start during segment ``'red'``:
+
+    ::
 
         >>> select_expression = red_segment.select_leaves('Voice 1')
 
@@ -87,7 +93,7 @@ class CounttimeComponentSelectExpression(SelectExpression):
 
     @property
     def classes(self):
-        '''Classes of counttime component select expression.
+        '''Counttime component select expression classes.
 
         Return class inventory or none.
         '''

@@ -8,13 +8,15 @@ from experimental.tools.expressiontools.SelectExpression import SelectExpression
 class BeatSelectExpression(SelectExpression):
     '''Beat select expression.
 
+    Preparatory definitions:
+
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
     
-    Select voice ``1`` beats that start during score:
+    Example 1. Select voice ``1`` beats that start during score:
 
     ::
 
@@ -27,7 +29,7 @@ class BeatSelectExpression(SelectExpression):
             voice_name='Voice 1'
             )
 
-    Select voice ``1`` beats that start during segment ``'red'``:
+    Example 2. Select voice ``1`` beats that start during segment ``'red'``:
 
     ::
 

@@ -4,7 +4,7 @@ from experimental.tools.expressiontools.AttributeNameEnumeration import Attribut
 
 
 class AttributeDictionary(AbjadObject, OrderedDict):
-    '''Single-context set expression attribute dictionary.
+    '''Attribute dictionary.
     '''
 
     ### CLASS ATTRIBUTES ##

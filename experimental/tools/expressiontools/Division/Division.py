@@ -10,21 +10,21 @@ class Division(NonreducedFraction, BoundedObject):
 
     Offset-positioned, bounded, nonreduced fraction.
 
-    Initialize from string:
+    Example 1. Initialize from string:
 
     ::
 
         >>> expressiontools.Division('[5, 8)')
         Division('[5, 8)')
 
-    Initialize from pair and optional open / closed keywords:
+    Example 2. Initialize from pair and optional open / closed keywords:
 
     ::
 
         >>> expressiontools.Division((5, 8), is_right_open=True, start_offset=Offset(1, 8))
         Division('[5, 8)', start_offset=Offset(1, 8))
 
-    Initialize from other division:
+    Example 3. Initialize from other division:
 
         >>> expressiontools.Division(_)
         Division('[5, 8)', start_offset=Offset(1, 8))
