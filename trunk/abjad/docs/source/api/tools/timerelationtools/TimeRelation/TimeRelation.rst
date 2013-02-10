@@ -30,6 +30,9 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.__call__
+   :noindex:
+
 .. automethod:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.__eq__
    :noindex:
 
