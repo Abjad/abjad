@@ -26,6 +26,12 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        '''True when `expr` is a timespan-scoped single-context set expression
+        with same source, target timespan and target context name.
+        Otherwise false.
+
+        Return boolean.
+        '''
         if isinstance(expr, type(self)):
             if self.source == expr.source and \
                 self.target_timespan == expr.target_timespan and \
@@ -34,6 +40,12 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         return False
 
     def __lt__(self, expr):
+        '''True when timespan-scoped single-context set expression target timespan
+        is less than `expr` target_timespan.
+        Otherwise false.
+
+        Return boolean.
+        '''
         if self.target_timespan.starts_before_timespan_starts(expr):
             return True
         elif self.target_timespan.starts_when_timespan_starts(expr):
@@ -41,11 +53,11 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         return False
 
     def __or__(self, set_expression):
-        '''Logical OR of set expression and `set_expression`.
+        '''Logical OR of timespan-scoped single-context set expression and `set_expression`.
 
-        Return newly constructed set expression.
+        Raise exception when timespan-scoped single-context set expression can not fuse with `set_expression`.
 
-        Raise exception when set expression can not fuse with `set_expression`.
+        Return timespan inventory.
         '''
         assert self._can_fuse(set_expression)
         stop_offset = self.target_timespan.stop_offset + set_expression.target_timespan.duration
@@ -54,9 +66,9 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         return timespantools.TimespanInventory([result])
 
     def __sub__(self, timespan):
-        '''Subtract `timespan` from set expression.
+        '''Subtract `timespan` from timespan-scoped single-context set expression.
 
-        Operate in place and return set expression inventory.
+        Operate in place and return timespan-scoped single-context set expression inventory.
         '''
         from experimental.tools import expressiontools
         timespans = self.target_timespan - timespan
@@ -113,6 +125,6 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
     def evaluate(self):
         '''Evaluate timespan-scoped single-context set expression.
         
-        Return set expression.
+        Return region expression.
         '''
         pass

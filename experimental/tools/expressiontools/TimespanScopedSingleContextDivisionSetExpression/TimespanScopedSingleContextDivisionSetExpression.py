@@ -21,10 +21,6 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
     ### PRIVATE METHODS ###
 
     def _can_fuse(self, expr):
-        '''True when self can fuse `expr` to the end of self. Otherwise false.
-
-        Return boolean.
-        '''
         if not isinstance(expr, type(self)):
             return False
         if self.truncate:
@@ -41,7 +37,11 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
 
     @property
     def truncate(self):
-        '''Return boolean.
+        '''True when timespan-scoped single-context division set expression
+        should truncate at segment boundaries.
+        Otherwise false.
+
+        Return boolean.
         '''
         return self._truncate
 
