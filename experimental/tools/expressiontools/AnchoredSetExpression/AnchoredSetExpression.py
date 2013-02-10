@@ -22,7 +22,7 @@ class AnchoredSetExpression(SetExpression, AnchoredExpression):
         assert isinstance(source, (expressiontools.Expression)), repr(expression)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))
-        SetExpression.__init__(self, source=source)
+        SetExpression.__init__(self, source=source, target_timespan=target_timespan)
         AnchoredExpression.__init__(self, anchor=target_timespan)
         self._attribute = attribute
         self._persist = persist
