@@ -18,11 +18,9 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
     # TODO: possibly remove 'fresh'?
     def __init__(self, attribute=None, source=None, target_timespan=None, target_context_name=None, 
         fresh=None):
-        assert isinstance(attribute, str), repr(attribute)
         assert isinstance(target_context_name, (str, type(None))), repr(target_context_name)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
-        SetExpression.__init__(self, source=source, target_timespan=target_timespan)
-        self._attribute = attribute
+        SetExpression.__init__(self, attribute=attribute, source=source, target_timespan=target_timespan)
         self._target_context_name = target_context_name
         self._fresh = fresh
 
@@ -76,14 +74,6 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         pass
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def attribute(self):
-        '''Set expression attribute.
-
-        Return string.
-        '''
-        return self._attribute
 
     @property
     def fresh(self):

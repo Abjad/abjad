@@ -9,6 +9,9 @@ expressiontools.SetExpression
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.attribute
+   :noindex:
+
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.source
    :noindex:
 
