@@ -27,10 +27,10 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.root_identifier
+.. autoattribute:: experimental.tools.expressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.root_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.root_specification
+.. autoattribute:: experimental.tools.expressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.root_specification_identifier
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.score_specification

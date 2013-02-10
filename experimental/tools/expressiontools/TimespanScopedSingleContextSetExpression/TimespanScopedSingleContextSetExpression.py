@@ -15,7 +15,6 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
 
     ### INTIAILIZER ###
 
-    # TODO: possibly remove 'fresh'?
     def __init__(self, attribute=None, source=None, target_timespan=None, target_context_name=None, 
         fresh=None):
         assert isinstance(target_context_name, (str, type(None))), repr(target_context_name)

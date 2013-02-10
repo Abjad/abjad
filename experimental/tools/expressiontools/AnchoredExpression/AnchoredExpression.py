@@ -36,13 +36,13 @@ class AnchoredExpression(Expression):
 
     ### PRIVATE METHODS ###
 
-    def _set_root(self, root_identifier):
-        assert isinstance(root_identifier, (str, type(None)))
+    def _set_root_specification(self, root_specification_identifier):
+        assert isinstance(root_specification_identifier, (str, type(None)))
         if isinstance(self.anchor, (str, type(None))):
-            self._anchor = root_identifier
+            self._anchor = root_specification_identifier
         else:
             anchor = copy.deepcopy(self.anchor)
-            anchor._set_root(root_identifier)
+            anchor._set_root_specification(root_specification_identifier)
             self._anchor = anchor
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -66,7 +66,7 @@ class AnchoredExpression(Expression):
 
         Return boolean.
         '''
-        return self.root_identifier is None
+        return self.root_specification_identifier is None
 
     @property
     def is_segment_rooted(self):
@@ -75,10 +75,10 @@ class AnchoredExpression(Expression):
 
         Return boolean.
         '''
-        return isinstance(self.root_identifier, str)
+        return isinstance(self.root_specification_identifier, str)
 
     @property
-    def root_identifier(self):
+    def root_specification_identifier(self):
         '''Anchored expression root identifier.
 
         Segment-rooted expressions return string.
@@ -88,16 +88,16 @@ class AnchoredExpression(Expression):
         if isinstance(self.anchor, (str, type(None))):
             return self.anchor
         else:
-            return self.anchor.root_identifier
+            return self.anchor.root_specification_identifier
         
     @property
     def root_specification(self):
         '''Anchored expression root specification.
 
-        Return score specification or segment specification.
+        Return specification.
         '''
         if self.is_segment_rooted:
-            return self.score_specification.segment_specifications[self.root_identifier]
+            return self.score_specification.segment_specifications[self.root_specification_identifier]
         else:
             return self.score_specification
 

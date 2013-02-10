@@ -21,10 +21,10 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SelectExpression.SelectExpression.SelectExpression.is_segment_rooted
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SelectExpression.SelectExpression.SelectExpression.root_identifier
+.. autoattribute:: experimental.tools.expressiontools.SelectExpression.SelectExpression.SelectExpression.root_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SelectExpression.SelectExpression.SelectExpression.root_specification
+.. autoattribute:: experimental.tools.expressiontools.SelectExpression.SelectExpression.SelectExpression.root_specification_identifier
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.SelectExpression.SelectExpression.SelectExpression.score_specification

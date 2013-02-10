@@ -16,7 +16,7 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        '''Evaluate timespan of single-context time signature set expression.
+        '''Evaluate single-context time signature set expression.
 
         Return timespan-scoped single-context time signature set expression.
         '''

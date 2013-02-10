@@ -18,10 +18,10 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.is_segment_rooted
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.root_identifier
+.. autoattribute:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.root_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.root_specification
+.. autoattribute:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.root_specification_identifier
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.score_specification

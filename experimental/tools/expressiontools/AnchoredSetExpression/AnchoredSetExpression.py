@@ -40,7 +40,7 @@ class AnchoredSetExpression(SetExpression, AnchoredExpression):
     def target_timespan(self):
         '''Anchored set expression target timespan.
 
-        Return timespan.
+        Return timespan expression.
         '''
         return self.anchor
 

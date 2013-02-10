@@ -5,7 +5,7 @@ from experimental.tools.expressiontools.AnchoredSetExpression import AnchoredSet
 class MultipleContextSetExpression(AnchoredSetExpression):
     r'''Multiple-context set expression.
 
-    Set `attribute` to `source` for `anchor` target timespan over all `contexts`:
+    Set `attribute` to `source` for `target_timespan` over all `contexts`:
 
     ::
 
@@ -29,7 +29,7 @@ class MultipleContextSetExpression(AnchoredSetExpression):
             persist=True
             )
 
-    Composers create multiple-context set expressions with set methods.
+    Set methods create multiple-context set expressions.
     '''
 
     ### INITIAILIZER ###
@@ -55,15 +55,19 @@ class MultipleContextSetExpression(AnchoredSetExpression):
 
     @property
     def target_context_names(self):
-        '''Multiple-context set expression context names.
+        '''Multiple-context set expression target context names.
     
-        Return list of strings or none.
+        Return list or none.
         '''
         return self._target_context_names
 
     ### PUBLIC METHODS ###
 
     def evaluate(self):
+        '''Evaluate multiple-context set expression.
+
+        Return list of single-context set expressions.
+        '''
         single_context_set_expressions = []
         single_context_set_expression_class = \
             self._attribute_to_single_context_set_expression_class(self.attribute)
@@ -87,6 +91,10 @@ class MultipleContextSetExpression(AnchoredSetExpression):
         return single_context_set_expressions
 
     def evaluate_and_store_in_root_specification(self):
+        '''Evaluate multiple-context set expressions and store in root specification.
+
+        Return none.
+        ''' 
         fresh_single_context_set_expressions = self.evaluate()
         assert all([x.fresh for x in fresh_single_context_set_expressions])
         self.root_specification.fresh_single_context_set_expressions.extend(

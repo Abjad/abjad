@@ -6,7 +6,9 @@ from experimental.tools.expressiontools.AnchoredSetExpression import AnchoredSet
 class SingleContextSetExpression(AnchoredSetExpression):
     r'''Single-context set expression.
 
-    Set `attribute` to `source` for single-context `target_timespan`::
+    Set `attribute` to `source` for `target_timespan` in `target_context_name`:
+
+    ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template)
@@ -42,7 +44,7 @@ class SingleContextSetExpression(AnchoredSetExpression):
             persist=True
             )
 
-    Composers create multiple-context set expressions with set methods.
+    Set methods produce multiple-context set expressions.
 
     Multiple-context set expressions produce single-context set expressions.
 
@@ -60,6 +62,23 @@ class SingleContextSetExpression(AnchoredSetExpression):
         self._fresh = fresh
         self._target_context_name = target_context_name
 
+    ### PRIVATE METHODS ###
+
+    def _copy_and_set_root_specification(self, root):
+        '''Copy single-context set expression.
+
+        Set copy root specification to `root`.
+
+        Set copy `fresh` to false.
+        
+        Return copy.
+        '''
+        assert isinstance(root, (str, type(None)))
+        new_set_expression = copy.deepcopy(self)
+        new_set_expression._set_root_specification(root)
+        new_set_expression._fresh = False
+        return new_set_expression
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -72,24 +91,6 @@ class SingleContextSetExpression(AnchoredSetExpression):
         return self._fresh
 
     @property
-    def storage_format(self):
-        '''Single-context set expression storage format::
-
-            >>> z(fresh_single_context_set_expression)
-            expressiontools.SingleContextTimeSignatureSetExpression(
-                source=expressiontools.PayloadExpression(
-                    ((4, 8), (3, 8))
-                    ),
-                target_timespan='red',
-                fresh=True,
-                persist=True
-                )
-
-        Return string.
-        '''
-        return InputSetExpression.storage_format.fget(self)
-
-    @property
     def target_context_name(self):
         '''Single-context set expression context name.
 
@@ -98,21 +99,6 @@ class SingleContextSetExpression(AnchoredSetExpression):
         return self._target_context_name
 
     ### PUBLIC METHODS ###
-
-    def copy_and_set_root(self, root):
-        '''Copy single-context set expression.
-
-        Set copy root to `root`.
-
-        Set copy `fresh` to false.
-        
-        Return copy.
-        '''
-        assert isinstance(root, (str, type(None)))
-        new_set_expression = copy.deepcopy(self)
-        new_set_expression._set_root(root)
-        new_set_expression._fresh = False
-        return new_set_expression
 
     @abc.abstractmethod
     def evaluate(self):

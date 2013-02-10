@@ -67,7 +67,7 @@ class Interpreter(AbjadObject):
             # store persistent single-context set expressions in current segment specification
             for persistent_single_context_set_expression in persistent_single_context_set_expressions:
                 persistent_single_context_set_expression = \
-                    persistent_single_context_set_expression.copy_and_set_root(
+                    persistent_single_context_set_expression._copy_and_set_root_specification(
                     segment_specification.segment_name)
                 persistent_single_context_set_expression.store_in_root_specification_by_context_and_attribute()
             # store fresh single-context-set expressions in current segment specification

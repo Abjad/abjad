@@ -21,10 +21,10 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.is_segment_rooted
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.root_identifier
+.. autoattribute:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.root_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.root_specification
+.. autoattribute:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.root_specification_identifier
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.score_specification
