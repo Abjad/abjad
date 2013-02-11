@@ -1,5 +1,5 @@
 Abjad 2.11
-    Date of package: 2012-02-10
+    Date of package: 2013-02-10
     Revision of Abjad repository: r9443
 
     Packaging environment:
