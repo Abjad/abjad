@@ -28,8 +28,6 @@ def list_known_markup_functions():
         doubleflat
         doublesharp
         draw-circle
-        draw-dashed-line
-        draw-dotted-line
         draw-hline
         draw-line
         dynamic
