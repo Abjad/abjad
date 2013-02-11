@@ -2,7 +2,7 @@ from experimental.tools.expressiontools.SetExpressionLookupExpression import Set
 
 
 class TimeSignatureSetExpressionLookupExpression(SetExpressionLookupExpression):
-    '''Set-time signature lookup expression.
+    '''Time signature set expression lookup expression.
     '''
 
     ### INITIALIZER ###
@@ -14,6 +14,10 @@ class TimeSignatureSetExpressionLookupExpression(SetExpressionLookupExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
+        '''Evaluate time signature set expression lookup expression.
+
+        Return payload expression.
+        '''
         from experimental.tools import expressiontools
         time_signatures = self.root_specification.time_signatures[:]
         expression = expressiontools.PayloadExpression(time_signatures)

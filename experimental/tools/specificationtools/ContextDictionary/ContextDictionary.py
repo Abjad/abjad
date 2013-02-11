@@ -5,6 +5,8 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class ContextDictionary(AbjadObject, OrderedDict):
+    '''Context dictionary.
+    '''
 
     ### INITIALIZER ###
 
@@ -48,22 +50,26 @@ class ContextDictionary(AbjadObject, OrderedDict):
 
     @property
     def score(self):
+        '''Context dictionary score.
+        
+        Return score.
+        '''
         return self._score
 
     @property
     def score_name(self):
+        '''Context dictionary score name.
+
+        Return string or none.
+        '''
         for context in iterationtools.iterate_contexts_in_expr(self.score):
             if isinstance(context, scoretools.Score):
                 return context.name
 
     @property
     def score_proxy(self):
+        '''Context dictionary score proxy.
+
+        Return context proxy.
+        '''
         return self[self.score_name]
-
-    ### PUBLIC METHODS ###
-
-    def all_are_context_names(self, expr):
-        try:
-            return all([x in self for x in expr])
-        except:
-            return False

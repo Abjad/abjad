@@ -5,7 +5,7 @@ from experimental.tools.specificationtools.Specification import Specification
 class SegmentSpecification(Specification):
     r'''Segment specification.
 
-    The examples below reference the segment specifications defined here::
+    ::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
         >>> score_specification = specificationtools.ScoreSpecificationInterface(template)
@@ -47,7 +47,9 @@ class SegmentSpecification(Specification):
     ### SPECIAL METHODS ###
 
     def __getitem__(self, expr):
-        '''Get context with name::
+        '''Get context with name.
+
+        ::
 
             >>> red_segment['Voice 1']
             ContextProxy()
@@ -62,7 +64,9 @@ class SegmentSpecification(Specification):
             return self.single_context_set_expressions_by_context.__getitem__(expr) 
         
     def __repr__(self):
-        '''Segment specification interpreter representation::
+        '''Segment specification interpreter representation.
+
+        ::
 
             >>> red_segment
             SegmentSpecification('red')
@@ -75,7 +79,9 @@ class SegmentSpecification(Specification):
 
     @property
     def context_names(self):
-        r'''Segment specification context names::
+        r'''Segment specification context names.
+        
+        ::
 
             >>> for x in red_segment.context_names:
             ...     x
@@ -87,35 +93,71 @@ class SegmentSpecification(Specification):
             'Staff 2'
             'Voice 2'
 
-        Return list of strings.
+        Return list.
         '''
         return Specification.context_names.fget(self)
 
     @property
+    def fresh_single_context_set_expressions(self):
+        '''Segment specification fresh single-context set expressions.
+
+        ::
+
+            >>> z(red_segment.fresh_single_context_set_expressions)
+            timespantools.TimespanInventory([
+                expressiontools.SingleContextTimeSignatureSetExpression(
+                    source_expression=expressiontools.PayloadExpression(
+                        ((2, 8), (3, 8), (4, 8))
+                        ),
+                    target_timespan='red',
+                    fresh=True,
+                    persist=True
+                    ),
+                expressiontools.SingleContextRhythmSetExpression(
+                    source_expression=expressiontools.RhythmMakerPayloadExpression(
+                        payload=(TaleaRhythmMaker('sixteenths'),)
+                        ),
+                    target_timespan='red',
+                    fresh=True,
+                    persist=True
+                    )
+                ])
+
+        Return timespan inventory.
+        '''
+        return Specification.fresh_single_context_set_expressions.fget(self)
+
+    @property
     def multiple_context_set_expressions(self):
-        '''Segment specification multiple-context set-expressions::
+        '''Segment specification multiple-context set-expressions.
+
+        ::
 
             >>> z(red_segment.multiple_context_set_expressions)
             timespantools.TimespanInventory([])
 
-        Return set expression inventory.
+        Return timespan inventory.
         '''
         return Specification.multiple_context_set_expressions.fget(self)
 
     @property
     def score_model(self):
-        '''Segment specification score model::
+        '''Segment specification score model.
+
+        ::
 
             >>> red_segment.score_model
             Score-"Grouped Rhythmic Staves Score"<<1>>
 
-        Return Abjad score object.
+        Return score.
         '''
         return Specification.score_model.fget(self)
 
     @property
     def score_name(self):
-        r'''Segment specification score name::
+        r'''Segment specification score name.
+
+        ::
 
             >>> red_segment.score_name
             'Grouped Rhythmic Staves Score'
@@ -126,7 +168,9 @@ class SegmentSpecification(Specification):
 
     @property
     def score_template(self):
-        r'''Segment specification score template::
+        r'''Segment specification score template.
+
+        ::
 
             >>> red_segment.score_template
             GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -137,7 +181,9 @@ class SegmentSpecification(Specification):
 
     @property
     def segment_name(self):
-        '''Segment specification name::
+        '''Segment specification name.
+
+        ::
 
             >>> red_segment.segment_name
             'red'
@@ -148,7 +194,9 @@ class SegmentSpecification(Specification):
 
     @property
     def single_context_set_expressions_by_context(self):
-        r'''Segment specification context proxy dictionary::
+        r'''Segment specification single-context set expressions by context.
+
+        ::
 
             >>> for key in red_segment.single_context_set_expressions_by_context:
             ...     key
@@ -166,12 +214,12 @@ class SegmentSpecification(Specification):
 
     @property
     def specification_name(self):
-        '''Generalized way of refering to both score and segment specifications::
+        '''Segment specification specification name.
+
+        ::
 
             >>> red_segment.specification_name
             'red'
-
-        Specification name of segment specification is same as segment name.
 
         Return string.
         '''
@@ -179,7 +227,9 @@ class SegmentSpecification(Specification):
 
     @property
     def storage_format(self):
-        r'''Segment specification storage format::
+        r'''Segment specification storage format.
+        
+        ::
 
             >>> z(red_segment)
             specificationtools.SegmentSpecification(
@@ -195,18 +245,22 @@ class SegmentSpecification(Specification):
 
     @property
     def time_signatures(self):
-        '''Time signatures set on segment during time signature interpretation.
+        '''Segment specification time signatures.
+
+        ::
 
                 >>> red_segment.time_signatures
                 [NonreducedFraction(2, 8), NonreducedFraction(3, 8), NonreducedFraction(4, 8)]
 
-        Return list of zero or more nonreduced fractions.
+        Return list.
         '''
         return [mathtools.NonreducedFraction(x) for x in self._time_signatures]
 
     @property
     def timespan(self): 
-        '''Segment specification timespan::
+        '''Segment specification timespan.
+
+        ::
 
             >>> red_segment.timespan
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(9, 8))

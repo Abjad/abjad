@@ -8,7 +8,9 @@ from experimental.tools.specificationtools.Specification import Specification
 class ScoreSpecification(Specification):
     r'''Score specification.
 
-    The examples below reference the score specification defined here::
+    Preliminary definitions:
+
+    ::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
         >>> score_specification = specificationtools.ScoreSpecificationInterface(template)
@@ -29,8 +31,6 @@ class ScoreSpecification(Specification):
     ::
 
         >>> score = score_specification.interpret()
-
-    The examples below use this redefinition:
 
     ::
 
@@ -55,7 +55,9 @@ class ScoreSpecification(Specification):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        '''Score specification interpreter representation::
+        '''Score specification interpreter representation.
+
+        ::
 
             >>> score_specification
             ScoreSpecification('red', 'orange', 'yellow')
@@ -88,7 +90,9 @@ class ScoreSpecification(Specification):
 
     @property
     def context_names(self):
-        r'''Score specification context names::
+        r'''Score specification context names.
+    
+        ::
 
             >>> for x in score_specification.context_names:
             ...     x
@@ -105,8 +109,23 @@ class ScoreSpecification(Specification):
         return Specification.context_names.fget(self)
 
     @property
+    def fresh_single_context_set_expressions(self):
+        '''Score specification fresh single-context set expressions.
+
+        ::
+
+            >>> z(score_specification.fresh_single_context_set_expressions)
+            timespantools.TimespanInventory([])
+
+        Return timespan inventory.
+        '''
+        return Specification.fresh_single_context_set_expressions.fget(self)
+
+    @property
     def interface(self):
-        '''Read-only reference to score specification interface::
+        '''Score specification interface.
+
+        ::
 
             >>> score_specification.interface 
             ScoreSpecificationInterface()
@@ -117,7 +136,9 @@ class ScoreSpecification(Specification):
 
     @property
     def multiple_context_set_expressions(self):
-        '''Read-only reference to multiple context set expressions::
+        '''Score specification multiple-context set expressions.
+
+        ::
 
             >>> z(score_specification.multiple_context_set_expressions)
             timespantools.TimespanInventory([
@@ -155,7 +176,7 @@ class ScoreSpecification(Specification):
                     )
                 ])
 
-        Return set expression proxy.
+        Return context dictionary.
         '''
         return Specification.multiple_context_set_expressions.fget(self)
     
@@ -163,9 +184,66 @@ class ScoreSpecification(Specification):
     def payload_expressions_by_voice(self):
         '''Score specification payload expressions by voice.
 
-        .. note:: add example.
+        ::
 
-        Return context proxy dictionary.
+            >>> for voice_proxy in score_specification.payload_expressions_by_voice.itervalues():
+            ...     for timespan_inventory in voice_proxy.payload_expressions_by_attribute.itervalues():
+            ...         if timespan_inventory:
+            ...             z(timespan_inventory)
+            timespantools.TimespanInventory([
+                expressiontools.StartPositionedDivisionPayloadExpression(
+                    payload=expressiontools.DivisionList(
+                        [Division('[2, 8]', start_offset=Offset(0, 1)), 
+                        Division('[3, 8]', start_offset=Offset(1, 4)), 
+                        Division('[4, 8]', start_offset=Offset(5, 8)), 
+                        Division('[4, 16]', start_offset=Offset(9, 8)), 
+                        Division('[4, 16]', start_offset=Offset(11, 8)), 
+                        Division('[5, 16]', start_offset=Offset(13, 8)), 
+                        Division('[5, 16]', start_offset=Offset(31, 16))],
+                        start_offset=durationtools.Offset(0, 1),
+                        voice_name='Voice 1'
+                        ),
+                    start_offset=durationtools.Offset(0, 1),
+                    voice_name='Voice 1'
+                    )
+                ])
+            timespantools.TimespanInventory([
+                expressiontools.StartPositionedRhythmPayloadExpression(
+                    payload=containertools.Container(
+                        music=()
+                        ),
+                    start_offset=durationtools.Offset(0, 1),
+                    voice_name='Voice 1'
+                    )
+                ])
+            timespantools.TimespanInventory([
+                expressiontools.StartPositionedDivisionPayloadExpression(
+                    payload=expressiontools.DivisionList(
+                        [Division('[2, 8]', start_offset=Offset(0, 1)), 
+                        Division('[3, 8]', start_offset=Offset(1, 4)), 
+                        Division('[4, 8]', start_offset=Offset(5, 8)), 
+                        Division('[4, 16]', start_offset=Offset(9, 8)), 
+                        Division('[4, 16]', start_offset=Offset(11, 8)), 
+                        Division('[5, 16]', start_offset=Offset(13, 8)), 
+                        Division('[5, 16]', start_offset=Offset(31, 16))],
+                        start_offset=durationtools.Offset(0, 1),
+                        voice_name='Voice 2'
+                        ),
+                    start_offset=durationtools.Offset(0, 1),
+                    voice_name='Voice 2'
+                    )
+                ])
+            timespantools.TimespanInventory([
+                expressiontools.StartPositionedRhythmPayloadExpression(
+                    payload=containertools.Container(
+                        music=()
+                        ),
+                    start_offset=durationtools.Offset(0, 1),
+                    voice_name='Voice 2'
+                    )
+                ])
+
+        Return voice dictionary.
         '''        
         return self._payload_expressions_by_voice
 
@@ -173,15 +251,98 @@ class ScoreSpecification(Specification):
     def region_expressions_by_attribute(self):
         '''Score specification region expressions by attribute.
 
-        .. note:: add example.
+        ::
+
+            >>> for timespan_inventory in score_specification.region_expressions_by_attribute.itervalues():
+            ...     if timespan_inventory:
+            ...         z(timespan_inventory)
+            timespantools.TimespanInventory([
+                expressiontools.LiteralDivisionRegionExpression(
+                    source_expression=((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)),
+                    start_offset=durationtools.Offset(0, 1),
+                    total_duration=durationtools.Duration(9, 4),
+                    voice_name='Voice 1'
+                    ),
+                expressiontools.LiteralDivisionRegionExpression(
+                    source_expression=((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)),
+                    start_offset=durationtools.Offset(0, 1),
+                    total_duration=durationtools.Duration(9, 4),
+                    voice_name='Voice 2'
+                    )
+                ])
+            timespantools.TimespanInventory([
+                expressiontools.RhythmMakerRhythmRegionExpression(
+                    source_expression=rhythmmakertools.TaleaRhythmMaker(
+                        [1],
+                        16,
+                        prolation_addenda=[],
+                        secondary_divisions=[],
+                        beam_each_cell=False,
+                        beam_cells_together=True,
+                        tie_split_notes=False
+                        ),
+                    division_list=expressiontools.DivisionList(
+                        [Division('[2, 8]', start_offset=Offset(0, 1)), 
+                        Division('[3, 8]', start_offset=Offset(1, 4)), 
+                        Division('[4, 8]', start_offset=Offset(5, 8)), 
+                        Division('[4, 16]', start_offset=Offset(9, 8)), 
+                        Division('[4, 16]', start_offset=Offset(11, 8)), 
+                        Division('[5, 16]', start_offset=Offset(13, 8)), 
+                        Division('[5, 16]', start_offset=Offset(31, 16))],
+                        start_offset=durationtools.Offset(0, 1),
+                        voice_name='Voice 1'
+                        ),
+                    start_offset=durationtools.Offset(0, 1),
+                    voice_name='Voice 1'
+                    ),
+                expressiontools.RhythmMakerRhythmRegionExpression(
+                    source_expression=rhythmmakertools.TaleaRhythmMaker(
+                        [1],
+                        16,
+                        prolation_addenda=[],
+                        secondary_divisions=[],
+                        beam_each_cell=False,
+                        beam_cells_together=True,
+                        tie_split_notes=False
+                        ),
+                    division_list=expressiontools.DivisionList(
+                        [Division('[2, 8]', start_offset=Offset(0, 1)), 
+                        Division('[3, 8]', start_offset=Offset(1, 4)), 
+                        Division('[4, 8]', start_offset=Offset(5, 8)), 
+                        Division('[4, 16]', start_offset=Offset(9, 8)), 
+                        Division('[4, 16]', start_offset=Offset(11, 8)), 
+                        Division('[5, 16]', start_offset=Offset(13, 8)), 
+                        Division('[5, 16]', start_offset=Offset(31, 16))],
+                        start_offset=durationtools.Offset(0, 1),
+                        voice_name='Voice 2'
+                        ),
+                    start_offset=durationtools.Offset(0, 1),
+                    voice_name='Voice 2'
+                    )
+                ])
 
         Return attribute dictionary.
         '''
         return self._region_expressions_by_attribute
 
     @property
+    def score_model(self):
+        '''Score specification score model.
+
+        ::
+
+            >>> score_specification.score_model
+            Score-"Grouped Rhythmic Staves Score"<<1>>
+
+        Return score.
+        '''
+        return Specification.score_model.fget(self)
+
+    @property
     def score_name(self):
-        r'''Score specification score name::
+        r'''Score specification score name.
+
+        ::
 
             >>> score_specification.score_name
             'Grouped Rhythmic Staves Score'
@@ -192,7 +353,9 @@ class ScoreSpecification(Specification):
     
     @property
     def score_template(self):
-        r'''Score specification score template::
+        r'''Score specification score template.
+
+        ::
 
             >>> score_specification.score_template
             GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -203,18 +366,22 @@ class ScoreSpecification(Specification):
 
     @property
     def segment_names(self):
-        r'''Score segment names::
+        r'''Score specification segment names.
+    
+        ::
 
             >>> score_specification.segment_names
             ['red', 'orange', 'yellow']
 
-        Return list of zero or more strings.
+        Return list.
         '''
         return [segment_specification.segment_name for segment_specification in self.segment_specifications]
 
     @property
     def segment_specification_class(self):
-        r'''Segment specification class of score specification::
+        r'''Score specification Segment specification class.
+
+        ::
 
             >>> score_specification.segment_specification_class
             <class 'experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification'>
@@ -225,7 +392,9 @@ class ScoreSpecification(Specification):
 
     @property
     def segment_specifications(self):
-        r'''Segment specifications defined against score specification::
+        r'''Score specification segment specifications.
+
+        ::
 
             >>> for segment_specification in score_specification.segment_specifications:
             ...     segment_specification
@@ -240,7 +409,9 @@ class ScoreSpecification(Specification):
 
     @property
     def single_context_set_expressions_by_context(self):
-        r'''Score specification context proxy dictionary::
+        r'''Score specification single-context set expressions by context.
+
+        ::
 
             >>> for key in score_specification.single_context_set_expressions_by_context:
             ...     key
@@ -258,7 +429,9 @@ class ScoreSpecification(Specification):
 
     @property
     def single_context_time_signature_set_expressions(self):
-        '''Read-only list of all time signature set expressions.
+        '''Score specification single-context time signature set expressions.
+
+        ::
 
             >>> z(score_specification.single_context_time_signature_set_expressions)
             timespantools.TimespanInventory([
@@ -288,28 +461,28 @@ class ScoreSpecification(Specification):
                     )
                 ])
 
-        Populate during interpretation.
-
-        Return set expression inventory.
+        Return timespan inventory.
         '''
         return self._single_context_time_signature_set_expressions
 
     @property
     def specification_name(self):
-        '''Generalized way of refering to both score and segment specifications.
+        '''Score specification specification name.
+
+        ::
 
             >>> score_specification.specification_name is None
             True
         
-        Specification name of score is always none.
-
         Return none.
         '''
         return
 
     @property
     def storage_format(self):
-        r'''Score specification storage format::
+        r'''Score specification storage format.
+
+        ::
 
             >>> z(score_specification)
             specificationtools.ScoreSpecification(
@@ -324,7 +497,9 @@ class ScoreSpecification(Specification):
 
     @property
     def time_signatures(self):
-        r'''Score specification time signatures::
+        r'''Score specification time signatures.
+
+        ::
 
             >>> for x in score_specification.time_signatures:
             ...     x
@@ -336,7 +511,7 @@ class ScoreSpecification(Specification):
             NonreducedFraction(5, 16)
             NonreducedFraction(5, 16)
 
-        Return list of zero or more nonreduced fractions.
+        Return list.
         '''
         if hasattr(self, '_time_signatures'):
             return self._time_signatures
@@ -348,7 +523,9 @@ class ScoreSpecification(Specification):
 
     @property
     def timespan(self):
-        '''Score specification timespan::
+        '''Score specification timespan.
+
+        ::
 
             >>> score_specification.timespan
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(9, 4))

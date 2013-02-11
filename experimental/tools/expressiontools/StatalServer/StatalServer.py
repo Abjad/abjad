@@ -3,6 +3,8 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class StatalServer(AbjadObject):
+    '''Statal server.
+    '''
 
     ### INITIALIZER ###
 
@@ -13,6 +15,10 @@ class StatalServer(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expression):
+        '''Evaluate `expression` against statal server.
+
+        Return payload expression.
+        '''
         result = []
         assert not (expression.count is not None and expression.index is not None)
         if expression.count is not None:
@@ -27,4 +33,6 @@ class StatalServer(AbjadObject):
 
     @property
     def last_node(self):
+        '''Statal server last node.
+        '''
         return self.last_nodes[-1]

@@ -4,7 +4,7 @@ from experimental.tools.specificationtools.SpecificationInterface import Specifi
 class SegmentSpecificationInterface(SpecificationInterface):
     r'''Segment specification interface.
 
-    The examples below reference the following segment specification::
+    ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
@@ -31,13 +31,22 @@ class SegmentSpecificationInterface(SpecificationInterface):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
+        '''Segment specification interface interpreter representation.
+
+            >>> red_segment
+            SegmentSpecificationInterface('red')
+
+        Return string.
+        '''
         return '{}({!r})'.format(self._class_name, self.segment_name)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def score_specification(self):
-        '''Segment specification interface score specification reference::
+        '''Segment specification interface score specification.
+        
+        ::
 
             >>> z(red_segment.score_specification)
             specificationtools.ScoreSpecification(
@@ -52,7 +61,9 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     @property
     def segment_name(self):
-        '''Segment specification name::
+        '''Segment specification segment name.
+
+        ::
 
             >>> red_segment.segment_name
             'red'
@@ -63,7 +74,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     @property
     def specification(self):
-        '''Segment specification interface specification:
+        '''Segment specification interface specification.
 
         ::
 
@@ -76,12 +87,12 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     @property
     def specification_name(self):
-        '''Generalized way of refering to both score and segment specifications::
+        '''Segment specification interface specification name.
+
+        ::
 
             >>> red_segment.specification_name
             'red'
-
-        Specification name of segment specification is same as segment name.
 
         Return string.
         '''
@@ -89,7 +100,9 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     @property
     def storage_format(self):
-        '''Segment specification interface storage format::
+        '''Segment specification interface storage format.
+
+        ::
 
             >>> z(red_segment)
             specificationtools.SegmentSpecificationInterface(
@@ -107,7 +120,9 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     @property
     def timespan(self):
-        '''Segment specification interface timespan::
+        '''Segment specification interface timespan.
+
+        ::
 
             >>> red_segment.timespan
             TimespanExpression(anchor='red')

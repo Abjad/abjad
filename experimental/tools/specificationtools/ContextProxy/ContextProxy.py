@@ -3,6 +3,8 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class ContextProxy(AbjadObject):
+    '''Context proxy.
+    '''
 
     ### INITIALIZER ###
 
@@ -11,10 +13,6 @@ class ContextProxy(AbjadObject):
         from experimental.tools import specificationtools
         self._single_context_set_expressions_by_attribute = \
             expressiontools.AttributeDictionary()
-#        self._timespan_scoped_single_context_division_set_expressions = \
-#            expressiontools.TimespanScopedSingleContextSetExpressionInventory()
-#        self._timespan_scoped_single_context_rhythm_set_expressions = \
-#            expressiontools.TimespanScopedSingleContextSetExpressionInventory()
         self._timespan_scoped_single_context_set_expressions_by_attribute = \
             expressiontools.AttributeDictionary()
         for attribute in self._timespan_scoped_single_context_set_expressions_by_attribute:
@@ -35,8 +33,6 @@ class ContextProxy(AbjadObject):
     def timespan_scoped_single_context_set_expressions_by_attribute(self):
         '''Context proxy timespan-scoped
         single-context set expressions by attribute.
-
-        .. note:: add example.
 
         Return attribute dictionary.
         '''

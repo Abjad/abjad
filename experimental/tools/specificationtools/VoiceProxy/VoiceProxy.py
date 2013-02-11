@@ -3,6 +3,8 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class VoiceProxy(AbjadObject):
+    '''Voice proxy.
+    '''
 
     ### INITIALIZER ###
 
@@ -18,8 +20,6 @@ class VoiceProxy(AbjadObject):
     @property
     def payload_expressions_by_attribute(self):
         '''Voice proxy payload expressions by attribute.
-
-        .. note:: add example.
 
         Return attribute dictionary.
         '''

@@ -24,9 +24,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.all_are_context_names
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.clear
    :noindex:
 

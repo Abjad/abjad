@@ -4,14 +4,12 @@ from experimental.tools.specificationtools.SpecificationInterface import Specifi
 class ScoreSpecificationInterface(SpecificationInterface):
     r'''Score specification interface.
 
-    Score specification:
+    Preliminary definitions: 
 
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
-
-    With three named segments:
 
     ::
 
@@ -19,7 +17,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
         >>> orange_segment = score_specification.append_segment(name='orange')
         >>> yellow_segment = score_specification.append_segment(name='yellow')
 
-    All score specification interface properties are read-only.
+    Score specification interface properties are read-only.
     '''
 
     ### INITIALIZER ###
@@ -31,24 +29,37 @@ class ScoreSpecificationInterface(SpecificationInterface):
         score_specification._interface = self
         self._score_specification = score_specification
 
-    ### SPECIAL METHODS ###
-
-    def __getitem__(self, expr):
-        return self.score_specification.__getitem__(expr)
-
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def score_specification(self):
+        '''Score specification interface score specification.
+
+        ::
+
+            >>> score_specification.score_specification
+            ScoreSpecification('red', 'orange', 'yellow')
+
+        Return score specification.
+        '''
+        return SpecificationInterface.score_specification.fget(self)
 
     @property
     def score_template(self):
         '''Score specification interface score template.
-        
+
+        ::
+
+            >>> score_specification.score_template
+            GroupedRhythmicStavesScoreTemplate(staff_count=4)
+
         Return score template.
         '''
         return self._score_template
 
     @property
     def specification(self):
-        '''Score specification interface specification:
+        '''Score specification interface specification.
 
         ::
 
@@ -61,7 +72,9 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     @property
     def specification_name(self):
-        '''Score specification interface specification name::
+        '''Score specification interface specification name.
+
+        ::
 
             >>> score_specification.specification_name is None
             True
@@ -72,7 +85,9 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     @property
     def storage_format(self):
-        '''Score specification interface storage format::
+        '''Score specification interface storage format.
+
+        ::
 
             >>> z(score_specification)
             specificationtools.ScoreSpecificationInterface(
@@ -87,7 +102,9 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     @property
     def timespan(self):
-        '''Score specification interface timespan::
+        '''Score specification interface timespan.
+
+        ::
 
             >>> score_specification.timespan
             TimespanExpression()
@@ -99,7 +116,9 @@ class ScoreSpecificationInterface(SpecificationInterface):
     ### PUBLIC METHODS ###
 
     def append_segment(self, name=None):
-        '''Append segment.
+        '''Append segment to score specification.
+
+        ::
 
             >>> score_specification.append_segment(name='green')
             SegmentSpecificationInterface('green')
@@ -109,7 +128,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
         return self.score_specification.append_segment(name=name)
 
     def get_offset(self, offset):
-        '''Get offset:
+        '''Get score specification offset.
 
         ::
 
@@ -131,12 +150,16 @@ class ScoreSpecificationInterface(SpecificationInterface):
         return offset
         
     def interpret(self):
-        '''Interpret score.
+        '''Interpret score specification.
+
+        Return score.
         '''
         return self.score_specification.interpret()
 
     def pop(self, n=None):
         '''Pop segment specification off of score specification.
+
+        Return segment specification.
         '''
         if n is None:
             return self.score_specification.segment_specifications.pop()

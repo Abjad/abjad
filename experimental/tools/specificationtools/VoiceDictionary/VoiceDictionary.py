@@ -5,6 +5,8 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class VoiceDictionary(AbjadObject, OrderedDict):
+    '''Voice dictionary.
+    '''
 
     ### INITIALIZER ###
 
@@ -42,4 +44,8 @@ class VoiceDictionary(AbjadObject, OrderedDict):
 
     @property
     def score(self):
+        '''Voice dictionary score.
+
+        Return score.
+        '''
         return self._score

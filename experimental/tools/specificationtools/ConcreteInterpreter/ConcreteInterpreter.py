@@ -7,16 +7,12 @@ from experimental.tools.specificationtools.Interpreter import Interpreter
 
 class ConcreteInterpreter(Interpreter):
     r'''Concrete interpreter.
-
-    Currently the only interpreter implemented.
-
-    The name is provisional.
     '''
 
     ### INITIALIZER ###
 
     def __call__(self, score_specification):
-        '''Top-level interpretation entry point::
+        '''Interpret `score_specification`:
 
             * interpret all time signatures scorewide
             * interpret all divisions scorewide

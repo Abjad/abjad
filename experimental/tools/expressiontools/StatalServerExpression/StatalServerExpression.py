@@ -4,8 +4,6 @@ from experimental.tools.expressiontools.PayloadCallbackMixin import PayloadCallb
 
 class StatalServerExpression(Expression, PayloadCallbackMixin):
     r'''Statal server expression.
-
-    The purpose of a statal server expression is to function as the source_expression of a set expression.
     '''
 
     ### INITIALIZER ###
@@ -19,15 +17,23 @@ class StatalServerExpression(Expression, PayloadCallbackMixin):
     ### SPECIAL METHODS ###
 
     def __call__(self):
+        '''Evaluate statal server expression.
+        '''
         return self.statal_server(self)
 
     ### PRIVATE METHODS ###
 
     def evaluate(self):
+        '''Evaluate statal server expression.
+        '''
         raise NotImplementedError
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def statal_server(self):
+        '''Statal server expression statal server.
+    
+        Return statal server.
+        '''
         return self._statal_server

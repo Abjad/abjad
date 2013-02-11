@@ -7,13 +7,6 @@ from experimental.tools import expressiontools
 class Specification(AbjadObject):
     r'''Specification.
 
-    Abstract base class from which score specification and 
-    segment specification classes inherit.
-
-    Interpreter interprets score and segment specifications.
-
-    Abjad score object results from interpretation.
-
     Specification properties are immutable.
     '''
 
@@ -93,34 +86,66 @@ class Specification(AbjadObject):
 
     @property
     def context_names(self):
+        '''Specification context names.
+
+        Return list.
+        '''
         return self._context_names
 
     @property
     def fresh_single_context_set_expressions(self):
+        '''Specification fresh single-context set expressions.
+
+        Return timespan inventory.
+        '''
         return self._fresh_single_context_set_expressions
 
     @property
     def multiple_context_set_expressions(self):
+        '''Specification multiple-context set expressions.
+
+        Return timespan inventory.
+        '''
         return self._multiple_context_set_expressions
 
     @property
     def score_model(self):
+        '''Specification score model.
+
+        Return score.
+        '''
         return self._score_model
 
     @property
     def score_name(self):
+        '''Specification score name.
+
+        Return string or none.
+        '''
         return self._score_name
 
     @property
     def score_template(self):
+        '''Specification score template.
+
+        Return score template.
+        '''
         return self._score_template
 
     @property
     def single_context_set_expressions_by_context(self):
+        '''Specification single-context set expressions by context.
+
+        Return context dictionary.
+        '''
         return self._single_context_set_expressions_by_context
 
     @property
     def timespan(self):
+        '''Specification timespan.
+
+        Return timespan.
+        '''
         return self._timespan
 
     ### PUBLIC METHODS ###
@@ -203,7 +228,9 @@ class Specification(AbjadObject):
 
     def get_single_context_set_expressions_rooted_to_specification_that_govern_context_name(
         self, attribute, context_name):
-        '''Return list such that highest level (most general) context set expressions appear first.
+        '''Get single-context set expressions rooted to specification that govern `context_name`.
+
+        Return list such that highest level (most general) context set expressions appear first.
 
         Lowest level (most specific) context set expressions appear last.
         '''

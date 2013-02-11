@@ -7,6 +7,8 @@ from experimental.tools.expressiontools.TimespanCallbackMixin import TimespanCal
 class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethodMixin, SetMethodMixin):
     r'''Timespan expression.
 
+    Preliminary definitions:
+      
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
@@ -16,7 +18,7 @@ class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethod
         >>> blue_segment = score_specification.append_segment(name='blue')
         >>> set_expression = blue_segment.set_time_signatures([(9, 16), (3, 16)])
 
-    The examples below refer to the score and segment specifications defined above.
+    Timespan expressions are immutable.
     '''
 
     ### INITIALIZER ###
@@ -31,7 +33,9 @@ class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethod
     def evaluate(self):
         '''Evaluate timespan expression.
 
-        Return timespan.
+        Return none when nonevaluable.
+
+        Return timespan when evaluable.
         '''
         from experimental.tools import expressiontools
         anchor_timespan = self._evaluate_anchor_timespan()

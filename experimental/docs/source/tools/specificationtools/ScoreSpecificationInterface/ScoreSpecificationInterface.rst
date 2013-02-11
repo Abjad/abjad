@@ -114,9 +114,6 @@ Special Methods
 .. automethod:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.__getitem__
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.__gt__
    :noindex:
 

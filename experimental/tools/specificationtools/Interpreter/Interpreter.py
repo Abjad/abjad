@@ -7,8 +7,6 @@ from experimental.tools.expressiontools.AttributeNameEnumeration import Attribut
 
 class Interpreter(AbjadObject):
     r'''Interpreter.
-
-    Abstract interpreter class from which conrete interpreters inherit.
     ''' 
 
     ### CLASS ATTRIBUTES ###
@@ -21,9 +19,7 @@ class Interpreter(AbjadObject):
 
     @abc.abstractmethod
     def __call__(self, score_specification):
-        '''Top-level interpretation entry point.
-        
-        Write custom interpreter code by extending this method.
+        '''Interpret `score_specification`.
         '''
         self.score_specification = score_specification
         self.score = self.instantiate_score()
@@ -38,12 +34,6 @@ class Interpreter(AbjadObject):
             multiple_context_set_expression.evaluate_and_store_in_root_specification()
                 
     def instantiate_score(self):
-        '''Instantiate score.
-
-        Include time signature context.
-        
-        Return score.
-        '''
         score = self.score_specification.score_template()
         context = contexttools.Context(name='TimeSignatureContext', context_name='TimeSignatureContext')
         score.insert(0, context)
