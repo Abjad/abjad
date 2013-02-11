@@ -17,17 +17,11 @@ Abjad 2.11
        12. experimental py.test test results: 368 passed
        13. experimental doctest test results: Total modules: 129
        14. sanity check test results: everything OK
-       15. experimental HTML build results: OK [currently here in build process]
+       15. experimental HTML build results: OK
        16. mainline HTML build results: OK
        17. LaTeX build results: OK
-       18. PDF build results: (Failed)
-            Chapter 51.
-            LaTeX Warning: File `graphviz-ca055027cf790e81ac833acbe050f39ad23fa5c8.pdf' not
-             found on input line 179914.
-            !pdfTeX error: pdflatex (file graphviz-ca055027cf790e81ac833acbe050f39ad23fa5c8
-            .pdf): cannot find image file
-             ==> Fatal error occurred, no output PDF file produced!
-            make: *** [AbjadAPI.pdf] Error 70
+       18. Abjad.pdf build results: OK
+       19. AbjadAPI.pdf build results: OK
 
 
 Abjad 2.11 (never announced to list)

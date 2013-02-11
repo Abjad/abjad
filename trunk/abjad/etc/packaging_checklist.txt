@@ -136,14 +136,20 @@ Abjad packaging checklist:
     If any errors occur, fix, commit and go back to (6.)
     Open the docs/build/latex/Abjad.pdf file that results.
     Click around some to make sure everything looks OK.
-    Record PDF build results in the packaging transcript.
+    Record Abjad.pdf build results in the packaging transcript.
+    Open the docs/build/latex/AbjadAPI.pdf file that also results.
+    Click around some to make sure everything looks OK.
+    Record AbjadAPI.pdf build results in the packaging transcript.
 
 19. Copy docs/build/latex/Abjad.pdf to docs/pdf/Abjad-x-y.pdf.
-    Do this with 'cp' and not with 'svn cp'.
+    Copy docs/build/latex/AbjadAPI.pdf to docs/pdf/AbjadAPI-x-y.pdf.
+    Do both of these with 'cp' and not with 'svn cp'.
 
 20. Add docs/pdf/Abajd-x-y.pdf to svn.
+    Add docs/pdf/AbjadAPI-x-y.pdf to svn.
 
 21. Remove docs/pdf/Abjad-x-(y-1).pdf from svn.
+    Remove docs/pdf/AbjadAPI-x-(y-1).pdf from svn.
 
 22. Commit.
     All tests have now passed in the packaging environment.
