@@ -12,71 +12,92 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
 
     Make tuplet from `duration` and `proportions`.
 
-    Example set 1. Make augmented tuplet from `duration` and `proportions` and avoid dots.
+    Example set 1. Make augmented tuplet from `duration` and `proportions` and
+    avoid dots.
 
-    Return tupletted leaves strictly without dots when all `proportions` equal ``1``::
+    Return tupletted leaves strictly without dots when all `proportions` equal
+    ``1``::
 
         >>> print tuplettools.make_tuplet_from_duration_and_ratio(
-        ... Duration(3, 16), [1, 1, 1, -1, -1], avoid_dots=True, is_diminution=False)
+        ...     Duration(3, 16), [1, 1, 1, -1, -1], avoid_dots=True,
+        ...     is_diminution=False)
         {@ 5:6 c'32, c'32, c'32, r32, r32 @}
 
-    Allow tupletted leaves to return with dots when some `proportions` do not equal ``1``::
+    Allow tupletted leaves to return with dots when some `proportions` do not
+    equal ``1``::
 
         >>> print tuplettools.make_tuplet_from_duration_and_ratio(
-        ... Duration(3, 16), [1, -2, -2, 3, 3], avoid_dots=True, is_diminution=False)
+        ...     Duration(3, 16), [1, -2, -2, 3, 3], avoid_dots=True,
+        ...     is_diminution=False)
         {@ 11:12 c'64, r32, r32, c'32., c'32. @}
 
-    Interpret nonassignable `proportions` according to `decrease_durations_monotonically`::
+    Interpret nonassignable `proportions` according to
+    `decrease_durations_monotonically`::
 
         >>> print tuplettools.make_tuplet_from_duration_and_ratio(
-        ... Duration(3, 16), [5, -1, 5], avoid_dots=True, decrease_durations_monotonically=False,
+        ...     Duration(3, 16), [5, -1, 5], avoid_dots=True,
+        ...     decrease_durations_monotonically=False,
         ...     is_diminution=False)
         {@ 11:12 c'64, c'16, r64, c'64, c'16 @}
 
-    Example set 2. Make augmented tuplet from `duration` and `proportions` and encourage dots::
+    Example set 2. Make augmented tuplet from `duration` and `proportions` and
+    encourage dots::
 
         >>> tuplettools.make_tuplet_from_duration_and_ratio(
-        ... Duration(3, 16), [1, 1, 1, -1, -1], avoid_dots=False, is_diminution=False)
+        ...     Duration(3, 16), [1, 1, 1, -1, -1], avoid_dots=False,
+        ...     is_diminution=False)
         FixedDurationTuplet(3/16, [c'64., c'64., c'64., r64., r64.])
 
-    Interpret nonassignable `proportions` according to `decrease_durations_monotonically`::
+    Interpret nonassignable `proportions` according to
+    `decrease_durations_monotonically`::
 
         >>> tuplettools.make_tuplet_from_duration_and_ratio(
-        ... Duration(3, 16), [5, -1, 5], avoid_dots=False, decrease_durations_monotonically=False,
+        ...     Duration(3, 16), [5, -1, 5], avoid_dots=False,
+        ...     decrease_durations_monotonically=False,
         ...     is_diminution=False)
         FixedDurationTuplet(3/16, [c'32..., r128., c'32...])
 
-    Example set 3. Make diminished tuplet from `duration` and nonzero integer `proportions`.
+    Example set 3. Make diminished tuplet from `duration` and nonzero integer
+    `proportions`.
 
-    Return tupletted leaves strictly without dots when all `proportions` equal ``1``::
+    Return tupletted leaves strictly without dots when all `proportions` equal
+    ``1``::
 
         >>> print tuplettools.make_tuplet_from_duration_and_ratio(
-        ... Duration(3, 16), [1, 1, 1, -1, -1], avoid_dots=True, is_diminution=True)
+        ...     Duration(3, 16), [1, 1, 1, -1, -1], avoid_dots=True,
+        ...     is_diminution=True)
         {@ 5:3 c'16, c'16, c'16, r16, r16 @}
 
-    Allow tupletted leaves to return with dots when some `proportions` do not equal ``1``::
+    Allow tupletted leaves to return with dots when some `proportions` do not
+    equal ``1``::
 
         >>> print tuplettools.make_tuplet_from_duration_and_ratio(
-        ... Duration(3, 16), [1, -2, -2, 3, 3], avoid_dots=True, is_diminution=True)
+        ...     Duration(3, 16), [1, -2, -2, 3, 3], avoid_dots=True,
+        ...     is_diminution=True)
         {@ 11:6 c'32, r16, r16, c'16., c'16. @}
 
-    Interpret nonassignable `proportions` according to `decrease_durations_monotonically`::
+    Interpret nonassignable `proportions` according to
+    `decrease_durations_monotonically`::
 
         >>> print tuplettools.make_tuplet_from_duration_and_ratio(
-        ... Duration(3, 16), [5, -1, 5], avoid_dots=True, decrease_durations_monotonically=False, 
+        ...     Duration(3, 16), [5, -1, 5], avoid_dots=True,
+        ...     decrease_durations_monotonically=False, 
         ...     is_diminution=True)
         {@ 11:6 c'32, c'8, r32, c'32, c'8 @}
 
-    Example set 4. Make diminished tuplet from `duration` and `proportions` and encourage dots::
+    Example set 4. Make diminished tuplet from `duration` and `proportions` and
+    encourage dots::
 
         >>> tuplettools.make_tuplet_from_duration_and_ratio(
-        ... Duration(3, 16), [1, 1, 1, -1, -1], avoid_dots=False, is_diminution=True)
+        ...     Duration(3, 16), [1, 1, 1, -1, -1], avoid_dots=False,
+        ...     is_diminution=True)
         FixedDurationTuplet(3/16, [c'32., c'32., c'32., r32., r32.])
 
     Interpret nonassignable `proportions` according to `direction`::
 
         >>> tuplettools.make_tuplet_from_duration_and_ratio(
-        ... Duration(3, 16), [5, -1, 5], avoid_dots=False, decrease_durations_monotonically=False, 
+        ...     Duration(3, 16), [5, -1, 5], avoid_dots=False,
+        ...     decrease_durations_monotonically=False, 
         ...     is_diminution=True)
         FixedDurationTuplet(3/16, [c'16..., r64., c'16...])
 

@@ -79,7 +79,8 @@ def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for leaf in iterationtools.iterate_leaves_in_expr(staff, start=3, reverse=True):
+        >>> for leaf in iterationtools.iterate_leaves_in_expr(
+        ...     staff, start=3, reverse=True):
         ...     leaf
         ...
         Note("e'8")
@@ -88,7 +89,8 @@ def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for leaf in iterationtools.iterate_leaves_in_expr(staff, start=0, stop=3, reverse=True):
+        >>> for leaf in iterationtools.iterate_leaves_in_expr(
+        ...     staff, start=0, stop=3, reverse=True):
         ...     leaf
         ...
         Note("a'8")
@@ -97,7 +99,8 @@ def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for leaf in iterationtools.iterate_leaves_in_expr(staff, start=2, stop=4, reverse=True):
+        >>> for leaf in iterationtools.iterate_leaves_in_expr(
+        ...     staff, start=2, stop=4, reverse=True):
         ...     leaf
         ...
         Note("f'8")

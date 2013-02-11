@@ -12,7 +12,9 @@ def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration=durat
 
     Allow nonassignable `written_duration`::
 
-        >>> staff = Staff(tonalitytools.make_first_n_notes_in_ascending_diatonic_scale(2, (5, 16)))
+        >>> notes = tonalitytools.make_first_n_notes_in_ascending_diatonic_scale(
+        ...     2, (5, 16))
+        >>> staff = Staff(notes)
         >>> f(staff)
         \new Staff {
             c'4 ~

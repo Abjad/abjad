@@ -15,7 +15,8 @@ def make_solid_text_spanner_below_with_nib_at_right(left_text, components=None):
 
     ::
 
-        >>> spannertools.make_solid_text_spanner_below_with_nib_at_right('foo', staff[:])
+        >>> spannertools.make_solid_text_spanner_below_with_nib_at_right(
+        ...     'foo', staff[:])
         TextSpanner(c'8, d'8, e'8, f'8)
 
     ::

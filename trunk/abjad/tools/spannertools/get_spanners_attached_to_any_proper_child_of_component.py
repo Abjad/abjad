@@ -21,14 +21,15 @@ def get_spanners_attached_to_any_proper_child_of_component(component, klass=None
 
     ::
 
-        >>> len(spannertools.get_spanners_attached_to_any_proper_child_of_component(staff))
+        >>> len(spannertools.get_spanners_attached_to_any_proper_child_of_component(
+        ...     staff))
         3
 
     Get all spanners of `klass` attached to any proper children of `component`::
 
         >>> spanner_klass = spannertools.SlurSpanner
         >>> result = spannertools.get_spanners_attached_to_any_proper_child_of_component(
-        ... staff, spanner_klass)
+        ...     staff, spanner_klass)
 
     ::
         
@@ -39,7 +40,7 @@ def get_spanners_attached_to_any_proper_child_of_component(component, klass=None
 
         >>> spanner_klasses = (spannertools.SlurSpanner, beamtools.BeamSpanner)
         >>> result = spannertools.get_spanners_attached_to_any_proper_child_of_component(
-        ... staff, spanner_klasses)
+        ...     staff, spanner_klasses)
 
     ::
         

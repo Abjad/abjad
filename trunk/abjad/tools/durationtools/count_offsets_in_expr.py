@@ -28,8 +28,15 @@ def count_offsets_in_expr(expr):
 
     ::
 
-        >>> durationtools.count_offsets_in_expr(score.leaves)
-        Counter({Offset(1, 2): 4, Offset(0, 1): 2, Offset(3, 8): 2, Offset(1, 4): 2, Offset(1, 1): 2})
+        >>> counter = durationtools.count_offsets_in_expr(score.leaves)
+        >>> for offset, count in sorted(counter.items()):
+        ...     offset, count
+        ...
+        (Offset(0, 1), 2)
+        (Offset(1, 4), 2)
+        (Offset(3, 8), 2)
+        (Offset(1, 2), 4)
+        (Offset(1, 1), 2)
 
     Example 2.:
 
@@ -41,8 +48,15 @@ def count_offsets_in_expr(expr):
 
     ::
 
-        >>> durationtools.count_offsets_in_expr((a, b, c))
-        Counter({Offset(15, 1): 2, Offset(0, 1): 1, Offset(10, 1): 1, Offset(20, 1): 1, Offset(5, 1): 1})
+        >>> counter = durationtools.count_offsets_in_expr((a, b, c))
+        >>> for offset, count in sorted(counter.items()):
+        ...     offset, count
+        ...
+        (Offset(0, 1), 1)
+        (Offset(5, 1), 1)
+        (Offset(10, 1), 1)
+        (Offset(15, 1), 2)
+        (Offset(20, 1), 1)
 
     Return Counter.
     '''

@@ -205,7 +205,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
         ::
 
             >>> durations = [250, 500, 1000, 1250, 1000]
-            >>> pitches = [(0,), None, (2, 3, 6), None, (1,)]
+            >>> pitches = [(0,), None, (2, 3), None, (1,)]
             >>> pairs = zip(durations, pitches)
 
         ::
@@ -229,7 +229,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(750, 1),
-                (NamedChromaticPitch("d'"), NamedChromaticPitch("ef'"), NamedChromaticPitch("fs'")),
+                (NamedChromaticPitch("d'"), NamedChromaticPitch("ef'")),
                 attachments=()
                 )
             quantizationtools.SilentQEvent(

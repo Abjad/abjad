@@ -37,14 +37,16 @@ def iterate_topmost_masked_tie_chains_and_containers_in_expr(expr):
 
     ::
 
-        >>> for x in tietools.iterate_topmost_masked_tie_chains_and_containers_in_expr(staff[0]): x
+        >>> for x in tietools.iterate_topmost_masked_tie_chains_and_containers_in_expr(
+        ...     staff[0]): x
         ... 
         TieChain(Note("c'4"),)
         TieChain(Note("d'4"),)
 
     ::
 
-        >>> for x in tietools.iterate_topmost_masked_tie_chains_and_containers_in_expr(staff[1]): x
+        >>> for x in tietools.iterate_topmost_masked_tie_chains_and_containers_in_expr(
+        ...     staff[1]): x
         ... 
         TieChain(Note("d'4"),)
         Tuplet(2/3, [d'4, d'4, d'4])
@@ -52,7 +54,8 @@ def iterate_topmost_masked_tie_chains_and_containers_in_expr(expr):
 
     ::
 
-        >>> for x in tietools.iterate_topmost_masked_tie_chains_and_containers_in_expr(staff[2]): x
+        >>> for x in tietools.iterate_topmost_masked_tie_chains_and_containers_in_expr(
+        ...     staff[2]): x
         ... 
         TieChain(Note("d'4"),)
         TieChain(Note("e'4"),)

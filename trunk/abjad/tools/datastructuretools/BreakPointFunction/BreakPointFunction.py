@@ -166,7 +166,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> bpf2 = datastructuretools.BreakPointFunction({0.: 1., 1.: 0.})
+            >>> bpf2 = datastructuretools.BreakPointFunction(
+            ...     {0.: 1., 1.: 0.})
             >>> bpf - bpf2
             BreakPointFunction({
                 0.0: (-1.0,),
@@ -186,7 +187,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> datastructuretools.BreakPointFunction({0.: 0.25, 0.5: 1.3, 1.: 0.9}).bpf
+            >>> datastructuretools.BreakPointFunction(
+            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).bpf
             {0.0: (0.25,), 0.5: (1.3,), 1.0: (0.9,)}
 
         Return dict.
@@ -232,7 +234,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> datastructuretools.BreakPointFunction({0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_center
+            >>> datastructuretools.BreakPointFunction(
+            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_center
             0.5
 
         Return number.
@@ -245,7 +248,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> datastructuretools.BreakPointFunction({0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_range
+            >>> datastructuretools.BreakPointFunction(
+            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_range
             (0.0, 1.0)
 
         Return pair.
@@ -258,7 +262,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> datastructuretools.BreakPointFunction({0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_values
+            >>> datastructuretools.BreakPointFunction(
+            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_values
             (0.0, 0.5, 1.0)
 
         Return tuple.
@@ -271,7 +276,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> datastructuretools.BreakPointFunction({0.: 0.25, 0.5: 1.3, 1.: 0.9}).y_center
+            >>> datastructuretools.BreakPointFunction(
+            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).y_center
             0.775
 
         Return number.
@@ -284,7 +290,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> datastructuretools.BreakPointFunction({0.: 0.25, 0.5: 1.3, 1.: 0.9}).y_range
+            >>> datastructuretools.BreakPointFunction(
+            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).y_range
             (0.25, 1.3)
 
         Return pair.
@@ -350,7 +357,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> bpf = datastructuretools.BreakPointFunction({0.: 1., 1.: 0.})
+            >>> bpf = datastructuretools.BreakPointFunction(
+            ...     {0.: 1., 1.: 0.})
             >>> bpf.clip_x_axis(minimum=0.25, maximum=0.75)
             BreakPointFunction({
                 0.25: (0.75,),
@@ -378,7 +386,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> bpf = datastructuretools.BreakPointFunction({0.: 1., 1.: 0.})
+            >>> bpf = datastructuretools.BreakPointFunction(
+            ...     {0.: 1., 1.: 0.})
             >>> bpf.clip_y_axis(minimum=0.25, maximum=0.75)
             BreakPointFunction({
                 0.0: (0.75,),
@@ -410,8 +419,10 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> one = datastructuretools.BreakPointFunction({0.0: 0.0, 1.0: 1.0})
-            >>> two = datastructuretools.BreakPointFunction({0.5: 0.75, 1.5: 0.25})
+            >>> one = datastructuretools.BreakPointFunction(
+            ...     {0.0: 0.0, 1.0: 1.0})
+            >>> two = datastructuretools.BreakPointFunction(
+            ...     {0.5: 0.75, 1.5: 0.25})
 
         ::
 
@@ -509,7 +520,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> datastructuretools.BreakPointFunction({0.: 0., 1.: 1.}).invert()
+            >>> datastructuretools.BreakPointFunction(
+            ...     {0.: 0., 1.: 1.}).invert()
             BreakPointFunction({
                 0.0: (1.0,),
                 1.0: (0.0,)
@@ -519,7 +531,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> datastructuretools.BreakPointFunction({0.: 0., 1.: 1.}).invert(0)
+            >>> datastructuretools.BreakPointFunction(
+            ...     {0.: 0., 1.: 1.}).invert(0)
             BreakPointFunction({
                 0.0: (0.0,),
                 1.0: (-1.0,)
@@ -527,7 +540,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> datastructuretools.BreakPointFunction({0.: 0., 1.: 1.}).invert(0.25)
+            >>> datastructuretools.BreakPointFunction(
+            ...     {0.: 0., 1.: 1.}).invert(0.25)
             BreakPointFunction({
                 0.0: (0.5,),
                 1.0: (-0.5,)
@@ -550,7 +564,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> datastructuretools.BreakPointFunction({0.25: 0.25, 0.75: 0.75}).normalize_axes()
+            >>> datastructuretools.BreakPointFunction(
+            ...     {0.25: 0.25, 0.75: 0.75}).normalize_axes()
             BreakPointFunction({
                 0.0: (0.0,),
                 1.0: (1.0,)
@@ -565,7 +580,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> datastructuretools.BreakPointFunction({0.25: 0., 0.5: (-1., 2.), 1: 1.}).reflect()
+            >>> datastructuretools.BreakPointFunction(
+            ...     {0.25: 0., 0.5: (-1., 2.), 1: 1.}).reflect()
             BreakPointFunction({
                 0.25: (1.0,),
                 0.75: (2.0, -1.0),
@@ -576,7 +592,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> datastructuretools.BreakPointFunction({0.25: 0., 0.5: (-1., 2.), 1: 1.}).reflect(x_center=0.25)
+            >>> datastructuretools.BreakPointFunction(
+            ...     {0.25: 0., 0.5: (-1., 2.), 1: 1.}).reflect(x_center=0.25)
             BreakPointFunction({
                 -0.5: (1.0,),
                 0.0: (2.0, -1.0),
@@ -600,7 +617,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> datastructuretools.BreakPointFunction({0.: 0., 1.: 1.}).remove_dc_bias()
+            >>> datastructuretools.BreakPointFunction(
+            ...     {0.: 0., 1.: 1.}).remove_dc_bias()
             BreakPointFunction({
                 0.0: (-0.5,),
                 1.0: (0.5,)
@@ -665,7 +683,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> bpf = datastructuretools.BreakPointFunction({0.0: 0.0, 1.0: 1.0})
+            >>> bpf = datastructuretools.BreakPointFunction(
+            ...     {0.0: 0.0, 1.0: 1.0})
 
         With a number:
 
@@ -728,7 +747,8 @@ class BreakPointFunction(AbjadObject):
 
         ::
 
-            >>> bpf = datastructuretools.BreakPointFunction({0.: 0., 0.25: 0.9, 1.: 1.})
+            >>> bpf = datastructuretools.BreakPointFunction(
+            ...     {0.: 0., 0.25: 0.9, 1.: 1.})
 
         ::
 

@@ -13,7 +13,8 @@ def make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
     Example 1. The eight test rhythms that fit a length-``4`` grid::
 
         >>> for rhythm_number in range(8):
-        ...     notes = timesignaturetools.make_gridded_test_rhythm(4, rhythm_number, denominator=4)
+        ...     notes = timesignaturetools.make_gridded_test_rhythm(
+        ...         4, rhythm_number, denominator=4)
         ...     measure = Measure((4, 4), notes)
         ...     print '{}\t{}'.format(rhythm_number, measure)
         ... 
@@ -29,7 +30,8 @@ def make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
     Example 2. The sixteenth test rhythms for that a length-``5`` grid::
 
         >>> for rhythm_number in range(16):
-        ...     notes = timesignaturetools.make_gridded_test_rhythm(5, rhythm_number, denominator=4)
+        ...     notes = timesignaturetools.make_gridded_test_rhythm(
+        ...         5, rhythm_number, denominator=4)
         ...     measure = Measure((5, 4), notes)
         ...     print '{}\t{}'.format(rhythm_number, measure)
         ... 
