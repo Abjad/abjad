@@ -6,7 +6,7 @@ from experimental.tools.expressiontools.StartPositionedPayloadExpression import 
 
 
 class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression):
-    r'''Start-positioned division payload expression:
+    r'''Start-positioned division payload expression.
 
     ::
 
@@ -27,14 +27,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
             start_offset=durationtools.Offset(0, 1)
             )
 
-    Contiguous block of one voice's divisions.
-
-    Division interpretation generates many division payload expressions.
-    
-    Division interpretation completes when contiguous division region
-    payload_expressions exist to account for the duration of every voice.
-
-    Start-positioned division payload expressions may be constructed out of chronological order.
+    Start-positioned division payload expressions are immutable.
     '''
 
     ### INITIALIZER ###
@@ -48,7 +41,8 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
-        '''Keep intersection of `timespan` and rhythm payload expression.
+        '''Keep intersection of start-positioned 
+        division payload expression and `timespan`.
 
         Example 1. Intersection on the left:
 
@@ -137,6 +131,26 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         return StartPositionedPayloadExpression.__and__(self, timespan)
 
     def __getitem__(self, expr):
+        '''Get start-positioned division payload expression item.
+
+        ::
+
+            >>> result = payload_expression[:2]
+
+        ::
+
+            >>> z(result)
+            expressiontools.StartPositionedDivisionPayloadExpression(
+                payload=expressiontools.DivisionList(
+                    [Division('[6, 8]', start_offset=Offset(0, 1)), 
+                    Division('[6, 8]', start_offset=Offset(3, 4))],
+                    start_offset=durationtools.Offset(0, 1)
+                    ),
+                start_offset=durationtools.Offset(0, 1)
+                )
+
+        Return newly constructed start-positioned division payload expression.
+        '''
         assert isinstance(expr, slice), repr(expr)
         divisions = self.payload.__getitem__(expr)
         if divisions:
@@ -147,7 +161,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         return result
 
     def __or__(self, expr):
-        '''Logical OR of two division payload expressions:
+        '''Logical OR of two start-positioned division payload expressions:
 
         ::
 
@@ -187,7 +201,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         return StartPositionedPayloadExpression.__or__(self, expr)
 
     def __sub__(self, timespan):
-        '''Subtract `timespan` from division payload expression.
+        '''Subtract `timespan` from start-positioned division payload expression.
 
         Example 1. Subtract from left:
 
@@ -266,7 +280,6 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
                     )
                 ])
 
-
         Example 4. Subtract from nothing:
 
         ::
@@ -295,18 +308,13 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         '''
         return StartPositionedPayloadExpression.__sub__(self, timespan)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
-
-    @property
-    def elements(self):
-        return self.payload.divisions
-
     ### PRIVATE METHODS ###
 
     def _split_payload_at_offsets(self, offsets):
         from experimental.tools import expressiontools
         divisions = copy.deepcopy(self.payload.divisions)
-        self._payload = expressiontools.DivisionList([], voice_name=self.voice_name, start_offset=self.start_offset)
+        self._payload = expressiontools.DivisionList(
+            [], voice_name=self.voice_name, start_offset=self.start_offset)
         shards = sequencetools.split_sequence_by_weights(
             divisions, offsets, cyclic=False, overhang=True)
         result, total_duration = [], durationtools.Duration(0)
@@ -320,8 +328,23 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def elements(self):
+        '''Start-positioned division payload expression elements.
+
+        ::
+
+            >>> payload_expression.elements
+            [Division('[6, 8]', start_offset=Offset(0, 1)), 
+            Division('[6, 8]', start_offset=Offset(3, 4)), 
+            Division('[3, 4]', start_offset=Offset(3, 2))]
+
+        Return list.
+        '''
+        return self.payload.divisions
+
+    @property
     def payload(self):
-        '''Start-positioned division payload expression payload:
+        '''Start-positioned division payload expression payload.
 
         ::
 
@@ -334,7 +357,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
     @property
     def start_offset(self):
-        '''Start-positioned division payload expression start offset:
+        '''Start-positioned division payload expression start offset.
 
         ::
 
@@ -347,7 +370,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
     @property
     def stop_offset(self):
-        '''Start-positioned division payload expression stop offset:
+        '''Start-positioned division payload expression stop offset.
 
         ::
 
@@ -360,7 +383,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
     @property
     def storage_format(self):
-        '''Start-positioned division payload expression storage format:
+        '''Start-positioned division payload expression storage format.
 
         ::
 
@@ -381,7 +404,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
     @property
     def timespan(self):
-        '''Start-positioned division payload expression timespan:
+        '''Start-positioned division payload expression timespan.
 
         ::
 
@@ -394,7 +417,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
     @property
     def voice_name(self):
-        '''Start-positioned division payload expression voice name:
+        '''Start-positioned division payload expression voice name.
 
         ::
 
@@ -408,7 +431,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
     ### PUBLIC METHODS ###
 
     def partition_by_ratio(self, ratio):
-        '''Partition divisions by `ratio`:
+        '''Partition start-positioned division payload expression by `ratio`.
 
         ::
 
@@ -449,7 +472,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         return StartPositionedPayloadExpression.partition_by_ratio(self, ratio)
 
     def partition_by_ratio_of_durations(self, ratio):
-        '''Partition divisions by `ratio` of durations:
+        '''Partition start-positioned division payload expression by `ratio` of durations.
 
         ::
 
@@ -490,7 +513,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         return StartPositionedPayloadExpression.partition_by_ratio_of_durations(self, ratio)
 
     def reflect(self):
-        '''Reflect divisions about axis:
+        '''Reflect start-positioned division payload expression about axis.
 
         ::
 
@@ -519,20 +542,76 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         '''
         return StartPositionedPayloadExpression.reflect(self)
 
-    # TODO: add example
     def repeat_to_duration(self, duration):
+        '''Repeat start-positioned division payload expression to `duration`.
+
+        ::
+
+            >>> payload = [(6, 8), (6, 8), (3, 4)]
+            >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     payload, Offset(0))
+
+        ::
+
+            >>> result = payload_expression.repeat_to_duration(Duration(13, 4))    
+
+        ::
+
+            >>> z(result)
+            expressiontools.StartPositionedDivisionPayloadExpression(
+                payload=expressiontools.DivisionList(
+                    [Division('[6, 8]', start_offset=Offset(0, 1)), 
+                    Division('[6, 8]', start_offset=Offset(3, 4)), 
+                    Division('[3, 4]', start_offset=Offset(3, 2)), 
+                    Division('[6, 8]', start_offset=Offset(9, 4)), 
+                    Division('[2, 8]', start_offset=Offset(3, 1))],
+                    start_offset=durationtools.Offset(0, 1)
+                    ),
+                start_offset=durationtools.Offset(0, 1)
+                )
+
+        Return newly constructed start-positioned division payload expression.
+        '''
         divisions = sequencetools.repeat_sequence_to_weight_exactly(self.payload, duration)
         result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=self.start_offset)
         return result
 
-    # TODO: add example
     def repeat_to_length(self, length):
+        '''Repeat start-positioned division payload expression to `length`.
+
+        ::
+
+            >>> payload = [(6, 8), (6, 8), (3, 4)]
+            >>> payload_expression = expressiontools.StartPositionedDivisionPayloadExpression(
+            ...     payload, Offset(0))
+
+        ::
+
+            >>> result = payload_expression.repeat_to_length(5)
+
+        ::
+
+            >>> z(result)
+            expressiontools.StartPositionedDivisionPayloadExpression(
+                payload=expressiontools.DivisionList(
+                    [Division('[6, 8]', start_offset=Offset(0, 1)), 
+                    Division('[6, 8]', start_offset=Offset(3, 4)), 
+                    Division('[3, 4]', start_offset=Offset(3, 2)), 
+                    Division('[6, 8]', start_offset=Offset(9, 4)), 
+                    Division('[6, 8]', start_offset=Offset(3, 1))],
+                    start_offset=durationtools.Offset(0, 1)
+                    ),
+                start_offset=durationtools.Offset(0, 1)
+                )
+
+        Return newly constructed start-positioned division payload expression.
+        '''
         divisions = sequencetools.repeat_sequence_to_length(self.payload, length)
         result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=self.start_offset)
         return result
 
     def rotate(self, rotation):
-        '''Rotate divisions by `rotation`.
+        '''Rotate start-positioned division payload expression by `rotation`.
 
         ::
 
@@ -562,7 +641,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         return StartPositionedPayloadExpression.rotate(self, rotation)
 
     def translate(self, translation):
-        '''Translate division payload expression by `translation`:
+        '''Translate division payload expression by `translation`.
         
         ::
 
