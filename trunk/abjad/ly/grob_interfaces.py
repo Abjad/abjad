@@ -1,4 +1,4 @@
-lilypond_version = "2.17.11"
+lilypond_version = "2.17.9"
 
 grob_interfaces = {
     "Accidental": [

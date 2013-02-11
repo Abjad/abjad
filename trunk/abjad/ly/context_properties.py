@@ -1,8 +1,7 @@
-lilypond_version = "2.17.11"
+lilypond_version = "2.17.9"
 
 context_properties = [
     "aDueText",
-    "accidentalGrouping",
     "additionalPitchPrefix",
     "alignAboveContext",
     "alignBassFigureAccidentals",
