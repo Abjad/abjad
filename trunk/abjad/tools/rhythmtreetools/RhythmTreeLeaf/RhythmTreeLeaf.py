@@ -10,14 +10,14 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     ::
 
-        >>> leaf = rhythmtreetools.RhythmTreeLeaf(duration=5, is_pitched=True)
+        >>> leaf = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=5, is_pitched=True)
         >>> leaf
         RhythmTreeLeaf(
-            duration=Duration(5, 1),
+            preprolated_duration=Duration(5, 1),
             is_pitched=True
             )
     
-    Call with a pulse duration to generate Abjad leaf objects:
+    Call with a pulse preprolated_duration to generate Abjad leaf objects:
 
     ::
 
@@ -29,7 +29,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     ::
 
-        >>> rhythmtreetools.RhythmTreeLeaf(duration=7, is_pitched=False)((1, 16))
+        >>> rhythmtreetools.RhythmTreeLeaf(preprolated_duration=7, is_pitched=False)((1, 16))
         [Rest('r4..')]
 
     Return `RhythmTreeLeaf`.
@@ -37,8 +37,8 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     ### INITIALIZER ###
 
-    def __init__(self, duration=1, is_pitched=True, name=None):
-        RhythmTreeNode.__init__(self, duration=duration, name=name)
+    def __init__(self, preprolated_duration=1, is_pitched=True, name=None):
+        RhythmTreeNode.__init__(self, preprolated_duration=preprolated_duration, name=name)
         self.is_pitched = is_pitched
 
     ### SPECIAL METHODS ###
@@ -55,14 +55,14 @@ class RhythmTreeLeaf(RhythmTreeNode):
         Return sequence of components.
         '''
         pulse_duration = durationtools.Duration(pulse_duration)
-        total_duration = pulse_duration * self.duration
+        total_duration = pulse_duration * self.preprolated_duration
         if self.is_pitched:
             return notetools.make_notes(0, total_duration)
         return resttools.make_rests(total_duration)
 
     def __eq__(self, other):
         if type(self) == type(other):
-            if self.duration == other.duration:
+            if self.preprolated_duration == other.preprolated_duration:
                 if self.is_pitched == other.is_pitched:
                     return True
         return False
@@ -71,7 +71,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     @property
     def _pretty_rtm_format_pieces(self):
-        return [str(self.duration)]
+        return [str(self.preprolated_duration)]
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -80,7 +80,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
         graph = documentationtools.GraphvizGraph(name='G')
         node = documentationtools.GraphvizNode(
             attributes={
-                label: str(self.duration),
+                label: str(self.preprolated_duration),
                 shape: 'box'
             }
             )
@@ -101,8 +101,8 @@ class RhythmTreeLeaf(RhythmTreeNode):
         Return string.
         '''
         if self.is_pitched:
-            return '{}'.format(self.duration)
-        return '-{}'.format(self.duration)
+            return '{}'.format(self.preprolated_duration)
+        return '-{}'.format(self.preprolated_duration)
 
     ### READ/WRITE PUBLIC PROPERTIES ###
 

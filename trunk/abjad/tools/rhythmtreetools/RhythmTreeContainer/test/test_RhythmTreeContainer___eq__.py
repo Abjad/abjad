@@ -24,15 +24,15 @@ def test_RhythmTreeContainer___eq___02():
 def test_RhythmTreeContainer___eq___03():
 
     a = rhythmtreetools.RhythmTreeContainer(children=[])
-    b = rhythmtreetools.RhythmTreeContainer(duration=2, children=[])
-    c = rhythmtreetools.RhythmTreeContainer(duration=1, children=[
-        rhythmtreetools.RhythmTreeLeaf(duration=1)
+    b = rhythmtreetools.RhythmTreeContainer(preprolated_duration=2, children=[])
+    c = rhythmtreetools.RhythmTreeContainer(preprolated_duration=1, children=[
+        rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1)
         ])
-    d = rhythmtreetools.RhythmTreeContainer(duration=2, children=[
-        rhythmtreetools.RhythmTreeLeaf(duration=1)
+    d = rhythmtreetools.RhythmTreeContainer(preprolated_duration=2, children=[
+        rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1)
         ])
-    e = rhythmtreetools.RhythmTreeContainer(duration=2, children=[
-        rhythmtreetools.RhythmTreeLeaf(duration=2)
+    e = rhythmtreetools.RhythmTreeContainer(preprolated_duration=2, children=[
+        rhythmtreetools.RhythmTreeLeaf(preprolated_duration=2)
         ])
 
     assert a != b

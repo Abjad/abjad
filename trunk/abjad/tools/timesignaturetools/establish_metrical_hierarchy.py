@@ -646,7 +646,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     contain containers, like `Tuplets` or `Containers`,
     `timesignaturetools.establish_metrical_hierarchy()` will recurse into
     those containers, treating them as measures whose time signature is derived
-    from the preprolated duration of the container's contents:
+    from the preprolated preprolated_duration of the container's contents:
 
     ::
 
@@ -791,7 +791,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     # check arguments
     assert componenttools.all_are_thread_contiguous_components(components)
     metrical_hierarchy = timesignaturetools.MetricalHierarchy(metrical_hierarchy)
-    assert sum([x.preprolated_duration for x in components]) == metrical_hierarchy.duration
+    assert sum([x.preprolated_duration for x in components]) == metrical_hierarchy.preprolated_duration
     if boundary_depth is not None:
         boundary_depth = int(boundary_depth)
     if maximum_dot_count is not None:
@@ -818,8 +818,8 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             recurse(item, depth=0)
         else:
             #print 'DESCENDING:', item
-            duration = sum([x.preprolated_duration for x in item])
-            sub_metrical_hierarchy = timesignaturetools.MetricalHierarchy(duration)
+            preprolated_duration = sum([x.preprolated_duration for x in item])
+            sub_metrical_hierarchy = timesignaturetools.MetricalHierarchy(preprolated_duration)
             sub_boundary_depth = 1
             if boundary_depth is None:
                 sub_boundary_depth = None

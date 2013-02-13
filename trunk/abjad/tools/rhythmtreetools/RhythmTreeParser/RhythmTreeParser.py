@@ -19,32 +19,32 @@ class RhythmTreeParser(Parser):
         RhythmTreeContainer(
             children=(
                 RhythmTreeLeaf(
-                    duration=Duration(1, 1),
+                    preprolated_duration=Duration(1, 1),
                     is_pitched=True
                     ),
                 RhythmTreeContainer(
                     children=(
                         RhythmTreeLeaf(
-                            duration=Duration(1, 1),
+                            preprolated_duration=Duration(1, 1),
                             is_pitched=True
                             ),
                         RhythmTreeLeaf(
-                            duration=Duration(1, 1),
+                            preprolated_duration=Duration(1, 1),
                             is_pitched=False
                             ),
                         RhythmTreeLeaf(
-                            duration=Duration(1, 1),
+                            preprolated_duration=Duration(1, 1),
                             is_pitched=True
                             )
                         ),
-                    duration=Duration(2, 1)
+                    preprolated_duration=Duration(2, 1)
                     ),
                 RhythmTreeLeaf(
-                    duration=Duration(2, 1),
+                    preprolated_duration=Duration(2, 1),
                     is_pitched=False
                     )
                 ),
-            duration=Duration(1, 1)
+            preprolated_duration=Duration(1, 1)
             )
 
     ::
@@ -91,9 +91,9 @@ class RhythmTreeParser(Parser):
         else:
             numerator, denominator = int(parts[0]), int(parts[2])
             fraction = mathtools.NonreducedFraction(numerator, denominator)
-            duration = durationtools.Duration(fraction)
-            if fraction.numerator == duration.numerator:
-                t.value = duration
+            preprolated_duration = durationtools.Duration(fraction)
+            if fraction.numerator == preprolated_duration.numerator:
+                t.value = preprolated_duration
             else:
                 t.value = fraction
         return t
@@ -113,7 +113,7 @@ class RhythmTreeParser(Parser):
         from abjad.tools import rhythmtreetools
         p[0] = rhythmtreetools.RhythmTreeContainer(
             children=p[3],
-            duration=abs(p[2]),
+            preprolated_duration=abs(p[2]),
             )
 
     def p_error(self, p):
@@ -126,7 +126,7 @@ class RhythmTreeParser(Parser):
         '''leaf : DURATION'''
         from abjad.tools import rhythmtreetools
         p[0] = rhythmtreetools.RhythmTreeLeaf(
-            duration=abs(p[1]),
+            preprolated_duration=abs(p[1]),
             is_pitched=0 < p[1],
             )
 

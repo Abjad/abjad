@@ -119,16 +119,16 @@ class MetricalHierarchy(AbjadObject):
         def recurse(node, factors, denominator, decrease_durations_monotonically):
             if factors:
                 factor, factors = factors[0], factors[1:]
-                duration = node.duration / factor
+                preprolated_duration = node.preprolated_duration / factor
                 if factor in (2, 3, 4):
                     if factors:
                         for _ in range(factor):
-                            child = rhythmtreetools.RhythmTreeContainer(duration=duration)
+                            child = rhythmtreetools.RhythmTreeContainer(preprolated_duration=preprolated_duration)
                             node.append(child)
                             recurse(child, factors, denominator, decrease_durations_monotonically)
                     else:
                         for _ in range(factor):
-                            node.append(rhythmtreetools.RhythmTreeLeaf(duration=(1, denominator)))
+                            node.append(rhythmtreetools.RhythmTreeLeaf(preprolated_duration=(1, denominator)))
                 else:
                     parts = [3]
                     total = 3
@@ -139,19 +139,19 @@ class MetricalHierarchy(AbjadObject):
                             parts.insert(0, 2)
                         total += 2
                     for part in parts:
-                        grouping = rhythmtreetools.RhythmTreeContainer(duration=part * duration)
+                        grouping = rhythmtreetools.RhythmTreeContainer(preprolated_duration=part * preprolated_duration)
                         if factors:
                             for _ in range(part):
-                                child = rhythmtreetools.RhythmTreeContainer(duration=duration)
+                                child = rhythmtreetools.RhythmTreeContainer(preprolated_duration=preprolated_duration)
                                 grouping.append(child)
                                 recurse(child, factors, denominator, decrease_durations_monotonically)
                         else:
                             for _ in range(part):
-                                grouping.append(rhythmtreetools.RhythmTreeLeaf(duration=(1, denominator)))
+                                grouping.append(rhythmtreetools.RhythmTreeLeaf(preprolated_duration=(1, denominator)))
                         node.append(grouping)
             else:
-                node.extend([rhythmtreetools.RhythmTreeLeaf(duration=(1, denominator)) 
-                    for _ in range(node.duration.numerator)])
+                node.extend([rhythmtreetools.RhythmTreeLeaf(preprolated_duration=(1, denominator)) 
+                    for _ in range(node.preprolated_duration.numerator)])
 
         decrease_durations_monotonically = bool(decrease_durations_monotonically)
 
@@ -169,7 +169,7 @@ class MetricalHierarchy(AbjadObject):
                 root = arg
             for node in root.nodes:
                 assert node.prolation == 1
-            numerator, denominator = root.duration.numerator, root.duration.denominator
+            numerator, denominator = root.preprolated_duration.numerator, root.preprolated_duration.denominator
 
         elif isinstance(arg, (tuple, measuretools.Measure)) or \
             (hasattr(arg, 'numerator') and hasattr(arg, 'denominator')):
@@ -186,7 +186,7 @@ class MetricalHierarchy(AbjadObject):
             # group two nested levels of 2s into a 4
             if 1 < len(factors) and factors[0] == factors[1] == 2:
                 factors[0:2] = [4]
-            root = rhythmtreetools.RhythmTreeContainer(duration=fraction)
+            root = rhythmtreetools.RhythmTreeContainer(preprolated_duration=fraction)
             recurse(root, factors, denominator, decrease_durations_monotonically)
 
         else:
@@ -344,13 +344,13 @@ class MetricalHierarchy(AbjadObject):
         return tuple(inventory)
 
     @property
-    def duration(self):
-        '''Beat hierarchy duration::
+    def preprolated_duration(self):
+        '''Beat hierarchy preprolated_duration::
 
-            >>> metrical_hierarchy.duration
+            >>> metrical_hierarchy.preprolated_duration
             Duration(5, 4)
 
-        Return duration.
+        Return preprolated_duration.
         '''
         return durationtools.Duration(self.numerator, self.denominator)
 
@@ -406,7 +406,7 @@ class MetricalHierarchy(AbjadObject):
 
         Return TimeSignatureMark object.
         '''
-        return contexttools.TimeSignatureMark(self.root_node.duration)
+        return contexttools.TimeSignatureMark(self.root_node.preprolated_duration)
 
     @property
     def numerator(self):
@@ -447,35 +447,35 @@ class MetricalHierarchy(AbjadObject):
                     RhythmTreeContainer(
                         children=(
                             RhythmTreeLeaf(
-                                duration=Duration(1, 4),
+                                preprolated_duration=Duration(1, 4),
                                 is_pitched=True
                                 ),
                             RhythmTreeLeaf(
-                                duration=Duration(1, 4),
+                                preprolated_duration=Duration(1, 4),
                                 is_pitched=True
                                 ),
                             RhythmTreeLeaf(
-                                duration=Duration(1, 4),
+                                preprolated_duration=Duration(1, 4),
                                 is_pitched=True
                                 )
                             ),
-                        duration=NonreducedFraction(3, 4)
+                        preprolated_duration=NonreducedFraction(3, 4)
                         ),
                     RhythmTreeContainer(
                         children=(
                             RhythmTreeLeaf(
-                                duration=Duration(1, 4),
+                                preprolated_duration=Duration(1, 4),
                                 is_pitched=True
                                 ),
                             RhythmTreeLeaf(
-                                duration=Duration(1, 4),
+                                preprolated_duration=Duration(1, 4),
                                 is_pitched=True
                                 )
                             ),
-                        duration=NonreducedFraction(2, 4)
+                        preprolated_duration=NonreducedFraction(2, 4)
                         )
                     ),
-                duration=NonreducedFraction(5, 4)
+                preprolated_duration=NonreducedFraction(5, 4)
                 )
 
         Return rhythm tree node.

@@ -19,8 +19,8 @@ def test_QGrid_subdivide_leaf_01():
     assert result == [a, b, c, d]
     assert q_grid.root_node == QGridContainer(
         children=(
-            QGridLeaf(duration=2, q_event_proxies=[]),
-            QGridLeaf(duration=3, q_event_proxies=[]),
+            QGridLeaf(preprolated_duration=2, q_event_proxies=[]),
+            QGridLeaf(preprolated_duration=3, q_event_proxies=[]),
         ),
-        duration=1
+        preprolated_duration=1
         )

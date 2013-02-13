@@ -12,10 +12,10 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
     ::
 
-        >>> container = rhythmtreetools.RhythmTreeContainer(duration=1, children=[])
+        >>> container = rhythmtreetools.RhythmTreeContainer(preprolated_duration=1, children=[])
         >>> container
         RhythmTreeContainer(
-            duration=Duration(1, 1)
+            preprolated_duration=Duration(1, 1)
             )
 
     Similar to Abjad containers, `RhythmTreeContainer` supports a list interface,
@@ -24,55 +24,55 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
     ::
 
-        >>> leaf_a = rhythmtreetools.RhythmTreeLeaf(duration=1)
-        >>> leaf_b = rhythmtreetools.RhythmTreeLeaf(duration=2)
+        >>> leaf_a = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1)
+        >>> leaf_b = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=2)
         >>> container.extend([leaf_a, leaf_b])
         >>> container
         RhythmTreeContainer(
             children=(
                 RhythmTreeLeaf(
-                    duration=Duration(1, 1),
+                    preprolated_duration=Duration(1, 1),
                     is_pitched=True
                     ),
                 RhythmTreeLeaf(
-                    duration=Duration(2, 1),
+                    preprolated_duration=Duration(2, 1),
                     is_pitched=True
                     )
                 ),
-            duration=Duration(1, 1)
+            preprolated_duration=Duration(1, 1)
             )
 
     ::
 
-        >>> another_container = rhythmtreetools.RhythmTreeContainer(duration=2)
-        >>> another_container.append(rhythmtreetools.RhythmTreeLeaf(duration=3))
+        >>> another_container = rhythmtreetools.RhythmTreeContainer(preprolated_duration=2)
+        >>> another_container.append(rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3))
         >>> another_container.append(container[1])
         >>> container.append(another_container)
         >>> container
         RhythmTreeContainer(
             children=(
                 RhythmTreeLeaf(
-                    duration=Duration(1, 1),
+                    preprolated_duration=Duration(1, 1),
                     is_pitched=True
                     ),
                 RhythmTreeContainer(
                     children=(
                         RhythmTreeLeaf(
-                            duration=Duration(3, 1),
+                            preprolated_duration=Duration(3, 1),
                             is_pitched=True
                             ),
                         RhythmTreeLeaf(
-                            duration=Duration(2, 1),
+                            preprolated_duration=Duration(2, 1),
                             is_pitched=True
                             )
                         ),
-                    duration=Duration(2, 1)
+                    preprolated_duration=Duration(2, 1)
                     )
                 ),
-            duration=Duration(1, 1)
+            preprolated_duration=Duration(1, 1)
             )
 
-    Call `RhythmTreeContainer` with a duration to generate a tuplet structure:
+    Call `RhythmTreeContainer` with a preprolated_duration to generate a tuplet structure:
 
     ::
 
@@ -95,8 +95,8 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
     ### INITIALIZER ###
 
-    def __init__(self, children=None, duration=1, name=None):
-        RhythmTreeNode.__init__(self, duration=duration, name=name)
+    def __init__(self, children=None, preprolated_duration=1, name=None):
+        RhythmTreeNode.__init__(self, preprolated_duration=preprolated_duration, name=name)
         self._children = []
         if isinstance(children, type(None)):
             pass
@@ -110,7 +110,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
     def __add__(self, expr):
         '''Concatenate containers self and expr. The operation c = a + b
         returns a new RhythmTreeContainer c with the content of both a and b,
-        and a duration equal to the sum of the durations of a and b. The
+        and a preprolated_duration equal to the sum of the durations of a and b. The
         operation is non-commutative: the content of the first operand will be
         placed before the content of the second operand:
 
@@ -125,7 +125,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
         ::
 
-            >>> c.duration
+            >>> c.preprolated_duration
             Duration(3, 1)
 
         ::
@@ -134,27 +134,27 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
-                        duration=Duration(1, 1),
+                        preprolated_duration=Duration(1, 1),
                         is_pitched=True
                         ),
                     RhythmTreeLeaf(
-                        duration=Duration(1, 1),
+                        preprolated_duration=Duration(1, 1),
                         is_pitched=True
                         ),
                     RhythmTreeLeaf(
-                        duration=Duration(1, 1),
+                        preprolated_duration=Duration(1, 1),
                         is_pitched=True
                         ),
                     RhythmTreeLeaf(
-                        duration=Duration(3, 1),
+                        preprolated_duration=Duration(3, 1),
                         is_pitched=True
                         ),
                     RhythmTreeLeaf(
-                        duration=Duration(4, 1),
+                        preprolated_duration=Duration(4, 1),
                         is_pitched=True
                         )
                     ),
-                duration=Duration(3, 1)
+                preprolated_duration=Duration(3, 1)
                 )
 
         Return new RhythmTreeContainer.
@@ -164,7 +164,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             expr = RhythmTreeParser()(expr)
             assert 1 == len(expr) and isinstance(expr[0], type(self))
             expr = expr[0]
-        container = type(self)(duration=self.duration + expr.duration)
+        container = type(self)(preprolated_duration=self.preprolated_duration + expr.preprolated_duration)
         container.extend(self[:])
         container.extend(expr[:])
         return container
@@ -192,7 +192,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             tuplet = tuplettools.FixedDurationTuplet(tuplet_duration, [])
             for child in node.children:
                 if isinstance(child, type(self)):
-                    tuplet.extend(recurse(child, child.duration * basic_written_duration))
+                    tuplet.extend(recurse(child, child.preprolated_duration * basic_written_duration))
                 else:
                     leaves = child(basic_written_duration)
                     tuplet.extend(leaves)
@@ -201,17 +201,17 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             if tuplet.multiplier == 1:
                 return tuplet[:]
             return [tuplet]
-        result = recurse(self, pulse_duration * self.duration)
+        result = recurse(self, pulse_duration * self.preprolated_duration)
         tuplettools.remove_trivial_tuplets_in_expr(result)
         return result
 
     def __eq__(self, other):
-        '''True if type, duration and children are equivalent, otherwise False.
+        '''True if type, preprolated_duration and children are equivalent, otherwise False.
 
         Return boolean.
         '''
         if type(self) == type(other):
-            if self.duration == other.duration:
+            if self.preprolated_duration == other.preprolated_duration:
                 if self.children == other.children:
                     return True
         return False
@@ -311,7 +311,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
     @property
     def _pretty_rtm_format_pieces(self):
         result = []
-        result.append('({} ('.format(self.duration))
+        result.append('({} ('.format(self.preprolated_duration))
         for child in self:
             result.extend(['\t' + x for x in child._pretty_rtm_format_pieces])
         result[-1] = result[-1] + '))'
@@ -321,7 +321,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
     @property
     def contents_duration(self):
-        '''The total duration of the children of a `RhythmTreeContainer` instance:
+        '''The total preprolated_duration of the children of a `RhythmTreeContainer` instance:
 
         ::
 
@@ -340,7 +340,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
         Return int.
         '''
-        return sum([x.duration for x in self])
+        return sum([x.preprolated_duration for x in self])
 
     @property
     def graphviz_graph(self):
@@ -386,7 +386,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         node_mapping = {}
         for node in self.nodes:
             graphviz_node = documentationtools.GraphvizNode()
-            graphviz_node.attributes['label'] = str(node.duration)
+            graphviz_node.attributes['label'] = str(node.preprolated_duration)
             if isinstance(node, type(self)):
                 graphviz_node.attributes['shape'] = 'triangle'   
             else:
@@ -414,7 +414,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         Return string.
         '''
         return '({} ({}))'.format(
-            self.duration,
+            self.preprolated_duration,
             ' '.join([x.rtm_format for x in self]))
 
 

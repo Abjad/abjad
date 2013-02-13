@@ -20,12 +20,12 @@ class QGrid(AbjadObject):
         >>> q_grid
         quantizationtools.QGrid(
             root_node=quantizationtools.QGridLeaf(
-                duration=durationtools.Duration(1, 1),
+                preprolated_duration=durationtools.Duration(1, 1),
                 q_event_proxies=[],
                 is_divisible=True
                 ),
             next_downbeat=quantizationtools.QGridLeaf(
-                duration=durationtools.Duration(1, 1),
+                preprolated_duration=durationtools.Duration(1, 1),
                 q_event_proxies=[],
                 is_divisible=True
                 )
@@ -89,12 +89,12 @@ class QGrid(AbjadObject):
         from abjad.tools import quantizationtools
 
         if root_node is None:
-            root_node = quantizationtools.QGridLeaf(duration=1)
+            root_node = quantizationtools.QGridLeaf(preprolated_duration=1)
         assert isinstance(root_node,
             (quantizationtools.QGridLeaf, quantizationtools.QGridContainer))
 
         if next_downbeat is None:
-            next_downbeat = quantizationtools.QGridLeaf(duration=1)
+            next_downbeat = quantizationtools.QGridLeaf(preprolated_duration=1)
         assert isinstance(next_downbeat, quantizationtools.QGridLeaf)
 
         self._root_node = root_node
@@ -263,9 +263,9 @@ class QGrid(AbjadObject):
         '''
         from abjad.tools import quantizationtools
         container = quantizationtools.QGridContainer(
-            duration=leaf.duration,
+            preprolated_duration=leaf.preprolated_duration,
             children=[
-                quantizationtools.QGridLeaf(duration=subdivision) for subdivision in subdivisions
+                quantizationtools.QGridLeaf(preprolated_duration=subdivision) for subdivision in subdivisions
             ])
         if leaf.parent is not None:
             index = leaf.parent.index(leaf)

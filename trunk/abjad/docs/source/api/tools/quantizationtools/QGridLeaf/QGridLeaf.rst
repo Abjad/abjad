@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.depthwise_inventory
    :noindex:
 
+.. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.graph_order
    :noindex:
 
@@ -37,9 +40,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.pretty_rtm_format
-   :noindex:
-
-.. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.prolation
@@ -75,13 +75,13 @@ Read-only Properties
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.duration
-   :noindex:
-
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.is_divisible
    :noindex:
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.name
+   :noindex:
+
+.. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.preprolated_duration
    :noindex:
 
 Special Methods

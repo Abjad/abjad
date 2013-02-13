@@ -13,9 +13,9 @@ def test_QGrid___eq___02():
 
     a = quantizationtools.QGrid(
         root_node=quantizationtools.QGridContainer(
-            duration=1, children=[
+            preprolated_duration=1, children=[
             quantizationtools.QGridLeaf(
-                duration=1, q_event_proxies=[
+                preprolated_duration=1, q_event_proxies=[
                 quantizationtools.QEventProxy(
                     quantizationtools.SilentQEvent(100),
                     0.5
@@ -23,7 +23,7 @@ def test_QGrid___eq___02():
                 ])
             ]),
         next_downbeat=quantizationtools.QGridLeaf(
-            duration=1,
+            preprolated_duration=1,
             q_event_proxies=[
                 quantizationtools.QEventProxy(
                     quantizationtools.TerminalQEvent(200),
@@ -35,9 +35,9 @@ def test_QGrid___eq___02():
 
     b = quantizationtools.QGrid( 
         root_node=quantizationtools.QGridContainer(
-            duration=1, children=[  
+            preprolated_duration=1, children=[  
             quantizationtools.QGridLeaf(
-                duration=1, q_event_proxies=[ 
+                preprolated_duration=1, q_event_proxies=[ 
                 quantizationtools.QEventProxy( 
                     quantizationtools.SilentQEvent(100),
                     0.5
@@ -45,7 +45,7 @@ def test_QGrid___eq___02():
                 ])
             ]),
         next_downbeat=quantizationtools.QGridLeaf(
-            duration=1, 
+            preprolated_duration=1, 
             q_event_proxies=[ 
                 quantizationtools.QEventProxy( 
                     quantizationtools.TerminalQEvent(200),
@@ -63,9 +63,9 @@ def test_QGrid___eq___03():
     a = quantizationtools.QGrid()
     b = quantizationtools.QGrid(
         root_node=quantizationtools.QGridContainer(
-            duration=1, children=[
+            preprolated_duration=1, children=[
             quantizationtools.QGridLeaf(
-                duration=1, q_event_proxies=[
+                preprolated_duration=1, q_event_proxies=[
                 quantizationtools.QEventProxy(
                     quantizationtools.SilentQEvent(100),
                     0.5
@@ -75,7 +75,7 @@ def test_QGrid___eq___03():
         )
     c = quantizationtools.QGrid(
         next_downbeat=quantizationtools.QGridLeaf(
-            duration=1,
+            preprolated_duration=1,
             q_event_proxies=[ 
                 quantizationtools.QEventProxy(
                     quantizationtools.TerminalQEvent(200),
@@ -86,9 +86,9 @@ def test_QGrid___eq___03():
         )
     d = quantizationtools.QGrid(
         root_node=quantizationtools.QGridContainer(
-            duration=1, children=[
+            preprolated_duration=1, children=[
             quantizationtools.QGridLeaf(
-                duration=1, q_event_proxies=[
+                preprolated_duration=1, q_event_proxies=[
                 quantizationtools.QEventProxy(
                     quantizationtools.SilentQEvent(100),
                     0.5
@@ -96,7 +96,7 @@ def test_QGrid___eq___03():
                 ])
             ]),
         next_downbeat=quantizationtools.QGridLeaf(
-            duration=1,
+            preprolated_duration=1,
             q_event_proxies=[
                 quantizationtools.QEventProxy(
                     quantizationtools.TerminalQEvent(200),

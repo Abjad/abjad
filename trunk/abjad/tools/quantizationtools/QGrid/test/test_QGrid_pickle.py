@@ -6,9 +6,9 @@ def test_QGrid_pickle_01():
 
     q_grid = quantizationtools.QGrid(
         root_node=quantizationtools.QGridContainer(
-            duration=1, children=[
+            preprolated_duration=1, children=[
             quantizationtools.QGridLeaf(
-                duration=1, q_event_proxies=[
+                preprolated_duration=1, q_event_proxies=[
                 quantizationtools.QEventProxy(
                     quantizationtools.SilentQEvent(100),
                     0.5
@@ -16,7 +16,7 @@ def test_QGrid_pickle_01():
                 ])
             ]),
         next_downbeat=quantizationtools.QGridLeaf(
-            duration=1,
+            preprolated_duration=1,
             q_event_proxies=[
                 quantizationtools.QEventProxy(
                     quantizationtools.TerminalQEvent(200),

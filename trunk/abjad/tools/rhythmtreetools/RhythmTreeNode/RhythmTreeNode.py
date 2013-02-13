@@ -13,12 +13,12 @@ class RhythmTreeNode(TreeNode):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, duration=1, name=None):
+    def __init__(self, preprolated_duration=1, name=None):
         TreeNode.__init__(self, name=name)
         self._duration = 0
         self._offset = durationtools.Offset(0)
         self._offsets_are_current = False
-        self.duration = duration
+        self.preprolated_duration = preprolated_duration
 
     ### SPECIAL METHODS ###
 
@@ -38,7 +38,7 @@ class RhythmTreeNode(TreeNode):
                 else:
                     child._offset = current_offset
                     child._offsets_are_current = True
-                    current_offset += child.prolated_duration
+                    current_offset += child.duration
             return current_offset
         offset = durationtools.Offset(0)
         root = self.root
@@ -77,18 +77,18 @@ class RhythmTreeNode(TreeNode):
         '''A sequence describing the relative durations of the nodes in a
         node's improper parentage.
 
-        The first item in the sequence is the duration of the root node, and
-        subsequent items are pairs of the duration of the next node in the
-        parentage chain and the total duration of that node and its siblings:
+        The first item in the sequence is the preprolated_duration of the root node, and
+        subsequent items are pairs of the preprolated_duration of the next node in the
+        parentage chain and the total preprolated_duration of that node and its siblings:
 
 
         ::
 
-            >>> a = rhythmtreetools.RhythmTreeContainer(duration=1)
-            >>> b = rhythmtreetools.RhythmTreeContainer(duration=2)
-            >>> c = rhythmtreetools.RhythmTreeLeaf(duration=3)
-            >>> d = rhythmtreetools.RhythmTreeLeaf(duration=4)
-            >>> e = rhythmtreetools.RhythmTreeLeaf(duration=5)
+            >>> a = rhythmtreetools.RhythmTreeContainer(preprolated_duration=1)
+            >>> b = rhythmtreetools.RhythmTreeContainer(preprolated_duration=2)
+            >>> c = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3)
+            >>> d = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=4)
+            >>> e = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=5)
 
         ::
 
@@ -125,9 +125,9 @@ class RhythmTreeNode(TreeNode):
         result = []
         node = self
         while node.parent is not None:
-            result.append((node.duration, node.parent.contents_duration))
+            result.append((node.preprolated_duration, node.parent.contents_duration))
             node = node.parent
-        result.append(node.duration)
+        result.append(node.preprolated_duration)
         return tuple(reversed(result))
 
     @property
@@ -152,8 +152,8 @@ class RhythmTreeNode(TreeNode):
         return '\n'.join(self._pretty_rtm_format_pieces)
 
     @property
-    def prolated_duration(self):
-        '''The prolated duration of the node:
+    def duration(self):
+        '''The prolated preprolated_duration of the node:
 
         ::
 
@@ -162,22 +162,22 @@ class RhythmTreeNode(TreeNode):
 
         ::
 
-            >>> tree.prolated_duration
+            >>> tree.duration
             Duration(1, 1)
 
         ::
 
-            >>> tree[1].prolated_duration
+            >>> tree[1].duration
             Duration(1, 2)
 
         ::
 
-            >>> tree[1][1].prolated_duration
+            >>> tree[1][1].duration
             Duration(1, 4)
 
         Return `Duration` instance.
         '''
-        return self.prolation * self.duration
+        return self.prolation * self.preprolated_duration
 
     @property
     def prolation(self):
@@ -188,7 +188,7 @@ class RhythmTreeNode(TreeNode):
         prolations = [durationtools.Multiplier(1)]
         improper_parentage = self.improper_parentage
         for child, parent in sequencetools.iterate_sequence_pairwise_strict(improper_parentage):
-            prolations.append(durationtools.Multiplier(parent.duration, parent.contents_duration))
+            prolations.append(durationtools.Multiplier(parent.preprolated_duration, parent.contents_duration))
         return tuple(prolations)
 
     @abc.abstractproperty
@@ -239,25 +239,25 @@ class RhythmTreeNode(TreeNode):
     def stop_offset(self):
         '''The stopping offset of a node in a rhythm-tree relative the root.
         '''
-        return self.start_offset + self.prolated_duration
+        return self.start_offset + self.duration
 
     ### READ/WRITE PUBLIC PROPERTIES ###
 
     @apply
-    def duration():
+    def preprolated_duration():
         def fget(self):
-            '''The node's duration in pulses:
+            '''The node's preprolated_duration in pulses:
 
             ::
 
-                >>> node = rhythmtreetools.RhythmTreeLeaf(duration=1)
-                >>> node.duration
+                >>> node = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1)
+                >>> node.preprolated_duration
                 Duration(1, 1)
 
             ::
 
-                >>> node.duration = 2
-                >>> node.duration
+                >>> node.preprolated_duration = 2
+                >>> node.preprolated_duration
                 Duration(2, 1)
 
             Return int.

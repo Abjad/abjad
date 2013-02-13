@@ -21,6 +21,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.depthwise_inventory
    :noindex:
 
+.. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.graph_order
    :noindex:
 
@@ -46,9 +49,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.pretty_rtm_format
-   :noindex:
-
-.. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.prolation
@@ -78,10 +78,10 @@ Read-only Properties
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.duration
+.. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.name
    :noindex:
 
-.. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.name
+.. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.preprolated_duration
    :noindex:
 
 Methods

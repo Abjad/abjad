@@ -58,8 +58,8 @@ def fit_metrical_hierarchies_to_expr(expr, metrical_hierarchies,
         start_offset = durationtools.Offset(starting_offset)
 
     metrical_hierarchy_inventory = timesignaturetools.MetricalHierarchyInventory(metrical_hierarchies)
-    longest_hierarchy = sorted(metrical_hierarchy_inventory, key=lambda x: x.duration, reverse=True)[0]
-    longest_kernel_duration = max(x.duration for x in metrical_hierarchy_inventory)
+    longest_hierarchy = sorted(metrical_hierarchy_inventory, key=lambda x: x.preprolated_duration, reverse=True)[0]
+    longest_kernel_duration = max(x.preprolated_duration for x in metrical_hierarchy_inventory)
     kernels = [x.generate_offset_kernel_to_denominator(denominator) for x in metrical_hierarchy_inventory]
     
     current_start_offset = start_offset
@@ -91,7 +91,7 @@ def fit_metrical_hierarchies_to_expr(expr, metrical_hierarchies,
             response, index = candidates[0]
             winner = metrical_hierarchy_inventory[index]
         selected_hierarchies.append(winner)
-        current_start_offset += winner.duration 
+        current_start_offset += winner.preprolated_duration 
         while len(ordered_offsets) and ordered_offsets[-1] < current_start_offset:
             ordered_offsets.pop()
 

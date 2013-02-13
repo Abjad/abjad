@@ -5,22 +5,22 @@ import copy
 def test_QGridContainer___copy___01():
 
     tree = quantizationtools.QGridContainer(
-        duration=1,
+        preprolated_duration=1,
         children=[
-            quantizationtools.QGridLeaf(duration=1),
+            quantizationtools.QGridLeaf(preprolated_duration=1),
             quantizationtools.QGridContainer(
-                duration=2,
+                preprolated_duration=2,
                 children=[
-                    quantizationtools.QGridLeaf(duration=3),
+                    quantizationtools.QGridLeaf(preprolated_duration=3),
                     quantizationtools.QGridContainer(
-                        duration=4,
+                        preprolated_duration=4,
                         children=[
-                            quantizationtools.QGridLeaf(duration=1),
-                            quantizationtools.QGridLeaf(duration=1),
-                            quantizationtools.QGridLeaf(duration=1)
+                            quantizationtools.QGridLeaf(preprolated_duration=1),
+                            quantizationtools.QGridLeaf(preprolated_duration=1),
+                            quantizationtools.QGridLeaf(preprolated_duration=1)
                         ])
                 ]),
-            quantizationtools.QGridLeaf(duration=2)
+            quantizationtools.QGridLeaf(preprolated_duration=2)
         ])
 
     copied = copy.copy(tree)

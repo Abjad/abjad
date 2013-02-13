@@ -3,9 +3,9 @@ from abjad import *
 
 def test_RhythmTreeContainer_insert_01():
 
-    leaf_a = rhythmtreetools.RhythmTreeLeaf(duration=3)
-    leaf_b = rhythmtreetools.RhythmTreeLeaf(duration=3)
-    leaf_c = rhythmtreetools.RhythmTreeLeaf(duration=2)
+    leaf_a = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3)
+    leaf_b = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3)
+    leaf_c = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=2)
 
     container = rhythmtreetools.RhythmTreeContainer()
     assert container.children == ()

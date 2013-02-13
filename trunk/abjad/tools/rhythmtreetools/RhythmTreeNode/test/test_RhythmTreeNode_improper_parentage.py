@@ -13,6 +13,6 @@ def test_RhythmTreeNode_improper_parentage_01():
     assert leaf.improper_parentage == (leaf, container)
 
     subcontainer = rhythmtreetools.RhythmTreeContainer(
-        duration=1, children=[leaf])
+        preprolated_duration=1, children=[leaf])
     container.append(subcontainer)
     assert leaf.improper_parentage == (leaf, subcontainer, container)

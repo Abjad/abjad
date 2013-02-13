@@ -12,7 +12,7 @@ class QGridContainer(RhythmTreeContainer):
 
         >>> container
         QGridContainer(
-            duration=Duration(1, 1)
+            preprolated_duration=Duration(1, 1)
             )
 
     Used internally by ``QGrid``.

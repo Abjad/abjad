@@ -18,9 +18,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.depthwise_offset_inventory
    :noindex:
 
-.. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.duration
-   :noindex:
-
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.graphviz_format
    :noindex:
 
@@ -28,6 +25,9 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.numerator
+   :noindex:
+
+.. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.preprolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.pretty_rtm_format

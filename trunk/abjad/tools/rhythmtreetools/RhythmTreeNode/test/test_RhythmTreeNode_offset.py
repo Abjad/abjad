@@ -4,13 +4,13 @@ from abjad.tools.rhythmtreetools import RhythmTreeContainer, RhythmTreeLeaf
 
 def test_RhythmTreeNode_offset_01():
 
-    tree = RhythmTreeContainer(duration=1, children=[
-        RhythmTreeLeaf(duration=1),
-        RhythmTreeContainer(duration=2, children=[
-            RhythmTreeLeaf(duration=3),
-            RhythmTreeLeaf(duration=2)
+    tree = RhythmTreeContainer(preprolated_duration=1, children=[
+        RhythmTreeLeaf(preprolated_duration=1),
+        RhythmTreeContainer(preprolated_duration=2, children=[
+            RhythmTreeLeaf(preprolated_duration=3),
+            RhythmTreeLeaf(preprolated_duration=2)
         ]),
-        RhythmTreeLeaf(duration=2)
+        RhythmTreeLeaf(preprolated_duration=2)
     ])
 
     assert tree.start_offset == Offset(0)
@@ -33,7 +33,7 @@ def test_RhythmTreeNode_offset_01():
     assert tree[1][1].start_offset == Offset(13, 21)
     assert tree[1][2].start_offset == Offset(17, 21)
     
-    tree.duration = 19
+    tree.preprolated_duration = 19
         
     assert tree.start_offset == Offset(0)
     assert tree[0].start_offset == Offset(0)

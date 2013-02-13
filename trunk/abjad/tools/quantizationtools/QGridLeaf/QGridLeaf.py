@@ -14,7 +14,7 @@ class QGridLeaf(RhythmTreeNode):
 
         >>> leaf
         QGridLeaf(
-            duration=Duration(1, 1),
+            preprolated_duration=Duration(1, 1),
             is_divisible=True
             )
 
@@ -30,9 +30,9 @@ class QGridLeaf(RhythmTreeNode):
 
     ### INITIALIZER ###
 
-    def __init__(self, duration=1, q_event_proxies=None, is_divisible=True):
+    def __init__(self, preprolated_duration=1, q_event_proxies=None, is_divisible=True):
         from abjad.tools import quantizationtools
-        RhythmTreeNode.__init__(self, duration)
+        RhythmTreeNode.__init__(self, preprolated_duration)
         if q_event_proxies is None:
             self._q_event_proxies = []
         else:
@@ -44,7 +44,7 @@ class QGridLeaf(RhythmTreeNode):
 
     def __call__(self, pulse_duration):
         pulse_duration = durationtools.Duration(pulse_duration)
-        total_duration = pulse_duration * self.duration
+        total_duration = pulse_duration * self.preprolated_duration
         return notetools.make_notes(0, total_duration)
 
     def __deepcopy__(self, memo):
@@ -52,20 +52,20 @@ class QGridLeaf(RhythmTreeNode):
 
     def __eq__(self, other):
         if type(self) == type(other):
-            if self.duration == other.duration:
+            if self.preprolated_duration == other.preprolated_duration:
                 if self.q_event_proxies == other.q_event_proxies:
                     if self._is_divisible == other.is_divisible:
                         return True
         return False
 
     def __getnewargs__(self):
-       return (self.duration, tuple(self.q_event_proxies), self.is_divisible)
+       return (self.preprolated_duration, tuple(self.q_event_proxies), self.is_divisible)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
         
     @property
     def _pretty_rtm_format_pieces(self):
-        return [str(self.duration)]
+        return [str(self.preprolated_duration)]
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -74,7 +74,7 @@ class QGridLeaf(RhythmTreeNode):
         graph = documentationtools.GraphvizGraph(name='G')
         node = documentationtools.GraphvizNode(
             attributes={
-                label: str(self.duration),
+                label: str(self.preprolated_duration),
                 shape: 'box'
             }
             )
@@ -91,7 +91,7 @@ class QGridLeaf(RhythmTreeNode):
 
     @property
     def rtm_format(self):
-        return str(self.duration)
+        return str(self.preprolated_duration)
 
     @property
     def succeeding_q_event_proxies(self):

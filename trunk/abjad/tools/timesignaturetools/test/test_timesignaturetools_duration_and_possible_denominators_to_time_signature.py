@@ -19,7 +19,7 @@ def test_timesignaturetools_duration_and_possible_denominators_to_time_signature
 
 
 def test_timesignaturetools_duration_and_possible_denominators_to_time_signature_03():
-    '''Make time_signature literally from duration.
+    '''Make time_signature literally from preprolated_duration.
     '''
 
     t = timesignaturetools.duration_and_possible_denominators_to_time_signature(Duration(3, 2))
@@ -27,7 +27,7 @@ def test_timesignaturetools_duration_and_possible_denominators_to_time_signature
 
 
 def test_timesignaturetools_duration_and_possible_denominators_to_time_signature_04():
-    '''Make time_signature literally from duration
+    '''Make time_signature literally from preprolated_duration
     because no feasible denomiantors in denominators list.
     '''
 
