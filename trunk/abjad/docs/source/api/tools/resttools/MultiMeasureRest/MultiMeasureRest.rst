@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.duration_in_seconds
    :noindex:
 
@@ -37,9 +40,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.prolation

@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.components
    :noindex:
 
+.. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.duration_in_seconds
    :noindex:
 
@@ -22,9 +25,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.set

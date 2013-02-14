@@ -83,14 +83,14 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
             # just right of span gap
             elif self._duration_offset_in_me(leaf) in self._span_points and not \
-                (self._duration_offset_in_me(leaf) + leaf.prolated_duration in \
+                (self._duration_offset_in_me(leaf) + leaf.duration in \
                 self._span_points):
                 assert isinstance(self.span, int)
                 left = self.span
                 #right = leaf.duration._flags
                 right = leaf.written_duration.flag_count
             # just left of span gap
-            elif self._duration_offset_in_me(leaf) + leaf.prolated_duration in \
+            elif self._duration_offset_in_me(leaf) + leaf.duration in \
                 self._span_points and not self._duration_offset_in_me(leaf) in \
                 self._span_points:
                 assert isinstance(self.span, int)
@@ -107,7 +107,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
     def _fracture_left(self, i):
         self, left, right = ComplexBeamSpanner._fracture_left(self, i)
-        weights = [left.prolated_duration, right.prolated_duration]
+        weights = [left.duration, right.duration]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
             self.durations, weights, cyclic=False, overhang=False)
@@ -118,7 +118,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
     def _fracture_right(self, i):
         self, left, right = ComplexBeamSpanner._fracture_right(self, i)
-        weights = [left.prolated_duration, right.prolated_duration]
+        weights = [left.duration, right.duration]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
             self.durations, weights, cyclic=False, overhang=False)

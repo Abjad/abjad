@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 
 
 # TODO: implement related function to shorten from right edge.
-# TODO: allow large values of `prolated_duration` to empty container contents.
+# TODO: allow large values of `duration` to empty container contents.
 def shorten_component_by_duration(component, duration):
     r'''.. versionadded:: 2.0
 
@@ -85,11 +85,11 @@ def shorten_component_by_duration(component, duration):
     assert isinstance(component, componenttools.Component)
     duration = durationtools.Duration(duration)
 
-    if component.prolated_duration <= duration:
+    if component.duration <= duration:
         raise Exception('component durations must be positive.')
 
     if isinstance(component, leaftools.Leaf):
-        new_prolated_duration = component.prolated_duration - duration
+        new_prolated_duration = component.duration - duration
         prolation = component.prolation
         new_written_duration = new_prolated_duration / prolation
         leaftools.set_preprolated_leaf_duration(component, new_written_duration)

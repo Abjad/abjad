@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.duration_in_seconds
    :noindex:
 
@@ -37,9 +40,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.prolation

@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.duration_in_seconds
    :noindex:
 
@@ -64,9 +67,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.prolation

@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner.components
    :noindex:
 
+.. autoattribute:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner.duration_in_seconds
    :noindex:
 
@@ -22,9 +25,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner.set

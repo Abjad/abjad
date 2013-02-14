@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.duration_in_seconds
    :noindex:
 
@@ -64,9 +67,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.prolation

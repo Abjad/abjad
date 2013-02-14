@@ -18,9 +18,9 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_durations_without_over
     '''
 
     assert len(t) == 3
-    assert t[0].prolated_duration == Duration(1, 4)
-    assert t[1].prolated_duration == Duration(1, 8)
-    assert t[2].prolated_duration == Duration(1, 8)
+    assert t[0].duration == Duration(1, 4)
+    assert t[1].duration == Duration(1, 8)
+    assert t[2].duration == Duration(1, 8)
     assert t[0] in tie
     assert t[1] in tie
     assert t[2] in tie
@@ -47,10 +47,10 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_durations_without_over
     '''
 
     assert len(t) == 4
-    assert t[0].prolated_duration == Duration(1, 8)
-    assert t[1].prolated_duration == Duration(1, 8)
-    assert t[2].prolated_duration == Duration(1, 8)
-    assert t[3].prolated_duration == Duration(1, 8)
+    assert t[0].duration == Duration(1, 8)
+    assert t[1].duration == Duration(1, 8)
+    assert t[2].duration == Duration(1, 8)
+    assert t[3].duration == Duration(1, 8)
     assert t[0] not in tie
     assert t[1] in tie
     assert t[2] in tie
@@ -77,8 +77,8 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_durations_without_over
     '''
 
     assert len(t) == 2
-    assert t[0].prolated_duration == Duration(1, 4)
-    assert t[1].prolated_duration == Duration(1, 4)
+    assert t[0].duration == Duration(1, 4)
+    assert t[1].duration == Duration(1, 4)
     assert t[0] in tie1
     assert t[1] in tie2
 

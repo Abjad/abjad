@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.duration_in_seconds
    :noindex:
 
@@ -37,9 +40,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.prolation

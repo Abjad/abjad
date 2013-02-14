@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.notetools.Note.Note.Note.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.duration_in_seconds
    :noindex:
 
@@ -40,9 +43,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.notetools.Note.Note.Note.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.prolation

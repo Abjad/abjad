@@ -65,8 +65,8 @@ def yield_components_grouped_by_duration(components):
     for component in components:
         if current_group:
             previous_component = current_group[-1]
-            previous_duration = previous_component.prolated_duration
-            current_duration = component.prolated_duration
+            previous_duration = previous_component.duration
+            current_duration = component.duration
             if current_duration == previous_duration:
                 current_group.append(component)
             else:

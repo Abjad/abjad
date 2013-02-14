@@ -41,7 +41,7 @@ def get_improper_parentage_of_component_that_stop_with_component(component):
     prev = component
     for parent in componenttools.get_proper_parentage_of_component(component):
         if parent.is_parallel:
-            if prev.prolated_duration == parent.prolated_duration:
+            if prev.duration == parent.duration:
                 result.append(parent)
             else:
                 break

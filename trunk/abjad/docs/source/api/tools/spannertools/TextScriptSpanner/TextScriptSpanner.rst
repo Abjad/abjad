@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.components
    :noindex:
 
+.. autoattribute:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.duration_in_seconds
    :noindex:
 
@@ -22,9 +25,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.set

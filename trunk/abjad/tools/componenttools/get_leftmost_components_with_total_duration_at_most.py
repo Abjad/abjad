@@ -44,7 +44,7 @@ def get_leftmost_components_with_total_duration_at_most(components, duration):
     total_duration = durationtools.Duration(0)
     result = []
     for component in components:
-        current_duration = component.prolated_duration
+        current_duration = component.duration
         if total_duration + current_duration <= duration:
             result.append(component)
             total_duration += current_duration

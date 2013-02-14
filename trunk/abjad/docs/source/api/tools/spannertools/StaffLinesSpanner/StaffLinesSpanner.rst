@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner.components
    :noindex:
 
+.. autoattribute:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner.duration_in_seconds
    :noindex:
 
@@ -22,9 +25,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner.set

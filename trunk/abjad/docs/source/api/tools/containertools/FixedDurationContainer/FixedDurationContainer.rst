@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.duration_in_seconds
    :noindex:
 
@@ -52,9 +55,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.prolation

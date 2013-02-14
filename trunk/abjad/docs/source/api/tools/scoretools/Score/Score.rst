@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.scoretools.Score.Score.Score.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.duration_in_seconds
    :noindex:
 
@@ -49,9 +52,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.scoretools.Score.Score.Score.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.prolation

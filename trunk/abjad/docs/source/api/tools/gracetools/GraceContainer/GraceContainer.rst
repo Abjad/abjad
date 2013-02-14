@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.duration_in_seconds
    :noindex:
 
@@ -40,9 +43,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.prolation

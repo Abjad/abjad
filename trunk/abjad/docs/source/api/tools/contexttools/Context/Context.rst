@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.contexttools.Context.Context.Context.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.duration_in_seconds
    :noindex:
 
@@ -49,9 +52,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.contexttools.Context.Context.Context.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.prolation

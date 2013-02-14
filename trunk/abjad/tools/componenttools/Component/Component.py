@@ -138,7 +138,7 @@ class Component(AbjadObject):
         return componenttools.Parentage(self)
 
     @property
-    def prolated_duration(self):
+    def duration(self):
         return self.prolation * self.preprolated_duration
 
     @property
@@ -180,7 +180,7 @@ class Component(AbjadObject):
     def stop_offset(self):
         '''Read-only stop offset of component.
         '''
-        return self.start_offset + self.prolated_duration
+        return self.start_offset + self.duration
 
     @property
     def stop_offset_in_seconds(self):

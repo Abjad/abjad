@@ -65,7 +65,7 @@ def get_improper_descendents_of_component_that_cross_offset(component, prolated_
 
     result = []
 
-    if component.prolated_duration <= prolated_offset:
+    if component.duration <= prolated_offset:
         return result
 
     boundary_time = component.start_offset + prolated_offset

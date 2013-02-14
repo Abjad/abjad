@@ -27,7 +27,7 @@ def get_leaf_in_expr_with_minimum_duration(expr):
     for leaf in iterationtools.iterate_leaves_in_expr(expr):
         if leaf_with_minimum_prolated_duration is None:
             leaf_with_minimum_prolated_duration = leaf
-        elif leaf.prolated_duration < leaf_with_minimum_prolated_duration.prolated_duration:
+        elif leaf.duration < leaf_with_minimum_prolated_duration.duration:
             leaf_with_minimum_prolated_duration = leaf
 
     return leaf_with_minimum_prolated_duration

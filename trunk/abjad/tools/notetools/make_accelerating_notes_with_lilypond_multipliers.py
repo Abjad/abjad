@@ -23,7 +23,7 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
 
     ::
 
-        >>> Voice(notes).prolated_duration
+        >>> Voice(notes).duration
         Duration(1, 2)
 
     Set note pitches cyclically from `pitches`.

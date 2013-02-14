@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.duration_in_seconds
    :noindex:
 
@@ -49,9 +52,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.prolation

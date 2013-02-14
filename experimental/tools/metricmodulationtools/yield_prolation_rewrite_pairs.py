@@ -1,5 +1,5 @@
-def yield_prolation_rewrite_pairs(prolated_duration, minimum_written_duration=None):
-    r'''Yield all prolation rewrite pairs of `prolated_duration` in Cantor diagonalized order.
+def yield_prolation_rewrite_pairs(duration, minimum_written_duration=None):
+    r'''Yield all prolation rewrite pairs of `duration` in Cantor diagonalized order.
 
     Ensure written duration never less than `minimum_written_duration`.
 
@@ -58,7 +58,7 @@ def yield_prolation_rewrite_pairs(prolated_duration, minimum_written_duration=No
     '''
     from abjad.tools import durationtools
 
-    prolated_duration = durationtools.Duration(prolated_duration)
+    duration = durationtools.Duration(duration)
 
     if minimum_written_duration is None:
         minimum_written_duration = durationtools.Duration(1, 128)
@@ -75,7 +75,7 @@ def yield_prolation_rewrite_pairs(prolated_duration, minimum_written_duration=No
         if written_duration < minimum_written_duration:
             pairs = tuple(pairs)
             return pairs
-        prolation = prolated_duration / written_duration
+        prolation = duration / written_duration
         if prolation.is_proper_tuplet_multiplier:
             pair = (prolation, written_duration)
             pairs.append(pair)

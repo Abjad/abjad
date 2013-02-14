@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.componenttools.Component.Component.Component.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.duration_in_seconds
    :noindex:
 
@@ -28,9 +31,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.parentage
-   :noindex:
-
-.. autoattribute:: abjad.tools.componenttools.Component.Component.Component.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.prolation

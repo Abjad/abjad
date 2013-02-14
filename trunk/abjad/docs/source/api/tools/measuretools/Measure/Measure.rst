@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.duration_in_seconds
    :noindex:
 
@@ -64,9 +67,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.prolation

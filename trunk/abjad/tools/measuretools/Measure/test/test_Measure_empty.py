@@ -13,7 +13,7 @@ def test_Measure_empty_02():
     assert py.test.raises(UnderfullContainerError, 't.lilypond_format')
     assert len(t) == 0
     assert t.preprolated_duration == 0
-    assert t.prolated_duration == 0
+    assert t.duration == 0
     assert not wellformednesstools.is_well_formed_component(t)
 
 
@@ -24,5 +24,5 @@ def test_Measure_empty_03():
     assert py.test.raises(UnderfullContainerError, 't.lilypond_format')
     assert len(t) == 0
     assert t.preprolated_duration == 0
-    assert t.prolated_duration == 0
+    assert t.duration == 0
     assert not wellformednesstools.is_well_formed_component(t)

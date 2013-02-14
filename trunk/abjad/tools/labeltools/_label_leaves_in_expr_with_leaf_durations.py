@@ -28,7 +28,7 @@ def _label_leaves_in_expr_with_leaf_durations(expr, markup_direction=Down,
                     label = markuptools.MarkupCommand('small', '{}{}'.format(str(leaf.written_duration), multiplier))
                     markuptools.Markup(label, markup_direction)(leaf)
                 if 'prolated' in show:
-                    label = markuptools.MarkupCommand('small', str(leaf.prolated_duration))
+                    label = markuptools.MarkupCommand('small', str(leaf.duration))
                     markuptools.Markup(label, markup_direction)(leaf)
             elif tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
                 tie = tie_spanners.pop()
@@ -38,7 +38,7 @@ def _label_leaves_in_expr_with_leaf_durations(expr, markup_direction=Down,
                     label = markuptools.MarkupCommand('small', str(written))
                     markuptools.Markup(label, markup_direction)(leaf)
                 if 'prolated' in show:
-                    prolated = sum([x.prolated_duration for x in tie])
+                    prolated = sum([x.duration for x in tie])
                     #label = r'\small %s' % prolated
                     label = markuptools.MarkupCommand('small', str(prolated))
                     markuptools.Markup(label, markup_direction)(leaf)

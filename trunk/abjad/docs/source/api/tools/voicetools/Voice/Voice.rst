@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.duration_in_seconds
    :noindex:
 
@@ -49,9 +52,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.prolation

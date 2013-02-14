@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.duration_in_seconds
    :noindex:
 
@@ -61,9 +64,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.prolation

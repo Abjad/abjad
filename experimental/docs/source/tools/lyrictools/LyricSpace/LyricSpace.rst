@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.descendants
    :noindex:
 
+.. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.duration
+   :noindex:
+
 .. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.duration_in_seconds
    :noindex:
 
@@ -37,9 +40,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.preprolated_duration
-   :noindex:
-
-.. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.prolated_duration
    :noindex:
 
 .. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.prolation

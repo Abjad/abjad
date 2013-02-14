@@ -119,8 +119,8 @@ class PayloadExpression(Expression):
     def _duration_helper(self, expression):
         if hasattr(expression, 'duration'):
             return expression.duration
-        elif hasattr(expression, 'prolated_duration'):
-            return expression.prolated_duration
+        elif hasattr(expression, 'duration'):
+            return expression.duration
         else:
             duration = durationtools.Duration(expression)
             return duration

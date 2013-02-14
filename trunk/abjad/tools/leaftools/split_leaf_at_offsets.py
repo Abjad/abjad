@@ -172,22 +172,22 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
     offsets = [durationtools.Offset(offset) for offset in offsets]
 
     if cyclic:
-        offsets = sequencetools.repeat_sequence_to_weight_exactly(offsets, leaf.prolated_duration)
+        offsets = sequencetools.repeat_sequence_to_weight_exactly(offsets, leaf.duration)
 
     durations = [durationtools.Duration(offset) for offset in offsets]
 
-    if sum(durations) < leaf.prolated_duration:
-        last_duration = leaf.prolated_duration - sum(durations)
+    if sum(durations) < leaf.duration:
+        last_duration = leaf.duration - sum(durations)
         durations.append(last_duration) 
 
-    sequencetools.truncate_sequence_to_weight(durations, leaf.prolated_duration)
+    sequencetools.truncate_sequence_to_weight(durations, leaf.duration)
 
     result = []
     leaf_prolation = leaf.prolation
     leaf_copy = copy.deepcopy(leaf)
-    for prolated_duration in durations:
+    for duration in durations:
         new_leaf = copy.deepcopy(leaf)
-        preprolated_duration = prolated_duration / leaf_prolation
+        preprolated_duration = duration / leaf_prolation
         shard = leaftools.set_preprolated_leaf_duration(new_leaf, preprolated_duration)
         shard = [x.parentage.root for x in shard]
         result.append(shard)

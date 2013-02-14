@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.components
    :noindex:
 
+.. autoattribute:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.duration_in_seconds
    :noindex:
 
@@ -22,9 +25,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.set

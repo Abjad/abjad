@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.duration_in_seconds
    :noindex:
 
@@ -40,9 +43,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.prolation

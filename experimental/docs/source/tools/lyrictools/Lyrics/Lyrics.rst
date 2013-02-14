@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.descendants
    :noindex:
 
+.. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.duration
+   :noindex:
+
 .. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.duration_in_seconds
    :noindex:
 
@@ -49,9 +52,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.preprolated_duration
-   :noindex:
-
-.. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.prolated_duration
    :noindex:
 
 .. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.prolation

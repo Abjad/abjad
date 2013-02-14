@@ -52,13 +52,13 @@ def leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, is_diminution
     target_duration = leaf.written_duration
 
     # find prolated duration of each note in tuplet
-    prolated_duration = target_duration / n
+    duration = target_duration / n
 
     # find written duration of each note in tuplet
     if is_diminution:
-        written_duration = prolated_duration.equal_or_greater_assignable
+        written_duration = duration.equal_or_greater_assignable
     else:
-        written_duration = prolated_duration.equal_or_lesser_assignable
+        written_duration = duration.equal_or_lesser_assignable
 
     # make tuplet notes
     notes = n * notetools.Note(0, written_duration)

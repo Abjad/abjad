@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.components
    :noindex:
 
+.. autoattribute:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.duration_in_seconds
    :noindex:
 
@@ -22,9 +25,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.set

@@ -21,7 +21,7 @@ def test_Spanner_leaves_01():
     assert len(p.leaves) == 4
     for i, leaf in enumerate(p.leaves):
         assert leaf is t[i]
-    assert p.prolated_duration == Duration(4, 8)
+    assert p.duration == Duration(4, 8)
 
 
 def test_Spanner_leaves_02():
@@ -42,7 +42,7 @@ def test_Spanner_leaves_02():
     assert len(p.leaves) == 4
     for i, leaf in enumerate(p.leaves):
         assert leaf is t[i]
-    assert p.prolated_duration == Duration(4, 8)
+    assert p.duration == Duration(4, 8)
 
 
 def test_Spanner_leaves_03():
@@ -61,7 +61,7 @@ def test_Spanner_leaves_03():
     assert len(p.components) == 1
     assert p.components[0] is t
     assert len(p.leaves) == 0
-    assert p.prolated_duration == Duration(0)
+    assert p.duration == Duration(0)
 
 
 def test_Spanner_leaves_04():
@@ -100,7 +100,7 @@ def test_Spanner_leaves_04():
     assert len(p.leaves) == 8
     for i, leaf in enumerate(t.leaves):
         assert leaf is t.leaves[i]
-    assert p.prolated_duration == Duration(8, 8)
+    assert p.duration == Duration(8, 8)
 
 
 def test_Spanner_leaves_05():
@@ -142,7 +142,7 @@ def test_Spanner_leaves_05():
     assert len(p.leaves) == 4
     for i, leaf in enumerate(p.leaves):
         assert leaf is t.leaves[i]
-    assert p.prolated_duration == Duration(4, 8)
+    assert p.duration == Duration(4, 8)
 
 
 def test_Spanner_leaves_06():
@@ -188,7 +188,7 @@ def test_Spanner_leaves_06():
 #   assert p.leaves[1] is t[1]
 #   assert p.leaves[2] is t[3]
 #   assert p.leaves[3] is t[4]
-#   assert p.prolated_duration == Duration(6, 8)
+#   assert p.duration == Duration(6, 8)
 
 
 def test_Spanner_leaves_07():
@@ -234,4 +234,4 @@ def test_Spanner_leaves_07():
 #   assert p.leaves[1] is t[1]
 #   assert p.leaves[2] is t[3]
 #   assert p.leaves[3] is t[4]
-#   assert p.prolated_duration == Duration(6, 8)
+#   assert p.duration == Duration(6, 8)

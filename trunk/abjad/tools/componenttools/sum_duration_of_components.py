@@ -50,4 +50,4 @@ def sum_duration_of_components(components, preprolated=False, in_seconds=False):
     elif preprolated:
         return sum([component.preprolated_duration for component in components])
     else:
-        return sum([component.prolated_duration for component in components])
+        return sum([component.duration for component in components])

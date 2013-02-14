@@ -395,7 +395,7 @@ def split_components_at_offsets(components, offsets,
             break
 
         # find where current component endpoint will position us
-        candidate_shard_duration = current_shard_duration + current_component.prolated_duration
+        candidate_shard_duration = current_shard_duration + current_component.duration
         #print current_component, offset_index, current_shard_duration, next_split_point
 
         # if current component would fill current shard exactly
@@ -417,7 +417,7 @@ def split_components_at_offsets(components, offsets,
             if isinstance(current_component, leaftools.Leaf):
                 #print 'splitting leaf ...'
                 leaf_split_durations = [local_split_duration]
-                additional_required_duration = current_component.prolated_duration - local_split_duration
+                additional_required_duration = current_component.duration - local_split_duration
                 #print 'additional_required_duration {}'.format(additional_required_duration)
                 #print 'offsets {}'.format(offsets)
                 split_offsets = sequencetools.split_sequence_by_weights(
@@ -451,7 +451,7 @@ def split_components_at_offsets(components, offsets,
         elif candidate_shard_duration < next_split_point:
             #print 'simple append %s' % current_component
             shard.append(current_component)
-            current_shard_duration += current_component.prolated_duration
+            current_shard_duration += current_component.duration
             advance_to_next_offset = False
         else:
             raise ValueError

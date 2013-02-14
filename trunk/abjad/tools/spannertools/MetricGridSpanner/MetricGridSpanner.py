@@ -140,7 +140,7 @@ class MetricGridSpanner(Spanner):
             moffset = 0
             previous_time_signature = None
             #while moffset < self.duration:
-            while moffset < self.prolated_duration:
+            while moffset < self.duration:
                 m = self._time_signatures[i % len(self._time_signatures)]
                 m = contexttools.TimeSignatureMark(m)
                 # new attribute

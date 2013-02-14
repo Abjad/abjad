@@ -9,7 +9,7 @@ def test_NoteAndChordHairpinsHandler_apply_01():
     hairpins.hairpin_tokens.append(('p', '<', 'f'))
     hairpins.hairpin_tokens.append(('p', '<', 'f'))
     hairpins.hairpin_tokens.append(('pp', '<', 'p'))
-    hairpins.minimum_prolated_duration = Duration(1, 8)
+    hairpins.minimum_duration = Duration(1, 8)
 
     staff = Staff("c'8 d'8 r8 e'8 f'8 r8 g'8 r8 a'32 b'32 r8. c''8 d''8" )
     hairpins.apply(staff)

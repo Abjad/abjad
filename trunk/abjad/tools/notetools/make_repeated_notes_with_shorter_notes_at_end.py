@@ -73,12 +73,12 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
     prolation = durationtools.Duration(prolation)
     prolation = fractions.Fraction(prolation)
 
-    prolated_duration = prolation * written_duration
+    duration = prolation * written_duration
     current_duration = durationtools.Duration(0)
     result = []
-    while current_duration + prolated_duration <= total_duration:
+    while current_duration + duration <= total_duration:
         result.append(notetools.Note(pitch, written_duration))
-        current_duration += prolated_duration
+        current_duration += duration
     remainder_duration = total_duration - current_duration
     if durationtools.Duration(0) < remainder_duration:
         multiplied_remainder = remainder_duration / prolation

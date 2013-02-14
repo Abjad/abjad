@@ -132,8 +132,8 @@ class StartPositionedPayloadExpression(PayloadExpression):
         elif timespan.curtails_timespan(self):
             split_offset = durationtools.Offset(timespan.start_offset)
             duration_to_trim = self.stop_offset - split_offset
-            if hasattr(self.payload, 'prolated_duration'):
-                payload_duration = self.payload.prolated_duration
+            if hasattr(self.payload, 'duration'):
+                payload_duration = self.payload.duration
             else:
                 payload_duration = self.payload.duration
             duration_to_keep = payload_duration - duration_to_trim
@@ -186,8 +186,8 @@ class StartPositionedPayloadExpression(PayloadExpression):
     def _get_duration_of_expr(self, expr):
         if hasattr(expr, 'duration'):
             return expr.duration
-        elif hasattr(expr, 'prolated_duration'):
-            return expr.prolated_duration
+        elif hasattr(expr, 'duration'):
+            return expr.duration
         elif isinstance(expr, numbers.Number):
             return durationtools.Duration(expr)
         elif hasattr(expr, 'timespan'):

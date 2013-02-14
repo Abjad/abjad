@@ -12,4 +12,4 @@ def update_offset_values_of_component(component):
         component._start_offset = prev._stop_offset
     else:
         component._start_offset = durationtools.Offset(0)
-    component._stop_offset = component._start_offset + component.prolated_duration
+    component._stop_offset = component._start_offset + component.duration

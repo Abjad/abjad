@@ -31,7 +31,7 @@ def _line_break_every(expr, line_duration, klass=None,
         if kind == 'seconds':
             current_duration = cur.duration_in_seconds
         elif kind == 'prolated':
-            current_duration = cur.prolated_duration
+            current_duration = cur.duration
         elif kind == 'preprolated':
             current_duration = cur.preprolated_duration
         else:

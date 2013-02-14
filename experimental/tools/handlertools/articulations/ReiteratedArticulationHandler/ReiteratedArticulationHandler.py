@@ -9,13 +9,13 @@ class ReiteratedArticulationHandler(ArticulationHandler):
 
     def __init__(self, 
         articulation_list=None,
-        minimum_prolated_duration=None, 
-        maximum_prolated_duration=None,
+        minimum_duration=None, 
+        maximum_duration=None,
         minimum_written_pitch=None, 
         maximum_written_pitch=None):
         ArticulationHandler.__init__(self,
-            minimum_prolated_duration=minimum_prolated_duration,
-            maximum_prolated_duration=maximum_prolated_duration,
+            minimum_duration=minimum_duration,
+            maximum_duration=maximum_duration,
             minimum_written_pitch=minimum_written_pitch,
             maximum_written_pitch=maximum_written_pitch)
         if articulation_list is None:
@@ -56,11 +56,11 @@ class ReiteratedArticulationHandler(ArticulationHandler):
         if skip_last:
             notes_and_chords = notes_and_chords[:-skip_last]
         for i, note_or_chord in enumerate(notes_and_chords):
-            if self.minimum_prolated_duration is not None:
-                if note_or_chord.duration.prolated < self.minimum_prolated_duration:
+            if self.minimum_duration is not None:
+                if note_or_chord.duration.prolated < self.minimum_duration:
                     continue
-            if self.maximum_prolated_duration is not None:
-                if self.maximum_prolated_duration < note_or_chord.duration.prolated:
+            if self.maximum_duration is not None:
+                if self.maximum_duration < note_or_chord.duration.prolated:
                     continue
             if self.minimum_written_pitch is not None:
                 if isinstance(note_or_chord, Note):

@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner.components
    :noindex:
 
+.. autoattribute:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner.duration_in_seconds
    :noindex:
 
@@ -22,9 +25,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner.set

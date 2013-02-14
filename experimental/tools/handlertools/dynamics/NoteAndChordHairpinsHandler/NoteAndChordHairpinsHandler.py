@@ -10,8 +10,8 @@ from experimental.tools.handlertools.dynamics.DynamicHandler import DynamicHandl
 
 class NoteAndChordHairpinsHandler(DynamicHandler):
 
-    def __init__(self, hairpin_tokens=None, minimum_prolated_duration=None):
-        DynamicHandler.__init__(self, minimum_prolated_duration=minimum_prolated_duration)
+    def __init__(self, hairpin_tokens=None, minimum_duration=None):
+        DynamicHandler.__init__(self, minimum_duration=minimum_duration)
         if hairpin_tokens is None:
             hairpin_tokens = []
         for hairpin_token in hairpin_tokens:
@@ -35,9 +35,9 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
             hairpin_token = hairpin_tokens[offset+i]
             if len(group) == 1:
                 is_short_group = True
-            elif self.minimum_prolated_duration is not None:
-                prolated_duration = componenttools.sum_duration_of_components(group)
-                if prolated_duration < self.minimum_prolated_duration:
+            elif self.minimum_duration is not None:
+                duration = componenttools.sum_duration_of_components(group)
+                if duration < self.minimum_duration:
                     is_short_group = True
             if is_short_group:
                 start_dynamic = hairpin_token[0]

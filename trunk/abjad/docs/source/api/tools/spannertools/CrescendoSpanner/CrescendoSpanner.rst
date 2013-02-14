@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.components
    :noindex:
 
+.. autoattribute:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.duration_in_seconds
    :noindex:
 
@@ -22,9 +25,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.set

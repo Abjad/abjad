@@ -13,13 +13,13 @@ def test_FixedDurationTuplet_01():
     assert str(t) == "{@ 5:4 {@ 3:2 c'8, c'8, c'8 @}, c'8, c'8, c'8 @}"
     assert t.target_duration == Fraction(1, 2)
     assert t.multiplier == Fraction(4, 5)
-    assert t.prolated_duration == Fraction(1, 2)
+    assert t.duration == Fraction(1, 2)
     assert repr(t[0]) == "FixedDurationTuplet(1/4, [c'8, c'8, c'8])"
     assert str(t[0]) == "{@ 3:2 c'8, c'8, c'8 @}"
     assert len(t[0]) == 3
     assert t[0].target_duration == Fraction(1, 4)
     assert t[0].multiplier == Fraction(2, 3)
-    assert t[0].prolated_duration == Fraction(1, 5)
+    assert t[0].duration == Fraction(1, 5)
 
 
 def test_FixedDurationTuplet_02():
@@ -34,13 +34,13 @@ def test_FixedDurationTuplet_02():
     assert str(t) == "{@ 5:4 {@ 1/4 @}, c'8, c'8, c'8 @}"
     assert t.target_duration == Fraction(1, 2)
     assert t.multiplier == Fraction(4, 5)
-    assert t.prolated_duration == Fraction(1, 2)
+    assert t.duration == Fraction(1, 2)
     assert repr(t[0]) == 'FixedDurationTuplet(1/4, [])'
     assert str(t[0]) == '{@ 1/4 @}'
     assert len(t[0]) == 0
     assert t[0].target_duration == Fraction(1, 4)
     assert t[0].multiplier == None
-    assert t[0].prolated_duration == Fraction(1, 5)
+    assert t[0].duration == Fraction(1, 5)
 
 
 def test_FixedDurationTuplet_03():

@@ -342,7 +342,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def _duration(self):
-        return self.payload.prolated_duration
+        return self.payload.duration
 
     ### PRIVATE METHODS ###
 
@@ -677,7 +677,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         '''
         leaves = sequencetools.CyclicTuple(self.payload.leaves)
         leaves = leaves[:length]
-        duration = sum([leaf.prolated_duration for leaf in leaves])
+        duration = sum([leaf.duration for leaf in leaves])
         return self.repeat_to_duration(duration)
 
     def repeat_to_stop_offset(self, stop_offset):
@@ -707,7 +707,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         stop_offset = durationtools.Offset(stop_offset)
         assert self.stop_offset <= stop_offset, repr((self.stop_offset, stop_offset))
         additional_duration = stop_offset - self.stop_offset
-        needed_copies = int(math.ceil(additional_duration / self.payload.prolated_duration))
+        needed_copies = int(math.ceil(additional_duration / self.payload.duration))
         copies = []
         for i in range(needed_copies):
             copies.append(componenttools.copy_components_and_covered_spanners([self.payload])[0])
@@ -718,7 +718,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         assert stop_offset <= self.stop_offset
         assert self.start_offset < stop_offset
         duration_to_trim = self.stop_offset - stop_offset
-        duration_to_keep = self.payload.prolated_duration - duration_to_trim
+        duration_to_keep = self.payload.duration - duration_to_trim
         shards = self._split_payload_at_offsets([duration_to_keep])
         assert len(shards) in (1, 2), repr(shards)
         self._payload = shards[0]
@@ -801,7 +801,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             else:
                 index = durationtools.Duration(rotation_indicator.index)
                 if 0 <= index:
-                    split_offset = self.payload.prolated_duration - index
+                    split_offset = self.payload.duration - index
                 else:
                     split_offset = abs(index)
             if rotation_indicator.fracture_spanners is not None:
@@ -809,11 +809,11 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         else:
             n = durationtools.Duration(n)
             if 0 <= n:
-                split_offset = self.payload.prolated_duration - n
+                split_offset = self.payload.duration - n
             else:
                 split_offset = abs(n)
         #self._debug(split_offset, 'split offset')
-        if split_offset == self.payload.prolated_duration:
+        if split_offset == self.payload.duration:
             return self
         if fracture_spanners:
             result = componenttools.split_components_at_offsets(

@@ -48,7 +48,7 @@ def _partition_components_by_durations(duration_type, components, durations,
         if duration_type == 'seconds':
             component_duration = component.duration_in_seconds
         elif duration_type == 'prolated':
-            component_duration = component.prolated_duration
+            component_duration = component.duration
 #        elif duration_type == 'preprolated':
 #            component_duration = component.preprolated_duration
         else:
@@ -79,7 +79,7 @@ def _partition_components_by_durations(duration_type, components, durations,
 #                elif duration_type == 'preprolated':
 #                    cum_duration = sum([x.preprolated_duration for x in part])
                 elif duration_type == 'prolated':
-                    cum_duration = sum([x.prolated_duration for x in part])
+                    cum_duration = sum([x.duration for x in part])
                 else:
                     cum_duration = sum([getattr(x.duration, duration_type) for x in part])
                 current_duration_idx += 1

@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.descendants
    :noindex:
 
+.. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.duration_in_seconds
    :noindex:
 
@@ -49,9 +52,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.prolation

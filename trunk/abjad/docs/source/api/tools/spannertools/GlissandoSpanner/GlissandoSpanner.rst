@@ -12,6 +12,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner.components
    :noindex:
 
+.. autoattribute:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner.duration_in_seconds
    :noindex:
 
@@ -22,9 +25,6 @@ Read-only Properties
    :noindex:
 
 .. autoattribute:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner.set
