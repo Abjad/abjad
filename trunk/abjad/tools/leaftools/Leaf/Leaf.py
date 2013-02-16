@@ -93,7 +93,7 @@ class Leaf(Component):
         from abjad.tools import gracetools
         new = Component._copy_with_marks_but_without_children_or_spanners(self)
         for grace_container in gracetools.get_grace_containers_attached_to_leaf(self):
-            new_grace_container = copy.deepcopy(grace_container)
+            new_grace_container = grace_container._copy_with_children_and_marks_but_without_spanners()
             new_grace_container(new)
         return new
         

@@ -65,9 +65,6 @@ class Container(Component):
         else:
             return False
 
-    def __deepcopy__(self, memo):
-        return self._copy_with_children_and_marks_but_without_spanners()
-
     def __delitem__(self, i):
         '''Find component(s) at index or slice 'i' in container.
         Detach component(s) from parentage.
@@ -79,8 +76,6 @@ class Container(Component):
         from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import \
             _withdraw_components_in_expr_from_crossing_spanners
         components = self[i]
-        #if not isinstance(components, list):
-        #    components = [components]
         if not isinstance(components, selectiontools.Selection):
             components = selectiontools.Selection([components])
         _withdraw_components_in_expr_from_crossing_spanners(components)
@@ -93,7 +88,6 @@ class Container(Component):
         if isinstance(i, int):
             return self._music[i]
         elif isinstance(i, slice):
-            #return self._music[i]
             return selectiontools.Selection(self._music[i])
         elif isinstance(i, str):
             if i not in self._named_children:
@@ -173,7 +167,7 @@ class Container(Component):
     def _copy_with_children_and_marks_but_without_spanners(self):
         new = self._copy_with_marks_but_without_children_or_spanners()
         for component in self.music:
-            new_component = copy.deepcopy(component)
+            new_component = component._copy_with_children_and_marks_but_without_spanners()
             new.append(new_component)
         return new
 
@@ -395,7 +389,6 @@ class Container(Component):
         def fset(self, expr):
             from abjad.tools.contexttools.Context import Context
             from abjad.tools import componenttools
-            #assert isinstance(expr, (bool, type(None)))
             assert isinstance(expr, bool)
             if expr == True:
                 assert componenttools.all_are_components(self._music, klasses=(Context, ))
@@ -739,4 +732,3 @@ class Container(Component):
         '''
         i = self.index(component)
         del(self[i])
-        #return component
