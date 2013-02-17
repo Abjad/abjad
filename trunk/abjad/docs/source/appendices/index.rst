@@ -2,6 +2,7 @@ Appendices
 ==========
 
 .. toctree::
+   :maxdepth: 1
    :numbered:
 
    history/index
