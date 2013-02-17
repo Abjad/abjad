@@ -56,7 +56,9 @@ class CountToolsScript(DirectoryScript):
         public_classes = []
         public_functions = []
 
-        for module in documentationtools.ModuleCrawler(args.path):
+        crawler = documentationtools.ModuleCrawler(args.path,
+            visit_private_modules=True)
+        for module in crawler:
             module_filename = module.__file__
             if module_filename.endswith('.pyc'):
                 module_filename = module_filename[:-1]
@@ -64,26 +66,42 @@ class CountToolsScript(DirectoryScript):
                 lines = f.readlines()
                 for line in lines:
                     if line.startswith('def '):
-                        parts = line.split()
-                        if parts[1].startswith('_'):
-                            private_functions.append(line)
+                        name = line.split()[1].partition('(')[0]
+                        payload = (name, os.path.relpath(module_filename))
+                        if name.startswith('_'):
+                            private_functions.append(payload)
                         else:
-                            public_functions.append(line)
+                            public_functions.append(payload)
                     elif line.startswith('class '):
-                        parts = line.split()
-                        if parts[1].startswith('_'):
-                            private_classes.append(line)
+                        name = line.split()[1].partition('(')[0]
+                        payload = (name, os.path.relpath(module_filename))
+                        if name.startswith('_'):
+                            private_classes.append(payload)
                         else:
-                            public_classes.append(line)
+                            public_classes.append(payload)
 
         print 'PUBLIC FUNCTIONS:  {}'.format(len(public_functions))
         print 'PUBLIC CLASSES:    {}'.format(len(public_classes))
         print 'PRIVATE FUNCTIONS: {}'.format(len(private_functions))
+        if args.verbose:
+            for x in private_functions:
+                name, filename = x
+                print '\t{}:'.format(filename)
+                print '\t\t{}'.format(name)
         print 'PRIVATE CLASSES:   {}'.format(len(private_classes))
+        if args.verbose:
+            for x in private_classes:
+                name, filename = x
+                print '\t{}:'.format(filename)
+                print '\t\t{}'.format(name)
 
     def setup_argument_parser(self, parser):
         parser.add_argument('path',
             type=self._validate_path,
             help='directory tree to be recursed over'
             )
-
+        parser.add_argument('-v', '--verbose',
+            action='store_true',
+            help='print verbose information',
+            )
+        

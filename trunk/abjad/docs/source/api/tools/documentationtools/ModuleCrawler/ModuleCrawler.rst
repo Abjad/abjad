@@ -21,6 +21,9 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.storage_format
    :noindex:
 
+.. autoattribute:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.visit_private_modules
+   :noindex:
+
 Special Methods
 ---------------
 

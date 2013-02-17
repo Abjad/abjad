@@ -11,13 +11,15 @@ class ModuleCrawler(AbjadObject):
     
     ### CLASS ATTRIBUTES ###
     
-    __slots__ = ('_code_root', '_ignored_directories', '_root_package_name')
+    __slots__ = ('_code_root', '_ignored_directories', '_root_package_name',
+        '_visit_private_modules')
 
     ### INITIALIZER ###
 
     def __init__(self, code_root='.',
         ignored_directories=['test', '.svn', '__pycache__'],
-        root_package_name=None):
+        root_package_name=None,
+        visit_private_modules=False):
 
         assert os.path.exists(code_root)
         if not os.path.exists(os.path.join(code_root, '__init__.py')):
@@ -33,6 +35,7 @@ class ModuleCrawler(AbjadObject):
         self._code_root = code_root
         self._ignored_directories = ignored_directories
         self._root_package_name = root_package_name
+        self._visit_private_modules = bool(visit_private_modules)
 
     ### SPECIAL METHODS ###
 
@@ -48,7 +51,7 @@ class ModuleCrawler(AbjadObject):
             for directory in directories[:]:
                 if directory in self.ignored_directories:
                     directories.remove(directory)
-                elif directory.startswith('_'):
+                elif directory.startswith('_') and not self.visit_private_modules:
                     directories.remove(directory)
                 elif not os.path.exists(os.path.join(current_root, directory, '__init__.py')):
                     directories.remove(directory)
@@ -89,3 +92,7 @@ class ModuleCrawler(AbjadObject):
     @property
     def root_package_name(self):
         return self._root_package_name
+
+    @property
+    def visit_private_modules(self):
+        return self._visit_private_modules
