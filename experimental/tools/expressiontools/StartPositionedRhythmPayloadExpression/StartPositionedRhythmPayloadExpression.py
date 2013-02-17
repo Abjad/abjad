@@ -125,18 +125,6 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         '''
         return StartPositionedPayloadExpression.__and__(self, timespan)
 
-    # TODO: maybe possible to remove __copy__ and __deepcop__ altogether and use copy.deepcopy() instead?
-    def __copy__(self, *args):
-        '''Copy start-positioned rhythm payload expression.
-        
-        Return newly created start-positioned rhythm payload expression.
-        '''
-        new = type(self)(voice_name=self.voice_name, start_offset=self.start_offset)
-        new._payload = copy.deepcopy(self.payload)
-        return new
-
-    __deepcopy__ = __copy__
-
     def __getitem__(self, expr):
         '''Get start-positioned rhythm payload expression item.
 
