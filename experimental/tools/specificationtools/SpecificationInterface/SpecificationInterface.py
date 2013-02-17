@@ -1,9 +1,9 @@
 import abc
-from experimental.tools.expressiontools.SetMethodMixin import SetMethodMixin
+from experimental.tools.expressiontools.TimeContiguousSetMethodMixin import TimeContiguousSetMethodMixin
 from experimental.tools.expressiontools.SelectMethodMixin import SelectMethodMixin
 
 
-class SpecificationInterface(SelectMethodMixin, SetMethodMixin):
+class SpecificationInterface(SelectMethodMixin, TimeContiguousSetMethodMixin):
     r'''Specification interface.
 
     Score and segment specification interfaces constitute the primary vehicle of composition.

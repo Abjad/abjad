@@ -1,10 +1,10 @@
 from experimental.tools.expressiontools.AnchoredExpression import AnchoredExpression
-from experimental.tools.expressiontools.SetMethodMixin import SetMethodMixin
+from experimental.tools.expressiontools.TimeContiguousSetMethodMixin import TimeContiguousSetMethodMixin
 from experimental.tools.expressiontools.SelectMethodMixin import SelectMethodMixin
 from experimental.tools.expressiontools.TimespanCallbackMixin import TimespanCallbackMixin
 
 
-class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethodMixin, SetMethodMixin):
+class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethodMixin, TimeContiguousSetMethodMixin):
     r'''Timespan expression.
 
     Preliminary definitions:

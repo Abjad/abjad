@@ -1,8 +1,8 @@
 from experimental.tools.expressiontools.ExpressionInventory import ExpressionInventory
-from experimental.tools.expressiontools.SetMethodMixin import SetMethodMixin
+from experimental.tools.expressiontools.TimeContiguousSetMethodMixin import TimeContiguousSetMethodMixin
 
 
-class SelectExpressionInventory(ExpressionInventory, SetMethodMixin):
+class SelectExpressionInventory(ExpressionInventory, TimeContiguousSetMethodMixin):
     '''Select expression inventory.
     '''
 

@@ -124,6 +124,7 @@ Unstable packages (load manually)
       tools/expressiontools/AnchoredExpression/AnchoredExpression
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
+      tools/expressiontools/GeneralizedSetMethodMixin/GeneralizedSetMethodMixin
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
       tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/expressiontools/PayloadCallbackMixin/PayloadCallbackMixin
@@ -133,9 +134,9 @@ Unstable packages (load manually)
       tools/expressiontools/SelectMethodMixin/SelectMethodMixin
       tools/expressiontools/SetExpression/SetExpression
       tools/expressiontools/SetExpressionLookupExpression/SetExpressionLookupExpression
-      tools/expressiontools/SetMethodMixin/SetMethodMixin
       tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression
       tools/expressiontools/TimeContiguousAnchoredSetExpression/TimeContiguousAnchoredSetExpression
+      tools/expressiontools/TimeContiguousSetMethodMixin/TimeContiguousSetMethodMixin
       tools/expressiontools/TimespanCallbackMixin/TimespanCallbackMixin
       tools/expressiontools/TimespanScopedSingleContextSetExpression/TimespanScopedSingleContextSetExpression
 
@@ -202,6 +203,7 @@ Unstable packages (load manually)
       tools/expressiontools/AnchoredExpression/AnchoredExpression
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
+      tools/expressiontools/GeneralizedSetMethodMixin/GeneralizedSetMethodMixin
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
       tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
       tools/expressiontools/PayloadCallbackMixin/PayloadCallbackMixin
@@ -211,9 +213,9 @@ Unstable packages (load manually)
       tools/expressiontools/SelectMethodMixin/SelectMethodMixin
       tools/expressiontools/SetExpression/SetExpression
       tools/expressiontools/SetExpressionLookupExpression/SetExpressionLookupExpression
-      tools/expressiontools/SetMethodMixin/SetMethodMixin
       tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression
       tools/expressiontools/TimeContiguousAnchoredSetExpression/TimeContiguousAnchoredSetExpression
+      tools/expressiontools/TimeContiguousSetMethodMixin/TimeContiguousSetMethodMixin
       tools/expressiontools/TimespanCallbackMixin/TimespanCallbackMixin
       tools/expressiontools/TimespanScopedSingleContextSetExpression/TimespanScopedSingleContextSetExpression
 

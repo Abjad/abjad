@@ -3,7 +3,7 @@ from abjad.tools import iotools
 from abjad.tools.abctools import AbjadObject
 
 
-class SetMethodMixin(AbjadObject):
+class TimeContiguousSetMethodMixin(AbjadObject):
     '''Set method mixin.
 
     Segment definition for examples:
