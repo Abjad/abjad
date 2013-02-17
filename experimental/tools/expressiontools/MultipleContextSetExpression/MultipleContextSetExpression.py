@@ -36,7 +36,8 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     def __init__(self, attribute=None, source_expression=None, target_timespan=None, target_context_names=None, 
             persist=True, truncate=None):
-        TimeContiguousAnchoredSetExpression.__init__(self, attribute=attribute, source_expression=source_expression, 
+        TimeContiguousAnchoredSetExpression.__init__(self, attribute=attribute, 
+            source_expression=source_expression, 
             target_timespan=target_timespan, persist=persist, truncate=truncate)
         assert isinstance(target_context_names, (list, type(None))), repr(target_context_names)
         self._target_context_names = target_context_names

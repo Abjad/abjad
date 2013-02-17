@@ -144,7 +144,6 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/expressiontools/ArbitraryTargetPitchSetExpression/ArbitraryTargetPitchSetExpression
       tools/expressiontools/AttributeDictionary/AttributeDictionary
       tools/expressiontools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/expressiontools/BeatSelectExpression/BeatSelectExpression
@@ -157,6 +156,7 @@ Unstable packages (load manually)
       tools/expressiontools/DivisionSelectExpression/DivisionSelectExpression
       tools/expressiontools/DivisionSetExpressionLookupExpression/DivisionSetExpressionLookupExpression
       tools/expressiontools/ExpressionInventory/ExpressionInventory
+      tools/expressiontools/GeneralizedPitchSetExpression/GeneralizedPitchSetExpression
       tools/expressiontools/HandlerExpression/HandlerExpression
       tools/expressiontools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
       tools/expressiontools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
@@ -220,7 +220,6 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/expressiontools/ArbitraryTargetPitchSetExpression/ArbitraryTargetPitchSetExpression
       tools/expressiontools/AttributeDictionary/AttributeDictionary
       tools/expressiontools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/expressiontools/BeatSelectExpression/BeatSelectExpression
@@ -233,6 +232,7 @@ Unstable packages (load manually)
       tools/expressiontools/DivisionSelectExpression/DivisionSelectExpression
       tools/expressiontools/DivisionSetExpressionLookupExpression/DivisionSetExpressionLookupExpression
       tools/expressiontools/ExpressionInventory/ExpressionInventory
+      tools/expressiontools/GeneralizedPitchSetExpression/GeneralizedPitchSetExpression
       tools/expressiontools/HandlerExpression/HandlerExpression
       tools/expressiontools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
       tools/expressiontools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression

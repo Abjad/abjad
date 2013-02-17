@@ -1,7 +1,4 @@
-1.  Implement AnchoredSetExpression.
-    Then rewrite TimeContiguousAnchoredSetExpression to inherit from AnchoredSetExpression.
-
-2.  Implement ArbitrarySelectExpression.
+1.  Implement GeneralizedSelectExpression.
     The class will inherit from AnchoredExpression.
     The class will serve as the argument to ArbtiraryTargetPitchSetExpression's
     target_expression=None keyword.

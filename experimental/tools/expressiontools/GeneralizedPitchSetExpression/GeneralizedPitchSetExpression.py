@@ -1,7 +1,7 @@
 from experimental.tools.expressiontools.MultipleContextSetExpression import MultipleContextSetExpression
 
 
-class ArbitraryTargetPitchSetExpression(MultipleContextSetExpression):
+class GeneralizedPitchSetExpression(MultipleContextSetExpression):
     '''Multiple-context pitch set expression.
     '''
 
