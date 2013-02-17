@@ -9,7 +9,25 @@ expressiontools.GeneralizedSetExpression
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.attribute
+   :noindex:
+
+.. autoattribute:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.source_expression
+   :noindex:
+
 .. autoattribute:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.storage_format
+   :noindex:
+
+.. autoattribute:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.target_timespan
+   :noindex:
+
+Methods
+-------
+
+.. automethod:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.evaluate
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.new
    :noindex:
 
 Special Methods

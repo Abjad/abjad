@@ -37,7 +37,7 @@ class SetExpression(Expression):
 
     @property
     def source_expression(self):
-        '''Set expression source_expression.
+        '''Set expression source expression.
 
         Return expression.
         '''

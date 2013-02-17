@@ -124,6 +124,7 @@ Unstable packages (load manually)
       tools/expressiontools/AnchoredExpression/AnchoredExpression
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
+      tools/expressiontools/GeneralizedPitchSetExpression/GeneralizedPitchSetExpression
       tools/expressiontools/GeneralizedSetExpression/GeneralizedSetExpression
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
       tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
@@ -157,7 +158,6 @@ Unstable packages (load manually)
       tools/expressiontools/DivisionSelectExpression/DivisionSelectExpression
       tools/expressiontools/DivisionSetExpressionLookupExpression/DivisionSetExpressionLookupExpression
       tools/expressiontools/ExpressionInventory/ExpressionInventory
-      tools/expressiontools/GeneralizedPitchSetExpression/GeneralizedPitchSetExpression
       tools/expressiontools/HandlerExpression/HandlerExpression
       tools/expressiontools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
       tools/expressiontools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
@@ -202,6 +202,7 @@ Unstable packages (load manually)
       tools/expressiontools/AnchoredExpression/AnchoredExpression
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
+      tools/expressiontools/GeneralizedPitchSetExpression/GeneralizedPitchSetExpression
       tools/expressiontools/GeneralizedSetExpression/GeneralizedSetExpression
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
       tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
@@ -235,7 +236,6 @@ Unstable packages (load manually)
       tools/expressiontools/DivisionSelectExpression/DivisionSelectExpression
       tools/expressiontools/DivisionSetExpressionLookupExpression/DivisionSetExpressionLookupExpression
       tools/expressiontools/ExpressionInventory/ExpressionInventory
-      tools/expressiontools/GeneralizedPitchSetExpression/GeneralizedPitchSetExpression
       tools/expressiontools/HandlerExpression/HandlerExpression
       tools/expressiontools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
       tools/expressiontools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression

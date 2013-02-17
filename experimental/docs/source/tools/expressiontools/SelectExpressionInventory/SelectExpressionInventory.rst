@@ -75,6 +75,51 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.rotate
    :noindex:
 
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_aggregate
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_articulations
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_chord_treatment
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_divisions
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_dynamics
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_marks
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_markup
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_pitch_class_application
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_pitch_class_transform
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_pitch_classes
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_pitches
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_registration
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_rhythm
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_tempo
+   :noindex:
+
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_time_signatures
+   :noindex:
+
 .. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.sort
    :noindex:
 

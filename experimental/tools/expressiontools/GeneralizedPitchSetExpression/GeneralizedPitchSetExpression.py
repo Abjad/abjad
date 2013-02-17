@@ -1,12 +1,13 @@
-from experimental.tools.expressiontools.MultipleContextSetExpression import MultipleContextSetExpression
+from experimental.tools.expressiontools.GeneralizedSetExpression import GeneralizedSetExpression
 
 
-class GeneralizedPitchSetExpression(MultipleContextSetExpression):
-    '''Multiple-context pitch set expression.
+class GeneralizedPitchSetExpression(GeneralizedSetExpression):
+    '''Generalized pitch set expression.
     '''
 
     ### INTIALIZER ###
 
-    def __init__(self, source_expression=None, target_expression=None):
-        self._source_expression = source_expression
-        self._target_expression = target_expression
+    def __init__(self, source_expression=None, target_select_expression_inventory=None):
+        GeneralizedSetExpression.__init__(self, attribute='pitch',
+            source_expression=source_expression,
+            target_select_expression_inventory=target_select_expression_inventory)

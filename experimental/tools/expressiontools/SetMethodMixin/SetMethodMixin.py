@@ -47,28 +47,6 @@ class SetMethodMixin(AbjadObject):
         else:
             raise TypeError('do not know how to change {!r} to expression.'.format(expr))
 
-    # TODO: migrate to SelectExpressionInventory once SelectExpressionInventory is implemented
-    def _store_generalized_set_expression(self, attribute, source_expression, 
-        contexts=None, persist=True, truncate=None):
-        from experimental.tools import expressiontools
-        source_expression = self._expr_to_expression(source_expression)
-        assert self.score_specification is not None
-        target_context_names = self.score_specification._context_token_to_context_names(contexts)
-        multiple_context_set_expression = expressiontools.GeneralizedSetExpression(
-            attribute=attribute,
-            source_expression=source_expression,
-            #target_timespan=self._expression_abbreviation,
-            #target_context_names=target_context_names,
-            target_select_expression=target_select_expressions,
-            persist=persist,
-            truncate=truncate
-            )
-        multiple_context_set_expression._score_specification = self.score_specification
-        multiple_context_set_expression._lexical_rank = self.score_specification._next_lexical_rank
-        self.score_specification._next_lexical_rank += 1
-        self.score_specification.multiple_context_set_expressions.append(multiple_context_set_expression)
-        return multiple_context_set_expression
-
     def _store_multiple_context_set_expression(self, attribute, source_expression, 
         contexts=None, persist=True, truncate=None):
         from experimental.tools import expressiontools
