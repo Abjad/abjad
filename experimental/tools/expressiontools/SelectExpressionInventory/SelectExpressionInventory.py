@@ -1,8 +1,8 @@
 from experimental.tools.expressiontools.ExpressionInventory import ExpressionInventory
-from experimental.tools.expressiontools.TimeContiguousSetMethodMixin import TimeContiguousSetMethodMixin
+from experimental.tools.expressiontools.GeneralizedSetMethodMixin import GeneralizedSetMethodMixin
 
 
-class SelectExpressionInventory(ExpressionInventory, TimeContiguousSetMethodMixin):
+class SelectExpressionInventory(ExpressionInventory, GeneralizedSetMethodMixin):
     '''Select expression inventory.
     '''
 
@@ -32,14 +32,3 @@ class SelectExpressionInventory(ExpressionInventory, TimeContiguousSetMethodMixi
         Return score specification.
         '''
         return self._score_specification
-
-    ### PUBLIC METHODS ###
-
-    # TODO: encapsulate in GeneralizedSetMethodMixin (once the class is implemented)
-    def set_pitches(self, source_expression):
-        r'''Set pitches to `source_expression` for select expressions in inventory.
-
-        Return generalized pitch set expression.
-        '''
-        attribute = 'pitches'
-        return self._store_generalized_set_expression(attribute, source_expression)

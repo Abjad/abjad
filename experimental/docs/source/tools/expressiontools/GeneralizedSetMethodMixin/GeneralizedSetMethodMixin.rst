@@ -12,6 +12,12 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.storage_format
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.set_pitches
+   :noindex:
+
 Special Methods
 ---------------
 

@@ -1,9 +1,9 @@
 import copy
 from abjad.tools import iotools
-from abjad.tools.abctools import AbjadObject
+from experimental.tools.expressiontools.SetMethodMixin import SetMethodMixin
 
 
-class TimeContiguousSetMethodMixin(AbjadObject):
+class TimeContiguousSetMethodMixin(SetMethodMixin):
     '''Set method mixin.
 
     Segment definition for examples:
@@ -18,34 +18,6 @@ class TimeContiguousSetMethodMixin(AbjadObject):
     '''
 
     ### PRIVATE METHODS ###
-
-    def _all_are_expressions(self, expr):
-        from experimental.tools import expressiontools
-        if isinstance(expr, (tuple, list)):
-            if all([isinstance(x, expressiontools.Expression) for x in expr]):
-                return True
-        return False
-
-    def _expr_to_expression(self, expr):
-        from abjad.tools import rhythmmakertools
-        from experimental.tools import handlertools
-        from experimental.tools import expressiontools
-        from experimental.tools import expressiontools
-        # probably precautionary: prune expr of any incoming references
-        expr = copy.deepcopy(expr)
-        if isinstance(expr, expressiontools.Expression):
-            return expr
-        elif self._all_are_expressions(expr):
-            return expressiontools.ExpressionInventory(expr)
-        elif isinstance(expr, (tuple, list)):
-            return expressiontools.PayloadExpression(expr)
-        elif isinstance(expr, (str)):
-            component = iotools.p(expr)
-            return expressiontools.StartPositionedRhythmPayloadExpression([component], start_offset=0)
-        elif isinstance(expr, rhythmmakertools.RhythmMaker):
-            return expressiontools.RhythmMakerPayloadExpression(expr)
-        else:
-            raise TypeError('do not know how to change {!r} to expression.'.format(expr))
 
     def _store_multiple_context_set_expression(self, attribute, source_expression, 
         contexts=None, persist=True, truncate=None):
@@ -213,7 +185,8 @@ class TimeContiguousSetMethodMixin(AbjadObject):
         Return multiple-context set expression.
         '''
         attribute = 'rhythm'
-        return self._store_multiple_context_set_expression(attribute, source_expression, contexts=contexts, persist=persist)
+        return self._store_multiple_context_set_expression(
+            attribute, source_expression, contexts=contexts, persist=persist)
 
     def set_tempo(self, source_expression, contexts=None, persist=True):
         r'''Set tempo to `source_expression` for target timespan over all `contexts`.
@@ -249,4 +222,5 @@ class TimeContiguousSetMethodMixin(AbjadObject):
         Return multiple-context set expression.
         '''
         attribute = 'time_signatures'
-        return self._store_multiple_context_set_expression(attribute, source_expression, contexts=contexts, persist=persist)
+        return self._store_multiple_context_set_expression(
+            attribute, source_expression, contexts=contexts, persist=persist)
