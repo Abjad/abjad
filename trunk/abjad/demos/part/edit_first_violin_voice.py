@@ -1,4 +1,4 @@
-import copy
+from abjad.tools import componenttools
 from abjad.tools import notetools
 from abjad.tools import tietools
 
@@ -8,7 +8,7 @@ def edit_first_violin_voice(score, durated_reservoir):
     voice = score['First Violin Voice']
     descents = durated_reservoir['First Violin']
 
-    copied_descent = copy.deepcopy(descents[-1])
+    copied_descent = componenttools.copy_components_and_remove_spanners(descents[-1])
     voice.extend(copied_descent)
 
     final_sustain_rhythm = [(6, 4)] * 43 + [(1, 2)]

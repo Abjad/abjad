@@ -76,8 +76,8 @@ class Chord(Leaf):
     def __copy__(self, *args):
         return self._copy_with_marks_but_without_children_or_spanners()
 
-    # necessary to ensure deepcopied chords copy note heads correctly
-    __deepcopy__ = __copy__
+#    # necessary to ensure deepcopied chords copy note heads correctly
+#    __deepcopy__ = __copy__
 
     def __delitem__(self, i):
         del(self._note_heads[i])

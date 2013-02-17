@@ -1,4 +1,3 @@
-import copy
 import itertools
 
 
@@ -107,6 +106,7 @@ def replace_leaves_in_expr_with_parallel_voices(expr):
 
     Returns a list leaves in upper voice, and a list of leaves in lower voice.
     '''    
+    from abjad.tools import componenttools
     from abjad.tools import containertools
     from abjad.tools import iterationtools
     from abjad.tools import voicetools
@@ -123,8 +123,8 @@ def replace_leaves_in_expr_with_parallel_voices(expr):
 
         container = containertools.Container()
         container.is_parallel = True
-        upper_voice = voicetools.Voice(copy.deepcopy(grouped_leaves))
-        lower_voice = voicetools.Voice(copy.deepcopy(grouped_leaves))
+        upper_voice = voicetools.Voice(componenttools.copy_components_and_remove_spanners(grouped_leaves))
+        lower_voice = voicetools.Voice(componenttools.copy_components_and_remove_spanners(grouped_leaves))
         container.extend([upper_voice, lower_voice])
 
         upper_leaves.extend(upper_voice[:])

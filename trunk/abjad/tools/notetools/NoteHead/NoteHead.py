@@ -15,7 +15,11 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
     Note heads are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_client', '_is_cautionary', '_is_forced', '_tweak', '_written_pitch')
+
+    ### INITIALIZER ###
 
     def __init__(self, written_pitch=None, client=None,
         is_cautionary=False, is_forced=False, tweak_pairs=()):
@@ -33,17 +37,19 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        return type(self)(**self.__getnewargs__())
+        #return type(self)(**self.__getnewargs__())
+        return type(self)(*self.__getnewargs__())
 
-    __deepcopy__ = __copy__
+#    __deepcopy__ = __copy__
 
     def __getnewargs__(self):
-        args = {
-            'written_pitch': self.written_pitch,
-            'is_cautionary': self.is_cautionary,
-            'is_forced': self.is_forced,
-            'tweak_pairs': self.tweak._get_attribute_pairs(),
-        }
+        args = (
+            self.written_pitch,
+            None,
+            self.is_cautionary,
+            self.is_forced,
+            self.tweak._get_attribute_pairs(),
+        )
         return args
 
     def __repr__(self):

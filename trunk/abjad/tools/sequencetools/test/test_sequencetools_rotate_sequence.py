@@ -1,6 +1,4 @@
 from abjad import *
-from abjad.tools import sequencetools
-from abjad.tools import iotools
 
 
 def test_sequencetools_rotate_sequence_01():
@@ -34,40 +32,6 @@ def test_sequencetools_rotate_sequence_03():
 
 
 def test_sequencetools_rotate_sequence_04():
-    '''Rotate Abjad container.
-    '''
-
-    container_1 = Container("c'8 d'8 e'8 f'8")
-    container_2 = sequencetools.rotate_sequence(container_1, -1)
-
-    r'''
-    {
-        d'8
-        e'8
-        f'8
-        c'8
-    }
-    '''
-
-    assert wellformednesstools.is_well_formed_component(container_1)
-    assert wellformednesstools.is_well_formed_component(container_2)
-    assert container_2.lilypond_format == "{\n\td'8\n\te'8\n\tf'8\n\tc'8\n}"
-    assert container_2 is not container_1
-    assert container_1[0] is not container_2[-1]
-
-
-def test_sequencetools_rotate_sequence_05():
-    '''Rotate notes.
-    '''
-
-    notes_1 = iotools.p("{ c'8 d'8 e'8 f'8 }")
-    notes_2 = sequencetools.rotate_sequence(notes_1, -1)
-
-    for note in notes_2:
-        assert note not in notes_1
-
-
-def test_sequencetools_rotate_sequence_06():
     '''Rotate named chromatic pitch segment.
     '''
 

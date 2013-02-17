@@ -1,5 +1,4 @@
 import abc
-
 from abjad.tools.abctools import AttributeEqualityAbjadObject
 
 
@@ -13,7 +12,7 @@ class PitchClassObject(AttributeEqualityAbjadObject):
 
     __metaclass__ = abc.ABCMeta
 
-    __slots__ = ()
+    __slots__ = ('_format_string', )
 
     ### INNITIALIZER ###
 

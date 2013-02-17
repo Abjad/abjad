@@ -38,8 +38,8 @@ class Leaf(Component):
     def __copy__(self, *args):
         return self._copy_with_marks_but_without_children_or_spanners()
 
-    # necessary to make sure deepcopied leaves copy grace containers correctly
-    __deepcopy__ = __copy__
+#    # necessary to make sure deepcopied leaves copy grace containers correctly
+#    __deepcopy__ = __copy__
 
     def __getnewargs__(self):
         result = []

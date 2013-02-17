@@ -1,5 +1,5 @@
-import copy
 import abc
+import copy
 from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools import leaftools

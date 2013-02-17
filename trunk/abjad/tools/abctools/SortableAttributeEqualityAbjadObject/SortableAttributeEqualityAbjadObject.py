@@ -15,7 +15,8 @@ class SortableAttributeEqualityAbjadObject(AttributeEqualityAbjadObject):
     ### CLASS ATTRIBUTES ###
 
     __metaclass__ = abc.ABCMeta
-    __slots__ = ('_comparison_attribute', '_format_string')
+    #__slots__ = ('_comparison_attribute', '_format_string')
+    __slots__ = ('_comparison_attribute', )
 
     ### SPECIAL METHODS ###
 
