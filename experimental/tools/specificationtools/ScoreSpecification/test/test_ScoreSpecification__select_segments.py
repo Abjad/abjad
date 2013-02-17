@@ -1,4 +1,4 @@
-from experimental.tools import *
+from experimental import *
 
 
 def test_ScoreSpecification__select_segments_01():

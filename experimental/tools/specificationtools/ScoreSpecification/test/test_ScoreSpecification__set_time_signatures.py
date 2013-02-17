@@ -1,4 +1,4 @@
-from experimental.tools import *
+from experimental import *
 
 
 def test_ScoreSpecification__set_time_signatures_01():

@@ -1,6 +1,6 @@
 import copy
 from abjad.tools import *
-from experimental.tools import library
+from experimental import library
 from experimental.tools import expressiontools
 from experimental.tools.specificationtools.Interpreter import Interpreter
 
