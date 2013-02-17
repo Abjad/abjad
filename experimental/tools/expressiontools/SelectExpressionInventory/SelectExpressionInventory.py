@@ -20,6 +20,5 @@ class SelectExpressionInventory(ExpressionInventory, SetMethodMixin):
         generalized_set_expression._score_specification = self.score_specification
         generalized_set_expression._lexical_rank = self.score_specification._next_lexical_rank
         self.score_specification._next_lexical_rank += 1
-        # TODO: where should generalized_set_expressions inventory be stored? maybe just score specification?
-        #self.score_specification.generalized_set_expressions.append(generalized_set_expression)
+        self.score_specification.generalized_set_expressions.append(generalized_set_expression)
         return generalized_set_expression

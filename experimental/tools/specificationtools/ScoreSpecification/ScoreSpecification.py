@@ -45,6 +45,7 @@ class ScoreSpecification(Specification):
         from experimental.tools import expressiontools
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
+        self._generalized_set_expressions = expressiontools.ExpressionInventory()
         self._multiple_context_set_expressions = timespantools.TimespanInventory()
         self._next_lexical_rank = 0
         self._payload_expressions_by_voice = specificationtools.VoiceDictionary(score_template())
@@ -121,6 +122,19 @@ class ScoreSpecification(Specification):
         Return timespan inventory.
         '''
         return Specification.fresh_single_context_set_expressions.fget(self)
+
+    @property
+    def generalized_set_expressions(self):
+        '''Score specification generalized set expressions.
+
+        ::
+
+            >>> z(score_specification.generalized_set_expressions)
+            expressiontools.ExpressionInventory([])
+
+        Return expression inventory.
+        '''
+        return self._generalized_set_expressions
 
     @property
     def interface(self):
