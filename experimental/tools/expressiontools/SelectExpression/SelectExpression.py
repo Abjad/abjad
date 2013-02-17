@@ -1,8 +1,5 @@
 import abc
 import copy
-from abjad.tools import durationtools
-from abjad.tools import mathtools
-from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
 from experimental.tools.expressiontools.AnchoredExpression import AnchoredExpression
 from experimental.tools.expressiontools.PayloadCallbackMixin import PayloadCallbackMixin

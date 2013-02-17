@@ -1,4 +1,4 @@
-1.  Implement GeneralizedSelectExpression.
+1.  Implement SelectExpressionInventory.
     The class will inherit from AnchoredExpression.
     The class will serve as the argument to ArbtiraryTargetPitchSetExpression's
     target_expression=None keyword.

@@ -47,7 +47,7 @@ class SetMethodMixin(AbjadObject):
         else:
             raise TypeError('do not know how to change {!r} to expression.'.format(expr))
 
-    # TODO: migrate to GeneralizedSelectExpression once GeneralizedSelectExpression is implemented
+    # TODO: migrate to SelectExpressionInventory once SelectExpressionInventory is implemented
     def _store_generalized_set_expression(self, attribute, source_expression, 
         contexts=None, persist=True, truncate=None):
         from experimental.tools import expressiontools

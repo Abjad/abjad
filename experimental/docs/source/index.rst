@@ -124,7 +124,6 @@ Unstable packages (load manually)
       tools/expressiontools/AnchoredExpression/AnchoredExpression
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
-      tools/expressiontools/GeneralizedSelectExpression/GeneralizedSelectExpression
       tools/expressiontools/GeneralizedSetExpression/GeneralizedSetExpression
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
       tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
@@ -176,6 +175,7 @@ Unstable packages (load manually)
       tools/expressiontools/SegmentIdentifierExpression/SegmentIdentifierExpression
       tools/expressiontools/SegmentSelectExpression/SegmentSelectExpression
       tools/expressiontools/SelectExpressionDivisionRegionExpression/SelectExpressionDivisionRegionExpression
+      tools/expressiontools/SelectExpressionInventory/SelectExpressionInventory
       tools/expressiontools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
       tools/expressiontools/SingleContextDivisionSetExpression/SingleContextDivisionSetExpression
       tools/expressiontools/SingleContextRhythmSetExpression/SingleContextRhythmSetExpression
@@ -202,7 +202,6 @@ Unstable packages (load manually)
       tools/expressiontools/AnchoredExpression/AnchoredExpression
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
-      tools/expressiontools/GeneralizedSelectExpression/GeneralizedSelectExpression
       tools/expressiontools/GeneralizedSetExpression/GeneralizedSetExpression
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
       tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
@@ -254,6 +253,7 @@ Unstable packages (load manually)
       tools/expressiontools/SegmentIdentifierExpression/SegmentIdentifierExpression
       tools/expressiontools/SegmentSelectExpression/SegmentSelectExpression
       tools/expressiontools/SelectExpressionDivisionRegionExpression/SelectExpressionDivisionRegionExpression
+      tools/expressiontools/SelectExpressionInventory/SelectExpressionInventory
       tools/expressiontools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
       tools/expressiontools/SingleContextDivisionSetExpression/SingleContextDivisionSetExpression
       tools/expressiontools/SingleContextRhythmSetExpression/SingleContextRhythmSetExpression
