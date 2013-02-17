@@ -46,24 +46,6 @@ class SegmentSpecification(Specification):
 
     ### SPECIAL METHODS ###
 
-    # TODO: remove this altogether
-    def __getitem__(self, expr):
-        '''Get context with name.
-
-        ::
-
-            >>> red_segment['Voice 1']
-            ContextProxy()
-
-        Also get multiple-context set-expression with integer `expr`.
-
-        Return multiple-context set-expression or context proxy.
-        '''
-        if isinstance(expr, int):
-            return self.multiple_context_set_expressions.__getitem__(expr)
-        else:
-            return self.single_context_set_expressions_by_context.__getitem__(expr) 
-        
     def __repr__(self):
         '''Segment specification interpreter representation.
 

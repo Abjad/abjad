@@ -63,9 +63,6 @@ Special Methods
 .. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__getitem__
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__gt__
    :noindex:
 
