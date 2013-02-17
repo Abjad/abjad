@@ -93,9 +93,6 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.set_pitch_classes
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.set_pitches
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.set_registration
    :noindex:
 

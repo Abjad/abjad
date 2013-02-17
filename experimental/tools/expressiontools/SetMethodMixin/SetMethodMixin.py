@@ -179,15 +179,6 @@ class SetMethodMixin(AbjadObject):
         return self._store_multiple_context_set_expression(attribute, source_expression, 
             contexts=contexts, persist=persist)
 
-    def set_pitches(self, source_expression, contexts=None, persist=True):
-        r'''Set pitches to `source_expression` for target timespan over all `contexts`.
-
-        Return multiple-context pitch set expression.
-        '''
-        attribute = 'pitches'
-        return self._store_generalized_set_expression(attribute, source_expression,
-            contexts=contexts, persist=persist)
-
     def set_registration(self, source_expression, contexts=None, persist=True):
         r'''Set registration to `source_expression` for target timespan over all `contexts`.
 

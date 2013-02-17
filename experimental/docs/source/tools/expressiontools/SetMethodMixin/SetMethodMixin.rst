@@ -45,9 +45,6 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_pitch_classes
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_pitches
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_registration
    :noindex:
 

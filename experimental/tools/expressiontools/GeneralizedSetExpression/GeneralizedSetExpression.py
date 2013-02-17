@@ -38,9 +38,14 @@ class GeneralizedSetExpression(Expression):
         return self._source_expression
 
     @property
-    def target_timespan(self):
-        '''Generalized set expression target timespan.
+    def target_select_expression_inventory(self):
+        '''Generalized set expression target select expression inventory.
 
         Return select expression inventory.
         '''
         return self._target_select_expression_inventory
+
+    ### PUBLIC METHODS ###
+
+    def evaluate(self):
+        raise NotImplementedError('eventually remove me and implement on child classes.')

@@ -73,6 +73,17 @@ class CounttimeComponentSelectExpression(SelectExpression):
         if isinstance(classes, tuple):
             classes = expressiontools.ClassInventory(classes)
         self._classes = classes
+
+    ### SPECIAL METHODS ###
+
+    def __add__(self, select_expression):
+        from experimental.tools import expressiontools
+        assert isinstance(select_expression, type(self)), repr(select_expression)
+        assert self.score_specification is select_expression.score_specification
+        select_expression_inventory = expressiontools.SelectExpressionInventory()
+        select_expression_inventory.extend([copy.deepcopy(self), copy.deepcopy(select_expression)])
+        select_expression_inventory._score_specification = self.score_specification
+        return select_expression_inventory
     
     ### PRIVATE METHODS ###
 

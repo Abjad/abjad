@@ -15,6 +15,9 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.payload
    :noindex:
 
+.. autoattribute:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.score_specification
+   :noindex:
+
 .. autoattribute:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.storage_format
    :noindex:
 

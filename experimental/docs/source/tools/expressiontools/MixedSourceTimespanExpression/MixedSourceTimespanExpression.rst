@@ -108,9 +108,6 @@ Methods
 .. automethod:: experimental.tools.expressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_pitch_classes
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_pitches
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_registration
    :noindex:
 

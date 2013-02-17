@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.GeneralizedPitchSetExpression.GeneralizedPitchSetExpression.GeneralizedPitchSetExpression.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.GeneralizedPitchSetExpression.GeneralizedPitchSetExpression.GeneralizedPitchSetExpression.target_timespan
+.. autoattribute:: experimental.tools.expressiontools.GeneralizedPitchSetExpression.GeneralizedPitchSetExpression.GeneralizedPitchSetExpression.target_select_expression_inventory
    :noindex:
 
 Methods

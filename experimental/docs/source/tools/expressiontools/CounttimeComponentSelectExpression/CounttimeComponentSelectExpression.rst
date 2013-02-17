@@ -81,6 +81,9 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: experimental.tools.expressiontools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.__add__
+   :noindex:
+
 .. automethod:: experimental.tools.expressiontools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.__and__
    :noindex:
 

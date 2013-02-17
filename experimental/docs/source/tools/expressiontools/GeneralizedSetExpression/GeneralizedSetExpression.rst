@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.target_timespan
+.. autoattribute:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.target_select_expression_inventory
    :noindex:
 
 Methods
