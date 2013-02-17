@@ -75,3 +75,59 @@ def test_Note___copy___04():
     assert grace_container_1 is not grace_container_2
     assert grace_container_1.kind == grace_container_2.kind == 'after'
     assert note_2.lilypond_format == "\\afterGrace\nc'4\n{\n\td'32\n}"
+
+
+def test_Note___copy___05():
+    '''Deepcopy orphan note.
+    '''
+
+    note = Note("c'4")
+    marktools.Articulation('staccato')(note)
+    gracetools.GraceContainer("d'16")
+    note.override.note_head.color = 'red'
+
+    r'''
+    \grace {
+        d'16
+    }
+    \once \override NoteHead #'color = #red
+    c'4 -\staccato
+    '''
+
+    new_note = copy.deepcopy(note)
+
+    assert not new_note is note
+    assert new_note.lilypond_format == note.lilypond_format
+
+
+def test_Note___copy___06():
+    '''Deepcopy note in score.
+    '''
+
+    staff = Staff("c'8 [ c'8 e'8 f'8 ]")
+    note = staff[0]
+    marktools.Articulation('staccato')(note)
+    gracetools.GraceContainer("d'16")
+    note.override.note_head.color = 'red'
+
+    r'''
+    \new Staff {
+        \grace {
+            d'16
+        }
+        \once \override NoteHead #'color = #red
+        c'8 -\staccato [
+        c'8
+        e'8
+        f'8 ]
+    }
+    '''
+    
+    new_note = copy.deepcopy(note)
+
+    assert new_note is not note
+    assert note.parent is staff
+    assert new_note.parent is not staff
+    assert isinstance(new_note.parent, Staff)
+    assert new_note.lilypond_format == note.lilypond_format
+    assert note.parent.lilypond_format == new_note.parent.lilypond_format

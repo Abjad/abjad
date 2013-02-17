@@ -93,7 +93,7 @@ class Spanner(AbjadObject):
         self._copy_keyword_args(new)
         return new
 
-    __deepcopy__ = __copy__
+#    __deepcopy__ = __copy__
 
     def __getitem__(self, expr):
         return self._components.__getitem__(expr)
@@ -156,7 +156,7 @@ class Spanner(AbjadObject):
         '''
         my_components = self._components[:]
         self._components = []
-        result = copy.deepcopy(self)
+        result = copy.copy(self)
         self._components = my_components
         for component in components:
             assert component in self
