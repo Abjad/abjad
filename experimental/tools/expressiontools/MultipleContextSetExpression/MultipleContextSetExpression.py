@@ -1,8 +1,8 @@
 import copy
-from experimental.tools.expressiontools.AnchoredSetExpression import AnchoredSetExpression
+from experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression import TimeContiguousAnchoredSetExpression
 
 
-class MultipleContextSetExpression(AnchoredSetExpression):
+class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
     r'''Multiple-context set expression.
 
     Set `attribute` to `source_expression` for `target_timespan` over all `contexts`:
@@ -36,7 +36,7 @@ class MultipleContextSetExpression(AnchoredSetExpression):
 
     def __init__(self, attribute=None, source_expression=None, target_timespan=None, target_context_names=None, 
             persist=True, truncate=None):
-        AnchoredSetExpression.__init__(self, attribute=attribute, source_expression=source_expression, 
+        TimeContiguousAnchoredSetExpression.__init__(self, attribute=attribute, source_expression=source_expression, 
             target_timespan=target_timespan, persist=persist, truncate=truncate)
         assert isinstance(target_context_names, (list, type(None))), repr(target_context_names)
         self._target_context_names = target_context_names

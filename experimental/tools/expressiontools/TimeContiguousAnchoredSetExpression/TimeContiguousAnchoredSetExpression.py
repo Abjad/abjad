@@ -4,7 +4,7 @@ from experimental.tools.expressiontools.AnchoredExpression import AnchoredExpres
 from experimental.tools.expressiontools.SetExpression import SetExpression
 
 
-class AnchoredSetExpression(SetExpression, AnchoredExpression):
+class TimeContiguousAnchoredSetExpression(SetExpression, AnchoredExpression):
     '''Anchored set expression.
     '''
 

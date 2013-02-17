@@ -1,9 +1,9 @@
 import abc
 import copy
-from experimental.tools.expressiontools.AnchoredSetExpression import AnchoredSetExpression
+from experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression import TimeContiguousAnchoredSetExpression
 
 
-class SingleContextSetExpression(AnchoredSetExpression):
+class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
     r'''Single-context set expression.
 
     Set `attribute` to `source_expression` for `target_timespan` in `target_context_name`.
@@ -60,7 +60,7 @@ class SingleContextSetExpression(AnchoredSetExpression):
     @abc.abstractmethod
     def __init__(self, attribute=None, source_expression=None, target_timespan=None, target_context_name=None, 
         fresh=True, persist=True, truncate=None):
-        AnchoredSetExpression.__init__(self, attribute=attribute, source_expression=source_expression, 
+        TimeContiguousAnchoredSetExpression.__init__(self, attribute=attribute, source_expression=source_expression, 
             target_timespan=target_timespan, persist=persist, truncate=truncate)
         assert isinstance(target_context_name, (str, type(None)))
         self._fresh = fresh

@@ -122,7 +122,6 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/expressiontools/AnchoredExpression/AnchoredExpression
-      tools/expressiontools/AnchoredSetExpression/AnchoredSetExpression
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
@@ -136,6 +135,7 @@ Unstable packages (load manually)
       tools/expressiontools/SetExpressionLookupExpression/SetExpressionLookupExpression
       tools/expressiontools/SetMethodMixin/SetMethodMixin
       tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression
+      tools/expressiontools/TimeContiguousAnchoredSetExpression/TimeContiguousAnchoredSetExpression
       tools/expressiontools/TimespanCallbackMixin/TimespanCallbackMixin
       tools/expressiontools/TimespanScopedSingleContextSetExpression/TimespanScopedSingleContextSetExpression
 
@@ -144,6 +144,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/expressiontools/ArbitraryTargetPitchSetExpression/ArbitraryTargetPitchSetExpression
       tools/expressiontools/AttributeDictionary/AttributeDictionary
       tools/expressiontools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/expressiontools/BeatSelectExpression/BeatSelectExpression
@@ -163,7 +164,6 @@ Unstable packages (load manually)
       tools/expressiontools/MaterialManager/MaterialManager
       tools/expressiontools/MeasureSelectExpression/MeasureSelectExpression
       tools/expressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
-      tools/expressiontools/MultipleContextPitchSetExpression/MultipleContextPitchSetExpression
       tools/expressiontools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/expressiontools/OffsetExpression/OffsetExpression
       tools/expressiontools/PayloadExpression/PayloadExpression
@@ -198,7 +198,6 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/expressiontools/AnchoredExpression/AnchoredExpression
-      tools/expressiontools/AnchoredSetExpression/AnchoredSetExpression
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
@@ -212,6 +211,7 @@ Unstable packages (load manually)
       tools/expressiontools/SetExpressionLookupExpression/SetExpressionLookupExpression
       tools/expressiontools/SetMethodMixin/SetMethodMixin
       tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression
+      tools/expressiontools/TimeContiguousAnchoredSetExpression/TimeContiguousAnchoredSetExpression
       tools/expressiontools/TimespanCallbackMixin/TimespanCallbackMixin
       tools/expressiontools/TimespanScopedSingleContextSetExpression/TimespanScopedSingleContextSetExpression
 
@@ -220,6 +220,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/expressiontools/ArbitraryTargetPitchSetExpression/ArbitraryTargetPitchSetExpression
       tools/expressiontools/AttributeDictionary/AttributeDictionary
       tools/expressiontools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/expressiontools/BeatSelectExpression/BeatSelectExpression
@@ -239,7 +240,6 @@ Unstable packages (load manually)
       tools/expressiontools/MaterialManager/MaterialManager
       tools/expressiontools/MeasureSelectExpression/MeasureSelectExpression
       tools/expressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
-      tools/expressiontools/MultipleContextPitchSetExpression/MultipleContextPitchSetExpression
       tools/expressiontools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/expressiontools/OffsetExpression/OffsetExpression
       tools/expressiontools/PayloadExpression/PayloadExpression
