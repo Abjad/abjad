@@ -1,5 +1,5 @@
 import abc
-from abjad.tools import componenttools
+import copy
 from abjad.tools import durationtools
 from abjad.tools import rhythmmakertools
 from experimental.tools.expressiontools.TimespanScopedSingleContextSetExpression import \
@@ -104,8 +104,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
             region_expression = expressiontools.RhythmMakerRhythmRegionExpression(
                 rhythm_maker, division_list, start_offset, voice_name)
         elif isinstance(self.source_expression, expressiontools.StartPositionedRhythmPayloadExpression):
-            wrapped_component = componenttools.copy_components_and_covered_spanners(
-                [self.source_expression.payload])[0]
+            wrapped_component = copy.deepcopy(self.source_expression.payload)
             region_expression = expressiontools.LiteralRhythmRegionExpression(
                 wrapped_component, start_offset, total_duration, voice_name)
         # TODO: remove the double indentation of the following branch
@@ -116,8 +115,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
                 region_expression = expressiontools.RhythmMakerRhythmRegionExpression(
                     rhythm_maker, division_list, start_offset, voice_name)
             elif isinstance(expression, expressiontools.StartPositionedRhythmPayloadExpression):
-                wrapped_component = componenttools.copy_components_and_covered_spanners(
-                    [expression.payload])[0]
+                wrapped_component = copy.deepcopy(expression.payload)
                 region_expression = expressiontools.LiteralRhythmRegionExpression(
                     wrapped_component, start_offset, total_duration, voice_name)
             elif expression is None:

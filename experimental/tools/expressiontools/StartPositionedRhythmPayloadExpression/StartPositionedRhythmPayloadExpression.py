@@ -1,3 +1,4 @@
+import copy
 import math
 from abjad.tools import beamtools
 from abjad.tools import componenttools
@@ -124,14 +125,14 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         '''
         return StartPositionedPayloadExpression.__and__(self, timespan)
 
+    # TODO: maybe possible to remove __copy__ and __deepcop__ altogether and use copy.deepcopy() instead?
     def __copy__(self, *args):
         '''Copy start-positioned rhythm payload expression.
         
         Return newly created start-positioned rhythm payload expression.
         '''
         new = type(self)(voice_name=self.voice_name, start_offset=self.start_offset)
-        # TODO: use copy.deepcopy() instead (once Component.__deepcopy__ is unaliased)
-        new._payload = componenttools.copy_components_and_covered_spanners([self.payload])[0]
+        new._payload = copy.deepcopy(self.payload)
         return new
 
     __deepcopy__ = __copy__
@@ -347,7 +348,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
     ### PRIVATE METHODS ###
 
     def _clone(self):
-        wrapped_component = componenttools.copy_components_and_covered_spanners([self.payload])[0]
+        wrapped_component = copy.deepcopy(self.payload)
         new = type(self)([], start_offset=self.start_offset, voice_name=self.voice_name)
         new._payload = wrapped_component
         return new
@@ -710,7 +711,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         needed_copies = int(math.ceil(additional_duration / self.payload.duration))
         copies = []
         for i in range(needed_copies):
-            copies.append(componenttools.copy_components_and_covered_spanners([self.payload])[0])
+            copies.append(copy.deepcopy(self.payload))
         for element in copies:
             self.payload.extend(element)
         assert stop_offset <= self.stop_offset

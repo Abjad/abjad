@@ -1,4 +1,4 @@
-from abjad.tools import componenttools
+import copy
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
@@ -37,8 +37,7 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
                 rhythm_maker, self.division_list, self.start_offset, self.voice_name)
             result = region_expression.evaluate()
         elif isinstance(expression, expressiontools.StartPositionedRhythmPayloadExpression):
-            wrapped_component = componenttools.copy_components_and_covered_spanners(
-                [expression.payload])[0]
+            wrapped_component = copy.deepcopy(expression.payload)
             region_expression = expressiontools.LiteralRhythmRegionExpression(
                 wrapped_component, self.start_offset, self.total_duration, self.voice_name)
             result = region_expression.evaluate()

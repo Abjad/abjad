@@ -1,4 +1,4 @@
-from abjad.tools import componenttools
+import copy
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
@@ -15,7 +15,7 @@ class LiteralRhythmRegionExpression(RhythmRegionExpression):
         from experimental.tools import expressiontools
         expression = expressiontools.StartPositionedRhythmPayloadExpression(
             [], start_offset=self.start_offset, voice_name=self.voice_name)
-        wrapped_component = componenttools.copy_components_and_covered_spanners([self.source_expression])[0]
+        wrapped_component = copy.deepcopy(self.source_expression)
         expression._payload = wrapped_component
         start_offset, stop_offset = self.start_offset, self.start_offset + self.total_duration
         keep_timespan = timespantools.Timespan(start_offset, stop_offset)
