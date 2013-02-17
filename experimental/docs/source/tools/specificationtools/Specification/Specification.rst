@@ -15,9 +15,6 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.fresh_single_context_set_expressions
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.multiple_context_set_expressions
-   :noindex:
-
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.score_model
    :noindex:
 

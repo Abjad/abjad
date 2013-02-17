@@ -46,6 +46,7 @@ class SegmentSpecification(Specification):
 
     ### SPECIAL METHODS ###
 
+    # TODO: remove this altogether
     def __getitem__(self, expr):
         '''Get context with name.
 
@@ -126,19 +127,6 @@ class SegmentSpecification(Specification):
         Return timespan inventory.
         '''
         return Specification.fresh_single_context_set_expressions.fget(self)
-
-    @property
-    def multiple_context_set_expressions(self):
-        '''Segment specification multiple-context set-expressions.
-
-        ::
-
-            >>> z(red_segment.multiple_context_set_expressions)
-            timespantools.TimespanInventory([])
-
-        Return timespan inventory.
-        '''
-        return Specification.multiple_context_set_expressions.fget(self)
 
     @property
     def score_model(self):

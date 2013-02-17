@@ -25,7 +25,6 @@ class Specification(AbjadObject):
         self._abbreviated_context_names = []
         self._context_names = []
         self._fresh_single_context_set_expressions = timespantools.TimespanInventory()
-        self._multiple_context_set_expressions = timespantools.TimespanInventory()
         self._score_template = score_template
         self._score_model = score_template()
         self._single_context_set_expressions_by_context = \
@@ -99,14 +98,6 @@ class Specification(AbjadObject):
         Return timespan inventory.
         '''
         return self._fresh_single_context_set_expressions
-
-    @property
-    def multiple_context_set_expressions(self):
-        '''Specification multiple-context set expressions.
-
-        Return timespan inventory.
-        '''
-        return self._multiple_context_set_expressions
 
     @property
     def score_model(self):

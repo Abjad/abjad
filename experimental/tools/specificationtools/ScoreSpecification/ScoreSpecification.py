@@ -45,6 +45,7 @@ class ScoreSpecification(Specification):
         from experimental.tools import expressiontools
         from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
+        self._multiple_context_set_expressions = timespantools.TimespanInventory()
         self._next_lexical_rank = 0
         self._payload_expressions_by_voice = specificationtools.VoiceDictionary(score_template())
         self._region_expressions_by_attribute = expressiontools.AttributeDictionary()
@@ -178,7 +179,7 @@ class ScoreSpecification(Specification):
 
         Return context dictionary.
         '''
-        return Specification.multiple_context_set_expressions.fget(self)
+        return self._multiple_context_set_expressions
     
     @property
     def payload_expressions_by_voice(self):
