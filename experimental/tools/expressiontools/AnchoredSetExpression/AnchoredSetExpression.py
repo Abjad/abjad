@@ -21,7 +21,8 @@ class AnchoredSetExpression(SetExpression, AnchoredExpression):
         assert isinstance(source_expression, (expressiontools.Expression)), repr(expression)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))
-        SetExpression.__init__(self, attribute=attribute, source_expression=source_expression, target_timespan=target_timespan)
+        SetExpression.__init__(self, 
+            attribute=attribute, source_expression=source_expression, target_timespan=target_timespan)
         AnchoredExpression.__init__(self, anchor=target_timespan)
         self._persist = persist
         self._truncate = truncate

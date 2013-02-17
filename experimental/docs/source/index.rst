@@ -163,6 +163,7 @@ Unstable packages (load manually)
       tools/expressiontools/MaterialManager/MaterialManager
       tools/expressiontools/MeasureSelectExpression/MeasureSelectExpression
       tools/expressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
+      tools/expressiontools/MultipleContextPitchSetExpression/MultipleContextPitchSetExpression
       tools/expressiontools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/expressiontools/OffsetExpression/OffsetExpression
       tools/expressiontools/PayloadExpression/PayloadExpression
@@ -238,6 +239,7 @@ Unstable packages (load manually)
       tools/expressiontools/MaterialManager/MaterialManager
       tools/expressiontools/MeasureSelectExpression/MeasureSelectExpression
       tools/expressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
+      tools/expressiontools/MultipleContextPitchSetExpression/MultipleContextPitchSetExpression
       tools/expressiontools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/expressiontools/OffsetExpression/OffsetExpression
       tools/expressiontools/PayloadExpression/PayloadExpression

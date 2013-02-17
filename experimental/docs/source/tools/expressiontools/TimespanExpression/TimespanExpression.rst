@@ -108,6 +108,9 @@ Methods
 .. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_pitch_classes
    :noindex:
 
+.. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_pitches
+   :noindex:
+
 .. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_registration
    :noindex:
 

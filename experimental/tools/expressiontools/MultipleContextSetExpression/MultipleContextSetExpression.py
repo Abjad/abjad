@@ -91,7 +91,7 @@ class MultipleContextSetExpression(AnchoredSetExpression):
         return single_context_set_expressions
 
     def evaluate_and_store_in_root_specification(self):
-        '''Evaluate multiple-context set expressions and store in root specification.
+        '''Evaluate multiple-context set expression and store in root specification.
 
         Return none.
         ''' 
