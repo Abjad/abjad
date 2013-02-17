@@ -2,6 +2,7 @@ Developer documentation
 =======================
 
 .. toctree::
+   :maxdepth: 1
    :numbered:
 
    codebase/index

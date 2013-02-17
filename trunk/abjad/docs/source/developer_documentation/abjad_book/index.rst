@@ -8,6 +8,13 @@ We created ``abjad-book`` to help us document Abjad.
 Our work on ``abjad-book`` was inspired by ``lilypond-book``,
 which does for LilyPond much what ``abjad-book`` does for Abjad.
 
+``abjad-book`` can be accessed on the commandline either via ``abjad-book`` or
+through Abjad's ``ajv`` tool collection.  For the most up-to-date documentation on
+``abjad-book``, always consult ``ajv book --help``:
+
+.. shell::
+
+   ajv book --help
 
 HTML with embedded Abjad
 ------------------------
@@ -164,13 +171,13 @@ You can call ``abjad-book`` on ReST documents, too. Follow the examples
 given here for HTML and LaTeX documents and modify accordingly.
 
 
-Using [hide = True]
+Using [hide=true]
 -------------------
 
-You can add ``[hide = True]`` to any ``abjad-book`` example to show
+You can add ``[hide=true]`` to any ``abjad-book`` example to show
 only music notation. ::
 
-   <abjad>[hide = True]
+   <abjad>[hide=true]
    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b''8")
    iotools.write_expr_to_ly(staff, 'staff-example', docs=True)
    </abjad>
