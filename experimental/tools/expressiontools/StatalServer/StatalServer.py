@@ -14,20 +14,8 @@ class StatalServer(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expression):
-        '''Evaluate `expression` against statal server.
-
-        Return payload expression.
-        '''
-        result = []
-        assert not (expression.count is not None and expression.index is not None)
-        if expression.count is not None:
-            for x in range(expression.count):
-                result.append(self.iterable[self.next_index])
-                self.next_index += 1
-        elif expression.index is not None:
-            result.append(self.iterable[expression.index])
-        return result
+    def __call__(self):
+        pass
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
