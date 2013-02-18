@@ -595,7 +595,11 @@ class Tree(AbjadObject):
         result = []
         self_is_found = False
         first_node_returned_is_trimmed = False
-        for node in self.root.iterate_depth_first():
+        if hasattr(self.root, 'iterate_forever_depth_first'):
+            generator = self.root.iterate_forever_depth_first()
+        else:
+            generator = self.root.iterate_depth_first()
+        for node in generator:
             if len(result) == n:
                 if not first_node_returned_is_trimmed or \
                     not nodes_must_be_complete:

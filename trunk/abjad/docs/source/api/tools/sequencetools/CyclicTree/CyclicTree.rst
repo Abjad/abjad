@@ -78,6 +78,9 @@ Methods
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.iterate_depth_first
    :noindex:
 
+.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.iterate_forever_depth_first
+   :noindex:
+
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.iterate_payload
    :noindex:
 

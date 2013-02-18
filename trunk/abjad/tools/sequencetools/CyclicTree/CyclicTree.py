@@ -88,26 +88,35 @@ class CyclicTree(Tree):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.CyclicTree(sequence)
 
         Get next 4 nodes at level 2:
 
         ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(4, 2)
-            [Tree(1), Tree(2), Tree(3), Tree(4)]
+            [CyclicTree(1), CyclicTree(2), CyclicTree(3), CyclicTree(4)]
 
-        Get next 20 nodes at level 2:
+        Get next 10 nodes at level 2:
 
         ::
 
-            >>> tree[0][0].get_next_n_nodes_at_level(20, 2) # doctest: +SKIP
-
-        .. note:: make this work.
+            >>> for node in tree[0][0].get_next_n_nodes_at_level(10, 2):
+            ...     node
+            CyclicTree(1)
+            CyclicTree(2)
+            CyclicTree(3)
+            CyclicTree(4)
+            CyclicTree(5)
+            CyclicTree(6)
+            CyclicTree(7)
+            CyclicTree(1)
+            CyclicTree(2)
+            CyclicTree(3)
 
         Return list of nodes.
         '''
-        return Tree.get_next_n_nodes_at_level(n, level)
+        return Tree.get_next_n_nodes_at_level(self, n, level)
         
     def get_node_at_position(self, position):
         '''Get node at `position`:
@@ -140,3 +149,41 @@ class CyclicTree(Tree):
         Return node.
         '''
         return Tree.get_node_at_position(self, position)
+
+    def iterate_forever_depth_first(self):
+        '''Iterate tree depth first.
+
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> cyclic_tree = sequencetools.CyclicTree(sequence)
+
+        ::
+
+            >>> generator = cyclic_tree.iterate_forever_depth_first()
+            >>> for i in range(20):
+            ...     generator.next()
+            CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+            CyclicTree([0, 1])
+            CyclicTree(0)
+            CyclicTree(1)
+            CyclicTree([2, 3])
+            CyclicTree(2)
+            CyclicTree(3)
+            CyclicTree([4, 5])
+            CyclicTree(4)
+            CyclicTree(5)
+            CyclicTree([6, 7])
+            CyclicTree(6)
+            CyclicTree(7)
+            CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+            CyclicTree([0, 1])
+            CyclicTree(0)
+            CyclicTree(1)
+            CyclicTree([2, 3])
+            CyclicTree(2)
+            CyclicTree(3)
+
+        Return node generator.
+        '''
+        while True:
+            for node in Tree.iterate_depth_first(self):
+                yield node
