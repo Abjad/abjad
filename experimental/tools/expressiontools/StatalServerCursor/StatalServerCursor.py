@@ -27,6 +27,16 @@ class StatalServerCursor(AbjadObject):
         '''
         return self._get_manifest_payload_of_next_n_nodes_at_level(n, level=level)
 
+    def __eq__(self, expr):
+        '''True `expr` is a statal server cursor and keyword argument values are equal.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        if isinstance(expr, type(self)):
+            return self._keyword_argument_values == expr._keyword_argument_values
+        return False
+
     ### PRIVATE METHODS ###
 
     def _get_manifest_payload_of_next_n_nodes_at_level(self, n=1, level=-1):

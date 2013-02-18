@@ -22,6 +22,12 @@ class StatalServer(AbjadObject):
             statal_server=self, position=position, read_direction=read_direction)
         return cursor
 
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            if self.cyclic_tree == expr.cyclic_tree:
+                return True
+        return False
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
