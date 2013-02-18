@@ -21,8 +21,6 @@ class SetMethodMixin(AbjadObject):
         from experimental.tools import handlertools
         from experimental.tools import expressiontools
         from experimental.tools import expressiontools
-        # probably precautionary: prune expr of any incoming references
-        expr = copy.deepcopy(expr)
         if isinstance(expr, expressiontools.Expression):
             return expr
         elif self._all_are_expressions(expr):
