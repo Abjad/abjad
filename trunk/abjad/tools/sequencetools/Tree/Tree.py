@@ -208,9 +208,9 @@ class Tree(AbjadObject):
 
     @property
     def children(self):
-        '''.. versionadded:: 2.4
+        '''Children of node:
 
-        Children of node::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -226,9 +226,9 @@ class Tree(AbjadObject):
 
     @property
     def depth(self):
-        '''.. versionadded:: 2.4
+        '''Depth of subtree:
 
-        Depth of subtree::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -247,9 +247,9 @@ class Tree(AbjadObject):
 
     @property
     def improper_parentage(self):
-        '''.. versionadded:: 2.4
+        '''Improper parentage of node:
 
-        Improper parentage of node::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -270,9 +270,9 @@ class Tree(AbjadObject):
 
     @property
     def index_in_parent(self):
-        '''.. versionadded:: 2.4
+        '''Index of node in parent of node:
 
-        Index of node in parent::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -285,15 +285,16 @@ class Tree(AbjadObject):
         Return nonnegative integer.
         '''
         if self.parent is not None:
-            return self.parent._children.index(self)
+            #return self.parent._children.index(self)
+            return self.parent.index(self)
         else:
             return None
 
     @property
     def level(self):
-        '''.. versionadded:: 2.4
+        '''Level of node:
 
-        Level of node::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -309,9 +310,9 @@ class Tree(AbjadObject):
 
     @property
     def negative_level(self):
-        '''.. versionadded:: 2.4
+        '''Negative level of node:
 
-        Negative level of node::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -327,9 +328,7 @@ class Tree(AbjadObject):
         
     @property
     def position(self):
-        '''.. versionadded:: 2.4
-
-        Position of node relative to root:
+        '''Position of node relative to root:
 
         ::
 
@@ -352,9 +351,9 @@ class Tree(AbjadObject):
 
     @property
     def proper_parentage(self):
-        '''.. versionadded:: 2.4
+        '''Proper parentage of node:
 
-        Proper parentage of node::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -371,9 +370,9 @@ class Tree(AbjadObject):
     
     @property
     def root(self):
-        '''.. versionadded:: 2.4
+        '''Root of tree:
 
-        Root of tree::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -389,9 +388,9 @@ class Tree(AbjadObject):
 
     @property
     def width(self):
-        '''.. versionadded:: 2.4
-    
-        Number of leaves in subtree::
+        '''Number of leaves in subtree:
+
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -452,35 +451,37 @@ class Tree(AbjadObject):
     ### PUBLIC METHODS ###
 
     def get_next_n_complete_nodes_at_level(self, n, level):
-        r'''.. versionadded:: 2.5
-
-        Get next `n` complete nodes at `level` from node.
+        r'''Get next `n` complete nodes at `level` from node.
 
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
 
-        With nonnegative `level`:
+        Get next 4 nodes at level 2:
 
-        Get next 4 nodes at level 2::
+        ::
 
             >>> tree[0][0].get_next_n_complete_nodes_at_level(4, 2)
             [Tree(1), Tree(2), Tree(3), Tree(4)]
 
-        Get next 3 nodes at level 1::
+        Get next 3 nodes at level 1:
+
+        ::
 
             >>> tree[0][0].get_next_n_complete_nodes_at_level(3, 1)
             [Tree([1]), Tree([2, 3]), Tree([4, 5]), Tree([6, 7])]
 
-        With negative `level`:
-        
-        Get next 4 nodes at level -1::
+        Get next 4 nodes at level -1:
+
+        ::
 
             >>> tree[0][0].get_next_n_complete_nodes_at_level(4, -1)
             [Tree(1), Tree(2), Tree(3), Tree(4)]
 
-        Get next 3 nodes at level -2::
+        Get next 3 nodes at level -2:
+
+        ::
 
             >>> tree[0][0].get_next_n_complete_nodes_at_level(3, -2)
             [Tree([1]), Tree([2, 3]), Tree([4, 5]), Tree([6, 7])]
@@ -492,40 +493,44 @@ class Tree(AbjadObject):
         return self._get_next_n_nodes_at_level_helper(n, level, nodes_must_be_complete=True)
         
     def get_next_n_nodes_at_level(self, n, level):
-        r'''.. versionadded:: 2.4
-
-        Get next `n` nodes at `level` from node.
+        r'''Get next `n` nodes at `level` from node.
 
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
 
-        With nonnegative `level`:
+        Get next 4 nodes at level 2:
 
-        Get next 4 nodes at level 2::
+        ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(4, 2)
             [Tree(1), Tree(2), Tree(3), Tree(4)]
 
-        Get next 3 nodes at level 1::
+        Get next 3 nodes at level 1:
+
+        ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(3, 1)
             [Tree([1]), Tree([2, 3]), Tree([4, 5])]
 
-        Get next node at level 0::
+        Get next node at level 0:
+
+        ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(1, 0)
             [Tree([[1], [2, 3], [4, 5], [6, 7]])]
 
-        With negative `level`:
-        
-        Get next 4 nodes at level -1::
+        Get next 4 nodes at level -1:
+
+        ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(4, -1)
             [Tree(1), Tree(2), Tree(3), Tree(4)]
 
-        Get next 3 nodes at level -2::
+        Get next 3 nodes at level -2:
+
+        ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(3, -2)
             [Tree([1]), Tree([2, 3]), Tree([4, 5])]
@@ -537,9 +542,9 @@ class Tree(AbjadObject):
         return self._get_next_n_nodes_at_level_helper(n, level, nodes_must_be_complete=False)
 
     def get_node_at_position(self, position):
-        '''.. versionadded:: 2.4
+        '''Get node at `position`:
 
-        Get node at `position`::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -557,9 +562,9 @@ class Tree(AbjadObject):
         return result
 
     def get_position_of_descendant(self, descendant):
-        r'''.. versionadded:: 2.4
+        r'''Get position of `descendent` relative to node rather than relative to root:
 
-        Get position of `descendent` relative to node rather than relative to root::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -576,10 +581,36 @@ class Tree(AbjadObject):
         else:
             return descendant.position[len(self.position):]
 
-    def is_at_level(self, level):
-        r'''.. versionadded:: 2.4
+    def index(self, node):
+        '''Index of `node`:
 
-        True when node is at `level` in tree::
+        ::
+
+            >>> sequence = [0, 1, 2, 2, 3, 4]
+            >>> tree = sequencetools.Tree(sequence)
+
+        ::
+
+            >>> for node in tree:
+            ...     node, tree.index(node)
+            (Tree(0), 0)
+            (Tree(1), 1)
+            (Tree(2), 2)
+            (Tree(2), 3)
+            (Tree(3), 4)
+            (Tree(4), 5)
+
+        Return nonnegative integer.
+        '''
+        for i, current_node in enumerate(self):
+            if current_node is node:
+                return i
+        raise ValueError('{!r} is not in tree.'.format(node))
+
+    def is_at_level(self, level):
+        r'''True when node is at `level` in tree:
+
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -604,9 +635,9 @@ class Tree(AbjadObject):
             return False
 
     def iterate_at_level(self, level):
-        r'''.. versionadded:: 2.4
+        r'''Iterate depth at `level`:
 
-        Iterate depth at `level`::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -678,9 +709,9 @@ class Tree(AbjadObject):
                     yield x
 
     def iterate_depth_first(self):
-        '''.. versionadded:: 2.4
+        '''Iterate tree depth-first:
 
-        Iterate tree depth-first::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -711,9 +742,9 @@ class Tree(AbjadObject):
                 yield y
 
     def iterate_payload(self):
-        r'''.. versionadded:: 2.4
+        r'''Iterate tree payload:
 
-        Iterate tree payload::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -738,9 +769,9 @@ class Tree(AbjadObject):
             yield leaf_node.payload
 
     def remove(self, node):
-        r'''.. versionadded:: 2.4
+        r'''Remove `node` from tree:
 
-        Remove `node` from tree::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
@@ -760,9 +791,9 @@ class Tree(AbjadObject):
         node.parent = None
 
     def remove_to_root(self):
-        r'''.. versionadded:: 2.4
+        r'''Remove node and all nodes left of node to root:
 
-        Remove node and all nodes left of node to root::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
 
@@ -811,9 +842,9 @@ class Tree(AbjadObject):
                         sibling.parent.remove(sibling) 
     
     def to_nested_lists(self):
-        r'''.. versionadded:: 2.5
+        r'''Change tree to nested lists:
 
-        Change tree to nested lists::
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)

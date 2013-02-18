@@ -57,6 +57,9 @@ Methods
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.get_position_of_descendant
    :noindex:
 
+.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.index
+   :noindex:
+
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.is_at_level
    :noindex:
 

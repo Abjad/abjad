@@ -57,6 +57,9 @@ Methods
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_position_of_descendant
    :noindex:
 
+.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.index
+   :noindex:
+
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.is_at_level
    :noindex:
 
