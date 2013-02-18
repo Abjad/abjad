@@ -9,6 +9,9 @@ expressiontools.StatalServer
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.expressiontools.StatalServer.StatalServer.StatalServer.cyclic_tree
+   :noindex:
+
 .. autoattribute:: experimental.tools.expressiontools.StatalServer.StatalServer.StatalServer.last_node
    :noindex:
 

@@ -186,6 +186,7 @@ Unstable packages (load manually)
       tools/expressiontools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
       tools/expressiontools/StartPositionedRhythmPayloadExpression/StartPositionedRhythmPayloadExpression
       tools/expressiontools/StatalServer/StatalServer
+      tools/expressiontools/StatalServerCursor/StatalServerCursor
       tools/expressiontools/StatalServerExpression/StatalServerExpression
       tools/expressiontools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
       tools/expressiontools/TimeSignatureSetExpressionLookupExpression/TimeSignatureSetExpressionLookupExpression
@@ -266,6 +267,7 @@ Unstable packages (load manually)
       tools/expressiontools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
       tools/expressiontools/StartPositionedRhythmPayloadExpression/StartPositionedRhythmPayloadExpression
       tools/expressiontools/StatalServer/StatalServer
+      tools/expressiontools/StatalServerCursor/StatalServerCursor
       tools/expressiontools/StatalServerExpression/StatalServerExpression
       tools/expressiontools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
       tools/expressiontools/TimeSignatureSetExpressionLookupExpression/TimeSignatureSetExpressionLookupExpression
