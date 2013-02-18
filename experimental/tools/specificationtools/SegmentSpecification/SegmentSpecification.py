@@ -98,8 +98,16 @@ class SegmentSpecification(Specification):
                     ),
                 expressiontools.SingleContextRhythmSetExpression(
                     source_expression=expressiontools.RhythmMakerPayloadExpression(
-                        payload=(TaleaRhythmMaker('sixteenths'),)
-                        ),
+                        payload=rhythmmakertools.TaleaRhythmMaker(
+                            [1],
+                            16,
+                            prolation_addenda=[],
+                            secondary_divisions=[],
+                            beam_each_cell=False,
+                            beam_cells_together=True,
+                            tie_split_notes=False
+                            )
+                ),
                     target_timespan='red',
                     fresh=True,
                     persist=True

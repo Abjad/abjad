@@ -42,7 +42,7 @@ class PayloadCallbackMixin(CallbackMixin):
 
     def _apply_callbacks(self, payload_expression):
         from experimental.tools import expressiontools
-        assert isinstance(payload_expression, expressiontools.IterablePayloadExpression), repr(payload_expression)
+        assert isinstance(payload_expression, expressiontools.PayloadExpression), repr(payload_expression)
         evaluation_context = {
             'Duration': durationtools.Duration,
             'NonreducedFraction': mathtools.NonreducedFraction,

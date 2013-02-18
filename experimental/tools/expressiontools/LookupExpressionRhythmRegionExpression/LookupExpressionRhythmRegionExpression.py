@@ -32,7 +32,7 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
         if expression is None:
             return
         if isinstance(expression, expressiontools.RhythmMakerPayloadExpression):
-            rhythm_maker = expression.payload[0]
+            rhythm_maker = expression.payload
             region_expression = expressiontools.RhythmMakerRhythmRegionExpression(
                 rhythm_maker, self.division_list, self.start_offset, self.voice_name)
             result = region_expression.evaluate()

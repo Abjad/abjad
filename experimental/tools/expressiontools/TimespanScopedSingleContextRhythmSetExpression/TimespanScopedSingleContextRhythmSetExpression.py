@@ -99,7 +99,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
         assert isinstance(voice_name, str), repr(voice_name)
         total_duration = self.target_timespan.duration
         if isinstance(self.source_expression, expressiontools.RhythmMakerPayloadExpression):
-            rhythm_maker = self.source_expression.payload[0]
+            rhythm_maker = self.source_expression.payload
             assert isinstance(rhythm_maker, rhythmmakertools.RhythmMaker), repr(rhythm_maker)
             region_expression = expressiontools.RhythmMakerRhythmRegionExpression(
                 rhythm_maker, division_list, start_offset, voice_name)
@@ -111,7 +111,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
         elif isinstance(self.source_expression, expressiontools.RhythmSetExpressionLookupExpression):
             expression = self.source_expression.evaluate()
             if isinstance(expression, expressiontools.RhythmMakerPayloadExpression):
-                rhythm_maker = expression.payload[0]
+                rhythm_maker = expression.payload
                 region_expression = expressiontools.RhythmMakerRhythmRegionExpression(
                     rhythm_maker, division_list, start_offset, voice_name)
             elif isinstance(expression, expressiontools.StartPositionedRhythmPayloadExpression):

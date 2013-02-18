@@ -3,10 +3,10 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import sequencetools
-from experimental.tools.expressiontools.Expression import Expression
+from experimental.tools.expressiontools.PayloadExpression import PayloadExpression
 
 
-class IterablePayloadExpression(Expression):
+class IterablePayloadExpression(PayloadExpression):
     r'''Payload expression.
 
     ::
@@ -32,14 +32,13 @@ class IterablePayloadExpression(Expression):
 
     def __init__(self, payload):
         from experimental.tools import expressiontools
-        assert not isinstance(payload, str), repr(payload)
         assert not isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
+        assert not isinstance(payload, expressiontools.StatalServerCursor), repr(payload)
         assert isinstance(payload, (str, tuple, list, 
             expressiontools.DivisionList, containertools.Container)), repr(payload)
-        Expression.__init__(self)
         if isinstance(payload, list):
             payload = tuple(payload)
-        self._payload = payload
+        PayloadExpression.__init__(self, payload)
 
     ### SPECIAL METHODS ###
 
@@ -99,7 +98,18 @@ class IterablePayloadExpression(Expression):
         result = self.new(payload=payload)
         return result
 
-    ### READ-ONLY PRIVATE PROPERTIES ##
+    ### PRIVATE METHODS ###
+
+    def _duration_helper(self, expression):
+        if hasattr(expression, 'duration'):
+            return expression.duration
+        elif hasattr(expression, 'duration'):
+            return expression.duration
+        else:
+            duration = durationtools.Duration(expression)
+            return duration
+
+    ### READ-ONLY PROPERTIES ###
 
     @property
     def elements(self):
@@ -113,29 +123,6 @@ class IterablePayloadExpression(Expression):
         Return tuple.
         '''
         return self.payload[:]
-
-    ### PRIVATE METHODS ###
-
-    def _duration_helper(self, expression):
-        if hasattr(expression, 'duration'):
-            return expression.duration
-        elif hasattr(expression, 'duration'):
-            return expression.duration
-        else:
-            duration = durationtools.Duration(expression)
-            return duration
-
-    def evaluate(self):
-        '''Evaluate payload expression.
-
-            >>> payload_expression.evaluate()
-            IterablePayloadExpression(((4, 16), (2, 16)))
-
-        Return payload expression.
-        '''
-        return self
-
-    ### READ-ONLY PROPERTIES ###
 
     @property
     def payload(self):
@@ -163,9 +150,19 @@ class IterablePayloadExpression(Expression):
 
         Return string.
         '''
-        return Expression.storage_format.fget(self)
+        return PayloadExpression.storage_format.fget(self)
 
     ### PUBLIC METHODS ###
+
+    def evaluate(self):
+        '''Evaluate payload expression.
+
+            >>> payload_expression.evaluate()
+            IterablePayloadExpression(((4, 16), (2, 16)))
+
+        Return payload expression.
+        '''
+        return PayloadExpression.evaluate(self)
 
     def partition_by_ratio(self, ratio):
         '''Partition payload expression by ratio.

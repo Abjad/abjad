@@ -1,8 +1,8 @@
 from abjad.tools import rhythmmakertools
-from experimental.tools.expressiontools.IterablePayloadExpression import IterablePayloadExpression
+from experimental.tools.expressiontools.PayloadExpression import PayloadExpression
 
 
-class RhythmMakerPayloadExpression(IterablePayloadExpression):
+class RhythmMakerPayloadExpression(PayloadExpression):
     r'''Rhythm-maker payload expression.
     '''
 
@@ -10,7 +10,7 @@ class RhythmMakerPayloadExpression(IterablePayloadExpression):
 
     def __init__(self, payload=None):
         assert isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
-        IterablePayloadExpression.__init__(self, payload=[payload])
+        PayloadExpression.__init__(self, payload=payload)
 
     ### PUBLIC METHODS ###
 
@@ -23,7 +23,15 @@ class RhythmMakerPayloadExpression(IterablePayloadExpression):
             >>> payload_expression = expressiontools.RhythmMakerPayloadExpression(rhythm_maker)
             >>> z(payload_expression)
             expressiontools.RhythmMakerPayloadExpression(
-                payload=(TaleaRhythmMaker('dotted_sixteenths'),)
+                payload=rhythmmakertools.TaleaRhythmMaker(
+                    [3, 1],
+                    32,
+                    prolation_addenda=[],
+                    secondary_divisions=[],
+                    beam_each_cell=False,
+                    beam_cells_together=True,
+                    tie_split_notes=False
+                    )
                 )
 
         ::
@@ -34,11 +42,19 @@ class RhythmMakerPayloadExpression(IterablePayloadExpression):
 
             >>> z(result)
             expressiontools.RhythmMakerPayloadExpression(
-                payload=(TaleaRhythmMaker('dotted_sixteenths'),)
+                payload=rhythmmakertools.TaleaRhythmMaker(
+                    [1, 3],
+                    32,
+                    prolation_addenda=[],
+                    secondary_divisions=[],
+                    beam_each_cell=False,
+                    beam_cells_together=True,
+                    tie_split_notes=False
+                    )
                 )
 
         Return newly constructed rhythm-maker payload expression.
         '''
-        rhythm_maker = self.payload[0].reverse()
+        rhythm_maker = self.payload.reverse()
         result = self.new(payload=rhythm_maker) 
         return result
