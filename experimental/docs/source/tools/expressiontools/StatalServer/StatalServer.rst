@@ -18,12 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.expressiontools.StatalServer.StatalServer.StatalServer.storage_format
    :noindex:
 
-Methods
--------
-
-.. automethod:: experimental.tools.expressiontools.StatalServer.StatalServer.StatalServer.get_next_n_nodes_at_level
-   :noindex:
-
 Special methods
 ---------------
 

@@ -21,11 +21,23 @@ class StatalServerCursor(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, n=1, level=-1):
-        '''Aliased to ``self.get_next_n_nodes_at_level()``.
+        '''Get manifest payload of next `n` nodes at `level`.
 
-        Return list.
+        Return list of arbitrary values.
         '''
-        return self.get_next_n_nodes_at_level(n, level=level)
+        return self._get_manifest_payload_of_next_n_nodes_at_level(n, level=level)
+
+    ### PRIVATE METHODS ###
+
+    def _get_manifest_payload_of_next_n_nodes_at_level(self, n=1, level=-1):
+        result = []
+        current_node = self.statal_server.cyclic_tree.get_node_at_position(self.position)
+        nodes = current_node.get_next_n_nodes_at_level(n, level)
+        position = nodes[-1].position
+        self._position = position
+        for node in nodes:
+            result.extend(node.manifest_payload)
+        return result
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -52,15 +64,3 @@ class StatalServerCursor(AbjadObject):
         Return statal server.
         '''
         return self._statal_server
-
-    ### PUBLC METHODS ###
-
-    def get_next_n_nodes_at_level(self, n=1, level=-1):
-        '''Get next `n` nodes at `level`.
-
-        Return list.
-        '''
-        nodes = self.statal_server.get_next_n_nodes_at_level(self.position, n, level)
-        position = nodes[-1].position
-        self._position = position
-        return nodes

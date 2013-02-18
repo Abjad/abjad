@@ -35,11 +35,3 @@ class StatalServer(AbjadObject):
         '''Statal server last node.
         '''
         return self.last_nodes[-1]
-
-    ### PUBLIC METHODS ###
-
-    def get_next_n_nodes_at_level(self, position, n, level=-1):
-        '''Get next `n` nodes at `level` from node at `position`.
-        '''
-        current_node = self.cyclic_tree.get_node_at_position(position)
-        return current_node.get_next_n_nodes_at_level(n, level)
