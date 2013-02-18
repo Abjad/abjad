@@ -7,8 +7,10 @@ class _StringInstrument(_Instrument):
 
     Abjad model of string instruments.
     '''
-    __metaclass__ = abc.ABCMeta
 
+    ### INITIALIZER ###
+
+    @abc.abstractmethod
     def __init__(self, **kwargs):
         _Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'string instrument'

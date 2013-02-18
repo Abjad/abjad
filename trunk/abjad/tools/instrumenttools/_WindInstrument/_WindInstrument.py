@@ -8,12 +8,9 @@ class _WindInstrument(_Instrument):
     Abjad model of the wind instrument.
     '''
 
-    ### CLASS ATTRIBUTES ###
-
-    __metaclass__ = abc.ABCMeta
-
     ### INITIALIZER ###
 
+    @abc.abstractmethod
     def __init__(self, **kwargs):
         _Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'wind instrument'

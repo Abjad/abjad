@@ -7,8 +7,10 @@ class _SingleReedInstrument(_ReedInstrument):
 
     Abjad model of single-reed instruments.
     '''
-    __metaclass__ = abc.ABCMeta
 
+    ### INITIALIZER ###
+
+    @abc.abstractmethod
     def __init__(self, **kwargs):
         _ReedInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'single reed instrument'

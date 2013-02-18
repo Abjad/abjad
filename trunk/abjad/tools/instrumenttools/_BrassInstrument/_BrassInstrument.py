@@ -7,8 +7,10 @@ class _BrassInstrument(_Instrument):
 
     Abjad model of brass instruments.
     '''
-    __metaclass__ = abc.ABCMeta
 
+    ### INITIALIZER ###
+
+    @abc.abstractmethod
     def __init__(self, **kwargs):
         _Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'brass instrument'
