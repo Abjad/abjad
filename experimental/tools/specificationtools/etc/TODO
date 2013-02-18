@@ -1,6 +1,1 @@
-1.  Implement SelectExpressionInventory.
-    The class will inherit from AnchoredExpression.
-    The class will serve as the argument to ArbtiraryTargetPitchSetExpression's
-    target_expression=None keyword.
-    The class will override the special __add__ and __iadd__ methods.
-    The class will inherit from AnchoredSetExpression.
+1.  Implement CounttimeComponentSelectExpression.evaluate_against_score().

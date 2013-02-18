@@ -32,8 +32,7 @@ class SetMethodMixin(AbjadObject):
             return expressiontools.StartPositionedRhythmPayloadExpression([component], start_offset=0)
         elif isinstance(expr, rhythmmakertools.RhythmMaker):
             return expressiontools.RhythmMakerPayloadExpression(expr)
-        # TODO: complete this branch
-        #elif isinstance(expr, expressiontools.StatalServerCursor):
-        #    return expressiontools.???(expr)
+        elif isinstance(expr, expressiontools.StatalServerCursor):
+            return expressiontools.PayloadExpression(expr)
         else:
             raise TypeError('do not know how to change {!r} to expression.'.format(expr))

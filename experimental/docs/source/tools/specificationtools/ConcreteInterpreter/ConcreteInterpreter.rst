@@ -39,10 +39,7 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_divisions
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_pitch_classes
-   :noindex:
-
-.. automethod:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_registration
+.. automethod:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_pitch
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_rhythm

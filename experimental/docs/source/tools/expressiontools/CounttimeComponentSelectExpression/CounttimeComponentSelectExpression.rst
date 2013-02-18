@@ -57,6 +57,9 @@ Methods
 .. automethod:: experimental.tools.expressiontools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.evaluate
    :noindex:
 
+.. automethod:: experimental.tools.expressiontools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.evaluate_against_score
+   :noindex:
+
 .. automethod:: experimental.tools.expressiontools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.new
    :noindex:
 

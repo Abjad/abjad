@@ -141,3 +141,6 @@ class CounttimeComponentSelectExpression(SelectExpression):
         expression = self._apply_callbacks(expression)
         expression._voice_name = self.voice_name
         return expression
+
+    def evaluate_against_score(self):
+        raise NotImplementedError

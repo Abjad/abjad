@@ -16,10 +16,9 @@ class ConcreteInterpreter(Interpreter):
 
             * interpret all time signatures scorewide
             * interpret all divisions scorewide
-            * interpret all rhythms scorewide
-            * interpret all pitch-classes scorewide
-            * interpret all registration scorewide
-            * interpret all additional parameters scorewide
+            * interpret rhythm scorewide
+            * interpret pitch scorewide.
+            * interpret additional parameters.
 
         Return Abjad score object.
         '''
@@ -27,8 +26,7 @@ class ConcreteInterpreter(Interpreter):
         self.interpret_time_signatures()
         self.interpret_divisions()
         self.interpret_rhythm()
-        self.interpret_pitch_classes()
-        self.interpret_registration()
+        self.interpret_pitch()
         self.interpret_additional_parameters()
         return self.score
 
@@ -114,11 +112,13 @@ class ConcreteInterpreter(Interpreter):
         self.make_payload_expressions('divisions')
         self.add_division_lists_to_score()
 
-    def interpret_pitch_classes(self):
-        pass
-
-    def interpret_registration(self):
-        pass
+    def interpret_pitch(self):
+        for generalized_set_expression in self.score_specification.generalized_set_expressions:
+            if not generalized_set_expression.attribute == 'pitch':
+                continue
+            for target_select_expression in generalized_set_expression.target_select_expression_inventory:
+                leaves = target_select_expression.evaluate_against_score()
+                self._debug(leaves, 'leaves')
 
     def interpret_rhythm(self):
         self.make_timespan_scoped_single_context_set_expressions('rhythm')

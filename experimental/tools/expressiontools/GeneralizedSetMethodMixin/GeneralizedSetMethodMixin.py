@@ -12,5 +12,5 @@ class GeneralizedSetMethodMixin(SetMethodMixin):
 
         Return generalized pitch set expression.
         '''
-        attribute = 'pitches'
+        attribute = 'pitch'
         return self._store_generalized_set_expression(attribute, source_expression)
