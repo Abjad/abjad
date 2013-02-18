@@ -1,8 +1,7 @@
-from abjad import *
-from experimental import library
+from experimental import *
 
 
-def test_rhythms_01():
+def test_rhythm_01():
     '''Sixteenths.
     '''
 
@@ -36,7 +35,7 @@ def test_rhythms_01():
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n\t{\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n}"
 
 
-def test_rhythms_02():
+def test_rhythm_02():
     '''Eighths.
     '''
 
@@ -63,7 +62,7 @@ def test_rhythms_02():
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n}"
 
 
-def test_rhythms_03():
+def test_rhythm_03():
     '''Quarters.
     '''
 
@@ -87,7 +86,7 @@ def test_rhythms_03():
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'4\n\t\tc'4\n\t}\n\t{\n\t\tc'4\n\t\tc'8\n\t}\n}"
 
 
-def test_rhythms_04():
+def test_rhythm_04():
     '''Thirty-seconds.
     '''
 
