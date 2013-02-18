@@ -64,7 +64,7 @@ class AbjadObject(object):
         raise NotImplementedError('Less-than not implemented on "{!r}".'.format(arg))
 
     def __ne__(self, arg):
-        '''True when ``id(self)`` does not equal ``id(arg)``.
+        '''Defined equal to the opposite of ``self == arg``.
 
         Return boolean.
         '''

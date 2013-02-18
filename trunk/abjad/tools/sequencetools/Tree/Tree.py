@@ -192,7 +192,7 @@ class Tree(AbjadObject):
         return False
 
     def __getitem__(self, expr):
-        '''Get `expr` item from tree:
+        '''Get item from tree:
 
         ::
 
@@ -204,15 +204,16 @@ class Tree(AbjadObject):
             >>> tree[-1]
             Tree([6, 7])
 
+        Get slice from tree:
+
+        ::
+
+            >>> tree[-2:]
+            [Tree([4, 5]), Tree([6, 7])]
+
         Return node.
         '''
         return self._children[expr]
-
-    ## TODO: figure out why this breaks Tree.remove_to_root()
-#    def __getslice__(self, start_index, stop_index):
-#        result = []
-#        result = [self[n] for n in range(start_index, stop_index)]
-#        return result
 
     def __len__(self):
         '''Return the number of children in tree:
@@ -792,7 +793,7 @@ class Tree(AbjadObject):
         raise ValueError('{!r} is not in tree.'.format(node))
 
     def is_at_level(self, level):
-        r'''True when node is at `level` in tree:
+        r'''True when node is at `level` in containing tree:
 
         ::
 
@@ -809,9 +810,9 @@ class Tree(AbjadObject):
             >>> tree[1][1].is_at_level(0)
             False
 
-        Return boolean.
+        Works for positive, negative and zero-valued `level`.
 
-        Predicate works for positive, negative and zero-valued `level`.
+        Return boolean.
         '''
         if (0 <= level and self.level == level) or self.negative_level == level:
             return True
@@ -819,7 +820,7 @@ class Tree(AbjadObject):
             return False
 
     def iterate_at_level(self, level):
-        r'''Iterate depth at `level`:
+        r'''Iterate tree at `level`:
 
         ::
 
