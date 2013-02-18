@@ -4810,6 +4810,39 @@ Abjad internal packages
       tools/lilypondparsertools/list_known_music_functions
       tools/lilypondparsertools/parse_reduced_ly_syntax
 
+:py:mod:`lilypondproxytools <abjad.tools.lilypondproxytools>`
+=============================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/lilypondproxytools/LilyPondComponentPlugIn/LilyPondComponentPlugIn
+      tools/lilypondproxytools/LilyPondContextProxy/LilyPondContextProxy
+      tools/lilypondproxytools/LilyPondContextSettingComponentPlugIn/LilyPondContextSettingComponentPlugIn
+      tools/lilypondproxytools/LilyPondGrobOverrideComponentPlugIn/LilyPondGrobOverrideComponentPlugIn
+      tools/lilypondproxytools/LilyPondGrobProxy/LilyPondGrobProxy
+      tools/lilypondproxytools/LilyPondGrobProxyContextWrapper/LilyPondGrobProxyContextWrapper
+      tools/lilypondproxytools/LilyPondObjectProxy/LilyPondObjectProxy
+      tools/lilypondproxytools/LilyPondTweakReservoir/LilyPondTweakReservoir
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/lilypondproxytools/LilyPondComponentPlugIn/LilyPondComponentPlugIn
+      tools/lilypondproxytools/LilyPondContextProxy/LilyPondContextProxy
+      tools/lilypondproxytools/LilyPondContextSettingComponentPlugIn/LilyPondContextSettingComponentPlugIn
+      tools/lilypondproxytools/LilyPondGrobOverrideComponentPlugIn/LilyPondGrobOverrideComponentPlugIn
+      tools/lilypondproxytools/LilyPondGrobProxy/LilyPondGrobProxy
+      tools/lilypondproxytools/LilyPondGrobProxyContextWrapper/LilyPondGrobProxyContextWrapper
+      tools/lilypondproxytools/LilyPondObjectProxy/LilyPondObjectProxy
+      tools/lilypondproxytools/LilyPondTweakReservoir/LilyPondTweakReservoir
+
 :py:mod:`offsettools <abjad.tools.offsettools>`
 ===============================================
 
