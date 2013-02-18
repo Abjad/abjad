@@ -1,5 +1,4 @@
 from abjad import *
-from abjad.tools import sequencetools
 
 
 def test_Tree__storage_format_01():
@@ -8,11 +7,13 @@ def test_Tree__storage_format_01():
     
     tree = sequencetools.Tree([[0, 1, 2], [3], [4, 5]])
 
-    # TODO: make ouput fully recursif (and so indentented at more levels than just 1)
+    # TODO: make ouput fully recursive (and so indentented at more levels than just 1)
     r'''
     sequencetools.Tree(
-        [[0, 1, 2], [3], [4, 5]]
+        [0, 1, 2],
+        [3],
+        [4, 5]
         )
     '''
 
-    assert tree._storage_format == 'sequencetools.Tree(\n\t[[0, 1, 2], [3], [4, 5]]\n\t)'
+    assert tree.storage_format == 'sequencetools.Tree(\n\t[0, 1, 2],\n\t[3],\n\t[4, 5]\n\t)'

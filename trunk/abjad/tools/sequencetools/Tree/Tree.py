@@ -1,5 +1,5 @@
-from abjad.tools.abctools.AbjadObject import AbjadObject
 import copy
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Tree(AbjadObject):
@@ -8,11 +8,9 @@ class Tree(AbjadObject):
     Abjad data structure to work with a sequence whose elements have been
     grouped into arbitrarily many levels of containment.
 
-    Example: a list of pitches that have been grouped 
-    into cells that have, in turn, been grouped into groups of cells
-    that have, in turn, been grouped into groups of groups of cells.
-    
-    Here is a tree::
+    Here is a tree:
+
+    ::
 
         >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
         >>> tree = sequencetools.Tree(sequence)
@@ -37,7 +35,9 @@ class Tree(AbjadObject):
         >>> tree.depth
         3
 
-    Here's an internal node::
+    Here's an internal node:
+
+    ::
 
         >>> tree[2]
         Tree([4, 5])
@@ -62,8 +62,9 @@ class Tree(AbjadObject):
         >>> tree[2].level
         1
 
-    Here's a leaf node::
+    Here's a leaf node:
 
+    ::
 
         >>> tree[2][0]
         Tree(4)
@@ -105,6 +106,8 @@ class Tree(AbjadObject):
     Trees do not yet implement append or extend methods.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, expr):
         self._children = self._initialize_children_list()
         self.parent = None
@@ -119,9 +122,11 @@ class Tree(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    # TODO: add docstring
     def __contains__(self, expr):
         return expr in self._children
 
+    # TODO: add docstring
     def __eq__(self, other):
         if isinstance(other, type(self)):
             if self.payload is not None or other.payload is not None:
@@ -134,6 +139,7 @@ class Tree(AbjadObject):
                     return True
         return False
 
+    # TODO: add docstring
     def __getitem__(self, expr):
         return self._children[expr]
 
@@ -143,15 +149,19 @@ class Tree(AbjadObject):
 #        result = [self[n] for n in range(start_index, stop_index)]
 #        return result
 
+    # TODO: add docstring
     def __len__(self):
         return len(self._children)
 
+    # TODO: add docstring
     def __ne__(self, other):
         return not self == other
 
+    # TODO: add docstring
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self)
 
+    # TODO: add docstring
     def __str__(self):
         if self.payload is None:
             return '[%s]' % ', '.join([str(x) for x in self._noncyclic_children])
@@ -170,7 +180,7 @@ class Tree(AbjadObject):
 
     @property
     def _positional_argument_values(self):
-        return (self._input_argument, )
+        return self._input_argument
 
     @property
     def _tools_package_qualified_repr(self):
@@ -188,7 +198,6 @@ class Tree(AbjadObject):
         try:
             self.payload = None
             for element in expr:
-                #child = type(self)(element)
                 child = type_(element)
                 self._children.append(child)
                 child.parent = self
