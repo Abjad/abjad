@@ -6,7 +6,7 @@ instrumenttools.Harpsichord
 .. autoclass:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.__call__

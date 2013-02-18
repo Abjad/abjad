@@ -6,7 +6,7 @@ scoretemplatetools.GroupedRhythmicStavesScoreTemplate
 .. autoclass:: abjad.tools.scoretemplatetools.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.scoretemplatetools.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.staff_count
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.scoretemplatetools.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.scoretemplatetools.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.__call__

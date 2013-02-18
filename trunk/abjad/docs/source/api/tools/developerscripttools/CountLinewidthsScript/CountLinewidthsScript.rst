@@ -6,7 +6,7 @@ developerscripttools.CountLinewidthsScript
 .. autoclass:: abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.__call__

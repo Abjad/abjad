@@ -6,7 +6,7 @@ instrumenttools.Cello
 .. autoclass:: abjad.tools.instrumenttools.Cello.Cello.Cello
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Cello.Cello.Cello.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.Cello.Cello.Cello.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Cello.Cello.Cello.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.Cello.Cello.Cello.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.Cello.Cello.Cello.__call__

@@ -6,7 +6,7 @@ quantizationtools.QGrid
 .. autoclass:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.distance
@@ -48,7 +48,7 @@ Methods
 .. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.subdivide_leaves
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__call__

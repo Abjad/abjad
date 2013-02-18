@@ -6,7 +6,7 @@ quantizationtools.QSchema
 .. autoclass:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema.item_klass
@@ -30,7 +30,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema.tempo
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema.__call__

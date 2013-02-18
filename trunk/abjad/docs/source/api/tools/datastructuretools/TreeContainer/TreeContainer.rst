@@ -6,7 +6,7 @@ datastructuretools.TreeContainer
 .. autoclass:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.children
@@ -42,7 +42,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.name
@@ -69,7 +69,7 @@ Methods
 .. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__contains__

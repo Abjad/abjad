@@ -6,7 +6,7 @@ quantizationtools.ParallelJobHandlerWorker
 .. autoclass:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.exitcode
@@ -21,7 +21,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.authkey
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.terminate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.__eq__

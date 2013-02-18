@@ -6,7 +6,7 @@ contexttools.TimeSignatureMark
 .. autoclass:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.duration
@@ -36,7 +36,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.target_context
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.denominator
@@ -60,7 +60,7 @@ Methods
 .. automethod:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.with_power_of_two_denominator
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__call__

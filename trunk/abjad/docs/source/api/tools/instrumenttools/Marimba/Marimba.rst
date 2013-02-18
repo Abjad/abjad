@@ -6,7 +6,7 @@ instrumenttools.Marimba
 .. autoclass:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__call__

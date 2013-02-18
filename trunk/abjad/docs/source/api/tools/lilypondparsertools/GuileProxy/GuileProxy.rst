@@ -6,7 +6,7 @@ lilypondparsertools.GuileProxy
 .. autoclass:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.storage_format
@@ -78,7 +78,7 @@ Methods
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voiceTwo
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__call__

@@ -6,7 +6,7 @@ durationtools.Duration
 .. autoclass:: abjad.tools.durationtools.Duration.Duration.Duration
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.denominator
@@ -81,7 +81,7 @@ Methods
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.with_denominator
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__abs__

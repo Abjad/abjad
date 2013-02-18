@@ -6,7 +6,7 @@ schemetools.SchemeVectorConstant
 .. autoclass:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.force_quotes
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.__eq__

@@ -6,7 +6,7 @@ exceptiontools.MissingPitchError
 .. autoclass:: abjad.tools.exceptiontools.MissingPitchError.MissingPitchError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.MissingPitchError.MissingPitchError.__delattr__

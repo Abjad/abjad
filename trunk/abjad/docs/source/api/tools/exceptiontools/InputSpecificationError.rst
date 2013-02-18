@@ -6,7 +6,7 @@ exceptiontools.InputSpecificationError
 .. autoclass:: abjad.tools.exceptiontools.InputSpecificationError.InputSpecificationError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.InputSpecificationError.InputSpecificationError.__delattr__

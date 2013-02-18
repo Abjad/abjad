@@ -6,7 +6,7 @@ lilypondfiletools.BookpartBlock
 .. autoclass:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock.lilypond_format
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock.is_formatted_when_empty
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock.__add__

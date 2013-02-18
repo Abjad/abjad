@@ -6,7 +6,7 @@ sequencetools.Tree
 .. autoclass:: abjad.tools.sequencetools.Tree.Tree.Tree
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.children
@@ -78,7 +78,7 @@ Methods
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.to_nested_lists
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__contains__

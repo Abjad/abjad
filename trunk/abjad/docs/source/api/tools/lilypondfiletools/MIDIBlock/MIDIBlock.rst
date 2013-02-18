@@ -6,7 +6,7 @@ lilypondfiletools.MIDIBlock
 .. autoclass:: abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.lilypond_format
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.is_formatted_when_empty
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__add__

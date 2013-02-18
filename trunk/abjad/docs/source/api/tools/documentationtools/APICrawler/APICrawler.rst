@@ -6,7 +6,7 @@ documentationtools.APICrawler
 .. autoclass:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.code_root
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__call__

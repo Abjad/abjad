@@ -6,7 +6,7 @@ documentationtools.GraphvizNode
 .. autoclass:: abjad.tools.documentationtools.GraphvizNode.GraphvizNode.GraphvizNode
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.GraphvizNode.GraphvizNode.GraphvizNode.attributes
@@ -42,13 +42,13 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.GraphvizNode.GraphvizNode.GraphvizNode.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.documentationtools.GraphvizNode.GraphvizNode.GraphvizNode.name
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.GraphvizNode.GraphvizNode.GraphvizNode.__eq__

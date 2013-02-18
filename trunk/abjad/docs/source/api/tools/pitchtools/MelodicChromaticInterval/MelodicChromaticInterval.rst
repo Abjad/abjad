@@ -6,7 +6,7 @@ pitchtools.MelodicChromaticInterval
 .. autoclass:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.cents
@@ -39,7 +39,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.__abs__

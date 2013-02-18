@@ -6,7 +6,7 @@ wellformednesstools.DiscontiguousSpannerCheck
 .. autoclass:: abjad.tools.wellformednesstools.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.__eq__

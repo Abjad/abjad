@@ -6,7 +6,7 @@ lilypondparsertools.LilyPondSyntacticalDefinition
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.storage_format
@@ -1122,7 +1122,7 @@ Methods
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_tremolo_type__Chr58__bare_unsigned
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.__eq__

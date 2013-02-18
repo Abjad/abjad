@@ -6,7 +6,7 @@ lilypondfiletools.PaperBlock
 .. autoclass:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.lilypond_format
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.is_formatted_when_empty
@@ -54,7 +54,7 @@ Methods
 .. automethod:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__add__

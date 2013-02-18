@@ -6,7 +6,7 @@ measuretools.Measure
 .. autoclass:: abjad.tools.measuretools.Measure.Measure.Measure
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.contents_duration
@@ -102,7 +102,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.always_format_time_signature
@@ -135,7 +135,7 @@ Methods
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.__add__

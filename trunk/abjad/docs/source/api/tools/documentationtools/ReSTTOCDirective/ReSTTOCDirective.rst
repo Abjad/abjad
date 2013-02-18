@@ -6,7 +6,7 @@ documentationtools.ReSTTOCDirective
 .. autoclass:: abjad.tools.documentationtools.ReSTTOCDirective.ReSTTOCDirective.ReSTTOCDirective
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTTOCDirective.ReSTTOCDirective.ReSTTOCDirective.children
@@ -54,7 +54,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTTOCDirective.ReSTTOCDirective.ReSTTOCDirective.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTTOCDirective.ReSTTOCDirective.ReSTTOCDirective.argument
@@ -84,7 +84,7 @@ Methods
 .. automethod:: abjad.tools.documentationtools.ReSTTOCDirective.ReSTTOCDirective.ReSTTOCDirective.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.ReSTTOCDirective.ReSTTOCDirective.ReSTTOCDirective.__contains__

@@ -6,7 +6,7 @@ instrumenttools.AltoTrombone
 .. autoclass:: abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone.__call__

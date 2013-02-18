@@ -6,13 +6,13 @@ pitchtools.PitchRangeInventory
 .. autoclass:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.name
@@ -48,7 +48,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.__add__

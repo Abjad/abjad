@@ -6,13 +6,13 @@ lilypondfiletools.LilyPondFile
 .. autoclass:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.lilypond_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.default_paper_size
@@ -63,7 +63,7 @@ Methods
 .. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.__add__

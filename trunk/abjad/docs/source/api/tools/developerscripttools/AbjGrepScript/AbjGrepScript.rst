@@ -6,7 +6,7 @@ developerscripttools.AbjGrepScript
 .. autoclass:: abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.__call__

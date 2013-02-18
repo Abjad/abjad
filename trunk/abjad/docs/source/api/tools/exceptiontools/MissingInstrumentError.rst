@@ -6,7 +6,7 @@ exceptiontools.MissingInstrumentError
 .. autoclass:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError.__delattr__

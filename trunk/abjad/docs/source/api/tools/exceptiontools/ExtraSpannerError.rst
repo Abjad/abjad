@@ -6,7 +6,7 @@ exceptiontools.ExtraSpannerError
 .. autoclass:: abjad.tools.exceptiontools.ExtraSpannerError.ExtraSpannerError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.ExtraSpannerError.ExtraSpannerError.__delattr__

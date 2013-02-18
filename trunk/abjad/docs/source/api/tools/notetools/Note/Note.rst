@@ -6,7 +6,7 @@ notetools.Note
 .. autoclass:: abjad.tools.notetools.Note.Note.Note
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.descendants
@@ -78,7 +78,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.duration_multiplier
@@ -99,7 +99,7 @@ Read/write Properties
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.written_pitch_indication_is_nonsemantic
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.notetools.Note.Note.Note.__and__

@@ -6,7 +6,7 @@ rhythmtreetools.RhythmTreeParser
 .. autoclass:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.debug
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.tokenize
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.__call__

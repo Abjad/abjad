@@ -6,7 +6,7 @@ exceptiontools.UnderfullContainerError
 .. autoclass:: abjad.tools.exceptiontools.UnderfullContainerError.UnderfullContainerError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.UnderfullContainerError.UnderfullContainerError.__delattr__

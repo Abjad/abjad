@@ -6,7 +6,7 @@ developerscripttools.AbjUpScript
 .. autoclass:: abjad.tools.developerscripttools.AbjUpScript.AbjUpScript.AbjUpScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.AbjUpScript.AbjUpScript.AbjUpScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.AbjUpScript.AbjUpScript.AbjUpScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.AbjUpScript.AbjUpScript.AbjUpScript.__call__

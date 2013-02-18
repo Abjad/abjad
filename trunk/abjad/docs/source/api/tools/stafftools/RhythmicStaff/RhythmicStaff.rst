@@ -6,7 +6,7 @@ stafftools.RhythmicStaff
 .. autoclass:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.contents_duration
@@ -84,7 +84,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.context_name
@@ -120,7 +120,7 @@ Methods
 .. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__add__

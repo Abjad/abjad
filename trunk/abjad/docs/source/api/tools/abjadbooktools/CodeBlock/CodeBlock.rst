@@ -6,7 +6,7 @@ abjadbooktools.CodeBlock
 .. autoclass:: abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.ending_line_number
@@ -36,7 +36,7 @@ Methods
 .. automethod:: abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.read
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__call__

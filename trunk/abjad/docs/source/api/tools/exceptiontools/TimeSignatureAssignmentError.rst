@@ -6,7 +6,7 @@ exceptiontools.TimeSignatureAssignmentError
 .. autoclass:: abjad.tools.exceptiontools.TimeSignatureAssignmentError.TimeSignatureAssignmentError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.TimeSignatureAssignmentError.TimeSignatureAssignmentError.__delattr__

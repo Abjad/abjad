@@ -6,7 +6,7 @@ tonalitytools.ChordClass
 .. autoclass:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.bass
@@ -84,7 +84,7 @@ Methods
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.union
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__and__

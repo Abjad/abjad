@@ -6,7 +6,7 @@ instrumenttools.TenorTrombone
 .. autoclass:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.__call__

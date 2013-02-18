@@ -6,13 +6,13 @@ contexttools.ClefMarkInventory
 .. autoclass:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.name
@@ -48,7 +48,7 @@ Methods
 .. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__add__

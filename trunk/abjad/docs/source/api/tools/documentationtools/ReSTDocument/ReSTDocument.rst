@@ -6,7 +6,7 @@ documentationtools.ReSTDocument
 .. autoclass:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument.children
@@ -48,7 +48,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument.name
@@ -75,7 +75,7 @@ Methods
 .. automethod:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument.__contains__

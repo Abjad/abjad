@@ -6,7 +6,7 @@ pitchtools.PitchClassObjectSegment
 .. autoclass:: abjad.tools.pitchtools.PitchClassObjectSegment.PitchClassObjectSegment.PitchClassObjectSegment
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.PitchClassObjectSegment.PitchClassObjectSegment.PitchClassObjectSegment.storage_format
@@ -21,7 +21,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.PitchClassObjectSegment.PitchClassObjectSegment.PitchClassObjectSegment.index
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.PitchClassObjectSegment.PitchClassObjectSegment.PitchClassObjectSegment.__add__

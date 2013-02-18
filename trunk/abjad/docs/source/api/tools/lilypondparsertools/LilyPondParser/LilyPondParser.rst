@@ -6,7 +6,7 @@ lilypondparsertools.LilyPondParser
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.available_languages
@@ -42,7 +42,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.default_language
@@ -57,7 +57,7 @@ Methods
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.tokenize
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__call__

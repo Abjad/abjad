@@ -6,13 +6,13 @@ pitchtools.HarmonicObject
 .. autoclass:: abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject.__eq__

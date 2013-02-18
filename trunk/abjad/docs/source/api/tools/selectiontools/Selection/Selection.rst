@@ -6,7 +6,7 @@ selectiontools.Selection
 .. autoclass:: abjad.tools.selectiontools.Selection.Selection.Selection
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.selectiontools.Selection.Selection.Selection.music
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.selectiontools.Selection.Selection.Selection.timespan
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.__add__

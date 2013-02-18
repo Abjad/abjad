@@ -6,7 +6,7 @@ spannertools.PianoPedalSpanner
 .. autoclass:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner.components
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner.written_duration
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner.kind
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner.__call__

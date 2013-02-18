@@ -6,7 +6,7 @@ timespantools.Timespan
 .. autoclass:: abjad.tools.timespantools.Timespan.Timespan.Timespan
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.timespantools.Timespan.Timespan.Timespan.axis
@@ -198,7 +198,7 @@ Methods
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.trisects_timespan
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.__and__

@@ -6,7 +6,7 @@ spannertools.ComplexGlissandoSpanner
 .. autoclass:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner.components
@@ -78,7 +78,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner.__call__

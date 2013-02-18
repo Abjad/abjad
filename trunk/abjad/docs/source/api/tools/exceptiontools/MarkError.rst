@@ -6,7 +6,7 @@ exceptiontools.MarkError
 .. autoclass:: abjad.tools.exceptiontools.MarkError.MarkError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.MarkError.MarkError.__delattr__

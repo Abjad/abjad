@@ -6,7 +6,7 @@ exceptiontools.MissingMeasureError
 .. autoclass:: abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError.__delattr__

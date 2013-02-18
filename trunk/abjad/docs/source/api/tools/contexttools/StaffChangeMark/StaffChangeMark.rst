@@ -6,7 +6,7 @@ contexttools.StaffChangeMark
 .. autoclass:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.effective_context
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.target_context
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.staff
@@ -39,7 +39,7 @@ Methods
 .. automethod:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.detach
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__call__

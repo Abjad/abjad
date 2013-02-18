@@ -6,7 +6,7 @@ pitchtools.MelodicCounterpointIntervalClass
 .. autoclass:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.direction_number
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.__abs__

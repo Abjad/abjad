@@ -6,7 +6,7 @@ wellformednesstools.BeamedQuarterNoteCheck
 .. autoclass:: abjad.tools.wellformednesstools.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck.__eq__

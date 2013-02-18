@@ -6,7 +6,7 @@ pitchtools.NamedChromaticPitchSegment
 .. autoclass:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.chromatic_pitch_numbers
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.transpose
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__add__

@@ -6,7 +6,7 @@ contexttools.ContextMark
 .. autoclass:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.effective_context
@@ -30,7 +30,7 @@ Methods
 .. automethod:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.detach
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__call__

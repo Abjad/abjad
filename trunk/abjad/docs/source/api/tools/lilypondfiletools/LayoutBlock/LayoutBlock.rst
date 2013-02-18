@@ -6,7 +6,7 @@ lilypondfiletools.LayoutBlock
 .. autoclass:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.context_blocks
@@ -21,7 +21,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.is_formatted_when_empty
@@ -57,7 +57,7 @@ Methods
 .. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__add__

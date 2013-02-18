@@ -6,7 +6,7 @@ exceptiontools.CyclicNodeError
 .. autoclass:: abjad.tools.exceptiontools.CyclicNodeError.CyclicNodeError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.CyclicNodeError.CyclicNodeError.__delattr__

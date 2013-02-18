@@ -6,7 +6,7 @@ wellformednesstools.NestedMeasureCheck
 .. autoclass:: abjad.tools.wellformednesstools.NestedMeasureCheck.NestedMeasureCheck.NestedMeasureCheck
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.NestedMeasureCheck.NestedMeasureCheck.NestedMeasureCheck.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.NestedMeasureCheck.NestedMeasureCheck.NestedMeasureCheck.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.NestedMeasureCheck.NestedMeasureCheck.NestedMeasureCheck.__eq__

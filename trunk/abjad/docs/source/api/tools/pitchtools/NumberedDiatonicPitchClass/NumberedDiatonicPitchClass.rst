@@ -6,7 +6,7 @@ pitchtools.NumberedDiatonicPitchClass
 .. autoclass:: abjad.tools.pitchtools.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass.named_diatonic_pitch_class
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass.__abs__

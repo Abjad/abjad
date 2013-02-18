@@ -6,7 +6,7 @@ exceptiontools.MissingMarkError
 .. autoclass:: abjad.tools.exceptiontools.MissingMarkError.MissingMarkError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.MissingMarkError.MissingMarkError.__delattr__

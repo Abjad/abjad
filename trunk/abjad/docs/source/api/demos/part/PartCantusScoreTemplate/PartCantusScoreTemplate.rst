@@ -6,13 +6,13 @@ part.PartCantusScoreTemplate
 .. autoclass:: abjad.demos.part.PartCantusScoreTemplate.PartCantusScoreTemplate.PartCantusScoreTemplate
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.demos.part.PartCantusScoreTemplate.PartCantusScoreTemplate.PartCantusScoreTemplate.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.demos.part.PartCantusScoreTemplate.PartCantusScoreTemplate.PartCantusScoreTemplate.__call__

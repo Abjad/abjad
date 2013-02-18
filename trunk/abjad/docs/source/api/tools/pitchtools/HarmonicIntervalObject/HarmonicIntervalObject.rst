@@ -6,7 +6,7 @@ pitchtools.HarmonicIntervalObject
 .. autoclass:: abjad.tools.pitchtools.HarmonicIntervalObject.HarmonicIntervalObject.HarmonicIntervalObject
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicIntervalObject.HarmonicIntervalObject.HarmonicIntervalObject.cents
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.HarmonicIntervalObject.HarmonicIntervalObject.HarmonicIntervalObject.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.HarmonicIntervalObject.HarmonicIntervalObject.HarmonicIntervalObject.__abs__

@@ -6,7 +6,7 @@ tietools.TieChain
 .. autoclass:: abjad.tools.tietools.TieChain.TieChain.TieChain
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.all_leaves_are_in_same_parent
@@ -54,7 +54,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.written_duration
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__add__

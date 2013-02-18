@@ -6,7 +6,7 @@ containertools.Container
 .. autoclass:: abjad.tools.containertools.Container.Container.Container
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.contents_duration
@@ -75,7 +75,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.is_parallel
@@ -102,7 +102,7 @@ Methods
 .. automethod:: abjad.tools.containertools.Container.Container.Container.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__add__

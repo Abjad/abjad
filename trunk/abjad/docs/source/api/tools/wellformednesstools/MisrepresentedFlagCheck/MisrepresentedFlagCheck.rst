@@ -6,7 +6,7 @@ wellformednesstools.MisrepresentedFlagCheck
 .. autoclass:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck.__eq__

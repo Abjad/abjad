@@ -6,13 +6,13 @@ datastructuretools.ObjectInventory
 .. autoclass:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.name
@@ -48,7 +48,7 @@ Methods
 .. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__add__

@@ -6,7 +6,7 @@ exceptiontools.TypographicWhitespaceError
 .. autoclass:: abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError.__delattr__

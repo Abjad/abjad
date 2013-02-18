@@ -6,7 +6,7 @@ contexttools.InstrumentMark
 .. autoclass:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.default_instrument_name
@@ -30,7 +30,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.target_context
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.instrument_name
@@ -54,7 +54,7 @@ Methods
 .. automethod:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.detach
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__call__

@@ -6,7 +6,7 @@ pitchtools.MelodicDiatonicInterval
 .. autoclass:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.cents
@@ -63,7 +63,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.__abs__

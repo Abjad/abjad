@@ -6,13 +6,13 @@ pitchtools.OctaveTranspositionMappingInventory
 .. autoclass:: abjad.tools.pitchtools.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.pitchtools.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory.name
@@ -48,7 +48,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory.__add__

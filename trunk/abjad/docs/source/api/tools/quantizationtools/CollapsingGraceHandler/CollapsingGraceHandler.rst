@@ -6,13 +6,13 @@ quantizationtools.CollapsingGraceHandler
 .. autoclass:: abjad.tools.quantizationtools.CollapsingGraceHandler.CollapsingGraceHandler.CollapsingGraceHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.CollapsingGraceHandler.CollapsingGraceHandler.CollapsingGraceHandler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.CollapsingGraceHandler.CollapsingGraceHandler.CollapsingGraceHandler.__call__

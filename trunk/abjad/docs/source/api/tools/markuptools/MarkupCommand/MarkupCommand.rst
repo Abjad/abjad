@@ -6,7 +6,7 @@ markuptools.MarkupCommand
 .. autoclass:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.args
@@ -21,7 +21,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__eq__

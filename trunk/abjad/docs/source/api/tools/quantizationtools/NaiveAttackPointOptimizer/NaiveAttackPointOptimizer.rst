@@ -6,13 +6,13 @@ quantizationtools.NaiveAttackPointOptimizer
 .. autoclass:: abjad.tools.quantizationtools.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.__call__

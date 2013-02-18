@@ -6,7 +6,7 @@ lilypondparsertools.ReducedLyParser
 .. autoclass:: abjad.tools.lilypondparsertools.ReducedLyParser.ReducedLyParser.ReducedLyParser
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondparsertools.ReducedLyParser.ReducedLyParser.ReducedLyParser.debug
@@ -213,7 +213,7 @@ Methods
 .. automethod:: abjad.tools.lilypondparsertools.ReducedLyParser.ReducedLyParser.ReducedLyParser.tokenize
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondparsertools.ReducedLyParser.ReducedLyParser.ReducedLyParser.__call__

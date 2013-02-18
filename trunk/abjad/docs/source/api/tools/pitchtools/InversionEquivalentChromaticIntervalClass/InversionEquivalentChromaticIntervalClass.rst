@@ -6,7 +6,7 @@ pitchtools.InversionEquivalentChromaticIntervalClass
 .. autoclass:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass.InversionEquivalentChromaticIntervalClass.InversionEquivalentChromaticIntervalClass
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass.InversionEquivalentChromaticIntervalClass.InversionEquivalentChromaticIntervalClass.inversion_equivalent_chromatic_interval_number
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass.InversionEquivalentChromaticIntervalClass.InversionEquivalentChromaticIntervalClass.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass.InversionEquivalentChromaticIntervalClass.InversionEquivalentChromaticIntervalClass.__abs__

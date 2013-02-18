@@ -6,13 +6,13 @@ lilypondproxytools.LilyPondContextSettingComponentPlugIn
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.__eq__

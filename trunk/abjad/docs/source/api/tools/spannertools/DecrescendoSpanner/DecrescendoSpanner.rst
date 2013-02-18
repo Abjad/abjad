@@ -6,7 +6,7 @@ spannertools.DecrescendoSpanner
 .. autoclass:: abjad.tools.spannertools.DecrescendoSpanner.DecrescendoSpanner.DecrescendoSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.spannertools.DecrescendoSpanner.DecrescendoSpanner.DecrescendoSpanner.components
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.DecrescendoSpanner.DecrescendoSpanner.DecrescendoSpanner.written_duration
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.spannertools.DecrescendoSpanner.DecrescendoSpanner.DecrescendoSpanner.direction
@@ -96,7 +96,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.DecrescendoSpanner.DecrescendoSpanner.DecrescendoSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.spannertools.DecrescendoSpanner.DecrescendoSpanner.DecrescendoSpanner.__call__

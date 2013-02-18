@@ -6,7 +6,7 @@ wellformednesstools.IntermarkedHairpinCheck
 .. autoclass:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck.__eq__

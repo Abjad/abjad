@@ -6,7 +6,7 @@ lilypondfiletools.LilyPondVersionToken
 .. autoclass:: abjad.tools.lilypondfiletools.LilyPondVersionToken.LilyPondVersionToken.LilyPondVersionToken
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.LilyPondVersionToken.LilyPondVersionToken.LilyPondVersionToken.lilypond_format
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondfiletools.LilyPondVersionToken.LilyPondVersionToken.LilyPondVersionToken.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondfiletools.LilyPondVersionToken.LilyPondVersionToken.LilyPondVersionToken.__eq__

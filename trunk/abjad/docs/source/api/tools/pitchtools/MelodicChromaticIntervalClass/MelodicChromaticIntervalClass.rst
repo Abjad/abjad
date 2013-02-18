@@ -6,7 +6,7 @@ pitchtools.MelodicChromaticIntervalClass
 .. autoclass:: abjad.tools.pitchtools.MelodicChromaticIntervalClass.MelodicChromaticIntervalClass.MelodicChromaticIntervalClass
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicChromaticIntervalClass.MelodicChromaticIntervalClass.MelodicChromaticIntervalClass.direction_number
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.MelodicChromaticIntervalClass.MelodicChromaticIntervalClass.MelodicChromaticIntervalClass.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClass.MelodicChromaticIntervalClass.MelodicChromaticIntervalClass.__abs__

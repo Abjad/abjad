@@ -6,13 +6,13 @@ pitchtools.CounterpointObject
 .. autoclass:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.__eq__

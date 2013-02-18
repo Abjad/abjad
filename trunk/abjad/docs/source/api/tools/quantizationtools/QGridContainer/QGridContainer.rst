@@ -6,7 +6,7 @@ quantizationtools.QGridContainer
 .. autoclass:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.children
@@ -75,7 +75,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.name
@@ -105,7 +105,7 @@ Methods
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__add__

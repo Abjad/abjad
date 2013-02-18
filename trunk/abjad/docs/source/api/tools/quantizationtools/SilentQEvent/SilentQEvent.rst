@@ -6,7 +6,7 @@ quantizationtools.SilentQEvent
 .. autoclass:: abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.attachments
@@ -21,7 +21,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.__eq__

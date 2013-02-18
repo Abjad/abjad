@@ -6,7 +6,7 @@ documentationtools.GraphvizEdge
 .. autoclass:: abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.attributes
@@ -21,13 +21,13 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.tail
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.is_directed
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.__call__

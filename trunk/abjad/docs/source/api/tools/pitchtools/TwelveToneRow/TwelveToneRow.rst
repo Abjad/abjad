@@ -6,7 +6,7 @@ pitchtools.TwelveToneRow
 .. autoclass:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.inversion_equivalent_chromatic_interval_class_segment
@@ -45,7 +45,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.transpose
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__add__

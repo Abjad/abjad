@@ -6,7 +6,7 @@ pitchtools.Accidental
 .. autoclass:: abjad.tools.pitchtools.Accidental.Accidental.Accidental
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.alphabetic_accidental_abbreviation
@@ -30,7 +30,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.symbolic_accidental_string
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__add__

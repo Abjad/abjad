@@ -6,7 +6,7 @@ pitchtools.MelodicChromaticIntervalSegment
 .. autoclass:: abjad.tools.pitchtools.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.harmonic_chromatic_interval_segment
@@ -48,7 +48,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.rotate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.__add__

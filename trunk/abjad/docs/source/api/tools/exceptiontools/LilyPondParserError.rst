@@ -6,7 +6,7 @@ exceptiontools.LilyPondParserError
 .. autoclass:: abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError.__delattr__

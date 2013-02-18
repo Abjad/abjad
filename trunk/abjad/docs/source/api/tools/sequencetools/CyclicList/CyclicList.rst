@@ -36,7 +36,7 @@ Methods
 .. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__add__

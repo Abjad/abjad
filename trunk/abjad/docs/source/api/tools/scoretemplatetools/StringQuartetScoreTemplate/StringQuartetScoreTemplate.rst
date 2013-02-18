@@ -6,13 +6,13 @@ scoretemplatetools.StringQuartetScoreTemplate
 .. autoclass:: abjad.tools.scoretemplatetools.StringQuartetScoreTemplate.StringQuartetScoreTemplate.StringQuartetScoreTemplate
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.scoretemplatetools.StringQuartetScoreTemplate.StringQuartetScoreTemplate.StringQuartetScoreTemplate.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.scoretemplatetools.StringQuartetScoreTemplate.StringQuartetScoreTemplate.StringQuartetScoreTemplate.__call__

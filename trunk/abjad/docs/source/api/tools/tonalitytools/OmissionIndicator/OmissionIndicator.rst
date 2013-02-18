@@ -6,13 +6,13 @@ tonalitytools.OmissionIndicator
 .. autoclass:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__eq__

@@ -6,7 +6,7 @@ marktools.LilyPondCommandMark
 .. autoclass:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.lilypond_format
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.command_name
@@ -36,7 +36,7 @@ Methods
 .. automethod:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.detach
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__call__

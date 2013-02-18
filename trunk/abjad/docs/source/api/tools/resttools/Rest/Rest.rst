@@ -6,7 +6,7 @@ resttools.Rest
 .. autoclass:: abjad.tools.resttools.Rest.Rest.Rest
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.descendants
@@ -72,7 +72,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.duration_multiplier
@@ -87,7 +87,7 @@ Read/write Properties
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.written_pitch_indication_is_nonsemantic
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__and__

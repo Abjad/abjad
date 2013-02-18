@@ -6,7 +6,7 @@ developerscripttools.DeveloperScript
 .. autoclass:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__call__

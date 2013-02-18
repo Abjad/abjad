@@ -6,7 +6,7 @@ mathtools.BoundedObject
 .. autoclass:: abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.is_closed
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.is_left_closed
@@ -39,7 +39,7 @@ Read/write Properties
 .. autoattribute:: abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.is_right_open
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.__eq__

@@ -6,7 +6,7 @@ rhythmmakertools.TupletMonadRhythmMaker
 .. autoclass:: abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.storage_format
@@ -21,7 +21,7 @@ Methods
 .. automethod:: abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.reverse
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.__call__

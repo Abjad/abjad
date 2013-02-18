@@ -6,7 +6,7 @@ contexttools.ClefMark
 .. autoclass:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.effective_context
@@ -27,7 +27,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.target_context
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.clef_name
@@ -42,7 +42,7 @@ Methods
 .. automethod:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.detach
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__call__

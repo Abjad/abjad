@@ -6,13 +6,13 @@ lilypondparsertools.SyntaxNode
 .. autoclass:: abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode.__eq__

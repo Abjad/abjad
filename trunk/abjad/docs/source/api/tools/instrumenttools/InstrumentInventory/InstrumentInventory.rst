@@ -6,13 +6,13 @@ instrumenttools.InstrumentInventory
 .. autoclass:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.name
@@ -48,7 +48,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__add__

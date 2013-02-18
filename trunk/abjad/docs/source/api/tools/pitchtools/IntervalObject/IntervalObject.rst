@@ -6,7 +6,7 @@ pitchtools.IntervalObject
 .. autoclass:: abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject.cents
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject.__abs__

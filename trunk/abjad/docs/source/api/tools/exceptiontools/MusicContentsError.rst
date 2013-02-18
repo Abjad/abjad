@@ -6,7 +6,7 @@ exceptiontools.MusicContentsError
 .. autoclass:: abjad.tools.exceptiontools.MusicContentsError.MusicContentsError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.MusicContentsError.MusicContentsError.__delattr__

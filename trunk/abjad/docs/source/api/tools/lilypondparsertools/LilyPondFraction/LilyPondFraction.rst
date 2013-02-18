@@ -6,13 +6,13 @@ lilypondparsertools.LilyPondFraction
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction.__eq__

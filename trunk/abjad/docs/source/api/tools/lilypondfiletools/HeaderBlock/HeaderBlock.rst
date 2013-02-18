@@ -6,7 +6,7 @@ lilypondfiletools.HeaderBlock
 .. autoclass:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock.lilypond_format
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock.is_formatted_when_empty
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock.__add__

@@ -6,7 +6,7 @@ quantizationtools.SearchTree
 .. autoclass:: abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.default_definition
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.__call__

@@ -6,7 +6,7 @@ quantizationtools.BeatwiseQTarget
 .. autoclass:: abjad.tools.quantizationtools.BeatwiseQTarget.BeatwiseQTarget.BeatwiseQTarget
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.BeatwiseQTarget.BeatwiseQTarget.BeatwiseQTarget.beats
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.BeatwiseQTarget.BeatwiseQTarget.BeatwiseQTarget.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.BeatwiseQTarget.BeatwiseQTarget.BeatwiseQTarget.__call__

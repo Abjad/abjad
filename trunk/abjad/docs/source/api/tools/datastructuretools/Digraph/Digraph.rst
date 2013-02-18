@@ -6,7 +6,7 @@ datastructuretools.Digraph
 .. autoclass:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.child_graph
@@ -45,7 +45,7 @@ Methods
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.reverse
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__eq__

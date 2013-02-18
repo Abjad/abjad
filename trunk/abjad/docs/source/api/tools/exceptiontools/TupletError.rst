@@ -6,7 +6,7 @@ exceptiontools.TupletError
 .. autoclass:: abjad.tools.exceptiontools.TupletError.TupletError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.TupletError.TupletError.__delattr__

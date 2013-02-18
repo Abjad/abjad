@@ -6,13 +6,13 @@ quantizationtools.Heuristic
 .. autoclass:: abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic.__call__

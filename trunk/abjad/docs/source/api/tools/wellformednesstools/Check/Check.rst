@@ -6,7 +6,7 @@ wellformednesstools.Check
 .. autoclass:: abjad.tools.wellformednesstools.Check.Check.Check
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.Check.Check.Check.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.Check.Check.Check.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.Check.Check.Check.__eq__

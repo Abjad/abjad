@@ -6,7 +6,7 @@ spannertools.TrillSpanner
 .. autoclass:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.components
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.written_duration
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.pitch
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__call__

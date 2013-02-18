@@ -6,7 +6,7 @@ pitchtools.NamedChromaticPitch
 .. autoclass:: abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.NamedChromaticPitch
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.NamedChromaticPitch.accidental_spelling
@@ -72,7 +72,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.NamedChromaticPitch.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.NamedChromaticPitch.__abs__

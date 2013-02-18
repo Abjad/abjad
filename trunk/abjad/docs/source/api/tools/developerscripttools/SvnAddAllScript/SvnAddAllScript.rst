@@ -6,7 +6,7 @@ developerscripttools.SvnAddAllScript
 .. autoclass:: abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__call__

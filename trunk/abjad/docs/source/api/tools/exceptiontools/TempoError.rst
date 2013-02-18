@@ -6,7 +6,7 @@ exceptiontools.TempoError
 .. autoclass:: abjad.tools.exceptiontools.TempoError.TempoError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.TempoError.TempoError.__delattr__

@@ -6,7 +6,7 @@ exceptiontools.ClefError
 .. autoclass:: abjad.tools.exceptiontools.ClefError.ClefError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.ClefError.ClefError.__delattr__

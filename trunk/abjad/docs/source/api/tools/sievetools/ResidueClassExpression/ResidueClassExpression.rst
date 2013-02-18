@@ -6,7 +6,7 @@ sievetools.ResidueClassExpression
 .. autoclass:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.operator
@@ -39,7 +39,7 @@ Methods
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.is_congruent_base
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__and__

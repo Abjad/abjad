@@ -6,7 +6,7 @@ documentationtools.Pipe
 .. autoclass:: abjad.tools.documentationtools.Pipe.Pipe.Pipe
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.arguments
@@ -57,7 +57,7 @@ Methods
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.write_line
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__del__

@@ -6,7 +6,7 @@ quantizationtools.QTarget
 .. autoclass:: abjad.tools.quantizationtools.QTarget.QTarget.QTarget
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.QTarget.QTarget.QTarget.beats
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.QTarget.QTarget.QTarget.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.QTarget.QTarget.QTarget.__call__

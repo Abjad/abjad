@@ -6,7 +6,7 @@ pitchtools.MelodicIntervalClassObject
 .. autoclass:: abjad.tools.pitchtools.MelodicIntervalClassObject.MelodicIntervalClassObject.MelodicIntervalClassObject
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicIntervalClassObject.MelodicIntervalClassObject.MelodicIntervalClassObject.direction_number
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.MelodicIntervalClassObject.MelodicIntervalClassObject.MelodicIntervalClassObject.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.MelodicIntervalClassObject.MelodicIntervalClassObject.MelodicIntervalClassObject.__abs__

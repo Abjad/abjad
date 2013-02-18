@@ -6,7 +6,7 @@ documentationtools.ClassCrawler
 .. autoclass:: abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.code_root
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.__call__

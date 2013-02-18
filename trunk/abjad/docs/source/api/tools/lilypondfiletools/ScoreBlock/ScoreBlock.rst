@@ -6,7 +6,7 @@ lilypondfiletools.ScoreBlock
 .. autoclass:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.lilypond_format
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.is_formatted_when_empty
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__add__

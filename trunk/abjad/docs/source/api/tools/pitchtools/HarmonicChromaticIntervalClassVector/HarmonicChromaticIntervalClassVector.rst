@@ -6,7 +6,7 @@ pitchtools.HarmonicChromaticIntervalClassVector
 .. autoclass:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.storage_format
@@ -69,7 +69,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.viewvalues
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__cmp__

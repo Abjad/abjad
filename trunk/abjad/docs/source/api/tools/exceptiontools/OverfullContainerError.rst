@@ -6,7 +6,7 @@ exceptiontools.OverfullContainerError
 .. autoclass:: abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError.__delattr__

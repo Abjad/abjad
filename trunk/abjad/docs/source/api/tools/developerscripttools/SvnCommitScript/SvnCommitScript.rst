@@ -6,7 +6,7 @@ developerscripttools.SvnCommitScript
 .. autoclass:: abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.__call__

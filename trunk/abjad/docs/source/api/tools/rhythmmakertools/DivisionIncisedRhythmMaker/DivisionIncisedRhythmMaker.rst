@@ -6,7 +6,7 @@ rhythmmakertools.DivisionIncisedRhythmMaker
 .. autoclass:: abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker.DivisionIncisedRhythmMaker.DivisionIncisedRhythmMaker
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker.DivisionIncisedRhythmMaker.DivisionIncisedRhythmMaker.storage_format
@@ -21,7 +21,7 @@ Methods
 .. automethod:: abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker.DivisionIncisedRhythmMaker.DivisionIncisedRhythmMaker.reverse
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker.DivisionIncisedRhythmMaker.DivisionIncisedRhythmMaker.__call__

@@ -6,7 +6,7 @@ pitchtools.PitchClassObjectSet
 .. autoclass:: abjad.tools.pitchtools.PitchClassObjectSet.PitchClassObjectSet.PitchClassObjectSet
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.PitchClassObjectSet.PitchClassObjectSet.PitchClassObjectSet.storage_format
@@ -39,7 +39,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.PitchClassObjectSet.PitchClassObjectSet.PitchClassObjectSet.union
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.PitchClassObjectSet.PitchClassObjectSet.PitchClassObjectSet.__and__

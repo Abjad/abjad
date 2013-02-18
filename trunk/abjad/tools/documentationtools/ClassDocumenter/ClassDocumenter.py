@@ -107,12 +107,9 @@ class ClassDocumenter(Documenter):
             ))
 
         if self.readonly_properties:
-            #result.extend(self._format_heading('Read-only Properties', '-'))
-            #for attr in self.readonly_properties:
-            #    result.extend(self._format_attribute(attr, 'attribute'))
             document.append(documentationtools.ReSTHeading(
                 level=3,
-                text='Read-only Properties',
+                text='Read-only properties',
                 ))
             for attr in self.readonly_properties:
                 autodoc = documentationtools.ReSTAutodocDirective(
@@ -129,7 +126,7 @@ class ClassDocumenter(Documenter):
             #    result.extend(self._format_attribute(attr, 'attribute'))
             document.append(documentationtools.ReSTHeading(
                 level=3,
-                text='Read/write Properties',
+                text='Read/write properties',
                 ))
             for attr in self.readwrite_properties:
                 autodoc = documentationtools.ReSTAutodocDirective(
@@ -158,12 +155,9 @@ class ClassDocumenter(Documenter):
                 document.append(autodoc)
 
         if self.special_methods:
-            #result.extend(self._format_heading('Special Methods', '-'))
-            #for attr in self.special_methods:
-            #    result.extend(self._format_attribute(attr, 'method'))
             document.append(documentationtools.ReSTHeading(
                 level=3,
-                text='Special Methods',
+                text='Special methods',
                 ))
             for attr in self.special_methods:
                 autodoc = documentationtools.ReSTAutodocDirective(

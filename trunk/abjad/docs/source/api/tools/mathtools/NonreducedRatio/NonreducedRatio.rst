@@ -6,7 +6,7 @@ mathtools.NonreducedRatio
 .. autoclass:: abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.storage_format
@@ -21,7 +21,7 @@ Methods
 .. automethod:: abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.index
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__add__

@@ -6,7 +6,7 @@ documentationtools.ReSTTOCItem
 .. autoclass:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.depth
@@ -36,7 +36,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.name
@@ -45,7 +45,7 @@ Read/write Properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.text
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.__eq__

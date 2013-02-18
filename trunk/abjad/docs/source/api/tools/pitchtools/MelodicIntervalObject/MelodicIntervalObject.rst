@@ -6,7 +6,7 @@ pitchtools.MelodicIntervalObject
 .. autoclass:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.cents
@@ -30,7 +30,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__abs__

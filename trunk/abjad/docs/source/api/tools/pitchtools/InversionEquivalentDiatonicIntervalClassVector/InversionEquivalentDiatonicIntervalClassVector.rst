@@ -6,7 +6,7 @@ pitchtools.InversionEquivalentDiatonicIntervalClassVector
 .. autoclass:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.storage_format
@@ -66,7 +66,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.viewvalues
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.__cmp__

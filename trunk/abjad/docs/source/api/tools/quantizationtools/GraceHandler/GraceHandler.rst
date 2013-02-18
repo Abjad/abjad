@@ -6,13 +6,13 @@ quantizationtools.GraceHandler
 .. autoclass:: abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__call__

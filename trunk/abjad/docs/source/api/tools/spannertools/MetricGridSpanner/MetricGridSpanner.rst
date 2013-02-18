@@ -6,7 +6,7 @@ spannertools.MetricGridSpanner
 .. autoclass:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.components
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.written_duration
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.time_signatures
@@ -90,7 +90,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.splitting_condition
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.__call__

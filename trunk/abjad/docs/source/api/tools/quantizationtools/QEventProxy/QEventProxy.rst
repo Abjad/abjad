@@ -6,7 +6,7 @@ quantizationtools.QEventProxy
 .. autoclass:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.index
@@ -21,7 +21,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__eq__

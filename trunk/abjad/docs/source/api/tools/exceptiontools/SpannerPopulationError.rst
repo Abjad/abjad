@@ -6,7 +6,7 @@ exceptiontools.SpannerPopulationError
 .. autoclass:: abjad.tools.exceptiontools.SpannerPopulationError.SpannerPopulationError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.SpannerPopulationError.SpannerPopulationError.__delattr__

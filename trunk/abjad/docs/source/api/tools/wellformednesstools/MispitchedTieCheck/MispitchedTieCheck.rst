@@ -6,7 +6,7 @@ wellformednesstools.MispitchedTieCheck
 .. autoclass:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck.__eq__

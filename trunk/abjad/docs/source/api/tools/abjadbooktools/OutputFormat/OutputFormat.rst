@@ -6,7 +6,7 @@ abjadbooktools.OutputFormat
 .. autoclass:: abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.code_block_closing
@@ -27,7 +27,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__call__

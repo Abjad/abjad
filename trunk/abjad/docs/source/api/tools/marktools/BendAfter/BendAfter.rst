@@ -6,7 +6,7 @@ marktools.BendAfter
 .. autoclass:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.lilypond_format
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.bend_amount
@@ -33,7 +33,7 @@ Methods
 .. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.detach
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.__call__

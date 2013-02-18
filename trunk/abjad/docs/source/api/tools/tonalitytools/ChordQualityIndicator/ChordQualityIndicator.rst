@@ -6,7 +6,7 @@ tonalitytools.ChordQualityIndicator
 .. autoclass:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.cardinality
@@ -60,7 +60,7 @@ Methods
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.rotate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__add__

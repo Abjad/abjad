@@ -6,7 +6,7 @@ pitcharraytools.PitchArray
 .. autoclass:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.cell_tokens_by_row
@@ -90,7 +90,7 @@ Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.remove_row
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__add__

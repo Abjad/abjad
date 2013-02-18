@@ -6,7 +6,7 @@ spannertools.SlurSpanner
 .. autoclass:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.components
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.written_duration
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.direction
@@ -84,7 +84,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.__call__

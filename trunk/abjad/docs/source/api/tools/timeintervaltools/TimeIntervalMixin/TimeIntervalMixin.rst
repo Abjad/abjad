@@ -6,7 +6,7 @@ timeintervaltools.TimeIntervalMixin
 .. autoclass:: abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin.bounds
@@ -66,7 +66,7 @@ Methods
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin.split_at_rationals
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin.__eq__

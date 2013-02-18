@@ -6,13 +6,13 @@ pitchtools.MelodicObject
 .. autoclass:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.__eq__

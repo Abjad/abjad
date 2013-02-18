@@ -6,7 +6,7 @@ exceptiontools.MeasureError
 .. autoclass:: abjad.tools.exceptiontools.MeasureError.MeasureError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.MeasureError.MeasureError.__delattr__

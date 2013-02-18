@@ -6,7 +6,7 @@ schemetools.SchemeAssociativeList
 .. autoclass:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.force_quotes
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__eq__

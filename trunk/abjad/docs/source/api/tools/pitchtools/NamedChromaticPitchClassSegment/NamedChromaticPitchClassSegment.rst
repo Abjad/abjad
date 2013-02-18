@@ -6,7 +6,7 @@ pitchtools.NamedChromaticPitchClassSegment
 .. autoclass:: abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.inversion_equivalent_diatonic_interval_class_segment
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.transpose
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.__add__

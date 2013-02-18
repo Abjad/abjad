@@ -6,7 +6,7 @@ exceptiontools.TonalHarmonyError
 .. autoclass:: abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError.__delattr__

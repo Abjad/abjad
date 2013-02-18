@@ -6,7 +6,7 @@ marktools.Mark
 .. autoclass:: abjad.tools.marktools.Mark.Mark.Mark
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.marktools.Mark.Mark.Mark.start_component
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.marktools.Mark.Mark.Mark.detach
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.marktools.Mark.Mark.Mark.__call__

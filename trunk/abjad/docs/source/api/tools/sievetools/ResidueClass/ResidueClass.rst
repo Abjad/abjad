@@ -6,7 +6,7 @@ sievetools.ResidueClass
 .. autoclass:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.modulo
@@ -27,7 +27,7 @@ Methods
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.get_congruent_bases
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__and__

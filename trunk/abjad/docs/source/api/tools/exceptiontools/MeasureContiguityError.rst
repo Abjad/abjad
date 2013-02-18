@@ -6,7 +6,7 @@ exceptiontools.MeasureContiguityError
 .. autoclass:: abjad.tools.exceptiontools.MeasureContiguityError.MeasureContiguityError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.MeasureContiguityError.MeasureContiguityError.__delattr__

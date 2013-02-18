@@ -6,7 +6,7 @@ pitchtools.NumberedChromaticPitch
 .. autoclass:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.chromatic_pitch_number
@@ -30,7 +30,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.transpose
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.__abs__

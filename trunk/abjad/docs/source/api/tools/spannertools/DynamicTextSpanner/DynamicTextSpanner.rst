@@ -6,7 +6,7 @@ spannertools.DynamicTextSpanner
 .. autoclass:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner.components
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner.written_duration
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner.mark
@@ -84,7 +84,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner.__call__

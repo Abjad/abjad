@@ -6,7 +6,7 @@ exceptiontools.ContiguityError
 .. autoclass:: abjad.tools.exceptiontools.ContiguityError.ContiguityError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.ContiguityError.ContiguityError.__delattr__

@@ -6,7 +6,7 @@ pitchtools.MelodicChromaticIntervalClassVector
 .. autoclass:: abjad.tools.pitchtools.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector.storage_format
@@ -66,7 +66,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector.viewvalues
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector.__cmp__

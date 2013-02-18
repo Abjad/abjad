@@ -6,7 +6,7 @@ schemetools.SchemeMoment
 .. autoclass:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.duration
@@ -21,7 +21,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.__eq__

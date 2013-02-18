@@ -6,7 +6,7 @@ tonalitytools.ExtentIndicator
 .. autoclass:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.name
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__eq__

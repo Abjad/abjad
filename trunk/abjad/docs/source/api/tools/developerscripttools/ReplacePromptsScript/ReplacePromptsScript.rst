@@ -6,7 +6,7 @@ developerscripttools.ReplacePromptsScript
 .. autoclass:: abjad.tools.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript.__call__

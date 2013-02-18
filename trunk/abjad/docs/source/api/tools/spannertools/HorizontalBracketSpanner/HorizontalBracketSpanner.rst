@@ -6,7 +6,7 @@ spannertools.HorizontalBracketSpanner
 .. autoclass:: abjad.tools.spannertools.HorizontalBracketSpanner.HorizontalBracketSpanner.HorizontalBracketSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.spannertools.HorizontalBracketSpanner.HorizontalBracketSpanner.HorizontalBracketSpanner.components
@@ -78,7 +78,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.HorizontalBracketSpanner.HorizontalBracketSpanner.HorizontalBracketSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.spannertools.HorizontalBracketSpanner.HorizontalBracketSpanner.HorizontalBracketSpanner.__call__

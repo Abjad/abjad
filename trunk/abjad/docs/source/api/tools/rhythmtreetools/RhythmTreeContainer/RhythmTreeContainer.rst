@@ -6,7 +6,7 @@ rhythmtreetools.RhythmTreeContainer
 .. autoclass:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.children
@@ -75,7 +75,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.name
@@ -105,7 +105,7 @@ Methods
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.__add__

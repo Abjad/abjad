@@ -6,7 +6,7 @@ exceptiontools.VoiceContainmentError
 .. autoclass:: abjad.tools.exceptiontools.VoiceContainmentError.VoiceContainmentError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.VoiceContainmentError.VoiceContainmentError.__delattr__

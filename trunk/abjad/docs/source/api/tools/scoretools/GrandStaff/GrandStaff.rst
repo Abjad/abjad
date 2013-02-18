@@ -6,7 +6,7 @@ scoretools.GrandStaff
 .. autoclass:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.contents_duration
@@ -84,7 +84,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.context_name
@@ -120,7 +120,7 @@ Methods
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__add__

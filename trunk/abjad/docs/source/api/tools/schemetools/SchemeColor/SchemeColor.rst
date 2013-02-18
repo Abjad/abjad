@@ -6,7 +6,7 @@ schemetools.SchemeColor
 .. autoclass:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor.force_quotes
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor.__eq__

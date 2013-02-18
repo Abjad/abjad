@@ -6,7 +6,7 @@ quantizationtools.PitchedQEvent
 .. autoclass:: abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.attachments
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.__eq__

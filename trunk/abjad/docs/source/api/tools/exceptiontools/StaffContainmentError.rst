@@ -6,7 +6,7 @@ exceptiontools.StaffContainmentError
 .. autoclass:: abjad.tools.exceptiontools.StaffContainmentError.StaffContainmentError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.StaffContainmentError.StaffContainmentError.__delattr__

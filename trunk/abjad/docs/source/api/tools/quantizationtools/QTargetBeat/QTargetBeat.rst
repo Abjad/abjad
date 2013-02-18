@@ -6,7 +6,7 @@ quantizationtools.QTargetBeat
 .. autoclass:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.beatspan
@@ -39,7 +39,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.tempo
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__call__

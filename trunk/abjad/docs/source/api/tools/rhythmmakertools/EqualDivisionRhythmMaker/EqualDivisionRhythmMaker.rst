@@ -6,7 +6,7 @@ rhythmmakertools.EqualDivisionRhythmMaker
 .. autoclass:: abjad.tools.rhythmmakertools.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.rhythmmakertools.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.is_diminution
@@ -27,7 +27,7 @@ Methods
 .. automethod:: abjad.tools.rhythmmakertools.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.reverse
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.rhythmmakertools.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.__call__

@@ -6,7 +6,7 @@ exceptiontools.MissingNamedComponentError
 .. autoclass:: abjad.tools.exceptiontools.MissingNamedComponentError.MissingNamedComponentError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.MissingNamedComponentError.MissingNamedComponentError.__delattr__

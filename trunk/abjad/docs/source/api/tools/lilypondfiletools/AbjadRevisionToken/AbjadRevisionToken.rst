@@ -6,7 +6,7 @@ lilypondfiletools.AbjadRevisionToken
 .. autoclass:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.lilypond_format
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.__eq__

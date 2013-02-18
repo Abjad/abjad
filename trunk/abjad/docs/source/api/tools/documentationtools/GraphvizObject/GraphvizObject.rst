@@ -6,7 +6,7 @@ documentationtools.GraphvizObject
 .. autoclass:: abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject.attributes
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject.__eq__

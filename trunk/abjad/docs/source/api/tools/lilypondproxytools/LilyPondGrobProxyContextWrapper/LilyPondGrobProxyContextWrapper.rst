@@ -6,7 +6,7 @@ lilypondproxytools.LilyPondGrobProxyContextWrapper
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondproxytools.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper.__getattr__

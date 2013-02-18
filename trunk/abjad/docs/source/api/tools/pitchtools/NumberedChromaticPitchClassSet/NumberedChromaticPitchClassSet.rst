@@ -6,7 +6,7 @@ pitchtools.NumberedChromaticPitchClassSet
 .. autoclass:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.inversion_equivalent_chromatic_interval_class_set
@@ -66,7 +66,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.union
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.__and__

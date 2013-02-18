@@ -6,7 +6,7 @@ timeintervaltools.TimeInterval
 .. autoclass:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.bounds
@@ -102,7 +102,7 @@ Methods
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.values
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__contains__

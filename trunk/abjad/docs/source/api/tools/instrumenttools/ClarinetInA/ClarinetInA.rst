@@ -6,7 +6,7 @@ instrumenttools.ClarinetInA
 .. autoclass:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.__call__

@@ -6,7 +6,7 @@ lilypondfiletools.ContextBlock
 .. autoclass:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.accepts
@@ -30,7 +30,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.context_name
@@ -75,7 +75,7 @@ Methods
 .. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__add__

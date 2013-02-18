@@ -6,13 +6,13 @@ pitchtools.NumberedPitchObject
 .. autoclass:: abjad.tools.pitchtools.NumberedPitchObject.NumberedPitchObject.NumberedPitchObject
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.NumberedPitchObject.NumberedPitchObject.NumberedPitchObject.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.NumberedPitchObject.NumberedPitchObject.NumberedPitchObject.__abs__

@@ -6,7 +6,7 @@ tonalitytools.TonalFunction
 .. autoclass:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.bass_scale_degree
@@ -42,7 +42,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.symbolic_string
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__eq__

@@ -6,7 +6,7 @@ datastructuretools.BreakPointFunction
 .. autoclass:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.bpf
@@ -75,7 +75,7 @@ Methods
 .. automethod:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.tessalate_by_ratio
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__add__

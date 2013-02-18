@@ -6,7 +6,7 @@ exceptiontools.DurationError
 .. autoclass:: abjad.tools.exceptiontools.DurationError.DurationError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.DurationError.DurationError.__delattr__

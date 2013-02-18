@@ -6,7 +6,7 @@ wellformednesstools.DuplicateIdCheck
 .. autoclass:: abjad.tools.wellformednesstools.DuplicateIdCheck.DuplicateIdCheck.DuplicateIdCheck
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.DuplicateIdCheck.DuplicateIdCheck.DuplicateIdCheck.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.DuplicateIdCheck.DuplicateIdCheck.DuplicateIdCheck.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.DuplicateIdCheck.DuplicateIdCheck.DuplicateIdCheck.__eq__

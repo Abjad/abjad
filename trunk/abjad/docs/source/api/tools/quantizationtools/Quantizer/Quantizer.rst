@@ -6,13 +6,13 @@ quantizationtools.Quantizer
 .. autoclass:: abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer.__call__

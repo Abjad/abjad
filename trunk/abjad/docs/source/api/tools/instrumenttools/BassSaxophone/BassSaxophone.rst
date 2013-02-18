@@ -6,7 +6,7 @@ instrumenttools.BassSaxophone
 .. autoclass:: abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__call__

@@ -6,7 +6,7 @@ scoretools.Performer
 .. autoclass:: abjad.tools.scoretools.Performer.Performer.Performer
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.scoretools.Performer.Performer.Performer.instrument_count
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.scoretools.Performer.Performer.Performer.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.scoretools.Performer.Performer.Performer.instruments
@@ -39,7 +39,7 @@ Methods
 .. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.make_performer_name_instrument_dictionary
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__eq__

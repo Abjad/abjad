@@ -6,7 +6,7 @@ marktools.BarLine
 .. autoclass:: abjad.tools.marktools.BarLine.BarLine.BarLine
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.marktools.BarLine.BarLine.BarLine.lilypond_format
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.marktools.BarLine.BarLine.BarLine.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.marktools.BarLine.BarLine.BarLine.bar_line_string
@@ -39,7 +39,7 @@ Methods
 .. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.detach
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.__call__

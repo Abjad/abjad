@@ -6,7 +6,7 @@ exceptiontools.UnboundedTimeIntervalError
 .. autoclass:: abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError.__delattr__

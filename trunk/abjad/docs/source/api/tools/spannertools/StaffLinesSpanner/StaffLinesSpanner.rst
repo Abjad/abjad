@@ -6,7 +6,7 @@ spannertools.StaffLinesSpanner
 .. autoclass:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner.components
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner.written_duration
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner.lines
@@ -84,7 +84,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner.__call__

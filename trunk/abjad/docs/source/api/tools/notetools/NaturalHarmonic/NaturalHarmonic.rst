@@ -6,7 +6,7 @@ notetools.NaturalHarmonic
 .. autoclass:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.descendants
@@ -81,7 +81,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.duration_multiplier
@@ -102,7 +102,7 @@ Read/write Properties
 .. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.written_pitch_indication_is_nonsemantic
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__and__

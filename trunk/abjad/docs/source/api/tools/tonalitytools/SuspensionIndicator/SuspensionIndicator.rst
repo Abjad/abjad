@@ -6,7 +6,7 @@ tonalitytools.SuspensionIndicator
 .. autoclass:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.chord_name
@@ -33,7 +33,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.title_string
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__eq__

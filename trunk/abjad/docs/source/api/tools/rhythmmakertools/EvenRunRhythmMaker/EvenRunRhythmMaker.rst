@@ -6,7 +6,7 @@ rhythmmakertools.EvenRunRhythmMaker
 .. autoclass:: abjad.tools.rhythmmakertools.EvenRunRhythmMaker.EvenRunRhythmMaker.EvenRunRhythmMaker
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.rhythmmakertools.EvenRunRhythmMaker.EvenRunRhythmMaker.EvenRunRhythmMaker.denominator_multiplier_exponent
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.rhythmmakertools.EvenRunRhythmMaker.EvenRunRhythmMaker.EvenRunRhythmMaker.reverse
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.rhythmmakertools.EvenRunRhythmMaker.EvenRunRhythmMaker.EvenRunRhythmMaker.__call__

@@ -6,7 +6,7 @@ tonalitytools.Mode
 .. autoclass:: abjad.tools.tonalitytools.Mode.Mode.Mode
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.tonalitytools.Mode.Mode.Mode.melodic_diatonic_interval_segment
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tonalitytools.Mode.Mode.Mode.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__eq__

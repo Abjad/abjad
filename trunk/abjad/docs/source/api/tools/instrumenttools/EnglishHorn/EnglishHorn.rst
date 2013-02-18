@@ -6,7 +6,7 @@ instrumenttools.EnglishHorn
 .. autoclass:: abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn.__call__

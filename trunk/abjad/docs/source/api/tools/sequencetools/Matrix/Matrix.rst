@@ -6,7 +6,7 @@ sequencetools.Matrix
 .. autoclass:: abjad.tools.sequencetools.Matrix.Matrix.Matrix
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.sequencetools.Matrix.Matrix.Matrix.columns
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.sequencetools.Matrix.Matrix.Matrix.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.sequencetools.Matrix.Matrix.Matrix.__eq__

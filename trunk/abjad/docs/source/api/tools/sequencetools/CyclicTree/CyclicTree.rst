@@ -6,7 +6,7 @@ sequencetools.CyclicTree
 .. autoclass:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.children
@@ -78,7 +78,7 @@ Methods
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.to_nested_lists
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__contains__

@@ -6,7 +6,7 @@ documentationtools.ReSTParagraph
 .. autoclass:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.depth
@@ -36,7 +36,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.name
@@ -48,7 +48,7 @@ Read/write Properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.wrap
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.__eq__

@@ -6,13 +6,13 @@ markuptools.MarkupInventory
 .. autoclass:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.name
@@ -48,7 +48,7 @@ Methods
 .. automethod:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__add__

@@ -6,7 +6,7 @@ pitchtools.HarmonicDiatonicIntervalSegment
 .. autoclass:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.harmonic_chromatic_interval_segment
@@ -39,7 +39,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.rotate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.__add__

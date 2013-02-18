@@ -6,7 +6,7 @@ containertools.Cluster
 .. autoclass:: abjad.tools.containertools.Cluster.Cluster.Cluster
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.contents_duration
@@ -75,7 +75,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.is_parallel
@@ -102,7 +102,7 @@ Methods
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.__add__

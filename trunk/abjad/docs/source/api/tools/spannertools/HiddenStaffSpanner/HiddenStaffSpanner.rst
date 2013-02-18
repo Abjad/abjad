@@ -6,7 +6,7 @@ spannertools.HiddenStaffSpanner
 .. autoclass:: abjad.tools.spannertools.HiddenStaffSpanner.HiddenStaffSpanner.HiddenStaffSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.spannertools.HiddenStaffSpanner.HiddenStaffSpanner.HiddenStaffSpanner.components
@@ -78,7 +78,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.HiddenStaffSpanner.HiddenStaffSpanner.HiddenStaffSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.spannertools.HiddenStaffSpanner.HiddenStaffSpanner.HiddenStaffSpanner.__call__

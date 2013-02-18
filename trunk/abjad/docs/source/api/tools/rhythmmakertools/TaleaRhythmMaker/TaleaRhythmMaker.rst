@@ -6,7 +6,7 @@ rhythmmakertools.TaleaRhythmMaker
 .. autoclass:: abjad.tools.rhythmmakertools.TaleaRhythmMaker.TaleaRhythmMaker.TaleaRhythmMaker
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.rhythmmakertools.TaleaRhythmMaker.TaleaRhythmMaker.TaleaRhythmMaker.storage_format
@@ -21,7 +21,7 @@ Methods
 .. automethod:: abjad.tools.rhythmmakertools.TaleaRhythmMaker.TaleaRhythmMaker.TaleaRhythmMaker.reverse
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.rhythmmakertools.TaleaRhythmMaker.TaleaRhythmMaker.TaleaRhythmMaker.__call__

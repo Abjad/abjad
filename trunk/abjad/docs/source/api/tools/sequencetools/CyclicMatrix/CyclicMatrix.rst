@@ -6,7 +6,7 @@ sequencetools.CyclicMatrix
 .. autoclass:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.columns
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__eq__

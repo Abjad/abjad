@@ -6,7 +6,7 @@ exceptiontools.LineBreakError
 .. autoclass:: abjad.tools.exceptiontools.LineBreakError.LineBreakError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.LineBreakError.LineBreakError.__delattr__

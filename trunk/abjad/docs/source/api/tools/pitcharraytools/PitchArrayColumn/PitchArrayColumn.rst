@@ -6,7 +6,7 @@ pitcharraytools.PitchArrayColumn
 .. autoclass:: abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn.PitchArrayColumn
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn.PitchArrayColumn.cell_tokens
@@ -72,7 +72,7 @@ Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn.PitchArrayColumn.remove_pitches
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn.PitchArrayColumn.__eq__

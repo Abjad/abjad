@@ -6,7 +6,7 @@ gracetools.GraceContainer
 .. autoclass:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.contents_duration
@@ -75,7 +75,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.is_parallel
@@ -108,7 +108,7 @@ Methods
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__add__

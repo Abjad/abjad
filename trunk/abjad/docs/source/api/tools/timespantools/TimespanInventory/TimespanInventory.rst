@@ -6,7 +6,7 @@ timespantools.TimespanInventory
 .. autoclass:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.all_are_contiguous
@@ -36,7 +36,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.timespan
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.name
@@ -114,7 +114,7 @@ Methods
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.translate_offsets
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__add__

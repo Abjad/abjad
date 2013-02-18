@@ -6,7 +6,7 @@ documentationtools.ReSTHorizontalRule
 .. autoclass:: abjad.tools.documentationtools.ReSTHorizontalRule.ReSTHorizontalRule.ReSTHorizontalRule
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTHorizontalRule.ReSTHorizontalRule.ReSTHorizontalRule.depth
@@ -36,13 +36,13 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTHorizontalRule.ReSTHorizontalRule.ReSTHorizontalRule.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTHorizontalRule.ReSTHorizontalRule.ReSTHorizontalRule.name
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.ReSTHorizontalRule.ReSTHorizontalRule.ReSTHorizontalRule.__eq__

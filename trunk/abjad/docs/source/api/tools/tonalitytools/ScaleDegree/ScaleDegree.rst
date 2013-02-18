@@ -6,7 +6,7 @@ tonalitytools.ScaleDegree
 .. autoclass:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.accidental
@@ -36,7 +36,7 @@ Methods
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.apply_accidental
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__eq__

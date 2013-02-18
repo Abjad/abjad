@@ -6,7 +6,7 @@ spannertools.PhrasingSlurSpanner
 .. autoclass:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner.components
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner.written_duration
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner.direction
@@ -84,7 +84,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner.__call__

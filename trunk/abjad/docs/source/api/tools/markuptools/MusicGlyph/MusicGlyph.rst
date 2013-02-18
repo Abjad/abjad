@@ -6,7 +6,7 @@ markuptools.MusicGlyph
 .. autoclass:: abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph.args
@@ -21,7 +21,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph.__eq__

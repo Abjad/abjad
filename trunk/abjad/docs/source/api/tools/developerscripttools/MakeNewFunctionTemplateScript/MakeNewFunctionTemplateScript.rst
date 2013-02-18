@@ -6,7 +6,7 @@ developerscripttools.MakeNewFunctionTemplateScript
 .. autoclass:: abjad.tools.developerscripttools.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript.__call__

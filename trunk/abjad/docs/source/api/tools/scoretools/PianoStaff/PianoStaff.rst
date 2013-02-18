@@ -6,7 +6,7 @@ scoretools.PianoStaff
 .. autoclass:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.contents_duration
@@ -84,7 +84,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.context_name
@@ -120,7 +120,7 @@ Methods
 .. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__add__

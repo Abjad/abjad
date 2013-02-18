@@ -6,7 +6,7 @@ abjadbooktools.AbjadBookScript
 .. autoclass:: abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.alias
@@ -54,7 +54,7 @@ Methods
 .. automethod:: abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__call__

@@ -6,7 +6,7 @@ exceptiontools.SchemeParserFinishedException
 .. autoclass:: abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException.__delattr__

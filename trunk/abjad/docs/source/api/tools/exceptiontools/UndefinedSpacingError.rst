@@ -6,7 +6,7 @@ exceptiontools.UndefinedSpacingError
 .. autoclass:: abjad.tools.exceptiontools.UndefinedSpacingError.UndefinedSpacingError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.UndefinedSpacingError.UndefinedSpacingError.__delattr__

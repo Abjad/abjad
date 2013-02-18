@@ -6,7 +6,7 @@ exceptiontools.ImpreciseTempoError
 .. autoclass:: abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError.__delattr__

@@ -6,7 +6,7 @@ timesignaturetools.MetricalHierarchy
 .. autoclass:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.decrease_durations_monotonically
@@ -48,7 +48,7 @@ Methods
 .. automethod:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.generate_offset_kernel_to_denominator
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.__eq__

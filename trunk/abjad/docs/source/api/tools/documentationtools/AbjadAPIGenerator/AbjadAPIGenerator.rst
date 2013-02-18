@@ -6,7 +6,7 @@ documentationtools.AbjadAPIGenerator
 .. autoclass:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.docs_api_index_path
@@ -27,7 +27,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.tools_package_path_index
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.__call__

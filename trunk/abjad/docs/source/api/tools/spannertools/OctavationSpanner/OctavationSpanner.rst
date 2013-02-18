@@ -6,7 +6,7 @@ spannertools.OctavationSpanner
 .. autoclass:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.components
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.written_duration
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.start
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__call__

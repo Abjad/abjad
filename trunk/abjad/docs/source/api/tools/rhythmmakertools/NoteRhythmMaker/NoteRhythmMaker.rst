@@ -6,7 +6,7 @@ rhythmmakertools.NoteRhythmMaker
 .. autoclass:: abjad.tools.rhythmmakertools.NoteRhythmMaker.NoteRhythmMaker.NoteRhythmMaker
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.rhythmmakertools.NoteRhythmMaker.NoteRhythmMaker.NoteRhythmMaker.storage_format
@@ -21,7 +21,7 @@ Methods
 .. automethod:: abjad.tools.rhythmmakertools.NoteRhythmMaker.NoteRhythmMaker.NoteRhythmMaker.reverse
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.rhythmmakertools.NoteRhythmMaker.NoteRhythmMaker.NoteRhythmMaker.__call__

@@ -6,7 +6,7 @@ contexttools.KeySignatureMark
 .. autoclass:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.effective_context
@@ -27,7 +27,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.target_context
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.mode
@@ -45,7 +45,7 @@ Methods
 .. automethod:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.detach
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__call__

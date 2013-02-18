@@ -6,7 +6,7 @@ documentationtools.GraphvizSubgraph
 .. autoclass:: abjad.tools.documentationtools.GraphvizSubgraph.GraphvizSubgraph.GraphvizSubgraph
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.GraphvizSubgraph.GraphvizSubgraph.GraphvizSubgraph.attributes
@@ -63,7 +63,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.GraphvizSubgraph.GraphvizSubgraph.GraphvizSubgraph.unflattened_graphviz_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.documentationtools.GraphvizSubgraph.GraphvizSubgraph.GraphvizSubgraph.is_cluster
@@ -96,7 +96,7 @@ Methods
 .. automethod:: abjad.tools.documentationtools.GraphvizSubgraph.GraphvizSubgraph.GraphvizSubgraph.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.GraphvizSubgraph.GraphvizSubgraph.GraphvizSubgraph.__contains__

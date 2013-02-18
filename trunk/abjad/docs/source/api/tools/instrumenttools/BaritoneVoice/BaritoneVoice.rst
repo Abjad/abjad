@@ -6,7 +6,7 @@ instrumenttools.BaritoneVoice
 .. autoclass:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.__call__

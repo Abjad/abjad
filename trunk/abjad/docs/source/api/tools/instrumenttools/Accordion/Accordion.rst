@@ -6,7 +6,7 @@ instrumenttools.Accordion
 .. autoclass:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.__call__

@@ -6,7 +6,7 @@ schemetools.Scheme
 .. autoclass:: abjad.tools.schemetools.Scheme.Scheme.Scheme
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.schemetools.Scheme.Scheme.Scheme.force_quotes
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.schemetools.Scheme.Scheme.Scheme.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__eq__

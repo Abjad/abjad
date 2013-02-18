@@ -6,7 +6,7 @@ developerscripttools.SvnUpdateScript
 .. autoclass:: abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.__call__

@@ -6,7 +6,7 @@ pitchtools.ObjectVector
 .. autoclass:: abjad.tools.pitchtools.ObjectVector.ObjectVector.ObjectVector
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.ObjectVector.ObjectVector.ObjectVector.storage_format
@@ -66,7 +66,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.ObjectVector.ObjectVector.ObjectVector.viewvalues
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.ObjectVector.ObjectVector.ObjectVector.__cmp__

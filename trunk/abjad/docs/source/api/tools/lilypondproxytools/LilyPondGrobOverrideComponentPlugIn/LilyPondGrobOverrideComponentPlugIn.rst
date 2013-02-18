@@ -6,13 +6,13 @@ lilypondproxytools.LilyPondGrobOverrideComponentPlugIn
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.__eq__

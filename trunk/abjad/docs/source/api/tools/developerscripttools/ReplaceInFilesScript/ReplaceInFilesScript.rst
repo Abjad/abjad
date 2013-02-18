@@ -6,7 +6,7 @@ developerscripttools.ReplaceInFilesScript
 .. autoclass:: abjad.tools.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript.alias
@@ -57,7 +57,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript.__call__

@@ -6,7 +6,7 @@ instrumenttools.Glockenspiel
 .. autoclass:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.__call__

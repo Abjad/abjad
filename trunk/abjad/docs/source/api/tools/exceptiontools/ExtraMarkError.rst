@@ -6,7 +6,7 @@ exceptiontools.ExtraMarkError
 .. autoclass:: abjad.tools.exceptiontools.ExtraMarkError.ExtraMarkError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.ExtraMarkError.ExtraMarkError.__delattr__

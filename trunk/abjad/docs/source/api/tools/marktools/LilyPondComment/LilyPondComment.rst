@@ -6,7 +6,7 @@ marktools.LilyPondComment
 .. autoclass:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.lilypond_format
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.contents_string
@@ -36,7 +36,7 @@ Methods
 .. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.detach
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__call__

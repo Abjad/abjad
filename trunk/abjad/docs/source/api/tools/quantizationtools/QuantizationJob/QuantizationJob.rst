@@ -6,7 +6,7 @@ quantizationtools.QuantizationJob
 .. autoclass:: abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.job_id
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__call__

@@ -6,7 +6,7 @@ wellformednesstools.OverlappingGlissandoCheck
 .. autoclass:: abjad.tools.wellformednesstools.OverlappingGlissandoCheck.OverlappingGlissandoCheck.OverlappingGlissandoCheck
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.OverlappingGlissandoCheck.OverlappingGlissandoCheck.OverlappingGlissandoCheck.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.OverlappingGlissandoCheck.OverlappingGlissandoCheck.OverlappingGlissandoCheck.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.OverlappingGlissandoCheck.OverlappingGlissandoCheck.OverlappingGlissandoCheck.__eq__

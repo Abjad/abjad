@@ -6,7 +6,7 @@ pitchtools.IntervalObjectSet
 .. autoclass:: abjad.tools.pitchtools.IntervalObjectSet.IntervalObjectSet.IntervalObjectSet
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.IntervalObjectSet.IntervalObjectSet.IntervalObjectSet.storage_format
@@ -39,7 +39,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.IntervalObjectSet.IntervalObjectSet.IntervalObjectSet.union
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.IntervalObjectSet.IntervalObjectSet.IntervalObjectSet.__and__

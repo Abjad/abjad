@@ -6,7 +6,7 @@ notetools.NoteHead
 .. autoclass:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.lilypond_format
@@ -21,7 +21,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.tweak
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.is_cautionary
@@ -33,7 +33,7 @@ Read/write Properties
 .. autoattribute:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.written_pitch
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__eq__

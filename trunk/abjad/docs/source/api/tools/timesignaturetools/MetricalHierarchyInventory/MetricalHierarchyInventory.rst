@@ -6,13 +6,13 @@ timesignaturetools.MetricalHierarchyInventory
 .. autoclass:: abjad.tools.timesignaturetools.MetricalHierarchyInventory.MetricalHierarchyInventory.MetricalHierarchyInventory
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchyInventory.MetricalHierarchyInventory.MetricalHierarchyInventory.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchyInventory.MetricalHierarchyInventory.MetricalHierarchyInventory.name
@@ -48,7 +48,7 @@ Methods
 .. automethod:: abjad.tools.timesignaturetools.MetricalHierarchyInventory.MetricalHierarchyInventory.MetricalHierarchyInventory.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.timesignaturetools.MetricalHierarchyInventory.MetricalHierarchyInventory.MetricalHierarchyInventory.__add__

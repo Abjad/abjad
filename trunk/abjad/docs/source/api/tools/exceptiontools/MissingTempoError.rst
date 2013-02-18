@@ -6,7 +6,7 @@ exceptiontools.MissingTempoError
 .. autoclass:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__delattr__

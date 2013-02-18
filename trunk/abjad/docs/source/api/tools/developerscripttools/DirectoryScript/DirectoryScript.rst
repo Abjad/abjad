@@ -6,7 +6,7 @@ developerscripttools.DirectoryScript
 .. autoclass:: abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__call__

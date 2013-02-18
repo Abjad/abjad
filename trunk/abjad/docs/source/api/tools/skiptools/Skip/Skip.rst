@@ -6,7 +6,7 @@ skiptools.Skip
 .. autoclass:: abjad.tools.skiptools.Skip.Skip.Skip
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.descendants
@@ -72,7 +72,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.duration_multiplier
@@ -87,7 +87,7 @@ Read/write Properties
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.written_pitch_indication_is_nonsemantic
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.__and__

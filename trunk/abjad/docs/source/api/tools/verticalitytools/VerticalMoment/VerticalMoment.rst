@@ -6,7 +6,7 @@ verticalitytools.VerticalMoment
 .. autoclass:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.attack_count
@@ -72,7 +72,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.timespan
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.__add__

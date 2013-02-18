@@ -6,7 +6,7 @@ marktools.Articulation
 .. autoclass:: abjad.tools.marktools.Articulation.Articulation.Articulation
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.marktools.Articulation.Articulation.Articulation.lilypond_format
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.marktools.Articulation.Articulation.Articulation.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.marktools.Articulation.Articulation.Articulation.direction
@@ -36,7 +36,7 @@ Methods
 .. automethod:: abjad.tools.marktools.Articulation.Articulation.Articulation.detach
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.marktools.Articulation.Articulation.Articulation.__call__

@@ -6,7 +6,7 @@ quantizationtools.QGridLeaf
 .. autoclass:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.depth
@@ -72,7 +72,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.succeeding_q_event_proxies
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.is_divisible
@@ -84,7 +84,7 @@ Read/write Properties
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.preprolated_duration
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__call__

@@ -6,7 +6,7 @@ wellformednesstools.EmptyContainerCheck
 .. autoclass:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck.__eq__

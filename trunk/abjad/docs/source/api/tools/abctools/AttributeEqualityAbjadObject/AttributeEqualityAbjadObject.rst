@@ -6,13 +6,13 @@ abctools.AttributeEqualityAbjadObject
 .. autoclass:: abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.__eq__

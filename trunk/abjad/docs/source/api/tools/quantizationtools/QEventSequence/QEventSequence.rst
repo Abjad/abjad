@@ -6,7 +6,7 @@ quantizationtools.QEventSequence
 .. autoclass:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.duration_in_ms
@@ -39,7 +39,7 @@ Methods
 .. automethod:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.index
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__add__

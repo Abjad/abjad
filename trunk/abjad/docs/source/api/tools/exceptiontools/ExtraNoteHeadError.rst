@@ -6,7 +6,7 @@ exceptiontools.ExtraNoteHeadError
 .. autoclass:: abjad.tools.exceptiontools.ExtraNoteHeadError.ExtraNoteHeadError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.ExtraNoteHeadError.ExtraNoteHeadError.__delattr__

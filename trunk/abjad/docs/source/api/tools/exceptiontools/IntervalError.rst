@@ -6,7 +6,7 @@ exceptiontools.IntervalError
 .. autoclass:: abjad.tools.exceptiontools.IntervalError.IntervalError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.IntervalError.IntervalError.__delattr__

@@ -6,7 +6,7 @@ instrumenttools.Guitar
 .. autoclass:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar.__call__

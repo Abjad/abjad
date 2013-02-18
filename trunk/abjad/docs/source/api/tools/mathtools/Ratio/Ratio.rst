@@ -6,7 +6,7 @@ mathtools.Ratio
 .. autoclass:: abjad.tools.mathtools.Ratio.Ratio.Ratio
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.mathtools.Ratio.Ratio.Ratio.storage_format
@@ -21,7 +21,7 @@ Methods
 .. automethod:: abjad.tools.mathtools.Ratio.Ratio.Ratio.index
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.mathtools.Ratio.Ratio.Ratio.__add__

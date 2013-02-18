@@ -6,7 +6,7 @@ developerscripttools.BuildApiScript
 .. autoclass:: abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.__call__

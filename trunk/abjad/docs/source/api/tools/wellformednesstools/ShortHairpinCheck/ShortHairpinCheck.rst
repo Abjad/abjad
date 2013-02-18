@@ -6,7 +6,7 @@ wellformednesstools.ShortHairpinCheck
 .. autoclass:: abjad.tools.wellformednesstools.ShortHairpinCheck.ShortHairpinCheck.ShortHairpinCheck
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.ShortHairpinCheck.ShortHairpinCheck.ShortHairpinCheck.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.ShortHairpinCheck.ShortHairpinCheck.ShortHairpinCheck.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.ShortHairpinCheck.ShortHairpinCheck.ShortHairpinCheck.__eq__

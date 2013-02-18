@@ -6,7 +6,7 @@ quantizationtools.MeasurewiseQTarget
 .. autoclass:: abjad.tools.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget.beats
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget.__call__

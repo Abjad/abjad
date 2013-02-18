@@ -6,7 +6,7 @@ pitchtools.InversionEquivalentDiatonicIntervalClassSegment
 .. autoclass:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.interval_classes
@@ -33,7 +33,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.rotate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__add__

@@ -6,7 +6,7 @@ instrumenttools.BFlatClarinet
 .. autoclass:: abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet.__call__

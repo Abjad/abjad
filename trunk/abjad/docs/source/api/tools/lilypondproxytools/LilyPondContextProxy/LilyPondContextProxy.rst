@@ -6,13 +6,13 @@ lilypondproxytools.LilyPondContextProxy
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondContextProxy.LilyPondContextProxy.LilyPondContextProxy
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondproxytools.LilyPondContextProxy.LilyPondContextProxy.LilyPondContextProxy.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondproxytools.LilyPondContextProxy.LilyPondContextProxy.LilyPondContextProxy.__eq__

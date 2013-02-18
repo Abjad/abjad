@@ -6,7 +6,7 @@ documentationtools.FunctionCrawler
 .. autoclass:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.code_root
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__call__

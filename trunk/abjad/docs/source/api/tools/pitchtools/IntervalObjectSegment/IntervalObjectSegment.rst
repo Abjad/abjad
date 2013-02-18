@@ -6,7 +6,7 @@ pitchtools.IntervalObjectSegment
 .. autoclass:: abjad.tools.pitchtools.IntervalObjectSegment.IntervalObjectSegment.IntervalObjectSegment
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.IntervalObjectSegment.IntervalObjectSegment.IntervalObjectSegment.interval_classes
@@ -30,7 +30,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.IntervalObjectSegment.IntervalObjectSegment.IntervalObjectSegment.rotate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.IntervalObjectSegment.IntervalObjectSegment.IntervalObjectSegment.__add__

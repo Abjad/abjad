@@ -6,7 +6,7 @@ markuptools.Markup
 .. autoclass:: abjad.tools.markuptools.Markup.Markup.Markup
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.markuptools.Markup.Markup.Markup.contents
@@ -27,7 +27,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.markuptools.Markup.Markup.Markup.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.markuptools.Markup.Markup.Markup.direction
@@ -42,7 +42,7 @@ Methods
 .. automethod:: abjad.tools.markuptools.Markup.Markup.Markup.detach
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.markuptools.Markup.Markup.Markup.__call__

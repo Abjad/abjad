@@ -6,7 +6,7 @@ configurationtools.AbjadConfig
 .. autoclass:: abjad.tools.configurationtools.AbjadConfig.AbjadConfig.AbjadConfig
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.configurationtools.AbjadConfig.AbjadConfig.AbjadConfig.ABJAD_CONFIG_DIRECTORY_PATH
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.configurationtools.AbjadConfig.AbjadConfig.AbjadConfig.values
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.configurationtools.AbjadConfig.AbjadConfig.AbjadConfig.__contains__

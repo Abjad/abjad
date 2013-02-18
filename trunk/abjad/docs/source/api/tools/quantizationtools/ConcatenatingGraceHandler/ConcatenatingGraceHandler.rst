@@ -6,7 +6,7 @@ quantizationtools.ConcatenatingGraceHandler
 .. autoclass:: abjad.tools.quantizationtools.ConcatenatingGraceHandler.ConcatenatingGraceHandler.ConcatenatingGraceHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.ConcatenatingGraceHandler.ConcatenatingGraceHandler.ConcatenatingGraceHandler.grace_duration
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.ConcatenatingGraceHandler.ConcatenatingGraceHandler.ConcatenatingGraceHandler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.ConcatenatingGraceHandler.ConcatenatingGraceHandler.ConcatenatingGraceHandler.__call__

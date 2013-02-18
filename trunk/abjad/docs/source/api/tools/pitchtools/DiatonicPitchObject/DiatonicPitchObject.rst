@@ -6,13 +6,13 @@ pitchtools.DiatonicPitchObject
 .. autoclass:: abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject.__abs__

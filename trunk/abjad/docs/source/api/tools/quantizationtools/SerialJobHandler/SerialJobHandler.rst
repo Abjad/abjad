@@ -6,13 +6,13 @@ quantizationtools.SerialJobHandler
 .. autoclass:: abjad.tools.quantizationtools.SerialJobHandler.SerialJobHandler.SerialJobHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.SerialJobHandler.SerialJobHandler.SerialJobHandler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.SerialJobHandler.SerialJobHandler.SerialJobHandler.__call__

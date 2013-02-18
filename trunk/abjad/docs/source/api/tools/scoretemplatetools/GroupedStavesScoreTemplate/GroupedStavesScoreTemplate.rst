@@ -6,13 +6,13 @@ scoretemplatetools.GroupedStavesScoreTemplate
 .. autoclass:: abjad.tools.scoretemplatetools.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.scoretemplatetools.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.scoretemplatetools.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate.__call__

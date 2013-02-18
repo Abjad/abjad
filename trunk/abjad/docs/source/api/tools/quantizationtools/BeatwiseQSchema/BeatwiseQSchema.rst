@@ -6,7 +6,7 @@ quantizationtools.BeatwiseQSchema
 .. autoclass:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.beatspan
@@ -33,7 +33,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.tempo
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__call__

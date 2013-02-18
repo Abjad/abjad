@@ -6,7 +6,7 @@ wellformednesstools.MisduratedMeasureCheck
 .. autoclass:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.__eq__

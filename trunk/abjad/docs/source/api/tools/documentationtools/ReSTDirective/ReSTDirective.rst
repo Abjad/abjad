@@ -6,7 +6,7 @@ documentationtools.ReSTDirective
 .. autoclass:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.children
@@ -54,7 +54,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.argument
@@ -84,7 +84,7 @@ Methods
 .. automethod:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__contains__

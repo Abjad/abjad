@@ -6,7 +6,7 @@ spannertools.DirectedSpanner
 .. autoclass:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.components
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.written_duration
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.direction
@@ -84,7 +84,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__call__

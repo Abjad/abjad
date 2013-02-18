@@ -6,7 +6,7 @@ developerscripttools.SvnMessageScript
 .. autoclass:: abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.alias
@@ -54,7 +54,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.__call__

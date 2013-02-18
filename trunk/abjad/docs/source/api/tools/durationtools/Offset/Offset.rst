@@ -6,7 +6,7 @@ durationtools.Offset
 .. autoclass:: abjad.tools.durationtools.Offset.Offset.Offset
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.durationtools.Offset.Offset.Offset.denominator
@@ -81,7 +81,7 @@ Methods
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.with_denominator
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__abs__

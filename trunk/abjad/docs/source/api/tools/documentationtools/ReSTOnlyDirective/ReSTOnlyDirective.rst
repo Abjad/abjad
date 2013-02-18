@@ -6,7 +6,7 @@ documentationtools.ReSTOnlyDirective
 .. autoclass:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.children
@@ -54,7 +54,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.argument
@@ -84,7 +84,7 @@ Methods
 .. automethod:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.__contains__

@@ -6,7 +6,7 @@ developerscripttools.RunDoctestsScript
 .. autoclass:: abjad.tools.developerscripttools.RunDoctestsScript.RunDoctestsScript.RunDoctestsScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.RunDoctestsScript.RunDoctestsScript.RunDoctestsScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.RunDoctestsScript.RunDoctestsScript.RunDoctestsScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.RunDoctestsScript.RunDoctestsScript.RunDoctestsScript.__call__

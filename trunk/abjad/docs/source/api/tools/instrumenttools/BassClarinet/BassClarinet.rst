@@ -6,7 +6,7 @@ instrumenttools.BassClarinet
 .. autoclass:: abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.__call__

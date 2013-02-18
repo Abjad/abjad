@@ -6,7 +6,7 @@ componenttools.Parentage
 .. autoclass:: abjad.tools.componenttools.Parentage.Parentage.Parentage
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.component
@@ -51,7 +51,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.tuplet_depth
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.__add__

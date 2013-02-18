@@ -6,7 +6,7 @@ rhythmmakertools.BurnishedRhythmMaker
 .. autoclass:: abjad.tools.rhythmmakertools.BurnishedRhythmMaker.BurnishedRhythmMaker.BurnishedRhythmMaker
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.rhythmmakertools.BurnishedRhythmMaker.BurnishedRhythmMaker.BurnishedRhythmMaker.storage_format
@@ -21,7 +21,7 @@ Methods
 .. automethod:: abjad.tools.rhythmmakertools.BurnishedRhythmMaker.BurnishedRhythmMaker.BurnishedRhythmMaker.reverse
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.rhythmmakertools.BurnishedRhythmMaker.BurnishedRhythmMaker.BurnishedRhythmMaker.__call__

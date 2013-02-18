@@ -6,7 +6,7 @@ beamtools.ComplexBeamSpanner
 .. autoclass:: abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner.components
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner.written_duration
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner.direction
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner.__call__

@@ -6,7 +6,7 @@ tonalitytools.Scale
 .. autoclass:: abjad.tools.tonalitytools.Scale.Scale.Scale
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.tonalitytools.Scale.Scale.Scale.diatonic_interval_class_segment
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.transpose
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__add__

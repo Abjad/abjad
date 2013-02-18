@@ -6,13 +6,13 @@ lilypondproxytools.LilyPondGrobProxy
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondGrobProxy.LilyPondGrobProxy.LilyPondGrobProxy
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondproxytools.LilyPondGrobProxy.LilyPondGrobProxy.LilyPondGrobProxy.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondproxytools.LilyPondGrobProxy.LilyPondGrobProxy.LilyPondGrobProxy.__eq__

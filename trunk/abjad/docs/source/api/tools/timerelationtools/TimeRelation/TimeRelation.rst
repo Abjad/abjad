@@ -6,7 +6,7 @@ timerelationtools.TimeRelation
 .. autoclass:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.is_fully_loaded
@@ -27,7 +27,7 @@ Methods
 .. automethod:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.new
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.__call__

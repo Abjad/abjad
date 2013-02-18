@@ -6,7 +6,7 @@ pitchtools.HarmonicDiatonicIntervalClass
 .. autoclass:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.number
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.invert
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.__abs__

@@ -6,7 +6,7 @@ scoretools.InstrumentationSpecifier
 .. autoclass:: abjad.tools.scoretools.InstrumentationSpecifier.InstrumentationSpecifier.InstrumentationSpecifier
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.scoretools.InstrumentationSpecifier.InstrumentationSpecifier.InstrumentationSpecifier.instrument_count
@@ -24,13 +24,13 @@ Read-only Properties
 .. autoattribute:: abjad.tools.scoretools.InstrumentationSpecifier.InstrumentationSpecifier.InstrumentationSpecifier.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.scoretools.InstrumentationSpecifier.InstrumentationSpecifier.InstrumentationSpecifier.performers
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.scoretools.InstrumentationSpecifier.InstrumentationSpecifier.InstrumentationSpecifier.__eq__

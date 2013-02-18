@@ -6,7 +6,7 @@ tonalitytools.InversionIndicator
 .. autoclass:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.name
@@ -27,7 +27,7 @@ Methods
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.extent_to_figured_bass_string
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__eq__

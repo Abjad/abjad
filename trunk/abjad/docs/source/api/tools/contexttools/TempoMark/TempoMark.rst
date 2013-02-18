@@ -6,7 +6,7 @@ contexttools.TempoMark
 .. autoclass:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.effective_context
@@ -30,7 +30,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.target_context
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.duration
@@ -54,7 +54,7 @@ Methods
 .. automethod:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.is_tempo_mark_token
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__add__

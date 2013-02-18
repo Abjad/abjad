@@ -6,7 +6,7 @@ exceptiontools.MissingComponentError
 .. autoclass:: abjad.tools.exceptiontools.MissingComponentError.MissingComponentError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.MissingComponentError.MissingComponentError.__delattr__

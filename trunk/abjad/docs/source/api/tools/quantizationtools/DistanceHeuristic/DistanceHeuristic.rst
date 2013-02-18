@@ -6,13 +6,13 @@ quantizationtools.DistanceHeuristic
 .. autoclass:: abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__call__

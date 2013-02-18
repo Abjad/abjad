@@ -6,7 +6,7 @@ quantizationtools.QSchemaItem
 .. autoclass:: abjad.tools.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.storage_format
@@ -21,7 +21,7 @@ Methods
 .. automethod:: abjad.tools.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.index
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.__add__

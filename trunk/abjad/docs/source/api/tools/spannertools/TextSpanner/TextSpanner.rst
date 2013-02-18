@@ -6,7 +6,7 @@ spannertools.TextSpanner
 .. autoclass:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.components
@@ -78,7 +78,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.__call__

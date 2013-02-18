@@ -6,13 +6,13 @@ mathtools.Infinity
 .. autoclass:: abjad.tools.mathtools.Infinity.Infinity.Infinity
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.mathtools.Infinity.Infinity.Infinity.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.mathtools.Infinity.Infinity.Infinity.__eq__

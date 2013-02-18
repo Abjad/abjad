@@ -6,13 +6,13 @@ lilypondparsertools.LilyPondEvent
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondEvent.LilyPondEvent.LilyPondEvent
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondEvent.LilyPondEvent.LilyPondEvent.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondEvent.LilyPondEvent.LilyPondEvent.__eq__

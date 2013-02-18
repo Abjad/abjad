@@ -6,7 +6,7 @@ pitchtools.HarmonicCounterpointIntervalClass
 .. autoclass:: abjad.tools.pitchtools.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.number
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.__abs__

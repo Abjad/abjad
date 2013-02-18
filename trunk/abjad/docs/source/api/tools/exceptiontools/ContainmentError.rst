@@ -6,7 +6,7 @@ exceptiontools.ContainmentError
 .. autoclass:: abjad.tools.exceptiontools.ContainmentError.ContainmentError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.ContainmentError.ContainmentError.__delattr__

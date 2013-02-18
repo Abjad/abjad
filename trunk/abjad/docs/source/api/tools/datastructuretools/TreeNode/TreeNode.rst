@@ -6,7 +6,7 @@ datastructuretools.TreeNode
 .. autoclass:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.depth
@@ -33,13 +33,13 @@ Read-only Properties
 .. autoattribute:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.name
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__eq__

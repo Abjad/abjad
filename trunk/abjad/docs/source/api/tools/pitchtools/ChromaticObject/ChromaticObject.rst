@@ -6,13 +6,13 @@ pitchtools.ChromaticObject
 .. autoclass:: abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject.__eq__

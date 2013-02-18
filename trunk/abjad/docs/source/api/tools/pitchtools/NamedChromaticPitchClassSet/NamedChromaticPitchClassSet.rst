@@ -6,7 +6,7 @@ pitchtools.NamedChromaticPitchClassSet
 .. autoclass:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.inversion_equivalent_diatonic_interval_class_vector
@@ -54,7 +54,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.union
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__and__

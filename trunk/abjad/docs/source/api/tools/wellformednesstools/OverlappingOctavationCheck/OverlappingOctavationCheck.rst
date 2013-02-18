@@ -6,7 +6,7 @@ wellformednesstools.OverlappingOctavationCheck
 .. autoclass:: abjad.tools.wellformednesstools.OverlappingOctavationCheck.OverlappingOctavationCheck.OverlappingOctavationCheck
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.OverlappingOctavationCheck.OverlappingOctavationCheck.OverlappingOctavationCheck.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.OverlappingOctavationCheck.OverlappingOctavationCheck.OverlappingOctavationCheck.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.OverlappingOctavationCheck.OverlappingOctavationCheck.OverlappingOctavationCheck.__eq__

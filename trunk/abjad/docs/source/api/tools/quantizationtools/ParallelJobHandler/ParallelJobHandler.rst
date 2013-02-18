@@ -6,13 +6,13 @@ quantizationtools.ParallelJobHandler
 .. autoclass:: abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler.__call__

@@ -6,7 +6,7 @@ developerscripttools.CountToolsScript
 .. autoclass:: abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.__call__

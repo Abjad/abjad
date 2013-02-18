@@ -6,13 +6,13 @@ contexttools.TempoMarkInventory
 .. autoclass:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.name
@@ -48,7 +48,7 @@ Methods
 .. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__add__

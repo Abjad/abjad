@@ -6,7 +6,7 @@ exceptiontools.GraceContainerError
 .. autoclass:: abjad.tools.exceptiontools.GraceContainerError.GraceContainerError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.GraceContainerError.GraceContainerError.__delattr__

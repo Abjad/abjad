@@ -6,7 +6,7 @@ datastructuretools.ImmutableDictionary
 .. autoclass:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.storage_format
@@ -66,7 +66,7 @@ Methods
 .. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.viewvalues
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__cmp__

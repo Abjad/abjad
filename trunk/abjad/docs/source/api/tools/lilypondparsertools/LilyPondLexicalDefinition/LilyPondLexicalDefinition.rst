@@ -6,7 +6,7 @@ lilypondparsertools.LilyPondLexicalDefinition
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition.LilyPondLexicalDefinition
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition.LilyPondLexicalDefinition.storage_format
@@ -171,7 +171,7 @@ Methods
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition.LilyPondLexicalDefinition.t_version_error
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition.LilyPondLexicalDefinition.__eq__

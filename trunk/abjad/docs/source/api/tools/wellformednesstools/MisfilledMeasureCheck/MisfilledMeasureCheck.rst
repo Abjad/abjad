@@ -6,7 +6,7 @@ wellformednesstools.MisfilledMeasureCheck
 .. autoclass:: abjad.tools.wellformednesstools.MisfilledMeasureCheck.MisfilledMeasureCheck.MisfilledMeasureCheck
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.MisfilledMeasureCheck.MisfilledMeasureCheck.MisfilledMeasureCheck.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.MisfilledMeasureCheck.MisfilledMeasureCheck.MisfilledMeasureCheck.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.MisfilledMeasureCheck.MisfilledMeasureCheck.MisfilledMeasureCheck.__eq__

@@ -6,7 +6,7 @@ contexttools.DynamicMark
 .. autoclass:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.effective_context
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.target_context
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.dynamic_name
@@ -39,7 +39,7 @@ Methods
 .. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.detach
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.__call__

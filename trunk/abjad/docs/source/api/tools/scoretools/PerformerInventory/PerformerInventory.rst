@@ -6,13 +6,13 @@ scoretools.PerformerInventory
 .. autoclass:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.name
@@ -48,7 +48,7 @@ Methods
 .. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.__add__

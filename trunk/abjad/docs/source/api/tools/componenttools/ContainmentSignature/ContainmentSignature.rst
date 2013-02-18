@@ -6,13 +6,13 @@ componenttools.ContainmentSignature
 .. autoclass:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__eq__

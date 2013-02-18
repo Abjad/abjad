@@ -6,7 +6,7 @@ durationtools.Multiplier
 .. autoclass:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.denominator
@@ -84,7 +84,7 @@ Methods
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.with_denominator
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.__abs__

@@ -6,7 +6,7 @@ instrumenttools.Tuba
 .. autoclass:: abjad.tools.instrumenttools.Tuba.Tuba.Tuba
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Tuba.Tuba.Tuba.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.Tuba.Tuba.Tuba.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Tuba.Tuba.Tuba.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.Tuba.Tuba.Tuba.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.Tuba.Tuba.Tuba.__call__

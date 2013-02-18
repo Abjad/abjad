@@ -6,7 +6,7 @@ exceptiontools.AssignabilityError
 .. autoclass:: abjad.tools.exceptiontools.AssignabilityError.AssignabilityError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.AssignabilityError.AssignabilityError.__delattr__

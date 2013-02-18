@@ -6,7 +6,7 @@ wellformednesstools.MissingParentCheck
 .. autoclass:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.__eq__

@@ -6,7 +6,7 @@ quantizationtools.MeasurewiseQSchema
 .. autoclass:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.item_klass
@@ -36,7 +36,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.use_full_measure
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__call__

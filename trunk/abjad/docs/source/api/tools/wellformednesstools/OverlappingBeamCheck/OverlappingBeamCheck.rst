@@ -6,7 +6,7 @@ wellformednesstools.OverlappingBeamCheck
 .. autoclass:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck.violators
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck.__eq__

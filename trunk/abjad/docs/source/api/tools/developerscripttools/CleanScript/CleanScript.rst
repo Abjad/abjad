@@ -6,7 +6,7 @@ developerscripttools.CleanScript
 .. autoclass:: abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.__call__

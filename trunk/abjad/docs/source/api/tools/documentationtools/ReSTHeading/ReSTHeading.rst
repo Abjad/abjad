@@ -6,7 +6,7 @@ documentationtools.ReSTHeading
 .. autoclass:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading.depth
@@ -39,7 +39,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading.level
@@ -51,7 +51,7 @@ Read/write Properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading.text
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading.__eq__

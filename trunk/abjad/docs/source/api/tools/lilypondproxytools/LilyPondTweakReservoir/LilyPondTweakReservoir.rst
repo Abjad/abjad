@@ -6,13 +6,13 @@ lilypondproxytools.LilyPondTweakReservoir
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir.__eq__

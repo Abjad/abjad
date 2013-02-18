@@ -6,7 +6,7 @@ componenttools.Component
 .. autoclass:: abjad.tools.componenttools.Component.Component.Component
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.descendants
@@ -63,7 +63,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.timespan_in_seconds
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.__eq__

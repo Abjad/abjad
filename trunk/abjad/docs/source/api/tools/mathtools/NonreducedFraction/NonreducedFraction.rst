@@ -6,7 +6,7 @@ mathtools.NonreducedFraction
 .. autoclass:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.denominator
@@ -60,7 +60,7 @@ Methods
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.with_multiple_of_denominator
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__abs__

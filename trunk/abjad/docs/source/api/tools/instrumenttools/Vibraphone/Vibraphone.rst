@@ -6,7 +6,7 @@ instrumenttools.Vibraphone
 .. autoclass:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone.__call__

@@ -6,7 +6,7 @@ developerscripttools.RenameModulesScript
 .. autoclass:: abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__call__

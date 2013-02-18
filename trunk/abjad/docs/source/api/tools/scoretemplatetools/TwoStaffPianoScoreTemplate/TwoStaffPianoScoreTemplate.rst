@@ -6,13 +6,13 @@ scoretemplatetools.TwoStaffPianoScoreTemplate
 .. autoclass:: abjad.tools.scoretemplatetools.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.scoretemplatetools.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.scoretemplatetools.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.__call__

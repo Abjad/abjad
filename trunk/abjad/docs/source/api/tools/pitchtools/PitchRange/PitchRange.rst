@@ -6,7 +6,7 @@ pitchtools.PitchRange
 .. autoclass:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.one_line_named_chromatic_pitch_repr
@@ -36,7 +36,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__contains__

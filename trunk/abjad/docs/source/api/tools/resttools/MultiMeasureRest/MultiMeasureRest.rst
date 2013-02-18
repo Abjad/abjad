@@ -6,7 +6,7 @@ resttools.MultiMeasureRest
 .. autoclass:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.descendants
@@ -72,7 +72,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.duration_multiplier
@@ -87,7 +87,7 @@ Read/write Properties
 .. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.written_pitch_indication_is_nonsemantic
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__and__

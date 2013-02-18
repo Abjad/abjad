@@ -6,7 +6,7 @@ exceptiontools.PartitionError
 .. autoclass:: abjad.tools.exceptiontools.PartitionError.PartitionError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.PartitionError.PartitionError.__delattr__

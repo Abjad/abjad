@@ -6,7 +6,7 @@ exceptiontools.ExtraPitchError
 .. autoclass:: abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError.__delattr__

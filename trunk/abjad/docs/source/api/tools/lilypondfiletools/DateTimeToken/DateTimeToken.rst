@@ -6,7 +6,7 @@ lilypondfiletools.DateTimeToken
 .. autoclass:: abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken.lilypond_format
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken.__eq__

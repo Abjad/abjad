@@ -6,13 +6,13 @@ pitchtools.OctaveTranspositionMappingComponent
 .. autoclass:: abjad.tools.pitchtools.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.pitchtools.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent.source_pitch_range
@@ -21,7 +21,7 @@ Read/write Properties
 .. autoattribute:: abjad.tools.pitchtools.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent.target_octave_start_pitch
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent.__eq__

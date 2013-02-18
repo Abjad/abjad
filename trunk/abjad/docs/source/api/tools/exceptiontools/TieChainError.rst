@@ -6,7 +6,7 @@ exceptiontools.TieChainError
 .. autoclass:: abjad.tools.exceptiontools.TieChainError.TieChainError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.TieChainError.TieChainError.__delattr__

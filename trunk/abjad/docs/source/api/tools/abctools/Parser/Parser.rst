@@ -6,7 +6,7 @@ abctools.Parser
 .. autoclass:: abjad.tools.abctools.Parser.Parser.Parser
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.abctools.Parser.Parser.Parser.debug
@@ -45,7 +45,7 @@ Methods
 .. automethod:: abjad.tools.abctools.Parser.Parser.Parser.tokenize
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.abctools.Parser.Parser.Parser.__call__

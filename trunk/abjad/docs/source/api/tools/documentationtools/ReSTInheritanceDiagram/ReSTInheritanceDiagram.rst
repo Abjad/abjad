@@ -6,7 +6,7 @@ documentationtools.ReSTInheritanceDiagram
 .. autoclass:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram.children
@@ -54,7 +54,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram.argument
@@ -84,7 +84,7 @@ Methods
 .. automethod:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram.__contains__

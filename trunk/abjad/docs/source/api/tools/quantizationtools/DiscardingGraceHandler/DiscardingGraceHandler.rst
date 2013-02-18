@@ -6,13 +6,13 @@ quantizationtools.DiscardingGraceHandler
 .. autoclass:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__call__

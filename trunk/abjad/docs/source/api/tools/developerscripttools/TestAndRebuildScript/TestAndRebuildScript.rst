@@ -6,7 +6,7 @@ developerscripttools.TestAndRebuildScript
 .. autoclass:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.alias
@@ -63,7 +63,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript.__call__

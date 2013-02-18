@@ -6,7 +6,7 @@ documentationtools.InheritanceGraph
 .. autoclass:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.addresses
@@ -57,7 +57,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.use_groups
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__eq__

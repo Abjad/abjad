@@ -6,7 +6,7 @@ tuplettools.FixedDurationTuplet
 .. autoclass:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.contents_duration
@@ -99,7 +99,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.force_fraction
@@ -144,7 +144,7 @@ Methods
 .. automethod:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.trim
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.__add__

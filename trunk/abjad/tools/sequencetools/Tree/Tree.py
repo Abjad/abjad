@@ -329,7 +329,9 @@ class Tree(AbjadObject):
     def position(self):
         '''.. versionadded:: 2.4
 
-        Position of node relative to root::
+        Position of node relative to root:
+
+        ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)

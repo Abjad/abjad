@@ -6,7 +6,7 @@ tonalitytools.QualityIndicator
 .. autoclass:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator.is_uppercase
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator.__eq__

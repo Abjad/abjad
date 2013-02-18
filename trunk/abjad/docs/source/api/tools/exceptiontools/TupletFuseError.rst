@@ -6,7 +6,7 @@ exceptiontools.TupletFuseError
 .. autoclass:: abjad.tools.exceptiontools.TupletFuseError.TupletFuseError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.TupletFuseError.TupletFuseError.__delattr__

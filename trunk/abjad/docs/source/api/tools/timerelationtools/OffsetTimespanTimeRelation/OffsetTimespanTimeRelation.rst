@@ -6,7 +6,7 @@ timerelationtools.OffsetTimespanTimeRelation
 .. autoclass:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.is_fully_loaded
@@ -33,7 +33,7 @@ Methods
 .. automethod:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.new
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.__call__

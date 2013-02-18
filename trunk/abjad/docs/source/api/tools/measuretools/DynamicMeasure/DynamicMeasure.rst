@@ -6,7 +6,7 @@ measuretools.DynamicMeasure
 .. autoclass:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.contents_duration
@@ -102,7 +102,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.always_format_time_signature
@@ -141,7 +141,7 @@ Methods
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__add__

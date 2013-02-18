@@ -6,7 +6,7 @@ documentationtools.ReSTAutodocDirective
 .. autoclass:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.children
@@ -51,7 +51,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.argument
@@ -84,7 +84,7 @@ Methods
 .. automethod:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__contains__

@@ -6,7 +6,7 @@ abjadbooktools.AbjadBookProcessor
 .. autoclass:: abjad.tools.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.directory
@@ -36,7 +36,7 @@ Methods
 .. automethod:: abjad.tools.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.update_status
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.__call__

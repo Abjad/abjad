@@ -6,7 +6,7 @@ lilypondparsertools.SchemeParser
 .. autoclass:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.debug
@@ -180,7 +180,7 @@ Methods
 .. automethod:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.tokenize
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.__call__

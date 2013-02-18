@@ -6,7 +6,7 @@ instrumenttools.Contrabass
 .. autoclass:: abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.__call__

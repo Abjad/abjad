@@ -6,7 +6,7 @@ timeintervaltools.TimeIntervalTreeDictionary
 .. autoclass:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.bounds
@@ -177,7 +177,7 @@ Methods
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.viewvalues
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__cmp__

@@ -6,7 +6,7 @@ instrumenttools.Oboe
 .. autoclass:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe.default_instrument_name
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe.traditional_pitch_range
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe.all_clefs
@@ -87,7 +87,7 @@ Methods
 .. automethod:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe.get_performer_names
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe.__call__

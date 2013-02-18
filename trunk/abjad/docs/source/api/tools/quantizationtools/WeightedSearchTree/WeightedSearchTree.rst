@@ -6,7 +6,7 @@ quantizationtools.WeightedSearchTree
 .. autoclass:: abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.all_compositions
@@ -21,7 +21,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.__call__

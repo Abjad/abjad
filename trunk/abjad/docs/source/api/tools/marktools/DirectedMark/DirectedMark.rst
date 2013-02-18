@@ -6,7 +6,7 @@ marktools.DirectedMark
 .. autoclass:: abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark.start_component
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark.direction
@@ -30,7 +30,7 @@ Methods
 .. automethod:: abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark.detach
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark.__call__

@@ -6,7 +6,7 @@ documentationtools.ModuleCrawler
 .. autoclass:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.code_root
@@ -24,7 +24,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.visit_private_modules
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__eq__

@@ -6,7 +6,7 @@ exceptiontools.ContextContainmentError
 .. autoclass:: abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError.__delattr__

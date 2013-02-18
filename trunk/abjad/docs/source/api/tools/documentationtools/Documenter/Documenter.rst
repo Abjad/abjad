@@ -6,7 +6,7 @@ documentationtools.Documenter
 .. autoclass:: abjad.tools.documentationtools.Documenter.Documenter.Documenter
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.module_name
@@ -21,7 +21,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.__call__

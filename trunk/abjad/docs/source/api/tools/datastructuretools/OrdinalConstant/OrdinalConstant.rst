@@ -6,13 +6,13 @@ datastructuretools.OrdinalConstant
 .. autoclass:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.__eq__

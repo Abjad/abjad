@@ -6,7 +6,7 @@ timeintervaltools.TimeIntervalTree
 .. autoclass:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.bounds
@@ -123,7 +123,7 @@ Methods
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.split_at_rationals
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__contains__

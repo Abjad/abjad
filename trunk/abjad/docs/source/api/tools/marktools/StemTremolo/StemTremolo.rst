@@ -6,7 +6,7 @@ marktools.StemTremolo
 .. autoclass:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.lilypond_format
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.tremolo_flags
@@ -33,7 +33,7 @@ Methods
 .. automethod:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.detach
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.__call__

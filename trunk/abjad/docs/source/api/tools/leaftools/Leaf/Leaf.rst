@@ -6,7 +6,7 @@ leaftools.Leaf
 .. autoclass:: abjad.tools.leaftools.Leaf.Leaf.Leaf
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.descendants
@@ -72,7 +72,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.duration_multiplier
@@ -87,7 +87,7 @@ Read/write Properties
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.written_pitch_indication_is_nonsemantic
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__and__

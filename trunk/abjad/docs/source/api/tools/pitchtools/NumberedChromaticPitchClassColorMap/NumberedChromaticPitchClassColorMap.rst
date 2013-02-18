@@ -6,7 +6,7 @@ pitchtools.NumberedChromaticPitchClassColorMap
 .. autoclass:: abjad.tools.pitchtools.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.colors
@@ -33,7 +33,7 @@ Methods
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.get
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.__eq__

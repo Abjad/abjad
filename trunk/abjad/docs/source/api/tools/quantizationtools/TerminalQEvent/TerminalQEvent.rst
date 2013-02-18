@@ -6,7 +6,7 @@ quantizationtools.TerminalQEvent
 .. autoclass:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.index
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__eq__

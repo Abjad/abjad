@@ -6,7 +6,7 @@ pitcharraytools.PitchArrayRow
 .. autoclass:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.cell_tokens
@@ -48,7 +48,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.width
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.pitch_range
@@ -93,7 +93,7 @@ Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.withdraw
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__add__

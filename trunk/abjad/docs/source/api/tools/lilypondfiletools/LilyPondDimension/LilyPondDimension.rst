@@ -6,7 +6,7 @@ lilypondfiletools.LilyPondDimension
 .. autoclass:: abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension.lilypond_format
@@ -21,7 +21,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension.value
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension.__eq__

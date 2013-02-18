@@ -6,7 +6,7 @@ componenttools.Lineage
 .. autoclass:: abjad.tools.componenttools.Lineage.Lineage.Lineage
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.component
@@ -27,7 +27,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.timespan
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.__add__

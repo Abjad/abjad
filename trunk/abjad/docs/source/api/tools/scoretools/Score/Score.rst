@@ -6,7 +6,7 @@ scoretools.Score
 .. autoclass:: abjad.tools.scoretools.Score.Score.Score
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.contents_duration
@@ -84,7 +84,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.context_name
@@ -120,7 +120,7 @@ Methods
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.__add__

@@ -6,7 +6,7 @@ developerscripttools.PyTestScript
 .. autoclass:: abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.alias
@@ -51,7 +51,7 @@ Methods
 .. automethod:: abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.setup_argument_parser
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.__call__

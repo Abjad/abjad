@@ -15,7 +15,7 @@ Methods
 .. automethod:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.index
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__add__

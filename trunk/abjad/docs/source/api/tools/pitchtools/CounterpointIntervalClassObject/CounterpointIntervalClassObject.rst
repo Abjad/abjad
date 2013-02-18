@@ -6,7 +6,7 @@ pitchtools.CounterpointIntervalClassObject
 .. autoclass:: abjad.tools.pitchtools.CounterpointIntervalClassObject.CounterpointIntervalClassObject.CounterpointIntervalClassObject
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.CounterpointIntervalClassObject.CounterpointIntervalClassObject.CounterpointIntervalClassObject.number
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.CounterpointIntervalClassObject.CounterpointIntervalClassObject.CounterpointIntervalClassObject.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.CounterpointIntervalClassObject.CounterpointIntervalClassObject.CounterpointIntervalClassObject.__abs__

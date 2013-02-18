@@ -6,7 +6,7 @@ exceptiontools.ExtraNamedComponentError
 .. autoclass:: abjad.tools.exceptiontools.ExtraNamedComponentError.ExtraNamedComponentError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.ExtraNamedComponentError.ExtraNamedComponentError.__delattr__

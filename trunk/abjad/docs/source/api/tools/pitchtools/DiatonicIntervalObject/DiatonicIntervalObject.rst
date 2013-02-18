@@ -6,7 +6,7 @@ pitchtools.DiatonicIntervalObject
 .. autoclass:: abjad.tools.pitchtools.DiatonicIntervalObject.DiatonicIntervalObject.DiatonicIntervalObject
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.DiatonicIntervalObject.DiatonicIntervalObject.DiatonicIntervalObject.cents
@@ -36,7 +36,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.DiatonicIntervalObject.DiatonicIntervalObject.DiatonicIntervalObject.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.DiatonicIntervalObject.DiatonicIntervalObject.DiatonicIntervalObject.__abs__

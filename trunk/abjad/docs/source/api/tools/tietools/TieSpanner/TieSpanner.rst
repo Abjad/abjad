@@ -6,7 +6,7 @@ tietools.TieSpanner
 .. autoclass:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.components
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.written_duration
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.direction
@@ -84,7 +84,7 @@ Methods
 .. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.__call__

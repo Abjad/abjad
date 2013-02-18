@@ -6,7 +6,7 @@ rhythmtreetools.RhythmTreeLeaf
 .. autoclass:: abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf.depth
@@ -63,7 +63,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf.is_pitched
@@ -75,7 +75,7 @@ Read/write Properties
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf.preprolated_duration
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf.__call__

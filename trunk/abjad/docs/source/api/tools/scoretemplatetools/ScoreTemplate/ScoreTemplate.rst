@@ -6,13 +6,13 @@ scoretemplatetools.ScoreTemplate
 .. autoclass:: abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate.__call__

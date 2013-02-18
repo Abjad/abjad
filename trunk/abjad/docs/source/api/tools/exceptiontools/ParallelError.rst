@@ -6,7 +6,7 @@ exceptiontools.ParallelError
 .. autoclass:: abjad.tools.exceptiontools.ParallelError.ParallelError
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.exceptiontools.ParallelError.ParallelError.__delattr__

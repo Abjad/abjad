@@ -6,7 +6,7 @@ contexttools.Context
 .. autoclass:: abjad.tools.contexttools.Context.Context.Context
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.contents_duration
@@ -84,7 +84,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.context_name
@@ -120,7 +120,7 @@ Methods
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.__add__

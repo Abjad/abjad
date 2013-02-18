@@ -6,7 +6,7 @@ documentationtools.GraphvizGraph
 .. autoclass:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph.attributes
@@ -60,7 +60,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph.unflattened_graphviz_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph.is_digraph
@@ -90,7 +90,7 @@ Methods
 .. automethod:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph.__contains__

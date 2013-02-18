@@ -6,7 +6,7 @@ pitchtools.HarmonicChromaticIntervalClass
 .. autoclass:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.number
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.__abs__

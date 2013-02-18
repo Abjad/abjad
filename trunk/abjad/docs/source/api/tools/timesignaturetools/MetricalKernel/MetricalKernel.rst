@@ -6,7 +6,7 @@ timesignaturetools.MetricalKernel
 .. autoclass:: abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.kernel
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.__call__

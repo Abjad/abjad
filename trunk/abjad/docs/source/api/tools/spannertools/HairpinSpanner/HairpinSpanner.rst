@@ -6,7 +6,7 @@ spannertools.HairpinSpanner
 .. autoclass:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.components
@@ -45,7 +45,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.written_duration
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.direction
@@ -96,7 +96,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.pop_left
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__call__

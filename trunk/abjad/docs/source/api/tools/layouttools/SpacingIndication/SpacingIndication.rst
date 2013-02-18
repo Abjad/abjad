@@ -6,7 +6,7 @@ layouttools.SpacingIndication
 .. autoclass:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.normalized_spacing_duration
@@ -21,7 +21,7 @@ Read-only Properties
 .. autoattribute:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.tempo_indication
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__eq__
