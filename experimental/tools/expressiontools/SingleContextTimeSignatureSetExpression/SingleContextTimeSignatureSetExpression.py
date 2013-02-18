@@ -32,11 +32,11 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
         from experimental.tools import expressiontools
         if hasattr(self.source_expression, 'evaluate_early'):
             expression = self.source_expression.evaluate_early()
-            assert isinstance(expression, expressiontools.PayloadExpression), repr(expression)
+            assert isinstance(expression, expressiontools.IterablePayloadExpression), repr(expression)
             time_signatures = expression.payload
         else:
             expression = self.source_expression.evaluate()
-            assert isinstance(expression, expressiontools.PayloadExpression)
+            assert isinstance(expression, expressiontools.IterablePayloadExpression)
             time_signatures = expression.payload[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
         if time_signatures:

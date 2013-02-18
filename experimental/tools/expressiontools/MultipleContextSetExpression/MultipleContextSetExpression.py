@@ -22,7 +22,7 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
         >>> z(multiple_context_set_expression)
         expressiontools.MultipleContextSetExpression(
             attribute='time_signatures',
-            source_expression=expressiontools.PayloadExpression(
+            source_expression=expressiontools.IterablePayloadExpression(
                 ((4, 8), (3, 8))
                 ),
             target_timespan='red',

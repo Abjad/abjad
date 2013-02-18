@@ -76,5 +76,5 @@ class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixi
         else:
             offset = anchor_timespan.stop_offset
         offset = self._apply_callbacks(offset)
-        expression = expressiontools.PayloadExpression([offset])
+        expression = expressiontools.IterablePayloadExpression([offset])
         return expression

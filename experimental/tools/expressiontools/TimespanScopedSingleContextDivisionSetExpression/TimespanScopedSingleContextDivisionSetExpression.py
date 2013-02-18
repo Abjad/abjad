@@ -67,11 +67,11 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
                 self.source_expression, start_offset, total_duration, voice_name)
         elif isinstance(self.source_expression, expressiontools.DivisionSetExpressionLookupExpression):
             expression = self.source_expression.evaluate()
-            assert isinstance(expression, expressiontools.PayloadExpression)
+            assert isinstance(expression, expressiontools.IterablePayloadExpression)
             divisions = expression.elements
             region_expression = expressiontools.LiteralDivisionRegionExpression(
                 divisions, start_offset, total_duration, voice_name)
-        elif isinstance(self.source_expression, expressiontools.PayloadExpression):
+        elif isinstance(self.source_expression, expressiontools.IterablePayloadExpression):
             divisions = self.source_expression.elements
             region_expression = expressiontools.LiteralDivisionRegionExpression(
                 divisions, start_offset, total_duration, voice_name)

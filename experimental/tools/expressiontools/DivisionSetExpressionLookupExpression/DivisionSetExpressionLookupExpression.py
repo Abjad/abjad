@@ -65,6 +65,6 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
             candidate_set_expressions, self.voice_name)
         assert source_expression_set_expression is not None
         expression = source_expression_set_expression.source_expression
-        assert isinstance(expression, expressiontools.PayloadExpression), repr(expression)
+        assert isinstance(expression, expressiontools.IterablePayloadExpression), repr(expression)
         expression = self._apply_callbacks(expression)
         return expression

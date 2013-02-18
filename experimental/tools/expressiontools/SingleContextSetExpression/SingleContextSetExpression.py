@@ -40,7 +40,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
         >>> z(fresh_single_context_set_expression)
         expressiontools.SingleContextTimeSignatureSetExpression(
-            source_expression=expressiontools.PayloadExpression(
+            source_expression=expressiontools.IterablePayloadExpression(
                 ((4, 8), (3, 8))
                 ),
             target_timespan='red',

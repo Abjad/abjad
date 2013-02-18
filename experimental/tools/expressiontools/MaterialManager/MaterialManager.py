@@ -22,7 +22,7 @@ class MaterialManager(AbjadObject):
         '''
         from experimental.tools import expressiontools
         if isinstance(material, (tuple, list)):
-            return expressiontools.PayloadExpression(material)
+            return expressiontools.IterablePayloadExpression(material)
         elif isinstance(material, (str)):
             component = iotools.p(material)
             return expressiontools.StartPositionedRhythmPayloadExpression([component], start_offset=0)

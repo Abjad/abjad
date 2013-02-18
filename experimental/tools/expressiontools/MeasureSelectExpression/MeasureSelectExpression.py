@@ -101,7 +101,7 @@ class MeasureSelectExpression(SelectExpression):
         from experimental.tools import expressiontools
         time_signatures = self.root_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
-        expression = expressiontools.PayloadExpression(time_signatures)
+        expression = expressiontools.IterablePayloadExpression(time_signatures)
         expression = self._apply_callbacks(expression)
-        assert isinstance(expression, expressiontools.PayloadExpression), repr(expression)
+        assert isinstance(expression, expressiontools.IterablePayloadExpression), repr(expression)
         return expression

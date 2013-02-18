@@ -6,22 +6,22 @@ from abjad.tools import sequencetools
 from experimental.tools.expressiontools.Expression import Expression
 
 
-class PayloadExpression(Expression):
+class IterablePayloadExpression(Expression):
     r'''Payload expression.
 
     ::
 
-        >>> payload_expression = expressiontools.PayloadExpression([(4, 16), (2, 16)])
+        >>> payload_expression = expressiontools.IterablePayloadExpression([(4, 16), (2, 16)])
 
     ::
 
         >>> payload_expression
-        PayloadExpression(((4, 16), (2, 16)))
+        IterablePayloadExpression(((4, 16), (2, 16)))
 
     ::
 
         >>> z(payload_expression)
-        expressiontools.PayloadExpression(
+        expressiontools.IterablePayloadExpression(
             ((4, 16), (2, 16))
             )
 
@@ -55,7 +55,7 @@ class PayloadExpression(Expression):
 
             >>> z(result)
             timespantools.TimespanInventory([
-                expressiontools.PayloadExpression(
+                expressiontools.IterablePayloadExpression(
                     (Division('[3, 16]', start_offset=Offset(1, 16)), 
                     Division('[1, 16]', start_offset=Offset(1, 4)))
                     )
@@ -88,7 +88,7 @@ class PayloadExpression(Expression):
         ::
 
             >>> z(result)
-            expressiontools.PayloadExpression(
+            expressiontools.IterablePayloadExpression(
                 ((4, 16),)
                 )
 
@@ -129,7 +129,7 @@ class PayloadExpression(Expression):
         '''Evaluate payload expression.
 
             >>> payload_expression.evaluate()
-            PayloadExpression(((4, 16), (2, 16)))
+            IterablePayloadExpression(((4, 16), (2, 16)))
 
         Return payload expression.
         '''
@@ -157,7 +157,7 @@ class PayloadExpression(Expression):
         ::
 
             >>> z(payload_expression)
-            expressiontools.PayloadExpression(
+            expressiontools.IterablePayloadExpression(
                 ((4, 16), (2, 16))
                 )
 
@@ -178,10 +178,10 @@ class PayloadExpression(Expression):
 
             >>> for element in result:
             ...     z(element)
-            expressiontools.PayloadExpression(
+            expressiontools.IterablePayloadExpression(
                 ((4, 16),)
                 )
-            expressiontools.PayloadExpression(
+            expressiontools.IterablePayloadExpression(
                 ((2, 16),)
                 )
 
@@ -205,10 +205,10 @@ class PayloadExpression(Expression):
 
             >>> for element in result:
             ...     z(element)
-            expressiontools.PayloadExpression(
+            expressiontools.IterablePayloadExpression(
                 ((4, 16),)
                 )
-            expressiontools.PayloadExpression(
+            expressiontools.IterablePayloadExpression(
                 ((2, 16),)
                 )
 
@@ -236,7 +236,7 @@ class PayloadExpression(Expression):
         ::
 
             >>> z(result)
-            expressiontools.PayloadExpression(
+            expressiontools.IterablePayloadExpression(
                 ((2, 16), (4, 16))
                 )
 
@@ -257,7 +257,7 @@ class PayloadExpression(Expression):
         ::
 
             >>> z(result)
-            expressiontools.PayloadExpression(
+            expressiontools.IterablePayloadExpression(
                 (NonreducedFraction(4, 16), 
                 NonreducedFraction(2, 16), 
                 NonreducedFraction(4, 16), 
@@ -285,7 +285,7 @@ class PayloadExpression(Expression):
         ::
 
             >>> z(result)
-            expressiontools.PayloadExpression(
+            expressiontools.IterablePayloadExpression(
                 ((4, 16), (2, 16), (4, 16), (2, 16))
                 )
 
@@ -305,7 +305,7 @@ class PayloadExpression(Expression):
         ::
 
             >>> z(result)
-            expressiontools.PayloadExpression(
+            expressiontools.IterablePayloadExpression(
                 ((2, 16), (4, 16))
                 )
 

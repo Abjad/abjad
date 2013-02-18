@@ -26,11 +26,14 @@ class SetMethodMixin(AbjadObject):
         elif self._all_are_expressions(expr):
             return expressiontools.ExpressionInventory(expr)
         elif isinstance(expr, (tuple, list)):
-            return expressiontools.PayloadExpression(expr)
+            return expressiontools.IterablePayloadExpression(expr)
         elif isinstance(expr, (str)):
             component = iotools.p(expr)
             return expressiontools.StartPositionedRhythmPayloadExpression([component], start_offset=0)
         elif isinstance(expr, rhythmmakertools.RhythmMaker):
             return expressiontools.RhythmMakerPayloadExpression(expr)
+        # TODO: complete this branch
+        #elif isinstance(expr, expressiontools.StatalServerCursor):
+        #    return expressiontools.???(expr)
         else:
             raise TypeError('do not know how to change {!r} to expression.'.format(expr))

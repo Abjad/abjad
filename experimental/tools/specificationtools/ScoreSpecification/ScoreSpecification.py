@@ -159,7 +159,7 @@ class ScoreSpecification(Specification):
             timespantools.TimespanInventory([
                 expressiontools.MultipleContextSetExpression(
                     attribute='time_signatures',
-                    source_expression=expressiontools.PayloadExpression(
+                    source_expression=expressiontools.IterablePayloadExpression(
                         ((2, 8), (3, 8), (4, 8))
                         ),
                     target_timespan='red',
@@ -167,7 +167,7 @@ class ScoreSpecification(Specification):
                     ),
                 expressiontools.MultipleContextSetExpression(
                     attribute='time_signatures',
-                    source_expression=expressiontools.PayloadExpression(
+                    source_expression=expressiontools.IterablePayloadExpression(
                         ((4, 16), (4, 16))
                         ),
                     target_timespan='orange',
@@ -175,7 +175,7 @@ class ScoreSpecification(Specification):
                     ),
                 expressiontools.MultipleContextSetExpression(
                     attribute='time_signatures',
-                    source_expression=expressiontools.PayloadExpression(
+                    source_expression=expressiontools.IterablePayloadExpression(
                         ((5, 16), (5, 16))
                         ),
                     target_timespan='yellow',
@@ -451,7 +451,7 @@ class ScoreSpecification(Specification):
             >>> z(score_specification.single_context_time_signature_set_expressions)
             timespantools.TimespanInventory([
                 expressiontools.SingleContextTimeSignatureSetExpression(
-                    source_expression=expressiontools.PayloadExpression(
+                    source_expression=expressiontools.IterablePayloadExpression(
                         ((2, 8), (3, 8), (4, 8))
                         ),
                     target_timespan='red',
@@ -459,7 +459,7 @@ class ScoreSpecification(Specification):
                     persist=True
                     ),
                 expressiontools.SingleContextTimeSignatureSetExpression(
-                    source_expression=expressiontools.PayloadExpression(
+                    source_expression=expressiontools.IterablePayloadExpression(
                         ((4, 16), (4, 16))
                         ),
                     target_timespan='orange',
@@ -467,7 +467,7 @@ class ScoreSpecification(Specification):
                     persist=True
                     ),
                 expressiontools.SingleContextTimeSignatureSetExpression(
-                    source_expression=expressiontools.PayloadExpression(
+                    source_expression=expressiontools.IterablePayloadExpression(
                         ((5, 16), (5, 16))
                         ),
                     target_timespan='yellow',
@@ -639,7 +639,7 @@ class ScoreSpecification(Specification):
     def make_default_timespan_scoped_single_context_division_set_expression(self, target_timespan, voice_name):
         divisions = self.get_time_signature_slice(target_timespan)
         return expressiontools.TimespanScopedSingleContextDivisionSetExpression(
-            source_expression=expressiontools.PayloadExpression(divisions),
+            source_expression=expressiontools.IterablePayloadExpression(divisions),
             target_timespan=target_timespan,
             target_context_name=voice_name,
             fresh=True,

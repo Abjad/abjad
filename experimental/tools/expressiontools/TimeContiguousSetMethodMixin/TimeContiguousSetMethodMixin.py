@@ -83,7 +83,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
             >>> z(set_expression)
             expressiontools.MultipleContextSetExpression(
                 attribute='divisions',
-                source_expression=expressiontools.PayloadExpression(
+                source_expression=expressiontools.IterablePayloadExpression(
                     ((3, 16),)
                     ),
                 target_timespan='red',
@@ -212,7 +212,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
             >>> z(set_expression)
             expressiontools.MultipleContextSetExpression(
                 attribute='time_signatures',
-                source_expression=expressiontools.PayloadExpression(
+                source_expression=expressiontools.IterablePayloadExpression(
                     ((3, 8), (4, 8))
                     ),
                 target_timespan='red',

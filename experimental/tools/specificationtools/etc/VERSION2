@@ -25,6 +25,13 @@
     ... instead.
     This will simplify the X9 composer interface.
 
+3.  It's weird for RhythmMakerPayloadExpression to inherit from IterablePayloadExpression.
+    Why? Because RhythmMakerPayloadExpression should implement only reflect().
+    But RhythmMakerPayloadExpression inherits partition_by_ratio_of_durations(),
+    repeat_to_duration(), repeat_to_length() and other nonsensible methods
+    from IterablePayloadExpression. Something will need to be rewired in the class
+    hierarchy to clean this up.
+
 
 ### VERSION 2.0 ###
 

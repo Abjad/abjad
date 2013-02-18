@@ -89,7 +89,7 @@ class SegmentSpecification(Specification):
             >>> z(red_segment.fresh_single_context_set_expressions)
             timespantools.TimespanInventory([
                 expressiontools.SingleContextTimeSignatureSetExpression(
-                    source_expression=expressiontools.PayloadExpression(
+                    source_expression=expressiontools.IterablePayloadExpression(
                         ((2, 8), (3, 8), (4, 8))
                         ),
                     target_timespan='red',

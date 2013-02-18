@@ -1,9 +1,9 @@
 import copy
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
-from experimental.tools.expressiontools.PayloadExpression import PayloadExpression
+from experimental.tools.expressiontools.IterablePayloadExpression import IterablePayloadExpression
 
 
-class ExpressionInventory(ObjectInventory, PayloadExpression):
+class ExpressionInventory(ObjectInventory, IterablePayloadExpression):
     '''Expression inventory.
     '''
     

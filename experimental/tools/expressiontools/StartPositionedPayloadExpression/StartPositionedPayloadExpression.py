@@ -8,10 +8,10 @@ from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
-from experimental.tools.expressiontools.PayloadExpression import PayloadExpression
+from experimental.tools.expressiontools.IterablePayloadExpression import IterablePayloadExpression
 
 
-class StartPositionedPayloadExpression(PayloadExpression):
+class StartPositionedPayloadExpression(IterablePayloadExpression):
     r'''Start-positioned payload expression.
 
     Start-positioned payload expressions are immutable.
@@ -21,7 +21,7 @@ class StartPositionedPayloadExpression(PayloadExpression):
 
     def __init__(self, payload=None, start_offset=None, voice_name=None):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
-        PayloadExpression.__init__(self, payload=payload)
+        IterablePayloadExpression.__init__(self, payload=payload)
         start_offset = durationtools.Offset(start_offset)
         self._start_offset = start_offset
         self._voice_name = voice_name

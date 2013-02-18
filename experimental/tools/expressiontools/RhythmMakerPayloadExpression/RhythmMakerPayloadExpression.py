@@ -1,8 +1,8 @@
 from abjad.tools import rhythmmakertools
-from experimental.tools.expressiontools.PayloadExpression import PayloadExpression
+from experimental.tools.expressiontools.IterablePayloadExpression import IterablePayloadExpression
 
 
-class RhythmMakerPayloadExpression(PayloadExpression):
+class RhythmMakerPayloadExpression(IterablePayloadExpression):
     r'''Rhythm-maker payload expression.
     '''
 
@@ -10,7 +10,7 @@ class RhythmMakerPayloadExpression(PayloadExpression):
 
     def __init__(self, payload=None):
         assert isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
-        PayloadExpression.__init__(self, payload=[payload])
+        IterablePayloadExpression.__init__(self, payload=[payload])
 
     ### PUBLIC METHODS ###
 

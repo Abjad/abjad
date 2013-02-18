@@ -20,6 +20,6 @@ class TimeSignatureSetExpressionLookupExpression(SetExpressionLookupExpression):
         '''
         from experimental.tools import expressiontools
         time_signatures = self.root_specification.time_signatures[:]
-        expression = expressiontools.PayloadExpression(time_signatures)
+        expression = expressiontools.IterablePayloadExpression(time_signatures)
         expression = self._apply_callbacks(expression)
         return expression

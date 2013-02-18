@@ -41,5 +41,5 @@ class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethod
         anchor_timespan = self._evaluate_anchor_timespan()
         if anchor_timespan:
             timespan = self._apply_callbacks(anchor_timespan)
-            expression = expressiontools.PayloadExpression([timespan])
+            expression = expressiontools.IterablePayloadExpression([timespan])
             return expression
