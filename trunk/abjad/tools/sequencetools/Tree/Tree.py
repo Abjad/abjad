@@ -112,35 +112,100 @@ class Tree(AbjadObject):
         self._children = self._initialize_children_list()
         self.parent = None
         try:
-            self.payload = None
+            self._payload = None
             for element in expr:
                 child = type(self)(element)
                 self._children.append(child)
                 child.parent = self
         except TypeError:
-            self.payload = expr
+            self._payload = expr
 
     ### SPECIAL METHODS ###
 
-    # TODO: add docstring
     def __contains__(self, expr):
+        '''True when tree contains `expr`:
+
+        ::
+
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
+
+        ::
+
+            >>> tree[-1] in tree
+            True
+
+        Otherwise false:
+
+            >>> tree[-1][-1] in tree
+            False
+
+        Return boolean.
+        '''
         return expr in self._children
 
-    # TODO: add docstring
-    def __eq__(self, other):
-        if isinstance(other, type(self)):
-            if self.payload is not None or other.payload is not None:
-                return self.payload == other.payload
-            if len(self) == len(other):
-                for x, y in zip(self._noncyclic_children, other._noncyclic_children):
+    def __eq__(self, expr):
+        '''True when `expr` is the same type as tree
+        and when the payload of all subtrees are equal:
+
+        ::
+
+            >>> sequence_1 = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree_1 = sequencetools.Tree(sequence_1)
+            >>> sequence_2 = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree_2 = sequencetools.Tree(sequence_2)
+            >>> sequence_3 = [[0, 1], [2, 3], [4, 5]]
+            >>> tree_3 = sequencetools.Tree(sequence_3)
+
+        ::
+
+            >>> tree_1 == tree_1
+            True
+            >>> tree_1 == tree_2
+            True
+            >>> tree_1 == tree_3
+            False
+            >>> tree_2 == tree_1
+            True
+            >>> tree_2 == tree_2
+            True
+            >>> tree_2 == tree_3
+            False
+            >>> tree_3 == tree_1
+            False
+            >>> tree_3 == tree_2
+            False
+            >>> tree_3 == tree_3
+            True
+
+        Return boolean.
+        '''
+        if isinstance(expr, type(self)):
+            if self.payload is not None or expr.payload is not None:
+                return self.payload == expr.payload
+            if len(self) == len(expr):
+                for x, y in zip(self._noncyclic_children, expr._noncyclic_children):
                     if not x == y:
                         return False
                 else:
                     return True
         return False
 
-    # TODO: add docstring
     def __getitem__(self, expr):
+        '''Get `expr` item from tree:
+
+        ::
+
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
+
+        ::
+
+            >>> tree[-1]
+            Tree([6, 7])
+
+        Return node.
+        '''
         return self._children[expr]
 
     ## TODO: figure out why this breaks Tree.remove_to_root()
@@ -149,20 +214,55 @@ class Tree(AbjadObject):
 #        result = [self[n] for n in range(start_index, stop_index)]
 #        return result
 
-    # TODO: add docstring
     def __len__(self):
+        '''Return the number of children in tree:
+
+        ::
+
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
+
+        ::
+
+            >>> len(tree)
+            4
+    
+        Return nonnegative integer.
+        '''
         return len(self._children)
 
-    # TODO: add docstring
-    def __ne__(self, other):
-        return not self == other
-
-    # TODO: add docstring
     def __repr__(self):
+        '''Interpreter representation of tree:
+
+        ::
+
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
+
+        ::
+
+            >>> tree
+            Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
+        
+        Return string.
+        '''
         return '%s(%s)' % (type(self).__name__, self)
 
-    # TODO: add docstring
     def __str__(self):
+        '''String representation of tree:
+
+        ::
+
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
+
+        ::
+
+            >>> str(tree)
+            '[[0, 1], [2, 3], [4, 5], [6, 7]]'
+
+        Return string.
+        '''
         if self.payload is None:
             return '[%s]' % ', '.join([str(x) for x in self._noncyclic_children])
         else:
@@ -309,6 +409,37 @@ class Tree(AbjadObject):
         return len(self.proper_parentage)
 
     @property
+    def manifest_payload(self):
+        '''Manifest payload of tree:
+
+        ::
+
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
+    
+        ::
+
+            >>> tree.manifest_payload
+            [0, 1, 2, 3, 4, 5, 6, 7]
+
+        ::
+
+            >>> tree[-1].manifest_payload
+            [6, 7]
+
+        ::
+
+            >>> tree[-1][-1].manifest_payload
+            [7]
+
+        Return list.
+        '''
+        if 0 <= self.level:
+            return [x.payload for x in self.iterate_at_level(-1)]
+        else:
+            return [self.payload]
+
+    @property
     def negative_level(self):
         '''Negative level of node:
 
@@ -325,6 +456,36 @@ class Tree(AbjadObject):
         Return negative integer.
         '''
         return self.level - self.root.depth
+        
+    @property
+    def payload(self):
+        '''Payload of node:
+
+        ::
+
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
+    
+        Return none for interior node:
+
+        ::
+
+            >>> tree.payload is None
+            True
+
+        ::
+
+            >>> tree[-1].payload is None
+            True
+
+        Return unwrapped payload for leaf node:
+
+            >>> tree[-1][-1].payload
+            7
+
+        Return arbitrary expression or none.
+        '''
+        return self._payload
         
     @property
     def position(self):
@@ -386,6 +547,29 @@ class Tree(AbjadObject):
         '''
         return self.improper_parentage[-1]
 
+    @property
+    def storage_format(self):
+        '''Tree storage format:
+
+        ::
+
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
+
+        ::
+    
+            >>> z(tree)
+            sequencetools.Tree(
+                [0, 1],
+                [2, 3],
+                [4, 5],
+                [6, 7]
+                )
+
+        Return string.
+        '''
+        return AbjadObject.storage_format.fget(self)
+    
     @property
     def width(self):
         '''Number of leaves in subtree:

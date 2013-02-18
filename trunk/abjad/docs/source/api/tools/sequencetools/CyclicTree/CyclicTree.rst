@@ -24,7 +24,13 @@ Read-only properties
 .. autoattribute:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.level
    :noindex:
 
+.. autoattribute:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.manifest_payload
+   :noindex:
+
 .. autoattribute:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.negative_level
+   :noindex:
+
+.. autoattribute:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.payload
    :noindex:
 
 .. autoattribute:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.position

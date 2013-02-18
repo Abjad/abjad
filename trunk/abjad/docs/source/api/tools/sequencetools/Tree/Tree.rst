@@ -24,7 +24,13 @@ Read-only properties
 .. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.level
    :noindex:
 
+.. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.manifest_payload
+   :noindex:
+
 .. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.negative_level
+   :noindex:
+
+.. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.payload
    :noindex:
 
 .. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.position
