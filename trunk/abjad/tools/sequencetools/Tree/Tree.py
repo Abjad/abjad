@@ -635,6 +635,59 @@ class Tree(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def get_manifest_payload_of_next_n_nodes_at_level(self, n, level):
+        r'''Get manifest payload of next `n` nodes at `level` from node.
+
+        ::
+
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
+
+        Get manifest paylaod of next 4 nodes at level 2:
+
+        ::
+
+            >>> tree[0][0].get_manifest_payload_of_next_n_nodes_at_level(4, 2)
+            [1, 2, 3, 4]
+
+        Get manifest paylaod of next 3 nodes at level 1:
+
+        ::
+
+            >>> tree[0][0].get_manifest_payload_of_next_n_nodes_at_level(3, 1)
+            [1, 2, 3, 4, 5]
+
+        Get manifest paylaod of next node at level 0:
+
+        ::
+
+            >>> tree[0][0].get_manifest_payload_of_next_n_nodes_at_level(1, 0)
+            [1, 2, 3, 4, 5, 6, 7]
+
+        Get manifest paylaod of next 4 nodes at level -1:
+
+        ::
+
+            >>> tree[0][0].get_manifest_payload_of_next_n_nodes_at_level(4, -1)
+            [1, 2, 3, 4]
+
+        Get manifest paylaod of next 3 nodes at level -2:
+
+        ::
+
+            >>> tree[0][0].get_manifest_payload_of_next_n_nodes_at_level(3, -2)
+            [1, 2, 3, 4, 5]
+
+        Trim first node if necessary.
+
+        Return list of arbitrary values.
+        '''
+        result = []
+        nodes = self.get_next_n_nodes_at_level(n, level)
+        for node in nodes:
+            result.extend(node.manifest_payload)
+        return result
+
     def get_next_n_complete_nodes_at_level(self, n, level):
         r'''Get next `n` complete nodes at `level` from node.
 
@@ -953,7 +1006,7 @@ class Tree(AbjadObject):
         for leaf_node in self.iterate_at_level(-1):
             yield leaf_node.payload
 
-    def remove(self, node):
+    def remove_node(self, node):
         r'''Remove `node` from tree:
 
         ::
@@ -963,7 +1016,7 @@ class Tree(AbjadObject):
 
         ::
 
-            >>> tree.remove(tree[1])
+            >>> tree.remove_node(tree[1])
 
         ::
 
@@ -1010,7 +1063,7 @@ class Tree(AbjadObject):
         ## trim left-siblings of self and self
         parent = self.parent
         for sibling in parent[:]:
-            sibling.parent.remove(sibling)
+            sibling.parent.remove_node(sibling)
             ## break and do not remove siblings to right of self
             if sibling is self:
                 break
@@ -1021,10 +1074,10 @@ class Tree(AbjadObject):
                     if sibling is node:
                         # remove node now if it was emptied earlier
                         if not len(sibling):
-                            sibling.parent.remove(sibling)
+                            sibling.parent.remove_node(sibling)
                         break
                     else:
-                        sibling.parent.remove(sibling) 
+                        sibling.parent.remove_node(sibling) 
     
     def to_nested_lists(self):
         r'''Change tree to nested lists:

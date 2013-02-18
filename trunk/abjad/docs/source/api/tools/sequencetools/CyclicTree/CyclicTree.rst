@@ -51,6 +51,9 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_manifest_payload_of_next_n_nodes_at_level
+   :noindex:
+
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_next_n_complete_nodes_at_level
    :noindex:
 
@@ -78,7 +81,7 @@ Methods
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.iterate_payload
    :noindex:
 
-.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.remove
+.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.remove_node
    :noindex:
 
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.remove_to_root
