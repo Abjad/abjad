@@ -6,7 +6,7 @@ expressiontools.LiteralDivisionRegionExpression
 .. autoclass:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.source_expression
@@ -33,7 +33,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.new
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.__eq__

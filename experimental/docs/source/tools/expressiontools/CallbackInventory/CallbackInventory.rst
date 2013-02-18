@@ -6,13 +6,13 @@ expressiontools.CallbackInventory
 .. autoclass:: experimental.tools.expressiontools.CallbackInventory.CallbackInventory.CallbackInventory
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.CallbackInventory.CallbackInventory.CallbackInventory.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: experimental.tools.expressiontools.CallbackInventory.CallbackInventory.CallbackInventory.name
@@ -48,7 +48,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.CallbackInventory.CallbackInventory.CallbackInventory.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__add__

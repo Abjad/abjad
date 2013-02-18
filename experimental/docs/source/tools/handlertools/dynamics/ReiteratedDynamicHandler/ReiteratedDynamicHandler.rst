@@ -6,13 +6,13 @@ handlertools.dynamics.ReiteratedDynamicHandler
 .. autoclass:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.dynamic_name
@@ -24,7 +24,7 @@ Methods
 .. automethod:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.apply
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__call__

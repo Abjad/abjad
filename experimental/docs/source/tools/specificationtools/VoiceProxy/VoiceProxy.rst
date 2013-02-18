@@ -6,7 +6,7 @@ specificationtools.VoiceProxy
 .. autoclass:: experimental.tools.specificationtools.VoiceProxy.VoiceProxy.VoiceProxy
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.specificationtools.VoiceProxy.VoiceProxy.VoiceProxy.payload_expressions_by_attribute
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.VoiceProxy.VoiceProxy.VoiceProxy.voice_division_list
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.specificationtools.VoiceProxy.VoiceProxy.VoiceProxy.__eq__

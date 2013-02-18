@@ -6,13 +6,13 @@ handlertools.dynamics.DynamicHandler
 .. autoclass:: experimental.tools.handlertools.dynamics.DynamicHandler.DynamicHandler.DynamicHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.handlertools.dynamics.DynamicHandler.DynamicHandler.DynamicHandler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.handlertools.dynamics.DynamicHandler.DynamicHandler.DynamicHandler.__eq__

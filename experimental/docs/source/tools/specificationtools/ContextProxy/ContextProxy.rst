@@ -6,7 +6,7 @@ specificationtools.ContextProxy
 .. autoclass:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.single_context_set_expressions_by_attribute
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.timespan_scoped_single_context_set_expressions_by_attribute
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.__eq__

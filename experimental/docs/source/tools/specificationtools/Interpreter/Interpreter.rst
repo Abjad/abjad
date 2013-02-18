@@ -6,7 +6,7 @@ specificationtools.Interpreter
 .. autoclass:: experimental.tools.specificationtools.Interpreter.Interpreter.Interpreter
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.specificationtools.Interpreter.Interpreter.Interpreter.storage_format
@@ -27,7 +27,7 @@ Methods
 .. automethod:: experimental.tools.specificationtools.Interpreter.Interpreter.Interpreter.store_segment_rooted_single_context_set_expressions_by_context
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.specificationtools.Interpreter.Interpreter.Interpreter.__call__

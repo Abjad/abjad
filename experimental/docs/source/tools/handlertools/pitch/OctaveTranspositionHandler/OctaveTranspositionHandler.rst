@@ -6,13 +6,13 @@ handlertools.pitch.OctaveTranspositionHandler
 .. autoclass:: experimental.tools.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__call__

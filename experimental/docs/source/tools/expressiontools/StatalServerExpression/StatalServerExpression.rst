@@ -6,7 +6,7 @@ expressiontools.StatalServerExpression
 .. autoclass:: experimental.tools.expressiontools.StatalServerExpression.StatalServerExpression.StatalServerExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.StatalServerExpression.StatalServerExpression.StatalServerExpression.callbacks
@@ -45,7 +45,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.StatalServerExpression.StatalServerExpression.StatalServerExpression.rotate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.StatalServerExpression.StatalServerExpression.StatalServerExpression.__and__

@@ -6,13 +6,13 @@ expressiontools.SetMethodMixin
 .. autoclass:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__eq__

@@ -6,7 +6,7 @@ expressiontools.DivisionSelectExpression
 .. autoclass:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.anchor
@@ -75,7 +75,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.rotate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__and__

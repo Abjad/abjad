@@ -6,7 +6,7 @@ lyrictools.LyricExtender
 .. autoclass:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.descendants
@@ -72,7 +72,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.duration_multiplier
@@ -87,7 +87,7 @@ Read/write Properties
 .. autoattribute:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.written_pitch_indication_is_nonsemantic
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.__and__

@@ -6,7 +6,7 @@ expressiontools.GeneralizedSetExpression
 .. autoclass:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.attribute
@@ -30,7 +30,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.new
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.__eq__

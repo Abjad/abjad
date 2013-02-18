@@ -6,7 +6,7 @@ expressiontools.CallbackMixin
 .. autoclass:: experimental.tools.expressiontools.CallbackMixin.CallbackMixin.CallbackMixin
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.CallbackMixin.CallbackMixin.CallbackMixin.callbacks
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.CallbackMixin.CallbackMixin.CallbackMixin.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.CallbackMixin.CallbackMixin.CallbackMixin.__eq__

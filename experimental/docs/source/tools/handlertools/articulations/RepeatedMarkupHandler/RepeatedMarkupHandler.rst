@@ -6,13 +6,13 @@ handlertools.articulations.RepeatedMarkupHandler
 .. autoclass:: experimental.tools.handlertools.articulations.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.handlertools.articulations.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.handlertools.articulations.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler.__call__

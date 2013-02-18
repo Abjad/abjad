@@ -6,7 +6,7 @@ expressiontools.HandlerExpression
 .. autoclass:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.callbacks
@@ -45,7 +45,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.rotate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__and__

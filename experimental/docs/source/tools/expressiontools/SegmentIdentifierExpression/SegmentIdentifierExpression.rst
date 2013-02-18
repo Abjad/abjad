@@ -6,7 +6,7 @@ expressiontools.SegmentIdentifierExpression
 .. autoclass:: experimental.tools.expressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.storage_format
@@ -15,7 +15,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.string
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__eq__

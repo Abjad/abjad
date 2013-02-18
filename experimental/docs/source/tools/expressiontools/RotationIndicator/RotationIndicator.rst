@@ -6,7 +6,7 @@ expressiontools.RotationIndicator
 .. autoclass:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator.fracture_spanners
@@ -21,7 +21,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator.__eq__

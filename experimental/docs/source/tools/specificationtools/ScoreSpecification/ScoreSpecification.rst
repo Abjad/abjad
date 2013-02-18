@@ -6,7 +6,7 @@ specificationtools.ScoreSpecification
 .. autoclass:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.context_names
@@ -105,7 +105,7 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.report_settings
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.__eq__

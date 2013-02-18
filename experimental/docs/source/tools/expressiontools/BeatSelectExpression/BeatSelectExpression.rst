@@ -6,7 +6,7 @@ expressiontools.BeatSelectExpression
 .. autoclass:: experimental.tools.expressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.anchor
@@ -75,7 +75,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.rotate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.__and__

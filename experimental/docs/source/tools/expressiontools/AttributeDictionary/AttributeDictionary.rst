@@ -6,7 +6,7 @@ expressiontools.AttributeDictionary
 .. autoclass:: experimental.tools.expressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.storage_format
@@ -66,7 +66,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.viewvalues
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__cmp__

@@ -6,7 +6,7 @@ expressiontools.SetExpression
 .. autoclass:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.attribute
@@ -30,7 +30,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.new
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.__eq__

@@ -6,13 +6,13 @@ handlertools.Handler
 .. autoclass:: experimental.tools.handlertools.Handler.Handler.Handler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.handlertools.Handler.Handler.Handler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.handlertools.Handler.Handler.Handler.__eq__

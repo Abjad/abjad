@@ -6,7 +6,7 @@ specificationtools.SegmentSpecificationInventory
 .. autoclass:: experimental.tools.specificationtools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.storage_format
@@ -42,7 +42,7 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.specificationtools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__add__

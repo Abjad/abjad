@@ -6,7 +6,7 @@ expressiontools.DivisionRegionExpression
 .. autoclass:: experimental.tools.expressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.source_expression
@@ -33,7 +33,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.new
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.__eq__

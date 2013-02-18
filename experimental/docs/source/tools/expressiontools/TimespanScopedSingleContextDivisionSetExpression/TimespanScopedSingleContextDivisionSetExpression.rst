@@ -6,7 +6,7 @@ expressiontools.TimespanScopedSingleContextDivisionSetExpression
 .. autoclass:: experimental.tools.expressiontools.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.attribute
@@ -48,7 +48,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.new
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.__eq__

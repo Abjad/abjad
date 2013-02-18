@@ -6,13 +6,13 @@ handlertools.articulations.ArticulationHandler
 .. autoclass:: experimental.tools.handlertools.articulations.ArticulationHandler.ArticulationHandler.ArticulationHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.handlertools.articulations.ArticulationHandler.ArticulationHandler.ArticulationHandler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.handlertools.articulations.ArticulationHandler.ArticulationHandler.ArticulationHandler.__eq__

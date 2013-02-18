@@ -6,13 +6,13 @@ handlertools.articulations.ReiteratedArticulationHandler
 .. autoclass:: experimental.tools.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: experimental.tools.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.articulation_list
@@ -24,7 +24,7 @@ Methods
 .. automethod:: experimental.tools.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.apply
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__call__

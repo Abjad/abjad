@@ -6,7 +6,7 @@ lyrictools.LyricSpace
 .. autoclass:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.descendants
@@ -72,7 +72,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.duration_multiplier
@@ -87,7 +87,7 @@ Read/write Properties
 .. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.written_pitch_indication_is_nonsemantic
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.__and__

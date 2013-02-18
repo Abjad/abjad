@@ -6,7 +6,7 @@ expressiontools.PayloadExpression
 .. autoclass:: experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression.elements
@@ -45,7 +45,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression.rotate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__and__

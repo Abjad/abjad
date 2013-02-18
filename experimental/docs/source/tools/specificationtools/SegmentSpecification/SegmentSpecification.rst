@@ -6,7 +6,7 @@ specificationtools.SegmentSpecification
 .. autoclass:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.context_names
@@ -54,7 +54,7 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.get_single_context_set_expressions_rooted_to_specification_that_govern_context_name
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__eq__

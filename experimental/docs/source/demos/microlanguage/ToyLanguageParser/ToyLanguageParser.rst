@@ -6,7 +6,7 @@ microlanguage.ToyLanguageParser
 .. autoclass:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.debug
@@ -105,7 +105,7 @@ Methods
 .. automethod:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.tokenize
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__call__

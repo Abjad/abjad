@@ -6,13 +6,13 @@ handlertools.pitch.DiatonicClusterHandler
 .. autoclass:: experimental.tools.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__call__

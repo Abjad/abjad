@@ -6,7 +6,7 @@ expressiontools.SegmentSelectExpression
 .. autoclass:: experimental.tools.expressiontools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.anchor
@@ -75,7 +75,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.rotate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.__and__

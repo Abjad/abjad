@@ -6,7 +6,7 @@ expressiontools.SelectExpressionInventory
 .. autoclass:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.elements
@@ -21,7 +21,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.name
@@ -84,7 +84,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__add__

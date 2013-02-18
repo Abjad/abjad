@@ -6,13 +6,13 @@ handlertools.articulations.StemTremoloHandler
 .. autoclass:: experimental.tools.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__call__

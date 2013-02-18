@@ -6,7 +6,7 @@ expressiontools.GeneralizedPitchSetExpression
 .. autoclass:: experimental.tools.expressiontools.GeneralizedPitchSetExpression.GeneralizedPitchSetExpression.GeneralizedPitchSetExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.GeneralizedPitchSetExpression.GeneralizedPitchSetExpression.GeneralizedPitchSetExpression.attribute
@@ -30,7 +30,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.GeneralizedPitchSetExpression.GeneralizedPitchSetExpression.GeneralizedPitchSetExpression.new
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.GeneralizedPitchSetExpression.GeneralizedPitchSetExpression.GeneralizedPitchSetExpression.__eq__

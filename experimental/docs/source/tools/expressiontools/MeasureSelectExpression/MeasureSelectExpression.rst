@@ -6,7 +6,7 @@ expressiontools.MeasureSelectExpression
 .. autoclass:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.anchor
@@ -78,7 +78,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.rotate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__and__

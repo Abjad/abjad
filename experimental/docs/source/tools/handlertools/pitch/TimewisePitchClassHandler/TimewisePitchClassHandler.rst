@@ -6,13 +6,13 @@ handlertools.pitch.TimewisePitchClassHandler
 .. autoclass:: experimental.tools.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__call__

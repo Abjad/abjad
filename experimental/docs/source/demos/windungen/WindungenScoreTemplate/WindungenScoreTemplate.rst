@@ -6,13 +6,13 @@ windungen.WindungenScoreTemplate
 .. autoclass:: experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate.__call__

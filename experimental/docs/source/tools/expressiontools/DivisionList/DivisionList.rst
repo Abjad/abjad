@@ -6,7 +6,7 @@ expressiontools.DivisionList
 .. autoclass:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.divisions
@@ -66,7 +66,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.rotate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.DivisionList.DivisionList.DivisionList.__add__

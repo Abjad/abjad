@@ -6,7 +6,7 @@ lyrictools.Lyrics
 .. autoclass:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.contents_duration
@@ -84,7 +84,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.timespan_in_seconds
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.context_name
@@ -120,7 +120,7 @@ Methods
 .. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.remove
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.__add__

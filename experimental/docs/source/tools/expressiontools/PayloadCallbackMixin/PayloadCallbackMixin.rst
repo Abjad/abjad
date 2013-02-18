@@ -6,7 +6,7 @@ expressiontools.PayloadCallbackMixin
 .. autoclass:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.callbacks
@@ -36,7 +36,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.rotate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.PayloadCallbackMixin.PayloadCallbackMixin.PayloadCallbackMixin.__and__

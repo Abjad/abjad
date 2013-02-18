@@ -60,7 +60,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration.viewvalues
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration.__cmp__

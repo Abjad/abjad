@@ -6,7 +6,7 @@ expressiontools.StatalServer
 .. autoclass:: experimental.tools.expressiontools.StatalServer.StatalServer.StatalServer
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.StatalServer.StatalServer.StatalServer.cyclic_tree
@@ -18,7 +18,13 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.StatalServer.StatalServer.StatalServer.storage_format
    :noindex:
 
-Special Methods
+Methods
+-------
+
+.. automethod:: experimental.tools.expressiontools.StatalServer.StatalServer.StatalServer.get_next_n_nodes_at_level
+   :noindex:
+
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.StatalServer.StatalServer.StatalServer.__call__

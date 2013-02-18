@@ -6,7 +6,7 @@ expressiontools.SetExpressionLookupExpression
 .. autoclass:: experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.anchor
@@ -75,7 +75,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.rotate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.__and__

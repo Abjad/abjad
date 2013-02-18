@@ -6,7 +6,7 @@ expressiontools.Division
 .. autoclass:: experimental.tools.expressiontools.Division.Division.Division
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.denominator
@@ -48,7 +48,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.is_left_closed
@@ -99,7 +99,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.Division.Division.Division.with_multiple_of_denominator
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.Division.Division.Division.__abs__

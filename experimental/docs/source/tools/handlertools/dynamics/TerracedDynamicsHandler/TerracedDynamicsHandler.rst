@@ -6,13 +6,13 @@ handlertools.dynamics.TerracedDynamicsHandler
 .. autoclass:: experimental.tools.handlertools.dynamics.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.handlertools.dynamics.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: experimental.tools.handlertools.dynamics.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler.dynamics
@@ -24,7 +24,7 @@ Methods
 .. automethod:: experimental.tools.handlertools.dynamics.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler.apply
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.handlertools.dynamics.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler.__call__

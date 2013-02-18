@@ -6,7 +6,7 @@ expressiontools.TimespanCallbackMixin
 .. autoclass:: experimental.tools.expressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.callbacks
@@ -36,7 +36,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.translate_offsets
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.__eq__

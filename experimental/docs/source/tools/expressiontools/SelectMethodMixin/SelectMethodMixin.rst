@@ -6,7 +6,7 @@ expressiontools.SelectMethodMixin
 .. autoclass:: experimental.tools.expressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.storage_format
@@ -33,7 +33,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.select_time_signatures
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.__eq__

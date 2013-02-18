@@ -6,7 +6,7 @@ constrainttools.Domain
 .. autoclass:: experimental.tools.constrainttools.Domain.Domain.Domain
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.constrainttools.Domain.Domain.Domain.storage_format
@@ -18,7 +18,7 @@ Methods
 .. automethod:: experimental.tools.constrainttools.Domain.Domain.Domain.randomized
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.constrainttools.Domain.Domain.Domain.__eq__

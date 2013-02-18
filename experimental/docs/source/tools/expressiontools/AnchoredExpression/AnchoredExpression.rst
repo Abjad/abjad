@@ -6,7 +6,7 @@ expressiontools.AnchoredExpression
 .. autoclass:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.anchor
@@ -45,7 +45,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.new
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.__eq__

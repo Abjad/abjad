@@ -6,7 +6,7 @@ specificationtools.SpecificationInterface
 .. autoclass:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.score_specification
@@ -87,7 +87,7 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_time_signatures
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__eq__

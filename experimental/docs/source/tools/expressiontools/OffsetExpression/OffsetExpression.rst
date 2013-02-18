@@ -6,7 +6,7 @@ expressiontools.OffsetExpression
 .. autoclass:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.anchor
@@ -66,7 +66,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.translate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__eq__

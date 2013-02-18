@@ -6,7 +6,7 @@ expressiontools.GeneralizedSetMethodMixin
 .. autoclass:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.storage_format
@@ -18,7 +18,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.set_pitches
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.__eq__

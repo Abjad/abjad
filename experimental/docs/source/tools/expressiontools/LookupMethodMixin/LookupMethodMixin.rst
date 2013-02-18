@@ -6,7 +6,7 @@ expressiontools.LookupMethodMixin
 .. autoclass:: experimental.tools.expressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.storage_format
@@ -24,7 +24,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.look_up_time_signature_set_expression
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.__eq__

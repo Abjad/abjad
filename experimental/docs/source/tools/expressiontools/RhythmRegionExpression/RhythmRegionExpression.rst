@@ -6,7 +6,7 @@ expressiontools.RhythmRegionExpression
 .. autoclass:: experimental.tools.expressiontools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression.source_expression
@@ -36,7 +36,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression.prolongs_expr
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression.__eq__

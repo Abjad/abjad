@@ -6,13 +6,13 @@ handlertools.articulations.PatternedArticulationsHandler
 .. autoclass:: experimental.tools.handlertools.articulations.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.handlertools.articulations.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: experimental.tools.handlertools.articulations.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.articulation_lists
@@ -24,7 +24,7 @@ Methods
 .. automethod:: experimental.tools.handlertools.articulations.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.apply
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.handlertools.articulations.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__call__

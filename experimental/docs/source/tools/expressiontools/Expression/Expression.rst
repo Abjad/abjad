@@ -6,7 +6,7 @@ expressiontools.Expression
 .. autoclass:: experimental.tools.expressiontools.Expression.Expression.Expression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.Expression.Expression.Expression.storage_format
@@ -21,7 +21,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.Expression.Expression.Expression.new
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.Expression.Expression.Expression.__eq__

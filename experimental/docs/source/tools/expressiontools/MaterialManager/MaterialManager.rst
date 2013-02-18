@@ -6,7 +6,7 @@ expressiontools.MaterialManager
 .. autoclass:: experimental.tools.expressiontools.MaterialManager.MaterialManager.MaterialManager
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.MaterialManager.MaterialManager.MaterialManager.storage_format
@@ -18,7 +18,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.MaterialManager.MaterialManager.MaterialManager.register_material
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.MaterialManager.MaterialManager.MaterialManager.__eq__

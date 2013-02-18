@@ -6,7 +6,7 @@ specificationtools.VoiceDictionary
 .. autoclass:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.score
@@ -69,7 +69,7 @@ Methods
 .. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.viewvalues
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__cmp__

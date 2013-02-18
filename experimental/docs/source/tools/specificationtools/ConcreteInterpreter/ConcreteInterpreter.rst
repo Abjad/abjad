@@ -6,7 +6,7 @@ specificationtools.ConcreteInterpreter
 .. autoclass:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.storage_format
@@ -78,7 +78,7 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.store_segment_rooted_single_context_set_expressions_by_context
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.__call__

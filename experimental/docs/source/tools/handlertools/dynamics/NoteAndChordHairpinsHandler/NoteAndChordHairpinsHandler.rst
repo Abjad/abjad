@@ -6,7 +6,7 @@ handlertools.dynamics.NoteAndChordHairpinsHandler
 .. autoclass:: experimental.tools.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.storage_format
@@ -18,7 +18,7 @@ Methods
 .. automethod:: experimental.tools.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.apply
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.__call__

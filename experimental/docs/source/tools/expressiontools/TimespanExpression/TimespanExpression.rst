@@ -6,7 +6,7 @@ expressiontools.TimespanExpression
 .. autoclass:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.anchor
@@ -126,7 +126,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.translate_offsets
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__eq__

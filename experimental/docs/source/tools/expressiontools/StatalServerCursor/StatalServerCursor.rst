@@ -6,7 +6,7 @@ expressiontools.StatalServerCursor
 .. autoclass:: experimental.tools.expressiontools.StatalServerCursor.StatalServerCursor.StatalServerCursor
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.StatalServerCursor.StatalServerCursor.StatalServerCursor.position
@@ -21,8 +21,17 @@ Read-only Properties
 .. autoattribute:: experimental.tools.expressiontools.StatalServerCursor.StatalServerCursor.StatalServerCursor.storage_format
    :noindex:
 
-Special Methods
+Methods
+-------
+
+.. automethod:: experimental.tools.expressiontools.StatalServerCursor.StatalServerCursor.StatalServerCursor.get_next_n_nodes_at_level
+   :noindex:
+
+Special methods
 ---------------
+
+.. automethod:: experimental.tools.expressiontools.StatalServerCursor.StatalServerCursor.StatalServerCursor.__call__
+   :noindex:
 
 .. automethod:: experimental.tools.expressiontools.StatalServerCursor.StatalServerCursor.StatalServerCursor.__eq__
    :noindex:

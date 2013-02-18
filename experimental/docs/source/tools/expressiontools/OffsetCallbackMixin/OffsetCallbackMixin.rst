@@ -6,7 +6,7 @@ expressiontools.OffsetCallbackMixin
 .. autoclass:: experimental.tools.expressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.callbacks
@@ -24,7 +24,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.translate
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.__eq__

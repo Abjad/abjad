@@ -6,13 +6,13 @@ expressiontools.ClassInventory
 .. autoclass:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.storage_format
    :noindex:
 
-Read/write Properties
+Read/write properties
 ---------------------
 
 .. autoattribute:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.name
@@ -48,7 +48,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.sort
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__add__

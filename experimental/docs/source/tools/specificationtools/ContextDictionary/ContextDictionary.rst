@@ -6,7 +6,7 @@ specificationtools.ContextDictionary
 .. autoclass:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.score
@@ -75,7 +75,7 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.viewvalues
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__cmp__

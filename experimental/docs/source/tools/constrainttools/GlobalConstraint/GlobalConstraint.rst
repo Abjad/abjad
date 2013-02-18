@@ -6,7 +6,7 @@ constrainttools.GlobalConstraint
 .. autoclass:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.kind
@@ -18,7 +18,7 @@ Read-only Properties
 .. autoattribute:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__call__

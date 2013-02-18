@@ -6,7 +6,7 @@ parsertools.ENPParser
 .. autoclass:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.debug
@@ -108,7 +108,7 @@ Methods
 .. automethod:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.tokenize
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser.__call__

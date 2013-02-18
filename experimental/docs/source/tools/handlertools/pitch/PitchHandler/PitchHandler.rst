@@ -6,13 +6,13 @@ handlertools.pitch.PitchHandler
 .. autoclass:: experimental.tools.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler
    :noindex:
 
-Read-only Properties
+Read-only properties
 --------------------
 
 .. autoattribute:: experimental.tools.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler.storage_format
    :noindex:
 
-Special Methods
+Special methods
 ---------------
 
 .. automethod:: experimental.tools.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler.__eq__
