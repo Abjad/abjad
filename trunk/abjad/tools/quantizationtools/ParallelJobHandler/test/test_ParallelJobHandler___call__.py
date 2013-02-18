@@ -1,10 +1,27 @@
+from abjad.tools import mathtools
 from abjad.tools import quantizationtools
-from abjad.tools.quantizationtools.JobHandler._Job import _Job
+from abjad.tools.abctools import AbjadObject
+
+
+class Job(AbjadObject):
+
+    ### INITIALIZER ###
+
+    def __init__(self, number):
+        self.number = number
+
+    ### SPECIAL METHODS ###
+
+    def __call__(self):
+        self.result = [x for x in mathtools.yield_all_compositions_of_integer(self.number)]
+
+    def __repr__(self):
+        return '{}({})'.format(self._class_name, self.number)
 
 
 def test_ParallelJobHandler___call___01():
 
-    jobs = [_Job(x) for x in range(1, 11)]
+    jobs = [Job(x) for x in range(1, 11)]
     job_handler = quantizationtools.ParallelJobHandler()
     finished_jobs = job_handler(jobs)
 
