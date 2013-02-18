@@ -1,7 +1,7 @@
-from abjad.tools.lilypondproxytools._LilyPondObjectProxy import _LilyPondObjectProxy
+from abjad.tools.lilypondproxytools.LilyPondObjectProxy import LilyPondObjectProxy
 
 
-class LilyPondGrobProxy(_LilyPondObjectProxy):
+class LilyPondGrobProxy(LilyPondObjectProxy):
     '''.. versionadded:: 2.0
 
     LilyPond grob proxy.

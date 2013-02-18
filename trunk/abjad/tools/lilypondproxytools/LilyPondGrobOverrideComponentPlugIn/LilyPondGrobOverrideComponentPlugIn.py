@@ -1,10 +1,10 @@
 from abjad.tools import stringtools
 from abjad.tools.lilypondproxytools.LilyPondGrobProxy import LilyPondGrobProxy
 from abjad.tools.lilypondproxytools.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextWrapper
-from abjad.tools.lilypondproxytools._LilyPondComponentPlugIn import _LilyPondComponentPlugIn
+from abjad.tools.lilypondproxytools.LilyPondComponentPlugIn import LilyPondComponentPlugIn
 
 
-class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
+class LilyPondGrobOverrideComponentPlugIn(LilyPondComponentPlugIn):
     '''.. versionadded:: 2.0
 
     LilyPond grob override component plug-in.

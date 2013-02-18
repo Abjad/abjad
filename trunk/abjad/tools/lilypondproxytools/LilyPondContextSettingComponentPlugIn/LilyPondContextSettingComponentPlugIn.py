@@ -1,9 +1,9 @@
 from abjad.tools import stringtools
 from abjad.tools.lilypondproxytools.LilyPondContextProxy.LilyPondContextProxy import LilyPondContextProxy
-from abjad.tools.lilypondproxytools._LilyPondComponentPlugIn import _LilyPondComponentPlugIn
+from abjad.tools.lilypondproxytools.LilyPondComponentPlugIn import LilyPondComponentPlugIn
 
 
-class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
+class LilyPondContextSettingComponentPlugIn(LilyPondComponentPlugIn):
     '''.. versionadded:: 2.0
 
     LilyPond context setting namespace.

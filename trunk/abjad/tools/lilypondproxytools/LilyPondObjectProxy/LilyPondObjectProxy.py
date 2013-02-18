@@ -2,7 +2,7 @@ import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class _LilyPondObjectProxy(AbjadObject):
+class LilyPondObjectProxy(AbjadObject):
     '''.. versionadded:: 2.0
 
     Shared LilyPond grob proxy and LilyPond context proxy functionality.

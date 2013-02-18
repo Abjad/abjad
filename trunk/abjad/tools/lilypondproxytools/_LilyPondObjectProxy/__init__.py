@@ -1,1 +1,0 @@
-from _LilyPondObjectProxy import _LilyPondObjectProxy

@@ -3,7 +3,7 @@ from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class _LilyPondComponentPlugIn(AbjadObject):
+class LilyPondComponentPlugIn(AbjadObject):
     '''.. versionadded:: 2.0
 
     Shared LilyPond grob proxy and LilyPond context proxy functionality.
