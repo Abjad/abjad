@@ -44,7 +44,7 @@ class Markup(DirectedMark):
         >>> f(markup_2) # doctest: +SKIP
         _ \markup { foo }
 
-    Attach markup to score components like this:
+    Attach markup to score components by calling them on the component:
 
     ::
 
@@ -72,6 +72,8 @@ class Markup(DirectedMark):
     ``'^'``, ``'_'``, ``'-'`` or None.
 
     Markup objects are immutable.
+
+    Return markup instance. 
     '''
 
     ### CLASS ATTRIBUTES ###

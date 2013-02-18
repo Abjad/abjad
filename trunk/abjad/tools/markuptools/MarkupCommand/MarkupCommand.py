@@ -3,7 +3,9 @@ from abjad.tools.abctools import AbjadObject
 
 
 class MarkupCommand(AbjadObject):
-    r'''Abjad model of a LilyPond markup command::
+    r'''Abjad model of a LilyPond markup command:
+
+    ::
 
         >>> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
         >>> square = markuptools.MarkupCommand('rounded-box', 'hello?')
@@ -16,7 +18,9 @@ class MarkupCommand(AbjadObject):
         >>> print combine
         \combine \rotate #60 \line { \rounded-box hello? wow! } \draw-circle #2.5 #0.1 ##f
 
-    Insert markup command in markup to attach to score components::
+    Insert a markup command in markup in order to attach it to score components:
+
+    ::
 
         >>> note = Note("c'4")
 
@@ -53,9 +57,15 @@ class MarkupCommand(AbjadObject):
         >>> show(note) # doctest: +SKIP
 
     Markup commands are immutable.
+
+    Return markup command.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_args', '_command')
+
+    ### INITIALIZER ###
 
     def __init__(self, command, *args):
         assert isinstance(command, str) \
@@ -80,13 +90,13 @@ class MarkupCommand(AbjadObject):
     def __str__(self):
         return self.lilypond_format
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE READ-ONLY PROPERTIES ###
 
     @property
     def _format_pieces(self):
         return self._get_format_pieces(is_indented=False)
 
-    ### PUBLIC PROPERTIES ###
+    ### PUBLIC READ-ONLY PROPERTIES ###
 
     @property
     def args(self):
@@ -186,3 +196,4 @@ class MarkupCommand(AbjadObject):
         result.extend(recurse(self.args, is_indented=is_indented))
         result.append('{})'.format(indent))
         return result
+
