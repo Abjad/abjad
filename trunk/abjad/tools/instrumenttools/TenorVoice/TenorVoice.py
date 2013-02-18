@@ -1,10 +1,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools._Voice import _Voice
+from abjad.tools.instrumenttools.Voice import Voice
 
 
-class TenorVoice(_Voice):
+class TenorVoice(Voice):
     r'''.. versionadded:: 2.8
 
     Abjad model of the tenor voice::
@@ -36,7 +36,7 @@ class TenorVoice(_Voice):
     '''
 
     def __init__(self, **kwargs):
-        _Voice.__init__(self, **kwargs)
+        Voice.__init__(self, **kwargs)
         self._default_instrument_name = 'tenor voice'
         self._default_performer_names.append('tenor')
         self._default_short_instrument_name = 'tenor'

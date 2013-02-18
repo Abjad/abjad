@@ -95,11 +95,11 @@ class Performer(AbjadObject):
             '''
             return self._instruments
         def fset(self, instruments):
-            from abjad.tools.instrumenttools._Instrument import _Instrument
+            from abjad.tools.instrumenttools.Instrument import Instrument
             if instruments is None:
                 self._instruments[:] = []
             elif isinstance(instruments, list):
-                assert all([isinstance(x, _Instrument) for x in instruments])
+                assert all([isinstance(x, Instrument) for x in instruments])
                 self._instruments[:] = instruments[:]
             else:
                 raise TypeError('instruments %r must be list or none.' % instruments)

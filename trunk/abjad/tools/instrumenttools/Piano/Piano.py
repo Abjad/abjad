@@ -2,11 +2,11 @@ from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
-from abjad.tools.instrumenttools._KeyboardInstrument import _KeyboardInstrument
+from abjad.tools.instrumenttools.KeyboardInstrument import KeyboardInstrument
 
 
 # TODO: extend class definition to allow for custom target context in repr
-class Piano(_KeyboardInstrument):
+class Piano(KeyboardInstrument):
     r'''.. versionadded:: 2.0
 
     Abjad model of the piano::
@@ -46,7 +46,7 @@ class Piano(_KeyboardInstrument):
     def __init__(self, target_context=None, **kwargs):
         if target_context is None:
             target_context = scoretools.PianoStaff
-        _KeyboardInstrument.__init__(self, target_context=target_context, **kwargs)
+        KeyboardInstrument.__init__(self, target_context=target_context, **kwargs)
         self._default_instrument_name = 'piano'
         self._default_performer_names.append('pianist')
         self._default_short_instrument_name = 'pf.'

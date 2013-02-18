@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_InstrumentationSpecifier_storage_format_01():
+def testInstrumentationSpecifier_storage_format_01():
 
     flute = scoretools.Performer('Flute')
     flute.instruments.append(instrumenttools.Flute())

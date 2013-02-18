@@ -2,10 +2,10 @@ from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
-from abjad.tools.instrumenttools._KeyboardInstrument import _KeyboardInstrument
+from abjad.tools.instrumenttools.KeyboardInstrument import KeyboardInstrument
 
 
-class Harpsichord(_KeyboardInstrument):
+class Harpsichord(KeyboardInstrument):
     r'''.. versionadded:: 2.5
 
     Abjad model of the harpsichord::
@@ -47,7 +47,7 @@ class Harpsichord(_KeyboardInstrument):
     def __init__(self, target_context=None, **kwargs):
         if target_context is None:
             target_context = scoretools.PianoStaff
-        _KeyboardInstrument.__init__(self, target_context=target_context, **kwargs)    
+        KeyboardInstrument.__init__(self, target_context=target_context, **kwargs)    
         self._default_instrument_name = 'harpsichord'
         self._default_performer_names.append('harpsichordist')
         self._default_short_instrument_name = 'hpschd.'

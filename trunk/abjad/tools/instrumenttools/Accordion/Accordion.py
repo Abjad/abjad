@@ -1,11 +1,11 @@
 from abjad.tools import contexttools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
-from abjad.tools.instrumenttools._KeyboardInstrument import _KeyboardInstrument
-from abjad.tools.instrumenttools._ReedInstrument import _ReedInstrument
+from abjad.tools.instrumenttools.KeyboardInstrument import KeyboardInstrument
+from abjad.tools.instrumenttools.ReedInstrument import ReedInstrument
 
 
-class Accordion(_KeyboardInstrument, _ReedInstrument):
+class Accordion(KeyboardInstrument, ReedInstrument):
     r'''.. versionadded 1.1.2
 
     Abjad model of the accordion::
@@ -45,7 +45,7 @@ class Accordion(_KeyboardInstrument, _ReedInstrument):
     def __init__(self, target_context=None, **kwargs):
         if target_context is None:
             target_context = scoretools.PianoStaff
-        _KeyboardInstrument.__init__(self, target_context=target_context, **kwargs)
+        KeyboardInstrument.__init__(self, target_context=target_context, **kwargs)
         self._default_instrument_name = 'accordion'
         self._default_performer_names.append('accordionist')
         self._default_short_instrument_name = 'acc.'

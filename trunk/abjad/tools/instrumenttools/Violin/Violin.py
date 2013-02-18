@@ -1,10 +1,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools._StringInstrument import _StringInstrument
+from abjad.tools.instrumenttools.StringInstrument import StringInstrument
 
 
-class Violin(_StringInstrument):
+class Violin(StringInstrument):
     r'''.. versionadded:: 2.0
 
     Abjad model of the violin::
@@ -32,7 +32,7 @@ class Violin(_StringInstrument):
     '''
 
     def __init__(self, **kwargs):
-        _StringInstrument.__init__(self, **kwargs)
+        StringInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'violin'
         self._default_performer_names.append('violinist')
         self._default_short_instrument_name = 'vn.'

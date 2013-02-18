@@ -1,10 +1,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools._Trombone._Trombone import _Trombone
+from abjad.tools.instrumenttools.Trombone.Trombone import Trombone
 
 
-class BassTrombone(_Trombone):
+class BassTrombone(Trombone):
     r'''.. versionadded:: 2.0
 
     Abjad model of the tenor trombone::
@@ -39,7 +39,7 @@ class BassTrombone(_Trombone):
     '''
 
     def __init__(self, **kwargs):
-        _Trombone.__init__(self, **kwargs)
+        Trombone.__init__(self, **kwargs)
         self._default_instrument_name = 'bass trombone'
         self._default_short_instrument_name = 'bass trb.'
         self._is_primary_instrument = False

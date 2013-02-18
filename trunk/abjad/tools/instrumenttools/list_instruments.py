@@ -1,3 +1,6 @@
+import inspect
+
+
 def list_instruments(klasses=None):
     r'''.. versionadded:: 2.5
 
@@ -15,15 +18,15 @@ def list_instruments(klasses=None):
     Return list.
     '''
     from abjad.tools import instrumenttools
-    from abjad.tools.instrumenttools._Instrument import _Instrument
+    from abjad.tools.instrumenttools.Instrument import Instrument
 
     if klasses is None:
-        klasses = (_Instrument, )
+        klasses = (Instrument, )
 
     instruments = []
     for value in instrumenttools.__dict__.itervalues():
         try:
-            if issubclass(value, klasses):
+            if issubclass(value, klasses) and not inspect.isabstract(value):
                 instruments.append(value)
         except TypeError:
             pass

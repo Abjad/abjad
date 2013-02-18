@@ -1,10 +1,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools._Clarinet._Clarinet import _Clarinet
+from abjad.tools.instrumenttools.Clarinet.Clarinet import Clarinet
 
 
-class ClarinetInA(_Clarinet):
+class ClarinetInA(Clarinet):
     r'''.. versionadded:: 2.6
 
     Abjad model of the clarinet in A::
@@ -36,7 +36,7 @@ class ClarinetInA(_Clarinet):
     '''
 
     def __init__(self, **kwargs):
-        _Clarinet.__init__(self, **kwargs)
+        Clarinet.__init__(self, **kwargs)
         self._default_instrument_name = 'clarinet in A'
         self._default_performer_names.extend(['clarinettist', 'clarinetist'])
         self._default_short_instrument_name = r'cl. A \natural'

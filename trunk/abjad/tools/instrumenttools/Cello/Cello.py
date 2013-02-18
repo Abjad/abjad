@@ -1,10 +1,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools._StringInstrument import _StringInstrument
+from abjad.tools.instrumenttools.StringInstrument import StringInstrument
 
 
-class Cello(_StringInstrument):
+class Cello(StringInstrument):
     r'''.. versionadded:: 2.0
 
     Abjad model of the cello::
@@ -39,7 +39,7 @@ class Cello(_StringInstrument):
     '''
 
     def __init__(self, **kwargs):
-        _StringInstrument.__init__(self, **kwargs)
+        StringInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'cello'
         self._default_performer_names.append('cellist')
         self._default_short_instrument_name = 'vc.'

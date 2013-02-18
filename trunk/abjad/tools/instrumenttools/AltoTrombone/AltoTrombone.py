@@ -1,10 +1,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools._Trombone._Trombone import _Trombone
+from abjad.tools.instrumenttools.Trombone.Trombone import Trombone
 
 
-class AltoTrombone(_Trombone):
+class AltoTrombone(Trombone):
     r'''.. versionadded:: 2.0
 
     Abjad model of the alto trombone::
@@ -39,7 +39,7 @@ class AltoTrombone(_Trombone):
     '''
 
     def __init__(self, **kwargs):
-        _Trombone.__init__(self, **kwargs)
+        Trombone.__init__(self, **kwargs)
         self._default_instrument_name = 'alto trombone'
         self._default_short_instrument_name = 'alt. trb.'
         self._is_primary_instrument = False

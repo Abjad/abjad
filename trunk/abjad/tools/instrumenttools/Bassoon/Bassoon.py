@@ -1,10 +1,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools._DoubleReedInstrument import _DoubleReedInstrument
+from abjad.tools.instrumenttools.DoubleReedInstrument import DoubleReedInstrument
 
 
-class Bassoon(_DoubleReedInstrument):
+class Bassoon(DoubleReedInstrument):
     r'''.. versionadded:: 2.0
 
     Abjad model of the bassoon::
@@ -39,7 +39,7 @@ class Bassoon(_DoubleReedInstrument):
     '''
 
     def __init__(self, **kwargs):
-        _DoubleReedInstrument.__init__(self, **kwargs)
+        DoubleReedInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'bassoon'
         self._default_performer_names.append('bassoonist')
         self._default_short_instrument_name = 'bsn.'

@@ -1,10 +1,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools._Saxophone._Saxophone import _Saxophone
+from abjad.tools.instrumenttools.Saxophone.Saxophone import Saxophone
 
 
-class SopraninoSaxophone(_Saxophone):
+class SopraninoSaxophone(Saxophone):
     r'''.. versionadded:: 2.6
 
     Abjad model of the sopranino saxophone::
@@ -38,7 +38,7 @@ class SopraninoSaxophone(_Saxophone):
     '''
 
     def __init__(self, **kwargs):
-        _Saxophone.__init__(self, **kwargs)
+        Saxophone.__init__(self, **kwargs)
         self._default_instrument_name = 'sopranino saxophone'
         self._default_performer_names.extend(['saxophonist'])
         self._default_short_instrument_name = 'sopranino sax.'

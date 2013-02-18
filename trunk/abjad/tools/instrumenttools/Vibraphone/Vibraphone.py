@@ -1,10 +1,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools._PercussionInstrument import _PercussionInstrument
+from abjad.tools.instrumenttools.PercussionInstrument import PercussionInstrument
 
 
-class Vibraphone(_PercussionInstrument):
+class Vibraphone(PercussionInstrument):
     r'''.. versionadded:: 2.0
 
     Abjad model of the vibraphone::
@@ -32,7 +32,7 @@ class Vibraphone(_PercussionInstrument):
     '''
 
     def __init__(self, **kwargs):
-        _PercussionInstrument.__init__(self, **kwargs)
+        PercussionInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'vibraphone'
         self._default_performer_names.append('vibraphonist')
         self._default_short_instrument_name = 'vibr.'

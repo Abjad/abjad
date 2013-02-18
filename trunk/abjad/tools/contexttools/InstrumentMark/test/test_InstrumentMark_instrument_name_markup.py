@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_InstrumentMark_instrument_name_markup_01():
+def testInstrumentMark_instrument_name_markup_01():
     '''Instrument name is read / write.
     '''
 
@@ -15,7 +15,7 @@ def test_InstrumentMark_instrument_name_markup_01():
     assert instrument.instrument_name_markup == markuptools.Markup('foo')
 
 
-def test_InstrumentMark_instrument_name_markup_02():
+def testInstrumentMark_instrument_name_markup_02():
     '''Strings are coerced into Markup on instantiation.
     '''
     instrument = contexttools.InstrumentMark('flute', 'fl.', instrument_name_markup='Flute 2')

@@ -1,10 +1,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools._Voice import _Voice
+from abjad.tools.instrumenttools.Voice import Voice
 
 
-class BassVoice(_Voice):
+class BassVoice(Voice):
     r'''.. versionadded:: 2.8
 
     Abjad model of the bass voice::
@@ -36,7 +36,7 @@ class BassVoice(_Voice):
     '''
 
     def __init__(self, **kwargs):
-        _Voice.__init__(self, **kwargs)
+        Voice.__init__(self, **kwargs)
         self._default_instrument_name = 'bass voice'
         self._default_performer_names.append('bass')
         self._default_short_instrument_name = 'bass'

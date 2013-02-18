@@ -1,10 +1,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools._PercussionInstrument import _PercussionInstrument
+from abjad.tools.instrumenttools.PercussionInstrument import PercussionInstrument
 
 
-class Marimba(_PercussionInstrument):
+class Marimba(PercussionInstrument):
     r'''.. versionadded:: 2.0
 
     Abjad model of the marimba::
@@ -36,7 +36,7 @@ class Marimba(_PercussionInstrument):
     '''
 
     def __init__(self, **kwargs):
-        _PercussionInstrument.__init__(self, **kwargs)
+        PercussionInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'marimba'
         self._default_short_instrument_name = 'mb.'
         self._is_primary_instrument = False

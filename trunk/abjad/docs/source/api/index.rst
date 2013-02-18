@@ -611,6 +611,25 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
+      tools/instrumenttools/BrassInstrument/BrassInstrument
+      tools/instrumenttools/Clarinet/Clarinet
+      tools/instrumenttools/DoubleReedInstrument/DoubleReedInstrument
+      tools/instrumenttools/Instrument/Instrument
+      tools/instrumenttools/KeyboardInstrument/KeyboardInstrument
+      tools/instrumenttools/PercussionInstrument/PercussionInstrument
+      tools/instrumenttools/ReedInstrument/ReedInstrument
+      tools/instrumenttools/Saxophone/Saxophone
+      tools/instrumenttools/SingleReedInstrument/SingleReedInstrument
+      tools/instrumenttools/StringInstrument/StringInstrument
+      tools/instrumenttools/Trombone/Trombone
+      tools/instrumenttools/Voice/Voice
+      tools/instrumenttools/WindInstrument/WindInstrument
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
       tools/instrumenttools/Accordion/Accordion
       tools/instrumenttools/AltoFlute/AltoFlute
       tools/instrumenttools/AltoSaxophone/AltoSaxophone
@@ -677,6 +696,25 @@ Core composition packages
       tools/instrumenttools/transpose_from_sounding_pitch_to_fingered_pitch
 
 .. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/instrumenttools/BrassInstrument/BrassInstrument
+      tools/instrumenttools/Clarinet/Clarinet
+      tools/instrumenttools/DoubleReedInstrument/DoubleReedInstrument
+      tools/instrumenttools/Instrument/Instrument
+      tools/instrumenttools/KeyboardInstrument/KeyboardInstrument
+      tools/instrumenttools/PercussionInstrument/PercussionInstrument
+      tools/instrumenttools/ReedInstrument/ReedInstrument
+      tools/instrumenttools/Saxophone/Saxophone
+      tools/instrumenttools/SingleReedInstrument/SingleReedInstrument
+      tools/instrumenttools/StringInstrument/StringInstrument
+      tools/instrumenttools/Trombone/Trombone
+      tools/instrumenttools/Voice/Voice
+      tools/instrumenttools/WindInstrument/WindInstrument
 
    Concrete Classes
    ----------------
