@@ -137,11 +137,9 @@ class RhythmMaker(AbjadObject):
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        r'''.. versionadded:: 2.11
+        r'''Create new rhythm-maker with `kwargs`:
 
-        Copy rhythm-maker.
-
-        Set keyword arguments on copied rhythm-maker::
+        ::
 
             >>> maker = rhythmmakertools.NoteRhythmMaker()
 
@@ -171,7 +169,7 @@ class RhythmMaker(AbjadObject):
                 }
             }
 
-        Return copied rhythm-maker.
+        Return new rhythm-maker.
         '''
         new = copy.deepcopy(self)
         for key, value in kwargs.iteritems():
@@ -179,9 +177,7 @@ class RhythmMaker(AbjadObject):
         return new
  
     def reverse(self):
-        '''.. versionadded:: 2.10
-
-        Reverse rhythm-maker.
+        '''Reverse rhythm-maker.
 
         .. note:: method is provisional.
 
