@@ -136,24 +136,6 @@ class BurnishedRhythmMaker(RhythmMaker):
         assert all([isinstance(x, list) for x in result]) or tuplettools.all_are_tuplets(result), repr(result)
         return result
 
-    def __eq__(self, expr):
-        '''True when `expr` is a burnished rhythm-maker
-        with the equal public properties.
-        Otherwise false.
-
-        Return boolean.
-        '''
-        if isinstance(expr, type(self)):
-            if self._positional_argument_values == expr._positional_argument_values:
-                nonhelper_keyword_argument_names = [
-                    x for x in self._keyword_argument_names if 'helper' not in x]
-                for nonhelper_keyword_argument_name in nonhelper_keyword_argument_names:
-                    if not getattr(self, nonhelper_keyword_argument_name) == \
-                        getattr(expr, nonhelper_keyword_argument_name):
-                        return False
-                return True
-        return False    
-
     ### PRIVATE METHODS ###
 
     def _add_ties(self, result):
@@ -247,6 +229,16 @@ class BurnishedRhythmMaker(RhythmMaker):
         secondary_divisions = sequencetools.CyclicTuple(secondary_divisions)
         return talea, prolation_addenda, \
             lefts, middles, rights, left_lengths, right_lengths, secondary_divisions
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def storage_format(self):
+        '''Burnished rhythm-maker storage format.
+
+        Return string.
+        '''
+        return RhythmMaker.storage_format.fget(self)
 
     ### PUBLIC METHODS ###
 

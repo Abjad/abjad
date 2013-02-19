@@ -1,6 +1,7 @@
 import abc
 import copy
 from abjad.tools import durationtools
+from abjad.tools import leaftools
 from abjad.tools import sequencetools
 from abjad.tools import tuplettools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -37,6 +38,24 @@ class RhythmMaker(AbjadObject):
         seeds = self._none_to_new_list(seeds)
         return duration_pairs, seeds
 
+    def __eq__(self, expr):
+        '''True when `expr` is same type
+        with the equal public nonhelper properties.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        if isinstance(expr, type(self)):
+            if self._positional_argument_values == expr._positional_argument_values:
+                nonhelper_keyword_argument_names = [
+                    x for x in self._keyword_argument_names if 'helper' not in x]
+                for nonhelper_keyword_argument_name in nonhelper_keyword_argument_names:
+                    if not getattr(self, nonhelper_keyword_argument_name) == \
+                        getattr(expr, nonhelper_keyword_argument_name):
+                        return False
+                return True
+        return False
+
     def __repr__(self):
         '''Rhythm-maker interpreter representation.
 
@@ -47,6 +66,14 @@ class RhythmMaker(AbjadObject):
         return AbjadObject.__repr__(self)
 
     ### PRIVATE METHODS ###
+
+    def _all_are_tuplets_or_all_are_leaf_lists(self, expr):
+        if tuplettools.all_are_tuplets(expr):
+            return True
+        elif all([leaftools.all_are_leaves(x) for x in expr]):
+            return True
+        else:
+            return False
 
     def _make_secondary_duration_pairs(self, duration_pairs, secondary_divisions):
         if not secondary_divisions:

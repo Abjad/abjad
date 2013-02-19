@@ -5,6 +5,7 @@ from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
+from abjad.tools import tuplettools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
@@ -87,6 +88,10 @@ class IncisedRhythmMaker(RhythmMaker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
+        '''Call incised rhythm-maker on `divisions`.
+
+        Return list of tuplets or return list of leaf lists.
+        '''
         duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
         result = self._prepare_input(seeds)
         prefix_talea, prefix_lengths, suffix_talea, suffix_lengths = result[:-2]
@@ -101,21 +106,12 @@ class IncisedRhythmMaker(RhythmMaker):
             prefix_talea, prefix_lengths, suffix_talea, suffix_lengths, prolation_addenda)
         leaf_lists = self._numeric_map_and_talea_denominator_to_leaf_lists(numeric_map, lcd)
         if not self.prolation_addenda:
-            return leaf_lists
+            result = leaf_lists
         else:
             tuplets = self._make_tuplets(secondary_duration_pairs, leaf_lists)
-            return tuplets
-
-    def __eq__(self, other):
-        return isinstance(other, type(self)) and all([
-            self.prefix_talea == other.prefix_talea,
-            self.prefix_lengths == other.prefix_lengths,
-            self.suffix_talea == other.suffix_talea,
-            self.suffix_lengths == other.suffix_lengths,
-            self.prolation_addenda == other.prolation_addenda,
-            self.talea_denominator == other.talea_denominator,
-            self.secondary_divisions == other.secondary_divisions,
-            ])
+            result = tuplets
+        assert self._all_are_tuplets_or_all_are_leaf_lists(result), repr(result)
+        return result
 
     ### PRIVATE METHODS ###
 
