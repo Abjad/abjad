@@ -84,7 +84,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
             expressiontools.MultipleContextSetExpression(
                 attribute='divisions',
                 source_expression=expressiontools.IterablePayloadExpression(
-                    ((3, 16),)
+                    payload=((3, 16),)
                     ),
                 target_timespan='red',
                 target_context_names=['Voice 1', 'Voice 3'],
@@ -221,7 +221,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
             expressiontools.MultipleContextSetExpression(
                 attribute='time_signatures',
                 source_expression=expressiontools.IterablePayloadExpression(
-                    ((3, 8), (4, 8))
+                    payload=((3, 8), (4, 8))
                     ),
                 target_timespan='red',
                 persist=True

@@ -23,7 +23,7 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
         expressiontools.MultipleContextSetExpression(
             attribute='time_signatures',
             source_expression=expressiontools.IterablePayloadExpression(
-                ((4, 8), (3, 8))
+                payload=((4, 8), (3, 8))
                 ),
             target_timespan='red',
             persist=True
@@ -34,7 +34,8 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     ### INITIAILIZER ###
 
-    def __init__(self, attribute=None, source_expression=None, target_timespan=None, target_context_names=None, 
+    def __init__(self, 
+            attribute=None, source_expression=None, target_timespan=None, target_context_names=None, 
             persist=True, truncate=None):
         TimeContiguousAnchoredSetExpression.__init__(self, attribute=attribute, 
             source_expression=source_expression, 

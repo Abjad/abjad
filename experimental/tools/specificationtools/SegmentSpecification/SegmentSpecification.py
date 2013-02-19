@@ -90,7 +90,7 @@ class SegmentSpecification(Specification):
             timespantools.TimespanInventory([
                 expressiontools.SingleContextTimeSignatureSetExpression(
                     source_expression=expressiontools.IterablePayloadExpression(
-                        ((2, 8), (3, 8), (4, 8))
+                        payload=((2, 8), (3, 8), (4, 8))
                         ),
                     target_timespan='red',
                     fresh=True,

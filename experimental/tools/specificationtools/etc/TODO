@@ -1,10 +1,7 @@
-1.  Make IterablePayloadExpression.__init__(payload) into __init__(payload=None).
-    Same for PayloadExpression.
-
-2.  Extend ScoreSpecification with pitch_set_expressions property.
+1.  Extend ScoreSpecification with pitch_set_expressions property.
     Then inspect ScoreSpecification.pitch_set_expressions at pitch interpretation time
     instead of ScoreSpecification.generalized_set_expressions.
     But leave ScoreSpecification.generalized_set_expressions in tact.
 
-3.  Make pitch set tests work for contiguous select expressions.
+2.  Make pitch set tests work for contiguous select expressions.
     Might be fixed as a byproduct of storing ScoreSpecification.pitch_set_expressions.

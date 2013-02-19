@@ -41,7 +41,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
         >>> z(fresh_single_context_set_expression)
         expressiontools.SingleContextTimeSignatureSetExpression(
             source_expression=expressiontools.IterablePayloadExpression(
-                ((4, 8), (3, 8))
+                payload=((4, 8), (3, 8))
                 ),
             target_timespan='red',
             fresh=True,
@@ -58,9 +58,11 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute=None, source_expression=None, target_timespan=None, target_context_name=None, 
+    def __init__(self, 
+        attribute=None, source_expression=None, target_timespan=None, target_context_name=None, 
         fresh=True, persist=True, truncate=None):
-        TimeContiguousAnchoredSetExpression.__init__(self, attribute=attribute, source_expression=source_expression, 
+        TimeContiguousAnchoredSetExpression.__init__(self, 
+            attribute=attribute, source_expression=source_expression, 
             target_timespan=target_timespan, persist=persist, truncate=truncate)
         assert isinstance(target_context_name, (str, type(None)))
         self._fresh = fresh

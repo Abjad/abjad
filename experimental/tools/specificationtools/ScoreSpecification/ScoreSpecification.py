@@ -160,7 +160,7 @@ class ScoreSpecification(Specification):
                 expressiontools.MultipleContextSetExpression(
                     attribute='time_signatures',
                     source_expression=expressiontools.IterablePayloadExpression(
-                        ((2, 8), (3, 8), (4, 8))
+                        payload=((2, 8), (3, 8), (4, 8))
                         ),
                     target_timespan='red',
                     persist=True
@@ -168,7 +168,7 @@ class ScoreSpecification(Specification):
                 expressiontools.MultipleContextSetExpression(
                     attribute='time_signatures',
                     source_expression=expressiontools.IterablePayloadExpression(
-                        ((4, 16), (4, 16))
+                        payload=((4, 16), (4, 16))
                         ),
                     target_timespan='orange',
                     persist=True
@@ -176,7 +176,7 @@ class ScoreSpecification(Specification):
                 expressiontools.MultipleContextSetExpression(
                     attribute='time_signatures',
                     source_expression=expressiontools.IterablePayloadExpression(
-                        ((5, 16), (5, 16))
+                        payload=((5, 16), (5, 16))
                         ),
                     target_timespan='yellow',
                     persist=True
@@ -460,7 +460,7 @@ class ScoreSpecification(Specification):
             timespantools.TimespanInventory([
                 expressiontools.SingleContextTimeSignatureSetExpression(
                     source_expression=expressiontools.IterablePayloadExpression(
-                        ((2, 8), (3, 8), (4, 8))
+                        payload=((2, 8), (3, 8), (4, 8))
                         ),
                     target_timespan='red',
                     fresh=True,
@@ -468,7 +468,7 @@ class ScoreSpecification(Specification):
                     ),
                 expressiontools.SingleContextTimeSignatureSetExpression(
                     source_expression=expressiontools.IterablePayloadExpression(
-                        ((4, 16), (4, 16))
+                        payload=((4, 16), (4, 16))
                         ),
                     target_timespan='orange',
                     fresh=True,
@@ -476,7 +476,7 @@ class ScoreSpecification(Specification):
                     ),
                 expressiontools.SingleContextTimeSignatureSetExpression(
                     source_expression=expressiontools.IterablePayloadExpression(
-                        ((5, 16), (5, 16))
+                        payload=((5, 16), (5, 16))
                         ),
                     target_timespan='yellow',
                     fresh=True,

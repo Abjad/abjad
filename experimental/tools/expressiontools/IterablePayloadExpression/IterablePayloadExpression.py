@@ -16,13 +16,13 @@ class IterablePayloadExpression(PayloadExpression):
     ::
 
         >>> payload_expression
-        IterablePayloadExpression(((4, 16), (2, 16)))
+        IterablePayloadExpression(payload=((4, 16), (2, 16)))
 
     ::
 
         >>> z(payload_expression)
         expressiontools.IterablePayloadExpression(
-            ((4, 16), (2, 16))
+            payload=((4, 16), (2, 16))
             )
 
     Payload expressions are assumed to evaluate to a list or other iterable.
@@ -30,7 +30,7 @@ class IterablePayloadExpression(PayloadExpression):
 
     ### INTIAILIZER ###
 
-    def __init__(self, payload):
+    def __init__(self, payload=None):
         from experimental.tools import expressiontools
         assert not isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
         assert not isinstance(payload, expressiontools.StatalServerCursor), repr(payload)
@@ -55,7 +55,7 @@ class IterablePayloadExpression(PayloadExpression):
             >>> z(result)
             timespantools.TimespanInventory([
                 expressiontools.IterablePayloadExpression(
-                    (Division('[3, 16]', start_offset=Offset(1, 16)), 
+                    payload=(Division('[3, 16]', start_offset=Offset(1, 16)), 
                     Division('[1, 16]', start_offset=Offset(1, 4)))
                     )
                 ])
@@ -88,7 +88,7 @@ class IterablePayloadExpression(PayloadExpression):
 
             >>> z(result)
             expressiontools.IterablePayloadExpression(
-                ((4, 16),)
+                payload=((4, 16),)
                 )
 
         Return newly constructed payload expression
@@ -145,7 +145,7 @@ class IterablePayloadExpression(PayloadExpression):
 
             >>> z(payload_expression)
             expressiontools.IterablePayloadExpression(
-                ((4, 16), (2, 16))
+                payload=((4, 16), (2, 16))
                 )
 
         Return string.
@@ -158,7 +158,7 @@ class IterablePayloadExpression(PayloadExpression):
         '''Evaluate payload expression.
 
             >>> payload_expression.evaluate()
-            IterablePayloadExpression(((4, 16), (2, 16)))
+            IterablePayloadExpression(payload=((4, 16), (2, 16)))
 
         Return payload expression.
         '''
@@ -176,10 +176,10 @@ class IterablePayloadExpression(PayloadExpression):
             >>> for element in result:
             ...     z(element)
             expressiontools.IterablePayloadExpression(
-                ((4, 16),)
+                payload=((4, 16),)
                 )
             expressiontools.IterablePayloadExpression(
-                ((2, 16),)
+                payload=((2, 16),)
                 )
 
         Return list of newly constructed payload expressions.
@@ -203,10 +203,10 @@ class IterablePayloadExpression(PayloadExpression):
             >>> for element in result:
             ...     z(element)
             expressiontools.IterablePayloadExpression(
-                ((4, 16),)
+                payload=((4, 16),)
                 )
             expressiontools.IterablePayloadExpression(
-                ((2, 16),)
+                payload=((2, 16),)
                 )
 
         Return newly constructed payload expression.
@@ -234,7 +234,7 @@ class IterablePayloadExpression(PayloadExpression):
 
             >>> z(result)
             expressiontools.IterablePayloadExpression(
-                ((2, 16), (4, 16))
+                payload=((2, 16), (4, 16))
                 )
 
         Return newly constructed payload expression.
@@ -255,7 +255,7 @@ class IterablePayloadExpression(PayloadExpression):
 
             >>> z(result)
             expressiontools.IterablePayloadExpression(
-                (NonreducedFraction(4, 16), 
+                payload=(NonreducedFraction(4, 16), 
                 NonreducedFraction(2, 16), 
                 NonreducedFraction(4, 16), 
                 NonreducedFraction(2, 16), 
@@ -283,7 +283,7 @@ class IterablePayloadExpression(PayloadExpression):
 
             >>> z(result)
             expressiontools.IterablePayloadExpression(
-                ((4, 16), (2, 16), (4, 16), (2, 16))
+                payload=((4, 16), (2, 16), (4, 16), (2, 16))
                 )
 
         Return newly constructed payload expression.
@@ -303,7 +303,7 @@ class IterablePayloadExpression(PayloadExpression):
 
             >>> z(result)
             expressiontools.IterablePayloadExpression(
-                ((2, 16), (4, 16))
+                payload=((2, 16), (4, 16))
                 )
 
         Return newly constructed payload expression.
