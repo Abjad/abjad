@@ -1,7 +1,7 @@
 from experimental.tools.expressiontools.GeneralizedSetExpression import GeneralizedSetExpression
 
 
-class GeneralizedPitchSetExpression(GeneralizedSetExpression):
+class PitchSetExpression(GeneralizedSetExpression):
     '''Generalized pitch set expression.
     '''
 

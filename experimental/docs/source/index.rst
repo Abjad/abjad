@@ -158,7 +158,6 @@ Unstable packages (load manually)
       tools/expressiontools/DivisionSelectExpression/DivisionSelectExpression
       tools/expressiontools/DivisionSetExpressionLookupExpression/DivisionSetExpressionLookupExpression
       tools/expressiontools/ExpressionInventory/ExpressionInventory
-      tools/expressiontools/GeneralizedPitchSetExpression/GeneralizedPitchSetExpression
       tools/expressiontools/GeneralizedSetExpression/GeneralizedSetExpression
       tools/expressiontools/HandlerExpression/HandlerExpression
       tools/expressiontools/IterablePayloadExpression/IterablePayloadExpression
@@ -171,6 +170,7 @@ Unstable packages (load manually)
       tools/expressiontools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/expressiontools/OffsetExpression/OffsetExpression
       tools/expressiontools/PayloadExpression/PayloadExpression
+      tools/expressiontools/PitchSetExpression/PitchSetExpression
       tools/expressiontools/RhythmMakerExpression/RhythmMakerExpression
       tools/expressiontools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
       tools/expressiontools/RhythmSetExpressionLookupExpression/RhythmSetExpressionLookupExpression
@@ -241,7 +241,6 @@ Unstable packages (load manually)
       tools/expressiontools/DivisionSelectExpression/DivisionSelectExpression
       tools/expressiontools/DivisionSetExpressionLookupExpression/DivisionSetExpressionLookupExpression
       tools/expressiontools/ExpressionInventory/ExpressionInventory
-      tools/expressiontools/GeneralizedPitchSetExpression/GeneralizedPitchSetExpression
       tools/expressiontools/GeneralizedSetExpression/GeneralizedSetExpression
       tools/expressiontools/HandlerExpression/HandlerExpression
       tools/expressiontools/IterablePayloadExpression/IterablePayloadExpression
@@ -254,6 +253,7 @@ Unstable packages (load manually)
       tools/expressiontools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/expressiontools/OffsetExpression/OffsetExpression
       tools/expressiontools/PayloadExpression/PayloadExpression
+      tools/expressiontools/PitchSetExpression/PitchSetExpression
       tools/expressiontools/RhythmMakerExpression/RhythmMakerExpression
       tools/expressiontools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
       tools/expressiontools/RhythmSetExpressionLookupExpression/RhythmSetExpressionLookupExpression
