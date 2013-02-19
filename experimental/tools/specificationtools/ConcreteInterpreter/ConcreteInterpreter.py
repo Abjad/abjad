@@ -116,9 +116,21 @@ class ConcreteInterpreter(Interpreter):
         for generalized_set_expression in self.score_specification.generalized_set_expressions:
             if not generalized_set_expression.attribute == 'pitch':
                 continue
+            source_expression = generalized_set_expression.source_expression
+            if isinstance(source_expression, expressiontools.PayloadExpression) \
+                and isinstance(source_expression.payload, expressiontools.StatalServerCursor):
+                statal_server_cursor = source_expression.payload
+            else:
+                raise ValueError(source_expression)
+            leaves = []
             for target_select_expression in generalized_set_expression.target_select_expression_inventory:
-                leaves = target_select_expression.evaluate_against_score()
-                self._debug(leaves, 'leaves')
+                iterable_payload_expression = target_select_expression.evaluate_against_score(self.score)
+                leaves.extend(iterable_payload_expression.payload)
+            for leaf in leaves:
+                assert isinstance(leaf, (notetools.Note, chordtools.Chord)), repr(leaf)
+                chromatic_pitch_numbers = statal_server_cursor()
+                assert len(chromatic_pitch_numbers) == 1
+                leaf.written_pitch = chromatic_pitch_numbers[0]
 
     def interpret_rhythm(self):
         self.make_timespan_scoped_single_context_set_expressions('rhythm')

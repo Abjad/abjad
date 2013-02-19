@@ -5,6 +5,7 @@ from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import measuretools
+from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
@@ -142,5 +143,16 @@ class CounttimeComponentSelectExpression(SelectExpression):
         expression._voice_name = self.voice_name
         return expression
 
-    def evaluate_against_score(self):
-        raise NotImplementedError
+    def evaluate_against_score(self, score):
+        '''Evaluate counttime component select expression against `score`.
+
+        Return iterable payload expression.
+        '''
+        from experimental.tools import expressiontools
+        assert isinstance(score, scoretools.Score), repr(score)
+        voice = score[self.voice_name]
+        components = iterationtools.iterate_components_in_expr(voice, klass=tuple(self.classes))
+        components = list(components)
+        expression = expressiontools.IterablePayloadExpression(components)
+        expression = self._apply_callbacks(expression)
+        return expression
