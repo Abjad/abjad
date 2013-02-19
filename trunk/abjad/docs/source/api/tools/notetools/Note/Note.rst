@@ -51,9 +51,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.set
    :noindex:
 
-.. autoattribute:: abjad.tools.notetools.Note.Note.Note.sounding_pitch
-   :noindex:
-
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.spanners
    :noindex:
 
@@ -85,6 +82,9 @@ Read/write properties
    :noindex:
 
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.note_head
+   :noindex:
+
+.. autoattribute:: abjad.tools.notetools.Note.Note.Note.sounding_pitch
    :noindex:
 
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.written_duration

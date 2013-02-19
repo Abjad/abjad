@@ -347,6 +347,47 @@ class Tree(AbjadObject):
         return max(levels) - self.level + 1
 
     @property
+    def graphviz_format(self):
+        return self.graphviz_graph.graphviz_format
+
+    @property
+    def graphviz_graph(self):
+        '''The GraphvizGraph representation of the Tree:
+
+        ::
+
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]                              
+            >>> tree = sequencetools.Tree(sequence)
+
+        ::
+
+            >>> graph = tree.graphviz_graph
+            >>> iotools.graph(graph) # doctest: +SKIP
+
+        Return graphviz graph.
+        '''
+        from abjad.tools import documentationtools
+        graph = documentationtools.GraphvizGraph(name='G')
+        node_mapping = {}
+        for node in self.iterate_depth_first():
+            graphviz_node = documentationtools.GraphvizNode()
+            if node.children:
+                graphviz_node.attributes['shape'] = 'circle'
+                graphviz_node.attributes['label'] = '""'
+            else:
+                graphviz_node.attributes['shape'] = 'box'
+                graphviz_node.attributes['label'] = str(node.payload)
+            graph.append(graphviz_node)
+            node_mapping[node] = graphviz_node                                           
+            if node.parent is not None:                                                  
+                documentationtools.GraphvizEdge()(                                       
+                    node_mapping[node.parent],                                           
+                    node_mapping[node],                                                  
+                    )                                                                    
+        return graph
+
+
+    @property
     def improper_parentage(self):
         '''Improper parentage of node:
 

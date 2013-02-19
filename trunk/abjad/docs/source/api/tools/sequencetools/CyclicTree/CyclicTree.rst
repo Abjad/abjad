@@ -15,6 +15,12 @@ Read-only properties
 .. autoattribute:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.depth
    :noindex:
 
+.. autoattribute:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.graphviz_format
+   :noindex:
+
+.. autoattribute:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.graphviz_graph
+   :noindex:
+
 .. autoattribute:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.improper_parentage
    :noindex:
 

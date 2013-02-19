@@ -15,6 +15,12 @@ Read-only properties
 .. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.depth
    :noindex:
 
+.. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.graphviz_format
+   :noindex:
+
+.. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.graphviz_graph
+   :noindex:
+
 .. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.improper_parentage
    :noindex:
 
