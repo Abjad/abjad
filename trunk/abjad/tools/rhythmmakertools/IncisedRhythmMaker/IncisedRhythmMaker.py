@@ -35,7 +35,8 @@ class IncisedRhythmMaker(RhythmMaker):
 
     ### INITIALIZER ###
 
-    def __init__(self, prefix_talea, prefix_lengths, suffix_talea, suffix_lengths, talea_denominator,
+    def __init__(self, prefix_talea=None, prefix_lengths=None, 
+        suffix_talea=None, suffix_lengths=None, talea_denominator=None,
         prolation_addenda=None, secondary_divisions=None,
         prefix_talea_helper=None, prefix_lengths_helper=None,
         suffix_talea_helper=None, suffix_lengths_helper=None,
@@ -167,9 +168,7 @@ class IncisedRhythmMaker(RhythmMaker):
     ### PUBLIC METHODS ###
 
     def reverse(self):
-        r'''.. versionadded:: 2.10
-
-        Reverse incised rhythm-maker.
+        r'''Reverse incised rhythm-maker.
 
         Return newly constructed rhythm-maker.
         '''

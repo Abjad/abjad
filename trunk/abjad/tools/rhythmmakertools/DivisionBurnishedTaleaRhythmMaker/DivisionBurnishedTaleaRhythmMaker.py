@@ -135,6 +135,26 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
         ::
 
+            >>> z(new_maker)
+            rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
+                talea=[1, 1, 2],
+                talea_denominator=16,
+                prolation_addenda=[0, 3],
+                lefts=[-1],
+                middles=[0],
+                rights=[-1],
+                left_lengths=[1],
+                right_lengths=[1],
+                secondary_divisions=[14],
+                beam_each_cell=False,
+                beam_cells_together=False,
+                decrease_durations_monotonically=True,
+                tie_split_notes=False,
+                tie_rests=False
+                )
+
+        ::
+
             >>> divisions = [(5, 8), (5, 8)]
             >>> music = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
