@@ -184,44 +184,70 @@ class Note(Leaf):
                 self._note_head = note_head
         return property(**locals())
 
-    @property
-    def sounding_pitch(self):
-        r'''Read-only sounding pitch of note::
+    @apply
+    def sounding_pitch():
+        def fget(self):
+            r'''Get sounding pitch of note::
 
-            >>> staff = Staff("d''8 e''8 f''8 g''8")
-            >>> piccolo = instrumenttools.Piccolo()(staff)
+                >>> staff = Staff("d''8 e''8 f''8 g''8")
+                >>> piccolo = instrumenttools.Piccolo()(staff)
 
-        ::
+            ::
 
-            >>> instrumenttools.transpose_from_sounding_pitch_to_fingered_pitch(staff)
+                >>> instrumenttools.transpose_from_sounding_pitch_to_fingered_pitch(staff)
 
-        ::
+            ::
 
-            >>> f(staff)
-            \new Staff {
-                \set Staff.instrumentName = \markup { Piccolo }
-                \set Staff.shortInstrumentName = \markup { Picc. }
-                d'8
-                e'8
-                f'8
-                g'8
-            }
-            >>> staff[0].sounding_pitch
-            NamedChromaticPitch("d''")
+                >>> f(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { Piccolo }
+                    \set Staff.shortInstrumentName = \markup { Picc. }
+                    d'8
+                    e'8
+                    f'8
+                    g'8
+                }
+                >>> staff[0].sounding_pitch
+                NamedChromaticPitch("d''")
 
-        Return named chromatic pitch.
-        '''
-        from abjad.tools import contexttools
-        from abjad.tools import pitchtools
-        if self.written_pitch_indication_is_at_sounding_pitch:
-            return self.written_pitch
-        else:
-            instrument = contexttools.get_effective_instrument(self)
-            if not instrument:
-                raise InstrumentError('effective instrument of note can not be determined.')
-            t_n = instrument.interval_of_transposition
-            sounding_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(self.written_pitch, t_n)
-            return sounding_pitch
+            Set sounding pitch of note::
+
+                >>> staff[0].sounding_pitch = "dqs''"
+                >>> f(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { Piccolo }
+                    \set Staff.shortInstrumentName = \markup { Picc. }
+                    dqs'8
+                    e'8
+                    f'8
+                    g'8
+                }
+
+            '''
+            from abjad.tools import contexttools
+            from abjad.tools import pitchtools
+            if self.written_pitch_indication_is_at_sounding_pitch:
+                return self.written_pitch
+            else:
+                instrument = contexttools.get_effective_instrument(self)
+                if not instrument:
+                    raise InstrumentError('effective instrument of note can not be determined.')
+                t_n = instrument.interval_of_transposition
+                sounding_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(self.written_pitch, t_n)
+                return sounding_pitch
+        def fset(self, arg):
+            from abjad.tools import contexttools
+            from abjad.tools import pitchtools
+            pitch = pitchtools.NamedChromaticPitch(arg)
+            if self.written_pitch_indication_is_at_sounding_pitch:
+                self.written_pitch = pitch
+            else:
+                instrument = contexttools.get_effective_instrument(self)
+                if not instrument:
+                    raise InstrumentError('effective instrument of note can not be determined.')
+                t_n = -1 * instrument.interval_of_transposition
+                self.written_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, t_n)
+        return property(**locals())
 
     @apply
     def written_pitch():
