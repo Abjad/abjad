@@ -8,9 +8,11 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
     Division-burnished talea rhythm-maker.
 
-    Configure the rhythm-maker at instantiation::
+    Configure the rhythm-maker at instantiation:
 
-        >>> talea, talea_denominator, prolation_addenda = [1, 1, 2, 4], 32, [0, 3]
+    ::
+
+        >>> talea, talea_denominator, prolation_addenda = [1, 1, 2, 4], 16, [0, 3]
         >>> lefts, middles, rights = [-1], [0], [-1]
         >>> left_lengths, right_lengths = [1], [1]
         >>> secondary_divisions = [14]
@@ -18,49 +20,57 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         ... talea, talea_denominator, prolation_addenda, lefts, middles, rights, 
         ... left_lengths, right_lengths, secondary_divisions)
 
-    Then call the rhythm-maker on any sequence of divisions::
+    Then call the rhythm-maker on any sequence of divisions:
 
-        >>> divisions = [(5, 16), (6, 16)]
+    ::
+
+        >>> divisions = [(5, 8), (6, 8)]
         >>> music = maker(divisions)
 
     The resulting Abjad objects can then be included in any score and the rhythm
-    maker can be called again and again on different divisions::
+    maker can be called again and again on different divisions:
+
+    ::
 
         >>> music = sequencetools.flatten_sequence(music)
         >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
-        >>> staff = Staff(measures)
+        >>> staff = stafftools.RhythmicStaff(measures)
         >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     ::
 
         >>> f(staff)
-        \new Staff {
+        \new RhythmicStaff {
             {
-                \time 5/16
+                \time 5/8
                 {
-                    r32
-                    c'32
+                    r16
                     c'16
                     c'8
-                    c'32
-                    r32
+                    c'4
+                    c'16
+                    r16
                 }
             }
             {
-                \time 6/16
+                \time 6/8
                 \times 4/7 {
+                    r8
+                    c'4
                     r16
-                    c'8
-                    r32
                 }
                 {
-                    r32
-                    c'16
+                    r16
                     c'8
-                    r32
+                    c'4
+                    r16
                 }
             }
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
 
@@ -101,3 +111,56 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         burnished_weights = [mathtools.weight(x) for x in burnished_divisions]
         assert burnished_weights == unburnished_weights
         return burnished_divisions
+
+    ### PUBLIC METHODS ###
+
+    def reverse(self):
+        '''Reverse division-burnished talea rhythm-maker.
+
+        Nonreversed output:
+
+        ::
+
+            >>> talea, talea_denominator, prolation_addenda = [1, 1, 2, 4], 16, [0, 3]
+            >>> lefts, middles, rights = [-1], [0], [-1]
+            >>> left_lengths, right_lengths = [1], [1]
+            >>> secondary_divisions = [14]
+            >>> maker = rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
+            ... talea, talea_denominator, prolation_addenda, lefts, middles, rights, 
+            ... left_lengths, right_lengths, secondary_divisions)
+
+        ::
+
+            >>> divisions = [(5, 8), (6, 8)]
+            >>> music = maker(divisions)
+            >>> music = sequencetools.flatten_sequence(music)
+            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Reversed output:
+
+        ::
+
+            >>> reversed_maker = maker.reverse()
+
+        ::
+
+            >>> divisions = [(5, 8), (6, 8)]
+            >>> music = reversed_maker(divisions)
+            >>> music = sequencetools.flatten_sequence(music)
+            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Return division-burnished talea rhythm-maker.
+        '''
+        return BurnishedRhythmMaker.reverse(self)

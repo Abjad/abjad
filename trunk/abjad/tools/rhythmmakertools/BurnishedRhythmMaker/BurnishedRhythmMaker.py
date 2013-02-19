@@ -8,6 +8,7 @@ from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import tietools
+from abjad.tools import tuplettools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
@@ -30,7 +31,6 @@ class BurnishedRhythmMaker(RhythmMaker):
     ### CLASS ATTRIBUTES ###
 
     __metaclass__ = abc.ABCMeta
-
     _default_positional_input_arguments = ([-1, 4, -2, 3], 16, )
 
     ### INITIALIZER ###
@@ -106,6 +106,10 @@ class BurnishedRhythmMaker(RhythmMaker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
+        '''Call burnished rhythm-maker on `divisions`.
+
+        Return either list of tuplets or else list of note-lists.
+        '''
         duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
         octuplet = self._prepare_input(seeds)
         talea, prolation_addenda = octuplet[:2]
@@ -128,28 +132,27 @@ class BurnishedRhythmMaker(RhythmMaker):
                 beamtools.MultipartBeamSpanner(cell)
         if self.tie_split_notes:
             self._add_ties(result)
+        assert isinstance(result, list), repr(result)
+        assert all([isinstance(x, list) for x in result]) or tuplettools.all_are_tuplets(result), repr(result)
         return result
 
-    def __eq__(self, other):
-        return isinstance(other, type(self)) and all([
-            self.talea == other.talea,
-            self.talea_denominator == other.talea_denominator,
-            self.prolation_addenda == other.prolation_addenda,
-            self.lefts == other.lefts,
-            self.middles == other.middles,
-            self.rights == other.rights,
-            self.left_lengths == other.left_lengths,
-            self.right_lengths == other.right_lengths,
-            self.secondary_divisions == other.secondary_divisions,
-            #self.talea_helper == other.talea_helper,
-            #self.prolation_addenda_helper == other.prolation_addenda_helper,
-            #self.lefts_helper == other.lefts_helper,
-            #self.middles_helper == other.middles_helper,
-            #self.rights_helper == other.rights_helper,
-            #self.left_lengths_helper == other.left_lengths_helper,
-            #self.right_lengths_helper == other.right_lengths_helper,
-            #self.secondary_divisons_helper == other.secondary_divisions_helper,
-            ])    
+    def __eq__(self, expr):
+        '''True when `expr` is a burnished rhythm-maker
+        with the equal public properties.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        if isinstance(expr, type(self)):
+            if self._positional_argument_values == expr._positional_argument_values:
+                nonhelper_keyword_argument_names = [
+                    x for x in self._keyword_argument_names if 'helper' not in x]
+                for nonhelper_keyword_argument_name in nonhelper_keyword_argument_names:
+                    if not getattr(self, nonhelper_keyword_argument_name) == \
+                        getattr(expr, nonhelper_keyword_argument_name):
+                        return False
+                return True
+        return False    
 
     ### PRIVATE METHODS ###
 
@@ -247,15 +250,13 @@ class BurnishedRhythmMaker(RhythmMaker):
 
     ### PUBLIC METHODS ###
 
-    
     def reverse(self):
-        '''.. versionadded:: 2.10
+        '''Reverse burnished rhythm-maker.
 
-        Reverse burnished rhythm-maker.
+        Defined equal to a copy of rhythm-maker with all the following
+        lists reversed:
 
-        .. note:: method is provisional.
-
-        Defined equal to reversal of the following on a copy of rhythm-maker::
+        ::
 
             new.talea
             new.prolation_addenda

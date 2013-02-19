@@ -26,11 +26,22 @@ class RhythmMaker(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
+        '''Cast `divisions` into duration pairs.
+        Reduce numerator and denominator relative to each other.
+
+        Change none `seeds` into empty list.
+
+        Return duration pairs and seed list.
+        '''
         duration_pairs = [durationtools.Duration(x).pair for x in divisions]
         seeds = self._none_to_new_list(seeds)
         return duration_pairs, seeds
 
     def __repr__(self):
+        '''Rhythm-maker interpreter representation.
+
+        Return string.
+        '''
         if getattr(self, 'name', None) is not None:
             return '{}({!r})'.format(self._class_name, self.name)
         return AbjadObject.__repr__(self)
