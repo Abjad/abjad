@@ -23,15 +23,15 @@ eighths.name = 'eighths'
 __all__.append(eighths.name)
 
 
-# this isn't the best pattern because initializaation of the rhythm-maker resets beam_cells_together
+# this isn't the best pattern because initialization of the rhythm-maker resets beam_cells_together
 equal_divisions = rhythmmakertools.EqualDivisionRhythmMaker
-equal_divisions.beam_cells_together = True
+equal_divisions.beam_cell_together = True
 equal_divisions.name = 'equal_divisions'
 __all__.append(equal_divisions.name)
 
 
 even_runs = rhythmmakertools.EvenRunRhythmMaker
-even_runs.beam_cells_together = True
+even_runs.beam_cell_together = True
 even_runs.name = 'even_runs'
 __all__.append(even_runs.name)
 

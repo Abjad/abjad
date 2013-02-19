@@ -24,15 +24,29 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
     ### PRIVATE METHODS ###
 
     def _conditionally_beam_rhythm_containers(self, rhythm_containers):
-        if getattr(self.source_expression, 'beam_cells_together', False):
+        beam_cells_together = getattr(self.source_expression, 'beam_cells_together', False)
+        beam_cell_together = getattr(self.source_expression, 'beam_cell_together', False)
+        if beam_cells_together:
             spannertools.destroy_spanners_attached_to_components_in_expr(rhythm_containers)
             durations = [x.duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
-        elif getattr(self.source_expression, 'beam_each_cell', False):
+        elif beam_cell_together:
             spannertools.destroy_spanners_attached_to_components_in_expr(rhythm_containers)
             for rhythm_container in rhythm_containers:
                 beamtools.DuratedComplexBeamSpanner(
                     [rhythm_container], [rhythm_container.duration], span=1)
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def division_list(self):
+        '''Rhythm-maker rhythm region expression division list.
+
+        Return division list.
+        '''
+        return self._division_list
+
+    ### PUBLIC METHODS ###
 
     def evaluate(self):
         '''Evaluate rhythm-maker rhythm region expression.
@@ -51,13 +65,3 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
         self._conditionally_beam_rhythm_containers(rhythm_containers)
         expression._voice_name = self.division_list.voice_name
         return expression
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def division_list(self):
-        '''Rhythm-maker rhythm region expression division list.
-
-        Return division list.
-        '''
-        return self._division_list
