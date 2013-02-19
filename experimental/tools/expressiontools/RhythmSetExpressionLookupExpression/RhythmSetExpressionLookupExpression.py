@@ -39,7 +39,7 @@ class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
         assert isinstance(source_expression_set_expression, 
             expressiontools.TimespanScopedSingleContextSetExpression)
         expression = source_expression_set_expression.source_expression
-        if isinstance(expression, expressiontools.RhythmMakerPayloadExpression):
+        if isinstance(expression, expressiontools.RhythmMakerExpression):
             expression = self._apply_callbacks(expression)
             return expression
         elif isinstance(expression, expressiontools.StartPositionedRhythmPayloadExpression):

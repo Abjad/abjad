@@ -31,7 +31,7 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
         expression = self.source_expression.evaluate()
         if expression is None:
             return
-        if isinstance(expression, expressiontools.RhythmMakerPayloadExpression):
+        if isinstance(expression, expressiontools.RhythmMakerExpression):
             rhythm_maker = expression.payload
             region_expression = expressiontools.RhythmMakerRhythmRegionExpression(
                 rhythm_maker, self.division_list, self.start_offset, self.voice_name)

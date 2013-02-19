@@ -171,7 +171,7 @@ Unstable packages (load manually)
       tools/expressiontools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/expressiontools/OffsetExpression/OffsetExpression
       tools/expressiontools/PayloadExpression/PayloadExpression
-      tools/expressiontools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
+      tools/expressiontools/RhythmMakerExpression/RhythmMakerExpression
       tools/expressiontools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
       tools/expressiontools/RhythmSetExpressionLookupExpression/RhythmSetExpressionLookupExpression
       tools/expressiontools/RotationIndicator/RotationIndicator
@@ -188,6 +188,7 @@ Unstable packages (load manually)
       tools/expressiontools/StartPositionedRhythmPayloadExpression/StartPositionedRhythmPayloadExpression
       tools/expressiontools/StatalServer/StatalServer
       tools/expressiontools/StatalServerCursor/StatalServerCursor
+      tools/expressiontools/StatalServerCursorExpression/StatalServerCursorExpression
       tools/expressiontools/StatalServerExpression/StatalServerExpression
       tools/expressiontools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
       tools/expressiontools/TimeSignatureSetExpressionLookupExpression/TimeSignatureSetExpressionLookupExpression
@@ -253,7 +254,7 @@ Unstable packages (load manually)
       tools/expressiontools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/expressiontools/OffsetExpression/OffsetExpression
       tools/expressiontools/PayloadExpression/PayloadExpression
-      tools/expressiontools/RhythmMakerPayloadExpression/RhythmMakerPayloadExpression
+      tools/expressiontools/RhythmMakerExpression/RhythmMakerExpression
       tools/expressiontools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
       tools/expressiontools/RhythmSetExpressionLookupExpression/RhythmSetExpressionLookupExpression
       tools/expressiontools/RotationIndicator/RotationIndicator
@@ -270,6 +271,7 @@ Unstable packages (load manually)
       tools/expressiontools/StartPositionedRhythmPayloadExpression/StartPositionedRhythmPayloadExpression
       tools/expressiontools/StatalServer/StatalServer
       tools/expressiontools/StatalServerCursor/StatalServerCursor
+      tools/expressiontools/StatalServerCursorExpression/StatalServerCursorExpression
       tools/expressiontools/StatalServerExpression/StatalServerExpression
       tools/expressiontools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
       tools/expressiontools/TimeSignatureSetExpressionLookupExpression/TimeSignatureSetExpressionLookupExpression

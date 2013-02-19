@@ -183,7 +183,7 @@ class ScoreSpecification(Specification):
                     ),
                 expressiontools.MultipleContextSetExpression(
                     attribute='rhythm',
-                    source_expression=expressiontools.RhythmMakerPayloadExpression(
+                    source_expression=expressiontools.RhythmMakerExpression(
                         payload=rhythmmakertools.TaleaRhythmMaker(
                             [1],
                             16,
@@ -656,7 +656,7 @@ class ScoreSpecification(Specification):
 
     def make_default_timespan_scoped_single_context_rhythm_set_expression(self, target_timespan, voice_name):
         return expressiontools.TimespanScopedSingleContextRhythmSetExpression(
-            source_expression=expressiontools.RhythmMakerPayloadExpression(library.skip_tokens),
+            source_expression=expressiontools.RhythmMakerExpression(library.skip_tokens),
             target_timespan=target_timespan,
             target_context_name=voice_name,
             fresh=True

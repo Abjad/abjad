@@ -2,7 +2,7 @@ from abjad.tools import rhythmmakertools
 from experimental.tools.expressiontools.PayloadExpression import PayloadExpression
 
 
-class RhythmMakerPayloadExpression(PayloadExpression):
+class RhythmMakerExpression(PayloadExpression):
     r'''Rhythm-maker payload expression.
     '''
 
@@ -20,9 +20,9 @@ class RhythmMakerPayloadExpression(PayloadExpression):
         ::
     
             >>> rhythm_maker = library.dotted_sixteenths
-            >>> payload_expression = expressiontools.RhythmMakerPayloadExpression(rhythm_maker)
+            >>> payload_expression = expressiontools.RhythmMakerExpression(rhythm_maker)
             >>> z(payload_expression)
-            expressiontools.RhythmMakerPayloadExpression(
+            expressiontools.RhythmMakerExpression(
                 payload=rhythmmakertools.TaleaRhythmMaker(
                     [3, 1],
                     32,
@@ -41,7 +41,7 @@ class RhythmMakerPayloadExpression(PayloadExpression):
         ::
 
             >>> z(result)
-            expressiontools.RhythmMakerPayloadExpression(
+            expressiontools.RhythmMakerExpression(
                 payload=rhythmmakertools.TaleaRhythmMaker(
                     [1, 3],
                     32,

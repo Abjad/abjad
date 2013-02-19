@@ -117,8 +117,7 @@ class ConcreteInterpreter(Interpreter):
             if not generalized_set_expression.attribute == 'pitch':
                 continue
             source_expression = generalized_set_expression.source_expression
-            if isinstance(source_expression, expressiontools.PayloadExpression) \
-                and isinstance(source_expression.payload, expressiontools.StatalServerCursor):
+            if isinstance(source_expression, expressiontools.StatalServerCursorExpression):
                 statal_server_cursor = source_expression.payload
             else:
                 raise ValueError(source_expression)

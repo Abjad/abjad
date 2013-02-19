@@ -97,7 +97,7 @@ class SegmentSpecification(Specification):
                     persist=True
                     ),
                 expressiontools.SingleContextRhythmSetExpression(
-                    source_expression=expressiontools.RhythmMakerPayloadExpression(
+                    source_expression=expressiontools.RhythmMakerExpression(
                         payload=rhythmmakertools.TaleaRhythmMaker(
                             [1],
                             16,
