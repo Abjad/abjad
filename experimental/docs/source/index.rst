@@ -125,9 +125,9 @@ Unstable packages (load manually)
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
       tools/expressiontools/GeneralizedSetMethodMixin/GeneralizedSetMethodMixin
+      tools/expressiontools/IterablePayloadCallbackMixin/IterablePayloadCallbackMixin
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
       tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
-      tools/expressiontools/PayloadCallbackMixin/PayloadCallbackMixin
       tools/expressiontools/RegionExpression/RegionExpression
       tools/expressiontools/RhythmRegionExpression/RhythmRegionExpression
       tools/expressiontools/SelectExpression/SelectExpression
@@ -207,9 +207,9 @@ Unstable packages (load manually)
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
       tools/expressiontools/GeneralizedSetMethodMixin/GeneralizedSetMethodMixin
+      tools/expressiontools/IterablePayloadCallbackMixin/IterablePayloadCallbackMixin
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
       tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
-      tools/expressiontools/PayloadCallbackMixin/PayloadCallbackMixin
       tools/expressiontools/RegionExpression/RegionExpression
       tools/expressiontools/RhythmRegionExpression/RhythmRegionExpression
       tools/expressiontools/SelectExpression/SelectExpression

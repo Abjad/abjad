@@ -1,8 +1,8 @@
 from experimental.tools.expressiontools.Expression import Expression
-from experimental.tools.expressiontools.PayloadCallbackMixin import PayloadCallbackMixin
+from experimental.tools.expressiontools.IterablePayloadCallbackMixin import IterablePayloadCallbackMixin
 
 
-class StatalServerExpression(Expression, PayloadCallbackMixin):
+class StatalServerExpression(Expression, IterablePayloadCallbackMixin):
     r'''Statal server expression.
     '''
 
@@ -11,7 +11,7 @@ class StatalServerExpression(Expression, PayloadCallbackMixin):
     def __init__(self, statal_server=None, callbacks=None):
         assert isinstance(statal_server, expressiontools.StatalServer), repr(statal_server)
         Expression.__init__(self)
-        PayloadCallbackMixin.__init__(self, callbacks=callbacks)
+        IterablePayloadCallbackMixin.__init__(self, callbacks=callbacks)
         self._statal_server = statal_server
 
     ### SPECIAL METHODS ###

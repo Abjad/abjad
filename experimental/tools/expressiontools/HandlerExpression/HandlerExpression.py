@@ -1,9 +1,9 @@
 from experimental.tools import handlertools
 from experimental.tools.expressiontools.Expression import Expression
-from experimental.tools.expressiontools.PayloadCallbackMixin import PayloadCallbackMixin
+from experimental.tools.expressiontools.IterablePayloadCallbackMixin import IterablePayloadCallbackMixin
 
 
-class HandlerExpression(Expression, PayloadCallbackMixin):
+class HandlerExpression(Expression, IterablePayloadCallbackMixin):
     r'''Handler expression.
     '''
 
@@ -12,7 +12,7 @@ class HandlerExpression(Expression, PayloadCallbackMixin):
     def __init__(self, handler=None, callbacks=None):
         assert isinstance(handler, handlertools.Handler), repr(handler)
         Expression.__init__(self)
-        PayloadCallbackMixin.__init__(self, callbacks=callbacks)
+        IterablePayloadCallbackMixin.__init__(self, callbacks=callbacks)
         self._handler = handler
 
     ### PRIVATE METHODS ###

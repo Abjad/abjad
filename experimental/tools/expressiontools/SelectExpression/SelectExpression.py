@@ -2,10 +2,10 @@ import abc
 import copy
 from abjad.tools import timerelationtools
 from experimental.tools.expressiontools.AnchoredExpression import AnchoredExpression
-from experimental.tools.expressiontools.PayloadCallbackMixin import PayloadCallbackMixin
+from experimental.tools.expressiontools.IterablePayloadCallbackMixin import IterablePayloadCallbackMixin
 
 
-class SelectExpression(AnchoredExpression, PayloadCallbackMixin):
+class SelectExpression(AnchoredExpression, IterablePayloadCallbackMixin):
     r'''Select expression.
     '''
 
@@ -20,7 +20,7 @@ class SelectExpression(AnchoredExpression, PayloadCallbackMixin):
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         AnchoredExpression.__init__(self, anchor=anchor)
-        PayloadCallbackMixin.__init__(self, callbacks=callbacks)
+        IterablePayloadCallbackMixin.__init__(self, callbacks=callbacks)
         assert voice_name is not None
         self._voice_name = voice_name
         self._time_relation = time_relation

@@ -1,10 +1,10 @@
 import abc
 from abjad.tools import timespantools
 from experimental.tools.expressiontools.AnchoredExpression import AnchoredExpression
-from experimental.tools.expressiontools.PayloadCallbackMixin import PayloadCallbackMixin
+from experimental.tools.expressiontools.IterablePayloadCallbackMixin import IterablePayloadCallbackMixin
 
 
-class SetExpressionLookupExpression(AnchoredExpression, PayloadCallbackMixin):
+class SetExpressionLookupExpression(AnchoredExpression, IterablePayloadCallbackMixin):
     r'''Set expression lookup expression.
 
     Look up `attribute` set expression active at `offset` in `voice_name`.
@@ -29,7 +29,7 @@ class SetExpressionLookupExpression(AnchoredExpression, PayloadCallbackMixin):
         assert isinstance(voice_name, str), repr(voice_name)
         assert isinstance(offset, expressiontools.OffsetExpression)
         AnchoredExpression.__init__(self, anchor=offset)
-        PayloadCallbackMixin.__init__(self, callbacks=callbacks)
+        IterablePayloadCallbackMixin.__init__(self, callbacks=callbacks)
         self._attribute = attribute
         self._offset = offset
         self._voice_name = voice_name

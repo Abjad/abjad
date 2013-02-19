@@ -5,7 +5,7 @@ from abjad.tools import timespantools
 from experimental.tools.expressiontools.CallbackMixin import CallbackMixin
 
 
-class PayloadCallbackMixin(CallbackMixin):
+class IterablePayloadCallbackMixin(CallbackMixin):
     '''Payload callback mixin.
     '''
     
