@@ -1,3 +1,4 @@
+from abjad.tools import marktools
 from abjad.tools import schemetools
 
 
@@ -28,6 +29,7 @@ def make_floating_time_signature_lilypond_file(music=None):
 
     lilypond_file.layout_block.indent = 0
     lilypond_file.layout_block.ragged_right = True
+    lilypond_file.layout_block.append(marktools.LilyPondCommandMark('accidentalStyle forget'))
 
     time_signature_context_block = lilypondfiletools.make_time_signature_context_block(font_size=1, padding=6)
     lilypond_file.layout_block.context_blocks.append(time_signature_context_block)
