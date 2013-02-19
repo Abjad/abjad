@@ -1,7 +1,1 @@
-1.  Extend ScoreSpecification with pitch_set_expressions property.
-    Then inspect ScoreSpecification.pitch_set_expressions at pitch interpretation time
-    instead of ScoreSpecification.generalized_set_expressions.
-    But leave ScoreSpecification.generalized_set_expressions in tact.
-
-2.  Make pitch set tests work for contiguous select expressions.
-    Might be fixed as a byproduct of storing ScoreSpecification.pitch_set_expressions.
+1.  Make pitch set tests work for contiguous select expressions.

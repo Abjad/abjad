@@ -114,16 +114,15 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_pitch(self):
         from experimental.tools import expressiontools
-        for generalized_set_expression in self.score_specification.generalized_set_expressions:
-            if not isinstance(generalized_set_expression, expressiontools.PitchSetExpression):
-                continue
-            source_expression = generalized_set_expression.source_expression
+        for pitch_set_expression in self.score_specification.pitch_set_expressions:
+            assert isinstance(pitch_set_expression, expressiontools.PitchSetExpression)
+            source_expression = pitch_set_expression.source_expression
             if isinstance(source_expression, expressiontools.StatalServerCursorExpression):
                 statal_server_cursor = source_expression.payload
             else:
                 raise ValueError(source_expression)
             leaves = []
-            for target_select_expression in generalized_set_expression.target_select_expression_inventory:
+            for target_select_expression in pitch_set_expression.target_select_expression_inventory:
                 iterable_payload_expression = target_select_expression.evaluate_against_score(self.score)
                 leaves.extend(iterable_payload_expression.payload)
             for leaf in leaves:

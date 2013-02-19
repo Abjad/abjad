@@ -15,6 +15,7 @@ class SelectExpressionInventory(ExpressionInventory, GeneralizedSetMethodMixin):
             }[attribute]
 
     def _store_generalized_set_expression(self, attribute, source_expression):
+        from experimental.tools import expressiontools
         set_expression_class = self._attribute_to_set_expression_class(attribute)
         source_expression = self._expr_to_expression(source_expression)
         generalized_set_expression = set_expression_class(
@@ -25,7 +26,10 @@ class SelectExpressionInventory(ExpressionInventory, GeneralizedSetMethodMixin):
         generalized_set_expression._score_specification = self.score_specification
         generalized_set_expression._lexical_rank = self.score_specification._next_lexical_rank
         self.score_specification._next_lexical_rank += 1
-        self.score_specification.generalized_set_expressions.append(generalized_set_expression)
+        if isinstance(generalized_set_expression, expressiontools.PitchSetExpression):
+            self.score_specification.pitch_set_expressions.append(generalized_set_expression)
+        else:
+            self.score_specification.generalized_set_expressions.append(generalized_set_expression)
         return generalized_set_expression
 
     ### READ-ONLY PUBLIC PROPERTIES ###
