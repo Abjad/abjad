@@ -6,4 +6,6 @@
         sixteenths.beam_cell_together = True
     ... to a single method call.
 
-3.  Make pitch set tests work for contiguous select expressions.
+3.  Add more staff-staff space to pitched examples.
+
+4.  Make pitch set tests work for contiguous select expressions.

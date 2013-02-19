@@ -99,7 +99,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
 
     ### INITIALIZER ###
 
-    def __init__(self, talea, talea_denominator, prolation_addenda=None, secondary_divisions=None,
+    def __init__(self, talea=None, talea_denominator=None, prolation_addenda=None, secondary_divisions=None,
         talea_helper=None, prolation_addenda_helper=None, secondary_divisions_helper=None,
         beam_each_cell=False, beam_cells_together=False, tie_split_notes=False):
         lefts, middles, rights = [0], [0], [0]

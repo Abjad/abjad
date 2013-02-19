@@ -24,8 +24,8 @@ class RhythmMakerExpression(PayloadExpression):
             >>> z(payload_expression)
             expressiontools.RhythmMakerExpression(
                 payload=rhythmmakertools.TaleaRhythmMaker(
-                    [3, 1],
-                    32,
+                    talea=[3, 1],
+                    talea_denominator=32,
                     prolation_addenda=[],
                     secondary_divisions=[],
                     beam_each_cell=False,
@@ -43,8 +43,8 @@ class RhythmMakerExpression(PayloadExpression):
             >>> z(result)
             expressiontools.RhythmMakerExpression(
                 payload=rhythmmakertools.TaleaRhythmMaker(
-                    [1, 3],
-                    32,
+                    talea=[1, 3],
+                    talea_denominator=32,
                     prolation_addenda=[],
                     secondary_divisions=[],
                     beam_each_cell=False,

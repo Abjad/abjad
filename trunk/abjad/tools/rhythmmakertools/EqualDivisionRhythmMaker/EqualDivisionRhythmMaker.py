@@ -65,7 +65,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
     ### INITIALIZER ###
 
-    def __init__(self, leaf_count, is_diminution=True, beam_each_cell=True, beam_cells_together=False):
+    def __init__(self, leaf_count=None, is_diminution=True, beam_each_cell=True, beam_cells_together=False):
         assert mathtools.is_integer_equivalent_expr(leaf_count)
         RhythmMaker.__init__(self,
             beam_each_cell=beam_each_cell,

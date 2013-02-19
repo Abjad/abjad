@@ -99,8 +99,8 @@ class SegmentSpecification(Specification):
                 expressiontools.SingleContextRhythmSetExpression(
                     source_expression=expressiontools.RhythmMakerExpression(
                         payload=rhythmmakertools.TaleaRhythmMaker(
-                            [1],
-                            16,
+                            talea=[1],
+                            talea_denominator=16,
                             prolation_addenda=[],
                             secondary_divisions=[],
                             beam_each_cell=False,

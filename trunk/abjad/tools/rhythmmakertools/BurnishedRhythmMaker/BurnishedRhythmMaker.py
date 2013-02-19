@@ -35,7 +35,7 @@ class BurnishedRhythmMaker(RhythmMaker):
 
     ### INITIALIZER ###
 
-    def __init__(self, talea, talea_denominator, prolation_addenda=None,
+    def __init__(self, talea=None, talea_denominator=None, prolation_addenda=None,
         lefts=None, middles=None, rights=None, left_lengths=None, right_lengths=None,
         secondary_divisions=None,
         talea_helper=None, prolation_addenda_helper=None,

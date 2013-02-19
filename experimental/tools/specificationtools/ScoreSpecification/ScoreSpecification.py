@@ -186,8 +186,8 @@ class ScoreSpecification(Specification):
                     attribute='rhythm',
                     source_expression=expressiontools.RhythmMakerExpression(
                         payload=rhythmmakertools.TaleaRhythmMaker(
-                            [1],
-                            16,
+                            talea=[1],
+                            talea_denominator=16,
                             prolation_addenda=[],
                             secondary_divisions=[],
                             beam_each_cell=False,
@@ -310,8 +310,8 @@ class ScoreSpecification(Specification):
             timespantools.TimespanInventory([
                 expressiontools.RhythmMakerRhythmRegionExpression(
                     source_expression=rhythmmakertools.TaleaRhythmMaker(
-                        [1],
-                        16,
+                        talea=[1],
+                        talea_denominator=16,
                         prolation_addenda=[],
                         secondary_divisions=[],
                         beam_each_cell=False,
@@ -334,8 +334,8 @@ class ScoreSpecification(Specification):
                     ),
                 expressiontools.RhythmMakerRhythmRegionExpression(
                     source_expression=rhythmmakertools.TaleaRhythmMaker(
-                        [1],
-                        16,
+                        talea=[1],
+                        talea_denominator=16,
                         prolation_addenda=[],
                         secondary_divisions=[],
                         beam_each_cell=False,

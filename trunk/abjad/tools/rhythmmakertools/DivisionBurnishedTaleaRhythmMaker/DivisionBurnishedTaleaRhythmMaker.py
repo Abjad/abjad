@@ -112,6 +112,36 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         assert burnished_weights == unburnished_weights
         return burnished_divisions
 
+    ### PUBLIC READ-ONLY PROPERTIES ###
+
+    @property
+    def storage_format(self):
+        '''Division-burnished talea rhythm-maker storage format:
+
+        ::
+
+            >>> z(maker)
+            rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
+                talea=[1, 1, 2, 4],
+                talea_denominator=16,
+                prolation_addenda=[0, 3],
+                lefts=[-1],
+                middles=[0],
+                rights=[-1],
+                left_lengths=[1],
+                right_lengths=[1],
+                secondary_divisions=[14],
+                beam_each_cell=False,
+                beam_cells_together=False,
+                decrease_durations_monotonically=True,
+                tie_split_notes=False,
+                tie_rests=False
+                )
+
+        Return string.
+        '''
+        return BurnishedTaleaRhythmMaker.storage_format.fget(self)
+   
     ### PUBLIC METHODS ###
 
     def reverse(self):
