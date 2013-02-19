@@ -113,8 +113,9 @@ class ConcreteInterpreter(Interpreter):
         self.add_division_lists_to_score()
 
     def interpret_pitch(self):
+        from experimental.tools import expressiontools
         for generalized_set_expression in self.score_specification.generalized_set_expressions:
-            if not generalized_set_expression.attribute == 'pitch':
+            if not isinstance(generalized_set_expression, expressiontools.PitchSetExpression):
                 continue
             source_expression = generalized_set_expression.source_expression
             if isinstance(source_expression, expressiontools.StatalServerCursorExpression):

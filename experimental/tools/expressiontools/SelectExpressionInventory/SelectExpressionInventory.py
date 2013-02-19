@@ -8,15 +8,20 @@ class SelectExpressionInventory(ExpressionInventory, GeneralizedSetMethodMixin):
 
     ### PRIVATE METHODS ###
 
-    def _store_generalized_set_expression(self, attribute, source_expression):
+    def _attribute_to_set_expression_class(self, attribute):
         from experimental.tools import expressiontools
+        return {
+            'pitch': expressiontools.PitchSetExpression,
+            }[attribute]
+
+    def _store_generalized_set_expression(self, attribute, source_expression):
+        set_expression_class = self._attribute_to_set_expression_class(attribute)
         source_expression = self._expr_to_expression(source_expression)
-        assert self.score_specification is not None
-        generalized_set_expression = expressiontools.GeneralizedSetExpression(
-            attribute=attribute,
+        generalized_set_expression = set_expression_class(
             source_expression=source_expression,
             target_select_expression_inventory=self
             )
+        assert self.score_specification is not None
         generalized_set_expression._score_specification = self.score_specification
         generalized_set_expression._lexical_rank = self.score_specification._next_lexical_rank
         self.score_specification._next_lexical_rank += 1

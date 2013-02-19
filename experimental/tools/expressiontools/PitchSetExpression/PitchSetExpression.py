@@ -2,7 +2,7 @@ from experimental.tools.expressiontools.GeneralizedSetExpression import Generali
 
 
 class PitchSetExpression(GeneralizedSetExpression):
-    '''Generalized pitch set expression.
+    '''Pitch set expression.
     '''
 
     ### INTIALIZER ###
