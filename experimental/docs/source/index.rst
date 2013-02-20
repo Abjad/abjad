@@ -170,6 +170,7 @@ Unstable packages (load manually)
       tools/expressiontools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/expressiontools/OffsetExpression/OffsetExpression
       tools/expressiontools/PayloadExpression/PayloadExpression
+      tools/expressiontools/PitchClassTransformSetExpression/PitchClassTransformSetExpression
       tools/expressiontools/PitchSetExpression/PitchSetExpression
       tools/expressiontools/RhythmMakerExpression/RhythmMakerExpression
       tools/expressiontools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
@@ -253,6 +254,7 @@ Unstable packages (load manually)
       tools/expressiontools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/expressiontools/OffsetExpression/OffsetExpression
       tools/expressiontools/PayloadExpression/PayloadExpression
+      tools/expressiontools/PitchClassTransformSetExpression/PitchClassTransformSetExpression
       tools/expressiontools/PitchSetExpression/PitchSetExpression
       tools/expressiontools/RhythmMakerExpression/RhythmMakerExpression
       tools/expressiontools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression

@@ -15,6 +15,9 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_pitch_class_transform
+   :noindex:
+
 .. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_pitches
    :noindex:
 

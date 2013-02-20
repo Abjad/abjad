@@ -78,9 +78,6 @@ Methods
 .. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_articulations
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_chord_treatment
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_divisions
    :noindex:
 
@@ -99,13 +96,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_offsets
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_pitch_class_application
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_pitch_class_transform
-   :noindex:
-
-.. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_pitch_classes
    :noindex:
 
 .. automethod:: experimental.tools.expressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_pitches

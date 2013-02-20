@@ -59,15 +59,6 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
         return self._store_multiple_context_set_expression(attribute, source_expression, 
             contexts=contexts, persist=persist)
 
-    def set_chord_treatment(self, source_expression, contexts=None, persist=True):
-        r'''Set chord treatment to `source_expression` for target timespan over all `contexts`.
-
-        Return multiple-context set expression.
-        '''
-        attribute = 'chord_treatment'
-        return self._store_multiple_context_set_expression(attribute, source_expression, 
-            contexts=contexts, persist=persist)
-
     def set_divisions(self, source_expression, contexts=None, persist=True, truncate=None):
         r'''Set divisions to `source_expression` for target timespan over all `contexts`:
 
@@ -121,33 +112,6 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
         Return multiple-context set expression.
         '''
         attribute = 'markup'
-        return self._store_multiple_context_set_expression(attribute, source_expression, 
-            contexts=contexts, persist=persist)
-
-    def set_pitch_class_application(self, source_expression, contexts=None, persist=True):
-        r'''Set pitch-class application to `source_expression` for target timespan over all `contexts`.
-
-        Return multiple-context set expression.
-        '''
-        attribute = 'pitch_class_application'
-        return self._store_multiple_context_set_expression(attribute, source_expression, 
-            contexts=contexts, persist=persist)
-
-    def set_pitch_class_transform(self, source_expression, contexts=None, persist=True):
-        r'''Set pitch-class transform to `source_expression` for target timespan over all `contexts`.
-
-        Return multiple-context set expression.
-        '''
-        attribute = 'pitch_class_transform'
-        return self._store_multiple_context_set_expression(attribute, source_expression, 
-            contexts=contexts, persist=persist)
-
-    def set_pitch_classes(self, source_expression, contexts=None, persist=True):
-        r'''Set pitch-classes to `source_expression` for target timespan over all `contexts`.
-
-        Return multiple-context set expression.
-        '''
-        attribute = 'pitch_classes'
         return self._store_multiple_context_set_expression(attribute, source_expression, 
             contexts=contexts, persist=persist)
 

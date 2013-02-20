@@ -20,6 +20,7 @@ class SetMethodMixin(AbjadObject):
         from experimental.tools import expressiontools
         return {
             'pitch': expressiontools.PitchSetExpression,
+            'pitch_class_transform': expressiontools.PitchClassTransformSetExpression,
             }[attribute]
 
     def _expr_to_expression(self, expr):
@@ -69,8 +70,16 @@ class SetMethodMixin(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def set_pitch_class_transform(self, source_expression):
+        r'''Set pitch class transform to `source_expression`.
+
+        Return some sort of set expression.
+        '''
+        attribute = 'pitch_class_transform'
+        return self._store_generalized_set_expression(attribute, source_expression)
+
     def set_pitches(self, source_expression):
-        r'''Set pitches to `source_expression` for select expressions in inventory.
+        r'''Set pitches to `source_expression`.
 
         Return pitch set expression.
         '''

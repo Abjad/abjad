@@ -21,9 +21,6 @@ Methods
 .. automethod:: experimental.tools.expressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_articulations
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_chord_treatment
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_divisions
    :noindex:
 
@@ -36,13 +33,7 @@ Methods
 .. automethod:: experimental.tools.expressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_markup
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_pitch_class_application
-   :noindex:
-
 .. automethod:: experimental.tools.expressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_pitch_class_transform
-   :noindex:
-
-.. automethod:: experimental.tools.expressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_pitch_classes
    :noindex:
 
 .. automethod:: experimental.tools.expressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_pitches

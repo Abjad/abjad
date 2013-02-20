@@ -1,3 +1,16 @@
-1.  Add pitch set tests that show overlap, abuting and empty set with discontiguous select expressions.
- 
-2.  Make pitch set tests work for contiguous select expressions.
+1.  Migrate specificationtools classes into expressiontools.
+    Then remove specificationtools. Then change expressiontools to specificationtools.
+    The result will be a single package.
+
+2.  Implement the following set methods:
+        set_aggregate()
+        set_articulations()
+        set_dynamics()
+        set_marks()
+        set_markup()
+        set_pitch_class_transform()
+        set_registration()
+        set_tempo()
+
+3.  Implement a method to slur leaves by divisions.
+    Implement general methods to span leaves by divisions.

@@ -75,6 +75,9 @@ Methods
 .. automethod:: experimental.tools.expressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.rotate
    :noindex:
 
+.. automethod:: experimental.tools.expressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_pitch_class_transform
+   :noindex:
+
 .. automethod:: experimental.tools.expressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_pitches
    :noindex:
 

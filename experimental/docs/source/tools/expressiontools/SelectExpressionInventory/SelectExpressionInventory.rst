@@ -78,6 +78,9 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.rotate
    :noindex:
 
+.. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_pitch_class_transform
+   :noindex:
+
 .. automethod:: experimental.tools.expressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_pitches
    :noindex:
 
