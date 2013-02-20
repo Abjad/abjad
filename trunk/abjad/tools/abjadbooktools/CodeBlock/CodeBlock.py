@@ -24,13 +24,13 @@ class CodeBlock(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        if type(self) == type(other) and \
-            self.lines == other.lines and \
-            self.starting_line_number == other.starting_line_number and \
-            self.ending_line_number == other.ending_line_number and \
-            self.hide == other.hide and \
-            self.strip_prompt == other.strip_prompt:
+    def __eq__(self, expr):
+        if type(self) == type(expr) and \
+            self.lines == expr.lines and \
+            self.starting_line_number == expr.starting_line_number and \
+            self.ending_line_number == expr.ending_line_number and \
+            self.hide == expr.hide and \
+            self.strip_prompt == expr.strip_prompt:
             return True
         return False
 

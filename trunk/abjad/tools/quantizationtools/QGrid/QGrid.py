@@ -126,10 +126,10 @@ class QGrid(AbjadObject):
         root_node, next_downbeat = self.__getnewargs__()
         return type(self)(copy.copy(root_node), copy.copy(next_downbeat))
 
-    def __eq__(self, other):
-        if type(self) == type(other):
-            if self.root_node == other.root_node:
-                if self.next_downbeat == other.next_downbeat:
+    def __eq__(self, expr):
+        if type(self) == type(expr):
+            if self.root_node == expr.root_node:
+                if self.next_downbeat == expr.next_downbeat:
                     return True
         return False
 

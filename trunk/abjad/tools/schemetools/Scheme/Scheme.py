@@ -72,9 +72,9 @@ class Scheme(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        if type(self) == type(other):
-            if self._value == other._value:
+    def __eq__(self, expr):
+        if type(self) == type(expr):
+            if self._value == expr._value:
                 return True
         return False
 

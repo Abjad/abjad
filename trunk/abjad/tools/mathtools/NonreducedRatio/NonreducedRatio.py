@@ -37,9 +37,9 @@ class NonreducedRatio(ImmutableAbjadObject, tuple):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        other = type(self)(other)
-        return tuple(self) == tuple(other)
+    def __eq__(self, expr):
+        other = type(self)(expr)
+        return tuple(self) == tuple(expr)
         
     ### READ-ONLY PRIVATE PROPERTIES ###
 

@@ -57,10 +57,10 @@ class QEventProxy(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        if type(self) == type(other):
-            if self.offset == other.offset:
-                if self.q_event == other.q_event:
+    def __eq__(self, expr):
+        if type(self) == type(expr):
+            if self.offset == expr.offset:
+                if self.q_event == expr.q_event:
                     return True
         return False
 

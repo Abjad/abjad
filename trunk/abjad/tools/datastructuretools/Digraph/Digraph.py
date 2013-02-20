@@ -73,14 +73,14 @@ class Digraph(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        if type(self) == type(other):
-            if self.edges == other.edges:
+    def __eq__(self, expr):
+        if type(self) == type(expr):
+            if self.edges == expr.edges:
                 return True
         return False
 
-    def __ne__(self, other):
-        return not self.__eq__(other)
+    def __ne__(self, expr):
+        return not self.__eq__(expr)
 
     ### PUBLIC PROPERTIES ###
 

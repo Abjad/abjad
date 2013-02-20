@@ -75,10 +75,10 @@ class MarkupCommand(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        if isinstance(other, type(self)):
-            if self.command == other.command:
-                if self.args == other.args:
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            if self.command == expr.command:
+                if self.args == expr.args:
                     return True
         return False
 

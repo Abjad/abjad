@@ -38,12 +38,12 @@ class PitchedQEvent(QEvent):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        if type(self) == type(other) and \
-            self.offset == other.offset and \
-            self.pitches == other.pitches and \
-            self.attachments == other.attachments and \
-            self.index == other.index:
+    def __eq__(self, expr):
+        if type(self) == type(expr) and \
+            self.offset == expr.offset and \
+            self.pitches == expr.pitches and \
+            self.attachments == expr.attachments and \
+            self.index == expr.index:
             return True
         return False
 

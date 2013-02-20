@@ -60,10 +60,10 @@ class RhythmTreeLeaf(RhythmTreeNode):
             return notetools.make_notes(0, total_duration)
         return resttools.make_rests(total_duration)
 
-    def __eq__(self, other):
-        if type(self) == type(other):
-            if self.preprolated_duration == other.preprolated_duration:
-                if self.is_pitched == other.is_pitched:
+    def __eq__(self, expr):
+        if type(self) == type(expr):
+            if self.preprolated_duration == expr.preprolated_duration:
+                if self.is_pitched == expr.is_pitched:
                     return True
         return False
 

@@ -53,15 +53,15 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        if isinstance(other, type(self)):
-            if self.source_pitch_range == other.source_pitch_range:
-                if self.target_octave_start_pitch == other.target_octave_start_pitch:
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            if self.source_pitch_range == expr.source_pitch_range:
+                if self.target_octave_start_pitch == expr.target_octave_start_pitch:
                     return True
         return False
 
-    def __ne__(self, other):
-        return not self == other
+    def __ne__(self, expr):
+        return not self == expr
 
     def __repr__(self):
         return '{}{}'.format(self._class_name, self._input_argument_token)

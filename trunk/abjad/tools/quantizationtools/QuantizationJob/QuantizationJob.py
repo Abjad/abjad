@@ -79,12 +79,12 @@ class QuantizationJob(AbjadObject):
             old_q_grids.append(q_grid)
         self._q_grids = tuple(old_q_grids)
 
-    def __eq__(self, other):
-        if type(self) == type(other):
-            if self.job_id == other.job_id:
-                if self.search_tree == other.search_tree:
-                    if self.q_event_proxies == other.q_event_proxies:
-                        if self.q_grids == other.q_grids:
+    def __eq__(self, expr):
+        if type(self) == type(expr):
+            if self.job_id == expr.job_id:
+                if self.search_tree == expr.search_tree:
+                    if self.q_event_proxies == expr.q_event_proxies:
+                        if self.q_grids == expr.q_grids:
                             return True
         return False
 

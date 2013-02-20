@@ -73,9 +73,9 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
     def __copy__(self):
         return type(self)([copy.copy(x) for x in self])
 
-    def __eq__(self, other):
-        if type(self) == type(other):
-            if self[:] == other[:]:
+    def __eq__(self, expr):
+        if type(self) == type(expr):
+            if self[:] == expr[:]:
                 return True
         return False
 
@@ -104,8 +104,8 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         else:
             return 0
 
-    def __ne__(self, other):
-        return not self.__eq__(other)
+    def __ne__(self, expr):
+        return not self.__eq__(expr)
 
     def __nonzero__(self):
         '''`TimeIntervalTree` evaluates to True if it contains any intervals:

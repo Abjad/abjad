@@ -104,12 +104,12 @@ class Spanner(AbjadObject):
     def __len__(self):
         return self._components.__len__()
 
-    def __lt__(self, other):
+    def __lt__(self, expr):
         '''Trivial comparison to allow doctests to work.
         '''
-        if not isinstance(other, Spanner):
+        if not isinstance(expr, Spanner):
             raise TypeError
-        return repr(self) < repr(other)
+        return repr(self) < repr(expr)
 
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._compact_summary)

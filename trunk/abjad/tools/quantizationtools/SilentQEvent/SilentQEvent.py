@@ -31,11 +31,11 @@ class SilentQEvent(QEvent):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        if type(self) == type(other) and \
-            self._offset == other._offset and \
-            self._attachments == other._attachments and \
-            self._index == other._index:
+    def __eq__(self, expr):
+        if type(self) == type(expr) and \
+            self._offset == expr._offset and \
+            self._attachments == expr._attachments and \
+            self._index == expr._index:
             return True
         return False
 

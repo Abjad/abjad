@@ -47,9 +47,9 @@ class SearchTree(AbjadObject):
             new_q_grids.append(new_q_grid)
         return new_q_grids
 
-    def __eq__(self, other):
-        if type(self) == type(other):
-            if self.definition == other.definition:
+    def __eq__(self, expr):
+        if type(self) == type(expr):
+            if self.definition == expr.definition:
                 return True
         return False
 

@@ -36,9 +36,9 @@ class QEvent(AbjadObject):
                         state[slot] = getattr(self, slot)
         return state
 
-    def __lt__(self, other):
+    def __lt__(self, expr):
         if type(self) == type(self):
-            if self.offset < other.offset:
+            if self.offset < expr.offset:
                 return True
         return False
 

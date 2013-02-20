@@ -199,9 +199,9 @@ class MetricalHierarchy(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        if type(self) == type(other):
-            if self.rtm_format == other.rtm_format:
+    def __eq__(self, expr):
+        if type(self) == type(expr):
+            if self.rtm_format == expr.rtm_format:
                 return True
         return False
 

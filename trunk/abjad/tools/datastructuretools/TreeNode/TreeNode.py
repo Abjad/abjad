@@ -25,8 +25,8 @@ class TreeNode(AbjadObject):
 
     __deepcopy__ = __copy__
 
-    def __eq__(self, other):
-        if type(self) == type(other):
+    def __eq__(self, expr):
+        if type(self) == type(expr):
             return True
         return False
 
@@ -46,8 +46,8 @@ class TreeNode(AbjadObject):
             state[name] = getattr(self, name)
         return state
 
-    def __ne__(self, other):
-        return not self.__eq__(other)
+    def __ne__(self, expr):
+        return not self.__eq__(expr)
 
     def __repr__(self):
 

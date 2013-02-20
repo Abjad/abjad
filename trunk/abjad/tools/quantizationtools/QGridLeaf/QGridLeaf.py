@@ -50,11 +50,11 @@ class QGridLeaf(RhythmTreeNode):
     def __deepcopy__(self, memo):
         return type(self)(*self.__getnewargs__())
 
-    def __eq__(self, other):
-        if type(self) == type(other):
-            if self.preprolated_duration == other.preprolated_duration:
-                if self.q_event_proxies == other.q_event_proxies:
-                    if self._is_divisible == other.is_divisible:
+    def __eq__(self, expr):
+        if type(self) == type(expr):
+            if self.preprolated_duration == expr.preprolated_duration:
+                if self.q_event_proxies == expr.q_event_proxies:
+                    if self._is_divisible == expr.is_divisible:
                         return True
         return False
 

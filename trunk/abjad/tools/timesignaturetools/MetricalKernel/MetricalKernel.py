@@ -55,9 +55,9 @@ class MetricalKernel(AbjadObject):
                 response += (self._kernel[offset] * count)
         return float(response)
 
-    def __eq__(self, other):
-        if type(self) == type(other):
-            if self._kernel == other._kernel:
+    def __eq__(self, expr):
+        if type(self) == type(expr):
+            if self._kernel == expr._kernel:
                 return True
         return False
 

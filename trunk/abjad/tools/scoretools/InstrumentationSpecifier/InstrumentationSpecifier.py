@@ -50,16 +50,16 @@ class InstrumentationSpecifier(AbjadObject):
 
     ### SPECIAL METHODS ###
     
-    def __eq__(self, other):
-        if isinstance(other, type(self)):
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
             # TODO: implement perform sort
-            #if sorted(self.performers) == sorted(other.performers):
-            if self.performers == other.performers:
+            #if sorted(self.performers) == sorted(expr.performers):
+            if self.performers == expr.performers:
                 return True
         return False
 
-    def __ne__(self, other):
-        return not self == other
+    def __ne__(self, expr):
+        return not self == expr
 
     ### PUBLIC PROPERTIES ###
 

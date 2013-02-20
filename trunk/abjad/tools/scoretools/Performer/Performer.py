@@ -25,18 +25,18 @@ class Performer(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        if isinstance(other, type(self)):
-            if self.name == other.name:
-                if self.instruments == other.instruments:
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            if self.name == expr.name:
+                if self.instruments == expr.instruments:
                     return True
         return False
 
     def __hash__(self):
         return hash((type(self).__name__, self.name, tuple(self.instruments)))
 
-    def __ne__(self, other):
-        return not self == other
+    def __ne__(self, expr):
+        return not self == expr
 
     ### PRIVATE PROPERTIES ###
 

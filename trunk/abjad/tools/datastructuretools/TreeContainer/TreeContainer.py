@@ -112,13 +112,13 @@ class TreeContainer(TreeNode):
             node._switch_parent(None)
         self._mark_entire_tree_for_later_update()
 
-    def __eq__(self, other):
+    def __eq__(self, expr):
         '''True if type, duration and children are equivalent, otherwise False.
 
         Return boolean.
         '''
-        if type(self) == type(other):
-            if self.children == other.children:
+        if type(self) == type(expr):
+            if self.children == expr.children:
                 return True
         return False
 

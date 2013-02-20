@@ -26,8 +26,8 @@ class TerminalQEvent(QEvent):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        if type(self) == type(other) and \
-            self.offset == other.offset:
+    def __eq__(self, expr):
+        if type(self) == type(expr) and \
+            self.offset == expr.offset:
             return True
         return False

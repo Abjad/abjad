@@ -64,8 +64,8 @@ class BreakPointFunction(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, other):
-        '''Add `other` to all y-values in self:
+    def __add__(self, expr):
+        '''Add `expr` to all y-values in self:
 
         ::
 
@@ -78,7 +78,7 @@ class BreakPointFunction(AbjadObject):
                 1.0: (0.55,)
             })
 
-        `other` may also be a BreakPointFunction instance:
+        `expr` may also be a BreakPointFunction instance:
 
         ::
 
@@ -92,10 +92,10 @@ class BreakPointFunction(AbjadObject):
 
         Emit new `BreakPointFunction`.
         '''
-        return self._operate(other, operator.add)
+        return self._operate(expr, operator.add)
 
-    def __div__(self, other):
-        '''Divide y-values in self by `other`:
+    def __div__(self, expr):
+        '''Divide y-values in self by `expr`:
 
         ::
 
@@ -108,19 +108,19 @@ class BreakPointFunction(AbjadObject):
                 1.0: (0.125,)
             })
 
-        `other` may also be a `BreakPointFunction` instance.
+        `expr` may also be a `BreakPointFunction` instance.
 
         Emit new `BreakPointFunction`.
         '''
-        return self._operate(other, operator.div)
+        return self._operate(expr, operator.div)
 
     def __getitem__(self, item):
         '''Aliases BreakPointFunction.get_y_at_x().
         '''
         return self.get_y_at_x(item)
 
-    def __mul__(self, other):
-        '''Multiply y-values in self by `other`:
+    def __mul__(self, expr):
+        '''Multiply y-values in self by `expr`:
 
         ::
 
@@ -133,11 +133,11 @@ class BreakPointFunction(AbjadObject):
                 1.0: (0.5,)
             })
 
-        `other` may also be a `BreakPointFunction` instance.
+        `expr` may also be a `BreakPointFunction` instance.
 
         Emit new `BreakPointFunction`.
         '''
-        return self._operate(other, operator.mul)
+        return self._operate(expr, operator.mul)
 
     def __repr__(self):
         result = ['{}({{'.format(self._class_name)]
@@ -148,8 +148,8 @@ class BreakPointFunction(AbjadObject):
         result.append('})')
         return '\n'.join(result)
 
-    def __sub__(self, other):
-        '''Subtract `other` from all y-values in self:
+    def __sub__(self, expr):
+        '''Subtract `expr` from all y-values in self:
 
         ::
 
@@ -162,7 +162,7 @@ class BreakPointFunction(AbjadObject):
                 1.0: (-0.04999999999999999,)
             })
 
-        `other` may also be a BreakPointFunction instance:
+        `expr` may also be a BreakPointFunction instance:
 
         ::
 
@@ -177,7 +177,7 @@ class BreakPointFunction(AbjadObject):
 
         Emit new `BreakPointFunction`.
         '''
-        return self._operate(other, operator.sub)
+        return self._operate(expr, operator.sub)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -300,10 +300,10 @@ class BreakPointFunction(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _operate(self, other, operator):
-        assert isinstance(other, (type(self), numbers.Real))
-        if isinstance(other, type(self)):
-            x_values = sorted(self.x_values + other.x_values)
+    def _operate(self, expr, operator):
+        assert isinstance(expr, (type(self), numbers.Real))
+        if isinstance(expr, type(self)):
+            x_values = sorted(self.x_values + expr.x_values)
         else:
             x_values = self.x_values
         bpf = {}
@@ -312,13 +312,13 @@ class BreakPointFunction(AbjadObject):
                 one_ys = self._bpf[x]
             else:
                 one_ys = [self.get_y_at_x(x)]
-            if isinstance(other, type(self)):
-                if x in other._bpf:
-                    two_ys = other._bpf[x]
+            if isinstance(expr, type(self)):
+                if x in expr._bpf:
+                    two_ys = expr._bpf[x]
                 else:
-                    two_ys = [other.get_y_at_x(x)]
+                    two_ys = [expr.get_y_at_x(x)]
             else:
-                two_ys = [other]
+                two_ys = [expr]
             new_ys = []
             if len(one_ys) == len(two_ys):
                 if len(one_ys) == 2:
@@ -414,8 +414,8 @@ class BreakPointFunction(AbjadObject):
             bpf[x] = tuple(new_ys)
         return type(self)(bpf)
 
-    def concatenate(self, other):
-        '''Concatenate self with `other`:
+    def concatenate(self, expr):
+        '''Concatenate self with `expr`:
 
         ::
 
@@ -435,17 +435,17 @@ class BreakPointFunction(AbjadObject):
 
         Emit new `BreakPointFunction` instance.
         '''
-        assert isinstance(other, type(self))
+        assert isinstance(expr, type(self))
         last_x_of_first_bpf = self.x_values[-1]
-        first_x_of_second_bpf = other.x_values[0]
+        first_x_of_second_bpf = expr.x_values[0]
         x_shift = first_x_of_second_bpf - last_x_of_first_bpf
         stop_y = self._bpf[last_x_of_first_bpf][0]
-        start_y = other._bpf[first_x_of_second_bpf][-1]
+        start_y = expr._bpf[first_x_of_second_bpf][-1]
         hinge_ys = (stop_y, start_y) 
         new_bpf_dict = self.bpf
         new_bpf_dict[last_x_of_first_bpf] = hinge_ys
-        for x in other.x_values[1:]:
-            new_bpf_dict[x - x_shift] = other._bpf[x]
+        for x in expr.x_values[1:]:
+            new_bpf_dict[x - x_shift] = expr._bpf[x]
         return type(self)(new_bpf_dict) 
 
     def get_y_at_x(self, x):

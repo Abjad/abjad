@@ -33,11 +33,11 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
     def __delitem__(self, item):
         self._data.__delitem__(item)
 
-    def __eq__(self, other):
-        if type(other) == type(self) and \
-            other.start == self.start and \
-            other.stop == self.stop and \
-            other._data == self._data:
+    def __eq__(self, expr):
+        if type(expr) == type(self) and \
+            expr.start == self.start and \
+            expr.stop == self.stop and \
+            expr._data == self._data:
                 return True
         return False
 
@@ -54,8 +54,8 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
     def __len__(self):
         return len(self._data)
 
-    def __ne__(self, other):
-        return not self.__eq__(other)
+    def __ne__(self, expr):
+        return not self.__eq__(expr)
 
     def __repr__(self):
         return '%s(%r, %r, %r)' % (self._class_name, self.start, self.stop, self._data)

@@ -205,14 +205,14 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         tuplettools.remove_trivial_tuplets_in_expr(result)
         return result
 
-    def __eq__(self, other):
+    def __eq__(self, expr):
         '''True if type, preprolated_duration and children are equivalent, otherwise False.
 
         Return boolean.
         '''
-        if type(self) == type(other):
-            if self.preprolated_duration == other.preprolated_duration:
-                if self.children == other.children:
+        if type(self) == type(expr):
+            if self.preprolated_duration == expr.preprolated_duration:
+                if self.children == expr.children:
                     return True
         return False
 
