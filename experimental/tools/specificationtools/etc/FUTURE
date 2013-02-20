@@ -9,13 +9,19 @@
         score_specification.select_leaves('Voice 4').set_pitches(library.example_pitches_1())
     ... as a type of "cake slice" set expression.
 
-2.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
+2.  Make this ...
+        leaves = score_specification.select_leaves('Voice 1')
+        leaves += score_specification.select_leaves('Voice 2')
+        leaves.set_pitches(library.example_pitches_1(), timeline=True)
+    ... work.
+
+3.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
     It means truncate last division in section. It also means restart divisions at
     beginning of following section. Implement a SegmentSpecification.set_divisions()
     boolean 'restart' keyword to separate these functions. When restart=True
     then truncate will always effectively be interpreted as true.
 
-3.  Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
+4.  Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         timespan = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         rhythm = red_segment.select_leaves('Voice 1', timespan=timespan)

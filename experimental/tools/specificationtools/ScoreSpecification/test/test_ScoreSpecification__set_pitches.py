@@ -100,3 +100,45 @@ def test_ScoreSpecification__set_pitches_05():
     current_function_name = introspectiontools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_ScoreSpecification__set_pitches_06():
+    '''Read from server over synchronous discontiguous selection.
+    Voice 1 before voice 2.
+    '''
+
+    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=2)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    score_specification.set_time_signatures(6 * [(2, 8)])
+    score_specification.set_divisions([(3, 16)])
+    rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
+    score_specification.set_rhythm(rhythm)
+    leaves = score_specification.select_leaves('Voice 1')[:9]
+    leaves += score_specification.select_leaves('Voice 2')[:9]
+    leaves.set_pitches(library.example_pitches_1())
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_ScoreSpecification__set_pitches_07():
+    '''Read from server over synchronous discontiguous selection.
+    Voice 2 before voice 1.
+    '''
+
+    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=2)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    score_specification.set_time_signatures(6 * [(2, 8)])
+    score_specification.set_divisions([(3, 16)])
+    rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
+    score_specification.set_rhythm(rhythm)
+    leaves = score_specification.select_leaves('Voice 2')[:9]
+    leaves += score_specification.select_leaves('Voice 1')[:9]
+    leaves.set_pitches(library.example_pitches_1())
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
