@@ -45,6 +45,9 @@ Methods
 .. automethod:: experimental.tools.expressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_pitch_classes
    :noindex:
 
+.. automethod:: experimental.tools.expressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_pitches
+   :noindex:
+
 .. automethod:: experimental.tools.expressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_registration
    :noindex:
 

@@ -75,6 +75,9 @@ Methods
 .. automethod:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.rotate
    :noindex:
 
+.. automethod:: experimental.tools.expressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_pitches
+   :noindex:
+
 Special methods
 ---------------
 

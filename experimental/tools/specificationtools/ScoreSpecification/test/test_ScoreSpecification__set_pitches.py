@@ -1,19 +1,18 @@
 from experimental import *
-import copy
-import py
 
 
 def test_ScoreSpecification__set_pitches_01():
-    '''Read from server over entire score.
+    '''Read from server over all leaves in voice.
     '''
-    py.test.skip('working on this one')
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    score_specification.set_rhythm(library.sixteenths)
-    score_specification.set_pitches(library.example_pitches_1())
+    rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
+    score_specification.set_rhythm(rhythm)
+    leaves = score_specification.select_leaves('Voice 1')
+    leaves.set_pitches(library.example_pitches_1())
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -22,16 +21,16 @@ def test_ScoreSpecification__set_pitches_01():
 
 
 def test_ScoreSpecification__set_pitches_02():
-    '''Read from server contiguous leaves.
+    '''Read from server over contiguous leaves in one voice.
     '''
-    py.test.skip('working on this one')
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    score_specification.set_rhythm(library.sixteenths)
-    leaves = score_specification.select_leaves('Voice 1')[10:20]
+    rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
+    score_specification.set_rhythm(rhythm)
+    leaves = score_specification.select_leaves('Voice 1')[9:18]
     leaves.set_pitches(library.example_pitches_1())
     score = score_specification.interpret()
 

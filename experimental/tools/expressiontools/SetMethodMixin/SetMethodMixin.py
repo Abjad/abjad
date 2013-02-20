@@ -16,6 +16,12 @@ class SetMethodMixin(AbjadObject):
                 return True
         return False
 
+    def _attribute_to_set_expression_class(self, attribute):
+        from experimental.tools import expressiontools
+        return {
+            'pitch': expressiontools.PitchSetExpression,
+            }[attribute]
+
     def _expr_to_expression(self, expr):
         from abjad.tools import rhythmmakertools
         from experimental.tools import handlertools
@@ -36,3 +42,37 @@ class SetMethodMixin(AbjadObject):
             return expressiontools.StatalServerCursorExpression(expr)
         else:
             raise TypeError('do not know how to change {!r} to expression.'.format(expr))
+
+    def _store_generalized_set_expression(self, attribute, source_expression):
+        from experimental.tools import expressiontools
+        set_expression_class = self._attribute_to_set_expression_class(attribute)
+        source_expression = self._expr_to_expression(source_expression)
+        if isinstance(self, expressiontools.SelectExpression):
+            target_select_expression_inventory = expressiontools.SelectExpressionInventory([self])
+        elif isinstance(self, expressiontools.SelectExpressionInventory):
+            target_select_expression_inventory = self
+        else:
+            raise TypeError(self)
+        generalized_set_expression = set_expression_class(
+            source_expression=source_expression,
+            target_select_expression_inventory=target_select_expression_inventory
+            )
+        assert self.score_specification is not None
+        generalized_set_expression._score_specification = self.score_specification
+        generalized_set_expression._lexical_rank = self.score_specification._next_lexical_rank
+        self.score_specification._next_lexical_rank += 1
+        if isinstance(generalized_set_expression, expressiontools.PitchSetExpression):
+            self.score_specification.pitch_set_expressions.append(generalized_set_expression)
+        else:
+            self.score_specification.generalized_set_expressions.append(generalized_set_expression)
+        return generalized_set_expression
+
+    ### PUBLIC METHODS ###
+
+    def set_pitches(self, source_expression):
+        r'''Set pitches to `source_expression` for select expressions in inventory.
+
+        Return pitch set expression.
+        '''
+        attribute = 'pitch'
+        return self._store_generalized_set_expression(attribute, source_expression)

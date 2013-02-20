@@ -12,6 +12,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.storage_format
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_pitches
+   :noindex:
+
 Special methods
 ---------------
 

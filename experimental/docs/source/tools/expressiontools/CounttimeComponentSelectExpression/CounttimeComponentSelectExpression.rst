@@ -81,6 +81,9 @@ Methods
 .. automethod:: experimental.tools.expressiontools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.rotate
    :noindex:
 
+.. automethod:: experimental.tools.expressiontools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.set_pitches
+   :noindex:
+
 Special methods
 ---------------
 

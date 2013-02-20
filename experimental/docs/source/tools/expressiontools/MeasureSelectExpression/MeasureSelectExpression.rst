@@ -78,6 +78,9 @@ Methods
 .. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.rotate
    :noindex:
 
+.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.set_pitches
+   :noindex:
+
 Special methods
 ---------------
 

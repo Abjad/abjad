@@ -78,6 +78,9 @@ Methods
 .. automethod:: experimental.tools.expressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.rotate
    :noindex:
 
+.. automethod:: experimental.tools.expressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_pitches
+   :noindex:
+
 Special methods
 ---------------
 

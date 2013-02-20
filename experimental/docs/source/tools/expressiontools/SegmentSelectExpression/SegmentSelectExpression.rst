@@ -75,6 +75,9 @@ Methods
 .. automethod:: experimental.tools.expressiontools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.rotate
    :noindex:
 
+.. automethod:: experimental.tools.expressiontools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.set_pitches
+   :noindex:
+
 Special methods
 ---------------
 
