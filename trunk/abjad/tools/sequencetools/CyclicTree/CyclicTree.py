@@ -114,6 +114,32 @@ class CyclicTree(Tree):
             CyclicTree(2)
             CyclicTree(3)
 
+        ### PREVIOUS MNODES ###
+
+        Get previous 4 nodes at level 2:
+
+        ::
+
+            >>> tree[0][0].get_next_n_nodes_at_level(-4, 2)
+            [CyclicTree(7), CyclicTree(6), CyclicTree(5), CyclicTree(4)]
+
+        Get previous 10 nodes at level 2:
+
+        ::
+
+            >>> for node in tree[0][0].get_next_n_nodes_at_level(-10, 2):
+            ...     node
+            CyclicTree(7)
+            CyclicTree(6)
+            CyclicTree(5)
+            CyclicTree(4)
+            CyclicTree(3)
+            CyclicTree(2)
+            CyclicTree(1)
+            CyclicTree(7)
+            CyclicTree(6)
+            CyclicTree(5)
+
         Return list of nodes.
         '''
         return Tree.get_next_n_nodes_at_level(self, n, level)

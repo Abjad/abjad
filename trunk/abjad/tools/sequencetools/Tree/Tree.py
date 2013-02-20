@@ -636,10 +636,15 @@ class Tree(AbjadObject):
         result = []
         self_is_found = False
         first_node_returned_is_trimmed = False
-        if hasattr(self.root, 'iterate_forever_depth_first'):
-            generator = self.root.iterate_forever_depth_first()
+        if n < 0:
+            reverse = True
         else:
-            generator = self.root.iterate_depth_first()
+            reverse = False
+        n = abs(n)
+        if hasattr(self.root, 'iterate_forever_depth_first'):
+            generator = self.root.iterate_forever_depth_first(reverse=reverse)
+        else:
+            generator = self.root.iterate_depth_first(reverse=reverse)
         for node in generator:
             if len(result) == n:
                 if not first_node_returned_is_trimmed or \
@@ -666,14 +671,14 @@ class Tree(AbjadObject):
                     position_of_descendant = subtree_to_trim.get_position_of_descendant(node)
                     first_subtree = copy.deepcopy(subtree_to_trim)
                     reference_node = first_subtree.get_node_at_position(position_of_descendant)
-                    reference_node.remove_to_root()
+                    reference_node.remove_to_root(reverse=reverse)
                     result.append(first_subtree)
             if self_is_found:
                 if node is not self:
                     if node.is_at_level(level):
                         result.append(node)
         else:
-            raise ValueError('not enough nodes remain at level %s.' % level)
+            raise ValueError('not enough nodes at level {}.'.format(level))
 
     def _initialize_children_list(self):
         return []
@@ -723,6 +728,41 @@ class Tree(AbjadObject):
             >>> tree[0][0].get_manifest_payload_of_next_n_nodes_at_level(3, -2)
             [1, 2, 3, 4, 5]
 
+        Get manifest paylaod of previous 4 nodes at level 2:
+
+        ::
+
+            >>> tree[-1][-1].get_manifest_payload_of_next_n_nodes_at_level(-4, 2)
+            [6, 5, 4, 3]
+
+        Get manifest paylaod of previous 3 nodes at level 1:
+
+        ::
+
+            >>> tree[-1][-1].get_manifest_payload_of_next_n_nodes_at_level(-3, 1)
+            [6, 5, 4, 3, 2]
+
+        Get manifest paylaod of previous node at level 0:
+
+        ::
+
+            >>> tree[-1][-1].get_manifest_payload_of_next_n_nodes_at_level(-1, 0)
+            [6, 5, 4, 3, 2, 1, 0]
+
+        Get manifest paylaod of previous 4 nodes at level -1:
+
+        ::
+
+            >>> tree[-1][-1].get_manifest_payload_of_next_n_nodes_at_level(-4, -1)
+            [6, 5, 4, 3]
+
+        Get manifest paylaod of previous 3 nodes at level -2:
+
+        ::
+
+            >>> tree[-1][-1].get_manifest_payload_of_next_n_nodes_at_level(-3, -2)
+            [6, 5, 4, 3, 2]
+
         Trim first node if necessary.
 
         Return list of arbitrary values.
@@ -730,7 +770,10 @@ class Tree(AbjadObject):
         result = []
         nodes = self.get_next_n_nodes_at_level(n, level)
         for node in nodes:
-            result.extend(node.manifest_payload)
+            if 0 <= n:
+                result.extend(node.manifest_payload)
+            else:
+                result.extend(reversed(node.manifest_payload))
         return result
 
     def get_next_n_complete_nodes_at_level(self, n, level):
@@ -768,6 +811,35 @@ class Tree(AbjadObject):
 
             >>> tree[0][0].get_next_n_complete_nodes_at_level(3, -2)
             [Tree([1]), Tree([2, 3]), Tree([4, 5]), Tree([6, 7])]
+
+        Get previous 4 nodes at level 2:
+
+        ::
+
+            >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-4, 2)
+            [Tree(6), Tree(5), Tree(4), Tree(3)]
+
+        Get previous 3 nodes at level 1:
+
+        ::
+
+            >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-3, 1)
+            [Tree([6]), Tree([4, 5]), Tree([2, 3]), Tree([0, 1])]
+
+
+        Get previous 4 nodes at level -1:
+
+        ::
+
+            >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-4, -1)
+            [Tree(6), Tree(5), Tree(4), Tree(3)]
+
+        Get previous 3 nodes at level -2:
+
+        ::
+
+            >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-3, -2)
+            [Tree([6]), Tree([4, 5]), Tree([2, 3]), Tree([0, 1])]
 
         Trim first node if necessary.
 
@@ -817,6 +889,41 @@ class Tree(AbjadObject):
 
             >>> tree[0][0].get_next_n_nodes_at_level(3, -2)
             [Tree([1]), Tree([2, 3]), Tree([4, 5])]
+
+        Get previous 4 nodes at level 2:
+
+        ::
+
+            >>> tree[-1][-1].get_next_n_nodes_at_level(-4, 2)
+            [Tree(6), Tree(5), Tree(4), Tree(3)]
+
+        Get previous 3 nodes at level 1:
+
+        ::
+
+            >>> tree[-1][-1].get_next_n_nodes_at_level(-3, 1)
+            [Tree([6]), Tree([4, 5]), Tree([2, 3])]
+
+        Get previous node at level 0:
+
+        ::
+
+            >>> tree[-1][-1].get_next_n_nodes_at_level(-1, 0)
+            [Tree([[0, 1], [2, 3], [4, 5], [6]])]
+
+        Get previous 4 nodes at level -1:
+
+        ::
+
+            >>> tree[-1][-1].get_next_n_nodes_at_level(-4, -1)
+            [Tree(6), Tree(5), Tree(4), Tree(3)]
+
+        Get previous 3 nodes at level -2:
+
+        ::
+
+            >>> tree[-1][-1].get_next_n_nodes_at_level(-3, -2)
+            [Tree([6]), Tree([4, 5]), Tree([2, 3])]
 
         Trim first node if necessary.
 
@@ -1181,7 +1288,7 @@ class Tree(AbjadObject):
         node.parent._children.remove(node)
         node.parent = None
 
-    def remove_to_root(self):
+    def remove_to_root(self, reverse=False):
         r'''Remove node and all nodes left of node to root:
 
         ::
@@ -1215,7 +1322,11 @@ class Tree(AbjadObject):
         '''
         ## trim left-siblings of self and self
         parent = self.parent
-        for sibling in parent[:]:
+        if reverse:
+            iterable_parent = reversed(parent)
+        else:
+            iterable_parent = parent[:]
+        for sibling in iterable_parent:
             sibling.parent.remove_node(sibling)
             ## break and do not remove siblings to right of self
             if sibling is self:
@@ -1223,7 +1334,12 @@ class Tree(AbjadObject):
         ## trim parentage
         for node in parent.improper_parentage:
             if node.parent is not None:
-                for sibling in node.parent[:]:
+                iterable_parent = node.parent[:]
+                if reverse:
+                    iterable_parent = reversed(node.parent)
+                else:
+                    iterable_parent = node.parent[:]
+                for sibling in iterable_parent:
                     if sibling is node:
                         # remove node now if it was emptied earlier
                         if not len(sibling):
