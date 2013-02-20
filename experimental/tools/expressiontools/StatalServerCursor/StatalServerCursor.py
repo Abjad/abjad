@@ -7,16 +7,16 @@ class StatalServerCursor(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, statal_server=None, position=None, read_direction=None):
+    def __init__(self, statal_server=None, position=None, reverse=False):
         from experimental.tools import expressiontools
         assert isinstance(statal_server, expressiontools.StatalServer), repr(statal_server)
         assert isinstance(position, (tuple, type(None))), repr(position)
-        assert read_direction in (None, Left, Right), repr(read_direction)    
-        position = position or (0, )
-        read_direction = read_direction or Right
+        assert isinstance(reverse, type(True)), repr(reverse)
+        #position = position or (0, )
+        position = position or ()
         self._statal_server = statal_server
         self._position = position
-        self._read_direction = read_direction
+        self._reverse = reverse
 
     ### SPECIAL METHODS ###
 
@@ -42,6 +42,8 @@ class StatalServerCursor(AbjadObject):
     def _get_manifest_payload_of_next_n_nodes_at_level(self, n=1, level=-1):
         result = []
         current_node = self.statal_server.cyclic_tree.get_node_at_position(self.position)
+        if self.reverse:
+            n *= -1
         nodes = current_node.get_next_n_nodes_at_level(n, level)
         position = nodes[-1].position
         self._position = position
@@ -60,12 +62,15 @@ class StatalServerCursor(AbjadObject):
         return self._position
 
     @property
-    def read_direction(self):
-        '''Statal server cursor read direction.
+    def reverse(self):
+        '''Statal server cursor reverse.
 
-        Return direction constant.
+        False when cursor reads from left to right.
+        True when cursor reads from right to left.
+
+        Return boolean.
         '''
-        return self._read_direction
+        return self._reverse
 
     @property   
     def statal_server(self):

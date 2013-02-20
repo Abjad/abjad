@@ -12,7 +12,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.expressiontools.StatalServerCursor.StatalServerCursor.StatalServerCursor.position
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.StatalServerCursor.StatalServerCursor.StatalServerCursor.read_direction
+.. autoattribute:: experimental.tools.expressiontools.StatalServerCursor.StatalServerCursor.StatalServerCursor.reverse
    :noindex:
 
 .. autoattribute:: experimental.tools.expressiontools.StatalServerCursor.StatalServerCursor.StatalServerCursor.statal_server

@@ -14,12 +14,12 @@ class StatalServer(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, position=None, read_direction=None):
+    def __call__(self, position=None, reverse=False):
         '''Return statal server cursor.
         '''
         from experimental.tools import expressiontools
         cursor = expressiontools.StatalServerCursor(
-            statal_server=self, position=position, read_direction=read_direction)
+            statal_server=self, position=position, reverse=reverse)
         return cursor
 
     def __eq__(self, expr):
