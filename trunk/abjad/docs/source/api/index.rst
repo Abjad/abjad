@@ -4910,7 +4910,7 @@ Abjad internal packages
    .. toctree::
       :maxdepth: 1
 
-      tools/testtools/configure_multiple_voice_rhythmic_staves
+      tools/testtools/apply_additional_layout
       tools/testtools/read_test_output
       tools/testtools/write_test_output
 
@@ -4921,6 +4921,6 @@ Abjad internal packages
 
    .. toctree::
 
-      tools/testtools/configure_multiple_voice_rhythmic_staves
+      tools/testtools/apply_additional_layout
       tools/testtools/read_test_output
       tools/testtools/write_test_output

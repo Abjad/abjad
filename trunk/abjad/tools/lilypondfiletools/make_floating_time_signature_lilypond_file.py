@@ -54,6 +54,11 @@ def make_floating_time_signature_lilypond_file(music=None):
     context_block.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 32))
     context_block.set.tupletFullLength = True
 
+    # provided as a stub position for user customization
+    context_block = lilypondfiletools.ContextBlock()
+    lilypond_file.layout_block.context_blocks.append(context_block)
+    context_block.context_name = 'StaffGroup'
+
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
     context_block.context_name = 'Staff'
