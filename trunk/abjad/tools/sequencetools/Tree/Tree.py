@@ -917,13 +917,15 @@ class Tree(AbjadObject):
         else:
             return False
 
-    def iterate_at_level(self, level):
+    def iterate_at_level(self, level, reverse=False):
         r'''Iterate tree at `level`:
 
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
+
+        Left-to-right examples:
 
         ::
 
@@ -981,9 +983,67 @@ class Tree(AbjadObject):
             ... 
             Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
+        Right-to-left examples:
+
+        ::
+
+            >>> for x in tree.iterate_at_level(0, reverse=True): x
+            ... 
+            Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
+
+        ::
+
+            >>> for x in tree.iterate_at_level(1, reverse=True): x
+            ... 
+            Tree([6, 7])
+            Tree([4, 5])
+            Tree([2, 3])
+            Tree([0, 1])
+
+        ::
+
+            >>> for x in tree.iterate_at_level(2, reverse=True): x
+            ... 
+            Tree(7)
+            Tree(6)
+            Tree(5)
+            Tree(4)
+            Tree(3)
+            Tree(2)
+            Tree(1)
+            Tree(0)
+
+        ::
+
+            >>> for x in tree.iterate_at_level(-1, reverse=True): x
+            ... 
+            Tree(7)
+            Tree(6)
+            Tree(5)
+            Tree(4)
+            Tree(3)
+            Tree(2)
+            Tree(1)
+            Tree(0)
+
+        ::
+
+            >>> for x in tree.iterate_at_level(-2, reverse=True): x
+            ... 
+            Tree([6, 7])
+            Tree([4, 5])
+            Tree([2, 3])
+            Tree([0, 1])
+
+        ::
+
+            >>> for x in tree.iterate_at_level(-3, reverse=True): x
+            ... 
+            Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
+
         Return node generator.
         '''
-        for x in self.iterate_depth_first():
+        for x in self.iterate_depth_first(reverse=reverse):
             if 0 <= level:
                 if x.level == level:
                     yield x
@@ -991,8 +1051,10 @@ class Tree(AbjadObject):
                 if x.negative_level == level:
                     yield x
 
-    def iterate_depth_first(self):
+    def iterate_depth_first(self, reverse=False):
         '''Iterate tree depth-first:
+
+        Example 1. Iterate tree depth-first from left to right:
 
         ::
 
@@ -1016,16 +1078,41 @@ class Tree(AbjadObject):
             Tree([6, 7])
             Tree(6)
             Tree(7)
+    
+        Example 2. Iterate tree depth-first from right to left:
+
+        ::
+
+            >>> for node in tree.iterate_depth_first(reverse=True): node
+            ... 
+            Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
+            Tree([6, 7])
+            Tree(7)
+            Tree(6)
+            Tree([4, 5])
+            Tree(5)
+            Tree(4)
+            Tree([2, 3])
+            Tree(3)
+            Tree(2)
+            Tree([0, 1])
+            Tree(1)
+            Tree(0)
 
         Return node generator.
         '''
         yield self
-        for x in self:
-            for y in x.iterate_depth_first():
+        iterable_self = self
+        if reverse:
+            iterable_self = reversed(self)
+        for x in iterable_self:
+            for y in x.iterate_depth_first(reverse=reverse):
                 yield y
 
-    def iterate_payload(self):
+    def iterate_payload(self, reverse=False):
         r'''Iterate tree payload:
+
+        Example 1. Iterate payload from left to right:
 
         ::
 
@@ -1046,9 +1133,30 @@ class Tree(AbjadObject):
             6
             7
 
+        Example 2. Iterate payload from right to left:
+
+        ::
+
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
+
+        ::
+
+            >>> for element in tree.iterate_payload(reverse=True):
+            ...     element
+            ... 
+            7
+            6
+            5
+            4
+            3
+            2
+            1
+            0
+
         Return payload generator.
         '''
-        for leaf_node in self.iterate_at_level(-1):
+        for leaf_node in self.iterate_at_level(-1, reverse=reverse):
             yield leaf_node.payload
 
     def remove_node(self, node):

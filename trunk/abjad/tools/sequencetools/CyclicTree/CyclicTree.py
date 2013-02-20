@@ -150,11 +150,13 @@ class CyclicTree(Tree):
         '''
         return Tree.get_node_at_position(self, position)
 
-    def iterate_forever_depth_first(self):
+    def iterate_forever_depth_first(self, reverse=False):
         '''Iterate tree depth first.
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> cyclic_tree = sequencetools.CyclicTree(sequence)
+
+        Example 1. Iterate from left to right:
 
         ::
 
@@ -182,8 +184,36 @@ class CyclicTree(Tree):
             CyclicTree(2)
             CyclicTree(3)
 
+        Example 2. Iterate from right to left:
+
+        ::
+
+            >>> generator = cyclic_tree.iterate_forever_depth_first(reverse=True)
+            >>> for i in range(20):
+            ...     generator.next()
+            CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+            CyclicTree([6, 7])
+            CyclicTree(7)
+            CyclicTree(6)
+            CyclicTree([4, 5])
+            CyclicTree(5)
+            CyclicTree(4)
+            CyclicTree([2, 3])
+            CyclicTree(3)
+            CyclicTree(2)
+            CyclicTree([0, 1])
+            CyclicTree(1)
+            CyclicTree(0)
+            CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+            CyclicTree([6, 7])
+            CyclicTree(7)
+            CyclicTree(6)
+            CyclicTree([4, 5])
+            CyclicTree(5)
+            CyclicTree(4)
+
         Return node generator.
         '''
         while True:
-            for node in Tree.iterate_depth_first(self):
+            for node in Tree.iterate_depth_first(self, reverse=reverse):
                 yield node
