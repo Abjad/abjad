@@ -1,1 +1,3 @@
-1.  Make pitch set tests work for contiguous select expressions.
+1.  Add pitch set tests that show overlap, abuting and empty set with discontiguous select expressions.
+ 
+2.  Make pitch set tests work for contiguous select expressions.
