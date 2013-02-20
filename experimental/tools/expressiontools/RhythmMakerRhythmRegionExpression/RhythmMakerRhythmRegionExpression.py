@@ -25,12 +25,12 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
 
     def _conditionally_beam_rhythm_containers(self, rhythm_containers):
         beam_cells_together = getattr(self.source_expression, 'beam_cells_together', False)
-        beam_cell_together = getattr(self.source_expression, 'beam_cell_together', False)
+        beam_each_cell = getattr(self.source_expression, 'beam_each_cell', False)
         if beam_cells_together:
             spannertools.destroy_spanners_attached_to_components_in_expr(rhythm_containers)
             durations = [x.duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
-        elif beam_cell_together:
+        elif beam_each_cell:
             spannertools.destroy_spanners_attached_to_components_in_expr(rhythm_containers)
             for rhythm_container in rhythm_containers:
                 beamtools.DuratedComplexBeamSpanner(

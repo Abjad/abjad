@@ -70,7 +70,7 @@ def test_ScoreSpecification__set_pitches_04():
     score_specification.set_divisions([(3, 16)])
     rhythm = copy.deepcopy(library.sixteenths)
     rhythm.beam_cells_together = False
-    rhythm.beam_cell_together = True
+    rhythm.beam_each_cell = True
     score_specification.set_rhythm(rhythm)
     first_leaves = score_specification.select_leaves('Voice 1')[:10]
     last_leaves = score_specification.select_leaves('Voice 2')[-10:]

@@ -1,11 +1,9 @@
-1.  Change 'beam_cell_together' to 'beam_each_cell'.
-
-2.  Reduce this pattern ...
-        sixteenths = copy.deepcopy (library.sixteenths)
+1.  Reduce this pattern ...
+        sixteenths = copy.deepcopy(library.sixteenths)
         sixteenths.beam_cells_together = False
-        sixteenths.beam_cell_together = True
+        sixteenths.beam_each_cell = True
     ... to a single method call.
 
-3.  Add more staff-staff space to pitched examples.
+2.  Add more staff-staff space to pitched examples.
 
-4.  Make pitch set tests work for contiguous select expressions.
+3.  Make pitch set tests work for contiguous select expressions.
