@@ -151,8 +151,15 @@ class CounttimeComponentSelectExpression(SelectExpression):
         from experimental.tools import expressiontools
         assert isinstance(score, scoretools.Score), repr(score)
         voice = score[self.voice_name]
-        components = iterationtools.iterate_components_in_expr(voice, klass=tuple(self.classes))
-        components = list(components)
+        anchor_timespan = self._evaluate_anchor_timespan()
+        # TODO: why not default to starts-during time-relation?
+        time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
+        components = []
+        for component in iterationtools.iterate_components_in_expr(voice, klass=tuple(self.classes)):
+            if time_relation(timespan_2=component.timespan):
+                components.append(component)
+        if not components:
+            return
         expression = expressiontools.IterablePayloadExpression(components)
         expression = self._apply_callbacks(expression)
         return expression
