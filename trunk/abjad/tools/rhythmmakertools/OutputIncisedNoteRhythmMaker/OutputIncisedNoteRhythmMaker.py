@@ -4,55 +4,33 @@ from abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker import OutputIncisedR
 class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
     r'''.. versionadded:: 2.8
     
-    Output-incised note rhythm-maker.
+    Output-incised note rhythm-maker:
 
-    Configure the rhythm-maker on initialization::
+    ::
 
-        >>> prefix_talea, prefix_lengths = [-8], [2]
-        >>> suffix_talea, suffix_lengths = [-3], [4]
-        >>> talea_denominator = 32
         >>> maker = rhythmmakertools.OutputIncisedNoteRhythmMaker(
-        ... prefix_talea, prefix_lengths, suffix_talea, suffix_lengths, talea_denominator)
+        ...     prefix_talea=[-8, -7],
+        ...     prefix_lengths=[2],
+        ...     suffix_talea=[-3],
+        ...     suffix_lengths=[4],
+        ...     talea_denominator=32)
+        
+    Configure at initialization and then call on arbitrary divisions:
 
-    Then call the rhythm-maker on arbitrary divisions::
+    ::
 
         >>> divisions = [(5, 8), (5, 8), (5, 8)]
         >>> leaf_lists = maker(divisions)
         >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-
-    The resulting Abjad objects can be included in any score and the rhythm 
-    maker can be reused::
-
         >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
-        >>> staff = Staff(measures)
+        >>> staff = stafftools.RhythmicStaff(measures)
         >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
 
     ::
 
-        >>> f(staff)
-        \new Staff {
-            {
-                \time 5/8
-                r4
-                r4
-                c'8
-            }
-            {
-                c'2 ~
-                c'8
-            }
-            {
-                c'4
-                r16.
-                r16.
-                r16.
-                r16.
-            }
-        }
+        >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
-
-    Return rhythm  maker.
     '''
 
     ### PRIVATE METHODS ###
@@ -62,3 +40,114 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
             return (middle, )
         else:
             return ()
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def storage_format(self):
+        '''Output-incised note rhythm-maker storage format:
+
+        ::
+
+            >>> z(maker)
+            rhythmmakertools.OutputIncisedNoteRhythmMaker(
+                prefix_talea=[-8, -7],
+                prefix_lengths=[2],
+                suffix_talea=[-3],
+                suffix_lengths=[4],
+                talea_denominator=32,
+                prolation_addenda=[],
+                secondary_divisions=[],
+                decrease_durations_monotonically=True,
+                tie_rests=False,
+                beam_each_cell=False,
+                beam_cells_together=False
+                )
+
+        Return string.
+        '''
+        return OutputIncisedRhythmMaker.storage_format(self)
+
+    ### PUBLIC METHODS ###
+
+    def new(self, **kwargs):
+        '''Create new output-incised note rhythm-maker with `kwargs`:
+
+        ::
+
+            >>> new_maker = maker.new(prefix_talea=[-7])
+
+        ::
+        
+            >>> z(new_maker)
+            rhythmmakertools.OutputIncisedNoteRhythmMaker(
+                prefix_talea=[-7],
+                prefix_lengths=[2],
+                suffix_talea=[-3],
+                suffix_lengths=[4],
+                talea_denominator=32,
+                prolation_addenda=[],
+                secondary_divisions=[],
+                decrease_durations_monotonically=True,
+                tie_rests=False,
+                beam_each_cell=False,
+                beam_cells_together=False
+                )
+
+        ::
+
+            >>> divisions = [(5, 8), (5, 8), (5, 8)]
+            >>> leaf_lists = new_maker(divisions)
+            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Return new output-incised note rhythm-maker.
+        '''
+        return OutputIncisedRhythmMaker.new(self, **kwargs)
+
+    def reverse(self):
+        '''Reverse output-incised note rhythm-maker:
+
+        ::
+
+            >>> reversed_maker = maker.reverse()
+
+        ::
+        
+            >>> z(reversed_maker)
+            rhythmmakertools.OutputIncisedNoteRhythmMaker(
+                prefix_talea=[-7, -8],
+                prefix_lengths=[2],
+                suffix_talea=[-3],
+                suffix_lengths=[4],
+                talea_denominator=32,
+                prolation_addenda=[],
+                secondary_divisions=[],
+                decrease_durations_monotonically=False,
+                tie_rests=False,
+                beam_each_cell=False,
+                beam_cells_together=False
+                )
+
+        ::
+
+            >>> divisions = [(5, 8), (5, 8), (5, 8)]
+            >>> leaf_lists = reversed_maker(divisions)
+            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Return new output-incised note rhythm-maker.
+        '''
+        return OutputIncisedRhythmMaker.reverse(self)

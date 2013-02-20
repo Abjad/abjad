@@ -1,13 +1,11 @@
 1.  Change 'beam_cell_together' to 'beam_each_cell'.
 
-2.  Add a notation example to each rhythm-maker API entry.
-
-3.  Reduce this pattern ...
+2.  Reduce this pattern ...
         sixteenths = copy.deepcopy (library.sixteenths)
         sixteenths.beam_cells_together = False
         sixteenths.beam_cell_together = True
     ... to a single method call.
 
-4.  Add more staff-staff space to pitched examples.
+3.  Add more staff-staff space to pitched examples.
 
-5.  Make pitch set tests work for contiguous select expressions.
+4.  Make pitch set tests work for contiguous select expressions.

@@ -173,7 +173,10 @@ class RhythmMaker(AbjadObject):
         '''
         new = copy.deepcopy(self)
         for key, value in kwargs.iteritems():
-            setattr(new, key, value)
+            try:
+                setattr(new, key, value)
+            except AttributeError:
+                setattr(new, '_' + key, value)
         return new
  
     def reverse(self):

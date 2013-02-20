@@ -8,41 +8,26 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class TupletMonadRhythmMaker(RhythmMaker):
     r'''.. versionadded:: 2.10
 
-    Tuplet monad rhythm-maker::
+    Tuplet monad rhythm-maker:
+
+    ::
 
         >>> maker = rhythmmakertools.TupletMonadRhythmMaker()
 
+    Initialize and then call on arbitrary divisions:
+
     ::
 
-        >>> divisions = [(1, 5), (1, 4), (1, 6), (7, 9)]
+        >>> divisions = [(2, 5), (2, 5), (1, 4), (1, 5), (3, 4)]
         >>> tuplet_lists = maker(divisions)
         >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
+        >>> staff = stafftools.RhythmicStaff(tuplets)
 
     ::
 
-        >>> staff = Staff(tuplets)
-
-    ::
-
-        >>> f(staff)
-        \new Staff {
-            \times 4/5 {
-                c'4
-            }
-            {
-                c'4
-            }
-            \times 2/3 {
-                c'4
-            }
-            \times 8/9 {
-                c'2..
-            }
-        }
-
+        >>> show(staff) # doctest: +SKIP
+    
     Usage follows the two-step instantiate-then-call pattern shown here.
-
-    Return rhythm-maker.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -60,6 +45,10 @@ class TupletMonadRhythmMaker(RhythmMaker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
+        '''Call tuplet monad rhythm-maker on `divisions`.
+
+        Return list of tuplets.
+        '''
         result = []
         for division in divisions:
             monad = self._make_monad(division)
@@ -78,3 +67,83 @@ class TupletMonadRhythmMaker(RhythmMaker):
         leaves = leaftools.make_leaves([0], [power_of_two_division])
         tuplet = tuplettools.Tuplet(tuplet_multiplier, leaves)
         return tuplet
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def storage_format(self):
+        '''Tuplet monad rhythm-maker storage format:
+
+        ::
+
+            >>> z(maker)
+            rhythmmakertools.TupletMonadRhythmMaker(
+                beam_each_cell=False,
+                beam_cells_together=False
+                )
+
+        Return string.
+        '''
+        return RhythmMaker.storage_format(self)     
+
+    ### PUBLIC METHODS ###
+
+    def new(self, **kwargs):
+        '''Create new tuplet monad rhythm-maker with `kwargs`:
+
+        ::
+
+            >>> new_maker = maker.new()
+
+        ::
+
+            >>> z(new_maker)
+            rhythmmakertools.TupletMonadRhythmMaker(
+                beam_each_cell=False,
+                beam_cells_together=False
+                )
+
+        ::
+
+            >>> divisions = [(2, 5), (2, 5), (1, 4), (1, 5), (3, 4)]
+            >>> tuplet_lists = new_maker(divisions)
+            >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
+            >>> staff = stafftools.RhythmicStaff(tuplets)
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Return new tuplet monad rhythm-maker.
+        '''
+        return RhythmMaker.new(self, **kwargs)
+
+    def reverse(self):
+        '''Reverse tuplet monad rhythm-maker:
+
+        ::
+
+            >>> reversed_maker = maker.reverse()
+
+        ::
+
+            >>> z(reversed_maker)
+            rhythmmakertools.TupletMonadRhythmMaker(
+                beam_each_cell=False,
+                beam_cells_together=False
+                )
+
+        ::
+
+            >>> divisions = [(2, 5), (2, 5), (1, 4), (1, 5), (3, 4)]
+            >>> tuplet_lists = reversed_maker(divisions)
+            >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
+            >>> staff = stafftools.RhythmicStaff(tuplets)
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Return new tuplet monad rhythm-maker.
+        '''
+        return RhythmMaker.reverse(self)

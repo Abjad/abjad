@@ -10,53 +10,28 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class EqualDivisionRhythmMaker(RhythmMaker):
     r'''.. versionadded:: 2.10
 
-    Equal division rhythm-maker::
-
-        >>> maker = rhythmmakertools.EqualDivisionRhythmMaker(4)
+    Equal division rhythm-maker:
 
     ::
 
-        >>> divisions = [(1, 4), (1, 8), (1, 6), (1, 12)]
+        >>> maker = rhythmmakertools.EqualDivisionRhythmMaker(leaf_count=4)
+
+    Configure at initialization and then call on any series of divisions:
+
+    ::
+
+        >>> divisions = [(1, 2), (3, 8), (5, 16)]
         >>> tuplet_lists = maker(divisions)
-        >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
+        >>> music = sequencetools.flatten_sequence(tuplet_lists)
+        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> staff = stafftools.RhythmicStaff(measures)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     ::
 
-        >>> staff = Staff(tuplets)
-
-    ::
-
-        >>> f(staff)
-        \new Staff {
-            {
-                c'16
-                c'16
-                c'16
-                c'16
-            }
-            {
-                c'32
-                c'32
-                c'32
-                c'32
-            }
-            \times 2/3 {
-                c'16
-                c'16
-                c'16
-                c'16
-            }
-            \times 2/3 {
-                c'32
-                c'32
-                c'32
-                c'32
-            }
-        }
+        >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
-
-    Return rhythm-maker.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -78,6 +53,10 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
+        '''Call equal-division rhythm-maker on `divisions`.
+    
+        Return list of tuplet lists.
+        '''
         result = []
         for division in divisions:
             tuplet = self._make_tuplet(division)
@@ -98,16 +77,118 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
     @property
     def is_diminution(self):
-        '''Return boolean.
+        '''True when output tuplets should be diminuted.
+
+        False when output tuplets should be augmented:
+
+        ::
+
+            >>> maker.is_diminution
+            True
+
+        Return boolean.
         '''
         return self._is_diminution
 
     @property
     def leaf_count(self):
-        '''Leaf count.
+        '''Number of leaves per division:
 
-        .. note:: add example.
+        ::
+
+            >>> maker.leaf_count
+            4
 
         Return positive integer.
         '''
         return self._leaf_count
+
+    @property
+    def storage_format(self):
+        '''Equal-division rhythm-maker storage format:
+
+        ::
+
+            >>> z(maker)
+            rhythmmakertools.EqualDivisionRhythmMaker(
+                leaf_count=4,
+                is_diminution=True,
+                beam_each_cell=True,
+                beam_cells_together=False
+                )
+
+        Return string.
+        '''
+        return RhythmMaker.storage_format.fget(self)
+
+    ### PUBLIC METHODS ###
+
+    def new(self, **kwargs):
+        '''Create new equal-division rhythm-maker with `kwargs`:
+
+        ::
+
+            >>> new_maker = maker.new(is_diminution=False)
+
+        ::
+
+            >>> z(new_maker)
+            rhythmmakertools.EqualDivisionRhythmMaker(
+                leaf_count=4,
+                is_diminution=False,
+                beam_each_cell=True,
+                beam_cells_together=False
+                )
+
+        ::
+
+            >>> divisions = [(1, 2), (3, 8), (5, 16)]
+            >>> tuplet_lists = new_maker(divisions)
+            >>> music = sequencetools.flatten_sequence(tuplet_lists)
+            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Return new equal-division rhythm-maker.
+        '''
+        return RhythmMaker.new(self, **kwargs)
+
+    def reverse(self):
+        '''Reverse equal-division rhythm-maker:
+
+        ::
+
+            >>> reversed_maker = maker.reverse()
+
+        ::
+
+            >>> z(reversed_maker)
+            rhythmmakertools.EqualDivisionRhythmMaker(
+                leaf_count=4,
+                is_diminution=True,
+                beam_each_cell=True,
+                beam_cells_together=False
+                )
+
+        ::
+
+            >>> divisions = [(1, 2), (3, 8), (5, 16)]
+            >>> tuplet_lists = reversed_maker(divisions)
+            >>> music = sequencetools.flatten_sequence(tuplet_lists)
+            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Defined equal to copy of maker.
+
+        Return new equal-division rhythm-maker.
+        '''
+        return RhythmMaker.new(self)
