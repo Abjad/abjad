@@ -7,7 +7,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecificationInterface(score_template) 
+    score_specification = expressiontools.ScoreSpecificationInterface(score_template) 
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(3, 16)])
@@ -27,7 +27,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_02():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecificationInterface(score_template) 
+    score_specification = expressiontools.ScoreSpecificationInterface(score_template) 
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     first_measure = red_segment.select_measures('Voice 1')[:1]
@@ -48,7 +48,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_03():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecificationInterface(score_template) 
+    score_specification = expressiontools.ScoreSpecificationInterface(score_template) 
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     first_measure = red_segment.select_measures('Voice 1')[1:2]
@@ -70,7 +70,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_04():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecificationInterface(score_template) 
+    score_specification = expressiontools.ScoreSpecificationInterface(score_template) 
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     last_measure = red_segment.select_measures('Voice 1')[1:2]
@@ -90,7 +90,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_05():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecificationInterface(score_template) 
+    score_specification = expressiontools.ScoreSpecificationInterface(score_template) 
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     middle_measure = red_segment.select_measures('Voice 1')[1:2]
@@ -111,7 +111,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_06():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecificationInterface(score_template) 
+    score_specification = expressiontools.ScoreSpecificationInterface(score_template) 
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     middle_measure = red_segment.timespan.divide_by_ratio((4, 3, 2))[1]
@@ -131,7 +131,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_07():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecificationInterface(score_template) 
+    score_specification = expressiontools.ScoreSpecificationInterface(score_template) 
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     red_segment.set_divisions([(3, 16)])
@@ -151,7 +151,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_08():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecificationInterface(score_template) 
+    score_specification = expressiontools.ScoreSpecificationInterface(score_template) 
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     red_segment.set_divisions([(3, 16)])
@@ -171,7 +171,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_09():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecificationInterface(score_template) 
+    score_specification = expressiontools.ScoreSpecificationInterface(score_template) 
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     red_segment.set_divisions([(3, 16)])

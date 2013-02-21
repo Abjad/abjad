@@ -136,6 +136,8 @@ Unstable packages (load manually)
       tools/expressiontools/SetExpressionLookupExpression/SetExpressionLookupExpression
       tools/expressiontools/SetMethodMixin/SetMethodMixin
       tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression
+      tools/expressiontools/Specification/Specification
+      tools/expressiontools/SpecificationInterface/SpecificationInterface
       tools/expressiontools/TimeContiguousAnchoredSetExpression/TimeContiguousAnchoredSetExpression
       tools/expressiontools/TimeContiguousSetMethodMixin/TimeContiguousSetMethodMixin
       tools/expressiontools/TimespanCallbackMixin/TimespanCallbackMixin
@@ -178,8 +180,13 @@ Unstable packages (load manually)
       tools/expressiontools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
       tools/expressiontools/RhythmSetExpressionLookupExpression/RhythmSetExpressionLookupExpression
       tools/expressiontools/RotationIndicator/RotationIndicator
+      tools/expressiontools/ScoreSpecification/ScoreSpecification
+      tools/expressiontools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/expressiontools/SegmentIdentifierExpression/SegmentIdentifierExpression
       tools/expressiontools/SegmentSelectExpression/SegmentSelectExpression
+      tools/expressiontools/SegmentSpecification/SegmentSpecification
+      tools/expressiontools/SegmentSpecificationInterface/SegmentSpecificationInterface
+      tools/expressiontools/SegmentSpecificationInventory/SegmentSpecificationInventory
       tools/expressiontools/SelectExpressionDivisionRegionExpression/SelectExpressionDivisionRegionExpression
       tools/expressiontools/SelectExpressionInventory/SelectExpressionInventory
       tools/expressiontools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
@@ -224,6 +231,8 @@ Unstable packages (load manually)
       tools/expressiontools/SetExpressionLookupExpression/SetExpressionLookupExpression
       tools/expressiontools/SetMethodMixin/SetMethodMixin
       tools/expressiontools/SingleContextSetExpression/SingleContextSetExpression
+      tools/expressiontools/Specification/Specification
+      tools/expressiontools/SpecificationInterface/SpecificationInterface
       tools/expressiontools/TimeContiguousAnchoredSetExpression/TimeContiguousAnchoredSetExpression
       tools/expressiontools/TimeContiguousSetMethodMixin/TimeContiguousSetMethodMixin
       tools/expressiontools/TimespanCallbackMixin/TimespanCallbackMixin
@@ -266,8 +275,13 @@ Unstable packages (load manually)
       tools/expressiontools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
       tools/expressiontools/RhythmSetExpressionLookupExpression/RhythmSetExpressionLookupExpression
       tools/expressiontools/RotationIndicator/RotationIndicator
+      tools/expressiontools/ScoreSpecification/ScoreSpecification
+      tools/expressiontools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/expressiontools/SegmentIdentifierExpression/SegmentIdentifierExpression
       tools/expressiontools/SegmentSelectExpression/SegmentSelectExpression
+      tools/expressiontools/SegmentSpecification/SegmentSpecification
+      tools/expressiontools/SegmentSpecificationInterface/SegmentSpecificationInterface
+      tools/expressiontools/SegmentSpecificationInventory/SegmentSpecificationInventory
       tools/expressiontools/SelectExpressionDivisionRegionExpression/SelectExpressionDivisionRegionExpression
       tools/expressiontools/SelectExpressionInventory/SelectExpressionInventory
       tools/expressiontools/SelectExpressionRhythmRegionExpression/SelectExpressionRhythmRegionExpression
@@ -425,8 +439,6 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/specificationtools/Interpreter/Interpreter
-      tools/specificationtools/Specification/Specification
-      tools/specificationtools/SpecificationInterface/SpecificationInterface
 
    --------
 
@@ -434,11 +446,6 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/specificationtools/ConcreteInterpreter/ConcreteInterpreter
-      tools/specificationtools/ScoreSpecification/ScoreSpecification
-      tools/specificationtools/ScoreSpecificationInterface/ScoreSpecificationInterface
-      tools/specificationtools/SegmentSpecification/SegmentSpecification
-      tools/specificationtools/SegmentSpecificationInterface/SegmentSpecificationInterface
-      tools/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
 
 .. only:: latex
 
@@ -448,8 +455,6 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/specificationtools/Interpreter/Interpreter
-      tools/specificationtools/Specification/Specification
-      tools/specificationtools/SpecificationInterface/SpecificationInterface
 
    Concrete Classes
    ----------------
@@ -457,8 +462,3 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/specificationtools/ConcreteInterpreter/ConcreteInterpreter
-      tools/specificationtools/ScoreSpecification/ScoreSpecification
-      tools/specificationtools/ScoreSpecificationInterface/ScoreSpecificationInterface
-      tools/specificationtools/SegmentSpecification/SegmentSpecification
-      tools/specificationtools/SegmentSpecificationInterface/SegmentSpecificationInterface
-      tools/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory

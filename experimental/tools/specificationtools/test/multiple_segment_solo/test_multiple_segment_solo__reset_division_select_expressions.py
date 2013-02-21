@@ -6,7 +6,7 @@ def test_multiple_segment_solo__reset_division_select_expressions_01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    score_specification = expressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(3, 16)])
     red_segment.set_divisions([(1, 16)], truncate=True)
@@ -28,7 +28,7 @@ def test_multiple_segment_solo__reset_division_select_expressions_02():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    score_specification = expressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(3, 16)])
     red_segment.set_divisions([(1, 16)], truncate=False)

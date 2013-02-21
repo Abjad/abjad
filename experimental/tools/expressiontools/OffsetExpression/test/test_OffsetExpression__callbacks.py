@@ -6,7 +6,7 @@ def test_OffsetExpression__callbacks_01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    score_specification = expressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
     green_segment = score_specification.append_segment(name='green')
@@ -28,7 +28,7 @@ def test_OffsetExpression__callbacks_02():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    score_specification = expressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
     green_segment = score_specification.append_segment(name='green')

@@ -12,7 +12,7 @@ class SelectMethodMixin(AbjadObject):
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
+        >>> score_specification = expressiontools.ScoreSpecificationInterface(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
     Add to classes that implement the select method interface.

@@ -10,7 +10,7 @@ class OffsetCallbackMixin(CallbackMixin):
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
+        >>> score_specification = expressiontools.ScoreSpecificationInterface(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
         >>> set_expression = red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
 
