@@ -23,22 +23,22 @@ class VoiceDictionary(AbjadObject, OrderedDict):
         return '{}([{}])'.format(self._class_name, contents)
 
     def __setitem__(self, key, value):
-        from experimental.tools import specificationtools
+        from experimental.tools import expressiontools
         assert isinstance(key, str), repr(key)
-        assert isinstance(value, specificationtools.VoiceProxy), repr(value)
+        assert isinstance(value, expressiontools.VoiceProxy), repr(value)
         OrderedDict.__setitem__(self, key, value)
 
     ### PRIVATE METHODS ###
 
     def _initialize_voice_proxies(self):
-        from experimental.tools import specificationtools
+        from experimental.tools import expressiontools
         voice_names = []
         if self.score is not None:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
                 assert voice.context_name is not None, voice.name_name
                 voice_names.append(voice.name)
         for voice_name in sorted(voice_names):
-            self[voice_name] = specificationtools.VoiceProxy()
+            self[voice_name] = expressiontools.VoiceProxy()
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

@@ -151,6 +151,8 @@ Unstable packages (load manually)
       tools/expressiontools/BeatSelectExpression/BeatSelectExpression
       tools/expressiontools/CallbackInventory/CallbackInventory
       tools/expressiontools/ClassInventory/ClassInventory
+      tools/expressiontools/ContextDictionary/ContextDictionary
+      tools/expressiontools/ContextProxy/ContextProxy
       tools/expressiontools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
       tools/expressiontools/Division/Division
       tools/expressiontools/DivisionList/DivisionList
@@ -197,6 +199,8 @@ Unstable packages (load manually)
       tools/expressiontools/TimespanScopedSingleContextDivisionSetExpression/TimespanScopedSingleContextDivisionSetExpression
       tools/expressiontools/TimespanScopedSingleContextRhythmSetExpression/TimespanScopedSingleContextRhythmSetExpression
       tools/expressiontools/TimespanScopedSingleContextSetExpressionInventory/TimespanScopedSingleContextSetExpressionInventory
+      tools/expressiontools/VoiceDictionary/VoiceDictionary
+      tools/expressiontools/VoiceProxy/VoiceProxy
 
 .. only:: latex
 
@@ -235,6 +239,8 @@ Unstable packages (load manually)
       tools/expressiontools/BeatSelectExpression/BeatSelectExpression
       tools/expressiontools/CallbackInventory/CallbackInventory
       tools/expressiontools/ClassInventory/ClassInventory
+      tools/expressiontools/ContextDictionary/ContextDictionary
+      tools/expressiontools/ContextProxy/ContextProxy
       tools/expressiontools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
       tools/expressiontools/Division/Division
       tools/expressiontools/DivisionList/DivisionList
@@ -281,6 +287,8 @@ Unstable packages (load manually)
       tools/expressiontools/TimespanScopedSingleContextDivisionSetExpression/TimespanScopedSingleContextDivisionSetExpression
       tools/expressiontools/TimespanScopedSingleContextRhythmSetExpression/TimespanScopedSingleContextRhythmSetExpression
       tools/expressiontools/TimespanScopedSingleContextSetExpressionInventory/TimespanScopedSingleContextSetExpressionInventory
+      tools/expressiontools/VoiceDictionary/VoiceDictionary
+      tools/expressiontools/VoiceProxy/VoiceProxy
 
 :py:mod:`handlertools <experimental.tools.handlertools>`
 ========================================================
@@ -426,15 +434,11 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/specificationtools/ConcreteInterpreter/ConcreteInterpreter
-      tools/specificationtools/ContextDictionary/ContextDictionary
-      tools/specificationtools/ContextProxy/ContextProxy
       tools/specificationtools/ScoreSpecification/ScoreSpecification
       tools/specificationtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/specificationtools/SegmentSpecification/SegmentSpecification
       tools/specificationtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
-      tools/specificationtools/VoiceDictionary/VoiceDictionary
-      tools/specificationtools/VoiceProxy/VoiceProxy
 
 .. only:: latex
 
@@ -453,12 +457,8 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/specificationtools/ConcreteInterpreter/ConcreteInterpreter
-      tools/specificationtools/ContextDictionary/ContextDictionary
-      tools/specificationtools/ContextProxy/ContextProxy
       tools/specificationtools/ScoreSpecification/ScoreSpecification
       tools/specificationtools/ScoreSpecificationInterface/ScoreSpecificationInterface
       tools/specificationtools/SegmentSpecification/SegmentSpecification
       tools/specificationtools/SegmentSpecificationInterface/SegmentSpecificationInterface
       tools/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
-      tools/specificationtools/VoiceDictionary/VoiceDictionary
-      tools/specificationtools/VoiceProxy/VoiceProxy

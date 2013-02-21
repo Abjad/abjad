@@ -45,9 +45,9 @@ class Interpreter(AbjadObject):
             fresh_single_context_set_expression.store_in_root_specification_by_context_and_attribute()
 
     def store_segment_rooted_single_context_set_expressions_by_context(self):
-        from experimental.tools import specificationtools
+        from experimental.tools import expressiontools
         score = self.score_specification.score_template()
-        persistent_single_context_set_expressions_by_context = specificationtools.ContextDictionary(score)
+        persistent_single_context_set_expressions_by_context = expressiontools.ContextDictionary(score)
         for segment_specification in self.score_specification.segment_specifications:
             # get persistent single-context set expressions
             persistent_single_context_set_expressions = []

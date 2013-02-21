@@ -48,7 +48,7 @@ class ScoreSpecification(Specification):
         self._generalized_set_expressions = expressiontools.ExpressionInventory()
         self._multiple_context_set_expressions = timespantools.TimespanInventory()
         self._next_lexical_rank = 0
-        self._payload_expressions_by_voice = specificationtools.VoiceDictionary(score_template())
+        self._payload_expressions_by_voice = expressiontools.VoiceDictionary(score_template())
         self._pitch_set_expressions = expressiontools.ExpressionInventory()
         self._region_expressions_by_attribute = expressiontools.AttributeDictionary()
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()

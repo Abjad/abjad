@@ -29,22 +29,22 @@ class ContextDictionary(AbjadObject, OrderedDict):
         return '{}([{}])'.format(self._class_name, contents)
 
     def __setitem__(self, key, value):
-        from experimental.tools import specificationtools
+        from experimental.tools import expressiontools
         assert isinstance(key, str), repr(key)
-        assert isinstance(value, specificationtools.ContextProxy), repr(value)
+        assert isinstance(value, expressiontools.ContextProxy), repr(value)
         OrderedDict.__setitem__(self, key, value)
 
     ### PRIVATE METHODS ###
 
     def _initialize_single_context_set_expressions_by_context(self):
-        from experimental.tools import specificationtools
+        from experimental.tools import expressiontools
         context_names = []
         if self.score is not None:
             for context in iterationtools.iterate_contexts_in_expr(self.score):
                 assert context.context_name is not None, context.name_name
                 context_names.append(context.name)
         for context_name in sorted(context_names):
-            self[context_name] = specificationtools.ContextProxy()
+            self[context_name] = expressiontools.ContextProxy()
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
