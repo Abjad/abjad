@@ -1,76 +1,76 @@
-expressiontools.IterablePayloadExpression
+specificationtools.IterablePayloadExpression
 =========================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression
+.. abjad-lineage:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression
 
-.. autoclass:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression
+.. autoclass:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.elements
+.. autoattribute:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.elements
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.payload
+.. autoattribute:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.payload
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.storage_format
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.evaluate
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.new
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.new
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.partition_by_ratio
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.partition_by_ratio
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.partition_by_ratio_of_durations
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.partition_by_ratio_of_durations
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.reflect
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.reflect
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.repeat_to_duration
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.repeat_to_duration
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.repeat_to_length
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.repeat_to_length
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.rotate
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.rotate
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__and__
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__and__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__eq__
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__ge__
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__getitem__
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__getitem__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__gt__
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__le__
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__lt__
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__ne__
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__repr__
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__repr__
    :noindex:

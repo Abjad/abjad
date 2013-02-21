@@ -1,205 +1,205 @@
-expressiontools.Division
+specificationtools.Division
 ========================
 
-.. abjad-lineage:: experimental.tools.expressiontools.Division.Division.Division
+.. abjad-lineage:: experimental.tools.specificationtools.Division.Division.Division
 
-.. autoclass:: experimental.tools.expressiontools.Division.Division.Division
+.. autoclass:: experimental.tools.specificationtools.Division.Division.Division
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.denominator
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.denominator
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.duration
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.duration
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.imag
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.imag
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.is_closed
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.is_closed
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.is_half_closed
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.is_half_closed
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.is_half_open
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.is_half_open
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.is_open
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.is_open
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.numerator
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.numerator
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.pair
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.pair
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.real
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.real
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.start_offset
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.stop_offset
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.stop_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.storage_format
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.storage_format
    :noindex:
 
 Read/write properties
 ---------------------
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.is_left_closed
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.is_left_closed
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.is_left_open
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.is_left_open
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.is_right_closed
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.is_right_closed
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.Division.Division.Division.is_right_open
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.is_right_open
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.conjugate
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.conjugate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.from_decimal
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.from_decimal
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.from_float
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.from_float
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.limit_denominator
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.limit_denominator
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.multiply_with_cross_cancelation
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.multiply_with_cross_cancelation
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.multiply_with_numerator_preservation
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.multiply_with_numerator_preservation
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.multiply_without_reducing
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.multiply_without_reducing
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.new
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.new
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.reduce
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.reduce
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.with_denominator
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.with_denominator
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.with_multiple_of_denominator
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.with_multiple_of_denominator
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__abs__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__abs__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__add__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__add__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__complex__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__complex__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__div__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__div__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__divmod__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__divmod__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__eq__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__float__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__float__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__floordiv__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__floordiv__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__ge__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__gt__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__hash__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__hash__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__le__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__lt__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__mod__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__mod__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__mul__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__mul__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__ne__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__neg__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__neg__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__nonzero__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__nonzero__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__pos__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__pos__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__pow__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__pow__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__radd__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__radd__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__rdiv__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__rdiv__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__rdivmod__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__rdivmod__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__repr__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__repr__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__rfloordiv__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__rfloordiv__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__rmod__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__rmod__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__rmul__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__rmul__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__rpow__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__rpow__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__rsub__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__rsub__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__rtruediv__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__rtruediv__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__str__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__str__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__sub__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__sub__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__truediv__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__truediv__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Division.Division.Division.__trunc__
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__trunc__
    :noindex:

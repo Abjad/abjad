@@ -1,40 +1,40 @@
-expressiontools.SegmentIdentifierExpression
+specificationtools.SegmentIdentifierExpression
 ===========================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression
+.. abjad-lineage:: experimental.tools.specificationtools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression
 
-.. autoclass:: experimental.tools.expressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression
+.. autoclass:: experimental.tools.specificationtools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.string
+.. autoattribute:: experimental.tools.specificationtools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.string
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__eq__
+.. automethod:: experimental.tools.specificationtools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__ge__
+.. automethod:: experimental.tools.specificationtools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__gt__
+.. automethod:: experimental.tools.specificationtools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__le__
+.. automethod:: experimental.tools.specificationtools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__lt__
+.. automethod:: experimental.tools.specificationtools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__ne__
+.. automethod:: experimental.tools.specificationtools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__repr__
+.. automethod:: experimental.tools.specificationtools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__repr__
    :noindex:

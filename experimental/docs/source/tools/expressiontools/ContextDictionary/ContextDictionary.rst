@@ -1,124 +1,124 @@
-expressiontools.ContextDictionary
+specificationtools.ContextDictionary
 =================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary
+.. abjad-lineage:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary
 
-.. autoclass:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary
+.. autoclass:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.score
+.. autoattribute:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.score
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.score_name
+.. autoattribute:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.score_name
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.score_proxy
+.. autoattribute:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.score_proxy
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.storage_format
+.. autoattribute:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.storage_format
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.clear
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.clear
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.copy
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.copy
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.get
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.get
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.has_key
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.has_key
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.items
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.items
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.iteritems
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.iteritems
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.iterkeys
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.iterkeys
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.itervalues
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.itervalues
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.keys
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.keys
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.pop
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.pop
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.popitem
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.popitem
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.setdefault
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.setdefault
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.update
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.update
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.values
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.values
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.viewitems
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.viewitems
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.viewkeys
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.viewkeys
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.viewvalues
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.viewvalues
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__cmp__
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__cmp__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__contains__
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__contains__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__delitem__
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__delitem__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__eq__
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__ge__
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__getitem__
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__getitem__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__gt__
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__iter__
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__iter__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__le__
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__len__
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__len__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__lt__
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__ne__
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__repr__
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__repr__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__reversed__
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__reversed__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__setitem__
+.. automethod:: experimental.tools.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__setitem__
    :noindex:

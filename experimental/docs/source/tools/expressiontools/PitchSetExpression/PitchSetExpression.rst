@@ -1,55 +1,55 @@
-expressiontools.PitchSetExpression
+specificationtools.PitchSetExpression
 ==================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression
+.. abjad-lineage:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression
 
-.. autoclass:: experimental.tools.expressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression
+.. autoclass:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.attribute
+.. autoattribute:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.attribute
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.source_expression
+.. autoattribute:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.source_expression
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.target_select_expression_inventory
+.. autoattribute:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.target_select_expression_inventory
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.evaluate
+.. automethod:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.new
+.. automethod:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.new
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__eq__
+.. automethod:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__ge__
+.. automethod:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__gt__
+.. automethod:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__le__
+.. automethod:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__lt__
+.. automethod:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__ne__
+.. automethod:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__repr__
+.. automethod:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__repr__
    :noindex:

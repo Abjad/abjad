@@ -1,43 +1,43 @@
-expressiontools.ContextProxy
+specificationtools.ContextProxy
 ============================
 
-.. abjad-lineage:: experimental.tools.expressiontools.ContextProxy.ContextProxy.ContextProxy
+.. abjad-lineage:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy
 
-.. autoclass:: experimental.tools.expressiontools.ContextProxy.ContextProxy.ContextProxy
+.. autoclass:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.ContextProxy.ContextProxy.ContextProxy.single_context_set_expressions_by_attribute
+.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.single_context_set_expressions_by_attribute
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.ContextProxy.ContextProxy.ContextProxy.storage_format
+.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.ContextProxy.ContextProxy.ContextProxy.timespan_scoped_single_context_set_expressions_by_attribute
+.. autoattribute:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.timespan_scoped_single_context_set_expressions_by_attribute
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.ContextProxy.ContextProxy.ContextProxy.__eq__
+.. automethod:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextProxy.ContextProxy.ContextProxy.__ge__
+.. automethod:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextProxy.ContextProxy.ContextProxy.__gt__
+.. automethod:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextProxy.ContextProxy.ContextProxy.__le__
+.. automethod:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextProxy.ContextProxy.ContextProxy.__lt__
+.. automethod:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextProxy.ContextProxy.ContextProxy.__ne__
+.. automethod:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ContextProxy.ContextProxy.ContextProxy.__repr__
+.. automethod:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy.__repr__
    :noindex:

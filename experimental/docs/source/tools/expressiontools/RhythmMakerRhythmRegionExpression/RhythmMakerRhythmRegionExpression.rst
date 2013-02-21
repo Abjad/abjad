@@ -1,64 +1,64 @@
-expressiontools.RhythmMakerRhythmRegionExpression
+specificationtools.RhythmMakerRhythmRegionExpression
 =================================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression
+.. abjad-lineage:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression
 
-.. autoclass:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression
+.. autoclass:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.division_list
+.. autoattribute:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.division_list
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.source_expression
+.. autoattribute:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.source_expression
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.start_offset
+.. autoattribute:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.total_duration
+.. autoattribute:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.total_duration
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.voice_name
+.. autoattribute:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.voice_name
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.evaluate
+.. automethod:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.new
+.. automethod:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.new
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.prolongs_expr
+.. automethod:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.prolongs_expr
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__eq__
+.. automethod:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__ge__
+.. automethod:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__gt__
+.. automethod:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__le__
+.. automethod:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__lt__
+.. automethod:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__ne__
+.. automethod:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__repr__
+.. automethod:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__repr__
    :noindex:

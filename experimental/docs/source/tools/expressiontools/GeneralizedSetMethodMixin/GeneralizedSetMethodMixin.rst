@@ -1,46 +1,46 @@
-expressiontools.GeneralizedSetMethodMixin
+specificationtools.GeneralizedSetMethodMixin
 =========================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin
+.. abjad-lineage:: experimental.tools.specificationtools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin
 
-.. autoclass:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin
+.. autoclass:: experimental.tools.specificationtools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.storage_format
+.. autoattribute:: experimental.tools.specificationtools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.storage_format
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.set_pitch_class_transform
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.set_pitch_class_transform
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.set_pitches
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.set_pitches
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.__eq__
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.__ge__
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.__gt__
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.__le__
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.__lt__
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.__ne__
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.__repr__
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.__repr__
    :noindex:

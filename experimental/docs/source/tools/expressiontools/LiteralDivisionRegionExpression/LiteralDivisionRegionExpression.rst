@@ -1,58 +1,58 @@
-expressiontools.LiteralDivisionRegionExpression
+specificationtools.LiteralDivisionRegionExpression
 ===============================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression
+.. abjad-lineage:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression
 
-.. autoclass:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression
+.. autoclass:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.source_expression
+.. autoattribute:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.source_expression
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.start_offset
+.. autoattribute:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.total_duration
+.. autoattribute:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.total_duration
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.voice_name
+.. autoattribute:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.voice_name
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.evaluate
+.. automethod:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.new
+.. automethod:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.new
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.__eq__
+.. automethod:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.__ge__
+.. automethod:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.__gt__
+.. automethod:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.__le__
+.. automethod:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.__lt__
+.. automethod:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.__ne__
+.. automethod:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.__repr__
+.. automethod:: experimental.tools.specificationtools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.__repr__
    :noindex:

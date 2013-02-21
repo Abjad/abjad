@@ -1,91 +1,91 @@
-expressiontools.OffsetExpression
+specificationtools.OffsetExpression
 ================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression
+.. abjad-lineage:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression
 
-.. autoclass:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression
+.. autoclass:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.anchor
+.. autoattribute:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.anchor
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.callbacks
+.. autoattribute:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.callbacks
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.edge
+.. autoattribute:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.edge
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.is_score_rooted
+.. autoattribute:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.is_score_rooted
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.is_segment_rooted
+.. autoattribute:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.is_segment_rooted
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.root_specification
+.. autoattribute:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.root_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.root_specification_identifier
+.. autoattribute:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.root_specification_identifier
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.score_specification
+.. autoattribute:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.score_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.start_offset
+.. autoattribute:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.stop_offset
+.. autoattribute:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.stop_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.storage_format
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.evaluate
+.. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_division_set_expression
+.. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_division_set_expression
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_rhythm_set_expression
+.. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_rhythm_set_expression
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_time_signature_set_expression
+.. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_time_signature_set_expression
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.new
+.. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.new
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.scale
+.. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.scale
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.translate
+.. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.translate
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__eq__
+.. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__ge__
+.. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__gt__
+.. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__le__
+.. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__lt__
+.. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__ne__
+.. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__repr__
+.. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.__repr__
    :noindex:

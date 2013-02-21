@@ -1,46 +1,46 @@
-expressiontools.Expression
+specificationtools.Expression
 ==========================
 
-.. abjad-lineage:: experimental.tools.expressiontools.Expression.Expression.Expression
+.. abjad-lineage:: experimental.tools.specificationtools.Expression.Expression.Expression
 
-.. autoclass:: experimental.tools.expressiontools.Expression.Expression.Expression
+.. autoclass:: experimental.tools.specificationtools.Expression.Expression.Expression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.Expression.Expression.Expression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.Expression.Expression.Expression.storage_format
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.Expression.Expression.Expression.evaluate
+.. automethod:: experimental.tools.specificationtools.Expression.Expression.Expression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Expression.Expression.Expression.new
+.. automethod:: experimental.tools.specificationtools.Expression.Expression.Expression.new
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.Expression.Expression.Expression.__eq__
+.. automethod:: experimental.tools.specificationtools.Expression.Expression.Expression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Expression.Expression.Expression.__ge__
+.. automethod:: experimental.tools.specificationtools.Expression.Expression.Expression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Expression.Expression.Expression.__gt__
+.. automethod:: experimental.tools.specificationtools.Expression.Expression.Expression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Expression.Expression.Expression.__le__
+.. automethod:: experimental.tools.specificationtools.Expression.Expression.Expression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Expression.Expression.Expression.__lt__
+.. automethod:: experimental.tools.specificationtools.Expression.Expression.Expression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Expression.Expression.Expression.__ne__
+.. automethod:: experimental.tools.specificationtools.Expression.Expression.Expression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.Expression.Expression.Expression.__repr__
+.. automethod:: experimental.tools.specificationtools.Expression.Expression.Expression.__repr__
    :noindex:

@@ -1,46 +1,46 @@
-expressiontools.SetMethodMixin
+specificationtools.SetMethodMixin
 ==============================
 
-.. abjad-lineage:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin
+.. abjad-lineage:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin
 
-.. autoclass:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin
+.. autoclass:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.storage_format
+.. autoattribute:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.storage_format
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_pitch_class_transform
+.. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_pitch_class_transform
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_pitches
+.. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_pitches
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__eq__
+.. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__ge__
+.. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__gt__
+.. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__le__
+.. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__lt__
+.. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__ne__
+.. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__repr__
+.. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__repr__
    :noindex:

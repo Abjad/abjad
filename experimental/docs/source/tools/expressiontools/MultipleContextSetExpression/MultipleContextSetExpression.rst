@@ -1,91 +1,91 @@
-expressiontools.MultipleContextSetExpression
+specificationtools.MultipleContextSetExpression
 ============================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression
+.. abjad-lineage:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression
 
-.. autoclass:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression
+.. autoclass:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.anchor
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.anchor
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.attribute
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.attribute
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.is_score_rooted
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.is_score_rooted
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.is_segment_rooted
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.is_segment_rooted
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.persist
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.persist
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.root_specification
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.root_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.root_specification_identifier
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.root_specification_identifier
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.score_specification
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.score_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.source_expression
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.source_expression
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.start_offset
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.stop_offset
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.stop_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.target_context_names
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.target_context_names
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.target_timespan
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.target_timespan
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.truncate
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.truncate
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.evaluate
+.. automethod:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.evaluate_and_store_in_root_specification
+.. automethod:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.evaluate_and_store_in_root_specification
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.new
+.. automethod:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.new
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__eq__
+.. automethod:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__ge__
+.. automethod:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__gt__
+.. automethod:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__le__
+.. automethod:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__lt__
+.. automethod:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__ne__
+.. automethod:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__repr__
+.. automethod:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__repr__
    :noindex:

@@ -1,106 +1,106 @@
-expressiontools.SpecificationInterface
+specificationtools.SpecificationInterface
 ======================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface
+.. abjad-lineage:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface
 
-.. autoclass:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface
+.. autoclass:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.score_specification
+.. autoattribute:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.score_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.specification
+.. autoattribute:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.specification_name
+.. autoattribute:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.specification_name
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.storage_format
+.. autoattribute:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.timespan
+.. autoattribute:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.timespan
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_beats
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_beats
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_divisions
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_divisions
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_leaves
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_leaves
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_measures
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_measures
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_notes_and_chords
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_notes_and_chords
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_time_signatures
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_time_signatures
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_aggregate
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_aggregate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_articulations
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_articulations
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_divisions
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_divisions
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_dynamics
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_dynamics
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_marks
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_marks
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_markup
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_markup
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_pitch_class_transform
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_pitch_class_transform
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_pitches
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_pitches
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_registration
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_registration
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_rhythm
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_rhythm
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_tempo
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_tempo
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_time_signatures
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_time_signatures
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__eq__
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__ge__
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__gt__
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__le__
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__lt__
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__ne__
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__repr__
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__repr__
    :noindex:

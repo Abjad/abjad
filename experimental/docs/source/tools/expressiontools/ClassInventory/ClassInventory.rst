@@ -1,118 +1,118 @@
-expressiontools.ClassInventory
+specificationtools.ClassInventory
 ==============================
 
-.. abjad-lineage:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory
+.. abjad-lineage:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory
 
-.. autoclass:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory
+.. autoclass:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.storage_format
+.. autoattribute:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.storage_format
    :noindex:
 
 Read/write properties
 ---------------------
 
-.. autoattribute:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.name
+.. autoattribute:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.name
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.append
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.append
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.count
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.count
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.extend
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.extend
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.index
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.index
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.insert
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.insert
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.pop
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.pop
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.remove
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.remove
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.reverse
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.reverse
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.sort
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.sort
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__add__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__add__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__contains__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__contains__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__delitem__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__delitem__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__delslice__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__delslice__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__eq__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__ge__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__getitem__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__getitem__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__getslice__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__getslice__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__gt__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__iadd__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__iadd__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__imul__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__imul__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__iter__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__iter__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__le__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__len__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__len__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__lt__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__mul__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__mul__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__ne__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__repr__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__repr__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__reversed__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__reversed__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__rmul__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__rmul__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__setitem__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__setitem__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.ClassInventory.ClassInventory.ClassInventory.__setslice__
+.. automethod:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory.__setslice__
    :noindex:

@@ -1,103 +1,103 @@
-expressiontools.StartPositionedPayloadExpression
+specificationtools.StartPositionedPayloadExpression
 ================================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression
+.. abjad-lineage:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression
 
-.. autoclass:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression
+.. autoclass:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.elements
+.. autoattribute:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.elements
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.payload
+.. autoattribute:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.payload
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.start_offset
+.. autoattribute:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.stop_offset
+.. autoattribute:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.stop_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.timespan
+.. autoattribute:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.timespan
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.voice_name
+.. autoattribute:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.voice_name
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.evaluate
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.get_elements_that_satisfy_time_relation
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.get_elements_that_satisfy_time_relation
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.new
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.new
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.partition_by_ratio
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.partition_by_ratio
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.partition_by_ratio_of_durations
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.partition_by_ratio_of_durations
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.reflect
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.reflect
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.repeat_to_duration
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.repeat_to_duration
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.repeat_to_length
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.repeat_to_length
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.rotate
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.rotate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.translate
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.translate
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__and__
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__and__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__eq__
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__ge__
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__getitem__
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__getitem__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__gt__
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__le__
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__len__
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__len__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__lt__
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__ne__
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__or__
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__or__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__repr__
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__repr__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__sub__
+.. automethod:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.__sub__
    :noindex:

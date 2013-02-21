@@ -1,55 +1,55 @@
-expressiontools.SetExpression
+specificationtools.SetExpression
 =============================
 
-.. abjad-lineage:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression
+.. abjad-lineage:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression
 
-.. autoclass:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression
+.. autoclass:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.attribute
+.. autoattribute:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression.attribute
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.source_expression
+.. autoattribute:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression.source_expression
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.target_timespan
+.. autoattribute:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression.target_timespan
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.evaluate
+.. automethod:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.new
+.. automethod:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression.new
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.__eq__
+.. automethod:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.__ge__
+.. automethod:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.__gt__
+.. automethod:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.__le__
+.. automethod:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.__lt__
+.. automethod:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.__ne__
+.. automethod:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SetExpression.SetExpression.SetExpression.__repr__
+.. automethod:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression.__repr__
    :noindex:

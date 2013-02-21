@@ -1,61 +1,61 @@
-expressiontools.SelectExpressionRhythmRegionExpression
+specificationtools.SelectExpressionRhythmRegionExpression
 ======================================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression
+.. abjad-lineage:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression
 
-.. autoclass:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression
+.. autoclass:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.source_expression
+.. autoattribute:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.source_expression
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.start_offset
+.. autoattribute:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.total_duration
+.. autoattribute:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.total_duration
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.voice_name
+.. autoattribute:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.voice_name
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.evaluate
+.. automethod:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.new
+.. automethod:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.new
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.prolongs_expr
+.. automethod:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.prolongs_expr
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.__eq__
+.. automethod:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.__ge__
+.. automethod:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.__gt__
+.. automethod:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.__le__
+.. automethod:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.__lt__
+.. automethod:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.__ne__
+.. automethod:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.__repr__
+.. automethod:: experimental.tools.specificationtools.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.SelectExpressionRhythmRegionExpression.__repr__
    :noindex:

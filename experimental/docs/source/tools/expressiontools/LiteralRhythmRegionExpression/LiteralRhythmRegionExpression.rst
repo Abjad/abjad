@@ -1,61 +1,61 @@
-expressiontools.LiteralRhythmRegionExpression
+specificationtools.LiteralRhythmRegionExpression
 =============================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression
+.. abjad-lineage:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression
 
-.. autoclass:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression
+.. autoclass:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.source_expression
+.. autoattribute:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.source_expression
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.start_offset
+.. autoattribute:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.total_duration
+.. autoattribute:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.total_duration
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.voice_name
+.. autoattribute:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.voice_name
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.evaluate
+.. automethod:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.new
+.. automethod:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.new
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.prolongs_expr
+.. automethod:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.prolongs_expr
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__eq__
+.. automethod:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__ge__
+.. automethod:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__gt__
+.. automethod:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__le__
+.. automethod:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__lt__
+.. automethod:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__ne__
+.. automethod:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__repr__
+.. automethod:: experimental.tools.specificationtools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__repr__
    :noindex:

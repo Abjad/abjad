@@ -1,46 +1,46 @@
-expressiontools.RotationIndicator
+specificationtools.RotationIndicator
 =================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator
+.. abjad-lineage:: experimental.tools.specificationtools.RotationIndicator.RotationIndicator.RotationIndicator
 
-.. autoclass:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator
+.. autoclass:: experimental.tools.specificationtools.RotationIndicator.RotationIndicator.RotationIndicator
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator.fracture_spanners
+.. autoattribute:: experimental.tools.specificationtools.RotationIndicator.RotationIndicator.RotationIndicator.fracture_spanners
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator.index
+.. autoattribute:: experimental.tools.specificationtools.RotationIndicator.RotationIndicator.RotationIndicator.index
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator.level
+.. autoattribute:: experimental.tools.specificationtools.RotationIndicator.RotationIndicator.RotationIndicator.level
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator.storage_format
+.. autoattribute:: experimental.tools.specificationtools.RotationIndicator.RotationIndicator.RotationIndicator.storage_format
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator.__eq__
+.. automethod:: experimental.tools.specificationtools.RotationIndicator.RotationIndicator.RotationIndicator.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator.__ge__
+.. automethod:: experimental.tools.specificationtools.RotationIndicator.RotationIndicator.RotationIndicator.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator.__gt__
+.. automethod:: experimental.tools.specificationtools.RotationIndicator.RotationIndicator.RotationIndicator.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator.__le__
+.. automethod:: experimental.tools.specificationtools.RotationIndicator.RotationIndicator.RotationIndicator.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator.__lt__
+.. automethod:: experimental.tools.specificationtools.RotationIndicator.RotationIndicator.RotationIndicator.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator.__ne__
+.. automethod:: experimental.tools.specificationtools.RotationIndicator.RotationIndicator.RotationIndicator.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.RotationIndicator.RotationIndicator.RotationIndicator.__repr__
+.. automethod:: experimental.tools.specificationtools.RotationIndicator.RotationIndicator.RotationIndicator.__repr__
    :noindex:

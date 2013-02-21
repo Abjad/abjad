@@ -1,55 +1,55 @@
-expressiontools.GeneralizedSetExpression
+specificationtools.GeneralizedSetExpression
 ========================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression
+.. abjad-lineage:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression
 
-.. autoclass:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression
+.. autoclass:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.attribute
+.. autoattribute:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.attribute
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.source_expression
+.. autoattribute:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.source_expression
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.target_select_expression_inventory
+.. autoattribute:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.target_select_expression_inventory
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.evaluate
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.new
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.new
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.__eq__
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.__ge__
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.__gt__
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.__le__
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.__lt__
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.__ne__
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.__repr__
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression.__repr__
    :noindex:

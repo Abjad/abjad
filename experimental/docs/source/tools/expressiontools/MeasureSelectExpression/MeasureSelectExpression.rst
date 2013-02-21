@@ -1,115 +1,115 @@
-expressiontools.MeasureSelectExpression
+specificationtools.MeasureSelectExpression
 =======================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression
+.. abjad-lineage:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression
 
-.. autoclass:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression
+.. autoclass:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.anchor
+.. autoattribute:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.anchor
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.callbacks
+.. autoattribute:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.callbacks
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.is_score_rooted
+.. autoattribute:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.is_score_rooted
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.is_segment_rooted
+.. autoattribute:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.is_segment_rooted
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.root_specification
+.. autoattribute:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.root_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.root_specification_identifier
+.. autoattribute:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.root_specification_identifier
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.score_specification
+.. autoattribute:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.score_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.start_offset
+.. autoattribute:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.stop_offset
+.. autoattribute:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.stop_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.time_relation
+.. autoattribute:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.time_relation
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.timespan
+.. autoattribute:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.timespan
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.voice_name
+.. autoattribute:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.voice_name
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.evaluate
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.evaluate_early
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.evaluate_early
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.new
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.new
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.partition_by_ratio
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.partition_by_ratio
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.partition_by_ratio_of_durations
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.partition_by_ratio_of_durations
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.reflect
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.reflect
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.repeat_to_duration
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.repeat_to_duration
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.repeat_to_length
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.repeat_to_length
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.rotate
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.rotate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.set_pitch_class_transform
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.set_pitch_class_transform
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.set_pitches
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.set_pitches
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__and__
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__and__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__eq__
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__ge__
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__getitem__
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__getitem__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__gt__
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__le__
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__lt__
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__ne__
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__repr__
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__repr__
    :noindex:

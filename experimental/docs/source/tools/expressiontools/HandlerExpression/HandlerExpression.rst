@@ -1,76 +1,76 @@
-expressiontools.HandlerExpression
+specificationtools.HandlerExpression
 =================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression
+.. abjad-lineage:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression
 
-.. autoclass:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression
+.. autoclass:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.callbacks
+.. autoattribute:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.callbacks
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.handler
+.. autoattribute:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.handler
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.storage_format
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.evaluate
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.new
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.new
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.partition_by_ratio
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.partition_by_ratio
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.partition_by_ratio_of_durations
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.partition_by_ratio_of_durations
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.reflect
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.reflect
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.repeat_to_duration
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.repeat_to_duration
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.repeat_to_length
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.repeat_to_length
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.rotate
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.rotate
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__and__
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.__and__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__eq__
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__ge__
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__getitem__
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.__getitem__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__gt__
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__le__
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__lt__
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__ne__
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__repr__
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.__repr__
    :noindex:

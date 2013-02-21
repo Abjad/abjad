@@ -1,118 +1,118 @@
-expressiontools.VoiceDictionary
+specificationtools.VoiceDictionary
 ===============================
 
-.. abjad-lineage:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary
+.. abjad-lineage:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary
 
-.. autoclass:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary
+.. autoclass:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.score
+.. autoattribute:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.score
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.storage_format
+.. autoattribute:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.storage_format
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.clear
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.clear
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.copy
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.copy
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.get
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.get
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.has_key
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.has_key
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.items
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.items
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.iteritems
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.iteritems
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.iterkeys
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.iterkeys
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.itervalues
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.itervalues
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.keys
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.keys
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.pop
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.pop
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.popitem
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.popitem
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.setdefault
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.setdefault
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.update
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.update
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.values
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.values
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.viewitems
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.viewitems
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.viewkeys
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.viewkeys
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.viewvalues
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.viewvalues
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__cmp__
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__cmp__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__contains__
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__contains__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__delitem__
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__delitem__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__eq__
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__ge__
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__getitem__
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__getitem__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__gt__
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__iter__
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__iter__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__le__
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__len__
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__len__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__lt__
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__ne__
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__repr__
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__repr__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__reversed__
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__reversed__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__setitem__
+.. automethod:: experimental.tools.specificationtools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__setitem__
    :noindex:

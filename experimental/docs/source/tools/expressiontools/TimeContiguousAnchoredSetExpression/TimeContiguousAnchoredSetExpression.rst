@@ -1,85 +1,85 @@
-expressiontools.TimeContiguousAnchoredSetExpression
+specificationtools.TimeContiguousAnchoredSetExpression
 ===================================================
 
-.. abjad-lineage:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression
+.. abjad-lineage:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression
 
-.. autoclass:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression
+.. autoclass:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.anchor
+.. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.anchor
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.attribute
+.. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.attribute
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.is_score_rooted
+.. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.is_score_rooted
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.is_segment_rooted
+.. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.is_segment_rooted
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.persist
+.. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.persist
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.root_specification
+.. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.root_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.root_specification_identifier
+.. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.root_specification_identifier
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.score_specification
+.. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.score_specification
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.source_expression
+.. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.source_expression
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.start_offset
+.. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.stop_offset
+.. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.stop_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.storage_format
+.. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.target_timespan
+.. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.target_timespan
    :noindex:
 
-.. autoattribute:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.truncate
+.. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.truncate
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.evaluate
+.. automethod:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.evaluate
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.new
+.. automethod:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.new
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__eq__
+.. automethod:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__ge__
+.. automethod:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__gt__
+.. automethod:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__le__
+.. automethod:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__le__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__lt__
+.. automethod:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__ne__
+.. automethod:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.expressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__repr__
+.. automethod:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__repr__
    :noindex:
