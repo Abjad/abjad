@@ -64,7 +64,6 @@ class MixedSourceTimespanExpression(TimespanExpression):
     ### INITIALIZER ###
 
     def __init__(self, start_offset=None, stop_offset=None, callbacks=None):
-        from experimental.tools import specificationtools
         from experimental.tools import expressiontools
         assert isinstance(start_offset, (expressiontools.OffsetExpression, type(None))), repr(start_offset)
         assert isinstance(stop_offset, (expressiontools.OffsetExpression, type(None))), repr(stop_offset)

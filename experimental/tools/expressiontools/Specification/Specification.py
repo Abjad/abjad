@@ -21,7 +21,6 @@ class Specification(AbjadObject):
     @abc.abstractmethod
     def __init__(self, score_template):
         from experimental.tools import expressiontools
-        from experimental.tools import specificationtools
         self._abbreviated_context_names = []
         self._context_names = []
         self._fresh_single_context_set_expressions = timespantools.TimespanInventory()

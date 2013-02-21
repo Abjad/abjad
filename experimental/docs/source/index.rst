@@ -125,6 +125,7 @@ Unstable packages (load manually)
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
       tools/expressiontools/GeneralizedSetMethodMixin/GeneralizedSetMethodMixin
+      tools/expressiontools/Interpreter/Interpreter
       tools/expressiontools/IterablePayloadCallbackMixin/IterablePayloadCallbackMixin
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
       tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
@@ -153,6 +154,7 @@ Unstable packages (load manually)
       tools/expressiontools/BeatSelectExpression/BeatSelectExpression
       tools/expressiontools/CallbackInventory/CallbackInventory
       tools/expressiontools/ClassInventory/ClassInventory
+      tools/expressiontools/ConcreteInterpreter/ConcreteInterpreter
       tools/expressiontools/ContextDictionary/ContextDictionary
       tools/expressiontools/ContextProxy/ContextProxy
       tools/expressiontools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
@@ -220,6 +222,7 @@ Unstable packages (load manually)
       tools/expressiontools/CallbackMixin/CallbackMixin
       tools/expressiontools/Expression/Expression
       tools/expressiontools/GeneralizedSetMethodMixin/GeneralizedSetMethodMixin
+      tools/expressiontools/Interpreter/Interpreter
       tools/expressiontools/IterablePayloadCallbackMixin/IterablePayloadCallbackMixin
       tools/expressiontools/LookupMethodMixin/LookupMethodMixin
       tools/expressiontools/OffsetCallbackMixin/OffsetCallbackMixin
@@ -248,6 +251,7 @@ Unstable packages (load manually)
       tools/expressiontools/BeatSelectExpression/BeatSelectExpression
       tools/expressiontools/CallbackInventory/CallbackInventory
       tools/expressiontools/ClassInventory/ClassInventory
+      tools/expressiontools/ConcreteInterpreter/ConcreteInterpreter
       tools/expressiontools/ContextDictionary/ContextDictionary
       tools/expressiontools/ContextProxy/ContextProxy
       tools/expressiontools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
@@ -429,36 +433,3 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/parsertools/ENPParser/ENPParser
-
-:py:mod:`specificationtools <experimental.tools.specificationtools>`
-====================================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/specificationtools/Interpreter/Interpreter
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/specificationtools/ConcreteInterpreter/ConcreteInterpreter
-
-.. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/specificationtools/Interpreter/Interpreter
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/specificationtools/ConcreteInterpreter/ConcreteInterpreter

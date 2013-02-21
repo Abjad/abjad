@@ -1,8 +1,6 @@
 import copy
 from abjad.tools import *
-from experimental import library
-from experimental.tools import expressiontools
-from experimental.tools.specificationtools.Interpreter import Interpreter
+from experimental.tools.expressiontools.Interpreter import Interpreter
 
 
 class ConcreteInterpreter(Interpreter):
@@ -36,6 +34,7 @@ class ConcreteInterpreter(Interpreter):
     ### PUBLIC METHODS ###
 
     def add_division_lists_to_score(self):
+        from experimental.tools import expressiontools
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = expressiontools.DivisionList([], voice_name=voice.name)
             voice_proxy = self.score_specification.payload_expressions_by_voice[voice.name]
@@ -154,6 +153,7 @@ class ConcreteInterpreter(Interpreter):
         return region_expressions
 
     def make_payload_expressions(self, attribute):
+        from experimental.tools import expressiontools
         region_expressions = self.score_specification.region_expressions_by_attribute[attribute][:]
         while region_expressions:
             made_progress = False
@@ -185,6 +185,7 @@ class ConcreteInterpreter(Interpreter):
             region_expressions.extend(voice_region_expressions)
     
     def make_rhythm_region_expressions_for_voice(self, voice_name):
+        from experimental.tools import expressiontools
         voice_proxy = self.score_specification.payload_expressions_by_voice[voice_name]
         division_payload_expressions = voice_proxy.payload_expressions_by_attribute['divisions']
         voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice_name]
@@ -267,6 +268,7 @@ class ConcreteInterpreter(Interpreter):
             inventory[:] = timespan_scoped_single_context_set_expressions[:]
                         
     def merge_prolonging_rhythm_region_expressions(self, rhythm_region_expressions):
+        from experimental.tools import expressiontools
         result = []
         for rhythm_region_expression in rhythm_region_expressions:
             if result and isinstance(

@@ -41,7 +41,6 @@ class ScoreSpecification(Specification):
 
     def __init__(self, score_template):
         from experimental.tools import expressiontools
-        from experimental.tools import specificationtools
         Specification.__init__(self, score_template)
         self._generalized_set_expressions = expressiontools.ExpressionInventory()
         self._multiple_context_set_expressions = timespantools.TimespanInventory()
@@ -652,8 +651,8 @@ class ScoreSpecification(Specification):
 
         Return Abjad score object.
         '''
-        from experimental.tools import specificationtools
-        interpreter = specificationtools.ConcreteInterpreter()
+        from experimental.tools import expressiontools
+        interpreter = expressiontools.ConcreteInterpreter()
         return interpreter(self)
 
     def make_default_timespan_scoped_single_context_division_set_expression(self, target_timespan, voice_name):
