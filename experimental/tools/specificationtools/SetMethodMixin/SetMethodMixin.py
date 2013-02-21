@@ -75,7 +75,9 @@ class SetMethodMixin(AbjadObject):
 
         Return some sort of set expression.
         '''
+        from experimental.tools import specificationtools
         attribute = 'pitch_class_transform'
+        source_expression = specificationtools.PitchClassTransformExpression(source_expression)
         return self._store_generalized_set_expression(attribute, source_expression)
 
     def set_pitches(self, source_expression):

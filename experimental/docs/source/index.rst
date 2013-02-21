@@ -302,6 +302,7 @@ Unstable packages (load manually)
       tools/specificationtools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/specificationtools/OffsetExpression/OffsetExpression
       tools/specificationtools/PayloadExpression/PayloadExpression
+      tools/specificationtools/PitchClassTransformExpression/PitchClassTransformExpression
       tools/specificationtools/PitchClassTransformSetExpression/PitchClassTransformSetExpression
       tools/specificationtools/PitchSetExpression/PitchSetExpression
       tools/specificationtools/RhythmMakerExpression/RhythmMakerExpression
@@ -399,6 +400,7 @@ Unstable packages (load manually)
       tools/specificationtools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/specificationtools/OffsetExpression/OffsetExpression
       tools/specificationtools/PayloadExpression/PayloadExpression
+      tools/specificationtools/PitchClassTransformExpression/PitchClassTransformExpression
       tools/specificationtools/PitchClassTransformSetExpression/PitchClassTransformSetExpression
       tools/specificationtools/PitchSetExpression/PitchSetExpression
       tools/specificationtools/RhythmMakerExpression/RhythmMakerExpression
