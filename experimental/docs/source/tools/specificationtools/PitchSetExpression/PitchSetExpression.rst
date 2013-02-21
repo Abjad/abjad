@@ -27,6 +27,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.evaluate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.execute_against_score
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.new
    :noindex:
 

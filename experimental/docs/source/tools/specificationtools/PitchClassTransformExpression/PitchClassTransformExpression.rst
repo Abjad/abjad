@@ -15,6 +15,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.specificationtools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.storage_format
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.transform_functions
+   :noindex:
+
 Methods
 -------
 
@@ -26,6 +29,9 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.specificationtools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.__call__
+   :noindex:
 
 .. automethod:: experimental.tools.specificationtools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.__eq__
    :noindex:

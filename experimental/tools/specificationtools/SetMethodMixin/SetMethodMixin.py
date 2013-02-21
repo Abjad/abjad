@@ -41,6 +41,8 @@ class SetMethodMixin(AbjadObject):
             return specificationtools.RhythmMakerExpression(expr)
         elif isinstance(expr, specificationtools.StatalServerCursor):
             return specificationtools.StatalServerCursorExpression(expr)
+        elif isinstance(expr, specificationtools.PitchClassTransformExpression):
+            return specificationtools.PitchClassTransformSetExpression(expr)
         else:
             raise TypeError('do not know how to change {!r} to expression.'.format(expr))
 
@@ -64,6 +66,8 @@ class SetMethodMixin(AbjadObject):
         self.score_specification._next_lexical_rank += 1
         if isinstance(generalized_set_expression, specificationtools.PitchSetExpression):
             self.score_specification.pitch_set_expressions.append(generalized_set_expression)
+        elif isinstance(generalized_set_expression, specificationtools.PitchClassTransformSetExpression):
+            self.score_specification.pitch_set_expressions.append(generalized_set_expression)
         else:
             self.score_specification.generalized_set_expressions.append(generalized_set_expression)
         return generalized_set_expression
@@ -76,8 +80,8 @@ class SetMethodMixin(AbjadObject):
         Return some sort of set expression.
         '''
         from experimental.tools import specificationtools
-        attribute = 'pitch_class_transform'
         source_expression = specificationtools.PitchClassTransformExpression(source_expression)
+        attribute = 'pitch_class_transform'
         return self._store_generalized_set_expression(attribute, source_expression)
 
     def set_pitches(self, source_expression):

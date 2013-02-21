@@ -27,6 +27,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.PitchClassTransformSetExpression.PitchClassTransformSetExpression.PitchClassTransformSetExpression.evaluate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.PitchClassTransformSetExpression.PitchClassTransformSetExpression.PitchClassTransformSetExpression.execute_against_score
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.PitchClassTransformSetExpression.PitchClassTransformSetExpression.PitchClassTransformSetExpression.new
    :noindex:
 
