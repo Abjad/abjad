@@ -10,6 +10,3 @@
 
 2.  Implement a method to slur leaves by divisions.
     Implement general methods to span leaves by divisions.
-
-3.  Add tests to show counttime component select expression score-evaluation
-    that respects time-relation settings.
