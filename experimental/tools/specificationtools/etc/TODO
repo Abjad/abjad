@@ -1,8 +1,4 @@
-1.  Migrate specificationtools classes into specificationtools.
-    Then remove specificationtools. Then change specificationtools to specificationtools.
-    The result will be a single package.
-
-2.  Implement the following set methods:
+1.  Implement the following set methods:
         set_aggregate()
         set_articulations()
         set_dynamics()
@@ -12,8 +8,8 @@
         set_registration()
         set_tempo()
 
-3.  Implement a method to slur leaves by divisions.
+2.  Implement a method to slur leaves by divisions.
     Implement general methods to span leaves by divisions.
 
-4.  Add tests to show counttime component select expression score-evaluation
+3.  Add tests to show counttime component select expression score-evaluation
     that respects time-relation settings.
