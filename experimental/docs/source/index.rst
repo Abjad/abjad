@@ -300,6 +300,8 @@ Unstable packages (load manually)
       tools/specificationtools/MeasureSelectExpression/MeasureSelectExpression
       tools/specificationtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/specificationtools/MultipleContextSetExpression/MultipleContextSetExpression
+      tools/specificationtools/NoteHeadColorExpression/NoteHeadColorExpression
+      tools/specificationtools/NoteHeadColorSetExpression/NoteHeadColorSetExpression
       tools/specificationtools/OffsetExpression/OffsetExpression
       tools/specificationtools/PayloadExpression/PayloadExpression
       tools/specificationtools/PitchClassTransformExpression/PitchClassTransformExpression
@@ -398,6 +400,8 @@ Unstable packages (load manually)
       tools/specificationtools/MeasureSelectExpression/MeasureSelectExpression
       tools/specificationtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/specificationtools/MultipleContextSetExpression/MultipleContextSetExpression
+      tools/specificationtools/NoteHeadColorExpression/NoteHeadColorExpression
+      tools/specificationtools/NoteHeadColorSetExpression/NoteHeadColorSetExpression
       tools/specificationtools/OffsetExpression/OffsetExpression
       tools/specificationtools/PayloadExpression/PayloadExpression
       tools/specificationtools/PitchClassTransformExpression/PitchClassTransformExpression

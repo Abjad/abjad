@@ -15,6 +15,9 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: experimental.tools.specificationtools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.set_note_head_color
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.set_pitch_class_transform
    :noindex:
 
