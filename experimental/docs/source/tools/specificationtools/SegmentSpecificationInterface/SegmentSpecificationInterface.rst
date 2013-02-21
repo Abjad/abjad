@@ -1,5 +1,5 @@
 specificationtools.SegmentSpecificationInterface
-=============================================
+================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface
 

@@ -1,5 +1,5 @@
 specificationtools.StatalServer
-============================
+===============================
 
 .. abjad-lineage:: experimental.tools.specificationtools.StatalServer.StatalServer.StatalServer
 

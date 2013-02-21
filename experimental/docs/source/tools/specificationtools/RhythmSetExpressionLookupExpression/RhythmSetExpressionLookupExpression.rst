@@ -1,5 +1,5 @@
 specificationtools.RhythmSetExpressionLookupExpression
-===================================================
+======================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression
 

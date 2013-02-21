@@ -1,5 +1,5 @@
 specificationtools.SegmentIdentifierExpression
-===========================================
+==============================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression
 

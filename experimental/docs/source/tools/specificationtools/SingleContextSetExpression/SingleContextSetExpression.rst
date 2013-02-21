@@ -1,5 +1,5 @@
 specificationtools.SingleContextSetExpression
-==========================================
+=============================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression
 

@@ -1,5 +1,5 @@
 specificationtools.TimeContiguousSetMethodMixin
-============================================
+===============================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin
 

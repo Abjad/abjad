@@ -1,5 +1,5 @@
 specificationtools.ContextProxy
-============================
+===============================
 
 .. abjad-lineage:: experimental.tools.specificationtools.ContextProxy.ContextProxy.ContextProxy
 

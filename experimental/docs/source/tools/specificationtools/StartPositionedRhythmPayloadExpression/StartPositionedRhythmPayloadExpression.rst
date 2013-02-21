@@ -1,5 +1,5 @@
 specificationtools.StartPositionedRhythmPayloadExpression
-======================================================
+=========================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression
 

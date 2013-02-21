@@ -1,5 +1,5 @@
 specificationtools.DivisionSetExpressionLookupExpression
-=====================================================
+========================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression
 

@@ -1,5 +1,5 @@
 specificationtools.TimeSignatureSetExpressionLookupExpression
-==========================================================
+=============================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression
 

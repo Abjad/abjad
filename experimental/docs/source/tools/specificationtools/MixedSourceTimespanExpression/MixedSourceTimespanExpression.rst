@@ -1,5 +1,5 @@
 specificationtools.MixedSourceTimespanExpression
-=============================================
+================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression
 

@@ -1,5 +1,5 @@
 specificationtools.SelectExpressionInventory
-=========================================
+============================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory
 

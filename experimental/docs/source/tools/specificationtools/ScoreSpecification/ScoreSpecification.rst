@@ -1,5 +1,5 @@
 specificationtools.ScoreSpecification
-==================================
+=====================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification
 

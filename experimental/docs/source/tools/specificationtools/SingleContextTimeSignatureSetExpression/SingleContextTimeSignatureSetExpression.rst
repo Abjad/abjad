@@ -1,5 +1,5 @@
 specificationtools.SingleContextTimeSignatureSetExpression
-=======================================================
+==========================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression
 

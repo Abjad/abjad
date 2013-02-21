@@ -1,5 +1,5 @@
 specificationtools.TimespanCallbackMixin
-=====================================
+========================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin
 

@@ -1,5 +1,5 @@
 specificationtools.PitchClassTransformSetExpression
-================================================
+===================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.PitchClassTransformSetExpression.PitchClassTransformSetExpression.PitchClassTransformSetExpression
 

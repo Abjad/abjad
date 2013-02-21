@@ -1,5 +1,5 @@
 specificationtools.TimespanScopedSingleContextSetExpressionInventory
-=================================================================
+====================================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory
 

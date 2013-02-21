@@ -1,5 +1,5 @@
 specificationtools.ScoreSpecificationInterface
-===========================================
+==============================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface
 

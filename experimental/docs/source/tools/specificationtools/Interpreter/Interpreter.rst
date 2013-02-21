@@ -1,5 +1,5 @@
 specificationtools.Interpreter
-===========================
+==============================
 
 .. abjad-lineage:: experimental.tools.specificationtools.Interpreter.Interpreter.Interpreter
 

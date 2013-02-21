@@ -1,5 +1,5 @@
 specificationtools.DivisionList
-============================
+===============================
 
 .. abjad-lineage:: experimental.tools.specificationtools.DivisionList.DivisionList.DivisionList
 

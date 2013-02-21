@@ -1,5 +1,5 @@
 specificationtools.TimespanExpression
-==================================
+=====================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression
 

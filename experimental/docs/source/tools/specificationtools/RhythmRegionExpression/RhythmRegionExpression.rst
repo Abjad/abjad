@@ -1,5 +1,5 @@
 specificationtools.RhythmRegionExpression
-======================================
+=========================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression
 

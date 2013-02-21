@@ -1,5 +1,5 @@
 specificationtools.TimeContiguousAnchoredSetExpression
-===================================================
+======================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression
 

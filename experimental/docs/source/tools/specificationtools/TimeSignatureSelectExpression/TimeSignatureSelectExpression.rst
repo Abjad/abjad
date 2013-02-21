@@ -1,5 +1,5 @@
 specificationtools.TimeSignatureSelectExpression
-=============================================
+================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression
 

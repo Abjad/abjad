@@ -1,5 +1,5 @@
 specificationtools.AttributeNameEnumeration
-========================================
+===========================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration
 

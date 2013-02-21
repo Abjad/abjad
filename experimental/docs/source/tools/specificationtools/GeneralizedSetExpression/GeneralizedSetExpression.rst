@@ -1,5 +1,5 @@
 specificationtools.GeneralizedSetExpression
-========================================
+===========================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.GeneralizedSetExpression.GeneralizedSetExpression.GeneralizedSetExpression
 

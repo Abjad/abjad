@@ -1,5 +1,5 @@
 specificationtools.HandlerExpression
-=================================
+====================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression
 

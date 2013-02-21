@@ -1,5 +1,5 @@
 specificationtools.SetExpression
-=============================
+================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression
 

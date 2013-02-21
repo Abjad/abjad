@@ -1,5 +1,5 @@
 specificationtools.OffsetCallbackMixin
-===================================
+======================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin
 

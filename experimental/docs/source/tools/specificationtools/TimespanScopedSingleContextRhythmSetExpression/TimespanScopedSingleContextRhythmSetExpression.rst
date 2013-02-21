@@ -1,5 +1,5 @@
 specificationtools.TimespanScopedSingleContextRhythmSetExpression
-==============================================================
+=================================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression
 

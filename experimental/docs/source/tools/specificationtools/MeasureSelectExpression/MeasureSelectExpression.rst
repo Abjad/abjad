@@ -1,5 +1,5 @@
 specificationtools.MeasureSelectExpression
-=======================================
+==========================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression
 

@@ -1,5 +1,5 @@
 specificationtools.StatalServerCursor
-==================================
+=====================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.StatalServerCursor.StatalServerCursor.StatalServerCursor
 

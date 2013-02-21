@@ -1,5 +1,5 @@
 specificationtools.SetMethodMixin
-==============================
+=================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin
 

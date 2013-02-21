@@ -1,5 +1,5 @@
 specificationtools.AttributeDictionary
-===================================
+======================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.AttributeDictionary.AttributeDictionary.AttributeDictionary
 

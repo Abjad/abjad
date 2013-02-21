@@ -1,5 +1,5 @@
 specificationtools.StatalServerCursorExpression
-============================================
+===============================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.StatalServerCursorExpression.StatalServerCursorExpression.StatalServerCursorExpression
 

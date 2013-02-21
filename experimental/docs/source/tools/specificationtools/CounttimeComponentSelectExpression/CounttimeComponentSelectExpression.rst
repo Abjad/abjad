@@ -1,5 +1,5 @@
 specificationtools.CounttimeComponentSelectExpression
-==================================================
+=====================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression
 

@@ -1,5 +1,5 @@
 specificationtools.SelectMethodMixin
-=================================
+====================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin
 

@@ -1,5 +1,5 @@
 specificationtools.MaterialManager
-===============================
+==================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.MaterialManager.MaterialManager.MaterialManager
 

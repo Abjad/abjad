@@ -1,5 +1,5 @@
 specificationtools.ClassInventory
-==============================
+=================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.ClassInventory.ClassInventory.ClassInventory
 

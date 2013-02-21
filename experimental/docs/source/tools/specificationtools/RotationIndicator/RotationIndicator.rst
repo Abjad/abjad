@@ -1,5 +1,5 @@
 specificationtools.RotationIndicator
-=================================
+====================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.RotationIndicator.RotationIndicator.RotationIndicator
 

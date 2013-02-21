@@ -1,5 +1,5 @@
 specificationtools.BeatSelectExpression
-====================================
+=======================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression
 

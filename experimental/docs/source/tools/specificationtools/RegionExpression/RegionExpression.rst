@@ -1,5 +1,5 @@
 specificationtools.RegionExpression
-================================
+===================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.RegionExpression.RegionExpression.RegionExpression
 

@@ -1,5 +1,5 @@
 specificationtools.CallbackInventory
-=================================
+====================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.CallbackInventory.CallbackInventory.CallbackInventory
 

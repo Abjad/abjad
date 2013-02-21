@@ -1,5 +1,5 @@
 specificationtools.PitchSetExpression
-==================================
+=====================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression
 

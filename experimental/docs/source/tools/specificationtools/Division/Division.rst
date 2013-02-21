@@ -1,5 +1,5 @@
 specificationtools.Division
-========================
+===========================
 
 .. abjad-lineage:: experimental.tools.specificationtools.Division.Division.Division
 

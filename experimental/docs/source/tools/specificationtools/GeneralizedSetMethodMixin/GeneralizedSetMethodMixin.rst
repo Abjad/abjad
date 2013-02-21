@@ -1,5 +1,5 @@
 specificationtools.GeneralizedSetMethodMixin
-=========================================
+============================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin.GeneralizedSetMethodMixin
 

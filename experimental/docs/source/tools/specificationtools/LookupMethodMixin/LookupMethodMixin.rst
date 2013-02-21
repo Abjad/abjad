@@ -1,5 +1,5 @@
 specificationtools.LookupMethodMixin
-=================================
+====================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin
 

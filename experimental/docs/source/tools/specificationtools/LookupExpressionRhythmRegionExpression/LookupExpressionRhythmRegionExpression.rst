@@ -1,5 +1,5 @@
 specificationtools.LookupExpressionRhythmRegionExpression
-======================================================
+=========================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression
 

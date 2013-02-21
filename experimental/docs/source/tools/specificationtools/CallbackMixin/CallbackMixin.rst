@@ -1,5 +1,5 @@
 specificationtools.CallbackMixin
-=============================
+================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.CallbackMixin.CallbackMixin.CallbackMixin
 

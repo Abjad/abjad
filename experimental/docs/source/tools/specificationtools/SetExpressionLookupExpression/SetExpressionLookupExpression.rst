@@ -1,5 +1,5 @@
 specificationtools.SetExpressionLookupExpression
-=============================================
+================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression
 

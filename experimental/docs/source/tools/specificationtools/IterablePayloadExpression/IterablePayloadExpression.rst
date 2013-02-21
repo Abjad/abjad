@@ -1,5 +1,5 @@
 specificationtools.IterablePayloadExpression
-=========================================
+============================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression
 

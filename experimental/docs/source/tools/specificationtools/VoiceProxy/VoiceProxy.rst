@@ -1,5 +1,5 @@
 specificationtools.VoiceProxy
-==========================
+=============================
 
 .. abjad-lineage:: experimental.tools.specificationtools.VoiceProxy.VoiceProxy.VoiceProxy
 

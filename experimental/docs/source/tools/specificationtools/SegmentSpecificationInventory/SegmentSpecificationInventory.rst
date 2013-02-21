@@ -1,5 +1,5 @@
 specificationtools.SegmentSpecificationInventory
-=============================================
+================================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory
 

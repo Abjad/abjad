@@ -1,5 +1,5 @@
 specificationtools.SegmentSelectExpression
-=======================================
+==========================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression
 

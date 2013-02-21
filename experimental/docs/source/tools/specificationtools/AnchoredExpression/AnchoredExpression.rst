@@ -1,5 +1,5 @@
 specificationtools.AnchoredExpression
-==================================
+=====================================
 
 .. abjad-lineage:: experimental.tools.specificationtools.AnchoredExpression.AnchoredExpression.AnchoredExpression
 
