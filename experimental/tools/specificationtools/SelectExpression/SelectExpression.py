@@ -6,7 +6,6 @@ from experimental.tools.specificationtools.IterablePayloadCallbackMixin import I
 from experimental.tools.specificationtools.SetMethodMixin import SetMethodMixin
 
 
-#class SelectExpression(AnchoredExpression, IterablePayloadCallbackMixin):
 class SelectExpression(AnchoredExpression, IterablePayloadCallbackMixin, SetMethodMixin):
     r'''Select expression.
     '''

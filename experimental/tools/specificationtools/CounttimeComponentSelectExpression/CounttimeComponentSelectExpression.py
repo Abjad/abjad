@@ -124,7 +124,7 @@ class CounttimeComponentSelectExpression(SelectExpression):
         anchor_timespan = self._evaluate_anchor_timespan()
         voice_proxy = self.score_specification.payload_expressions_by_voice[self.voice_name]
         rhythm_payload_expressions = voice_proxy.payload_expressions_by_attribute['rhythm']
-        time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
+        time_relation = self._get_time_relation(anchor_timespan)
         rhythm_payload_expressions = rhythm_payload_expressions.get_timespans_that_satisfy_time_relation(
             time_relation)
         if not rhythm_payload_expressions:
@@ -152,8 +152,7 @@ class CounttimeComponentSelectExpression(SelectExpression):
         assert isinstance(score, scoretools.Score), repr(score)
         voice = score[self.voice_name]
         anchor_timespan = self._evaluate_anchor_timespan()
-        # TODO: why not default to starts-during time-relation?
-        time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
+        time_relation = self._get_time_relation(anchor_timespan)
         components = []
         for component in iterationtools.iterate_components_in_expr(voice, klass=tuple(self.classes)):
             if time_relation(timespan_2=component.timespan):
