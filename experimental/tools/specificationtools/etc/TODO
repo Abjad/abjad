@@ -6,9 +6,7 @@
         set_dynamics()
         set_marks()
         set_markup()
-        set_registration()
         set_tempo()
-        set_tranposition()
 
 3.  Implement a method to slur leaves by divisions.
     Implement general methods to span leaves by divisions.

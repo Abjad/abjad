@@ -21,6 +21,7 @@ class SetMethodMixin(AbjadObject):
         return {
             'aggregate': specificationtools.AggregateSetExpression,
             'note_head_color': specificationtools.NoteHeadColorSetExpression,
+            'octave_transposition': specificationtools.OctaveTranspositionSetExpression,
             'pitch': specificationtools.PitchSetExpression,
             'pitch_class_transform': specificationtools.PitchClassTransformSetExpression,
             }[attribute]
@@ -77,6 +78,8 @@ class SetMethodMixin(AbjadObject):
             self.score_specification.pitch_set_expressions.append(generalized_set_expression)
         elif isinstance(generalized_set_expression, specificationtools.AggregateSetExpression):
             self.score_specification.pitch_set_expressions.append(generalized_set_expression)
+        elif isinstance(generalized_set_expression, specificationtools.OctaveTranspositionSetExpression):
+            self.score_specification.pitch_set_expressions.append(generalized_set_expression)
         else:
             self.score_specification.generalized_set_expressions.append(generalized_set_expression)
         return generalized_set_expression
@@ -91,8 +94,6 @@ class SetMethodMixin(AbjadObject):
         from experimental.tools import specificationtools
         assert isinstance(source_expression, list), repr(source_expression)
         source_expression = specificationtools.PayloadExpression(payload=source_expression)
-        #aggregate_set_expression = specificationtools.AggregateSetExpression(
-        #    source_expression=source_expression, target_select_expression_inventory=self)
         attribute = 'aggregate'
         return self._store_generalized_set_expression(attribute, source_expression)
 
@@ -104,6 +105,16 @@ class SetMethodMixin(AbjadObject):
         from experimental.tools import specificationtools
         source_expression = specificationtools.NoteHeadColorExpression(source_expression)
         attribute = 'note_head_color'
+        return self._store_generalized_set_expression(attribute, source_expression)
+
+    def set_octave_transposition(self, source_expression):
+        r'''Set octave transposition to `source_expression`.
+
+        Return some sort of set expression.
+        '''
+        from experimental.tools import specificationtools
+        source_expression = specificationtools.PayloadExpression(payload=source_expression)
+        attribute = 'octave_transposition'
         return self._store_generalized_set_expression(attribute, source_expression)
 
     def set_pitch_class_transform(self, source_expression):

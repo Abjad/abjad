@@ -303,6 +303,7 @@ Unstable packages (load manually)
       tools/specificationtools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/specificationtools/NoteHeadColorExpression/NoteHeadColorExpression
       tools/specificationtools/NoteHeadColorSetExpression/NoteHeadColorSetExpression
+      tools/specificationtools/OctaveTranspositionSetExpression/OctaveTranspositionSetExpression
       tools/specificationtools/OffsetExpression/OffsetExpression
       tools/specificationtools/PayloadExpression/PayloadExpression
       tools/specificationtools/PitchClassTransformExpression/PitchClassTransformExpression
@@ -404,6 +405,7 @@ Unstable packages (load manually)
       tools/specificationtools/MultipleContextSetExpression/MultipleContextSetExpression
       tools/specificationtools/NoteHeadColorExpression/NoteHeadColorExpression
       tools/specificationtools/NoteHeadColorSetExpression/NoteHeadColorSetExpression
+      tools/specificationtools/OctaveTranspositionSetExpression/OctaveTranspositionSetExpression
       tools/specificationtools/OffsetExpression/OffsetExpression
       tools/specificationtools/PayloadExpression/PayloadExpression
       tools/specificationtools/PitchClassTransformExpression/PitchClassTransformExpression
