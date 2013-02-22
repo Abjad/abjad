@@ -20,10 +20,7 @@ class PitchClassTransformSetExpression(GeneralizedSetExpression):
         '''Execute pitch-class transform expression against `score`.
         '''
         from experimental.tools import specificationtools
-        if isinstance(self.source_expression, specificationtools.PitchClassTransformExpression):
-            pitch_class_transform_expression = self.source_expression
-        else:
-            raise ValueError(self.source_expression)
+        pitch_class_transform_expression = self.source_expression.payload
         leaves = []
         for target_select_expression in self.target_select_expression_inventory:
             iterable_payload_expression = target_select_expression.evaluate_against_score(score)

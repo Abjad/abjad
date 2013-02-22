@@ -250,7 +250,6 @@ Unstable packages (load manually)
       tools/specificationtools/AnchoredExpression/AnchoredExpression
       tools/specificationtools/CallbackMixin/CallbackMixin
       tools/specificationtools/Expression/Expression
-      tools/specificationtools/GeneralizedSetMethodMixin/GeneralizedSetMethodMixin
       tools/specificationtools/Interpreter/Interpreter
       tools/specificationtools/IterablePayloadCallbackMixin/IterablePayloadCallbackMixin
       tools/specificationtools/LookupMethodMixin/LookupMethodMixin
@@ -301,7 +300,6 @@ Unstable packages (load manually)
       tools/specificationtools/MeasureSelectExpression/MeasureSelectExpression
       tools/specificationtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/specificationtools/MultipleContextSetExpression/MultipleContextSetExpression
-      tools/specificationtools/NoteHeadColorExpression/NoteHeadColorExpression
       tools/specificationtools/NoteHeadColorSetExpression/NoteHeadColorSetExpression
       tools/specificationtools/OctaveTranspositionSetExpression/OctaveTranspositionSetExpression
       tools/specificationtools/OffsetExpression/OffsetExpression
@@ -352,7 +350,6 @@ Unstable packages (load manually)
       tools/specificationtools/AnchoredExpression/AnchoredExpression
       tools/specificationtools/CallbackMixin/CallbackMixin
       tools/specificationtools/Expression/Expression
-      tools/specificationtools/GeneralizedSetMethodMixin/GeneralizedSetMethodMixin
       tools/specificationtools/Interpreter/Interpreter
       tools/specificationtools/IterablePayloadCallbackMixin/IterablePayloadCallbackMixin
       tools/specificationtools/LookupMethodMixin/LookupMethodMixin
@@ -403,7 +400,6 @@ Unstable packages (load manually)
       tools/specificationtools/MeasureSelectExpression/MeasureSelectExpression
       tools/specificationtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/specificationtools/MultipleContextSetExpression/MultipleContextSetExpression
-      tools/specificationtools/NoteHeadColorExpression/NoteHeadColorExpression
       tools/specificationtools/NoteHeadColorSetExpression/NoteHeadColorSetExpression
       tools/specificationtools/OctaveTranspositionSetExpression/OctaveTranspositionSetExpression
       tools/specificationtools/OffsetExpression/OffsetExpression

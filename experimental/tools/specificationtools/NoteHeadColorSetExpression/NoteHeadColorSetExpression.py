@@ -19,10 +19,7 @@ class NoteHeadColorSetExpression(GeneralizedSetExpression):
         '''Execute note head color set expression against `score`.
         '''
         from experimental.tools import specificationtools
-        if isinstance(self.source_expression, specificationtools.NoteHeadColorExpression):
-            color = self.source_expression.payload
-        else:
-            raise ValueError(self.source_expression)
+        color = self.source_expression.payload
         leaves = []
         for target_select_expression in self.target_select_expression_inventory:
             iterable_payload_expression = target_select_expression.evaluate_against_score(score)

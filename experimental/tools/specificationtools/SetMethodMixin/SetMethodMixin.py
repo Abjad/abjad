@@ -1,5 +1,6 @@
 import copy
 from abjad.tools import iotools
+from abjad.tools import pitchtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -28,8 +29,6 @@ class SetMethodMixin(AbjadObject):
 
     def _expr_to_expression(self, expr):
         from abjad.tools import rhythmmakertools
-        from experimental.tools import handlertools
-        from experimental.tools import specificationtools
         from experimental.tools import specificationtools
         if isinstance(expr, specificationtools.Expression):
             return expr
@@ -42,12 +41,6 @@ class SetMethodMixin(AbjadObject):
             return specificationtools.StartPositionedRhythmPayloadExpression([component], start_offset=0)
         elif isinstance(expr, rhythmmakertools.RhythmMaker):
             return specificationtools.RhythmMakerExpression(expr)
-        elif isinstance(expr, specificationtools.StatalServerCursor):
-            return specificationtools.StatalServerCursorExpression(expr)
-        elif isinstance(expr, specificationtools.PitchClassTransformExpression):
-            return specificationtools.PitchClassTransformSetExpression(expr)
-        elif isinstance(expr, specificationtools.NoteHeadColorExpression):
-            return specificationtools.NoteHeadColorSetExpression(expr)
         else:
             raise TypeError('do not know how to change {!r} to expression.'.format(expr))
 
@@ -91,7 +84,8 @@ class SetMethodMixin(AbjadObject):
         Return some sort of set expression.
         '''
         from experimental.tools import specificationtools
-        source_expression = specificationtools.NoteHeadColorExpression(source_expression)
+        assert isinstance(source_expression, str), repr(source_expression)
+        source_expression = specificationtools.PayloadExpression(payload=source_expression)
         attribute = 'note_head_color'
         return self._store_generalized_set_expression(attribute, source_expression)
 
@@ -101,6 +95,7 @@ class SetMethodMixin(AbjadObject):
         Return some sort of set expression.
         '''
         from experimental.tools import specificationtools
+        assert isinstance(source_expression, pitchtools.OctaveTranspositionMapping), repr(source_expression)
         source_expression = specificationtools.PayloadExpression(payload=source_expression)
         attribute = 'octave_transposition'
         return self._store_generalized_set_expression(attribute, source_expression)
@@ -111,7 +106,8 @@ class SetMethodMixin(AbjadObject):
         Return some sort of set expression.
         '''
         from experimental.tools import specificationtools
-        source_expression = specificationtools.PitchClassTransformExpression(source_expression)
+        pitch_class_transform_expression = specificationtools.PitchClassTransformExpression(source_expression)
+        source_expression = specificationtools.PayloadExpression(payload=pitch_class_transform_expression)
         attribute = 'pitch_class_transform'
         return self._store_generalized_set_expression(attribute, source_expression)
 
@@ -120,5 +116,8 @@ class SetMethodMixin(AbjadObject):
 
         Return pitch set expression.
         '''
+        from experimental.tools import specificationtools
+        assert isinstance(source_expression, specificationtools.StatalServerCursor), repr(source_expression)
+        source_expression = specificationtools.StatalServerCursorExpression(source_expression)
         attribute = 'pitch'
         return self._store_generalized_set_expression(attribute, source_expression)
