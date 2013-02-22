@@ -290,6 +290,7 @@ Unstable packages (load manually)
       tools/specificationtools/DivisionRegionExpression/DivisionRegionExpression
       tools/specificationtools/DivisionSelectExpression/DivisionSelectExpression
       tools/specificationtools/DivisionSetExpressionLookupExpression/DivisionSetExpressionLookupExpression
+      tools/specificationtools/DynamicSetExpression/DynamicSetExpression
       tools/specificationtools/ExpressionInventory/ExpressionInventory
       tools/specificationtools/HandlerExpression/HandlerExpression
       tools/specificationtools/IterablePayloadExpression/IterablePayloadExpression
@@ -391,6 +392,7 @@ Unstable packages (load manually)
       tools/specificationtools/DivisionRegionExpression/DivisionRegionExpression
       tools/specificationtools/DivisionSelectExpression/DivisionSelectExpression
       tools/specificationtools/DivisionSetExpressionLookupExpression/DivisionSetExpressionLookupExpression
+      tools/specificationtools/DynamicSetExpression/DynamicSetExpression
       tools/specificationtools/ExpressionInventory/ExpressionInventory
       tools/specificationtools/HandlerExpression/HandlerExpression
       tools/specificationtools/IterablePayloadExpression/IterablePayloadExpression

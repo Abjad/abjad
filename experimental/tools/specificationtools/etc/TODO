@@ -1,5 +1,4 @@
 1.  Implement the following set methods:
-        set_dynamics()
         set_marks()
         set_markup()
         set_tempo()

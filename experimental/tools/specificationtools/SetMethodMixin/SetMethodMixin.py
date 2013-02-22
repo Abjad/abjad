@@ -1,4 +1,5 @@
 import copy
+from abjad.tools import contexttools
 from abjad.tools import iotools
 from abjad.tools import marktools
 from abjad.tools import pitchtools
@@ -23,6 +24,7 @@ class SetMethodMixin(AbjadObject):
         return {
             'aggregate': specificationtools.AggregateSetExpression,
             'articulation': specificationtools.ArticulationSetExpression,
+            'dynamic': specificationtools.DynamicSetExpression,
             'leaf_color': specificationtools.LeafColorSetExpression,
             'reigster': specificationtools.RegisterSetExpression,
             'pitch': specificationtools.PitchSetExpression,
@@ -95,6 +97,17 @@ class SetMethodMixin(AbjadObject):
             articulation_list = [marktools.Articulation(x) for x in source_expression]
         source_expression = specificationtools.PayloadExpression(payload=articulation_list)
         attribute = 'articulation'
+        return self._store_leaf_set_expression(attribute, source_expression)
+
+    def set_dynamic(self, source_expression):
+        r'''Set dynamic to `source_expression`.
+
+        Return dynamic set expression.
+        '''
+        from experimental.tools import specificationtools
+        dynamic_mark = contexttools.DynamicMark(source_expression)
+        source_expression = specificationtools.PayloadExpression(payload=dynamic_mark)
+        attribute = 'dynamic'
         return self._store_leaf_set_expression(attribute, source_expression)
 
     def set_leaf_color(self, source_expression):
