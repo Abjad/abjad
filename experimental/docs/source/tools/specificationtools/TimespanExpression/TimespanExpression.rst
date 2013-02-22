@@ -75,6 +75,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_aggregate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_articulation
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_articulations
    :noindex:
 

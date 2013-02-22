@@ -1,5 +1,4 @@
 1.  Implement the following set methods:
-        set_articulations()
         set_dynamics()
         set_marks()
         set_markup()
@@ -7,3 +6,18 @@
 
 2.  Implement a method to slur leaves by divisions.
     Implement general methods to span leaves by divisions.
+
+3.  Change set_note_head_color() to set_leaf_color().
+
+4.  Remove GeneralizedSetExpression.attribute altogether.
+
+5.  Hoist ...
+        leaves = []
+        for target_select_expression in self.target_select_expression_inventory:
+            iterable_payload_expression = target_select_expression.evaluate_against_score(score)
+            leaves.extend(iterable_payload_expression.payload)
+    ... to GeneralizedSetExpression.
+
+6.  Change 'generalized set expression' to 'leaf set expression'.
+
+7.  Change set_pitches() to set_pitch().

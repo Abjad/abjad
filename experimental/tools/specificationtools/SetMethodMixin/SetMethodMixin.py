@@ -1,5 +1,6 @@
 import copy
 from abjad.tools import iotools
+from abjad.tools import marktools
 from abjad.tools import pitchtools
 from abjad.tools.abctools import AbjadObject
 
@@ -21,6 +22,7 @@ class SetMethodMixin(AbjadObject):
         from experimental.tools import specificationtools
         return {
             'aggregate': specificationtools.AggregateSetExpression,
+            'articulation': specificationtools.ArticulationSetExpression,
             'note_head_color': specificationtools.NoteHeadColorSetExpression,
             'octave_transposition': specificationtools.OctaveTranspositionSetExpression,
             'pitch': specificationtools.PitchSetExpression,
@@ -76,6 +78,23 @@ class SetMethodMixin(AbjadObject):
         assert isinstance(source_expression, list), repr(source_expression)
         source_expression = specificationtools.PayloadExpression(payload=source_expression)
         attribute = 'aggregate'
+        return self._store_generalized_set_expression(attribute, source_expression)
+
+    def set_articulation(self, source_expression):
+        r'''Set articulation to `source_expression`.
+
+        Return some sort of set expression.
+        '''
+        from experimental.tools import specificationtools
+        if isinstance(source_expression, marktools.Articulation):
+            articulation_list = [source_expression]
+        elif isinstance(source_expression, str):
+            articulation = marktools.Articulation(source_expression)
+            articulation_list = [articulation]
+        elif isinstance(source_expression, list):
+            articulation_list = [marktools.Articulation(x) for x in source_expression]
+        source_expression = specificationtools.PayloadExpression(payload=articulation_list)
+        attribute = 'articulation'
         return self._store_generalized_set_expression(attribute, source_expression)
 
     def set_note_head_color(self, source_expression):

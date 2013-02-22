@@ -84,6 +84,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.set_aggregate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.set_articulation
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.set_note_head_color
    :noindex:
 

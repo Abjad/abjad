@@ -275,6 +275,7 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/specificationtools/AggregateSetExpression/AggregateSetExpression
+      tools/specificationtools/ArticulationSetExpression/ArticulationSetExpression
       tools/specificationtools/AttributeDictionary/AttributeDictionary
       tools/specificationtools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/specificationtools/BeatSelectExpression/BeatSelectExpression
@@ -375,6 +376,7 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/specificationtools/AggregateSetExpression/AggregateSetExpression
+      tools/specificationtools/ArticulationSetExpression/ArticulationSetExpression
       tools/specificationtools/AttributeDictionary/AttributeDictionary
       tools/specificationtools/AttributeNameEnumeration/AttributeNameEnumeration
       tools/specificationtools/BeatSelectExpression/BeatSelectExpression

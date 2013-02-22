@@ -75,6 +75,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_aggregate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_articulation
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_articulations
    :noindex:
 

@@ -81,6 +81,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_aggregate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_articulation
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_note_head_color
    :noindex:
 

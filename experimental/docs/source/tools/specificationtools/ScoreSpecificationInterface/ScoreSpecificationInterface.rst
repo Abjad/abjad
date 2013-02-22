@@ -66,6 +66,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.set_aggregate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.set_articulation
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.set_articulations
    :noindex:
 

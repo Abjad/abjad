@@ -18,6 +18,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_aggregate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_articulation
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_note_head_color
    :noindex:
 

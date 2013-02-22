@@ -78,6 +78,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_aggregate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_articulation
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_note_head_color
    :noindex:
 

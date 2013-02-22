@@ -18,6 +18,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_aggregate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_articulation
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_articulations
    :noindex:
 

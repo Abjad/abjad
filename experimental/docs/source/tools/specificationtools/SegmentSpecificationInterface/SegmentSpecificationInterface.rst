@@ -51,6 +51,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_aggregate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_articulation
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_articulations
    :noindex:
 

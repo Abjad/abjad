@@ -78,6 +78,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SelectExpression.SelectExpression.SelectExpression.set_aggregate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SelectExpression.SelectExpression.SelectExpression.set_articulation
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SelectExpression.SelectExpression.SelectExpression.set_note_head_color
    :noindex:
 
