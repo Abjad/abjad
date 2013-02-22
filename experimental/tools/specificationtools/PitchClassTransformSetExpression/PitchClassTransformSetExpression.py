@@ -12,13 +12,8 @@ class PitchClassTransformSetExpression(LeafSetExpression):
     def execute_against_score(self, score):
         '''Execute pitch-class transform expression against `score`.
         '''
-        from experimental.tools import specificationtools
         pitch_class_transform_expression = self.source_expression.payload
-        leaves = []
-        for target_select_expression in self.target_select_expression_inventory:
-            iterable_payload_expression = target_select_expression.evaluate_against_score(score)
-            leaves.extend(iterable_payload_expression.payload)
-        for leaf in leaves:
+        for leaf in self._iterate_leaves_in_score(score):
             assert isinstance(leaf, (notetools.Note, chordtools.Chord)), repr(leaf)
             if isinstance(leaf, notetools.Note):
                 sounding_pitch_number = abs(leaf.sounding_pitch)

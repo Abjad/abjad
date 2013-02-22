@@ -2,7 +2,7 @@ from experimental import *
 import copy
 
 
-def test_ScoreSpecification__set_pitches_01():
+def test_ScoreSpecification__set_pitch_01():
     '''Read from server over all leaves in voice.
     '''
 
@@ -13,7 +13,7 @@ def test_ScoreSpecification__set_pitches_01():
     rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
     score_specification.set_rhythm(rhythm)
     leaves = score_specification.select_leaves('Voice 1')
-    leaves.set_pitches(library.example_pitches_1())
+    leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -21,7 +21,7 @@ def test_ScoreSpecification__set_pitches_01():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_ScoreSpecification__set_pitches_02():
+def test_ScoreSpecification__set_pitch_02():
     '''Read from server over contiguous leaves in one voice.
     '''
 
@@ -32,7 +32,7 @@ def test_ScoreSpecification__set_pitches_02():
     rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
     score_specification.set_rhythm(rhythm)
     leaves = score_specification.select_leaves('Voice 1')[9:18]
-    leaves.set_pitches(library.example_pitches_1())
+    leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -40,7 +40,7 @@ def test_ScoreSpecification__set_pitches_02():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_ScoreSpecification__set_pitches_03():
+def test_ScoreSpecification__set_pitch_03():
     '''Read from server over discontiguous leaves in same voice.
     '''
 
@@ -52,7 +52,7 @@ def test_ScoreSpecification__set_pitches_03():
     first_leaves = score_specification.select_leaves('Voice 1')[:10]
     last_leaves = score_specification.select_leaves('Voice 1')[-10:]
     leaves = first_leaves + last_leaves
-    leaves.set_pitches(library.example_pitches_1())
+    leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -60,7 +60,7 @@ def test_ScoreSpecification__set_pitches_03():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_ScoreSpecification__set_pitches_04():
+def test_ScoreSpecification__set_pitch_04():
     '''Read from server over discontiguous leaves in different voices.
     '''
 
@@ -73,7 +73,7 @@ def test_ScoreSpecification__set_pitches_04():
     first_leaves = score_specification.select_leaves('Voice 1')[:10]
     last_leaves = score_specification.select_leaves('Voice 2')[-10:]
     leaves = first_leaves + last_leaves
-    leaves.set_pitches(library.example_pitches_1())
+    leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -81,7 +81,7 @@ def test_ScoreSpecification__set_pitches_04():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_ScoreSpecification__set_pitches_05():
+def test_ScoreSpecification__set_pitch_05():
     '''Read from server over overlaid pitches in discontiguous select expression.
     Earlier pitch assignments are simply overwritten by later pitch assignments.
     '''
@@ -95,7 +95,7 @@ def test_ScoreSpecification__set_pitches_05():
     first_leaves = score_specification.select_leaves('Voice 1')[:9]
     last_leaves = score_specification.select_leaves('Voice 1')[3:12]
     leaves = first_leaves + last_leaves
-    leaves.set_pitches(library.example_pitches_1())
+    leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -103,7 +103,7 @@ def test_ScoreSpecification__set_pitches_05():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_ScoreSpecification__set_pitches_06():
+def test_ScoreSpecification__set_pitch_06():
     '''Read from server over synchronous discontiguous selection.
     Voice 1 before voice 2.
     '''
@@ -116,7 +116,7 @@ def test_ScoreSpecification__set_pitches_06():
     score_specification.set_rhythm(rhythm)
     leaves = score_specification.select_leaves('Voice 1')[:9]
     leaves += score_specification.select_leaves('Voice 2')[:9]
-    leaves.set_pitches(library.example_pitches_1())
+    leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -124,7 +124,7 @@ def test_ScoreSpecification__set_pitches_06():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_ScoreSpecification__set_pitches_07():
+def test_ScoreSpecification__set_pitch_07():
     '''Read from server over synchronous discontiguous selection.
     Voice 2 before voice 1.
     '''
@@ -137,7 +137,7 @@ def test_ScoreSpecification__set_pitches_07():
     score_specification.set_rhythm(rhythm)
     leaves = score_specification.select_leaves('Voice 2')[:9]
     leaves += score_specification.select_leaves('Voice 1')[:9]
-    leaves.set_pitches(library.example_pitches_1())
+    leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -145,7 +145,7 @@ def test_ScoreSpecification__set_pitches_07():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_ScoreSpecification__set_pitches_08():
+def test_ScoreSpecification__set_pitch_08():
     '''Two cursors open against the same server.
     '''
 
@@ -157,8 +157,8 @@ def test_ScoreSpecification__set_pitches_08():
     score_specification.set_rhythm(rhythm)
     cursor_1 = library.example_pitches_1()
     cursor_2 = library.example_pitches_1()
-    score_specification.select_leaves('Voice 1')[:9].set_pitches(cursor_1)
-    score_specification.select_leaves('Voice 2')[:9].set_pitches(cursor_2)
+    score_specification.select_leaves('Voice 1')[:9].set_pitch(cursor_1)
+    score_specification.select_leaves('Voice 2')[:9].set_pitch(cursor_2)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -166,7 +166,7 @@ def test_ScoreSpecification__set_pitches_08():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_ScoreSpecification__set_pitches_09():
+def test_ScoreSpecification__set_pitch_09():
     '''One cursor read three times.
     '''
 
@@ -177,9 +177,9 @@ def test_ScoreSpecification__set_pitches_09():
     rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
     score_specification.set_rhythm(rhythm)
     cursor = library.example_pitches_1()
-    score_specification.select_leaves('Voice 1')[:3].set_pitches(cursor)
-    score_specification.select_leaves('Voice 1')[6:9].set_pitches(cursor)
-    score_specification.select_leaves('Voice 1')[12:15].set_pitches(cursor)
+    score_specification.select_leaves('Voice 1')[:3].set_pitch(cursor)
+    score_specification.select_leaves('Voice 1')[6:9].set_pitch(cursor)
+    score_specification.select_leaves('Voice 1')[12:15].set_pitch(cursor)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -187,7 +187,7 @@ def test_ScoreSpecification__set_pitches_09():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_ScoreSpecification__set_pitches_10():
+def test_ScoreSpecification__set_pitch_10():
     '''One cursor initialized from the position of another.
     '''
 
@@ -198,9 +198,9 @@ def test_ScoreSpecification__set_pitches_10():
     rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
     score_specification.set_rhythm(rhythm)
     cursor_1 = library.example_pitches_1()
-    score_specification.select_leaves('Voice 1')[:9].set_pitches(cursor_1)
+    score_specification.select_leaves('Voice 1')[:9].set_pitch(cursor_1)
     cursor_2 = library.example_pitches_1(position=cursor_1.position)
-    score_specification.select_leaves('Voice 2')[-9:].set_pitches(cursor_2)
+    score_specification.select_leaves('Voice 2')[-9:].set_pitch(cursor_2)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -208,7 +208,7 @@ def test_ScoreSpecification__set_pitches_10():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_ScoreSpecification__set_pitches_11():
+def test_ScoreSpecification__set_pitch_11():
     '''Copied cursor preserves state.
     '''
 
@@ -219,9 +219,9 @@ def test_ScoreSpecification__set_pitches_11():
     rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
     score_specification.set_rhythm(rhythm)
     cursor_1 = library.example_pitches_1()
-    score_specification.select_leaves('Voice 1')[:9].set_pitches(cursor_1)
+    score_specification.select_leaves('Voice 1')[:9].set_pitch(cursor_1)
     cursor_2 = copy.deepcopy(cursor_1)
-    score_specification.select_leaves('Voice 2')[-9:].set_pitches(cursor_2)
+    score_specification.select_leaves('Voice 2')[-9:].set_pitch(cursor_2)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -229,7 +229,7 @@ def test_ScoreSpecification__set_pitches_11():
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
 
-def test_ScoreSpecification__set_pitches_12():
+def test_ScoreSpecification__set_pitch_12():
     '''Reverse cursor.
     '''
 
@@ -240,7 +240,7 @@ def test_ScoreSpecification__set_pitches_12():
     rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
     score_specification.set_rhythm(rhythm)
     leaves = score_specification.select_leaves('Voice 1')[:9]
-    leaves.set_pitches(library.example_pitches_1(reverse=True))
+    leaves.set_pitch(library.example_pitches_1(reverse=True))
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

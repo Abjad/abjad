@@ -7,18 +7,18 @@
     Logically-anding two time relation should, for example, produce another time relation.
 
 3.  Make this ...
-        score_specification.set_pitches(library.example_pitches_1())
+        score_specification.set_pitch(library.example_pitches_1())
     ... work to replace ...
-        score_specification.select_leaves('Voice 1').set_pitches(library.example_pitches_1())
-        score_specification.select_leaves('Voice 2').set_pitches(library.example_pitches_1())
-        score_specification.select_leaves('Voice 3').set_pitches(library.example_pitches_1())
-        score_specification.select_leaves('Voice 4').set_pitches(library.example_pitches_1())
+        score_specification.select_leaves('Voice 1').set_pitch(library.example_pitches_1())
+        score_specification.select_leaves('Voice 2').set_pitch(library.example_pitches_1())
+        score_specification.select_leaves('Voice 3').set_pitch(library.example_pitches_1())
+        score_specification.select_leaves('Voice 4').set_pitch(library.example_pitches_1())
     ... as a type of "cake slice" set expression.
 
 4.  Make this ...
         leaves = score_specification.select_leaves('Voice 1')
         leaves += score_specification.select_leaves('Voice 2')
-        leaves.set_pitches(library.example_pitches_1(), timeline=True)
+        leaves.set_pitch(library.example_pitches_1(), timeline=True)
     ... work.
 
 5.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.

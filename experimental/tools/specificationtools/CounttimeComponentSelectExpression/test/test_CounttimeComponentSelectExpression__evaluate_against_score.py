@@ -13,8 +13,8 @@ def test_CounttimeComponentSelectExpression__evaluate_against_score_01():
     score_specification.set_rhythm(rhythm)
     left, right = score_specification.select_divisions('Voice 1').partition_by_ratio((1, 1))
     left, right = left.timespan.select_leaves('Voice 1'), right.timespan.select_leaves('Voice 1')
-    left.set_pitches(library.example_pitches_1(reverse=True))
-    right.set_pitches(library.example_pitches_1(reverse=True))
+    left.set_pitch(library.example_pitches_1(reverse=True))
+    right.set_pitch(library.example_pitches_1(reverse=True))
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

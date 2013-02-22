@@ -293,6 +293,7 @@ Unstable packages (load manually)
       tools/specificationtools/ExpressionInventory/ExpressionInventory
       tools/specificationtools/HandlerExpression/HandlerExpression
       tools/specificationtools/IterablePayloadExpression/IterablePayloadExpression
+      tools/specificationtools/LeafColorSetExpression/LeafColorSetExpression
       tools/specificationtools/LeafSetExpression/LeafSetExpression
       tools/specificationtools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
       tools/specificationtools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
@@ -301,7 +302,6 @@ Unstable packages (load manually)
       tools/specificationtools/MeasureSelectExpression/MeasureSelectExpression
       tools/specificationtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/specificationtools/MultipleContextSetExpression/MultipleContextSetExpression
-      tools/specificationtools/NoteHeadColorSetExpression/NoteHeadColorSetExpression
       tools/specificationtools/OctaveTranspositionSetExpression/OctaveTranspositionSetExpression
       tools/specificationtools/OffsetExpression/OffsetExpression
       tools/specificationtools/PayloadExpression/PayloadExpression
@@ -394,6 +394,7 @@ Unstable packages (load manually)
       tools/specificationtools/ExpressionInventory/ExpressionInventory
       tools/specificationtools/HandlerExpression/HandlerExpression
       tools/specificationtools/IterablePayloadExpression/IterablePayloadExpression
+      tools/specificationtools/LeafColorSetExpression/LeafColorSetExpression
       tools/specificationtools/LeafSetExpression/LeafSetExpression
       tools/specificationtools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
       tools/specificationtools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
@@ -402,7 +403,6 @@ Unstable packages (load manually)
       tools/specificationtools/MeasureSelectExpression/MeasureSelectExpression
       tools/specificationtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/specificationtools/MultipleContextSetExpression/MultipleContextSetExpression
-      tools/specificationtools/NoteHeadColorSetExpression/NoteHeadColorSetExpression
       tools/specificationtools/OctaveTranspositionSetExpression/OctaveTranspositionSetExpression
       tools/specificationtools/OffsetExpression/OffsetExpression
       tools/specificationtools/PayloadExpression/PayloadExpression

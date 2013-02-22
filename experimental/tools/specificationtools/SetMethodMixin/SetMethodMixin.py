@@ -23,7 +23,7 @@ class SetMethodMixin(AbjadObject):
         return {
             'aggregate': specificationtools.AggregateSetExpression,
             'articulation': specificationtools.ArticulationSetExpression,
-            'note_head_color': specificationtools.NoteHeadColorSetExpression,
+            'leaf_color': specificationtools.LeafColorSetExpression,
             'octave_transposition': specificationtools.OctaveTranspositionSetExpression,
             'pitch': specificationtools.PitchSetExpression,
             'pitch_class_transform': specificationtools.PitchClassTransformSetExpression,
@@ -97,7 +97,7 @@ class SetMethodMixin(AbjadObject):
         attribute = 'articulation'
         return self._store_leaf_set_expression(attribute, source_expression)
 
-    def set_note_head_color(self, source_expression):
+    def set_leaf_color(self, source_expression):
         r'''Set note head color to `source_expression`.
 
         Return some sort of set expression.
@@ -105,7 +105,7 @@ class SetMethodMixin(AbjadObject):
         from experimental.tools import specificationtools
         assert isinstance(source_expression, str), repr(source_expression)
         source_expression = specificationtools.PayloadExpression(payload=source_expression)
-        attribute = 'note_head_color'
+        attribute = 'leaf_color'
         return self._store_leaf_set_expression(attribute, source_expression)
 
     def set_octave_transposition(self, source_expression):
@@ -130,7 +130,7 @@ class SetMethodMixin(AbjadObject):
         attribute = 'pitch_class_transform'
         return self._store_leaf_set_expression(attribute, source_expression)
 
-    def set_pitches(self, source_expression):
+    def set_pitch(self, source_expression):
         r'''Set pitches to `source_expression`.
 
         Return pitch set expression.
