@@ -39,9 +39,6 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_divisions
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_pitch
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_rhythm
    :noindex:
 

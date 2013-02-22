@@ -46,7 +46,6 @@ class ScoreSpecification(Specification):
         self._multiple_context_set_expressions = timespantools.TimespanInventory()
         self._next_lexical_rank = 0
         self._payload_expressions_by_voice = specificationtools.VoiceDictionary(score_template())
-        self._pitch_set_expressions = specificationtools.ExpressionInventory()
         self._region_expressions_by_attribute = specificationtools.AttributeDictionary()
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
@@ -267,19 +266,6 @@ class ScoreSpecification(Specification):
         Return voice dictionary.
         '''        
         return self._payload_expressions_by_voice
-
-    @property
-    def pitch_set_expressions(self):
-        '''Score specification pitch set expressions:
-
-        ::
-
-            >>> score_specification.pitch_set_expressions
-            ExpressionInventory([])
-
-        Return expression inventory.
-        '''
-        return self._pitch_set_expressions
 
     @property
     def region_expressions_by_attribute(self):

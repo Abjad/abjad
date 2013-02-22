@@ -1,12 +1,9 @@
-1.  Change ScoreSpecification.pitch_set_expressions
-    to ScoreSpecification.generalized_set_expressions.
-
-2.  Implement the following set methods:
+1.  Implement the following set methods:
         set_articulations()
         set_dynamics()
         set_marks()
         set_markup()
         set_tempo()
 
-3.  Implement a method to slur leaves by divisions.
+2.  Implement a method to slur leaves by divisions.
     Implement general methods to span leaves by divisions.

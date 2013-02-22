@@ -26,10 +26,7 @@ class SelectExpressionInventory(ExpressionInventory, GeneralizedSetMethodMixin):
         generalized_set_expression._score_specification = self.score_specification
         generalized_set_expression._lexical_rank = self.score_specification._next_lexical_rank
         self.score_specification._next_lexical_rank += 1
-        if isinstance(generalized_set_expression, specificationtools.PitchSetExpression):
-            self.score_specification.pitch_set_expressions.append(generalized_set_expression)
-        else:
-            self.score_specification.generalized_set_expressions.append(generalized_set_expression)
+        self.score_specification.generalized_set_expressions.append(generalized_set_expression)
         return generalized_set_expression
 
     ### READ-ONLY PUBLIC PROPERTIES ###

@@ -15,7 +15,6 @@ class ConcreteInterpreter(Interpreter):
             * interpret all time signatures scorewide
             * interpret all divisions scorewide
             * interpret rhythm scorewide
-            * interpret pitch scorewide.
             * interpret additional parameters.
 
         Return Abjad score object.
@@ -24,7 +23,6 @@ class ConcreteInterpreter(Interpreter):
         self.interpret_time_signatures()
         self.interpret_divisions()
         self.interpret_rhythm()
-        self.interpret_pitch()
         self.interpret_additional_parameters()
         return self.score
 
@@ -102,19 +100,15 @@ class ConcreteInterpreter(Interpreter):
                 timespan = timespantools.Timespan(start_offset, stop_offset)
                 segment_specification._timespan = timespan
 
-    def interpret_additional_parameters(self):
-        pass
-
     def interpret_divisions(self):
         self.make_timespan_scoped_single_context_set_expressions('divisions')
         self.make_region_expressions('divisions')
         self.make_payload_expressions('divisions')
         self.add_division_lists_to_score()
 
-    def interpret_pitch(self):
-        from experimental.tools import specificationtools
-        for pitch_set_expression in self.score_specification.pitch_set_expressions:
-            pitch_set_expression.execute_against_score(self.score)
+    def interpret_additional_parameters(self):
+        for generalized_set_expression in self.score_specification.generalized_set_expressions:
+            generalized_set_expression.execute_against_score(self.score)
 
     def interpret_rhythm(self):
         self.make_timespan_scoped_single_context_set_expressions('rhythm')
