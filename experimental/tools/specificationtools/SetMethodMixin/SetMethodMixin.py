@@ -24,7 +24,7 @@ class SetMethodMixin(AbjadObject):
             'aggregate': specificationtools.AggregateSetExpression,
             'articulation': specificationtools.ArticulationSetExpression,
             'leaf_color': specificationtools.LeafColorSetExpression,
-            'octave_transposition': specificationtools.OctaveTranspositionSetExpression,
+            'reigster': specificationtools.RegisterSetExpression,
             'pitch': specificationtools.PitchSetExpression,
             'pitch_class_transform': specificationtools.PitchClassTransformSetExpression,
             }[attribute]
@@ -72,7 +72,7 @@ class SetMethodMixin(AbjadObject):
     def set_aggregate(self, source_expression):
         r'''Set aggregate to `source_expression`.
 
-        Return some sort of set expression.
+        Return aggregate set expression.
         '''
         from experimental.tools import specificationtools
         assert isinstance(source_expression, list), repr(source_expression)
@@ -83,7 +83,7 @@ class SetMethodMixin(AbjadObject):
     def set_articulation(self, source_expression):
         r'''Set articulation to `source_expression`.
 
-        Return some sort of set expression.
+        Return articulation set expression.
         '''
         from experimental.tools import specificationtools
         if isinstance(source_expression, marktools.Articulation):
@@ -100,7 +100,7 @@ class SetMethodMixin(AbjadObject):
     def set_leaf_color(self, source_expression):
         r'''Set note head color to `source_expression`.
 
-        Return some sort of set expression.
+        Return leaf color set expression.
         '''
         from experimental.tools import specificationtools
         assert isinstance(source_expression, str), repr(source_expression)
@@ -108,21 +108,21 @@ class SetMethodMixin(AbjadObject):
         attribute = 'leaf_color'
         return self._store_leaf_set_expression(attribute, source_expression)
 
-    def set_octave_transposition(self, source_expression):
-        r'''Set octave transposition to `source_expression`.
+    def set_register(self, source_expression):
+        r'''Set register to `source_expression`.
 
-        Return some sort of set expression.
+        Return register set expression.
         '''
         from experimental.tools import specificationtools
         assert isinstance(source_expression, pitchtools.OctaveTranspositionMapping), repr(source_expression)
         source_expression = specificationtools.PayloadExpression(payload=source_expression)
-        attribute = 'octave_transposition'
+        attribute = 'reigster'
         return self._store_leaf_set_expression(attribute, source_expression)
 
     def set_pitch_class_transform(self, source_expression):
         r'''Set pitch class transform to `source_expression`.
 
-        Return some sort of set expression.
+        Return pitch-class transform set expression.
         '''
         from experimental.tools import specificationtools
         pitch_class_transform_expression = specificationtools.PitchClassTransformExpression(source_expression)

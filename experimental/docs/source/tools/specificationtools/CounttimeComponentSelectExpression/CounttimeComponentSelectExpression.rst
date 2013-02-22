@@ -90,13 +90,13 @@ Methods
 .. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.set_leaf_color
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.set_octave_transposition
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.set_pitch
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.set_pitch_class_transform
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.set_register
    :noindex:
 
 Special methods

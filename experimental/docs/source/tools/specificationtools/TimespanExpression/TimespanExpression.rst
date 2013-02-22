@@ -99,9 +99,6 @@ Methods
 .. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_markup
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_octave_transposition
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_offsets
    :noindex:
 
@@ -109,6 +106,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_pitch_class_transform
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_register
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_registration

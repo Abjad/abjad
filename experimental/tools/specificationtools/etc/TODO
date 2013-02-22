@@ -6,5 +6,3 @@
 
 2.  Implement a method to slur leaves by divisions.
     Implement general methods to span leaves by divisions.
-
-3.  Change set_octave_transposition() to set_register().

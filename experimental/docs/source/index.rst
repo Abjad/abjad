@@ -302,12 +302,12 @@ Unstable packages (load manually)
       tools/specificationtools/MeasureSelectExpression/MeasureSelectExpression
       tools/specificationtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/specificationtools/MultipleContextSetExpression/MultipleContextSetExpression
-      tools/specificationtools/OctaveTranspositionSetExpression/OctaveTranspositionSetExpression
       tools/specificationtools/OffsetExpression/OffsetExpression
       tools/specificationtools/PayloadExpression/PayloadExpression
       tools/specificationtools/PitchClassTransformExpression/PitchClassTransformExpression
       tools/specificationtools/PitchClassTransformSetExpression/PitchClassTransformSetExpression
       tools/specificationtools/PitchSetExpression/PitchSetExpression
+      tools/specificationtools/RegisterSetExpression/RegisterSetExpression
       tools/specificationtools/RhythmMakerExpression/RhythmMakerExpression
       tools/specificationtools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
       tools/specificationtools/RhythmSetExpressionLookupExpression/RhythmSetExpressionLookupExpression
@@ -403,12 +403,12 @@ Unstable packages (load manually)
       tools/specificationtools/MeasureSelectExpression/MeasureSelectExpression
       tools/specificationtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
       tools/specificationtools/MultipleContextSetExpression/MultipleContextSetExpression
-      tools/specificationtools/OctaveTranspositionSetExpression/OctaveTranspositionSetExpression
       tools/specificationtools/OffsetExpression/OffsetExpression
       tools/specificationtools/PayloadExpression/PayloadExpression
       tools/specificationtools/PitchClassTransformExpression/PitchClassTransformExpression
       tools/specificationtools/PitchClassTransformSetExpression/PitchClassTransformSetExpression
       tools/specificationtools/PitchSetExpression/PitchSetExpression
+      tools/specificationtools/RegisterSetExpression/RegisterSetExpression
       tools/specificationtools/RhythmMakerExpression/RhythmMakerExpression
       tools/specificationtools/RhythmMakerRhythmRegionExpression/RhythmMakerRhythmRegionExpression
       tools/specificationtools/RhythmSetExpressionLookupExpression/RhythmSetExpressionLookupExpression

@@ -39,13 +39,13 @@ Methods
 .. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_markup
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_octave_transposition
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_pitch
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_pitch_class_transform
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_register
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_registration

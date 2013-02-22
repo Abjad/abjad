@@ -72,13 +72,13 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_markup
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_octave_transposition
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_pitch
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_pitch_class_transform
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_register
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_registration

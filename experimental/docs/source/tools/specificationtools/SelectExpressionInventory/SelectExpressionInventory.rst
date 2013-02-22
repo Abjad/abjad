@@ -87,13 +87,13 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_leaf_color
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_octave_transposition
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_pitch
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_pitch_class_transform
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_register
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.sort

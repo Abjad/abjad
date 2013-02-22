@@ -69,13 +69,13 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_markup
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_octave_transposition
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_pitch
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_pitch_class_transform
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_register
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_registration

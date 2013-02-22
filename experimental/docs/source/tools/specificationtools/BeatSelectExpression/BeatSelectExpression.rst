@@ -84,13 +84,13 @@ Methods
 .. automethod:: experimental.tools.specificationtools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_leaf_color
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_octave_transposition
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_pitch
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_pitch_class_transform
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_register
    :noindex:
 
 Special methods

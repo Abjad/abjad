@@ -3,14 +3,14 @@ from abjad.tools import pitchtools
 from experimental.tools.specificationtools.LeafSetExpression import LeafSetExpression
 
 
-class OctaveTranspositionSetExpression(LeafSetExpression):
-    '''Octave transposition set expression.
+class RegisterSetExpression(LeafSetExpression):
+    '''Register set expression.
     '''
 
     ### PUBLIC METHODS ###
 
     def execute_against_score(self, score):
-        '''Execute octave transposition set expression against `score`.
+        '''Execute register set expression against `score`.
         '''
         octave_transposition_mapping = self.source_expression.payload
         for leaf in self._iterate_leaves_in_score(score):

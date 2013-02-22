@@ -87,13 +87,13 @@ Methods
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_leaf_color
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_octave_transposition
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_pitch
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_pitch_class_transform
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_register
    :noindex:
 
 Special methods
