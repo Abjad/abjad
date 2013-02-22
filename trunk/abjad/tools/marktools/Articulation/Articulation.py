@@ -3,7 +3,40 @@ from abjad.tools.marktools.DirectedMark.DirectedMark import DirectedMark
 
 
 class Articulation(DirectedMark):
-    '''Abjad model of musical articulation::
+    '''Abjad model of musical articulation.
+    
+    Initialize from articulation name:
+
+    ::
+
+        >>> marktools.Articulation('staccato')
+        Articulation('staccato')
+
+    Initialize from articulation abbreviation:
+
+    ::
+
+        >>> marktools.Articulation('.')
+        Articulation('.')
+
+    Initialize from other articulation:
+
+    ::
+
+        >>> articulation = marktools.Articulation('staccato')
+        >>> marktools.Articulation(articulation)
+        Articulation('staccato')
+
+    Initialize with direction:
+
+    ::
+
+        >>> marktools.Articulation('staccato', Up)
+        Articulation('staccato', Up)
+
+    Attach to note, rest or chord after initialization:
+
+    ::
 
         >>> note = Note("c'4")
 
@@ -11,8 +44,6 @@ class Articulation(DirectedMark):
 
         >>> marktools.Articulation('staccato')(note)
         Articulation('staccato')(c'4)
-
-    ::
 
         >>> f(note)
         c'4 -\staccato
@@ -32,16 +63,19 @@ class Articulation(DirectedMark):
 
     def __init__(self, *args):
         from abjad.tools import datastructuretools
-        assert len(args) in range(3)
+        assert len(args) in range(3), repr(args)
         if 2 <= len(args):
-            assert isinstance(args[0], (str, type(None)))
-            assert isinstance(args[1], (str, type(None), datastructuretools.OrdinalConstant))
+            assert isinstance(args[0], (str, type(None))), repr(args[0])
+            assert isinstance(args[1], (str, type(None), datastructuretools.OrdinalConstant)), repr(args[1])
             string, direction = args
+        elif len(args) == 1 and isinstance(args[0], type(self)):
+            string = args[0].name
+            direction = args[0].direction
         elif len(args) == 1:
-            assert isinstance(args[0], (str, type(None), datastructuretools.OrdinalConstant))
+            assert isinstance(args[0], (str, type(None), datastructuretools.OrdinalConstant)), repr(args[0])
             if args[0]:
                 splits = args[0].split('\\')
-                assert len(splits) in (1, 2)
+                assert len(splits) in (1, 2), repr(splits)
                 if len(splits) == 1:
                     string, direction = args[0], None
                 elif len(splits) == 2:
@@ -54,7 +88,6 @@ class Articulation(DirectedMark):
                 string, direction = None, None
         else:
             string, direction = None, None
-
         DirectedMark.__init__(self, direction=direction)
         self._string = string
         self._format_slot = 'right'
@@ -151,6 +184,6 @@ class Articulation(DirectedMark):
             '''
             return self._string
         def fset(self, name):
-            assert isinstance(name, str)
+            assert isinstance(name, str), repr(name)
             self._string = name
         return property(**locals())
