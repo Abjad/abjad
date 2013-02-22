@@ -4,7 +4,11 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 class DynamicMark(ContextMark):
     r'''.. versionadded:: 2.0
 
-    Abjad model of a dynamic mark::
+    Abjad model of a dynamic mark.
+
+    Example 1. Initialize from dynamic name:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 
@@ -27,13 +31,29 @@ class DynamicMark(ContextMark):
 
         >>> show(staff) # doctest: +SKIP
 
+    Example 2. Initialize from other dynamic mark:
+
+    ::
+
+        >>> dynamic_mark_1 = contexttools.DynamicMark('f')
+        >>> dynamic_mark_2 = contexttools.DynamicMark(dynamic_mark_1)
+
+    ::
+
+        >>> dynamic_mark_1
+        DynamicMark('f')
+
+    ::
+
+        >>> dynamic_mark_2
+        DynamicMark('f')
+
     Dynamic marks target the staff context by default.
     '''
 
     ### CLASS ATTRIBUTES ###
 
     _default_positional_input_arguments = (repr('f'), )
-
     _format_slot = 'right'
 
     ### INITIALIZER ###
@@ -43,6 +63,8 @@ class DynamicMark(ContextMark):
         ContextMark.__init__(self, target_context=target_context)
         if self.target_context is None:
             self._target_context = Staff
+        if isinstance(dynamic_name, type(self)):
+            dynamic_name = dynamic_name.dynamic_name
         self._dynamic_name = dynamic_name
 
     ### SPECIAL METHODS ###
