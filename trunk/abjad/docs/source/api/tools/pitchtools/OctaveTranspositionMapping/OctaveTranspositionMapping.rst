@@ -54,6 +54,9 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.__add__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.__call__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.__contains__
    :noindex:
 

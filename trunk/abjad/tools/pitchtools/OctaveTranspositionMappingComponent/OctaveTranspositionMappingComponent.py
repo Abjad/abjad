@@ -77,6 +77,13 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     @property
     def _keyword_argument_names(self):
         return ()
+
+    @property
+    def _list_format(self):
+        return ((
+            self.source_pitch_range.start_pitch.chromatic_pitch_number,
+            self.source_pitch_range.stop_pitch.chromatic_pitch_number),
+            self.target_octave_start_pitch.chromatic_pitch_number)
         
     @property
     def _one_line_menuing_summary(self):

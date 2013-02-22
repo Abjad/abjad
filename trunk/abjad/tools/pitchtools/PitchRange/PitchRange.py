@@ -2,6 +2,7 @@ import numbers
 from abjad.tools.abctools import AbjadObject
 
 
+# TODO: make iterable so that for x in PitchRange works
 class PitchRange(AbjadObject):
     r""".. versionadded:: 2.0
 
@@ -37,7 +38,7 @@ class PitchRange(AbjadObject):
                 indicator = 'exclusive'
             start = (args[0].start_pitch, indicator)
             object.__setattr__(self, '_start', start)
-            assert isinstance(args[0], type(self))
+            assert isinstance(args[0], type(self)), repr(args[0])
             if args[0].stop_pitch_is_included_in_range:
                 indicator = 'inclusive'
             else:
@@ -50,7 +51,7 @@ class PitchRange(AbjadObject):
             start, stop = args[0]
             type(self).__init__(self, start, stop)
         else:
-            assert len(args) == 2
+            assert len(args) == 2, repr(args)
             start, stop = args
             if start is None:
                 start = start
@@ -58,7 +59,7 @@ class PitchRange(AbjadObject):
                 pitch = pitchtools.NamedChromaticPitch(start)
                 start = (pitch, 'inclusive')
             else:
-                assert len(start) == 2
+                assert len(start) == 2, repr(start)
                 pitch, containment = start
                 assert containment in ('inclusive', 'exclusive')
                 pitch = pitchtools.NamedChromaticPitch(pitch)
@@ -70,9 +71,9 @@ class PitchRange(AbjadObject):
                 pitch = pitchtools.NamedChromaticPitch(stop)
                 stop = (pitch, 'inclusive')
             else:
-                assert len(stop) == 2
+                assert len(stop) == 2, repr(stop)
                 pitch, containment = stop
-                assert containment in ('inclusive', 'exclusive')
+                assert containment in ('inclusive', 'exclusive'), repr(containment)
                 pitch = pitchtools.NamedChromaticPitch(pitch)
                 stop = (pitch, containment)
             object.__setattr__(self, '_stop', stop)
