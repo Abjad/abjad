@@ -19,6 +19,7 @@ class SetMethodMixin(AbjadObject):
     def _attribute_to_set_expression_class(self, attribute):
         from experimental.tools import specificationtools
         return {
+            'aggregate': specificationtools.AggregateSetExpression,
             'note_head_color': specificationtools.NoteHeadColorSetExpression,
             'pitch': specificationtools.PitchSetExpression,
             'pitch_class_transform': specificationtools.PitchClassTransformSetExpression,
@@ -67,17 +68,33 @@ class SetMethodMixin(AbjadObject):
         generalized_set_expression._score_specification = self.score_specification
         generalized_set_expression._lexical_rank = self.score_specification._next_lexical_rank
         self.score_specification._next_lexical_rank += 1
+        # TODO: replace all following branches with store in generalized_set_expressions
         if isinstance(generalized_set_expression, specificationtools.PitchSetExpression):
             self.score_specification.pitch_set_expressions.append(generalized_set_expression)
         elif isinstance(generalized_set_expression, specificationtools.PitchClassTransformSetExpression):
             self.score_specification.pitch_set_expressions.append(generalized_set_expression)
         elif isinstance(generalized_set_expression, specificationtools.NoteHeadColorSetExpression):
             self.score_specification.pitch_set_expressions.append(generalized_set_expression)
+        elif isinstance(generalized_set_expression, specificationtools.AggregateSetExpression):
+            self.score_specification.pitch_set_expressions.append(generalized_set_expression)
         else:
             self.score_specification.generalized_set_expressions.append(generalized_set_expression)
         return generalized_set_expression
 
     ### PUBLIC METHODS ###
+
+    def set_aggregate(self, source_expression):
+        r'''Set aggregate to `source_expression`.
+
+        Return some sort of set expression.
+        '''
+        from experimental.tools import specificationtools
+        assert isinstance(source_expression, list), repr(source_expression)
+        source_expression = specificationtools.PayloadExpression(payload=source_expression)
+        #aggregate_set_expression = specificationtools.AggregateSetExpression(
+        #    source_expression=source_expression, target_select_expression_inventory=self)
+        attribute = 'aggregate'
+        return self._store_generalized_set_expression(attribute, source_expression)
 
     def set_note_head_color(self, source_expression):
         r'''Set note head color to `source_expression`.
