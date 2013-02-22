@@ -9,9 +9,6 @@ specificationtools.OctaveTranspositionSetExpression
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.specificationtools.OctaveTranspositionSetExpression.OctaveTranspositionSetExpression.OctaveTranspositionSetExpression.attribute
-   :noindex:
-
 .. autoattribute:: experimental.tools.specificationtools.OctaveTranspositionSetExpression.OctaveTranspositionSetExpression.OctaveTranspositionSetExpression.source_expression
    :noindex:
 

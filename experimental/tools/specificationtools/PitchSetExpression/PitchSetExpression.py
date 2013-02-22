@@ -1,18 +1,11 @@
 from abjad.tools import chordtools
 from abjad.tools import notetools
-from experimental.tools.specificationtools.GeneralizedSetExpression import GeneralizedSetExpression
+from experimental.tools.specificationtools.LeafSetExpression import LeafSetExpression
 
 
-class PitchSetExpression(GeneralizedSetExpression):
+class PitchSetExpression(LeafSetExpression):
     '''Pitch set expression.
     '''
-
-    ### INTIALIZER ###
-
-    def __init__(self, source_expression=None, target_select_expression_inventory=None):
-        GeneralizedSetExpression.__init__(self, attribute='pitch',
-            source_expression=source_expression,
-            target_select_expression_inventory=target_select_expression_inventory)
 
     ### PUBLIC METHODS ###
 

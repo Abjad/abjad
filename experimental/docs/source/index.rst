@@ -291,9 +291,9 @@ Unstable packages (load manually)
       tools/specificationtools/DivisionSelectExpression/DivisionSelectExpression
       tools/specificationtools/DivisionSetExpressionLookupExpression/DivisionSetExpressionLookupExpression
       tools/specificationtools/ExpressionInventory/ExpressionInventory
-      tools/specificationtools/GeneralizedSetExpression/GeneralizedSetExpression
       tools/specificationtools/HandlerExpression/HandlerExpression
       tools/specificationtools/IterablePayloadExpression/IterablePayloadExpression
+      tools/specificationtools/LeafSetExpression/LeafSetExpression
       tools/specificationtools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
       tools/specificationtools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
       tools/specificationtools/LookupExpressionRhythmRegionExpression/LookupExpressionRhythmRegionExpression
@@ -392,9 +392,9 @@ Unstable packages (load manually)
       tools/specificationtools/DivisionSelectExpression/DivisionSelectExpression
       tools/specificationtools/DivisionSetExpressionLookupExpression/DivisionSetExpressionLookupExpression
       tools/specificationtools/ExpressionInventory/ExpressionInventory
-      tools/specificationtools/GeneralizedSetExpression/GeneralizedSetExpression
       tools/specificationtools/HandlerExpression/HandlerExpression
       tools/specificationtools/IterablePayloadExpression/IterablePayloadExpression
+      tools/specificationtools/LeafSetExpression/LeafSetExpression
       tools/specificationtools/LiteralDivisionRegionExpression/LiteralDivisionRegionExpression
       tools/specificationtools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
       tools/specificationtools/LookupExpressionRhythmRegionExpression/LookupExpressionRhythmRegionExpression

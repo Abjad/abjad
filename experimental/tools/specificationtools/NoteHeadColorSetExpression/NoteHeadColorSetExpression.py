@@ -1,17 +1,10 @@
 from abjad.tools import labeltools
-from experimental.tools.specificationtools.GeneralizedSetExpression import GeneralizedSetExpression
+from experimental.tools.specificationtools.LeafSetExpression import LeafSetExpression
 
 
-class NoteHeadColorSetExpression(GeneralizedSetExpression):
+class NoteHeadColorSetExpression(LeafSetExpression):
     '''Note head color set expression.
     '''    
-
-    ### INITIALIZER ###
-
-    def __init__(self, source_expression=None, target_select_expression_inventory=None):
-        GeneralizedSetExpression.__init__(self, attribute='note_head_color',
-            source_expression=source_expression,
-            target_select_expression_inventory=target_select_expression_inventory)
 
     ### PUBLIC METHODS ###
 

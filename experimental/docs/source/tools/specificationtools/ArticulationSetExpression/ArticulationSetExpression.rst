@@ -9,9 +9,6 @@ specificationtools.ArticulationSetExpression
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.specificationtools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.attribute
-   :noindex:
-
 .. autoattribute:: experimental.tools.specificationtools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.source_expression
    :noindex:
 

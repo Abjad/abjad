@@ -9,9 +9,6 @@ specificationtools.NoteHeadColorSetExpression
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.specificationtools.NoteHeadColorSetExpression.NoteHeadColorSetExpression.NoteHeadColorSetExpression.attribute
-   :noindex:
-
 .. autoattribute:: experimental.tools.specificationtools.NoteHeadColorSetExpression.NoteHeadColorSetExpression.NoteHeadColorSetExpression.source_expression
    :noindex:
 

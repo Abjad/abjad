@@ -9,9 +9,6 @@ specificationtools.PitchClassTransformSetExpression
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.specificationtools.PitchClassTransformSetExpression.PitchClassTransformSetExpression.PitchClassTransformSetExpression.attribute
-   :noindex:
-
 .. autoattribute:: experimental.tools.specificationtools.PitchClassTransformSetExpression.PitchClassTransformSetExpression.PitchClassTransformSetExpression.source_expression
    :noindex:
 

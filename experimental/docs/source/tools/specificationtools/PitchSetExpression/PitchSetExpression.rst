@@ -9,9 +9,6 @@ specificationtools.PitchSetExpression
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.attribute
-   :noindex:
-
 .. autoattribute:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.source_expression
    :noindex:
 

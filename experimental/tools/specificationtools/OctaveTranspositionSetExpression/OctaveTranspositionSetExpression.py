@@ -1,18 +1,11 @@
 from abjad.tools import notetools
 from abjad.tools import pitchtools
-from experimental.tools.specificationtools.GeneralizedSetExpression import GeneralizedSetExpression
+from experimental.tools.specificationtools.LeafSetExpression import LeafSetExpression
 
 
-class OctaveTranspositionSetExpression(GeneralizedSetExpression):
+class OctaveTranspositionSetExpression(LeafSetExpression):
     '''Octave transposition set expression.
     '''
-
-    ### INITIALIZER ###
-
-    def __init__(self, source_expression=None, target_select_expression_inventory=None):
-        GeneralizedSetExpression.__init__(self, attribute='aggregate',
-            source_expression=source_expression,
-            target_select_expression_inventory=target_select_expression_inventory)
 
     ### PUBLIC METHODS ###
 

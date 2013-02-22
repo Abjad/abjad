@@ -107,8 +107,8 @@ class ConcreteInterpreter(Interpreter):
         self.add_division_lists_to_score()
 
     def interpret_additional_parameters(self):
-        for generalized_set_expression in self.score_specification.generalized_set_expressions:
-            generalized_set_expression.execute_against_score(self.score)
+        for leaf_set_expression in self.score_specification.leaf_set_expressions:
+            leaf_set_expression.execute_against_score(self.score)
 
     def interpret_rhythm(self):
         self.make_timespan_scoped_single_context_set_expressions('rhythm')

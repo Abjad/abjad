@@ -9,9 +9,6 @@ specificationtools.AggregateSetExpression
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.specificationtools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.attribute
-   :noindex:
-
 .. autoattribute:: experimental.tools.specificationtools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.source_expression
    :noindex:
 
