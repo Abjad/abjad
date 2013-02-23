@@ -3,3 +3,5 @@
 
 2.  Implement a method to slur leaves by divisions.
     Implement general methods to span leaves by divisions.
+
+3.  Change ScoreSpecification.leaf_set_expressions to ScoreSpecification.postrhythm_set_expressions.
