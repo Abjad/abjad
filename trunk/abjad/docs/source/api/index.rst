@@ -677,6 +677,7 @@ Core composition packages
       tools/instrumenttools/Vibraphone/Vibraphone
       tools/instrumenttools/Viola/Viola
       tools/instrumenttools/Violin/Violin
+      tools/instrumenttools/WoodwindFingering/WoodwindFingering
       tools/instrumenttools/Xylophone/Xylophone
 
    --------
@@ -768,6 +769,7 @@ Core composition packages
       tools/instrumenttools/Vibraphone/Vibraphone
       tools/instrumenttools/Viola/Viola
       tools/instrumenttools/Violin/Violin
+      tools/instrumenttools/WoodwindFingering/WoodwindFingering
       tools/instrumenttools/Xylophone/Xylophone
 
    Functions
