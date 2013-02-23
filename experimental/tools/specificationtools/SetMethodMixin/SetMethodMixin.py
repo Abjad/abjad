@@ -68,7 +68,7 @@ class SetMethodMixin(AbjadObject):
         leaf_set_expression._score_specification = self.score_specification
         leaf_set_expression._lexical_rank = self.score_specification._next_lexical_rank
         self.score_specification._next_lexical_rank += 1
-        self.score_specification.leaf_set_expressions.append(leaf_set_expression)
+        self.score_specification.postrhythm_set_expressions.append(leaf_set_expression)
         return leaf_set_expression
 
     ### PUBLIC METHODS ###

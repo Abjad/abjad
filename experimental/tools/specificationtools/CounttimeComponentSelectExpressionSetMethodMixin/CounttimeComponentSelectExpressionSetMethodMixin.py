@@ -28,7 +28,7 @@ class CounttimeComponentSelectExpressionSetMethodMixin(AbjadObject):
         counttime_component_select_expression_set_expression._lexical_rank = \
             self.score_specification._next_lexical_rank
         self.score_specification._next_lexical_rank += 1
-        self.score_specification.leaf_set_expressions.append(
+        self.score_specification.postrhythm_set_expressions.append(
             counttime_component_select_expression_set_expression)
         return counttime_component_select_expression_set_expression
 
