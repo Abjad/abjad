@@ -41,24 +41,6 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
 
     ### PUBLIC METHODS ###
 
-    def set_aggregate(self, source_expression, contexts=None, persist=True):
-        r'''Set aggregate to `source_expression` for target timespan over all `contexts`.
-
-        Return multiple-context set expression.
-        '''
-        attribute = 'aggregate'
-        return self._store_multiple_context_set_expression(attribute, source_expression, 
-            contexts=contexts, persist=persist)
-
-    def set_articulations(self, source_expression, contexts=None, persist=True):
-        r'''Set articulations to `source_expression` for target timespan over all `contexts`.
-
-        Return multiple-context set expression.
-        '''
-        attribute = 'articulations'
-        return self._store_multiple_context_set_expression(attribute, source_expression, 
-            contexts=contexts, persist=persist)
-
     def set_divisions(self, source_expression, contexts=None, persist=True, truncate=None):
         r'''Set divisions to `source_expression` for target timespan over all `contexts`:
 
@@ -87,42 +69,6 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
         attribute = 'divisions'
         return self._store_multiple_context_set_expression(attribute, source_expression,
             contexts=contexts, truncate=truncate, persist=persist)
-
-    def set_dynamics(self, source_expression, contexts=None, persist=True):
-        r'''Set dynamics to `source_expression` for target timespan over all `contexts`.
-
-        Return multiple-context set expression.
-        '''
-        attribute = 'dynamics'
-        return self._store_multiple_context_set_expression(attribute, source_expression, 
-            contexts=contexts, persist=persist)
-
-    def set_marks(self, source_expression, contexts=None, persist=True):
-        r'''Set marks to `source_expression` for target timespan over all `contexts`.
-
-        Return multiple-context set expression.
-        '''
-        attribute = 'marks'
-        return self._store_multiple_context_set_expression(attribute, source_expression, 
-            contexts=contexts, persist=persist)
-
-    def set_markup(self, source_expression, contexts=None, persist=True):
-        r'''Set markup to `source_expression` for target timespan over all `contexts`.
-
-        Return multiple-context set expression.
-        '''
-        attribute = 'markup'
-        return self._store_multiple_context_set_expression(attribute, source_expression, 
-            contexts=contexts, persist=persist)
-
-    def set_registration(self, source_expression, contexts=None, persist=True):
-        r'''Set registration to `source_expression` for target timespan over all `contexts`.
-
-        Return multiple-context set expression.
-        '''
-        attribute = 'registration'
-        return self._store_multiple_context_set_expression(attribute, source_expression, 
-            contexts=contexts, persist=persist)
 
     def set_rhythm(self, source_expression, contexts=None, persist=True):
         r'''Set rhythm to `source_expression` for target timespan over all `contexts`.
@@ -159,15 +105,6 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
         attribute = 'rhythm'
         return self._store_multiple_context_set_expression(
             attribute, source_expression, contexts=contexts, persist=persist)
-
-    def set_tempo(self, source_expression, contexts=None, persist=True):
-        r'''Set tempo to `source_expression` for target timespan over all `contexts`.
-
-        Return multiple-context set expression.
-        '''
-        attribute = 'tempo'
-        return self._store_multiple_context_set_expression(attribute, source_expression, 
-            contexts=contexts, persist=persist)
 
     def set_time_signatures(self, source_expression, contexts=None, persist=True):
         r'''Set time signatures to `source_expression` for target timespan over all `contexts`.
