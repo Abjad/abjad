@@ -1,4 +1,3 @@
-from abjad.tools import timespantools
 from experimental.tools.specificationtools.Expression import Expression
 
 

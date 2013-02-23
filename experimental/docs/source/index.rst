@@ -286,6 +286,7 @@ Unstable packages (load manually)
       tools/specificationtools/ContextDictionary/ContextDictionary
       tools/specificationtools/ContextProxy/ContextProxy
       tools/specificationtools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
+      tools/specificationtools/CounttimeComponentSelectExpressionSetExpression/CounttimeComponentSelectExpressionSetExpression
       tools/specificationtools/Division/Division
       tools/specificationtools/DivisionList/DivisionList
       tools/specificationtools/DivisionRegionExpression/DivisionRegionExpression
@@ -329,6 +330,7 @@ Unstable packages (load manually)
       tools/specificationtools/SingleContextDivisionSetExpression/SingleContextDivisionSetExpression
       tools/specificationtools/SingleContextRhythmSetExpression/SingleContextRhythmSetExpression
       tools/specificationtools/SingleContextTimeSignatureSetExpression/SingleContextTimeSignatureSetExpression
+      tools/specificationtools/SpannerSetExpression/SpannerSetExpression
       tools/specificationtools/StartPositionedDivisionPayloadExpression/StartPositionedDivisionPayloadExpression
       tools/specificationtools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
       tools/specificationtools/StartPositionedRhythmPayloadExpression/StartPositionedRhythmPayloadExpression
@@ -391,6 +393,7 @@ Unstable packages (load manually)
       tools/specificationtools/ContextDictionary/ContextDictionary
       tools/specificationtools/ContextProxy/ContextProxy
       tools/specificationtools/CounttimeComponentSelectExpression/CounttimeComponentSelectExpression
+      tools/specificationtools/CounttimeComponentSelectExpressionSetExpression/CounttimeComponentSelectExpressionSetExpression
       tools/specificationtools/Division/Division
       tools/specificationtools/DivisionList/DivisionList
       tools/specificationtools/DivisionRegionExpression/DivisionRegionExpression
@@ -434,6 +437,7 @@ Unstable packages (load manually)
       tools/specificationtools/SingleContextDivisionSetExpression/SingleContextDivisionSetExpression
       tools/specificationtools/SingleContextRhythmSetExpression/SingleContextRhythmSetExpression
       tools/specificationtools/SingleContextTimeSignatureSetExpression/SingleContextTimeSignatureSetExpression
+      tools/specificationtools/SpannerSetExpression/SpannerSetExpression
       tools/specificationtools/StartPositionedDivisionPayloadExpression/StartPositionedDivisionPayloadExpression
       tools/specificationtools/StartPositionedPayloadExpression/StartPositionedPayloadExpression
       tools/specificationtools/StartPositionedRhythmPayloadExpression/StartPositionedRhythmPayloadExpression

@@ -8,20 +8,13 @@ class CounttimeComponentSelectExpressionSetMethodMixin(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _attribute_to_set_expression_class(self, attribute):
-        from experimental.tools import specificationtools
-        return {
-            'spanner': specificationtools.SpannerSetExpression,
-            }[attribute]
-
     def _store_counttime_component_select_expression_set_expression(self, attribute, source_expression):
         from experimental.tools import specificationtools
         set_expression_class = self._attribute_to_set_expression_class(attribute)
         source_expression = self._expr_to_expression(source_expression)
-        target_counttime_component_select_expression = self
         counttime_component_select_expression_set_expression = set_expression_class(
             source_expression=source_expression,
-            target_select_expression_inventory=target_select_expression_inventory
+            target_counttime_component_select_expression=self
             )
         assert self.score_specification is not None
         counttime_component_select_expression_set_expression._score_specification = self.score_specification

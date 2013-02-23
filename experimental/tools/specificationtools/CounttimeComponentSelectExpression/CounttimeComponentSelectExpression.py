@@ -11,10 +11,12 @@ from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import tuplettools
 from abjad.tools import wellformednesstools
+from experimental.tools.specificationtools.CounttimeComponentSelectExpressionSetMethodMixin import \
+    CounttimeComponentSelectExpressionSetMethodMixin
 from experimental.tools.specificationtools.SelectExpression import SelectExpression
 
 
-class CounttimeComponentSelectExpression(SelectExpression):
+class CounttimeComponentSelectExpression(SelectExpression, CounttimeComponentSelectExpressionSetMethodMixin):
     r'''Counttime component select expression.
 
     Preparatory definitions:
@@ -71,6 +73,7 @@ class CounttimeComponentSelectExpression(SelectExpression):
             voice_name=voice_name, 
             time_relation=time_relation, 
             callbacks=callbacks)
+        CounttimeComponentSelectExpressionSetMethodMixin.__init__(self)
         if isinstance(classes, tuple):
             classes = specificationtools.ClassInventory(classes)
         self._classes = classes

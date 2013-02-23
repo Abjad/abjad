@@ -31,6 +31,7 @@ class SetMethodMixin(AbjadObject):
             'reigster': specificationtools.RegisterSetExpression,
             'pitch': specificationtools.PitchSetExpression,
             'pitch_class_transform': specificationtools.PitchClassTransformSetExpression,
+            'spanner': specificationtools.SpannerSetExpression,
             }[attribute]
 
     def _expr_to_expression(self, expr):
