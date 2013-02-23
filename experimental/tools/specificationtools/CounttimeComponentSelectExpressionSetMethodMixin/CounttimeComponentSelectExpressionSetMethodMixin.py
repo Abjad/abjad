@@ -2,7 +2,7 @@ from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadObject
 
 
-class CounttimeComponentSetMethodMixin(AbjadObject):
+class CounttimeComponentSelectExpressionSetMethodMixin(AbjadObject):
     '''Counttime component set method mixin.
     '''
 

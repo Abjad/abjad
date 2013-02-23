@@ -249,7 +249,7 @@ Unstable packages (load manually)
 
       tools/specificationtools/AnchoredExpression/AnchoredExpression
       tools/specificationtools/CallbackMixin/CallbackMixin
-      tools/specificationtools/CounttimeComponentSetMethodMixin/CounttimeComponentSetMethodMixin
+      tools/specificationtools/CounttimeComponentSelectExpressionSetMethodMixin/CounttimeComponentSelectExpressionSetMethodMixin
       tools/specificationtools/Expression/Expression
       tools/specificationtools/Interpreter/Interpreter
       tools/specificationtools/IterablePayloadCallbackMixin/IterablePayloadCallbackMixin
@@ -354,7 +354,7 @@ Unstable packages (load manually)
 
       tools/specificationtools/AnchoredExpression/AnchoredExpression
       tools/specificationtools/CallbackMixin/CallbackMixin
-      tools/specificationtools/CounttimeComponentSetMethodMixin/CounttimeComponentSetMethodMixin
+      tools/specificationtools/CounttimeComponentSelectExpressionSetMethodMixin/CounttimeComponentSelectExpressionSetMethodMixin
       tools/specificationtools/Expression/Expression
       tools/specificationtools/Interpreter/Interpreter
       tools/specificationtools/IterablePayloadCallbackMixin/IterablePayloadCallbackMixin
