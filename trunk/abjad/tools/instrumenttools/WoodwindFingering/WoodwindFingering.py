@@ -17,25 +17,25 @@ class WoodwindFingering(AbjadObject):
         >>> ww
         WoodwindFingering('clarinet', center_column=('one', 'two', 'three', 'five'), left_hand=('R', 'thumb'), right_hand=('e',))    
     
-    ::
-    
     Initialize a WoodwindFingering from another WoodwindFingering:
+
+    ::
     
         >>> ww2 = instrumenttools.WoodwindFingering(ww)
         >>> ww2
         WoodwindFingering('clarinet', center_column=('one', 'two', 'three', 'five'), left_hand=('R', 'thumb'), right_hand=('e',))
     
-    ::
-    
     Call a WoodwindFingering to create a woodwind diagram MarkupCommand:
+
+    ::
     
         >>> fingering_command = ww()
         >>> fingering_command
         MarkupCommand('woodwind-diagram', Scheme('clarinet'), Scheme([SchemePair(('cc', ('one', 'two', 'three', 'five'))), SchemePair(('lh', ('R', 'thumb'))), SchemePair(('rh', ('e',)))]))
     
-    ::
-    
     Attach the MarkupCommand to score components, such as a chord representing a multiphonic sound:
+
+    ::
     
         >>> markup = markuptools.Markup(fingering_command, direction=Down)
         >>> chord = Chord("<ds' fs''>4")
@@ -56,9 +56,9 @@ class WoodwindFingering(AbjadObject):
     
         >>> show(chord) # doctest: +SKIP
     
-    ::
-
     Initialize fingerings for eight different woodwind instruments:
+
+    ::
 
         >>> instrument_names = ['piccolo', 'flute', 'oboe', 'clarinet', 'bass-clarinet', 'saxophone', 'bassoon', 'contrabassoon' ]
         >>> for name in instrument_names:
@@ -73,10 +73,9 @@ class WoodwindFingering(AbjadObject):
         WoodwindFingering('bassoon', center_column=(), left_hand=(), right_hand=())
         WoodwindFingering('contrabassoon', center_column=(), left_hand=(), right_hand=())
     
-    ::
-    
     An override displays diagrams symbolically instead of graphically:
-    
+
+    ::
         
         >>> chord = Chord("e' as' gqf''", (1,1))
         >>> fingering = instrumenttools.WoodwindFingering('clarinet', center_column=['one', 'two', 'three', 'four'], left_hand=['R','cis'], right_hand=['fis'])
@@ -102,9 +101,9 @@ class WoodwindFingering(AbjadObject):
     
         >>> show(chord) # doctest: +SKIP
     
-    ::
-    
     The thickness and size of diagrams can also be changed with overrides:
+
+    ::
     
         >>> chord = Chord("e' as' gqf''", (1,1))
         >>> fingering = instrumenttools.WoodwindFingering('clarinet', center_column=['one', 'two', 'three', 'four'], left_hand=['R','cis'], right_hand=['fis'])
@@ -136,10 +135,7 @@ class WoodwindFingering(AbjadObject):
     
         >>> show(chord) # doctest: +SKIP
     
-    ::
-    
     Return woodwind fingering.
-    
     '''
     
     ### INITIALIZER ###
@@ -258,12 +254,11 @@ class WoodwindFingering(AbjadObject):
     ###PUBLIC METHODS###
 
     def print_guide(self):
-        r'''Print read-only string containing instrument's valid key strings, instrument diagram, and syntax explanation.
+        r'''Print read-only string containing instrument's valid key strings, 
+        instrument diagram, and syntax explanation.
         
-    ::
-    
-    Return string.
-    '''
+        Return string.
+        '''
         if self._instrument_name == 'clarinet':
             lines = [
             'list of valid key strings for clarinet:',
