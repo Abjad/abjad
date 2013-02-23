@@ -42,14 +42,65 @@ class StemTremolo(Mark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        #return type(self)(self.tremolo_flags)
+        '''Copy stem tremolo:
+
+        ::
+
+            >>> import copy
+            >>> stem_tremolo_1 = marktools.StemTremolo(16)
+            >>> stem_tremolo_2 = copy.copy(stem_tremolo_1)
+
+        ::
+
+            >>> stem_tremolo_1 == stem_tremolo_2
+            True
+            
+        ::
+
+            >>> stem_tremolo_1 is not stem_tremolo_2
+            True
+
+        Return new stem tremolo.
+        '''
         new = type(self)(self.tremolo_flags)
-        new.format_slot = self.format_slot
+        new._format_slot = self._format_slot
         return new
 
     __deepcopy__ = __copy__
 
     def __eq__(self, expr):
+        '''True when `expr` is a stem tremolo with equal tremolo flags:
+        Otherwise false:
+
+        ::
+
+            >>> stem_tremolo_1 = marktools.StemTremolo(16)
+            >>> stem_tremolo_2 = marktools.StemTremolo(16)
+            >>> stem_tremolo_3 = marktools.StemTremolo(32)
+
+        ::
+
+            >>> stem_tremolo_1 == stem_tremolo_1
+            True
+            >>> stem_tremolo_1 == stem_tremolo_2
+            True
+            >>> stem_tremolo_1 == stem_tremolo_3
+            False
+            >>> stem_tremolo_2 == stem_tremolo_1
+            True
+            >>> stem_tremolo_2 == stem_tremolo_2
+            True
+            >>> stem_tremolo_2 == stem_tremolo_3
+            False
+            >>> stem_tremolo_3 == stem_tremolo_1
+            False
+            >>> stem_tremolo_3 == stem_tremolo_2
+            False
+            >>> stem_tremolo_3 == stem_tremolo_3
+            True
+
+        Return boolean.
+        '''
         assert isinstance(expr, type(self))
         if self.tremolo_flags == expr.tremolo_flags:
             return True
