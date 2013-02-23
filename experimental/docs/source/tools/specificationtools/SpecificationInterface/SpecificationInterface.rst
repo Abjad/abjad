@@ -66,6 +66,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_leaf_color
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_mark
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_marks
    :noindex:
 

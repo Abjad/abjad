@@ -84,6 +84,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.set_leaf_color
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.set_mark
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.set_marks
    :noindex:
 

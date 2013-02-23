@@ -36,6 +36,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_leaf_color
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_mark
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_marks
    :noindex:
 

@@ -96,6 +96,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_leaf_color
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_mark
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_marks
    :noindex:
 

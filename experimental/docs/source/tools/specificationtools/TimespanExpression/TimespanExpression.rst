@@ -96,6 +96,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_leaf_color
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_mark
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_marks
    :noindex:
 

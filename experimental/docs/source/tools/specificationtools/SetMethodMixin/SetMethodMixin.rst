@@ -27,6 +27,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_leaf_color
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_mark
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_pitch
    :noindex:
 

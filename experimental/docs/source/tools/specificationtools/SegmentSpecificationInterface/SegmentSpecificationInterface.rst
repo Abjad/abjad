@@ -69,6 +69,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_leaf_color
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_mark
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_marks
    :noindex:
 

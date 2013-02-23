@@ -26,6 +26,7 @@ class SetMethodMixin(AbjadObject):
             'articulation': specificationtools.ArticulationSetExpression,
             'dynamic': specificationtools.DynamicSetExpression,
             'leaf_color': specificationtools.LeafColorSetExpression,
+            'mark': specificationtools.MarkSetExpression,
             'reigster': specificationtools.RegisterSetExpression,
             'pitch': specificationtools.PitchSetExpression,
             'pitch_class_transform': specificationtools.PitchClassTransformSetExpression,
@@ -111,7 +112,7 @@ class SetMethodMixin(AbjadObject):
         return self._store_leaf_set_expression(attribute, source_expression)
 
     def set_leaf_color(self, source_expression):
-        r'''Set note head color to `source_expression`.
+        r'''Set leaf color to `source_expression`.
 
         Return leaf color set expression.
         '''
@@ -121,15 +122,15 @@ class SetMethodMixin(AbjadObject):
         attribute = 'leaf_color'
         return self._store_leaf_set_expression(attribute, source_expression)
 
-    def set_register(self, source_expression):
-        r'''Set register to `source_expression`.
+    def set_mark(self, source_expression):
+        r'''Set mark to `source_expression`.
 
-        Return register set expression.
+        Return mark set expression.
         '''
         from experimental.tools import specificationtools
-        assert isinstance(source_expression, pitchtools.OctaveTranspositionMapping), repr(source_expression)
+        assert isinstance(source_expression, marktools.Mark), repr(source_expression)
         source_expression = specificationtools.PayloadExpression(payload=source_expression)
-        attribute = 'reigster'
+        attribute = 'mark'
         return self._store_leaf_set_expression(attribute, source_expression)
 
     def set_pitch_class_transform(self, source_expression):
@@ -152,4 +153,15 @@ class SetMethodMixin(AbjadObject):
         assert isinstance(source_expression, specificationtools.StatalServerCursor), repr(source_expression)
         source_expression = specificationtools.StatalServerCursorExpression(source_expression)
         attribute = 'pitch'
+        return self._store_leaf_set_expression(attribute, source_expression)
+
+    def set_register(self, source_expression):
+        r'''Set register to `source_expression`.
+
+        Return register set expression.
+        '''
+        from experimental.tools import specificationtools
+        assert isinstance(source_expression, pitchtools.OctaveTranspositionMapping), repr(source_expression)
+        source_expression = specificationtools.PayloadExpression(payload=source_expression)
+        attribute = 'reigster'
         return self._store_leaf_set_expression(attribute, source_expression)
