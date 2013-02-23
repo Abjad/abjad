@@ -93,6 +93,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.set_mark
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.set_markup
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.set_pitch
    :noindex:
 

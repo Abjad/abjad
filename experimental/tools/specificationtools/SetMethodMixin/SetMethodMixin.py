@@ -27,6 +27,7 @@ class SetMethodMixin(AbjadObject):
             'dynamic': specificationtools.DynamicSetExpression,
             'leaf_color': specificationtools.LeafColorSetExpression,
             'mark': specificationtools.MarkSetExpression,
+            'markup': specificationtools.MarkupSetExpression,
             'reigster': specificationtools.RegisterSetExpression,
             'pitch': specificationtools.PitchSetExpression,
             'pitch_class_transform': specificationtools.PitchClassTransformSetExpression,
@@ -131,6 +132,16 @@ class SetMethodMixin(AbjadObject):
         assert isinstance(source_expression, marktools.Mark), repr(source_expression)
         source_expression = specificationtools.PayloadExpression(payload=source_expression)
         attribute = 'mark'
+        return self._store_leaf_set_expression(attribute, source_expression)
+
+    def set_markup(self, source_expression):
+        r'''Set markup to `source_expression`.
+
+        Return markup set expression.
+        '''
+        from experimental.tools import specificationtools
+        source_expression = specificationtools.PayloadExpression(payload=source_expression)
+        attribute = 'markup'
         return self._store_leaf_set_expression(attribute, source_expression)
 
     def set_pitch_class_transform(self, source_expression):

@@ -300,6 +300,7 @@ Unstable packages (load manually)
       tools/specificationtools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
       tools/specificationtools/LookupExpressionRhythmRegionExpression/LookupExpressionRhythmRegionExpression
       tools/specificationtools/MarkSetExpression/MarkSetExpression
+      tools/specificationtools/MarkupSetExpression/MarkupSetExpression
       tools/specificationtools/MaterialManager/MaterialManager
       tools/specificationtools/MeasureSelectExpression/MeasureSelectExpression
       tools/specificationtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
@@ -403,6 +404,7 @@ Unstable packages (load manually)
       tools/specificationtools/LiteralRhythmRegionExpression/LiteralRhythmRegionExpression
       tools/specificationtools/LookupExpressionRhythmRegionExpression/LookupExpressionRhythmRegionExpression
       tools/specificationtools/MarkSetExpression/MarkSetExpression
+      tools/specificationtools/MarkupSetExpression/MarkupSetExpression
       tools/specificationtools/MaterialManager/MaterialManager
       tools/specificationtools/MeasureSelectExpression/MeasureSelectExpression
       tools/specificationtools/MixedSourceTimespanExpression/MixedSourceTimespanExpression

@@ -1,5 +1,4 @@
 1.  Implement the following set methods:
-        set_markup()
         set_tempo()
 
 2.  Implement a method to slur leaves by divisions.

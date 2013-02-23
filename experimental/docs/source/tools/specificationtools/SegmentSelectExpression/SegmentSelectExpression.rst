@@ -90,6 +90,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.set_mark
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.set_markup
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.set_pitch
    :noindex:
 

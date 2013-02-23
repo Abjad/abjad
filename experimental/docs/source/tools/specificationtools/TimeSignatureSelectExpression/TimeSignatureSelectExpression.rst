@@ -93,6 +93,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_mark
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_markup
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_pitch
    :noindex:
 

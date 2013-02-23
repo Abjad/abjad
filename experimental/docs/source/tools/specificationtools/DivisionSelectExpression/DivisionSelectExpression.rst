@@ -90,6 +90,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_mark
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_markup
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_pitch
    :noindex:
 

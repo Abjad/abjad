@@ -90,6 +90,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_mark
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_markup
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_pitch
    :noindex:
 

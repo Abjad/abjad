@@ -30,6 +30,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_mark
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_markup
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_pitch
    :noindex:
 

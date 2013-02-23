@@ -93,6 +93,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_mark
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_markup
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_pitch
    :noindex:
 
