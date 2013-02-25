@@ -28,7 +28,7 @@ Interpreting the file
 Call Python on ``hello_world.py``::
 
     $ python hello_world.py
-    
+
 <abjad>[hide=true]
 note = Note("c'4")
 show(note)

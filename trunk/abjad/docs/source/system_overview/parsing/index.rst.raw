@@ -1,7 +1,7 @@
 Parsing
 =======
 
-Abjad provides a growing number of language parsers. 
+Abjad provides a growing number of language parsers.
 The most important of these is a sophisticate LilyPond parser.
 
 LilyPond Parsing
@@ -13,7 +13,7 @@ LilyPond Parsing
 parser = lilypondparsertools.LilyPondParser()
 </abjad>
 
-The LilyPond parser understands notes, chords, skips and rests, 
+The LilyPond parser understands notes, chords, skips and rests,
 including default durations and the ``q`` chord-repeat construct:
 
 <abjad>
@@ -66,7 +66,7 @@ string = r'''\new Score <<
     \new Staff = "Bass Staff" {
         \new Voice = "Bass Voice" {
             \clef bass
-            c, _\markup { \italic Bass! } 
+            c, _\markup { \italic Bass! }
         }
     }
 >>
@@ -111,8 +111,8 @@ f(result)
 show(result)
 </abjad>
 
-A small number of music functions are also supported, such as ``\relative``. Music functions which mutate 
-the score during compilation, result in a normalized Abjad score structure.  That is, the resulting Abjad 
+A small number of music functions are also supported, such as ``\relative``. Music functions which mutate
+the score during compilation, result in a normalized Abjad score structure.  That is, the resulting Abjad
 structure corresponds to the music as it appears on the page:
 
 <abjad>
@@ -122,7 +122,7 @@ result = parser(string)
 
 <abjad>
 f(result)
-</abjad> 
+</abjad>
 
 <abjad>
 show(result)
@@ -131,8 +131,8 @@ show(result)
 RhythmTree Parsing
 ------------------
 
-``rhythmtreetools.RhythmTreeParser`` parses a microlanguage resembling Ircam's RTM-style LISP syntax, and 
-generates a sequence of RhythmTree structures, which can be furthered manipulated by composers, before 
+``rhythmtreetools.RhythmTreeParser`` parses a microlanguage resembling Ircam's RTM-style LISP syntax, and
+generates a sequence of RhythmTree structures, which can be furthered manipulated by composers, before
 being converted into Abjad score object:
 
 <abjad>
@@ -161,8 +161,8 @@ show(staff, docs=True)
 "Reduced-Ly" Parsing
 --------------------
 
-``lilypondparsertools.ReducedLyParser`` parses the "reduced-ly" microlanguage, whose syntax combines a very 
-small subset of LilyPond syntax, along with affordances for generating various types of Abjad containers, and 
+``lilypondparsertools.ReducedLyParser`` parses the "reduced-ly" microlanguage, whose syntax combines a very
+small subset of LilyPond syntax, along with affordances for generating various types of Abjad containers, and
 speedups for rapidly notating notes and rests without needing to specify pitches.  It used mainly for creating
 Abjad documentation:
 

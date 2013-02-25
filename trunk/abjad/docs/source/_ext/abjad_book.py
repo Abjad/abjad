@@ -108,7 +108,7 @@ def rewrite_literal_block_line(line):
 
 def scan_doctree_for_literal_blocks(doctree):
     def is_valid_node(node):
-        if isinstance(node, 
+        if isinstance(node,
             (docutils.nodes.literal_block, docutils.nodes.doctest_block)
             ):
             return True
@@ -125,7 +125,7 @@ def scan_doctree_for_literal_blocks(doctree):
                 lines.append((i, rewritten_line))
         literal_lines.append(tuple(lines))
     return zip(literal_blocks, literal_lines), should_process
-     
+
 
 def scan_doctree_for_abjad_literal_blocks(doctree):
     abjad_literal_blocks = [x for x in doctree.traverse(abjad_literal_block)]
@@ -187,7 +187,7 @@ def process_abjad_literal_blocks(abjad_literal_blocks):
 
     for abjad_literal_block in abjad_literal_blocks:
         pass
-            
+
     # cleanup pipe
     pipe.write('quit()\n')
     pipe.close()
@@ -330,7 +330,7 @@ def visit_abjad_book_html(self, node):
     img = '<img src="{}" alt="{}" />'.format(
         paths['primary_relative_path'], alt)
     if node.get('keep_original', False):
-        figure = '<figure>{anchor}<figcaption>{caption}</figcaption></figure>' 
+        figure = '<figure>{anchor}<figcaption>{caption}</figcaption></figure>'
         anchor = '<a href="{}" alt="click for high-quality original">{}</a>'.format(
             paths["secondary_relative_path"], img)
         caption = '<a href="{}">(click for high-quality image)</a>'.format(

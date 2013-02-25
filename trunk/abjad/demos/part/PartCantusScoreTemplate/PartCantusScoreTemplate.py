@@ -31,7 +31,7 @@ class PartCantusScoreTemplate(scoretemplatetools.ScoreTemplate):
         first_violin_staff = stafftools.Staff([first_violin_voice], name='First Violin Staff')
         contexttools.ClefMark('treble')(first_violin_staff)
         instrumenttools.Violin(
-            instrument_name_markup='Violin I', 
+            instrument_name_markup='Violin I',
             short_instrument_name_markup='Vl. I'
             )(first_violin_staff)
 
@@ -40,7 +40,7 @@ class PartCantusScoreTemplate(scoretemplatetools.ScoreTemplate):
         second_violin_staff = stafftools.Staff([second_violin_voice], name='Second Violin Staff')
         contexttools.ClefMark('treble')(second_violin_staff)
         instrumenttools.Violin(
-            instrument_name_markup='Violin II', 
+            instrument_name_markup='Violin II',
             short_instrument_name_markup='Vl. II'
             )(second_violin_staff)
 

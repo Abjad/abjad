@@ -147,16 +147,16 @@ lilypond_file = documentationtools.make_ligeti_example_lilypond_file(score)
 show(lilypond_file)
 </abjad>
 
-Now that we have the redundant aspect of the piece compactly expressed and encapsulated, 
+Now that we have the redundant aspect of the piece compactly expressed and encapsulated,
 we can play around with it by changing the sequence of pitches.
 
-In order for each staff to carry its own sequence of independent measure changes, 
+In order for each staff to carry its own sequence of independent measure changes,
 LilyPond requires some special setting up prior to rendering.
 Specifically, one must move the LilyPond ``Timing_translator`` out from the score context
 and into the staff context.
 
-(You can refer to the LilyPond documentation on 
-`Polymetric notation <http://lilypond.org/doc/v2.12/Documentation/user/lilypond/Displaying-rhythms#Polymetric-notation>`_ 
+(You can refer to the LilyPond documentation on
+`Polymetric notation <http://lilypond.org/doc/v2.12/Documentation/user/lilypond/Displaying-rhythms#Polymetric-notation>`_
 to learn all about how this works.)
 
 In this example we a custom ``documentationtools`` function to set up our LilyPond file automatically.

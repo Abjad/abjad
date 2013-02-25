@@ -51,11 +51,11 @@ class AbjadLineage(Directive):
             #lineage = documentationtools.InheritanceGraph(
             #    addresses=addresses,
             #    lineage_addresses=((module_name, class_name),)
-            #    ) 
+            #    )
             lineage = documentationtools.InheritanceGraph(
                 addresses=addresses,
                 lineage_addresses=((module_name, class_name),)
-                ) 
+                )
             graph = lineage.graphviz_graph
 
         except InheritanceException, err:
@@ -87,7 +87,7 @@ class AbjadLineage(Directive):
             lineage = documentationtools.InheritanceGraph(
                 addresses=((module_name, class_name),),
                 )
-            
+
             def get_node_name(original_name):
                 parts = original_name.split('.')
                 name = [parts[0]]

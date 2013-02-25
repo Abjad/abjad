@@ -45,7 +45,7 @@ def getargspec(proc):
         if proc.__closure__:
             return sphinx_getargspec(proc.__closure__[1].cell_contents)
     return sphinx_getargspec(proc)
-    
+
 
 #: extended signature RE: with explicit module name separated by ::
 py_ext_sig_re = re.compile(
@@ -1024,7 +1024,7 @@ class ClassDocumenter(ModuleLevelDocumenter):
         # directives of course)
         pieces = self.modname.split('.')
         return '{}.{}'.format(pieces[-3], pieces[-1])
-        
+
     def format_signature(self):
         if self.doc_as_attr:
             return ''

@@ -1,10 +1,10 @@
 Quantization
 ============
 
-Quantization is the process of constraining one set of values to another set of discrete values. In 
-music, this typically means the transformation of performed rhythms into notated ones, and the 
-accompanying reduction of imprecision.  More generally, we can define rhythmic quantization as the 
-transformation of one sequence of rhythms into another, converting tempi, time signatures, grace notes 
+Quantization is the process of constraining one set of values to another set of discrete values. In
+music, this typically means the transformation of performed rhythms into notated ones, and the
+accompanying reduction of imprecision.  More generally, we can define rhythmic quantization as the
+transformation of one sequence of rhythms into another, converting tempi, time signatures, grace notes
 and even rhythmic complexity in the process.
 
 <abjad>
@@ -51,6 +51,6 @@ score = scoretools.Score([staff_group])
 show(score)
 </abjad>
 
-Abjad's `quantizationtools` provides a powerful, generalized and customizable collection of tools for 
-musical quantization.  Its model is based in large part on Paul Nauert's **"A theory of complexity to 
+Abjad's `quantizationtools` provides a powerful, generalized and customizable collection of tools for
+musical quantization.  Its model is based in large part on Paul Nauert's **"A theory of complexity to
 constrain the approximation of arbitrary sequences of timepoints"**.

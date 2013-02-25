@@ -2,7 +2,7 @@ Score Snippet Gallery
 =====================
 
 
-Abjad uses a collection of score snippets in many places throughout the 
+Abjad uses a collection of score snippets in many places throughout the
 docs, tests and other parts of the codebase. Some of these are collected here.
 
 

@@ -40,7 +40,7 @@ If you don't know how to add things to your path you should Google or ask a frie
 Writing the file
 ----------------
 
-Change to whatever directory you'd like and then use your text editor 
+Change to whatever directory you'd like and then use your text editor
 to create a new file called ``hello_world.ly``.
 
 Type the following lines of LilyPond input into ``hello_world.ly``::
@@ -111,5 +111,5 @@ Working with LilyPond means doing these things::
     3. open the PDF and inspect your work
 
 You'll repeat this process many times to make your scores look the way you want.
-But no matter how complex your music this edit-interpret-view loop 
+But no matter how complex your music this edit-interpret-view loop
 will be the basic way you work.

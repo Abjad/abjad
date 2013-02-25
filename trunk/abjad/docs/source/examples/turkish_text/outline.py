@@ -15,7 +15,7 @@ vowel_treatments = {
     u'ü':   (4, pitchtools.NamedChromaticPitch("C4")),
      'e':   (2, pitchtools.NamedChromaticPitch("A3")),
      'o':   (2, pitchtools.NamedChromaticPitch("F3")),
-    u'ö':   (4, pitchtools.NamedChromaticPitch("F3")), 
+    u'ö':   (4, pitchtools.NamedChromaticPitch("F3")),
 }
 
 def letter_to_duration_numerator(letter):
@@ -86,7 +86,7 @@ def count_consonants(word):
     return consonant_count
 
 class WordAnalysis(object):
-    
+
     def __init__(self, word):
         self.word = word
         self.word_length = len(word)
@@ -117,7 +117,7 @@ class WordAnalysis(object):
                     self.consonant_pitches.append(pitch)
             else:
                 raise ValueError('what is character {!r}?'.format(character))
-    
+
 def find_first_phrase(input_text):
     input_text = preprocess_input_text(input_text)
     first_phrase_index = min(input_text.find(','), input_text.find('.'))
@@ -179,7 +179,7 @@ def format_lilypond_file(lilypond_file):
     lilypond_file.paper_block.markup_system_spacing = vector
     lilypond_file.paper_block.top_margin = 10
     return lilypond_file
-    
+
 def make_music_for_word_analyses(word_analyses, base_duration):
     vowel_counts = [x.vowel_count for x in word_analyses]
     upper_durations = [base_duration * x for x in vowel_counts]
@@ -203,7 +203,7 @@ def make_tuplets(durations, proportions, pitch_lists):
         tuplets.append(tuplet)
     return tuplets
 
-    
+
 if __name__ == '__main__':
     os.system('clear')
     lilypond_file = make_lilypond_file(input_text)

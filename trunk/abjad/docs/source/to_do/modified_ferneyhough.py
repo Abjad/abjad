@@ -25,7 +25,7 @@ def make_rows_of_nested_tuplets(tuplet_duration, row_count, column_count):
     for n in range(row_count):
         outer_tuplet_proportions = (1, n + 1, 1)
         row_of_nested_tuplets = make_row_of_nested_tuplets(
-            tuplet_duration, outer_tuplet_proportions, column_count)    
+            tuplet_duration, outer_tuplet_proportions, column_count)
         rows_of_nested_tuplets.append(row_of_nested_tuplets)
     return rows_of_nested_tuplets
 
@@ -35,7 +35,7 @@ def make_lilypond_file(tuplet_duration, row_count, column_count):
     staff = stafftools.Staff(all_nested_tuplets)
     #staff = stafftools.RhythmicStaff(all_nested_tuplets)
     time_signature  = contexttools.TimeSignatureMark((1, 4))
-    time_signature.attach(staff) 
+    time_signature.attach(staff)
     lets_get_crazy(staff)
     score = Score([staff])
     configure_score(score)
@@ -75,7 +75,7 @@ def lets_get_crazy(staff):
         else:
             pitch = i % 11
             for note in tie_chain:
-                note.written_pitch = pitch            
+                note.written_pitch = pitch
     # add slurs and accents
     notes = []
     for leaf in iterationtools.iterate_leaves_in_expr(staff):
@@ -84,7 +84,7 @@ def lets_get_crazy(staff):
         else:
             spannertools.SlurSpanner(notes)
             marktools.Articulation('accent')(notes[0])
-            notes = []            
+            notes = []
 
 if __name__ == '__main__':
     os.system('clear')

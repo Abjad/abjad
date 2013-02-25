@@ -10,7 +10,7 @@ def apply_rehearsal_marks(score):
 
     for measure_index in measure_indices:
         marktools.LilyPondCommandMark(
-            r'mark \default', 
+            r'mark \default',
             'before'
             )(bell_voice[measure_index])
 

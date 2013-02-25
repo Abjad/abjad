@@ -78,7 +78,7 @@ durated_reservoir = durate_pitch_contour_reservoir(shadowed_contour_reservoir)
 </abjad>
 
 Then we'll grab the sub-reservoir for the first violins, taking the first ten
-descents (which includes the silences we've been adding as well).  We'll label 
+descents (which includes the silences we've been adding as well).  We'll label
 each descent with some markup, to distinguish them, throw them into a
 Staff and give them a 6/4 time signature, just so they line up properly.
 

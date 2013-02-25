@@ -24,7 +24,7 @@ def make_rows_of_nested_tuplets(tuplet_duration, row_count, column_count):
     for n in range(row_count):
         outer_tuplet_proportions = (1, n + 1, 1)
         row_of_nested_tuplets = make_row_of_nested_tuplets(
-            tuplet_duration, outer_tuplet_proportions, column_count)    
+            tuplet_duration, outer_tuplet_proportions, column_count)
         rows_of_nested_tuplets.append(row_of_nested_tuplets)
     return rows_of_nested_tuplets
 
@@ -33,7 +33,7 @@ def make_lilypond_file(tuplet_duration, row_count, column_count):
     all_nested_tuplets = sequencetools.flatten_sequence(rows_of_nested_tuplets)
     staff = stafftools.RhythmicStaff(all_nested_tuplets)
     time_signature  = contexttools.TimeSignatureMark((1, 4))
-    time_signature.attach(staff) 
+    time_signature.attach(staff)
     score = Score([staff])
     configure_score(score)
     lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
