@@ -23,7 +23,7 @@ class ContextDictionary(AbjadObject, OrderedDict):
             return OrderedDict.__getitem__(self, self.score_name)
         else:
             return OrderedDict.__getitem__(self, expr)
-            
+
     def __repr__(self):
         contents = ', '.join([repr(x) for x in self])
         return '{}([{}])'.format(self._class_name, contents)
@@ -51,7 +51,7 @@ class ContextDictionary(AbjadObject, OrderedDict):
     @property
     def score(self):
         '''Context dictionary score.
-        
+
         Return score.
         '''
         return self._score

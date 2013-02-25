@@ -33,7 +33,7 @@ class ScoreSpecification(Specification):
     ::
 
         >>> score_specification = score_specification.specification
-    
+
     Score specification properties are read-only.
     '''
 
@@ -90,12 +90,12 @@ class ScoreSpecification(Specification):
     @property
     def context_names(self):
         r'''Score specification context names.
-    
+
         ::
 
             >>> for x in score_specification.context_names:
             ...     x
-            ... 
+            ...
             'Grouped Rhythmic Staves Score'
             'Grouped Rhythmic Staves Staff Group'
             'Staff 1'
@@ -139,7 +139,7 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> score_specification.interface 
+            >>> score_specification.interface
             ScoreSpecificationInterface()
 
         Return score specification interface.
@@ -199,7 +199,7 @@ class ScoreSpecification(Specification):
         Return context dictionary.
         '''
         return self._multiple_context_set_expressions
-    
+
     @property
     def payload_expressions_by_voice(self):
         '''Score specification payload expressions by voice.
@@ -213,12 +213,12 @@ class ScoreSpecification(Specification):
             timespantools.TimespanInventory([
                 specificationtools.StartPositionedDivisionPayloadExpression(
                     payload=specificationtools.DivisionList(
-                        [Division('[2, 8]', start_offset=Offset(0, 1)), 
-                        Division('[3, 8]', start_offset=Offset(1, 4)), 
-                        Division('[4, 8]', start_offset=Offset(5, 8)), 
-                        Division('[4, 16]', start_offset=Offset(9, 8)), 
-                        Division('[4, 16]', start_offset=Offset(11, 8)), 
-                        Division('[5, 16]', start_offset=Offset(13, 8)), 
+                        [Division('[2, 8]', start_offset=Offset(0, 1)),
+                        Division('[3, 8]', start_offset=Offset(1, 4)),
+                        Division('[4, 8]', start_offset=Offset(5, 8)),
+                        Division('[4, 16]', start_offset=Offset(9, 8)),
+                        Division('[4, 16]', start_offset=Offset(11, 8)),
+                        Division('[5, 16]', start_offset=Offset(13, 8)),
                         Division('[5, 16]', start_offset=Offset(31, 16))],
                         start_offset=durationtools.Offset(0, 1),
                         voice_name='Voice 1'
@@ -239,12 +239,12 @@ class ScoreSpecification(Specification):
             timespantools.TimespanInventory([
                 specificationtools.StartPositionedDivisionPayloadExpression(
                     payload=specificationtools.DivisionList(
-                        [Division('[2, 8]', start_offset=Offset(0, 1)), 
-                        Division('[3, 8]', start_offset=Offset(1, 4)), 
-                        Division('[4, 8]', start_offset=Offset(5, 8)), 
-                        Division('[4, 16]', start_offset=Offset(9, 8)), 
-                        Division('[4, 16]', start_offset=Offset(11, 8)), 
-                        Division('[5, 16]', start_offset=Offset(13, 8)), 
+                        [Division('[2, 8]', start_offset=Offset(0, 1)),
+                        Division('[3, 8]', start_offset=Offset(1, 4)),
+                        Division('[4, 8]', start_offset=Offset(5, 8)),
+                        Division('[4, 16]', start_offset=Offset(9, 8)),
+                        Division('[4, 16]', start_offset=Offset(11, 8)),
+                        Division('[5, 16]', start_offset=Offset(13, 8)),
                         Division('[5, 16]', start_offset=Offset(31, 16))],
                         start_offset=durationtools.Offset(0, 1),
                         voice_name='Voice 2'
@@ -264,7 +264,7 @@ class ScoreSpecification(Specification):
                 ])
 
         Return voice dictionary.
-        '''        
+        '''
         return self._payload_expressions_by_voice
 
     @property
@@ -302,12 +302,12 @@ class ScoreSpecification(Specification):
                         tie_split_notes=False
                         ),
                     division_list=specificationtools.DivisionList(
-                        [Division('[2, 8]', start_offset=Offset(0, 1)), 
-                        Division('[3, 8]', start_offset=Offset(1, 4)), 
-                        Division('[4, 8]', start_offset=Offset(5, 8)), 
-                        Division('[4, 16]', start_offset=Offset(9, 8)), 
-                        Division('[4, 16]', start_offset=Offset(11, 8)), 
-                        Division('[5, 16]', start_offset=Offset(13, 8)), 
+                        [Division('[2, 8]', start_offset=Offset(0, 1)),
+                        Division('[3, 8]', start_offset=Offset(1, 4)),
+                        Division('[4, 8]', start_offset=Offset(5, 8)),
+                        Division('[4, 16]', start_offset=Offset(9, 8)),
+                        Division('[4, 16]', start_offset=Offset(11, 8)),
+                        Division('[5, 16]', start_offset=Offset(13, 8)),
                         Division('[5, 16]', start_offset=Offset(31, 16))],
                         start_offset=durationtools.Offset(0, 1),
                         voice_name='Voice 1'
@@ -326,12 +326,12 @@ class ScoreSpecification(Specification):
                         tie_split_notes=False
                         ),
                     division_list=specificationtools.DivisionList(
-                        [Division('[2, 8]', start_offset=Offset(0, 1)), 
-                        Division('[3, 8]', start_offset=Offset(1, 4)), 
-                        Division('[4, 8]', start_offset=Offset(5, 8)), 
-                        Division('[4, 16]', start_offset=Offset(9, 8)), 
-                        Division('[4, 16]', start_offset=Offset(11, 8)), 
-                        Division('[5, 16]', start_offset=Offset(13, 8)), 
+                        [Division('[2, 8]', start_offset=Offset(0, 1)),
+                        Division('[3, 8]', start_offset=Offset(1, 4)),
+                        Division('[4, 8]', start_offset=Offset(5, 8)),
+                        Division('[4, 16]', start_offset=Offset(9, 8)),
+                        Division('[4, 16]', start_offset=Offset(11, 8)),
+                        Division('[5, 16]', start_offset=Offset(13, 8)),
                         Division('[5, 16]', start_offset=Offset(31, 16))],
                         start_offset=durationtools.Offset(0, 1),
                         voice_name='Voice 2'
@@ -370,7 +370,7 @@ class ScoreSpecification(Specification):
         Return string.
         '''
         return Specification.score_name.fget(self)
-    
+
     @property
     def score_template(self):
         r'''Score specification score template.
@@ -387,7 +387,7 @@ class ScoreSpecification(Specification):
     @property
     def segment_names(self):
         r'''Score specification segment names.
-    
+
         ::
 
             >>> score_specification.segment_names
@@ -405,7 +405,7 @@ class ScoreSpecification(Specification):
 
             >>> score_specification.segment_specification_class
             <class 'experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification'>
-        
+
         Return segment specification class.
         '''
         return self._segment_specification_class
@@ -418,7 +418,7 @@ class ScoreSpecification(Specification):
 
             >>> for segment_specification in score_specification.segment_specifications:
             ...     segment_specification
-            ... 
+            ...
             SegmentSpecification('red')
             SegmentSpecification('orange')
             SegmentSpecification('yellow')
@@ -435,7 +435,7 @@ class ScoreSpecification(Specification):
 
             >>> for key in score_specification.single_context_set_expressions_by_context:
             ...     key
-            ... 
+            ...
             'Grouped Rhythmic Staves Score'
             'Grouped Rhythmic Staves Staff Group'
             'Staff 1'
@@ -493,7 +493,7 @@ class ScoreSpecification(Specification):
 
             >>> score_specification.specification_name is None
             True
-        
+
         Return none.
         '''
         return
@@ -588,7 +588,7 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> score_specification.get_segment_specification(2) 
+            >>> score_specification.get_segment_specification(2)
             SegmentSpecification('yellow')
 
         Get segment specification from segment identifier expression:
@@ -603,7 +603,7 @@ class ScoreSpecification(Specification):
         '''
         if isinstance(expr, (str, int)):
             return self.segment_specifications[expr]
-        else: 
+        else:
             quoted_string_pattern = re.compile(r"""(['"]{1}[a-zA-Z1-9 _]+['"]{1})""")
             quoted_segment_names = quoted_string_pattern.findall(expr.string)
             modified_string = str(expr.string)

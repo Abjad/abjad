@@ -16,7 +16,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
 
     Example. Mixed-source timespan starting at the left edge of the last measure
     that starts during segment ``'red'``
-    and stoppding at the right edge of the first measure 
+    and stoppding at the right edge of the first measure
     that starts during segment ``'blue'``:
 
     ::
@@ -28,7 +28,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
 
         >>> measure = blue_segment.select_measures('Voice 1')[:1]
         >>> stop_offset = measure.stop_offset
-        
+
     ::
 
         >>> timespan = specificationtools.MixedSourceTimespanExpression(start_offset, stop_offset)

@@ -8,7 +8,7 @@ class Domain(AbjadObject):
     ::
 
         >>> from experimental.tools.constrainttools import Domain
-    
+
     May be instantiated from a non-empty sequence of non-empty sequences.
 
     ::
@@ -21,7 +21,7 @@ class Domain(AbjadObject):
     ::
 
         >>> domain = Domain([1, 2, 3, 4], 5)
-    
+
     ``Domains`` are immutable.
 
     Returns ``Domain`` instance.
@@ -58,7 +58,7 @@ class Domain(AbjadObject):
     ### PUBLIC METHODS ###
 
     def randomized(self):
-        '''Create a new Domain containing the same values, but with every 
+        '''Create a new Domain containing the same values, but with every
         column randomly reordered:
 
         ::

@@ -4,7 +4,7 @@ from experimental import *
 def test_CounttimeComponentSelectExpression__set_spanner_01():
     '''Set crescendo spanner.
     '''
-    
+
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])

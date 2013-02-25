@@ -34,7 +34,7 @@ class IterablePayloadExpression(PayloadExpression):
         from experimental.tools import specificationtools
         assert not isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
         assert not isinstance(payload, specificationtools.StatalServerCursor), repr(payload)
-        assert isinstance(payload, (str, tuple, list, 
+        assert isinstance(payload, (str, tuple, list,
             specificationtools.DivisionList, containertools.Container)), repr(payload)
         if isinstance(payload, list):
             payload = tuple(payload)
@@ -55,7 +55,7 @@ class IterablePayloadExpression(PayloadExpression):
             >>> z(result)
             timespantools.TimespanInventory([
                 specificationtools.IterablePayloadExpression(
-                    payload=(Division('[3, 16]', start_offset=Offset(1, 16)), 
+                    payload=(Division('[3, 16]', start_offset=Offset(1, 16)),
                     Division('[1, 16]', start_offset=Offset(1, 4)))
                     )
                 ])
@@ -255,10 +255,10 @@ class IterablePayloadExpression(PayloadExpression):
 
             >>> z(result)
             specificationtools.IterablePayloadExpression(
-                payload=(NonreducedFraction(4, 16), 
-                NonreducedFraction(2, 16), 
-                NonreducedFraction(4, 16), 
-                NonreducedFraction(2, 16), 
+                payload=(NonreducedFraction(4, 16),
+                NonreducedFraction(2, 16),
+                NonreducedFraction(4, 16),
+                NonreducedFraction(2, 16),
                 NonreducedFraction(1, 16))
                 )
 

@@ -26,7 +26,7 @@ def make_windungen_score(
     assert 0 < length
     assert 0 < len(pitches)
     assert 0 < staff_count
-    
+
     score_template = WindungenScoreTemplate(staff_count=staff_count)
     score = score_template()
 

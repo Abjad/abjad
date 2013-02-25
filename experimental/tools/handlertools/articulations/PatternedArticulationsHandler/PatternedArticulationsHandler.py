@@ -7,11 +7,11 @@ from experimental.tools.handlertools.articulations.ArticulationHandler import Ar
 
 class PatternedArticulationsHandler(ArticulationHandler):
 
-    def __init__(self, 
+    def __init__(self,
         articulation_lists=None,
-        minimum_duration=None, 
+        minimum_duration=None,
         maximum_duration=None,
-        minimum_written_pitch=None, 
+        minimum_written_pitch=None,
         maximum_written_pitch=None):
         ArticulationHandler.__init__(self,
             minimum_duration=minimum_duration,

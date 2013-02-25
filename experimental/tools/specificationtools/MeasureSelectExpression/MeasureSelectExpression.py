@@ -75,7 +75,7 @@ class MeasureSelectExpression(SelectExpression):
         '''Evaluate measure select expression.
 
         Return none when nonevaluable.
-        
+
         Return start-positioned division payload expression when evaluable.
         '''
         from experimental.tools import specificationtools

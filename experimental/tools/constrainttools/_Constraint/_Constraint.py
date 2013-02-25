@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 class _Constraint(AbjadObject):
 
-    __slots__ = ('_kind', '_predicate')    
+    __slots__ = ('_kind', '_predicate')
 
     ### SPECIAL METHODS ###
 

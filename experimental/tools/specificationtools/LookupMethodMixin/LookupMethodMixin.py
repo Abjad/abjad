@@ -14,11 +14,11 @@ class LookupMethodMixin(AbjadObject):
 
     Add to classes that should implement the lookup interface.
     '''
-    
+
     ### PUBLIC METHODS ###
 
     def look_up_division_set_expression(self, voice):
-        r'''Look up division set expression active at 
+        r'''Look up division set expression active at
         start of segment ``'red'`` in voice ``1``:
 
         ::
@@ -37,7 +37,7 @@ class LookupMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return lookup expression.        
+        Return lookup expression.
         '''
         from experimental.tools import specificationtools
         lookup = specificationtools.DivisionSetExpressionLookupExpression(offset=self, voice_name=voice)
@@ -64,7 +64,7 @@ class LookupMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return lookup expression.        
+        Return lookup expression.
         '''
         from experimental.tools import specificationtools
         lookup = specificationtools.RhythmSetExpressionLookupExpression(offset=self, voice_name=voice)
@@ -75,7 +75,7 @@ class LookupMethodMixin(AbjadObject):
         r'''Look up time signature set expression active at
         start of segment ``'red'`` in voice ``1``:
 
-        :: 
+        ::
 
             >>> lookup = red_segment.timespan.start_offset.look_up_time_signature_set_expression('Voice 1')
 

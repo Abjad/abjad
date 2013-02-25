@@ -82,7 +82,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_06():
 def test_StartPositionedRhythmPayloadExpression_rotate_07():
     '''Do not fracture beam. Zero effective rotation.
     '''
-    
+
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = specificationtools.StartPositionedRhythmPayloadExpression(music, Offset(0))
     durations = [x.duration for x in expr.payload[:]]

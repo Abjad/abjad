@@ -15,7 +15,7 @@ class BeatSelectExpression(SelectExpression):
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
-    
+
     Example 1. Select voice ``1`` beats that start during score:
 
     ::
@@ -54,12 +54,12 @@ class BeatSelectExpression(SelectExpression):
             numerator, denominator = time_signature.pair
             naive_beats.extend(numerator * [mathtools.NonreducedFraction(1, denominator)])
         return naive_beats
-    
+
     ### PUBLIC METHODS ###
 
     def evaluate(self):
         '''Evaluate beat select expression.
-    
+
         Return none when nonevaluable.
 
         Return start-positioned division payload expression when evaluable.

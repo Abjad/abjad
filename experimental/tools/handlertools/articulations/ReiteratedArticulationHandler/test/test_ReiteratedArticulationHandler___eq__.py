@@ -3,7 +3,7 @@ from experimental.tools import handlertools
 
 
 def test_ReiteratedArticulationHandler___eq___01():
-    
+
     handler_1 = handlertools.articulations.ReiteratedArticulationHandler(
         articulation_list = ['.', '^'],
         minimum_duration = Duration(1, 16),

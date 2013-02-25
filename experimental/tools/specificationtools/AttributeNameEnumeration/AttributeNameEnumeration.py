@@ -13,7 +13,7 @@ class AttributeNameEnumeration(OrderedDict):
     ::
 
         >>> for key, value in attributes.iteritems(): key, value
-        ... 
+        ...
         ('articulations', 0)
         ('divisions', 1)
         ('pitch_classes', 2)
@@ -32,7 +32,7 @@ class AttributeNameEnumeration(OrderedDict):
 
     attributes = (
         'articulations',
-        'divisions', 
+        'divisions',
         'pitch_classes',
         'registration',
         'rhythm',

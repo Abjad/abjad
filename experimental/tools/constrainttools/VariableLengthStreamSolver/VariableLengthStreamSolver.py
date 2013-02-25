@@ -43,7 +43,7 @@ class VariableLengthStreamSolver(_Solver):
         [3, 1, 1]
         [3, 2]
         [4, 1]
-        
+
     ``VariableLengthStreamSolvers`` are immutable.
 
     Returns ``VariableLengthStreamSolver`` instance.
@@ -69,7 +69,7 @@ class VariableLengthStreamSolver(_Solver):
             solution = list(prev_solution) + [node.value]
             valid = True
             for constraint in constraints:
-                if not constraint(solution):  
+                if not constraint(solution):
                     valid = False
                     break
             if valid:
@@ -77,7 +77,7 @@ class VariableLengthStreamSolver(_Solver):
                     if not terminator(solution):
                         valid = False
                         break
-                if valid:                
+                if valid:
                     yield solution
                 for x in domain[0]:
                     child = Node(x, parent=node, children=[])

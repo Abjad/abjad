@@ -16,9 +16,9 @@ class RhythmMakerExpression(PayloadExpression):
 
     def reflect(self):
         '''Reflect rhythm maker payload expression.
-        
+
         ::
-    
+
             >>> rhythm_maker = library.dotted_sixteenths
             >>> payload_expression = specificationtools.RhythmMakerExpression(rhythm_maker)
             >>> z(payload_expression)
@@ -56,5 +56,5 @@ class RhythmMakerExpression(PayloadExpression):
         Return newly constructed rhythm-maker payload expression.
         '''
         rhythm_maker = self.payload.reverse()
-        result = self.new(payload=rhythm_maker) 
+        result = self.new(payload=rhythm_maker)
         return result

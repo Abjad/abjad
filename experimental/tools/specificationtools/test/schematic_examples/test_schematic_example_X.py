@@ -18,7 +18,7 @@ def test_schematic_example_X_01():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(3, 16)], contexts=['Voice 1'], truncate=True)
-    source_expression = red_segment.select_divisions('Voice 1') 
+    source_expression = red_segment.select_divisions('Voice 1')
     red_segment.set_divisions(source_expression.rotate(-1), contexts=['Voice 2'], truncate=True)
     red_segment.set_divisions(source_expression.rotate(-2), contexts=['Voice 3'], truncate=True)
     red_segment.set_divisions(source_expression.rotate(-3), contexts=['Voice 4'], truncate=True)
@@ -67,15 +67,15 @@ def test_schematic_example_X_02():
 
 def test_schematic_example_X_03():
     '''Schematic example X3.
-    Quartet in 2 segments. 
-    First segment time signatures [6/8, 3/8]. 
+    Quartet in 2 segments.
+    First segment time signatures [6/8, 3/8].
     First staff 1:1 of measures then [3/16, 5/16] divisions.
     Second staff 1:1 of meaures then [5/16, 3/16] divisions.
     Third staff 1:1 of total time then [3/16, 5/16] divisions from staff 1.
     Fourth staff 1:1 of total time then [5/16, 3/16] divisions from staff 2.
     Note tokens scorewide.
     Second segment equal to first segment flipped about the y axis in all respects.
-    ''' 
+    '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
@@ -106,7 +106,7 @@ def test_schematic_example_X_03():
     red_segment.set_rhythm(library.note_tokens)
 
     blue_segment = score_specification.append_segment(name='blue')
-    
+
     red_time_signatures = red_segment.select_time_signatures('Voice 1')
     red_time_signatures = red_time_signatures.reflect()
     blue_segment.set_time_signatures(red_time_signatures)
@@ -120,7 +120,7 @@ def test_schematic_example_X_03():
     blue_segment.set_rhythm(red_voice_3_rhythm.reflect(), contexts=['Voice 3'])
     blue_segment.set_rhythm(red_voice_4_rhythm.reflect(), contexts=['Voice 4'])
 
-    score = score_specification.interpret() 
+    score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
@@ -130,7 +130,7 @@ def test_schematic_example_X_03():
 def test_schematic_example_X_04():
     '''Schematic example X4.
     Quartet in two segments.
-    First segment time signatures [4/8, 3/8, 2/8]. 
+    First segment time signatures [4/8, 3/8, 2/8].
     First staff 1:1:1 total time then thirty-seconds then sixteenths then eighths.
     Staff 2 rhythm equal to staff 1 rhythm regions rotated -1.
     Staff 3 rhythm equal to staff 1 rhythm regions rotated -2.
@@ -185,7 +185,7 @@ def test_schematic_example_X_05():
     F2 rhythm F1 surface rhythm rotated by 1 thirty-second.
     F3 rhythm F1 surface rhythm rotated by 2 thirty-seconds.
     F4 rhythm F1 surface rhythm rotated by 3 thirty-seconds.
-    Second segment time signatures [1/8, 1/8]. 
+    Second segment time signatures [1/8, 1/8].
     Staves repeat rhythm exactly until cut off at end of score.
     '''
 
@@ -220,7 +220,7 @@ def test_schematic_example_X_06():
     F2 rhythm F1 surface rhythm rotated by 1 leaf.
     F3 rhythm F1 surface rhythm rotated by 2 leaves.
     F4 rhythm F1 surface rhythm rotated by 3 leaves.
-    Second segment time signatures [1/8, 1/8]. 
+    Second segment time signatures [1/8, 1/8].
     Second segment staves repeat reversed first segment rhythms until cut off at end of score.
     '''
 
@@ -264,7 +264,7 @@ def test_schematic_example_X_07():
     F2 m1 rhythm rotates F1 m1 rhythm 2 thirty-seconds; F2 m2 rotates F1 m1 rhythm 3 thirty-seconds.
     F3 m1 rhythm rotates F1 m1 rhythm 4 thirty-seconds; F3 m2 rotates F1 m1 rhythm 5 thirty-seconds.
     F4 m1 rhythm rotates F1 m1 rhythm 6 thirty-seconds; F4 m2 rotates F1 m1 rhythm 7 thirty-seconds.
-    Second segment time signatures [2/8]. 
+    Second segment time signatures [2/8].
     Second segment equal to slice of first segment from start offset of F1 leaf 5.
     '''
 

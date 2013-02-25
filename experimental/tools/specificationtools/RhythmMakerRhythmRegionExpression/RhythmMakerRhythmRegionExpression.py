@@ -17,7 +17,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
         from experimental.tools import specificationtools
         assert isinstance(source_expression, rhythmmakertools.RhythmMaker), repr(source_expression)
         assert isinstance(division_list, specificationtools.DivisionList), repr(division_list)
-        RhythmRegionExpression.__init__(self, source_expression=source_expression, start_offset=start_offset, 
+        RhythmRegionExpression.__init__(self, source_expression=source_expression, start_offset=start_offset,
             total_duration=division_list.duration, voice_name=voice_name)
         self._division_list = division_list
 

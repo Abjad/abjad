@@ -34,7 +34,7 @@ class CounttimeComponentSelectExpression(SelectExpression, CounttimeComponentSel
         >>> select_expression = score_specification.select_leaves('Voice 1')
 
     ::
-        
+
         >>> z(select_expression)
         specificationtools.CounttimeComponentSelectExpression(
             classes=specificationtools.ClassInventory([
@@ -68,10 +68,10 @@ class CounttimeComponentSelectExpression(SelectExpression, CounttimeComponentSel
     def __init__(self, anchor=None, classes=None, voice_name=None, time_relation=None, callbacks=None):
         from experimental.tools import specificationtools
         assert classes is None or self._is_counttime_component_class_expr(classes), repr(classes)
-        SelectExpression.__init__(self, 
-            anchor=anchor, 
-            voice_name=voice_name, 
-            time_relation=time_relation, 
+        SelectExpression.__init__(self,
+            anchor=anchor,
+            voice_name=voice_name,
+            time_relation=time_relation,
             callbacks=callbacks)
         CounttimeComponentSelectExpressionSetMethodMixin.__init__(self)
         if isinstance(classes, tuple):
@@ -88,7 +88,7 @@ class CounttimeComponentSelectExpression(SelectExpression, CounttimeComponentSel
         select_expression_inventory.extend([copy.deepcopy(self), copy.deepcopy(select_expression)])
         select_expression_inventory._score_specification = self.score_specification
         return select_expression_inventory
-    
+
     ### PRIVATE METHODS ###
 
     def _is_counttime_component_class_expr(self, expr):

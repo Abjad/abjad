@@ -41,7 +41,7 @@ class SelectExpression(AnchoredExpression, IterablePayloadCallbackMixin, SetMeth
     @property
     def time_relation(self):
         '''Select expression time relation.
-        
+
         Return time relation or none.
         '''
         return self._time_relation

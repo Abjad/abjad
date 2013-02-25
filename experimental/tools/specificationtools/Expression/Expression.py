@@ -53,7 +53,7 @@ class Expression(AbjadObject):
         '''Evaluate expression.
 
         Return new expression when evaluable.
-    
+
         Return none when nonevaluable.
         '''
         pass

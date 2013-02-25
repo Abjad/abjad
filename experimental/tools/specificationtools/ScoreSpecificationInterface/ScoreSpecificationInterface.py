@@ -4,7 +4,7 @@ from experimental.tools.specificationtools.SpecificationInterface import Specifi
 class ScoreSpecificationInterface(SpecificationInterface):
     r'''Score specification interface.
 
-    Preliminary definitions: 
+    Preliminary definitions:
 
     ::
 
@@ -112,7 +112,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
         Return timespan expression.
         '''
         return SpecificationInterface.timespan.fget(self)
-    
+
     ### PUBLIC METHODS ###
 
     def append_segment(self, name=None):
@@ -148,7 +148,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
         '''
         offset = self.timespan.start_offset.translate(offset)
         return offset
-        
+
     def interpret(self):
         '''Interpret score specification.
 
@@ -165,7 +165,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
             return self.score_specification.segment_specifications.pop()
         else:
             return self.score_specification.segment_specifications.pop(n)
-        
+
     def select_segments(self, voice_name):
         '''Select voice ``1`` segments in score::
 

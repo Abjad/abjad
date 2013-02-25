@@ -28,7 +28,7 @@ def test_SegmentSpecification__select_rhythm_from_past_02():
     '''From-past rhythm select expression.
 
     Fit larger source_expression into smaller target.
-    '''    
+    '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
@@ -52,7 +52,7 @@ def test_SegmentSpecification__select_rhythm_from_past_02():
 
 def test_SegmentSpecification__select_rhythm_from_past_03():
     '''From-past rhythm select expression with reverse callback.
-    '''    
+    '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
@@ -76,7 +76,7 @@ def test_SegmentSpecification__select_rhythm_from_past_03():
 
 def test_SegmentSpecification__select_rhythm_from_past_04():
     '''From-past rhythm select expression with reverse callback.
-    '''    
+    '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
@@ -100,7 +100,7 @@ def test_SegmentSpecification__select_rhythm_from_past_04():
 
 def test_SegmentSpecification__select_rhythm_from_past_05():
     '''From-past rhythm select expression with reverse callbacks.
-    '''    
+    '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
@@ -125,7 +125,7 @@ def test_SegmentSpecification__select_rhythm_from_past_05():
 
 def test_SegmentSpecification__select_rhythm_from_past_06():
     '''From-past rhythm select expression with rotation.
-    '''    
+    '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
@@ -149,7 +149,7 @@ def test_SegmentSpecification__select_rhythm_from_past_06():
 
 def test_SegmentSpecification__select_rhythm_from_past_07():
     '''From-past rhythm select expression with rotation callback.
-    '''    
+    '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
@@ -172,7 +172,7 @@ def test_SegmentSpecification__select_rhythm_from_past_07():
 
 def test_SegmentSpecification__select_rhythm_from_past_08():
     '''From-past rhythm select expression with paired rotation.
-    '''    
+    '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)

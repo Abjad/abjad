@@ -46,19 +46,19 @@ class DivisionList(BoundedObject):
 
         >>> z(division_list)
         specificationtools.DivisionList(
-           [Division('[3, 16]', start_offset=Offset(0, 1)), 
-            Division('[3, 16]', start_offset=Offset(3, 16)), 
-            Division('[3, 16]', start_offset=Offset(3, 8)), 
-            Division('[3, 16]', start_offset=Offset(9, 16)), 
-            Division('[3, 16]', start_offset=Offset(3, 4)), 
-            Division('[3, 16]', start_offset=Offset(15, 16)), 
-            Division('[3, 16]', start_offset=Offset(9, 8)), 
-            Division('[3, 16]', start_offset=Offset(21, 16)), 
-            Division('[3, 16]', start_offset=Offset(3, 2)), 
-            Division('[3, 16]', start_offset=Offset(27, 16)), 
-            Division('[3, 16]', start_offset=Offset(15, 8)), 
-            Division('[3, 16]', start_offset=Offset(33, 16)), 
-            Division('[3, 16]', start_offset=Offset(9, 4)), 
+           [Division('[3, 16]', start_offset=Offset(0, 1)),
+            Division('[3, 16]', start_offset=Offset(3, 16)),
+            Division('[3, 16]', start_offset=Offset(3, 8)),
+            Division('[3, 16]', start_offset=Offset(9, 16)),
+            Division('[3, 16]', start_offset=Offset(3, 4)),
+            Division('[3, 16]', start_offset=Offset(15, 16)),
+            Division('[3, 16]', start_offset=Offset(9, 8)),
+            Division('[3, 16]', start_offset=Offset(21, 16)),
+            Division('[3, 16]', start_offset=Offset(3, 2)),
+            Division('[3, 16]', start_offset=Offset(27, 16)),
+            Division('[3, 16]', start_offset=Offset(15, 8)),
+            Division('[3, 16]', start_offset=Offset(33, 16)),
+            Division('[3, 16]', start_offset=Offset(9, 4)),
             Division('[3, 16]', start_offset=Offset(39, 16))],
             start_offset=durationtools.Offset(0, 1),
             voice_name='Voice 1'
@@ -119,7 +119,7 @@ class DivisionList(BoundedObject):
 
     def __len__(self):
         '''Division list length.
-    
+
         Return nonnegative integer.
         '''
         return len(self.divisions)
@@ -346,7 +346,7 @@ class DivisionList(BoundedObject):
 
             >>> divisions = [(3, 16), (4, 16), (3, 16), (4, 16)]
             >>> division_list = specificationtools.DivisionList(divisions, Offset(5), 'Voice 1')
-    
+
         ::
 
             >>> result = division_list.reflect()
@@ -355,9 +355,9 @@ class DivisionList(BoundedObject):
 
             >>> z(result)
             specificationtools.DivisionList(
-                [Division('[4, 16]', start_offset=Offset(5, 1)), 
-                Division('[3, 16]', start_offset=Offset(21, 4)), 
-                Division('[4, 16]', start_offset=Offset(87, 16)), 
+                [Division('[4, 16]', start_offset=Offset(5, 1)),
+                Division('[3, 16]', start_offset=Offset(21, 4)),
+                Division('[4, 16]', start_offset=Offset(87, 16)),
                 Division('[3, 16]', start_offset=Offset(91, 16))],
                 start_offset=durationtools.Offset(5, 1),
                 voice_name='Voice 1'
@@ -374,7 +374,7 @@ class DivisionList(BoundedObject):
 
             >>> divisions = [(3, 16), (4, 16), (3, 16), (4, 16)]
             >>> division_list = specificationtools.DivisionList(divisions, Offset(5), 'Voice 1')
-    
+
         ::
 
             >>> result = division_list.rotate(-1)
@@ -383,9 +383,9 @@ class DivisionList(BoundedObject):
 
             >>> z(result)
             specificationtools.DivisionList(
-                [Division('[4, 16]', start_offset=Offset(5, 1)), 
-                Division('[3, 16]', start_offset=Offset(21, 4)), 
-                Division('[4, 16]', start_offset=Offset(87, 16)), 
+                [Division('[4, 16]', start_offset=Offset(5, 1)),
+                Division('[3, 16]', start_offset=Offset(21, 4)),
+                Division('[4, 16]', start_offset=Offset(87, 16)),
                 Division('[3, 16]', start_offset=Offset(91, 16))],
                 start_offset=durationtools.Offset(5, 1),
                 voice_name='Voice 1'

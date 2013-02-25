@@ -56,7 +56,7 @@ class StatalServerCursor(AbjadObject):
     @property
     def position(self):
         '''Statal server cursor position.
-        
+
         Return tuple.
         '''
         return self._position
@@ -72,7 +72,7 @@ class StatalServerCursor(AbjadObject):
         '''
         return self._reverse
 
-    @property   
+    @property
     def statal_server(self):
         '''Statal server cursor statal server.
 

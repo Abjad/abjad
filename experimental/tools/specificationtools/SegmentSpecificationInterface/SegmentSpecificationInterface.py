@@ -8,19 +8,19 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecificationInterface(score_template=score_template)
-        
+
     ::
-    
+
         >>> red_segment = score_specification.append_segment(name='red')
 
     ::
-            
+
         >>> red_segment
         SegmentSpecificationInterface('red')
 
     Segment specification properties are read-only.
     '''
-    
+
     ### INITIALIZER ###
 
     def __init__(self, score_specification, segment_name):
@@ -45,7 +45,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
     @property
     def score_specification(self):
         '''Segment specification interface score specification.
-        
+
         ::
 
             >>> z(red_segment.score_specification)

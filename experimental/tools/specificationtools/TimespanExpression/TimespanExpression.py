@@ -8,7 +8,7 @@ class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethod
     r'''Timespan expression.
 
     Preliminary definitions:
-      
+
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)

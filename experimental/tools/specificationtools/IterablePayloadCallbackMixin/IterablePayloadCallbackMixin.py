@@ -8,7 +8,7 @@ from experimental.tools.specificationtools.CallbackMixin import CallbackMixin
 class IterablePayloadCallbackMixin(CallbackMixin):
     '''Payload callback mixin.
     '''
-    
+
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
@@ -22,7 +22,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
 
     def __getitem__(self, payload_expression):
         '''Get payload item.
-        
+
         Return copy of expression with callback.
         '''
         callback = 'result = self._getitem__(payload_expression, {!r})'
@@ -148,7 +148,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
 
     def repeat_to_length(self, length):
         '''Repeat payload to `length`.
-    
+
         Return copy of expression with callback.
         '''
         assert mathtools.is_nonnegative_integer(length)
@@ -162,5 +162,5 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         '''
         from experimental.tools import specificationtools
         assert isinstance(index, (int, durationtools.Duration, specificationtools.RotationIndicator))
-        callback = 'result = self._rotate(payload_expression, {!r})'.format(index)    
+        callback = 'result = self._rotate(payload_expression, {!r})'.format(index)
         return self._copy_and_append_callback(callback)

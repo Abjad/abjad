@@ -11,7 +11,7 @@ class RelativeIndexConstraint(_RelativeConstraint):
 
         >>> from experimental.tools.constrainttools import RelativeIndexConstraint
 
-    Instantiated from an integer representing a contiguous index range, or a 
+    Instantiated from an integer representing a contiguous index range, or a
     sequence of indices, and a function which takes as many arguments as
     indices were given:
 

@@ -4,7 +4,7 @@ from experimental.tools.specificationtools.LeafSetExpression import LeafSetExpre
 
 class LeafColorSetExpression(LeafSetExpression):
     '''Leaf color set expression.
-    '''    
+    '''
 
     ### PUBLIC METHODS ###
 

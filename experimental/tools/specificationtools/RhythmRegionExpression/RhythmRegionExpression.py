@@ -4,9 +4,9 @@ from experimental.tools.specificationtools.RegionExpression import RegionExpress
 class RhythmRegionExpression(RegionExpression):
     '''Rhythm region expression.
     '''
-    
+
     ### PUBLIC METHODS ###
-    
+
     def prolongs_expr(self, expr):
         '''True when `expr` is a rhythm region expression
         and `expr` source_expression equals rhythm region expression source_expression.

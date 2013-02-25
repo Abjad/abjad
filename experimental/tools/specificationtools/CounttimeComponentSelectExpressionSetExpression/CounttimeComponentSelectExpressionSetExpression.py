@@ -29,7 +29,7 @@ class CounttimeComponentSelectExpressionSetExpression(Expression):
 
     @property
     def target_counttime_component_select_expression(self):
-        '''Counttime component select expression set expression 
+        '''Counttime component select expression set expression
         target select expression inventory.
 
         Return counttime component select expression.

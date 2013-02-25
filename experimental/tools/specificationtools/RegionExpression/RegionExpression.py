@@ -27,7 +27,7 @@ class RegionExpression(Expression):
     @property
     def source_expression(self):
         '''Region expression source expression.
-        
+
         Return expression.
         '''
         return self._source_expression
@@ -51,7 +51,7 @@ class RegionExpression(Expression):
     @property
     def voice_name(self):
         '''Region expression voice name.
-    
+
         Return string.
         '''
         return self._voice_name

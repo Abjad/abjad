@@ -9,8 +9,8 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
     ### INITIALIZER ###
 
     def __init__(self, source_expression=None, target_timespan=None, target_context_name=None, fresh=True, persist=True):
-        SingleContextSetExpression.__init__(self, attribute='time_signatures', source_expression=source_expression, 
-            target_timespan=target_timespan, target_context_name=target_context_name, 
+        SingleContextSetExpression.__init__(self, attribute='time_signatures', source_expression=source_expression,
+            target_timespan=target_timespan, target_context_name=target_context_name,
             fresh=fresh, persist=persist)
 
     ### PUBLIC METHODS ###

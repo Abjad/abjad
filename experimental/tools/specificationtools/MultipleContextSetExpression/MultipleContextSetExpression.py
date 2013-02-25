@@ -34,17 +34,17 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     ### INITIAILIZER ###
 
-    def __init__(self, 
-            attribute=None, source_expression=None, target_timespan=None, target_context_names=None, 
+    def __init__(self,
+            attribute=None, source_expression=None, target_timespan=None, target_context_names=None,
             persist=True, truncate=None):
-        TimeContiguousAnchoredSetExpression.__init__(self, attribute=attribute, 
-            source_expression=source_expression, 
+        TimeContiguousAnchoredSetExpression.__init__(self, attribute=attribute,
+            source_expression=source_expression,
             target_timespan=target_timespan, persist=persist, truncate=truncate)
         assert isinstance(target_context_names, (list, type(None))), repr(target_context_names)
         self._target_context_names = target_context_names
 
     ### PRIVATE METHODS ###
-    
+
     def _attribute_to_single_context_set_expression_class(self, attribute):
         from experimental.tools import specificationtools
         return {
@@ -52,13 +52,13 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
             'divisions': specificationtools.SingleContextDivisionSetExpression,
             'rhythm': specificationtools.SingleContextRhythmSetExpression,
             }[attribute]
-        
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def target_context_names(self):
         '''Multiple-context set expression target context names.
-    
+
         Return list or none.
         '''
         return self._target_context_names
@@ -80,7 +80,7 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
         for target_context_name in target_context_names:
             target_timespan = copy.deepcopy(self.target_timespan)
             single_context_set_expression = single_context_set_expression_class(
-                source_expression=self.source_expression, 
+                source_expression=self.source_expression,
                 target_timespan=target_timespan,
                 target_context_name=target_context_name,
                 persist=self.persist)
@@ -96,7 +96,7 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
         '''Evaluate multiple-context set expression and store in root specification.
 
         Return none.
-        ''' 
+        '''
         fresh_single_context_set_expressions = self.evaluate()
         assert all([x.fresh for x in fresh_single_context_set_expressions])
         self.root_specification.fresh_single_context_set_expressions.extend(

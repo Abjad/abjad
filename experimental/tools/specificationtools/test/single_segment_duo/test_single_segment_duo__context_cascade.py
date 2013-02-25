@@ -4,7 +4,7 @@ from experimental import *
 def test_single_segment_duo__context_cascade_01():
     '''Lower-level context set expression overrides higher-level context set expression.
     '''
-    
+
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')

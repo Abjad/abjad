@@ -72,7 +72,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
         Return timespan-scoped single-context set expression inventory.
         '''
         return TimespanScopedSingleContextSetExpression.__sub__(self, timespan)
-    
+
     ### PRIVATE METHODS ###
 
     def _can_fuse(self, expr):
@@ -120,7 +120,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
                     wrapped_component, start_offset, total_duration, voice_name)
             elif expression is None:
                 region_expression = specificationtools.LookupExpressionRhythmRegionExpression(
-                    self.source_expression, division_list, self.target_timespan.start_offset, 
+                    self.source_expression, division_list, self.target_timespan.start_offset,
                     start_offset, total_duration, voice_name)
             else:
                 raise TypeError(expression)

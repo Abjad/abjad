@@ -19,14 +19,14 @@ class PitchClassTransformExpression(PayloadExpression):
         self._transform_functions = transform_functions
 
     ### SPECIAL METHODS ###
-    
+
     def __call__(self, pitch_number):
         assert isinstance(pitch_number, numbers.Number), repr(pitch_number)
         result = pitch_number
         for transform_function in reversed(self.transform_functions):
             result = transform_function(result)
         return result
-        
+
     ### PRIVATE METHODS ###
 
     def _parse_complex_transform_string(self, complex_string):

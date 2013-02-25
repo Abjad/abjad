@@ -31,7 +31,7 @@ def test_VariableLengthStreamSolver_01():
     random_solutions = [x for x in random_solver]
 
     assert list(sorted(random_solutions)) == ordered_solutions
-    
+
     more_random_solutions = [x for x in random_solver]
 
     assert list(sorted(random_solutions)) == list(sorted(more_random_solutions))

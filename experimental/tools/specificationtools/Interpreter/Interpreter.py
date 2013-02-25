@@ -7,7 +7,7 @@ from experimental.tools.specificationtools.AttributeNameEnumeration import Attri
 
 class Interpreter(AbjadObject):
     r'''Interpreter.
-    ''' 
+    '''
 
     ### CLASS ATTRIBUTES ###
 
@@ -26,13 +26,13 @@ class Interpreter(AbjadObject):
         self.evaluate_multiple_context_set_expressions()
         self.store_score_rooted_single_context_set_expressions_by_context()
         self.store_segment_rooted_single_context_set_expressions_by_context()
-        
+
     ### PUBLIC METHODS ###
 
     def evaluate_multiple_context_set_expressions(self):
         for multiple_context_set_expression in self.score_specification.multiple_context_set_expressions:
             multiple_context_set_expression.evaluate_and_store_in_root_specification()
-                
+
     def instantiate_score(self):
         score = self.score_specification.score_template()
         context = contexttools.Context(name='TimeSignatureContext', context_name='TimeSignatureContext')

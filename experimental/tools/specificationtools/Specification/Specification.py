@@ -153,16 +153,16 @@ class Specification(AbjadObject):
 
             >>> score_specification.compare_context_names(None, 'Voice 1')
             -1
-            
+
         ::
 
             >>> score_specification.compare_context_names('Voice 1', None)
             1
-            
+
         ::
 
             >>> score_specification.compare_context_names('Voice 1', 'Voice 1')
-            0 
+            0
 
         Return -1, 0 or 1.
         '''
@@ -175,7 +175,7 @@ class Specification(AbjadObject):
 
         Score context evaluates to ``0``.
         Nonscore contexts evaluate to greater than ``0``.
-        
+
             >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
             >>> score_specification = specificationtools.ScoreSpecificationInterface(template)
             >>> score_specification = score_specification.specification

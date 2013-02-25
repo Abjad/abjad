@@ -19,7 +19,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
 
     ### PRIVATE METHODS ###
 
-    def _store_multiple_context_set_expression(self, attribute, source_expression, 
+    def _store_multiple_context_set_expression(self, attribute, source_expression,
         contexts=None, persist=True, truncate=None):
         from experimental.tools import specificationtools
         source_expression = self._expr_to_expression(source_expression)

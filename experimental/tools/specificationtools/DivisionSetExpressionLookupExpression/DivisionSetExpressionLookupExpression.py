@@ -44,7 +44,7 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
     ### INITIALIZER ###
 
     def __init__(self, offset=None, voice_name=None, callbacks=None):
-        SetExpressionLookupExpression.__init__(self, attribute='divisions', 
+        SetExpressionLookupExpression.__init__(self, attribute='divisions',
             offset=offset, voice_name=voice_name, callbacks=callbacks)
 
     ### PUBLIC METHODS ###

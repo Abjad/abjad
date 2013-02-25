@@ -2,7 +2,7 @@ from experimental.tools.constrainttools._RelativeConstraint._RelativeConstraint 
 
 
 class RelativeCountsConstraint(_RelativeConstraint):
-    '''A constraint which is applied against a dictionary whose keys are the 
+    '''A constraint which is applied against a dictionary whose keys are the
     values in a set of items from a given solution, and whose values are the
     counts of those keys.  The constraint is always applied against the last
     possible group of items, and returns True automatically if the solution
@@ -12,7 +12,7 @@ class RelativeCountsConstraint(_RelativeConstraint):
 
         >>> from experimental.tools.constrainttools import RelativeCountsConstraint
 
-    Instantiated from an integer representing a contiguous index range, or a 
+    Instantiated from an integer representing a contiguous index range, or a
     sequence of indices, and a function which takes as many arguments as
     indices were given:
 
@@ -28,7 +28,7 @@ class RelativeCountsConstraint(_RelativeConstraint):
         True
         >>> two_repeats_max([0, 0, 0])
         False
-    
+
     ``RelativeCountsConstraints`` are immutable.
 
     Returns ``RelativeCountsConstraint`` instance.

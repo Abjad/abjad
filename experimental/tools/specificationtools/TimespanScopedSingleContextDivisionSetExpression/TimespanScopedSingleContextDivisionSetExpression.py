@@ -10,10 +10,10 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
 
     ### INITIALIZER ###
 
-    def __init__(self, source_expression=None, target_timespan=None, target_context_name=None, 
+    def __init__(self, source_expression=None, target_timespan=None, target_context_name=None,
         fresh=None, truncate=None):
         TimespanScopedSingleContextSetExpression.__init__(self, attribute='divisions',
-            source_expression=source_expression, target_timespan=target_timespan, 
+            source_expression=source_expression, target_timespan=target_timespan,
             target_context_name=target_context_name, fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate
@@ -57,7 +57,7 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
 
     def evaluate(self, voice_name):
         '''Evaluate timespan-scoped single-context division set expression.
-        
+
         Return division region expression.
         '''
         from experimental.tools import specificationtools

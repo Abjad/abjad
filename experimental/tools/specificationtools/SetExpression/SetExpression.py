@@ -18,7 +18,7 @@ class SetExpression(Expression):
         from experimental.tools import specificationtools
         assert isinstance(attribute, str), repr(attribute)
         assert isinstance(source_expression, specificationtools.Expression), repr(source_expression)
-        assert isinstance(target_timespan, (timespantools.Timespan, specificationtools.TimespanExpression, 
+        assert isinstance(target_timespan, (timespantools.Timespan, specificationtools.TimespanExpression,
             str, type(None))), repr(target_timespan)
         self._attribute = attribute
         self._source_expression = source_expression

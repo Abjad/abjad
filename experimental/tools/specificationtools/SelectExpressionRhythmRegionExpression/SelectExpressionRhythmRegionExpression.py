@@ -12,7 +12,7 @@ class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
 
     def evaluate(self):
         '''Evaluate select expression rhythm region expression.
-        
+
         Return none when nonevaluable.
 
         Return start-positioned rhythm payload expression when evaluable.
@@ -21,7 +21,7 @@ class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
         expression = self.source_expression.evaluate()
         if expression is None:
             return
-        assert isinstance(expression, 
+        assert isinstance(expression,
             specificationtools.StartPositionedRhythmPayloadExpression), repr(expression)
         expression._start_offset = self.start_offset
         start_offset, stop_offset = self.start_offset, self.start_offset + self.total_duration
@@ -32,7 +32,7 @@ class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
         inventory = expression & keep_timespan
         assert len(inventory) == 1
         expression = inventory[0]
-        assert isinstance(expression, 
+        assert isinstance(expression,
             specificationtools.StartPositionedRhythmPayloadExpression), repr(expression)
         expression.repeat_to_stop_offset(stop_offset)
         return expression

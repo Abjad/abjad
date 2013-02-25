@@ -15,7 +15,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     r'''Start-positioned payload expression.
 
     Start-positioned payload expressions are immutable.
-    ''' 
+    '''
 
     ### INITIALIZER ###
 
@@ -34,7 +34,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         Operate in place and return timespan inventory.
         '''
         if timespan.contains_timespan_improperly(self):
-            result = timespantools.TimespanInventory([self]) 
+            result = timespantools.TimespanInventory([self])
         elif timespan.delays_timespan(self):
             split_offset = durationtools.Offset(timespan.stop_offset)
             duration_to_keep = split_offset - self.start_offset
@@ -87,7 +87,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         '''
         return len(self.payload)
 
-    def __lt__(self, expr):        
+    def __lt__(self, expr):
         '''True when expression starts before `expr`.
 
         Also true when expression starts when `expr` starts
@@ -107,7 +107,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         '''Logical OR of two payload expressions.
 
         Payload expression must be able to fuse.
-        
+
         Return timespan inventory.
         '''
         assert self._can_fuse(expr)
@@ -268,7 +268,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         start_offset = elements[0].start_offset
         expression = self.new(payload=elements, start_offset=start_offset)
         return expression
-    
+
     def partition_by_ratio(self, ratio):
         '''Partition start-positioned payload expression by ratio.
 

@@ -11,9 +11,9 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, source_expression=None, division_list=None, 
+    def __init__(self, source_expression=None, division_list=None,
         region_start_offset=None, start_offset=None, total_duration=None, voice_name=None):
-        RhythmRegionExpression.__init__(self, source_expression=source_expression, 
+        RhythmRegionExpression.__init__(self, source_expression=source_expression,
             start_offset=start_offset, total_duration=total_duration, voice_name=voice_name)
         self._division_list = division_list
         self._region_start_offset = region_start_offset
@@ -22,7 +22,7 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
 
     def evaluate(self):
         '''Evaluate lookup expression rhythm region expression.
-        
+
         Return none when nonevaluable.
 
         Return start-positioned rhythm payload expression when evaluable.
@@ -45,7 +45,7 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
             raise TypeError(expression)
         assert isinstance(result, specificationtools.StartPositionedRhythmPayloadExpression), repr(result)
         return result
-        
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

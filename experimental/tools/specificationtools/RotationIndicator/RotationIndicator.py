@@ -31,7 +31,7 @@ class RotationIndicator(abctools.AbjadObject):
         self._fracture_spanners = fracture_spanners
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-    
+
     @property
     def fracture_spanners(self):
         '''Fracture spanners when true.

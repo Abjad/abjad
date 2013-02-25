@@ -2,7 +2,7 @@ from experimental.tools.constrainttools._GlobalConstraint._GlobalConstraint impo
 
 
 class GlobalCountsConstraint(_GlobalConstraint):
-    '''A constraint which is applied against a dictionary whose keys are the 
+    '''A constraint which is applied against a dictionary whose keys are the
     values in a given solution, and whose values are the counts of those keys:
 
     ::

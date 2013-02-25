@@ -9,7 +9,7 @@ def make_base_list_of_compressed_rotation_tuples(staffIndexBoundsTuple, rotation
 	del(rotations[0][0])
 	del(rotations[-1][-1])
 	return rotations
-	
+
 def make_base_list_of_uncompressed_rotation_tuples(staffIndexBoundsTuple, rotationBandwidth):
 	lowerBound = staffIndexBoundsTuple[0]
 	upperBound = staffIndexBoundsTuple[1]
@@ -23,7 +23,7 @@ def make_base_list_of_rotation_tuples(staffIndexBoundsTuple, rotationBandwidth, 
 	else:
 		make_base_list_of_uncompressed_rotation_tuples(staffIndexBoundsTuple, rotationBandwidth)
 	return rotations
-	
+
 def mirror_base_list_of_rotation_tuples(rotations):
 	copied = rotations[1:-1]
 	copied.reverse()
@@ -64,7 +64,7 @@ def make_staff_with_random_pitches(choices, numPitches):
 		notes.append( note )
 	staff = Staff(notes)
 	return staff
-	
+
 def pair_pitches_with_splits(matrix, splits, phaseOffset):
 	splitTuplePairs = [ ]
 	for x in range( len(splits) ):
@@ -78,7 +78,7 @@ def add_split_to_score_by_tuple(split, score, tuple):
 			copied = componenttools.copy_components_and_covered_spanners(split)
 			score[x].extend(copied[:])
 		else:
-			duration = sum( [y.written_duration for y in split] ) 
+			duration = sum( [y.written_duration for y in split] )
 			duration = Duration( duration )
 			leaves = leaftools.make_tied_leaf(Rest, duration)
 			score[x].extend( leaves )
@@ -122,7 +122,7 @@ def fuse_consecutive_rests_of_duration_by_duration_threshold(run, duration, dura
 def fuse_large_rests_of_duration_in_bar_by_duration_threshold(bar, duration, durationThreshold):
 	for run in componenttools.yield_topmost_components_grouped_by_type(bar):
 		fuse_consecutive_rests_of_duration_by_duration_threshold(run, duration, durationThreshold )
-		
+
 def fuse_large_rests_of_duration_in_bars_by_duration_threshold(bars, duration, durationThreshold):
 	for bar in bars:
 		fuse_large_rests_of_duration_in_bar_by_duration_threshold(bar, duration, durationThreshold )
@@ -141,8 +141,8 @@ def clean_up_rests_in_score(score):
 	fuse_large_rests_of_duration_in_score_by_duration_threshold(score, Duration(1,4), Duration(2,4) )
 	for staff in score:
 		set_vertical_positioning_pitch_on_rest_in_staff(staff, "d")
-			
-				
+
+
 def rotate_expression_through_adjacent_staffs_at_bandwidth_by_durations(expression, staffIndexBoundsTuple, rotationBandwidth, durations, compressedReflections=True, cyclic=False, phaseOffset= 0):
 	matrix = make_cyclic_matrix_for_rotation_by_bandwidth( staffIndexBoundsTuple, rotationBandwidth, compressedReflections=compressedReflections )
 	splits = componenttools.split_components_at_offsets(expression.leaves, durations, cyclic=cyclic, tie_split_notes=False)
@@ -150,7 +150,7 @@ def rotate_expression_through_adjacent_staffs_at_bandwidth_by_durations(expressi
 	add_splits_to_score_by_tuples(score, splitTuplePairs)
 	beam_and_fuse_beats_in_score_by_durations(score, [Duration(1,4)],cyclic=True)
 	clean_up_rests_in_score(score)
-	
+
 def make_empty_cello_score(numStaffs):
 	score = Score([])
 	for x in range(numStaffs):

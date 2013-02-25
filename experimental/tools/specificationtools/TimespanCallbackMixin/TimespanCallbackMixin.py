@@ -44,7 +44,7 @@ class TimespanCallbackMixin(CallbackMixin):
             start_offset, stop_offset = eval(callback, evaluation_context)
             assert start_offset <= stop_offset
         return timespantools.Timespan(start_offset, stop_offset)
-        
+
     def _divide_by_ratio(self, start_offset, stop_offset, ratio, the_part):
         original_start_offset, original_stop_offset = start_offset, stop_offset
         original_duration = original_stop_offset - original_start_offset
@@ -68,7 +68,7 @@ class TimespanCallbackMixin(CallbackMixin):
         new_stop_offset = original_start_offset + duration
         return original_start_offset, new_stop_offset
 
-    def _set_offsets(self, original_start_offset, original_stop_offset, 
+    def _set_offsets(self, original_start_offset, original_stop_offset,
         candidate_start_offset, candidate_stop_offset):
         if candidate_start_offset is not None and 0 <= candidate_start_offset:
             new_start_offset = candidate_start_offset
@@ -88,7 +88,7 @@ class TimespanCallbackMixin(CallbackMixin):
         return self._translate_offsets(original_start_offset, original_stop_offset,
             translation, translation)
 
-    def _translate_offsets(self, original_start_offset, original_stop_offset, 
+    def _translate_offsets(self, original_start_offset, original_stop_offset,
         start_offset_translation, stop_offset_translation):
         if start_offset_translation is None:
             start_offset_translation = 0
@@ -110,7 +110,7 @@ class TimespanCallbackMixin(CallbackMixin):
             >>> timespans = red_segment.timespan.divide_by_ratio((2, 3))
 
         ::
-    
+
             >>> z(timespans[0])
             specificationtools.TimespanExpression(
                 anchor='red',
@@ -248,7 +248,7 @@ class TimespanCallbackMixin(CallbackMixin):
         if start_offset is not None:
             start_offset = durationtools.Offset(start_offset)
         if stop_offset is not None:
-            stop_offset = durationtools.Offset(stop_offset) 
+            stop_offset = durationtools.Offset(stop_offset)
         callback = \
             'self._set_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
         callback = callback.format(start_offset, stop_offset)

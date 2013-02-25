@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_single_segment_solo__rhythm_context_cascade_01():
-    '''Settings made against lower-level contexts override 
+    '''Settings made against lower-level contexts override
     set expressions made against higher-level contexts.
     '''
 
@@ -63,7 +63,7 @@ def test_single_segment_solo__rhythm_context_cascade_03():
 
 
 def test_single_segment_solo__rhythm_context_cascade_04():
-    '''Lexically later set expressions don't matter if they 
+    '''Lexically later set expressions don't matter if they
     are made against a higher-level context.
     '''
 

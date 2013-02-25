@@ -104,12 +104,12 @@ class SegmentSelectExpression(SelectExpression):
             return specificationtools.SegmentIdentifierExpression('{!r} + {!r}'.format(segment_name, addendum))
         else:
             return specificationtools.SegmentIdentifierExpression('{!r} - {!r}'.format(segment_name, addendum))
-    
+
     ### PUBLIC METHODS ###
 
     def evaluate(self):
         '''Evaluate segment select expression.
-        
+
         Return none when nonevaluable.
 
         Return start-positioned payload expression when evaluable.

@@ -7,7 +7,7 @@ class GlobalReferenceConstraint(_GlobalConstraint):
     ::
 
         >>> from experimental.tools.constrainttools import GlobalReferenceConstraint
-    
+
     Its predicate function should accept two arguments, the first being the
     current solution, and the second for the external reference provided at
     instantiation.
@@ -24,8 +24,8 @@ class GlobalReferenceConstraint(_GlobalConstraint):
         True
         >>> constraint([-1, 1, 2, 3, 23])
         False
-        
-    ``GlobalReferenceConstraints`` are immutable.    
+
+    ``GlobalReferenceConstraints`` are immutable.
 
     Returns ``GlobalReferenceConstraint`` instance.
     '''

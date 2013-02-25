@@ -121,7 +121,7 @@ class AnchoredExpression(Expression):
             return self.anchor
         else:
             return self.anchor.root_specification_identifier
-        
+
     @property
     def score_specification(self):
         '''Anchored expression score specification.

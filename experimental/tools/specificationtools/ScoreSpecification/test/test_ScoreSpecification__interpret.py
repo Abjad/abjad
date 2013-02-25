@@ -8,7 +8,7 @@ def test_ScoreSpecification__interpret_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
-    
+
     score = score_specification.interpret()
 
     r'''

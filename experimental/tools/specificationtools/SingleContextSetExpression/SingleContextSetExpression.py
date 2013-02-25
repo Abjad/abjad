@@ -31,7 +31,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     Example. Set time signatures to ``4/8``, ``3/8`` for red segment timespan in score context:
 
-    :: 
+    ::
 
         >>> fresh_single_context_set_expression = \
         ...     red_segment.specification.fresh_single_context_set_expressions[0]
@@ -58,11 +58,11 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, 
-        attribute=None, source_expression=None, target_timespan=None, target_context_name=None, 
+    def __init__(self,
+        attribute=None, source_expression=None, target_timespan=None, target_context_name=None,
         fresh=True, persist=True, truncate=None):
-        TimeContiguousAnchoredSetExpression.__init__(self, 
-            attribute=attribute, source_expression=source_expression, 
+        TimeContiguousAnchoredSetExpression.__init__(self,
+            attribute=attribute, source_expression=source_expression,
             target_timespan=target_timespan, persist=persist, truncate=truncate)
         assert isinstance(target_context_name, (str, type(None)))
         self._fresh = fresh
@@ -76,7 +76,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
         Set copy root specification to `root`.
 
         Set copy `fresh` to false.
-        
+
         Return copy.
         '''
         assert isinstance(root, (str, type(None)))

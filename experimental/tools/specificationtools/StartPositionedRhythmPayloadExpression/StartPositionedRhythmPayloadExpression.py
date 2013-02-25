@@ -40,7 +40,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     def __init__(self, payload=None, start_offset=None, voice_name=None):
         payload = containertools.Container(music=payload)
-        StartPositionedPayloadExpression.__init__(self, 
+        StartPositionedPayloadExpression.__init__(self,
             payload=payload, start_offset=start_offset, voice_name=voice_name)
 
     ### SPECIAL METHODS ###
@@ -155,7 +155,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         result = result[0]
         return result
 
-    def __len__(self): 
+    def __len__(self):
         '''Start-positioned rhythm payload expression length.
 
         ::
@@ -167,7 +167,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
             >>> len(expression)
             4
-    
+
         Return nonnegative integer.
         '''
         return len(self.payload.leaves)
@@ -195,7 +195,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> result = expression_1 | expression_2
 
         ::
-        
+
             >>> z(result)
             timespantools.TimespanInventory([
                 specificationtools.StartPositionedRhythmPayloadExpression(
@@ -340,7 +340,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         new = type(self)([], start_offset=self.start_offset, voice_name=self.voice_name)
         new._payload = wrapped_component
         return new
-        
+
     def _split_payload_at_offsets(self, offsets):
         assert isinstance(self.payload, containertools.Container)
         music = self.payload
@@ -537,7 +537,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> result = expression.reflect()    
+            >>> result = expression.reflect()
 
         ::
 
@@ -621,7 +621,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         '''Repeat start-positioned rhythm payload expression to `length`.
 
         Example 1. Repeat to `length` less than start-positioned rhythm payload expression:
-    
+
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
@@ -642,7 +642,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 )
 
         Example 2. Repeat to `length` greater than start-positioned rhythm payload expression:
-    
+
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
@@ -679,7 +679,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> result = expression.repeat_to_stop_offset(Offset(17, 16))    
+            >>> result = expression.repeat_to_stop_offset(Offset(17, 16))
 
         ::
 
@@ -837,7 +837,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     def translate(self, translation):
         '''Translate start-positioned rhythm payload expression by `translation`.
-        
+
         ::
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]

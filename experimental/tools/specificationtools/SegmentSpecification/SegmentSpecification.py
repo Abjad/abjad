@@ -63,12 +63,12 @@ class SegmentSpecification(Specification):
     @property
     def context_names(self):
         r'''Segment specification context names.
-        
+
         ::
 
             >>> for x in red_segment.context_names:
             ...     x
-            ... 
+            ...
             'Grouped Rhythmic Staves Score'
             'Grouped Rhythmic Staves Staff Group'
             'Staff 1'
@@ -178,7 +178,7 @@ class SegmentSpecification(Specification):
 
             >>> for key in red_segment.single_context_set_expressions_by_context:
             ...     key
-            ... 
+            ...
             'Grouped Rhythmic Staves Score'
             'Grouped Rhythmic Staves Staff Group'
             'Staff 1'
@@ -206,7 +206,7 @@ class SegmentSpecification(Specification):
     @property
     def storage_format(self):
         r'''Segment specification storage format.
-        
+
         ::
 
             >>> z(red_segment)
@@ -216,7 +216,7 @@ class SegmentSpecification(Specification):
                     ),
                 'red'
                 )
-        
+
         Return string.
         '''
         return Specification.storage_format.fget(self)
@@ -235,7 +235,7 @@ class SegmentSpecification(Specification):
         return [mathtools.NonreducedFraction(x) for x in self._time_signatures]
 
     @property
-    def timespan(self): 
+    def timespan(self):
         '''Segment specification timespan.
 
         ::

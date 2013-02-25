@@ -22,7 +22,7 @@ class DivisionSelectExpression(SelectExpression):
         >>> select_expression = score_specification.select_divisions('Voice 1')
 
     ::
-        
+
         >>> z(select_expression)
         specificationtools.DivisionSelectExpression(
             voice_name='Voice 1'
@@ -44,7 +44,7 @@ class DivisionSelectExpression(SelectExpression):
 
     Division select expressions are immutable.
     '''
-    
+
     ### PUBLIC METHODS ###
 
     def evaluate(self):
@@ -74,5 +74,5 @@ class DivisionSelectExpression(SelectExpression):
             inventory = expression & anchor_timespan
             expression = inventory[0]
         expression = self._apply_callbacks(expression)
-        expression._voice_name = self.voice_name 
+        expression._voice_name = self.voice_name
         return expression

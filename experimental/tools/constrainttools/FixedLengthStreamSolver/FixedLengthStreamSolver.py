@@ -30,7 +30,7 @@ class FixedLengthStreamSolver(_Solver):
     ::
 
         >>> for solution in solver: print solution
-        ... 
+        ...
         [1, 2, 3, 4]
         [1, 2, 4, 3]
         [1, 3, 2, 4]
@@ -113,7 +113,7 @@ class FixedLengthStreamSolver(_Solver):
                         elif isinstance(result, type(node)):
                             node.children.remove(result)
                             if node.children == []:
-                                return node    
+                                return node
                             return None
             else:
                 return node

@@ -62,7 +62,7 @@ def test_SegmentSpecification__select_measures_03():
 def test_SegmentSpecification__select_measures_04():
     '''Negative index.
     '''
-    
+
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
@@ -81,7 +81,7 @@ def test_SegmentSpecification__select_measures_04():
 def test_SegmentSpecification__select_measures_05():
     '''Positive index.
     '''
-    
+
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
@@ -100,7 +100,7 @@ def test_SegmentSpecification__select_measures_05():
 def test_SegmentSpecification__select_measures_06():
     '''Measure select expression dependent on divided timespan.
     '''
-    
+
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
@@ -120,7 +120,7 @@ def test_SegmentSpecification__select_measures_07():
     Order of set expressions matters.
     First measure of right set expression covers last measure of left set expression.
     '''
-    
+
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
@@ -142,7 +142,7 @@ def test_SegmentSpecification__select_measures_08():
     Order of set expressions matters.
     Last measure of left set expression covers first measure of right set expression.
     '''
-    
+
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
@@ -163,7 +163,7 @@ def test_SegmentSpecification__select_measures_09():
     '''Measure select expression dependent on divided timespan.
     With explicit time-relation.
     '''
-    
+
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
@@ -183,7 +183,7 @@ def test_SegmentSpecification__select_measures_10():
     '''Measure select expression dependent on divided timespan.
     With explicit time-relation.
     '''
-    
+
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
@@ -202,7 +202,7 @@ def test_SegmentSpecification__select_measures_10():
 def test_SegmentSpecification__select_measures_11():
     '''Measure select expression with composed getitem callbacks.
     '''
-    
+
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
@@ -220,7 +220,7 @@ def test_SegmentSpecification__select_measures_11():
 def test_SegmentSpecification__select_measures_12():
     '''Measure select expression with composed getitem and partition callbacks.
     '''
-    
+
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
@@ -240,7 +240,7 @@ def test_SegmentSpecification__select_measures_12():
 def test_SegmentSpecification__select_measures_13():
     '''Measure select expression with composed partition and getitem callbacks.
     '''
-    
+
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')

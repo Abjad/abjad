@@ -17,7 +17,7 @@ class SelectMethodMixin(AbjadObject):
 
     Add to classes that implement the select method interface.
     '''
-    
+
     ### PUBLIC METHODS ###
 
     def select_beats(self, voice_name, time_relation=None):
@@ -50,7 +50,7 @@ class SelectMethodMixin(AbjadObject):
             >>> divisions = red_segment.select_divisions('Voice 1')
 
         ::
-            
+
             >>> z(divisions)
             specificationtools.DivisionSelectExpression(
                 anchor='red',
@@ -89,15 +89,15 @@ class SelectMethodMixin(AbjadObject):
         from experimental.tools import specificationtools
         select_expression = specificationtools.CounttimeComponentSelectExpression(
             anchor=self._expression_abbreviation,
-            time_relation=time_relation, 
-            classes=(leaftools.Leaf, ), 
+            time_relation=time_relation,
+            classes=(leaftools.Leaf, ),
             voice_name=voice_name
             )
         select_expression._score_specification = self.score_specification
         return select_expression
 
     def select_measures(self, voice_name, time_relation=None):
-        '''Select voice ``1`` measures 
+        '''Select voice ``1`` measures
         that start during segment ``'red'``::
 
             >>> measures = red_segment.select_measures('Voice 1')
@@ -143,7 +143,7 @@ class SelectMethodMixin(AbjadObject):
         from experimental.tools import specificationtools
         select_expression = specificationtools.CounttimeComponentSelectExpression(
             anchor=self._expression_abbreviation,
-            time_relation=time_relation, 
+            time_relation=time_relation,
             classes=(notetools.Note, chordtools.Chord),
             voice_name=voice_name
             )
@@ -187,7 +187,7 @@ class SelectMethodMixin(AbjadObject):
         from experimental.tools import specificationtools
         select_expression = specificationtools.TimeSignatureSelectExpression(
             anchor=self._expression_abbreviation,
-            time_relation=time_relation, 
+            time_relation=time_relation,
             voice_name=voice_name
             )
         select_expression._score_specification = self.score_specification

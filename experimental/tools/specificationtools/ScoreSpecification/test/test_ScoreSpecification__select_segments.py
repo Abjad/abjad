@@ -71,7 +71,7 @@ def test_ScoreSpecification__select_segments_03():
 def test_ScoreSpecification__select_segments_04():
     '''Two score-rooted rhythm set expressions made at different contexts.
 
-    Lexically later set expression is also made at closer context. 
+    Lexically later set expression is also made at closer context.
 
     Set expression at closer context overrides set expression at more distant context.
     '''
@@ -95,7 +95,7 @@ def test_ScoreSpecification__select_segments_04():
 def test_ScoreSpecification__select_segments_05():
     '''Two score-rooted rhythm set expressions made at different contexts.
 
-    Lexically later set expression is also made at more distant context. 
+    Lexically later set expression is also made at more distant context.
 
     Set expression at closer context overrides set expression at more distant context.
     '''

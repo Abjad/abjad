@@ -7,7 +7,7 @@ class StatalServerExpression(Expression, IterablePayloadCallbackMixin):
     '''
 
     ### INITIALIZER ###
-    
+
     def __init__(self, statal_server=None, callbacks=None):
         assert isinstance(statal_server, specificationtools.StatalServer), repr(statal_server)
         Expression.__init__(self)
@@ -33,7 +33,7 @@ class StatalServerExpression(Expression, IterablePayloadCallbackMixin):
     @property
     def statal_server(self):
         '''Statal server expression statal server.
-    
+
         Return statal server.
         '''
         return self._statal_server

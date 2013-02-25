@@ -92,7 +92,7 @@ def test_TimespanExpression__callbacks_05():
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
     measures = red_segment.select_measures('Voice 1')[:1]
-    timespan = measures.timespan.translate_offsets(Duration(1, 8), Duration(1, 8)) 
+    timespan = measures.timespan.translate_offsets(Duration(1, 8), Duration(1, 8))
     timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -112,7 +112,7 @@ def test_TimespanExpression__callbacks_06():
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
     measures = red_segment.select_measures('Voice 1')[:2]
-    timespan = measures.timespan.translate_offsets(start_offset_translation=Duration(1, 8)) 
+    timespan = measures.timespan.translate_offsets(start_offset_translation=Duration(1, 8))
     timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -132,7 +132,7 @@ def test_TimespanExpression__callbacks_07():
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
     measures = red_segment.select_measures('Voice 1')[:2]
-    timespan = measures.timespan.translate_offsets(stop_offset_translation=Duration(-1, 8)) 
+    timespan = measures.timespan.translate_offsets(stop_offset_translation=Duration(-1, 8))
     timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 

@@ -212,7 +212,7 @@ htmlhelp_basename = 'AbjadExperimentalPackagesdoc'
 # -- Options for LaTeX output --------------------------------------------------
 
 latex_elements = {
-    'inputenc': r'\usepackage[utf8x]{inputenc}', 
+    'inputenc': r'\usepackage[utf8x]{inputenc}',
     'utf8extra': '',
 
     # The paper size ('letterpaper' or 'a4paper').

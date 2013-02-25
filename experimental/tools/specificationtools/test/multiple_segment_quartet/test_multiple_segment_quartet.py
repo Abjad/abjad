@@ -15,7 +15,7 @@ def test_multiple_segment_quartet_01():
     Tests for spanning divisions in 1 & 2 over red / blue.
     Tests for truncated divisions in 1 & 2 at the end of blue.
     '''
-    
+
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
@@ -39,10 +39,10 @@ def test_multiple_segment_quartet_01():
 
 def test_multiple_segment_quartet_02():
     '''As above with different divisions.
-    
+
     Tests for spanning divisions in 1 & 2 and also in 3 & 4.
     '''
-    
+
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
@@ -103,7 +103,7 @@ def test_multiple_segment_quartet_04():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(3, 16)], contexts=['Voice 1'])
-    source_expression = red_segment.select_divisions('Voice 1') 
+    source_expression = red_segment.select_divisions('Voice 1')
     red_segment.set_divisions(source_expression.rotate(-1), contexts=['Voice 2'], truncate=True)
     red_segment.set_divisions(source_expression.rotate(-2), contexts=['Voice 3'], truncate=True)
     red_segment.set_divisions(source_expression.rotate(-3), contexts=['Voice 4'], truncate=True)

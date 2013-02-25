@@ -32,19 +32,19 @@ class Division(NonreducedFraction, BoundedObject):
     Divisions may model beats. Divisions may model complete measures.
     Divisions may model time objects other than beats or measures.
 
-    Divisions generally may be used to model any block of time that is 
+    Divisions generally may be used to model any block of time that is
     to be understood as divisible into parts.
     '''
 
     ### CLASS ATTRIBUTES ###
 
-    # slots definition does nothing here because multiple inheritance 
+    # slots definition does nothing here because multiple inheritance
     # breaks with multiple slots base classes
     __slots__ = ()
 
     ### INITIALIZER ###
 
-    def __new__(klass, arg, 
+    def __new__(klass, arg,
         is_left_open=None, is_right_open=None, start_offset=None):
         if isinstance(arg, str):
             triple = mathtools.interval_string_to_pair_and_indicators(arg)
@@ -71,8 +71,8 @@ class Division(NonreducedFraction, BoundedObject):
 
     def __copy__(self, *args):
         return self.__class__(
-            self.pair, 
-            is_left_open=self.is_left_open, is_right_open=self.is_right_open, 
+            self.pair,
+            is_left_open=self.is_left_open, is_right_open=self.is_right_open,
             start_offset=self.start_offset)
 
     __deepcopy__ = __copy__
@@ -113,7 +113,7 @@ class Division(NonreducedFraction, BoundedObject):
     @property
     def start_offset(self):
         '''Division start offset specified at initialization.
-        
+
         Return offset or none.
         '''
         return self._start_offset
@@ -124,7 +124,7 @@ class Division(NonreducedFraction, BoundedObject):
         when start offset is not none.
 
         Defined equal to none when start offset is none.
-    
+
         Return offset or none.
         '''
         if self.start_offset is not None:

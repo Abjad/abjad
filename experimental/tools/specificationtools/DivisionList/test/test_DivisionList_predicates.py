@@ -4,7 +4,7 @@ from experimental.tools.specificationtools.DivisionList import DivisionList
 def test_DivisionList_predicates_01():
 
     division_list = DivisionList([(4, 8), (4, 8), (3, 8)])
-    
+
     assert division_list.is_left_closed
     assert division_list.is_right_closed
 

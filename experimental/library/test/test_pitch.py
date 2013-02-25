@@ -6,7 +6,7 @@ def test_pitch_01():
     '''
 
     cursor = library.example_pitches_1()
-    
+
     assert cursor() == [0]
     assert cursor() == [1]
     assert cursor() == [2]

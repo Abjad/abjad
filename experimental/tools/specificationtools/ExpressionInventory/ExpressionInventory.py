@@ -6,7 +6,7 @@ from experimental.tools.specificationtools.IterablePayloadExpression import Iter
 class ExpressionInventory(ObjectInventory, IterablePayloadExpression):
     '''Expression inventory.
     '''
-    
+
     ### SPECIAL METHODS ###
 
     def __deepcopy__(self, memo):

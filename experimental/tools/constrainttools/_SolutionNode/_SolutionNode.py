@@ -23,7 +23,7 @@ class _SolutionNode(AbjadObject):
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self.value)
 
-    ### PUBLIC PROPERTIES ###        
+    ### PUBLIC PROPERTIES ###
 
     @property
     def depth(self):
@@ -33,7 +33,7 @@ class _SolutionNode(AbjadObject):
             depth += 1
             node = node.parent
         return depth
-        
+
     @property
     def solution(self):
         node = self

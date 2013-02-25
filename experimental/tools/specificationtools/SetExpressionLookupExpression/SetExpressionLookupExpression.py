@@ -72,7 +72,7 @@ class SetExpressionLookupExpression(AnchoredExpression, IterablePayloadCallbackM
         return self._voice_name
 
     ### PUBLIC METHODS ###
-    
+
     @abc.abstractmethod
     def evaluate(self):
         '''Evaluate set expression lookup expression.
