@@ -1,3 +1,4 @@
+import types
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -27,6 +28,8 @@ class Selection(AbjadObject):
         if music is None:
             music = ()
         elif isinstance(music, (tuple, list, type(self))):
+            music = tuple(music)
+        elif isinstance(music, types.GeneratorType):
             music = tuple(music)
         else:
             music = (music, )

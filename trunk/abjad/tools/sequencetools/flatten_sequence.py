@@ -1,17 +1,23 @@
 def flatten_sequence(sequence, klasses=None, depth=-1):
     '''.. versionadded:: 1.1
 
-    Flatten `sequence`::
+    Flatten `sequence`:
+
+    ::
 
         >>> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]])
         [1, 2, 3, 4, 5, 6, 7, 8]
 
-    Flatten `sequence` to depth ``1``::
+    Flatten `sequence` to depth ``1``:
+
+    ::
 
         >>> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth=1)
         [1, 2, 3, [4], 5, 6, 7, [8]]
 
-    Flatten `sequence` to depth ``2``::
+    Flatten `sequence` to depth ``2``:
+
+    ::
 
         >>> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth=2)
         [1, 2, 3, 4, 5, 6, 7, 8]
@@ -19,19 +25,14 @@ def flatten_sequence(sequence, klasses=None, depth=-1):
     Leave `sequence` unchanged.
 
     Return newly constructed `sequence` object.
-
-    .. versionchanged:: 2.0
-        renamed ``listtools.flatten()`` to
-        ``sequencetools.flatten_sequence()``.
     '''
 
-    # based on procedure by Mike C. Fletcher
     if klasses is None:
         klasses = (list, tuple)
 
-    assert isinstance(sequence, klasses)
-    ltype = type(sequence)
-    return ltype(_flatten_helper(sequence, klasses, depth))
+    assert isinstance(sequence, klasses), repr(sequence)
+    sequence_type = type(sequence)
+    return sequence_type(_flatten_helper(sequence, klasses, depth))
 
 
 # Creates an iterator that can generate a flattened list,
@@ -46,6 +47,6 @@ def _flatten_helper(sequence, klasses, depth):
             yield i
     else:
         for i in sequence:
-            # Flatten an iterable by one level
+            # flatten an iterable by one level
             for j in _flatten_helper(i, klasses, depth - 1):
                 yield j

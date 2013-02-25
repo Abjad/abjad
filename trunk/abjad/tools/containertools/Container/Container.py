@@ -258,9 +258,9 @@ class Container(Component):
         if isinstance(i, int):
             if isinstance(expr, str):
                 expr = self._parse_string(expr)[:]
-                assert len(expr) == 1
+                assert len(expr) == 1, repr(expr)
                 expr = expr[0]
-            assert componenttools.all_are_components([expr])
+            assert componenttools.all_are_components([expr]), repr([expr])
             if any([isinstance(x, gracetools.GraceContainer) for x in [expr]]):
                 raise GraceContainerError('must attach grace container to note or chord.')
             old = self[i]
@@ -281,7 +281,7 @@ class Container(Component):
                 expr = self._parse_string(expr)[:]
             elif isinstance(expr, list) and len(expr) == 1 and isinstance(expr[0], str):
                 expr = self._parse_string(expr[0])[:]
-            assert componenttools.all_are_components(expr)
+            assert componenttools.all_are_components(expr), repr(expr)
             if any([isinstance(x, gracetools.GraceContainer) for x in expr]):
                 raise GraceContainerError('must attach grace container to note or chord.')
             if i.start == i.stop and i.start is not None \
@@ -389,7 +389,7 @@ class Container(Component):
         def fset(self, expr):
             from abjad.tools.contexttools.Context import Context
             from abjad.tools import componenttools
-            assert isinstance(expr, bool)
+            assert isinstance(expr, bool), repr(expr)
             if expr == True:
                 assert componenttools.all_are_components(self._music, klasses=(Context, ))
             self._parallel = expr
