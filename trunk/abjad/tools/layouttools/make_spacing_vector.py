@@ -27,7 +27,7 @@ def make_spacing_vector(basic_distance, minimum_distance, padding, stretchabilit
 
         \paper {
             system-system-spacing = #'(
-                (basic_distance . 0) (minimum_distance . 0) (padding . 12) (stretchability . 0))
+                (basic-distance . 0) (minimum-distance . 0) (padding . 12) (stretchability . 0))
         }
 
         \score {
@@ -43,7 +43,7 @@ def make_spacing_vector(basic_distance, minimum_distance, padding, stretchabilit
     '''
 
     return schemetools.SchemeVector(
-        schemetools.SchemePair('basic_distance', basic_distance),
-        schemetools.SchemePair('minimum_distance', minimum_distance),
+        schemetools.SchemePair('basic-distance', basic_distance),
+        schemetools.SchemePair('minimum-distance', minimum_distance),
         schemetools.SchemePair('padding', padding),
         schemetools.SchemePair('stretchability', stretchability))

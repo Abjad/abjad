@@ -28,11 +28,11 @@ def test_PaperBlock_02():
 
     r'''
     \paper {
-        system-system-spacing = #'((basic_distance . 0) (minimum_distance . 0) (padding . 12) (stretchability . 0))
+        system-system-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 12) (stretchability . 0))
     }
     '''
 
-    assert paper_block.lilypond_format == "\\paper {\n\tsystem-system-spacing = #'((basic_distance . 0) (minimum_distance . 0) (padding . 12) (stretchability . 0))\n}"
+    assert paper_block.lilypond_format == "\\paper {\n\tsystem-system-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 12) (stretchability . 0))\n}"
 
 
 def test_PaperBlock_03():

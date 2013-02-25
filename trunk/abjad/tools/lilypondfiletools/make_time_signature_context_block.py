@@ -24,7 +24,7 @@ def make_time_signature_context_block(font_size=3, padding=4):
             \override TimeSignature #'font-size = #3
             \override TimeSignature #'self-alignment-X = #center
             \override VerticalAxisGroup #'default-staff-staff-spacing = #'(
-                (basic_distance . 0) (minimum_distance . 0) (padding . 4) (stretchability . 0))
+                (basic-distance . 0) (minimum-distance . 0) (padding . 4) (stretchability . 0))
         }
 
     Return context block.

@@ -740,7 +740,7 @@ spacing documentation for a complete explanation of what this Scheme code means:
 
    >>> spacing_vector = layouttools.make_spacing_vector(0, 0, 8, 0)
    >>> f(spacing_vector)
-   #'((basic_distance . 0) (minimum_distance . 0) (padding . 8) (stretchability . 0))
+   #'((basic-distance . 0) (minimum-distance . 0) (padding . 8) (stretchability . 0))
 
 
 ::
