@@ -1,5 +1,5 @@
 def get_spanner_format_contributions(component):
-    '''Get spanner format contributions for `leaf` as a dictionary 
+    '''Get spanner format contributions for `leaf` as a dictionary
     of format_slot:contributions key:value pairs.
 
     Return dict.
@@ -26,7 +26,7 @@ def get_spanner_format_contributions(component):
     else:
         before_contributions = result['opening']
         after_contributions = result['closing']
-        
+
     stop_contributions = []
     other_contributions = []
 

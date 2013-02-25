@@ -51,7 +51,7 @@ def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_0
 
     assert wellformednesstools.is_well_formed_component(score)
     assert score.lilypond_format == '\\new Score <<\n\t\\new Staff {\n\t\tc\'8\n\t\td\'8\n\t\t\t_ \\markup {\n\t\t\t\t\\tiny\n\t\t\t\t\t0010020\n\t\t\t\t}\n\t\te\'8\n\t\tf\'8\n\t\t\t_ \\markup {\n\t\t\t\t\\tiny\n\t\t\t\t\t1000020\n\t\t\t\t}\n\t}\n\t\\new Staff {\n\t\t\\clef "alto"\n\t\tg4\n\t\tf4\n\t\t\t_ \\markup {\n\t\t\t\t\\tiny\n\t\t\t\t\t0100110\n\t\t\t\t}\n\t}\n\t\\new Staff {\n\t\t\\clef "bass"\n\t\tc,2\n\t\t\t_ \\markup {\n\t\t\t\t\\tiny\n\t\t\t\t\t1000020\n\t\t\t\t}\n\t}\n>>'
- 
+
 
 def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_02():
     '''Vertical moments with quartertones format with a two-row
@@ -74,4 +74,4 @@ def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_0
 
     assert chord.lilypond_format == "<bf bqf a'>4\n\t_ \\markup {\n\t\t\\tiny\n\t\t\t\\column\n\t\t\t\t{\n\t\t\t\t\t0100000\n\t\t\t\t\t110000\n\t\t\t\t}\n\t\t}"
 
- 
+

@@ -57,7 +57,7 @@ class Cluster(Container):
         contributions = [r'\makeClusters %s' % brackets_open[0]]
         result.append([contributor, contributions])
         return tuple(result)
-    
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

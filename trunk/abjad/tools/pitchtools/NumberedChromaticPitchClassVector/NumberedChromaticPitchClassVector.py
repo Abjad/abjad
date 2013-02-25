@@ -121,7 +121,7 @@ class NumberedChromaticPitchClassVector(ObjectVector):
 
     @property
     def chromatic_pitch_class_numbers(self):
-        '''Read-only chromatic pitch-class numbers from numbered chromatic 
+        '''Read-only chromatic pitch-class numbers from numbered chromatic
         pitch-class vector::
 
             >>> ncpcv.chromatic_pitch_class_numbers
@@ -143,8 +143,8 @@ class NumberedChromaticPitchClassVector(ObjectVector):
 
             >>> for x in result: x
             ...
-            NumberedChromaticPitchClass(2.5) 
-            NumberedChromaticPitchClass(1) 
+            NumberedChromaticPitchClass(2.5)
+            NumberedChromaticPitchClass(1)
             NumberedChromaticPitchClass(6)
 
         Return list.

@@ -29,6 +29,6 @@ def durations_to_integers(durations):
     fractions = [nonreduced_fraction.reduce() for nonreduced_fraction in nonreduced_fractions]
     assert all([fraction.denominator == 1 for fraction in fractions])
     integers = [fraction.numerator for fraction in fractions]
-    
+
     # return integers
     return integers

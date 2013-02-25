@@ -10,7 +10,7 @@ def is_space_delimited_lowercase_string(expr):
 
         >>> stringtools.is_space_delimited_lowercase_string('foo bar')
         True
-    
+
     False otherwise::
 
         >>> stringtools.is_space_delimited_lowercase_string('foo_bar')
@@ -26,4 +26,4 @@ def is_space_delimited_lowercase_string(expr):
     if not isinstance(expr, str):
         return False
 
-    return bool(space_delimited_lowercase_regex.match(expr)) 
+    return bool(space_delimited_lowercase_regex.match(expr))

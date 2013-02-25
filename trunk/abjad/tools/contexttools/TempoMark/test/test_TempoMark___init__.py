@@ -61,7 +61,7 @@ def test_TempoMark___init___08():
 
     t = contexttools.TempoMark((Duration(1, 4), (120, 133)))
     assert t.lilypond_format == '\\tempo 4=120~133'
-    
+
 
 def test_TempoMark___init___09():
     '''Init tempo mark from length-3 tuple.'''

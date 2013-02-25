@@ -59,9 +59,9 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
     def new(self, **kwargs):
         '''Create new rest rhythm-maker with `kwargs`:
-    
+
         ::
-        
+
             >>> new_maker = maker.new()
 
         ::
@@ -88,9 +88,9 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
     def reverse(self):
         '''Reverse rest rhythm-maker:
-    
+
         ::
-        
+
             >>> reversed_maker = maker.reverse()
 
         ::

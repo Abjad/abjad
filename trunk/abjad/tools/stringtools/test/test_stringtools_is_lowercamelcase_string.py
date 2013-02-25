@@ -12,7 +12,7 @@ def test_stringtools_is_lowercamelcase_string_01():
 def test_stringtools_is_lowercamelcase_string_02():
 
     assert stringtools.is_lowercamelcase_string('')
-    
+
 
 def test_stringtools_is_lowercamelcase_string_03():
 

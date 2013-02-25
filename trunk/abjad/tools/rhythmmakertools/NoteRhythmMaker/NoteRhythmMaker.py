@@ -42,7 +42,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
     def __repr__(self):
         '''Note rhythm-maker interpreter representation.
-        
+
         Return string.
         '''
         return '%s()' % type(self).__name__
@@ -74,7 +74,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
             >>> new_maker = maker.new(decrease_durations_monotonically=False)
 
         ::
-            
+
             >>> z(new_maker)
             rhythmmakertools.NoteRhythmMaker(
                 decrease_durations_monotonically=False,
@@ -106,7 +106,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
             >>> reversed_maker = maker.reverse()
 
         ::
-            
+
             >>> z(reversed_maker)
             rhythmmakertools.NoteRhythmMaker(
                 decrease_durations_monotonically=False,

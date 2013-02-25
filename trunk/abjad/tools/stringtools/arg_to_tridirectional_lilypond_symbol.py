@@ -59,7 +59,7 @@ def arg_to_tridirectional_lilypond_symbol(arg):
     }
 
     if arg is None:
-        return None 
+        return None
     elif arg in lookup:
         return lookup[arg]
     raise ValueError

@@ -21,7 +21,7 @@ def is_pitch_class_octave_number_string(expr):
 
     Quartertone accidentals are supported.
 
-    The regex ``^([A-G])([#]{1,2}|[b]{1,2}|[#]?[+]|[b]?[~]|)([-]?[0-9]+)$`` 
+    The regex ``^([A-G])([#]{1,2}|[b]{1,2}|[#]?[+]|[b]?[~]|)([-]?[0-9]+)$``
     underlies this predicate.
 
     Return boolean.

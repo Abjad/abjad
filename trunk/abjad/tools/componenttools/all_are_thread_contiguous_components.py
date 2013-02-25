@@ -93,7 +93,7 @@ def _are_thread_proper(component_1, component_2, klasses=None):
     '''
     from abjad.tools import componenttools
     from abjad.tools import iterationtools
-    
+
     if klasses is None:
         klasses = (componenttools.Component,)
 

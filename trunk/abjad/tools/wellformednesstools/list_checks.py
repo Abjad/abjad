@@ -4,7 +4,7 @@ def list_checks():
     List checks::
 
         >>> for check in wellformednesstools.list_checks(): check
-        ... 
+        ...
         BeamedQuarterNoteCheck()
         DiscontiguousSpannerCheck()
         DuplicateIdCheck()
@@ -24,7 +24,7 @@ def list_checks():
     Return list of checks.
     '''
     from abjad.tools import wellformednesstools
-    
+
     result = []
     for name in dir(wellformednesstools):
         if not name == 'Check':

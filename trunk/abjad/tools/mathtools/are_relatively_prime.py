@@ -30,7 +30,7 @@ def are_relatively_prime(expr):
         all_factors = set([])
         for number in expr:
             current_factors = mathtools.factors(number)
-            current_factors.remove(1) 
+            current_factors.remove(1)
             current_factors = set(current_factors)
             if all_factors & current_factors:
                 return False

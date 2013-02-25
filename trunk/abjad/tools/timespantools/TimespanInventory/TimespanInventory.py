@@ -215,7 +215,7 @@ class TimespanInventory(ObjectInventory):
             True
 
         ::
-        
+
             >>> timespan_inventory_2.all_are_well_formed
             True
 
@@ -311,7 +311,7 @@ class TimespanInventory(ObjectInventory):
 
             >>> timespan_inventory.is_sorted
             False
-    
+
         Return boolean.
         '''
         if len(self) < 2:
@@ -344,7 +344,7 @@ class TimespanInventory(ObjectInventory):
 
             >>> timespan_inventory_3.start_offset
             NegativeInfinity
-            
+
         Return offset or none.
         '''
         if self:
@@ -365,7 +365,7 @@ class TimespanInventory(ObjectInventory):
 
             >>> timespan_inventory_2.stop_offset
             Offset(20, 1)
-            
+
         Infinity when empty:
 
         ::
@@ -778,7 +778,7 @@ class TimespanInventory(ObjectInventory):
                     if timespan_2.intersects_timespan(timespan_1_fragment):
                         result = timespan_1_fragment - timespan_2
                         revised_timespan_1_fragments.extend(result)
-                    else:   
+                    else:
                         revised_timespan_1_fragments.append(timespan_1_fragment)
                 timespan_1_fragments = revised_timespan_1_fragments
             all_fragments.extend(timespan_1_fragments)
@@ -1152,7 +1152,7 @@ class TimespanInventory(ObjectInventory):
         return self
 
     def scale(self, multiplier, anchor=Left):
-        '''Scale timespan by `multiplier` relative to `anchor`. 
+        '''Scale timespan by `multiplier` relative to `anchor`.
 
         Example 1. Scale timespans relative to timespan inventory start offset:
 

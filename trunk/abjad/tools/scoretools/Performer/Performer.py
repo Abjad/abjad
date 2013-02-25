@@ -51,7 +51,7 @@ class Performer(AbjadObject):
             instruments = ', '.join([x.instrument_name for x in self.instruments])
             result = '{}: {}'.format(self.name, instruments)
         return result
-            
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -134,7 +134,7 @@ class Performer(AbjadObject):
             >>> flutist = scoretools.Performer(name='flutist')
             >>> for likely_instrument in flutist.likely_instruments_based_on_performer_name:
             ...     likely_instrument
-            ... 
+            ...
             <class 'abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute'>
             <class 'abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute'>
             <class 'abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute'>
@@ -156,7 +156,7 @@ class Performer(AbjadObject):
 
         Most likely instrument based on performer name::
 
-            >>> flutist = scoretools.Performer(name='flutist')    
+            >>> flutist = scoretools.Performer(name='flutist')
             >>> flutist.most_likely_instrument_based_on_performer_name
             <class 'abjad.tools.instrumenttools.Flute.Flute.Flute'>
 
@@ -195,7 +195,7 @@ class Performer(AbjadObject):
         r'''.. versionadded:: 2.5
 
         Make performer name / instrument dictionary.
-    
+
         Return dictionary.
         '''
         from abjad.tools import instrumenttools

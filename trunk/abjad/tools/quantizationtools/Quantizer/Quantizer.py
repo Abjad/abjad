@@ -29,7 +29,7 @@ class Quantizer(AbjadObject):
                 \new Voice {
                     {
                         \time 4/4
-                        \tempo 4=60 
+                        \tempo 4=60
                         c'4
                         cs'4
                         d'4
@@ -144,18 +144,18 @@ class Quantizer(AbjadObject):
         \new Score <<
             \new Staff {
                 \new Voice {
-                    \tempo 4=60 
+                    \tempo 4=60
                     c'4
                     cs'4
-                    \tempo 4=120 
+                    \tempo 4=120
                     d'2
                     ef'4 ~
-                    \tempo 4=90 
+                    \tempo 4=90
                     ef'8.
                     e'4 ~
                     e'16 ~
                     \times 2/3 {
-                        \tempo 4=30 
+                        \tempo 4=30
                         e'32
                         f'8.
                         fs'8 ~
@@ -209,7 +209,7 @@ class Quantizer(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self):
-        pass    
+        pass
 
     ### SPECIAL METHODS ###
 

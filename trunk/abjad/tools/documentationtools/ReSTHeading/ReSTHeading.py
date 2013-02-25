@@ -34,7 +34,7 @@ class ReSTHeading(TreeNode):
     @property
     def _rest_format_contributions(self):
         result = []
-        underline, overline = self.heading_characters[self.level] 
+        underline, overline = self.heading_characters[self.level]
         if overline:
             result.append(overline * len(self.text))
         result.append(self.text)

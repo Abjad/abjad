@@ -32,7 +32,7 @@ class Ratio(NonreducedRatio):
         if len(args) == 1 and isinstance(args[0], (list, tuple)):
             args = args[0]
         assert args, repr(args)
-        assert all([x != 0 for x in args]), repr(args) 
+        assert all([x != 0 for x in args]), repr(args)
         args = sequencetools.divide_sequence_elements_by_greatest_common_divisor(args)
         self = NonreducedRatio.__new__(klass, args)
         return self

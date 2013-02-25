@@ -113,7 +113,7 @@ class GuileProxy(AbjadObject):
         # we relativize that chord, and update any repeated chords
         # we've added to its list of referencing chords.
 
-        # The parser's "last_chord" variable will now reflect the 
+        # The parser's "last_chord" variable will now reflect the
         # relativized pitches of the original referenced chord,
         # and so any new chord repetitions following the \relative block
         # should result in matching absolute pitches to both the "last_chord"
@@ -134,7 +134,7 @@ class GuileProxy(AbjadObject):
                 for child in component:
                     pitch = recurse(child, pitch)
             return pitch
-        
+
         pitch = recurse(music, pitch)
 
         self._make_unrelativable(music)
@@ -204,7 +204,7 @@ class GuileProxy(AbjadObject):
         return marktools.LilyPondCommandMark('voiceOne')
 
 
-    def voiceFour(self):    
+    def voiceFour(self):
         return marktools.LilyPondCommandMark('voiceTwo')
 
 
@@ -246,7 +246,7 @@ class GuileProxy(AbjadObject):
     def _make_unrelativable(self, music):
         if not self._is_unrelativable(music):
             marktools.Annotation('UnrelativableMusic')(music)
-        
+
 
     def _to_relative_octave(self, pitch, reference):
         if pitch.chromatic_pitch_class_number > reference.chromatic_pitch_class_number:

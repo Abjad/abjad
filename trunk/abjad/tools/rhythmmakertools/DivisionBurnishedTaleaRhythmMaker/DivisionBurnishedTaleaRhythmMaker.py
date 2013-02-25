@@ -103,7 +103,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         Return string.
         '''
         return BurnishedTaleaRhythmMaker.storage_format.fget(self)
-   
+
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):

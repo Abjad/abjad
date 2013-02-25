@@ -32,9 +32,9 @@ def test_RhythmTreeNode_offset_01():
     assert tree[1][0].start_offset == Offset(1, 3)
     assert tree[1][1].start_offset == Offset(13, 21)
     assert tree[1][2].start_offset == Offset(17, 21)
-    
+
     tree.preprolated_duration = 19
-        
+
     assert tree.start_offset == Offset(0)
     assert tree[0].start_offset == Offset(0)
     assert tree[1].start_offset == Offset(19, 3)

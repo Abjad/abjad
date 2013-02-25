@@ -24,7 +24,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False
 
         >>> show(staff) # doctest: +SKIP
 
-    When ``color=True`` call 
+    When ``color=True`` call
     :func:`~abjad.tools.labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map`::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")

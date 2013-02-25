@@ -18,7 +18,7 @@ class MetricalKernel(AbjadObject):
             Offset(1, 2): Multiplier(1, 11),
             Offset(5, 8): Multiplier(3, 11)
         })
-  
+
     Call the kernel against an expression from which offsets can be counted
     to receive an impulse-response:
 

@@ -13,7 +13,7 @@ def replace_container_slice_with_rests(container, start=None, stop=None,
     Example 1. Replace all container elements::
 
         >>> container = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b' c''8")
-    
+
     ::
 
         >>> container = containertools.replace_container_slice_with_rests(container)
@@ -32,8 +32,8 @@ def replace_container_slice_with_rests(container, start=None, stop=None,
         >>> container = containertools.replace_container_slice_with_rests(
         ...     container, start=1)
 
-    :: 
-    
+    ::
+
         >>> f(container)
         \new Staff {
             c'8
@@ -67,7 +67,7 @@ def replace_container_slice_with_rests(container, start=None, stop=None,
 
     # get container elements to replace
     elements_to_replace = container[start:stop]
-    
+
     # if there are elements to replace
     if elements_to_replace:
 

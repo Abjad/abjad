@@ -1,4 +1,4 @@
-def partition_components_by_durations_exactly(components, durations, 
+def partition_components_by_durations_exactly(components, durations,
     cyclic=False, in_seconds=False, overhang=False):
     r'''.. versionadded:: 1.1
     '''

@@ -27,4 +27,4 @@ def test_PitchedQEvent___init___02():
     assert q_event.offset == durationtools.Offset(133, 5)
     assert q_event.pitches == (pitchtools.NamedChromaticPitch('fss'),)
     assert q_event.attachments == ('foo', 'bar', 'baz')
-        
+

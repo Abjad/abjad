@@ -73,7 +73,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
             >>
         >>
 
-    Return score template object.   
+    Return score template object.
     '''
 
     ### INITIALIZER ###
@@ -90,7 +90,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         if isinstance(self.staff_count, int):
             for index in range(self.staff_count):
                 number = index + 1
-                voice = voicetools.Voice(name='Voice {}'.format(number))     
+                voice = voicetools.Voice(name='Voice {}'.format(number))
                 staff = stafftools.RhythmicStaff([voice], name='Staff {}'.format(number))
                 staves.append(staff)
                 self.context_name_abbreviations['v{}'.format(number)] = voice.name
@@ -98,7 +98,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
             for staff_index, voice_count in enumerate(self.staff_count):
                 staff_number = staff_index + 1
                 staff = stafftools.RhythmicStaff([], name='Staff {}'.format(staff_number))
-                assert 1 <= voice_count  
+                assert 1 <= voice_count
                 for voice_index in range(voice_count):
                     voice_number = voice_index + 1
                     if voice_count == 1:
@@ -110,9 +110,9 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                     staff.append(voice)
                     self.context_name_abbreviations['v{}'.format(voice_identifier)] = voice.name
                 staves.append(staff)
-        
+
         grouped_rhythmic_staves_staff_group = scoretools.StaffGroup(
-            staves, name='Grouped Rhythmic Staves Staff Group')         
+            staves, name='Grouped Rhythmic Staves Staff Group')
 
         grouped_rhythmic_staves_score = scoretools.Score(
             [grouped_rhythmic_staves_staff_group], name='Grouped Rhythmic Staves Score')

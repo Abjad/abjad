@@ -4,7 +4,7 @@ def all_are_grace_containers(expr, kind=None):
     True when `expr` is a sequence of Abjad grace containers::
 
         >>> graces = [
-        ...     gracetools.GraceContainer("<c' e' g'>4"), 
+        ...     gracetools.GraceContainer("<c' e' g'>4"),
         ...     gracetools.GraceContainer("<c' f' a'>4")]
         >>> voice = Voice("c'8 d'8 e'8 f'8")
         >>> grace_notes = [Note("c'16"), Note("d'16")]

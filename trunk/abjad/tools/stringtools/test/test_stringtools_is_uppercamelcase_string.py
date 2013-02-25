@@ -12,7 +12,7 @@ def test_stringtools_is_uppercamelcase_string_01():
 def test_stringtools_is_uppercamelcase_string_02():
 
     assert stringtools.is_uppercamelcase_string('')
-    
+
 
 def test_stringtools_is_uppercamelcase_string_03():
 

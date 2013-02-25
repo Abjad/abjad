@@ -6,7 +6,7 @@ def cycle_tokens_to_sieve(*cycle_tokens):
         >>> cycle_token_1 = (6, [0, 4, 5])
         >>> cycle_token_2 = (10, [0, 1, 2], 6)
         >>> sievetools.cycle_tokens_to_sieve(cycle_token_1, cycle_token_2)
-        {ResidueClass(6, 0) | ResidueClass(6, 4) | ResidueClass(6, 5) | 
+        {ResidueClass(6, 0) | ResidueClass(6, 4) | ResidueClass(6, 5) |
          ResidueClass(10, 6) | ResidueClass(10, 7) | ResidueClass(10, 8)}
 
     Cycle token comprises `modulo`, `residues` and optional `offset`.

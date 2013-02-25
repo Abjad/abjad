@@ -11,7 +11,7 @@ def attach_annotations_to_components_in_expr(expr, annotations):
 
         >>> for x in staff:
         ...     print x, marktools.get_annotations_attached_to_component(x)
-        ... 
+        ...
         c'8 (Annotation('foo', 'bar')(c'8),)
         d'8 (Annotation('foo', 'bar')(d'8),)
         e'8 (Annotation('foo', 'bar')(e'8),)

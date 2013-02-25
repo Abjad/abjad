@@ -35,7 +35,7 @@ def get_most_distant_sequential_container_in_improper_parentage_of_component(com
     ::
 
         >>> componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(
-        ...     note) 
+        ...     note)
         Voice-"voice 1"{2}
 
     Return none when no such container exists in the improper parentage of `component`.

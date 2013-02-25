@@ -11,7 +11,7 @@ def is_underscore_delimited_lowercase_string(expr):
 
         >>> stringtools.is_underscore_delimited_lowercase_string('foo_bar')
         True
-    
+
     False otherwise::
 
         >>> stringtools.is_underscore_delimited_lowercase_string('foo bar')
@@ -27,4 +27,4 @@ def is_underscore_delimited_lowercase_string(expr):
     if not isinstance(expr, str):
         return False
 
-    return bool(underscore_delimited_lowercase_regex.match(expr)) 
+    return bool(underscore_delimited_lowercase_regex.match(expr))

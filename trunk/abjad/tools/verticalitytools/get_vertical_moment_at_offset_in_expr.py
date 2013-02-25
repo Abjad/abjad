@@ -59,7 +59,7 @@ def get_vertical_moment_at_offset_in_expr(expr, offset):
         >>> vertical_moment = _
         >>> vertical_moment.leaves
         (Note("a'4"), Note("e'8"))
-    
+
     Return vertical moment.
     '''
     from abjad.tools import iterationtools

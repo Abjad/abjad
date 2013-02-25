@@ -3,7 +3,7 @@ import py
 
 
 def test_leaftools_split_leaf_at_offset_01():
-    '''Split note into assignable notes. 
+    '''Split note into assignable notes.
     Don't fracture spanners. Don't tie split notes.
     '''
 
@@ -34,7 +34,7 @@ def test_leaftools_split_leaf_at_offset_01():
 
 
 def test_leaftools_split_leaf_at_offset_02():
-    '''Split note into assignable notes. 
+    '''Split note into assignable notes.
     Fracture spanners. But don't tie split notes.
     '''
 
@@ -65,7 +65,7 @@ def test_leaftools_split_leaf_at_offset_02():
 
 
 def test_leaftools_split_leaf_at_offset_03():
-    '''Split note into assignable notes. 
+    '''Split note into assignable notes.
     Don't fracture spanners. But do tie split notes.
     '''
 
@@ -96,7 +96,7 @@ def test_leaftools_split_leaf_at_offset_03():
 
 
 def test_leaftools_split_leaf_at_offset_04():
-    '''Split note into assignable notes. 
+    '''Split note into assignable notes.
     Fracture spanners and tie split notes.
     '''
 
@@ -270,7 +270,7 @@ def test_leaftools_split_leaf_at_offset_10():
 
 
 def test_leaftools_split_leaf_at_offset_11():
-    '''Nonassignable split duration with power-of-two denominator 
+    '''Nonassignable split duration with power-of-two denominator
     produces two lists.
     Left list contains two notes tied together.
     Right list contains only one note.

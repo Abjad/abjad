@@ -124,7 +124,7 @@ class TempoMark(ContextMark):
 
     def __copy__(self, *args):
         return type(self)(
-            self.textual_indication, self.duration, self.units_per_minute, 
+            self.textual_indication, self.duration, self.units_per_minute,
             target_context=self.target_context)
 
     def __div__(self, expr):
@@ -301,7 +301,7 @@ class TempoMark(ContextMark):
             Fraction(104, 1)
 
         Return fraction.
-        
+
         Or tuple if tempo mark `units_per_minute` is a range.
 
         Or none if tempo mark is imprecise.
@@ -324,7 +324,7 @@ class TempoMark(ContextMark):
                 >>> tempo = contexttools.TempoMark('Langsam', Duration(1, 8), 52)
                 >>> tempo.textual_indication
                 'Langsam'
-            
+
             Return string or None.
             '''
             return self._textual_indication

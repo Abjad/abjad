@@ -2,7 +2,7 @@ from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 
 
 class DiscardingGraceHandler(GraceHandler):
-    '''Concrete ``GraceHandler`` subclass which discards all but final 
+    '''Concrete ``GraceHandler`` subclass which discards all but final
     ``QEvent`` attached to an offset.
 
     Does not create ``GraceContainers``.

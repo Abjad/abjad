@@ -5,7 +5,7 @@ def list_secondary_instruments():
 
         >>> for secondary_instrument in instrumenttools.list_secondary_instruments()[:5]:
         ...     secondary_instrument
-        ... 
+        ...
         <class 'abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute'>
         <class 'abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone'>
         <class 'abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone'>
@@ -23,4 +23,4 @@ def list_secondary_instruments():
         if instrument.is_secondary_instrument:
             secondary_instruments.append(instrument_class)
 
-    return secondary_instruments        
+    return secondary_instruments

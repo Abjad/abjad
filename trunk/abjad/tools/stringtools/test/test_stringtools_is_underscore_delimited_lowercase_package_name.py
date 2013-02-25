@@ -12,7 +12,7 @@ def test_stringtools_is_underscore_delimited_lowercase_package_name_01():
 def test_stringtools_is_underscore_delimited_lowercase_package_name_02():
 
     assert stringtools.is_underscore_delimited_lowercase_package_name('')
-    
+
 
 def test_stringtools_is_underscore_delimited_lowercase_package_name_03():
 

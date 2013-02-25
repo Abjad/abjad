@@ -25,7 +25,7 @@ def get_all_format_contributions(component):
     overrides = get_grob_override_format_contributions(component)[1]
     if overrides:
         result['grob overrides'] = overrides
-    
+
     reverts = get_grob_revert_format_contributions(component)[1]
     if reverts:
         result['grob reverts'] = reverts

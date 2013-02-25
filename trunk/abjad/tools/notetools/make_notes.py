@@ -9,13 +9,13 @@ from abjad.tools import sequencetools
 def make_notes(pitches, durations, decrease_durations_monotonically=True):
     '''Make notes according to `pitches` and `durations`.
 
-    Cycle through `pitches` when the length of `pitches` is less than the 
+    Cycle through `pitches` when the length of `pitches` is less than the
     length of `durations`::
 
         >>> notetools.make_notes([0], [(1, 16), (1, 8), (1, 8)])
         [Note("c'16"), Note("c'8"), Note("c'8")]
 
-    Cycle through `durations` when the length of `durations` is less than the 
+    Cycle through `durations` when the length of `durations` is less than the
     length of `pitches`::
 
         >>> notetools.make_notes([0, 2, 4, 5, 7], [(1, 16), (1, 8), (1, 8)])
@@ -64,12 +64,12 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
 
     durations = durationtools.group_nonreduced_fractions_by_implied_prolation(duration_pairs)
 
-    def _make_unprolated_notes(pitches, durations, 
+    def _make_unprolated_notes(pitches, durations,
         decrease_durations_monotonically=decrease_durations_monotonically):
         assert len(pitches) == len(durations)
         result = []
         for pitch, duration in zip(pitches, durations):
-            result.extend(notetools.make_tied_note(pitch, duration, 
+            result.extend(notetools.make_tied_note(pitch, duration,
                 decrease_durations_monotonically=decrease_durations_monotonically))
         return result
 
@@ -82,7 +82,7 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
         ps = pitches[0:len(duration)]
         pitches = pitches[len(duration):]
         if len(factors) == 0:
-            result.extend(_make_unprolated_notes(ps, duration, 
+            result.extend(_make_unprolated_notes(ps, duration,
                 decrease_durations_monotonically=decrease_durations_monotonically))
         else:
             # compute prolation
@@ -91,7 +91,7 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
             multiplier = (numerator, denominator)
             ratio = 1 / fractions.Fraction(*multiplier)
             duration = [ratio * durationtools.Duration(d) for d in duration]
-            ns = _make_unprolated_notes(ps, duration, 
+            ns = _make_unprolated_notes(ps, duration,
                 decrease_durations_monotonically=decrease_durations_monotonically)
             t = tuplettools.Tuplet(multiplier, ns)
             result.append(t)

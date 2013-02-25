@@ -10,7 +10,7 @@ def test_instrumenttools_UntunedPercussion___repr___01():
     assert repr(instrument) == 'UntunedPercussion()'
     assert instrument._storage_format == 'instrumenttools.UntunedPercussion()'
 
-    
+
 def test_instrumenttools_UntunedPercussion___repr___02():
     '''With instrument name and short instrument name.
     '''

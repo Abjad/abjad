@@ -7,7 +7,7 @@ def make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
     r'''.. versionadded:: 2.11
 
     Make test rhythm number `rhythm_number` that fits `grid_length`.
-    
+
     Return selection of one or more possibly tied notes.
 
     Example 1. The eight test rhythms that fit a length-``4`` grid::
@@ -17,7 +17,7 @@ def make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
         ...         4, rhythm_number, denominator=4)
         ...     measure = Measure((4, 4), notes)
         ...     print '{}\t{}'.format(rhythm_number, measure)
-        ... 
+        ...
         0   |4/4, c'1|
         1   |4/4, c'2., c'4|
         2   |4/4, c'2, c'4, c'4|
@@ -34,7 +34,7 @@ def make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
         ...         5, rhythm_number, denominator=4)
         ...     measure = Measure((5, 4), notes)
         ...     print '{}\t{}'.format(rhythm_number, measure)
-        ... 
+        ...
         0   |5/4, c'1, c'4|
         1   |5/4, c'1, c'4|
         2   |5/4, c'2., c'4, c'4|
@@ -69,11 +69,11 @@ def make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
 
     # find binary representation of rhythm
     binary_representation = mathtools.integer_to_binary_string(rhythm_number)
-    binary_representation = binary_representation.zfill(grid_length) 
+    binary_representation = binary_representation.zfill(grid_length)
 
     # partition binary representation of rhythm
     parts = sequencetools.partition_sequence_by_value_of_elements(binary_representation)
-    
+
     # find durations
     durations = [durationtools.Duration(len(part), denominator) for part in parts]
 

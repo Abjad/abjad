@@ -23,7 +23,7 @@ def is_component_with_noncontext_mark_attached(expr):
 
         >>> marktools.is_component_with_noncontext_mark_attached(note)
         False
-     
+
     Return boolean.
     '''
     from abjad.tools import marktools

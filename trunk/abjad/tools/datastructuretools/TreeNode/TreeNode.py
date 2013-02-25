@@ -13,7 +13,7 @@ class TreeNode(AbjadObject):
 
     def __init__(self, name=None):
         self._name = None
-        self._parent = None    
+        self._parent = None
         self.name = name
 
     ### SPECIAL METHODS ###
@@ -107,7 +107,7 @@ class TreeNode(AbjadObject):
             for attr_piece in attr_pieces[:-1]:
                 attr_piece[-1] += ','
                 result.extend(attr_piece)
-        result.extend(attr_pieces[-1]) 
+        result.extend(attr_pieces[-1])
         result.append('\t)')
         return '\n'.join(result)
 
@@ -187,7 +187,7 @@ class TreeNode(AbjadObject):
             >>> c = datastructuretools.TreeNode()
             >>> a.append(b)
             >>> b.append(c)
-        
+
         ::
 
             >>> a.depth
@@ -226,7 +226,7 @@ class TreeNode(AbjadObject):
             >>> e = datastructuretools.TreeContainer(name='e')
             >>> f = datastructuretools.TreeContainer(name='f')
             >>> g = datastructuretools.TreeContainer(name='g')
-            
+
         ::
 
             >>> a.extend([b, c])
@@ -239,7 +239,7 @@ class TreeNode(AbjadObject):
             >>> for depth in sorted(inventory):
             ...     print 'DEPTH: {}'.format(depth)
             ...     for node in inventory[depth]:
-            ...         print node.name 
+            ...         print node.name
             ...
             DEPTH: 0
             a
@@ -275,7 +275,7 @@ class TreeNode(AbjadObject):
 
     @property
     def improper_parentage(self):
-        '''The improper parentage of a node in a rhythm-tree, being the 
+        '''The improper parentage of a node in a rhythm-tree, being the
         sequence of node beginning with itself and ending with the root node
         of the tree:
 
@@ -350,7 +350,7 @@ class TreeNode(AbjadObject):
 
     @property
     def proper_parentage(self):
-        '''The proper parentage of a node in a rhythm-tree, being the 
+        '''The proper parentage of a node in a rhythm-tree, being the
         sequence of node beginning with the node's immediate parent and
         ending with the root node of the tree:
 

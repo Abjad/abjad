@@ -126,7 +126,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_durations_without_over
 def test_leaftools_fuse_tied_leaves_in_components_once_by_durations_without_overhang_05():
     '''Steve Lehman's "Rai" slicing example.
     '''
-    
+
     durations = [5, 7, 2, 11, 13, 5, 13, 3]
     durations = zip(durations, [16] * len(durations))
 
@@ -136,7 +136,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_durations_without_over
     time_signatures = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]
     time_signatures = [Duration(*time_signature) for time_signature in time_signatures]
 
-    componenttools.split_components_at_offsets(t.leaves, time_signatures, 
+    componenttools.split_components_at_offsets(t.leaves, time_signatures,
         cyclic=False, fracture_spanners=False, tie_split_notes=True)
 
     r'''

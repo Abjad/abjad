@@ -36,7 +36,7 @@ def get_components_in_expr_with_name(expr, name):
     from abjad.tools import iterationtools
 
     result = []
-    
+
     for component in iterationtools.iterate_components_in_expr(expr):
         if name is None or getattr(component, 'name', None) == name:
             result.append(component)

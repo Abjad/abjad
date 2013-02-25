@@ -13,8 +13,8 @@ def combine_markup_commands(*commands):
 
         >>> markup_a = markuptools.MarkupCommand('draw-circle', 4, 0.4, False)
         >>> markup_b = markuptools.MarkupCommand(
-        ...     'filled-box', 
-        ...     schemetools.SchemePair(-4, 4), 
+        ...     'filled-box',
+        ...     schemetools.SchemePair(-4, 4),
         ...     schemetools.SchemePair(-0.5, 0.5), 1)
         >>> markup_c = "some text"
 
@@ -26,7 +26,7 @@ def combine_markup_commands(*commands):
     ::
 
         >>> print result
-        \combine \combine \draw-circle #4 #0.4 ##f 
+        \combine \combine \draw-circle #4 #0.4 ##f
             \filled-box #'(-4 . 4) #'(-0.5 . 0.5) #1 "some text"
 
     Returns a markup command instance, or a string if that was the only argument.

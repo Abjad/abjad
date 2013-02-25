@@ -52,7 +52,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
         '''Output-incised rest rhythm-maker storage format:
 
         ::
-        
+
             >>> z(maker)
             rhythmmakertools.OutputIncisedRestRhythmMaker(
                 prefix_talea=[7, 8],

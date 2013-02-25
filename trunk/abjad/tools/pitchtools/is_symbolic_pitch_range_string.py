@@ -10,10 +10,10 @@ symbolic_pitch_range_string_regex_body = """
     [ ]*            # any amount of whitespace
     (%s|%s|-?\d+)   # pitch indicator
     ([\])])         # close bracket or close parenthesis
-    """ % (pitch_class_octave_number_regex_body, chromatic_pitch_name_regex_body, 
+    """ % (pitch_class_octave_number_regex_body, chromatic_pitch_name_regex_body,
         pitch_class_octave_number_regex_body, chromatic_pitch_name_regex_body)
 
-symbolic_pitch_range_string_regex = re.compile('^%s$' % symbolic_pitch_range_string_regex_body, re.VERBOSE)    
+symbolic_pitch_range_string_regex = re.compile('^%s$' % symbolic_pitch_range_string_regex_body, re.VERBOSE)
 def is_symbolic_pitch_range_string(expr):
     '''.. versionadded:: 2.5
 

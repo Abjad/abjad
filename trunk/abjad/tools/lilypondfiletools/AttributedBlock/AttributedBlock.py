@@ -74,7 +74,7 @@ class AttributedBlock(list, AbjadObject):
                 if isinstance(value, markuptools.Markup):
                     formatted_value = value._get_format_pieces()
                 elif isinstance(value, (
-                    schemetools.Scheme, 
+                    schemetools.Scheme,
                     lilypondfiletools.LilyPondDimension,
                     marktools.LilyPondCommandMark,
                     )):

@@ -204,7 +204,7 @@ class LilyPondLexicalDefinition(AbjadObject):
     ] + keywords.values()
 
     literals = (
-        '!', "'", '(', ')', '*', '+', ',', '-', 
+        '!', "'", '(', ')', '*', '+', ',', '-',
         '.', '/', ':', '<', '=', '>', '?', '[',
         '\\', '^', '_', '{', '|', '}', '~', ']',
     )
@@ -432,7 +432,7 @@ class LilyPondLexicalDefinition(AbjadObject):
         r'\>'
         t.type = 'ANGLE_CLOSE'
         return t
-        
+
     # lexer.ll:405
     # <figures>_
 
@@ -648,7 +648,7 @@ class LilyPondLexicalDefinition(AbjadObject):
     @lex.TOKEN(DASHED_WORD)
     def t_INITIAL_643(self, t):
         t.type = self.scan_bare_word(t)
-        return t        
+        return t
 
     # lexer.ll:646
     # <INITIAL>{DASHED_KEY_WORD}
@@ -697,7 +697,7 @@ class LilyPondLexicalDefinition(AbjadObject):
     # <INITIAL,notes,figures>.
 
     # lexer.ll:686
-    # <INITIAL,lyrics,notes,figures>\\. 
+    # <INITIAL,lyrics,notes,figures>\\.
     def t_INITIAL_notes_686(self, t):
         r'\\.'
         if t.value[1] == '>':
@@ -728,7 +728,7 @@ class LilyPondLexicalDefinition(AbjadObject):
     # <*>.716
 #    def t_ANY_716(self, t):
 #        r'.'
-#        raise Exception        
+#        raise Exception
 
     ### DEFAULT RULES ###
 

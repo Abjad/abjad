@@ -4,7 +4,7 @@ import py
 
 
 def test_QGrid___call___01():
-    
+
     q_grid = QGrid()
     a = QEventProxy(SilentQEvent(0,        ['A']), 0)
     b = QEventProxy(SilentQEvent((1, 20),  ['B']), (1, 20))
@@ -51,7 +51,7 @@ def test_QGrid___call___02():
     assert isinstance(annotation.value, tuple) and len(annotation.value) == 2
     assert annotation.value[0].attachments == ('A',)
     assert annotation.value[1].attachments == ('B',)
-    
+
     assert not marktools.get_annotations_attached_to_component(result[0].leaves[1])
 
     annotation = marktools.get_annotation_attached_to_component(result[0].leaves[2])
@@ -59,7 +59,7 @@ def test_QGrid___call___02():
     assert annotation.value[0].attachments == ('C',)
     assert annotation.value[1].attachments == ('D',)
     assert annotation.value[2].attachments == ('E',)
-    
+
     assert not marktools.get_annotations_attached_to_component(result[0].leaves[3])
     assert not marktools.get_annotations_attached_to_component(result[0].leaves[4])
     assert not marktools.get_annotations_attached_to_component(result[0].leaves[5])

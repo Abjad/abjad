@@ -21,4 +21,4 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
 
         assert isinstance(expr, measuretools.Measure)
         metrical_hierarchy = timesignaturetools.MetricalHierarchy(expr)
-        timesignaturetools.establish_metrical_hierarchy(expr[:], metrical_hierarchy)	
+        timesignaturetools.establish_metrical_hierarchy(expr[:], metrical_hierarchy)

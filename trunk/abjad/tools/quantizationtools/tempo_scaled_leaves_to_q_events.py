@@ -56,7 +56,7 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
     # sort by silence and tied leaves
     groups = []
     for rvalue, rgroup in itertools.groupby(
-        leaves, 
+        leaves,
         lambda x: isinstance(x, (resttools.Rest, skiptools.Skip))):
         if rvalue:
             groups.append(list(rgroup))

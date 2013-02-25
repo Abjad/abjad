@@ -6,7 +6,7 @@ from abjad.tools import resttools
 from abjad.tools import sequencetools
 
 
-def make_tuplet_from_duration_and_ratio(duration, proportions, 
+def make_tuplet_from_duration_and_ratio(duration, proportions,
     avoid_dots=True, decrease_durations_monotonically=True, is_diminution=True):
     r'''.. versionadded:: 2.10
 
@@ -81,7 +81,7 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
 
         >>> print tuplettools.make_tuplet_from_duration_and_ratio(
         ...     Duration(3, 16), [5, -1, 5], avoid_dots=True,
-        ...     decrease_durations_monotonically=False, 
+        ...     decrease_durations_monotonically=False,
         ...     is_diminution=True)
         {@ 11:6 c'32, c'8, r32, c'32, c'8 @}
 
@@ -97,7 +97,7 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
 
         >>> tuplettools.make_tuplet_from_duration_and_ratio(
         ...     Duration(3, 16), [5, -1, 5], avoid_dots=False,
-        ...     decrease_durations_monotonically=False, 
+        ...     decrease_durations_monotonically=False,
         ...     is_diminution=True)
         FixedDurationTuplet(3/16, [c'16..., r64., c'16...])
 
@@ -136,7 +136,7 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
         note_durations = [durationtools.Duration(x, denominator) for x in proportions]
         pitches = [None if note_duration < 0 else 0 for note_duration in note_durations]
         leaf_durations = [abs(note_duration) for note_duration in note_durations]
-        notes = leaftools.make_leaves(pitches, leaf_durations, 
+        notes = leaftools.make_leaves(pitches, leaf_durations,
             decrease_durations_monotonically=decrease_durations_monotonically)
 
     # make tuplet

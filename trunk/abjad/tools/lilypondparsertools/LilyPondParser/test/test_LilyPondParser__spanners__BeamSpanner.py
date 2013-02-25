@@ -10,7 +10,7 @@ def test_LilyPondParser__spanners__BeamSpanner_01():
 
     r'''{
         c'4 [
-        c'4 
+        c'4
         c'4 ]
         c'4 []
     }
@@ -29,7 +29,7 @@ def test_LilyPondParser__spanners__BeamSpanner_02():
 
     r'''{
         c'4 [
-        c'4 
+        c'4
         c'4 ]
         c'4 []
     }
@@ -64,7 +64,7 @@ def test_LilyPondParser__spanners__BeamSpanner_04():
 
     r'''{
         c'4 [
-        c'4 
+        c'4
         c'4 ] [
         c'4 ]
     }
@@ -92,7 +92,7 @@ def test_LilyPondParser__spanners__BeamSpanner_07():
 
     r'''{
         c'4 ^ [
-        c'4 
+        c'4
         c'4 ]
         c'4 _ []
     }

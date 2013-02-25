@@ -78,7 +78,7 @@ class TimeSignatureMark(ContextMark):
         elif len(args) == 1 and isinstance(args[0], tuple):
             numerator, denominator = args[0][0], args[0][1]
         elif len(args) == 1 and hasattr(args[0], 'numerator') and hasattr(args[0], 'denominator'):
-            numerator, denominator = args[0].numerator, args[0].denominator 
+            numerator, denominator = args[0].numerator, args[0].denominator
         else:
             raise TypeError('invalid time_signature initialization: {!r}.'.format(args))
         self._numerator = numerator
@@ -161,7 +161,7 @@ class TimeSignatureMark(ContextMark):
         else:
             return '%s((%s, %s)%s, target_context=%s)%s' % (
                 type(self).__name__, self.numerator,
-                self.denominator, self._partial_repr_string, self._target_context_name, 
+                self.denominator, self._partial_repr_string, self._target_context_name,
                 self._attachment_repr_string)
 
     def __str__(self):
@@ -218,7 +218,7 @@ class TimeSignatureMark(ContextMark):
 
         ::
 
-            >>> time_signature.effective_context 
+            >>> time_signature.effective_context
             Staff{}
 
         Return context or none.
@@ -251,7 +251,7 @@ class TimeSignatureMark(ContextMark):
 
             >>> contexttools.TimeSignatureMark((3, 8)).implied_prolation
             Multiplier(1, 1)
-        
+
         Example 2. Implied prolation of time signature with non-power-of-two denominator::
 
             >>> contexttools.TimeSignatureMark((7, 12)).implied_prolation
@@ -344,7 +344,7 @@ class TimeSignatureMark(ContextMark):
         Time signature marks target the staff context by default.
 
         This can be changed at initialization.
-        
+
         Return class.
         '''
         return ContextMark.target_context.fget(self)
@@ -488,7 +488,7 @@ class TimeSignatureMark(ContextMark):
         '''
         # check input
         contents_multiplier = durationtools.Multiplier(contents_multiplier)
-    
+
         # save non_power_of_two time_signature and denominator
         non_power_of_two_denominator = self.denominator
 

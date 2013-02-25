@@ -165,7 +165,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
                 )
 
         ::
-        
+
             >>> divisions = [(3, 8), (4, 8)]
             >>> music = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
@@ -185,7 +185,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         '''Reverse output-burnished talea rhythm-maker:
 
         ::
-    
+
             >>> reversed_maker = maker.reverse()
 
         ::
@@ -209,7 +209,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
                 )
 
         ::
-        
+
             >>> divisions = [(3, 8), (4, 8)]
             >>> music = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)

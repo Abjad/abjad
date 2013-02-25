@@ -34,7 +34,7 @@ class CountLinewidthsScript(DirectoryScript):
                                 line widths greater than N
           -lt N, --less-than N  line widths less than N
           -eq N, --equal-to N   line widths equal to N
-         
+
     Return `CountLinewidthsScript` instance.
     '''
 

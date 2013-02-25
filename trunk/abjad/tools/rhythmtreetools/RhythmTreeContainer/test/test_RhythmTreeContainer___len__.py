@@ -9,7 +9,7 @@ def test_RhythmTreeContainer___len___01():
     subcontainer = rhythmtreetools.RhythmTreeContainer(
         preprolated_duration=2, children=[leaf_b, leaf_c])
     leaf_d = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1)
-    
+
     container = rhythmtreetools.RhythmTreeContainer(
         preprolated_duration=1, children=[leaf_a, subcontainer, leaf_d])
 

@@ -5,7 +5,7 @@ def split_sequence_by_weights(sequence, weights, cyclic=False, overhang=False):
     '''.. versionadded:: 2.0
 
     Split sequence by weights.
-    
+
     Example 1. Split sequence cyclically by weights with overhang::
 
         >>> sequencetools.split_sequence_by_weights(

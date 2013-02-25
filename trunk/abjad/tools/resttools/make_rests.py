@@ -47,7 +47,7 @@ def make_rests(durations, decrease_durations_monotonically=True, tie_parts=False
     result = []
     for duration in durations:
         result.extend(resttools.make_tied_rest(
-            duration, decrease_durations_monotonically=decrease_durations_monotonically, 
+            duration, decrease_durations_monotonically=decrease_durations_monotonically,
             tie_parts=tie_parts))
 
     # return result

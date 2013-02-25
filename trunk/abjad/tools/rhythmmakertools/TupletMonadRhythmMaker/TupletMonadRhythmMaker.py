@@ -26,7 +26,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
     ::
 
         >>> show(staff) # doctest: +SKIP
-    
+
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''
 
@@ -62,7 +62,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
         power_of_two_denominator = mathtools.greatest_power_of_two_less_equal(talea_denominator)
         duration = fractions.Fraction(abs(numerator), talea_denominator)
         power_of_two_duration = fractions.Fraction(abs(numerator), power_of_two_denominator)
-        power_of_two_division = (numerator, power_of_two_denominator) 
+        power_of_two_division = (numerator, power_of_two_denominator)
         tuplet_multiplier = duration / power_of_two_duration
         leaves = leaftools.make_leaves([0], [power_of_two_division])
         tuplet = tuplettools.Tuplet(tuplet_multiplier, leaves)
@@ -84,7 +84,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
         Return string.
         '''
-        return RhythmMaker.storage_format(self)     
+        return RhythmMaker.storage_format(self)
 
     ### PUBLIC METHODS ###
 

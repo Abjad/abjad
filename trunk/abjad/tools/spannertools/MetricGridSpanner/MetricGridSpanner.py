@@ -169,7 +169,7 @@ class MetricGridSpanner(Spanner):
 
         leaves = [leaf for leaf in self.leaves if self.splitting_condition(leaf)]
         #self._debug(leaves, 'leaves')
-        componenttools.split_components_at_offsets(leaves, [x[0].duration for x in self.time_signatures], 
+        componenttools.split_components_at_offsets(leaves, [x[0].duration for x in self.time_signatures],
             cyclic=True, fracture_spanners=False, tie_split_notes=True)
         #self._fuse_tied_leaves_within_measures()
 

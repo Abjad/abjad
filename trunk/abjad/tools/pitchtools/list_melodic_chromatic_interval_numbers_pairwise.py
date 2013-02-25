@@ -37,7 +37,7 @@ def list_melodic_chromatic_interval_numbers_pairwise(pitch_carriers, wrap=False)
     ::
 
         >>> notes = [
-        ...     Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), 
+        ...     Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"),
         ...     Note("g'8"), Note("a'8"), Note("b'8"), Note("c''8")]
 
     ::
@@ -56,10 +56,10 @@ def list_melodic_chromatic_interval_numbers_pairwise(pitch_carriers, wrap=False)
         ... notes, wrap=True)
         [-1, -2, -2, -2, -1, -2, -2, 12]
 
-    When ``wrap = False`` do not return ``pitch_carriers[-1] - pitch_carriers[0]`` 
+    When ``wrap = False`` do not return ``pitch_carriers[-1] - pitch_carriers[0]``
     as last in series.
 
-    When ``wrap = True`` do return ``pitch_carriers[-1] - pitch_carriers[0]`` 
+    When ``wrap = True`` do return ``pitch_carriers[-1] - pitch_carriers[0]``
     as last in series.
 
     Return list.

@@ -5,7 +5,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class InheritanceGraph(AbjadObject):
-    '''Generates a graph of a class or collection of 
+    '''Generates a graph of a class or collection of
     klasses as a dictionary of parent-children relationships:
 
     ::
@@ -131,7 +131,7 @@ class InheritanceGraph(AbjadObject):
         self._addresses = main_cached_addresses
 
         # lineage addresses
-        if lineage_addresses is not None: 
+        if lineage_addresses is not None:
             all_lineage_klasses, lineage_immediate_klasses, lineage_cached_addresses = \
                 self._collect_klasses(lineage_addresses, False)
             self._lineage_addresses = lineage_cached_addresses
@@ -184,7 +184,7 @@ class InheritanceGraph(AbjadObject):
                 parent_children_mapping[parent].add(klass)
             return True
         for klass in klasses:
-            recurse(klass)        
+            recurse(klass)
         return child_parents_mapping, parent_children_mapping
 
     def _collect_klasses(self, addresses, recurse_into_submodules):
@@ -199,7 +199,7 @@ class InheritanceGraph(AbjadObject):
                 if isinstance(x, types.TypeType):
                     klass = x
                 elif isinstance(x, types.InstanceType):
-                    klass = x.__class__        
+                    klass = x.__class__
                 else:
                     module_name, class_name = x
                     module = importlib.import_module(module_name)
@@ -271,7 +271,7 @@ class InheritanceGraph(AbjadObject):
             for parent in child_parents_mapping[klass]:
                 parent_children_mapping[parent].remove(klass)
             del(parent_children_mapping[klass])
-            del(child_parents_mapping[klass]) 
+            del(child_parents_mapping[klass])
 
     def _submodule_recurse(self, module, visited_modules):
         result = []
@@ -281,7 +281,7 @@ class InheritanceGraph(AbjadObject):
             elif isinstance(obj, types.ModuleType) and obj not in visited_modules:
                 visited_modules.add(obj)
                 result.extend(self._submodule_recurse(obj, visited_modules))
-        return result 
+        return result
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -295,7 +295,7 @@ class InheritanceGraph(AbjadObject):
 
     @property
     def graphviz_format(self):
-        return self.graphviz_graph.graphviz_format        
+        return self.graphviz_graph.graphviz_format
 
     @property
     def graphviz_graph(self):
@@ -354,7 +354,7 @@ class InheritanceGraph(AbjadObject):
             node = documentationtools.GraphvizNode(
                 name='.'.join(pieces),
                 )
-            node.attributes['label'] = '\\n'.join(pieces)                    
+            node.attributes['label'] = '\\n'.join(pieces)
 
             if klass in self.immediate_klasses:
                 pass
@@ -385,7 +385,7 @@ class InheritanceGraph(AbjadObject):
                 elif distance == ok_distance:
                     node.attributes['shape'] = 'invis'
                     node.attributes['style'] = 'transparent'
-                    node.attributes['label'] = ' ' 
+                    node.attributes['label'] = ' '
                     cluster.append(node)
                     klass_nodes[klass] = node
                 elif ok_distance < distance:
@@ -427,7 +427,7 @@ class InheritanceGraph(AbjadObject):
                 graph.remove(cluster)
 
         if self.root_addresses is None:
-            graph.attributes['root'] = '__builtin__.object'        
+            graph.attributes['root'] = '__builtin__.object'
 
         return graph
 

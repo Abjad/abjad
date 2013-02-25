@@ -28,12 +28,12 @@ def test_UnweightedSearchTree__generate_all_subdivision_commands_01():
     k = quantizationtools.QEventProxy(quantizationtools.SilentQEvent(1,      ['K'], index=11), 0, 1)
     q_grid.fit_q_events([a, b, c, d, e, f, g, h, i, j, k])
 
-    commands = search_tree._generate_all_subdivision_commands(q_grid)    
+    commands = search_tree._generate_all_subdivision_commands(q_grid)
     assert commands == (
-        ((0, (1, 1)),), 
+        ((0, (1, 1)),),
         ((0, (1, 1, 1, 1, 1)),)
         )
-        
+
     new_q_grid = copy.copy(q_grid)
     q_event_proxies = new_q_grid.subdivide_leaves(commands[0])
     new_q_grid.fit_q_events(q_event_proxies)
@@ -44,8 +44,8 @@ def test_UnweightedSearchTree__generate_all_subdivision_commands_01():
     assert new_q_grid.leaves[1].q_event_proxies == [d, e, f, g, h, i]
     assert new_q_grid.leaves[2].q_event_proxies == [j, k]
     assert new_commands == (
-        ((0, (1, 1)), (1, (1, 1))), 
-        ((0, (1, 1)), (1, (1, 1, 1))), 
+        ((0, (1, 1)), (1, (1, 1))),
+        ((0, (1, 1)), (1, (1, 1, 1))),
         ((0, (1, 1, 1)), (1, (1, 1))),
         ((0, (1, 1, 1)), (1, (1, 1, 1)))
         )

@@ -16,7 +16,7 @@ class PitchClassObjectSet(ObjectSet):
     __slots__ = ()
 
     ### INITIALIZER ###
-    
+
     @abc.abstractmethod
     def __new__(self):
         pass

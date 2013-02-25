@@ -15,7 +15,7 @@ def show(expr, return_timing=False, suppress_pdf=False, docs=False):
         (0, 3)
 
     Wrap `expr` in a LilyPond file with settings and overrides suitable
-    for the Abjad reference manual When `docs` is true. 
+    for the Abjad reference manual When `docs` is true.
 
     Return none or timing tuple.
 

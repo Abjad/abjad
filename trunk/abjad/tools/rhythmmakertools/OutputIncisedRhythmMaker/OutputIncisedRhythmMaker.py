@@ -4,7 +4,7 @@ from abjad.tools.rhythmmakertools.IncisedRhythmMaker import IncisedRhythmMaker
 class OutputIncisedRhythmMaker(IncisedRhythmMaker):
     '''.. versionadded:: 2.8
 
-    Abstract base class for rhythm-makers that incise only the 
+    Abstract base class for rhythm-makers that incise only the
     first and last output cells they produce.
     '''
 

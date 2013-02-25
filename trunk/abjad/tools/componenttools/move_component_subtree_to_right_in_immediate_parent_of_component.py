@@ -34,8 +34,8 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
     .. todo:: add ``n = 1`` keyword to generalize flipped distance.
 
-    .. todo:: make 
-        ``componenttools.move_component_subtree_to_right_in_immediate_parent_of_component()`` 
+    .. todo:: make
+        ``componenttools.move_component_subtree_to_right_in_immediate_parent_of_component()``
         work when spanners attach to children of component:
 
     ::

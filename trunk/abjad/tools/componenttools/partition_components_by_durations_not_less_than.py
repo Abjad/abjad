@@ -1,4 +1,4 @@
-def partition_components_by_durations_not_less_than(components, durations,     
+def partition_components_by_durations_not_less_than(components, durations,
     cyclic=False, in_seconds=False, overhang=False):
     r'''.. versionadded:: 1.1
 
@@ -41,11 +41,11 @@ def partition_components_by_durations_not_less_than(components, durations,
 
         >>> for part in parts:
         ...     part
-        ...     
-        [Note("c'8"), Note("d'8")] 
-        [Note("e'8")] 
+        ...
+        [Note("c'8"), Note("d'8")]
+        [Note("e'8")]
         [Note("f'8"), Note("g'8")]
-        [Note("a'8")] 
+        [Note("a'8")]
         [Note("b'8"), Note("c''8")]
 
     Return list of lists.

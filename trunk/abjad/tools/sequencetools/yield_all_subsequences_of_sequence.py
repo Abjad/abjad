@@ -26,7 +26,7 @@ def yield_all_subsequences_of_sequence(sequence, min_length=0, max_length=None):
         [1]
         [1, 2]
         [1, 2, 3]
-        [2]   
+        [2]
         [2, 3]
         [2, 3, 4]
         [3]

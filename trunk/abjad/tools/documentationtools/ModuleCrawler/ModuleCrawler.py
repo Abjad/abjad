@@ -8,9 +8,9 @@ class ModuleCrawler(AbjadObject):
 
     Return `ModuleCrawler` instance.
     '''
-    
+
     ### CLASS ATTRIBUTES ###
-    
+
     __slots__ = ('_code_root', '_ignored_directories', '_root_package_name',
         '_visit_private_modules')
 
@@ -25,7 +25,7 @@ class ModuleCrawler(AbjadObject):
         if not os.path.exists(os.path.join(code_root, '__init__.py')):
             raise ValueError('{} is not a Python package directory.'.format(code_root))
         code_root = os.path.abspath(code_root)
-        
+
         if root_package_name is None:
             parts = code_root.split(os.path.sep)
             root_package_name = parts[-1]

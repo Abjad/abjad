@@ -12,7 +12,7 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
     goto    = self.goto              # Local reference to goto table (to avoid lookup on self.)
     prod    = self.productions       # Local reference to production list (to avoid lookup on self.)
     pslice  = YaccProduction(None)   # Production object passed to grammar rules
-    errorcount = 0                   # Used during error recovery 
+    errorcount = 0                   # Used during error recovery
 
     # --! DEBUG
     debug.info("PLY: PARSE DEBUG START")
@@ -90,7 +90,7 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
                 # shift a symbol on the stack
                 statestack.append(t)
                 state = t
-                
+
                 # --! DEBUG
                 debug.debug("Action : Shift and goto state %s", t)
                 # --! DEBUG
@@ -136,12 +136,12 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
                     # --! TRACKING
 
                     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    # The code enclosed in this section is duplicated 
+                    # The code enclosed in this section is duplicated
                     # below as a performance optimization.  Make sure
                     # changes get made in both locations.
 
                     pslice.slice = targ
-                    
+
                     try:
                         # Call the grammar rule with our special slice object
                         del symstack[-plen:]
@@ -177,7 +177,7 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
                     targ = [ sym ]
 
                     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    # The code enclosed in this section is duplicated 
+                    # The code enclosed in this section is duplicated
                     # above as a performance optimization.  Make sure
                     # changes get made in both locations.
 

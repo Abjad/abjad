@@ -23,7 +23,7 @@ def test_marktools_attach_lilypond_command_marks_to_components_in_expr_01():
 
     for leaf in staff.leaves:
         new_lilypond_command_mark = \
-            marktools.get_lilypond_command_marks_attached_to_component(leaf)[0] 
+            marktools.get_lilypond_command_marks_attached_to_component(leaf)[0]
         assert new_lilypond_command_mark == lilypond_command_mark
         assert new_lilypond_command_mark is not lilypond_command_mark
 

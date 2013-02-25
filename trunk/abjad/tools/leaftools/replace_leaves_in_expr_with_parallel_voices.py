@@ -105,7 +105,7 @@ def replace_leaves_in_expr_with_parallel_voices(expr):
         }
 
     Returns a list leaves in upper voice, and a list of leaves in lower voice.
-    '''    
+    '''
     from abjad.tools import componenttools
     from abjad.tools import containertools
     from abjad.tools import iterationtools
@@ -131,5 +131,5 @@ def replace_leaves_in_expr_with_parallel_voices(expr):
         lower_leaves.extend(lower_voice[:])
 
         parent[start_idx:stop_idx+1] = [container]
-        
+
     return upper_leaves, lower_leaves

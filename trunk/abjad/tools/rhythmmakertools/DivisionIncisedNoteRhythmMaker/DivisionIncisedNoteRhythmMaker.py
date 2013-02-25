@@ -27,7 +27,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
         >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
 
     ::
-        
+
         >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
@@ -65,7 +65,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
         ::
 
-            >>> new_maker = maker.new(prefix_lengths=[1]) 
+            >>> new_maker = maker.new(prefix_lengths=[1])
 
         ::
 
@@ -94,7 +94,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
             >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
 
         ::
-            
+
             >>> show(staff) # doctest: +SKIP
 
         Return new division-incised note rhythm-maker.

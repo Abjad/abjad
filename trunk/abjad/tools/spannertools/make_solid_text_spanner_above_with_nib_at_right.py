@@ -23,7 +23,7 @@ def make_solid_text_spanner_above_with_nib_at_right(left_text, components=None):
         >>> f(staff)
         \new Staff {
             \override TextSpanner #'bound-details #'left #'text = \markup { foo }
-            \override TextSpanner #'bound-details #'right #'text = \markup { 
+            \override TextSpanner #'bound-details #'right #'text = \markup {
                 \draw-line #'(0 . -1) }
             \override TextSpanner #'bound-details #'right-broken #'text = ##f
             \override TextSpanner #'dash-fraction = #1

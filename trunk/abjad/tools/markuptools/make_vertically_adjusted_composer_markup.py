@@ -1,4 +1,4 @@
-def make_vertically_adjusted_composer_markup(composer, 
+def make_vertically_adjusted_composer_markup(composer,
     font_name='Times', font_size=3, space_above=20, space_right=0):
     r'''.. versionadded:: 2.9
 

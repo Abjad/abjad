@@ -8,7 +8,7 @@ class ObjectSegment(tuple, ImmutableAbjadObject):
 
     Mix-in base class for ordered collections of pitch objects.
     '''
-    
+
     ### CLASS ATTRIBUTES ##
 
     __metaclass__ = abc.ABCMeta

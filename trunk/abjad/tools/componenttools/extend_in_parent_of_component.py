@@ -53,7 +53,7 @@ def extend_in_parent_of_component(component, new_components, left=False, grow_sp
         }
 
     ::
-    
+
         >>> new_components = [Note("c'8"), Note("d'8"), Note("e'8")]
         >>> componenttools.extend_in_parent_of_component(
         ...     voice.leaves[-1], new_components, grow_spanners=False)

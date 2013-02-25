@@ -22,7 +22,7 @@ class ScoreBlock(NonattributedBlock):
             }
         }
 
-    ScoreBlocks does not format when empty, as this generates a 
+    ScoreBlocks does not format when empty, as this generates a
     parser error in LilyPond::
 
         >>> score_block = lilypondfiletools.ScoreBlock()

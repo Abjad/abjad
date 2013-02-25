@@ -105,7 +105,7 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             else:
                 object.__setattr__(self, '_start', None)
                 object.__setattr__(self, '_stop', None)
-            
+
             object.__setattr__(self, '_composite_tree', timeintervaltools.TimeIntervalTree(self.values()))
             object.__setattr__(self, '_start', self.composite_tree.start)
             object.__setattr__(self, '_stop', self.composite_tree.stop)
@@ -328,7 +328,7 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
                 'c': TimeIntervalTree([
                     TimeInterval(Offset(0, 1), Offset(3, 1), {'name': 'c'}),
                 ]),
-            })            
+            })
 
         ::
 
@@ -692,7 +692,7 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         ::
 
-            >>> offset = 2 
+            >>> offset = 2
             >>> treedict.find_intervals_starting_or_stopping_at_offset(offset)
             TimeIntervalTreeDictionary({
                 'b': TimeIntervalTree([
@@ -982,7 +982,7 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         return type(self)(result)
 
     def find_intervals_stopping_within_interval(self, *args):
-        '''Find all intervals in dictionary stopping within the interval 
+        '''Find all intervals in dictionary stopping within the interval
         defined by `args`:
 
         ::
@@ -1042,7 +1042,7 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         return type(self)(result)
 
     def quantize_to_rational(self, rational):
-        '''Quantize all intervals in dictionary to a multiple (1 or more) 
+        '''Quantize all intervals in dictionary to a multiple (1 or more)
         of `rational`:
 
         ::
@@ -1154,7 +1154,7 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
                 ]),
             })
 
-        Scaling works regardless of the starting offset of the 
+        Scaling works regardless of the starting offset of the
         `TimeIntervalTreeDictionary`:
 
         ::

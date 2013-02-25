@@ -5,7 +5,7 @@ def list_primary_instruments():
 
         >>> for primary_instrument in instrumenttools.list_primary_instruments():
         ...     primary_instrument
-        ... 
+        ...
         <class 'abjad.tools.instrumenttools.Accordion.Accordion.Accordion'>
         <class 'abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone'>
         <class 'abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet'>
@@ -42,4 +42,4 @@ def list_primary_instruments():
         if instrument.is_primary_instrument:
             primary_instruments.append(instrument_class)
 
-    return primary_instruments        
+    return primary_instruments

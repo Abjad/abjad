@@ -30,7 +30,7 @@ class AbjGrepScript(DirectoryScript):
           -R, --root            grep Abjad root directory
 
         If no PATH flag is specified, the current directory will be searched.
-            
+
     Return `AbjGrepScript` instance.
     '''
 

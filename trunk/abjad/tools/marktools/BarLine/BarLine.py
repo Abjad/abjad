@@ -82,7 +82,7 @@ class BarLine(LilyPondCommandMark):
                     \bar "|."
                 }
 
-            Set string. 
+            Set string.
             '''
             return self._bar_line_string
         def fset(self, bar_line_string):

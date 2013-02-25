@@ -91,7 +91,7 @@ def test_Chord_08():
     '''
 
     t = Chord([], (1,4))
-    t.written_pitches = [pitchtools.NamedChromaticPitch(4), pitchtools.NamedChromaticPitch(3), 
+    t.written_pitches = [pitchtools.NamedChromaticPitch(4), pitchtools.NamedChromaticPitch(3),
         pitchtools.NamedChromaticPitch(2)]
 
     assert t.lilypond_format == "<d' ef' e'>4"

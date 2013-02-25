@@ -12,7 +12,7 @@ def test_stringtools_is_space_delimited_lowercase_string_01():
 def test_stringtools_is_space_delimited_lowercase_string_02():
 
     assert stringtools.is_space_delimited_lowercase_string('')
-    
+
 
 def test_stringtools_is_space_delimited_lowercase_string_03():
 

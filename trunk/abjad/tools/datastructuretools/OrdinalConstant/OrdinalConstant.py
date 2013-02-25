@@ -43,19 +43,19 @@ class OrdinalConstant(ImmutableAbjadObject):
     Comparing differently dimensioned ordinal constants raises an exception::
 
         >>> import py.test
-    
+
     ::
 
         >>> bool(py.test.raises(Exception, 'Left < Up'))
         True
 
-    The ``Left``, ``Right``, ``Center``, ``Up`` and ``Down`` constants shown here 
+    The ``Left``, ``Right``, ``Center``, ``Up`` and ``Down`` constants shown here
     load into Python's built-in namespace on Abjad import.
 
     These four objects can be used as constant values supplied to keywords.
 
     This behavior is similar to True, False and None.
-    
+
     Ordinal constants are immutable.
     '''
 
@@ -63,10 +63,10 @@ class OrdinalConstant(ImmutableAbjadObject):
 
     __slots__ = (
         '_dimension',
-        '_representation', 
+        '_representation',
         '_value',
         )
-   
+
     ### INITIALIZER ###
 
     def __new__(klass, dimension, value, representation):

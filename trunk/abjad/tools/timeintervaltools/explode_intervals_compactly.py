@@ -15,7 +15,7 @@ def explode_intervals_compactly(intervals):
     max_depth = max([x['depth'] for x in depth_tree])
 
     layers = [[] for _ in range(max_depth)]
-    
+
     for interval in tree:
         for layer in layers:
             if not len(layer):

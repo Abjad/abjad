@@ -76,7 +76,7 @@ def lilypond_enharmonic_transpose(pitch_a, pitch_b, pitch_c):
 
     new_step, new_alt = normalize_alteration(new_step, new_alt)
     new_oct, new_step = normalize_octave(new_oct, new_step)
-    
+
     # print 'NEW(norm):', new_oct, new_step, new_alt
 
     octave_ticks = octave_number_to_octave_tick_string(new_oct)

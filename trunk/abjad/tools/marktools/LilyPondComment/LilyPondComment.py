@@ -5,7 +5,7 @@ import copy
 
 class LilyPondComment(Mark):
     r'''.. versionadded:: 2.0
-    
+
     .. versionchanged:: 2.3
         Changed ``Comment`` to ``LilyPondComment``.
 
@@ -106,7 +106,7 @@ class LilyPondComment(Mark):
             '''.. versionadded:: 2.3
 
             Get format slot of LilyPond comment::
-            
+
                 >>> note = Note("c'4")
                 >>> lilypond_comment = marktools.LilyPondComment('comment')
                 >>> lilypond_comment.format_slot

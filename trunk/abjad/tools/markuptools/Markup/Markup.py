@@ -68,12 +68,12 @@ class Markup(DirectedMark):
 
         >>> show(note) # doctest: +SKIP
 
-    Set `direction` to ``Up``, ``Down``, ``'neutral'``, 
+    Set `direction` to ``Up``, ``Down``, ``'neutral'``,
     ``'^'``, ``'_'``, ``'-'`` or None.
 
     Markup objects are immutable.
 
-    Return markup instance. 
+    Return markup instance.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -95,7 +95,7 @@ class Markup(DirectedMark):
             if all([isinstance(x, str) for x in parsed.contents]):
                 contents = (' '.join(parsed.contents),)
             else:
-                contents = tuple(parsed.contents)          
+                contents = tuple(parsed.contents)
         elif isinstance(argument, markuptools.MarkupCommand):
             contents = (argument,)
         elif isinstance(argument, type(self)):
@@ -122,7 +122,7 @@ class Markup(DirectedMark):
     def __copy__(self, *args):
         return type(self)(
             self._contents,
-            direction=self._direction, 
+            direction=self._direction,
             markup_name=self._markup_name,
             )
 

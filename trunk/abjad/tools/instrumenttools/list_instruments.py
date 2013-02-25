@@ -8,7 +8,7 @@ def list_instruments(klasses=None):
 
         >>> for instrument in instrumenttools.list_instruments()[:5]:
         ...     instrument
-        ... 
+        ...
         <class 'abjad.tools.instrumenttools.Accordion.Accordion.Accordion'>
         <class 'abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute'>
         <class 'abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone'>

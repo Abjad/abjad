@@ -294,7 +294,7 @@ def test_tuplettools_make_tuplet_from_duration_and_ratio_14():
 def test_tuplettools_make_tuplet_from_duration_and_ratio_15():
     '''Coerce duration.
     '''
-    
+
     tuplet = tuplettools.make_tuplet_from_duration_and_ratio(
         (1, 4), [1, -1, 1], avoid_dots=True, is_diminution=True)
 

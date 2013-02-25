@@ -169,7 +169,7 @@ class MarkupCommand(AbjadObject):
                 if len(args) == 1:
                     comma = ''
                 elif 1 < len(args) and i == len(args) - 1:
-                    comma = ''    
+                    comma = ''
                 else:
                     comma = ','
                 if isinstance(arg, AbjadObject):

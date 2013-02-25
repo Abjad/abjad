@@ -42,7 +42,7 @@ class ClefMark(ContextMark):
             \clef "bass^15"
             b'8
             \clef "percussion"
-            c''8            
+            c''8
         }
 
     ::

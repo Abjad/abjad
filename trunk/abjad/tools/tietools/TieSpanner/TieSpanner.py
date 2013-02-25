@@ -32,7 +32,7 @@ class TieSpanner(DirectedSpanner):
         DirectedSpanner.__init__(self, music, direction)
 
     ### PRIVATE METHODS ###
-    
+
     def _copy_keyword_args(self, new):
         DirectedSpanner._copy_keyword_args(self, new)
 

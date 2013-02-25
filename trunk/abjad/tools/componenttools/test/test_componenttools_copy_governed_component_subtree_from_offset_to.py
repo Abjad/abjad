@@ -245,7 +245,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_16():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_17():
-    '''Start-to-mid jagged. 
+    '''Start-to-mid jagged.
     '''
 
     t = Note("c'4")

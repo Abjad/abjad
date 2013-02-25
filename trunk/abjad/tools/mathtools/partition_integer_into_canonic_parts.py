@@ -36,7 +36,7 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
     Return parts that increase monotonically::
 
         >>> for n in range(11, 21):
-        ...     print n, mathtools.partition_integer_into_canonic_parts(n, 
+        ...     print n, mathtools.partition_integer_into_canonic_parts(n,
         ...         decrease_parts_monotonically=False)
         ...
         11 (3, 8)

@@ -27,7 +27,7 @@ class MusicGlyph(MarkupCommand):
         glyph_scheme = schemetools.Scheme(glyph_name, force_quotes=True)
         MarkupCommand.__init__(self, 'musicglyph', glyph_scheme)
 
-    ### SPECIAL METHODS ### 
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '{}({!r})'.format(self._class_name, self.args[0]._value)

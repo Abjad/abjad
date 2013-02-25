@@ -152,7 +152,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
 
     # adjust new leaf
     gracetools.detach_grace_containers_attached_to_leaf(new_leaf, kind='grace')
-    marktools.detach_marks_attached_to_component(new_leaf) 
+    marktools.detach_marks_attached_to_component(new_leaf)
     contexttools.detach_context_marks_attached_to_component(new_leaf)
 
     left_leaf_list = leaftools.set_preprolated_leaf_duration(leaf, preprolated_duration)
@@ -164,7 +164,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
     leaf_right_of_split = right_leaf_list[0]
 
     if fracture_spanners:
-        spannertools.fracture_spanners_attached_to_component(leaf_left_of_split, 
+        spannertools.fracture_spanners_attached_to_component(leaf_left_of_split,
         direction=Right)
 
     # tie split notes, rests and chords as specified
@@ -175,6 +175,6 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
     return left_leaf_list, right_leaf_list
 
     # TODO: make this substitution work
-#    return leaftools.split_leaf_at_offsets(leaf, [offset], cyclic=False, 
+#    return leaftools.split_leaf_at_offsets(leaf, [offset], cyclic=False,
 #        fracture_spanners=fracture_spanners, tie_split_notes=tie_split_notes,
 #        tie_split_rests=tie_split_rests)

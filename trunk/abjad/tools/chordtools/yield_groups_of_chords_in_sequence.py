@@ -32,7 +32,7 @@ def yield_groups_of_chords_in_sequence(sequence):
 
         >>> for chord in chordtools.yield_groups_of_chords_in_sequence(staff):
         ...     chord
-        ... 
+        ...
         (Chord("<e' g'>8"), Chord("<f' a'>8"))
         (Chord("<b' d''>8"), Chord("<c'' e''>8"))
 

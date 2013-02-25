@@ -16,7 +16,7 @@ class Accidental(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_alphabetic_accidental_abbreviation', '_is_adjusted', '_name', 
+    __slots__ = ('_alphabetic_accidental_abbreviation', '_is_adjusted', '_name',
         '_semitones', '_symbolic_accidental_string')
 
     ### INITIALIZER ##

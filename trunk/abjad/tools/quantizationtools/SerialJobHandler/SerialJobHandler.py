@@ -10,4 +10,4 @@ class SerialJobHandler(JobHandler):
     def __call__(self, jobs):
         for job in jobs:
             job()
-        return jobs        
+        return jobs

@@ -76,7 +76,7 @@ class SvnCommitScript(DirectoryScript):
                 return
             else:
                 print 'Invalid response {!r}, repeating...'.format(result)
-            
+
 
     def setup_argument_parser(self, parser):
         parser.add_argument('path',

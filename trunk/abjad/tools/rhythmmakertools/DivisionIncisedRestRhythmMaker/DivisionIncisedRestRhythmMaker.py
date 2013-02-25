@@ -72,7 +72,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
 
     def new(self, **kwargs):
         '''Create new division-incised rest rhythm-maker with `kwargs`:
-    
+
         ::
 
             >>> z(maker)

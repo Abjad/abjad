@@ -22,7 +22,7 @@ class ReSTParagraph(TreeNode):
     Handles automatic linewrapping.
 
     Return `ReSTParagraph` instance.
-    ''' 
+    '''
 
     ### INITIALIZER ###
 

@@ -9,7 +9,7 @@ class Clarinet(SingleReedInstrument):
     '''
 
     ### INITIALIZER ###
-    
+
     @abc.abstractmethod
     def __init__(self, **kwargs):
         SingleReedInstrument.__init__(self, **kwargs)

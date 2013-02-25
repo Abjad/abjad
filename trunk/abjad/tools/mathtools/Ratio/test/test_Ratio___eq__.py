@@ -21,5 +21,5 @@ def test_Ratio___eq___01():
 def test_Ratio___eq___02():
     '''Comparison works with tuples.
     '''
-    
+
     assert mathtools.Ratio(1, 2, 1) == (1, 2, 1)

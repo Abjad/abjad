@@ -11,7 +11,7 @@ class Parentage(Selection):
         ...     name='Treble Staff'))
         >>> score.append(Staff(r"""\new Voice = "Bass Voice" { b,4 }""",
         ...     name='Bass Staff'))
-    
+
     ::
 
         >>> f(score)
@@ -31,9 +31,9 @@ class Parentage(Selection):
     ::
 
         >>> for x in componenttools.Parentage(score): x
-        ... 
+        ...
         Score<<2>>
-        
+
     ::
 
         >>> for x in componenttools.Parentage(score['Bass Voice'][0]): x
@@ -55,10 +55,10 @@ class Parentage(Selection):
     ### INITIALIZER ###
 
     def __init__(self, component):
-        from abjad.tools import componenttools 
+        from abjad.tools import componenttools
         assert isinstance(component, componenttools.Component)
         music = componenttools.get_improper_parentage_of_component(component)
-        Selection.__init__(self, music) 
+        Selection.__init__(self, music)
         self._component = component
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -144,7 +144,7 @@ class Parentage(Selection):
     @property
     def parent(self):
         '''Parent of component or none when component is orphan.
-        
+
         Return component or none.
         '''
         if 1 < len(self):

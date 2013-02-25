@@ -4,7 +4,7 @@ from abjad.tools import markuptools
 from abjad.tools import pitchtools
 
 
-def _divide_chord(chord, pitch=pitchtools.NamedChromaticPitch('b', 3), 
+def _divide_chord(chord, pitch=pitchtools.NamedChromaticPitch('b', 3),
     attr='numbered_chromatic_pitch'):
     r'''Divide `chord` according to chromatic or diatonic pitch number of `pitch`.
 

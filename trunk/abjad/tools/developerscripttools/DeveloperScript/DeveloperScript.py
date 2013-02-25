@@ -15,7 +15,7 @@ class DeveloperScript(abctools.AbjadObject):
     `ajv` command.
 
     Developer scripts can be instantiated by other developer scripts in order
-    to share functionality. 
+    to share functionality.
     '''
 
     ### CLASS ATTRIBUTES ###

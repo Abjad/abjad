@@ -2,7 +2,7 @@ from abjad.tools import componenttools
 
 
 def move_parentage_children_and_spanners_from_components_to_empty_container(components, container):
-    r'''Move parentage, children and spanners from donor `components` 
+    r'''Move parentage, children and spanners from donor `components`
     to recipient empty `container`::
 
         >>> voice = Voice("{ c'8 [ d'8 } { e'8 f'8 } { g'8 a'8 ] }")

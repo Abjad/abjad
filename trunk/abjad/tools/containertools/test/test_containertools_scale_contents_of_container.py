@@ -74,7 +74,7 @@ def test_containertools_scale_contents_of_container_03():
 
 
 def test_containertools_scale_contents_of_container_04():
-    '''Scale leaves in voice by tied 5/4 (tied and without power-of-two denominator); 
+    '''Scale leaves in voice by tied 5/4 (tied and without power-of-two denominator);
     ie, tupletize notes.
     '''
 

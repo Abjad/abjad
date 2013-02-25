@@ -36,7 +36,7 @@ class Measure(FixedDurationContainer):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_always_format_time_signature', '_automatically_adjust_time_signature', 
+    __slots__ = ('_always_format_time_signature', '_automatically_adjust_time_signature',
         '_measure_number', )
 
     ### INITIALIZER ###
@@ -204,7 +204,7 @@ class Measure(FixedDurationContainer):
             >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
             >>> measure.has_non_power_of_two_denominator
             True
-    
+
         Otherwise false::
 
             >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
@@ -408,7 +408,7 @@ class Measure(FixedDurationContainer):
     def always_format_time_signature():
         def fget(self):
             '''.. versionadded:: 2.9
-        
+
             Read / write flag to indicate whether time signature
             should appear in LilyPond format even when not expected.
 
@@ -448,7 +448,7 @@ class Measure(FixedDurationContainer):
 
                 >>> measure
                 Measure(4/4, [c'4, d'4, e'4, r4])
-            
+
             Default to false.
 
             Return boolean.
@@ -457,7 +457,7 @@ class Measure(FixedDurationContainer):
         def fset(self, expr):
             assert isinstance(expr, bool)
             self._automatically_adjust_time_signature = expr
-        return property(**locals()) 
+        return property(**locals())
 
     @property
     def target_duration(self):

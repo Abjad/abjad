@@ -15,7 +15,7 @@ class AbjadBookProcessor(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, directory, lines, output_format, skip_rendering=False, 
+    def __init__(self, directory, lines, output_format, skip_rendering=False,
         image_prefix='image', verbose=False):
         assert isinstance(output_format, OutputFormat)
         self._current_code_line = 0
@@ -32,7 +32,7 @@ class AbjadBookProcessor(abctools.AbjadObject):
     def __call__(self, verbose=True):
 
         # Verify input, and extract code blocks
-        code_blocks = self._extract_code_blocks(self.lines)        
+        code_blocks = self._extract_code_blocks(self.lines)
         for code_block in code_blocks:
             self._total_code_lines += len(code_block.lines)
 
@@ -171,7 +171,7 @@ class AbjadBookProcessor(abctools.AbjadObject):
                 starting_line_number = stopping_line_number = i
                 hide = 'hide=true' in line
                 strip_prompt = 'strip_prompt=true' in line
-                code_address = line.partition('<abjadextract ')[-1].partition(' \>')[0] 
+                code_address = line.partition('<abjadextract ')[-1].partition(' \>')[0]
                 module_name, dot, attr_name = code_address.rpartition('.')
                 module = importlib.import_module(module_name)
                 attr = getattr(module, attr_name)

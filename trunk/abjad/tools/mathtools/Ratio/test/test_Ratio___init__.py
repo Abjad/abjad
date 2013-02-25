@@ -20,4 +20,4 @@ def test_Ratio___init___02():
 
 def test_Ratio___init___03():
 
-    assert py.test.raises(Exception, 'mathtools.Ratio(1, 2, 0)')    
+    assert py.test.raises(Exception, 'mathtools.Ratio(1, 2, 0)')

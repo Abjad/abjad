@@ -16,7 +16,7 @@ def yield_all_subchords_of_chord(chord):
 
         >>> for subchord in chordtools.yield_all_subchords_of_chord(chord):
         ...     subchord
-        ... 
+        ...
         Rest('r4')
         Note("c'4")
         Note("d'4")

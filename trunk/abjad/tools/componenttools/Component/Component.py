@@ -17,10 +17,10 @@ class Component(AbjadObject):
 
     __slots__ = ('_duration', '_is_forbidden_to_update', '_marks_are_current',
         '_marks_for_which_component_functions_as_effective_context',
-        '_marks_for_which_component_functions_as_start_component', 
-        '_offset', '_offset_values_in_seconds_are_current', '_override', '_parent', 
-        '_prolated_offset_values_are_current', '_set', '_spanners', 
-        '_start_offset', '_start_offset_in_seconds', '_stop_offset', '_stop_offset_in_seconds', 
+        '_marks_for_which_component_functions_as_start_component',
+        '_offset', '_offset_values_in_seconds_are_current', '_override', '_parent',
+        '_prolated_offset_values_are_current', '_set', '_spanners',
+        '_start_offset', '_start_offset_in_seconds', '_stop_offset', '_stop_offset_in_seconds',
         'lilypond_file', )
 
     ### INITIALIZER ###

@@ -26,7 +26,7 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise(pitch_carriers
 
         >>> result = pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise(
         ... staff, wrap=False)
-        
+
     ::
 
         >>> for x in result: x

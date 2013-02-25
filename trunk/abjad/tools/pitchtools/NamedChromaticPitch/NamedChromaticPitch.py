@@ -20,9 +20,9 @@ class NamedChromaticPitch(PitchObject):
     # calculate accidental_semitones, diatonic_pitch_number at init
     # so notehead sorting doesn't take forever later on
     __slots__ = (
-        '_accidental_semitones', 
-        '_chromatic_pitch_name', 
-        '_deviation_in_cents', 
+        '_accidental_semitones',
+        '_chromatic_pitch_name',
+        '_deviation_in_cents',
         '_diatonic_pitch_number',
         )
 

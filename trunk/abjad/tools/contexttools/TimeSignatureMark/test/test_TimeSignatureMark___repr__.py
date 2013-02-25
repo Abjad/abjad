@@ -13,7 +13,7 @@ def test_TimeSignatureMark___repr___01():
 def test_TimeSignatureMark___repr___02():
     '''Repr is evaluable.
     '''
-    
+
     time_signature_1 = contexttools.TimeSignatureMark((3, 8), partial=Duration(1, 8))
     time_signature_2 = eval(repr(time_signature_1))
 

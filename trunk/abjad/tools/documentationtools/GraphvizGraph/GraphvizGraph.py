@@ -220,15 +220,15 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
             result = ['{}{} {} {{'.format(indent_one, prefix,
                 self._format_value(node.canonical_name))]
             if len(node.attributes):
-                contributions = self._format_attribute_list(node.attributes) 
+                contributions = self._format_attribute_list(node.attributes)
                 contributions[0] = 'graph {}'.format(contributions[0])
                 result.extend(indent_two + x for x in contributions)
             if len(node.node_attributes):
-                contributions = self._format_attribute_list(node.node_attributes) 
+                contributions = self._format_attribute_list(node.node_attributes)
                 contributions[0] = 'node {}'.format(contributions[0])
                 result.extend(indent_two + x for x in contributions)
             if len(node.edge_attributes):
-                contributions = self._format_attribute_list(node.edge_attributes) 
+                contributions = self._format_attribute_list(node.edge_attributes)
                 contributions[0] = 'edge {}'.format(contributions[0])
                 result.extend(indent_two + x for x in contributions)
             for child in node:
@@ -239,7 +239,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
                         for x in child._graphviz_format_contributions)
             if node in edge_parents:
                 edge_contributions = []
-                for edge in sorted(edge_parents[node], 
+                for edge in sorted(edge_parents[node],
                     key=lambda x: (x.tail.canonical_name, x.head.canonical_name)):
                     edge_contributions.extend(indent_two + x \
                         for x in edge._graphviz_format_contributions)
@@ -265,7 +265,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
             stderr=subprocess.PIPE
             )
         result = process.communicate(graphviz_format)[0]
-        return result 
+        return result
 
     ### READ/WRITE PUBLIC PROPERTIES ###
 

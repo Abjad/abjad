@@ -10,9 +10,9 @@ def split_container_at_index(component, i, fracture_spanners=False):
     General component index split algorithm.
     Works on leaves, tuplets, measures, contexts and unqualified containers.
     Keyword controls spanner behavior at split time.
-    Use containertools.split_container_at_index_and_fracture_crossing_spanners() 
+    Use containertools.split_container_at_index_and_fracture_crossing_spanners()
     to fracture spanners.
-    Use containertools.split_container_at_index_and_do_not_fracture_crossing_spanners() 
+    Use containertools.split_container_at_index_and_do_not_fracture_crossing_spanners()
     to leave spanners unchanged.
 
     Example 1. Split container and do not fracture crossing spanners::

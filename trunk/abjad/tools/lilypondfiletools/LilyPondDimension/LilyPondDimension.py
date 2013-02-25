@@ -35,7 +35,7 @@ class LilyPondDimension(abctools.AbjadObject):
         return [r'{}\{}'.format(self.value, self.unit)]
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-    
+
     @property
     def lilypond_format(self):
         return '\n'.join(self._format_pieces)

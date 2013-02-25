@@ -29,7 +29,7 @@ class APICrawler(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        '''Crawl `code_root` and generate corresponding ReST in `docs_root` 
+        '''Crawl `code_root` and generate corresponding ReST in `docs_root`
         while ignoring ignored directories.
         '''
         assert os.path.exists(self.docs_root)

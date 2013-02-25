@@ -166,7 +166,7 @@ class Digraph(AbjadObject):
 
             roots = [child for child in child_graph if not child_graph[child]]
             terminals = [parent for parent in parent_graph if not parent_graph[parent]]
-            
+
             if not roots and not terminals and parent_graph:
                 return tuple(sorted(parent_graph.keys()))
 
@@ -190,7 +190,7 @@ class Digraph(AbjadObject):
             >>> edges.append(('i', 'j'))
             >>> digraph = Digraph(edges)
             >>> for graph in digraph.partition(): graph
-            ... 
+            ...
             Digraph(edges=[('a', 'c'), ('a', 'b'), ('b', 'c'), ('b', 'd'), ('d', 'e')])
             Digraph(edges=[('f', 'h'), ('g', 'h')])
             Digraph(edges=[('i', 'j')])

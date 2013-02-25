@@ -12,10 +12,10 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         >>> pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
         OctaveTranspositionMappingComponent('[A0, C8]', 15)
 
-    Initialize from input parameters separately, from a pair, from 
+    Initialize from input parameters separately, from a pair, from
     a string or from another mapping component.
 
-    Model ``pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping`` 
+    Model ``pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping``
     input part. (See the docs for that function.)
 
     Octave transposition mapping components are mutable.
@@ -71,9 +71,9 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     @property
     def _input_argument_token(self):
         return '({!r}, {})'.format(
-            self.source_pitch_range.one_line_named_chromatic_pitch_repr, 
+            self.source_pitch_range.one_line_named_chromatic_pitch_repr,
             self.target_octave_start_pitch)
-    
+
     @property
     def _keyword_argument_names(self):
         return ()
@@ -84,7 +84,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
             self.source_pitch_range.start_pitch.chromatic_pitch_number,
             self.source_pitch_range.stop_pitch.chromatic_pitch_number),
             self.target_octave_start_pitch.chromatic_pitch_number)
-        
+
     @property
     def _one_line_menuing_summary(self):
         return '{} => {}'.format(

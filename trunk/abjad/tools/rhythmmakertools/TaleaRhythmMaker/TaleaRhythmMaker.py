@@ -32,8 +32,8 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
     Example 2. Tie split notes.
 
         >>> maker = rhythmmakertools.TaleaRhythmMaker(
-        ...     talea=[5], 
-        ...     talea_denominator=16, 
+        ...     talea=[5],
+        ...     talea_denominator=16,
         ...     tie_split_notes=True)
 
     ::
@@ -99,7 +99,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             >>> new_maker = maker.new(prolation_addenda=[1])
 
         ::
-    
+
             >>> z(new_maker)
             rhythmmakertools.TaleaRhythmMaker(
                 talea=[5],
@@ -136,7 +136,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             >>> reversed_maker = maker.reverse()
 
         ::
-    
+
             >>> z(reversed_maker)
             rhythmmakertools.TaleaRhythmMaker(
                 talea=[5],

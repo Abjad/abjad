@@ -54,7 +54,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
     def __call__(self, divisions, seeds=None):
         '''Call equal-division rhythm-maker on `divisions`.
-    
+
         Return list of tuplet lists.
         '''
         result = []

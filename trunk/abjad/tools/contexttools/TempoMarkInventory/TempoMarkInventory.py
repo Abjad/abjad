@@ -8,7 +8,7 @@ class TempoMarkInventory(ObjectInventory):
     Abjad model of an ordered list of tempo marks::
 
         >>> inventory = contexttools.TempoMarkInventory([
-        ...     ('Andante', Duration(1, 8), 72), 
+        ...     ('Andante', Duration(1, 8), 72),
         ...     ('Allegro', Duration(1, 8), 84)])
 
     ::

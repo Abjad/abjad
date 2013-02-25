@@ -7,7 +7,7 @@ def color_leaves_in_expr(expr, color):
     Color leaves in `expr`::
 
         >>> staff = Staff("cs'8. [ r8. s8. <c' cs' a'>8. ]")
-        
+
     ::
 
         >>> f(staff)

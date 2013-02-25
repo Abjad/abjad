@@ -24,7 +24,7 @@ class UnweightedSearchTree(SearchTree):
     which reference ``QEvents``, but rescale their offsets between ``0`` and ``1``).
 
     In the default definition, the root node of the ``QGrid`` may be subdivided
-    into ``2``, ``3``, ``5``, ``7``, ``11`` or ``13`` equal parts.  If divided into 
+    into ``2``, ``3``, ``5``, ``7``, ``11`` or ``13`` equal parts.  If divided into
     ``2`` parts, the divisions of the root node may be divided again into ``2``,
     ``3``, ``5`` or ``7``, and so forth.
 
@@ -67,7 +67,7 @@ class UnweightedSearchTree(SearchTree):
 
         >>> definition = {2: {2: None}, 3: None}
         >>> search_tree = quantizationtools.UnweightedSearchTree(definition)
-        
+
     ::
 
         >>> q_grids = search_tree(q_grid)
@@ -87,7 +87,7 @@ class UnweightedSearchTree(SearchTree):
         by Paul Nauert:
 
         ::
-    
+
             >>> import pprint
             >>> search_tree = quantizationtools.UnweightedSearchTree()
             >>> pprint.pprint(search_tree.default_definition)

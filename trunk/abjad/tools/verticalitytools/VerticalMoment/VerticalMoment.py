@@ -47,14 +47,14 @@ class VerticalMoment(Selection):
         VerticalMoment(1/2, <<2>>)
         VerticalMoment(3/4, <<2>>)
 
-    Create vertical moments with the getters and iterators implemented in 
+    Create vertical moments with the getters and iterators implemented in
     the ``verticalitytools`` module.
 
     Vertical moments are immutable.
     '''
 
     ### CLASS ATTRIBUTES ###
-    
+
     __slots__ = ('_components', '_governors', '_offset')
 
     ### INITIALIZER ###

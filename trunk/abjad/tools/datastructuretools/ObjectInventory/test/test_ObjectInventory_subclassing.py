@@ -24,7 +24,7 @@ def test_ObjectInventory_subclassing_01():
     '''Inherited keyword argument names.
     '''
 
-    foo = SpecialObjectInventory([])    
+    foo = SpecialObjectInventory([])
     assert foo._keyword_argument_names == ('color', 'flavor', 'name')
 
 

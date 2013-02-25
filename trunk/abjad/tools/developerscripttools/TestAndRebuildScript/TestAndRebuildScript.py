@@ -105,7 +105,7 @@ class TestAndRebuildScript(DeveloperScript):
 
     def run_pytest(self, args):
         options = ['-x', '-rf', '.']
-        return pytest.main(options)        
+        return pytest.main(options)
 
     def setup_argument_parser(self, parser):
         pass

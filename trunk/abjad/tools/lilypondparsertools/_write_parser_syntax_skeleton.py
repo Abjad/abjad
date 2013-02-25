@@ -51,7 +51,7 @@ def _write_parser_syntax_skeleton(skeleton_path, parser_output_path, parser_tab_
         f.write("        p[0] = Node('%s', p[1:])\n\n\n" % current_nonterminal)
 
     for funcname, docstring in sorted(productions.iteritems()):
-        nonterminal = funcname.split('__')[0][2:]    
+        nonterminal = funcname.split('__')[0][2:]
         if nonterminal == 'start_symbol':
             continue
         if nonterminal != current_nonterminal:

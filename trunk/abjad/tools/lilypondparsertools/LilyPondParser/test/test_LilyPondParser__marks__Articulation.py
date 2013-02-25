@@ -12,7 +12,7 @@ def test_LilyPondParser__marks__Articulation_01():
     marktools.Articulation('accent')(target[4])
     marktools.Articulation('staccato')(target[5])
     marktools.Articulation('portato')(target[6])
- 
+
     r'''\new Staff {
         c''4 ^\marcato
         c''4 _\stopped
@@ -42,7 +42,7 @@ def test_LilyPondParser__marks__Articulation_02():
     marktools.Articulation('accent')(target[0])
     marktools.Articulation('staccato')(target[0])
     marktools.Articulation('portato')(target[0])
- 
+
     r'''\new Staff {
         c'4 ^\marcato _\stopped -\tenuto -\staccatissimo -\accent -\staccato -\portato
     }

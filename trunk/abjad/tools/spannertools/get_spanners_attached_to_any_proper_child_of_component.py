@@ -32,7 +32,7 @@ def get_spanners_attached_to_any_proper_child_of_component(component, klass=None
         ...     staff, spanner_klass)
 
     ::
-        
+
         >>> list(sorted(result))
         [SlurSpanner(c'8, d'8), SlurSpanner(e'8, f'8)]
 
@@ -43,7 +43,7 @@ def get_spanners_attached_to_any_proper_child_of_component(component, klass=None
         ...     staff, spanner_klasses)
 
     ::
-        
+
         >>> list(sorted(result))
         [BeamSpanner(c'8, d'8, e'8, f'8), SlurSpanner(c'8, d'8), SlurSpanner(e'8, f'8)]
 

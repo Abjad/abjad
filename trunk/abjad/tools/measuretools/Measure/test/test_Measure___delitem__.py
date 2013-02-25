@@ -3,7 +3,7 @@ from abjad import *
 
 def test_Measure___delitem___01():
     '''Nonnegative indices work.
-    
+
     Automatically update time signature.
     '''
 
@@ -122,7 +122,7 @@ def test_Measure___delitem___06():
 
 def test_Measure___delitem___07():
     '''Nonnegative indices work.
-    
+
     Do NOT automatically update time signature.
     '''
 
@@ -139,7 +139,7 @@ def test_Measure___delitem___08():
 
     Do NOT automatically update time signature.
     '''
- 
+
     measure = Measure((4, 9), "c'8 d' e' f'")
     del(measure[:1])
 

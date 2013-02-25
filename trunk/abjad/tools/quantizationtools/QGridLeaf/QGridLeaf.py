@@ -37,7 +37,7 @@ class QGridLeaf(RhythmTreeNode):
             self._q_event_proxies = []
         else:
             assert all([isinstance(x, quantizationtools.QEventProxy) for x in q_event_proxies])
-            self._q_event_proxies = list(q_event_proxies)            
+            self._q_event_proxies = list(q_event_proxies)
         self._is_divisible = bool(is_divisible)
 
     ### SPECIAL METHODS ###
@@ -62,7 +62,7 @@ class QGridLeaf(RhythmTreeNode):
        return (self.preprolated_duration, tuple(self.q_event_proxies), self.is_divisible)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
-        
+
     @property
     def _pretty_rtm_format_pieces(self):
         return [str(self.preprolated_duration)]

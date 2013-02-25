@@ -6,7 +6,7 @@ from abjad.tools import tietools
 
 def establish_metrical_hierarchy(components, metrical_hierarchy,
     boundary_depth=None, maximum_dot_count=None):
-    r'''.. versionadded:: 2.11 
+    r'''.. versionadded:: 2.11
 
     Rewrite the contents of tie chains in an expression to match a metrical
     hierarchy.
@@ -188,7 +188,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     ::
 
         >>> show(measure) # doctest: +SKIP
-        
+
     Constraining the `maximum_dot_count` to `2`:
 
     ::
@@ -673,7 +673,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     ::
 
-        >>> show(measure) # doctest: +SKIP    
+        >>> show(measure) # doctest: +SKIP
 
     Operate in place and return none.
     '''
@@ -683,7 +683,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     def get_offsets_at_depth(depth):
         if depth < len(offset_inventory):
             return offset_inventory[depth]
-        while len(offset_inventory) <= depth: 
+        while len(offset_inventory) <= depth:
             new_offsets = []
             old_offsets = offset_inventory[-1]
             for first, second in sequencetools.iterate_sequence_pairwise_strict(old_offsets):
@@ -693,7 +693,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             offset_inventory.append(tuple(new_offsets))
         return offset_inventory[depth]
 
-    def is_acceptable_tie_chain(tie_chain_duration, 
+    def is_acceptable_tie_chain(tie_chain_duration,
         tie_chain_starts_in_offsets,
         tie_chain_stops_in_offsets):
         #print '\tTESTING ACCEPTABILITY'
@@ -725,11 +725,11 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
         tie_chain_start_offset = tie_chain.start_offset
         tie_chain_stop_offset = tie_chain.stop_offset
         tie_chain_starts_in_offsets = tie_chain_start_offset in offsets
-        tie_chain_stops_in_offsets = tie_chain_stop_offset in offsets     
+        tie_chain_stops_in_offsets = tie_chain_stop_offset in offsets
 
         if not is_acceptable_tie_chain(
             tie_chain_duration,
-            tie_chain_starts_in_offsets, 
+            tie_chain_starts_in_offsets,
             tie_chain_stops_in_offsets):
 
             #print 'UNACCEPTABLE:', tie_chain, tie_chain_start_offset, tie_chain_stop_offset
@@ -772,7 +772,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
                 if tie_chain_start_offset < offset < tie_chain_stop_offset:
                     split_offset = offset
                     break
-            assert split_offset is not None 
+            assert split_offset is not None
             #print '\tABS:', split_offset
             split_offset -= tie_chain_start_offset
             #print '\tREL:', split_offset

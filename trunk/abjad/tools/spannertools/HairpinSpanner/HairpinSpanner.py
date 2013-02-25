@@ -296,7 +296,7 @@ class HairpinSpanner(DirectedSpanner):
             False
 
         Return boolean.
-        ''' 
+        '''
         if isinstance(arg, tuple) and \
             len(arg) == 3 and \
             (not arg[0] or contexttools.DynamicMark.is_dynamic_name(arg[0])) and \

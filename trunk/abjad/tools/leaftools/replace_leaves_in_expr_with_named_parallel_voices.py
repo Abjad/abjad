@@ -107,7 +107,7 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
         }
 
     Returns a list leaves in upper voice, and a list of leaves in lower voice.
-    '''    
+    '''
     from abjad.tools import componenttools
     from abjad.tools import containertools
     from abjad.tools import iterationtools

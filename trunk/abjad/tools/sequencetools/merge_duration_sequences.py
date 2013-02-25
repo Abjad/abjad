@@ -26,7 +26,7 @@ def merge_duration_sequences(*sequences):
         offset_lists.append(offset_list)
 
     all_offsets = sequencetools.join_subsequences(offset_lists)
-    all_offsets = list(sorted(set(all_offsets))) 
+    all_offsets = list(sorted(set(all_offsets)))
     all_offsets.insert(0, 0)
     all_durations = mathtools.difference_series(all_offsets)
 

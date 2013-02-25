@@ -340,7 +340,7 @@ class BreakPointFunction(AbjadObject):
         new_range = new_max - new_min
         return (((value - old_min) / old_range) * new_range) + new_min
 
-    def _update_caches(self): 
+    def _update_caches(self):
         x_values = []
         y_values = []
         for x, ys in self._bpf.iteritems():
@@ -441,12 +441,12 @@ class BreakPointFunction(AbjadObject):
         x_shift = first_x_of_second_bpf - last_x_of_first_bpf
         stop_y = self._bpf[last_x_of_first_bpf][0]
         start_y = expr._bpf[first_x_of_second_bpf][-1]
-        hinge_ys = (stop_y, start_y) 
+        hinge_ys = (stop_y, start_y)
         new_bpf_dict = self.bpf
         new_bpf_dict[last_x_of_first_bpf] = hinge_ys
         for x in expr.x_values[1:]:
             new_bpf_dict[x - x_shift] = expr._bpf[x]
-        return type(self)(new_bpf_dict) 
+        return type(self)(new_bpf_dict)
 
     def get_y_at_x(self, x):
         '''Get `y`-value at `x`:
@@ -512,7 +512,7 @@ class BreakPointFunction(AbjadObject):
         dx = x1 - x0
         dy = y1 - y0
         m = float(dy) / float(dx)
-        b = y0 - (m * x0) 
+        b = y0 - (m * x0)
         return (x * m) + b
 
     def invert(self, y_center=None):
@@ -648,7 +648,7 @@ class BreakPointFunction(AbjadObject):
         assert isinstance(maximum, numbers.Real)
         assert minimum < maximum
         bpf = {}
-        x_min, x_max = self.x_range 
+        x_min, x_max = self.x_range
         for x, ys in self._bpf.iteritems():
             bpf[self._scale(x, x_min, x_max, minimum, maximum)] = ys
         return type(self)(bpf)
@@ -740,7 +740,7 @@ class BreakPointFunction(AbjadObject):
         else:
             raise ValueError
         self._update_caches()
- 
+
     def tessalate_by_ratio(self, ratio, invert_on_negative=False, reflect_on_negative=False,
         y_center=None):
         '''Concatenate copies of a BreakPointFunction, stretched by the weights in `ratio`:
@@ -832,5 +832,5 @@ class BreakPointFunction(AbjadObject):
                 tessalated_bpf = bpf
             else:
                 tessalated_bpf = tessalated_bpf.concatenate(bpf)
-        return tessalated_bpf  
-            
+        return tessalated_bpf
+

@@ -4,7 +4,7 @@ def get_nth_sibling_from_component(component, n):
     Get nth sibling from `component`::
 
         >>> staff = Staff("c' d' e' f'")
-    
+
     ::
 
         >>> f(staff)
@@ -52,7 +52,7 @@ def get_nth_sibling_from_component(component, n):
         return component
     elif 0 < n:
         if component.parent is not None:
-            if not component.parent.is_parallel:    
+            if not component.parent.is_parallel:
                 index = component.parent.index(component)
                 if index + n < len(component.parent):
                     return component.parent[index + n]

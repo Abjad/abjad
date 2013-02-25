@@ -2,10 +2,10 @@ def format_scheme_value(value, force_quotes=False):
     '''Format `value` as Scheme would:
 
     ::
-        
+
         >>> schemetools.format_scheme_value(1)
         '1'
-    
+
     ::
 
         >>> schemetools.format_scheme_value('foo')

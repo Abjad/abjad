@@ -49,7 +49,7 @@ class InstrumentationSpecifier(AbjadObject):
         self.performers = performers
 
     ### SPECIAL METHODS ###
-    
+
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             # TODO: implement perform sort
@@ -66,7 +66,7 @@ class InstrumentationSpecifier(AbjadObject):
     @property
     def instrument_count(self):
         r'''Read-only number of instruments in score::
-    
+
             >>> instrumentation_specifier.instrument_count
             3
 
@@ -82,7 +82,7 @@ class InstrumentationSpecifier(AbjadObject):
             [Flute(), AltoFlute(), Guitar()]
 
         Return list.
-        '''        
+        '''
         instruments = []
         for performer in self.performers:
             instruments.extend(performer.instruments)

@@ -143,7 +143,7 @@ class CyclicTree(Tree):
         Return list of nodes.
         '''
         return Tree.get_next_n_nodes_at_level(self, n, level)
-        
+
     def get_node_at_position(self, position):
         '''Get node at `position`:
 

@@ -71,7 +71,7 @@ def get_nth_component_in_time_order_from_component(component, n):
     Return component or none.
     '''
     from abjad.tools import componenttools
-    
+
     assert isinstance(component, componenttools.Component)
     assert mathtools.is_integer_equivalent_expr(n)
 
@@ -96,4 +96,4 @@ def get_nth_component_in_time_order_from_component(component, n):
         for i in range(abs(n)):
             result = _prev(result)
 
-    return result 
+    return result

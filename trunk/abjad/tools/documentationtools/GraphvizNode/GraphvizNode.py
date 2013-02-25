@@ -33,5 +33,5 @@ class GraphvizNode(TreeNode, GraphvizObject):
 
     @property
     def edges(self):
-        return tuple(self._edges) 
+        return tuple(self._edges)
 

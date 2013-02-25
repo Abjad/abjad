@@ -12,12 +12,12 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class IncisedRhythmMaker(RhythmMaker):
     '''.. versionadded 2.8
 
-    Abstract base class for rhythm-makers that incise some or 
+    Abstract base class for rhythm-makers that incise some or
     all of the output cells they produce.
 
     Rhythm makers can incise the edge of every output cell.
-    
-    Or rhythm-makers can incise only the start of the first output cell 
+
+    Or rhythm-makers can incise only the start of the first output cell
     and the end of the last output cell.
     '''
 
@@ -35,7 +35,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     ### INITIALIZER ###
 
-    def __init__(self, prefix_talea=None, prefix_lengths=None, 
+    def __init__(self, prefix_talea=None, prefix_lengths=None,
         suffix_talea=None, suffix_lengths=None, talea_denominator=None,
         prolation_addenda=None, secondary_divisions=None,
         prefix_talea_helper=None, prefix_lengths_helper=None,

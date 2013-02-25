@@ -26,7 +26,7 @@ def make_monophonic_percussion_score_from_nonoverlapping_intervals(intervals, co
 
     padding = 0.5
     bound_details = schemetools.Scheme(
-        ('right', 
+        ('right',
             schemetools.SchemePair('attach-dir', 0),
             schemetools.SchemePair('padding', padding)),
         ('left',

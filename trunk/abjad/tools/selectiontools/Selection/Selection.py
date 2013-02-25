@@ -43,7 +43,7 @@ class Selection(AbjadObject):
         elif isinstance(expr, (tuple, list)):
             music = self.music + tuple(expr)
         return type(self)(music)
-        
+
     def __contains__(self, expr):
         return expr in self.music
 
@@ -75,7 +75,7 @@ class Selection(AbjadObject):
 
     def __repr__(self):
         return '{}{!r}'.format(self._class_name, self.music)
-    
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

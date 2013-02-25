@@ -14,7 +14,7 @@ def get_leaf_in_expr_with_maximum_duration(expr):
     return the first leaf encountered in forward iteration.
 
     Return none when `expr` contains no leaves::
- 
+
         >>> leaftools.get_leaf_in_expr_with_maximum_duration([]) is None
         True
 

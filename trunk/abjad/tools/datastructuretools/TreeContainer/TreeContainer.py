@@ -185,7 +185,7 @@ class TreeContainer(TreeNode):
             >>> foo['quux'] is quux
             True
 
-        Return `TreeNode` instance.    
+        Return `TreeNode` instance.
         '''
         if isinstance(i, (int, slice)):
             return self._children[i]
@@ -202,7 +202,7 @@ class TreeContainer(TreeNode):
     def __len__(self):
         '''Return nonnegative integer number of nodes in container.'''
         return len(self._children)
-            
+
     def __setitem__(self, i, expr):
         '''Set `expr` in self at nonnegative integer index `i`, or set `expr` in self at slice i.
         Replace contents of `self[i]` with `expr`.
@@ -575,7 +575,7 @@ class TreeContainer(TreeNode):
         Return `None`.
         '''
         self.__setitem__(
-            slice(i, i), 
+            slice(i, i),
             [node]
             )
 

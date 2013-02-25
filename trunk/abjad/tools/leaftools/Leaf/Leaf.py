@@ -96,12 +96,12 @@ class Leaf(Component):
             new_grace_container = grace_container._copy_with_children_and_marks_but_without_spanners()
             new_grace_container(new)
         return new
-        
+
     def _format_after_slot(leaf, format_contributions):
         result = []
         result.append(('spanners', format_contributions.get('after', {}).get('spanners', [])))
         result.append(('context marks', format_contributions.get('after', {}).get('context marks', [])))
-        result.append(('lilypond command marks', 
+        result.append(('lilypond command marks',
             format_contributions.get('after', {}).get('lilypond command marks', [])))
         result.append(('comments', format_contributions.get('after', {}).get('comments', [])))
         return result
@@ -125,7 +125,7 @@ class Leaf(Component):
         result = []
         result.append(leaf._format_grace_body())
         result.append(('comments', format_contributions.get('before', {}).get('comments', [])))
-        result.append(('lilypond command marks', 
+        result.append(('lilypond command marks',
             format_contributions.get('before', {}).get('lilypond command marks', [])))
         result.append(('context marks', format_contributions.get('before', {}).get('context marks', [])))
         result.append(('grob overrides', format_contributions.get('grob overrides', [])))
@@ -140,7 +140,7 @@ class Leaf(Component):
         result = []
         result.append(leaf._format_agrace_body())
         result.append(('spanners', format_contributions.get('closing', {}).get('spanners', [])))
-        result.append(('lilypond command marks', 
+        result.append(('lilypond command marks',
             format_contributions.get('closing', {}).get('lilypond command marks', [])))
         result.append(('context marks', format_contributions.get('closing', {}).get('context marks', [])))
         result.append(('comments', format_contributions.get('closing', {}).get('comments', [])))
@@ -210,7 +210,7 @@ class Leaf(Component):
         result = []
         result.append(('comments', format_contributions.get('opening', {}).get('comments', [])))
         result.append(('context marks', format_contributions.get('opening', {}).get('context marks', [])))
-        result.append(('lilypond command marks', 
+        result.append(('lilypond command marks',
             format_contributions.get('opening', {}).get('lilypond command marks', [])))
         result.append(('spanners', format_contributions.get('opening', {}).get('spanners', [])))
         result.append(leaf._format_agrace_opening())

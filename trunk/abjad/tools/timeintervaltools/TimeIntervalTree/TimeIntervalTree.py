@@ -632,7 +632,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            >>> offset = 2 
+            >>> offset = 2
             >>> found = tree.find_intervals_starting_or_stopping_at_offset(offset)
             >>> sorted([x['name'] for x in found])
             ['b', 'd']

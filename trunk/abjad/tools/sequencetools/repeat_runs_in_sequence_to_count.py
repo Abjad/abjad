@@ -33,7 +33,7 @@ def repeat_runs_in_sequence_to_count(sequence, indicators):
     ::
 
         >>> sequencetools.repeat_runs_in_sequence_to_count(sequence, [(0, 2, 5), (10, 2, 5)])
-        [0, 1, (0, 1, 0, 1, 0, 1, 0, 1, 0, 1), 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 
+        [0, 1, (0, 1, 0, 1, 0, 1, 0, 1, 0, 1), 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
         (10, 11, 10, 11, 10, 11, 10, 11, 10, 11), 12, 13, 14, 15, 16, 17, 18, 19]
 
     .. note:: This function wraps around the end of `sequence` whenever
@@ -42,13 +42,13 @@ def repeat_runs_in_sequence_to_count(sequence, indicators):
     To insert ``2`` count of ``[18, 19, 0, 1]`` at ``sequence[2:2]``::
 
         >>> sequencetools.repeat_runs_in_sequence_to_count(sequence, [(18, 4, 2)])
-        [0, 1, (18, 19, 0, 1, 18, 19, 0, 1), 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 
+        [0, 1, (18, 19, 0, 1, 18, 19, 0, 1), 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
         14, 15, 16, 17, 18, 19]
 
     To insert ``2`` count of ``[18, 19, 0, 1, 2, 3, 4]`` at ``sequence[4:4]``::
 
         >>> sequencetools.repeat_runs_in_sequence_to_count(sequence, [(18, 8, 2)])
-        [0, 1, 2, 3, 4, 5, (18, 19, 0, 1, 2, 3, 4, 5, 18, 19, 0, 1, 2, 3, 4, 5), 6, 7, 8, 9, 
+        [0, 1, 2, 3, 4, 5, (18, 19, 0, 1, 2, 3, 4, 5, 18, 19, 0, 1, 2, 3, 4, 5), 6, 7, 8, 9,
         10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
     .. todo:: Implement an optional `wrap` keyword to specify whether

@@ -29,7 +29,7 @@ def get_improper_descendents_of_component(component):
         Note("e'8")
         Note("f'8")
 
-    Function returns exactly the same components as 
+    Function returns exactly the same components as
     ``iterationtools.iterate_components_in_expr()``.
 
     Return list of `component` together with proper descendents of `component`.

@@ -45,7 +45,7 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
         >>
 
     Return score template object.
-    '''     
+    '''
 
     ### INITIALIZER ###
 

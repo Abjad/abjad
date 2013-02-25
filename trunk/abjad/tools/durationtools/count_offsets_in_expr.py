@@ -3,9 +3,9 @@ import collections
 
 def count_offsets_in_expr(expr):
     r'''Count offsets in `expr`.
-    
+
     Example 1.:
-    
+
     ::
 
         >>> score = Score()

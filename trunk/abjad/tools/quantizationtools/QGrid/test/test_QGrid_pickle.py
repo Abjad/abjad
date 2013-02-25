@@ -30,4 +30,4 @@ def test_QGrid_pickle_01():
 
     assert pickled == q_grid
     assert pickled is not q_grid
-    
+

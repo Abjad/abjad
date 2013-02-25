@@ -116,7 +116,7 @@ def test_componenttools_split_components_at_offsets_03():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:1], [(3, 32)], 
+    parts = componenttools.split_components_at_offsets(staff[:1], [(3, 32)],
         cyclic=True, fracture_spanners=False, tie_split_notes=False)
 
     r'''
@@ -168,7 +168,7 @@ def test_componenttools_split_components_at_offsets_04():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:], [(3, 32)], 
+    parts = componenttools.split_components_at_offsets(staff[:], [(3, 32)],
         cyclic=True, fracture_spanners=False, tie_split_notes=False)
 
     r'''
@@ -215,7 +215,7 @@ def test_componenttools_split_components_at_offsets_05():
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
     beamtools.apply_beam_spanners_to_measures_in_expr(measures)
 
-    parts = componenttools.split_components_at_offsets(measures, [(3, 32)], 
+    parts = componenttools.split_components_at_offsets(measures, [(3, 32)],
         cyclic=True, fracture_spanners=False, tie_split_notes=False)
 
     music = sequencetools.flatten_sequence(parts)
@@ -280,7 +280,7 @@ def test_componenttools_split_components_at_offsets_06():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[0][1:], [(1, 32)], 
+    parts = componenttools.split_components_at_offsets(staff[0][1:], [(1, 32)],
         cyclic=True, fracture_spanners=False, tie_split_notes=True)
 
     r'''
@@ -327,7 +327,7 @@ def test_componenttools_split_components_at_offsets_07():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff.leaves, [(1, 16)], 
+    parts = componenttools.split_components_at_offsets(staff.leaves, [(1, 16)],
         cyclic=True, fracture_spanners=False, tie_split_notes=True)
 
     r'''
@@ -375,7 +375,7 @@ def test_componenttools_split_components_at_offsets_08():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:1], [(1, 16)], 
+    parts = componenttools.split_components_at_offsets(staff[:1], [(1, 16)],
         cyclic=True, fracture_spanners=False, tie_split_notes=True)
 
     r'''
@@ -428,7 +428,7 @@ def test_componenttools_split_components_at_offsets_09():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:], [(3, 32)], 
+    parts = componenttools.split_components_at_offsets(staff[:], [(3, 32)],
         cyclic=True, fracture_spanners=False, tie_split_notes=True)
 
     r'''
@@ -585,7 +585,7 @@ def test_componenttools_split_components_at_offsets_12():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:1], [(3, 32)], 
+    parts = componenttools.split_components_at_offsets(staff[:1], [(3, 32)],
         cyclic=True, fracture_spanners=True, tie_split_notes=False)
 
     r'''
@@ -637,7 +637,7 @@ def test_componenttools_split_components_at_offsets_13():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:], [(3, 32)], 
+    parts = componenttools.split_components_at_offsets(staff[:], [(3, 32)],
         cyclic=True, fracture_spanners=True, tie_split_notes=False)
 
     r'''
@@ -714,7 +714,7 @@ def test_componenttools_split_components_at_offsets_15():
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
     beamtools.apply_beam_spanners_to_measures_in_expr(measures)
 
-    parts = componenttools.split_components_at_offsets(measures, [(3, 32)], 
+    parts = componenttools.split_components_at_offsets(measures, [(3, 32)],
         cyclic=True, fracture_spanners=True, tie_split_notes=False)
 
     music = sequencetools.flatten_sequence(parts)
@@ -779,7 +779,7 @@ def test_componenttools_split_components_at_offsets_16():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[0][1:], [(1, 32)], 
+    parts = componenttools.split_components_at_offsets(staff[0][1:], [(1, 32)],
         cyclic=True, fracture_spanners=True, tie_split_notes=True)
 
     r'''
@@ -826,7 +826,7 @@ def test_componenttools_split_components_at_offsets_17():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff.leaves, [(1, 16)], 
+    parts = componenttools.split_components_at_offsets(staff.leaves, [(1, 16)],
         cyclic=True, fracture_spanners=True, tie_split_notes=True)
 
     r'''
@@ -874,7 +874,7 @@ def test_componenttools_split_components_at_offsets_18():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:1], [(1, 16)], 
+    parts = componenttools.split_components_at_offsets(staff[:1], [(1, 16)],
         cyclic=True, fracture_spanners=True, tie_split_notes=True)
 
     r'''
@@ -927,7 +927,7 @@ def test_componenttools_split_components_at_offsets_19():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:], [(3, 32)], 
+    parts = componenttools.split_components_at_offsets(staff[:], [(3, 32)],
         cyclic=True, fracture_spanners=True, tie_split_notes=True)
 
     r'''
@@ -990,7 +990,7 @@ def test_componenttools_split_components_at_offsets_20():
     '''
 
     parts = componenttools.split_components_at_offsets(
-        staff[:1], [(1, 32), (3, 32), (5, 32)], 
+        staff[:1], [(1, 32), (3, 32), (5, 32)],
         cyclic=False, fracture_spanners=False, tie_split_notes=False)
 
     r'''
@@ -1042,7 +1042,7 @@ def test_componenttools_split_components_at_offsets_21():
     '''
 
     parts = componenttools.split_components_at_offsets(
-        staff[:], [(1, 32), (3, 32), (5, 32)], 
+        staff[:], [(1, 32), (3, 32), (5, 32)],
         cyclic=False, fracture_spanners=False, tie_split_notes=False)
 
     r'''
@@ -1099,7 +1099,7 @@ def test_componenttools_split_components_at_offsets_22():
     '''
 
     parts = componenttools.split_components_at_offsets(
-        staff[:1], [(1, 32), (3, 32), (5, 32)], 
+        staff[:1], [(1, 32), (3, 32), (5, 32)],
         cyclic=False, fracture_spanners=True, tie_split_notes=False)
 
     r'''
@@ -1152,7 +1152,7 @@ def test_componenttools_split_components_at_offsets_23():
     '''
 
     parts = componenttools.split_components_at_offsets(
-        staff[:], [(1, 32), (3, 32), (5, 32)], 
+        staff[:], [(1, 32), (3, 32), (5, 32)],
         cyclic=False, fracture_spanners=True, tie_split_notes=False)
 
     r'''
@@ -1193,7 +1193,7 @@ def test_componenttools_split_components_at_offsets_24():
     note = Note("c'4")
 
     parts = componenttools.split_components_at_offsets(
-        [note], [(1, 32), (5, 32)], 
+        [note], [(1, 32), (5, 32)],
         cyclic=False, fracture_spanners=True, tie_split_notes=False)
 
     notes = sequencetools.flatten_sequence(parts)
@@ -1226,7 +1226,7 @@ def test_componenttools_split_components_at_offsets_25():
     '''
 
     parts = componenttools.split_components_at_offsets(
-        staff[:], [(1, 64), (5, 64)], 
+        staff[:], [(1, 64), (5, 64)],
         cyclic=False, fracture_spanners=True, tie_split_notes=False)
 
     r'''

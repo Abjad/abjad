@@ -126,7 +126,7 @@ class Chord(Leaf):
             new.append(new_note_head)
         return new
 
-    ### PUBLIC PROPERTIES ### 
+    ### PUBLIC PROPERTIES ###
 
     @property
     def fingered_pitches(self):
@@ -252,7 +252,7 @@ class Chord(Leaf):
             self.note_heads = pitchs
         return property(**locals())
 
-    ### PUBLIC METHODS ### 
+    ### PUBLIC METHODS ###
 
     def append(self, note_head):
         '''Append `note_head` to chord::

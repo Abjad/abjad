@@ -42,4 +42,4 @@ def detach_time_signature_marks_attached_to_component(component):
         mark.detach()
         marks.append(mark)
 
-    return tuple(marks)    
+    return tuple(marks)

@@ -27,7 +27,7 @@ def shorten_component_by_duration(component, duration):
         }
 
     ::
-    
+
         >>> show(staff) # doctest: +SKIP
 
     Example 2. Shorten container and produce note with tied duration::

@@ -62,7 +62,7 @@ class QTargetMeasure(AbjadObject):
         ...     time_signature=time_signature,
         ...     use_full_measure=True,
         ...     )
-    
+
     ::
 
         >>> for q_target_beat in another_q_target_measure.beats:
@@ -136,7 +136,7 @@ class QTargetMeasure(AbjadObject):
         return self._tools_package_qualified_indented_repr
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-        
+
     @property
     def beats(self):
         '''The tuple of ``QTargetBeats`` contained by the ``QTargetMeasure``:

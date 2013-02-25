@@ -8,7 +8,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
 
     Move measure prolation to full-measure tuplet.
 
-    Turn non-power-of-two measures into power-of-two measures containing 
+    Turn non-power-of-two measures into power-of-two measures containing
     a single fixed-duration tuplet.
 
     Note that not all non-power-of-two measures can be made power-of-two.

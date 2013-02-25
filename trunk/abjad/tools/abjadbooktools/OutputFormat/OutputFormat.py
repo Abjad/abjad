@@ -50,7 +50,7 @@ class OutputFormat(abctools.AbjadObject):
                             reformatted.append(self.image_block.format(image_file_name))
                         else:
                             os.remove(image_file_name)
-                            
+
         return tuple(reformatted)
 
     ### READ-ONLY PUBLIC PROPERTIES ###

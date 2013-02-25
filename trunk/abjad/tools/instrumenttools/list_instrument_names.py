@@ -5,7 +5,7 @@ def list_instrument_names():
 
         >>> for instrument_name in instrumenttools.list_instrument_names():
         ...     instrument_name
-        ... 
+        ...
         'accordion'
         'alto flute'
         'alto saxophone'
@@ -63,5 +63,5 @@ def list_instrument_names():
     for instrument_class in instrumenttools.list_instruments():
         instrument = instrument_class()
         instrument_names.append(instrument.instrument_name)
-    
+
     return instrument_names

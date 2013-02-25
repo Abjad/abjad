@@ -20,10 +20,10 @@ def timespan_2_happens_during_timespan_1(timespan_1=None, timespan_2=None, hold=
 
     time_relation = timerelationtools.TimespanTimespanTimeRelation(
         'timespan_1.start <= timespan_2.start <= timespan_2.stop <= timespan_1.stop',
-        timespan_1=timespan_1, 
+        timespan_1=timespan_1,
         timespan_2=timespan_2)
-    
-    if time_relation.is_fully_loaded and not hold: 
+
+    if time_relation.is_fully_loaded and not hold:
         return time_relation()
     else:
         return time_relation

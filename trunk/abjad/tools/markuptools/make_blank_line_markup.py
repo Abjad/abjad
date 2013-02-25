@@ -18,5 +18,5 @@ def make_blank_line_markup():
     Return markup.
     '''
     from abjad.tools import markuptools
-    
+
     return markuptools.Markup(r'\fill-line { " " }')

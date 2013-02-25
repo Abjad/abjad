@@ -178,7 +178,7 @@ class Container(Component):
 
     def _format_after_slot(self, format_contributions):
         result = []
-        result.append(('lilypond command marks', 
+        result.append(('lilypond command marks',
             format_contributions.get('after', {}).get('lilypond command marks', [])))
         result.append(('comments', format_contributions.get('after', {}).get('comments', [])))
         return tuple(result)
@@ -186,7 +186,7 @@ class Container(Component):
     def _format_before_slot(self, format_contributions):
         result = []
         result.append(('comments', format_contributions.get('before', {}).get('comments', [])))
-        result.append(('lilypond command marks', 
+        result.append(('lilypond command marks',
             format_contributions.get('before', {}).get('lilypond command marks', [])))
         return tuple(result)
 
@@ -202,7 +202,7 @@ class Container(Component):
     def _format_closing_slot(self, format_contributions):
         result = []
         result.append(('grob reverts', format_contributions.get('grob reverts', [])))
-        result.append(('lilypond command marks', 
+        result.append(('lilypond command marks',
             format_contributions.get('closing', {}).get('lilypond command marks', [])))
         result.append(('comments', format_contributions.get('closing', {}).get('comments', [])))
         return self._format_slot_contributions_with_indent(result)
@@ -213,7 +213,7 @@ class Container(Component):
             result.extend(m.lilypond_format.split('\n'))
         result = ['\t' + x for x in result]
         return result
-        
+
     def _format_contents_slot(self, format_contributions):
         result = []
         result.append([('contents', '_contents'), self._format_content_pieces()])
@@ -231,7 +231,7 @@ class Container(Component):
     def _format_opening_slot(self, format_contributions):
         result = []
         result.append(('comments', format_contributions.get('opening', {}).get('comments', [])))
-        result.append(('lilypond command marks', 
+        result.append(('lilypond command marks',
             format_contributions.get('opening', {}).get('lilypond command marks', [])))
         result.append(('grob overrides', format_contributions.get('grob overrides', [])))
         result.append(('context settings', format_contributions.get('context settings', [])))
@@ -644,7 +644,7 @@ class Container(Component):
         # to make pychecker happy
         #self[i:i] = [component]
         self.__setitem__(slice(i, i), [component])
-        
+
     def pop(self, i=-1):
         '''Pop component at index `i` from container::
 

@@ -10,7 +10,7 @@ def test_Annotation___init___01():
 
 
 def test_Annotation___init___02():
-    '''Initialize annotation with only one argument.    
+    '''Initialize annotation with only one argument.
     '''
 
     annotation = marktools.Annotation('foo')

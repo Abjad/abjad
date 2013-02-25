@@ -142,7 +142,7 @@ class ResidueClass(_BaseResidueClass):
         Example::
 
             >>> from abjad.tools.sievetools import ResidueClass as RC
-    
+
         ::
 
             >>> r = RC(3, 0)

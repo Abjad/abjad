@@ -31,7 +31,7 @@ def make_tied_leaf(kind, duration, decrease_durations_monotonically=True, pitche
         else:
             args = (written_duration, )
         result.append(kind(*args))
-    
+
     # apply direction and tie spanner if required
     if 1 < len(result):
         if not decrease_durations_monotonically:

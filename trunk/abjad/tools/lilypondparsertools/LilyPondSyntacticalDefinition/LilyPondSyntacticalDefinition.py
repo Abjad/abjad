@@ -1384,7 +1384,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__REAL(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep REAL'
         if self.client._test_scheme_predicate(p[2], p[4]):
-            p[0] = p[3]         
+            p[0] = p[3]
             self.client._reparse_token(p[2], 'REAL', p[4])
         else:
             p[0] = p[3] + [p[1]]
@@ -1914,7 +1914,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         self.client._assign_variable(p[2][0], p[2][1])
         setattr(p[1], p[2][0], p[2][1].value)
         p[0] = p[1]
-        
+
 
 
     ### lyric_element ###
@@ -2768,8 +2768,8 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         "property_operation : OVERRIDE simple_string property_path '=' scalar"
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.LilyPondEvent('PropertyOperation',
-            keyword='override', 
-            context=p[2], 
+            keyword='override',
+            context=p[2],
             property=p[3],
             value=p[5])
 
@@ -2778,8 +2778,8 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         'property_operation : REVERT simple_string embedded_scm'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.LilyPondEvent('PropertyOperation',
-            keyword='revert', 
-            context=p[2], 
+            keyword='revert',
+            context=p[2],
             property=p[3])
 
 
@@ -3029,7 +3029,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_sequential_music__braced_music_list(self, p):
         'sequential_music : braced_music_list'
         p[0] = self.client._construct_sequential_music(p[1])
-            
+
 
     ### simple_chord_elements ###
 

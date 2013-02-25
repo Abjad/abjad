@@ -14,7 +14,7 @@ def list_written_durations_of_leaves_in_expr(expr):
         Duration(1, 8)
         Duration(1, 8)
         Duration(1, 8)
-        Duration(1, 8)    
+        Duration(1, 8)
          Duration(1, 8)
 
     Return list of durations.

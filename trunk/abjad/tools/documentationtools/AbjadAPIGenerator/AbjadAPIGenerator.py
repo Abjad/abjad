@@ -186,7 +186,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             else:
                 collection[tools_package_name]['functions'].append(obj)
         return packages, module_mapping
-        
+
 
     ### PUBLIC PROPERTIES ###
 

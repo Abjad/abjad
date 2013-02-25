@@ -13,7 +13,7 @@ class AbjDevScript(DeveloperScript):
 
         bash$ abj-dev
         usage: abj-dev [-h] [--version]
-                       
+
                        {help,list,api,book,clean,count,doctest,grep,new,rename,replace,svn}
                        ...
 
@@ -203,7 +203,7 @@ class AbjDevScript(DeveloperScript):
             dest='subparser_name',
             title='subcommands',
             )
-        
+
         info_subparser = subparsers.add_parser('help',
             add_help=False,
             help='print subcommand help'

@@ -122,7 +122,7 @@ def test_Note___copy___06():
         f'8 ]
     }
     '''
-    
+
     new_note = copy.deepcopy(note)
 
     assert new_note is not note

@@ -20,7 +20,7 @@ def test_NamedChromaticPitch___repr___02():
     '''
 
     named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
-    
+
     assert repr(named_chromatic_pitch) == 'NamedChromaticPitch("cs\'\'")'
     assert named_chromatic_pitch._tools_package_qualified_repr == 'pitchtools.NamedChromaticPitch("cs\'\'")'
     assert named_chromatic_pitch._tools_package_qualified_indented_repr == 'pitchtools.NamedChromaticPitch(\n\t"cs\'\'"\n\t)'

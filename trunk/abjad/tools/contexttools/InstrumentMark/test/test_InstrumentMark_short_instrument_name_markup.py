@@ -18,7 +18,7 @@ def testInstrumentMark_short_instrument_name_markup_01():
 def testInstrumentMark_short_instrument_name_markup_02():
     '''Strings are coerced into Markup on instantiation.
     '''
-    instrument = contexttools.InstrumentMark('flute', 'fl.', 
+    instrument = contexttools.InstrumentMark('flute', 'fl.',
         short_instrument_name_markup='Fl. 2')
     assert instrument.short_instrument_name_markup == markuptools.Markup('Fl. 2')
 

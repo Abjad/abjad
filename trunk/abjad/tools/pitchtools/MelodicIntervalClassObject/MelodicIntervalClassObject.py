@@ -13,7 +13,7 @@ class MelodicIntervalClassObject(IntervalObjectClass, MelodicObject):
 
     __metaclass__ = abc.ABCMeta
     __slots__ = ()
-    
+
     ### INITIALIZER ###
 
     @abc.abstractmethod

@@ -5,7 +5,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
     '''Project 3/12 time signature onto measure contents.
     '''
 
-    inner = tuplettools.FixedDurationTuplet(Duration(2, 16), 
+    inner = tuplettools.FixedDurationTuplet(Duration(2, 16),
         notetools.make_repeated_notes(3, Duration(1, 16)))
     notes = notetools.make_repeated_notes(2)
     outer = tuplettools.FixedDurationTuplet(Duration(2, 8), [inner] + notes)
@@ -53,7 +53,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
 
 
 def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
-    '''Project time signature without power-of-two denominator 
+    '''Project time signature without power-of-two denominator
     onto measure with tied note values.
     '''
 

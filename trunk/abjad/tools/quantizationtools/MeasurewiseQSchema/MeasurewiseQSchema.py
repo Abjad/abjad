@@ -62,21 +62,21 @@ class MeasurewiseQSchema(QSchema):
     ``use_full_measure``, which controls whether the measure is subdivided by the
     ``Quantizer`` into beats according to its time signature.
 
-    If ``use_full_measure`` is ``False``, the time-step's measure will be divided 
-    into units according to its time-signature.  For example, a 4/4 measure 
+    If ``use_full_measure`` is ``False``, the time-step's measure will be divided
+    into units according to its time-signature.  For example, a 4/4 measure
     will be divided into 4 units, each having a beatspan of 1/4.
 
-    On the other hand, if ``use_full_measure`` is set to ``True``, the time-step's 
+    On the other hand, if ``use_full_measure`` is set to ``True``, the time-step's
     measure will not be subdivided into independent quantization units.  This
     usually results in full-measure tuplets.
-    
+
     The computed value at any non-negative time-step can be found by subscripting:
 
     ::
 
         >>> index = 0
         >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
-        ... 
+        ...
         search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
@@ -88,7 +88,7 @@ class MeasurewiseQSchema(QSchema):
 
         >>> index = 1000
         >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
-        ... 
+        ...
         search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
@@ -98,7 +98,7 @@ class MeasurewiseQSchema(QSchema):
 
     Per-time-step settings can be applied in a variety of ways.
 
-    Instantiating the schema via ``*args`` with a series of either 
+    Instantiating the schema via ``*args`` with a series of either
     ``MeasurewiseQSchemaItem`` instances, or dictionaries which could be used
     to instantiate ``MeasurewiseQSchemaItem`` instances, will apply those
     settings sequentially, starting from time-step ``0``:

@@ -3,7 +3,7 @@ from abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker import OutputIncisedR
 
 class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
     r'''.. versionadded:: 2.8
-    
+
     Output-incised note rhythm-maker:
 
     ::
@@ -14,7 +14,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
         ...     suffix_talea=[-3],
         ...     suffix_lengths=[4],
         ...     talea_denominator=32)
-        
+
     Configure at initialization and then call on arbitrary divisions:
 
     ::
@@ -78,7 +78,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
             >>> new_maker = maker.new(prefix_talea=[-7])
 
         ::
-        
+
             >>> z(new_maker)
             rhythmmakertools.OutputIncisedNoteRhythmMaker(
                 prefix_talea=[-7],
@@ -119,7 +119,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
             >>> reversed_maker = maker.reverse()
 
         ::
-        
+
             >>> z(reversed_maker)
             rhythmmakertools.OutputIncisedNoteRhythmMaker(
                 prefix_talea=[-7, -8],

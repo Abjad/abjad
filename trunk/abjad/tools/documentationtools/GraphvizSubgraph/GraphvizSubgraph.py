@@ -37,7 +37,7 @@ class GraphvizSubgraph(GraphvizGraph):
         return (documentationtools.GraphvizSubgraph, documentationtools.GraphvizNode)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
- 
+
     @property
     def canonical_name(self):
         if self.name is not None:

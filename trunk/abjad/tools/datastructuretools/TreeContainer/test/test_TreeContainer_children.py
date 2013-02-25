@@ -10,6 +10,6 @@ def test_TreeContainer_children_01():
     leaf_d = datastructuretools.TreeNode()
 
     container = datastructuretools.TreeContainer([leaf_a, subcontainer, leaf_d])
-    
+
     assert container.children == (leaf_a, subcontainer, leaf_d)
 

@@ -66,7 +66,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
     Iterate vertical moments backward in `expr`::
 
     ::
-        
+
         >>> for x in verticalitytools.iterate_vertical_moments_in_expr(score, reverse=True):
         ...     x.leaves
         ...

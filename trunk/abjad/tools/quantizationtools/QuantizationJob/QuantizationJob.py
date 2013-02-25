@@ -112,7 +112,7 @@ class QuantizationJob(AbjadObject):
         ::
 
             >>> job.job_id
-            1            
+            1
 
         Only meaningful when the job is processed via multiprocessing,
         as the job id is necessary to reconstruct the order of jobs.

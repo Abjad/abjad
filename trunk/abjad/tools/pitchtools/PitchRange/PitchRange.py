@@ -11,13 +11,13 @@ class PitchRange(AbjadObject):
         >>> pitchtools.PitchRange(-12, 36)
         PitchRange('[C3, C7]')
 
-    Initalize from pitch numbers, pitch names, pitch instances, one-line reprs 
+    Initalize from pitch numbers, pitch names, pitch instances, one-line reprs
     or other pitch range objects.
 
     Pitch ranges implement equality testing against other pitch ranges.
 
     Pitch ranges test less than, greater than, less-equal and greater-equal against pitches.
-    
+
     Pitch ranges do not sort relative to other pitch ranges.
 
     Pitch ranges are immutable.
@@ -257,7 +257,7 @@ class PitchRange(AbjadObject):
         stop_pair = (stop_pitch_string, stop_inclusivity_string)
         type(self).__init__(self, start_pair, stop_pair)
 
-    
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -324,7 +324,7 @@ class PitchRange(AbjadObject):
 
         ::
 
-            >>> pitch_range = pitchtools.PitchRange(-12, 36, 
+            >>> pitch_range = pitchtools.PitchRange(-12, 36,
             ...     pitch_range_name_markup=Markup('four-octave range'))
             >>> pitch_range.pitch_range_name_markup
             Markup(('four-octave range',))

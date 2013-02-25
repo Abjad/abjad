@@ -3,10 +3,10 @@ from abjad.tools import sequencetools
 
 
 # TODO: fix bug that unintentionally fractures ties.
-def split_components_at_offsets(components, offsets, 
+def split_components_at_offsets(components, offsets,
     fracture_spanners=False, cyclic=False, tie_split_notes=True, tie_split_rests=False):
     r'''.. versionadded:: 2.0
-    
+
     Example 1. Split components cyclically and do not fracture crossing spanners::
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -360,7 +360,7 @@ def split_components_at_offsets(components, offsets,
 
     # keep copy of offsets to partition result components
     offsets_copy = offsets[:]
-    
+
     # calculate total offset duration
     total_offset_duration = sum(offsets)
     assert total_offset_duration == total_component_duration
@@ -427,7 +427,7 @@ def split_components_at_offsets(components, offsets,
                 leaf_split_durations.extend(additional_offsets)
                 offsets = split_offsets[-1]
                 leaf_shards = leaftools.split_leaf_at_offsets(
-                    current_component, leaf_split_durations, 
+                    current_component, leaf_split_durations,
                     cyclic=False, fracture_spanners=fracture_spanners,tie_split_rests=tie_split_rests)
                 shard.extend(leaf_shards)
                 result.append(shard)
@@ -435,7 +435,7 @@ def split_components_at_offsets(components, offsets,
             else:
                 #print 'splitting container ...'
                 left_list, right_list = componenttools.split_component_at_offset(
-                    current_component, local_split_duration, fracture_spanners=fracture_spanners, 
+                    current_component, local_split_duration, fracture_spanners=fracture_spanners,
                     tie_split_notes=tie_split_notes, tie_split_rests=tie_split_rests)
                 #print 'left_list, right_list {}, {}'.format(left_list, right_list)
                 shard.extend(left_list)

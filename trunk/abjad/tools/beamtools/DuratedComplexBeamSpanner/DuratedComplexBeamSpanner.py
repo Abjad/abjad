@@ -73,7 +73,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         ComplexBeamSpanner._copy_keyword_args(self, new)
         new.durations = self.durations[:]
         new.span = self.span
-            
+
     def _format_before_leaf(self, leaf):
         from abjad.tools import beamtools
         result = []
@@ -111,7 +111,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
             self.durations, weights, cyclic=False, overhang=False)
-        left_durations, right_durations = split_durations 
+        left_durations, right_durations = split_durations
         left._durations = left_durations
         right._durations = right_durations
         return self, left, right
@@ -122,7 +122,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
             self.durations, weights, cyclic=False, overhang=False)
-        left_durations, right_durations = split_durations 
+        left_durations, right_durations = split_durations
         left._durations = left_durations
         right._durations = right_durations
         return self, left, right

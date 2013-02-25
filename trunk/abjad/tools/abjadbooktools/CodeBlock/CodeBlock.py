@@ -43,7 +43,7 @@ class CodeBlock(abctools.AbjadObject):
 
         if verbose:
             print '\nCODEBLOCK: {}:{}'.format(
-                self.starting_line_number, 
+                self.starting_line_number,
                 self.ending_line_number
                 )
 
@@ -189,7 +189,7 @@ class CodeBlock(abctools.AbjadObject):
     @property
     def strip_prompt(self):
         return self._strip_prompt
-        
+
     ### PUBLIC METHODS ###
 
     def read(self, pipe):

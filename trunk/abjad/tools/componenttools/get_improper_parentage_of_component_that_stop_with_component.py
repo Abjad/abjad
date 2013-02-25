@@ -30,7 +30,7 @@ def get_improper_parentage_of_component_that_stop_with_component(component):
     Return list of `component` with proper parentage that stop with `component`.
     '''
     from abjad.tools import componenttools
-    
+
     # initialize result
     result = []
 

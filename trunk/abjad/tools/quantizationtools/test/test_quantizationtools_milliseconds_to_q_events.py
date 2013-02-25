@@ -57,131 +57,131 @@ def test_quantizationtools_milliseconds_to_q_events_01():
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(4830, 1), 
+            durationtools.Offset(4830, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(6362, 1), 
+            durationtools.Offset(6362, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(6595, 1), 
+            durationtools.Offset(6595, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(6687, 1), 
+            durationtools.Offset(6687, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(7013, 1), 
+            durationtools.Offset(7013, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(7245, 1), 
+            durationtools.Offset(7245, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(7872, 1), 
+            durationtools.Offset(7872, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(8197, 1), 
+            durationtools.Offset(8197, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(8359, 1), 
+            durationtools.Offset(8359, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(8638, 1), 
+            durationtools.Offset(8638, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(8731, 1), 
+            durationtools.Offset(8731, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(8917, 1), 
+            durationtools.Offset(8917, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(9288, 1), 
+            durationtools.Offset(9288, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(9404, 1), 
+            durationtools.Offset(9404, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(10240, 1), 
+            durationtools.Offset(10240, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(10356, 1), 
+            durationtools.Offset(10356, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(10496, 1), 
+            durationtools.Offset(10496, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(10890, 1), 
+            durationtools.Offset(10890, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(11169, 1), 
+            durationtools.Offset(11169, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(11285, 1), 
+            durationtools.Offset(11285, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(11424, 1), 
+            durationtools.Offset(11424, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(12307, 1), 
+            durationtools.Offset(12307, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(12957, 1), 
+            durationtools.Offset(12957, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(13073, 1), 
+            durationtools.Offset(13073, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(13653, 1), 
+            durationtools.Offset(13653, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(13979, 1), 
+            durationtools.Offset(13979, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(14234, 1), 
+            durationtools.Offset(14234, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(15256, 1), 
+            durationtools.Offset(15256, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(15883, 1), 
+            durationtools.Offset(15883, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(16022, 1), 
+            durationtools.Offset(16022, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(16649, 1), 
+            durationtools.Offset(16649, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(16927, 1), 
+            durationtools.Offset(16927, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
         quantizationtools.PitchedQEvent(

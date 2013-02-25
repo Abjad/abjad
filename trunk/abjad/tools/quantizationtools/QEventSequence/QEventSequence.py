@@ -149,7 +149,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
         '''Convert millisecond offsets ``offsets`` into a ``QEventSequence``:
 
         ::
-        
+
             >>> offsets = [0, 250, 750, 1750, 3000, 4000]
 
         ::

@@ -18,13 +18,13 @@ class BurnishedRhythmMaker(RhythmMaker):
     Abstract base class for rhythm-makers that burnish some or
     all of the output cells they produce.
 
-    'Burnishing' means to forcibly cast the first or last 
-    (or both first and last) elements of a output cell to be 
+    'Burnishing' means to forcibly cast the first or last
+    (or both first and last) elements of a output cell to be
     either a note or rest.
 
     'Division-burnishing' rhythm-makers burnish every output cell they produce.
 
-    'Output-burnishing' rhythm-makers burnish only the first and last 
+    'Output-burnishing' rhythm-makers burnish only the first and last
     output cells they produce and leave interior output cells unchanged.
     '''
 
@@ -44,8 +44,8 @@ class BurnishedRhythmMaker(RhythmMaker):
         beam_each_cell=False, beam_cells_together=False,
         decrease_durations_monotonically=True, tie_split_notes=False, tie_rests=False
         ):
-        RhythmMaker.__init__(self, 
-            beam_each_cell=beam_each_cell, 
+        RhythmMaker.__init__(self,
+            beam_each_cell=beam_each_cell,
             beam_cells_together=beam_cells_together)
         prolation_addenda = self._none_to_new_list(prolation_addenda)
         lefts = self._none_to_new_list(lefts)
@@ -176,8 +176,8 @@ class BurnishedRhythmMaker(RhythmMaker):
         leaf_lists = []
         for map_division in numeric_map:
             leaf_list = leaftools.make_leaves_from_talea(
-                map_division, talea_denominator, 
-                decrease_durations_monotonically=self.decrease_durations_monotonically, 
+                map_division, talea_denominator,
+                decrease_durations_monotonically=self.decrease_durations_monotonically,
                 tie_rests=self.tie_rests)
             leaf_lists.append(leaf_list)
         return leaf_lists

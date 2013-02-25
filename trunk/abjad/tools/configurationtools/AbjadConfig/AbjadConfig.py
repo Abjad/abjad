@@ -48,7 +48,7 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
         # verify configuration directory
         if not os.path.exists(self.ABJAD_CONFIG_DIRECTORY_PATH):
             os.mkdir(self.ABJAD_CONFIG_DIRECTORY_PATH)
-        
+
         # attempt to load config from disk, and validate
         # a config object will be created if none is found on disk
         spec = self.get_config_spec()
@@ -173,7 +173,7 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
                 'spec': 'string(default={!r})'.format(
                     os.path.join(self.ABJAD_CONFIG_DIRECTORY_PATH, 'output'))
             },
-            'accidental_spelling': { 
+            'accidental_spelling': {
                 'comment': [
                     '',
                     'Default accidental spelling (mixed|sharps|flats).',

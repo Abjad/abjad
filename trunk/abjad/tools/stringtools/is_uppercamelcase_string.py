@@ -10,7 +10,7 @@ def is_uppercamelcase_string(expr):
 
         >>> stringtools.is_uppercamelcase_string('FooBar')
         True
-    
+
     False otherwise::
 
         >>> stringtools.is_uppercamelcase_string('fooBar')
@@ -26,4 +26,4 @@ def is_uppercamelcase_string(expr):
     if not isinstance(expr, str):
         return False
 
-    return bool(uppercamelcase_regex.match(expr)) 
+    return bool(uppercamelcase_regex.match(expr))

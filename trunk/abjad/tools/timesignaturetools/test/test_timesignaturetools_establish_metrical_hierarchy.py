@@ -22,7 +22,7 @@ def test_timesignaturetools_establish_metrical_hierarchy_02():
 
 def test_timesignaturetools_establish_metrical_hierarchy_03():
     '''Descends into tuplets.'''
-    source = p('abj: | 2/4 2 ~ || 5/4 8 ~ 8 ~ 2/3 { 4 ~ 4 4 ~ } 4 ~ 4 ~ || 2/4 2 |') 
+    source = p('abj: | 2/4 2 ~ || 5/4 8 ~ 8 ~ 2/3 { 4 ~ 4 4 ~ } 4 ~ 4 ~ || 2/4 2 |')
     target = p('abj: | 2/4 2 ~ || 5/4 4 ~ 2/3 { 2 4 ~ } 2 ~ || 2/4 2 |')
     metrical_hierarchy = timesignaturetools.MetricalHierarchy(source[1])
     timesignaturetools.establish_metrical_hierarchy(source[1][:], metrical_hierarchy)

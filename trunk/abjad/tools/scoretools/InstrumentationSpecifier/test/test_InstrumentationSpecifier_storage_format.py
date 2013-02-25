@@ -9,7 +9,7 @@ def testInstrumentationSpecifier_storage_format_01():
     guitar = scoretools.Performer('Guitar')
     guitar.instruments.append(instrumenttools.Guitar())
     specifier = scoretools.InstrumentationSpecifier([flute, guitar])
-    
+
     r'''
     scoretools.InstrumentationSpecifier(
         performers=scoretools.PerformerInventory([

@@ -68,7 +68,7 @@ class ReSTDocument(TreeContainer):
     '''
 
     ### READ-ONLY PRIVATE PROPERTIES ###
-    
+
     @property
     def _rest_format_contributions(self):
         result = []
@@ -83,9 +83,9 @@ class ReSTDocument(TreeContainer):
     def node_klass(self):
         from abjad.tools import documentationtools
         return (
-            documentationtools.ReSTDirective, 
-            documentationtools.ReSTHeading, 
-            documentationtools.ReSTHorizontalRule, 
+            documentationtools.ReSTDirective,
+            documentationtools.ReSTHeading,
+            documentationtools.ReSTHorizontalRule,
             documentationtools.ReSTParagraph,
             )
 

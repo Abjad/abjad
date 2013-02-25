@@ -85,7 +85,7 @@ def test_MetricGridSpanner_split_on_bar_03():
         }
     }
     '''
-    
+
     assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\t\\time 1/8\n\t\tc'8\n\t\tc'16 ~\n\t\tc'16\n\t\tc'8\n\t\tc'8\n\t\tc'16 ~\n\t\tc'16\n\t\tc'8\n\t}\n}"
 

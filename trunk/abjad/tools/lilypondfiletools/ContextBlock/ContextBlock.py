@@ -46,7 +46,7 @@ class ContextBlock(AttributedBlock):
         self.context_name = context_name
         self.name = None
         self.type = None
-        
+
     ### PRIVATE PROPERTIES ###
 
     @property

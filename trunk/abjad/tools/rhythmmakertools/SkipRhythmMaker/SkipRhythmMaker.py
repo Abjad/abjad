@@ -85,7 +85,7 @@ class SkipRhythmMaker(RhythmMaker):
             rhythmmakertools.SkipRhythmMaker()
 
         ::
-    
+
             >>> divisions = [(1, 4), (3, 16), (5, 8)]
             >>> leaf_lists = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(leaf_lists)
@@ -114,7 +114,7 @@ class SkipRhythmMaker(RhythmMaker):
             rhythmmakertools.SkipRhythmMaker()
 
         ::
-    
+
             >>> divisions = [(1, 4), (3, 16), (5, 8)]
             >>> leaf_lists = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(leaf_lists)

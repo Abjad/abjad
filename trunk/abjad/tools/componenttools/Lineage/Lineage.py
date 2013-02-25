@@ -11,7 +11,7 @@ class Lineage(Selection):
         ... name='Treble Staff'))
         >>> score.append(Staff(r"""\new Voice = "Bass Voice" { b,4 }""",
         ... name='Bass Staff'))
-    
+
     ::
 
         >>> f(score)

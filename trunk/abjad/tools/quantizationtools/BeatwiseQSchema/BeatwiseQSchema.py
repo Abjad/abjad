@@ -79,7 +79,7 @@ class BeatwiseQSchema(QSchema):
 
     Instantiating the schema via ``*args`` with a series of either
     ``BeatwiseQSchemaItem`` instances, or dictionaries which could be used to
-    instantiate ``BeatwiseQSchemaItem`` instances, will apply those settings 
+    instantiate ``BeatwiseQSchemaItem`` instances, will apply those settings
     sequentially, starting from time-step ``0``:
 
     ::
@@ -180,7 +180,7 @@ class BeatwiseQSchema(QSchema):
 
     ::
 
-        >>> q_schema[1000]['search_tree'] 
+        >>> q_schema[1000]['search_tree']
         UnweightedSearchTree(
             definition={   3: None}
             )
@@ -210,7 +210,7 @@ class BeatwiseQSchema(QSchema):
             kwargs.get('beatspan',
                 (1, 4)))
 
-        search_tree = kwargs.get('search_tree', quantizationtools.UnweightedSearchTree()) 
+        search_tree = kwargs.get('search_tree', quantizationtools.UnweightedSearchTree())
         assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
 

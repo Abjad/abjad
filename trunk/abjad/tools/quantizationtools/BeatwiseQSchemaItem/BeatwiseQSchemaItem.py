@@ -24,7 +24,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
                     60
                     ),
             )
-           
+
     Define a change in beatspan:
 
     ::

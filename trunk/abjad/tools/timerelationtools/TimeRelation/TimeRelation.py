@@ -54,7 +54,7 @@ class TimeRelation(AbjadObject):
 
             >>> time_relation()
             True
-    
+
         Return boolean.
         '''
         pass
@@ -64,7 +64,7 @@ class TimeRelation(AbjadObject):
         '''True when `expr` is a time relation with
         template and both terms equal to time relation.
         Otherwise false.
-    
+
         Return boolean.
         '''
         pass
@@ -90,7 +90,7 @@ class TimeRelation(AbjadObject):
 
             >>> time_relation.is_fully_loaded
             True
-    
+
         Return boolean.
         '''
         pass
@@ -104,7 +104,7 @@ class TimeRelation(AbjadObject):
 
             >>> time_relation.is_fully_unloaded
             False
-    
+
         Return boolean.
         '''
         pass
@@ -135,7 +135,7 @@ class TimeRelation(AbjadObject):
     @property
     def template(self):
         '''Time relation template:
-    
+
         ::
 
             >>> time_relation.template

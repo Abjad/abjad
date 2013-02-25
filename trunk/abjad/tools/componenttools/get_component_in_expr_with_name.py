@@ -36,7 +36,7 @@ def get_component_in_expr_with_name(expr, name):
             d'4
             e'4
             f'4
-        }    
+        }
 
     Return one component.
 

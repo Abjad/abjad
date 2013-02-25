@@ -160,7 +160,7 @@ class QTarget(AbjadObject):
                 spanner.append(leaf_two)
         # notate final leaf, if necessary
         self._notate_one_leaf(leaves[-1], grace_handler)
-        
+
     def _notate_one_leaf(self, leaf, grace_handler):
         leaf_annotations = marktools.get_annotations_attached_to_component(leaf)
         tempo_marks = contexttools.get_tempo_marks_attached_to_component(leaf)

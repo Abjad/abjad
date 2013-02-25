@@ -12,7 +12,7 @@ class MetricalHierarchy(AbjadObject):
 
     A rhythm tree-based model of nested time signature groupings.
 
-    The structure of the tree corresponds to the monotonically increasing 
+    The structure of the tree corresponds to the monotonically increasing
     sequence of factors of the time signature's numerator.
 
     Each deeper level of the tree divides the previous by the next factor in sequence.
@@ -150,7 +150,7 @@ class MetricalHierarchy(AbjadObject):
                                 grouping.append(rhythmtreetools.RhythmTreeLeaf(preprolated_duration=(1, denominator)))
                         node.append(grouping)
             else:
-                node.extend([rhythmtreetools.RhythmTreeLeaf(preprolated_duration=(1, denominator)) 
+                node.extend([rhythmtreetools.RhythmTreeLeaf(preprolated_duration=(1, denominator))
                     for _ in range(node.preprolated_duration.numerator)])
 
         decrease_durations_monotonically = bool(decrease_durations_monotonically)
@@ -214,7 +214,7 @@ class MetricalHierarchy(AbjadObject):
 
             >>> for x in metrical_hierarchy:
             ...    x
-            ... 
+            ...
             (NonreducedFraction(0, 4), NonreducedFraction(1, 4))
             (NonreducedFraction(1, 4), NonreducedFraction(2, 4))
             (NonreducedFraction(2, 4), NonreducedFraction(3, 4))
@@ -275,7 +275,7 @@ class MetricalHierarchy(AbjadObject):
 
         ::
 
-            >>> print metrical_hierarchy.pretty_rtm_format 
+            >>> print metrical_hierarchy.pretty_rtm_format
             (5/4 (
                 (2/4 (
                     1/4
@@ -297,7 +297,7 @@ class MetricalHierarchy(AbjadObject):
 
         ::
 
-            >>> print metrical_hierarchy.pretty_rtm_format 
+            >>> print metrical_hierarchy.pretty_rtm_format
             (5/4 (
                 (3/4 (
                     1/4
@@ -519,9 +519,9 @@ class MetricalHierarchy(AbjadObject):
         r'''Generate a dictionary of all offsets in a metrical hierarchy up
         to `denominator`, where the keys are the offsets and the values
         are the normalized weights of those offsets:
-        
+
         ::
-        
+
             >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
             >>> kernel = metrical_hierarchy.generate_offset_kernel_to_denominator(8)
             >>> for offset, weight in sorted(kernel.kernel.iteritems()):
@@ -539,7 +539,7 @@ class MetricalHierarchy(AbjadObject):
 
         This is useful for testing how strongly a collection of offsets
         responds to a given metrical hierarchy.
-        
+
         Return dictionary.
         '''
         from abjad.tools import timesignaturetools
@@ -567,9 +567,9 @@ class MetricalHierarchy(AbjadObject):
                     kernel[offset] = 0
                 kernel[offset] += 1
                 total += 1
-        
-        if normalize:    
+
+        if normalize:
             for offset, response in kernel.iteritems():
                 kernel[offset] = durationtools.Multiplier(response, total)
-        
+
         return timesignaturetools.MetricalKernel(kernel)

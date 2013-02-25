@@ -10,7 +10,7 @@ class CounterpointIntervalClassObject(IntervalObjectClass, CounterpointObject):
     '''
 
     ### CLASS ATTRIBUTES ###
-    
+
     __metaclass__ = abc.ABCMeta
     __slots__ = ()
 

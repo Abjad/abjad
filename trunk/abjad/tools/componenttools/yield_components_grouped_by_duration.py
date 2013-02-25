@@ -37,7 +37,7 @@ def yield_components_grouped_by_duration(components):
 
     Example 2. Yield topmost components grouped by prolated duration.
 
-    Note that function treats input as a flat sequence and 
+    Note that function treats input as a flat sequence and
     attempts no navigation of the score tree.
     But it's possible to group components lower in the score tree by passing
     the output of a component iterator as input to this function::
@@ -56,7 +56,7 @@ def yield_components_grouped_by_duration(components):
         (Note("c'8"), Note("c'8"))
 
     Return generator.
-    
+
     .. note:: Might be best to add ``in_sequence`` or ``topmost`` to the name
         of this function.
     '''

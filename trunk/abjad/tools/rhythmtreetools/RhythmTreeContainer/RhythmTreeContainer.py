@@ -263,7 +263,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
         proper_parentage = self.proper_parentage
 
-        if isinstance(i, int):        
+        if isinstance(i, int):
             if isinstance(expr, str):
                 expr = RhythmTreeParser()(expr)[0]
                 assert len(expr) == 1
@@ -388,7 +388,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             graphviz_node = documentationtools.GraphvizNode()
             graphviz_node.attributes['label'] = str(node.preprolated_duration)
             if isinstance(node, type(self)):
-                graphviz_node.attributes['shape'] = 'triangle'   
+                graphviz_node.attributes['shape'] = 'triangle'
             else:
                 graphviz_node.attributes['shape'] = 'box'
             graph.append(graphviz_node)

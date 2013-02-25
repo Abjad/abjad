@@ -158,7 +158,7 @@ class Tuplet(Container):
         '''
         result = []
         result.append(('grob reverts', format_contributions.get('grob reverts', [])))
-        result.append(('lilypond command marks', 
+        result.append(('lilypond command marks',
             format_contributions.get('after', {}).get('lilypond command marks', [])))
         result.append(('comments', format_contributions.get('after', {}).get('comments', [])))
         return tuple(result)
@@ -166,7 +166,7 @@ class Tuplet(Container):
     def _format_before_slot(self, format_contributions):
         result = []
         result.append(('comments', format_contributions.get('before', {}).get('comments', [])))
-        result.append(('lilypond command marks', 
+        result.append(('lilypond command marks',
             format_contributions.get('before', {}).get('lilypond command marks', [])))
         result.append(('grob overrides', format_contributions.get('grob overrides', [])))
         return tuple(result)
@@ -183,7 +183,7 @@ class Tuplet(Container):
         '''Read-only tuple of format contributions to appear immediately before self closing.
         '''
         result = []
-        result.append(('lilypond command marks', 
+        result.append(('lilypond command marks',
             format_contributions.get('closing', {}).get('lilypond command marks', [])))
         result.append(('comments', format_contributions.get('closing', {}).get('comments', [])))
         return self._format_slot_contributions_with_indent(result)
@@ -221,7 +221,7 @@ class Tuplet(Container):
         '''
         result = []
         result.append(('comments', format_contributions.get('opening', {}).get('comments', [])))
-        result.append(('lilypond command marks', 
+        result.append(('lilypond command marks',
             format_contributions.get('opening', {}).get('lilypond command marks', [])))
         return self._format_slot_contributions_with_indent(result)
 
@@ -302,7 +302,7 @@ class Tuplet(Container):
             >>> tuplet = Tuplet((1, 1), "c'8 d'8 e'8")
             >>> tuplet.is_trivial
             True
-        
+
         Return boolean.
         '''
         return self.multiplier == 1
@@ -424,7 +424,7 @@ class Tuplet(Container):
 
             ::
 
-            
+
                 \scaleDurations #'(2 . 3) {
                     c'8
                     d'8
@@ -453,7 +453,7 @@ class Tuplet(Container):
                 Multiplier(2, 3)
 
             Return multiplier.
-            ''' 
+            '''
             return self._multiplier
         def fset(self, expr):
             if isinstance(expr, (int, long, fractions.Fraction)):

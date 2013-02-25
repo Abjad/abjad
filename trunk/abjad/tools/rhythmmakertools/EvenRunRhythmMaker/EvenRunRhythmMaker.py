@@ -112,7 +112,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             >>> maker.denominator_multiplier_exponent
             1
-        
+
         Return nonnegative integer.
         '''
         return self._denominator_multiplier_exponent
@@ -186,7 +186,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                 )
 
         ::
-            
+
             >>> divisions = [(4, 8), (3, 4), (2, 4)]
             >>> lists = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(lists)

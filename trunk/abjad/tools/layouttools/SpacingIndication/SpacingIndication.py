@@ -14,7 +14,7 @@ class SpacingIndication(AbjadObject):
 
         >>> tempo = contexttools.TempoMark(Duration(1, 8), 44)
         >>> indication = layouttools.SpacingIndication(tempo, Duration(1, 68))
-        
+
     ::
 
         >>> indication
@@ -36,7 +36,7 @@ class SpacingIndication(AbjadObject):
     ### CLASS ATTRIBUTES ###
 
     _default_positional_input_arguments = (
-        ((1, 8), 44), 
+        ((1, 8), 44),
         (1, 68),
         )
 

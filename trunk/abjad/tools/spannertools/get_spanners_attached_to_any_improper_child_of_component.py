@@ -42,7 +42,7 @@ def get_spanners_attached_to_any_improper_child_of_component(component, klass=No
 
         >>> spanner_klasses = (spannertools.SlurSpanner, beamtools.BeamSpanner)
         >>> result = spannertools.get_spanners_attached_to_any_proper_child_of_component(
-        ... staff, spanner_klasses) 
+        ... staff, spanner_klasses)
 
     ::
 

@@ -19,7 +19,7 @@ def get_current_function_name():
 
     Returns enclosing function name as a string or else none.
     '''
-    
+
     stack = inspect.stack()
 
     # per the inspect module doc page ...

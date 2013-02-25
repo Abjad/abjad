@@ -54,7 +54,7 @@ class StemTremolo(Mark):
 
             >>> stem_tremolo_1 == stem_tremolo_2
             True
-            
+
         ::
 
             >>> stem_tremolo_1 is not stem_tremolo_2

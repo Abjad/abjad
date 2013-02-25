@@ -7,9 +7,9 @@ def test_UnweightedSearchTree__find_leaf_subdivisions_01():
         2: {
             2: {
                 2: None
-            }, 
+            },
             3: None
-        }, 
+        },
         5: None
     }
     search_tree = quantizationtools.UnweightedSearchTree(definition)

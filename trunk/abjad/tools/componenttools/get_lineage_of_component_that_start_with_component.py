@@ -42,7 +42,7 @@ def get_lineage_of_component_that_start_with_component(component):
 
     # initialize result
     result = []
-    
+
     result.extend(componenttools.get_improper_parentage_of_component_that_start_with_component(component))
 
     result.remove(component)

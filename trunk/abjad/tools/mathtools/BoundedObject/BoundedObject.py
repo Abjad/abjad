@@ -36,7 +36,7 @@ class BoundedObject(AbjadObject):
     def is_open(self):
         return not self.is_left_closed and not self.is_right_closed
 
-    ### READ / WRITE PUBLIC PROPERTIES ### 
+    ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
     def is_left_closed():

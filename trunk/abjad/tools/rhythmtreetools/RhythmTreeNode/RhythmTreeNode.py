@@ -109,7 +109,7 @@ class RhythmTreeNode(TreeNode):
 
             >>> c.parentage_ratios
             (Duration(1, 1), (Duration(3, 1), Duration(5, 1)))
-        
+
         ::
 
             >>> d.parentage_ratios

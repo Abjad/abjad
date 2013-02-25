@@ -112,7 +112,7 @@ class LilyPondCommandMark(Mark):
             '''.. versionadded:: 2.3
 
             Get format slot of LilyPond command mark::
-            
+
                 >>> note = Note("c'4")
                 >>> lilypond_command = marktools.LilyPondCommandMark('break', 'after')
                 >>> lilypond_command.format_slot
@@ -135,7 +135,7 @@ class LilyPondCommandMark(Mark):
                 self._format_slot = 'opening'
             else:
                 self._format_slot = format_slot
-        return property(**locals()) 
+        return property(**locals())
 
     @property
     def lilypond_format(self):

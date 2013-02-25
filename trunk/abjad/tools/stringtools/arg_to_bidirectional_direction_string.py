@@ -24,7 +24,7 @@ def arg_to_bidirectional_direction_string(arg):
     Return string or none.
     '''
 
-    lookup = { 
+    lookup = {
         1: 'up',
         -1: 'down',
         Up: 'up',

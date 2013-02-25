@@ -3,7 +3,7 @@ def timespan_2_delays_timespan_1(timespan_1=None, timespan_2=None, hold=False):
 
     Make time relation indicating that `timespan_2` delays `timespan_1`::
 
-        >>> timerelationtools.timespan_2_delays_timespan_1()        
+        >>> timerelationtools.timespan_2_delays_timespan_1()
         TimespanTimespanTimeRelation('timespan_2.start <= timespan_1.start < timespan_2.stop')
 
     Return boolean or time relation.

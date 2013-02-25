@@ -4,7 +4,7 @@ def list_package_dependency_versions():
         >>> configurationtools.list_package_dependency_versions() # doctest: +SKIP
         {'sphinx': '1.1.2', 'py.test': '2.1.2'}
 
-    Return dictionary.  
+    Return dictionary.
     '''
 
     deps = {}

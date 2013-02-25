@@ -10,7 +10,7 @@ def is_lowercamelcase_string(expr):
 
         >>> stringtools.is_lowercamelcase_string('fooBar')
         True
-    
+
     False otherwise::
 
         >>> stringtools.is_lowercamelcase_string('FooBar')

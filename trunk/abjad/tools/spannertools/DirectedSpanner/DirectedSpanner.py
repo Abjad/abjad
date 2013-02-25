@@ -7,7 +7,7 @@ class DirectedSpanner(Spanner):
     '''Abstract Spanner subclass for spanners which may take an "up" or "down"
     indication.
     '''
-    
+
     @abc.abstractmethod
     def __init__(self, components=[], direction=None):
         Spanner.__init__(self, components)

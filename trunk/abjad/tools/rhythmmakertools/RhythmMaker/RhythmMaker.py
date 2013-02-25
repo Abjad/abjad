@@ -178,7 +178,7 @@ class RhythmMaker(AbjadObject):
             except AttributeError:
                 setattr(new, '_' + key, value)
         return new
- 
+
     def reverse(self):
         '''Reverse rhythm-maker.
 

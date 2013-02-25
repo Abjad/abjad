@@ -1,5 +1,5 @@
 def is_formattable_context_mark_for_component(mark, component):
-    '''Return True if ContextMark `mark` can format for `component`.''' 
+    '''Return True if ContextMark `mark` can format for `component`.'''
 
     from abjad.tools import componenttools
     from abjad.tools import contexttools

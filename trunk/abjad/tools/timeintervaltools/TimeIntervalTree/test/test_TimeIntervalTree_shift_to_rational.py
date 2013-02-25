@@ -15,7 +15,7 @@ def test_TimeIntervalTree_shift_to_rational_01():
 
     assert type(result) == type(tree)
     assert result.duration == tree.duration
-    assert [x.signature for x in result] == [ 
+    assert [x.signature for x in result] == [
         (Offset(10, 1), Offset(14, 1)),
         (Offset(11, 1), Offset(12, 1)),
         (Offset(12, 1), Offset(13, 1))]

@@ -16,7 +16,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
             preprolated_duration=Duration(5, 1),
             is_pitched=True
             )
-    
+
     Call with a pulse preprolated_duration to generate Abjad leaf objects:
 
     ::

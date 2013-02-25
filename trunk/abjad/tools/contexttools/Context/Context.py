@@ -31,7 +31,7 @@ class Context(Container):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = abc.ABCMeta 
+    __metaclass__ = abc.ABCMeta
     __slots__ = ('_context_name', '_engraver_consists', '_engraver_removals',
         '_is_nonsemantic', '_name', )
 
@@ -88,7 +88,7 @@ class Context(Container):
     def _format_closing_slot(context, format_contributions):
         result = []
         result.append(['context marks', format_contributions.get('closing', {}).get('context marks', [])])
-        result.append(['lilypond command marks', 
+        result.append(['lilypond command marks',
             format_contributions.get('closing', {}).get('lilypond command marks', [])])
         result.append(['comments', format_contributions.get('closing', {}).get('comments', [])])
         return context._format_slot_contributions_with_indent(result)
@@ -143,7 +143,7 @@ class Context(Container):
         result = []
         result.append(['comments', format_contributions.get('opening', {}).get('comments', [])])
         result.append(['context marks', format_contributions.get('opening', {}).get('context marks', [])])
-        result.append(['lilypond command marks', 
+        result.append(['lilypond command marks',
             format_contributions.get('opening', {}).get('lilypond command marks', [])])
         return context._format_slot_contributions_with_indent(result)
 

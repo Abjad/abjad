@@ -9,7 +9,7 @@ class ClassDocumenter(Documenter):
     ::
 
         >>> from abjad.tools.documentationtools import ClassDocumenter
-    
+
     ::
 
         >>> documenter = ClassDocumenter(notetools.Note)
@@ -22,12 +22,12 @@ class ClassDocumenter(Documenter):
 
     _ignored_special_methods = (
         '__copy__', '__deepcopy__', '__format__', '__getattribute__',
-        '__getnewargs__', '__init__', '__reduce__', '__reduce_ex__', 
+        '__getnewargs__', '__init__', '__reduce__', '__reduce_ex__',
         '__sizeof__', '__subclasshook__', 'fromkeys', 'pipe_cloexec',
     )
 
-    __slots__ = ('_data', '_inherited_attributes', 
-        '_methods', '_object', '_prefix', '_readonly_properties', 
+    __slots__ = ('_data', '_inherited_attributes',
+        '_methods', '_object', '_prefix', '_readonly_properties',
         '_readwrite_properties', '_special_methods')
 
     ### INITIALIZER ###

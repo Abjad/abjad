@@ -25,7 +25,7 @@ class Voice(Context):
 
     ::
 
-        >>> show(voice) # doctest: +SKIP  
+        >>> show(voice) # doctest: +SKIP
 
     Return voice instance.
     '''

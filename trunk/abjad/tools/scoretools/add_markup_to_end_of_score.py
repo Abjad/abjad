@@ -37,7 +37,7 @@ def add_markup_to_end_of_score(score, markup, extra_offset=None):
             d'4
             e'4
             \once \override TextScript #'extra-offset = #'(4 . -2)
-            f'4 _ \markup { 
+            f'4 _ \markup {
                 \italic
                     \right-column
                         {

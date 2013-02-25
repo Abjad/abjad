@@ -3,7 +3,7 @@ import py.test
 
 
 def test_measuretools_fuse_measures_01():
-    '''Fuse unicorporated measures carrying 
+    '''Fuse unicorporated measures carrying
     time signatures with power-of-two denominators.
     '''
 
@@ -136,7 +136,7 @@ def test_measuretools_fuse_measures_03():
 
 
 def test_measuretools_fuse_measures_04():
-    '''Fuse measures with power-of-two-denominators together with measures 
+    '''Fuse measures with power-of-two-denominators together with measures
     without power-of-two denominators.
     Helpers selects least common multiple of denominators.
     Beams are OK because they attach to leaves rather than containers.

@@ -35,7 +35,7 @@ class ReplacePromptsScript(DirectoryScript):
           Replace Abjad prompts with Python prompts in the grandparent directory:
 
           $ abj-dev replace prompts --abjad-to-python ../..
-            
+
     `ReplacePromptsScript` uses `ReplaceInFilesScript` for its replacement functionality.
 
     Return `ReplacePromptsScript` instance.

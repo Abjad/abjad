@@ -39,7 +39,7 @@ def iterate_topmost_masked_tie_chains_and_containers_in_expr(expr):
 
         >>> for x in tietools.iterate_topmost_masked_tie_chains_and_containers_in_expr(
         ...     staff[0]): x
-        ... 
+        ...
         TieChain(Note("c'4"),)
         TieChain(Note("d'4"),)
 
@@ -47,7 +47,7 @@ def iterate_topmost_masked_tie_chains_and_containers_in_expr(expr):
 
         >>> for x in tietools.iterate_topmost_masked_tie_chains_and_containers_in_expr(
         ...     staff[1]): x
-        ... 
+        ...
         TieChain(Note("d'4"),)
         Tuplet(2/3, [d'4, d'4, d'4])
         TieChain(Note("d'4"),)
@@ -56,7 +56,7 @@ def iterate_topmost_masked_tie_chains_and_containers_in_expr(expr):
 
         >>> for x in tietools.iterate_topmost_masked_tie_chains_and_containers_in_expr(
         ...     staff[2]): x
-        ... 
+        ...
         TieChain(Note("d'4"),)
         TieChain(Note("e'4"),)
 
@@ -75,7 +75,7 @@ def iterate_topmost_masked_tie_chains_and_containers_in_expr(expr):
             new_tie_chain = []
             index = tie_chain[:].index(x)
             while index < len(tie_chain):
-                leaf = tie_chain[index] 
+                leaf = tie_chain[index]
                 if leaf.parent is x.parent:
                     new_tie_chain.append(leaf)
                 else:

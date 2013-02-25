@@ -274,7 +274,7 @@ def test_componenttools_split_component_at_offset_05():
 
 
 def test_componenttools_split_component_at_offset_06():
-    '''Split in-score measure with power-of-two time signature denominator 
+    '''Split in-score measure with power-of-two time signature denominator
     at split offset without power-of-two denominator.
     Do not fracture spanners and do not tie leaves after split.
     '''
@@ -336,7 +336,7 @@ def test_componenttools_split_component_at_offset_06():
 
 
 def test_componenttools_split_component_at_offset_07():
-    '''Split in-score measure with power-of-two time signature denominator 
+    '''Split in-score measure with power-of-two time signature denominator
     at split offset without power-of-two denominator.
     Do fracture spanners and do tie leaves after split.
     '''
@@ -853,7 +853,7 @@ def test_componenttools_split_component_at_offset_16():
 
 
 def test_componenttools_split_component_at_offset_17():
-    '''Split in-score measure with power-of-two time signature denominator 
+    '''Split in-score measure with power-of-two time signature denominator
     at split offset without power-of-two denominator.
     Do fracture spanners but do not tie leaves after split.
     '''
@@ -973,7 +973,7 @@ def test_componenttools_split_component_at_offset_18():
 
 
 def test_componenttools_split_component_at_offset_19():
-    '''Split measure with power-of-two time signature denominator at 
+    '''Split measure with power-of-two time signature denominator at
     split offset without power-of-two denominator.
     Do fracture spanners but do not tie across split locus.
     This test results from a fix.
@@ -1374,5 +1374,5 @@ def test_componenttools_split_component_at_offset_27():
     assert wellformednesstools.is_well_formed_component(halves[0][0])
     assert wellformednesstools.is_well_formed_component(halves[-1][0])
 
-    assert halves[0][0].lilypond_format == "{\n\tc'8.\n}"   
+    assert halves[0][0].lilypond_format == "{\n\tc'8.\n}"
     assert halves[-1][0].lilypond_format == "{\n\tc'16\n}"

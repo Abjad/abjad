@@ -13,5 +13,5 @@ def test_OrdinalConstant_storage_format_01():
 
     assert isinstance(vector_constant_1, datastructuretools.OrdinalConstant)
     assert isinstance(vector_constant_2, datastructuretools.OrdinalConstant)
-    assert not vector_constant_1 is vector_constant_2 
+    assert not vector_constant_1 is vector_constant_2
     assert vector_constant_1 == vector_constant_2

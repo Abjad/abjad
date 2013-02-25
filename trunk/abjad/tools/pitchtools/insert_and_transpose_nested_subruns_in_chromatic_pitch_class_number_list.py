@@ -40,7 +40,7 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
     by ``notes = sequencetools.flatten_sequence(notes)``::
 
         >>> for note in notes: note
-        ... 
+        ...
         Note("c'4")
         [Note("f'4"), Note("g'4")]
         Note("d'4")

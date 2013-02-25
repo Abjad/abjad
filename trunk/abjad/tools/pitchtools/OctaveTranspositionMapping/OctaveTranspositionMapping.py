@@ -14,7 +14,7 @@ class OctaveTranspositionMapping(ObjectInventory):
         >>> mapping
         OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])
 
-    Octave transposition mappings model 
+    Octave transposition mappings model
     ``pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping`` input.
 
     Octave transposition mappings implement the list interface and are mutable.
@@ -45,12 +45,12 @@ class OctaveTranspositionMapping(ObjectInventory):
         for component in self:
             if pitch in component.source_pitch_range:
                 target_octave = range(
-                    component.target_octave_start_pitch.chromatic_pitch_number, 
+                    component.target_octave_start_pitch.chromatic_pitch_number,
                     component.target_octave_start_pitch.chromatic_pitch_number + 12)
                 for candidate_pitch in target_octave:
                     if candidate_pitch % 12 == pitch.chromatic_pitch_class_number:
                         return candidate_pitch
-                            
+
     def __repr__(self):
         if self.name:
             return '{}([{}], name={!r})'.format(

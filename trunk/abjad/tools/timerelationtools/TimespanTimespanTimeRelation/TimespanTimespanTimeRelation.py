@@ -47,7 +47,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         >>> show(score) # doctest: +SKIP
 
     Example functions calls using the score above:
-    
+
     ::
 
         >>> timerelationtools.timespan_2_happens_during_timespan_1(
@@ -112,7 +112,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         r'''Evaluate time relation.
 
         Example 1. Evaluate time relation without substitution:
-    
+
         ::
 
             >>> timespan_1 = timespantools.Timespan(5, 15)
@@ -174,7 +174,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             >>> time_relation(timespan_2=new_timespan_2)
             False
-        
+
         Example 4. Substitute both `timespan_1` and `timespan_2` during evaluation:
 
         ::
@@ -206,7 +206,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         command = command.replace('timespan_2.stop', repr(timespan_2_stop))
         result = eval(command, {'Offset': durationtools.Offset})
         return result
-    
+
     def __eq__(self, expr):
         '''True when `expr` equals time relation. Otherwise false:
 
@@ -222,7 +222,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             >>> time_relation_1 == time_relation_1
             True
             >>> time_relation_1 == time_relation_2
-            False 
+            False
             >>> time_relation_2 == time_relation_2
             True
 
@@ -250,7 +250,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             ...     timespan_1=timespan_1, timespan_2=timespan_2, hold=True)
 
         ::
-    
+
             >>> time_relation.is_fully_loaded
             True
 
@@ -282,7 +282,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         Return timespan.
         '''
         return self._timespan_1
-        
+
     @property
     def timespan_2(self):
         '''Time relation timespan ``2``:

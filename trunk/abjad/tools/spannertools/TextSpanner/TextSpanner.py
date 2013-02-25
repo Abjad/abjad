@@ -23,7 +23,7 @@ class TextSpanner(Spanner):
 
         >>> f(staff)
         \new Staff {
-            \override TextSpanner #'bound-details #'left #'text = \markup { 
+            \override TextSpanner #'bound-details #'left #'text = \markup {
                 \bold \italic foo }
             \override TextSpanner #'bound-details #'right #'text = \markup {
                 \draw-line #'(0 . -1) }

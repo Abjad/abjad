@@ -71,7 +71,7 @@ class LilyPondParser(abctools.Parser):
     - Simple markup (i.e. ``c'4 ^ "hello!"``)
     - Most articulations
     - Most spanners, including beams, slurs, phrasing slurs, ties, and glissandi
-    - Most context types via ``\new`` and ``\context``, 
+    - Most context types via ``\new`` and ``\context``,
       as well as context ids (i.e. ``\new Staff = "foo" { }``)
     - Variable assignment (i.e. ``global = { \time 3/4 } \new Staff { \global }``)
     - Many music functions:
@@ -102,7 +102,7 @@ class LilyPondParser(abctools.Parser):
     - ``\repeat`` and ``\alternative``
     - Lyrics
     - ``\chordmode``, ``\drummode`` or ``\figuremode``
-    - Property operations, such as ``\override``, 
+    - Property operations, such as ``\override``,
       ``\revert``, ``\set``, ``\unset``, and ``\once``
     - Music functions which generate or extensively mutate musical structures
     - Embedded Scheme statements (anything beginning with ``#``)
@@ -144,7 +144,7 @@ class LilyPondParser(abctools.Parser):
 
         if self._debug:
             result = self._parser._lilypond_patch_parse_debug(
-                input_string, 
+                input_string,
                 lexer=self._lexer,
                 debug=self._logger)
         else:
@@ -353,13 +353,13 @@ class LilyPondParser(abctools.Parser):
                             all_spanners[klass].append(klass([], shape))
                     elif 1 < len(starting_events):
                         raise Exception('Simultaneous dynamic-span events.')
-                    
+
                 elif klass in [spannertools.SlurSpanner, spannertools.PhrasingSlurSpanner,
                     spannertools.TextSpanner, spannertools.TrillSpanner]:
                     # These engravers process stop events before start events,
                     # they must contain more than one leaf,
                     # however, they can stop on a leaf and start on the same leaf.
-                    for _ in stopping_events:                    
+                    for _ in stopping_events:
                         if all_spanners[klass]:
                             all_spanners[klass][0].append(leaf)
                             all_spanners[klass].pop()
@@ -445,7 +445,7 @@ class LilyPondParser(abctools.Parser):
             raise Exception('Context type %s not supported.' % context)
 
         if optional_id is not None:
-            context.name = optional_id        
+            context.name = optional_id
 
         if optional_context_mod is not None:
             for x in optional_context_mod:
@@ -533,11 +533,11 @@ class LilyPondParser(abctools.Parser):
                 if x.name == 'VoiceSeparator':
                     return True
             return False
-        
+
         container = containertools.Container()
         container.is_parallel = True
 
-        # check for voice separators     
+        # check for voice separators
         groups = []
         for value, group in itertools.groupby(music, is_separator):
             if not value:

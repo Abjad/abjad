@@ -47,7 +47,7 @@ class Harpsichord(KeyboardInstrument):
     def __init__(self, target_context=None, **kwargs):
         if target_context is None:
             target_context = scoretools.PianoStaff
-        KeyboardInstrument.__init__(self, target_context=target_context, **kwargs)    
+        KeyboardInstrument.__init__(self, target_context=target_context, **kwargs)
         self._default_instrument_name = 'harpsichord'
         self._default_performer_names.append('harpsichordist')
         self._default_short_instrument_name = 'hpschd.'

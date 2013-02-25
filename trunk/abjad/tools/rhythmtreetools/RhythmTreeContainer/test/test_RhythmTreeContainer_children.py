@@ -12,5 +12,5 @@ def test_RhythmTreeContainer_children_01():
 
     container = rhythmtreetools.RhythmTreeContainer(
         preprolated_duration=1, children=[leaf_a, subcontainer, leaf_d])
-    
+
     assert container.children == (leaf_a, subcontainer, leaf_d)

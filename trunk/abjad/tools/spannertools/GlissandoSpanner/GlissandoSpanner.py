@@ -38,7 +38,7 @@ class GlissandoSpanner(Spanner):
         Spanner.__init__(self, components)
 
     ### PRIVATE METHODS ###
-    
+
     def _copy_keyword_args(self, new):
         pass
 

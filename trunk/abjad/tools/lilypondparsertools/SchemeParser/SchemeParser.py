@@ -7,10 +7,10 @@ from abjad.tools import schemetools
 class SchemeParser(abctools.Parser):
     '''`SchemeParser` mimics how LilyPond's embedded Scheme parser behaves.
 
-    It parses a single Scheme expression and then stops, 
+    It parses a single Scheme expression and then stops,
     by raising a `SchemeParserFinishedException`.
 
-    The parsed expression and its exact length in characters 
+    The parsed expression and its exact length in characters
     are cached on the `SchemeParser` instance.
 
     It is intended to be used only in conjunction with `LilyPondParser`.
@@ -380,7 +380,7 @@ class SchemeParser(abctools.Parser):
     def p_constant__number(self, p):
         '''constant : number'''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
-        p[0] = p[1] 
+        p[0] = p[1]
         if self.expression_depth < 1:
             #print 'constant : number'
             #print p[1]
@@ -391,7 +391,7 @@ class SchemeParser(abctools.Parser):
     def p_constant__string(self, p):
         '''constant : string'''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
-        p[0] = p[1] 
+        p[0] = p[1]
         if self.expression_depth < 1:
             #print 'constant : string'
             #print p[1]
@@ -482,7 +482,7 @@ class SchemeParser(abctools.Parser):
         p[0] = p[1]
 
     ### number ###
-    
+
     '''<number> : <num 2> | <num 8> | <num 10> | <num 16>'''
 
     def p_number__DECIMAL(self, p):

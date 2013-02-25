@@ -189,7 +189,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_10():
         c'
         \tweak #'color #red
         cs'
-    >4    
+    >4
     '''
 
     assert wellformednesstools.is_well_formed_component(bass)

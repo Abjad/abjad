@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class ImmutableDictionary(dict, AbjadObject):
     '''.. versionadded:: 2.0
-    
+
     Immutable dictionary::
 
         >>> dictionary = datastructuretools.ImmutableDictionary({'color': 'red', 'number': 9})

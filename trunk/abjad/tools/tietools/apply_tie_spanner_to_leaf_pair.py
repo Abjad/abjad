@@ -64,7 +64,7 @@ def apply_tie_spanner_to_leaf_pair(left, right):
             left, tietools.TieSpanner)
     except MissingSpannerError:
         left_tie_spanner = None
-    
+
     # get any right tie spanner
     try:
         right_tie_spanner = spannertools.get_the_only_spanner_attached_to_component(

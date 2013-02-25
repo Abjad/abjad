@@ -16,10 +16,10 @@ def get_note_head_from_chord_by_pitch(chord, pitch):
         >>> chordtools.get_note_head_from_chord_by_pitch(chord, 14)
         NoteHead("d''")
 
-    Raise missing note head error when `chord` contains no 
+    Raise missing note head error when `chord` contains no
     note head with pitch equal to `pitch`.
 
-    Raise extra note head error when `chord` contains more than 
+    Raise extra note head error when `chord` contains more than
     one note head with pitch equal to `pitch`.
 
     .. versionchanged:: 2.0

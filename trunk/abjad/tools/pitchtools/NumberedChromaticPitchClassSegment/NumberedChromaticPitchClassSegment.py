@@ -16,7 +16,7 @@ class NumberedChromaticPitchClassSegment(PitchClassObjectSegment):
     ### CLASS ATTRIBUTES ###
 
     __slots__ = ()
-    
+
     _default_positional_input_arguments = ([-2, -1.5, 6, 7, -1.5, 7], )
 
     ### INITIALIZER ###
@@ -66,7 +66,7 @@ class NumberedChromaticPitchClassSegment(PitchClassObjectSegment):
 
     @property
     def numbered_chromatic_pitch_class_set(self):
-        '''Read-only numbered chromatic pitch-class set from numbered chromatic 
+        '''Read-only numbered chromatic pitch-class set from numbered chromatic
         pitch-class segment::
 
             >>> segment.numbered_chromatic_pitch_class_set

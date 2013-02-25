@@ -9,7 +9,7 @@ def test_TimeIntervalTreeDictionary_storage_format_01():
     d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
 
     treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
-    
+
     r'''
     timeintervaltools.TimeIntervalTreeDictionary({
         'a': timeintervaltools.TimeIntervalTree([

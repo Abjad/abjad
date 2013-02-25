@@ -68,7 +68,7 @@ def make_reference_manual_lilypond_file(music=None):
 
     # paper
     lilypond_file.paper_block.left_margin = lilypondfiletools.LilyPondDimension(1, 'in')
-    
+
     # score context
     context_block = lilypondfiletools.ContextBlock()
     context_block.context_name = 'Score'
@@ -86,7 +86,7 @@ def make_reference_manual_lilypond_file(music=None):
     context_block.set.tupletFullLength = True
     lilypond_file.layout_block.context_blocks.append(context_block)
 
-    # etc    
+    # etc
     lilypond_file.file_initial_system_comments[:] = []
     lilypond_file.global_staff_size = 12
 

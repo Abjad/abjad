@@ -46,16 +46,16 @@ def make_ligeti_example_lilypond_file(music=None):
     lilypond_file.layout_block.context_blocks.append(context_block)
     context_block.context_name = 'Staff'
     # LilyPond CAUTION: Timing_translator must appear before Default_bar_line_engraver!
-    context_block.engraver_consists.append('Timing_translator') 
-    context_block.engraver_consists.append('Default_bar_line_engraver') 
+    context_block.engraver_consists.append('Timing_translator')
+    context_block.engraver_consists.append('Default_bar_line_engraver')
     context_block.override.time_signature.style = schemetools.Scheme("'numbered")
 
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
     context_block.context_name = 'RhythmicStaff'
     # LilyPond CAUTION: Timing_translator must appear before Default_bar_line_engraver!
-    context_block.engraver_consists.append('Timing_translator') 
-    context_block.engraver_consists.append('Default_bar_line_engraver') 
+    context_block.engraver_consists.append('Timing_translator')
+    context_block.engraver_consists.append('Default_bar_line_engraver')
     context_block.override.time_signature.style = schemetools.Scheme("'numbered")
     context_block.override.vertical_axis_group.minimum_Y_extent = (-2, 4)
 

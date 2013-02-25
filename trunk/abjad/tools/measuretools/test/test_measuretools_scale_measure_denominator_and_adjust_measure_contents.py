@@ -35,7 +35,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_01()
 
 
 def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_02():
-    '''Make measure with power-of-two denominator into equivalent 
+    '''Make measure with power-of-two denominator into equivalent
     measure with non-power-of-two denominator.
     Nonassignable 5/4 multiplier induces ties.
     '''
@@ -70,7 +70,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_02()
 
 
 def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_03():
-    '''Make measure with power-of-two denominatorinto equivalent 
+    '''Make measure with power-of-two denominatorinto equivalent
     measure with non-power-of-two denominator.
     Assignable 7/4 multiplier conserves note_heads.
     '''
@@ -103,7 +103,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_03()
 
 
 def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_04():
-    '''Make measure with power-of-two denominatorinto equivalent 
+    '''Make measure with power-of-two denominatorinto equivalent
     measure with non-power-of-two denominator.
     Nonassignable 9/8 multiplier induces ties.
     '''

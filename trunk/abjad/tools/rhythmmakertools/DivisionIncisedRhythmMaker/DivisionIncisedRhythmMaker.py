@@ -11,7 +11,7 @@ class DivisionIncisedRhythmMaker(IncisedRhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_numeric_map(self, duration_pairs=None,
-        prefix_talea=None, prefix_lengths=None, 
+        prefix_talea=None, prefix_lengths=None,
         suffix_talea=None, suffix_lengths=None, prolation_addenda=None):
         numeric_map, prefix_talea_index, suffix_talea_index = [], 0, 0
         for pair_index, duration_pair in enumerate(duration_pairs):

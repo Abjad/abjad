@@ -17,7 +17,7 @@ def is_underscore_delimited_lowercase_package_name(expr):
 
         >>> stringtools.is_underscore_delimited_lowercase_package_name('foo.bar.blah_package')
         True
-    
+
     False otherwise::
 
         >>> stringtools.is_underscore_delimited_lowercase_package_name('foo.bar.BlahPackage')
@@ -33,4 +33,4 @@ def is_underscore_delimited_lowercase_package_name(expr):
     if not isinstance(expr, str):
         return False
 
-    return bool(underscore_delimited_lowercase_package_regex.match(expr)) 
+    return bool(underscore_delimited_lowercase_package_regex.match(expr))

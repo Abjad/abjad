@@ -60,7 +60,7 @@ def make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction(proportions, (n, d
     # check input
     proportions = mathtools.NonreducedRatio(proportions)
     duration = durationtools.Duration(n, d)
-    
+
     if len(proportions) == 1:
         if 0 < proportions[0]:
             try:

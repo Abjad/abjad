@@ -117,7 +117,7 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
         init_path = os.path.join(package_path, '__init__.py')
         init_text = '\n'.join(self._get___init___text(package_root_name)) + '\n'
-        
+
         with open(module_path, 'w') as f:
             f.write(module_text)
 

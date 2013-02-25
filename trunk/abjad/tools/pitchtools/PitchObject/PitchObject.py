@@ -16,7 +16,7 @@ class PitchObject(SortableAttributeEqualityAbjadObject):
     __slots__ = ('_format_string', )
 
     ### INITIALIZER ###
-    
+
     @abc.abstractmethod
     def __init__(self):
         pass

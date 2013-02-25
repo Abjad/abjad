@@ -45,4 +45,4 @@ class SchemePair(Scheme):
 
     @property
     def lilypond_format(self):
-        return "#'%s" % self._formatted_value 
+        return "#'%s" % self._formatted_value

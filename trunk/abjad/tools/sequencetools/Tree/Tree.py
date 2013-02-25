@@ -227,7 +227,7 @@ class Tree(AbjadObject):
 
             >>> len(tree)
             4
-    
+
         Return nonnegative integer.
         '''
         return len(self._children)
@@ -244,7 +244,7 @@ class Tree(AbjadObject):
 
             >>> tree
             Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
-        
+
         Return string.
         '''
         return '%s(%s)' % (type(self).__name__, self)
@@ -356,7 +356,7 @@ class Tree(AbjadObject):
 
         ::
 
-            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]                              
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
 
         ::
@@ -378,12 +378,12 @@ class Tree(AbjadObject):
                 graphviz_node.attributes['shape'] = 'box'
                 graphviz_node.attributes['label'] = str(node.payload)
             graph.append(graphviz_node)
-            node_mapping[node] = graphviz_node                                           
-            if node.parent is not None:                                                  
-                documentationtools.GraphvizEdge()(                                       
-                    node_mapping[node.parent],                                           
-                    node_mapping[node],                                                  
-                    )                                                                    
+            node_mapping[node] = graphviz_node
+            if node.parent is not None:
+                documentationtools.GraphvizEdge()(
+                    node_mapping[node.parent],
+                    node_mapping[node],
+                    )
         return graph
 
 
@@ -458,7 +458,7 @@ class Tree(AbjadObject):
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
-    
+
         ::
 
             >>> tree.manifest_payload
@@ -498,7 +498,7 @@ class Tree(AbjadObject):
         Return negative integer.
         '''
         return self.level - self.root.depth
-        
+
     @property
     def payload(self):
         '''Payload of node:
@@ -507,7 +507,7 @@ class Tree(AbjadObject):
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = sequencetools.Tree(sequence)
-    
+
         Return none for interior node:
 
         ::
@@ -528,7 +528,7 @@ class Tree(AbjadObject):
         Return arbitrary expression or none.
         '''
         return self._payload
-        
+
     @property
     def position(self):
         '''Position of node relative to root:
@@ -570,7 +570,7 @@ class Tree(AbjadObject):
         Return tuple of zero or more nodes.
         '''
         return self.improper_parentage[1:]
-    
+
     @property
     def root(self):
         '''Root of tree:
@@ -599,7 +599,7 @@ class Tree(AbjadObject):
             >>> tree = sequencetools.Tree(sequence)
 
         ::
-    
+
             >>> z(tree)
             sequencetools.Tree(
                 [0, 1],
@@ -611,7 +611,7 @@ class Tree(AbjadObject):
         Return string.
         '''
         return AbjadObject.storage_format.fget(self)
-    
+
     @property
     def width(self):
         '''Number of leaves in subtree:
@@ -628,7 +628,7 @@ class Tree(AbjadObject):
 
         Return nonnegative integer.
         '''
-        return len(list(self.iterate_at_level(-1))) 
+        return len(list(self.iterate_at_level(-1)))
 
     ### PRIVATE METHODS ###
 
@@ -846,7 +846,7 @@ class Tree(AbjadObject):
         Return list of nodes.
         '''
         return self._get_next_n_nodes_at_level_helper(n, level, nodes_must_be_complete=True)
-        
+
     def get_next_n_nodes_at_level(self, n, level):
         r'''Get next `n` nodes at `level` from node.
 
@@ -965,7 +965,7 @@ class Tree(AbjadObject):
             (0,)
 
         Return tuple of zero or more nonnegative integers.
-        ''' 
+        '''
         if descendant is self:
             return ()
         else:
@@ -1037,13 +1037,13 @@ class Tree(AbjadObject):
         ::
 
             >>> for x in tree.iterate_at_level(0): x
-            ... 
+            ...
             Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
         ::
 
             >>> for x in tree.iterate_at_level(1): x
-            ... 
+            ...
             Tree([0, 1])
             Tree([2, 3])
             Tree([4, 5])
@@ -1052,7 +1052,7 @@ class Tree(AbjadObject):
         ::
 
             >>> for x in tree.iterate_at_level(2): x
-            ... 
+            ...
             Tree(0)
             Tree(1)
             Tree(2)
@@ -1065,7 +1065,7 @@ class Tree(AbjadObject):
         ::
 
             >>> for x in tree.iterate_at_level(-1): x
-            ... 
+            ...
             Tree(0)
             Tree(1)
             Tree(2)
@@ -1078,7 +1078,7 @@ class Tree(AbjadObject):
         ::
 
             >>> for x in tree.iterate_at_level(-2): x
-            ... 
+            ...
             Tree([0, 1])
             Tree([2, 3])
             Tree([4, 5])
@@ -1087,7 +1087,7 @@ class Tree(AbjadObject):
         ::
 
             >>> for x in tree.iterate_at_level(-3): x
-            ... 
+            ...
             Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
         Right-to-left examples:
@@ -1095,13 +1095,13 @@ class Tree(AbjadObject):
         ::
 
             >>> for x in tree.iterate_at_level(0, reverse=True): x
-            ... 
+            ...
             Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
         ::
 
             >>> for x in tree.iterate_at_level(1, reverse=True): x
-            ... 
+            ...
             Tree([6, 7])
             Tree([4, 5])
             Tree([2, 3])
@@ -1110,7 +1110,7 @@ class Tree(AbjadObject):
         ::
 
             >>> for x in tree.iterate_at_level(2, reverse=True): x
-            ... 
+            ...
             Tree(7)
             Tree(6)
             Tree(5)
@@ -1123,7 +1123,7 @@ class Tree(AbjadObject):
         ::
 
             >>> for x in tree.iterate_at_level(-1, reverse=True): x
-            ... 
+            ...
             Tree(7)
             Tree(6)
             Tree(5)
@@ -1136,7 +1136,7 @@ class Tree(AbjadObject):
         ::
 
             >>> for x in tree.iterate_at_level(-2, reverse=True): x
-            ... 
+            ...
             Tree([6, 7])
             Tree([4, 5])
             Tree([2, 3])
@@ -1145,7 +1145,7 @@ class Tree(AbjadObject):
         ::
 
             >>> for x in tree.iterate_at_level(-3, reverse=True): x
-            ... 
+            ...
             Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
         Return node generator.
@@ -1171,7 +1171,7 @@ class Tree(AbjadObject):
         ::
 
             >>> for node in tree.iterate_depth_first(): node
-            ... 
+            ...
             Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
             Tree([0, 1])
             Tree(0)
@@ -1185,13 +1185,13 @@ class Tree(AbjadObject):
             Tree([6, 7])
             Tree(6)
             Tree(7)
-    
+
         Example 2. Iterate tree depth-first from right to left:
 
         ::
 
             >>> for node in tree.iterate_depth_first(reverse=True): node
-            ... 
+            ...
             Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
             Tree([6, 7])
             Tree(7)
@@ -1230,7 +1230,7 @@ class Tree(AbjadObject):
 
             >>> for element in tree.iterate_payload():
             ...     element
-            ... 
+            ...
             0
             1
             2
@@ -1251,7 +1251,7 @@ class Tree(AbjadObject):
 
             >>> for element in tree.iterate_payload(reverse=True):
             ...     element
-            ... 
+            ...
             7
             6
             5
@@ -1346,8 +1346,8 @@ class Tree(AbjadObject):
                             sibling.parent.remove_node(sibling)
                         break
                     else:
-                        sibling.parent.remove_node(sibling) 
-    
+                        sibling.parent.remove_node(sibling)
+
     def to_nested_lists(self):
         r'''Change tree to nested lists:
 

@@ -64,9 +64,9 @@ class ReducedLyParser(abctools.Parser):
         }
 
     Understands LilyPond-like default durations:
-    
+
     ::
-    
+
         >>> string = "c'4 d' e' f'"
         >>> result = parser(string)
         >>> f(result)
@@ -76,13 +76,13 @@ class ReducedLyParser(abctools.Parser):
             e'4
             f'4
         }
-    
+
     Also understands various types of container specifications.
-    
+
     Can create arbitrarily nested tuplets:
-    
+
     ::
-    
+
         >>> string = "2/3 { 4 4 3/5 { 8 8 8 } }"
         >>> result = parser(string)
         >>> f(result)
@@ -103,7 +103,7 @@ class ReducedLyParser(abctools.Parser):
         >>> string = '{1/4} {2/4} {3/4} {4/4}'
         >>> result = parser(string)
         >>> for x in result: x
-        ... 
+        ...
         FixedDurationContainer(Duration(1, 4), [])
         FixedDurationContainer(Duration(1, 2), [])
         FixedDurationContainer(Duration(3, 4), [])
@@ -226,7 +226,7 @@ class ReducedLyParser(abctools.Parser):
 
     def p_apostrophes__apostrophes__APOSTROPHE(self, p):
         '''apostrophes : apostrophes APOSTROPHE'''
-        p[0] = p[1] + 1 
+        p[0] = p[1] + 1
 
     def p_beam__BRACKET_L(self, p):
         '''beam : BRACKET_L'''
@@ -254,7 +254,7 @@ class ReducedLyParser(abctools.Parser):
 
     def p_commas__commas__commas(self, p):
         '''commas : commas COMMA'''
-        p[0] = p[1] + 1 
+        p[0] = p[1] + 1
 
     def p_component__container(self, p):
         '''component : container'''
@@ -368,7 +368,7 @@ class ReducedLyParser(abctools.Parser):
         dots = '.' * p[2]
         duration = durationtools.Duration('{}{}'.format(abs(duration_log), dots))
         self._default_duration = duration
-        p[0] = duration       
+        p[0] = duration
 
     def p_post_event__beam(self, p):
         '''post_event : beam'''
@@ -401,7 +401,7 @@ class ReducedLyParser(abctools.Parser):
 
     def p_rest_body__RESTNAME(self, p):
         '''rest_body : RESTNAME'''
-        p[0] = resttools.Rest(self._default_duration) 
+        p[0] = resttools.Rest(self._default_duration)
 
     def p_rest_body__RESTNAME__positive_leaf_duration(self, p):
         '''rest_body : RESTNAME positive_leaf_duration'''
@@ -520,7 +520,7 @@ class ReducedLyParser(abctools.Parser):
             for klass, instance in spanner_references.iteritems():
                 if instance is not None:
                     instance.append(leaf)
-                    
+
         # check for unterminated spanners
         for klass, instance in spanner_references.iteritems():
             if instance is not None:

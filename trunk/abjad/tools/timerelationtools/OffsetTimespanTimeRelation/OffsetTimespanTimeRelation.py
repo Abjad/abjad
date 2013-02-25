@@ -81,7 +81,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
             >>> time_relation_1 == time_relation_1
             True
             >>> time_relation_1 == time_relation_2
-            False 
+            False
             >>> time_relation_2 == time_relation_2
             True
 
@@ -114,7 +114,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
     def is_fully_unloaded(self):
         '''True when `timespan` and `offset` are both none.
         Otherwise false:
-    
+
         ::
 
             >>> time_relation.is_fully_unloaded

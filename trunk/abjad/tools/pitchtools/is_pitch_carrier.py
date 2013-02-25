@@ -20,9 +20,9 @@ def is_pitch_carrier(expr):
 
     return isinstance(
         expr, (
-            pitchtools.NamedChromaticPitch, 
-            notetools.Note, 
-            notetools.NoteHead, 
+            pitchtools.NamedChromaticPitch,
+            notetools.Note,
+            notetools.NoteHead,
             chordtools.Chord
             )
         )

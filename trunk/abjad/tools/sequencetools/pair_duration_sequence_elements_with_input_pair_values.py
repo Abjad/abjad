@@ -33,7 +33,7 @@ def pair_duration_sequence_elements_with_input_pair_values(duration_sequence, in
     current_input_pair = input_pairs[current_input_pair_index]
     current_input_pair_value = current_input_pair[0]
     current_input_pair_duration = current_input_pair[-1]
-    current_input_pair_start = 0 
+    current_input_pair_start = 0
     current_input_pair_stop = current_input_pair_start + current_input_pair_duration
 
     for element in duration_sequence:

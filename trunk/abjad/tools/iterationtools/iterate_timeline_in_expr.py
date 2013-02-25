@@ -78,7 +78,7 @@ def iterate_timeline_in_expr(expr, klass=None, reverse=False):
         result = cmp(component_1.stop_offset, component_2.stop_offset)
         if result == 0:
             return cmp(component_1.parentage.score_index, component_2.parentage.score_index)
-        else:   
+        else:
             # note negative result of cmp() is returned
             # for backward time sort
             return -result

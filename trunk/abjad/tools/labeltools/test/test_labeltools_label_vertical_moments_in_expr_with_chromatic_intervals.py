@@ -67,6 +67,6 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_intervals_01()
 
     assert wellformednesstools.is_well_formed_component(score)
     assert score.lilypond_format == '\\new Score <<\n\t\\new Staff {\n\t\tc\'8\n\t\td\'8\n\t\t\t_ \\markup {\n\t\t\t\t\\small\n\t\t\t\t\t\\column\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t26\n\t\t\t\t\t\t\t19\n\t\t\t\t\t\t}\n\t\t\t\t}\n\t\te\'8\n\t\tf\'8\n\t\t\t_ \\markup {\n\t\t\t\t\\small\n\t\t\t\t\t\\column\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t29\n\t\t\t\t\t\t\t17\n\t\t\t\t\t\t}\n\t\t\t\t}\n\t}\n\t\\new Staff {\n\t\t\\clef "alto"\n\t\tg4\n\t\tf4\n\t\t\t_ \\markup {\n\t\t\t\t\\small\n\t\t\t\t\t\\column\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t28\n\t\t\t\t\t\t\t17\n\t\t\t\t\t\t}\n\t\t\t\t}\n\t}\n\t\\new Staff {\n\t\t\\clef "bass"\n\t\tc,2\n\t\t\t_ \\markup {\n\t\t\t\t\\small\n\t\t\t\t\t\\column\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t24\n\t\t\t\t\t\t\t19\n\t\t\t\t\t\t}\n\t\t\t\t}\n\t}\n>>'
- 
- 
- 
+
+
+

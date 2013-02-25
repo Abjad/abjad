@@ -21,7 +21,7 @@ class MelodicIntervalObject(IntervalObject):
     @abc.abstractmethod
     def __init__(self):
         pass
-    
+
     ### SPECIAL METHODS ###
 
     def __abs__(self):

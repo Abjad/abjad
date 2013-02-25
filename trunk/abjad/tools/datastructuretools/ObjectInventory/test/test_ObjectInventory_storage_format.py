@@ -28,7 +28,7 @@ def test_ObjectInventory_storage_format_03():
 
     inventory = datastructuretools.ObjectInventory([
         'foo',
-        instrumenttools.Flute(), 
+        instrumenttools.Flute(),
         'bar',
         pitchtools.PitchRange('[A0, C8]'),
         'blah'])
@@ -56,7 +56,7 @@ def test_ObjectInventory_storage_format_04():
 
     inventory = datastructuretools.ObjectInventory([
         'foo',
-        instrumenttools.Flute(), 
+        instrumenttools.Flute(),
         'bar',
         pitchtools.PitchRange('[A0, C8]'),
         'blah'],

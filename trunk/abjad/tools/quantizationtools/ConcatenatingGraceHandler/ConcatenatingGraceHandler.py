@@ -7,7 +7,7 @@ from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 
 
 class ConcatenatingGraceHandler(GraceHandler):
-    '''Concrete ``GraceHandler`` subclass which concatenates all but the 
+    '''Concrete ``GraceHandler`` subclass which concatenates all but the
     final ``QEvent`` attached to a ``QGrid`` offset into a ``GraceContainer``,
     using a fixed leaf duration ``duration``.
 

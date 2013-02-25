@@ -49,11 +49,11 @@ class InstrumentMark(ContextMark):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
-        instrument_name, 
-        short_instrument_name, 
-        instrument_name_markup=None, 
-        short_instrument_name_markup=None, 
+    def __init__(self,
+        instrument_name,
+        short_instrument_name,
+        instrument_name_markup=None,
+        short_instrument_name_markup=None,
         target_context=None):
         from abjad.tools.stafftools.Staff import Staff
         ContextMark.__init__(self, target_context=target_context)
@@ -199,7 +199,7 @@ class InstrumentMark(ContextMark):
 
             >>> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
             >>> instrument.lilypond_format
-            ['\\set Staff.instrumentName = \\markup { Flute }', 
+            ['\\set Staff.instrumentName = \\markup { Flute }',
                 '\\set Staff.shortInstrumentName = \\markup { Fl. }']
 
         Return list.

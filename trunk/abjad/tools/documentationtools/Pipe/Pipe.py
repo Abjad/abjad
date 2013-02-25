@@ -6,17 +6,17 @@ import time
 
 class Pipe(abctools.AbjadObject, subprocess.Popen):
     '''A two-way, non-blocking pipe for interprocess communication:
-    
+
     ::
-    
+
         >>> from abjad.tools.documentationtools import Pipe
-    
+
     ::
-    
+
         >>> pipe = Pipe('python', ['-i'])
         >>> pipe.writeline('my_list = [1, 2, 3]') # doctest: +SKIP
         >>> pipe.writeline('print my_list')       # doctest: +SKIP
-    
+
     Return `Pipe` instance.
     '''
 
@@ -33,7 +33,7 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
         argv = [executable]
         if arguments != None:
             argv = argv + arguments
-        subprocess.Popen.__init__(self, argv, 
+        subprocess.Popen.__init__(self, argv,
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT)

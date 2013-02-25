@@ -31,7 +31,7 @@ class WeightedSearchTree(SearchTree):
 
         >>> for x in search_tree.all_compositions:
         ...     x
-        ... 
+        ...
         (1, 1)
         (2, 1)
         (1, 2)

@@ -17,7 +17,7 @@ def is_underscore_delimited_lowercase_file_name(expr):
 
         >>> stringtools.is_underscore_delimited_lowercase_file_name('foo_bar')
         True
-    
+
     False otherwise::
 
         >>> stringtools.is_underscore_delimited_lowercase_file_name('foo.bar.blah')

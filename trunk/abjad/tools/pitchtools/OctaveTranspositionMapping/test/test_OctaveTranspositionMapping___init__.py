@@ -26,7 +26,7 @@ def test_OctaveTranspositionMapping___init___03():
     '''
 
     mapping_1 = pitchtools.OctaveTranspositionMapping(
-        [('[A0, C4)', 15), ('[C4, C8)', 27)], 
+        [('[A0, C4)', 15), ('[C4, C8)', 27)],
         name='foo')
     mapping_2 = pitchtools.OctaveTranspositionMapping(mapping_1)
 

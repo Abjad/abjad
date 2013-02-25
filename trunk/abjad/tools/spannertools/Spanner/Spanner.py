@@ -69,7 +69,7 @@ class Spanner(AbjadObject):
                 f'8 ]
             }
 
-        The method is provided as an experimental way of unifying 
+        The method is provided as an experimental way of unifying
         spanner and mark attachment syntax.
 
         Return spanner.

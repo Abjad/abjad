@@ -49,7 +49,7 @@ class OctaveTranspositionMappingInventory(ObjectInventory):
     '''
 
     ### READ-ONLY PRIVATE PROPERTIES ###
-    
+
     @property
     def _item_callable(self):
         return OctaveTranspositionMapping

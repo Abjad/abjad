@@ -29,7 +29,7 @@ def yield_topmost_components_of_klass_grouped_by_type(expr, klass):
         }
 
     ::
-    
+
         >>> for group in componenttools.yield_topmost_components_of_klass_grouped_by_type(
         ...     staff, Note):
         ...     group

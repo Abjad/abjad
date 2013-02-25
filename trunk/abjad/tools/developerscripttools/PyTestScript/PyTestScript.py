@@ -58,10 +58,10 @@ class PyTestScript(DirectoryScript):
         parallel = ''
         if args.parallel:
             parallel = '-n {}'.format(multiprocessing.cpu_count())
-        
+
         exitfirst = ''
         if args.exitfirst:
-           exitfirst = '-x' 
+           exitfirst = '-x'
 
         report = ''
         if args.report:

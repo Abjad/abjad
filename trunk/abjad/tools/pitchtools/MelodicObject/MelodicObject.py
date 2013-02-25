@@ -15,7 +15,7 @@ class MelodicObject(AbjadObject):
     __slots__ = ()
 
     ### INITIALIZER ###
-    
+
     @abc.abstractmethod
     def __init__(self):
         pass

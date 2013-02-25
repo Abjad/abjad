@@ -37,21 +37,21 @@ class AbjadObject(object):
 
     def __ge__(self, arg):
         '''Abjad objects by default do not implement this method.
-        
+
         Raise exception.
         '''
         raise NotImplementedError('Greater-equal not implemented on "{!r}".'.format(arg))
 
     def __gt__(self, arg):
         '''Abjad objects by default do not implement this method.
-    
+
         Raise exception
         '''
         raise NotImplementedError('Greater-than not implemented on "{!r}".'.format(arg))
 
     def __le__(self, arg):
         '''Abjad objects by default do not implement this method.
-    
+
         Raise exception.
         '''
         raise NotImplementedError('Less-equal not implemented on "{!r}".'.format(arg))
@@ -71,7 +71,7 @@ class AbjadObject(object):
         return not self == arg
 
     def __repr__(self):
-        '''Interpreter representation of Abjad object defaulting to 
+        '''Interpreter representation of Abjad object defaulting to
         class name, positional arguments, keyword arguments.
 
         Return string.
@@ -82,7 +82,7 @@ class AbjadObject(object):
 
     @property
     def _class_name(self):
-        return type(self).__name__ 
+        return type(self).__name__
 
     @property
     def _contents_repr_string(self):
@@ -137,7 +137,7 @@ class AbjadObject(object):
 
     @property
     def _one_line_menuing_summary(self):
-        return str(self)        
+        return str(self)
 
     @property
     def _positional_argument_dictionary(self):
@@ -270,7 +270,7 @@ class AbjadObject(object):
                             assert 3 <= len(pieces)
                             result.append('{}{}={}'.format(prefix, name, pieces[0]))
                             for piece in pieces[1:-1]:
-                                result.append('{}{}'.format(prefix, piece)) 
+                                result.append('{}{}'.format(prefix, piece))
                             result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
                     elif hasattr(value, '_tools_package_name'):
                         result.append('{}{}={}.{!r}{}'.format(

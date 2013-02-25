@@ -46,7 +46,7 @@ class QSchema(AbjadObject):
 
         elif sequencetools.all_are_pairs_of_types(args, int, self.item_klass):
             items = dict(args)
-            
+
         elif sequencetools.all_are_pairs_of_types(args, int, dict):
             items = [(x, self.item_klass(**y)) for x, y in args]
             items = dict(items)
