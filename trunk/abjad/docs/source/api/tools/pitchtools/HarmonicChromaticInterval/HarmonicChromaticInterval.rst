@@ -36,6 +36,9 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticInterval.HarmonicChromaticInterval.HarmonicChromaticInterval.__add__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticInterval.HarmonicChromaticInterval.HarmonicChromaticInterval.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticInterval.HarmonicChromaticInterval.HarmonicChromaticInterval.__eq__
    :noindex:
 

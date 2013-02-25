@@ -45,6 +45,12 @@ Read/write properties
 Special methods
 ---------------
 
+.. automethod:: abjad.tools.documentationtools.ReSTHorizontalRule.ReSTHorizontalRule.ReSTHorizontalRule.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.documentationtools.ReSTHorizontalRule.ReSTHorizontalRule.ReSTHorizontalRule.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.documentationtools.ReSTHorizontalRule.ReSTHorizontalRule.ReSTHorizontalRule.__eq__
    :noindex:
 

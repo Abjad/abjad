@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.__delattr__
    :noindex:
 

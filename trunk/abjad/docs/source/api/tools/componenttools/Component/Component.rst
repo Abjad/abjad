@@ -66,6 +66,9 @@ Read-only properties
 Special methods
 ---------------
 
+.. automethod:: abjad.tools.componenttools.Component.Component.Component.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.__eq__
    :noindex:
 

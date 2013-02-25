@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.__delattr__
    :noindex:
 

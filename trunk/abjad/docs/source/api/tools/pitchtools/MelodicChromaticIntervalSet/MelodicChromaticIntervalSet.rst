@@ -60,6 +60,9 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__eq__
    :noindex:
 

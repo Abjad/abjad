@@ -105,6 +105,9 @@ Special methods
 .. automethod:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__eq__
    :noindex:
 

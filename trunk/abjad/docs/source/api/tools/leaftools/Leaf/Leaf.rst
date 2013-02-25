@@ -93,6 +93,9 @@ Special methods
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__and__
    :noindex:
 
+.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__eq__
    :noindex:
 

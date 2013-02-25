@@ -87,6 +87,9 @@ Special methods
 .. automethod:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.__eq__
    :noindex:
 

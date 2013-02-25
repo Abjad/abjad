@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.__delattr__
    :noindex:
 

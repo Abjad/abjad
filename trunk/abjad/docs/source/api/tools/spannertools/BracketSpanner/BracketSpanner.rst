@@ -87,6 +87,9 @@ Special methods
 .. automethod:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.__eq__
    :noindex:
 

@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.__delattr__
    :noindex:
 

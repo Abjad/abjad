@@ -51,6 +51,12 @@ Read/write properties
 Special methods
 ---------------
 
+.. automethod:: abjad.tools.documentationtools.GraphvizNode.GraphvizNode.GraphvizNode.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.documentationtools.GraphvizNode.GraphvizNode.GraphvizNode.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.documentationtools.GraphvizNode.GraphvizNode.GraphvizNode.__eq__
    :noindex:
 

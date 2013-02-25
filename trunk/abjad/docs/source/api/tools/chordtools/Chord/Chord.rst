@@ -126,6 +126,9 @@ Special methods
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__delitem__
    :noindex:
 

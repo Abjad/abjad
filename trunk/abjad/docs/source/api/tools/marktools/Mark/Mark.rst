@@ -30,6 +30,12 @@ Special methods
 .. automethod:: abjad.tools.marktools.Mark.Mark.Mark.__call__
    :noindex:
 
+.. automethod:: abjad.tools.marktools.Mark.Mark.Mark.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.marktools.Mark.Mark.Mark.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.marktools.Mark.Mark.Mark.__delattr__
    :noindex:
 

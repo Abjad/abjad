@@ -60,6 +60,12 @@ Special methods
 .. automethod:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__call__
    :noindex:
 
+.. automethod:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__delattr__
    :noindex:
 

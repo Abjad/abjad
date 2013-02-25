@@ -147,6 +147,9 @@ Special methods
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__delitem__
    :noindex:
 

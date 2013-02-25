@@ -129,6 +129,9 @@ Special methods
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.contexttools.Context.Context.Context.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.__delitem__
    :noindex:
 

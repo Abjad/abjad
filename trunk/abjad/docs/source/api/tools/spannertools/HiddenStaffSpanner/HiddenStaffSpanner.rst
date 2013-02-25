@@ -87,6 +87,9 @@ Special methods
 .. automethod:: abjad.tools.spannertools.HiddenStaffSpanner.HiddenStaffSpanner.HiddenStaffSpanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.HiddenStaffSpanner.HiddenStaffSpanner.HiddenStaffSpanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.HiddenStaffSpanner.HiddenStaffSpanner.HiddenStaffSpanner.__eq__
    :noindex:
 

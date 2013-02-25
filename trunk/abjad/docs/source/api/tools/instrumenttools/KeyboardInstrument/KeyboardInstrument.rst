@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__delattr__
    :noindex:
 

@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__complex__
    :noindex:
 
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__div__
    :noindex:
 

@@ -129,6 +129,9 @@ Special methods
 .. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__delitem__
    :noindex:
 

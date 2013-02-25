@@ -51,6 +51,12 @@ Special methods
 .. automethod:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__call__
    :noindex:
 
+.. automethod:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__delattr__
    :noindex:
 

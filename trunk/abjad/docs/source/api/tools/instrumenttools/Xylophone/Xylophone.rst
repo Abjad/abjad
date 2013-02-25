@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.__delattr__
    :noindex:
 

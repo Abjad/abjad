@@ -75,6 +75,12 @@ Special methods
 .. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__delitem__
    :noindex:
 

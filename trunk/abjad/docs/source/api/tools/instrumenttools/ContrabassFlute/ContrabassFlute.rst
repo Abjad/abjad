@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.__delattr__
    :noindex:
 

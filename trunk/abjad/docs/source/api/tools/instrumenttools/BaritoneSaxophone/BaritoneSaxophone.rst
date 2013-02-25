@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone.__delattr__
    :noindex:
 

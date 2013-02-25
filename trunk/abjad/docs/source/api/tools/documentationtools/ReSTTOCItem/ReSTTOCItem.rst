@@ -48,6 +48,12 @@ Read/write properties
 Special methods
 ---------------
 
+.. automethod:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.__eq__
    :noindex:
 

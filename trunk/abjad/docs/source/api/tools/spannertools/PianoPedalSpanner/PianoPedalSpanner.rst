@@ -96,6 +96,9 @@ Special methods
 .. automethod:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner.__eq__
    :noindex:
 

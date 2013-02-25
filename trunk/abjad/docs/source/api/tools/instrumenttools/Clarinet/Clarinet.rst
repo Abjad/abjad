@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Clarinet.Clarinet.Clarinet.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.Clarinet.Clarinet.Clarinet.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.Clarinet.Clarinet.Clarinet.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.Clarinet.Clarinet.Clarinet.__delattr__
    :noindex:
 

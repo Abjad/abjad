@@ -96,6 +96,9 @@ Special methods
 .. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__eq__
    :noindex:
 

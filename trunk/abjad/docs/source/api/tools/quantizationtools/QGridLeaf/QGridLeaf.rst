@@ -90,6 +90,12 @@ Special methods
 .. automethod:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__call__
    :noindex:
 
+.. automethod:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__eq__
    :noindex:
 

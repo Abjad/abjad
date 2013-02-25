@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__complex__
    :noindex:
 
+.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__div__
    :noindex:
 

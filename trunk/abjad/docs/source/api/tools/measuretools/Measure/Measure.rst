@@ -144,6 +144,9 @@ Special methods
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.__delitem__
    :noindex:
 

@@ -87,6 +87,9 @@ Special methods
 .. automethod:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner.__eq__
    :noindex:
 

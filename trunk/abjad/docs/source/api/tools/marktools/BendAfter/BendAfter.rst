@@ -39,6 +39,12 @@ Special methods
 .. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.__call__
    :noindex:
 
+.. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.__delattr__
    :noindex:
 

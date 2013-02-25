@@ -54,6 +54,12 @@ Read/write properties
 Special methods
 ---------------
 
+.. automethod:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading.__eq__
    :noindex:
 

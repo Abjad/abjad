@@ -48,6 +48,9 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.__add__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.__eq__
    :noindex:
 

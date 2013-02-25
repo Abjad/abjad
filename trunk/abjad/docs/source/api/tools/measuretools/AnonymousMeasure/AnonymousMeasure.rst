@@ -150,6 +150,9 @@ Special methods
 .. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.__delitem__
    :noindex:
 

@@ -129,6 +129,9 @@ Special methods
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.__delitem__
    :noindex:
 

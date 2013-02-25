@@ -93,6 +93,9 @@ Special methods
 .. automethod:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.__eq__
    :noindex:
 

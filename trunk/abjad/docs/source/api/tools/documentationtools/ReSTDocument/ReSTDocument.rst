@@ -81,6 +81,12 @@ Special methods
 .. automethod:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument.__delitem__
    :noindex:
 

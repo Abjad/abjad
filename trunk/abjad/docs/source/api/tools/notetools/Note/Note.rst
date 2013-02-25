@@ -105,6 +105,9 @@ Special methods
 .. automethod:: abjad.tools.notetools.Note.Note.Note.__and__
    :noindex:
 
+.. automethod:: abjad.tools.notetools.Note.Note.Note.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.notetools.Note.Note.Note.__eq__
    :noindex:
 

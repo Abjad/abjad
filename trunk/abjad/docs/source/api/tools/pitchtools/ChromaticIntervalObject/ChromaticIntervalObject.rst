@@ -33,6 +33,9 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.ChromaticIntervalObject.ChromaticIntervalObject.ChromaticIntervalObject.__add__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.ChromaticIntervalObject.ChromaticIntervalObject.ChromaticIntervalObject.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.ChromaticIntervalObject.ChromaticIntervalObject.ChromaticIntervalObject.__eq__
    :noindex:
 

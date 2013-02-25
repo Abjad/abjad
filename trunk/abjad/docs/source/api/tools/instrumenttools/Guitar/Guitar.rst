@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar.__delattr__
    :noindex:
 

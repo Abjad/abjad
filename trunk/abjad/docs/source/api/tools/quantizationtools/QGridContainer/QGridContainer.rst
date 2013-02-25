@@ -117,6 +117,12 @@ Special methods
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__delitem__
    :noindex:
 

@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__delattr__
    :noindex:
 

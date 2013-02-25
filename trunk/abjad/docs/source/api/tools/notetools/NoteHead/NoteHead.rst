@@ -36,6 +36,9 @@ Read/write properties
 Special methods
 ---------------
 
+.. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__eq__
    :noindex:
 

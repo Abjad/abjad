@@ -93,6 +93,9 @@ Special methods
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.__and__
    :noindex:
 
+.. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.__eq__
    :noindex:
 

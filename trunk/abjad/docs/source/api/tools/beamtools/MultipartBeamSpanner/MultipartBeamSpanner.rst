@@ -93,6 +93,9 @@ Special methods
 .. automethod:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner.__eq__
    :noindex:
 

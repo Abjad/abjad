@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.__delattr__
    :noindex:
 

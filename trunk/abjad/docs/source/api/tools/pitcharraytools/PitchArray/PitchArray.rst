@@ -99,6 +99,9 @@ Special methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__eq__
    :noindex:
 

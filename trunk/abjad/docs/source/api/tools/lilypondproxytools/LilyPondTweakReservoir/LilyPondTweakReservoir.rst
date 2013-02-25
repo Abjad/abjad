@@ -15,6 +15,9 @@ Read-only properties
 Special methods
 ---------------
 
+.. automethod:: abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir.__eq__
    :noindex:
 

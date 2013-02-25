@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.__delattr__
    :noindex:
 

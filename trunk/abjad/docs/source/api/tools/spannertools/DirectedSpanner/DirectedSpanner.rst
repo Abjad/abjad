@@ -93,6 +93,9 @@ Special methods
 .. automethod:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__eq__
    :noindex:
 

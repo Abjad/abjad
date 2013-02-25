@@ -111,6 +111,9 @@ Special methods
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.containertools.Container.Container.Container.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__delitem__
    :noindex:
 

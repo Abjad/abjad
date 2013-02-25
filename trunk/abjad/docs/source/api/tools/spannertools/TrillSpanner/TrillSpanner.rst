@@ -96,6 +96,9 @@ Special methods
 .. automethod:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__eq__
    :noindex:
 

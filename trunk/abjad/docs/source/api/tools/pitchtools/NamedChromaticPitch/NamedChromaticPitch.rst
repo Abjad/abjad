@@ -81,6 +81,12 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.NamedChromaticPitch.__add__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.NamedChromaticPitch.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.NamedChromaticPitch.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.NamedChromaticPitch.__eq__
    :noindex:
 

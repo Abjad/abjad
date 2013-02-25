@@ -93,6 +93,9 @@ Special methods
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__and__
    :noindex:
 
+.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__eq__
    :noindex:
 

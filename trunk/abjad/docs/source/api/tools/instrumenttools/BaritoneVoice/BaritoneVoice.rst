@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.__delattr__
    :noindex:
 

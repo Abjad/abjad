@@ -129,6 +129,9 @@ Special methods
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__delitem__
    :noindex:
 

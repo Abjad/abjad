@@ -111,6 +111,9 @@ Special methods
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.__delitem__
    :noindex:
 

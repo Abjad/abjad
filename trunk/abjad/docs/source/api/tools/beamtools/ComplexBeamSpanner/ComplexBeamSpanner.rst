@@ -96,6 +96,9 @@ Special methods
 .. automethod:: abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner.__eq__
    :noindex:
 

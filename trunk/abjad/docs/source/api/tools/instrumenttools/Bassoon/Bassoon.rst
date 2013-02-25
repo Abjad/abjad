@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__delattr__
    :noindex:
 

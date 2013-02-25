@@ -36,6 +36,12 @@ Special methods
 .. automethod:: abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark.__call__
    :noindex:
 
+.. automethod:: abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark.__delattr__
    :noindex:
 

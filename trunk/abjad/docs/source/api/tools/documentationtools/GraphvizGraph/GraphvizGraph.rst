@@ -96,6 +96,12 @@ Special methods
 .. automethod:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph.__delitem__
    :noindex:
 

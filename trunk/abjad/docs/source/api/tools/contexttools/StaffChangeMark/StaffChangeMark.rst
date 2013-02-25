@@ -45,6 +45,12 @@ Special methods
 .. automethod:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__call__
    :noindex:
 
+.. automethod:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__delattr__
    :noindex:
 

@@ -129,6 +129,9 @@ Special methods
 .. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.__delitem__
    :noindex:
 

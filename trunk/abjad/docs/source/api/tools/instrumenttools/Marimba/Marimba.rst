@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__delattr__
    :noindex:
 

@@ -15,6 +15,9 @@ Read-only properties
 Special methods
 ---------------
 
+.. automethod:: abjad.tools.lilypondproxytools.LilyPondObjectProxy.LilyPondObjectProxy.LilyPondObjectProxy.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.lilypondproxytools.LilyPondObjectProxy.LilyPondObjectProxy.LilyPondObjectProxy.__eq__
    :noindex:
 

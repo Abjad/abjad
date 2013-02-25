@@ -120,6 +120,9 @@ Special methods
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__delitem__
    :noindex:
 

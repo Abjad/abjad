@@ -150,6 +150,9 @@ Special methods
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__delitem__
    :noindex:
 

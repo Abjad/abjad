@@ -96,6 +96,12 @@ Special methods
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.__complex__
    :noindex:
 
+.. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.__div__
    :noindex:
 

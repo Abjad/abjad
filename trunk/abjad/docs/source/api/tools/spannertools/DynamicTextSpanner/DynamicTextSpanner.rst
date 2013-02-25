@@ -93,6 +93,9 @@ Special methods
 .. automethod:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner.__eq__
    :noindex:
 

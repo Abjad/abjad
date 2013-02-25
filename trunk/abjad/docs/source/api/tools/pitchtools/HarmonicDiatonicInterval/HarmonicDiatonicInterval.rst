@@ -54,6 +54,12 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicInterval.HarmonicDiatonicInterval.HarmonicDiatonicInterval.__abs__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicInterval.HarmonicDiatonicInterval.HarmonicDiatonicInterval.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicInterval.HarmonicDiatonicInterval.HarmonicDiatonicInterval.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicInterval.HarmonicDiatonicInterval.HarmonicDiatonicInterval.__eq__
    :noindex:
 

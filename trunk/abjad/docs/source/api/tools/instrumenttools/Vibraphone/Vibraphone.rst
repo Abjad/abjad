@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone.__delattr__
    :noindex:
 

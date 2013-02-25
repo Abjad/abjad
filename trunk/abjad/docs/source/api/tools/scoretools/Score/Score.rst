@@ -129,6 +129,9 @@ Special methods
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.Score.Score.Score.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.__delitem__
    :noindex:
 

@@ -129,6 +129,9 @@ Special methods
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__delitem__
    :noindex:
 

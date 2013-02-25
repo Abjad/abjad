@@ -54,6 +54,12 @@ Special methods
 .. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__call__
    :noindex:
 
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__eq__
    :noindex:
 

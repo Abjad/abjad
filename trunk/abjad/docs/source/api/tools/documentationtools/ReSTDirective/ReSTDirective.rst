@@ -90,6 +90,12 @@ Special methods
 .. automethod:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__delitem__
    :noindex:
 

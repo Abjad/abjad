@@ -90,6 +90,12 @@ Special methods
 .. automethod:: abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__delitem__
    :noindex:
 

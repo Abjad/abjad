@@ -33,6 +33,12 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClass.NamedChromaticPitchClass.NamedChromaticPitchClass.__add__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClass.NamedChromaticPitchClass.NamedChromaticPitchClass.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClass.NamedChromaticPitchClass.NamedChromaticPitchClass.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClass.NamedChromaticPitchClass.NamedChromaticPitchClass.__eq__
    :noindex:
 

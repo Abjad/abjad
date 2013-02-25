@@ -90,6 +90,12 @@ Special methods
 .. automethod:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.__delitem__
    :noindex:
 

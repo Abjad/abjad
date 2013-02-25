@@ -45,6 +45,12 @@ Special methods
 .. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.__call__
    :noindex:
 
+.. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.__delattr__
    :noindex:
 

@@ -93,6 +93,9 @@ Special methods
 .. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.__eq__
    :noindex:
 

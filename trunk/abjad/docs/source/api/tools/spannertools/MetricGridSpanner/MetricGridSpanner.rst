@@ -99,6 +99,9 @@ Special methods
 .. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.__eq__
    :noindex:
 

@@ -87,6 +87,9 @@ Special methods
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__contains__
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__copy__
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__eq__
    :noindex:
 

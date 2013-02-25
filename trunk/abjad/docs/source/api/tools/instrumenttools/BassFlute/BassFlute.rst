@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__delattr__
    :noindex:
 

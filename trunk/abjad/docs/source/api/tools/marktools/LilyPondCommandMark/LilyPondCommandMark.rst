@@ -42,6 +42,12 @@ Special methods
 .. automethod:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__call__
    :noindex:
 
+.. automethod:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__delattr__
    :noindex:
 

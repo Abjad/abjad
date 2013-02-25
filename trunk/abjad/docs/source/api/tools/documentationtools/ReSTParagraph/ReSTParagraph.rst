@@ -51,6 +51,12 @@ Read/write properties
 Special methods
 ---------------
 
+.. automethod:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.__eq__
    :noindex:
 

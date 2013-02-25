@@ -42,6 +42,12 @@ Read/write properties
 Special methods
 ---------------
 
+.. automethod:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__eq__
    :noindex:
 

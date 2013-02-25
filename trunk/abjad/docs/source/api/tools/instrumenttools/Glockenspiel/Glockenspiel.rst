@@ -93,6 +93,12 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.__call__
    :noindex:
 
+.. automethod:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.__deepcopy__
+   :noindex:
+
 .. automethod:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.__delattr__
    :noindex:
 
