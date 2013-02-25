@@ -21,7 +21,7 @@ class ClassDocumenter(Documenter):
     ### CLASS ATTRIBUTES ###
 
     _ignored_special_methods = (
-        '__copy__', '__deepcopy__', '__format__', '__getattribute__',
+        '__format__', '__getattribute__',
         '__getnewargs__', '__init__', '__reduce__', '__reduce_ex__',
         '__sizeof__', '__subclasshook__', 'fromkeys', 'pipe_cloexec',
     )
