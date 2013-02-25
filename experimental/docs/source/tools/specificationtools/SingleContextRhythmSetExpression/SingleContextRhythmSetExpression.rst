@@ -72,6 +72,9 @@ Methods
 Special methods
 ---------------
 
+.. automethod:: experimental.tools.specificationtools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.__eq__
    :noindex:
 

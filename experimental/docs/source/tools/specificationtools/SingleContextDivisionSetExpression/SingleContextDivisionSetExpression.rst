@@ -72,6 +72,9 @@ Methods
 Special methods
 ---------------
 
+.. automethod:: experimental.tools.specificationtools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.__eq__
    :noindex:
 

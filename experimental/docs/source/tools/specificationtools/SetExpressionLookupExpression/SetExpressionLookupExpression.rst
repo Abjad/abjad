@@ -81,6 +81,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.__and__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.__eq__
    :noindex:
 

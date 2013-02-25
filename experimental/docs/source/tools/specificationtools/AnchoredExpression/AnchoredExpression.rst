@@ -48,6 +48,9 @@ Methods
 Special methods
 ---------------
 
+.. automethod:: experimental.tools.specificationtools.AnchoredExpression.AnchoredExpression.AnchoredExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.AnchoredExpression.AnchoredExpression.AnchoredExpression.__eq__
    :noindex:
 

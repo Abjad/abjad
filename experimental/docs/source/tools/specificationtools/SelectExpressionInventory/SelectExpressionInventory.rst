@@ -120,6 +120,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__contains__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__delitem__
    :noindex:
 

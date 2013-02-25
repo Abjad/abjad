@@ -81,6 +81,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.__and__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.__eq__
    :noindex:
 

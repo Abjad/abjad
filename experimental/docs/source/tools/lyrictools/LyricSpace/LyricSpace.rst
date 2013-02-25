@@ -93,6 +93,9 @@ Special methods
 .. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.__and__
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.__copy__
+   :noindex:
+
 .. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.__eq__
    :noindex:
 

@@ -81,6 +81,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.__and__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.__eq__
    :noindex:
 

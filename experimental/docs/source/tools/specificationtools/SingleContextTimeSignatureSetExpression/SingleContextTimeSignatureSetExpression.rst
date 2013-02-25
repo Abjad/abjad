@@ -75,6 +75,9 @@ Methods
 Special methods
 ---------------
 
+.. automethod:: experimental.tools.specificationtools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.__eq__
    :noindex:
 

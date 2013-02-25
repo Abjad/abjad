@@ -69,6 +69,9 @@ Methods
 Special methods
 ---------------
 
+.. automethod:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__eq__
    :noindex:
 

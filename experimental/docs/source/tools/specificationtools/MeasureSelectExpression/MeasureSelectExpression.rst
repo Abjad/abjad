@@ -111,6 +111,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__and__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.__eq__
    :noindex:
 

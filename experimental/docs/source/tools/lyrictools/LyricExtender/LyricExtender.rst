@@ -93,6 +93,9 @@ Special methods
 .. automethod:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.__and__
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.__copy__
+   :noindex:
+
 .. automethod:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.__eq__
    :noindex:
 

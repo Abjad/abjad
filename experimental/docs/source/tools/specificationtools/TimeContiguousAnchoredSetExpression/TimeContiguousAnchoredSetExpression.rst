@@ -63,6 +63,9 @@ Methods
 Special methods
 ---------------
 
+.. automethod:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__eq__
    :noindex:
 

@@ -123,6 +123,9 @@ Methods
 Special methods
 ---------------
 
+.. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.__eq__
    :noindex:
 

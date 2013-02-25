@@ -108,6 +108,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.__and__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.__eq__
    :noindex:
 

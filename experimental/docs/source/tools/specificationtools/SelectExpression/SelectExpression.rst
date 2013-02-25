@@ -108,6 +108,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.SelectExpression.SelectExpression.SelectExpression.__and__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SelectExpression.SelectExpression.SelectExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SelectExpression.SelectExpression.SelectExpression.__eq__
    :noindex:
 

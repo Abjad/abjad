@@ -108,6 +108,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__and__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__eq__
    :noindex:
 

@@ -111,6 +111,12 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.Division.Division.Division.__complex__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__copy__
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.Division.Division.Division.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.Division.Division.Division.__div__
    :noindex:
 

@@ -111,6 +111,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.__and__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.__eq__
    :noindex:
 

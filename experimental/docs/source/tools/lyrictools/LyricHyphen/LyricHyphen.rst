@@ -93,6 +93,9 @@ Special methods
 .. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.__and__
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.__copy__
+   :noindex:
+
 .. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.__eq__
    :noindex:
 

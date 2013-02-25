@@ -129,6 +129,9 @@ Special methods
 .. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.__contains__
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.__copy__
+   :noindex:
+
 .. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.__delitem__
    :noindex:
 

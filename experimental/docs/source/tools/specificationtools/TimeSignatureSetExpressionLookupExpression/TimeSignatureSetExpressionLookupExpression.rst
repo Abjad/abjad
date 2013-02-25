@@ -81,6 +81,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.__and__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.__eq__
    :noindex:
 

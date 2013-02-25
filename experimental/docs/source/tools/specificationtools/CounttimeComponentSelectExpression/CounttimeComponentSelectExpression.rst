@@ -120,6 +120,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.__and__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.__deepcopy__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.__eq__
    :noindex:
 
