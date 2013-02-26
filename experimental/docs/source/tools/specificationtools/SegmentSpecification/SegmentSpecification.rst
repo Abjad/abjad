@@ -9,6 +9,9 @@ specificationtools.SegmentSpecification
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.context_name_abbreviations
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.context_names
    :noindex:
 

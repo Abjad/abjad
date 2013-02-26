@@ -9,6 +9,9 @@ specificationtools.Specification
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.context_name_abbreviations
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.context_names
    :noindex:
 

@@ -21,7 +21,7 @@ class Specification(AbjadObject):
     @abc.abstractmethod
     def __init__(self, score_template):
         from experimental.tools import specificationtools
-        self._abbreviated_context_names = []
+        self._context_name_abbreviations = []
         self._context_names = []
         self._fresh_single_context_set_expressions = timespantools.TimespanInventory()
         self._score_template = score_template
@@ -56,10 +56,15 @@ class Specification(AbjadObject):
             context_names = context_token
         elif isinstance(context_token, type(self)):
             context_names = [context_token.score_name]
-        elif context_token in self._abbreviated_context_names:
+        elif context_token in self.context_names:
+            context_names = [context_token]
+        elif context_token in self.context_name_abbreviations:
             context_names = [context_token]
         elif isinstance(context_token, (tuple, list)) and all([
-            x in self._abbreviated_context_names for x in context_token]):
+            x in self.context_name_abbreviations for x in context_token]):
+            context_names = context_token
+        elif isinstance(context_token, (tuple, list)) and all([
+            x in self.context_names for x in context_token]):
             context_names = context_token
         elif isinstance(context_token, contexttools.Context):
             context_names = [context_token.name]
@@ -70,23 +75,32 @@ class Specification(AbjadObject):
         return context_names
 
     def _initialize_context_name_abbreviations(self):
-        self.context_name_abbreviations = getattr(self.score_template, 'context_name_abbreviations', {})
-        for context_name_abbreviation, context_name in self.context_name_abbreviations.iteritems():
+        context_name_abbreviations = getattr(self.score_template, 'context_name_abbreviations', {})
+        for context_name_abbreviation, context_name in context_name_abbreviations.iteritems():
             setattr(self, context_name_abbreviation, context_name)
-            self._abbreviated_context_names.append(context_name)
+            self._context_name_abbreviations.append(context_name)
         score = self.score_template()
         self._score_name = score.name
         for context in iterationtools.iterate_contexts_in_expr(score):
             if hasattr(context, 'name'):
                 self._context_names.append(context.name)
+        self._context_names = tuple(self._context_names)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def context_name_abbreviations(self):
+        '''Specification context name abbreviations.
+
+        Return tuple.
+        '''
+        return self._context_name_abbreviations
 
     @property
     def context_names(self):
         '''Specification context names.
 
-        Return list.
+        Return tuple.
         '''
         return self._context_names
 

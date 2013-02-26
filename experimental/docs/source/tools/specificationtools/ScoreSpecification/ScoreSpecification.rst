@@ -9,6 +9,9 @@ specificationtools.ScoreSpecification
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.context_name_abbreviations
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.context_names
    :noindex:
 
