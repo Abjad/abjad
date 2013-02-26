@@ -21,8 +21,9 @@ def pdf(target=-1):
     if isinstance(target, int) and target < 0:
         last_lilypond = iotools.get_last_output_file_name()
         if last_lilypond:
-            last_number = last_lilypond.replace('.ly', '')
-            last_number = last_lilypond.replace('.pdf', '')
+            last_number = last_lilypond
+            last_number = last_number.replace('.ly', '')
+            last_number = last_number.replace('.pdf', '')
             last_number = last_number.replace('.midi', '')
             last_number = last_number.replace('.mid', '')
             target_number = int(last_number) + (target + 1)
