@@ -43,6 +43,7 @@ class ContextBlock(AttributedBlock):
         self._engraver_consists = []
         self._engraver_removals = []
         self._escaped_name = r'\context'
+        self.alias = None
         self.context_name = context_name
         self.name = None
         self.type = None
@@ -55,12 +56,16 @@ class ContextBlock(AttributedBlock):
             _format_lilypond_context_setting_in_with_block
         result = []
         result.append('%s {' % self._escaped_name)
-        if self.type is not None:
-            result.append('\t' + r'\type %s' % self.type)
+        # CAUTION: source context name must come before type to allow context redefinition
+        # TODO: rename self.context_name to self.source_context_name
         if self.context_name is not None:
             result.append('\t' + r'\%s' % self.context_name)
         if self.name is not None:
             result.append('\t' + r'\name %s' % self.name)
+        if self.type is not None:
+            result.append('\t' + r'\type %s' % self.type)
+        if self.alias is not None:
+            result.append('\t' + r'\alias %s' % self.alias)
         for string in self.engraver_removals:
             result.append('\t' + r'\remove %s' % string)
         # CAUTION: LilyPond consist statements are order-significant!
@@ -112,9 +117,21 @@ class ContextBlock(AttributedBlock):
     ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
+    def alias():
+        def fget(self):
+            r'''Read / write alias.
+            '''
+            return self._alias
+        def fset(self, alias):
+            assert isinstance(alias, (str, type(None)))
+            self._alias = alias
+        return property(**locals())
+
+    @apply
     def context_name():
         def fget(self):
-            r'''Read / write context name.'''
+            r'''Read / write context name.
+            '''
             return self._context_name
         def fset(self, context_name):
             assert isinstance(context_name, (str, type(None)))
@@ -124,7 +141,8 @@ class ContextBlock(AttributedBlock):
     @apply
     def name():
         def fget(self):
-            r'''Read / write name.'''
+            r'''Read / write name.
+            '''
             return self._name
         def fset(self, name):
             assert isinstance(name, (str, type(None)))
@@ -134,7 +152,8 @@ class ContextBlock(AttributedBlock):
     @apply
     def type():
         def fget(self):
-            r'''Read / write type.'''
+            r'''Read / write type.
+            '''
             return self._type
         def fset(self, expr):
             assert isinstance(expr, (str, type(None)))

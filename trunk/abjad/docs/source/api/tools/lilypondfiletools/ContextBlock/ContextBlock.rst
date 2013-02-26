@@ -33,6 +33,9 @@ Read-only properties
 Read/write properties
 ---------------------
 
+.. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.alias
+   :noindex:
+
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.context_name
    :noindex:
 

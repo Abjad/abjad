@@ -7,8 +7,8 @@ def test_lilypondfiletools_make_time_signature_context_block_01():
 
     r'''
     \context {
-        \type Engraver_group
         \name TimeSignatureContext
+        \type Engraver_group
         \consists Axis_group_engraver
         \consists Time_signature_engraver
         \override TimeSignature #'X-extent = #'(0 . 0)
@@ -22,4 +22,4 @@ def test_lilypondfiletools_make_time_signature_context_block_01():
     }
     '''
 
-    assert context_block.lilypond_format == "\\context {\n\t\\type Engraver_group\n\t\\name TimeSignatureContext\n\t\\consists Axis_group_engraver\n\t\\consists Time_signature_engraver\n\t\\override TimeSignature #'X-extent = #'(0 . 0)\n\t\\override TimeSignature #'X-offset = #ly:self-alignment-interface::x-aligned-on-self\n\t\\override TimeSignature #'Y-extent = #'(0 . 0)\n\t\\override TimeSignature #'break-align-symbol = ##f\n\t\\override TimeSignature #'break-visibility = #end-of-line-invisible\n\t\\override TimeSignature #'font-size = #3\n\t\\override TimeSignature #'self-alignment-X = #center\n\t\\override VerticalAxisGroup #'default-staff-staff-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 4) (stretchability . 0))\n}"
+    assert context_block.lilypond_format == "\\context {\n\t\\name TimeSignatureContext\n\t\\type Engraver_group\n\t\\consists Axis_group_engraver\n\t\\consists Time_signature_engraver\n\t\\override TimeSignature #'X-extent = #'(0 . 0)\n\t\\override TimeSignature #'X-offset = #ly:self-alignment-interface::x-aligned-on-self\n\t\\override TimeSignature #'Y-extent = #'(0 . 0)\n\t\\override TimeSignature #'break-align-symbol = ##f\n\t\\override TimeSignature #'break-visibility = #end-of-line-invisible\n\t\\override TimeSignature #'font-size = #3\n\t\\override TimeSignature #'self-alignment-X = #center\n\t\\override VerticalAxisGroup #'default-staff-staff-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 4) (stretchability . 0))\n}"
