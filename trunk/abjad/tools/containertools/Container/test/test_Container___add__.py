@@ -87,7 +87,7 @@ def test_Container___add___06():
     '''
 
 
-def test_Container___add___08():
+def test_Container___add___07():
     '''Addition works on two matching parallel containers each with
     a single threadable Voice child.
     '''
@@ -108,7 +108,7 @@ def test_Container___add___08():
     assert len(tadd[0]) == 4
 
 
-def test_Container___add___09():
+def test_Container___add___08():
     '''Addition works on matching parallel containers each
     with two named threadable Voice children.
     '''
@@ -140,7 +140,7 @@ def test_Container___add___09():
     assert tadd.name == 'staffOne'
 
 
-def test_Container___add___10():
+def test_Container___add___09():
     '''In place add makes a copy of right hand operand only.
     '''
 

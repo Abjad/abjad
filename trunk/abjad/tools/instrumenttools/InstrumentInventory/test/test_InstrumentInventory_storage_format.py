@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def testInstrumentInventory_storage_format_01():
+def test_InstrumentInventory_storage_format_01():
 
     inventory = instrumenttools.InstrumentInventory([
         instrumenttools.Flute(),

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_RhythmTreeNode_parent_01():
+def test_TreeNode_parent_01():
 
     leaf = datastructuretools.TreeNode()
     container = datastructuretools.TreeContainer()

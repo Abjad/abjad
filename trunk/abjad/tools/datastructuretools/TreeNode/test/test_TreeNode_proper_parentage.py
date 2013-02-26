@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_RhythmTreeNode_proper_parentage_01():
+def test_TreeNode_proper_parentage_01():
 
     leaf = datastructuretools.TreeNode()
     subsubcontainer = datastructuretools.TreeContainer()

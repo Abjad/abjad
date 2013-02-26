@@ -124,7 +124,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_07():
     assert len(result) == 8
 
 
-def test_containertools_fuse_like_named_contiguous_containers_in_expr_09():
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_08():
     '''Fuse parallel voices within parallel staves within parallel
     staff groups within a single container.
     '''
@@ -221,7 +221,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_09():
     }
     '''
 
-def test_containertools_fuse_like_named_contiguous_containers_in_expr_10():
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_09():
     '''Fuse nested parallel structures in sequence.
     '''
 

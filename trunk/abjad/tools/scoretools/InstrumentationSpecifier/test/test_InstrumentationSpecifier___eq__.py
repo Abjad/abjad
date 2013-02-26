@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def testInstrumentationSpecifier___eq___01():
+def test_InstrumentationSpecifier___eq___01():
 
     instrumentation_1 = scoretools.InstrumentationSpecifier()
     performer_1 = scoretools.Performer('Flute')

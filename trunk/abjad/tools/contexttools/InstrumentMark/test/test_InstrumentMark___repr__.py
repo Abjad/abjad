@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.contexttools import InstrumentMark
 
 
-def testInstrumentMark___repr___01():
+def test_InstrumentMark___repr___01():
     '''Instrument mark returns nonempty string repr.
     '''
 
@@ -10,7 +10,7 @@ def testInstrumentMark___repr___01():
     assert isinstance(repr, str) and 0 < len(repr)
 
 
-def testInstrumentMark___repr___02():
+def test_InstrumentMark___repr___02():
     '''Instrument mark repr is evaluable.
     '''
 

@@ -2,7 +2,7 @@ from abjad.tools.durationtools import Duration
 from abjad.tools.rhythmtreetools import RhythmTreeContainer, RhythmTreeLeaf
 
 
-def test_RhythmTreeNode_prolated_duration_01():
+def test_RhythmTreeNode_duration_01():
 
     tree = RhythmTreeContainer(preprolated_duration=1, children=[
         RhythmTreeLeaf(preprolated_duration=1),

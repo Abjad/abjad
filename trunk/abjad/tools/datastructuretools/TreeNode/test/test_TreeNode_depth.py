@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_RhythmTreeNode_depth_01():
+def test_TreeNode_depth_01():
 
     container = datastructuretools.TreeContainer()
     assert container.depth == 0
