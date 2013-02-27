@@ -813,6 +813,7 @@ Core composition packages
       tools/iotools/save_last_pdf_as
       tools/iotools/show
       tools/iotools/spawn_subprocess
+      tools/iotools/which
       tools/iotools/write_expr_to_ly
       tools/iotools/write_expr_to_pdf
       tools/iotools/z
@@ -841,6 +842,7 @@ Core composition packages
       tools/iotools/save_last_pdf_as
       tools/iotools/show
       tools/iotools/spawn_subprocess
+      tools/iotools/which
       tools/iotools/write_expr_to_ly
       tools/iotools/write_expr_to_pdf
       tools/iotools/z

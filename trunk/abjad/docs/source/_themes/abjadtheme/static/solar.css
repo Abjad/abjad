@@ -175,7 +175,6 @@ h2 {
     margin: 1.3em 0 0.2em 0;
     padding: 0 0 10px 0;
     color: #073642;
-    border-bottom: 1px solid #eee;
 }
 
 h3 {
@@ -183,12 +182,11 @@ h3 {
     margin: 1.3em 0 0.2em 0;
     padding: 0 0 10px 0;
     color: #073642;
-    border-bottom: 1px solid #eee;
 }
 
-h3, h4, h5, h6 {
+h2, h3, h4, h5, h6 {
     color: #073642;
-	border-bottom: 1px dotted #eee;
+	border-bottom: 1px dotted #ccc;
 }
 
 div.body h1 a, div.body h2 a, div.body h3 a, div.body h4 a, div.body h5 a, div.body h6 a {
@@ -240,7 +238,7 @@ cite, code, tt {
 
 hr {
     border: 0px;
-    border-bottom: 1px dotted #eee;
+    border-bottom: 1px dotted #ccc;
     margin: 1em;
 }
 
