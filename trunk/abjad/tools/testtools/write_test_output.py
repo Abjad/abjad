@@ -2,7 +2,7 @@ from abjad.tools import *
 import os
 
 
-def write_test_output(score, full_file_name, test_function_name,
+def write_test_output(output, full_file_name, test_function_name,
     cache_ly=False, cache_pdf=False, go=False, render_pdf=False):
     r'''Write test output.
     '''
@@ -10,8 +10,14 @@ def write_test_output(score, full_file_name, test_function_name,
     if go: cache_ly = cache_pdf = render_pdf = True
     if not any([cache_ly, cache_pdf, render_pdf]):
         return
-    lilypond_file = lilypondfiletools.make_floating_time_signature_lilypond_file(score)
-    testtools.apply_additional_layout(lilypond_file)
+    if isinstance(output, scoretools.Score):
+        lilypond_file = lilypondfiletools.make_floating_time_signature_lilypond_file(output)
+        testtools.apply_additional_layout(lilypond_file)
+    elif isinstance(output, lilypondfiletools.LilyPondFile):
+        lilypond_file = output
+        score = lilypond_file.score_block[0]
+    else:
+        raise TypeError(output)
     title_lines = test_function_name_to_title_lines(test_function_name)
     lilypond_file.header_block.title = markuptools.make_centered_title_markup(
         title_lines, font_size=6, vspace_before=2, vspace_after=4)
