@@ -63,7 +63,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         return payload_expression
 
     def _getitem__(self, payload_expression, s):
-        assert isinstance(s, slice)
+        assert isinstance(s, (slice, int)), repr(s)
         assert hasattr(payload_expression, '__getitem__')
         result = payload_expression.__getitem__(s)
         return result

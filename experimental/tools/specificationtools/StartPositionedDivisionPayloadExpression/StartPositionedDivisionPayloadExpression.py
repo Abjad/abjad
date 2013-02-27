@@ -151,8 +151,15 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
         Return newly constructed start-positioned division payload expression.
         '''
-        assert isinstance(expr, slice), repr(expr)
-        divisions = self.payload.__getitem__(expr)
+        from experimental.tools import specificationtools
+        assert isinstance(expr, (slice, int)), repr(expr)
+        result = self.payload.__getitem__(expr)
+        if isinstance(result, list):
+            divisions = result
+        elif isinstance(result, specificationtools.Division):
+            divisions = [result]
+        else:
+            raise TypeError(result)
         if divisions:
             start_offset = divisions[0].start_offset
         else:
