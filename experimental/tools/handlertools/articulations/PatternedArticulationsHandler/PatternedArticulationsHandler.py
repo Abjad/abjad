@@ -1,7 +1,7 @@
 from abjad.tools import iterationtools
 from abjad.tools import marktools
+from abjad.tools import notetools
 from abjad.tools import sequencetools
-from abjad.tools.notetools.Note import Note
 from experimental.tools.handlertools.articulations.ArticulationHandler import ArticulationHandler
 
 
@@ -24,6 +24,7 @@ class PatternedArticulationsHandler(ArticulationHandler):
 
     ### SPECIAL METHODS ###
 
+    # TODO: change to self.new()
     def __call__(self, articulation_lists):
         new = type(self)()
         new.articulation_lists = articulation_lists
@@ -44,6 +45,7 @@ class PatternedArticulationsHandler(ArticulationHandler):
 
     ### PUBLIC METHODS ###
 
+    # TODO: change to self.__call__()
     def apply(self, expr, offset = 0, skip_first = 0, skip_last = 0):
         articulation_lists = sequencetools.CyclicList(self.articulation_lists)
         notes_and_chords = list(iterationtools.iterate_notes_and_chords_in_expr(expr))
@@ -59,14 +61,14 @@ class PatternedArticulationsHandler(ArticulationHandler):
                 if self.maximum_duration < note_or_chord.duration.prolated:
                     continue
             if self.minimum_written_pitch is not None:
-                if isinstance(note_or_chord, Note):
+                if isinstance(note_or_chord, notetools.Note):
                     minimum_written_pitch = note_or_chord.pitch
                 else:
                     minimum_written_pitch = note_or_chord.pitches[0]
                 if minimum_written_pitch < self.minimum_written_pitch:
                     continue
             if self.maximum_written_pitch is not None:
-                if isinstance(note_or_chord, Note):
+                if isinstance(note_or_chord, notetools.Note):
                     maximum_written_pitch = note_or_chord.pitch
                 else:
                     maximum_written_pitch = note_or_chord.pitches[-1]

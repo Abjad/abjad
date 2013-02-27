@@ -17,6 +17,7 @@ class TerracedDynamicsHandler(DynamicHandler):
 
     ### SPECIAL METHODS ###
 
+    # TODO: change to self.new()
     def __call__(self, dynamics):
         new = type(self)()
         new.dynamics = dynamics
@@ -40,6 +41,7 @@ class TerracedDynamicsHandler(DynamicHandler):
 
     ### PUBLIC METHODS ###
 
+    # TODO: change to self.__call__()
     def apply(self, expr, offset=0):
         dynamics = sequencetools.CyclicList(self.dynamics)
         for i, note_or_chord in enumerate(iterationtools.iterate_notes_and_chords_in_expr(expr)):

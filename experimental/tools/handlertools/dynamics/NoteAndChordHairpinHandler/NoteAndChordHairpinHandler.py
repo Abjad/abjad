@@ -15,6 +15,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
 
     ### SPECIAL METHODS ###
 
+    # TODO: change to self.new()
     def __call__(self, hairpin_token=None):
         new = type(self)(hairpin_token=hairpin_token)
         return new
@@ -36,6 +37,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
 
     ### PUBLIC METHODS ###
 
+    # TODO: change to self.__call__()
     def apply(self, expr, offset=0):
         leaves = list(iterationtools.iterate_leaves_in_expr(expr))
         leaves = leaftools.remove_outer_rests_from_sequence(leaves)

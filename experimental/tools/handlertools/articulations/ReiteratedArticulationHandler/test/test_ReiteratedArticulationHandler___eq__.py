@@ -1,5 +1,4 @@
-from abjad import *
-from experimental.tools import handlertools
+from experimental import *
 
 
 def test_ReiteratedArticulationHandler___eq___01():

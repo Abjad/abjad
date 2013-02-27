@@ -1,9 +1,7 @@
-from abjad import *
-from experimental.tools import handlertools
+from experimental import *
 
 
 def test_NoteAndChordHairpinsHandler_apply_01():
-
 
     hairpins = handlertools.dynamics.NoteAndChordHairpinsHandler()
     hairpins.hairpin_tokens.append(('p', '<', 'f'))

@@ -22,12 +22,14 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
 
     ### SPECIAL METHODS ###
 
+    # TODO: change to self.new()
     def __call__(self):
         raise NotImplementedError
 
     ### PUBLIC METHODS ###
 
-    def apply(self, expr, offset = 0):
+    # TODO: change to self.__call__()
+    def apply(self, expr, offset=0):
         leaves = list(iterationtools.iterate_leaves_in_expr(expr))
         groups = list(componenttools.yield_groups_of_mixed_klasses_in_sequence(
             leaves, (notetools.Note, chordtools.Chord)))
