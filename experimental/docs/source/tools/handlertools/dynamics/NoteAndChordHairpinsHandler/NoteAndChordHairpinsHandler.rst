@@ -15,7 +15,7 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.apply
+.. automethod:: experimental.tools.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.new
    :noindex:
 
 Special methods

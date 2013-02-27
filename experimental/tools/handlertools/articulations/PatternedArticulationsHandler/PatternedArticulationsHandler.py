@@ -24,29 +24,7 @@ class PatternedArticulationsHandler(ArticulationHandler):
 
     ### SPECIAL METHODS ###
 
-    # TODO: change to self.new()
-    def __call__(self, articulation_lists):
-        new = type(self)()
-        new.articulation_lists = articulation_lists
-        return new
-
-    ### READ / WRITE PUBLIC PROPERTIES ###
-
-    @apply
-    def articulation_lists():
-        def fget(self):
-            return self._articulation_lists
-        def fset(self, articulation_lists):
-            if all([isinstance(x, (tuple, list)) for x in articulation_lists]):
-                self._articulation_lists = articulation_lists
-            else:
-                raise TypeError(articulation_lists)
-        return property(**locals())
-
-    ### PUBLIC METHODS ###
-
-    # TODO: change to self.__call__()
-    def apply(self, expr, offset = 0, skip_first = 0, skip_last = 0):
+    def __call__(self, expr, offset=0, skip_first=0, skip_last=0):
         articulation_lists = sequencetools.CyclicList(self.articulation_lists)
         notes_and_chords = list(iterationtools.iterate_notes_and_chords_in_expr(expr))
         notes_and_chords = notes_and_chords[skip_first:]
@@ -76,3 +54,23 @@ class PatternedArticulationsHandler(ArticulationHandler):
                     continue
             marktools.attach_articulations_to_notes_and_chords_in_expr(note_or_chord, articulation_list)
         return expr
+
+    ### READ / WRITE PUBLIC PROPERTIES ###
+
+    @apply
+    def articulation_lists():
+        def fget(self):
+            return self._articulation_lists
+        def fset(self, articulation_lists):
+            if all([isinstance(x, (tuple, list)) for x in articulation_lists]):
+                self._articulation_lists = articulation_lists
+            else:
+                raise TypeError(articulation_lists)
+        return property(**locals())
+
+    ### PUBLIC METHODS ###
+
+    def new(self, articulation_lists):
+        new = type(self)()
+        new.articulation_lists = articulation_lists
+        return new

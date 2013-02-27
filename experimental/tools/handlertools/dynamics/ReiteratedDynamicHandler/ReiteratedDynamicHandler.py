@@ -14,12 +14,10 @@ class ReiteratedDynamicHandler(DynamicHandler):
 
     ### SPECIAL METHODS ###
 
-    # TODO: change to self.new()
-    def __call__(self, dynamic_name):
-        new = type(self)()
-        new.dynamic_name = dynamic_name
-        new.minimum_duration = self.minimum_duration
-        return new
+    def __call__(self, expr):
+        for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
+            marktools.LilyPondCommandMark(self.dynamic_name, 'right')(note_or_chord)
+        return expr
 
     ### READ / WRITE PUBLIC PROPERTIES ###
 
@@ -38,8 +36,8 @@ class ReiteratedDynamicHandler(DynamicHandler):
 
     ### PUBLIC METHODS ###
 
-    # TODO: change to self.__call__()
-    def apply(self, expr):
-        for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
-            marktools.LilyPondCommandMark(self.dynamic_name, 'right')(note_or_chord)
-        return expr
+    def new(self, dynamic_name):
+        new = type(self)()
+        new.dynamic_name = dynamic_name
+        new.minimum_duration = self.minimum_duration
+        return new

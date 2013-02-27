@@ -21,7 +21,7 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.apply
+.. automethod:: experimental.tools.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.new
    :noindex:
 
 Special methods

@@ -1,11 +1,11 @@
 from experimental import *
 
 
-def test_ReiteratedArticulationHandler_apply_01():
+def test_ReiteratedArticulationHandler___call___01():
 
-    reiterated_articulation = handlertools.articulations.ReiteratedArticulationHandler(['^', '.'])
+    handler = handlertools.articulations.ReiteratedArticulationHandler(['^', '.'])
     staff = Staff("c'8 d'8 r8 e'8 f'8 r8 g'8 r8")
-    reiterated_articulation.apply(staff)
+    handler(staff)
 
     r'''
     \new Staff {
@@ -23,11 +23,11 @@ def test_ReiteratedArticulationHandler_apply_01():
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 -\\marcato -\\staccato\n\td'8 -\\marcato -\\staccato\n\tr8\n\te'8 -\\marcato -\\staccato\n\tf'8 -\\marcato -\\staccato\n\tr8\n\tg'8 -\\marcato -\\staccato\n\tr8\n}"
 
 
-def test_ReiteratedArticulationHandler_apply_02():
+def test_ReiteratedArticulationHandler___call___02():
 
-    reiterated_articulation = handlertools.articulations.ReiteratedArticulationHandler('.')
+    handler = handlertools.articulations.ReiteratedArticulationHandler('.')
     staff = Staff("c'8 d'8 r8 e'8 f'8 r8 g'8 r8")
-    reiterated_articulation.apply(staff)
+    handler(staff)
 
     r'''
     \new Staff {

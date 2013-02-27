@@ -3,26 +3,26 @@ from experimental import *
 
 def test_TerracedDynamicsHandler___call___01():
 
-    terraces = handlertools.dynamics.TerracedDynamicsHandler()
+    handler = handlertools.dynamics.TerracedDynamicsHandler(['f', 'mp', 'mf', 'mp', 'ff'])
     staff = Staff("c'8 d'8 r8 e'8 f'8 r8 g'8 r8 a'32 b'32 r8. c''8 d''8" )
-    terraces(['p', 'f']).apply(staff)
+    handler(staff)
 
     r'''
     \new Staff {
-        c'8 \p
-        d'8 \f
+        c'8 \f
+        d'8 \mp
         r8
-        e'8 \p
-        f'8 \f
+        e'8 \mf
+        f'8 \mp
         r8
-        g'8 \p
+        g'8 \ff
         r8
         a'32 \f
-        b'32 \p
+        b'32 \mp
         r8.
-        c''8 \f
-        d''8 \p
+        c''8 \mf
+        d''8 \mp
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 \\p\n\td'8 \\f\n\tr8\n\te'8 \\p\n\tf'8 \\f\n\tr8\n\tg'8 \\p\n\tr8\n\ta'32 \\f\n\tb'32 \\p\n\tr8.\n\tc''8 \\f\n\td''8 \\p\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 \\f\n\td'8 \\mp\n\tr8\n\te'8 \\mf\n\tf'8 \\mp\n\tr8\n\tg'8 \\ff\n\tr8\n\ta'32 \\f\n\tb'32 \\mp\n\tr8.\n\tc''8 \\mf\n\td''8 \\mp\n}"

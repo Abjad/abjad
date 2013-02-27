@@ -26,32 +26,7 @@ class ReiteratedArticulationHandler(ArticulationHandler):
 
     ### SPECIAL METHODS ###
 
-    # TODO: change to self.new()
-    def __call__(self, articulation_list):
-        new = type(self)()
-        new.articulation_list = articulation_list
-        return new
-
-    ### READ / WRITE PUBLIC PROPERTIES ###
-
-    @apply
-    def articulation_list():
-        def fget(self):
-            return self._articulation_list
-        def fset(self, articulation_list):
-            if isinstance(articulation_list, list):
-                if all([isinstance(x, str) for x in articulation_list]):
-                    self._articulation_list = articulation_list
-            elif isinstance(articulation_list, str):
-                self._articulation_list = [articulation_list]
-            else:
-                raise TypeError(articulation_list)
-        return property(**locals())
-
-    ### PUBLIC METHODS ###
-
-    # TODO: change to self.__call__()
-    def apply(self, expr, offset=0, skip_first=0, skip_last=0):
+    def __call__(self, expr, offset=0, skip_first=0, skip_last=0):
         articulation_list = sequencetools.CyclicList(self.articulation_list)
         notes_and_chords = list(iterationtools.iterate_notes_and_chords_in_expr(expr))
         notes_and_chords = notes_and_chords[skip_first:]
@@ -81,3 +56,26 @@ class ReiteratedArticulationHandler(ArticulationHandler):
             marktools.attach_articulations_to_notes_and_chords_in_expr(
                 note_or_chord, self.articulation_list)
         return expr
+
+    ### READ / WRITE PUBLIC PROPERTIES ###
+
+    @apply
+    def articulation_list():
+        def fget(self):
+            return self._articulation_list
+        def fset(self, articulation_list):
+            if isinstance(articulation_list, list):
+                if all([isinstance(x, str) for x in articulation_list]):
+                    self._articulation_list = articulation_list
+            elif isinstance(articulation_list, str):
+                self._articulation_list = [articulation_list]
+            else:
+                raise TypeError(articulation_list)
+        return property(**locals())
+
+    ### PUBLIC METHODS ###
+
+    def new(self, articulation_list):
+        new = type(self)()
+        new.articulation_list = articulation_list
+        return new

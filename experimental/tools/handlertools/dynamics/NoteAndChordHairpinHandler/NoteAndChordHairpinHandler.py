@@ -15,10 +15,24 @@ class NoteAndChordHairpinHandler(DynamicHandler):
 
     ### SPECIAL METHODS ###
 
-    # TODO: change to self.new()
-    def __call__(self, hairpin_token=None):
-        new = type(self)(hairpin_token=hairpin_token)
-        return new
+    def __call__(self, expr, offset=0):
+        leaves = list(iterationtools.iterate_leaves_in_expr(expr))
+        leaves = leaftools.remove_outer_rests_from_sequence(leaves)
+        group = leaves
+        is_short_group = False
+        if len(group) == 1:
+            is_short_group = True
+        elif self.minimum_duration is not None:
+            duration = componenttools.sum_duration_of_components(group)
+            if duration < self.minimum_duration:
+                is_short_group = True
+        if is_short_group:
+            start_dynamic = self.hairpin_token[0]
+            marktools.LilyPondCommandMark(start_dynamic, 'right')(group[0])
+        else:
+            descriptor = ' '.join([x for x in self.hairpin_token if x])
+            spannertools.HairpinSpanner(group, descriptor, include_rests = False)
+        return expr
 
     ### READ / WRITE PUBLIC PROPERTIES ###
 
@@ -37,22 +51,6 @@ class NoteAndChordHairpinHandler(DynamicHandler):
 
     ### PUBLIC METHODS ###
 
-    # TODO: change to self.__call__()
-    def apply(self, expr, offset=0):
-        leaves = list(iterationtools.iterate_leaves_in_expr(expr))
-        leaves = leaftools.remove_outer_rests_from_sequence(leaves)
-        group = leaves
-        is_short_group = False
-        if len(group) == 1:
-            is_short_group = True
-        elif self.minimum_duration is not None:
-            duration = componenttools.sum_duration_of_components(group)
-            if duration < self.minimum_duration:
-                is_short_group = True
-        if is_short_group:
-            start_dynamic = self.hairpin_token[0]
-            marktools.LilyPondCommandMark(start_dynamic, 'right')(group[0])
-        else:
-            descriptor = ' '.join([x for x in self.hairpin_token if x])
-            spannertools.HairpinSpanner(group, descriptor, include_rests = False)
-        return expr
+    def new(self, hairpin_token=None):
+        new = type(self)(hairpin_token=hairpin_token)
+        return new

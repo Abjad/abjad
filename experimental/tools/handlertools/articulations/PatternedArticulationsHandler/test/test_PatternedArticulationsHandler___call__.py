@@ -1,11 +1,11 @@
 from experimental import *
 
 
-def test_PatternedArticulationsHandler_apply_01():
+def test_PatternedArticulationsHandler___call___01():
 
-    pattern = handlertools.articulations.PatternedArticulationsHandler([['>', '-'], ['.']])
+    handler = handlertools.articulations.PatternedArticulationsHandler([['>', '-'], ['.']])
     staff = Staff("c'8 d'8 r8 e'8 f'8 r8 g'8 r8")
-    pattern.apply(staff)
+    handler(staff)
 
     r'''
     \new Staff {

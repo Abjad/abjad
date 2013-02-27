@@ -22,14 +22,7 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
 
     ### SPECIAL METHODS ###
 
-    # TODO: change to self.new()
-    def __call__(self):
-        raise NotImplementedError
-
-    ### PUBLIC METHODS ###
-
-    # TODO: change to self.__call__()
-    def apply(self, expr, offset=0):
+    def __call__(self, expr, offset=0):
         leaves = list(iterationtools.iterate_leaves_in_expr(expr))
         groups = list(componenttools.yield_groups_of_mixed_klasses_in_sequence(
             leaves, (notetools.Note, chordtools.Chord)))
@@ -50,3 +43,8 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
                 descriptor = ' '.join([x for x in hairpin_token if x])
                 spannertools.HairpinSpanner(group, descriptor, include_rests = False)
         return expr
+
+    ### PUBLIC METHODS ###
+
+    def new(self):
+        raise NotImplementedError

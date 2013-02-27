@@ -17,12 +17,13 @@ class TerracedDynamicsHandler(DynamicHandler):
 
     ### SPECIAL METHODS ###
 
-    # TODO: change to self.new()
-    def __call__(self, dynamics):
-        new = type(self)()
-        new.dynamics = dynamics
-        new.minimum_duration = self.minimum_duration
-        return new
+    def __call__(self, expr, offset=0):
+        dynamics = sequencetools.CyclicList(self.dynamics)
+        for i, note_or_chord in enumerate(iterationtools.iterate_notes_and_chords_in_expr(expr)):
+            dynamic_name = dynamics[offset+i]
+            if self.minimum_duration <= note_or_chord.duration:
+                marktools.LilyPondCommandMark(dynamic_name, 'right')(note_or_chord)
+        return expr
 
     ### READ / WRITE PUBLIC PROPERTIES ###
 
@@ -41,11 +42,8 @@ class TerracedDynamicsHandler(DynamicHandler):
 
     ### PUBLIC METHODS ###
 
-    # TODO: change to self.__call__()
-    def apply(self, expr, offset=0):
-        dynamics = sequencetools.CyclicList(self.dynamics)
-        for i, note_or_chord in enumerate(iterationtools.iterate_notes_and_chords_in_expr(expr)):
-            dynamic_name = dynamics[offset+i]
-            if self.minimum_duration <= note_or_chord.duration:
-                marktools.LilyPondCommandMark(dynamic_name, 'right')(note_or_chord)
-        return expr
+    def new(self, dynamics):
+        new = type(self)()
+        new.dynamics = dynamics
+        new.minimum_duration = self.minimum_duration
+        return new

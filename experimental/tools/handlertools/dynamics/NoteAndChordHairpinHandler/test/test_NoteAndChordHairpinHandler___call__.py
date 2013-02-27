@@ -1,11 +1,11 @@
 from experimental import *
 
 
-def test_NoteAndChordHairpinHandler_apply_01():
+def test_NoteAndChordHairpinHandler___call___01():
 
-    hairpin = handlertools.dynamics.NoteAndChordHairpinHandler(('p', '<', 'f'))
+    handler = handlertools.dynamics.NoteAndChordHairpinHandler(('p', '<', 'f'))
     staff = Staff("r4 c'8 d'8 r4 e'8 r8")
-    hairpin.apply(staff)
+    handler(staff)
 
     r'''
     \new Staff {
