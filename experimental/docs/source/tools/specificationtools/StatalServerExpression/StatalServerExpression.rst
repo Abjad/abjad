@@ -24,6 +24,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.StatalServerExpression.StatalServerExpression.StatalServerExpression.evaluate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.StatalServerExpression.StatalServerExpression.StatalServerExpression.map_to_each
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.StatalServerExpression.StatalServerExpression.StatalServerExpression.new
    :noindex:
 

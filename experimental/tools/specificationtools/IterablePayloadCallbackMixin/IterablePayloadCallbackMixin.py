@@ -68,6 +68,10 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         result = payload_expression.__getitem__(s)
         return result
 
+    def _map_to_each(self, payload_expression):
+        result = [element for element in payload_expression]
+        return result
+        
     def _partition_by_ratio(self, payload_expression, ratio, part):
         assert hasattr(payload_expression, 'partition_by_ratio')
         parts = payload_expression.partition_by_ratio(ratio)
@@ -100,6 +104,14 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         return payload_expression
 
     ### PUBLIC METHODS ###
+
+    def map_to_each(self):
+        '''Map to each element in payload.
+
+        Return copy of expression with callback.
+        '''
+        callback = 'result = self._map_to_each(payload_expression)'
+        return self._copy_and_append_callback(callback)
 
     def partition_by_ratio(self, ratio):
         '''Partition payload by `ratio`.

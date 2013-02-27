@@ -1,3 +1,4 @@
+from abjad.tools import timespantools
 from experimental.tools.specificationtools.AnchoredExpression import AnchoredExpression
 from experimental.tools.specificationtools.TimeContiguousSetMethodMixin import TimeContiguousSetMethodMixin
 from experimental.tools.specificationtools.SelectMethodMixin import SelectMethodMixin
@@ -38,8 +39,20 @@ class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethod
         Return timespan when evaluable.
         '''
         from experimental.tools import specificationtools
-        anchor_timespan = self._evaluate_anchor_timespan()
-        if anchor_timespan:
-            timespan = self._apply_callbacks(anchor_timespan)
+        result = self._evaluate_anchor_timespan()
+        if result is None:
+            return
+        elif isinstance(result, timespantools.Timespan):
+            timespan = self._apply_callbacks(result)
             expression = specificationtools.IterablePayloadExpression([timespan])
             return expression
+        elif isinstance(result, list):
+            timespan_expressions = []
+            for timespan in result:
+                timespan = self._apply_callbacks(timespan)
+                expression = specificationtools.IterablePayloadExpression([timespan])
+                timespan_expressions.append(expression)
+            assert len(result) == len(timespan_expressions)
+            return timespan_expressions
+        else:
+            raise TypeError(result)

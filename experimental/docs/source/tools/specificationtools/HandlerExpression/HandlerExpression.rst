@@ -24,6 +24,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.evaluate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.map_to_each
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.new
    :noindex:
 

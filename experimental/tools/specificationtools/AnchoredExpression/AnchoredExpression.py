@@ -47,15 +47,25 @@ class AnchoredExpression(Expression):
             return self.root_specification.timespan
         elif self.anchor is None:
             return self.root_specification.timespan
-        expression = self.anchor.evaluate()
-        if expression is None:
+        result = self.anchor.evaluate()
+        if result is None:
             return
-        if hasattr(expression, 'timespan'):
-            return expression.timespan
-        elif isinstance(expression.payload[0], timespantools.Timespan):
-            return expression.payload[0]
+        elif isinstance(result, list):
+            new_result = []
+            for expression in result:
+                if hasattr(expression, 'timespan'):
+                    new_result.append(expression.timespan)
+                elif isinstance(expression.payload[0], timespantools.Timespan):
+                    new_result.append(expression.payload[0])
+                else:
+                    raise TypeError(expression)
+            return new_result
+        elif hasattr(result, 'timespan'):
+            return result.timespan
+        elif isinstance(result.payload[0], timespantools.Timespan):
+            return result.payload[0]
         else:
-            raise TypeError(expression)
+            raise TypeError(result)
 
     def _set_root_specification(self, root_specification_identifier):
         assert isinstance(root_specification_identifier, (str, type(None)))

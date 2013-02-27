@@ -54,6 +54,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SelectExpression.SelectExpression.SelectExpression.evaluate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SelectExpression.SelectExpression.SelectExpression.map_to_each
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SelectExpression.SelectExpression.SelectExpression.new
    :noindex:
 

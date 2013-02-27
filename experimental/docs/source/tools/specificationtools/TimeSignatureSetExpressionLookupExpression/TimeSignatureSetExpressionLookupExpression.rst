@@ -54,6 +54,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.evaluate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.map_to_each
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.new
    :noindex:
 

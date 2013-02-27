@@ -54,6 +54,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.evaluate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.map_to_each
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.new
    :noindex:
 

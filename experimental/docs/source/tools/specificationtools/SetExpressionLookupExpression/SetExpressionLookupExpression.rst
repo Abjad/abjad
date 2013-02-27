@@ -54,6 +54,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.evaluate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.map_to_each
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.new
    :noindex:
 

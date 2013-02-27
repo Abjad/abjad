@@ -156,13 +156,29 @@ class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMe
         assert isinstance(score, scoretools.Score), repr(score)
         voice = score[self.voice_name]
         anchor_timespan = self._evaluate_anchor_timespan()
-        time_relation = self._get_time_relation(anchor_timespan)
-        components = []
-        for component in iterationtools.iterate_components_in_expr(voice, klass=tuple(self.classes)):
-            if time_relation(timespan_2=component.timespan):
-                components.append(component)
-        if not components:
-            return
-        expression = specificationtools.IterablePayloadExpression(components)
-        expression = self._apply_callbacks(expression)
-        return expression
+        if isinstance(anchor_timespan, list):
+            result = []
+            anchor_timespans = anchor_timespan
+            for anchor_timespan in anchor_timespans:
+                time_relation = self._get_time_relation(anchor_timespan)
+                components = []
+                for component in iterationtools.iterate_components_in_expr(voice, klass=tuple(self.classes)):
+                    if time_relation(timespan_2=component.timespan):
+                        components.append(component)
+                if not components:
+                    continue
+                expression = specificationtools.IterablePayloadExpression(components)
+                expression = self._apply_callbacks(expression)
+                result.append(expression)
+            return result
+        else:
+            time_relation = self._get_time_relation(anchor_timespan)
+            components = []
+            for component in iterationtools.iterate_components_in_expr(voice, klass=tuple(self.classes)):
+                if time_relation(timespan_2=component.timespan):
+                    components.append(component)
+            if not components:
+                return
+            expression = specificationtools.IterablePayloadExpression(components)
+            expression = self._apply_callbacks(expression)
+            return expression

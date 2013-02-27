@@ -73,6 +73,14 @@ class DivisionSelectExpression(SelectExpression):
         if self.time_relation is None:
             inventory = expression & anchor_timespan
             expression = inventory[0]
-        expression = self._apply_callbacks(expression)
-        expression._voice_name = self.voice_name
-        return expression
+        result = self._apply_callbacks(expression)
+        if isinstance(result, list):
+            expressions = []
+            for expression in result:
+                expression._voice_name = self.voice_name
+                expressions.append(expression)
+            return expressions
+        else: 
+            expression = result
+            expression._voice_name = self.voice_name
+            return expression

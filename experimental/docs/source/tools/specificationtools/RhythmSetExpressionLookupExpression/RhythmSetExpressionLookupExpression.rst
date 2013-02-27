@@ -54,6 +54,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.evaluate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.map_to_each
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.new
    :noindex:
 

@@ -18,6 +18,9 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: experimental.tools.specificationtools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.map_to_each
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.partition_by_ratio
    :noindex:
 
