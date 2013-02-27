@@ -60,6 +60,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_dynamic
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_dynamic_handler
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_leaf_color
    :noindex:
 

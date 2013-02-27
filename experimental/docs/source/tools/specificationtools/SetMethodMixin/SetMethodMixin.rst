@@ -24,6 +24,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_dynamic
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_dynamic_handler
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_leaf_color
    :noindex:
 

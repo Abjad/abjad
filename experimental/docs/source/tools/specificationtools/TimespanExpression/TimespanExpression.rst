@@ -87,6 +87,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_dynamic
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_dynamic_handler
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_leaf_color
    :noindex:
 

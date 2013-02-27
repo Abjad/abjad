@@ -57,6 +57,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_dynamic
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_dynamic_handler
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_leaf_color
    :noindex:
 

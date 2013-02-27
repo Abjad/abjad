@@ -84,6 +84,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SelectExpression.SelectExpression.SelectExpression.set_dynamic
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SelectExpression.SelectExpression.SelectExpression.set_dynamic_handler
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SelectExpression.SelectExpression.SelectExpression.set_leaf_color
    :noindex:
 
