@@ -34,7 +34,7 @@ def _log_render_lilypond_input(expr, tagline=False, docs=False):
     stop_format_time = time.time()
     actual_format_time = int(stop_format_time - start_format_time)
     if format_time <= actual_format_time:
-        print 'Abjad format time equal to %s sec.' % actual_format_time
+        print 'Abjad format time equal to %s seconds ...' % actual_format_time
     outfile.write(formatted_lilypond_file)
     outfile.close()
 
