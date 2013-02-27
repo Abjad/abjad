@@ -27,9 +27,6 @@ Methods
 .. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_dynamic
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_dynamic_handler
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_leaf_color
    :noindex:
 

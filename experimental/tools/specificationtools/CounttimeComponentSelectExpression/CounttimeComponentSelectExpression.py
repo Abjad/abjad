@@ -16,7 +16,8 @@ from experimental.tools.specificationtools.CounttimeComponentSelectExpressionSet
 from experimental.tools.specificationtools.SelectExpression import SelectExpression
 
 
-class CounttimeComponentSelectExpression(SelectExpression, CounttimeComponentSelectExpressionSetMethodMixin):
+#class CounttimeComponentSelectExpression(SelectExpression, CounttimeComponentSelectExpressionSetMethodMixin):
+class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMethodMixin, SelectExpression):
     r'''Counttime component select expression.
 
     Preparatory definitions:

@@ -1,8 +1,9 @@
 from abjad.tools import contexttools
-from experimental.tools.specificationtools.LeafSetExpression import LeafSetExpression
+from experimental.tools.specificationtools.CounttimeComponentSelectExpressionSetExpression import \
+    CounttimeComponentSelectExpressionSetExpression
 
 
-class DynamicHandlerSetExpression(LeafSetExpression):
+class DynamicHandlerSetExpression(CounttimeComponentSelectExpressionSetExpression):
     '''Dynamic handler set expression.
     '''
 
@@ -12,5 +13,5 @@ class DynamicHandlerSetExpression(LeafSetExpression):
         '''Execute dynamic handler set expression against `score`.
         '''
         handler = self.source_expression.payload
-        leaves = self._iterate_leaves_in_score(score)
+        leaves = self.target_counttime_component_select_expression.evaluate_against_score(score).payload
         handler(leaves)

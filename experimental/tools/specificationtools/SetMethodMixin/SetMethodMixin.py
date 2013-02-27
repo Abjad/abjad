@@ -3,6 +3,7 @@ from abjad.tools import contexttools
 from abjad.tools import iotools
 from abjad.tools import marktools
 from abjad.tools import pitchtools
+from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -112,18 +113,6 @@ class SetMethodMixin(AbjadObject):
         dynamic_mark = contexttools.DynamicMark(source_expression)
         source_expression = specificationtools.PayloadExpression(payload=dynamic_mark)
         attribute = 'dynamic'
-        return self._store_leaf_set_expression(attribute, source_expression)
-
-    def set_dynamic_handler(self, source_expression):
-        r'''Set dynamic handler to `source_expression`.
-
-        Return dynamic set expression.
-        '''
-        from experimental.tools import handlertools
-        from experimental.tools import specificationtools
-        assert isinstance(source_expression, handlertools.dynamics.DynamicHandler), repr(source_expression)
-        source_expression = specificationtools.PayloadExpression(payload=source_expression)
-        attribute = 'dynamic_handler'
         return self._store_leaf_set_expression(attribute, source_expression)
 
     def set_leaf_color(self, source_expression):

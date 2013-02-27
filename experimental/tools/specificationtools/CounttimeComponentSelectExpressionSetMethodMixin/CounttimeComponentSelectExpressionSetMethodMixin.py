@@ -27,6 +27,19 @@ class CounttimeComponentSelectExpressionSetMethodMixin(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def set_dynamic_handler(self, source_expression):
+        r'''Set dynamic handler to `source_expression`.
+
+        Return dynamic set expression.
+        '''
+        from experimental.tools import handlertools
+        from experimental.tools import specificationtools
+        assert isinstance(source_expression, handlertools.dynamics.DynamicHandler), repr(source_expression)
+        source_expression = specificationtools.PayloadExpression(payload=source_expression)
+        attribute = 'dynamic_handler'
+        return self._store_counttime_component_select_expression_set_expression(
+            'dynamic_handler', source_expression)
+
     def set_spanner(self, source_expression):
         r'''Set spanner to `source_expression`.
 
@@ -34,6 +47,7 @@ class CounttimeComponentSelectExpressionSetMethodMixin(AbjadObject):
         '''
         from experimental.tools import specificationtools
         assert isinstance(source_expression, spannertools.Spanner), repr(source_expression)
+        assert not len(source_expression)
         source_expression = specificationtools.PayloadExpression(payload=source_expression)
         return self._store_counttime_component_select_expression_set_expression(
             'spanner', source_expression)

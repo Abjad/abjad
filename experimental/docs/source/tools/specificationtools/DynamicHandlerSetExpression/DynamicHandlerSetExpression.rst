@@ -15,7 +15,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.specificationtools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.target_select_expression_inventory
+.. autoattribute:: experimental.tools.specificationtools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.target_counttime_component_select_expression
    :noindex:
 
 Methods

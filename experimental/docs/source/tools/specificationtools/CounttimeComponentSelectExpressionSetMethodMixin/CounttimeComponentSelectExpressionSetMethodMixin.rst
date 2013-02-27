@@ -15,6 +15,9 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpressionSetMethodMixin.CounttimeComponentSelectExpressionSetMethodMixin.CounttimeComponentSelectExpressionSetMethodMixin.set_dynamic_handler
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpressionSetMethodMixin.CounttimeComponentSelectExpressionSetMethodMixin.CounttimeComponentSelectExpressionSetMethodMixin.set_spanner
    :noindex:
 

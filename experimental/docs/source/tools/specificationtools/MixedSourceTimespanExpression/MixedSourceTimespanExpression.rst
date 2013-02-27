@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.specificationtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_dynamic
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_dynamic_handler
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_leaf_color
    :noindex:
 

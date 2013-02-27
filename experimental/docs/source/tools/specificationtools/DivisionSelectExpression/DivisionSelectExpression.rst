@@ -84,9 +84,6 @@ Methods
 .. automethod:: experimental.tools.specificationtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_dynamic
    :noindex:
 
-.. automethod:: experimental.tools.specificationtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_dynamic_handler
-   :noindex:
-
 .. automethod:: experimental.tools.specificationtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_leaf_color
    :noindex:
 
