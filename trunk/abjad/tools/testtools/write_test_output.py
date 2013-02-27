@@ -13,6 +13,7 @@ def write_test_output(output, full_file_name, test_function_name,
     if isinstance(output, scoretools.Score):
         lilypond_file = lilypondfiletools.make_floating_time_signature_lilypond_file(output)
         testtools.apply_additional_layout(lilypond_file)
+        score = output
     elif isinstance(output, lilypondfiletools.LilyPondFile):
         lilypond_file = output
         score = lilypond_file.score_block[0]
