@@ -69,12 +69,6 @@
 					\set stemRightBeamCount = #2
 					c'16 [
 					\set stemLeftBeamCount = #2
-					\set stemRightBeamCount = #2
-					c'16
-					\set stemLeftBeamCount = #2
-					\set stemRightBeamCount = #2
-					c'16
-					\set stemLeftBeamCount = #2
 					\set stemRightBeamCount = #1
 					c'16
 				}
@@ -91,11 +85,9 @@
 					\set stemRightBeamCount = #2
 					c'16
 					\set stemLeftBeamCount = #2
-					\set stemRightBeamCount = #1
+					\set stemRightBeamCount = #2
 					c'16
-				}
-				{
-					\set stemLeftBeamCount = #1
+					\set stemLeftBeamCount = #2
 					\set stemRightBeamCount = #2
 					c'16
 					\set stemLeftBeamCount = #2
@@ -104,6 +96,12 @@
 				}
 				{
 					\set stemLeftBeamCount = #1
+					\set stemRightBeamCount = #2
+					c'16
+					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #2
+					c'16
+					\set stemLeftBeamCount = #2
 					\set stemRightBeamCount = #2
 					c'16
 					\set stemLeftBeamCount = #2

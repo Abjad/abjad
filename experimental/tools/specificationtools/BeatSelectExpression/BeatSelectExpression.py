@@ -65,13 +65,10 @@ class BeatSelectExpression(SelectExpression):
         Return start-positioned division payload expression when evaluable.
         '''
         from experimental.tools import specificationtools
-        time_signatures = self.score_specification.time_signatures
-        timespan = self.score_specification.timespan
+        time_signatures = self.root_specification.time_signatures[:]
         beats = self._time_signatures_to_naive_beats(time_signatures)
-        weights = [timespan.start_offset, timespan.duration]
-        shards = sequencetools.split_sequence_by_weights(beats, weights, cyclic=False, overhang=False)
-        beats = shards[1]
-        start_offset = durationtools.Offset(sum(shards[0]))
+        timespan = self._evaluate_anchor_timespan()
+        start_offset = timespan.start_offset
         expression = specificationtools.StartPositionedDivisionPayloadExpression(
             payload=beats, start_offset=start_offset)
         expression = self._apply_callbacks(expression)
