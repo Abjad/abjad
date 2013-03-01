@@ -6,14 +6,8 @@ from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 
 
-# TODO: Change leaftools.make_leaves() signature to allow ('c', 4) named pairs
-#       This will allow the creation of enharmonic equivalents.
-#       Examples: leaftools.make_leaves([('c', 4), ('cs', 4)], [(1, 4)])
-
-# TODO: Extend leaftools.make_leaves() to accept Abjad Pitch instances. Ex:
-#       Example: leaftools.make_leaves([NamedChromaticPitch('cs', 4)], [(1, 4)])
-
-def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_rests=False):
+def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_rests=False,
+    forbidden_written_durations=None):
     r'''.. versionadded:: 1.1
 
     Construct a list of notes, rests or chords.

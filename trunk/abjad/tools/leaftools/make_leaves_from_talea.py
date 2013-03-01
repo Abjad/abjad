@@ -2,7 +2,8 @@ from abjad.tools import durationtools
 
 
 def make_leaves_from_talea(talea, denominator,
-    decrease_durations_monotonically=True, tie_rests=False, use_skips=False):
+    decrease_durations_monotonically=True, tie_rests=False, use_skips=False,
+    forbidden_written_durations=None):
     r'''.. versionadded:: 2.0
 
     Make leaves from `talea` and `denominator`::
@@ -36,21 +37,21 @@ def make_leaves_from_talea(talea, denominator,
     '''
     from abjad.tools import leaftools
 
+    assert all([x != 0 for x in talea]), repr(talea)
+
     # make notes and rests
     result = []
     for note_value in talea:
-        if note_value == 0:
-            raise ValueError('note values must be nonzero.')
-        elif 0 < note_value:
+        if 0 < note_value:
             leaves = leaftools.make_leaves(
                 [0], [durationtools.Duration(note_value, denominator)],
                 decrease_durations_monotonically=decrease_durations_monotonically,
-                tie_rests=tie_rests)
+                tie_rests=tie_rests, forbidden_written_durations=forbidden_written_durations)
         else:
             leaves = leaftools.make_leaves(
                 [None], [durationtools.Duration(-note_value, denominator)],
                 decrease_durations_monotonically=decrease_durations_monotonically,
-                tie_rests=tie_rests)
+                tie_rests=tie_rests, forbidden_written_durations=forbidden_written_durations)
         result.extend(leaves)
 
     # return result

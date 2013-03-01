@@ -16,13 +16,11 @@ def test_leaftools_make_leaves_01():
 def test_leaftools_make_leaves_02():
     '''Leaves constructor can create prolated chords, notes and rests
     simultaneously. Contiguous leaves with the same prolation are
-    put together inside a Tuplet.
+    put together inside a tuplet.
     '''
 
-    leaves = leaftools.make_leaves([1, (1,2,3), None], [(2, 9), (1,18), (1,5)])
-    #assert isinstance(leaves[0], Tuplet)
+    leaves = leaftools.make_leaves([1, (1, 2, 3), None], [(2, 9), (1, 18), (1,5)])
     assert isinstance(leaves[0], Tuplet)
-    #assert isinstance(leaves[1], Tuplet)
     assert isinstance(leaves[1], Tuplet)
     tuplet1 = leaves[0]
     assert len(tuplet1) == 2
@@ -45,10 +43,8 @@ def test_leaftools_make_leaves_03():
     '''
 
     leaves = leaftools.make_leaves([1, (1,2,3), None], [(2, 9), (1,8), (1,5)])
-    #assert isinstance(leaves[0], Tuplet)
     assert isinstance(leaves[0], Tuplet)
     assert isinstance(leaves[1], Chord)
-    #assert isinstance(leaves[2], Tuplet)
     assert isinstance(leaves[2], Tuplet)
     tuplet1 = leaves[0]
     assert len(tuplet1) == 1
@@ -61,7 +57,7 @@ def test_leaftools_make_leaves_03():
 
 
 def test_leaftools_make_leaves_04():
-    '''Leaves constructor can take an optional 'tie_rests' keyword argument.
+    '''Leaves constructor can take an optional tie_rests=False keyword argument.
     '''
 
     leaves = leaftools.make_leaves([None], [(5, 32), (5, 32)], tie_rests=True)
@@ -79,25 +75,45 @@ def test_leaftools_make_leaves_04():
 
 
 def test_leaftools_make_leaves_05():
-    ''''tie_rests' is False by default.'''
+    '''Do not tie rests unless specified.
+    '''
 
     leaves = leaftools.make_leaves([None], [(5, 32), (5, 32)])
     assert len(leaves) == 4
     for l in leaves:
       assert isinstance(l, Rest)
-      #assert l.tie.spanned == False
       assert not tietools.is_component_with_tie_spanner_attached(l)
 
 
 def test_leaftools_make_leaves_06():
-    '''Works with quarter-tone pitch numbers.'''
+    '''Works with quarter-tone pitch numbers.
+    '''
 
     leaves = leaftools.make_leaves([12, 12.5, 13, 13.5], [(1, 4)])
-    assert [leaf.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number for leaf in leaves] == [12, 12.5, 13, 13.5]
+    assert [leaf.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number for leaf in leaves] == \
+        [12, 12.5, 13, 13.5]
 
 
 def test_leaftools_make_leaves_07():
-    '''Works with pitch instances.'''
+    '''Works with pitch instances.
+    '''
 
     leaves = leaftools.make_leaves([pitchtools.NamedChromaticPitch(0)], [(1, 8), (1, 8), (1, 4)])
     assert [leaf.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number for leaf in leaves] == [0, 0, 0]
+
+
+def test_leaftools_make_leaves_08():
+    '''Works with pitch-class / octave strings.
+    '''
+
+    leaves = leaftools.make_leaves([('C#5', 'Db5')], [Duration(1, 4), Duration(1, 8)])
+    staff = Staff(leaves)
+
+    r'''
+    \new Staff {
+        <cs'' df''>4
+        <cs'' df''>8
+    }
+    '''
+
+    assert staff.lilypond_format == "\\new Staff {\n\t<cs'' df''>4\n\t<cs'' df''>8\n}"
