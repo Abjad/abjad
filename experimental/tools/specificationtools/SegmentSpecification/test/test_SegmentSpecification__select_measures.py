@@ -60,7 +60,7 @@ def test_SegmentSpecification__select_measures_03():
 
 
 def test_SegmentSpecification__select_measures_04():
-    '''Negative index.
+    '''Negative slice index.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -79,7 +79,7 @@ def test_SegmentSpecification__select_measures_04():
 
 
 def test_SegmentSpecification__select_measures_05():
-    '''Positive index.
+    '''Positive slice indices.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -250,6 +250,44 @@ def test_SegmentSpecification__select_measures_13():
     measures = measures[2:8]
     measures = measures.partition_by_ratio((1, 1, 1))[1]
     measures.timespan.set_rhythm(library.sixteenths)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification__select_measures_14():
+    '''Positive integer index.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures(4 * [(2, 8)])
+    red_segment.set_divisions([(2, 16)])
+    red_segment.set_rhythm(library.sixteenths)
+    measure = red_segment.select_measures('Voice 1')[1]
+    measure.timespan.select_leaves('Voice 1').set_spanner(spannertools.SlurSpanner())
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification__select_measures_15():
+    '''Negative integer index.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures(4 * [(2, 8)])
+    red_segment.set_divisions([(2, 16)])
+    red_segment.set_rhythm(library.sixteenths)
+    measure = red_segment.select_measures('Voice 1')[-2]
+    measure.timespan.select_leaves('Voice 1').set_spanner(spannertools.SlurSpanner())
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
