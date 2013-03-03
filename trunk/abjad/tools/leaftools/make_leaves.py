@@ -12,88 +12,135 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
 
     Make leaves.
 
-    Set `pitches` is a single pitch, or a list of pitches, or a tuple
-    of pitches.
-
-    Integer pitches create notes:
+    Integer and string elements in `pitches` result in notes:
 
     ::
 
-        >>> leaftools.make_leaves([2, 4, 19], [(1, 4)])
-        [Note("d'4"), Note("e'4"), Note("g''4")]
-
-    Tuple pitches create chords:
+        >>> leaves = leaftools.make_leaves([2, 4, 'F#5', 'G#5'], [Duration(1, 4)])
+        >>> staff = Staff(leaves)
 
     ::
 
-        >>> leaftools.make_leaves([(0, 1, 2), (3, 4, 5), (6, 7, 8)], [(1, 4)])
-        [Chord("<c' cs' d'>4"), Chord("<ef' e' f'>4"), Chord("<fs' g' af'>4")]
+        >>> show(staff) # doctest: +SKIP
 
-    Set `pitches` to a list of none to create rests:
-
-    ::
-
-        >>> leaftools.make_leaves([None, None, None, None], [(1, 8)])
-        [Rest('r8'), Rest('r8'), Rest('r8'), Rest('r8')]
-
-    You can mix and match pitch values:
+    Tuple elements in `pitches` result in chords:
 
     ::
 
-        >>> leaftools.make_leaves([12, (1, 2, 3), None, 12], [(1, 4)])
-        [Note("c''4"), Chord("<cs' d' ef'>4"), Rest('r4'), Note("c''4")]
+        >>> leaves = leaftools.make_leaves([(0, 2, 4), ('F#5', 'G#5', 'A#5')], [Duration(1, 2)])
+        >>> staff = Staff(leaves)
 
-    If the length of `pitches` is less than the length of `durations`,
-    the function reads `durations` cyclically:
+    ::
+        
+        >>> show(staff) # doctest: +SKIP
+
+    None-valued elements in `pitches` result in rests:
+
+    ::
+
+        >>> leaves = leaftools.make_leaves([None, None, None, None], [Duration(1, 4)])
+        >>> staff = stafftools.RhythmicStaff(leaves)
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    You can mix and match values passed to `pitches`:
+
+    ::
+
+        >>> leaves = leaftools.make_leaves([(0, 2, 4), None, 'C#5', 'D#5'], [Duration(1, 4)])
+        >>> staff = Staff(leaves)
+
+    ::
+        
+
+        >>> show(staff) # doctest: +SKIP
+
+    Read `pitches` cyclically when the length of `pitches`
+    is less than the length of `durations`:
     
     ::
 
-        >>> leaftools.make_leaves([13], [(1, 8), (1, 8), (1, 4), (1, 4)])
-        [Note("cs''8"), Note("cs''8"), Note("cs''4"), Note("cs''4")]
-
-    Set `durations` to a single duration, a list of duration, or
-    a tuple of durations.
-
-    If the length of `durations` is less than the length of `pitches`,
-    the function reads `pitches` cyclically:
+        >>> leaves = leaftools.make_leaves(['C5'], 2 * [Duration(3, 8), Duration(1, 8)])
+        >>> staff = Staff(leaves)
 
     ::
 
-        >>> leaftools.make_leaves([13, 14, 15, 16], [(1, 8)])
-        [Note("cs''8"), Note("d''8"), Note("ef''8"), Note("e''8")]
+        >>> show(staff) # doctest: +SKIP
 
-    Duration values not of the form ``m / 2 ** n`` return
-    leaves nested inside a fixed-multiplier tuplet:
-
-    ::
-
-        >>> leaftools.make_leaves([14], [(1, 12), (1, 12), (1, 12)])
-        [Tuplet(2/3, [d''8, d''8, d''8])]
-
-    Set ``decrease_durations_monotonically=False`` to return tied leaf
-    durations from least to greatest:
+    Read `durations` cyclically when the length of `durations`
+    is less than the length of `pitches`:
 
     ::
 
-        >>> staff = Staff(leaftools.make_leaves([15], [(13, 16)],
-        ...     decrease_durations_monotonically=False))
+        >>> leaves = leaftools.make_leaves("c'' d'' e'' f''", [Duration(1, 4)])
+        >>> staff = Staff(leaves)
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    Elements in `durations` with non-power-of-two denominators
+    result in tuplet-nested leaves:
+
+    ::
+
+        >>> leaves = leaftools.make_leaves(['D5'], 3 * [Duration(1, 3)])
+        >>> staff = Staff(leaves)
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    Set `decrease_durations_monotonically` to true to return
+    nonassignable durations tied from greatest to least:
+
+    ::
+
+        >>> leaves = leaftools.make_leaves(['D#5'], [Duration(13, 16)])
+        >>> staff = Staff(leaves)
+        >>> time_signature = contexttools.TimeSignatureMark((13, 16))(staff)
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    Set `decrease_durations_monotonically` to false to return
+    nonassignable durations tied from least to greatest:
+
+    ::
+
+        >>> leaves = leaftools.make_leaves(['E5'], [Duration(13, 16)], 
+        ...     decrease_durations_monotonically=False)
+        >>> staff = Staff(leaves)
+        >>> time_signature = contexttools.TimeSignatureMark((13, 16))(staff)
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    Set `tie_rests` to true to return tied rests for nonassignable durations.
+    Note that LilyPond does not engrave ties between rests:
+
+    ::
+
+        >>> leaves = leaftools.make_leaves([None], [Duration(5, 8)], tie_rests=True)
+        >>> staff = stafftools.RhythmicStaff(leaves)
+        >>> time_signature = contexttools.TimeSignatureMark((5, 8))(staff)
+
+    ::
+
         >>> f(staff)
-        \new Staff {
-            ef''16 ~
-            ef''2.
+        \new RhythmicStaff {
+            \time 5/8
+            r2 ~
+            r8
         }
 
-    Set `tie_rests` to true to return tied rests for durations like
-    ``5/16`` and ``9/16``:
-
     ::
 
-        >>> staff = Staff(leaftools.make_leaves([None], [(5, 16)], tie_rests=True))
-        >>> f(staff)
-        \new Staff {
-            r4 ~
-            r16
-        }
+        >>> show(staff) # doctest: +SKIP
 
     Return list of leaves.
     '''
