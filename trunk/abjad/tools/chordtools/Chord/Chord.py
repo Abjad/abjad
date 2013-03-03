@@ -96,11 +96,15 @@ class Chord(Leaf):
 
     def __setitem__(self, i, arg):
         from abjad.tools.notetools.NoteHead import NoteHead
-        if isinstance(arg, NoteHead):
+        if isinstance(i, slice) and arg == []:
+            note_head = []
+        elif isinstance(arg, NoteHead):
             note_head = arg
+            note_head._client = self
         else:
             note_head = NoteHead(arg)
-        note_head._client = self
+            note_head._client = self
+        #note_head._client = self
         self._note_heads[i] = note_head
         self._note_heads.sort()
 
@@ -120,7 +124,7 @@ class Chord(Leaf):
 
     def _copy_with_marks_but_without_children_or_spanners(self):
         new = Leaf._copy_with_marks_but_without_children_or_spanners(self)
-        new.clear()
+        new[:] = []
         for note_head in self.note_heads:
             new_note_head = copy.copy(note_head)
             new.append(new_note_head)
@@ -277,27 +281,6 @@ class Chord(Leaf):
         note_head._client = self
         self._note_heads.append(note_head)
         self._note_heads.sort()
-
-    def clear(self):
-        '''Clear chord::
-
-            >>> chord = Chord("<e' cs'' f''>4")
-            >>> chord
-            Chord("<e' cs'' f''>4")
-
-        ::
-
-            >>> chord.clear()
-            >>> chord
-            Chord('<>4')
-
-        Return none.
-        '''
-        # these two statements are equivalent;
-        # the slice assignment version casues pychecker to blow an exception
-        # wherease the explicit call to __delitem__ doesn't.
-        #del(self[:])
-        self.__delitem__(slice(0, len(self)))
 
     def extend(self, note_heads):
         '''Extend chord with `note_heads`::

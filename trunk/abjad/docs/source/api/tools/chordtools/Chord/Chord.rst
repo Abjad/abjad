@@ -105,9 +105,6 @@ Methods
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.append
    :noindex:
 
-.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.clear
-   :noindex:
-
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.extend
    :noindex:
 
