@@ -7,7 +7,7 @@ from abjad.tools import sequencetools
 
 
 def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_rests=False,
-    forbidden_written_durations=None):
+    forbidden_written_duration=None):
     r'''.. versionadded:: 1.1
 
     Make leaves.
@@ -153,13 +153,16 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         decrease_durations_monotonically=decrease_durations_monotonically):
         if isinstance(pitch, (numbers.Number, str, pitchtools.NamedChromaticPitch)):
             leaves = notetools.make_tied_note(pitch, duration,
-                decrease_durations_monotonically=decrease_durations_monotonically)
+                decrease_durations_monotonically=decrease_durations_monotonically,
+                forbidden_written_duration=forbidden_written_duration)
         elif isinstance(pitch, (tuple, list)):
             leaves = chordtools.make_tied_chord(pitch, duration,
-                decrease_durations_monotonically=decrease_durations_monotonically)
+                decrease_durations_monotonically=decrease_durations_monotonically,
+                forbidden_written_duration=forbidden_written_duration)
         elif pitch is None:
             leaves = resttools.make_tied_rest(duration,
                 decrease_durations_monotonically=decrease_durations_monotonically,
+                forbidden_written_duration=forbidden_written_duration,
                 tie_parts=tie_rests)
         else:
             raise ValueError('Unknown pitch {!r}.'.format(pitch))

@@ -2,7 +2,8 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def make_tied_leaf(kind, duration, decrease_durations_monotonically=True, pitches=None, tie_parts=True):
+def make_tied_leaf(kind, duration, decrease_durations_monotonically=True, 
+    forbidden_written_duration=None, pitches=None, tie_parts=True):
     '''.. versionadded:: 1.0
 
     Make tied leaf of `kind` with assignable `duration`.
