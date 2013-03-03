@@ -10,33 +10,43 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
     forbidden_written_durations=None):
     r'''.. versionadded:: 1.1
 
-    Construct a list of notes, rests or chords.
+    Make leaves.
 
     Set `pitches` is a single pitch, or a list of pitches, or a tuple
     of pitches.
 
-    Integer pitches create notes. ::
+    Integer pitches create notes:
+
+    ::
 
         >>> leaftools.make_leaves([2, 4, 19], [(1, 4)])
         [Note("d'4"), Note("e'4"), Note("g''4")]
 
-    Tuple pitches create chords. ::
+    Tuple pitches create chords:
+
+    ::
 
         >>> leaftools.make_leaves([(0, 1, 2), (3, 4, 5), (6, 7, 8)], [(1, 4)])
         [Chord("<c' cs' d'>4"), Chord("<ef' e' f'>4"), Chord("<fs' g' af'>4")]
 
-    Set `pitches` to a list of none to create rests. ::
+    Set `pitches` to a list of none to create rests:
+
+    ::
 
         >>> leaftools.make_leaves([None, None, None, None], [(1, 8)])
         [Rest('r8'), Rest('r8'), Rest('r8'), Rest('r8')]
 
-    You can mix and match pitch values. ::
+    You can mix and match pitch values:
+
+    ::
 
         >>> leaftools.make_leaves([12, (1, 2, 3), None, 12], [(1, 4)])
         [Note("c''4"), Chord("<cs' d' ef'>4"), Rest('r4'), Note("c''4")]
 
     If the length of `pitches` is less than the length of `durations`,
-    the function reads `durations` cyclically. ::
+    the function reads `durations` cyclically:
+    
+    ::
 
         >>> leaftools.make_leaves([13], [(1, 8), (1, 8), (1, 4), (1, 4)])
         [Note("cs''8"), Note("cs''8"), Note("cs''4"), Note("cs''4")]
@@ -45,19 +55,25 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
     a tuple of durations.
 
     If the length of `durations` is less than the length of `pitches`,
-    the function reads `pitches` cyclically. ::
+    the function reads `pitches` cyclically:
+
+    ::
 
         >>> leaftools.make_leaves([13, 14, 15, 16], [(1, 8)])
         [Note("cs''8"), Note("d''8"), Note("ef''8"), Note("e''8")]
 
     Duration values not of the form ``m / 2 ** n`` return
-    leaves nested inside a fixed-multiplier tuplet. ::
+    leaves nested inside a fixed-multiplier tuplet:
+
+    ::
 
         >>> leaftools.make_leaves([14], [(1, 12), (1, 12), (1, 12)])
         [Tuplet(2/3, [d''8, d''8, d''8])]
 
     Set ``decrease_durations_monotonically=False`` to return tied leaf
-    durations from least to greatest::
+    durations from least to greatest:
+
+    ::
 
         >>> staff = Staff(leaftools.make_leaves([15], [(13, 16)],
         ...     decrease_durations_monotonically=False))
@@ -68,7 +84,9 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         }
 
     Set `tie_rests` to true to return tied rests for durations like
-    ``5/16`` and ``9/16``. ::
+    ``5/16`` and ``9/16``:
+
+    ::
 
         >>> staff = Staff(leaftools.make_leaves([None], [(5, 16)], tie_rests=True))
         >>> f(staff)
@@ -78,10 +96,6 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         }
 
     Return list of leaves.
-
-    .. versionchanged:: 2.0
-        renamed ``construct.leaves()`` to
-        ``leaftools.make_leaves()``.
     '''
     from abjad.tools import chordtools
     from abjad.tools import notetools
@@ -90,7 +104,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
 
     def _make_leaf_on_pitch(pitch, duration,
         decrease_durations_monotonically=decrease_durations_monotonically):
-        if isinstance(pitch, (int, long, float, pitchtools.NamedChromaticPitch)):
+        if isinstance(pitch, (numbers.Number, str, pitchtools.NamedChromaticPitch)):
             leaves = notetools.make_tied_note(pitch, duration,
                 decrease_durations_monotonically=decrease_durations_monotonically)
         elif isinstance(pitch, (tuple, list)):
@@ -103,6 +117,9 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         else:
             raise ValueError('Unknown pitch {!r}.'.format(pitch))
         return leaves
+
+    if isinstance(pitches, str):
+        pitches = pitches.split()
 
     if not isinstance(pitches, list):
         pitches = [pitches]

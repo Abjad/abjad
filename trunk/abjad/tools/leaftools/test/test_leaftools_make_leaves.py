@@ -103,7 +103,7 @@ def test_leaftools_make_leaves_07():
 
 
 def test_leaftools_make_leaves_08():
-    '''Works with pitch-class / octave strings.
+    '''Chords work with pitch-class / octave strings.
     '''
 
     leaves = leaftools.make_leaves([('C#5', 'Db5')], [Duration(1, 4), Duration(1, 8)])
@@ -117,3 +117,39 @@ def test_leaftools_make_leaves_08():
     '''
 
     assert staff.lilypond_format == "\\new Staff {\n\t<cs'' df''>4\n\t<cs'' df''>8\n}"
+
+
+def test_leaftools_make_leaves_09():
+    '''Notes work with pitch-class / octave strings.
+    '''
+
+    leaves = leaftools.make_leaves(['C#5', 'Db5'], [Duration(1, 4)])
+    staff = Staff(leaves)
+
+    r'''
+    \new Staff {
+        cs''4
+        df''4
+    }
+    '''
+
+    assert staff.lilypond_format == "\\new Staff {\n\tcs''4\n\tdf''4\n}"
+
+
+def test_leaftools_make_leaves_10():
+    '''Works with space-delimited string of chromatic pitch names.
+    '''
+
+    leaves = leaftools.make_leaves("C#5 Db5 c'' fs''", [Duration(1, 4)])
+    staff = Staff(leaves)
+
+    r'''
+    \new Staff {
+        cs''4
+        df''4
+        c''4
+        fs''4
+    }
+    '''
+
+    assert staff.lilypond_format == "\\new Staff {\n\tcs''4\n\tdf''4\n\tc''4\n\tfs''4\n}"
