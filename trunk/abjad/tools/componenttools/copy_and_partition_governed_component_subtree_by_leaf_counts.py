@@ -73,10 +73,6 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
     Set `leaf_counts` to an iterable of zero or more positive integers.
 
     Return a list of parts equal in length to that of `leaf_counts`.
-
-    .. versionchanged:: 2.0
-        renamed ``clonewp.by_leaf_counts_with_parentage()`` to
-        ``componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts()``.
     '''
     from abjad.tools import componenttools
     from abjad.tools import containertools

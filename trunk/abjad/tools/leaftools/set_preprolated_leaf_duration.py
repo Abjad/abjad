@@ -81,10 +81,6 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
         c'8 * 5/6
 
     Return list of `leaf` and leaves newly tied to `leaf`.
-
-    .. versionchanged:: 2.0
-        renamed ``leaftools.change_leaf_preprolated_duration()`` to
-        ``leaftools.set_preprolated_leaf_duration()``.
     '''
     from abjad.tools import leaftools
     from abjad.tools import notetools

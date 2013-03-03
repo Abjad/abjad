@@ -26,10 +26,6 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
         }
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``measuretools.subsume()`` to
-        ``measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature()``.
     '''
     from abjad.tools import componenttools
     from abjad.tools import contexttools

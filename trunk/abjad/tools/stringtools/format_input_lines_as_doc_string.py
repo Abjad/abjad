@@ -1,5 +1,5 @@
 def format_input_lines_as_doc_string(input_lines):
-    r""".. versionadded:: 2.0
+    r'''.. versionadded:: 2.0
 
     Format `input_lines` as doc string.
 
@@ -12,7 +12,7 @@ def format_input_lines_as_doc_string(input_lines):
     Use when writing docstrings.
 
     Example skipped because docstring goes crazy on example input.
-    """
+    '''
 
     # TODO: use configurationtools to get tab width programmatically
     tab = '    '

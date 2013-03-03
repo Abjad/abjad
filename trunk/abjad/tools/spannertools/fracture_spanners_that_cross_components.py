@@ -54,9 +54,7 @@ def fracture_spanners_that_cross_components(components):
             }
         }
 
-    .. versionchanged:: 2.0
-        renamed ``spannertools.fracture_crossing()`` to
-        ``spannertools.fracture_spanners_that_cross_components()``.
+    Return selection.
     '''
     from abjad.tools import spannertools
 

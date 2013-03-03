@@ -20,10 +20,6 @@ def rotate_sequence(sequence, n):
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     Return newly created `sequence` object.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.rotate()`` to
-        ``sequencetools.rotate_sequence()``.
     '''
 
     result = []

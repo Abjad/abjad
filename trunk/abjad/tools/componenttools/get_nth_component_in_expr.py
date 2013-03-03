@@ -60,10 +60,6 @@ def get_nth_component_in_expr(expr, klasses, n=0):
         Rest('r16')
 
     Return component or none.
-
-    .. versionchanged:: 2.0
-        renamed ``iterate.get_nth()`` to
-        ``componenttools.get_nth_component_in_expr()``.
     '''
     from abjad.tools import iterationtools
 

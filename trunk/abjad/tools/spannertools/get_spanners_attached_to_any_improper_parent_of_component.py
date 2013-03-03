@@ -33,10 +33,6 @@ def get_spanners_attached_to_any_improper_parent_of_component(component, klass=N
         TrillSpanner({c'8, d'8, e'8, f'8})
 
     Return unordered set of zero or more spanners.
-
-    .. versionchanged:: 2.0
-        renamed ``spannertools.get_all_spanners_attached_to_improper_parentage_of_component()`` to
-        ``spannertools.get_spanners_attached_to_any_improper_parent_of_component()``.
     '''
     # externalized version of (old) spanner receptor 'spanners_in_parentage' attribute
     result = set([])

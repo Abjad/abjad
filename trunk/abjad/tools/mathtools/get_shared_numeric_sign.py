@@ -20,10 +20,6 @@ def get_shared_numeric_sign(sequence):
         True
 
     Return ``1``, ``-1``, ``0`` or none.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.sign()`` to
-        ``mathtools.get_shared_numeric_sign()``.
     '''
 
     if len(sequence) == 0:

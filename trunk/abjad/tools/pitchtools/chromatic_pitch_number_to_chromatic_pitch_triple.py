@@ -14,10 +14,6 @@ def chromatic_pitch_number_to_chromatic_pitch_triple(
         ('c', Accidental('s'), 5)
 
     Return tuple.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.number_to_letter_accidental_octave()`` to
-        ``pitchtools.chromatic_pitch_number_to_chromatic_pitch_triple()``.
     '''
     from abjad.tools import pitchtools
 

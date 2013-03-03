@@ -26,10 +26,6 @@ def set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(expr, key_signatu
         Optional `key_signature` keyword argument.
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.diatonicize()`` to
-        ``pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr()``.
     '''
     from abjad.tools import chordtools
     from abjad.tools import iterationtools

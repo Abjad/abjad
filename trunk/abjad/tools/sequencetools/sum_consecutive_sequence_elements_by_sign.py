@@ -56,10 +56,6 @@ def sum_consecutive_sequence_elements_by_sign(sequence, sign=[-1, 0, 1]):
     When ``1`` in `sign`, sum consecutive positive elements.
 
     Return list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.sum_by_sign()`` to
-        ``sequencetools.sum_consecutive_sequence_elements_by_sign()``.
     '''
 
     result = []

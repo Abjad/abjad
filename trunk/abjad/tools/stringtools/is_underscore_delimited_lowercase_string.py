@@ -18,10 +18,6 @@ def is_underscore_delimited_lowercase_string(expr):
         False
 
     Return boolean.
-
-    .. versionchanged:: 2.9
-        renamed ``iotools.is_underscore_delimited_lowercase_string()`` to
-        ``stringtools.is_underscore_delimited_lowercase_string()``.
     '''
 
     if not isinstance(expr, str):

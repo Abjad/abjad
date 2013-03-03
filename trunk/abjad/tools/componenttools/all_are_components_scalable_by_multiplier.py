@@ -18,10 +18,6 @@ def all_are_components_scalable_by_multiplier(components, multiplier):
         False
 
     Return boolean.
-
-    .. versionchanged:: 2.0
-        renamed ``durationtools.are_scalable()`` to
-        ``componenttools.all_are_components_scalable_by_multiplier()``.
     '''
     from abjad.tools import leaftools
 

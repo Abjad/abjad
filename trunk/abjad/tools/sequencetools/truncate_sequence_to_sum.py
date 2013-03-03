@@ -31,10 +31,6 @@ def truncate_sequence_to_sum(sequence, target_sum):
     Raise value error on negative `target_sum`.
 
     Return new list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.truncate_to_sum()`` to
-        ``sequencetools.truncate_sequence_to_sum()``.
     '''
 
     if not isinstance(sequence, list):

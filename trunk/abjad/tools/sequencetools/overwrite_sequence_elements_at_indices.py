@@ -11,10 +11,6 @@ def overwrite_sequence_elements_at_indices(sequence, pairs):
     Set `pairs` to a list of ``(anchor_index, length)`` pairs.
 
     Return new list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.overwrite_slices_at()`` to
-        ``sequencetools.overwrite_sequence_elements_at_indices()``.
     '''
 
     result = sequence[:]

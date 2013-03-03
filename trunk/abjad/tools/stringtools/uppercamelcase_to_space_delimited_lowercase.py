@@ -11,10 +11,6 @@ def uppercamelcase_to_space_delimited_lowercase(string):
         'key signature mark'
 
     Return string.
-
-    .. versionchanged:: 2.9
-        renamed ``iotools.uppercamelcase_to_space_delimited_lowercase()`` to
-        ``stringtools.uppercamelcase_to_space_delimited_lowercase()``.
     '''
 
     words = []

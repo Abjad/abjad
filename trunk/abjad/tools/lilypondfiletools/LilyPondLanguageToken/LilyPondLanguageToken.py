@@ -11,9 +11,6 @@ class LilyPondLanguageToken(AbjadObject):
         LilyPondLanguageToken('english')
 
     Return LilyPond language token.
-
-    .. versionchanged:: 2.9
-        format with LilyPond ``\language`` command instead of LilyPond ``\include`` command.
     '''
 
     ### INITIALIZER ###

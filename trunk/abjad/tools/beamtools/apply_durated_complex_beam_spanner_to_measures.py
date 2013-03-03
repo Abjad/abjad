@@ -64,13 +64,6 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
     Set beam spanner durations to preprolated measure durations.
 
     Return beam spanner created.
-
-    .. versionchanged:: 2.0
-        renamed ``measuretools.beam_together()``.
-
-    .. versionchanged:: 2.9
-        renamed ``measuretools.apply_durated_complex_beam_spanner_to_measures()`` to
-        ``beamtools.apply_durated_complex_beam_spanner_to_measures()``.
     '''
     from abjad.tools import beamtools
 

@@ -20,10 +20,6 @@ def capitalize_string_start(string):
         'Violin i'
 
     Return newly constructed string.
-
-    .. versionchanged:: 2.9
-        renamed ``iotools.capitalize_string_start()`` to
-        ``stringtools.capitalize_string_start()``.
     '''
 
     if not isinstance(string, str):

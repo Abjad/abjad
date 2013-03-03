@@ -49,10 +49,6 @@ def get_spanners_attached_to_component(component, klass=None):
         SlurSpanner(c'8, d'8)
 
     Return unordered set of zero or more spanners.
-
-    .. versionchanged:: 2.0
-        renamed ``spannertools.get_all_spanners_attached_to_component()`` to
-        ``spannertools.get_spanners_attached_to_component()``.
     '''
 
     if klass is None:

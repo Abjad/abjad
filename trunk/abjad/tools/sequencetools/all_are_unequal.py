@@ -17,10 +17,6 @@ def all_are_unequal(expr):
         False
 
     Return boolean.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.is_unique()`` to
-        ``sequencetools.all_are_unequal()``.
     '''
 
     try:

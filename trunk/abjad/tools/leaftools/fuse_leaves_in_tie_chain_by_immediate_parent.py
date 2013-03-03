@@ -40,10 +40,6 @@ def fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain):
         }
 
     Return list of fused notes by parent.
-
-    .. versionchanged:: 2.0
-        renamed ``fuse.leaves_in_tie_chain()`` to
-        ``leaftools.fuse_leaves_in_tie_chain_by_immediate_parent()``.
     '''
     from abjad.tools import leaftools
     from abjad.tools import tietools

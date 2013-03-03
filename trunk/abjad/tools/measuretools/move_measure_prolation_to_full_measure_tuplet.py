@@ -14,10 +14,6 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
     Note that not all non-power-of-two measures can be made power-of-two.
 
     Returns None because processes potentially many measures.
-
-    .. versionchanged:: 2.0
-        renamed ``measuretools.project()`` to
-        ``measuretools.move_measure_prolation_to_full_measure_tuplet()``.
     '''
     from abjad.tools import contexttools
     from abjad.tools import iterationtools

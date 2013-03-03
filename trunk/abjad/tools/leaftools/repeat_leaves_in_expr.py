@@ -37,10 +37,6 @@ def repeat_leaves_in_expr(expr, total=1):
     Preserve parentage and spanners.
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``leaftools.multiply()`` to
-        ``leaftools.repeat_leaves_in_expr()``.
     '''
     from abjad.tools import iterationtools
     from abjad.tools import leaftools

@@ -20,10 +20,6 @@ def all_are_numbers(expr):
         False
 
     Return boolean.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.is_numeric()`` to
-        ``sequencetools.all_are_numbers()``.
     '''
 
     try:

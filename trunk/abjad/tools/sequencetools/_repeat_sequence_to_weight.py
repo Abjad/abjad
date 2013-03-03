@@ -20,9 +20,7 @@ def _repeat_sequence_to_weight(sequence, weight, remainder='chop'):
         >>> _repeat_sequence_to_weight([5, 5, 5], 23, remainder='more')
         [5, 5, 5, 5, 5]
 
-    .. versionchanged:: 2.0
-        renamed ``listtools.repeat_list_to_weight()`` to
-        ``sequencetools.repeat_sequence_to_weight()``.
+    Return new sequence.
     '''
 
     assert isinstance(weight, Number)

@@ -9,10 +9,6 @@ def is_named_chromatic_pitch_token(pitch_token):
         True
 
     Return boolean.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.is_pitch_token()`` to
-        ``pitchtools.is_named_chromatic_pitch_token()``.
     '''
     from abjad.tools import pitchtools
 

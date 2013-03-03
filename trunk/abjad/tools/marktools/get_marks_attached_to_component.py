@@ -28,10 +28,6 @@ def get_marks_attached_to_component(component):
         (LilyPondComment('beginning of note content')(c'8), LilyPondCommandMark('slurDotted')(c'8))
 
     Return tuple of zero or more marks.
-
-    .. versionchanged:: 2.0
-        renamed ``marktools.get_all_marks_attached_to_component()`` to
-        ``marktools.get_marks_attached_to_component()``.
     '''
 
     marks = component._marks_for_which_component_functions_as_start_component

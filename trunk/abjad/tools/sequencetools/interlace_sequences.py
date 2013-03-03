@@ -15,10 +15,6 @@ def interlace_sequences(*sequences):
         [100, 200, 300, 400, 101, 301, 401, 102, 302, 402, 403, 404, 405, 406, 407]
 
     Return list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.interlace()`` to
-        ``sequencetools.interlace_sequences()``.
     '''
 
     zipped_sequences = zip_sequences_without_truncation(*sequences)

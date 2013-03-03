@@ -37,10 +37,6 @@ def remove_markup_from_leaves_in_expr(expr):
         >>> show(staff) # doctest: +SKIP
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``label.clear_leaves()`` to
-        ``labeltools.remove_markup_from_leaves_in_expr()``.
     '''
 
     for leaf in iterationtools.iterate_leaves_in_expr(expr):

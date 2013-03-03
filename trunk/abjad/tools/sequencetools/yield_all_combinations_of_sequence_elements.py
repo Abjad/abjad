@@ -34,10 +34,6 @@ def yield_all_combinations_of_sequence_elements(sequence, min_length=None, max_l
         [[1, 2], [1, 3], [2, 3], [1, 4], [2, 4], [3, 4]]
 
     Return generator of newly created `sequence` objects.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.sublists()`` to
-        ``sequencetools.yield_all_combinations_of_sequence_elements()``.
     '''
 
     len_l = len(sequence)

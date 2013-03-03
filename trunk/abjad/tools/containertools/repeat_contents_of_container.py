@@ -37,10 +37,6 @@ def repeat_contents_of_container(container, total=2):
     Empty `container` when `total` is ``0``.
 
     Return `container`.
-
-    .. versionchanged:: 2.0
-        renamed ``containertools.contents_multiply()`` to
-        ``containertools.repeat_contents_of_container()``.
     '''
     from abjad.tools import containertools
 

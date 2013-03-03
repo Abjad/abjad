@@ -47,10 +47,6 @@ def get_previous_measure_from_component(component):
 
     When `component` is a leaf and there is no measure in the parentage
     of `component`, raise missing measure error.
-
-    .. versionchanged:: 2.0
-        renamed ``iterate.measure_prev()`` to
-        ``measuretools.get_previous_measure_from_component()``.
     '''
     from abjad.tools import iterationtools
     from abjad.tools import measuretools

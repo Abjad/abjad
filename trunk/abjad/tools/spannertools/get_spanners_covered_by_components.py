@@ -11,10 +11,6 @@ def get_spanners_covered_by_components(components):
 
     A spanner `p` is covered by timespan `t` when and only when
     ``t.start_ofset <= p.start_offset and p.stop_offset <= t.stop_offset``.
-
-    .. versionchanged:: 2.0
-        renamed ``spannertools.get_covered()`` to
-        ``spannertools.get_spanners_covered_by_components()``.
     '''
     from abjad.tools import spannertools
 

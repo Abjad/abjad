@@ -23,10 +23,6 @@ def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction=Down):
 
     Number leaves starting from ``1``.
 
-    .. versionchanged:: 2.0
-        renamed ``label.leaf_numbers()`` to
-        ``labeltools.label_leaves_in_expr_with_leaf_numbers()``.
-
     Return none.
     '''
 

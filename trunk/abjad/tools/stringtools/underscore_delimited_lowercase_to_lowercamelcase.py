@@ -7,13 +7,7 @@ def underscore_delimited_lowercase_to_lowercamelcase(string):
         >>> stringtools.underscore_delimited_lowercase_to_lowercamelcase(string)
         'bassFigureAlignmentPositioning'
 
-    .. versionchanged:: 2.0
-        renamed ``stringtools.underscore_delimited_lowercase_to_lowercamelcase()`` to
-        ``stringtools.underscore_delimited_lowercase_to_lowercamelcase()``.
-
-    .. versionchanged:: 2.9
-        renamed ``iotools.underscore_delimited_lowercase_to_lowercamelcase()`` to
-        ``stringtools.underscore_delimited_lowercase_to_lowercamelcase()``.
+    Return string.
     '''
 
     parts = string.split('_')

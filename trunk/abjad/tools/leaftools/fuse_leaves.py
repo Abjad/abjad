@@ -20,10 +20,6 @@ def fuse_leaves(leaves):
     Detach all leaves in `leaves` other than first leaf from score.
 
     Return list of first leaf in `leaves`.
-
-    .. versionchanged:: 2.0
-        renamed ``fuse.leaves_by_reference()`` to
-        ``leaftools.fuse_leaves()``.
     '''
     from abjad.tools import leaftools
 

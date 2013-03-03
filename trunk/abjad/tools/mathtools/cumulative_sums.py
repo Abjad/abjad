@@ -9,10 +9,6 @@ def cumulative_sums(sequence):
     Raise value error on empty `sequence`.
 
     Return list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.cumulative_sums()`` to
-        ``mathtools.cumulative_sums()``.
     '''
 
     if not isinstance(sequence, (list, tuple)):

@@ -41,10 +41,6 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
         }
 
     Return `expr`.
-
-    .. versionchanged:: 2.0
-        renamed ``fuse.containers_by_reference()`` to
-        ``containertools.fuse_like_named_contiguous_containers_in_expr()``.
     '''
     from abjad.tools import containertools
     from abjad.tools import iterationtools

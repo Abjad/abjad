@@ -38,10 +38,6 @@ def repeat_leaf(leaf, total=1):
     Preserve parentage and spanners.
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``leaftools.clone_and_splice_leaf()`` to
-        ``leaftools.repeat_leaf()``.
     '''
 
     componenttools.extend_in_parent_of_component(

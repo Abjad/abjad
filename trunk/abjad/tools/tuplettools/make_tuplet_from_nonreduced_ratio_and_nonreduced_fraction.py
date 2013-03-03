@@ -7,7 +7,6 @@ from abjad.tools import notetools
 from abjad.tools import resttools
 
 
-# TODO: change name to make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction
 def make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction(proportions, (n, d)):
     '''Divide nonreduced fraction `(n, d)` according to `proportions`.
 
@@ -50,10 +49,6 @@ def make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction(proportions, (n, d
     .. note:: function interprets `d` as tuplet denominator.
 
     Return tuplet or container.
-
-    .. versionchanged:: 2.0
-        renamed ``divide.pair()`` to
-        ``tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction()``.
     '''
     from abjad.tools import tuplettools
 

@@ -9,10 +9,6 @@ def is_pitch_carrier(expr):
         True
 
     Return boolean.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.is_carrier()`` to
-        ``pitchtools.is_pitch_carrier()``.
     '''
     from abjad.tools import chordtools
     from abjad.tools import notetools

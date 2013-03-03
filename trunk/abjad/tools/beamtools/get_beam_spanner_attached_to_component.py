@@ -41,10 +41,6 @@ def get_beam_spanner_attached_to_component(component):
     Raise missing spanner error when no beam spanner attached to `component`.
 
     Raise extra spanner error when more than one beam spanner attached to `component`.
-
-    .. versionchanged:: 2.9
-        renamed ``spannertools.get_beam_spanner_attached_to_component()`` to
-        ``beamtools.get_beam_spanner_attached_to_component()``.
     '''
     from abjad.tools import beamtools
 

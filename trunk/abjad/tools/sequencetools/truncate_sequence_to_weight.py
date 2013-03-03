@@ -31,10 +31,6 @@ def truncate_sequence_to_weight(sequence, weight):
     Raise value error on negative `weight`.
 
     Return new list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.truncate_to_weight()`` to
-        ``sequencetools.truncate_sequence_to_weight()``.
     '''
 
     if not isinstance(sequence, list):

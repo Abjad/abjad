@@ -117,10 +117,6 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice=False):
     Raise value when `front` is neither a positive rational nor none.
 
     Raise value when `back` is neither a positive rational nor none.
-
-    .. versionchanged:: 2.0
-        renamed ``layout.insert_measure_padding_rest()`` to
-        ``measuretools.pad_measures_in_expr_with_rests()``.
     '''
     from abjad.tools.layouttools._insert_measure_padding import _insert_measure_padding
 

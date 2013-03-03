@@ -11,10 +11,6 @@ def negate_sequence_elements_at_indices(sequence, indices):
         [-1, -2, -3, 4, 5, -6, -7, -8, -9, -10]
 
     Return newly constructed list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.negate_elements_at_indices()`` to
-        ``sequencetools.negate_sequence_elements_at_indices()``.
     '''
 
     if not isinstance(sequence, list):

@@ -33,14 +33,6 @@ def set_default_accidental_spelling(spelling='mixed'):
     Mixed test case must appear last here for doc tests to check correctly.
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.change_default_accidental_spelling()`` to
-        ``pitchtools.set_default_accidental_spelling()``.
-
-    .. versionchanged:: 2.9
-        renamed ``configurationtools.set_default_accidental_spelling()`` to
-        ``pitchtools.set_default_accidental_spelling()``.
     '''
     from abjad import ABJCFG
 

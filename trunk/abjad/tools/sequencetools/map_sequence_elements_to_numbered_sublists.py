@@ -17,10 +17,6 @@ def map_sequence_elements_to_numbered_sublists(sequence):
     Note that numbering starts at ``1``.
 
     Return newly constructed list of lists.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.lengths_to_counts()`` to
-        ``sequencetools.map_sequence_elements_to_numbered_sublists()``.
     '''
 
     if not isinstance(sequence, list):

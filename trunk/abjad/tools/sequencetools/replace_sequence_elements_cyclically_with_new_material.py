@@ -30,11 +30,7 @@ def replace_sequence_elements_cyclically_with_new_material(sequence, indices, ne
 
     Raise type error when `sequence` not a list.
 
-    Return newly constructed list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.replace_elements_cyclic()`` to
-        ``sequencetools.replace_sequence_elements_cyclically_with_new_material()``.
+    Return new list.
     '''
 
     if not isinstance(sequence, list):

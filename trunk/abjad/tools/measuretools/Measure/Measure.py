@@ -9,8 +9,6 @@ from abjad.tools.containertools.FixedDurationContainer import FixedDurationConta
 class Measure(FixedDurationContainer):
     r'''.. versionadded:: 1.1
 
-    .. versionchanged:: 2.9 measure now inherits from fixed-duration container.
-
     Abjad model of a measure::
 
         >>> measure = Measure((4, 8), "c'8 d' e' f'")
@@ -93,9 +91,8 @@ class Measure(FixedDurationContainer):
     def __setitem__(self, i, expr):
         '''Container setitem logic with optional time signature adjustment.
 
-        .. versionchanged:: 2.9
-            Measure setitem logic now adjusts time signatue automatically
-            when ``adjust_time_signature_automatically`` is true.
+        Measure setitem logic now adjusts time signatue automatically
+        when ``adjust_time_signature_automatically`` is true.
         '''
         old_time_signature = contexttools.get_effective_time_signature(self)
         old_denominator = getattr(old_time_signature, 'denominator', None)

@@ -35,10 +35,6 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
         }
 
     Return `tie_chain`.
-
-    .. versionchanged:: 2.0
-        renamed ``tietools.duration_change()`` to
-        ``tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration()``.
     '''
     from abjad.tools import tietools
     from abjad.tools.spannertools._withdraw_components_from_attached_spanners import \

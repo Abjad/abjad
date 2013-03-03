@@ -7,10 +7,6 @@ def spell_chromatic_pitch_number(chromatic_pitch_number, diatonic_pitch_class_na
         (Accidental('ss'), 5)
 
     Return accidental / octave-number pair.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.number_letter_to_accidental_octave()`` to
-        ``pitchtools.spell_chromatic_pitch_number()``.
     '''
     from abjad.tools import pitchtools
 

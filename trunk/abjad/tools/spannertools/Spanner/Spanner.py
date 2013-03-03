@@ -346,15 +346,16 @@ class Spanner(AbjadObject):
 
     @property
     def components(self):
-        '''Return read-only tuple of components in spanner. ::
+        '''Return read-only tuple of components in spanner:
+
+        ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = beamtools.BeamSpanner(voice[:2])
             >>> spanner.components
             (Note("c'8"), Note("d'8"))
 
-        .. versionchanged:: 1.1
-            Now returns an (immutable) tuple instead of a (mutable) list.
+        Return tuple.
         '''
         return tuple(self._components[:])
 

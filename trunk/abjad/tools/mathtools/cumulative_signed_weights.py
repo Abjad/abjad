@@ -10,10 +10,6 @@ def cumulative_signed_weights(sequence):
     For cumulative (unsigned) weights use ``mathtools.cumulative_sums([abs(x) for x in l])``.
 
     Return list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.cumulative_weights_signed()`` to
-        ``mathtools.cumulative_signed_weights()``.
     '''
     from abjad.tools import mathtools
 

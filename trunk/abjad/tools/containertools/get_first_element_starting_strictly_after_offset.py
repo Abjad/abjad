@@ -16,10 +16,6 @@ def get_first_element_starting_strictly_after_offset(container, prolated_offset)
     Return component.
 
     Return none when no `container` element starts strictly after `prolated_offset`.
-
-    .. versionchanged:: 2.0
-        renamed ``containertools.get_leftmost_element_starting_after_prolated_offset()`` to
-        ``containertools.get_first_element_starting_strictly_after_offset()``.
     '''
 
     prolated_offset = durationtools.Duration(prolated_offset)

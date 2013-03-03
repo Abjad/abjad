@@ -6,10 +6,7 @@ import copy
 class LilyPondComment(Mark):
     r'''.. versionadded:: 2.0
 
-    .. versionchanged:: 2.3
-        Changed ``Comment`` to ``LilyPondComment``.
-
-    User-defined comment::
+    User-defined LilyPond comment::
 
         >>> note = Note("c'4")
 

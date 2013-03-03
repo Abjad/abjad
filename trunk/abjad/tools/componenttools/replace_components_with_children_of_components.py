@@ -42,10 +42,6 @@ def replace_components_with_children_of_components(components):
         }
 
     Return `components`.
-
-    .. versionchanged:: 2.0
-        renamed ``componenttools.slip()`` to
-        ``componenttools.replace_components_with_children_of_components()``.
     '''
     from abjad.tools import componenttools
 

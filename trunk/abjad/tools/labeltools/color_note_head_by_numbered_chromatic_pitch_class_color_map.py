@@ -47,14 +47,6 @@ def color_note_head_by_numbered_chromatic_pitch_class_color_map(pitch_carrier):
     Raise missing pitch error when `pitch_carrier` carries no note head.
 
     Return `pitch_carrier`.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.color_by_pc()`` to
-        ``labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map()``.
-
-    .. versionchanged:: 2.0
-        renamed ``notetools.color_note_head_by_numeric_chromatic_pitch_class_color_map()`` to
-        ``labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map()``.
     '''
 
     pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier)

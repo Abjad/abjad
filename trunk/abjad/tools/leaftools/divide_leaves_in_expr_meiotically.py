@@ -47,10 +47,6 @@ def divide_leaves_in_expr_meiotically(expr, n=2):
     Produce only leaves and never tuplets or other containers.
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``leaftools.meiose()`` to
-        ``leaftools.divide_leaves_in_expr_meiotically()``.
     '''
     from abjad.tools import iterationtools
     from abjad.tools import leaftools

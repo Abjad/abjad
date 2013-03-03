@@ -14,10 +14,6 @@ def increase_sequence_elements_cyclically_by_addenda(sequence, addenda, shield=T
         [10, 1, 12, 1, 14, 1, 16, 1, 18, 1]
 
     Return list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.increase_cyclic()`` to
-        ``sequencetools.increase_sequence_elements_cyclically_by_addenda()``.
     '''
 
     if not isinstance(sequence, (list, tuple)):

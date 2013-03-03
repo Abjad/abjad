@@ -53,10 +53,6 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
     If not enough measures raise stop iteration.
 
     Return measures iterated.
-
-    .. versionchanged:: 2.0
-        renamed ``measuretools.overwrite_contents()`` to
-        ``measuretools.replace_contents_of_measures_in_expr()``.
     '''
     from abjad.tools import contexttools
     from abjad.tools import measuretools

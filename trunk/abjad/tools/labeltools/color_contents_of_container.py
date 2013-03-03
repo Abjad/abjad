@@ -40,10 +40,6 @@ def color_contents_of_container(container, color):
         >>> show(measure) # doctest: +SKIP
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``containertools.contents_color()`` to
-        ``labeltools.color_contents_of_container()``.
     '''
 
     container.override.accidental.color = color

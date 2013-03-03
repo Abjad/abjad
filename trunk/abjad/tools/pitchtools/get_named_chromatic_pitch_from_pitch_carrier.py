@@ -46,10 +46,6 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
     Raise extra pitch error when `pitch_carrier` carries more than one pitch.
 
     Return named chromatic pitch.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.get_pitch()`` to
-        ``pitchtools.get_named_chromatic_pitch_from_pitch_carrier()``.
     '''
     from abjad.tools import chordtools
     from abjad.tools import notetools

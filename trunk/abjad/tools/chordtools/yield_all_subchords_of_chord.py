@@ -37,10 +37,6 @@ def yield_all_subchords_of_chord(chord):
     Include empty chord as rest.
 
     Return generator of newly constructed leaves.
-
-    .. versionchanged:: 2.0
-        renamed ``chordtools.subchords()`` to
-        ``chordtools.yield_all_subchords_of_chord()``.
     '''
     from abjad.tools import chordtools
 

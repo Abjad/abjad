@@ -12,13 +12,6 @@ def _line_break_every(expr, line_duration, klass=None,
     Add line break after every total less than or equal to duration.
 
     When ``klass=None`` set `klass` to measure.
-
-    .. versionchanged:: 1.1
-        If `adjust_eol` is True, apply rightwards extra-offset to LilyPond
-        TimeSignature and LilyPond Barline at end of line with magic Scheme.
-
-    .. versionadded:: 2.0
-        New `add_empty_bars` keyword.
     '''
 
     if klass is None:

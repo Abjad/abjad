@@ -5,10 +5,6 @@ def interpolate_linear(y1, y2, mu):
         0.5
 
     Return float.
-
-    .. versionchanged:: 2.0
-        renamed ``interpolate.linear()`` to
-        ``mathtools.interpolate_linear()``.
     '''
 
     result = (y1 * (1 - mu) + y2 * mu)

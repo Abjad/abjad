@@ -26,10 +26,6 @@ def add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(tie_chain, 
         }
 
     Return `tie_chain`.
-
-    .. versionchanged:: 2.0
-        renamed ``tietools.duration_scale()`` to
-        ``tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration()``.
     '''
     from abjad.tools import tietools
 

@@ -137,10 +137,6 @@ def remove_component_subtree_from_score_and_spanners(components):
     Return either tuple or list of `components` and children of `components`.
 
     .. todo:: regularize return value of function.
-
-    .. versionchanged:: 2.0
-        renamed ``componenttools.detach()`` to
-        ``componenttools.remove_component_subtree_from_score_and_spanners()``.
     '''
     from abjad.tools import componenttools
     from abjad.tools.spannertools._withdraw_components_in_expr_from_attached_spanners import \

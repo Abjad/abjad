@@ -27,10 +27,6 @@ def get_parent_and_start_stop_indices_of_components(components):
 
     Return parent / start index / stop index triple. Return parent as component or none.
     Return nonnegative integer start index and nonnegative index stop index.
-
-    .. versionchanged:: 2.0
-        renamed ``componenttools.get_with_indices()`` to
-        ``componenttools.get_parent_and_start_stop_indices_of_components()``.
     '''
     from abjad.tools import componenttools
 

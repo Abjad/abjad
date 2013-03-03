@@ -17,10 +17,6 @@ def is_uppercamelcase_string(expr):
         False
 
     Return boolean.
-
-    .. versionchanged:: 2.9
-        renamed ``iotools.is_uppercamelcase_string()`` to
-        ``stringtools.is_uppercamelcase_string()``.
     '''
 
     if not isinstance(expr, str):

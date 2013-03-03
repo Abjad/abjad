@@ -25,10 +25,6 @@ def is_component_with_beam_spanner_attached(expr):
         False
 
     Return boolean.
-
-    .. versionchanged:: 2.9
-        renamed ``spannertools.is_component_with_beam_spanner_attached()`` to
-        ``beamtools.is_component_with_beam_spanner_attached()``.
     '''
     from abjad.tools import beamtools
 

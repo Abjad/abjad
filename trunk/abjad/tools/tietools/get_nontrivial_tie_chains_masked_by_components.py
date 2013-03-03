@@ -30,10 +30,6 @@ def get_nontrivial_tie_chains_masked_by_components(components):
 
 
     Return list of zero or more (possibly masked) tie chains.
-
-    .. versionchanged:: 2.9
-        renamed ``tietools.get_tie_chains_in_expr()`` to
-        ``tietools.get_nontrivial_tie_chains_masked_by_components()``.
     '''
     from abjad.tools import iterationtools
     from abjad.tools import tietools

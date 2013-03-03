@@ -38,10 +38,6 @@ def list_time_signatures_of_measures_in_expr(components):
         TimeSignatureMark((4, 8))(|4/8, c8, d8, e8, f8|)
 
     Return list of zero or more time signatures.
-
-    .. versionchanged:: 2.0
-        renamed ``measuretools.list_time_signatures_of_mesures_in_expr()`` to
-        ``measuretools.list_time_signatures_of_measures_in_expr()``.
     '''
     from abjad.tools import contexttools
     from abjad.tools import iterationtools

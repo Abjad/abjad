@@ -11,10 +11,6 @@ def remove_subsequence_of_weight_at_index(sequence, weight, index):
         (1, 1, 2, 3, 5, 5, 6)
 
     Return newly constructed `sequence` object.
-
-    .. versionchanged:: 2.0
-        renamed ``listtools.remove_weighted_subrun_at()`` to
-        ``sequencetools.remove_subsequence_of_weight_at_index()``.
     '''
 
     result = list(sequence[:index])

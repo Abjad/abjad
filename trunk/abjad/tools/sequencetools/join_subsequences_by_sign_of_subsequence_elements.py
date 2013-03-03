@@ -16,11 +16,7 @@ def join_subsequences_by_sign_of_subsequence_elements(sequence):
         >>> sequencetools.join_subsequences_by_sign_of_subsequence_elements(sequence)
         [[1, 2], [], [3, 4, 5, 6, 7]]
 
-    Return newly constructed list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.join_sublists_by_sign()`` to
-        ``sequencetools.join_subsequences_by_sign_of_subsequence_elements()``.
+    Return new list.
     '''
 
     if not isinstance(sequence, list):

@@ -35,10 +35,6 @@ def respell_named_chromatic_pitches_in_expr_with_sharps(expr):
         }
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.make_sharp()`` to
-        ``pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps()``.
     '''
     from abjad.tools import chordtools
     from abjad.tools import iterationtools

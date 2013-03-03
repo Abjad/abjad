@@ -20,10 +20,6 @@ def make_empty_piano_score():
         >>
 
     Return score, treble staff, bass staff.
-
-    .. versionchanged:: 2.0
-        renamed ``scoretools.make_piano_staff()`` to
-        ``scoretools.make_empty_piano_score()``.
     '''
     from abjad.tools import contexttools
     from abjad.tools import stafftools

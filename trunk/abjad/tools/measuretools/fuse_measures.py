@@ -68,10 +68,6 @@ def fuse_measures(measures):
     Give `measures` parentage to new measure.
 
     Leave `measures` empty, unspanned and outside-of-score.
-
-    .. versionchanged:: 2.0
-        renamed ``fuse.measures_by_reference()`` to
-        ``measuretools.fuse_measures()``.
     '''
     from abjad.tools import contexttools
     from abjad.tools import measuretools

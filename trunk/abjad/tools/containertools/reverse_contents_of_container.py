@@ -35,10 +35,6 @@ def reverse_contents_of_container(container):
         }
 
     Return `container`.
-
-    .. versionchanged:: 2.0
-        renamed ``containertools.contents_reverse()`` to
-        ``containertools.reverse_contents_of_container()``.
     '''
     from abjad.tools import containertools
     from abjad.tools import spannertools

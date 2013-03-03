@@ -23,10 +23,6 @@ def set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(expr):
     Used primarily in generating test file examples.
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.chromaticize()`` to
-        ``pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr()``.
     '''
     from abjad.tools import chordtools
     from abjad.tools import notetools

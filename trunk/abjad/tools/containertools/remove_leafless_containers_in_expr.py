@@ -52,10 +52,6 @@ def remove_leafless_containers_in_expr(expr):
         }
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``containertools.remove_empty()`` to
-        ``containertools.remove_leafless_containers_in_expr()``.
     '''
     from abjad.tools import iterationtools
 

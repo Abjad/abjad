@@ -27,10 +27,6 @@ def divide_chord_by_chromatic_pitch_number(chord, pitch=pitchtools.NamedChromati
     other parts return chords.
 
     Return pair of newly constructed leaves.
-
-    .. versionchanged:: 2.0
-        renamed ``chordtools.split_by_pitch_number()`` to
-        ``chordtools.divide_chord_by_chromatic_pitch_number()``.
     '''
     from abjad.tools.chordtools._divide_chord import _divide_chord
 

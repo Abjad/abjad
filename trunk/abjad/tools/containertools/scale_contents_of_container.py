@@ -89,10 +89,6 @@ def scale_contents_of_container(container, multiplier):
         }
 
     Return `container`.
-
-    .. versionchanged:: 2.0
-        renamed ``containertools.contents_scale()`` to
-        ``containertools.scale_contents_of_container()``.
     '''
     from abjad.tools import iterationtools
     from abjad.tools import measuretools

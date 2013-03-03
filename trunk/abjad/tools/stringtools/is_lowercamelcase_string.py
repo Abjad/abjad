@@ -17,10 +17,6 @@ def is_lowercamelcase_string(expr):
         False
 
     Return boolean.
-
-    .. versionchanged:: 2.9
-        renamed ``iotools.is_lowercamelcase_string()`` to
-        ``stringtools.is_lowercamelcase_string()``.
     '''
 
     if not isinstance(expr, str):

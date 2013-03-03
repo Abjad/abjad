@@ -9,10 +9,6 @@ def expr_has_duplicate_numbered_chromatic_pitch_class(expr):
         True
 
     Return boolean.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.expr_has_duplicate_numeric_chromatic_pitch_class()`` to
-        ``pitchtools.expr_has_duplicate_numbered_chromatic_pitch_class()``.
     '''
     from abjad.tools import pitchtools
 

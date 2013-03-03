@@ -25,10 +25,6 @@ def is_underscore_delimited_lowercase_file_name_with_extension(expr):
         False
 
     Return boolean.
-
-    .. versionchanged:: 2.9
-        renamed ``iotools.is_underscore_delimited_lowercase_file_name_with_extension()`` to
-        ``stringtools.is_underscore_delimited_lowercase_file_name_with_extension()``.
     '''
 
     if not isinstance(expr, str):

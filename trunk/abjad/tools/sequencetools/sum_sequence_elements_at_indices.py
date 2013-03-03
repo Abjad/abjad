@@ -27,10 +27,6 @@ def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True
     Indices in `pairs` must be less than `period` when `period` is not none.
 
     Return new list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.sum_slices_at()`` to
-        ``sequencetools.sum_sequence_elements_at_indices()``.
     '''
 
     assert isinstance(sequence, list)

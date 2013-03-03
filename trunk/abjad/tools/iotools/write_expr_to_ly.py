@@ -9,10 +9,6 @@ def write_expr_to_ly(expr, file_name, print_status=False, tagline=False, docs=Fa
         >>> iotools.write_expr_to_ly(note, '/home/user/foo.ly') # doctest: +SKIP
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``io.write_ly()`` to
-        ``io.write_expr_to_ly()``.
     '''
     from abjad.tools.iotools._insert_expr_into_lilypond_file import _insert_expr_into_lilypond_file
 

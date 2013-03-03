@@ -33,10 +33,6 @@ def splice_new_elements_between_sequence_elements(sequence, new_elements, overha
         ['A', 'B', 0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4, 'A', 'B']
 
     Return newly constructed list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.insert_slice_cyclic()`` to
-        ``sequencetools.splice_new_elements_between_sequence_elements()``.
     '''
 
     result = []

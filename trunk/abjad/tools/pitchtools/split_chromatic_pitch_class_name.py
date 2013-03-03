@@ -8,10 +8,6 @@ def split_chromatic_pitch_class_name(chromatic_pitch_class_name):
         ('c', 's')
 
     Return pair of strings.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.name_to_letter_accidental()`` to
-        ``pitchtools.split_chromatic_pitch_class_name()``.
     '''
 
     if len(chromatic_pitch_class_name) == 1:

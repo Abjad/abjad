@@ -17,10 +17,6 @@ def truncate_runs_in_sequence(sequence):
     Raise type error when `sequence` is not a list.
 
     Return new list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.truncate_subruns()`` to
-        ``sequencetools.truncate_runs_in_sequence()``.
     '''
 
     if not isinstance(sequence, list):

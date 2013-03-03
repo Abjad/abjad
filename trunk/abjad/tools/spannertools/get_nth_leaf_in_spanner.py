@@ -5,10 +5,7 @@ def get_nth_leaf_in_spanner(spanner, idx):
     '''Get nth leaf in spanner, no matter how complicated the nesting
     situation.
 
-
-    .. versionchanged:: 2.0
-        renamed ``spannertools.get_nth_leaf()`` to
-        ``spannertools.get_nth_leaf_in_spanner()``.
+    Return leaf.
     '''
     from abjad.tools import spannertools
 

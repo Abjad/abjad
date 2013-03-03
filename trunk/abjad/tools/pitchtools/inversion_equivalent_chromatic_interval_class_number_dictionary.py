@@ -21,9 +21,6 @@ def inversion_equivalent_chromatic_interval_class_number_dictionary(pitches):
             5  0
             6  0
 
-    .. versionchanged:: 2.0
-        works with quartertones.
-
     Return dictionary.
     '''
     from abjad.tools import pitchtools

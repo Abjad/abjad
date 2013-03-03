@@ -17,10 +17,6 @@ def list_numbered_chromatic_pitch_classes_in_expr(expr):
     Works with notes, chords, defective chords.
 
     Return tuple or zero or more numbered chromatic pitch-classes.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.list_numeric_chromatic_pitch_classes_in_expr()`` to
-        ``pitchtools.list_numbered_chromatic_pitch_classes_in_expr()``.
     '''
     from abjad.tools import pitchtools
 

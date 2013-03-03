@@ -28,10 +28,6 @@ def is_assignable_integer(expr):
     Otherwise false.
 
     Return boolean.
-
-    .. versionchanged:: 2.0
-        renamed ``mathtools.is_assignable()`` to
-        ``mathtools.is_assignable_integer()``.
     '''
     from abjad.tools import mathtools
 

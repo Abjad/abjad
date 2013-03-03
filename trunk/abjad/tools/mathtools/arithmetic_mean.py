@@ -20,10 +20,6 @@ def arithmetic_mean(sequence):
         8.0
 
     Return number.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.arithmetic_mean()`` to
-        ``mathtools.arithmetic_mean()``.
     '''
 
     sum_l = sum(sequence)

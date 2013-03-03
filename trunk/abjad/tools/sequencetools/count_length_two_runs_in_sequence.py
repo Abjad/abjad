@@ -10,10 +10,6 @@ def count_length_two_runs_in_sequence(sequence):
         3
 
     Return nonnegative integer.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.count_repetitions()`` to
-        ``sequencetools.count_length_two_runs_in_sequence()``.
     '''
 
     total_repetitions = 0

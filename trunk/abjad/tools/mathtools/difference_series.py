@@ -5,10 +5,6 @@ def difference_series(sequence):
         [0, 1, 1, 2, 0, 1]
 
     Return list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.difference_series()`` to
-        ``mathtools.difference_series()``.
     '''
 
     result = []

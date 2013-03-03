@@ -45,10 +45,6 @@ def profile_expr(expr, sort_by='cum', num_lines=12, strip_dirs=True):
     .. note:: For information on reading the output of the different
        Python profilers, see `the Python docs
        <http://docs.python.org/library/profile.html>`_.
-
-    .. versionchanged:: 2.0
-       renamed ``check.profile()`` to
-       ``iotools.profile_expr()``.
     '''
 
     # NOTE: this try block was added because, for some strange reason,

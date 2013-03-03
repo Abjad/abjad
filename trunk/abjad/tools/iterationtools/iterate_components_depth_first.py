@@ -7,10 +7,6 @@ def iterate_components_depth_first(component, capped=True, unique=True, forbid=N
     Iterate components depth-first from `component`.
 
     .. todo:: Add usage examples.
-
-    .. versionchanged:: 2.0
-        renamed ``iterate.depth_first()`` to
-        ``iterationtools.iterate_components_depth_first()``.
     '''
 
     client_parent, node, rank = component._parent, component, 0

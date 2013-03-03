@@ -24,10 +24,6 @@ def is_underscore_delimited_lowercase_package_name(expr):
         False
 
     Return boolean.
-
-    .. versionchanged:: 2.9
-        renamed ``iotools.is_underscore_delimited_lowercase_package_name()`` to
-        ``stringtools.is_underscore_delimited_lowercase_package_name()``.
     '''
 
     if not isinstance(expr, str):

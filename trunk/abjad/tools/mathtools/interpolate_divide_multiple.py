@@ -24,10 +24,6 @@ def interpolate_divide_multiple(totals, key_values, exp='cosine'):
     Set `exp` to a number for exponential interpolation.
 
     Returns a list of floats.
-
-    .. versionchanged:: 2.0
-        renamed ``interpolate.divide_multiple()`` to
-        ``mathtools.interpolate_divide_multiple()``.
     '''
     from abjad.tools import mathtools
 

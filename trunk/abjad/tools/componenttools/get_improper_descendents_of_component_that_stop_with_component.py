@@ -27,10 +27,6 @@ def get_improper_descendents_of_component_that_stop_with_component(component):
         [Staff{3}, Note("f'4")]
 
     Return list of `component` together with proper contents that stop with `component`.
-
-    .. versionchanged:: 2.9
-        renamed ``componenttools.get_improper_contents_of_component_that_stop_with_component()`` to
-        ``componenttools.get_improper_descendents_of_component_that_stop_with_component()``.
     '''
     from abjad.tools import containertools
 

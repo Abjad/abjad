@@ -62,10 +62,6 @@ def apply_complex_beam_spanners_to_measures_in_expr(expr):
         >>> show(staff) # doctest: +SKIP
 
     Return list of beams created.
-
-    .. versionchanged:: 2.9
-        renamed ``measuretools.apply_complex_beam_spanners_to_measures_in_expr()`` to
-        ``beamtools.apply_complex_beam_spanners_to_measures_in_expr()``.
     '''
     from abjad.tools import beamtools
 

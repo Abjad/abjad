@@ -11,10 +11,6 @@ def suggest_clef_for_named_chromatic_pitches(pitches):
     Suggest clef based on minimal number of ledger lines.
 
     Return clef mark.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.suggest_clef()`` to
-        ``pitchtools.suggest_clef_for_named_chromatic_pitches()``.
     '''
     from abjad.tools import contexttools
     from abjad.tools import pitchtools

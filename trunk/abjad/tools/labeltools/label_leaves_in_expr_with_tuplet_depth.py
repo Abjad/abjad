@@ -28,10 +28,6 @@ def label_leaves_in_expr_with_tuplet_depth(expr, markup_direction=Down):
         >>> show(staff) # doctest: +SKIP
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``label.leaf_depth_tuplet()`` to
-        ``labeltools.label_leaves_in_expr_with_tuplet_depth()``.
     '''
 
     for leaf in iterationtools.iterate_leaves_in_expr(expr):

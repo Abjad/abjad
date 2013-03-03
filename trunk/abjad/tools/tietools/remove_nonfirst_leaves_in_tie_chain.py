@@ -28,14 +28,6 @@ def remove_nonfirst_leaves_in_tie_chain(tie_chain):
         }
 
     Return `tie_chain`.
-
-    .. versionchanged:: 2.0
-        renamed ``tietools.truncate()`` to
-        ``tietools.remove_all_leaves_in_tie_chain_except_first()``.
-
-    .. versionchanged:: 2.9
-        renamed ``tietools.remove_all_leaves_in_tie_chain_except_first()`` to
-        ``tietools.remove_nonfirst_leaves_in_tie_chain()``.
     '''
     from abjad.tools import tietools
 

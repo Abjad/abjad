@@ -38,10 +38,6 @@ def rest_leaf_at_offset(leaf, offset):
 
     Return list of leaves to left of `offset`
     together with list of leaves to right of `offset`.
-
-    .. versionchanged:: 2.0
-        renamed ``leaftools.shorten()`` to
-        ``leaftools.rest_leaf_at_offset()``.
     '''
     from abjad.tools import resttools
 

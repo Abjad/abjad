@@ -15,10 +15,6 @@ def string_to_strict_directory_name(string):
     Set to lowercase.
 
     Return string.
-
-    .. versionchanged:: 2.9
-        renamed ``iotools.string_to_strict_directory_name()`` to
-        ``stringtools.string_to_strict_directory_name()``.
     '''
 
     assert isinstance(string, str)

@@ -63,10 +63,6 @@ def list_melodic_chromatic_interval_numbers_pairwise(pitch_carriers, wrap=False)
     as last in series.
 
     Return list.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.get_signed_interval_series()`` to
-        ``pitchtools.list_melodic_chromatic_interval_numbers_pairwise()``.
     '''
     from abjad.tools import pitchtools
 

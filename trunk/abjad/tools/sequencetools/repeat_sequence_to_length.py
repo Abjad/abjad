@@ -18,10 +18,6 @@ def repeat_sequence_to_length(sequence, length, start=0):
         [2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2]
 
     Return newly constructed `sequence` object.
-
-    .. versionchanged:: 2.0
-        renamed ``listtools.repeat_list_to_length()`` to
-        ``sequencetools.repeat_sequence_to_length()``.
     '''
 
     if not mathtools.is_nonnegative_integer(length):

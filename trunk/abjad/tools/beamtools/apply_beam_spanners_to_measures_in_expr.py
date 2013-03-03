@@ -49,14 +49,6 @@ def apply_beam_spanners_to_measures_in_expr(expr):
         >>> show(staff) # doctest: +SKIP
 
     Return list of beams created.
-
-    .. versionchanged:: 2.0
-        renamed ``measuretools.beam()`` to
-        ``beamtools.apply_beam_spanners_to_measures_in_expr()``.
-
-    .. versionchanged:: 2.9
-        renamed ``measuretools.apply_beam_spanners_to_measures_in_expr()`` to
-        ``beamtools.apply_beam_spanners_to_measures_in_expr()``.
     '''
     from abjad.tools import beamtools
     from abjad.tools import iterationtools

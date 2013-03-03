@@ -40,10 +40,6 @@ def fuse_tied_leaves_in_components_once_by_durations_without_overhang(components
         }
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``fuse.tied_leaves_by_prolated_durations()`` to
-        ``leaftools.fuse_tied_leaves_in_components_once_by_durations_without_overhang()``.
     '''
     from abjad.tools import leaftools
     from abjad.tools import tietools

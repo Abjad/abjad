@@ -29,13 +29,7 @@ def get_leftmost_components_with_total_duration_at_most(components, duration):
     .. todo:: implement
         ``componenttools.list_rightmost_components_with_prolated_duration_at_least()``.
 
-    .. versionchanged:: 2.0
-        renamed ``componenttools.get_le_duration_prolated()`` to
-        ``componenttools.get_leftmost_components_with_total_duration_at_most()``.
-
-    .. versionchanged:: 2.9
-        renamed ``componenttools.list_leftmost_components_with_prolated_duration_at_most()`` to
-        ``componenttools.get_leftmost_components_with_total_duration_at_most()``.
+    Return components.
     '''
     from abjad.tools import componenttools
 

@@ -34,10 +34,6 @@ def apply_tie_spanner_to_leaf_pair(left, right):
     Handle existing tie spanners intelligently.
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``tietools.span_leaf_pair()`` to
-        ``tietools.apply_tie_spanner_to_leaf_pair()``.
     '''
     from abjad.tools import tietools
 

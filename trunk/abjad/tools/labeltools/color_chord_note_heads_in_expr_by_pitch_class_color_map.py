@@ -70,10 +70,6 @@ def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
         Staff{}
 
     Return `chord`.
-
-    .. versionchanged:: 2.0
-        renamed ``chordtools.color_note_heads_by_pc()`` to
-        ``labeltools.color_chord_note_heads_in_expr_by_pitch_class_color_map()``.
     '''
 
     if isinstance(chord, chordtools.Chord):

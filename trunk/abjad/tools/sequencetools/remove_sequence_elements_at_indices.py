@@ -15,7 +15,6 @@ def remove_sequence_elements_at_indices(sequence, indices):
 
     for i, element in enumerate(sequence):
         if i not in indices:
-            #yield element
             result.append(element)
 
     return result

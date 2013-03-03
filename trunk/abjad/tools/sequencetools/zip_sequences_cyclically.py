@@ -20,10 +20,6 @@ def zip_sequences_cyclically(*sequences):
     Cycle over the elements of the sequences of shorter length.
 
     Return list of length equal to sequence of greatest length in `sequences`.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.zip_cyclic()`` to
-        ``sequencetools.zip_sequences_cyclically()``.
     '''
 
     # make sure sequences are, in fact, all sequences

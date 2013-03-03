@@ -43,10 +43,6 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
     Raise tie chain error on overlapping tie chains.
 
     Return generator.
-
-    .. versionchanged:: 2.0
-        renamed ``iterate.chained_contents()`` to
-        ``tietools.iterate_topmost_tie_chains_and_components_in_expr()``.
     '''
     from abjad.tools import tietools
 

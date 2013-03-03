@@ -28,10 +28,6 @@ def make_measures_with_full_measure_spacer_skips(time_signatures):
         }
 
     Return list of rigid measures.
-
-    .. versionchanged:: 2.0
-        renamed ``measuretools.make()`` to
-        ``measuretools.make_measures_with_full_measure_spacer_skips()``.
     '''
     from abjad.tools import contexttools
     from abjad.tools import measuretools

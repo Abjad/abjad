@@ -7,10 +7,6 @@ def iterate_sequence_cyclically_from_start_to_stop(sequence, start, stop):
         [18, 19, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     Return generator of references to `sequence` elements.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.get_cyclic()`` to
-        ``sequencetools.iterate_sequence_cyclically_from_start_to_stop()``.
     '''
 
     len_sequence = len(sequence)

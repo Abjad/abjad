@@ -23,10 +23,6 @@ def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction=Down):
         >>> show(staff) # doctest: +SKIP
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``label.leaf_pitch_numbers()`` to
-        ``labeltools.label_leaves_in_expr_with_pitch_numbers()``.
     '''
 
     for leaf in iterationtools.iterate_leaves_in_expr(expr):

@@ -28,10 +28,6 @@ def arpeggiate_chord(chord):
     Arpeggiated notes do not inherit other `chord` attributes.
 
     Return list of newly constructed notes.
-
-    .. versionchanged:: 2.0
-        renamed ``chordtools.arpeggiate()`` to
-        ``chordtools.arpeggiate_chord()``.
     '''
     from abjad.tools import notetools
 

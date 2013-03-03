@@ -24,10 +24,6 @@ def yield_outer_product_of_sequences(sequences):
         [3, 4, 6], [3, 4, 7], [3, 4, 8], [3, 5, 6], [3, 5, 7], [3, 5, 8]]
 
     Return generator.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.outer_product()`` to
-        ``sequencetools.yield_outer_product_of_sequences()``.
     '''
 
     def _helper(list1, list2):

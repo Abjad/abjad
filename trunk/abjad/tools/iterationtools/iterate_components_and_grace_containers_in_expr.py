@@ -54,10 +54,6 @@ def iterate_components_and_grace_containers_in_expr(expr, klass):
     Include grace leaves before main leaves.
 
     Include grace leaves after main leaves.
-
-    .. versionchanged:: 2.0
-        renamed ``iterate.grace()`` to
-        ``componenttools.iterate_components_and_grace_containers_in_expr()``.
     '''
     if hasattr(expr, '_grace'):
         for m in expr.grace:

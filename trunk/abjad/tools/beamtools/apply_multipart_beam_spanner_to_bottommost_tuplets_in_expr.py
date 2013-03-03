@@ -62,14 +62,6 @@ def apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(expr):
         >>> show(staff) # doctest: +SKIP
 
     Return none.
-
-    .. versionchanged:: 2.9
-        renamed ``tuplettools.beam_bottommost_tuplets_in_expr()`` to
-        ``beamtools.apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr()``.
-
-    .. versionchanged:: 2.9
-        renamed ``beamtools.beam_bottommost_tuplets_in_expr()`` to
-        ``beamtools.apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr()``.
     '''
     from abjad.tools import beamtools
 

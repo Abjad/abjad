@@ -21,10 +21,6 @@ def map_sequence_elements_to_canonic_tuples(sequence, decrease_parts_monotonical
     Raise value error on noninteger elements in `sequence`.
 
     Return list of tuples.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.partition_elements_into_canonic_parts()`` to
-        ``sequencetools.map_sequence_elements_to_canonic_tuples()``.
     '''
 
     if not isinstance(sequence, list):

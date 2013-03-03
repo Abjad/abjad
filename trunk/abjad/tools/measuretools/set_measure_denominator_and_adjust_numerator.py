@@ -41,10 +41,6 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
     Leave `measure` contents unchanged.
 
     Return `measure`.
-
-    .. versionchanged:: 2.0
-        renamed ``measuretools.set_measure_denominator_and_multiply_numerator()`` to
-        ``measuretools.set_measure_denominator_and_adjust_numerator()``.
     '''
     from abjad.tools import measuretools
 

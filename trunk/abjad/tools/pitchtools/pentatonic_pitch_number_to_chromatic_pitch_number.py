@@ -38,10 +38,6 @@ def pentatonic_pitch_number_to_chromatic_pitch_number(pentatonic_scale_degree, t
         -8 -18
 
     Return integer.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.pentatonic_to_chromatic()`` to
-        ``pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number()``.
     '''
 
     assert isinstance(pentatonic_scale_degree, int)

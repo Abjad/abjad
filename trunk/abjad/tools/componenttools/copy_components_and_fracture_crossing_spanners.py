@@ -75,13 +75,7 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
             f'8 ]
         }
 
-    .. versionchanged:: 2.0
-        renamed ``clone.fracture()`` to
-        ``componenttools.copy_components_and_fracture_crossing_spanners()``.
-
-    .. versionchanged:: 2.0
-        renamed ``componenttools.clone_components_and_fracture_crossing_spanners()`` to
-        ``componenttools.copy_components_and_fracture_crossing_spanners()``.
+    Return new components.
     '''
     from abjad.tools import spannertools
     from abjad.tools import componenttools

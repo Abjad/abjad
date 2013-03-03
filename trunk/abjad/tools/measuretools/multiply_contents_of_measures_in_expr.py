@@ -42,9 +42,7 @@ def multiply_contents_of_measures_in_expr(expr, n):
             e'8 ]
         }
 
-    .. versionchanged:: 2.0
-        renamed ``measuretools.spin()`` to
-        ``measuretools.multiply_contents_of_measures_in_expr()``.
+    Return none.
     '''
     from abjad.tools import contexttools
     from abjad.tools import iterationtools

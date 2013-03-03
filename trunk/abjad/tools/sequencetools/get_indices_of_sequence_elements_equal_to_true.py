@@ -11,10 +11,6 @@ def get_indices_of_sequence_elements_equal_to_true(sequence):
         (3, 4, 5, 9, 10, 11, 12)
 
     Return newly constructed tuple of zero or more nonnegative integers.
-
-    .. versionchanged:: 2.0
-        renamed ``listtools.true_indices()`` to
-        ``sequencetools.get_indices_of_sequence_elements_equal_to_true()``.
     '''
 
     result = []

@@ -11,10 +11,6 @@ def zip_sequences_without_truncation(*sequences):
     greater than or equal to ``1``.
 
     Return list of tuples.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.zip_nontruncating()`` to
-        ``sequencetools.zip_sequences_without_truncation()``.
     '''
 
     result = []

@@ -62,10 +62,6 @@ def repeat_runs_in_sequence_to_count(sequence, indicators):
     length, weight or sum. That is, ``sequencetools.repeat_subruns_to_length()``,
     ``sequencetools.repeat_subruns_to_weight()``  and
     ``sequencetools.repeat_subruns_to_sum()``.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.repeat_subruns_to_count()`` to
-        ``sequencetools.repeat_runs_in_sequence_to_count()``.
     '''
     from abjad.tools import componenttools
 
@@ -91,7 +87,6 @@ def repeat_runs_in_sequence_to_count(sequence, indicators):
     for index, new_slice, count in reversed(sorted(instructions)):
         insert = []
         for i in range(count):
-            #result[index:index] = new_slice
             insert.extend(new_slice)
         insert = tuple(insert)
         result.insert(index, insert)

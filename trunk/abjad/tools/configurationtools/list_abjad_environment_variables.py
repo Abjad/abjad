@@ -10,10 +10,6 @@ def list_abjad_environment_variables():
 
     Abjad environment variables are defined in
     ``abjad/tools/configurationtools/AbjadConfig/AbjadConfig.py``.
-
-    .. versionchanged:: 2.0
-        renamed ``configurationtools.list_settings()`` to
-        ``configurationtools.list_abjad_environment_variables()``.
     '''
 
     from abjad import ABJCFG

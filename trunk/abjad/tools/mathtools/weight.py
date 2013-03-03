@@ -5,10 +5,6 @@ def weight(sequence):
         15
 
     Return nonnegative integer.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.weight()`` to
-        ``mathtools.weight()``.
     '''
 
     return sum([abs(element) for element in sequence])

@@ -14,10 +14,6 @@ def cumulative_products(sequence):
     Raise value error on empty `sequence`.
 
     Return list.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.cumulative_products()`` to
-        ``mathtools.cumulative_products()``.
     '''
 
     if not isinstance(sequence, (list, tuple)):

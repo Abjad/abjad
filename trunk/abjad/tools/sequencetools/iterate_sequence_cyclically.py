@@ -30,8 +30,7 @@ def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
         >>> list(sequencetools.iterate_sequence_cyclically(sequence, -2, 5, length=20))
         [6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3]
 
-    .. versionchanged:: 2.0
-        allows generator input.
+    Allow generator input:
 
     ::
 
@@ -45,13 +44,8 @@ def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
     Set `length` to number of elements to return. Set to ``'inf'`` to return infinitely.
 
     Return generator.
-
-    .. versionchanged:: 2.0
-        renamed ``sequencetools.phasor()`` to
-        ``sequencetools.iterate_sequence_cyclically()``.
     '''
 
-    #assert isinstance(iterable, list)
     assert isinstance(step, int)
     assert isinstance(start, int)
     if isinstance(length, str):

@@ -65,10 +65,6 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duratio
     Set ``adjust_eol = True`` to include a magic Scheme incantation
     to move end-of-line LilyPond TimeSignature and BarLine grobs to
     the right.
-
-    .. versionchanged:: 2.0
-        renamed ``layout.line_break_every_seconds()`` to
-        ``layout.set_line_breaks_cyclically_by_line_duration_in_seconds_ge()``.
     '''
     from abjad.tools.layouttools._line_break_every import _line_break_every
 

@@ -1,5 +1,4 @@
-def report_format_contributions_of_improper_spanners(
-    component, klass=None):
+def report_format_contributions_of_improper_spanners(component, klass=None):
     r'''.. versionadded:: 1.1
 
     Report as string format contributions of all spanners attached to improper

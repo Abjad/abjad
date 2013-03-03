@@ -33,10 +33,6 @@ def delete_contents_of_container_starting_strictly_before_offset(container, prol
         }
 
     Return `container`.
-
-    .. versionchanged:: 2.0
-        renamed ``containertools.contents_delete_starting_before_prolated_offset()`` to
-        ``containertools.delete_contents_of_container_starting_strictly_before_offset()``.
     '''
     from abjad.tools import containertools
 

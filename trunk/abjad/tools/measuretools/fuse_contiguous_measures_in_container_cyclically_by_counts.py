@@ -69,10 +69,6 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
     Return none.
 
     Set `mark` to true to mark fused measures for later reference.
-
-    .. versionchanged:: 2.0
-        renamed ``fuse.measures_by_counts_cyclic()`` to
-        ``measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts()``.
     '''
     from abjad.tools import contexttools
     from abjad.tools import markuptools
