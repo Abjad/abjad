@@ -8,11 +8,7 @@ class ClassDocumenter(Documenter):
 
     ::
 
-        >>> from abjad.tools.documentationtools import ClassDocumenter
-
-    ::
-
-        >>> documenter = ClassDocumenter(notetools.Note)
+        >>> documenter = documentationtools.ClassDocumenter(notetools.Note)
         >>> rest = documenter()
 
     Returns ``ClassDocumenter`` instance.

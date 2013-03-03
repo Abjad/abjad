@@ -106,8 +106,7 @@ class Scheme(AbjadObject):
     def lilypond_format(self):
         '''Hash-mark-prepended format of Scheme::
 
-            >>> from abjad.tools.schemetools import Scheme
-            >>> Scheme(True).lilypond_format
+            >>> schemetools.Scheme(True).lilypond_format
             '##t'
 
         Returns string.

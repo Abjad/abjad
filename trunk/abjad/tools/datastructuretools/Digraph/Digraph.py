@@ -8,12 +8,8 @@ class Digraph(AbjadObject):
 
     ::
 
-        >>> from abjad.tools.datastructuretools import Digraph
-
-    ::
-
         >>> edges = [('a', 'b'), ('a', 'c'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')]
-        >>> digraph = Digraph(edges)
+        >>> digraph = datastructuretools.Digraph(edges)
         >>> digraph
         Digraph(edges=[('a', 'c'), ('a', 'b'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')])
 
@@ -181,14 +177,10 @@ class Digraph(AbjadObject):
 
         ::
 
-            >>> from abjad.tools.datastructuretools import Digraph
-
-        ::
-
             >>> edges = [('a', 'b'), ('a', 'c'), ('b', 'c'), ('b', 'd'), ('d', 'e')]
             >>> edges.extend([('f', 'h'), ('g', 'h')])
             >>> edges.append(('i', 'j'))
-            >>> digraph = Digraph(edges)
+            >>> digraph = datastructuretools.Digraph(edges)
             >>> for graph in digraph.partition(): graph
             ...
             Digraph(edges=[('a', 'c'), ('a', 'b'), ('b', 'c'), ('b', 'd'), ('d', 'e')])
@@ -228,12 +220,8 @@ class Digraph(AbjadObject):
 
         ::
 
-            >>> from abjad.tools.datastructuretools import Digraph
-
-        ::
-
             >>> edges = [('a', 'b'), ('b', 'c'), ('b', 'd')]
-            >>> digraph = Digraph(edges)
+            >>> digraph = datastructuretools.Digraph(edges)
             >>> digraph
             Digraph(edges=[('a', 'b'), ('b', 'c'), ('b', 'd')])
 

@@ -139,10 +139,6 @@ class ResidueClassExpression(_BaseResidueClass):
 
         Example::
 
-            >>> from abjad.tools.sievetools import ResidueClass as RC
-
-        ::
-
             >>> e = RC(3, 0) | RC(2, 0)
             >>> e.get_congruent_bases(6)
             [0, 2, 3, 4, 6]

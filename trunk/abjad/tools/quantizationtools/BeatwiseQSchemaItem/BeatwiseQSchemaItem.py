@@ -9,7 +9,6 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
     ::
 
-        >>> from abjad.tools import quantizationtools
         >>> quantizationtools.BeatwiseQSchemaItem()
         BeatwiseQSchemaItem()
 

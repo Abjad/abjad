@@ -21,8 +21,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
     ::
 
-        >>> from abjad.tools.timeintervaltools import TimeIntervalTree
-        >>> from abjad.tools.timeintervaltools import TimeInterval
+        >>> from abjad.tools.timeintervaltools import *
 
     ::
 
@@ -112,7 +111,6 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            >>> from abjad.tools.timeintervaltools import *
             >>> true_tree = TimeIntervalTree([TimeInterval(0, 1)])
             >>> false_tree = TimeIntervalTree([])
 
@@ -155,7 +153,6 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            >>> from abjad.tools.timeintervaltools import *
             >>> ti1 = TimeInterval(1, 2)
             >>> ti2 = TimeInterval(3, (7, 2))
             >>> tree = TimeIntervalTree([ti1, ti2])
@@ -177,7 +174,6 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            >>> from abjad.tools.timeintervaltools import *
             >>> ti1 = TimeInterval(1, 2)
             >>> ti2 = TimeInterval(3, (7, 2))
             >>> tree = TimeIntervalTree([ti1, ti2])
@@ -197,7 +193,6 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            >>> from abjad.tools.timeintervaltools import *
             >>> ti1 = TimeInterval(1, 2)
             >>> ti2 = TimeInterval(3, (7, 2))
             >>> tree = TimeIntervalTree([ti1, ti2])
@@ -221,7 +216,6 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            >>> from abjad.tools.timeintervaltools import *
             >>> ti1 = TimeInterval(1, 2)
             >>> ti2 = TimeInterval(3, (7, 2))
             >>> tree = TimeIntervalTree([ti1, ti2])
@@ -241,7 +235,6 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            >>> from abjad.tools.timeintervaltools import *
             >>> ti1 = TimeInterval(1, 2)
             >>> ti2 = TimeInterval(3, (7, 2))
             >>> tree = TimeIntervalTree([ti1, ti2])
@@ -975,11 +968,6 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            >>> from abjad.tools.timeintervaltools import TimeInterval
-            >>> from abjad.tools.timeintervaltools import TimeIntervalTree
-
-        ::
-
             >>> one = TimeInterval(0, 1, {'name': 'one'})
             >>> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
             >>> three = TimeInterval(2, 4, {'name': 'three'})
@@ -1045,11 +1033,6 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
     def scale_to_rational(self, rational):
         '''Scale aggregate duration of tree to `rational`:
-
-        ::
-
-            >>> from abjad.tools.timeintervaltools import TimeInterval
-            >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
         ::
 
@@ -1122,11 +1105,6 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            >>> from abjad.tools.timeintervaltools import TimeInterval
-            >>> from abjad.tools.timeintervaltools import TimeIntervalTree
-
-        ::
-
             >>> one = TimeInterval(0, 1, {'name': 'one'})
             >>> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
             >>> three = TimeInterval(2, 4, {'name': 'three'})
@@ -1167,11 +1145,6 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            >>> from abjad.tools.timeintervaltools import TimeInterval
-            >>> from abjad.tools.timeintervaltools import TimeIntervalTree
-
-        ::
-
             >>> one = TimeInterval(0, 1, {'name': 'one'})
             >>> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
             >>> three = TimeInterval(2, 4, {'name': 'three'})
@@ -1203,11 +1176,6 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
     def split_at_rationals(self, *rationals):
         '''Split tree at each rational in `rationals`:
-
-        ::
-
-            >>> from abjad.tools.timeintervaltools import TimeInterval
-            >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
         ::
 

@@ -9,8 +9,7 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
 
     ::
 
-        >>> from abjad.tools.configurationtools import AbjadConfig
-        >>> ABJCONFIG = AbjadConfig()
+        >>> ABJCONFIG = configurationtools.AbjadConfig()
         >>> ABJCONFIG['accidental_spelling']
         'mixed'
 

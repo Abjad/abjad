@@ -6,8 +6,7 @@ class SchemeAssociativeList(Scheme):
 
     Abjad model of Scheme associative list::
 
-        >>> from abjad.tools.schemetools import SchemeAssociativeList
-        >>> SchemeAssociativeList(('space', 2), ('padding', 0.5))
+        >>> schemetools.SchemeAssociativeList(('space', 2), ('padding', 0.5))
         SchemeAssociativeList((SchemePair(('space', 2)), SchemePair(('padding', 0.5))))
 
     Scheme associative lists are immutable.

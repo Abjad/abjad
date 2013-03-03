@@ -7,10 +7,6 @@ def combine_markup_commands(*commands):
 
     ::
 
-        >>> from abjad.tools.schemetools import SchemePair
-
-    ::
-
         >>> markup_a = markuptools.MarkupCommand('draw-circle', 4, 0.4, False)
         >>> markup_b = markuptools.MarkupCommand(
         ...     'filled-box',

@@ -320,12 +320,8 @@ class PitchRange(AbjadObject):
 
         Read-only markup of pitch range name::
 
-            >>> from abjad.tools.markuptools import Markup
-
-        ::
-
             >>> pitch_range = pitchtools.PitchRange(-12, 36,
-            ...     pitch_range_name_markup=Markup('four-octave range'))
+            ...     pitch_range_name_markup=markuptools.Markup('four-octave range'))
             >>> pitch_range.pitch_range_name_markup
             Markup(('four-octave range',))
 

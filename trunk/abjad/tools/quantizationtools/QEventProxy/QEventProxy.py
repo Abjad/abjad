@@ -9,7 +9,6 @@ class QEventProxy(AbjadObject):
 
     ::
 
-        >>> from abjad.tools import quantizationtools
         >>> q_event = quantizationtools.PitchedQEvent(130, [0, 1, 4])
         >>> proxy = quantizationtools.QEventProxy(q_event, 0.5)
         >>> proxy

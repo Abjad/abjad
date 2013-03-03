@@ -9,7 +9,6 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     ::
 
-        >>> from abjad.tools import quantizationtools
         >>> quantizationtools.MeasurewiseQSchemaItem()
         MeasurewiseQSchemaItem()
 

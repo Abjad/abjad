@@ -144,10 +144,6 @@ class ResidueClass(_BaseResidueClass):
 
         Example::
 
-            >>> from abjad.tools.sievetools import ResidueClass as RC
-
-        ::
-
             >>> r = RC(3, 0)
             >>> r.get_boolean_train(6)
             [1, 0, 0, 1, 0, 0]
@@ -175,10 +171,6 @@ class ResidueClass(_BaseResidueClass):
         the min is assumed to be 0.
 
         Example::
-
-            >>> from abjad.tools.sievetools import ResidueClass as RC
-
-        ::
 
             >>> r = RC(3, 0)
             >>> r.get_congruent_bases(6)

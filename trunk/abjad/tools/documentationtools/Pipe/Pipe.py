@@ -9,11 +9,7 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
 
     ::
 
-        >>> from abjad.tools.documentationtools import Pipe
-
-    ::
-
-        >>> pipe = Pipe('python', ['-i'])
+        >>> pipe = documentationtools.Pipe('python', ['-i'])
         >>> pipe.writeline('my_list = [1, 2, 3]') # doctest: +SKIP
         >>> pipe.writeline('print my_list')       # doctest: +SKIP
 

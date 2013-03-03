@@ -8,7 +8,6 @@ class MeasurewiseQSchema(QSchema):
 
     ::
 
-        >>> from abjad.tools import quantizationtools
         >>> q_schema = quantizationtools.MeasurewiseQSchema()
 
     Without arguments, it uses smart defaults:

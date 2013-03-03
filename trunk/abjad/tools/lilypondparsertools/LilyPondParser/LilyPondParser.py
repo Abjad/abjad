@@ -32,11 +32,7 @@ class LilyPondParser(abctools.Parser):
 
     ::
 
-        >>> from abjad.tools.lilypondparsertools import LilyPondParser
-
-    ::
-
-        >>> parser = LilyPondParser()
+        >>> parser = lilypondparsertools.LilyPondParser()
         >>> input = r"\new Staff { c'4 ( d'8 e' fs'2) \fermata }"
         >>> result = parser(input)
         >>> f(result)
@@ -52,7 +48,7 @@ class LilyPondParser(abctools.Parser):
 
     ::
 
-        >>> parser = LilyPondParser('nederlands')
+        >>> parser = lilypondparsertools.LilyPondParser('nederlands')
         >>> input = '{ c des e fis }'
         >>> result = parser(input)
         >>> f(result)
@@ -173,8 +169,7 @@ class LilyPondParser(abctools.Parser):
 
         ::
 
-            >>> from abjad.tools.lilypondparsertools import LilyPondParser
-            >>> parser = LilyPondParser()
+            >>> parser = lilypondparsertools.LilyPondParser()
             >>> for language in parser.available_languages:
             ...     print language
             catalan
@@ -212,11 +207,7 @@ class LilyPondParser(abctools.Parser):
 
             ::
 
-                >>> from abjad.tools.lilypondparsertools import LilyPondParser
-
-            ::
-
-                >>> parser = LilyPondParser()
+                >>> parser = lilypondparsertools.LilyPondParser()
 
             ::
 
@@ -719,17 +710,13 @@ class LilyPondParser(abctools.Parser):
 
         ::
 
-            >>> from abjad.tools.lilypondparsertools import LilyPondParser
-
-        ::
-
             >>> name = 'my-custom-markup-function'
             >>> signature = ['markup?']
-            >>> LilyPondParser.register_markup_function(name, signature)
+            >>> lilypondparsertools.LilyPondParser.register_markup_function(name, signature)
 
         ::
 
-            >>> parser = LilyPondParser()
+            >>> parser = lilypondparsertools.LilyPondParser()
             >>> string = r"\markup { \my-custom-markup-function { foo bar baz } }"
             >>> parser(string)
             Markup((MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz']),))
