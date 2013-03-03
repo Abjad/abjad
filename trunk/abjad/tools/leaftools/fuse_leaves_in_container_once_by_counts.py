@@ -23,11 +23,13 @@ def fuse_leaves_in_container_once_by_counts(container, counts, klass=None, decre
         container, counts)
     durations = [sum([x.preprolated_duration for x in part]) for part in tokens]
 
-    # construct new notes or rests
+    # make new notes or rests
     if klass == notetools.Note:
-        new_material = notetools.make_notes(0, durations, decrease_durations_monotonically=decrease_durations_monotonically)
+        new_material = notetools.make_notes(
+            0, durations, decrease_durations_monotonically=decrease_durations_monotonically)
     elif klass == resttools.Rest:
-        new_material = resttools.make_rests(durations, decrease_durations_monotonically=decrease_durations_monotonically)
+        new_material = resttools.make_rests(
+            durations, decrease_durations_monotonically=decrease_durations_monotonically)
     else:
         raise ValueError('unknown type of material to construct.')
 

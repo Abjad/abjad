@@ -7,20 +7,38 @@ from abjad.tools import sequencetools
 def are_stepwise_ascending_notes(*expr):
     '''.. versionadded:: 2.0
 
-    True when notes in `expr` are stepwise ascneding. ::
+    True when notes in `expr` are stepwise ascending:
 
-        >>> t = Staff("c'8 d'8 e'8 f'8")
-        >>> tonalitytools.are_stepwise_ascending_notes(t[:])
+    ::
+
+        >>> staff = Staff("c'16 d' e' f' g'2")
+        >>> time_signature = contexttools.TimeSignatureMark((3, 4))(staff)
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
+        >>> tonalitytools.are_stepwise_ascending_notes(staff)
         True
 
-    Otherwise false. ::
+    Otherwise false:
 
-        >>> tonalitytools.are_stepwise_ascending_notes(Note("c'4"), Note("c'4"))
+    ::
+
+        >>> staff[:4] = "f'16 e' d' c'"
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
+        >>> tonalitytools.are_stepwise_ascending_notes(staff)
         False
 
-    .. versionchanged:: 2.0
-        renamed ``tonalitytools.are_stepwise_ascending()`` to
-        ``tonalitytools.are_stepwise_ascending_notes()``.
+    Return boolean.
     '''
 
     for left, right in sequencetools.iterate_sequence_pairwise_strict(

@@ -4,7 +4,9 @@ from abjad.tools import durationtools
 
 def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total_duration, prolation=1):
     r'''Make repeated notes with `pitch` and `written_duration` summing to
-    `total_duration` under `prolation`::
+    `total_duration` under `prolation`:
+    
+    ::
 
         >>> args = [0, Duration(1, 16), Duration(1, 4)]
         >>> notes = notetools.make_repeated_notes_with_shorter_notes_at_end(*args)
@@ -58,13 +60,9 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
             }
         }
 
-    Set `prolation` when constructing notes in a measure with a non-power-of-two denominator.
+    Set `prolation` when making notes in a measure with a non-power-of-two denominator.
 
-    Return list of newly constructed components.
-
-    .. versionchanged:: 2.0
-        renamed ``construct.note_train()`` to
-        ``notetools.make_repeated_notes_with_shorter_notes_at_end()``.
+    Return list of components.
     '''
     from abjad.tools import notetools
 

@@ -13,10 +13,6 @@ def make_skips_with_multiplied_durations(written_duration, multiplied_durations)
     Useful for making invisible layout voices.
 
     Return list of skips.
-
-    .. versionchanged:: 2.0
-        renamed ``construct.skips_with_multipliers()`` to
-        ``skiptools.make_skips_with_multiplied_durations()``.
     '''
     from abjad.tools import skiptools
 

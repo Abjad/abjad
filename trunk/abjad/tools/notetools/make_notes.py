@@ -41,10 +41,6 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
     Set `durations` to a single duration or a list of durations.
 
     Return list of newly constructed notes.
-
-    .. versionchanged:: 2.0
-        renamed ``construct.notes()`` to
-        ``notetools.make_notes()``.
     '''
     from abjad.tools import notetools
     from abjad.tools import tuplettools

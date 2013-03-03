@@ -4,12 +4,14 @@ from abjad.tools import mathtools
 
 
 def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, stop, exp='cosine', written='8'):
-    '''Make accelerating notes with LilyPond multipliers::
+    r'''Make accelerating notes with LilyPond multipliers:
 
-        >>> pitches = [1, 2]
-        >>> total = (1, 2)
-        >>> start = (1, 4)
-        >>> stop = (1, 8)
+    ::
+
+        >>> pitches = ['C#4', 'D4']
+        >>> total = Duration(4, 4)
+        >>> start = Duration(1, 4)
+        >>> stop = Duration(1, 16)
         >>> args = [pitches, total, start, stop]
 
     ::
@@ -18,13 +20,27 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
 
     ::
 
-        >>> notes
-        [Note("cs'8 * 113/64"), Note("d'8 * 169/128"), Note("cs'8 * 117/128")]
+        >>> staff = Staff(notes)
+        >>> beam = beamtools.BeamSpanner(staff[:])
+        >>> slur = spannertools.SlurSpanner(staff[:])
 
     ::
 
-        >>> Voice(notes).duration
-        Duration(1, 2)
+        >>> f(staff)
+        \new Staff {
+            cs'8 * 245/128 [ (
+            d'8 * 109/64
+            cs'8 * 161/128
+            d'8 * 115/128
+            cs'8 * 87/128
+            d'8 * 9/16
+            cs'8 * 1/2
+            d'8 * 61/128 ] )
+        }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Set note pitches cyclically from `pitches`.
 
@@ -35,10 +51,6 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
     Set note durations to `written` duration times computed interpolated multipliers.
 
     Return list of notes.
-
-    .. versionchanged:: 2.0
-        renamed ``construct.notes_curve()`` to
-        ``notetools.make_accelerating_notes_with_lilypond_multipliers()``.
     '''
     from abjad.tools import notetools
 

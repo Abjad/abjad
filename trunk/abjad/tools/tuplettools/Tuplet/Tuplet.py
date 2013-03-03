@@ -404,8 +404,10 @@ class Tuplet(Container):
     @apply
     def is_invisible():
         def fget(self):
-            r'''Read / write boolean to render as LilyPond ``\scaledDurations``
-            construct instead of tuplet::
+            r'''Read / write boolean to output LilyPond ``\scaledDurations``
+            instead of tuplet:
+
+            ::
 
                 >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
 

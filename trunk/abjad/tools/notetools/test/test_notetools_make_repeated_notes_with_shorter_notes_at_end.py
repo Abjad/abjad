@@ -3,7 +3,8 @@ import py.test
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_01():
-    '''Construct train of 1/16th notes equal to 1/4 total duration.'''
+    '''Make train of 1/16th notes equal to 1/4 total duration.
+    '''
 
     t = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(1, 4)))
 
@@ -21,7 +22,8 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_01():
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_02():
-    '''Construct train of 1/16th notes equal to 9/32 total duration.'''
+    '''Make train of 1/16th notes equal to 9/32 total duration.
+    '''
 
     t = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(9, 32)))
 
@@ -40,7 +42,8 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_02():
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_03():
-    '''Construct train of 1/16th notes equal to only 1/128 total duration.'''
+    '''Make train of 1/16th notes equal to only 1/128 total duration.
+    '''
 
     t = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(1, 128)))
 
@@ -55,7 +58,8 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_03():
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_04():
-    '''Construct train of 1/16th notes equal to 4/10 total duration.'''
+    '''Make train of 1/16th notes equal to 4/10 total duration.
+    '''
 
     t = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(4, 10)))
 
@@ -78,7 +82,8 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_04():
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_05():
-    '''Construct train of written 1/16th notes within measure of 5/18.'''
+    '''Make train of written 1/16th notes within measure of 5/18.
+    '''
 
     t = Measure((5, 18), notetools.make_repeated_notes_with_shorter_notes_at_end(
         0, Duration(1, 16), Duration(5, 18), prolation = Duration(16, 18)))

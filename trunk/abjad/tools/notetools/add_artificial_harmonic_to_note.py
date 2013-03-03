@@ -3,7 +3,9 @@ from abjad.tools import pitchtools
 
 
 def add_artificial_harmonic_to_note(note, melodic_diatonic_interval=None):
-    r'''Add artifical harmonic to `note` at `melodic_diatonic_interval`::
+    r'''Add artifical harmonic to `note` at `melodic_diatonic_interval`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(staff[:])
@@ -47,10 +49,6 @@ def add_artificial_harmonic_to_note(note, melodic_diatonic_interval=None):
     Move parentage and spanners from `note` to artificial harmonic chord.
 
     Return artificial harmonic chord.
-
-    .. versionchanged:: 2.0
-        renamed ``harmonictools.add_artificial()`` to
-        ``notetools.add_artificial_harmonic_to_note()``.
     '''
     from abjad.tools import chordtools
 

@@ -10,7 +10,9 @@ from abjad.tools import stafftools
 def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature=None):
     r'''.. versionadded:: 2.0
 
-    Construct one up-down period of scale according to `key_signature`::
+    Make all notes in ascending and descending diatonic scale of `key_signature`:
+
+    ::
 
         >>> score = tonalitytools.make_all_notes_in_ascending_and_descending_diatonic_scale(
         ... contexttools.KeySignatureMark('E', 'major'))
@@ -41,9 +43,11 @@ def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature=None
             }
         >>
 
-    .. versionchanged:: 2.0
-        renamed ``construct.scale_period()`` to
-        ``tonalitytools.make_all_notes_in_ascending_and_descending_diatonic_scale()``.
+    ::
+
+        >>> show(score) # doctest: +SKIP
+
+    Return score suitable for MIDI playback.
     '''
     from abjad.tools import tonalitytools
 

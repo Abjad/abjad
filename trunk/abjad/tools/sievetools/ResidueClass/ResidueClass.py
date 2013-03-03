@@ -3,11 +3,14 @@ from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
 
 class ResidueClass(_BaseResidueClass):
     '''Residue class (or congruence class).
+
     Residue classes form the basis of Xenakis sieves. They can be used to
-    construct any complex periodic integer (or boolean) sequence as a
+    make any complex periodic integer or boolean sequence as a
     combination of simple periodic sequences.
 
-    Example from the opening of Xenakis's *Psappha* for solo percussion::
+    Example from the opening of Xenakis's *Psappha* for solo percussion:
+
+    ::
 
         >>> from abjad.tools.sievetools import ResidueClass as RC
 

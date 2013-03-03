@@ -6,20 +6,22 @@ from abjad.tools import sequencetools
 def are_scalar_notes(*expr):
     '''.. versionadded:: 2.0
 
-    True when notes in `expr` are scalar. ::
+    True when notes in `expr` are scalar:
+
+    ::
 
         >>> t = Staff("c'8 d'8 e'8 f'8")
         >>> tonalitytools.are_scalar_notes(t[:])
         True
 
-    Otherwise false. ::
+    Otherwise false:
+
+    ::
 
         >>> tonalitytools.are_scalar_notes(Note("c'4"), Note("c'4"))
         False
 
-    .. versionchanged:: 2.0
-        renamed ``tonalitytools.are_scalar()`` to
-        ``tonalitytools.are_scalar_notes()``.
+    Return boolean.
     '''
 
     direction_string = None

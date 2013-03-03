@@ -32,10 +32,6 @@ def make_rests(durations, decrease_durations_monotonically=True, tie_parts=False
         }
 
     Return list of rests.
-
-    .. versionchanged:: 2.0
-        renamed ``construct.rests()`` to
-        ``resttools.make_rests()``.
     '''
     from abjad.tools import resttools
 

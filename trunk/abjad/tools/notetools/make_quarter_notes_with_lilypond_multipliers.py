@@ -26,10 +26,6 @@ def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
         [Note("c'4 * 4/5"), Note("d'4 * 4/5"), Note("e'4 * 4/5"), Note("f'4 * 4/5")]
 
     Return list of zero or more newly constructed notes.
-
-    .. versionchanged:: 2.0
-        renamed ``construct.quarter_notes_with_multipliers()`` to
-        ``notetools.make_quarter_notes_with_lilypond_multipliers()``.
     '''
     from abjad.tools import notetools
 
