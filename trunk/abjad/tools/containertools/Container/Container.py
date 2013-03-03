@@ -149,6 +149,22 @@ class Container(Component):
             return '<<%s>>' % self._summary
 
     @property
+    def _space_delimited_summary(self):
+        '''Formatted summary of container contents for string output.
+        '''
+        if 0 < len(self):
+            result = []
+            for x in self._music:
+                if hasattr(x, '_compact_representation_with_tie'):
+                    result.append(x._compact_representation_with_tie)
+                else:
+                    result.append(str(x))
+            #return ' '.join([str(x) for x in self._music])
+            return ' '.join(result)
+        else:
+            return ''
+
+    @property
     def _summary(self):
         '''Formatted summary of container contents for repr output.
         '''

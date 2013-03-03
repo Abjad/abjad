@@ -33,9 +33,9 @@ def list_time_signatures_of_measures_in_expr(components):
 
         >>> for x in measuretools.list_time_signatures_of_measures_in_expr(staff): x
         ...
-        TimeSignatureMark((2, 8))(|2/8, c8, d8|)
-        TimeSignatureMark((3, 8))(|3/8, c8, d8, e8|)
-        TimeSignatureMark((4, 8))(|4/8, c8, d8, e8, f8|)
+        TimeSignatureMark((2, 8))(|2/8 c8 d8|)
+        TimeSignatureMark((3, 8))(|3/8 c8 d8 e8|)
+        TimeSignatureMark((4, 8))(|4/8 c8 d8 e8 f8|)
 
     Return list of zero or more time signatures.
     '''

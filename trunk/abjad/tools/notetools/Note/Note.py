@@ -113,6 +113,15 @@ class Note(Leaf):
     def _compact_representation(self):
         return self._body[0]
 
+    @property
+    def _compact_representation_with_tie(self):
+        from abjad.tools import tietools
+        tie_chain = tietools.get_tie_chain(self)
+        if 1 < len(tie_chain) and not self is tie_chain[-1]:
+            return '{} ~'.format(self._body[0])
+        else:
+            return self._body[0]
+
     ### PUBLIC PROPERTIES ###
 
     @property

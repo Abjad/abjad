@@ -18,14 +18,14 @@ def make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
         ...     measure = Measure((4, 4), notes)
         ...     print '{}\t{}'.format(rhythm_number, measure)
         ...
-        0   |4/4, c'1|
-        1   |4/4, c'2., c'4|
-        2   |4/4, c'2, c'4, c'4|
-        3   |4/4, c'2, c'2|
-        4   |4/4, c'4, c'4, c'2|
-        5   |4/4, c'4, c'4, c'4, c'4|
-        6   |4/4, c'4, c'2, c'4|
-        7   |4/4, c'4, c'2.|
+        0   |4/4 c'1|
+        1   |4/4 c'2. c'4|
+        2   |4/4 c'2 c'4 c'4|
+        3   |4/4 c'2 c'2|
+        4   |4/4 c'4 c'4 c'2|
+        5   |4/4 c'4 c'4 c'4 c'4|
+        6   |4/4 c'4 c'2 c'4|
+        7   |4/4 c'4 c'2.|
 
     Example 2. The sixteenth test rhythms for that a length-``5`` grid::
 
@@ -35,22 +35,22 @@ def make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
         ...     measure = Measure((5, 4), notes)
         ...     print '{}\t{}'.format(rhythm_number, measure)
         ...
-        0   |5/4, c'1, c'4|
-        1   |5/4, c'1, c'4|
-        2   |5/4, c'2., c'4, c'4|
-        3   |5/4, c'2., c'2|
-        4   |5/4, c'2, c'4, c'2|
-        5   |5/4, c'2, c'4, c'4, c'4|
-        6   |5/4, c'2, c'2, c'4|
-        7   |5/4, c'2, c'2.|
-        8   |5/4, c'4, c'4, c'2.|
-        9   |5/4, c'4, c'4, c'2, c'4|
-        10  |5/4, c'4, c'4, c'4, c'4, c'4|
-        11  |5/4, c'4, c'4, c'4, c'2|
-        12  |5/4, c'4, c'2, c'2|
-        13  |5/4, c'4, c'2, c'4, c'4|
-        14  |5/4, c'4, c'2., c'4|
-        15  |5/4, c'4, c'1|
+        0   |5/4 c'1 ~ c'4|
+        1   |5/4 c'1 c'4|
+        2   |5/4 c'2. c'4 c'4|
+        3   |5/4 c'2. c'2|
+        4   |5/4 c'2 c'4 c'2|
+        5   |5/4 c'2 c'4 c'4 c'4|
+        6   |5/4 c'2 c'2 c'4|
+        7   |5/4 c'2 c'2.|
+        8   |5/4 c'4 c'4 c'2.|
+        9   |5/4 c'4 c'4 c'2 c'4|
+        10  |5/4 c'4 c'4 c'4 c'4 c'4|
+        11  |5/4 c'4 c'4 c'4 c'2|
+        12  |5/4 c'4 c'2 c'2|
+        13  |5/4 c'4 c'2 c'4 c'4|
+        14  |5/4 c'4 c'2. c'4|
+        15  |5/4 c'4 c'1|
 
     Use for testing metrical hierarchy establishment.
     '''

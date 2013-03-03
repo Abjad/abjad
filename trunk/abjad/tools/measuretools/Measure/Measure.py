@@ -103,10 +103,10 @@ class Measure(FixedDurationContainer):
         '''String form of measure with pipes for single string display.
         '''
         forced_time_signature = contexttools.get_effective_time_signature(self)
-        summary = self._summary
+        summary = self._space_delimited_summary
         length = len(self)
         if forced_time_signature and length:
-            return '|%s, %s|' % (forced_time_signature, summary)
+            return '|%s %s|' % (forced_time_signature, summary)
         elif forced_time_signature:
             return '|%s|' % forced_time_signature
         elif length:
