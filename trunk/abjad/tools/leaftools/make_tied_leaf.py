@@ -25,7 +25,10 @@ def make_tied_leaf(kind, duration, decrease_durations_monotonically=True,
 
     # make leaves
     result = []
-    for numerator in mathtools.partition_integer_into_canonic_parts(duration.numerator):
+    numerators = mathtools.partition_integer_into_canonic_parts(duration.numerator)
+    if not decrease_durations_monotonically:
+        numerators = list(reversed(numerators))
+    for numerator in numerators:
         written_duration = durationtools.Duration(numerator, duration.denominator)
         if not pitches is None:
             args = (pitches, written_duration)
@@ -33,12 +36,9 @@ def make_tied_leaf(kind, duration, decrease_durations_monotonically=True,
             args = (written_duration, )
         result.append(kind(*args))
 
-    # apply direction and tie spanner if required
-    if 1 < len(result):
-        if not decrease_durations_monotonically:
-            result.reverse()
-        if tie_parts:
-            tietools.TieSpanner(result)
+    # apply tie spanner if required
+    if tie_parts and 1 < len(result):
+        tietools.TieSpanner(result)
 
     # return result
     return result
