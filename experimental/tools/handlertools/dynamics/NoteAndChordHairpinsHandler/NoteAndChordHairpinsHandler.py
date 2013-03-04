@@ -38,7 +38,8 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
                     is_short_group = True
             if is_short_group:
                 start_dynamic = hairpin_token[0]
-                contexttools.DynamicMark(start_dynamic)(group[0])
+                #contexttools.DynamicMark(start_dynamic)(group[0])
+                marktools.LilyPondCommandMark(start_dynamic, 'right')(group[0])
             else:
                 descriptor = ' '.join([x for x in hairpin_token if x])
                 spannertools.HairpinSpanner(group, descriptor, include_rests = False)

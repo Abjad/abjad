@@ -131,13 +131,13 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/handlertools/NoteAndChordSwellHandler/NoteAndChordSwellHandler
       tools/handlertools/articulations/PatternedArticulationsHandler/PatternedArticulationsHandler
       tools/handlertools/articulations/ReiteratedArticulationHandler/ReiteratedArticulationHandler
       tools/handlertools/articulations/RepeatedMarkupHandler/RepeatedMarkupHandler
       tools/handlertools/articulations/StemTremoloHandler/StemTremoloHandler
       tools/handlertools/dynamics/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
       tools/handlertools/dynamics/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
+      tools/handlertools/dynamics/NoteAndChordSwellHandler/NoteAndChordSwellHandler
       tools/handlertools/dynamics/ReiteratedDynamicHandler/ReiteratedDynamicHandler
       tools/handlertools/dynamics/TerracedDynamicsHandler/TerracedDynamicsHandler
       tools/handlertools/pitch/DiatonicClusterHandler/DiatonicClusterHandler
@@ -161,13 +161,13 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/handlertools/NoteAndChordSwellHandler/NoteAndChordSwellHandler
       tools/handlertools/articulations/PatternedArticulationsHandler/PatternedArticulationsHandler
       tools/handlertools/articulations/ReiteratedArticulationHandler/ReiteratedArticulationHandler
       tools/handlertools/articulations/RepeatedMarkupHandler/RepeatedMarkupHandler
       tools/handlertools/articulations/StemTremoloHandler/StemTremoloHandler
       tools/handlertools/dynamics/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
       tools/handlertools/dynamics/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
+      tools/handlertools/dynamics/NoteAndChordSwellHandler/NoteAndChordSwellHandler
       tools/handlertools/dynamics/ReiteratedDynamicHandler/ReiteratedDynamicHandler
       tools/handlertools/dynamics/TerracedDynamicsHandler/TerracedDynamicsHandler
       tools/handlertools/pitch/DiatonicClusterHandler/DiatonicClusterHandler

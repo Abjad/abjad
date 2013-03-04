@@ -1,9 +1,9 @@
 import math
 from abjad.tools import componenttools
+from abjad.tools import contexttools
 from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import marktools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from experimental.tools.handlertools.dynamics.DynamicHandler import DynamicHandler
 
@@ -21,17 +21,28 @@ class NoteAndChordSwellHandler(DynamicHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        #print expr, 'EXPR'
         assert len(self.swell_dynamics) == 3, repr(self.swell_dynamics)
+        assert leaftools.all_are_leaves(expr), repr(expr)
         start_dynamic, peak_dynamic, stop_dynamic = self.swell_dynamics
-        leaves = list(iterationtools.iterate_leaves_in_expr(expr))
-        leaves = leaftools.remove_outer_rests_from_sequence(leaves)
-        assert 3 <= len(leaves)
-        contexttools.DynamicMark(start_dynamic)(leaves[0])
-        contexttools.DynamicMark(stop_dynamic)(leaves[-1])
-        middle_index = int(math.ceil(len(leaves) / 2.0))
-        middle_leaf = leaves[middle_index]
-        contexttools.DynamicMark(peak_dynamic)(middle_leaf)
-        return leaves
+        #leaves = list(iterationtools.iterate_leaves_in_expr(expr))
+        #leaves = leaftools.remove_outer_rests_from_sequence(leaves)
+        leaves = expr
+        if 3 <= len(leaves):
+            #contexttools.DynamicMark(start_dynamic)(leaves[0])
+            #contexttools.DynamicMark(stop_dynamic)(leaves[-1])
+            marktools.LilyPondCommandMark(start_dynamic, 'right')(leaves[0])
+            marktools.LilyPondCommandMark(stop_dynamic, 'right')(leaves[-1])
+            middle_index = int(len(leaves) / 2.0)
+            middle_leaf = leaves[middle_index]
+            #contexttools.DynamicMark(peak_dynamic)(middle_leaf)
+            marktools.LilyPondCommandMark(peak_dynamic, 'right')(middle_leaf)
+            half_count = middle_index + 1
+            left_leaves = leaves[:half_count]
+            right_leaves = leaves[-half_count:]
+            spannertools.CrescendoSpanner(left_leaves)
+            spannertools.DecrescendoSpanner(right_leaves)
+            return leaves
 
     ### READ / WRITE PUBLIC PROPERTIES ###
 
