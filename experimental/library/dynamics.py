@@ -6,5 +6,5 @@ hairpins = NoteAndChordHairpinHandler(('p', '<', 'f'))
 __all__.append('hairpins')
 
 
-#swells = NoteAndChordSwellHandler(('p', 'f', 'p'))
-#__all__.append('swells')
+swells = NoteAndChordSwellHandler(('p', 'f', 'p'))
+__all__.append('swells')
