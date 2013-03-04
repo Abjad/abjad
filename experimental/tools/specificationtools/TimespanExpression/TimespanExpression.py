@@ -5,7 +5,8 @@ from experimental.tools.specificationtools.SelectMethodMixin import SelectMethod
 from experimental.tools.specificationtools.TimespanCallbackMixin import TimespanCallbackMixin
 
 
-class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethodMixin, TimeContiguousSetMethodMixin):
+class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethodMixin, 
+    TimeContiguousSetMethodMixin):
     r'''Timespan expression.
 
     Preliminary definitions:

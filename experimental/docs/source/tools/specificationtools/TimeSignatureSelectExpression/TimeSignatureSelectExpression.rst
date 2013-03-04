@@ -81,6 +81,24 @@ Methods
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.rotate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.select_beats
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.select_divisions
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.select_leaves
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.select_measures
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.select_notes_and_chords
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.select_time_signatures
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_aggregate
    :noindex:
 

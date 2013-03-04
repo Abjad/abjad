@@ -81,6 +81,24 @@ Methods
 .. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.rotate
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.select_beats
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.select_divisions
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.select_leaves
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.select_measures
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.select_notes_and_chords
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.select_time_signatures
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.set_aggregate
    :noindex:
 
