@@ -1,8 +1,7 @@
 from abjad import *
-from abjad.tools import sequencetools
-from abjad.tools import rhythmmakertools
 
 
+# TODO: change all calls to explicit keyword calls
 def test_DivisionIncisedRestRhythmMaker___call___01():
 
     prefix_talea, prefix_lengths = [8], [0, 1]
@@ -53,6 +52,7 @@ def test_DivisionIncisedRestRhythmMaker___call___01():
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr4\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr4\n\t\tr16.\n\t\tc'32\n\t}\n}"
 
 
+# TODO: change all calls to explicit keyword calls
 def test_DivisionIncisedRestRhythmMaker___call___02():
 
     prefix_talea, prefix_lengths = [8], [1, 2, 3, 4]
@@ -103,6 +103,7 @@ def test_DivisionIncisedRestRhythmMaker___call___02():
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr4\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tc'8\n\t}\n}"
 
 
+# TODO: change all calls to explicit keyword calls
 def test_DivisionIncisedRestRhythmMaker___call___03():
 
     prefix_talea, prefix_lengths = [1], [1]
@@ -148,6 +149,7 @@ def test_DivisionIncisedRestRhythmMaker___call___03():
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'32\n\t\tr4\n\t\tr16.\n\t\tc'4\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'32\n\t\tr16.\n\t\tc'4\n\t\tc'4\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'32\n\t\tc'4\n\t\tc'4\n\t\tc'16.\n\t}\n}"
 
 
+# TODO: change all calls to explicit keyword calls
 def test_DivisionIncisedRestRhythmMaker___call___04():
 
     prefix_talea, prefix_lengths = [], [0]
@@ -187,6 +189,7 @@ def test_DivisionIncisedRestRhythmMaker___call___04():
     assert staff.lilypond_format == '\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n}'
 
 
+# TODO: change all calls to explicit keyword calls
 def test_DivisionIncisedRestRhythmMaker___call___05():
 
     prefix_talea, prefix_lengths = [1], [1]
@@ -243,8 +246,14 @@ def test_DivisionIncisedRestRhythmMaker___call___06():
     prefix_talea, prefix_lengths = [1], [1]
     suffix_talea, suffix_lengths = [], [0]
     talea_denominator, prolation_addenda, secondary_divisions = 32, [2, 0], [20]
-    maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(prefix_talea, prefix_lengths,
-        suffix_talea, suffix_lengths, talea_denominator, prolation_addenda, secondary_divisions)
+    maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
+        prefix_talea=[1], 
+        prefix_lengths=[1],
+        suffix_talea=[], 
+        suffix_lengths=[0], 
+        talea_denominator=32, 
+        prolation_addenda=[2, 0], 
+        secondary_divisions=[20])
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)

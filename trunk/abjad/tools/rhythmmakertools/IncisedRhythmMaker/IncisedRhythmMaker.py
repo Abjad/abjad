@@ -37,6 +37,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     def __init__(self, prefix_talea=None, prefix_lengths=None,
         suffix_talea=None, suffix_lengths=None, talea_denominator=None,
+        body_ratio=None,
         prolation_addenda=None, secondary_divisions=None,
         prefix_talea_helper=None, prefix_lengths_helper=None,
         suffix_talea_helper=None, suffix_lengths_helper=None,
@@ -78,6 +79,9 @@ class IncisedRhythmMaker(RhythmMaker):
         self.suffix_lengths = suffix_lengths
         self.prolation_addenda = prolation_addenda
         self.talea_denominator = talea_denominator
+        if body_ratio is not None:
+            body_ratio = mathtools.Ratio(body_ratio)
+        self.body_ratio = body_ratio
         self.secondary_divisions = secondary_divisions
         self.prefix_talea_helper = self._none_to_trivial_helper(prefix_talea_helper)
         self.prefix_lengths_helper = self._none_to_trivial_helper(prefix_lengths_helper)

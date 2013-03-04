@@ -1,3 +1,4 @@
+from abjad.tools import mathtools
 from abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker import DivisionIncisedRhythmMaker
 
 
@@ -6,25 +7,104 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
     Division-incised note rhythm-maker:
 
-    ::
+    Example 1. Basic usage:
 
         >>> maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-        ...     prefix_talea=[-8],
+        ...     prefix_talea=[-1],
         ...     prefix_lengths=[0, 1],
         ...     suffix_talea=[-1],
         ...     suffix_lengths=[1],
-        ...     talea_denominator=32)
+        ...     talea_denominator=16)
 
     Configure at instantiation and then call on any sequence of divisions:
 
     ::
 
-        >>> divisions = [(5, 16), (5, 16), (5, 16), (5, 16)]
+        >>> divisions = 4 * [(5, 16)]
         >>> leaf_lists = maker(divisions)
         >>> leaves = sequencetools.flatten_sequence(leaf_lists)
         >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
         >>> staff = stafftools.RhythmicStaff(measures)
         >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+
+    ::
+
+        >>> f(staff)
+        \new RhythmicStaff {
+            {
+                \time 5/16
+                c'4
+                r16
+            }
+            {
+                r16
+                c'8.
+                r16
+            }
+            {
+                c'4
+                r16
+            }
+            {
+                r16
+                c'8.
+                r16
+            }
+        }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    Example 2. Set `body_ratio` to divide middle part proportionally:
+
+    ::
+
+        >>> maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker(
+        ...     prefix_talea=[-1],
+        ...     prefix_lengths=[0, 1],
+        ...     suffix_talea=[-1],
+        ...     suffix_lengths=[1],
+        ...     talea_denominator=16,
+        ...     body_ratio=(1, 1))
+
+    ::
+
+        >>> divisions = 4 * [(5, 16)]
+        >>> leaf_lists = maker(divisions)
+        >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> staff = stafftools.RhythmicStaff(measures)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+
+    ::
+
+        >>> f(staff)
+        \new RhythmicStaff {
+            {
+                \time 5/16
+                c'8
+                c'8
+                r16
+            }
+            {
+                r16
+                c'16.
+                c'16.
+                r16
+            }
+            {
+                c'8
+                c'8
+                r16
+            }
+            {
+                r16
+                c'16.
+                c'16.
+                r16
+            }
+        }
 
     ::
 
@@ -37,7 +117,11 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
     def _make_middle_of_numeric_map_part(self, middle):
         if 0 < middle:
-            return (middle, )
+            if self.body_ratio is not None:
+                shards = mathtools.divide_number_by_ratio(middle, self.body_ratio)
+                return tuple(shards)
+            else:
+                return (middle, )
         else:
             return ()
 
@@ -50,11 +134,12 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
             >>> z(maker)
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-                prefix_talea=[-8],
+                prefix_talea=[-1],
                 prefix_lengths=[0, 1],
                 suffix_talea=[-1],
                 suffix_lengths=[1],
-                talea_denominator=32,
+                talea_denominator=16,
+                body_ratio=mathtools.Ratio(1, 1),
                 prolation_addenda=[],
                 secondary_divisions=[],
                 decrease_durations_monotonically=True,
@@ -71,11 +156,12 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
             >>> z(new_maker)
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-                prefix_talea=[-8],
+                prefix_talea=[-1],
                 prefix_lengths=[1],
                 suffix_talea=[-1],
                 suffix_lengths=[1],
-                talea_denominator=32,
+                talea_denominator=16,
+                body_ratio=mathtools.Ratio(1, 1),
                 prolation_addenda=[],
                 secondary_divisions=[],
                 decrease_durations_monotonically=True,
@@ -108,11 +194,12 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
             >>> z(maker)
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-                prefix_talea=[-8],
+                prefix_talea=[-1],
                 prefix_lengths=[0, 1],
                 suffix_talea=[-1],
                 suffix_lengths=[1],
-                talea_denominator=32,
+                talea_denominator=16,
+                body_ratio=mathtools.Ratio(1, 1),
                 prolation_addenda=[],
                 secondary_divisions=[],
                 decrease_durations_monotonically=True,
@@ -144,11 +231,12 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
             >>> z(reversed_maker)
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-                prefix_talea=[-8],
+                prefix_talea=[-1],
                 prefix_lengths=[1, 0],
                 suffix_talea=[-1],
                 suffix_lengths=[1],
-                talea_denominator=32,
+                talea_denominator=16,
+                body_ratio=mathtools.Ratio(1, 1),
                 prolation_addenda=[],
                 secondary_divisions=[],
                 decrease_durations_monotonically=False,
@@ -181,11 +269,12 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
             >>> z(maker)
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-                prefix_talea=[-8],
+                prefix_talea=[-1],
                 prefix_lengths=[0, 1],
                 suffix_talea=[-1],
                 suffix_lengths=[1],
-                talea_denominator=32,
+                talea_denominator=16,
+                body_ratio=mathtools.Ratio(1, 1),
                 prolation_addenda=[],
                 secondary_divisions=[],
                 decrease_durations_monotonically=True,
