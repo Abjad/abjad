@@ -131,6 +131,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/handlertools/NoteAndChordSwellHandler/NoteAndChordSwellHandler
       tools/handlertools/articulations/PatternedArticulationsHandler/PatternedArticulationsHandler
       tools/handlertools/articulations/ReiteratedArticulationHandler/ReiteratedArticulationHandler
       tools/handlertools/articulations/RepeatedMarkupHandler/RepeatedMarkupHandler
@@ -160,6 +161,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/handlertools/NoteAndChordSwellHandler/NoteAndChordSwellHandler
       tools/handlertools/articulations/PatternedArticulationsHandler/PatternedArticulationsHandler
       tools/handlertools/articulations/ReiteratedArticulationHandler/ReiteratedArticulationHandler
       tools/handlertools/articulations/RepeatedMarkupHandler/RepeatedMarkupHandler

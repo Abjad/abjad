@@ -8,6 +8,10 @@ from experimental.tools.handlertools.dynamics.DynamicHandler import DynamicHandl
 
 
 class NoteAndChordHairpinHandler(DynamicHandler):
+    '''Note and chord hairpin handler.
+    '''
+
+    ### INITIALIZER ###
 
     def __init__(self, hairpin_token=None, minimum_duration=None):
         DynamicHandler.__init__(self, minimum_duration=minimum_duration)
@@ -28,10 +32,10 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 is_short_group = True
         if is_short_group:
             start_dynamic = self.hairpin_token[0]
-            marktools.LilyPondCommandMark(start_dynamic, 'right')(group[0])
+            contexttools.DynamicMark(start_dynamic)(group[0])
         else:
             descriptor = ' '.join([x for x in self.hairpin_token if x])
-            spannertools.HairpinSpanner(group, descriptor, include_rests = False)
+            spannertools.HairpinSpanner(group, descriptor, include_rests=False)
         return expr
 
     ### READ / WRITE PUBLIC PROPERTIES ###

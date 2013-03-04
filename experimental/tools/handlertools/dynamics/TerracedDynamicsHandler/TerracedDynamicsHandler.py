@@ -1,6 +1,5 @@
 from abjad.tools import contexttools
 from abjad.tools import iterationtools
-from abjad.tools import marktools
 from abjad.tools import sequencetools
 from experimental.tools.handlertools.dynamics.DynamicHandler import DynamicHandler
 
@@ -22,7 +21,7 @@ class TerracedDynamicsHandler(DynamicHandler):
         for i, note_or_chord in enumerate(iterationtools.iterate_notes_and_chords_in_expr(expr)):
             dynamic_name = dynamics[offset+i]
             if self.minimum_duration <= note_or_chord.duration:
-                marktools.LilyPondCommandMark(dynamic_name, 'right')(note_or_chord)
+                contexttools.DynamicMark(dynamic_name)(note_or_chord)
         return expr
 
     ### READ / WRITE PUBLIC PROPERTIES ###

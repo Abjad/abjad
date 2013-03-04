@@ -1,6 +1,5 @@
 from abjad.tools import contexttools
 from abjad.tools import iterationtools
-from abjad.tools import marktools
 from experimental.tools.handlertools.dynamics.DynamicHandler import DynamicHandler
 
 
@@ -16,7 +15,7 @@ class ReiteratedDynamicHandler(DynamicHandler):
 
     def __call__(self, expr):
         for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
-            marktools.LilyPondCommandMark(self.dynamic_name, 'right')(note_or_chord)
+            contexttools.DynamicMark(self.dynamic_name)(note_or_chord)
         return expr
 
     ### READ / WRITE PUBLIC PROPERTIES ###
