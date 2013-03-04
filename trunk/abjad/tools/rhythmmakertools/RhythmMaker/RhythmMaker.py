@@ -20,7 +20,8 @@ class RhythmMaker(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, beam_each_cell=True, beam_cells_together=False):
+    def __init__(self, forbidden_written_duration=None, beam_each_cell=True, beam_cells_together=False):
+        self.forbidden_written_duration = forbidden_written_duration
         self.beam_each_cell = beam_each_cell
         self.beam_cells_together = beam_cells_together
 

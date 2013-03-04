@@ -4,7 +4,9 @@ from abjad.tools.rhythmmakertools.DivisionIncisedRestRhythmMaker import Division
 class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
     r'''.. versionadded:: 2.8
 
-    Rest rhythm-maker:
+    Rest rhythm-maker.
+
+    Example 1:
 
     ::
 
@@ -23,6 +25,58 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
     ::
 
+        >>> f(staff)
+        \new RhythmicStaff {
+            {
+                \time 5/16
+                r4
+                r16
+            }
+            {
+                \time 3/8
+                r4.
+            }
+        }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    Example 2. Forbid written durations greater than or equal to a half note:
+
+    ::
+
+        >>> maker = rhythmmakertools.RestRhythmMaker(forbidden_written_duration=Duration(1, 4))
+
+    ::
+
+        >>> divisions = [(5, 16), (3, 8)]
+        >>> leaf_lists = maker(divisions)
+        >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> staff = stafftools.RhythmicStaff(measures)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+
+    ::
+
+        >>> f(staff)
+        \new RhythmicStaff {
+            {
+                \time 5/16
+                r8
+                r8
+                r16
+            }
+            {
+                \time 3/8
+                r8
+                r8
+                r8
+            }
+        }
+
+    ::
+
         >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
@@ -34,10 +88,12 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
     ### INITIALIZER ###
 
-    def __init__(self):
+    def __init__(self, forbidden_written_duration=None):
         DivisionIncisedRestRhythmMaker.__init__(
             self, [], [0], [], [0], 1,
-            decrease_durations_monotonically=True, tie_rests=False
+            decrease_durations_monotonically=True, 
+            forbidden_written_duration=forbidden_written_duration,
+            tie_rests=False
             )
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -49,7 +105,9 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
         ::
 
             >>> z(maker)
-            rhythmmakertools.RestRhythmMaker()
+            rhythmmakertools.RestRhythmMaker(
+                forbidden_written_duration=durationtools.Duration(1, 4)
+                )
 
         Return string.
         '''
@@ -67,7 +125,9 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
         ::
 
             >>> z(new_maker)
-            rhythmmakertools.RestRhythmMaker()
+            rhythmmakertools.RestRhythmMaker(
+                forbidden_written_duration=durationtools.Duration(1, 4)
+                )
 
         ::
 
@@ -96,7 +156,9 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
         ::
 
             >>> z(reversed_maker)
-            rhythmmakertools.RestRhythmMaker()
+            rhythmmakertools.RestRhythmMaker(
+                forbidden_written_duration=durationtools.Duration(1, 4)
+                )
 
         ::
 

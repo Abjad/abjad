@@ -42,9 +42,11 @@ class IncisedRhythmMaker(RhythmMaker):
         suffix_talea_helper=None, suffix_lengths_helper=None,
         prolation_addenda_helper=None, secondary_divisions_helper=None,
         decrease_durations_monotonically=True, tie_rests=False,
+        forbidden_written_duration=None,
         beam_each_cell=False, beam_cells_together=False
         ):
         RhythmMaker.__init__(self,
+            forbidden_written_duration=forbidden_written_duration,
             beam_each_cell=beam_each_cell,
             beam_cells_together=beam_cells_together)
         prolation_addenda = self._none_to_new_list(prolation_addenda)
@@ -142,7 +144,9 @@ class IncisedRhythmMaker(RhythmMaker):
         for numeric_map_part in numeric_map:
             leaf_list = leaftools.make_leaves_from_talea(
                 numeric_map_part, lcd,
-                decrease_durations_monotonically=self.decrease_durations_monotonically, tie_rests=self.tie_rests)
+                forbidden_written_duration=self.forbidden_written_duration,
+                decrease_durations_monotonically=self.decrease_durations_monotonically, 
+                tie_rests=self.tie_rests)
             leaf_lists.append(leaf_list)
         return leaf_lists
 
