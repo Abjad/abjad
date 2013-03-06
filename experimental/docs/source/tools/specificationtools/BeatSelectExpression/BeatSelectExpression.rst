@@ -123,6 +123,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_register
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_tempo
+   :noindex:
+
 Special methods
 ---------------
 

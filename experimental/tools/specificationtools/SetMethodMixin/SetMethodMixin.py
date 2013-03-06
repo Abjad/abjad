@@ -34,6 +34,7 @@ class SetMethodMixin(AbjadObject):
             'pitch': specificationtools.PitchSetExpression,
             'pitch_class_transform': specificationtools.PitchClassTransformSetExpression,
             'spanner': specificationtools.SpannerSetExpression,
+            'tempo': specificationtools.TempoSetExpression,
             }[attribute]
 
     def _expr_to_expression(self, expr):
@@ -178,4 +179,15 @@ class SetMethodMixin(AbjadObject):
         assert isinstance(source_expression, pitchtools.OctaveTranspositionMapping), repr(source_expression)
         source_expression = specificationtools.PayloadExpression(payload=source_expression)
         attribute = 'reigster'
+        return self._store_leaf_set_expression(attribute, source_expression)
+
+    def set_tempo(self, source_expression):
+        r'''Set tempo to `source_expresion`.
+
+        Return tempo set expression.
+        '''
+        from experimental.tools import specificationtools
+        source_expression = contexttools.TempoMark(source_expression)
+        source_expression = specificationtools.PayloadExpression(payload=source_expression)
+        attribute = 'tempo'
         return self._store_leaf_set_expression(attribute, source_expression)

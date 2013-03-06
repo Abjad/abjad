@@ -123,6 +123,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.set_register
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression.set_tempo
+   :noindex:
+
 Special methods
 ---------------
 

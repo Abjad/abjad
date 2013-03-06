@@ -42,6 +42,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_register
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_tempo
+   :noindex:
+
 Special methods
 ---------------
 

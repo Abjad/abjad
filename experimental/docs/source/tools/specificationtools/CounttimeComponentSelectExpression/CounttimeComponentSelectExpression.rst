@@ -135,6 +135,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.set_spanner
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.set_tempo
+   :noindex:
+
 Special methods
 ---------------
 

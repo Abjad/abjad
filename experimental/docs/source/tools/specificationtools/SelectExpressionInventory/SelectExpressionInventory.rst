@@ -105,6 +105,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_register
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_tempo
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.sort
    :noindex:
 

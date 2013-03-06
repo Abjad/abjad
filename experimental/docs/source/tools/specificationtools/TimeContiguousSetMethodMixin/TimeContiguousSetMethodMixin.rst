@@ -48,6 +48,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_rhythm
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_tempo
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_time_signatures
    :noindex:
 

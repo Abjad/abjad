@@ -96,6 +96,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.set_rhythm
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.set_tempo
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface.set_time_signatures
    :noindex:
 

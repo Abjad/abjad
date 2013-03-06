@@ -126,6 +126,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_register
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_tempo
+   :noindex:
+
 Special methods
 ---------------
 

@@ -123,6 +123,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_register
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_tempo
+   :noindex:
+
 Special methods
 ---------------
 

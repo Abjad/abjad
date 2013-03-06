@@ -78,6 +78,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_rhythm
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_tempo
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_time_signatures
    :noindex:
 

@@ -111,6 +111,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_rhythm
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_tempo
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_time_signatures
    :noindex:
 

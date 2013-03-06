@@ -111,6 +111,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_rhythm
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_tempo
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimespanExpression.TimespanExpression.TimespanExpression.set_time_signatures
    :noindex:
 

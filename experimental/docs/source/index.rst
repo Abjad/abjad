@@ -341,6 +341,7 @@ Unstable packages (load manually)
       tools/specificationtools/StatalServerCursor/StatalServerCursor
       tools/specificationtools/StatalServerCursorExpression/StatalServerCursorExpression
       tools/specificationtools/StatalServerExpression/StatalServerExpression
+      tools/specificationtools/TempoSetExpression/TempoSetExpression
       tools/specificationtools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
       tools/specificationtools/TimeSignatureSetExpressionLookupExpression/TimeSignatureSetExpressionLookupExpression
       tools/specificationtools/TimespanExpression/TimespanExpression
@@ -449,6 +450,7 @@ Unstable packages (load manually)
       tools/specificationtools/StatalServerCursor/StatalServerCursor
       tools/specificationtools/StatalServerCursorExpression/StatalServerCursorExpression
       tools/specificationtools/StatalServerExpression/StatalServerExpression
+      tools/specificationtools/TempoSetExpression/TempoSetExpression
       tools/specificationtools/TimeSignatureSelectExpression/TimeSignatureSelectExpression
       tools/specificationtools/TimeSignatureSetExpressionLookupExpression/TimeSignatureSetExpressionLookupExpression
       tools/specificationtools/TimespanExpression/TimespanExpression

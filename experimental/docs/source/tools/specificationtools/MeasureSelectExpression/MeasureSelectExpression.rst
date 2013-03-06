@@ -126,6 +126,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.set_register
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression.set_tempo
+   :noindex:
+
 Special methods
 ---------------
 

@@ -81,6 +81,9 @@ Methods
 .. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_rhythm
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_tempo
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_time_signatures
    :noindex:
 
