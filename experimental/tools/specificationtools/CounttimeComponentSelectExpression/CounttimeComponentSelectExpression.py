@@ -127,15 +127,8 @@ class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMe
         anchor_timespan = self._evaluate_anchor_timespan()
         voice_proxy = self.score_specification.payload_expressions_by_voice[self.voice_name]
         rhythm_payload_expressions = voice_proxy.payload_expressions_by_attribute['rhythm']
-        # TODO: switch back to using self._get_time_relation() once this method is updated
-        #time_relation = self._get_time_relation(anchor_timespan)
-        if self.time_relation is None:
-            time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
-            #time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=anchor_timespan)
-        else:
-            time_relation = self.time_relation.new(timespan_1=anchor_timespan)
         rhythm_payload_expressions = rhythm_payload_expressions.get_timespans_that_satisfy_time_relation(
-            time_relation)
+            timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan))
         if not rhythm_payload_expressions:
             return
         rhythm_payload_expressions = copy.deepcopy(rhythm_payload_expressions)
@@ -148,6 +141,8 @@ class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMe
         for rhythm_payload_expression in rhythm_payload_expressions:
             expression.payload.extend(rhythm_payload_expression.payload)
         assert wellformednesstools.is_well_formed_component(expression.payload)
+        # TODO: eventually make this be able to work
+        #expression = expression.get_elements_that_satisfy_time_relation(time_relation)
         expression = self._apply_callbacks(expression)
         expression._voice_name = self.voice_name
         return expression
