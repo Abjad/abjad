@@ -12,6 +12,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.storage_format
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.new
+   :noindex:
+
 Special methods
 ---------------
 

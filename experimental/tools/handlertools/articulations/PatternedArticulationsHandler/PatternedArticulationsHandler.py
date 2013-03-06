@@ -67,10 +67,3 @@ class PatternedArticulationsHandler(ArticulationHandler):
             else:
                 raise TypeError(articulation_lists)
         return property(**locals())
-
-    ### PUBLIC METHODS ###
-
-    def new(self, articulation_lists):
-        new = type(self)()
-        new.articulation_lists = articulation_lists
-        return new

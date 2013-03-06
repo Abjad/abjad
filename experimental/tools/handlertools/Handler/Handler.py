@@ -28,3 +28,9 @@ class Handler(abctools.AbjadObject):
     @abc.abstractproperty
     def _tools_package_name(self):
         pass
+
+    ### PUBLIC METHODS ###
+
+    def new(self, *args, **kwargs):
+        new = type(self)(*args, **kwargs)
+        return new

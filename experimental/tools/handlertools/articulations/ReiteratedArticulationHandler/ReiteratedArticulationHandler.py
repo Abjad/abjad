@@ -72,10 +72,3 @@ class ReiteratedArticulationHandler(ArticulationHandler):
             else:
                 raise TypeError(articulation_list)
         return property(**locals())
-
-    ### PUBLIC METHODS ###
-
-    def new(self, articulation_list):
-        new = type(self)()
-        new.articulation_list = articulation_list
-        return new

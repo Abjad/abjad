@@ -12,6 +12,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler.storage_format
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler.new
+   :noindex:
+
 Special methods
 ---------------
 

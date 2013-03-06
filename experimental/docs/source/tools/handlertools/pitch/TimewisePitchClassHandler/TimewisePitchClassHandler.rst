@@ -12,6 +12,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.storage_format
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.new
+   :noindex:
+
 Special methods
 ---------------
 

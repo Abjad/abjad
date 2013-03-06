@@ -34,11 +34,3 @@ class ReiteratedDynamicHandler(DynamicHandler):
             else:
                 raise TypeError(dynamic_name)
         return property(**locals())
-
-    ### PUBLIC METHODS ###
-
-    def new(self, dynamic_name):
-        new = type(self)()
-        new.dynamic_name = dynamic_name
-        new.minimum_duration = self.minimum_duration
-        return new

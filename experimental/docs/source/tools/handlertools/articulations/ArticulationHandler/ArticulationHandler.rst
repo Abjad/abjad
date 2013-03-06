@@ -12,6 +12,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.handlertools.articulations.ArticulationHandler.ArticulationHandler.ArticulationHandler.storage_format
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.handlertools.articulations.ArticulationHandler.ArticulationHandler.ArticulationHandler.new
+   :noindex:
+
 Special methods
 ---------------
 

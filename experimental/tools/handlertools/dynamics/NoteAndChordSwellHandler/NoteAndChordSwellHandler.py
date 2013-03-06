@@ -21,7 +21,6 @@ class NoteAndChordSwellHandler(DynamicHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        #print expr, 'EXPR'
         assert len(self.swell_dynamics) == 3, repr(self.swell_dynamics)
         assert leaftools.all_are_leaves(expr), repr(expr)
         start_dynamic, peak_dynamic, stop_dynamic = self.swell_dynamics
@@ -54,9 +53,3 @@ class NoteAndChordSwellHandler(DynamicHandler):
             assert isinstance(swell_dynamics, (tuple, type(None))), repr(swell_dynamics)
             self._swell_dynamics = swell_dynamics
         return property(**locals())
-
-    ### PUBLIC METHODS ###
-
-    def new(self, **kwargs):
-        new = type(self)(**kwargs)
-        return new

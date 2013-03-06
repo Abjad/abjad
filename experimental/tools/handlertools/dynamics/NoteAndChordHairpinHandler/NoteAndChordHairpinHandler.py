@@ -54,9 +54,3 @@ class NoteAndChordHairpinHandler(DynamicHandler):
             else:
                 raise TypeError(hairpin_token)
         return property(**locals())
-
-    ### PUBLIC METHODS ###
-
-    def new(self, hairpin_token=None):
-        new = type(self)(hairpin_token=hairpin_token)
-        return new

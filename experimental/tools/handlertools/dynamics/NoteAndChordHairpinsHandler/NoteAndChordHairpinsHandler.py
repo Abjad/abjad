@@ -44,8 +44,3 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
                 descriptor = ' '.join([x for x in hairpin_token if x])
                 spannertools.HairpinSpanner(group, descriptor, include_rests = False)
         return expr
-
-    ### PUBLIC METHODS ###
-
-    def new(self):
-        raise NotImplementedError

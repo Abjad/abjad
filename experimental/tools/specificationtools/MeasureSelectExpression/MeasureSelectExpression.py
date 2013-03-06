@@ -88,7 +88,7 @@ class MeasureSelectExpression(SelectExpression):
             payload=time_signatures, start_offset=start_offset)
         expression = expression.get_elements_that_satisfy_time_relation(time_relation)
         expression = self._apply_callbacks(expression)
-        expression._voice_name = self.voice_name
+        #expression._voice_name = self.voice_name
         return expression
 
     def evaluate_early(self):

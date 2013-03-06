@@ -12,6 +12,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.handlertools.articulations.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler.storage_format
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.handlertools.articulations.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler.new
+   :noindex:
+
 Special methods
 ---------------
 

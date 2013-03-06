@@ -12,6 +12,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.storage_format
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.new
+   :noindex:
+
 Special methods
 ---------------
 

@@ -12,6 +12,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.handlertools.dynamics.DynamicHandler.DynamicHandler.DynamicHandler.storage_format
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.handlertools.dynamics.DynamicHandler.DynamicHandler.DynamicHandler.new
+   :noindex:
+
 Special methods
 ---------------
 

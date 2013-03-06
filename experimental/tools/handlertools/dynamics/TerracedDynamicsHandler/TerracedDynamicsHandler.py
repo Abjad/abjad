@@ -40,11 +40,3 @@ class TerracedDynamicsHandler(DynamicHandler):
             else:
                 raise TypeError(dynamics)
         return property(**locals())
-
-    ### PUBLIC METHODS ###
-
-    def new(self, dynamics):
-        new = type(self)()
-        new.dynamics = dynamics
-        new.minimum_duration = self.minimum_duration
-        return new

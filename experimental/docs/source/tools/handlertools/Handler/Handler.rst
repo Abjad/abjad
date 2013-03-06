@@ -12,6 +12,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.handlertools.Handler.Handler.Handler.storage_format
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.handlertools.Handler.Handler.Handler.new
+   :noindex:
+
 Special methods
 ---------------
 
