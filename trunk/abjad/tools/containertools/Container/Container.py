@@ -52,7 +52,7 @@ class Container(Component):
         right = componenttools.copy_components_and_fracture_crossing_spanners([expr])[0]
         result = containertools.fuse_like_named_contiguous_containers_in_expr([left, right])
         if result is None:
-            raise Exception('can not add.')
+            raise Exception('can not add: {!r}.'.format(expr))
         else:
             return result
 
@@ -91,11 +91,11 @@ class Container(Component):
             return selectiontools.Selection(self._music[i])
         elif isinstance(i, str):
             if i not in self._named_children:
-                raise MissingNamedComponentError
+                raise MissingNamedComponentError(repr(i))
             elif 1 < len(self._named_children[i]):
-                raise ExtraNamedComponentError
+                raise ExtraNamedComponentError(repr(i))
             return self._named_children[i][0]
-        raise ValueError
+        raise ValueError(repr(i))
 
     def __iadd__(self, expr):
         '''__iadd__ avoids unnecessary copying of structures.
@@ -472,7 +472,7 @@ class Container(Component):
             else:
                 self[:] = parsed[:]
         else:
-            raise TypeError('can not initialize container from "%s".' % str(music))
+            raise TypeError('can not initialize container from {!r}.'.format((music)))
 
     def _is_one_of_my_first_leaves(self, leaf):
         from abjad.tools import componenttools
