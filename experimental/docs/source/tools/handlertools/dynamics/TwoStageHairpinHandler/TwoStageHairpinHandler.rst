@@ -1,5 +1,5 @@
 handlertools.dynamics.TwoStageHairpinHandler
-==============================================
+============================================
 
 .. abjad-lineage:: experimental.tools.handlertools.dynamics.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler
 

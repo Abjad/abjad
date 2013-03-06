@@ -140,6 +140,7 @@ Unstable packages (load manually)
       tools/handlertools/dynamics/ReiteratedDynamicHandler/ReiteratedDynamicHandler
       tools/handlertools/dynamics/RestTerminatedMantenimentiHandler/RestTerminatedMantenimentiHandler
       tools/handlertools/dynamics/TerracedDynamicsHandler/TerracedDynamicsHandler
+      tools/handlertools/dynamics/TwoStageHairpinHandler/TwoStageHairpinHandler
       tools/handlertools/pitch/DiatonicClusterHandler/DiatonicClusterHandler
       tools/handlertools/pitch/OctaveTranspositionHandler/OctaveTranspositionHandler
       tools/handlertools/pitch/TimewisePitchClassHandler/TimewisePitchClassHandler
@@ -170,6 +171,7 @@ Unstable packages (load manually)
       tools/handlertools/dynamics/ReiteratedDynamicHandler/ReiteratedDynamicHandler
       tools/handlertools/dynamics/RestTerminatedMantenimentiHandler/RestTerminatedMantenimentiHandler
       tools/handlertools/dynamics/TerracedDynamicsHandler/TerracedDynamicsHandler
+      tools/handlertools/dynamics/TwoStageHairpinHandler/TwoStageHairpinHandler
       tools/handlertools/pitch/DiatonicClusterHandler/DiatonicClusterHandler
       tools/handlertools/pitch/OctaveTranspositionHandler/OctaveTranspositionHandler
       tools/handlertools/pitch/TimewisePitchClassHandler/TimewisePitchClassHandler
