@@ -38,7 +38,10 @@ class NoteAndChordSwellHandler(DynamicHandler):
             marktools.LilyPondCommandMark(peak_dynamic, 'right')(middle_leaf)
             half_count = middle_index + 1
             left_leaves = leaves[:half_count]
-            right_leaves = leaves[-half_count:]
+            if len(leaves) % 2 == 0:
+                right_leaves = leaves[-middle_index:]
+            else:
+                right_leaves = leaves[-(middle_index+1):]
             spannertools.CrescendoSpanner(left_leaves)
             spannertools.DecrescendoSpanner(right_leaves)
             return leaves
