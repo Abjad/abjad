@@ -10,6 +10,7 @@ def test_SegmentSpecification__select_divisions_from_future_between_voices_01():
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
     red_segment.set_time_signatures([(2, 8), (2, 8)])
+    time_relation = timerelationtools.timespan_2_intersects_timespan_1()
     blue_voice_2_divisions = blue_segment.select_divisions('Voice 2')
     red_segment.set_divisions(blue_voice_2_divisions)
     red_segment.set_divisions([(2, 16), (5, 16)], contexts=['Voice 2'])

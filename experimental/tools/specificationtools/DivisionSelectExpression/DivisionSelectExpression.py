@@ -70,7 +70,7 @@ class DivisionSelectExpression(SelectExpression):
         expression = specificationtools.StartPositionedDivisionPayloadExpression(
             existing_voice_divisions, start_offset=start_offset)
         expression = expression.get_elements_that_satisfy_time_relation(time_relation)
-        if self.time_relation is None:
+        if time_relation is None:
             inventory = expression & anchor_timespan
             expression = inventory[0]
         result = self._apply_callbacks(expression)

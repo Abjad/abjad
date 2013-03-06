@@ -31,10 +31,9 @@ class SelectExpression(AnchoredExpression, IterablePayloadCallbackMixin, SelectM
 
     ### PRIVATE METHODS ###
 
-    # TODO: change this to timerelationtools.timespan_2_starts_during_timespan_1()
     def _get_time_relation(self, anchor_timespan):
         if self.time_relation is None:
-            time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
+            time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=anchor_timespan)
         else:
             time_relation = self.time_relation.new(timespan_1=anchor_timespan)
         return time_relation

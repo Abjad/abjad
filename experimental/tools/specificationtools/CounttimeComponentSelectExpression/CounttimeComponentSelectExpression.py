@@ -16,7 +16,6 @@ from experimental.tools.specificationtools.CounttimeComponentSelectExpressionSet
 from experimental.tools.specificationtools.SelectExpression import SelectExpression
 
 
-#class CounttimeComponentSelectExpression(SelectExpression, CounttimeComponentSelectExpressionSetMethodMixin):
 class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMethodMixin, SelectExpression):
     r'''Counttime component select expression.
 
@@ -128,7 +127,13 @@ class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMe
         anchor_timespan = self._evaluate_anchor_timespan()
         voice_proxy = self.score_specification.payload_expressions_by_voice[self.voice_name]
         rhythm_payload_expressions = voice_proxy.payload_expressions_by_attribute['rhythm']
-        time_relation = self._get_time_relation(anchor_timespan)
+        # TODO: switch back to using self._get_time_relation() once this method is updated
+        #time_relation = self._get_time_relation(anchor_timespan)
+        if self.time_relation is None:
+            time_relation = timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan)
+            #time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=anchor_timespan)
+        else:
+            time_relation = self.time_relation.new(timespan_1=anchor_timespan)
         rhythm_payload_expressions = rhythm_payload_expressions.get_timespans_that_satisfy_time_relation(
             time_relation)
         if not rhythm_payload_expressions:
