@@ -13,7 +13,7 @@ class PitchClassTransformSetExpression(LeafSetExpression):
         '''Execute pitch-class transform expression against `score`.
         '''
         pitch_class_transform_expression = self.source_expression.payload
-        for leaf in self._iterate_leaves_in_score(score):
+        for leaf in self._iterate_selected_leaves_in_score(score):
             assert isinstance(leaf, (notetools.Note, chordtools.Chord)), repr(leaf)
             if isinstance(leaf, notetools.Note):
                 sounding_pitch_number = abs(leaf.sounding_pitch)

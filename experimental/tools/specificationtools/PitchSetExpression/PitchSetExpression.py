@@ -14,7 +14,7 @@ class PitchSetExpression(LeafSetExpression):
         '''
         statal_server_cursor = self.source_expression.payload
         leaves = []
-        for leaf in self._iterate_leaves_in_score(score):
+        for leaf in self._iterate_selected_leaves_in_score(score):
             assert isinstance(leaf, (notetools.Note, chordtools.Chord)), repr(leaf)
             chromatic_pitch_numbers = statal_server_cursor()
             assert len(chromatic_pitch_numbers) == 1

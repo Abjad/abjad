@@ -12,7 +12,7 @@ class LeafColorSetExpression(LeafSetExpression):
         '''Execute note head color set expression against `score`.
         '''
         color = self.source_expression.payload
-        for leaf in self._iterate_leaves_in_score(score):
+        for leaf in self._iterate_selected_leaves_in_score(score):
             labeltools.color_leaf(leaf, color)
             leaf.override.beam.color = color
             leaf.override.flag.color = color

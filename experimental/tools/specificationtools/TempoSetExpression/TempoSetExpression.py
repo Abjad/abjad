@@ -11,5 +11,5 @@ class TempoSetExpression(LeafSetExpression):
         '''Execute tempo set expression against `score`.
         '''
         tempo_mark = self.source_expression.payload
-        first_leaf = self._iterate_leaves_in_score(score)[0]
+        first_leaf = self._iterate_selected_leaves_in_score(score)[0]
         tempo_mark(first_leaf)

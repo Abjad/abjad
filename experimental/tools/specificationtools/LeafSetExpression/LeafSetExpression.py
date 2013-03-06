@@ -18,7 +18,7 @@ class LeafSetExpression(Expression):
 
     ### PRIVATE METHODS ###
 
-    def _iterate_leaves_in_score(self, score):
+    def _iterate_selected_leaves_in_score(self, score):
         leaves = []
         for target_select_expression in self.target_select_expression_inventory:
             iterable_payload_expression = target_select_expression.evaluate_against_score(score)

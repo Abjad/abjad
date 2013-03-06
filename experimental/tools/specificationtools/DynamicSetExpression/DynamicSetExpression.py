@@ -12,6 +12,6 @@ class DynamicSetExpression(LeafSetExpression):
         '''Execute dynamic set expression against `score`.
         '''
         dynamic_mark = self.source_expression.payload
-        for leaf in self._iterate_leaves_in_score(score):
+        for leaf in self._iterate_selected_leaves_in_score(score):
             contexttools.detach_dynamic_marks_attached_to_component(leaf)
             contexttools.DynamicMark(dynamic_mark)(leaf)

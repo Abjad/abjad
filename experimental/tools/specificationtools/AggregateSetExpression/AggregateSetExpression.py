@@ -13,7 +13,7 @@ class AggregateSetExpression(LeafSetExpression):
         '''Execute aggregate set expression against `score`.
         '''
         aggregate = self.source_expression.payload
-        for leaf in self._iterate_leaves_in_score(score):
+        for leaf in self._iterate_selected_leaves_in_score(score):
             assert isinstance(leaf, notetools.Note), repr(leaf)
             sounding_pitches = \
                 pitchtools.register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate(

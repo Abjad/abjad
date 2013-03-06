@@ -1,4 +1,1 @@
 1.  Write some tests to show time relation-based beat selection.
-
-2.  Rename LeafSetExpression._iterate_leaves_in_score()
-    to LeafSetExpression._iterate_selected_leaves_in_score().
