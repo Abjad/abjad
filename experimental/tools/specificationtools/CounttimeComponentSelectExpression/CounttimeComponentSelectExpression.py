@@ -125,6 +125,7 @@ class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMe
         '''
         from experimental.tools import specificationtools
         anchor_timespan = self._evaluate_anchor_timespan()
+        self._debug(anchor_timespan, 'ANCHOR')
         voice_proxy = self.score_specification.payload_expressions_by_voice[self.voice_name]
         rhythm_payload_expressions = voice_proxy.payload_expressions_by_attribute['rhythm']
         rhythm_payload_expressions = rhythm_payload_expressions.get_timespans_that_satisfy_time_relation(
