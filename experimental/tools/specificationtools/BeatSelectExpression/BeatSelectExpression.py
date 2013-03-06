@@ -65,12 +65,12 @@ class BeatSelectExpression(SelectExpression):
         Return start-positioned division payload expression when evaluable.
         '''
         from experimental.tools import specificationtools
+        anchor_timespan = self._evaluate_anchor_timespan()
+        time_relation = self._get_time_relation(anchor_timespan) 
         time_signatures = self.root_specification.time_signatures[:]
         beats = self._time_signatures_to_naive_beats(time_signatures)
-        timespan = self._evaluate_anchor_timespan()
-        start_offset = timespan.start_offset
         expression = specificationtools.StartPositionedDivisionPayloadExpression(
-            payload=beats, start_offset=start_offset)
+            payload=beats, start_offset=anchor_timespan.start_offset)
         expression = self._apply_callbacks(expression)
         expression._voice_name = self.voice_name
         return expression

@@ -56,6 +56,7 @@ class DivisionSelectExpression(SelectExpression):
         '''
         from experimental.tools import specificationtools
         anchor_timespan = self._evaluate_anchor_timespan()
+        time_relation = self._get_time_relation(anchor_timespan)
         voice_proxy = self.score_specification.payload_expressions_by_voice[self.voice_name]
         division_payload_expressions = voice_proxy.payload_expressions_by_attribute['divisions']
         if division_payload_expressions is None:
@@ -68,7 +69,6 @@ class DivisionSelectExpression(SelectExpression):
         start_offset = existing_voice_divisions[0].start_offset
         expression = specificationtools.StartPositionedDivisionPayloadExpression(
             existing_voice_divisions, start_offset=start_offset)
-        time_relation = self._get_time_relation(anchor_timespan)
         expression = expression.get_elements_that_satisfy_time_relation(time_relation)
         if self.time_relation is None:
             inventory = expression & anchor_timespan

@@ -79,13 +79,13 @@ class MeasureSelectExpression(SelectExpression):
         Return start-positioned division payload expression when evaluable.
         '''
         from experimental.tools import specificationtools
+        anchor_timespan = self._evaluate_anchor_timespan()
+        time_relation = self._get_time_relation(anchor_timespan)
         time_signatures = self.root_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
         start_offset = self.root_specification.timespan.start_offset
         expression = specificationtools.StartPositionedDivisionPayloadExpression(
-            time_signatures, start_offset=start_offset)
-        anchor_timespan = self._evaluate_anchor_timespan()
-        time_relation = self._get_time_relation(anchor_timespan)
+            payload=time_signatures, start_offset=start_offset)
         expression = expression.get_elements_that_satisfy_time_relation(time_relation)
         expression = self._apply_callbacks(expression)
         return expression
