@@ -137,7 +137,6 @@ Unstable packages (load manually)
       tools/handlertools/articulations/StemTremoloHandler/StemTremoloHandler
       tools/handlertools/dynamics/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
       tools/handlertools/dynamics/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
-      tools/handlertools/dynamics/NoteAndChordSwellHandler/NoteAndChordSwellHandler
       tools/handlertools/dynamics/ReiteratedDynamicHandler/ReiteratedDynamicHandler
       tools/handlertools/dynamics/RestTerminatedMantenimentiHandler/RestTerminatedMantenimentiHandler
       tools/handlertools/dynamics/TerracedDynamicsHandler/TerracedDynamicsHandler
@@ -168,7 +167,6 @@ Unstable packages (load manually)
       tools/handlertools/articulations/StemTremoloHandler/StemTremoloHandler
       tools/handlertools/dynamics/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
       tools/handlertools/dynamics/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
-      tools/handlertools/dynamics/NoteAndChordSwellHandler/NoteAndChordSwellHandler
       tools/handlertools/dynamics/ReiteratedDynamicHandler/ReiteratedDynamicHandler
       tools/handlertools/dynamics/RestTerminatedMantenimentiHandler/RestTerminatedMantenimentiHandler
       tools/handlertools/dynamics/TerracedDynamicsHandler/TerracedDynamicsHandler

@@ -8,7 +8,7 @@ from abjad.tools import spannertools
 from experimental.tools.handlertools.dynamics.DynamicHandler import DynamicHandler
 
 
-class NoteAndChordSwellHandler(DynamicHandler):
+class TwoStageHairpinHandler(DynamicHandler):
     '''Note and chord swell handler.
     '''
 

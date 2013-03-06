@@ -8,5 +8,5 @@ __all__.append('hairpins')
 mantenimenti = RestTerminatedMantenimentiHandler()
 __all__.append('mantenimenti')
 
-swells = NoteAndChordSwellHandler(('p', '<', 'f', '>', 'p'))
+swells = TwoStageHairpinHandler(('p', '<', 'f', '>', 'p'))
 __all__.append('swells')
