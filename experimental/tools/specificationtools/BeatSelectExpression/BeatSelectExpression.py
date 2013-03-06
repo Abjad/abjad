@@ -1,6 +1,7 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
+from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from experimental.tools.specificationtools.SelectExpression import SelectExpression
 
@@ -66,11 +67,18 @@ class BeatSelectExpression(SelectExpression):
         '''
         from experimental.tools import specificationtools
         anchor_timespan = self._evaluate_anchor_timespan()
-        time_relation = self._get_time_relation(anchor_timespan) 
+        # TODO: go back to using self._get_time_relation() after that method is updated
+        #time_relation = self._get_time_relation(anchor_timespan) 
+        if self.time_relation is None:
+            time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=anchor_timespan)
+        else:
+            time_relation = self.time_relation.new(timespan_1=anchor_timespan)
         time_signatures = self.root_specification.time_signatures[:]
         beats = self._time_signatures_to_naive_beats(time_signatures)
+        start_offset = self.root_specification.timespan.start_offset
         expression = specificationtools.StartPositionedDivisionPayloadExpression(
-            payload=beats, start_offset=anchor_timespan.start_offset)
+            payload=beats, start_offset=start_offset)
+        expression = expression.get_elements_that_satisfy_time_relation(time_relation)
         expression = self._apply_callbacks(expression)
         expression._voice_name = self.voice_name
         return expression
