@@ -1,5 +1,7 @@
 from abjad.tools import leaftools
 from abjad.tools import marktools
+from abjad.tools import markuptools
+from abjad.tools import schemetools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from experimental.tools.handlertools.dynamics.DynamicHandler import DynamicHandler
@@ -22,12 +24,18 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
         assert self.dynamics_talea, repr(self.dynamics_talea)
         groups = []
         for i, group in enumerate(leaftools.yield_groups_of_mixed_notes_and_chords_in_sequence(expr)):
-            mantenimento = spannertools.CrescendoSpanner(group)
-            mantenimento.override.hairpin.height = 0
-            dynamic = self.dynamics_talea[i]
-            marktools.LilyPondCommandMark(dynamic, 'right')(mantenimento.leaves[0])
-            marktools.LilyPondCommandMark('nib', 'right')(mantenimento.leaves[-1])
-            groups.append(group)
+            spanner = spannertools.TextSpanner(group)
+            spanner.override.text_spanner.dash_fraction = 1
+            dynamic_string = self.dynamics_talea[i]
+            dynamic_markup = markuptools.Markup([
+                markuptools.MarkupCommand('dynamic', dynamic_string),
+                markuptools.MarkupCommand('hspace', 0.75)])
+            spanner.override.text_spanner.bound_details__left__text = dynamic_markup
+            nib_markup = markuptools.Markup(
+                markuptools.MarkupCommand('draw-line', schemetools.SchemePair(0, 1)))
+            spanner.override.text_spanner.bound_details__right__text = nib_markup
+            spanner.override.text_spanner.bound_details__right__padding = -0.2
+            spanner.override.text_spanner.bound_details__left__stencil_align_dir_y = 0
         return groups
 
     ### READ / WRITE PUBLIC PROPERTIES ###
