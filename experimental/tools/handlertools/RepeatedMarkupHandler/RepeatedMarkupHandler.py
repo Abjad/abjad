@@ -2,7 +2,7 @@ from abjad.tools import chordtools
 from abjad.tools import componenttools
 from abjad.tools import markuptools
 from abjad.tools import notetools
-from experimental.tools.handlertools.articulations.ArticulationHandler import ArticulationHandler
+from experimental.tools.handlertools.ArticulationHandler import ArticulationHandler
 
 
 class RepeatedMarkupHandler(ArticulationHandler):

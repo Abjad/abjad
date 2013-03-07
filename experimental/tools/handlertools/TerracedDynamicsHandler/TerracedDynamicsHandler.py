@@ -2,7 +2,7 @@ from abjad.tools import contexttools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import sequencetools
-from experimental.tools.handlertools.dynamics.DynamicHandler import DynamicHandler
+from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 
 class TerracedDynamicsHandler(DynamicHandler):

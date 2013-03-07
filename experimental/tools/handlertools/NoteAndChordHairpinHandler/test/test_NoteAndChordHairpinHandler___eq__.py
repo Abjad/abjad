@@ -3,15 +3,15 @@ from experimental import *
 
 def test_NoteAndChordHairpinHandler___eq___01():
 
-    handler_1 = handlertools.dynamics.NoteAndChordHairpinHandler(
+    handler_1 = handlertools.NoteAndChordHairpinHandler(
         hairpin_token=('p', '<', 'f'),
         minimum_duration=Duration(1, 8))
 
-    handler_2 = handlertools.dynamics.NoteAndChordHairpinHandler(
+    handler_2 = handlertools.NoteAndChordHairpinHandler(
         hairpin_token=('p', '<', 'f'),
         minimum_duration=Duration(1, 8))
 
-    handler_3 = handlertools.dynamics.NoteAndChordHairpinHandler(
+    handler_3 = handlertools.NoteAndChordHairpinHandler(
         hairpin_token=('pp', '<', 'p'),
         minimum_duration=Duration(1, 8))
 

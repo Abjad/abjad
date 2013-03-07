@@ -7,4 +7,4 @@ class PitchHandler(Handler):
 
     @property
     def _tools_package_name(self):
-        return 'handlertools.pitch'
+        return 'handlertools'

@@ -3,7 +3,7 @@ from experimental import *
 
 def test_NoteAndChordHairpinsHandler___call___01():
 
-    handler = handlertools.dynamics.NoteAndChordHairpinsHandler()
+    handler = handlertools.NoteAndChordHairpinsHandler()
     handler.hairpin_tokens.append(('p', '<', 'f'))
     handler.hairpin_tokens.append(('p', '<', 'f'))
     handler.hairpin_tokens.append(('pp', '<', 'p'))

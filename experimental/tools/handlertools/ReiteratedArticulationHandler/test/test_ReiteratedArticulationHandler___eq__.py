@@ -3,17 +3,17 @@ from experimental import *
 
 def test_ReiteratedArticulationHandler___eq___01():
 
-    handler_1 = handlertools.articulations.ReiteratedArticulationHandler(
+    handler_1 = handlertools.ReiteratedArticulationHandler(
         articulation_list = ['.', '^'],
         minimum_duration = Duration(1, 16),
         maximum_duration = Duration(1, 8))
 
-    handler_2 = handlertools.articulations.ReiteratedArticulationHandler(
+    handler_2 = handlertools.ReiteratedArticulationHandler(
         articulation_list = ['.', '^'],
         minimum_duration = Duration(1, 16),
         maximum_duration = Duration(1, 8))
 
-    handler_3 = handlertools.articulations.ReiteratedArticulationHandler(articulation_list = ['.'])
+    handler_3 = handlertools.ReiteratedArticulationHandler(articulation_list = ['.'])
 
     assert handler_1 == handler_1
     assert handler_1 == handler_2

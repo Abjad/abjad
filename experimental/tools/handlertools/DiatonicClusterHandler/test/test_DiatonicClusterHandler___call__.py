@@ -3,7 +3,7 @@ from experimental import *
 
 def test_DiatonicClusterHandler___call___01():
 
-    diatonic_cluster_handler = handlertools.pitch.DiatonicClusterHandler([4, 6])
+    diatonic_cluster_handler = handlertools.DiatonicClusterHandler([4, 6])
 
     staff = Staff("c' d' e' f'")
     diatonic_cluster_handler(staff)

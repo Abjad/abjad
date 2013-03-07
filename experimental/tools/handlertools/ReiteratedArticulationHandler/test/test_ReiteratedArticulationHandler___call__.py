@@ -3,7 +3,7 @@ from experimental import *
 
 def test_ReiteratedArticulationHandler___call___01():
 
-    handler = handlertools.articulations.ReiteratedArticulationHandler(['^', '.'])
+    handler = handlertools.ReiteratedArticulationHandler(['^', '.'])
     staff = Staff("c'8 d'8 r8 e'8 f'8 r8 g'8 r8")
     handler(staff)
 
@@ -25,7 +25,7 @@ def test_ReiteratedArticulationHandler___call___01():
 
 def test_ReiteratedArticulationHandler___call___02():
 
-    handler = handlertools.articulations.ReiteratedArticulationHandler('.')
+    handler = handlertools.ReiteratedArticulationHandler('.')
     staff = Staff("c'8 d'8 r8 e'8 f'8 r8 g'8 r8")
     handler(staff)
 

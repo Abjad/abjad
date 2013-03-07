@@ -3,7 +3,7 @@ from experimental import *
 
 def test_NoteAndChordHairpinHandler___call___01():
 
-    handler = handlertools.dynamics.NoteAndChordHairpinHandler(('p', '<', 'f'))
+    handler = handlertools.NoteAndChordHairpinHandler(('p', '<', 'f'))
     staff = Staff("r4 c'8 d'8 r4 e'8 r8")
     handler(staff)
 

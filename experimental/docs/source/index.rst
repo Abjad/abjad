@@ -121,29 +121,29 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/handlertools/ArticulationHandler/ArticulationHandler
+      tools/handlertools/DynamicHandler/DynamicHandler
       tools/handlertools/Handler/Handler
-      tools/handlertools/articulations/ArticulationHandler/ArticulationHandler
-      tools/handlertools/dynamics/DynamicHandler/DynamicHandler
-      tools/handlertools/pitch/PitchHandler/PitchHandler
+      tools/handlertools/PitchHandler/PitchHandler
 
    --------
 
    .. toctree::
       :maxdepth: 1
 
-      tools/handlertools/articulations/PatternedArticulationsHandler/PatternedArticulationsHandler
-      tools/handlertools/articulations/ReiteratedArticulationHandler/ReiteratedArticulationHandler
-      tools/handlertools/articulations/RepeatedMarkupHandler/RepeatedMarkupHandler
-      tools/handlertools/articulations/StemTremoloHandler/StemTremoloHandler
-      tools/handlertools/dynamics/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
-      tools/handlertools/dynamics/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
-      tools/handlertools/dynamics/ReiteratedDynamicHandler/ReiteratedDynamicHandler
-      tools/handlertools/dynamics/RestTerminatedMantenimentiHandler/RestTerminatedMantenimentiHandler
-      tools/handlertools/dynamics/TerracedDynamicsHandler/TerracedDynamicsHandler
-      tools/handlertools/dynamics/TwoStageHairpinHandler/TwoStageHairpinHandler
-      tools/handlertools/pitch/DiatonicClusterHandler/DiatonicClusterHandler
-      tools/handlertools/pitch/OctaveTranspositionHandler/OctaveTranspositionHandler
-      tools/handlertools/pitch/TimewisePitchClassHandler/TimewisePitchClassHandler
+      tools/handlertools/DiatonicClusterHandler/DiatonicClusterHandler
+      tools/handlertools/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
+      tools/handlertools/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
+      tools/handlertools/OctaveTranspositionHandler/OctaveTranspositionHandler
+      tools/handlertools/PatternedArticulationsHandler/PatternedArticulationsHandler
+      tools/handlertools/ReiteratedArticulationHandler/ReiteratedArticulationHandler
+      tools/handlertools/ReiteratedDynamicHandler/ReiteratedDynamicHandler
+      tools/handlertools/RepeatedMarkupHandler/RepeatedMarkupHandler
+      tools/handlertools/RestTerminatedMantenimentiHandler/RestTerminatedMantenimentiHandler
+      tools/handlertools/StemTremoloHandler/StemTremoloHandler
+      tools/handlertools/TerracedDynamicsHandler/TerracedDynamicsHandler
+      tools/handlertools/TimewisePitchClassHandler/TimewisePitchClassHandler
+      tools/handlertools/TwoStageHairpinHandler/TwoStageHairpinHandler
 
 .. only:: latex
 
@@ -152,29 +152,29 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/handlertools/ArticulationHandler/ArticulationHandler
+      tools/handlertools/DynamicHandler/DynamicHandler
       tools/handlertools/Handler/Handler
-      tools/handlertools/articulations/ArticulationHandler/ArticulationHandler
-      tools/handlertools/dynamics/DynamicHandler/DynamicHandler
-      tools/handlertools/pitch/PitchHandler/PitchHandler
+      tools/handlertools/PitchHandler/PitchHandler
 
    Concrete Classes
    ----------------
 
    .. toctree::
 
-      tools/handlertools/articulations/PatternedArticulationsHandler/PatternedArticulationsHandler
-      tools/handlertools/articulations/ReiteratedArticulationHandler/ReiteratedArticulationHandler
-      tools/handlertools/articulations/RepeatedMarkupHandler/RepeatedMarkupHandler
-      tools/handlertools/articulations/StemTremoloHandler/StemTremoloHandler
-      tools/handlertools/dynamics/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
-      tools/handlertools/dynamics/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
-      tools/handlertools/dynamics/ReiteratedDynamicHandler/ReiteratedDynamicHandler
-      tools/handlertools/dynamics/RestTerminatedMantenimentiHandler/RestTerminatedMantenimentiHandler
-      tools/handlertools/dynamics/TerracedDynamicsHandler/TerracedDynamicsHandler
-      tools/handlertools/dynamics/TwoStageHairpinHandler/TwoStageHairpinHandler
-      tools/handlertools/pitch/DiatonicClusterHandler/DiatonicClusterHandler
-      tools/handlertools/pitch/OctaveTranspositionHandler/OctaveTranspositionHandler
-      tools/handlertools/pitch/TimewisePitchClassHandler/TimewisePitchClassHandler
+      tools/handlertools/DiatonicClusterHandler/DiatonicClusterHandler
+      tools/handlertools/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
+      tools/handlertools/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
+      tools/handlertools/OctaveTranspositionHandler/OctaveTranspositionHandler
+      tools/handlertools/PatternedArticulationsHandler/PatternedArticulationsHandler
+      tools/handlertools/ReiteratedArticulationHandler/ReiteratedArticulationHandler
+      tools/handlertools/ReiteratedDynamicHandler/ReiteratedDynamicHandler
+      tools/handlertools/RepeatedMarkupHandler/RepeatedMarkupHandler
+      tools/handlertools/RestTerminatedMantenimentiHandler/RestTerminatedMantenimentiHandler
+      tools/handlertools/StemTremoloHandler/StemTremoloHandler
+      tools/handlertools/TerracedDynamicsHandler/TerracedDynamicsHandler
+      tools/handlertools/TimewisePitchClassHandler/TimewisePitchClassHandler
+      tools/handlertools/TwoStageHairpinHandler/TwoStageHairpinHandler
 
 :py:mod:`lyrictools <experimental.tools.lyrictools>`
 ====================================================

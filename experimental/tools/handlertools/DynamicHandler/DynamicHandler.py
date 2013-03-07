@@ -19,7 +19,7 @@ class DynamicHandler(Handler):
 
     @property
     def _tools_package_name(self):
-        return 'handlertools.dynamics'
+        return 'handlertools'
 
     ### READ / WRITE PUBLIC PROPERTIES ###
 

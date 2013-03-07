@@ -39,4 +39,4 @@ class ArticulationHandler(Handler):
 
     @property
     def _tools_package_name(self):
-        return 'handlertools.articulations'
+        return 'handlertools'

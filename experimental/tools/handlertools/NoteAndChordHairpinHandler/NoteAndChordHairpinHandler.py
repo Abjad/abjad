@@ -5,7 +5,7 @@ from abjad.tools import leaftools
 from abjad.tools import marktools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
-from experimental.tools.handlertools.dynamics.DynamicHandler import DynamicHandler
+from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 
 class NoteAndChordHairpinHandler(DynamicHandler):
