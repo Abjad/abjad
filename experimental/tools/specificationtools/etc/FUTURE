@@ -1,12 +1,15 @@
+### VERSION 0.9 ###
+
+1.  Write TwoStageHairpinHandler tests.
+
+
 ### VERSION 1.0 ###
 
-1.  Make score_specification.select_divisions[4] work.
-
-2.  Implement negation on time relation objects.
+1.  Implement negation on time relation objects.
     Then implement the other logical operators on time relation objects.
     Logically-anding two time relation should, for example, produce another time relation.
 
-3.  Make this ...
+2.  Make this ...
         score_specification.set_pitch(library.example_pitches_1())
     ... work to replace ...
         score_specification.select_leaves('Voice 1').set_pitch(library.example_pitches_1())
@@ -15,19 +18,19 @@
         score_specification.select_leaves('Voice 4').set_pitch(library.example_pitches_1())
     ... as a type of "cake slice" set expression.
 
-4.  Make this ...
+3.  Make this ...
         leaves = score_specification.select_leaves('Voice 1')
         leaves += score_specification.select_leaves('Voice 2')
         leaves.set_pitch(library.example_pitches_1(), timeline=True)
     ... work.
 
-5.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
+4.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
     It means truncate last division in section. It also means restart divisions at
     beginning of following section. Implement a SegmentSpecification.set_divisions()
     boolean 'restart' keyword to separate these functions. When restart=True
     then truncate will always effectively be interpreted as true.
 
-6.  Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
+5.  Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         timespan = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         rhythm = red_segment.select_leaves('Voice 1', timespan=timespan)

@@ -1,0 +1,11 @@
+1.  Flatten handlertools subpackages.
+
+2.  Add use_metrical_hierarcy=False flag to leaftools.make_leaves().
+    Integrate into rhythmmakertools.NoteRhythmMaker.
+
+3.  Implement a -1 / +1 talea on TwoStageHairpinHandler to determine
+    which stage shoul have greater duration (left or right).
+
+4.  Extend TwoStageHairpinHandler with logic to treat short leaf groups.
+    This will enable, for example, the application of left stage
+    hairpin to a short two-note group.
