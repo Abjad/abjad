@@ -27,6 +27,10 @@ class TwoStageHairpinHandler(DynamicHandler):
         #leaves = list(iterationtools.iterate_leaves_in_expr(expr))
         #leaves = leaftools.remove_outer_rests_from_sequence(leaves)
         leaves = expr
+        spannertools.destroy_spanners_attached_to_components_in_expr(leaves, klass=spannertools.HairpinSpanner)
+        # TODO: this should eventually be changed to remove dynamic marks only
+        for leaf in leaves:
+            marktools.detach_lilypond_command_marks_attached_to_component(leaf)
         if 3 <= len(leaves):
             #contexttools.DynamicMark(start_dynamic)(leaves[0])
             #contexttools.DynamicMark(stop_dynamic)(leaves[-1])

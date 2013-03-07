@@ -49,6 +49,9 @@
     ... instead.
     This will simplify the X9 composer interface.
 
+6.  Implement something to allow the composer to decide whether overlapping set_dynamic_handler()
+    calls should overlay each other or replace each other. Default behavior should be to replace.
+
 
 ### VERSION 2.0 ###
 
