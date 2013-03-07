@@ -53,6 +53,18 @@
     calls should overlay each other or replace each other. Default behavior should be to replace.
 
 
+### VERSION 1.1 ###
+
+1.  Implement some way to allow the following:
+    Lay down a complex series of cobalt divisions over all of segment one (with ever division unique).
+    Then select the middle third of the measures in segment one.
+    Then set the divisions of the middle third of measures to just repeating (3, 16).
+    Then change division interpretation to make it so that the overlaid strip of (3, 16)
+    *overwrites* the existing strip of unique cobalt divisions. 
+    (What happens in the current implementation is that the cobalt divisions lay out in the first third;
+    then the (3, 16) happen; then the cobalt divisions *start over* and lay out again in the last third.)
+
+
 ### VERSION 2.0 ###
 
 1.  Change SelectMethodMixin.select_leaves() to SelectoMethodMixin.select_rhythm().
