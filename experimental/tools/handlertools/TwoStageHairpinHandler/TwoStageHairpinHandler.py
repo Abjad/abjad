@@ -51,6 +51,17 @@ class TwoStageHairpinHandler(DynamicHandler):
             else:
                 spannertools.DecrescendoSpanner(right_leaves)
             return leaves
+        elif len(leaves) == 2:
+            marktools.LilyPondCommandMark(start_dynamic, 'right')(leaves[0])
+            marktools.LilyPondCommandMark(peak_dynamic, 'right')(leaves[-1])
+            if left_hairpin == '<':
+                spannertools.CrescendoSpanner(leaves)
+            else:
+                spannertools.DecrescendoSpanner(leaves)
+        elif len(leaves) == 1:
+            marktools.LilyPondCommandMark(peak_dynamic, 'right')(leaves[0])
+        else:
+            raise ValueError(len(leaves))
 
     ### READ / WRITE PUBLIC PROPERTIES ###
 
