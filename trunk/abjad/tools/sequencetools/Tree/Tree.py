@@ -281,7 +281,7 @@ class Tree(AbjadObject):
 
     @property
     def _positional_argument_values(self):
-        return self._input_argument
+        return (self._input_argument, )
 
     @property
     def _tools_package_qualified_repr(self):
@@ -602,10 +602,7 @@ class Tree(AbjadObject):
 
             >>> z(tree)
             sequencetools.Tree(
-                [0, 1],
-                [2, 3],
-                [4, 5],
-                [6, 7]
+                [[0, 1], [2, 3], [4, 5], [6, 7]]
                 )
 
         Return string.
