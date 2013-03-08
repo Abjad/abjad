@@ -1,4 +1,5 @@
 import copy
+import time
 from abjad.tools import *
 from experimental.tools.specificationtools.Interpreter import Interpreter
 
@@ -19,11 +20,16 @@ class ConcreteInterpreter(Interpreter):
 
         Return Abjad score object.
         '''
+        start_time = time.time()
         Interpreter.__call__(self, score_specification)
         self.interpret_time_signatures()
         self.interpret_divisions()
         self.interpret_rhythm()
         self.interpret_additional_parameters()
+        stop_time = time.time()
+        total_time = stop_time - start_time
+        if 10 <= total_time:
+            print 'Interpretation time equal to {} seconds ...'.format(int(total_time))
         return self.score
 
     def __init__(self):

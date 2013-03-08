@@ -17,7 +17,6 @@ class PitchSetExpression(LeafSetExpression):
             target_select_expression_inventory=target_select_expression_inventory)
         assert isinstance(node_count, (int, type(None))), repr(node_count)
         assert isinstance(level, (int, type(None))), repr(level)
-        # TODO: assert trope type
         self._node_count = node_count
         self._level = level
         self._trope = trope

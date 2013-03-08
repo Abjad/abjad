@@ -19,8 +19,6 @@ class Interpreter(AbjadObject):
 
     @abc.abstractmethod
     def __call__(self, score_specification):
-        '''Interpret `score_specification`.
-        '''
         self.score_specification = score_specification
         self.score = self.instantiate_score()
         self.evaluate_multiple_context_set_expressions()
