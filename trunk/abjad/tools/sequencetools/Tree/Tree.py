@@ -109,6 +109,8 @@ class Tree(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, expr):
+        if isinstance(expr, type(self)):
+            expr = expr.to_nested_lists()
         self._children = self._initialize_children_list()
         self.parent = None
         try:

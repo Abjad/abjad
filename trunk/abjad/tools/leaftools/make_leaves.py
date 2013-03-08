@@ -7,7 +7,7 @@ from abjad.tools import sequencetools
 
 
 def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_rests=False,
-    forbidden_written_duration=None):
+    forbidden_written_duration=None, metrical_hiearchy=None):
     r'''.. versionadded:: 1.1
 
     Make leaves.
