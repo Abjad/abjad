@@ -1,5 +1,7 @@
 from abjad.tools import chordtools
 from abjad.tools import notetools
+from abjad.tools import notetools
+from abjad.tools import sequencetools
 from experimental.tools.specificationtools.LeafSetExpression import LeafSetExpression
 
 
@@ -50,9 +52,17 @@ class PitchSetExpression(LeafSetExpression):
         '''Execute pitch set expression against `score`.
         '''
         statal_server_cursor = self.source_expression.payload
-        leaves = []
-        for leaf in self._iterate_selected_leaves_in_score(score):
-            assert isinstance(leaf, (notetools.Note, chordtools.Chord)), repr(leaf)
-            chromatic_pitch_numbers = statal_server_cursor()
-            assert len(chromatic_pitch_numbers) == 1
-            leaf.sounding_pitch = chromatic_pitch_numbers[0]
+        leaves = list(self._iterate_selected_leaves_in_score(score))
+        assert all([isinstance(leaf, (notetools.Note, chordtools.Chord)) for leaf in leaves]), repr(leaves)
+        if self.level is None:
+            level = -1
+        else:
+            level = self.level
+        if self.node_count is None:
+            node_count = len(leaves)
+        else:
+            node_count = self.node_count
+        chromatic_pitch_numbers = statal_server_cursor(n=node_count, level=level)
+        chromatic_pitch_numbers = sequencetools.CyclicTuple(chromatic_pitch_numbers)
+        for i, leaf in enumerate(leaves):
+            leaf.sounding_pitch = chromatic_pitch_numbers[i]

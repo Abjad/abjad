@@ -246,3 +246,79 @@ def test_ScoreSpecification__set_pitch_12():
     current_function_name = introspectiontools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_ScoreSpecification__set_pitch_13():
+    '''Limit to first 4 nodes at level -1.
+    '''
+
+    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    score_specification.set_time_signatures(6 * [(2, 8)])
+    score_specification.set_divisions([(3, 16)])
+    rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
+    score_specification.set_rhythm(rhythm)
+    leaves = score_specification.select_leaves('Voice 1')
+    leaves.set_pitch(library.example_pitches_1(), node_count=4, level=-1)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_ScoreSpecification__set_pitch_14():
+    '''Limit to first 4 nodes after position (2, 0) at level -1.
+    '''
+
+    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    score_specification.set_time_signatures(6 * [(2, 8)])
+    score_specification.set_divisions([(3, 16)])
+    rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
+    score_specification.set_rhythm(rhythm)
+    leaves = score_specification.select_leaves('Voice 1')
+    leaves.set_pitch(library.example_pitches_1(position=(2, 0)), node_count=4, level=-1)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_ScoreSpecification__set_pitch_15():
+    '''Limit to first 2 nodes at level -2.
+    '''
+
+    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    score_specification.set_time_signatures(6 * [(2, 8)])
+    score_specification.set_divisions([(3, 16)])
+    rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
+    score_specification.set_rhythm(rhythm)
+    leaves = score_specification.select_leaves('Voice 1')
+    leaves.set_pitch(library.example_pitches_1(), node_count=2, level=-2)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+
+
+def test_ScoreSpecification__set_pitch_16():
+    '''Limit to first 2 nodes after (2, ) at level -2.
+    '''
+
+    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecificationInterface(score_template)
+    score_specification.set_time_signatures(6 * [(2, 8)])
+    score_specification.set_divisions([(3, 16)])
+    rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
+    score_specification.set_rhythm(rhythm)
+    leaves = score_specification.select_leaves('Voice 1')
+    leaves.set_pitch(library.example_pitches_1(position=(2, )), node_count=2, level=-2)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    testtools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
