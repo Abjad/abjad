@@ -2,6 +2,20 @@
 
 1.  Write TwoStageHairpinHandler tests.
 
+2.  Make ...
+        region.select_leaves(['Rhythm Voice'])
+    ... work as an alternative to ...
+        region.select_leaves('Rhythm Voice')
+    ... in order to allow
+        region.select_leaves(rhythm_voice)
+    ... for the first time.
+
+3.  Make this work:
+        region.select_leaves('Rhythm Voice')[:1].set_markup(region_markup)
+    Right now you have to use ...
+        region.select_leaves('Rhythm Voice')[0].set_markup(region_markup)
+    ... instead.
+
 
 ### VERSION 1.0 ###
 

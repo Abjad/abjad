@@ -2,4 +2,4 @@
     Integrate into rhythmmakertools.NoteRhythmMaker.
 
 2.  Implement a -1 / +1 talea on TwoStageHairpinHandler to determine
-    which stage shoul have greater duration (left or right).
+    which stage should have greater duration (left or right).
