@@ -11,6 +11,19 @@ class SetMethodMixin(AbjadObject):
     '''Set method mixin.
     '''
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _target_select_expression_inventory(self):
+        from experimental.tools import specificationtools
+        if isinstance(self, specificationtools.SelectExpression):
+            target_select_expression_inventory = specificationtools.SelectExpressionInventory([self])
+        elif isinstance(self, specificationtools.SelectExpressionInventory):
+            target_select_expression_inventory = self
+        else:
+            raise TypeError(self)
+        return target_select_expression_inventory
+        
     ### PRIVATE METHODS ###
 
     def _all_are_expressions(self, expr):
@@ -54,26 +67,23 @@ class SetMethodMixin(AbjadObject):
         else:
             raise TypeError('do not know how to change {!r} to expression.'.format(expr))
 
-    def _store_leaf_set_expression(self, attribute, source_expression):
-        from experimental.tools import specificationtools
-        set_expression_class = self._attribute_to_set_expression_class(attribute)
-        source_expression = self._expr_to_expression(source_expression)
-        if isinstance(self, specificationtools.SelectExpression):
-            target_select_expression_inventory = specificationtools.SelectExpressionInventory([self])
-        elif isinstance(self, specificationtools.SelectExpressionInventory):
-            target_select_expression_inventory = self
-        else:
-            raise TypeError(self)
-        leaf_set_expression = set_expression_class(
-            source_expression=source_expression,
-            target_select_expression_inventory=target_select_expression_inventory
-            )
+    def _finalize_leaf_set_expression(self, leaf_set_expression):
         assert self.score_specification is not None
         leaf_set_expression._score_specification = self.score_specification
         leaf_set_expression._lexical_rank = self.score_specification._next_lexical_rank
         self.score_specification._next_lexical_rank += 1
         self.score_specification.postrhythm_set_expressions.append(leaf_set_expression)
         return leaf_set_expression
+
+    def _store_leaf_set_expression(self, attribute, source_expression):
+        from experimental.tools import specificationtools
+        set_expression_class = self._attribute_to_set_expression_class(attribute)
+        source_expression = self._expr_to_expression(source_expression)
+        leaf_set_expression = set_expression_class(
+            source_expression=source_expression,
+            target_select_expression_inventory=self._target_select_expression_inventory
+            )
+        return self._finalize_leaf_set_expression(leaf_set_expression)
 
     ### PUBLIC METHODS ###
 
@@ -159,7 +169,7 @@ class SetMethodMixin(AbjadObject):
         attribute = 'pitch_class_transform'
         return self._store_leaf_set_expression(attribute, source_expression)
 
-    def set_pitch(self, source_expression):
+    def set_pitch(self, source_expression, node_count=None, level=None, trope=None):
         r'''Set pitches to `source_expression`.
 
         Return pitch set expression.
@@ -167,8 +177,13 @@ class SetMethodMixin(AbjadObject):
         from experimental.tools import specificationtools
         assert isinstance(source_expression, specificationtools.StatalServerCursor), repr(source_expression)
         source_expression = specificationtools.StatalServerCursorExpression(source_expression)
-        attribute = 'pitch'
-        return self._store_leaf_set_expression(attribute, source_expression)
+        pitch_set_expression = specificationtools.PitchSetExpression(
+            source_expression=source_expression,
+            target_select_expression_inventory=self._target_select_expression_inventory,
+            node_count=node_count,
+            level=level,
+            trope=trope)
+        return self._finalize_leaf_set_expression(pitch_set_expression)
 
     def set_register(self, source_expression):
         r'''Set register to `source_expression`.

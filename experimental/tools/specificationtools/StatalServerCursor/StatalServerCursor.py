@@ -12,7 +12,6 @@ class StatalServerCursor(AbjadObject):
         assert isinstance(statal_server, specificationtools.StatalServer), repr(statal_server)
         assert isinstance(position, (tuple, type(None))), repr(position)
         assert isinstance(reverse, type(True)), repr(reverse)
-        #position = position or (0, )
         position = position or ()
         self._statal_server = statal_server
         self._position = position

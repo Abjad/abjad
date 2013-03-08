@@ -9,6 +9,12 @@ specificationtools.PitchSetExpression
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.level
+   :noindex:
+
+.. autoattribute:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.node_count
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.source_expression
    :noindex:
 
@@ -16,6 +22,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.target_select_expression_inventory
+   :noindex:
+
+.. autoattribute:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.trope
    :noindex:
 
 Methods
