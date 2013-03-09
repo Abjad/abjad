@@ -161,10 +161,9 @@ class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMe
             anchor_timespans = anchor_timespan
             for anchor_timespan in anchor_timespans:
                 time_relation = self._get_time_relation(anchor_timespan)
-                components = []
-                for component in iterationtools.iterate_components_in_expr(voice, klass=tuple(self.classes)):
-                    if time_relation(timespan_2=component.timespan):
-                        components.append(component)
+                components = list(iterationtools.iterate_components_in_expr(voice, klass=tuple(self.classes)))
+                components = timerelationtools.get_counttime_components_that_satisfy_time_relation(
+                    components, time_relation)
                 if not components:
                     continue
                 expression = specificationtools.IterablePayloadExpression(components)
@@ -173,10 +172,9 @@ class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMe
             return result
         else:
             time_relation = self._get_time_relation(anchor_timespan)
-            components = []
-            for component in iterationtools.iterate_components_in_expr(voice, klass=tuple(self.classes)):
-                if time_relation(timespan_2=component.timespan):
-                    components.append(component)
+            components = list(iterationtools.iterate_components_in_expr(voice, klass=tuple(self.classes)))
+            components = timerelationtools.get_counttime_components_that_satisfy_time_relation(
+                components, time_relation)
             if not components:
                 return
             expression = specificationtools.IterablePayloadExpression(components)

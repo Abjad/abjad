@@ -2,6 +2,7 @@ from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import rhythmmakertools
+from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from experimental.tools.specificationtools.PayloadExpression import PayloadExpression
 
@@ -34,7 +35,7 @@ class IterablePayloadExpression(PayloadExpression):
         from experimental.tools import specificationtools
         assert not isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
         assert not isinstance(payload, specificationtools.StatalServerCursor), repr(payload)
-        assert isinstance(payload, (str, tuple, list,
+        assert isinstance(payload, (str, tuple, list, selectiontools.Selection,
             specificationtools.DivisionList, containertools.Container)), repr(payload)
         if isinstance(payload, list):
             payload = tuple(payload)
