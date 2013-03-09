@@ -21,7 +21,9 @@ class Component(AbjadObject):
         '_offset', '_offset_values_in_seconds_are_current', '_override', '_parent',
         '_prolated_offset_values_are_current', '_set', '_spanners',
         '_start_offset', '_start_offset_in_seconds', '_stop_offset', '_stop_offset_in_seconds',
-        'lilypond_file', )
+        '_timespan',
+        'lilypond_file', 
+        )
 
     ### INITIALIZER ###
 
@@ -38,6 +40,7 @@ class Component(AbjadObject):
         self._start_offset_in_seconds = None
         self._stop_offset = None
         self._stop_offset_in_seconds = None
+        self._timespan = timespantools.Timespan()
 
     ### SPECIAL METHODS ###
 
@@ -191,7 +194,9 @@ class Component(AbjadObject):
     def timespan(self):
         '''Read-only timespan of component.
         '''
-        return timespantools.Timespan(start_offset=self.start_offset, stop_offset=self.stop_offset)
+        #return timespantools.Timespan(start_offset=self.start_offset, stop_offset=self.stop_offset)
+        self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
+        return self._timespan
 
     @property
     def timespan_in_seconds(self):
