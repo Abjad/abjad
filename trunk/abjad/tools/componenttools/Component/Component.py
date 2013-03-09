@@ -174,7 +174,12 @@ class Component(AbjadObject):
     def stop_offset(self):
         '''Read-only stop offset of component.
         '''
-        return self.start_offset + self.duration
+        # it's enough to return self._stop_offset because self._stop_offset is
+        # updated by offsettools.update_offset_values_of_component();
+        # that means that the addition of duration is redundant ... and surprisingly expensive.
+        #return self.start_offset + self.duration
+        self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
+        return self._stop_offset
 
     @property
     def stop_offset_in_seconds(self):
