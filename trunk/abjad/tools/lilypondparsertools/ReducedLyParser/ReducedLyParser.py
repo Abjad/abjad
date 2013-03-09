@@ -1,4 +1,5 @@
 import copy
+import fractions
 from abjad.tools import abctools
 from abjad.tools import beamtools
 from abjad.tools import chordtools
@@ -100,14 +101,12 @@ class ReducedLyParser(abctools.Parser):
 
     ::
 
-        >>> string = '{1/4} {2/4} {3/4} {4/4}'
+        >>> string = '{1/4} {3/4}'
         >>> result = parser(string)
         >>> for x in result: x
         ...
         FixedDurationContainer(Duration(1, 4), [])
-        FixedDurationContainer(Duration(1, 2), [])
         FixedDurationContainer(Duration(3, 4), [])
-        FixedDurationContainer(Duration(1, 1), [])
 
     Can create measures too:
 
@@ -326,7 +325,9 @@ class ReducedLyParser(abctools.Parser):
         '''negative_leaf_duration : INTEGER_N dots'''
         duration_log = p[1]
         dots = '.' * p[2]
-        duration = durationtools.Duration('{}{}'.format(abs(duration_log), dots))
+        #duration = durationtools.Duration('{}{}'.format(abs(duration_log), dots))
+        duration = durationtools.Duration.from_lilypond_duration_string(
+            '{}{}'.format(abs(duration_log), dots))
         self._default_duration = duration
         p[0] = duration
 
@@ -366,7 +367,9 @@ class ReducedLyParser(abctools.Parser):
         '''positive_leaf_duration : INTEGER_P dots'''
         duration_log = p[1]
         dots = '.' * p[2]
-        duration = durationtools.Duration('{}{}'.format(abs(duration_log), dots))
+        #duration = durationtools.Duration('{}{}'.format(abs(duration_log), dots))
+        duration = durationtools.Duration.from_lilypond_duration_string(
+            '{}{}'.format(abs(duration_log), dots))
         self._default_duration = duration
         p[0] = duration
 

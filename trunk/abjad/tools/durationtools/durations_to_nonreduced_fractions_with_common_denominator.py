@@ -6,14 +6,13 @@ def durations_to_nonreduced_fractions_with_common_denominator(durations):
 
     Change `durations` to nonreduced fractions with least common denominator::
 
-        >>> durations = [Duration(2, 4), 3, '8.', (5, 16)]
+        >>> durations = [Duration(2, 4), 3, (5, 16)]
         >>> for x in durationtools.durations_to_nonreduced_fractions_with_common_denominator(
         ...     durations):
         ...     x
         ...
         NonreducedFraction(8, 16)
         NonreducedFraction(48, 16)
-        NonreducedFraction(3, 16)
         NonreducedFraction(5, 16)
 
     Return new object of `durations` type.

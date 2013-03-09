@@ -3,13 +3,12 @@ def durations_to_integers(durations):
 
     ::
 
-        >>> durations = [Duration(2, 4), 3, '8.', (5, 16)]
+        >>> durations = [Duration(2, 4), 3, (5, 16)]
         >>> for integer in durationtools.durations_to_integers(durations):
         ...     integer
         ...
         8
         48
-        3
         5
 
     Return new object of `durations` type.

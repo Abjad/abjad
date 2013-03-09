@@ -114,7 +114,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
         >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
         >>> hierarchy = timesignaturetools.MetricalHierarchy(rtm)
-        >>> print hierarchy.pretty_rtm_format
+        >>> print hierarchy.pretty_rtm_format # doctest: +SKIP
         (4/4 (
             (2/4 (
                 1/4

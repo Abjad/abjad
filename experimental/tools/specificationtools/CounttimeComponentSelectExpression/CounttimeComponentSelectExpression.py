@@ -162,8 +162,10 @@ class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMe
             for anchor_timespan in anchor_timespans:
                 time_relation = self._get_time_relation(anchor_timespan)
                 components = list(iterationtools.iterate_components_in_expr(voice, klass=tuple(self.classes)))
+                #print 'getting counttime components from {} total ...'.format(len(components)),
                 components = timerelationtools.get_counttime_components_that_satisfy_time_relation(
                     components, time_relation)
+                #print 'done'
                 if not components:
                     continue
                 expression = specificationtools.IterablePayloadExpression(components)

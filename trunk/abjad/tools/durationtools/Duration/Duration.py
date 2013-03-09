@@ -55,11 +55,6 @@ class Duration(ImmutableAbjadObject, Fraction):
         >>> Duration('3/16')
         Duration(3, 16)
 
-    initialize from LilyPond duration string::
-
-        >>> Duration('8.')
-        Duration(3, 16)
-
     Initialize from nonreduced fraction::
 
         >>> Duration(mathtools.NonreducedFraction(3, 16))
@@ -84,6 +79,18 @@ class Duration(ImmutableAbjadObject, Fraction):
 
     def __new__(klass, *args):
         from abjad.tools import sequencetools
+        try:
+            return Fraction.__new__(klass, *args)
+        except TypeError:
+            pass
+        try:
+            return Fraction.__new__(klass, *args[0])
+        except (AttributeError, TypeError):
+            pass
+        try:
+            return Fraction.__new__(klass, args[0].numerator, args[0].denominator)
+        except AttributeError:
+            pass
         if len(args) == 1 and sequencetools.is_integer_equivalent_singleton(args[0]):
             self = Fraction.__new__(klass, int(args[0][0]))
         elif len(args) == 1 and sequencetools.is_fraction_equivalent_pair(args[0]):
@@ -91,12 +98,10 @@ class Duration(ImmutableAbjadObject, Fraction):
         elif len(args) == 1 and isinstance(args[0], str) and not '/' in args[0]:
             result = Duration._init_from_lilypond_duration_string(args[0])
             self = Fraction.__new__(klass, result)
-        elif len(args) == 1 and hasattr(args[0], 'numerator') and hasattr(args[0], 'denominator'):
-            self = Fraction.__new__(klass, args[0].numerator, args[0].denominator)
         elif sequencetools.all_are_integer_equivalent_numbers(args):
             self = Fraction.__new__(klass, *[int(x) for x in args])
         else:
-            self = Fraction.__new__(klass, *args)
+            raise ValueError(args)
         return self
 
     ### SPECIAL METHODS ###
@@ -667,6 +672,20 @@ class Duration(ImmutableAbjadObject, Fraction):
         return type(self)(self.denominator, self.numerator)
 
     ### PUBLIC FUNCTIONS ###
+
+    @staticmethod
+    def from_lilypond_duration_string(lilypond_duration_string):
+        '''Initialize from LilyPond duration string:
+
+        ::
+
+            >>> Duration.from_lilypond_duration_string('8.')
+            Duration(3, 16)
+
+        Return duration.
+        '''
+        fraction = Duration._init_from_lilypond_duration_string(lilypond_duration_string)
+        return Duration(fraction)
 
     @staticmethod
     def is_token(expr):

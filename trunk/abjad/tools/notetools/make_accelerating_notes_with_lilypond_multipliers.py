@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, stop, exp='cosine', written='8'):
+def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, stop, exp='cosine', written=None):
     r'''Make accelerating notes with LilyPond multipliers:
 
     ::
@@ -50,6 +50,8 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
 
     Set note durations to `written` duration times computed interpolated multipliers.
 
+    Interprete `written=None` as eighth notes.
+
     Return list of notes.
     '''
     from abjad.tools import notetools
@@ -58,7 +60,11 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
     total = durationtools.Duration(total)
     start = durationtools.Duration(start)
     stop = durationtools.Duration(stop)
-    written = durationtools.Duration(written)
+
+    if written is None:
+        written = durationtools.Duration(1, 8)
+    else:
+        written = durationtools.Duration(written)
 
     # change mathtools input arguments to vanilla rationals
     args = [fractions.Fraction(x) for x in (total, start, stop)]

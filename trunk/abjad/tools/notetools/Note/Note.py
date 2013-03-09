@@ -34,23 +34,14 @@ class Note(Leaf):
 
     ### INITIALIZER ###
 
-    # TODO: use LilyPond parser for initialization
     def __init__(self, *args, **kwargs):
-        #from abjad.tools.lilypondfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
         from abjad.tools import lilypondparsertools
         from abjad.tools import notetools
-
         if len(args) == 1 and isinstance(args[0], str):
-            input = '{{ {} }}'.format(args[0])
-            parsed = lilypondparsertools.LilyPondParser()(input)
+            string = '{{ {} }}'.format(args[0])
+            parsed = lilypondparsertools.LilyPondParser()(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             args = [parsed[0]]
-            #match = re.match(_lilypond_leaf_regex, args[0])
-            #chromatic_pitch_class_name, octave_tick_string, duration_body, dots = match.groups()
-            #pitch = chromatic_pitch_class_name + octave_tick_string
-            #written_duration = duration_body + dots
-            #lilypond_multiplier = None
-
         is_cautionary = False
         is_forced = False
         if len(args) == 1 and isinstance(args[0], Leaf):
@@ -75,7 +66,6 @@ class Note(Leaf):
             pitch, written_duration, lilypond_multiplier = args
         else:
             raise ValueError('can not initialize note from "%s".' % str(args))
-
         Leaf.__init__(self, written_duration, lilypond_multiplier)
         if pitch is not None:
             self.note_head = notetools.NoteHead(
