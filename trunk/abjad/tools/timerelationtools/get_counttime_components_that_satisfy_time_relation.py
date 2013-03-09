@@ -37,7 +37,7 @@ def get_counttime_components_that_satisfy_time_relation(counttime_components, ti
 
     `counttime_components` must be time-contiguous.
 
-    Example shown here takes 181337 function calls under r9683.
+    Example shown here takes 105763 function calls under r9685.
 
     Return selection.
     '''

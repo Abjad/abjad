@@ -193,12 +193,10 @@ class TimespanTimespanTimeRelation(TimeRelation):
             timespan_2 = self.timespan_2
         if timespan_1 is None or timespan_2 is None:
             raise ValueError('time relation is not fully loaded: {!r}.'.format(self))
-        timespan_1 = timespantools.Timespan()._get_timespan(timespan_1)
-        timespan_2 = timespantools.Timespan()._get_timespan(timespan_2)
-#        if not isinstance(timespan_1, timespantools.Timespan):
-#            timespan_1 = timespantools.Timespan()._get_timespan(timespan_1)
-#        if not isinstance(timespan_2, timespantools.Timespan):
-#            timespan_2 = timespantools.Timespan()._get_timespan(timespan_2)
+        if not isinstance(timespan_1, timespantools.Timespan):
+            timespan_1 = timespantools.Timespan()._get_timespan(timespan_1)
+        if not isinstance(timespan_2, timespantools.Timespan):
+            timespan_2 = timespantools.Timespan()._get_timespan(timespan_2)
         timespan_1_start, timespan_1_stop = self._get_expr_offsets(
             timespan_1, score_specification=score_specification, context_name=context_name)
         timespan_2_start, timespan_2_stop = self._get_expr_offsets(
