@@ -40,7 +40,9 @@ class Division(NonreducedFraction, BoundedObject):
 
     # slots definition does nothing here because multiple inheritance
     # breaks with multiple slots base classes
-    __slots__ = ()
+    __slots__ = ('_is_left_closed', '_is_left_open', '_is_right_closed', '_is_right_open',
+        '_start_offset',
+        )
 
     ### INITIALIZER ###
 
