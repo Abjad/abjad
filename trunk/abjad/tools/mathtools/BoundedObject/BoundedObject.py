@@ -11,6 +11,7 @@ class BoundedObject(AbjadObject):
     ### CLASS ATTRIBUTES ###
 
     __metaclass__ = abc.ABCMeta
+    __slots__ = ()
 
     ### INITIALIZER ###
 

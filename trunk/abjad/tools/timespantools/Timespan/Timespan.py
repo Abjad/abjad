@@ -21,6 +21,11 @@ class Timespan(BoundedObject):
     Timespans are immutable and treated as value objects.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = ('_start_offset', '_stop_offset',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, start_offset=NegativeInfinity, stop_offset=Infinity):
