@@ -156,29 +156,26 @@ class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMe
         assert isinstance(score, scoretools.Score), repr(score)
         voice = score[self.voice_name]
         anchor_timespan = self._evaluate_anchor_timespan()
+        # list signals the result of a call to map_to_each()
         if isinstance(anchor_timespan, list):
-            result = []
-            anchor_timespans = anchor_timespan
-            for anchor_timespan in anchor_timespans:
-                time_relation = self._get_time_relation(anchor_timespan)
-                components = list(iterationtools.iterate_components_in_expr(voice, klass=tuple(self.classes)))
-                #print 'getting counttime components from {} total ...'.format(len(components)),
-                components = timerelationtools.get_counttime_components_that_satisfy_time_relation(
-                    components, time_relation)
-                #print 'done'
-                if not components:
-                    continue
-                expression = specificationtools.IterablePayloadExpression(components)
-                expression = self._apply_callbacks(expression)
-                result.append(expression)
-            return result
+            is_map_to_each = True
         else:
+            is_map_to_each = False
+            anchor_timespan = [anchor_timespan]
+        result = []
+        anchor_timespans = anchor_timespan
+        for anchor_timespan in anchor_timespans:
             time_relation = self._get_time_relation(anchor_timespan)
             components = list(iterationtools.iterate_components_in_expr(voice, klass=tuple(self.classes)))
             components = timerelationtools.get_counttime_components_that_satisfy_time_relation(
                 components, time_relation)
             if not components:
-                return
+                continue
             expression = specificationtools.IterablePayloadExpression(components)
             expression = self._apply_callbacks(expression)
+            result.append(expression)
+        if is_map_to_each:
+            return result
+        else:
+            expression = result[0]
             return expression
