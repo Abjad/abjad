@@ -10,7 +10,9 @@ class VoiceProxy(AbjadObject):
 
     def __init__(self):
         from experimental.tools import specificationtools
-        self._leaf_offset_list = []
+        self._leaf_start_offsets = []
+        self._leaf_stop_offsets = []
+        self._leaves = []
         self._payload_expressions_by_attribute = specificationtools.AttributeDictionary()
         for attribute in self._payload_expressions_by_attribute:
             self._payload_expressions_by_attribute[attribute] = timespantools.TimespanInventory()
@@ -19,12 +21,28 @@ class VoiceProxy(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def leaf_offset_list(self):
-        '''Voice proxy leaf offset list.
+    def leaf_start_offsets(self):
+        '''Voice proxy leaf start offsets.
 
-        Return tuple.
+        Return list of offsets.
         '''        
-        return self._leaf_offset_list
+        return self._leaf_start_offsets
+
+    @property
+    def leaf_stop_offsets(self):
+        '''Voice proxy leaf stop offsets.
+
+        Return list of offsets.
+        '''        
+        return self._leaf_stop_offsets
+
+    @property
+    def leaves(self):
+        '''Voice proxy leaves.
+
+        Return list of leaves.
+        '''
+        return self._leaves
 
     @property
     def payload_expressions_by_attribute(self):

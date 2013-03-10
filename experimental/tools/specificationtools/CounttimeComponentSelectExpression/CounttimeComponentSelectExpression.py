@@ -169,6 +169,10 @@ class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMe
             components = list(iterationtools.iterate_components_in_expr(voice, klass=tuple(self.classes)))
             components = timerelationtools.get_counttime_components_that_satisfy_time_relation(
                 components, time_relation)
+            #voice_proxy = self.score_specification.voice_data_structures_by_voice[self.voice_name]
+            #start, stop = timerelationtools.get_offset_indices_that_satisfy_time_relation(
+            #    voice_proxy.leaf_start_offsets, voice_proxy.leaf_stop_offsets, time_relation)
+            #components = voice_proxy.leaves[start:stop]
             if not components:
                 continue
             expression = specificationtools.IterablePayloadExpression(components)

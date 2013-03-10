@@ -85,9 +85,11 @@ class ConcreteInterpreter(Interpreter):
 
     def build_leaf_offset_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            leaf_offset_list = [leaf.start_offset for leaf in voice]
             voice_proxy = self.score_specification.voice_data_structures_by_voice[voice.name]
-            voice_proxy.leaf_offset_list[:] = leaf_offset_list
+            for leaf in iterationtools.iterate_leaves_in_expr(voice):
+                voice_proxy.leaf_start_offsets.append(leaf.start_offset)
+                voice_proxy.leaf_stop_offsets.append(leaf.stop_offset)
+                voice_proxy.leaves.append(leaf)
 
     def calculate_score_and_segment_timespans(self):
         if hasattr(self.score_specification, '_time_signatures'):
