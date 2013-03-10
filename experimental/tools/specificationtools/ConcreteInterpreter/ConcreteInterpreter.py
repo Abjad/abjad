@@ -10,6 +10,11 @@ class ConcreteInterpreter(Interpreter):
 
     ### INITIALIZER ###
 
+    def __init__(self):
+        pass
+
+    ### SPECIAL METHODS ###
+
     def __call__(self, score_specification):
         '''Interpret `score_specification`:
 
@@ -20,6 +25,7 @@ class ConcreteInterpreter(Interpreter):
 
         Return Abjad score object.
         '''
+        from experimental.tools import specificationtools
         start_time = time.time()
         Interpreter.__call__(self, score_specification)
         self.interpret_time_signatures()
@@ -32,8 +38,11 @@ class ConcreteInterpreter(Interpreter):
             print 'Interpretation time equal to {} seconds ...'.format(int(total_time))
         return self.score
 
-    def __init__(self):
-        pass
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def leaf_offset_lists_by_voice(self):
+        return self._leaf_offset_lists_by_voice
 
     ### PUBLIC METHODS ###
 
@@ -73,6 +82,12 @@ class ConcreteInterpreter(Interpreter):
         measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
         context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
         context.extend(measures)
+
+    def build_leaf_offset_lists(self):
+        for voice in iterationtools.iterate_voices_in_expr(self.score):
+            leaf_offset_list = [leaf.start_offset for leaf in voice]
+            voice_proxy = self.score_specification.payload_expressions_by_voice[voice.name]
+            voice_proxy.leaf_offset_list[:] = leaf_offset_list
 
     def calculate_score_and_segment_timespans(self):
         if hasattr(self.score_specification, '_time_signatures'):
@@ -122,6 +137,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(self.score_specification.rhythm_region_expressions, 'rrxs')
         self.make_payload_expressions('rhythm')
         self.add_rhythms_to_score()
+        self.build_leaf_offset_lists()
 
     def interpret_time_signatures(self):
         self.populate_single_context_time_signature_set_expressions()

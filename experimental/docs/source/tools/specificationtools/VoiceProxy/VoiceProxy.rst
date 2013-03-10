@@ -9,6 +9,9 @@ specificationtools.VoiceProxy
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.specificationtools.VoiceProxy.VoiceProxy.VoiceProxy.leaf_offset_list
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.VoiceProxy.VoiceProxy.VoiceProxy.payload_expressions_by_attribute
    :noindex:
 

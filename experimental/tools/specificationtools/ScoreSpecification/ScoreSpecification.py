@@ -45,6 +45,7 @@ class ScoreSpecification(Specification):
         self._postrhythm_set_expressions = specificationtools.ExpressionInventory()
         self._multiple_context_set_expressions = timespantools.TimespanInventory()
         self._next_lexical_rank = 0
+        # TODO: change payload_expressions_by_voice to voice_data_structures_by_voice
         self._payload_expressions_by_voice = specificationtools.VoiceDictionary(score_template())
         self._region_expressions_by_attribute = specificationtools.AttributeDictionary()
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()

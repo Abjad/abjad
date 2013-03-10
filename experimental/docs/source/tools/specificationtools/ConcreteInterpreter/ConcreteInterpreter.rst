@@ -9,6 +9,9 @@ specificationtools.ConcreteInterpreter
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.leaf_offset_lists_by_voice
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.storage_format
    :noindex:
 
@@ -22,6 +25,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.add_time_signatures_to_score
+   :noindex:
+
+.. automethod:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.build_leaf_offset_lists
    :noindex:
 
 .. automethod:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.calculate_score_and_segment_timespans
