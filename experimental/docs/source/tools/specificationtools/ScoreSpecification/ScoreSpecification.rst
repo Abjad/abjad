@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.multiple_context_set_expressions
    :noindex:
 
-.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.payload_expressions_by_voice
-   :noindex:
-
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.postrhythm_set_expressions
    :noindex:
 
@@ -67,6 +64,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.timespan
+   :noindex:
+
+.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.voice_data_structures_by_voice
    :noindex:
 
 Methods

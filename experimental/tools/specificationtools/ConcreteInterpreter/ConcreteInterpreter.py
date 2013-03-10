@@ -50,7 +50,7 @@ class ConcreteInterpreter(Interpreter):
         from experimental.tools import specificationtools
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = specificationtools.DivisionList([], voice_name=voice.name)
-            voice_proxy = self.score_specification.payload_expressions_by_voice[voice.name]
+            voice_proxy = self.score_specification.voice_data_structures_by_voice[voice.name]
             expressions = voice_proxy.payload_expressions_by_attribute['divisions']
             divisions = [x.payload.divisions for x in expressions]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)
@@ -64,7 +64,7 @@ class ConcreteInterpreter(Interpreter):
 
     def add_rhythms_to_score(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_proxy = self.score_specification.payload_expressions_by_voice[voice.name]
+            voice_proxy = self.score_specification.voice_data_structures_by_voice[voice.name]
             for rhythm_payload_expression in voice_proxy.payload_expressions_by_attribute['rhythm']:
                 voice.extend(rhythm_payload_expression.payload)
 
@@ -86,7 +86,7 @@ class ConcreteInterpreter(Interpreter):
     def build_leaf_offset_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             leaf_offset_list = [leaf.start_offset for leaf in voice]
-            voice_proxy = self.score_specification.payload_expressions_by_voice[voice.name]
+            voice_proxy = self.score_specification.voice_data_structures_by_voice[voice.name]
             voice_proxy.leaf_offset_list[:] = leaf_offset_list
 
     def calculate_score_and_segment_timespans(self):
@@ -121,15 +121,15 @@ class ConcreteInterpreter(Interpreter):
                 timespan = timespantools.Timespan(start_offset, stop_offset)
                 segment_specification._timespan = timespan
 
+    def interpret_additional_parameters(self):
+        for leaf_set_expression in self.score_specification.postrhythm_set_expressions:
+            leaf_set_expression.execute_against_score(self.score)
+
     def interpret_divisions(self):
         self.make_timespan_scoped_single_context_set_expressions('divisions')
         self.make_region_expressions('divisions')
         self.make_payload_expressions('divisions')
         self.add_division_lists_to_score()
-
-    def interpret_additional_parameters(self):
-        for leaf_set_expression in self.score_specification.postrhythm_set_expressions:
-            leaf_set_expression.execute_against_score(self.score)
 
     def interpret_rhythm(self):
         self.make_timespan_scoped_single_context_set_expressions('rhythm')
@@ -167,7 +167,7 @@ class ConcreteInterpreter(Interpreter):
                     made_progress = True
                     region_expressions.remove(region_expression)
                     voice_name = region_expression.voice_name
-                    voice_proxy = self.score_specification.payload_expressions_by_voice[voice_name]
+                    voice_proxy = self.score_specification.voice_data_structures_by_voice[voice_name]
                     voice_payload_expressions = voice_proxy.payload_expressions_by_attribute[attribute]
                     voice_payload_expressions = voice_payload_expressions - payload_expression.timespan
                     voice_payload_expressions.append(payload_expression)
@@ -188,12 +188,12 @@ class ConcreteInterpreter(Interpreter):
 
     def make_rhythm_region_expressions_for_voice(self, voice_name):
         from experimental.tools import specificationtools
-        voice_proxy = self.score_specification.payload_expressions_by_voice[voice_name]
+        voice_proxy = self.score_specification.voice_data_structures_by_voice[voice_name]
         division_payload_expressions = voice_proxy.payload_expressions_by_attribute['divisions']
         voice_proxy = self.score_specification.single_context_set_expressions_by_context[voice_name]
         expressions = voice_proxy.timespan_scoped_single_context_set_expressions_by_attribute['rhythm']
         timespan_scoped_single_context_rhythm_set_expressions = expressions
-        voice_proxy = self.score_specification.payload_expressions_by_voice[voice_name]
+        voice_proxy = self.score_specification.voice_data_structures_by_voice[voice_name]
         voice_division_list = voice_proxy.voice_division_list
         if not voice_division_list:
             return []

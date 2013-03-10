@@ -158,17 +158,6 @@ class SetMethodMixin(AbjadObject):
         attribute = 'markup'
         return self._store_leaf_set_expression(attribute, source_expression)
 
-    def set_pitch_class_transform(self, source_expression):
-        r'''Set pitch class transform to `source_expression`.
-
-        Return pitch-class transform set expression.
-        '''
-        from experimental.tools import specificationtools
-        pitch_class_transform_expression = specificationtools.PitchClassTransformExpression(source_expression)
-        source_expression = specificationtools.PayloadExpression(payload=pitch_class_transform_expression)
-        attribute = 'pitch_class_transform'
-        return self._store_leaf_set_expression(attribute, source_expression)
-
     def set_pitch(self, source_expression, node_count=None, level=None, trope=None):
         r'''Set pitches to `source_expression`.
 
@@ -184,6 +173,17 @@ class SetMethodMixin(AbjadObject):
             level=level,
             trope=trope)
         return self._finalize_leaf_set_expression(pitch_set_expression)
+
+    def set_pitch_class_transform(self, source_expression):
+        r'''Set pitch class transform to `source_expression`.
+
+        Return pitch-class transform set expression.
+        '''
+        from experimental.tools import specificationtools
+        pitch_class_transform_expression = specificationtools.PitchClassTransformExpression(source_expression)
+        source_expression = specificationtools.PayloadExpression(payload=pitch_class_transform_expression)
+        attribute = 'pitch_class_transform'
+        return self._store_leaf_set_expression(attribute, source_expression)
 
     def set_register(self, source_expression):
         r'''Set register to `source_expression`.

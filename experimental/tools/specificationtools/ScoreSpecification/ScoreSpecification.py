@@ -45,12 +45,11 @@ class ScoreSpecification(Specification):
         self._postrhythm_set_expressions = specificationtools.ExpressionInventory()
         self._multiple_context_set_expressions = timespantools.TimespanInventory()
         self._next_lexical_rank = 0
-        # TODO: change payload_expressions_by_voice to voice_data_structures_by_voice
-        self._payload_expressions_by_voice = specificationtools.VoiceDictionary(score_template())
         self._region_expressions_by_attribute = specificationtools.AttributeDictionary()
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
         self._single_context_time_signature_set_expressions = timespantools.TimespanInventory()
+        self._voice_data_structures_by_voice = specificationtools.VoiceDictionary(score_template())
 
     ### SPECIAL METHODS ###
 
@@ -122,19 +121,6 @@ class ScoreSpecification(Specification):
         return Specification.fresh_single_context_set_expressions.fget(self)
 
     @property
-    def postrhythm_set_expressions(self):
-        '''Score specification generalized set expressions.
-
-        ::
-
-            >>> z(score_specification.postrhythm_set_expressions)
-            specificationtools.ExpressionInventory([])
-
-        Return expression inventory.
-        '''
-        return self._postrhythm_set_expressions
-
-    @property
     def interface(self):
         '''Score specification interface.
 
@@ -202,71 +188,17 @@ class ScoreSpecification(Specification):
         return self._multiple_context_set_expressions
 
     @property
-    def payload_expressions_by_voice(self):
-        '''Score specification payload expressions by voice.
+    def postrhythm_set_expressions(self):
+        '''Score specification generalized set expressions.
 
         ::
 
-            >>> for voice_proxy in score_specification.payload_expressions_by_voice.itervalues():
-            ...     for timespan_inventory in voice_proxy.payload_expressions_by_attribute.itervalues():
-            ...         if timespan_inventory:
-            ...             z(timespan_inventory)
-            timespantools.TimespanInventory([
-                specificationtools.StartPositionedDivisionPayloadExpression(
-                    payload=specificationtools.DivisionList(
-                        [Division('[2, 8]', start_offset=Offset(0, 1)),
-                        Division('[3, 8]', start_offset=Offset(1, 4)),
-                        Division('[4, 8]', start_offset=Offset(5, 8)),
-                        Division('[4, 16]', start_offset=Offset(9, 8)),
-                        Division('[4, 16]', start_offset=Offset(11, 8)),
-                        Division('[5, 16]', start_offset=Offset(13, 8)),
-                        Division('[5, 16]', start_offset=Offset(31, 16))],
-                        start_offset=durationtools.Offset(0, 1),
-                        voice_name='Voice 1'
-                        ),
-                    start_offset=durationtools.Offset(0, 1),
-                    voice_name='Voice 1'
-                    )
-                ])
-            timespantools.TimespanInventory([
-                specificationtools.StartPositionedRhythmPayloadExpression(
-                    payload=containertools.Container(
-                        music=()
-                        ),
-                    start_offset=durationtools.Offset(0, 1),
-                    voice_name='Voice 1'
-                    )
-                ])
-            timespantools.TimespanInventory([
-                specificationtools.StartPositionedDivisionPayloadExpression(
-                    payload=specificationtools.DivisionList(
-                        [Division('[2, 8]', start_offset=Offset(0, 1)),
-                        Division('[3, 8]', start_offset=Offset(1, 4)),
-                        Division('[4, 8]', start_offset=Offset(5, 8)),
-                        Division('[4, 16]', start_offset=Offset(9, 8)),
-                        Division('[4, 16]', start_offset=Offset(11, 8)),
-                        Division('[5, 16]', start_offset=Offset(13, 8)),
-                        Division('[5, 16]', start_offset=Offset(31, 16))],
-                        start_offset=durationtools.Offset(0, 1),
-                        voice_name='Voice 2'
-                        ),
-                    start_offset=durationtools.Offset(0, 1),
-                    voice_name='Voice 2'
-                    )
-                ])
-            timespantools.TimespanInventory([
-                specificationtools.StartPositionedRhythmPayloadExpression(
-                    payload=containertools.Container(
-                        music=()
-                        ),
-                    start_offset=durationtools.Offset(0, 1),
-                    voice_name='Voice 2'
-                    )
-                ])
+            >>> z(score_specification.postrhythm_set_expressions)
+            specificationtools.ExpressionInventory([])
 
-        Return voice dictionary.
+        Return expression inventory.
         '''
-        return self._payload_expressions_by_voice
+        return self._postrhythm_set_expressions
 
     @property
     def region_expressions_by_attribute(self):
@@ -554,6 +486,73 @@ class ScoreSpecification(Specification):
         Return timespan.
         '''
         return Specification.timespan.fget(self)
+
+    @property
+    def voice_data_structures_by_voice(self):
+        '''Score specification payload expressions by voice.
+
+        ::
+
+            >>> for voice_proxy in score_specification.voice_data_structures_by_voice.itervalues():
+            ...     for timespan_inventory in voice_proxy.payload_expressions_by_attribute.itervalues():
+            ...         if timespan_inventory:
+            ...             z(timespan_inventory)
+            timespantools.TimespanInventory([
+                specificationtools.StartPositionedDivisionPayloadExpression(
+                    payload=specificationtools.DivisionList(
+                        [Division('[2, 8]', start_offset=Offset(0, 1)),
+                        Division('[3, 8]', start_offset=Offset(1, 4)),
+                        Division('[4, 8]', start_offset=Offset(5, 8)),
+                        Division('[4, 16]', start_offset=Offset(9, 8)),
+                        Division('[4, 16]', start_offset=Offset(11, 8)),
+                        Division('[5, 16]', start_offset=Offset(13, 8)),
+                        Division('[5, 16]', start_offset=Offset(31, 16))],
+                        start_offset=durationtools.Offset(0, 1),
+                        voice_name='Voice 1'
+                        ),
+                    start_offset=durationtools.Offset(0, 1),
+                    voice_name='Voice 1'
+                    )
+                ])
+            timespantools.TimespanInventory([
+                specificationtools.StartPositionedRhythmPayloadExpression(
+                    payload=containertools.Container(
+                        music=()
+                        ),
+                    start_offset=durationtools.Offset(0, 1),
+                    voice_name='Voice 1'
+                    )
+                ])
+            timespantools.TimespanInventory([
+                specificationtools.StartPositionedDivisionPayloadExpression(
+                    payload=specificationtools.DivisionList(
+                        [Division('[2, 8]', start_offset=Offset(0, 1)),
+                        Division('[3, 8]', start_offset=Offset(1, 4)),
+                        Division('[4, 8]', start_offset=Offset(5, 8)),
+                        Division('[4, 16]', start_offset=Offset(9, 8)),
+                        Division('[4, 16]', start_offset=Offset(11, 8)),
+                        Division('[5, 16]', start_offset=Offset(13, 8)),
+                        Division('[5, 16]', start_offset=Offset(31, 16))],
+                        start_offset=durationtools.Offset(0, 1),
+                        voice_name='Voice 2'
+                        ),
+                    start_offset=durationtools.Offset(0, 1),
+                    voice_name='Voice 2'
+                    )
+                ])
+            timespantools.TimespanInventory([
+                specificationtools.StartPositionedRhythmPayloadExpression(
+                    payload=containertools.Container(
+                        music=()
+                        ),
+                    start_offset=durationtools.Offset(0, 1),
+                    voice_name='Voice 2'
+                    )
+                ])
+
+        Return voice dictionary.
+        '''
+        return self._voice_data_structures_by_voice
 
     ### PUBLIC METHODS ###
 

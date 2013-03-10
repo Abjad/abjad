@@ -34,7 +34,7 @@ class DivisionList(BoundedObject):
 
     ::
 
-        >>> voice_proxy = score_specification.specification.payload_expressions_by_voice['Voice 1']
+        >>> voice_proxy = score_specification.specification.voice_data_structures_by_voice['Voice 1']
         >>> len(voice_proxy.payload_expressions_by_attribute['divisions'])
         1
 
