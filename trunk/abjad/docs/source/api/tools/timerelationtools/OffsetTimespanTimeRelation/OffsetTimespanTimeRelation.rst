@@ -9,6 +9,9 @@ timerelationtools.OffsetTimespanTimeRelation
 Read-only properties
 --------------------
 
+.. autoattribute:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.inequalities
+   :noindex:
+
 .. autoattribute:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.is_fully_loaded
    :noindex:
 

@@ -3586,6 +3586,7 @@ Core composition packages
       :maxdepth: 1
 
       tools/timerelationtools/get_counttime_components_that_satisfy_time_relation
+      tools/timerelationtools/get_offset_indices_that_satisfy_time_relation
       tools/timerelationtools/offset_happens_after_timespan_starts
       tools/timerelationtools/offset_happens_after_timespan_stops
       tools/timerelationtools/offset_happens_before_timespan_starts
@@ -3643,6 +3644,7 @@ Core composition packages
    .. toctree::
 
       tools/timerelationtools/get_counttime_components_that_satisfy_time_relation
+      tools/timerelationtools/get_offset_indices_that_satisfy_time_relation
       tools/timerelationtools/offset_happens_after_timespan_starts
       tools/timerelationtools/offset_happens_after_timespan_stops
       tools/timerelationtools/offset_happens_before_timespan_starts

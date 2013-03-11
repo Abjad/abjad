@@ -42,6 +42,7 @@ class TimeRelation(AbjadObject):
     @abc.abstractmethod
     def __init__(self, template):
         assert isinstance(template, str), repr(template)
+        self._inequalities = []
         self._template = template
 
     ### SPECIAL METHODS ###
@@ -80,6 +81,12 @@ class TimeRelation(AbjadObject):
             raise ValueError('{!r} has neither offsets property nor get_offsets() method.'.format(expr))
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def inequalities(self):
+        '''Time relation inequalities.
+        '''
+        return self._inequalities
 
     @abc.abstractproperty
     def is_fully_loaded(self):

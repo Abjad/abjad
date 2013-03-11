@@ -9,6 +9,9 @@ timerelationtools.TimeRelation
 Read-only properties
 --------------------
 
+.. autoattribute:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.inequalities
+   :noindex:
+
 .. autoattribute:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.is_fully_loaded
    :noindex:
 
