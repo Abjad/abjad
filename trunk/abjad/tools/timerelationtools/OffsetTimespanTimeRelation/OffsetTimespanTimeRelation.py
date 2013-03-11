@@ -20,6 +20,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
         >>> z(time_relation)
         timerelationtools.OffsetTimespanTimeRelation(
             'timespan.start <= offset < timespan.stop',
+            ['timespan.start <= offset', 'offset < timespan.stop'],
             timespan=timespantools.Timespan(
                 start_offset=durationtools.Offset(0, 1),
                 stop_offset=durationtools.Offset(10, 1)
@@ -32,8 +33,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     ### INITIALIZER ###
 
-    def __init__(self, template, timespan=None, offset=None):
-        TimeRelation.__init__(self, template)
+    def __init__(self, template, inequalities, timespan=None, offset=None):
+        TimeRelation.__init__(self, template, inequalities)
         self._timespan = timespan
         self._offset = offset
 
@@ -146,6 +147,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
             >>> z(time_relation)
             timerelationtools.OffsetTimespanTimeRelation(
                 'timespan.start <= offset < timespan.stop',
+                ['timespan.start <= offset', 'offset < timespan.stop'],
                 timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(10, 1)

@@ -101,8 +101,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     ### INITIALIZER ###
 
-    def __init__(self, template, timespan_1=None, timespan_2=None):
-        TimeRelation.__init__(self, template)
+    def __init__(self, template, inequalities, timespan_1=None, timespan_2=None):
+        TimeRelation.__init__(self, template, inequalities)
         self._timespan_1 = timespan_1
         self._timespan_2 = timespan_2
 
@@ -128,6 +128,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             >>> z(time_relation)
             timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
+                ['timespan_1.start <= timespan_2.start', 'timespan_2.start < timespan_1.stop'],
                 timespan_1=timespantools.Timespan(
                     start_offset=durationtools.Offset(5, 1),
                     stop_offset=durationtools.Offset(15, 1)

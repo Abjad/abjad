@@ -1,10 +1,15 @@
 def timespan_2_stops_after_timespan_1_stops(timespan_1=None, timespan_2=None, hold=False):
     r'''.. versionadded:: 2.11
 
-    Make time relation template indicating that expression stops after timespan stops::
+    Make time relation template indicating that expression stops after timespan stops:
 
-        >>> timerelationtools.timespan_2_stops_after_timespan_1_stops()
-        TimespanTimespanTimeRelation('timespan_1.stop < timespan_2.stop')
+    ::
+
+        >>> z(timerelationtools.timespan_2_stops_after_timespan_1_stops())
+        timerelationtools.TimespanTimespanTimeRelation(
+            'timespan_1.stop < timespan_2.stop',
+            ['timespan_1.stop < timespan_2.stop']
+            )
 
     Return boolean or time relation.
     '''
@@ -12,6 +17,9 @@ def timespan_2_stops_after_timespan_1_stops(timespan_1=None, timespan_2=None, ho
 
     time_relation = timerelationtools.TimespanTimespanTimeRelation(
         'timespan_1.stop < timespan_2.stop',
+        [
+            'timespan_1.stop < timespan_2.stop',
+        ],
         timespan_1=timespan_1,
         timespan_2=timespan_2)
 

@@ -5,8 +5,11 @@ def timespan_2_starts_during_timespan_1(timespan_1=None, timespan_2=None, hold=F
 
     ::
 
-        >>> timerelationtools.timespan_2_starts_during_timespan_1()
-        TimespanTimespanTimeRelation('timespan_1.start <= timespan_2.start < timespan_1.stop')
+        >>> z(timerelationtools.timespan_2_starts_during_timespan_1())
+        timerelationtools.TimespanTimespanTimeRelation(
+            'timespan_1.start <= timespan_2.start < timespan_1.stop',
+            ['timespan_1.start <= timespan_2.start', 'timespan_2.start < timespan_1.stop']
+            )
 
     Return time relation or boolean.
     '''
@@ -14,12 +17,13 @@ def timespan_2_starts_during_timespan_1(timespan_1=None, timespan_2=None, hold=F
 
     time_relation = timerelationtools.TimespanTimespanTimeRelation(
         'timespan_1.start <= timespan_2.start < timespan_1.stop',
+        [
+            'timespan_1.start <= timespan_2.start',
+            'timespan_2.start < timespan_1.stop',
+        ],
         timespan_1=timespan_1,
         timespan_2=timespan_2)
 
-    time_relation.inequalities.extend([
-        'timespan_1.start <= timespan_2.start',
-        'timespan_2.start < timespan_1.stop'])
 
     if time_relation.is_fully_loaded and not hold:
         return time_relation()

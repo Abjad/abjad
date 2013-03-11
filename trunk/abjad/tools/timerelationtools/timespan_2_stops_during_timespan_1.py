@@ -1,10 +1,15 @@
 def timespan_2_stops_during_timespan_1(timespan_1=None, timespan_2=None, hold=False):
     r'''.. versionadded:: 2.11
 
-    Make time relation template indicating that expression stops during timespan::
+    Make time relation template indicating that expression stops during timespan:
 
-        >>> timerelationtools.timespan_2_stops_during_timespan_1()
-        TimespanTimespanTimeRelation('timespan_1.start < timespan_2.stop <= timespan_1.stop')
+    ::
+
+        >>> z(timerelationtools.timespan_2_stops_during_timespan_1())
+        timerelationtools.TimespanTimespanTimeRelation(
+            'timespan_1.start < timespan_2.stop <= timespan_1.stop',
+            ['timespan_1.start < timespan_2.stop', 'timespan_2.stop <= timespan_1.stop']
+            )
 
     Return boolean or time relation.
     '''
@@ -12,6 +17,10 @@ def timespan_2_stops_during_timespan_1(timespan_1=None, timespan_2=None, hold=Fa
 
     time_relation = timerelationtools.TimespanTimespanTimeRelation(
         'timespan_1.start < timespan_2.stop <= timespan_1.stop',
+        [
+        'timespan_1.start < timespan_2.stop',
+        'timespan_2.stop <= timespan_1.stop'
+        ],
         timespan_1=timespan_1,
         timespan_2=timespan_2)
 

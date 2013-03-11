@@ -1,12 +1,19 @@
 def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False):
     r'''.. versionadded:: 2.11
 
-    Make time relation indicating that `offset` happens before `timespan` starts::
+    Make time relation indicating that `offset` happens before `timespan` starts:
 
-        >>> timerelationtools.offset_happens_before_timespan_starts()
-        OffsetTimespanTimeRelation('offset < timespan.start')
+    ::
 
-    Make time relation indicating that offset ``1/2`` happens before `timespan` starts::
+        >>> z(timerelationtools.offset_happens_before_timespan_starts())
+        timerelationtools.OffsetTimespanTimeRelation(
+            'offset < timespan.start',
+            ['offset < timespan.start']
+            )
+
+    Make time relation indicating that offset ``1/2`` happens before `timespan` starts:
+
+    ::
 
         >>> offset = durationtools.Offset(1, 2)
 
@@ -20,10 +27,13 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
         >>> z(time_relation)
         timerelationtools.OffsetTimespanTimeRelation(
             'offset < timespan.start',
+            ['offset < timespan.start'],
             offset=durationtools.Offset(1, 2)
             )
 
-    Make time relation indicating that `offset` happens before timespan ``[2, 8)`` starts::
+    Make time relation indicating that `offset` happens before timespan ``[2, 8)`` starts:
+
+    ::
 
         >>> timespan = timespantools.Timespan(2, 8)
 
@@ -37,6 +47,7 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
         >>> z(time_relation)
         timerelationtools.OffsetTimespanTimeRelation(
             'offset < timespan.start',
+            ['offset < timespan.start'],
             timespan=timespantools.Timespan(
                 start_offset=durationtools.Offset(2, 1),
                 stop_offset=durationtools.Offset(8, 1)
@@ -54,6 +65,7 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
         >>> z(time_relation)
         timerelationtools.OffsetTimespanTimeRelation(
             'offset < timespan.start',
+            ['offset < timespan.start'],
             timespan=timespantools.Timespan(
                 start_offset=durationtools.Offset(2, 1),
                 stop_offset=durationtools.Offset(8, 1)
@@ -74,6 +86,7 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
 
     time_relation = timerelationtools.OffsetTimespanTimeRelation(
         'offset < timespan.start',
+        ['offset < timespan.start'],
         timespan=timespan, offset=offset)
 
     if time_relation.is_fully_loaded and not hold:
