@@ -9,7 +9,7 @@ sievetools.Sieve
 Read-only properties
 --------------------
 
-.. autoattribute:: abjad.tools.sievetools.Sieve.Sieve.Sieve.operator
+.. autoattribute:: abjad.tools.sievetools.Sieve.Sieve.Sieve.logical_operator
    :noindex:
 
 .. autoattribute:: abjad.tools.sievetools.Sieve.Sieve.Sieve.period

@@ -1,32 +1,31 @@
 from abjad.tools import sievetools
-from abjad.tools.sievetools.ResidueClass import ResidueClass
-from abjad.tools.sievetools.Sieve import Sieve
+from abjad.tools.sievetools import ResidueClass as RC
 import py.test
 
 
-RC = ResidueClass
-
 def test_ResidueClass_operator_xor_01():
-    '''RC XOR RC returns a Sieve.'''
+    '''RC XOR RC returns a sieve.
+    '''
 
     rc1 = RC(4, 0)
     rc2 = RC(4, 1)
     t = rc1 ^ rc2
 
-    assert isinstance(t, Sieve)
-    assert t.operator == 'xor'
+    assert isinstance(t, sievetools.Sieve)
+    assert t.logical_operator == 'xor'
     assert t.rcs == [rc1, rc2]
 
 
 def test_ResidueClass_operator_xor_02():
-    '''xor-Sieve XOR RC returns a flat xor-Sieve.'''
+    '''xor-sieve XOR RC returns a flat xor-sieve.
+    '''
 
     rcexpression = RC(4, 0) ^ RC(4, 1)
     rc = RC(3, 0)
     t = rc ^ rcexpression
 
-    assert isinstance(t, Sieve)
-    assert t.operator == 'xor'
+    assert isinstance(t, sievetools.Sieve)
+    assert t.logical_operator == 'xor'
     assert len(t.rcs) == 3
     assert rcexpression.rcs[0] in t.rcs
     assert rcexpression.rcs[1] in t.rcs
@@ -34,14 +33,15 @@ def test_ResidueClass_operator_xor_02():
 
 
 def test_ResidueClass_operator_xor_03():
-    '''RC XOR xor-Sieve returns a flat xor-Sieve.'''
+    '''RC XOR xor-sieve returns a flat xor-sieve.
+    '''
 
     rcexpression = RC(4, 0) ^ RC(4, 1)
     rc = RC(3, 0)
     t = rcexpression ^ rc
 
-    assert isinstance(t, Sieve)
-    assert t.operator == 'xor'
+    assert isinstance(t, sievetools.Sieve)
+    assert t.logical_operator == 'xor'
     assert len(t.rcs) == 3
     assert rcexpression.rcs[0] in t.rcs
     assert rcexpression.rcs[1] in t.rcs
@@ -49,7 +49,8 @@ def test_ResidueClass_operator_xor_03():
 
 
 def test_ResidueClass_operator_xor_04():
-    '''xor-Sieve XOR xor-Sieve returns a flat xor-Sieve.'''
+    '''xor-sieve XOR xor-sieve returns a flat xor-sieve.
+    '''
 
     rc1 = RC(4, 0)
     rc2 = RC(4, 1)
@@ -59,8 +60,8 @@ def test_ResidueClass_operator_xor_04():
     rcsB = rc3 ^ rc4
     t = rcsA ^ rcsB
 
-    assert isinstance(t, Sieve)
-    assert t.operator == 'xor'
+    assert isinstance(t, sievetools.Sieve)
+    assert t.logical_operator == 'xor'
     assert len(t.rcs) == 4
     assert rc1 in t.rcs
     assert rc2 in t.rcs
@@ -69,18 +70,20 @@ def test_ResidueClass_operator_xor_04():
 
 
 def test_ResidueClass_operator_xor_05():
-    '''XOR'''
+    '''XOR.
+    '''
 
     t = RC(2, 0) ^ RC(3, 0)
 
-    assert isinstance(t, Sieve)
-    assert t.operator == 'xor'
+    assert isinstance(t, sievetools.Sieve)
+    assert t.logical_operator == 'xor'
     assert t.get_boolean_train(6) == [0,0,1,1,1,0]
     assert t.get_congruent_bases(6) == [2,3,4]
 
 
 def test_ResidueClass_operator_xor_06():
-    '''XOR'''
+    '''XOR.
+    '''
 
     t = RC(2, 1) ^ RC(3, 0)
 

@@ -3,12 +3,11 @@ from abjad.tools import mathtools
 from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
 
 
-# TODO: change name to Sieve
 class Sieve(_BaseResidueClass):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_operator', '_rcs')
+    __slots__ = ('_logical_operator', '_rcs')
 
     logical_operator_dictionary = {
         'and': '&',
@@ -18,26 +17,24 @@ class Sieve(_BaseResidueClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, rcs, operator='or'):
+    def __init__(self, rcs, logical_operator='or'):
         # init from other rc expression
         if isinstance(rcs, Sieve):
             object.__setattr__(self, '_rcs', rcs.rcs[:])
-            object.__setattr__(self, '_operator', rcs.operator)
-        # init from rcs and operator
+            object.__setattr__(self, '_logical_operator', rcs.logical_operator)
+        # init from rcs and logical operator
         else:
             object.__setattr__(self, '_rcs', rcs[:])
-            object.__setattr__(self, '_operator', operator)
+            object.__setattr__(self, '_logical_operator', logical_operator)
         # sort rcs
         self._sort_rcs()
 
     ### SPECIAL METHODS ###
 
-    # TODO: rename opdic to logical_operator_dictionary.
-    # TODO: hoist logical_operator_dictionary to class attribute.
-    # TODO: remove whitespace around operator symbols
     def __repr__(self):
-        opdic = {'and':' & ', 'or':' | ', 'xor':' ^ '}
-        result = opdic[self.operator].join([str(rc) for rc in self.rcs])
+        logical_operator = self.logical_operator_dictionary[self.logical_operator]
+        logical_operator = ' {} '.format(logical_operator)
+        result = logical_operator.join([str(residue_class) for residue_class in self.rcs])
         return '{%s}' % result
 
     ### PRIVATE METHODS ###
@@ -49,28 +46,27 @@ class Sieve(_BaseResidueClass):
     # That is, Sieve.get_congruent_bases(8) currently
     # returns a list of up to *nine* items; should probably
     # return a list of up to only *eight* items.
-    def _get_congruent_bases(self, minimum, maximum, op):
-        if op is operator.iand:
+    def _get_congruent_bases(self, minimum, maximum, logical_operator):
+        if logical_operator is operator.iand:
             result = set(range(minimum, maximum + 1))
         else:
             result = set([])
         for rc in self.rcs:
-            op(result, set(rc.get_congruent_bases(minimum, maximum)))
+            logical_operator(result, set(rc.get_congruent_bases(minimum, maximum)))
         return sorted(result)
 
     def _sort_rcs(self):
-        from abjad.tools.sievetools.ResidueClass import ResidueClass
-        if all([isinstance(rc, ResidueClass) for rc in self.rcs]):
+        from abjad.tools import sievetools
+        if all([isinstance(rc, sievetools.ResidueClass) for rc in self.rcs]):
             self.rcs.sort()
 
     ### PUBLIC PROPERTIES ###
     
-    # TODO: change name to logical_operator to avoid masking operator module
     @property
-    def operator(self):
-        '''Operator of residue class expression.
+    def logical_operator(self):
+        '''Residue class expression logical operator.
         '''
-        return self._operator
+        return self._logical_operator
 
     @property
     def period(self):
@@ -166,11 +162,11 @@ class Sieve(_BaseResidueClass):
         from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
 
         minimum, maximum = _process_min_max_attribute(*min_max)
-        if self.operator == 'or':
+        if self.logical_operator == 'or':
             return self._get_congruent_bases(minimum, maximum, operator.ior)
-        elif self.operator == 'xor':
+        elif self.logical_operator == 'xor':
             return self._get_congruent_bases(minimum, maximum, operator.ixor)
-        elif self.operator == 'and':
+        elif self.logical_operator == 'and':
             return self._get_congruent_bases(minimum, maximum, operator.iand)
 
     # TB: the +1 adjustment is necessary here because of

@@ -29,11 +29,11 @@ class _BaseResidueClass(AbjadObject):
 
     def _operate(self, arg, op):
         from abjad.tools.sievetools.Sieve import Sieve
-        if isinstance(self, Sieve) and self.operator == op:
+        if isinstance(self, Sieve) and self.logical_operator == op:
             argA = self.rcs
         else:
             argA = [self]
-        if isinstance(arg, Sieve) and arg.operator == op:
+        if isinstance(arg, Sieve) and arg.logical_operator == op:
             argB = arg.rcs
         else:
             argB = [arg]
