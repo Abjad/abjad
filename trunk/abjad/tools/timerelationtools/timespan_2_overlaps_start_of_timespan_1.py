@@ -8,7 +8,7 @@ def timespan_2_overlaps_start_of_timespan_1(timespan_1=None, timespan_2=None, ho
         >>> z(timerelationtools.timespan_2_overlaps_start_of_timespan_1())
         timerelationtools.TimespanTimespanTimeRelation(
             'timespan_2.start < timespan_1.start < timespan_2.stop',
-            ['timespan_2.start < timespan_1.start', 'timespan-1.start < timespan_2.stop']
+            ['timespan_2.start < timespan_1.start', 'timespan_1.start < timespan_2.stop']
             )
 
     Return boolean or time relation.
@@ -19,7 +19,7 @@ def timespan_2_overlaps_start_of_timespan_1(timespan_1=None, timespan_2=None, ho
         'timespan_2.start < timespan_1.start < timespan_2.stop',
         [
             'timespan_2.start < timespan_1.start',
-            'timespan-1.start < timespan_2.stop',
+            'timespan_1.start < timespan_2.stop',
         ],
         timespan_1=timespan_1,
         timespan_2=timespan_2)
