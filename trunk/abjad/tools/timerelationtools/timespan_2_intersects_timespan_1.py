@@ -8,7 +8,16 @@ def timespan_2_intersects_timespan_1(timespan_1=None, timespan_2=None, hold=Fals
         >>> z(timerelationtools.timespan_2_intersects_timespan_1())
         timerelationtools.TimespanTimespanTimeRelation(
             'timespan_1.start <= timespan_2.start < timespan_1.stop or timespan_2.start <= timespan_1.start < timespan_2.stop',
-            []
+            timerelationtools.CompoundInequality([
+                timerelationtools.CompoundInequality([
+                    'timespan_1.start <= timespan_2.start',
+                    'timespan_2.start < timespan_1.stop'
+                    ]),
+                timerelationtools.CompoundInequality([
+                    'timespan_2.start <= timespan_1.start',
+                    'timespan_1.start < timespan_2.stop'
+                    ])
+                ])
             )
 
     Return boolean or time relation.
@@ -18,7 +27,16 @@ def timespan_2_intersects_timespan_1(timespan_1=None, timespan_2=None, hold=Fals
     time_relation = timerelationtools.TimespanTimespanTimeRelation(
         'timespan_1.start <= timespan_2.start < timespan_1.stop or '
         'timespan_2.start <= timespan_1.start < timespan_2.stop',
-        [],
+        timerelationtools.CompoundInequality([
+            timerelationtools.CompoundInequality([
+                'timespan_1.start <= timespan_2.start',
+                'timespan_2.start < timespan_1.stop'],
+                logical_operator='and'),
+            timerelationtools.CompoundInequality([
+                'timespan_2.start <= timespan_1.start',
+                'timespan_1.start < timespan_2.stop'],
+                logical_operator='and')],
+            logical_operator='or'),
         timespan_1=timespan_1,
         timespan_2=timespan_2)
 

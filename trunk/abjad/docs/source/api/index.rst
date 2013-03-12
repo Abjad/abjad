@@ -3577,6 +3577,7 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
+      tools/timerelationtools/CompoundInequality/CompoundInequality
       tools/timerelationtools/OffsetTimespanTimeRelation/OffsetTimespanTimeRelation
       tools/timerelationtools/TimespanTimespanTimeRelation/TimespanTimespanTimeRelation
 
@@ -3635,6 +3636,7 @@ Core composition packages
 
    .. toctree::
 
+      tools/timerelationtools/CompoundInequality/CompoundInequality
       tools/timerelationtools/OffsetTimespanTimeRelation/OffsetTimespanTimeRelation
       tools/timerelationtools/TimespanTimespanTimeRelation/TimespanTimespanTimeRelation
 

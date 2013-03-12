@@ -1,6 +1,6 @@
+import operator
 from abjad.tools import mathtools
 from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
-import operator
 
 
 # TODO: change name to Sieve
@@ -10,19 +10,21 @@ class ResidueClassExpression(_BaseResidueClass):
 
     __slots__ = ('_operator', '_rcs')
 
+    logical_operator_dictionary = {
+        'and': '&',
+        'or': '|',
+        'xor': '^',
+        }
+
     ### INITIALIZER ###
 
     def __init__(self, rcs, operator='or'):
         # init from other rc expression
         if isinstance(rcs, ResidueClassExpression):
-            #self.rcs = rcs.rcs[:]
-            #self.operator = rcs.operator
             object.__setattr__(self, '_rcs', rcs.rcs[:])
             object.__setattr__(self, '_operator', rcs.operator)
         # init from rcs and operator
         else:
-            #self.rcs = rcs[:]
-            #self.operator = operator
             object.__setattr__(self, '_rcs', rcs[:])
             object.__setattr__(self, '_operator', operator)
         # sort rcs
@@ -30,10 +32,13 @@ class ResidueClassExpression(_BaseResidueClass):
 
     ### SPECIAL METHODS ###
 
+    # TODO: rename opdic to logical_operator_dictionary.
+    # TODO: hoist logical_operator_dictionary to class attribute.
+    # TODO: remove whitespace around operator symbols
     def __repr__(self):
         opdic = {'and':' & ', 'or':' | ', 'xor':' ^ '}
         result = opdic[self.operator].join([str(rc) for rc in self.rcs])
-        return '{%s}' % result
+        return '{}'.format(result)
 
     ### PRIVATE METHODS ###
 
@@ -59,7 +64,8 @@ class ResidueClassExpression(_BaseResidueClass):
             self.rcs.sort()
 
     ### PUBLIC PROPERTIES ###
-
+    
+    # TODO: change name to logical_operator to avoid masking operator module
     @property
     def operator(self):
         '''Operator of residue class expression.
@@ -68,6 +74,8 @@ class ResidueClassExpression(_BaseResidueClass):
 
     @property
     def period(self):
+        '''Residue class expression period.
+        '''
         rc_periods = []
         for rc in self.rcs:
             rc_periods.append(rc.modulo)
@@ -79,16 +87,20 @@ class ResidueClassExpression(_BaseResidueClass):
 
     @property
     def rcs(self):
-        '''Residue classes of expression.
+        '''Residue class expression residue classes.
         '''
         return self._rcs
 
     @property
     def representative_boolean_train(self):
+        '''Residue class expression representative boolean train.
+        '''
         return self.get_boolean_train(self.period)
 
     @property
     def representative_congruent_bases(self):
+        '''Residue class expression representative congruent bases.
+        '''
         congruent_bases = self.get_congruent_bases(self.period)
         # remove redundant last element from get_congruent_bases()
         congruent_bases = congruent_bases[:-1]
@@ -104,7 +116,9 @@ class ResidueClassExpression(_BaseResidueClass):
         If only one is given, it is taken as the max range
         and min is assumed to be 0.
 
-        Example::
+        Example:
+
+        ::
 
             >>> from abjad.tools.sievetools import ResidueClass as RC
 
@@ -137,7 +151,9 @@ class ResidueClassExpression(_BaseResidueClass):
         If only one it given, it is taken as the max range
         and min is assumed to be 0.
 
-        Example::
+        Example:
+
+        ::
 
             >>> e = RC(3, 0) | RC(2, 0)
             >>> e.get_congruent_bases(6)
@@ -160,7 +176,7 @@ class ResidueClassExpression(_BaseResidueClass):
     # TB: the +1 adjustment is necessary here because of
     # _process_min_max_attribute() demands min strictly less than max;
     # that is, self.get_congruent_bases(0, 0) raises an exception;
-    # so we workaround this with self.get_congruent_bases(-1, 1) instead.
+    # so we work around this with self.get_congruent_bases(-1, 1) instead.
     def is_congruent_base(self, integer):
         tmp_min, tmp_max = -(abs(integer) + 1), abs(integer) + 1
         return integer in self.get_congruent_bases(tmp_min, tmp_max)

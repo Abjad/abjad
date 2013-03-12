@@ -42,8 +42,13 @@ class TimeRelation(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self, template, inequalities):
+        from experimental.tools import timerelationtools
         assert isinstance(template, str), repr(template)
-        self._inequalities = inequalities[:]
+        # TODO: eventually allow only compound inequality or string
+        if isinstance(inequalities, timerelationtools.CompoundInequality):
+            self._inequalities = inequalities
+        elif isinstance(inequalities, list):
+            self._inequalities = inequalities[:]
         self._template = template
 
     ### SPECIAL METHODS ###
