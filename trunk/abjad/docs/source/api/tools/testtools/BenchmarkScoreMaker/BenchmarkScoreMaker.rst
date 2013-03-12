@@ -15,6 +15,15 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_context_mark_score_01
+   :noindex:
+
+.. automethod:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_context_mark_score_02
+   :noindex:
+
+.. automethod:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_context_mark_score_03
+   :noindex:
+
 .. automethod:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_spanner_score_00
    :noindex:
 

@@ -1,7 +1,9 @@
 from abjad.tools import beamtools
+from abjad.tools import contexttools
 from abjad.tools import notetools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
+from abjad.tools import stafftools
 from abjad.tools import voicetools
 from abjad.tools.abctools import AbjadObject
 
@@ -29,6 +31,39 @@ class BenchmarkScoreMaker(AbjadObject):
         pass
 
     ### PUBLIC METHODS ###
+
+    def make_context_mark_score_01(self):
+        '''Make 200-note voice with dynamic mark on every 20th note.
+    
+        2.12 (r9704) initialization:        630,433 function calls
+        2.12 (r9704) LilyPond format:       136,637 function calls.
+        '''
+        staff = stafftools.Staff(200 * notetools.Note("c'16"))
+        for part in sequencetools.partition_sequence_by_counts(staff[:], [20], cyclic=True):
+            contexttools.DynamicMark('f')(part[0])
+        return staff
+
+    def make_context_mark_score_02(self):
+        '''Make 200-note staff with dynamic mark on every 4th note.
+    
+        2.12 (r9704) initialization:        4,632,761 function calls
+        2.12 (r9704) format performance:      220,277 function calls
+        '''
+        staff = stafftools.Staff(200 * notetools.Note("c'16"))
+        for part in sequencetools.partition_sequence_by_counts(staff[:], [4], cyclic=True):
+            contexttools.DynamicMark('f')(part[0])
+        return staff
+
+    def make_context_mark_score_03(self):
+        '''Make 200-note staff with dynamic mark on every note.
+    
+        2.12 (r9704) initialization:    53,450,195 function calls (!!)
+        2.12 (r9704) LilyPond format:      533,927 function calls
+        '''
+        staff = stafftools.Staff(200 * notetools.Note("c'16"))
+        for note in staff.leaves:
+            contexttools.DynamicMark('f')(note)
+        return staff
 
     def make_spanner_score_00(self):
         '''Make 200-note voice with no spanners.
