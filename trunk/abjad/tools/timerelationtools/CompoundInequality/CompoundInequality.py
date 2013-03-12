@@ -60,3 +60,30 @@ class CompoundInequality(ObjectInventory):
         '''Compound inequality logical operator.
         '''
         return self._logical_operator
+
+    ### PUBLIC METHODS ###
+
+    def get_offset_indices(self, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets):
+        from experimental.tools import timerelationtools
+        from experimental.tools import timespantools
+        timespans = timespantools.TimespanInventory()
+        for element in self:
+            if isinstance(element, type(self)):
+                result = element.get_offset_indices(
+                    timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
+                timespans.extend(result)
+            elif isinstance(element, str):
+                offset_indices = timerelationtools.simple_inequality_to_offset_indices(
+                    element, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
+                timespan = timespantools.Timespan(*offset_indices)
+                timespans.append(timespan)
+        if self.logical_operator == 'and':
+            result = timespans.compute_logical_and()
+        elif self.logical_operator == 'or':
+            timespans.sort()
+            result = timespans.compute_logical_or()
+        elif self.logical_operator == 'xor':
+            result = timespans.compute_logical_xor()
+        else:
+            raise ValueError(self.logical_operator)         
+        return result

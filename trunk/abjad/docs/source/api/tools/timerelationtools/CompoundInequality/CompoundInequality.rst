@@ -33,6 +33,9 @@ Methods
 .. automethod:: abjad.tools.timerelationtools.CompoundInequality.CompoundInequality.CompoundInequality.extend
    :noindex:
 
+.. automethod:: abjad.tools.timerelationtools.CompoundInequality.CompoundInequality.CompoundInequality.get_offset_indices
+   :noindex:
+
 .. automethod:: abjad.tools.timerelationtools.CompoundInequality.CompoundInequality.CompoundInequality.index
    :noindex:
 

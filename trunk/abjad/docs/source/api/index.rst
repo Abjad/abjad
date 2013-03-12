@@ -3595,6 +3595,7 @@ Core composition packages
       tools/timerelationtools/offset_happens_during_timespan
       tools/timerelationtools/offset_happens_when_timespan_starts
       tools/timerelationtools/offset_happens_when_timespan_stops
+      tools/timerelationtools/simple_inequality_to_offset_indices
       tools/timerelationtools/timespan_2_contains_timespan_1_improperly
       tools/timerelationtools/timespan_2_curtails_timespan_1
       tools/timerelationtools/timespan_2_delays_timespan_1
@@ -3654,6 +3655,7 @@ Core composition packages
       tools/timerelationtools/offset_happens_during_timespan
       tools/timerelationtools/offset_happens_when_timespan_starts
       tools/timerelationtools/offset_happens_when_timespan_stops
+      tools/timerelationtools/simple_inequality_to_offset_indices
       tools/timerelationtools/timespan_2_contains_timespan_1_improperly
       tools/timerelationtools/timespan_2_curtails_timespan_1
       tools/timerelationtools/timespan_2_delays_timespan_1
