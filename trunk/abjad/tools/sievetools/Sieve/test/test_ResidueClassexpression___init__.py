@@ -9,9 +9,9 @@ def test_ResidueClassexpression___init___01():
     rcs.append(sievetools.ResidueClass(6, 0))
     rcs.append(sievetools.ResidueClass(6, 1))
     rcs.append(sievetools.ResidueClass(6, 4))
-    sieve = sievetools.ResidueClassExpression(rcs, operator='or')
+    sieve = sievetools.Sieve(rcs, operator='or')
 
-    assert isinstance(sieve, sievetools.ResidueClassExpression)
+    assert isinstance(sieve, sievetools.Sieve)
     assert sieve.rcs == rcs
     assert sieve.operator == 'or'
 
@@ -23,8 +23,8 @@ def test_ResidueClassexpression___init___02():
     rcs.append(sievetools.ResidueClass(6, 0))
     rcs.append(sievetools.ResidueClass(6, 1))
     rcs.append(sievetools.ResidueClass(6, 4))
-    sieve = sievetools.ResidueClassExpression(sievetools.ResidueClassExpression(rcs, operator='or'))
+    sieve = sievetools.Sieve(sievetools.Sieve(rcs, operator='or'))
 
-    assert isinstance(sieve, sievetools.ResidueClassExpression)
+    assert isinstance(sieve, sievetools.Sieve)
     assert sieve.rcs == rcs
     assert sieve.operator == 'or'

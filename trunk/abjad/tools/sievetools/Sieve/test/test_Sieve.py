@@ -1,30 +1,30 @@
 from abjad.tools import sievetools
 from abjad.tools.sievetools.ResidueClass import ResidueClass
-from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression
+from abjad.tools.sievetools.Sieve import Sieve
 import py.test
 
 RC = ResidueClass
 # OR #
 
-def test_ResidueClassExpression_01():
+def test_Sieve_01():
     '''boolean operator defaults to OR.'''
 
-    t = ResidueClassExpression([RC(2, 0), RC(3, 0)])
+    t = Sieve([RC(2, 0), RC(3, 0)])
 
     assert t.operator == 'or'
 
 
-def test_ResidueClassExpression_02():
+def test_Sieve_02():
 
-    t = ResidueClassExpression([RC(2, 0), RC(3, 0)])
+    t = Sieve([RC(2, 0), RC(3, 0)])
 
     assert t.get_boolean_train(6) == [1,0,1,1,1,0]
     assert t.get_congruent_bases(6) == [0,2,3,4,6]
 
 
-def test_ResidueClassExpression_03():
+def test_Sieve_03():
 
-    t = ResidueClassExpression([RC(2, 1), RC(3, 0)])
+    t = Sieve([RC(2, 1), RC(3, 0)])
 
     assert t.get_boolean_train(6) == [1,1,0,1,0,1]
     assert t.get_congruent_bases(6) == [0,1,3,5,6]
@@ -32,18 +32,18 @@ def test_ResidueClassExpression_03():
 
 # AND #
 
-def test_ResidueClassExpression_04():
+def test_Sieve_04():
 
-    t = ResidueClassExpression([RC(2, 0), RC(3, 0)], 'and')
+    t = Sieve([RC(2, 0), RC(3, 0)], 'and')
 
     assert t.operator == 'and'
     assert t.get_boolean_train(6) == [1,0,0,0,0,0]
     assert t.get_congruent_bases(6) == [0, 6]
 
 
-def test_ResidueClassExpression_05():
+def test_Sieve_05():
 
-    t = ResidueClassExpression([RC(2, 1), RC(3, 0)], 'and')
+    t = Sieve([RC(2, 1), RC(3, 0)], 'and')
 
     assert t.get_boolean_train(6) == [0,0,0,1,0,0]
     assert t.get_congruent_bases(6) == [3]
@@ -51,18 +51,18 @@ def test_ResidueClassExpression_05():
 
 # XOR #
 
-def test_ResidueClassExpression_06():
+def test_Sieve_06():
 
-    t = ResidueClassExpression([RC(2, 0), RC(3, 0)], 'xor')
+    t = Sieve([RC(2, 0), RC(3, 0)], 'xor')
 
     assert t.operator == 'xor'
     assert t.get_boolean_train(6) == [0,0,1,1,1,0]
     assert t.get_congruent_bases(6) == [2,3,4]
 
 
-def test_ResidueClassExpression_07():
+def test_Sieve_07():
 
-    t = ResidueClassExpression([RC(2, 1), RC(3, 0)], 'xor')
+    t = Sieve([RC(2, 1), RC(3, 0)], 'xor')
 
     assert t.get_boolean_train(6) == [1,1,0,0,0,1]
     assert t.get_congruent_bases(6) == [0,1,5,6]

@@ -3003,7 +3003,7 @@ Core composition packages
       :maxdepth: 1
 
       tools/sievetools/ResidueClass/ResidueClass
-      tools/sievetools/ResidueClassExpression/ResidueClassExpression
+      tools/sievetools/Sieve/Sieve
 
    --------
 
@@ -3021,7 +3021,7 @@ Core composition packages
    .. toctree::
 
       tools/sievetools/ResidueClass/ResidueClass
-      tools/sievetools/ResidueClassExpression/ResidueClassExpression
+      tools/sievetools/Sieve/Sieve
 
    Functions
    ---------

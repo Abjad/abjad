@@ -1,6 +1,6 @@
 from abjad.tools import sievetools
 from abjad.tools.sievetools.ResidueClass import ResidueClass
-from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression
+from abjad.tools.sievetools.Sieve import Sieve
 import py.test
 
 
@@ -18,12 +18,12 @@ def test_ResidueClass_operator_mixed_01():
     rcsB = rc3 | rc4
     t = rcsA ^ rcsB
 
-    assert isinstance(t, ResidueClassExpression)
+    assert isinstance(t, Sieve)
     assert t.operator == 'xor'
     assert len(t.rcs) == 2
-    assert isinstance(t.rcs[0], ResidueClassExpression)
+    assert isinstance(t.rcs[0], Sieve)
     assert t.rcs[0].operator == 'and'
-    assert isinstance(t.rcs[1], ResidueClassExpression)
+    assert isinstance(t.rcs[1], Sieve)
     assert t.rcs[1].operator == 'or'
     assert t.rcs[0] is rcsA
     assert t.rcs[1] is rcsB
@@ -42,10 +42,10 @@ def test_ResidueClass_operator_mixed_02():
     rcsB = rc3 | rc4
     t = rcsA | rcsB
 
-    assert isinstance(t, ResidueClassExpression)
+    assert isinstance(t, Sieve)
     assert t.operator == 'or'
     assert len(t.rcs) == 3
-    assert isinstance(t.rcs[0], ResidueClassExpression)
+    assert isinstance(t.rcs[0], Sieve)
     assert t.rcs[0].operator == 'and'
     assert isinstance(t.rcs[1], RC)
     assert isinstance(t.rcs[2], RC)
@@ -59,9 +59,9 @@ def test_ResidueClass_operator_mixed_03():
 
     t = (RC(2, 0) ^ RC(3, 0)) | RC(3,0)
 
-    assert isinstance(t, ResidueClassExpression)
+    assert isinstance(t, Sieve)
     assert len(t.rcs) == 2
-    assert isinstance(t.rcs[0], ResidueClassExpression)
+    assert isinstance(t.rcs[0], Sieve)
     assert t.rcs[0].operator == 'xor'
     assert isinstance(t.rcs[1], RC)
     assert t.get_boolean_train(6) == [1,0,1,1,1,0]
@@ -73,9 +73,9 @@ def test_ResidueClass_operator_mixed_04():
 
     t = (RC(2, 0) ^ RC(3, 0)) | RC(3,0)
 
-    assert isinstance(t, ResidueClassExpression)
+    assert isinstance(t, Sieve)
     assert len(t.rcs) == 2
-    assert isinstance(t.rcs[0], ResidueClassExpression)
+    assert isinstance(t.rcs[0], Sieve)
     assert t.rcs[0].operator == 'xor'
     assert isinstance(t.rcs[1], RC)
     assert t.get_boolean_train(6) == [1,0,1,1,1,0]

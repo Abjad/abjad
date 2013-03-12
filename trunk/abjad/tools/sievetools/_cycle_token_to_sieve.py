@@ -22,8 +22,8 @@ def _cycle_token_to_sieve(cycle_token):
     from abjad.tools import sievetools
 
     # sieves count as cycle tokens in themselves
-    if isinstance(cycle_token, sievetools.ResidueClassExpression):
-        return sievetools.ResidueClassExpression(cycle_token)
+    if isinstance(cycle_token, sievetools.Sieve):
+        return sievetools.Sieve(cycle_token)
 
     # parse cycle token
     modulo = cycle_token[0]
@@ -43,5 +43,5 @@ def _cycle_token_to_sieve(cycle_token):
     residue_classes.sort(lambda x, y: cmp(x.residue, y.residue))
 
     # return sieve as residue class combination
-    sieve = sievetools.ResidueClassExpression(residue_classes, operator='or')
+    sieve = sievetools.Sieve(residue_classes, operator='or')
     return sieve

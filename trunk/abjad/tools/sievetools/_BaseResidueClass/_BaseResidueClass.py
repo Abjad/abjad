@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class _BaseResidueClass(AbjadObject):
-    '''Abstract base class for ResidueClass and ResidueClassExpression.
+    '''Abstract base class for ResidueClass and Sieve.
     '''
 
     __metaclass__ = abc.ABCMeta
@@ -28,13 +28,13 @@ class _BaseResidueClass(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _operate(self, arg, op):
-        from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression
-        if isinstance(self, ResidueClassExpression) and self.operator == op:
+        from abjad.tools.sievetools.Sieve import Sieve
+        if isinstance(self, Sieve) and self.operator == op:
             argA = self.rcs
         else:
             argA = [self]
-        if isinstance(arg, ResidueClassExpression) and arg.operator == op:
+        if isinstance(arg, Sieve) and arg.operator == op:
             argB = arg.rcs
         else:
             argB = [arg]
-        return ResidueClassExpression(argA + argB, op)
+        return Sieve(argA + argB, op)

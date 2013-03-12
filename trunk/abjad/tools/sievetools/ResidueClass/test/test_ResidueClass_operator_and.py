@@ -1,19 +1,19 @@
 from abjad.tools import sievetools
 from abjad.tools.sievetools.ResidueClass import ResidueClass
-from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression
+from abjad.tools.sievetools.Sieve import Sieve
 import py.test
 
 
 RC = ResidueClass
 
 def test_ResidueClass_operator_and_01():
-    '''RC AND RC returns a ResidueClassExpression.'''
+    '''RC AND RC returns a Sieve.'''
 
     rc1 = RC(4, 0)
     rc2 = RC(4, 1)
     t = rc1 & rc2
 
-    assert isinstance(t, ResidueClassExpression)
+    assert isinstance(t, Sieve)
     assert t.operator == 'and'
     assert t.rcs == [rc1, rc2]
     assert t.get_boolean_train(4) == [0,0,0,0]
@@ -21,13 +21,13 @@ def test_ResidueClass_operator_and_01():
 
 
 def test_ResidueClass_operator_and_02():
-    '''and-ResidueClassExpression AND RC returns a flat and-ResidueClassExpression.'''
+    '''and-Sieve AND RC returns a flat and-Sieve.'''
 
     rcexpression = RC(4, 0) & RC(4, 1)
     rc = RC(3, 0)
     t = rc & rcexpression
 
-    assert isinstance(t, ResidueClassExpression)
+    assert isinstance(t, Sieve)
     assert t.operator == 'and'
     assert len(t.rcs) == 3
     assert rcexpression.rcs[0] in t.rcs
@@ -36,13 +36,13 @@ def test_ResidueClass_operator_and_02():
 
 
 def test_ResidueClass_operator_and_03():
-    '''RC AND and-ResidueClassExpression returns a flat and-ResidueClassExpression.'''
+    '''RC AND and-Sieve returns a flat and-Sieve.'''
 
     rcexpression = RC(4, 0) & RC(4, 1)
     rc = RC(3, 0)
     t = rcexpression & rc
 
-    assert isinstance(t, ResidueClassExpression)
+    assert isinstance(t, Sieve)
     assert t.operator == 'and'
     assert len(t.rcs) == 3
     assert rcexpression.rcs[0] in t.rcs
@@ -51,7 +51,7 @@ def test_ResidueClass_operator_and_03():
 
 
 def test_ResidueClass_operator_and_04():
-    '''and-ResidueClassExpression AND and-ResidueClassExpression returns a flat and-ResidueClassExpression.'''
+    '''and-Sieve AND and-Sieve returns a flat and-Sieve.'''
 
     rc1 = RC(4, 0)
     rc2 = RC(4, 1)
@@ -61,7 +61,7 @@ def test_ResidueClass_operator_and_04():
     rcsB = rc3 & rc4
     t = rcsA & rcsB
 
-    assert isinstance(t, ResidueClassExpression)
+    assert isinstance(t, Sieve)
     assert t.operator == 'and'
     assert len(t.rcs) == 4
     assert rc1 in t.rcs
@@ -75,7 +75,7 @@ def test_ResidueClass_operator_and_05():
 
     t = RC(2, 0) & RC(3, 0)
 
-    assert isinstance(t, ResidueClassExpression)
+    assert isinstance(t, Sieve)
     assert t.operator == 'and'
     assert t.get_boolean_train(6) == [1,0,0,0,0,0]
     assert t.get_congruent_bases(6) == [0, 6]

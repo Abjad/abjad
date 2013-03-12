@@ -24,6 +24,6 @@ def cycle_tokens_to_sieve(*cycle_tokens):
         for sieve in sieves[1:]:
             current_sieve = current_sieve | sieve
     else:
-        current_sieve = sievetools.ResidueClassExpression([])
+        current_sieve = sievetools.Sieve([])
 
     return current_sieve

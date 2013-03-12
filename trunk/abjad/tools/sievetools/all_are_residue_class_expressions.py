@@ -29,4 +29,4 @@ def all_are_residue_class_expressions(expr):
     '''
     from abjad.tools import sievetools
 
-    return all([isinstance(x, sievetools.ResidueClassExpression) for x in expr])
+    return all([isinstance(x, sievetools.Sieve) for x in expr])

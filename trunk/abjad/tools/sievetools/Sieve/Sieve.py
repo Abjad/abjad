@@ -4,7 +4,7 @@ from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
 
 
 # TODO: change name to Sieve
-class ResidueClassExpression(_BaseResidueClass):
+class Sieve(_BaseResidueClass):
 
     ### CLASS ATTRIBUTES ###
 
@@ -20,7 +20,7 @@ class ResidueClassExpression(_BaseResidueClass):
 
     def __init__(self, rcs, operator='or'):
         # init from other rc expression
-        if isinstance(rcs, ResidueClassExpression):
+        if isinstance(rcs, Sieve):
             object.__setattr__(self, '_rcs', rcs.rcs[:])
             object.__setattr__(self, '_operator', rcs.operator)
         # init from rcs and operator
@@ -38,7 +38,7 @@ class ResidueClassExpression(_BaseResidueClass):
     def __repr__(self):
         opdic = {'and':' & ', 'or':' | ', 'xor':' ^ '}
         result = opdic[self.operator].join([str(rc) for rc in self.rcs])
-        return '{}'.format(result)
+        return '{%s}' % result
 
     ### PRIVATE METHODS ###
 
@@ -46,7 +46,7 @@ class ResidueClassExpression(_BaseResidueClass):
     # if the min and max parameters behaved more like the
     # start and stop parameters passed to slice() objects in
     # list slicing.
-    # That is, ResidueClassExpression.get_congruent_bases(8) currently
+    # That is, Sieve.get_congruent_bases(8) currently
     # returns a list of up to *nine* items; should probably
     # return a list of up to only *eight* items.
     def _get_congruent_bases(self, minimum, maximum, op):
