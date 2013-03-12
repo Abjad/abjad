@@ -4924,11 +4924,25 @@ Abjad internal packages
    .. toctree::
       :maxdepth: 1
 
+      tools/testtools/BenchmarkScoreMaker/BenchmarkScoreMaker
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
       tools/testtools/apply_additional_layout
       tools/testtools/read_test_output
       tools/testtools/write_test_output
 
 .. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/testtools/BenchmarkScoreMaker/BenchmarkScoreMaker
 
    Functions
    ---------
