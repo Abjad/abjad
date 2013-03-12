@@ -17,18 +17,16 @@ def simple_inequality_to_offset_indices(simple_inequality, timespan_1,
             pass
     # 1.b
     elif simple_inequality == 'timespan_1.start < timespan_2.start':
-        for i, start_offset in enumerate(timespan_2_start_offsets):
-            if timespan_1.start_offset < start_offset:
-                leftmost_index = i
-                rightmost_index = len(timespan_2_start_offsets)
-                break
-        else:
-            return []
+        try:
+            leftmost_index = _find_index_gt(timespan_2_start_offsets, timespan_1.start_offset)
+            rightmost_index = len(timespan_2_start_offsets)
+        except ValueError:
+            pass
     # 1.c
     elif simple_inequality == 'timespan_1.start <= timespan_2.start':
         try:
-            leftmost_index = _find_index_ge(timespan_2_start_offsets, timespan_1.start_offset) 
-            rightmost_index = rightmost_index = len(timespan_2_start_offsets)
+            leftmost_index = _find_index_ge(timespan_2_start_offsets, timespan_1.start_offset)
+            rightmost_index = len(timespan_2_start_offsets)
         except ValueError:
             pass
     # 2.a
@@ -40,22 +38,18 @@ def simple_inequality_to_offset_indices(simple_inequality, timespan_1,
             pass
     # 2.b
     elif simple_inequality == 'timespan_1.start < timespan_2.stop':
-        for i, stop_offset in enumerate(timespan_2_stop_offsets):
-            if timespan_1.start_offset < stop_offset:
-                leftmost_index = i
-                rightmost_index = len(timespan_2_stop_offsets)
-                break
-        else:
-            return []
+        try:
+            leftmost_index = _find_index_gt(timespan_2_stop_offsets, timespan_1.start_offset)
+            rightmost_index = len(timespan_2_stop_offsets)
+        except ValueError:
+            pass
     # 2.c
     elif simple_inequality == 'timespan_1.start <= timespan_2.stop':
-        for i, stop_offset in enumerate(timespan_2_stop_offsets):
-            if timespan_1.start_offset <= stop_offset:
-                leftmost_index = i
-                rightmost_index = len(timespan_2_stop_offsets)
-                break
-        else:
-            return []
+        try:
+            leftmost_index = _find_index_ge(timespan_2_stop_offsets, timespan_1.start_offset)
+            rightmost_index = len(timespan_2_stop_offsets)
+        except ValueError:
+            pass
     # 3.a
     elif simple_inequality == 'timespan_1.stop == timespan_2.start':
         try:
@@ -65,22 +59,18 @@ def simple_inequality_to_offset_indices(simple_inequality, timespan_1,
             pass
     # 3.b
     elif simple_inequality == 'timespan_1.stop < timespan_2.start':
-        for i, start_offset in enumerate(timespan_2_start_offsets):
-            if timespan_1.stop_offset < start_offset:
-                leftmost_index = i
-                rightmost_index = len(timespan_2_start_offsets)
-                break
-        else:
-            return []
+        try:
+            leftmost_index = _find_index_gt(timespan_2_start_offsets, timespan_1.stop_offset)
+            rightmost_index = len(timespan_2_start_offsets)
+        except ValueError:
+            pass
     # 3.c
     elif simple_inequality == 'timespan_1.stop <= timespan_2.start':
-        for i, start_offset in enumerate(timespan_2_start_offsets):
-            if timespan_1.stop_offset <= start_offset:
-                leftmost_index = i
-                rightmost_index = len(timespan_2_start_offsets)
-                break
-        else:
-            return []
+        try:
+            leftmost_index = _find_index_ge(timespan_2_start_offsets, timespan_1.stop_offset)
+            rightmost_index = len(timespan_2_start_offsets)
+        except ValueError:
+            pass
     # 4.a
     elif simple_inequality == 'timespan_1.stop == timespan_2.stop':
         try:
@@ -90,22 +80,18 @@ def simple_inequality_to_offset_indices(simple_inequality, timespan_1,
             pass
     # 4.b
     elif simple_inequality == 'timespan_1.stop < timespan_2.stop':
-        for i, stop_offset in enumerate(timespan_2_stop_offsets):
-            if timespan_1.stop_offset < stop_offset:
-                leftmost_index = i
-                rightmost_index = len(timespan_2_stop_offsets)
-                break
-        else:
-            return []
+        try:
+            leftmost_index = _find_index_gt(timespan_2_stop_offsets, timespan_1.stop_offset)
+            rightmost_index = len(timespan_2_stop_offsets)
+        except ValueError:
+            pass
     # 4.c
     elif simple_inequality == 'timespan_1.stop <= timespan_2.stop':
-        for i, stop_offset in enumerate(timespan_2_stop_offsets):
-            if timespan_1.stop_offset <= stop_offset:
-                leftmost_index = i
-                rightmost_index = len(timespan_2_stop_offsets)
-                break
-        else:
-            return []
+        try:
+            leftmost_index = _find_index_ge(timespan_2_stop_offsets, timespan_1.stop_offset)
+            rightmost_index = len(timespan_2_stop_offsets)
+        except ValueError:
+            pass
     # 5.a
     elif simple_inequality == 'timespan_2.start == timespan_1.start':
         try:
