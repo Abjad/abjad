@@ -4358,6 +4358,7 @@ Abjad internal packages
       tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
       tools/datastructuretools/ObjectInventory/ObjectInventory
       tools/datastructuretools/OrdinalConstant/OrdinalConstant
+      tools/datastructuretools/SortedCollection/SortedCollection
       tools/datastructuretools/TreeContainer/TreeContainer
       tools/datastructuretools/TreeNode/TreeNode
 
@@ -4373,6 +4374,7 @@ Abjad internal packages
       tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
       tools/datastructuretools/ObjectInventory/ObjectInventory
       tools/datastructuretools/OrdinalConstant/OrdinalConstant
+      tools/datastructuretools/SortedCollection/SortedCollection
       tools/datastructuretools/TreeContainer/TreeContainer
       tools/datastructuretools/TreeNode/TreeNode
 
