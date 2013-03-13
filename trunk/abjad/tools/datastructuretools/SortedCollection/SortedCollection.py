@@ -34,7 +34,7 @@ class SortedCollection(object):
     >>> from pprint import pprint
     >>> from operator import itemgetter
 
-    >>> s = SortedCollection(key=itemgetter(2))
+    >>> s = datastructuretools.SortedCollection(key=itemgetter(2))
     >>> for record in [
     ...         ('roger', 'young', 30),
     ...         ('angela', 'jones', 28),

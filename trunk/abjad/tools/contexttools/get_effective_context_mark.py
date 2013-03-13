@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def get_effective_context_mark(component, klass):
     r'''.. versionadded:: 2.0
 
-    Get effective context mark of `klass` from `component`::
+    Get effective context mark of `klass` from `component`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contexttools.TimeSignatureMark((4, 8))(staff)
@@ -48,7 +50,7 @@ def get_effective_context_mark(component, klass):
     component._update_marks_of_entire_score_tree_if_necessary()
 
     #print 'gathering candidate marks ...'
-    candidate_marks = set([])
+    candidate_marks = []
     for parent in componenttools.get_improper_parentage_of_component(component):
         parent_marks = parent._marks_for_which_component_functions_as_effective_context
         #print 'parent marks %s ...' % str(parent_marks)
@@ -57,13 +59,13 @@ def get_effective_context_mark(component, klass):
             if isinstance(mark, klass):
                 #print 'mark.effective_context is %s ...' % mark.effective_context
                 if mark.effective_context is not None:
-                    candidate_marks.add(mark)
+                    candidate_marks.append(mark)
                 elif isinstance(mark, contexttools.TimeSignatureMark):
                     if isinstance(mark.start_component, measuretools.Measure):
-                        candidate_marks.add(mark)
+                        candidate_marks.append(mark)
     #print 'unsorted canddiate marks %s ...' % candidate_marks
-    candidate_marks = sorted(candidate_marks,
-        cmp = lambda m, n: cmp(m.start_component.start_offset, n.start_component.start_offset))
+    #candidate_marks = sorted(candidate_marks,
+    candidate_marks.sort(key=lambda x: x.start_component.start_offset)
     #print candidate_marks
     #for x in candidate_marks:
     #    print x, x.start_component.start
