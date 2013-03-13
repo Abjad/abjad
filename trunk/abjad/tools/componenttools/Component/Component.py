@@ -97,9 +97,14 @@ class Component(AbjadObject):
 
     @property
     def descendants(self):
-        '''Read-only reference to component descendants score selection.'''
+        '''Read-only reference to component descendants score selection.
+        '''
         from abjad.tools import componenttools
         return componenttools.Descendants(self)
+
+    @property
+    def duration(self):
+        return self.prolation * self.preprolated_duration
 
     @abc.abstractproperty
     def duration_in_seconds(self):
@@ -112,7 +117,8 @@ class Component(AbjadObject):
 
     @property
     def lineage(self):
-        '''Read-only reference to component lineage score selection.'''
+        '''Read-only reference to component lineage score selection.
+        '''
         from abjad.tools import componenttools
         return componenttools.Lineage(self)
 
@@ -130,13 +136,10 @@ class Component(AbjadObject):
 
     @property
     def parentage(self):
-        '''Read-only reference to component parentage score selection.'''
+        '''Read-only reference to component parentage score selection.
+        '''
         from abjad.tools import componenttools
         return componenttools.Parentage(self)
-
-    @property
-    def duration(self):
-        return self.prolation * self.preprolated_duration
 
     @property
     def prolation(self):
@@ -367,9 +370,8 @@ class Component(AbjadObject):
         from abjad.tools import iterationtools
         from abjad.tools import leaftools
         from abjad.tools import measuretools
-        from abjad.tools.contexttools.Context import Context
         score_root = self.parentage.root
-        if isinstance(score_root, Context):
+        if isinstance(score_root, contexttools.Context):
             for context in iterationtools.iterate_contexts_in_expr(score_root):
                 for leaf_index, leaf in enumerate(iterationtools.iterate_leaves_in_expr(context)):
                     leaf._leaf_index = leaf_index
@@ -452,12 +454,9 @@ class Component(AbjadObject):
         Only dynamic measures mark time signature for udpate.
         '''
         from abjad.tools import componenttools
-        assert value in ('prolated', 'marks', 'seconds')
         for component in componenttools.get_improper_parentage_of_component(self):
             if value == 'prolated':
                 component._prolated_offset_values_are_current = False
-            elif value == 'marks':
-                component._marks_are_current = False
             elif value == 'seconds':
                 component._offset_values_in_seconds_are_current = False
             else:
@@ -476,6 +475,14 @@ class Component(AbjadObject):
             self._update_marks_of_entire_score_tree()
             self._update_offset_values_in_seconds_of_entire_score_tree()
 
+    def _update_offset_values_in_seconds_of_entire_score_tree_if_necessary(self):
+        if self._is_forbidden_to_update:
+            return
+        state_flags = self._get_score_tree_state_flags()
+        offset_values_in_seconds_are_current = state_flags[2]
+        if not offset_values_in_seconds_are_current:
+            self._update_offset_values_in_seconds_of_entire_score_tree()
+
     def _update_prolated_offset_values_of_entire_score_tree_if_necessary(self):
         if self._is_forbidden_to_update:
             return
@@ -484,11 +491,3 @@ class Component(AbjadObject):
         if not prolated_offset_values_are_current:
             self._update_prolated_offset_values_of_entire_score_tree()
             self._update_leaf_indices_and_measure_numbers_in_score_tree()
-
-    def _update_offset_values_in_seconds_of_entire_score_tree_if_necessary(self):
-        if self._is_forbidden_to_update:
-            return
-        state_flags = self._get_score_tree_state_flags()
-        offset_values_in_seconds_are_current = state_flags[2]
-        if not offset_values_in_seconds_are_current:
-            self._update_offset_values_in_seconds_of_entire_score_tree()
