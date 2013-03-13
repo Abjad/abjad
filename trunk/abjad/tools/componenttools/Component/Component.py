@@ -16,7 +16,7 @@ class Component(AbjadObject):
     __metaclass__ = abc.ABCMeta
 
     __slots__ = ('_duration', '_is_forbidden_to_update', '_marks_are_current',
-        '_marks_for_which_component_functions_as_effective_context',
+        '_context_marks_for_which_component_functions_as_effective_context',
         '_marks_for_which_component_functions_as_start_component',
         '_offset', '_offset_values_in_seconds_are_current', '_override', '_parent',
         '_prolated_offset_values_are_current', '_set', '_spanners',
@@ -30,7 +30,7 @@ class Component(AbjadObject):
     def __init__(self):
         self._is_forbidden_to_update = False
         self._marks_are_current = False
-        self._marks_for_which_component_functions_as_effective_context = list()
+        self._context_marks_for_which_component_functions_as_effective_context = list()
         self._marks_for_which_component_functions_as_start_component = list()
         self._offset_values_in_seconds_are_current = False
         self._parent = None

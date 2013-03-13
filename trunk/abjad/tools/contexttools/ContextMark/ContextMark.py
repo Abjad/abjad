@@ -54,7 +54,7 @@ class ContextMark(Mark):
     def _bind_correct_effective_context(self, correct_effective_context):
         self._unbind_effective_context()
         if correct_effective_context is not None:
-            correct_effective_context._marks_for_which_component_functions_as_effective_context.append(
+            correct_effective_context._context_marks_for_which_component_functions_as_effective_context.append(
                 self)
         self._effective_context = correct_effective_context
         correct_effective_context._mark_entire_score_tree_for_later_update('marks')
@@ -87,7 +87,7 @@ class ContextMark(Mark):
         effective_context = self._effective_context
         if effective_context is not None:
             try:
-                effective_context._marks_for_which_component_functions_as_effective_context.remove(self)
+                effective_context._context_marks_for_which_component_functions_as_effective_context.remove(self)
             except ValueError:
                 pass
         self._effective_context = None
@@ -154,6 +154,10 @@ class ContextMark(Mark):
             if effective_context_mark.start_component.start_offset == start_component.start_offset:
                 raise ExtraMarkError(
                     'effective context mark already attached to component starting at same time.')
+        #from abjad.tools import componenttools
+        #for parent in componenttools.get_improper_parentage_of_component_that_start_with_component(
+        #    start_component):
+        #
         return Mark.attach(self, start_component)
 
     def detach(self):
