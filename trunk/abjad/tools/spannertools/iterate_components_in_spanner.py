@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def iterate_components_in_spanner(spanner, klass=None, reverse=False):
     '''.. versionadded:: 2.10
 
-    Yield components in `spanner` one at a time from left to right::
+    Yield components in `spanner` one at a time from left to right:
+
+    ::
 
         >>> t = Staff("c'8 d'8 e'8 f'8")
         >>> p = beamtools.BeamSpanner(t[2:])
@@ -20,7 +22,7 @@ def iterate_components_in_spanner(spanner, klass=None, reverse=False):
         Note("e'8")
         Note("f'8")
 
-    Yield components in `spanner` one at a time from right to left::
+    Yield components in `spanner` one at a time from right to left:
 
     ::
 
