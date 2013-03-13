@@ -266,10 +266,17 @@ class Container(Component):
         Only pivate methods should set this keyword.
         '''
         from abjad.tools import componenttools
+        from abjad.tools import contexttools
         from abjad.tools import gracetools
+        from abjad.tools import iterationtools
         from abjad.tools import spannertools
         from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import \
             _withdraw_components_in_expr_from_crossing_spanners
+        # remember context marks attached to expr
+        expr_context_marks = []
+        for component in iterationtools.iterate_components_in_expr(expr):
+            context_marks = contexttools.get_context_marks_attached_to_component(component)
+            expr_context_marks.extend(context_marks)
         # item assignment
         if isinstance(i, int):
             if isinstance(expr, str):
@@ -322,6 +329,8 @@ class Container(Component):
                 for component in reversed(expr):
                     spanner._insert(index, component)
                     component._spanners.add(spanner)
+        for expr_context_mark in expr_context_marks:
+            expr_context_mark._update_effective_context()
 
     ### PUBLIC PROPERTIES ###
 

@@ -57,12 +57,12 @@ class ContextMark(Mark):
             correct_effective_context._context_marks_for_which_component_functions_as_effective_context.append(
                 self)
         self._effective_context = correct_effective_context
-        correct_effective_context._mark_entire_score_tree_for_later_update('marks')
+        self._update_effective_context()
 
     def _bind_start_component(self, start_component):
         #print 'binding CONTEXT MARK to start component ...'
         Mark._bind_start_component(self, start_component)
-        self._start_component._mark_entire_score_tree_for_later_update('marks')
+        self._update_effective_context()
 
     def _find_correct_effective_context(self):
         from abjad.tools import componenttools

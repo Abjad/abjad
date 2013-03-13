@@ -165,6 +165,16 @@ class TempoMark(ContextMark):
             new_tempo_indication = type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
 
+    ### PRIVATE METHODS ###
+
+    def _bind_correct_effective_context(self, correct_effective_context):
+        ContextMark._bind_correct_effective_context(self, correct_effective_context)
+        correct_effective_context._mark_entire_score_tree_for_later_update('seconds')
+
+    def _bind_start_component(self, start_component):
+        ContextMark._bind_start_component(self, start_component)
+        self._start_component._mark_entire_score_tree_for_later_update('seconds')
+
     ### PRIVATE PROPERTIES ###
 
     @property

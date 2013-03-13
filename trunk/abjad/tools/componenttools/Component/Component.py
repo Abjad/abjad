@@ -168,7 +168,8 @@ class Component(AbjadObject):
     def start_offset_in_seconds(self):
         '''Read-only start offset of comonent in seconds.
         '''
-        self._update_marks_of_entire_score_tree_if_necessary()
+        #self._update_marks_of_entire_score_tree_if_necessary()
+        self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
         if self._start_offset_in_seconds is None:
             raise MissingTempoError
         return self._start_offset_in_seconds
@@ -483,3 +484,11 @@ class Component(AbjadObject):
         if not prolated_offset_values_are_current:
             self._update_prolated_offset_values_of_entire_score_tree()
             self._update_leaf_indices_and_measure_numbers_in_score_tree()
+
+    def _update_offset_values_in_seconds_of_entire_score_tree_if_necessary(self):
+        if self._is_forbidden_to_update:
+            return
+        state_flags = self._get_score_tree_state_flags()
+        offset_values_in_seconds_are_current = state_flags[2]
+        if not offset_values_in_seconds_are_current:
+            self._update_offset_values_in_seconds_of_entire_score_tree()
