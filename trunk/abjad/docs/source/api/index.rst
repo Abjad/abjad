@@ -4730,7 +4730,6 @@ Abjad internal packages
       tools/formattools/get_lilypond_command_mark_format_contributions_for_slot
       tools/formattools/get_markup_format_contributions
       tools/formattools/get_spanner_format_contributions
-      tools/formattools/get_spanner_format_contributions_for_slot
       tools/formattools/get_stem_tremolo_format_contributions
       tools/formattools/is_formattable_context_mark_for_component
       tools/formattools/report_component_format_contributions
@@ -4755,7 +4754,6 @@ Abjad internal packages
       tools/formattools/get_lilypond_command_mark_format_contributions_for_slot
       tools/formattools/get_markup_format_contributions
       tools/formattools/get_spanner_format_contributions
-      tools/formattools/get_spanner_format_contributions_for_slot
       tools/formattools/get_stem_tremolo_format_contributions
       tools/formattools/is_formattable_context_mark_for_component
       tools/formattools/report_component_format_contributions
