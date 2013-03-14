@@ -1,4 +1,6 @@
 from abjad import *
+import py
+py.test.skip('DEPRECATED')
 
 
 def test_spannertools_report_format_contributions_of_improper_spanners_01():

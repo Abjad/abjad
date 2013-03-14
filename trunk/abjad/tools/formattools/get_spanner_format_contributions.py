@@ -18,6 +18,7 @@ def get_spanner_format_contributions(component):
     #spanners = list(spanners)
     #spanners.sort(key=lambda x: x.__class__.__name__)
     spanners_that_know_how_to_deposit_format_contributions = (
+        spannertools.GlissandoSpanner,
         spannertools.SlurSpanner,
         )
 
