@@ -4,7 +4,9 @@ from abjad.tools.lilypondfiletools.NonattributedBlock import NonattributedBlock
 class ScoreBlock(NonattributedBlock):
     r'''.. versionadded:: 2.0
 
-    Abjad model of LilyPond input file score block::
+    Abjad model of LilyPond input file score block:
+
+    ::
 
         >>> score_block = lilypondfiletools.ScoreBlock()
 
@@ -62,4 +64,3 @@ class ScoreBlock(NonattributedBlock):
                         result.append('\t%s' % x)
             result.append('}')
         return result
-

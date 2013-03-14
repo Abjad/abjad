@@ -1,7 +1,9 @@
 import os
 
 
-def profile_expr(expr, sort_by='cum', num_lines=12, strip_dirs=True):
+# TODO: rename num_lines to line_count to avoid abbreviation
+def profile_expr(expr, sort_by='cum', num_lines=12, strip_dirs=True, print_callers=False, 
+    global_context=None, local_context=None):
     '''Profile `expr`:
 
     ::
@@ -38,15 +40,11 @@ def profile_expr(expr, sort_by='cum', num_lines=12, strip_dirs=True):
 
     Set `strip_dirs` to ``True`` to strip directory names from output lines.
 
-    .. note:: This function fails on some Linux distros. Some Linux
-       distributions do not include the Python ``pstats`` module.
+    Function creates the file ``_tmp_abj_profile`` in the directory from which it is run.
 
-    .. note:: This function creates the file ``_tmp_abj_profile`` in
-       the directory from which it is run.
-
-    .. note:: For information on reading the output of the different
-       Python profilers, see `the Python docs
-       <http://docs.python.org/library/profile.html>`_.
+    For information on reading the output of the different
+   Python profilers, see `the Python docs
+   <http://docs.python.org/library/profile.html>`_.
     '''
 
     # NOTE: this try block was added because, for some strange reason,
@@ -55,17 +53,23 @@ def profile_expr(expr, sort_by='cum', num_lines=12, strip_dirs=True):
         import cProfile
         import pstats
 
-        cProfile.run(expr, '_tmp_abj_profile')
+        if global_context is None:
+            cProfile.run(expr, '_tmp_abj_profile')
+        else:
+            cProfile.runctx(expr, global_context, local_context, '_tmp_abj_profile')
         p = pstats.Stats('_tmp_abj_profile')
         if strip_dirs:
             p.strip_dirs().sort_stats(sort_by).print_stats(num_lines)
+            if print_callers:
+                p.strip_dirs().sort_stats(sort_by).print_callers(num_lines)
         else:
             p.sort_stats(sort_by).print_stats(num_lines)
+            if print_callers:
+                p.sort_stats(sort_by).print_callers(num_lines)
 
     except ImportError:
-        msg = "Python 'pstats' package not installed in your system.\n"
-        msg +="Please install before running the profiler."
-        print msg
+        print "Python 'pstats' package not installed in your system.\n" + \
+            "Please install before running the profiler."
 
     finally:
         os.remove('_tmp_abj_profile')
