@@ -155,6 +155,8 @@ class Spanner(AbjadObject):
         Components must be an iterable of components already contained in spanner.
         '''
         my_components = self._components[:]
+        for my_component in my_components:
+            my_component.parentage._mark_spanner_format_contributions_for_update()
         self._components = []
         result = copy.copy(self)
         self._components = my_components
@@ -341,6 +343,7 @@ class Spanner(AbjadObject):
         '''
         self._block_component(component)
         self._remove_component(component)
+        component.parentage._mark_spanner_format_contributions_for_update()
 
     def _unblock_all_components(self):
         '''Not composer-safe.

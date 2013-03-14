@@ -61,6 +61,13 @@ class Parentage(Selection):
         Selection.__init__(self, music)
         self._component = component
 
+
+    ### PRIVATE METHODS ###
+
+    def _mark_spanner_format_contributions_for_update(self):
+        for component in self:
+            component._spanner_format_contributions_are_current = False
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

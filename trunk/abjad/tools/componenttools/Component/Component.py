@@ -102,7 +102,7 @@ class Component(AbjadObject):
     def lilypond_format(self):
         from abjad.tools import spannertools
         self._update_marks_of_entire_score_tree_if_necessary()
-        #self._deposit_spanner_format_contributions_for_entire_score_tree_if_necessary()
+        self._deposit_spanner_format_contributions_for_entire_score_tree_if_necessary()
         return self._format_component()
 
     @property
@@ -228,8 +228,9 @@ class Component(AbjadObject):
     def _deposit_spanner_format_contributions_for_entire_score_tree(self):
         from abjad.tools import spannertools
         root = self.parentage.root
-        for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(
-            root, set_spanner_format_contribution_state=True):
+        for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(root, 
+            set_spanner_format_contribution_state=True, 
+            clear_deposited_spanner_format_contributions=True):
             if hasattr(spanner, '_deposit_format_contributions'):
                 spanner._deposit_format_contributions()
 
