@@ -544,15 +544,15 @@ def test_componenttools_split_components_at_offsets_11():
     \new Staff {
         {
             \time 2/8
-            c'16. ( ) [
+            c'16. [ ( ) ~
             c'32 (
-            d'16 )
+            d'16 ) ~
             d'16 ] (
         }
         {
-            e'32 ) [
+            e'32 [ ) ~
             e'16. (
-            f'16. )
+            f'16. ) ~
             f'32 ] ( )
         }
     }
@@ -560,7 +560,7 @@ def test_componenttools_split_components_at_offsets_11():
 
     assert wellformednesstools.is_well_formed_component(staff)
     assert len(parts) == 6
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. ( ) [ ~\n\t\tc'32 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\te'32 ) [ ~\n\t\te'16. (\n\t\tf'16. ) ~\n\t\tf'32 ] ( )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. [ ( ) ~\n\t\tc'32 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\te'32 [ ) ~\n\t\te'16. (\n\t\tf'16. ) ~\n\t\tf'32 ] ( )\n\t}\n}"
 
 
 def test_componenttools_split_components_at_offsets_12():
@@ -833,13 +833,13 @@ def test_componenttools_split_components_at_offsets_17():
     \new Staff {
         {
             \time 2/8
-            c'16 ( ) [ ~
+            c'16 [ ( ) ~
             c'16 (
             d'16 ) ~
             d'16 ] (
         }
         {
-            e'16 ) [ ~
+            e'16 [ ) ~
             e'16 (
             f'16 ) ~
             f'16 ] ( )
@@ -849,7 +849,7 @@ def test_componenttools_split_components_at_offsets_17():
 
     assert wellformednesstools.is_well_formed_component(staff)
     assert len(parts) == 8
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 ( ) [ ~\n\t\tc'16 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\te'16 ) [ ~\n\t\te'16 (\n\t\tf'16 ) ~\n\t\tf'16 ] ( )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [ ( ) ~\n\t\tc'16 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\te'16 [ ) ~\n\t\te'16 (\n\t\tf'16 ) ~\n\t\tf'16 ] ( )\n\t}\n}"
 
 
 def test_componenttools_split_components_at_offsets_18():

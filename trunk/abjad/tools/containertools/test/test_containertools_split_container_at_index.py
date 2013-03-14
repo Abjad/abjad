@@ -780,7 +780,7 @@ def test_containertools_split_container_at_index_19():
     \new Staff {
         {
             \time 2/8
-            c'8 ( ) [
+            c'8 [ ( )
             d'8 ] (
         }
         {
@@ -794,7 +794,7 @@ def test_containertools_split_container_at_index_19():
     assert wellformednesstools.is_well_formed_component(t)
     assert left is None
     assert right is leaf
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 ( ) [\n\t\td'8 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ ( )\n\t\td'8 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_containertools_split_container_at_index_20():

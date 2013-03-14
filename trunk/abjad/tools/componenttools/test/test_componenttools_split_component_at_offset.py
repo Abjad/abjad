@@ -427,7 +427,7 @@ def test_componenttools_split_component_at_offset_08():
     \new Staff {
         {
             \time 2/8
-            c'32 ( ) [
+            c'32 [ ( )
             c'16. (
             d'8 ]
         }
@@ -444,7 +444,7 @@ def test_componenttools_split_component_at_offset_08():
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'32 ( ) [\n\t\tc'16. (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'32 [ ( )\n\t\tc'16. (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_componenttools_split_component_at_offset_09():
@@ -776,7 +776,7 @@ def test_componenttools_split_component_at_offset_15():
     \new Staff {
         {
             \time 2/8
-            c'32 ( ) [ ~
+            c'32 [ ( ) ~
             c'16. (
             d'8 ]
         }
@@ -793,7 +793,7 @@ def test_componenttools_split_component_at_offset_15():
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'32 ( ) [ ~\n\t\tc'16. (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'32 [ ( ) ~\n\t\tc'16. (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_componenttools_split_component_at_offset_16():

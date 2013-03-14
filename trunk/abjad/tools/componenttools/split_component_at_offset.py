@@ -110,7 +110,7 @@ def split_component_at_offset(component, offset,
         \new Staff {
             {
                 \time 2/8
-                c'32 ( ) [
+                c'32 [ ( )
                 c'16. (
                 d'8 ]
             }

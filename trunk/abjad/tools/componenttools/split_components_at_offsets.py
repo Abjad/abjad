@@ -118,13 +118,13 @@ def split_components_at_offsets(components, offsets,
         \new Staff {
             {
                 \time 2/8
-                c'16. ( ) [ ~
+                c'16. [ ( ) ~
                 c'32 (
                 d'16 ) ~
                 d'16 ] (
             }
             {
-                e'32 ) [ ~
+                e'32 [ ) ~
                 e'16. (
                 f'16. ) ~
                 f'32 ] ( )

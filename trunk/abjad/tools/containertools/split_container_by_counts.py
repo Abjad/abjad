@@ -97,7 +97,7 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
         >>> f(voice)
         \new Voice {
             {
-                c'8 ( ) [
+                c'8 [ ( )
             }
             {
                 d'8 (
@@ -198,7 +198,7 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
         >>> f(voice)
         \new Voice {
             {
-                c'8 ( ) [
+                c'8 [ ( )
             }
             {
                 d'8 (
