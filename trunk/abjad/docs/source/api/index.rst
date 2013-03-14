@@ -3145,8 +3145,6 @@ Core composition packages
       tools/spannertools/make_solid_text_spanner_below_with_nib_at_right
       tools/spannertools/make_spanner_schema
       tools/spannertools/move_spanners_from_component_to_children_of_component
-      tools/spannertools/report_format_contributions_of_improper_spanners
-      tools/spannertools/report_spanner_format_contributions
       tools/spannertools/withdraw_components_from_spanners_covered_by_components
 
 .. only:: latex
@@ -3219,8 +3217,6 @@ Core composition packages
       tools/spannertools/make_solid_text_spanner_below_with_nib_at_right
       tools/spannertools/make_spanner_schema
       tools/spannertools/move_spanners_from_component_to_children_of_component
-      tools/spannertools/report_format_contributions_of_improper_spanners
-      tools/spannertools/report_spanner_format_contributions
       tools/spannertools/withdraw_components_from_spanners_covered_by_components
 
 :py:mod:`stafftools <abjad.tools.stafftools>`
