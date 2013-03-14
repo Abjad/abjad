@@ -2,7 +2,9 @@ import os
 
 
 def profile_expr(expr, sort_by='cum', num_lines=12, strip_dirs=True):
-    '''Profile `expr`::
+    '''Profile `expr`:
+
+    ::
 
         >>> iotools.profile_expr('Staff(notetools.make_repeated_notes(8))') # doctest: +SKIP
         Tue Apr  5 20:32:40 2011    _tmp_abj_profile
@@ -32,7 +34,7 @@ def profile_expr(expr, sort_by='cum', num_lines=12, strip_dirs=True):
 
     Set `sort_by` to `'cum'`, `'time'` or `'calls'`.
 
-    Set `num_lines` to any positive integer.
+    Set `num_lines` to any nonnegative integer.
 
     Set `strip_dirs` to ``True`` to strip directory names from output lines.
 
@@ -60,9 +62,10 @@ def profile_expr(expr, sort_by='cum', num_lines=12, strip_dirs=True):
         else:
             p.sort_stats(sort_by).print_stats(num_lines)
 
-        os.remove('_tmp_abj_profile')
-
     except ImportError:
         msg = "Python 'pstats' package not installed in your system.\n"
         msg +="Please install before running the profiler."
         print msg
+
+    finally:
+        os.remove('_tmp_abj_profile')

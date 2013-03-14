@@ -1,10 +1,13 @@
 from abjad.tools import componenttools
 
 
-def get_spanners_attached_to_any_improper_child_of_component(component, klass=None):
+def get_spanners_attached_to_any_improper_child_of_component(component, klass=None,
+    set_spanner_format_contribution_state=False):
     r'''.. versionadded:: 2.0
 
-    Get all spanners attached to any improper children of `component`::
+    Get all spanners attached to any improper children of `component`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beam = beamtools.BeamSpanner(staff.leaves)
@@ -54,16 +57,14 @@ def get_spanners_attached_to_any_improper_child_of_component(component, klass=No
     from abjad.tools import iterationtools
     from abjad.tools import spannertools
 
-    # note: externalization of (old) component spanner aggregator 'contained' property
+    # initialize result set
     result = set([])
 
-    # inspect component itself
-    result.update(spannertools.get_spanners_attached_to_component(component, klass))
-
     # iterate proper children of component
-    children = iterationtools.iterate_components_in_expr(component, componenttools.Component)
-    for child in children:
+    for child in iterationtools.iterate_components_in_expr([component]):
         result.update(spannertools.get_spanners_attached_to_component(child, klass))
+        if set_spanner_format_contribution_state:
+            child._spanner_format_contributions_are_current = True
 
     # return result
     return result

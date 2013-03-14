@@ -34,12 +34,14 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_context_mark_score_01(self):
         '''Make 200-note voice with dynamic mark on every 20th note.
-    
-        2.12 (r9704) initialization:        630,433 function calls
-        2.12 (r9704) LilyPond format:       136,637 function calls
 
-        2.12 (r9710) initialization:        235,120 function calls
-        2.12 (r9710) LilyPond format:        82,730 function calls
+        ::
+    
+            2.12 (r9704) initialization:        630,433 function calls
+            2.12 (r9704) LilyPond format:       136,637 function calls
+
+            2.12 (r9710) initialization:        235,120 function calls
+            2.12 (r9710) LilyPond format:        82,730 function calls
         '''
         staff = stafftools.Staff(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(staff[:], [20], cyclic=True):

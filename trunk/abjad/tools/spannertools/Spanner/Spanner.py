@@ -227,7 +227,6 @@ class Spanner(AbjadObject):
         component._spanners.add(self)
         self._components.insert(i, component)
 
-    # TODO: author tests.
     def _is_exterior_leaf(self, leaf):
         '''True if leaf is first or last in spanner.
         True if next leaf or prev leaf is none.
@@ -250,6 +249,18 @@ class Spanner(AbjadObject):
                 return True
             else:
                 return False
+
+    def _get_my_first_leaf(self):
+        from abjad.tools import leaftools
+        from abjad.tools import spannertools
+        for leaf in spannertools.iterate_components_in_spanner(self, klass=leaftools.Leaf):
+            return leaf
+
+    def _get_my_last_leaf(self):
+        from abjad.tools import leaftools
+        from abjad.tools import spannertools
+        for leaf in spannertools.iterate_components_in_spanner(self, klass=leaftools.Leaf, reverse=True):
+            return leaf
 
     def _is_my_first_leaf(self, leaf):
         from abjad.tools import spannertools
@@ -369,17 +380,16 @@ class Spanner(AbjadObject):
 
     @property
     def leaves(self):
-        '''Return read-only tuple of leaves in spanner. ::
+        '''Return read-only tuple of leaves in spanner:
+
+        ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = beamtools.BeamSpanner(voice[:2])
             >>> spanner.leaves
             (Note("c'8"), Note("d'8"))
 
-        .. note:: When dealing with large, complex scores accessing
-            this attribute can take some time. Best to make a local
-            copy with leaves = spanner.leaves first. Or use spanner-
-            specific iteration tools.
+        Return tuple.
         '''
         from abjad.tools import iterationtools
         result = []

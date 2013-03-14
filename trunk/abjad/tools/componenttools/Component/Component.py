@@ -19,7 +19,8 @@ class Component(AbjadObject):
         '_context_marks_for_which_component_functions_as_effective_context',
         '_marks_for_which_component_functions_as_start_component',
         '_offset', '_offset_values_in_seconds_are_current', '_override', '_parent',
-        '_prolated_offset_values_are_current', '_set', '_spanners',
+        '_prolated_offset_values_are_current', '_set', 
+        '_spanners', '_spanner_format_contributions', '_spanner_format_contributions_are_current',
         '_start_offset', '_start_offset_in_seconds', '_stop_offset', '_stop_offset_in_seconds',
         '_timespan',
         'lilypond_file', 
@@ -36,6 +37,8 @@ class Component(AbjadObject):
         self._parent = None
         self._prolated_offset_values_are_current = False
         self._spanners = set([])
+        self._spanner_format_contributions = {}
+        self._spanner_format_contributions_are_current = False
         self._start_offset = None
         self._start_offset_in_seconds = None
         self._stop_offset = None
@@ -58,21 +61,6 @@ class Component(AbjadObject):
         return self * n
 
     ### PRIVATE PROPERTIES ###
-
-    def _copy_with_children_and_marks_but_without_spanners(self):
-        return self._copy_with_marks_but_without_children_or_spanners()
-
-    def _copy_with_marks_but_without_children_or_spanners(self):
-        from abjad.tools import marktools
-        new = type(self)(*self.__getnewargs__())
-        if getattr(self, '_override', None) is not None:
-            new._override = copy.copy(self.override)
-        if getattr(self, '_set', None) is not None:
-            new._set = copy.copy(self.set)
-        for mark in marktools.get_marks_attached_to_component(self):
-            new_mark = copy.copy(mark)
-            new_mark.attach(new)
-        return new
 
     @property
     def _format_pieces(self):
@@ -112,7 +100,9 @@ class Component(AbjadObject):
 
     @property
     def lilypond_format(self):
+        from abjad.tools import spannertools
         self._update_marks_of_entire_score_tree_if_necessary()
+        #self._deposit_spanner_format_contributions_for_entire_score_tree_if_necessary()
         return self._format_component()
 
     @property
@@ -211,6 +201,21 @@ class Component(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _copy_with_children_and_marks_but_without_spanners(self):
+        return self._copy_with_marks_but_without_children_or_spanners()
+
+    def _copy_with_marks_but_without_children_or_spanners(self):
+        from abjad.tools import marktools
+        new = type(self)(*self.__getnewargs__())
+        if getattr(self, '_override', None) is not None:
+            new._override = copy.copy(self.override)
+        if getattr(self, '_set', None) is not None:
+            new._set = copy.copy(self.set)
+        for mark in marktools.get_marks_attached_to_component(self):
+            new_mark = copy.copy(mark)
+            new_mark.attach(new)
+        return new
+
     def _cut(self):
         '''Component loses pointer to parent and parent loses pointer to component.
         Not composer-safe.
@@ -219,6 +224,22 @@ class Component(AbjadObject):
             index = self.parent.index(self)
             self.parent._music.pop(index)
         self._ignore()
+
+    def _deposit_spanner_format_contributions_for_entire_score_tree(self):
+        from abjad.tools import spannertools
+        root = self.parentage.root
+        for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(
+            root, set_spanner_format_contribution_state=True):
+            if hasattr(spanner, '_deposit_format_contributions'):
+                spanner._deposit_format_contributions()
+
+    def _deposit_spanner_format_contributions_for_entire_score_tree_if_necessary(self):
+        if self._is_forbidden_to_update:
+            return
+        state_flags = self._get_score_tree_state_flags()
+        spanner_format_contributions_are_current = state_flags[3]
+        if not spanner_format_contributions_are_current:
+            self._deposit_spanner_format_contributions_for_entire_score_tree()
 
     def _format_after_slot(self, format_contributions):
         pass
@@ -429,18 +450,28 @@ class Component(AbjadObject):
         prolated_offset_values_are_current = True
         marks_are_current = True
         offset_values_in_seconds_are_current = True
+        spanner_format_contributions_are_current = True
         for component in componenttools.get_improper_parentage_of_component(self):
+            # TODO: compress to single test
             if prolated_offset_values_are_current:
                 if not component._prolated_offset_values_are_current:
                     prolated_offset_values_are_current = False
+            # TODO: compress to single test
             if marks_are_current:
                 if not component._marks_are_current:
                     marks_are_current = False
+            # TODO: compress to single test
             if offset_values_in_seconds_are_current:
                 if not component._offset_values_in_seconds_are_current:
                     offset_values_in_seconds_are_current = False
-        return (prolated_offset_values_are_current, marks_are_current,
-            offset_values_in_seconds_are_current)
+            # TODO: compress to single test
+            if spanner_format_contributions_are_current:
+                if not component._spanner_format_contributions_are_current:
+                    spanner_format_contributions_are_current = False
+        return (prolated_offset_values_are_current, 
+            marks_are_current,
+            offset_values_in_seconds_are_current, 
+            spanner_format_contributions_are_current)
 
     def _iterate_score_components_depth_first(self):
         from abjad.tools import componenttools
@@ -450,7 +481,8 @@ class Component(AbjadObject):
         return components
 
     def _mark_entire_score_tree_for_later_update(self, value):
-        '''Call immediately AFTER MODIFYING score tree.
+        '''Call immediately after modifying score tree.
+
         Only dynamic measures mark time signature for udpate.
         '''
         from abjad.tools import componenttools
@@ -465,7 +497,7 @@ class Component(AbjadObject):
                 component._time_signature_is_current = False
 
     def _update_marks_of_entire_score_tree_if_necessary(self):
-        '''Call immediately BEFORE READING effective mark.
+        '''Call immediately before reading effective mark.
         '''
         if self._is_forbidden_to_update:
             return

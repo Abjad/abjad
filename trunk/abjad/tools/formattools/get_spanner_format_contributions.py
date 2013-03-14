@@ -16,6 +16,7 @@ def get_spanner_format_contributions(component):
 
     spanners = spannertools.get_spanners_attached_to_any_improper_parent_of_component(component)
     spanners = list(spanners)
+    #spanners = [x for x in spanners if not isinstance(x, spannertools.SlurSpanner)]
     spanners.sort(key=lambda x: x.__class__.__name__)
 
     if isinstance(component, containertools.Container):
@@ -51,6 +52,11 @@ def get_spanner_format_contributions(component):
                 other_contributions.extend(contributions)
 
     result['right'] = stop_contributions + other_contributions
+
+    ### NEW ###
+
+    for key, value in component._spanner_format_contributions.iteritems():
+        result[key].extend(value)
 
     for key in result.keys():
         if not result[key]:
