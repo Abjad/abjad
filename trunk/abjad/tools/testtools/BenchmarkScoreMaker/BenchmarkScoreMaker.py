@@ -33,7 +33,7 @@ class BenchmarkScoreMaker(AbjadObject):
     ### PUBLIC METHODS ###
 
     def make_context_mark_score_01(self):
-        '''Make 200-note voice with dynamic mark on every 20th note.
+        '''Make 200-note voice with dynamic mark on every 20th note:
 
         ::
     
@@ -51,11 +51,13 @@ class BenchmarkScoreMaker(AbjadObject):
     def make_context_mark_score_02(self):
         '''Make 200-note staff with dynamic mark on every 4th note.
     
-        2.12 (r9704) initialization:        4,632,761 function calls
-        2.12 (r9704) LilyPond format:         220,277 function calls
+        ::
 
-        2.12 (r9710) initialization:          327,280 function calls
-        2.12 (r9710) LilyPond format:          84,530 function calls
+            2.12 (r9704) initialization:      4,632,761 function calls
+            2.12 (r9704) LilyPond format:       220,277 function calls
+
+            2.12 (r9710) initialization:        327,280 function calls
+            2.12 (r9710) LilyPond format:        84,530 function calls
         '''
         staff = stafftools.Staff(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(staff[:], [4], cyclic=True):
@@ -65,11 +67,13 @@ class BenchmarkScoreMaker(AbjadObject):
     def make_context_mark_score_03(self):
         '''Make 200-note staff with dynamic mark on every note.
     
-        2.12 (r9704) initialization:    53,450,195 function calls (!!)
-        2.12 (r9704) LilyPond format:      533,927 function calls
+        ::
 
-        2.12 (r9710): initialization:    2,124,500 function calls
-        2.12 (r9710): LilyPond format:      91,280 function calls
+            2.12 (r9704) initialization:     53,450,195 function calls (!!)
+            2.12 (r9704) LilyPond format:       533,927 function calls
+
+            2.12 (r9710): initialization:     2,124,500 function calls
+            2.12 (r9710): LilyPond format:       91,280 function calls
         '''
         staff = stafftools.Staff(200 * notetools.Note("c'16"))
         for note in staff.leaves:
@@ -78,11 +82,13 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_spanner_score_00(self):
         '''Make 200-note voice with no spanners.
-        
-        2.12 (r9703) LilyPond format: 99,127 function calls.
 
-        2.12 (r9710) initialization:        156,821 function calls
-        2.12 (r9710) LilyPond format:       100,126 function calls
+        ::
+        
+            2.12 (r9703) LilyPond format: 99,127 function calls
+
+            2.12 (r9710) initialization:        156,821 function calls
+            2.12 (r9710) LilyPond format:       100,126 function calls
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         return voice
@@ -90,10 +96,12 @@ class BenchmarkScoreMaker(AbjadObject):
     def make_spanner_score_01(self):
         '''Make 200-note voice with durated complex beam spanner on every 4 notes.
     
-        2.12 (r9703) LilyPond format:       425,848 function calls. 
+        ::
 
-        2.12 (r9710) initialization:        248,654 function calls
-        2.12 (r9710) LilyPond format:       426,652 function calls
+            2.12 (r9703) LilyPond format:       425,848 function calls 
+
+            2.12 (r9710) initialization:        248,654 function calls
+            2.12 (r9710) LilyPond format:       426,652 function calls
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(voice[:], [4], cyclic=True):
@@ -103,10 +111,12 @@ class BenchmarkScoreMaker(AbjadObject):
     def make_spanner_score_02(self):
         '''Make 200-note voice with durated complex beam spanner on every 20 notes.
     
-        2.12 (r9703) LilyPond format:       495,768 function calls.
+        ::
 
-        2.12 (r9710) initialization:        250,954 function calls
-        2.12 (r9710) LilyPond format:       496,572 function calls
+            2.12 (r9703) LilyPond format:       495,768 function calls
+
+            2.12 (r9710) initialization:        250,954 function calls
+            2.12 (r9710) LilyPond format:       496,572 function calls
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(voice[:], [20], cyclic=True):
@@ -116,10 +126,12 @@ class BenchmarkScoreMaker(AbjadObject):
     def make_spanner_score_03(self):
         '''Make 200-note voice with durated complex beam spanner on every 100 notes.
     
-        2.12 (r9703) LilyPond format:       509,752 function calls.
+        ::
 
-        2.12 (r9710) initialization:        251,606 function calls
-        2.12 (r9710) LilyPond format:       510,556 function calls
+            2.12 (r9703) LilyPond format:       509,752 function calls
+
+            2.12 (r9710) initialization:        251,606 function calls
+            2.12 (r9710) LilyPond format:       510,556 function calls
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(voice[:], [100], cyclic=True):
@@ -129,7 +141,9 @@ class BenchmarkScoreMaker(AbjadObject):
     def make_spanner_score_04(self):
         '''Make 200-note voice with slur spanner on every 4 notes.
     
-        2.12 (r9703) LilyPond format: 125,577 function calls.
+        ::
+
+            2.12 (r9703) LilyPond format:       125,577 function calls
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(voice[:], [4], cyclic=True):
@@ -139,7 +153,9 @@ class BenchmarkScoreMaker(AbjadObject):
     def make_spanner_score_05(self):
         '''Make 200-note voice with slur spanner on every 20 notes.
     
-        2.12 (r9703) LilyPond format: 122,177 function calls.
+        ::
+
+            2.12 (r9703) LilyPond format:       122,177 function calls
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(voice[:], [20], cyclic=True):
@@ -149,7 +165,9 @@ class BenchmarkScoreMaker(AbjadObject):
     def make_spanner_score_06(self):
         '''Make 200-note voice with slur spanner on every 100 notes.
     
-        2.12 (r9703) LilyPond format: 121,497 function calls.
+        ::
+
+            2.12 (r9703) LilyPond format:       121,497 function calls
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(voice[:], [100], cyclic=True):
@@ -159,7 +177,9 @@ class BenchmarkScoreMaker(AbjadObject):
     def make_spanner_score_07(self):
         '''Make 200-note voice with (vanilla) beam spanner on every 4 notes.
     
-        2.12 (r9703) LilyPond format: 125,577.
+        ::
+
+            2.12 (r9703) LilyPond format:       125,577 function calls
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(voice[:], [4], cyclic=True):
@@ -169,7 +189,9 @@ class BenchmarkScoreMaker(AbjadObject):
     def make_spanner_score_08(self):
         '''Make 200-note voice with (vanilla) beam spanner on every 20 notes.
     
-        2.12 (r9703) LilyPond format:       122,177
+        ::
+
+            2.12 (r9703) LilyPond format:       122,177 function calls
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(voice[:], [20], cyclic=True):
@@ -179,7 +201,9 @@ class BenchmarkScoreMaker(AbjadObject):
     def make_spanner_score_09(self):
         '''Make 200-note voice with (vanilla) beam spanner on every 100 notes.
     
-        2.12 (r9703) LilyPond format: 121,497.
+        ::
+
+            2.12 (r9703) LilyPond format:       121,497 function calls
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(voice[:], [100], cyclic=True):

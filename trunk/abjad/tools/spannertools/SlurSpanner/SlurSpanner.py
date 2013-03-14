@@ -42,12 +42,12 @@ class SlurSpanner(DirectedSpanner):
     def _deposit_format_contributions(self):
         first_leaf = self._get_my_first_leaf()
         if self.direction is not None:
-            contribution = '{} ('.format(stringtools.arg_to_tridirectional_lilypond_symbol(direction))
+            string = '{} ('.format(stringtools.arg_to_tridirectional_lilypond_symbol(self.direction))
         else:
-            contribution = '('
-        first_leaf._spanner_format_contributions['right'] = [contribution]
+            string = '('
+        first_leaf._spanner_format_contributions['right'] = [(self.__class__.__name__, string)]
         last_leaf = self._get_my_last_leaf()
-        last_leaf._spanner_format_contributions['right'] = [')']
+        last_leaf._spanner_format_contributions['right'] = [(self.__class__.__name__, ')')]
 
     def _format_right_of_leaf(self, leaf):
         result = []

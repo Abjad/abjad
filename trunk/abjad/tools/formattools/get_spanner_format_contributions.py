@@ -54,9 +54,9 @@ def get_spanner_format_contributions(component):
     result['right'] = stop_contributions + other_contributions
 
     ### NEW ###
-
     for key, value in component._spanner_format_contributions.iteritems():
-        result[key].extend(value)
+        for class_name, contribution in value:
+            result[key].append(contribution)
 
     for key in result.keys():
         if not result[key]:
