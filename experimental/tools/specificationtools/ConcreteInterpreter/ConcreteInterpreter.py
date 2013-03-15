@@ -34,7 +34,7 @@ class ConcreteInterpreter(Interpreter):
         self.interpret_additional_parameters()
         stop_time = time.time()
         total_time = stop_time - start_time
-        if 10 <= total_time:
+        if 5 <= total_time:
             print 'Abjad interpretation time equal to {} seconds ...'.format(int(total_time))
         return self.score
 
