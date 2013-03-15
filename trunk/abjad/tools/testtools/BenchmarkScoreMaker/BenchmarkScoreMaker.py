@@ -32,19 +32,52 @@ class BenchmarkScoreMaker(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def make_score_00(self):
-        '''Make 200-note voice (with nothing else).
-
+    def make_bound_hairpin_score_01(self):
+        '''Make 200-note voice with p-to-f bound crescendo spanner on every 4 notes.
+    
         ::
-        
-            2.12 (r9710) initialization:        156,821 function calls
-            2.12 (r9726) initialization:        156,827 function calls
+            
+            2.12 (r9726) initialization:        279,448 function calls
 
-            2.12 (r9703) LilyPond format:        99,127 function calls
-            2.12 (r9710) LilyPond format:       100,126 function calls
-            2.12 (r9726) LilyPond format:       105,778 function calls
+            2.12 (r9726) LilyPond format:       124,517 function calls
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        for part in sequencetools.partition_sequence_by_counts(voice[:], [4], cyclic=True):
+            spannertools.CrescendoSpanner(part)
+            contexttools.DynamicMark('p')(part[0])
+            contexttools.DynamicMark('r')(part[-1])
+        return voice
+
+    def make_bound_hairpin_score_02(self):
+        '''Make 200-note voice with p-to-f bound crescendo spanner on every 20 notes.
+    
+        ::
+            
+            2.12 (r9726) initialization:        268,845 function calls
+
+            2.12 (r9726) LilyPond format:       117,846 function calls
+        '''
+        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        for part in sequencetools.partition_sequence_by_counts(voice[:], [20], cyclic=True):
+            spannertools.CrescendoSpanner(part)
+            contexttools.DynamicMark('p')(part[0])
+            contexttools.DynamicMark('r')(part[-1])
+        return voice
+
+    def make_bound_hairpin_score_03(self):
+        '''Make 200-note voice with p-to-f bound crescendo spanner on every 100 notes.
+    
+        ::
+            
+            2.12 (r9726) initialization:        267,417 function calls
+
+            2.12 (r9726) LilyPond format:       116,534 function calls
+        '''
+        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        for part in sequencetools.partition_sequence_by_counts(voice[:], [100], cyclic=True):
+            spannertools.CrescendoSpanner(part)
+            contexttools.DynamicMark('p')(part[0])
+            contexttools.DynamicMark('r')(part[-1])
         return voice
 
     def make_context_mark_score_01(self):
@@ -100,6 +133,69 @@ class BenchmarkScoreMaker(AbjadObject):
         for note in staff.leaves:
             contexttools.DynamicMark('f')(note)
         return staff
+
+    def make_hairpin_score_01(self):
+        '''Make 200-note voice with crescendo spanner on every 4 notes.
+    
+        ::
+            
+            2.12 (r9726) initialization:        248,502 function calls
+            2.12 (r9728) initialization:        248,502 function calls
+
+            2.12 (r9726) LilyPond format:       138,313 function calls
+            2.12 (r9728) LilyPond format:       134,563 function calls
+        '''
+        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        for part in sequencetools.partition_sequence_by_counts(voice[:], [4], cyclic=True):
+            spannertools.CrescendoSpanner(part)
+        return voice
+
+    def make_hairpin_score_02(self):
+        '''Make 200-note voice with crescendo spanner on every 20 notes.
+    
+        ::
+            
+            2.12 (r9726) initialization:        248,687 function calls
+            2.12 (r9728) initialization:        248,687 function calls
+
+            2.12 (r9726) LilyPond format:       134,586 function calls
+            2.12 (r9728) LilyPond format:       129,836 function calls
+        '''
+        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        for part in sequencetools.partition_sequence_by_counts(voice[:], [20], cyclic=True):
+            spannertools.CrescendoSpanner(part)
+        return voice
+
+    def make_hairpin_score_03(self):
+        '''Make 200-note voice with crescendo spanner on every 100 notes.
+    
+        ::
+            
+            2.12 (r9726) initialization:        249,363 function calls
+            2.12 (r9726) initialization:        249,363 function calls
+
+            2.12 (r9726) LilyPond format:       133,898 function calls
+            2.12 (r9728) LilyPond format:       128,948 function calls
+        '''
+        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        for part in sequencetools.partition_sequence_by_counts(voice[:], [100], cyclic=True):
+            spannertools.CrescendoSpanner(part)
+        return voice
+
+    def make_score_00(self):
+        '''Make 200-note voice (with nothing else).
+
+        ::
+        
+            2.12 (r9710) initialization:        156,821 function calls
+            2.12 (r9726) initialization:        156,827 function calls
+
+            2.12 (r9703) LilyPond format:        99,127 function calls
+            2.12 (r9710) LilyPond format:       100,126 function calls
+            2.12 (r9726) LilyPond format:       105,778 function calls
+        '''
+        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        return voice
 
     def make_spanner_score_01(self):
         '''Make 200-note voice with durated complex beam spanner on every 4 notes.
@@ -240,94 +336,4 @@ class BenchmarkScoreMaker(AbjadObject):
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(voice[:], [100], cyclic=True):
             beamtools.BeamSpanner(part)
-        return voice
-
-    def make_hairpin_score_01(self):
-        '''Make 200-note voice with crescendo spanner on every 4 notes.
-    
-        ::
-            
-            2.12 (r9726) initialization:        248,502 function calls
-
-            2.12 (r9726) LilyPond format:       246,267 function calls
-        '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(voice[:], [4], cyclic=True):
-            spannertools.CrescendoSpanner(part)
-        return voice
-
-    def make_hairpin_score_02(self):
-        '''Make 200-note voice with crescendo spanner on every 20 notes.
-    
-        ::
-            
-            2.12 (r9726) initialization:        250,922 function calls
-
-            2.12 (r9726) LilyPond format:       248,687 function calls
-        '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(voice[:], [20], cyclic=True):
-            spannertools.CrescendoSpanner(part)
-        return voice
-
-    def make_hairpin_score_03(self):
-        '''Make 200-note voice with crescendo spanner on every 100 notes.
-    
-        ::
-            
-            2.12 (r9726) initialization:        251,598 function calls
-
-            2.12 (r9726) LilyPond format:       249,363 function calls
-        '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(voice[:], [100], cyclic=True):
-            spannertools.CrescendoSpanner(part)
-        return voice
-
-    def make_bound_hairpin_score_01(self):
-        '''Make 200-note voice with p-to-f bound crescendo spanner on every 4 notes.
-    
-        ::
-            
-            2.12 (r9726) initialization:        279,448 function calls
-
-            2.12 (r9726) LilyPond format:       124,517 function calls
-        '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(voice[:], [4], cyclic=True):
-            spannertools.CrescendoSpanner(part)
-            contexttools.DynamicMark('p')(part[0])
-            contexttools.DynamicMark('r')(part[-1])
-        return voice
-
-    def make_bound_hairpin_score_02(self):
-        '''Make 200-note voice with p-to-f bound crescendo spanner on every 20 notes.
-    
-        ::
-            
-            2.12 (r9726) initialization:        268,845 function calls
-
-            2.12 (r9726) LilyPond format:       117,846 function calls
-        '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(voice[:], [20], cyclic=True):
-            spannertools.CrescendoSpanner(part)
-            contexttools.DynamicMark('p')(part[0])
-            contexttools.DynamicMark('r')(part[-1])
-        return voice
-
-    def make_bound_hairpin_score_03(self):
-        '''Make 200-note voice with p-to-f bound crescendo spanner on every 100 notes.
-    
-        ::
-            
-            2.12 (r9726) initialization:        267,417 function calls
-
-            2.12 (r9726) LilyPond format:       116,534 function calls
-        '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(voice[:], [100], cyclic=True):
-            spannertools.CrescendoSpanner(part)
-            contexttools.DynamicMark('p')(part[0])
-            contexttools.DynamicMark('r')(part[-1])
         return voice

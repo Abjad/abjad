@@ -84,10 +84,10 @@ class HairpinSpanner(DirectedSpanner):
 
     def _format_right_of_leaf(self, leaf):
         result = []
-        effective_dynamic = contexttools.get_effective_dynamic(leaf)
         direction_string = ''
         if self.direction is not None:
-            direction_string = '{} '.format(stringtools.arg_to_tridirectional_lilypond_symbol(self.direction))
+            direction_string = stringtools.arg_to_tridirectional_lilypond_symbol(self.direction)
+            direction_string = '{} '.format(direction_string)
         if self.include_rests:
             if self._is_my_first_leaf(leaf):
                 result.append('%s\\%s' % (direction_string, self.shape_string))
@@ -96,10 +96,12 @@ class HairpinSpanner(DirectedSpanner):
             if self._is_my_last_leaf(leaf):
                 if self.stop_dynamic_string:
                     result.append('%s\\%s' % (direction_string, self.stop_dynamic_string))
-                elif effective_dynamic is None or \
-                    effective_dynamic not in \
-                    leaf._marks_for_which_component_functions_as_start_component:
-                    result.append('\\!')
+                else:
+                    effective_dynamic = contexttools.get_effective_dynamic(leaf)
+                    if effective_dynamic is None or \
+                        effective_dynamic not in \
+                        leaf._marks_for_which_component_functions_as_start_component:
+                        result.append('\\!')
         else:
             if self._is_my_first(leaf, (chordtools.Chord, notetools.Note)):
                 result.append('%s\\%s' % (direction_string, self.shape_string))
@@ -108,8 +110,10 @@ class HairpinSpanner(DirectedSpanner):
             if self._is_my_last(leaf, (chordtools.Chord, notetools.Note)):
                 if self.stop_dynamic_string:
                     result.append('%s\\%s' % (direction_string, self.stop_dynamic_string))
-                elif effective_dynamic is None:
-                    result.append('\\!')
+                else:
+                    effective_dynamic = contexttools.get_effective_dynamic(leaf)
+                    if effective_dynamic is None:
+                        result.append('\\!')
         return result
 
     def _parse_descriptor(self, descriptor):
