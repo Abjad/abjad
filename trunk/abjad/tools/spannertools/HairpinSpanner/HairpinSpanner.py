@@ -6,64 +6,14 @@ from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner import DirectedSpa
 
 
 class HairpinSpanner(DirectedSpanner):
-    r'''Abjad hairpin spanner that includes rests:
+    r'''Hairpin spanner.
+
+    Example 1. Hairpin spanner that does not include rests:
 
     ::
 
         >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-
-    ::
-
-        >>> f(staff)
-        \new Staff {
-            r4
-            c'8
-            d'8
-            e'8
-            f'8
-            r4
-        }
-
-    ::
-
-        >>> spannertools.HairpinSpanner(staff[:], 'p < f', include_rests = True)
-        HairpinSpanner(r4, c'8, d'8, e'8, f'8, r4)
-
-    ::
-
-        >>> f(staff)
-        \new Staff {
-            r4 \< \p
-            c'8
-            d'8
-            e'8
-            f'8
-            r4 \f
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Abjad hairpin spanner that does not include rests::
-
-        >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-
-    ::
-
-        >>> f(staff)
-        \new Staff {
-            r4
-            c'8
-            d'8
-            e'8
-            f'8
-            r4
-        }
-
-    ::
-
-        >>> spannertools.HairpinSpanner(staff[:], 'p < f', include_rests = False)
+        >>> spannertools.HairpinSpanner(staff[:], 'p < f', include_rests=False)
         HairpinSpanner(r4, c'8, d'8, e'8, f'8, r4)
 
     ::
@@ -76,6 +26,30 @@ class HairpinSpanner(DirectedSpanner):
             e'8
             f'8 \f
             r4
+        }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    Example 2. Hairpin spanner that includes rests:
+
+    ::
+
+        >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
+        >>> spannertools.HairpinSpanner(staff[:], 'p < f', include_rests=True)
+        HairpinSpanner(r4, c'8, d'8, e'8, f'8, r4)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            r4 \< \p
+            c'8
+            d'8
+            e'8
+            f'8
+            r4 \f
         }
 
     ::
@@ -172,17 +146,21 @@ class HairpinSpanner(DirectedSpanner):
     @apply
     def include_rests():
         def fget(self):
-            r'''Get boolean hairpin rests setting::
+            r'''Get boolean hairpin rests setting:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f', include_rests = True)
+                >>> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f', include_rests=True)
                 >>> hairpin.include_rests
                 True
 
-            Set boolean hairpin rests setting::
+            Set boolean hairpin rests setting:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f', include_rests = True)
+                >>> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f', include_rests=True)
                 >>> hairpin.include_rests = False
                 >>> hairpin.include_rests
                 False
@@ -197,14 +175,18 @@ class HairpinSpanner(DirectedSpanner):
     @apply
     def shape_string():
         def fget(self):
-            r'''Get hairpin shape string::
+            r'''Get hairpin shape string:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f')
                 >>> hairpin.shape_string
                 '<'
 
-            Set hairpin shape string::
+            Set hairpin shape string:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f')
@@ -223,14 +205,18 @@ class HairpinSpanner(DirectedSpanner):
     @apply
     def start_dynamic_string():
         def fget(self):
-            r'''Get hairpin start dynamic string::
+            r'''Get hairpin start dynamic string:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f')
                 >>> hairpin.start_dynamic_string
                 'p'
 
-            Set hairpin start dynamic string::
+            Set hairpin start dynamic string:
+            
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f')
@@ -248,14 +234,18 @@ class HairpinSpanner(DirectedSpanner):
     @apply
     def stop_dynamic_string():
         def fget(self):
-            r'''Get hairpin stop dynamic string::
+            r'''Get hairpin stop dynamic string:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f')
                 >>> hairpin.stop_dynamic_string
                 'f'
 
-            Set hairpin stop dynamic string::
+            Set hairpin stop dynamic string:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f')
@@ -272,10 +262,11 @@ class HairpinSpanner(DirectedSpanner):
 
     ### PUBLIC METHODS ###
 
-    # TODO: reimplement static method as API function
     @staticmethod
     def is_hairpin_shape_string(arg):
-        '''True when `arg` is a hairpin shape string. Otherwise false::
+        '''True when `arg` is a hairpin shape string. Otherwise false:
+
+        ::
 
             >>> spannertools.HairpinSpanner.is_hairpin_shape_string('<')
             True
@@ -284,10 +275,11 @@ class HairpinSpanner(DirectedSpanner):
         '''
         return arg in HairpinSpanner._hairpin_shape_strings
 
-    # TODO: reimplement static method as API function
     @staticmethod
     def is_hairpin_token(arg):
-        '''True when `arg` is a hairpin token. Otherwise false::
+        '''True when `arg` is a hairpin token. Otherwise false:
+
+        ::
 
             >>> spannertools.HairpinSpanner.is_hairpin_token(('p', '<', 'f'))
             True
