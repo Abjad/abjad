@@ -110,7 +110,7 @@ class LilyPondFile(list):
             if 'lilypond_format' in dir(x) and not isinstance(x, str):
                 lilypond_format = x.lilypond_format
                 if lilypond_format:
-                    result.append(x.lilypond_format)
+                    result.append(lilypond_format)
             else:
                 result.append(str(x))
         return result
