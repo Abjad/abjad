@@ -6,7 +6,9 @@ from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner import DirectedSpa
 
 
 class HairpinSpanner(DirectedSpanner):
-    r'''Abjad hairpin spanner that includes rests::
+    r'''Abjad hairpin spanner that includes rests:
+
+    ::
 
         >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
 

@@ -38,11 +38,11 @@ class BenchmarkScoreMaker(AbjadObject):
         ::
         
             2.12 (r9710) initialization:        156,821 function calls
-            2.12 (r9725) initialization:        156,827 function calls
+            2.12 (r9726) initialization:        156,827 function calls
 
             2.12 (r9703) LilyPond format:        99,127 function calls
             2.12 (r9710) LilyPond format:       100,126 function calls
-            2.12 (r9725) LilyPond format:       105,778 function calls
+            2.12 (r9726) LilyPond format:       105,778 function calls
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         return voice
@@ -54,11 +54,11 @@ class BenchmarkScoreMaker(AbjadObject):
     
             2.12 (r9704) initialization:        630,433 function calls
             2.12 (r9710) initialization:        235,120 function calls
-            2.12 r(9725) initialization:        235,126 function calls
+            2.12 r(9726) initialization:        235,126 function calls
 
             2.12 (r9704) LilyPond format:       136,637 function calls
             2.12 (r9710) LilyPond format:        82,730 function calls
-            2.12 (r9725) LilyPond format:        88,382 function calls
+            2.12 (r9726) LilyPond format:        88,382 function calls
         '''
         staff = stafftools.Staff(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(staff[:], [20], cyclic=True):
@@ -72,11 +72,11 @@ class BenchmarkScoreMaker(AbjadObject):
 
             2.12 (r9704) initialization:      4,632,761 function calls
             2.12 (r9710) initialization:        327,280 function calls
-            2.12 (r9725) initialization:        325,371 function calls
+            2.12 (r9726) initialization:        325,371 function calls
 
             2.12 (r9704) LilyPond format:       220,277 function calls
             2.12 (r9710) LilyPond format:        84,530 function calls
-            2.12 (r9725) LilyPond format:        90,056 function calls
+            2.12 (r9726) LilyPond format:        90,056 function calls
         '''
         staff = stafftools.Staff(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(staff[:], [4], cyclic=True):
@@ -124,7 +124,7 @@ class BenchmarkScoreMaker(AbjadObject):
         ::
 
             2.12 (r9710) initialization:        250,954 function calls
-            2.12 (r9725) initialization:        248,717 function calls
+            2.12 (r9724) initialization:        248,717 function calls
 
             2.12 (r9703) LilyPond format:       495,768 function calls
             2.12 (r9710) LilyPond format:       496,572 function calls
@@ -240,4 +240,94 @@ class BenchmarkScoreMaker(AbjadObject):
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(voice[:], [100], cyclic=True):
             beamtools.BeamSpanner(part)
+        return voice
+
+    def make_hairpin_score_01(self):
+        '''Make 200-note voice with crescendo spanner on every 4 notes.
+    
+        ::
+            
+            2.12 (r9726) initialization:        248,502 function calls
+
+            2.12 (r9726) LilyPond format:       246,267 function calls
+        '''
+        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        for part in sequencetools.partition_sequence_by_counts(voice[:], [4], cyclic=True):
+            spannertools.CrescendoSpanner(part)
+        return voice
+
+    def make_hairpin_score_02(self):
+        '''Make 200-note voice with crescendo spanner on every 20 notes.
+    
+        ::
+            
+            2.12 (r9726) initialization:        250,922 function calls
+
+            2.12 (r9726) LilyPond format:       248,687 function calls
+        '''
+        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        for part in sequencetools.partition_sequence_by_counts(voice[:], [20], cyclic=True):
+            spannertools.CrescendoSpanner(part)
+        return voice
+
+    def make_hairpin_score_03(self):
+        '''Make 200-note voice with crescendo spanner on every 100 notes.
+    
+        ::
+            
+            2.12 (r9726) initialization:        251,598 function calls
+
+            2.12 (r9726) LilyPond format:       249,363 function calls
+        '''
+        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        for part in sequencetools.partition_sequence_by_counts(voice[:], [100], cyclic=True):
+            spannertools.CrescendoSpanner(part)
+        return voice
+
+    def make_bound_hairpin_score_01(self):
+        '''Make 200-note voice with p-to-f bound crescendo spanner on every 4 notes.
+    
+        ::
+            
+            2.12 (r9726) initialization:        279,448 function calls
+
+            2.12 (r9726) LilyPond format:       124,517 function calls
+        '''
+        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        for part in sequencetools.partition_sequence_by_counts(voice[:], [4], cyclic=True):
+            spannertools.CrescendoSpanner(part)
+            contexttools.DynamicMark('p')(part[0])
+            contexttools.DynamicMark('r')(part[-1])
+        return voice
+
+    def make_bound_hairpin_score_02(self):
+        '''Make 200-note voice with p-to-f bound crescendo spanner on every 20 notes.
+    
+        ::
+            
+            2.12 (r9726) initialization:        268,845 function calls
+
+            2.12 (r9726) LilyPond format:       117,846 function calls
+        '''
+        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        for part in sequencetools.partition_sequence_by_counts(voice[:], [20], cyclic=True):
+            spannertools.CrescendoSpanner(part)
+            contexttools.DynamicMark('p')(part[0])
+            contexttools.DynamicMark('r')(part[-1])
+        return voice
+
+    def make_bound_hairpin_score_03(self):
+        '''Make 200-note voice with p-to-f bound crescendo spanner on every 100 notes.
+    
+        ::
+            
+            2.12 (r9726) initialization:        267,417 function calls
+
+            2.12 (r9726) LilyPond format:       116,534 function calls
+        '''
+        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        for part in sequencetools.partition_sequence_by_counts(voice[:], [100], cyclic=True):
+            spannertools.CrescendoSpanner(part)
+            contexttools.DynamicMark('p')(part[0])
+            contexttools.DynamicMark('r')(part[-1])
         return voice

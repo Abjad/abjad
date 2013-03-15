@@ -15,6 +15,15 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_bound_hairpin_score_01
+   :noindex:
+
+.. automethod:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_bound_hairpin_score_02
+   :noindex:
+
+.. automethod:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_bound_hairpin_score_03
+   :noindex:
+
 .. automethod:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_context_mark_score_01
    :noindex:
 
@@ -22,6 +31,15 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_context_mark_score_03
+   :noindex:
+
+.. automethod:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_hairpin_score_01
+   :noindex:
+
+.. automethod:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_hairpin_score_02
+   :noindex:
+
+.. automethod:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_hairpin_score_03
    :noindex:
 
 .. automethod:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_score_00

@@ -3,7 +3,9 @@ from abjad.tools.beamtools.BeamSpanner.BeamSpanner import BeamSpanner
 
 
 class ComplexBeamSpanner(BeamSpanner):
-    r'''Abjad complex beam spanner::
+    r'''Abjad complex beam spanner:
+
+    ::
 
         >>> staff = Staff("c'16 e'16 r16 f'16 g'2")
 
@@ -64,7 +66,8 @@ class ComplexBeamSpanner(BeamSpanner):
         new.lone = self.lone
 
     def _format_before_leaf(self, leaf):
-        '''Spanner format contribution to output before leaf.'''
+        '''Spanner format contribution to output before leaf.
+        '''
         from abjad.tools import beamtools
         result = []
         result.extend(BeamSpanner._format_before_leaf(self, leaf))
@@ -82,7 +85,8 @@ class ComplexBeamSpanner(BeamSpanner):
         return result
 
     def _format_right_of_leaf(self, leaf):
-        '''Spanner format contribution to output right of leaf.'''
+        '''Spanner format contribution to output right of leaf.
+        '''
         from abjad.tools import beamtools
         from abjad.tools import leaftools
         result = []
@@ -115,7 +119,8 @@ class ComplexBeamSpanner(BeamSpanner):
         return result
 
     def _get_left_right_for_exterior_leaf(self, leaf):
-        '''Get left and right flag counts for exterior leaf in spanner.'''
+        '''Get left and right flag counts for exterior leaf in spanner.
+        '''
         from abjad.tools import leaftools
         # lone
         if self._is_my_only_leaf(leaf):
@@ -136,7 +141,8 @@ class ComplexBeamSpanner(BeamSpanner):
         '''Interior leaves are neither first nor last in spanner.
         Interior leaves may be surrounded by beamable leaves.
         Interior leaves may be surrounded by unbeamable leaves.
-        Four cases total for beamability of surrounding leaves.'''
+        Four cases total for beamability of surrounding leaves.
+        '''
         from abjad.tools import beamtools
         from abjad.tools import leaftools
         previous_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
@@ -171,7 +177,8 @@ class ComplexBeamSpanner(BeamSpanner):
         return left, right
 
     def _get_left_right_for_lone_leaf(self, leaf):
-        '''Get left and right flag counts for only leaf in spanner.'''
+        '''Get left and right flag counts for only leaf in spanner.
+        '''
         current_flag_count = leaf.written_duration.flag_count
         left, right = None, None
         if self.lone == 'left':
@@ -195,7 +202,9 @@ class ComplexBeamSpanner(BeamSpanner):
     @apply
     def lone():
         def fget(self):
-            r'''Beam lone leaf and force beam nibs to left::
+            r'''Beam lone leaf and force beam nibs to left:
+
+            ::
 
                 >>> note = Note("c'16")
 
