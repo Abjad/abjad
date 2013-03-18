@@ -41,23 +41,6 @@ class SlurSpanner(DirectedSpanner):
     def _copy_keyword_args(self, new):
         DirectedSpanner._copy_keyword_args(self, new)
 
-#    def _deposit_format_contributions(self):
-#        self._deposit_override_format_contributions()
-#        # deposit open slur
-#        first_leaf = self._get_my_first_leaf()
-#        if self.direction is not None:
-#            string = '{} ('.format(stringtools.arg_to_tridirectional_lilypond_symbol(self.direction))
-#        else:
-#            string = '('
-#        first_leaf_right = first_leaf._spanner_format_contributions.setdefault('right', [])
-#        first_leaf_right.append((self, string, 'first leaf in spanner'))
-#        # deposit close slur
-#        last_leaf = self._get_my_last_leaf()
-#        last_leaf_right = last_leaf._spanner_format_contributions.setdefault('right', [])
-#        string = ')'
-#        last_leaf_right.append((self, string, 'last leaf in spanner'))
-#        self._deposit_revert_format_contributions()
-
     def _format_right_of_leaf(self, leaf):
         result = []
         if self._is_my_first_leaf(leaf):

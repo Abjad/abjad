@@ -19,8 +19,7 @@ class Component(AbjadObject):
         '_context_marks_for_which_component_functions_as_effective_context',
         '_marks_for_which_component_functions_as_start_component',
         '_offset', '_offset_values_in_seconds_are_current', '_override', '_parent',
-        '_prolated_offset_values_are_current', '_set', 
-        '_spanners', '_spanner_format_contributions', '_spanner_format_contributions_are_current',
+        '_prolated_offset_values_are_current', '_set', '_spanners', 
         '_start_offset', '_start_offset_in_seconds', '_stop_offset', '_stop_offset_in_seconds',
         '_timespan',
         'lilypond_file', 
@@ -37,8 +36,6 @@ class Component(AbjadObject):
         self._parent = None
         self._prolated_offset_values_are_current = False
         self._spanners = set([])
-        self._spanner_format_contributions = {}
-        self._spanner_format_contributions_are_current = False
         self._start_offset = None
         self._start_offset_in_seconds = None
         self._stop_offset = None
@@ -100,9 +97,7 @@ class Component(AbjadObject):
 
     @property
     def lilypond_format(self):
-        from abjad.tools import spannertools
         self._update_marks_of_entire_score_tree_if_necessary()
-        self._deposit_spanner_format_contributions_for_entire_score_tree_if_necessary()
         return self._format_component()
 
     @property
@@ -224,23 +219,6 @@ class Component(AbjadObject):
             index = self.parent.index(self)
             self.parent._music.pop(index)
         self._ignore()
-
-    def _deposit_spanner_format_contributions_for_entire_score_tree(self):
-        from abjad.tools import spannertools
-        root = self.parentage.root
-        for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(root, 
-            set_spanner_format_contribution_state=True, 
-            clear_deposited_spanner_format_contributions=True):
-            if hasattr(spanner, '_deposit_format_contributions'):
-                spanner._deposit_format_contributions()
-
-    def _deposit_spanner_format_contributions_for_entire_score_tree_if_necessary(self):
-        if self._is_forbidden_to_update:
-            return
-        state_flags = self._get_score_tree_state_flags()
-        spanner_format_contributions_are_current = state_flags[3]
-        if not spanner_format_contributions_are_current:
-            self._deposit_spanner_format_contributions_for_entire_score_tree()
 
     def _format_after_slot(self, format_contributions):
         pass
@@ -447,32 +425,21 @@ class Component(AbjadObject):
         self._is_forbidden_to_update = True
 
     def _get_score_tree_state_flags(self):
-        from abjad.tools import componenttools
         prolated_offset_values_are_current = True
         marks_are_current = True
         offset_values_in_seconds_are_current = True
-        spanner_format_contributions_are_current = True
-        for component in componenttools.get_improper_parentage_of_component(self):
-            # TODO: compress to single test
-            if prolated_offset_values_are_current:
-                if not component._prolated_offset_values_are_current:
-                    prolated_offset_values_are_current = False
-            # TODO: compress to single test
-            if marks_are_current:
-                if not component._marks_are_current:
-                    marks_are_current = False
-            # TODO: compress to single test
-            if offset_values_in_seconds_are_current:
-                if not component._offset_values_in_seconds_are_current:
-                    offset_values_in_seconds_are_current = False
-            # TODO: compress to single test
-            if spanner_format_contributions_are_current:
-                if not component._spanner_format_contributions_are_current:
-                    spanner_format_contributions_are_current = False
+        for component in self.parentage:
+            if prolated_offset_values_are_current and \
+                not component._prolated_offset_values_are_current:
+                prolated_offset_values_are_current = False
+            if marks_are_current and not component._marks_are_current:
+                marks_are_current = False
+            if offset_values_in_seconds_are_current and \
+                not component._offset_values_in_seconds_are_current:
+                offset_values_in_seconds_are_current = False
         return (prolated_offset_values_are_current, 
             marks_are_current,
-            offset_values_in_seconds_are_current, 
-            spanner_format_contributions_are_current)
+            offset_values_in_seconds_are_current)
 
     def _iterate_score_components_depth_first(self):
         from abjad.tools import componenttools

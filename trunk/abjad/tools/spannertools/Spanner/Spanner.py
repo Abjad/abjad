@@ -155,8 +155,6 @@ class Spanner(AbjadObject):
         Components must be an iterable of components already contained in spanner.
         '''
         my_components = self._components[:]
-        for my_component in my_components:
-            my_component.parentage._mark_spanner_format_contributions_for_update()
         self._components = []
         result = copy.copy(self)
         self._components = my_components
@@ -170,22 +168,6 @@ class Spanner(AbjadObject):
     @abc.abstractmethod
     def _copy_keyword_args(self, new):
         raise NotImplemented
-
-    def _deposit_override_format_contributions(self):
-        override_contributions = self.override._list_format_contributions('override', is_once=False)
-        if override_contributions:
-            first_leaf = self._get_my_first_leaf()
-            first_leaf_opening = first_leaf._spanner_format_contributions.setdefault('opening', [])
-            for override_contribution in override_contributions:
-                first_leaf_opening.append((self, override_contribution, 'first leaf in spanner'))
-
-    def _deposit_revert_format_contributions(self):
-        last_leaf = self._get_my_last_leaf()
-        revert_contributions = self.override._list_format_contributions('revert')
-        if revert_contributions:
-            last_leaf_closing = last_leaf._spanner_format_contributions.setdefault('closing', [])
-            for revert_contribution in revert_contributions:
-                last_leaf_closing.append((self, revert_contribution, 'last leaf in spanner'))
 
     def _duration_offset_in_me(self, leaf):
         return leaf.start_offset - self.start_offset
@@ -359,7 +341,6 @@ class Spanner(AbjadObject):
         '''
         self._block_component(component)
         self._remove_component(component)
-        component.parentage._mark_spanner_format_contributions_for_update()
 
     def _unblock_all_components(self):
         '''Not composer-safe.

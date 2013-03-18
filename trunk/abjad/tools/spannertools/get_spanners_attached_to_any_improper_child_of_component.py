@@ -1,8 +1,7 @@
 from abjad.tools import componenttools
 
 
-def get_spanners_attached_to_any_improper_child_of_component(component, klass=None,
-    set_spanner_format_contribution_state=False, clear_deposited_spanner_format_contributions=False):
+def get_spanners_attached_to_any_improper_child_of_component(component, klass=None):
     r'''.. versionadded:: 2.0
 
     Get all spanners attached to any improper children of `component`:
@@ -63,10 +62,6 @@ def get_spanners_attached_to_any_improper_child_of_component(component, klass=No
     # iterate proper children of component
     for child in iterationtools.iterate_components_in_expr([component]):
         result.update(spannertools.get_spanners_attached_to_component(child, klass))
-        if set_spanner_format_contribution_state:
-            child._spanner_format_contributions_are_current = True
-        if clear_deposited_spanner_format_contributions:
-            child._spanner_format_contributions = {}
 
     # return result
     return result
