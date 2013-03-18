@@ -42,6 +42,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.__le__
    :noindex:
 

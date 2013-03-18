@@ -81,6 +81,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.StartPositionedDivisionPayloadExpression.__le__
    :noindex:
 

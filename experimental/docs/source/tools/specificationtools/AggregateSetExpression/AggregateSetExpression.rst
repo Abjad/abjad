@@ -42,6 +42,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.__le__
    :noindex:
 

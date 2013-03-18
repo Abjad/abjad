@@ -60,6 +60,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.TimespanScopedSingleContextDivisionSetExpression.__le__
    :noindex:
 

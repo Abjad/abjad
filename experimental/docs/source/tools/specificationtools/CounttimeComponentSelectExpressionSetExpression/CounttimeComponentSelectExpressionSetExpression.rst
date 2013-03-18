@@ -39,6 +39,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpressionSetExpression.CounttimeComponentSelectExpressionSetExpression.CounttimeComponentSelectExpressionSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpressionSetExpression.CounttimeComponentSelectExpressionSetExpression.CounttimeComponentSelectExpressionSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.CounttimeComponentSelectExpressionSetExpression.CounttimeComponentSelectExpressionSetExpression.CounttimeComponentSelectExpressionSetExpression.__le__
    :noindex:
 

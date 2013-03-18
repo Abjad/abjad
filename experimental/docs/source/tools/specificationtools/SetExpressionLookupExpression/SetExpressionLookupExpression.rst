@@ -99,6 +99,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SetExpressionLookupExpression.SetExpressionLookupExpression.SetExpressionLookupExpression.__le__
    :noindex:
 

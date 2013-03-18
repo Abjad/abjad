@@ -81,6 +81,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.OffsetExpression.OffsetExpression.OffsetExpression.__le__
    :noindex:
 

@@ -42,6 +42,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.__le__
    :noindex:
 

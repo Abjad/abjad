@@ -51,6 +51,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__le__
    :noindex:
 

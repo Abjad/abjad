@@ -42,6 +42,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.__le__
    :noindex:
 

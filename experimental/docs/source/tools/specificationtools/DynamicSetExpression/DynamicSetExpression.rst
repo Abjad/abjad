@@ -42,6 +42,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.__le__
    :noindex:
 

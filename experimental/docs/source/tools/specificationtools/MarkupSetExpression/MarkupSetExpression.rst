@@ -42,6 +42,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.MarkupSetExpression.MarkupSetExpression.MarkupSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.MarkupSetExpression.MarkupSetExpression.MarkupSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.MarkupSetExpression.MarkupSetExpression.MarkupSetExpression.__le__
    :noindex:
 

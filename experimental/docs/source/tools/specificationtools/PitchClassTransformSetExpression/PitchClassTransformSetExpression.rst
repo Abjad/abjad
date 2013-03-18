@@ -42,6 +42,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.PitchClassTransformSetExpression.PitchClassTransformSetExpression.PitchClassTransformSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.PitchClassTransformSetExpression.PitchClassTransformSetExpression.PitchClassTransformSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.PitchClassTransformSetExpression.PitchClassTransformSetExpression.PitchClassTransformSetExpression.__le__
    :noindex:
 

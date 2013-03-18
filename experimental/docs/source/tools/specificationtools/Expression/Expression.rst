@@ -33,6 +33,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.Expression.Expression.Expression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.Expression.Expression.Expression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.Expression.Expression.Expression.__le__
    :noindex:
 

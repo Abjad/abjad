@@ -39,6 +39,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__le__
    :noindex:
 

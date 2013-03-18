@@ -36,6 +36,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.PayloadExpression.PayloadExpression.PayloadExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.PayloadExpression.PayloadExpression.PayloadExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.PayloadExpression.PayloadExpression.PayloadExpression.__le__
    :noindex:
 

@@ -99,6 +99,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.__le__
    :noindex:
 

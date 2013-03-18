@@ -63,6 +63,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__le__
    :noindex:
 

@@ -48,6 +48,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression.__le__
    :noindex:
 

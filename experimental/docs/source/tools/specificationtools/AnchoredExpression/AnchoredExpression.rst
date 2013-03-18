@@ -60,6 +60,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.AnchoredExpression.AnchoredExpression.AnchoredExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.AnchoredExpression.AnchoredExpression.AnchoredExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.AnchoredExpression.AnchoredExpression.AnchoredExpression.__le__
    :noindex:
 

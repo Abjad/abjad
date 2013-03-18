@@ -39,6 +39,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.LeafSetExpression.LeafSetExpression.LeafSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.LeafSetExpression.LeafSetExpression.LeafSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.LeafSetExpression.LeafSetExpression.LeafSetExpression.__le__
    :noindex:
 

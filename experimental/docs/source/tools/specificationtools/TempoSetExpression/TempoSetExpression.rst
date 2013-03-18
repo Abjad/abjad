@@ -42,6 +42,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.TempoSetExpression.TempoSetExpression.TempoSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TempoSetExpression.TempoSetExpression.TempoSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TempoSetExpression.TempoSetExpression.TempoSetExpression.__le__
    :noindex:
 

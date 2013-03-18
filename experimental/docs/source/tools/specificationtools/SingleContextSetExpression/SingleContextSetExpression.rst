@@ -84,6 +84,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression.__le__
    :noindex:
 

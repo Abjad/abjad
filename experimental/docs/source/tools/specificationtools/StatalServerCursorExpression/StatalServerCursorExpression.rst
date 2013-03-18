@@ -36,6 +36,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.StatalServerCursorExpression.StatalServerCursorExpression.StatalServerCursorExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.StatalServerCursorExpression.StatalServerCursorExpression.StatalServerCursorExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.StatalServerCursorExpression.StatalServerCursorExpression.StatalServerCursorExpression.__le__
    :noindex:
 

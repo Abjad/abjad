@@ -87,6 +87,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.__le__
    :noindex:
 

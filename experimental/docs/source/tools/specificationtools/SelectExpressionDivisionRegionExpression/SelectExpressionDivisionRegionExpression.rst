@@ -45,6 +45,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.__le__
    :noindex:
 

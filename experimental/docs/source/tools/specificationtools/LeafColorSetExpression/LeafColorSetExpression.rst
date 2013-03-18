@@ -42,6 +42,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.LeafColorSetExpression.LeafColorSetExpression.LeafColorSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.LeafColorSetExpression.LeafColorSetExpression.LeafColorSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.LeafColorSetExpression.LeafColorSetExpression.LeafColorSetExpression.__le__
    :noindex:
 

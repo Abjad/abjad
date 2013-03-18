@@ -54,6 +54,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.__le__
    :noindex:
 

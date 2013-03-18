@@ -75,6 +75,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__le__
    :noindex:
 

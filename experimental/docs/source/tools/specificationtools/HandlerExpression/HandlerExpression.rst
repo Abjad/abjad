@@ -66,6 +66,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.HandlerExpression.HandlerExpression.HandlerExpression.__le__
    :noindex:
 

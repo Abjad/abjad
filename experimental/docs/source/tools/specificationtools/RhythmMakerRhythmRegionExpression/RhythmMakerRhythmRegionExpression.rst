@@ -51,6 +51,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__le__
    :noindex:
 

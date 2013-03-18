@@ -42,6 +42,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.__le__
    :noindex:
 

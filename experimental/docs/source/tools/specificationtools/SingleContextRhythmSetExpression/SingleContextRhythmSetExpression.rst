@@ -84,6 +84,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.__le__
    :noindex:
 

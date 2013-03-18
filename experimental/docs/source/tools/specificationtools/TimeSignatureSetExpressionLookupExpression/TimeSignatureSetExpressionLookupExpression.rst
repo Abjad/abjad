@@ -99,6 +99,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.__le__
    :noindex:
 

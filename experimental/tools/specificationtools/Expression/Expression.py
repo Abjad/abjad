@@ -27,6 +27,13 @@ class Expression(AbjadObject):
             return False
         return True
 
+    def __hash__(self):
+        '''Expression hash.
+        
+        Return hash of expression repr.
+        '''
+        return hash(repr(self))
+
     ### PRIVATE METHODS ###
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):

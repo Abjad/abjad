@@ -69,6 +69,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.StatalServerExpression.StatalServerExpression.StatalServerExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.StatalServerExpression.StatalServerExpression.StatalServerExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.StatalServerExpression.StatalServerExpression.StatalServerExpression.__le__
    :noindex:
 

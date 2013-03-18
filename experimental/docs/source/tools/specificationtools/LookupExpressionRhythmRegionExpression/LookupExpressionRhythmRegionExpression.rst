@@ -54,6 +54,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.__le__
    :noindex:
 

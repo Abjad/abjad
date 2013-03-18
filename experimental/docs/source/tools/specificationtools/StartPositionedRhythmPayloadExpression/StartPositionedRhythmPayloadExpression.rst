@@ -84,6 +84,9 @@ Special methods
 .. automethod:: experimental.tools.specificationtools.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.__gt__
    :noindex:
 
+.. automethod:: experimental.tools.specificationtools.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.__hash__
+   :noindex:
+
 .. automethod:: experimental.tools.specificationtools.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.__le__
    :noindex:
 
