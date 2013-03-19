@@ -1,8 +1,7 @@
 import os
 
 
-# TODO: rename num_lines to line_count to avoid abbreviation
-def profile_expr(expr, sort_by='cum', num_lines=12, strip_dirs=True, print_callers=False, 
+def profile_expr(expr, sort_by='cum', line_count=12, strip_dirs=True, print_callers=False, 
     global_context=None, local_context=None):
     '''Profile `expr`:
 
@@ -13,10 +12,10 @@ def profile_expr(expr, sort_by='cum', num_lines=12, strip_dirs=True, print_calle
 
                  2852 function calls (2829 primitive calls) in 0.006 CPU seconds
 
-           Ordered by: cumulative time
-           List reduced from 118 to 12 due to restriction <12>
+        Ordered by: cumulative time
+        List reduced from 118 to 12 due to restriction <12>
 
-           ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        ncalls  tottime  percall  cumtime  percall filename:lineno(function)
                 1    0.000    0.000    0.006    0.006 <string>:1(<module>)
                 1    0.000    0.000    0.003    0.003 make_repeated_notes.py:5(make_repeated
                 1    0.001    0.001    0.003    0.003 make_notes.py:12(make_notes)
@@ -38,13 +37,12 @@ def profile_expr(expr, sort_by='cum', num_lines=12, strip_dirs=True, print_calle
 
     Set `num_lines` to any nonnegative integer.
 
-    Set `strip_dirs` to ``True`` to strip directory names from output lines.
+    Set `strip_dirs` to true to strip directory names from output lines.
 
     Function creates the file ``_tmp_abj_profile`` in the directory from which it is run.
 
-    For information on reading the output of the different
-   Python profilers, see `the Python docs
-   <http://docs.python.org/library/profile.html>`_.
+    See the `Python docs <http://docs.python.org/library/profile.html>`_
+    for more information on the Python profilers.
     '''
 
     # NOTE: this try block was added because, for some strange reason,
