@@ -1,8 +1,10 @@
 import os
+import sys
+import tempfile
 
 
 def profile_expr(expr, sort_by='cum', line_count=12, strip_dirs=True, print_callers=False, 
-    global_context=None, local_context=None):
+    global_context=None, local_context=None, print_to_terminal=True):
     '''Profile `expr`:
 
     ::
@@ -45,6 +47,19 @@ def profile_expr(expr, sort_by='cum', line_count=12, strip_dirs=True, print_call
     for more information on the Python profilers.
     '''
 
+    class RedirectStdStreams(object):
+        def __init__(self, stdout=None, stderr=None):
+            self._stdout = stdout or sys.stdout
+            self._stderr = stderr or sys.stderr
+        def __enter__(self):
+            self.old_stdout, self.old_stderr = sys.stdout, sys.stderr
+            self.old_stdout.flush(); self.old_stderr.flush()
+            sys.stdout, sys.stderr = self._stdout, self._stderr
+        def __exit__(self, exc_type, exc_value, traceback):
+            self._stdout.flush(); self._stderr.flush()
+            sys.stdout = self.old_stdout
+            sys.stderr = self.old_stderr
+
     # NOTE: this try block was added because, for some strange reason,
     # Python 2.5.x doesn't come with 'pstats' installed in some Linux distros!
     try:
@@ -55,15 +70,21 @@ def profile_expr(expr, sort_by='cum', line_count=12, strip_dirs=True, print_call
             cProfile.run(expr, '_tmp_abj_profile')
         else:
             cProfile.runctx(expr, global_context, local_context, '_tmp_abj_profile')
-        p = pstats.Stats('_tmp_abj_profile')
-        if strip_dirs:
-            p.strip_dirs().sort_stats(sort_by).print_stats(line_count)
-            if print_callers:
-                p.strip_dirs().sort_stats(sort_by).print_callers(line_count)
-        else:
-            p.sort_stats(sort_by).print_stats(line_count)
-            if print_callers:
-                p.sort_stats(sort_by).print_callers(line_count)
+
+        with open('_tmp_abj_profile_print', 'w') as f:
+            with RedirectStdStreams(stdout=f):
+                p = pstats.Stats('_tmp_abj_profile')
+                if strip_dirs:
+                    p.strip_dirs().sort_stats(sort_by).print_stats(line_count)
+                    if print_callers:
+                        p.strip_dirs().sort_stats(sort_by).print_callers(line_count)
+                else:
+                    p.sort_stats(sort_by).print_stats(line_count)
+                    if print_callers:
+                        p.sort_stats(sort_by).print_callers(line_count)
+
+        with open('_tmp_abj_profile_print', 'r') as f:
+            result = f.read()
 
     except ImportError:
         print "Python 'pstats' package not installed in your system.\n" + \
@@ -71,3 +92,9 @@ def profile_expr(expr, sort_by='cum', line_count=12, strip_dirs=True, print_call
 
     finally:
         os.remove('_tmp_abj_profile')
+        os.remove('_tmp_abj_profile_print')
+
+    if print_to_terminal:
+        print result
+    else:
+        return result

@@ -30,6 +30,7 @@ def graph(expr, image_format='pdf', layout='dot'):
 
     assert image_format in ('pdf', 'png')
     assert layout in ('circo', 'dot', 'fdp', 'neato', 'osage', 'sfdp', 'twopi')
+    assert iotools.which(layout), 'Cannot find `{}` command-line tool.'.format(layout)
 
     if isinstance(expr, str):
         graphviz_format = expr

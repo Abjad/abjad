@@ -16,6 +16,7 @@ def plot(expr, image_format='png', width=640, height=320):
     assert image_format in ('pdf', 'png')
     assert isinstance(width, int) and 0 < width
     assert isinstance(height, int) and 0 < height
+    assert iotools.which('gnuplot'), 'Cannot find `gnuplot` command-line tool.'
 
     gnuplot_format = expr.gnuplot_format
 
