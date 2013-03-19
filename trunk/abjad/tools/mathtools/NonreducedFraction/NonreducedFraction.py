@@ -5,34 +5,46 @@ from fractions import Fraction
 class NonreducedFraction(ImmutableAbjadObject, Fraction):
     r'''.. versionadded:: 2.9
 
-    Initialize with an integer numerator and integer denominator::
+    Initialize with an integer numerator and integer denominator:
+
+    ::
 
         >>> mathtools.NonreducedFraction(3, 6)
         NonreducedFraction(3, 6)
 
-    Initialize with only an integer denominator::
+    Initialize with only an integer denominator:
+
+    ::
 
         >>> mathtools.NonreducedFraction(3)
         NonreducedFraction(3, 1)
 
-    Initialize with an integer pair::
+    Initialize with an integer pair:
+
+    ::
 
         >>> mathtools.NonreducedFraction((3, 6))
         NonreducedFraction(3, 6)
 
-    Initialize with an integer singleton::
+    Initialize with an integer singleton:
+
+    ::
 
         >>> mathtools.NonreducedFraction((3,))
         NonreducedFraction(3, 1)
 
     Similar to built-in fraction except that numerator and denominator do not reduce.
 
-    Nonreduced fractions inherit from built-in fraction::
+    Nonreduced fractions inherit from built-in fraction:
+
+    ::
 
         >>> isinstance(mathtools.NonreducedFraction(3, 6), Fraction)
         True
 
-    Nonreduced fractions are numbers::
+    Nonreduced fractions are numbers:
+
+    ::
 
         >>> import numbers
 
@@ -79,7 +91,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        '''Absolute value of nonreduced fraction::
+        '''Absolute value of nonreduced fraction:
+
+        ::
 
             >>> abs(mathtools.NonreducedFraction(-3, 3))
             NonreducedFraction(3, 3)
@@ -89,22 +103,37 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return type(self)((abs(self.numerator), self.denominator))
 
     def __add__(self, expr):
-        '''Add `expr` to `self`::
+        '''Add `expr` to `self`:
+
+        ::
 
             >>> mathtools.NonreducedFraction(3, 3) + 1
             NonreducedFraction(6, 3)
 
         Return nonreduced fraction.
         '''
-        denominators = [self.denominator]
-        if isinstance(expr, type(self)):
-            denominators.append(expr.denominator)
-            expr = expr.reduce()
-        fraction = self.reduce() + expr
-        return self._fraction_with_denominator(fraction, max(denominators))
+        from abjad.tools import mathtools
+        if isinstance(expr, int):
+            numerator = self.numerator + expr * self.denominator
+            return NonreducedFraction(numerator, self.denominator)
+        elif hasattr(expr, 'denominator'):
+            if self.denominator == expr.denominator:
+                numerator = self.numerator + expr.numerator
+                return NonreducedFraction(numerator, self.denominator)
+            else:
+                denominator = mathtools.least_common_multiple(self.denominator, expr.denominator)
+                self_multiplier = denominator / self.denominator
+                expr_multiplier = denominator / expr.denominator
+                self_numerator = self_multiplier * self.numerator
+                expr_numerator = expr_multiplier * expr.numerator
+                return NonreducedFraction(self_numerator + expr_numerator, denominator)
+        else:
+            raise ValueError(expr)
 
     def __div__(self, expr):
-        '''Divide nonreduced fraction by expr::
+        '''Divide nonreduced fraction by expr:
+
+        ::
 
             >>> mathtools.NonreducedFraction(3, 3) / 1
             NonreducedFraction(3, 3)
@@ -119,7 +148,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return self._fraction_with_denominator(fraction, max(denominators))
 
     def __eq__(self, expr):
-        '''True when `expr` equals `self`::
+        '''True when `expr` equals `self`:
+
+        ::
 
             >>> mathtools.NonreducedFraction(3, 3) == 1
             True
@@ -129,7 +160,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return self.reduce() == expr
 
     def __ge__(self, expr):
-        '''True when nonreduced fraction is greater than or equal to `expr`::
+        '''True when nonreduced fraction is greater than or equal to `expr`:
+
+        ::
 
             >>> mathtools.NonreducedFraction(3, 3) >= 1
             True
@@ -139,7 +172,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return self.reduce() >= expr
 
     def __gt__(self, expr):
-        '''True when nonreduced fraction is greater than `expr`::
+        '''True when nonreduced fraction is greater than `expr`:
+
+        ::
 
             >>> mathtools.NonreducedFraction(3, 3) > 1
             False
@@ -149,7 +184,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return self.reduce() > expr
 
     def __le__(self, expr):
-        '''True when nonreduced fraction is less than or equal to `expr`::
+        '''True when nonreduced fraction is less than or equal to `expr`:
+
+        ::
 
             >>> mathtools.NonreducedFraction(3, 3) <= 1
             True
@@ -159,7 +196,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return self.reduce() <= expr
 
     def __lt__(self, expr):
-        '''True when nonreduced fraction is less than `expr`::
+        '''True when nonreduced fraction is less than `expr`:
+
+        ::
 
             >>> mathtools.NonreducedFraction(3, 3) < 1
             False
@@ -169,7 +208,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return self.reduce() < expr
 
     def __mul__(self, expr):
-        '''Multiply nonreduced fraction by expr::
+        '''Multiply nonreduced fraction by expr:
+
+        ::
 
             >>> mathtools.NonreducedFraction(3, 3) * 3
             NonreducedFraction(9, 3)
@@ -184,7 +225,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return self._fraction_with_denominator(fraction, max(denominators))
 
     def __ne__(self, expr):
-        '''True when `expr` does not equal `self`::
+        '''True when `expr` does not equal `self`:
+
+        ::
 
             >>> mathtools.NonreducedFraction(3, 3) != 'foo'
             True
@@ -194,7 +237,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return not self == expr
 
     def __neg__(self):
-        '''Negate nonreduced fraction::
+        '''Negate nonreduced fraction:
+
+        ::
 
             >>> -mathtools.NonreducedFraction(3, 3)
             NonreducedFraction(-3, 3)
@@ -204,7 +249,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return type(self)((-self.numerator, self.denominator))
 
     def __radd__(self, expr):
-        '''Add nonreduced fraction to `expr`::
+        '''Add nonreduced fraction to `expr`:
+
+        ::
 
             >>> 1 + mathtools.NonreducedFraction(3, 3)
             NonreducedFraction(6, 3)
@@ -214,7 +261,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return self + expr
 
     def __rdiv__(self, expr):
-        '''Divide `expr` by nonreduced fraction::
+        '''Divide `expr` by nonreduced fraction:
+
+        ::
 
             >>> 1 / mathtools.NonreducedFraction(3, 3)
             NonreducedFraction(3, 3)
@@ -229,7 +278,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return self._fraction_with_denominator(fraction, max(denominators))
 
     def __rmul__(self, expr):
-        '''Multiply `expr` by nonreduced fraction::
+        '''Multiply `expr` by nonreduced fraction:
+
+        ::
 
             >>> 3 * mathtools.NonreducedFraction(3, 3)
             NonreducedFraction(9, 3)
@@ -239,7 +290,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return self * expr
 
     def __rsub__(self, expr):
-        '''Subtract nonreduced fraction from `expr`::
+        '''Subtract nonreduced fraction from `expr`:
+
+        ::
 
             >>> 1 - mathtools.NonreducedFraction(3, 3)
             NonreducedFraction(0, 3)
@@ -249,7 +302,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return -self + expr
 
     def __str__(self):
-        '''String representation of nonreduced fraction::
+        '''String representation of nonreduced fraction:
+
+        ::
 
             >>> fraction = mathtools.NonreducedFraction(-6, 3)
 
@@ -263,7 +318,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return '{}/{}'.format(self.numerator, self.denominator)
 
     def __sub__(self, expr):
-        '''Subtract `expr` from self::
+        '''Subtract `expr` from self:
+
+        ::
 
             >>> mathtools.NonreducedFraction(3, 3) - 2
             NonreducedFraction(-3, 3)
@@ -295,7 +352,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
     @property
     def denominator(self):
-        '''Read-only denominator of nonreduced fraction::
+        '''Read-only denominator of nonreduced fraction:
+
+        ::
 
             >>> fraction = mathtools.NonreducedFraction(-6, 3)
 
@@ -310,7 +369,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
     @property
     def numerator(self):
-        '''Read-only numerator of nonreduced fraction::
+        '''Read-only numerator of nonreduced fraction:
+
+        ::
 
             >>> fraction = mathtools.NonreducedFraction(-6, 3)
 
@@ -325,7 +386,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
     @property
     def pair(self):
-        '''Read only pair of nonreduced fraction numerator and denominator::
+        '''Read only pair of nonreduced fraction numerator and denominator:
+
+        ::
 
             >>> fraction = mathtools.NonreducedFraction(-6, 3)
 
@@ -343,7 +406,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
     def multiply_with_cross_cancelation(self, multiplier):
         '''.. versionadded:: 2.11
 
-        Multiply nonreduced fraction by `expr` with cross-cancelation::
+        Multiply nonreduced fraction by `expr` with cross-cancelation:
+
+        ::
 
             >>> mathtools.NonreducedFraction(4, 8).multiply_with_cross_cancelation((2, 3))
             NonreducedFraction(4, 12)
@@ -405,10 +470,10 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return NonreducedFraction(result_numerator, result_denominator)
 
     def multiply_with_numerator_preservation(self, multiplier):
-        '''.. versionadded:: 2.11
+        '''Multiply nonreduced fraction by `multiplier` with numerator preservation
+        where possible:
 
-        Multiply nonreduced fraction by `multiplier` with numerator preservation
-        where possible.
+        ::
 
             >>> mathtools.NonreducedFraction(9, 16).multiply_with_numerator_preservation((2, 3))
             NonreducedFraction(9, 24)
@@ -444,9 +509,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
             return NonreducedFraction(result_numerator, result_denominator)
 
     def multiply_without_reducing(self, expr):
-        '''.. versionadded:: 2.11
+        '''Multiply nonreduced fraction by `expr` without reducing:
 
-        Multiply nonreduced fraction by `expr` without reducing::
+        ::
 
             >>> mathtools.NonreducedFraction(3, 8).multiply_without_reducing((3, 3))
             NonreducedFraction(9, 24)
@@ -469,7 +534,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return NonreducedFraction(numerator, denominator)
 
     def reduce(self):
-        '''Reduce nonreduced fraction::
+        '''Reduce nonreduced fraction:
+
+        ::
 
             >>> fraction = mathtools.NonreducedFraction(-6, 3)
 
@@ -483,7 +550,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return Fraction(self.numerator, self.denominator)
 
     def with_denominator(self, denominator):
-        '''Return new nonreduced fraction with integer `denominator`.
+        '''Return new nonreduced fraction with integer `denominator`:
+
+        ::
 
             >>> mathtools.NonreducedFraction(3, 6).with_denominator(12)
             NonreducedFraction(6, 12)
@@ -501,7 +570,9 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
             return type(self)(n, d)
 
     def with_multiple_of_denominator(self, denominator):
-        '''Return new nonreduced fraction with multiple of integer `denominator`.
+        '''Return new nonreduced fraction with multiple of integer `denominator`:
+    
+        ::
 
             >>> mathtools.NonreducedFraction(3, 6).with_multiple_of_denominator(5)
             NonreducedFraction(5, 10)
@@ -512,5 +583,4 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         while not result.denominator == denominator:
             denominator *= 2
             result = result.with_denominator(denominator)
-
         return result
