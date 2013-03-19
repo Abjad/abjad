@@ -35,7 +35,7 @@ def profile_expr(expr, sort_by='cum', line_count=12, strip_dirs=True, print_call
 
     Set `sort_by` to `'cum'`, `'time'` or `'calls'`.
 
-    Set `num_lines` to any nonnegative integer.
+    Set `line_count` to any nonnegative integer.
 
     Set `strip_dirs` to true to strip directory names from output lines.
 
@@ -57,13 +57,13 @@ def profile_expr(expr, sort_by='cum', line_count=12, strip_dirs=True, print_call
             cProfile.runctx(expr, global_context, local_context, '_tmp_abj_profile')
         p = pstats.Stats('_tmp_abj_profile')
         if strip_dirs:
-            p.strip_dirs().sort_stats(sort_by).print_stats(num_lines)
+            p.strip_dirs().sort_stats(sort_by).print_stats(line_count)
             if print_callers:
-                p.strip_dirs().sort_stats(sort_by).print_callers(num_lines)
+                p.strip_dirs().sort_stats(sort_by).print_callers(line_count)
         else:
-            p.sort_stats(sort_by).print_stats(num_lines)
+            p.sort_stats(sort_by).print_stats(line_count)
             if print_callers:
-                p.sort_stats(sort_by).print_callers(num_lines)
+                p.sort_stats(sort_by).print_callers(line_count)
 
     except ImportError:
         print "Python 'pstats' package not installed in your system.\n" + \
