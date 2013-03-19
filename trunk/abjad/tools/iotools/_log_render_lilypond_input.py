@@ -14,8 +14,8 @@ def _log_render_lilypond_input(expr, tagline=False, docs=False):
     '''
     from abjad import ABJCFG
 
-    lily_time = 10
-    format_time = 10
+    lily_time = 2
+    format_time = 2
 
     # log score
     current_directory = os.path.abspath('.')
