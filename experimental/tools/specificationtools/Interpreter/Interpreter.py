@@ -12,8 +12,12 @@ class Interpreter(AbjadObject):
     ### CLASS ATTRIBUTES ###
 
     __metaclass__ = abc.ABCMeta
-
     attributes = AttributeNameEnumeration()
+
+    ### INITIALIZER ###
+
+    def __init__(self):
+        self._callback_cache = {}
 
     ### SPECIAL METHODS ###
 
@@ -24,6 +28,12 @@ class Interpreter(AbjadObject):
         self.evaluate_multiple_context_set_expressions()
         self.store_score_rooted_single_context_set_expressions_by_context()
         self.store_segment_rooted_single_context_set_expressions_by_context()
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def callback_cache(self):
+        return self._callback_cache
 
     ### PUBLIC METHODS ###
 

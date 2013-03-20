@@ -43,6 +43,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
     def _apply_callbacks(self, payload_expression):
         from experimental.tools import specificationtools
         assert isinstance(payload_expression, specificationtools.PayloadExpression), repr(payload_expression)
+        callback_cache = self.score_specification.interpreter.callback_cache
         evaluation_context = {
             'Duration': durationtools.Duration,
             'NonreducedFraction': mathtools.NonreducedFraction,
@@ -50,6 +51,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
             'Ratio': mathtools.Ratio,
             'RotationIndicator': specificationtools.RotationIndicator,
             'Timespan': timespantools.Timespan,
+            'callback_cache': callback_cache,
             'payload_expression': payload_expression,
             'self': self,
             'result': None,
@@ -72,9 +74,13 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         result = [element for element in payload_expression]
         return result
         
-    def _partition_by_ratio(self, payload_expression, ratio, part):
+    def _partition_by_ratio(self, payload_expression, ratio, part, callback_cache):
         assert hasattr(payload_expression, 'partition_by_ratio')
-        parts = payload_expression.partition_by_ratio(ratio)
+        key = (repr(payload_expression), repr(ratio))
+        if key not in callback_cache:
+            parts = payload_expression.partition_by_ratio(ratio)
+            callback_cache[key] = parts
+        parts = callback_cache[key]
         selected_part = parts[part]
         return selected_part
 
@@ -122,7 +128,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             callback = \
-                'result = self._partition_by_ratio(payload_expression, {!r}, {!r})'
+                'result = self._partition_by_ratio(payload_expression, {!r}, {!r}, callback_cache)'
             callback = callback.format(ratio, part)
             result.append(self._copy_and_append_callback(callback))
         return tuple(result)

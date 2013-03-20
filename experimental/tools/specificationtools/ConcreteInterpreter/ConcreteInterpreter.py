@@ -8,11 +8,6 @@ class ConcreteInterpreter(Interpreter):
     r'''Concrete interpreter.
     '''
 
-    ### INITIALIZER ###
-
-    def __init__(self):
-        pass
-
     ### SPECIAL METHODS ###
 
     def __call__(self, score_specification):

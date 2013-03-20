@@ -639,6 +639,7 @@ class ScoreSpecification(Specification):
         '''
         from experimental.tools import specificationtools
         interpreter = specificationtools.ConcreteInterpreter()
+        self.interpreter = interpreter
         return interpreter(self)
 
     def make_default_timespan_scoped_single_context_division_set_expression(self, target_timespan, voice_name):

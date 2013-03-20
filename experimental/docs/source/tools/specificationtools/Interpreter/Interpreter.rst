@@ -9,6 +9,9 @@ specificationtools.Interpreter
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.specificationtools.Interpreter.Interpreter.Interpreter.callback_cache
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.Interpreter.Interpreter.Interpreter.storage_format
    :noindex:
 

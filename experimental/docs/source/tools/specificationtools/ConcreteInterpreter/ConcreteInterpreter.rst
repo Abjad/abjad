@@ -9,6 +9,9 @@ specificationtools.ConcreteInterpreter
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.callback_cache
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.leaf_offset_lists_by_voice
    :noindex:
 
