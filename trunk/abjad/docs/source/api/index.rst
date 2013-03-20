@@ -797,6 +797,7 @@ Core composition packages
       :maxdepth: 1
 
       tools/iotools/clear_terminal
+      tools/iotools/count_function_calls
       tools/iotools/f
       tools/iotools/get_last_output_file_name
       tools/iotools/get_next_output_file_name
@@ -826,6 +827,7 @@ Core composition packages
    .. toctree::
 
       tools/iotools/clear_terminal
+      tools/iotools/count_function_calls
       tools/iotools/f
       tools/iotools/get_last_output_file_name
       tools/iotools/get_next_output_file_name

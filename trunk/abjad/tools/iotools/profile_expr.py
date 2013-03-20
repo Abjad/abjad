@@ -92,7 +92,10 @@ def profile_expr(expr, sort_by='cum', line_count=12, strip_dirs=True, print_call
 
     finally:
         os.remove('_tmp_abj_profile')
-        os.remove('_tmp_abj_profile_print')
+        try:
+            os.remove('_tmp_abj_profile_print')
+        except OSError:
+            pass
 
     if print_to_terminal:
         print result
