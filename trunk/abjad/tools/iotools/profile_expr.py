@@ -3,7 +3,8 @@ import sys
 import tempfile
 
 
-def profile_expr(expr, sort_by='cum', line_count=12, strip_dirs=True, print_callers=False, 
+def profile_expr(expr, sort_by='cum', line_count=12, strip_dirs=True, 
+    print_callers=False, print_callees=False,
     global_context=None, local_context=None, print_to_terminal=True):
     '''Profile `expr`:
 
@@ -78,10 +79,14 @@ def profile_expr(expr, sort_by='cum', line_count=12, strip_dirs=True, print_call
                     p.strip_dirs().sort_stats(sort_by).print_stats(line_count)
                     if print_callers:
                         p.strip_dirs().sort_stats(sort_by).print_callers(line_count)
+                    if print_callees:
+                        p.strip_dirs().sort_stats(sort_by).print_callees(line_count)
                 else:
                     p.sort_stats(sort_by).print_stats(line_count)
                     if print_callers:
                         p.sort_stats(sort_by).print_callers(line_count)
+                    if print_callees:
+                        p.sort_stats(sort_by).print_callees(line_count)
 
         with open('_tmp_abj_profile_print', 'r') as f:
             result = f.read()
