@@ -319,7 +319,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
     def _split_payload_at_offsets(self, offsets):
         from experimental.tools import specificationtools
-        divisions = copy.deepcopy(self.payload.divisions)
+        divisions = self.payload.divisions
         self._payload = specificationtools.DivisionList(
             [], voice_name=self.voice_name, start_offset=self.start_offset)
         shards = sequencetools.split_sequence_by_weights(
