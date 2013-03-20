@@ -4,17 +4,23 @@ import numbers
 def is_integer_equivalent_expr(expr):
     '''.. versionadded:: 2.5
 
-    True when `expr` is an integer-equivalent number::
+    True when `expr` is an integer-equivalent number:
+
+    ::
 
         >>> mathtools.is_integer_equivalent_expr(12.0)
         True
 
-    True when `expr` evaluates to an integer::
+    True when `expr` evaluates to an integer:
+
+    ::
 
         >>> mathtools.is_integer_equivalent_expr('12')
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> mathtools.is_integer_equivalent_expr('foo')
         False

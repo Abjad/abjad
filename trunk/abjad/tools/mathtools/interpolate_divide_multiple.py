@@ -4,7 +4,9 @@ def interpolate_divide_multiple(totals, key_values, exp='cosine'):
     '''.. versionadded:: 2.0
 
     Interpolate `key_values` such that the sum of the
-    resulting interpolated values equals the given `totals`::
+    resulting interpolated values equals the given `totals`:
+
+    ::
 
         >>> mathtools.interpolate_divide_multiple([100, 50], [20, 10, 20]) # doctest: +SKIP
         [19.4487, 18.5201, 16.2270, 13.7156, 11.7488, 10.4879,

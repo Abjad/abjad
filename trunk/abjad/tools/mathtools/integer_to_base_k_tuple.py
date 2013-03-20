@@ -4,7 +4,9 @@ import math
 def integer_to_base_k_tuple(n, k):
     '''.. versionadded:: 2.0
 
-    Nonnegative integer `n` to base-`k` tuple::
+    Nonnegative integer `n` to base-`k` tuple:
+
+    ::
 
         >>> mathtools.integer_to_base_k_tuple(1066, 10)
         (1, 0, 6, 6)

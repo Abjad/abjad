@@ -10,62 +10,86 @@ class Duration(ImmutableAbjadObject, Fraction):
 
     Abjad model of musical duration.
 
-    Initialize from integer numerator::
+    Initialize from integer numerator:
+
+    ::
 
         >>> Duration(3)
         Duration(3, 1)
 
-    Initialize from integer numerator and denominator::
+    Initialize from integer numerator and denominator:
+
+    ::
 
         >>> Duration(3, 16)
         Duration(3, 16)
 
-    Initialize from integer-equivalent numeric numerator::
+    Initialize from integer-equivalent numeric numerator:
+
+    ::
 
         >>> Duration(3.0)
         Duration(3, 1)
 
-    Initialize from integer-equivalent numeric numerator and denominator::
+    Initialize from integer-equivalent numeric numerator and denominator:
+
+    ::
 
         >>> Duration(3.0, 16)
         Duration(3, 16)
 
-    Initialize from integer-equivalent singleton::
+    Initialize from integer-equivalent singleton:
+
+    ::
 
         >>> Duration((3,))
         Duration(3, 1)
 
-    Initialize from integer-equivalent pair::
+    Initialize from integer-equivalent pair:
+
+    ::
 
         >>> Duration((3, 16))
         Duration(3, 16)
 
-    Initialize from other duration::
+    Initialize from other duration:
+
+    ::
 
         >>> Duration(Duration(3, 16))
         Duration(3, 16)
 
-    Intialize from fraction::
+    Intialize from fraction:
+
+    ::
 
         >>> Duration(Fraction(3, 16))
         Duration(3, 16)
 
-    Initialize from solidus string::
+    Initialize from solidus string:
+
+    ::
 
         >>> Duration('3/16')
         Duration(3, 16)
 
-    Initialize from nonreduced fraction::
+    Initialize from nonreduced fraction:
+
+    ::
 
         >>> Duration(mathtools.NonreducedFraction(3, 16))
         Duration(3, 16)
 
-    Durations inherit from built-in fraction::
+    Durations inherit from built-in fraction:
+
+    ::
 
         >>> isinstance(Duration(3, 16), Fraction)
         True
 
-    Durations are numeric::
+    Durations are numeric:
+
+    ::
 
         >>> import numbers
 

@@ -53,6 +53,20 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         >>> isinstance(mathtools.NonreducedFraction(3, 6), numbers.Number)
         True
 
+    Nonreduced fraction initialization requires more function calls that fraction initialization.
+    But nonreduced fraction initialization is reasonably fast anyway:
+
+    ::
+
+        >>> import fractions
+        >>> iotools.count_function_calls('fractions.Fraction(3, 6)', globals())
+        13
+
+    ::
+
+        >>> iotools.count_function_calls('mathtools.NonreducedFraction(3, 6)', globals())
+        28
+
     Nonreduced fractions are immutable.
     '''
 
@@ -103,12 +117,28 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return type(self)((abs(self.numerator), self.denominator))
 
     def __add__(self, expr):
-        '''Add `expr` to `self`:
+        '''Add `expr` to nonreduced fraction:
 
         ::
 
             >>> mathtools.NonreducedFraction(3, 3) + 1
             NonreducedFraction(6, 3)
+
+        Adding two nonreduced fractions is fairly fast:
+
+        ::
+
+            >>> a = mathtools.NonreducedFraction(3, 6)
+            >>> b = mathtools.NonreducedFraction(3, 12)
+            >>> iotools.count_function_calls('a + b', globals())
+            65
+
+        Adding an integer is even faster:
+
+        ::
+
+            >>> iotools.count_function_calls('a + 10', globals())
+            33
 
         Return nonreduced fraction.
         '''
@@ -348,6 +378,11 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         denominator = mathtools.least_common_multiple(denominator, fraction.denominator)
         return NonreducedFraction(fraction).with_denominator(denominator)
 
+    # do not indent in storage
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        return [''.join(
+            ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(self, is_indented=False))]
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -367,6 +402,19 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         '''
         return self._denominator
 
+    @property
+    def imag(self):
+        '''Nonreduced fractions have no imaginary part:
+
+        ::
+
+            >>> fraction.imag
+            0
+
+        Return zero.
+        '''
+        return Fraction.imag.fget(self)
+        
     @property
     def numerator(self):
         '''Read-only numerator of nonreduced fraction:
@@ -400,6 +448,32 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         Return integer pair.
         '''
         return self.numerator, self.denominator
+
+    @property
+    def real(self):
+        '''Nonreduced fractions are their own real component:
+
+        ::
+
+            >>> fraction.real
+            NonreducedFraction(-6, 3)
+
+        Return nonreduced fraction.
+        '''
+        return self
+    
+    @property
+    def storage_format(self):
+        '''Nonreduced fraction storage format:
+
+        ::
+
+            >>> z(fraction)
+            mathtools.NonreducedFraction(-6, 3)
+
+        Return string.
+        '''
+        return AbjadObject.storage_format.fget(self)
 
     ### PUBLIC METHODS ###
 

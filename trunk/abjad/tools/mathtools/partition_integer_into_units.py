@@ -1,15 +1,21 @@
 def partition_integer_into_units(n):
-    '''Partition positive integer into units::
+    '''Partition positive integer into units:
+
+    ::
 
         >>> mathtools.partition_integer_into_units(6)
         [1, 1, 1, 1, 1, 1]
 
-    Partition negative integer into units::
+    Partition negative integer into units:
+
+    ::
 
         >>> mathtools.partition_integer_into_units(-5)
         [-1, -1, -1, -1, -1]
 
-    Partition ``0`` into units::
+    Partition ``0`` into units:
+
+    ::
 
         >>> mathtools.partition_integer_into_units(0)
         []

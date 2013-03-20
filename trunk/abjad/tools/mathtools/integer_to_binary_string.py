@@ -1,5 +1,7 @@
 def integer_to_binary_string(n):
-    r'''Positive integer `n` to binary string::
+    r'''Positive integer `n` to binary string:
+
+    ::
 
         >>> for n in range(1, 16 + 1):
         ...     print '{}\t{}'.format(n, mathtools.integer_to_binary_string(n))

@@ -3,7 +3,9 @@ import math
 
 
 def least_power_of_two_greater_equal(n, i=0):
-    r'''Return least integer power of two greater than or equal to positive `n`::
+    r'''Return least integer power of two greater than or equal to positive `n`:
+
+    ::
 
         >>> for n in range(10, 20):
         ...     print '\t%s\t%s' % (n, mathtools.least_power_of_two_greater_equal(n))

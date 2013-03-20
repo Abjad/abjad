@@ -4,7 +4,9 @@ import numbers
 def is_nonnegative_integer(expr):
     '''.. versionadded:: 2.0
 
-    True when `expr` equals a nonnegative integer::
+    True when `expr` equals a nonnegative integer:
+
+    ::
 
         >>> mathtools.is_nonnegative_integer(99)
         True
@@ -14,7 +16,9 @@ def is_nonnegative_integer(expr):
         >>> mathtools.is_nonnegative_integer(0)
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> mathtools.is_nonnegative_integer(-1)
         False

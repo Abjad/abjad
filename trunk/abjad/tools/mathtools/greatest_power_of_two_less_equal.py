@@ -3,7 +3,9 @@ import numbers
 
 
 def greatest_power_of_two_less_equal(n, i=0):
-    r'''Greatest integer power of two less than or equal to positive `n`::
+    r'''Greatest integer power of two less than or equal to positive `n`:
+
+    ::
 
         >>> for n in range(10, 20):
         ...     print '\t%s\t%s' % (n, mathtools.greatest_power_of_two_less_equal(n))
@@ -19,7 +21,9 @@ def greatest_power_of_two_less_equal(n, i=0):
             18 16
             19 16
 
-    Greatest-but-``i`` integer power of ``2`` less than or equal to positive `n`::
+    Greatest-but-``i`` integer power of ``2`` less than or equal to positive `n`:
+
+    ::
 
         >>> for n in range(10, 20):
         ...     print '\t%s\t%s' % (n, mathtools.greatest_power_of_two_less_equal(n, i=1))

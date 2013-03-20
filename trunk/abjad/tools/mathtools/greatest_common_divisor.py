@@ -1,7 +1,9 @@
 def greatest_common_divisor(*integers):
     '''.. versionadded:: 2.0
 
-    Greatest common divisor of `integers`::
+    Greatest common divisor of `integers`:
+
+    ::
 
         >>> mathtools.greatest_common_divisor(84, -94, -144)
         2

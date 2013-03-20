@@ -4,12 +4,16 @@ import numbers
 def is_positive_integer(expr):
     '''.. versionadded:: 2.0
 
-    True when `expr` equals a positive integer::
+    True when `expr` equals a positive integer:
+
+    ::
 
         >>> mathtools.is_positive_integer(99)
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> mathtools.is_positive_integer(0)
         False

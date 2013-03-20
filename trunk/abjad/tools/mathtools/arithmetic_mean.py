@@ -4,17 +4,23 @@ import fractions
 def arithmetic_mean(sequence):
     '''.. versionadded:: 1.1
 
-    Arithmetic means of `sequence` as an exact integer::
+    Arithmetic means of `sequence` as an exact integer:
+
+    ::
 
         >>> mathtools.arithmetic_mean([1, 2, 2, 20, 30])
         11
 
-    As a rational::
+    As a rational:
+
+    ::
 
         >>> mathtools.arithmetic_mean([1, 2, 20])
         Fraction(23, 3)
 
-    As a float::
+    As a float:
+
+    ::
 
         >>> mathtools.arithmetic_mean([2, 2, 20.0])
         8.0

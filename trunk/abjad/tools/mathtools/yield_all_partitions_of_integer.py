@@ -1,7 +1,9 @@
 def yield_all_partitions_of_integer(n):
     r'''.. versionadded:: 2.0
 
-    Yield all partitions of positive integer `n` in descending lex order::
+    Yield all partitions of positive integer `n` in descending lex order:
+
+    ::
 
         >>> for partition in mathtools.yield_all_partitions_of_integer(7):
         ...     partition

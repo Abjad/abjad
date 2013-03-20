@@ -1,7 +1,9 @@
 def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
     '''Partition integer `n` into canonic parts.
 
-    Return all parts positive on positive `n`::
+    Return all parts positive on positive `n`:
+
+    ::
 
         >>> for n in range(1, 11):
         ...     print n, mathtools.partition_integer_into_canonic_parts(n)
@@ -17,7 +19,9 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
         9 (8, 1)
         10 (8, 2)
 
-    Return all parts negative on negative `n`::
+    Return all parts negative on negative `n`:
+
+    ::
 
         >>> for n in reversed(range(-20, -10)):
         ...     print n, mathtools.partition_integer_into_canonic_parts(n)
@@ -33,7 +37,9 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
         -19 (-16, -3)
         -20 (-16, -4)
 
-    Return parts that increase monotonically::
+    Return parts that increase monotonically:
+
+    ::
 
         >>> for n in range(11, 21):
         ...     print n, mathtools.partition_integer_into_canonic_parts(n,

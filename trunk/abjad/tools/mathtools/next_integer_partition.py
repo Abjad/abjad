@@ -1,7 +1,9 @@
 def next_integer_partition(integer_partition):
     r'''.. versionadded:: 2.0
 
-    Next integer partition following `integer_partition` in descending lex order::
+    Next integer partition following `integer_partition` in descending lex order:
+
+    ::
 
         >>> mathtools.next_integer_partition((8, 3))
         (8, 2, 1)

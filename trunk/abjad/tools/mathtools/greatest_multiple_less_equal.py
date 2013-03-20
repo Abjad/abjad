@@ -3,7 +3,9 @@ import numbers
 
 
 def greatest_multiple_less_equal(m, n):
-    '''Greatest integer multiple of `m` less than or equal to `n`::
+    '''Greatest integer multiple of `m` less than or equal to `n`:
+
+    ::
 
         >>> mathtools.greatest_multiple_less_equal(10, 47)
         40

@@ -4,7 +4,9 @@ import itertools
 def yield_all_compositions_of_integer(n):
     r'''.. versionadded:: 2.0
 
-    Yield all compositions of positive integer `n` in descending lex order::
+    Yield all compositions of positive integer `n` in descending lex order:
+
+    ::
 
         >>> for integer_composition in mathtools.yield_all_compositions_of_integer(5):
         ...     integer_composition

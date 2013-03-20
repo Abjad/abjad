@@ -1,5 +1,7 @@
 def cumulative_signed_weights(sequence):
-    '''Cumulative signed weights of `sequence`::
+    '''Cumulative signed weights of `sequence`:
+
+    ::
 
         >>> l = [1, -2, -3, 4, -5, -6, 7, -8, -9, 10]
         >>> mathtools.cumulative_signed_weights(l)

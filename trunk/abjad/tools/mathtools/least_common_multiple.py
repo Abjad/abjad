@@ -1,5 +1,7 @@
 def least_common_multiple(*integers):
-    '''Least common multiple of positive `integers`::
+    '''Least common multiple of positive `integers`:
+
+    ::
 
         >>> mathtools.least_common_multiple(2, 4, 5, 10, 20)
         20

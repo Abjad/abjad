@@ -1,7 +1,9 @@
 def yield_nonreduced_fractions():
     '''.. versionadded:: 2.0
 
-    Yield positive nonreduced fractions in Cantor diagonalized order::
+    Yield positive nonreduced fractions in Cantor diagonalized order:
+
+    ::
 
         >>> generator = mathtools.yield_nonreduced_fractions()
         >>> for n in range(16):

@@ -3,7 +3,9 @@ import math
 
 def least_multiple_greater_equal(m, n):
     '''Return the least integer multiple of `m`
-    greater than or equal to `n`.
+    greater than or equal to `n`:
+
+    ::
 
         >>> mathtools.least_multiple_greater_equal(10, 47)
         50

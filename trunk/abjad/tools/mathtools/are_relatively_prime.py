@@ -2,22 +2,30 @@ def are_relatively_prime(expr):
     '''.. versionadded:: 2.5
 
     True when `expr` is a sequence comprising zero or more numbers,
-    all of which are relatively prime::
+    all of which are relatively prime:
+
+    ::
 
         >>> mathtools.are_relatively_prime([13, 14, 15])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> mathtools.are_relatively_prime([13, 14, 15, 16])
         False
 
-    Note that function returns true when `expr` is an empty sequence::
+    Note that function returns true when `expr` is an empty sequence:
+
+    ::
 
         >>> mathtools.are_relatively_prime([])
         True
 
-    Function returns false when `expr` is nonsensical type::
+    Function returns false when `expr` is nonsensical type:
+
+    ::
 
         >>> mathtools.are_relatively_prime('foo')
         False

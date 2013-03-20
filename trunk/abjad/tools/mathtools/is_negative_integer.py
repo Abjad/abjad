@@ -4,12 +4,16 @@ import numbers
 def is_negative_integer(expr):
     '''.. versionadded:: 2.0
 
-    True when `expr` equals a negative integer::
+    True when `expr` equals a negative integer:
+
+    ::
 
         >>> mathtools.is_negative_integer(-1)
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> mathtools.is_negative_integer(0)
         False

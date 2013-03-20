@@ -2,7 +2,9 @@ def is_assignable_integer(expr):
     r'''.. versionadded:: 2.0
 
     True when `expr` is equivalent to an integer and
-    can be written without recourse to ties::
+    can be written without recourse to ties:
+
+    ::
 
         >>> for n in range(0, 16 + 1):
         ...     print '%s\t%s' % (n, mathtools.is_assignable_integer(n))

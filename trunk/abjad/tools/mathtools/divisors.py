@@ -2,7 +2,9 @@ import math
 
 
 def divisors(n):
-    '''Positive divisors of integer `n` in increasing order::
+    '''Positive divisors of integer `n` in increasing order:
+
+    ::
 
         >>> mathtools.divisors(84)
         [1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42, 84]
@@ -23,7 +25,9 @@ def divisors(n):
         18 [1, 2, 3, 6, 9, 18]
         19 [1, 19]
 
-    Allow nonpositive `n`::
+    Allow nonpositive `n`:
+
+    ::
 
         >>> mathtools.divisors(-27)
         [1, 3, 9, 27]

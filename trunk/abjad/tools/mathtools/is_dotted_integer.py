@@ -5,7 +5,9 @@ def is_dotted_integer(expr):
     '''.. versionadded:: 2.0
 
     True when `expr` is equivalent to a positive integer and
-    can be written with zero or more dots::
+    can be written with zero or more dots:
+
+    ::
 
         >>> for expr in range(16):
         ...     print '%s\t%s' % (expr, mathtools.is_dotted_integer(expr))

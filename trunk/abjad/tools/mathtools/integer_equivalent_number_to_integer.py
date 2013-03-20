@@ -4,12 +4,16 @@ import numbers
 def integer_equivalent_number_to_integer(number):
     '''.. versionadded:: 2.0
 
-    Integer-equivalent `number` to integer::
+    Integer-equivalent `number` to integer:
+
+    ::
 
         >>> mathtools.integer_equivalent_number_to_integer(17.0)
         17
 
-    Return noninteger-equivalent number unchanged::
+    Return noninteger-equivalent number unchanged:
+
+    ::
 
         >>> mathtools.integer_equivalent_number_to_integer(17.5)
         17.5
