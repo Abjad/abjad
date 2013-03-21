@@ -13,7 +13,7 @@ class SpecialObjectInventory(ObjectInventory):
     def _keyword_argument_names(self):
         result = []
         result.extend(ObjectInventory._keyword_argument_names.fget(self))
-        result.extend(['flavor', 'color'])
+        result.extend(['name', 'flavor', 'color'])
         return tuple(sorted(result))
     @property
     def _tools_package_name(self):

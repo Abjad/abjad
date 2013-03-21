@@ -26,12 +26,18 @@ class CompoundInequality(ObjectInventory):
             timerelationtools.CompoundInequality([
                 'timespan_1.start_offset <= timespan_2.start_offset',
                 'timespan_2.start_offset < timespan_1.stop_offset'
-                ]),
+                ],
+                logical_operator='and'
+                ),
             timerelationtools.CompoundInequality([
                 'timespan_2.start_offset <= timespan_1.start_offset',
                 'timespan_1.start_offset < timespan_2.stop_offset'
-                ])
-            ])
+                ],
+                logical_operator='and'
+                )
+            ],
+            logical_operator='or'
+            )
 
     Return compound inequality.
     '''

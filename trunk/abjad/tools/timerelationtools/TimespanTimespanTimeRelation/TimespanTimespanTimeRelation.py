@@ -208,6 +208,16 @@ class TimespanTimespanTimeRelation(TimeRelation):
         command = command.replace('timespan_2.start_offset', repr(timespan_2_start))
         command = command.replace('timespan_2.stop_offset', repr(timespan_2_stop))
         result = eval(command, {'Offset': durationtools.Offset})
+#        truth_values = []
+#        for inequality in self.inequalities:
+#            inequality = inequality.replace('timespan_1.start_offset', repr(timespan_1_start))
+#            inequality = inequality.replace('timespan_1.stop_offset', repr(timespan_1_stop))
+#            inequality = inequality.replace('timespan_2.start_offset', repr(timespan_2_start))
+#            inequality = inequality.replace('timespan_2.stop_offset', repr(timespan_2_stop))
+#            truth_value = eval(inequality, {'Offset': durationtools.Offset})
+#            truth_values.append(truth_value)
+#        truth_value = all(truth_values)
+#        assert result == truth_value, repr((result, truth_value))
         return result
 
     def __eq__(self, expr):

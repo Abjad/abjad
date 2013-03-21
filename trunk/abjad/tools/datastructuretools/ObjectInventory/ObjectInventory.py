@@ -52,10 +52,11 @@ class ObjectInventory(list, AbjadObject):
 
     @property
     def _keyword_argument_names(self):
-        result = []
-        result.extend([
-            'name',
-            ])
+        result = AbjadObject._keyword_argument_names.fget(self)
+        result = list(result)
+        if 'tokens' in result:
+            result.remove('tokens')
+        result = tuple(result)
         return result
 
     @property
