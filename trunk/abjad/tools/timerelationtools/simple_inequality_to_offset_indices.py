@@ -109,7 +109,7 @@ def simple_inequality_to_offset_indices(simple_inequality, timespan_1,
     elif simple_inequality == 'timespan_2.start <= timespan_1.start':
         try:
             leftmost_index = 0
-            rightmost_index = _find_index_ge(timespan_2_start_offsets, timespan_1.start_offset)
+            rightmost_index = _find_index_gt(timespan_2_start_offsets, timespan_1.start_offset)
         except ValueError:
             pass
     # 6.a
@@ -130,7 +130,7 @@ def simple_inequality_to_offset_indices(simple_inequality, timespan_1,
     elif simple_inequality == 'timespan_2.start <= timespan_1.stop':
         try:
             leftmost_index = 0
-            rightmost_index = _find_index_ge(timespan_2_start_offsets, timespan_1.stop_offset)
+            rightmost_index = _find_index_gt(timespan_2_start_offsets, timespan_1.stop_offset)
         except ValueError:
             pass
     # 7.a
@@ -151,7 +151,7 @@ def simple_inequality_to_offset_indices(simple_inequality, timespan_1,
     elif simple_inequality == 'timespan_2.stop <= timespan_1.start':
         try:
             leftmost_index = 0
-            rightmost_index = _find_index_ge(timespan_2_stop_offsets, timespan_1.start_offset)
+            rightmost_index = _find_index_gt(timespan_2_stop_offsets, timespan_1.start_offset)
         except ValueError:
             pass
     # 8.a
@@ -172,7 +172,7 @@ def simple_inequality_to_offset_indices(simple_inequality, timespan_1,
     elif simple_inequality == 'timespan_2.stop <= timespan_1.stop':
         try:
             leftmost_index = 0
-            rightmost_index = _find_index_ge(timespan_2_stop_offsets, timespan_1.stop_offset)
+            rightmost_index = _find_index_gt(timespan_2_stop_offsets, timespan_1.stop_offset)
         except ValueError:
             pass
     else:
