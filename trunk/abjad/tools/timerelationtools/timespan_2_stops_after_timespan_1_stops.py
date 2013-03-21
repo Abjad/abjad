@@ -1,7 +1,7 @@
 def timespan_2_stops_after_timespan_1_stops(timespan_1=None, timespan_2=None, hold=False):
     r'''.. versionadded:: 2.11
 
-    Make time relation template indicating that expression stops after timespan stops:
+    Make time relation template indicating that `timespan_2` stops after `timespan_1` stops:
 
     ::
 
@@ -11,7 +11,7 @@ def timespan_2_stops_after_timespan_1_stops(timespan_1=None, timespan_2=None, ho
             ['timespan_1.stop_offset < timespan_2.stop_offset']
             )
 
-    Return boolean or time relation.
+    Return time relation or boolean.
     '''
     from abjad.tools import timerelationtools
 

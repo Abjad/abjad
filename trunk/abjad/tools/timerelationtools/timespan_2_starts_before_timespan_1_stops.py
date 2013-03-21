@@ -1,7 +1,7 @@
 def timespan_2_starts_before_timespan_1_stops(timespan_1=None, timespan_2=None, hold=False):
     r'''.. versionadded:: 2.11
 
-    Make time relation template indicating that expression starts before timespan stops:
+    Make time relation template indicating that `timespan_2` starts before `timespan_1` stops:
 
     ::
 
@@ -11,7 +11,7 @@ def timespan_2_starts_before_timespan_1_stops(timespan_1=None, timespan_2=None, 
             ['timespan_2.start_offset < timespan_1.stop_offset']
             )
 
-    Return boolean or time relation.
+    Return time relation or boolean.
     '''
     from abjad.tools import timerelationtools
 

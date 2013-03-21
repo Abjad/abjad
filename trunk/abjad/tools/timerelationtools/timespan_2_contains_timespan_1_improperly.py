@@ -11,7 +11,7 @@ def timespan_2_contains_timespan_1_improperly(timespan_1=None, timespan_2=None, 
             ['timespan_2.start_offset <= timespan_1.start_offset', 'timespan_1.stop_offset <= timespan_2.stop_offset']
             )
 
-    Return boolean or time relation.
+    Return time relation or boolean.
     '''
     from abjad.tools import timerelationtools
 

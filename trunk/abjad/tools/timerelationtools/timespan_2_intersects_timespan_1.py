@@ -1,7 +1,7 @@
 def timespan_2_intersects_timespan_1(timespan_1=None, timespan_2=None, hold=False):
     r'''.. versionadded:: 2.11
 
-    Make time relation template indicating that expression intersects timespan:
+    Make time relation template indicating that `timespan_2` intersects `timespan_1`:
 
     ::
 
@@ -20,7 +20,7 @@ def timespan_2_intersects_timespan_1(timespan_1=None, timespan_2=None, hold=Fals
                 ])
             )
 
-    Return boolean or time relation.
+    Return time relation or boolean.
     '''
     from abjad.tools import timerelationtools
 

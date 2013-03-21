@@ -1,7 +1,7 @@
 def timespan_2_starts_when_timespan_1_stops(timespan_1=None, timespan_2=None, hold=False):
     r'''.. versionadded:: 2.11
 
-    Make time relation template indicating that expression happens during timespan:
+    Make time relation template indicating that `timespan_2` happens during `timespan_1`:
 
     ::
 
@@ -11,7 +11,7 @@ def timespan_2_starts_when_timespan_1_stops(timespan_1=None, timespan_2=None, ho
             ['timespan_2.start_offset == timespan_1.stop_offset']
             )
 
-    Return boolean or time relation.
+    Return time relation or boolean.
     '''
     from abjad.tools import timerelationtools
 

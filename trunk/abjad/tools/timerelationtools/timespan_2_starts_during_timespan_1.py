@@ -1,7 +1,7 @@
 def timespan_2_starts_during_timespan_1(timespan_1=None, timespan_2=None, hold=False):
     r'''.. versionadded:: 2.11
 
-    Make time relation indicating that expression 2 starts during expression 1:
+    Make time relation indicating that `timespan_2` starts during `timespan_1`:
 
     ::
 
