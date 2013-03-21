@@ -1,6 +1,8 @@
+import locale
 from experimental import *
 
 
+locale.setlocale(locale.LC_ALL, 'en_US.UTF-8') 
 def test_optimization_targets_01():
     '''Score with 1 voice, 50 measures, 100 divisions, 300 notes.
 
@@ -17,7 +19,7 @@ def test_optimization_targets_01():
     string = 'score_specification.interpret()'
     count = iotools.count_function_calls(string, globals(), locals(), fixed_point=False)
     score = score_specification.score_specification.interpreter.score
-    assert count < 1500000
+    assert count < locale.atoi('1,500,000')
 
 
 def test_optimization_targets_02():
@@ -38,7 +40,7 @@ def test_optimization_targets_02():
     string = 'score_specification.interpret()'
     count = iotools.count_function_calls(string, globals(), locals(), fixed_point=False)
     score = score_specification.score_specification.interpreter.score
-    assert count < 1500000
+    assert count < locale.atoi('1,500,000')
 
 
 def test_optimization_targets_03():
@@ -60,7 +62,7 @@ def test_optimization_targets_03():
     string = 'score_specification.interpret()'
     count = iotools.count_function_calls(string, globals(), locals(), fixed_point=False)
     score = score_specification.score_specification.interpreter.score
-    assert count < 1500000
+    assert count < locale.atoi('1,500,000')
 
 
 def test_optimization_targets_04():
@@ -89,7 +91,7 @@ def test_optimization_targets_04():
     string = 'score_specification.interpret()'
     count = iotools.count_function_calls(string, globals(), locals(), fixed_point=False)
     score = score_specification.score_specification.interpreter.score
-    assert count < 2750000
+    assert count < locale.atoi('2,750,000')
 
 
 def test_optimization_targets_05():
@@ -97,6 +99,7 @@ def test_optimization_targets_05():
     Partition *divisions* in 16 parts and then set leaf color of each part.
 
     2.12 (r9746) 2,444,770 function calls.
+    2.12 (r9752) 1,955,779 function calls.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -116,4 +119,4 @@ def test_optimization_targets_05():
     string = 'score_specification.interpret()'
     count = iotools.count_function_calls(string, globals(), locals(), fixed_point=False)
     score = score_specification.score_specification.interpreter.score
-    assert count < 2750000
+    assert count < locale.atoi('2,000,000')

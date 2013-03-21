@@ -279,12 +279,13 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
 
         Return newly constructed start-positioned payload expression.
         '''
-        assert isinstance(time_relation, timerelationtools.TimeRelation), repr(time_relation)
-        assert self.elements_are_time_contiguous, repr(self)
-        elements = []
+        start_offsets, stop_offsets = [], []
         for element in self.elements:
-            if time_relation(timespan_2=element, context_name=self.voice_name):
-                elements.append(element)
+            start_offsets.append(element.start_offset)
+            stop_offsets.append(element.stop_offset)
+        start_index, stop_index = timerelationtools.get_offset_indices_that_satisfy_time_relation(
+            start_offsets, stop_offsets, time_relation) 
+        elements = self.elements[start_index:stop_index]
         if not elements:
             return
         start_offset = elements[0].start_offset
