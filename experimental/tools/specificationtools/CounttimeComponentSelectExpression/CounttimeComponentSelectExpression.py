@@ -127,6 +127,7 @@ class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMe
         anchor_timespan = self._evaluate_anchor_timespan()
         voice_proxy = self.score_specification.voice_data_structures_by_voice[self.voice_name]
         rhythm_payload_expressions = voice_proxy.payload_expressions_by_attribute['rhythm']
+        # TODO: will this have to be optimized with bisect?
         rhythm_payload_expressions = rhythm_payload_expressions.get_timespans_that_satisfy_time_relation(
             timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan))
         if not rhythm_payload_expressions:
@@ -142,7 +143,8 @@ class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMe
             expression.payload.extend(rhythm_payload_expression.payload)
         assert wellformednesstools.is_well_formed_component(expression.payload)
         # TODO: eventually make this be able to work
-        #expression = expression.get_elements_that_satisfy_time_relation(time_relation)
+        #callback_cache = self.score_specification.interpreter.callback_cache
+        #expression = expression.get_elements_that_satisfy_time_relation(time_relation, callback_cache)
         expression = self._apply_callbacks(expression)
         expression._voice_name = self.voice_name
         return expression

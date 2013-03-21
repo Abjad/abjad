@@ -100,6 +100,7 @@ def test_optimization_targets_05():
 
     2.12 (r9746) 2,444,770 function calls.
     2.12 (r9752) 1,955,779 function calls.
+    2.12 (r9753) 1,848,278 function calls.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

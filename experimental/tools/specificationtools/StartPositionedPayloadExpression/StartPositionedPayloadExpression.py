@@ -274,20 +274,24 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
 
     ### PUBLIC METHODS ###
 
-    def get_elements_that_satisfy_time_relation(self, time_relation):
+    def get_elements_that_satisfy_time_relation(self, time_relation, callback_cache):
         '''Get start-positioned payload expression elements that satisfy `time_relation`.
 
         Return newly constructed start-positioned payload expression.
         '''
-        start_offsets, stop_offsets = [], []
-        for element in self.elements:
-            start_offsets.append(element.start_offset)
-            stop_offsets.append(element.stop_offset)
-        start_index, stop_index = timerelationtools.get_offset_indices_that_satisfy_time_relation(
-            start_offsets, stop_offsets, time_relation) 
-        elements = self.elements[start_index:stop_index]
-        if not elements:
-            return
+        key = (repr(self), repr(time_relation))
+        if key not in callback_cache or not callback_cache[key]:
+            start_offsets, stop_offsets = [], []
+            for element in self.elements:
+                start_offsets.append(element.start_offset)
+                stop_offsets.append(element.stop_offset)
+            start_index, stop_index = timerelationtools.get_offset_indices_that_satisfy_time_relation(
+                start_offsets, stop_offsets, time_relation) 
+            elements = self.elements[start_index:stop_index]
+            if not elements:
+                return
+            callback_cache[key] = elements
+        elements = callback_cache[key] 
         start_offset = elements[0].start_offset
         expression = self.new(payload=elements, start_offset=start_offset)
         return expression

@@ -69,7 +69,8 @@ class DivisionSelectExpression(SelectExpression):
         start_offset = existing_voice_divisions[0].start_offset
         expression = specificationtools.StartPositionedDivisionPayloadExpression(
             existing_voice_divisions, start_offset=start_offset)
-        expression = expression.get_elements_that_satisfy_time_relation(time_relation)
+        callback_cache = self.score_specification.interpreter.callback_cache
+        expression = expression.get_elements_that_satisfy_time_relation(time_relation, callback_cache)
         if time_relation is None:
             inventory = expression & anchor_timespan
             expression = inventory[0]
