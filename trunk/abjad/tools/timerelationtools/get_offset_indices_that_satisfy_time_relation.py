@@ -6,8 +6,32 @@ def get_offset_indices_that_satisfy_time_relation(
     '''.. versionadded:: 2.12
 
     Get offset indices that satisfy `time_relation`.
+
+        >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+        >>> start_offsets = [note.start_offset for note in staff]
+        >>> stop_offsets = [note.stop_offset for note in staff]
+
+    Example 1. Notes equal to ``staff[0:2]`` start during timespan ``[0, 3/16)``:
+
+    ::
+
+        >>> timespan_1 = timespantools.Timespan(Offset(0), Offset(3, 16))
+        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
+        >>> timerelationtools.get_offset_indices_that_satisfy_time_relation(
+        ...     start_offsets, stop_offsets, time_relation)
+        (0, 2)
+
+    Example 2. Notes equal to ``staff[2:8]`` start after timespan ``[0, 3/16)`` stops:
+
+    ::
+
+        >>> timespan_1 = timespantools.Timespan(Offset(0), Offset(3, 16))
+        >>> time_relation = timerelationtools.timespan_2_starts_after_timespan_1_stops(timespan_1=timespan_1)
+        >>> timerelationtools.get_offset_indices_that_satisfy_time_relation(
+        ...     start_offsets, stop_offsets, time_relation)
+        (2, 8)
     
-    .. note:: add example.
+    Return nonnegative integer pair.
     '''
     from abjad.tools import timerelationtools
     from abjad.tools import timespantools
