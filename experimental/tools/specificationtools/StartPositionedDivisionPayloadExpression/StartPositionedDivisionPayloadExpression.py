@@ -11,12 +11,12 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
     ::
 
         >>> payload = [(6, 8), (6, 8), (3, 4)]
-        >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+        >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
         ...     payload, Offset(0))
 
     ::
 
-        >>> z(payload_expression)
+        >>> z(expression)
         specificationtools.StartPositionedDivisionPayloadExpression(
             payload=specificationtools.DivisionList(
                 [Division('[6, 8]', start_offset=Offset(0, 1)),
@@ -49,9 +49,9 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = payload_expression & timespantools.Timespan(0, Offset(1, 8))
+            >>> result = expression & timespantools.Timespan(0, Offset(1, 8))
 
         ::
 
@@ -71,9 +71,9 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = payload_expression & timespantools.Timespan(Offset(17, 8), 100)
+            >>> result = expression & timespantools.Timespan(Offset(17, 8), 100)
 
         ::
 
@@ -93,9 +93,9 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = payload_expression & timespantools.Timespan(Offset(1, 8), Offset(17, 8))
+            >>> result = expression & timespantools.Timespan(Offset(1, 8), Offset(17, 8))
 
         ::
 
@@ -117,9 +117,9 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = payload_expression & timespantools.Timespan(100, 200)
+            >>> result = expression & timespantools.Timespan(100, 200)
 
         ::
 
@@ -135,7 +135,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
         ::
 
-            >>> result = payload_expression[:2]
+            >>> result = expression[:2]
 
         ::
 
@@ -172,20 +172,20 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
         ::
 
-            >>> payload_expression_1 = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression_1 = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     2 * [(3, 16)], Offset(0))
             >>> timespan = timespantools.Timespan(Offset(6, 16))
-            >>> payload_expression_2 = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression_2 = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     2 * [(2, 16)], Offset(6, 16))
 
         ::
 
-            >>> payload_expression_1.timespan.stops_when_timespan_starts(payload_expression_2)
+            >>> expression_1.timespan.stops_when_timespan_starts(expression_2)
             True
 
         ::
 
-            >>> result = payload_expression_1 | payload_expression_2
+            >>> result = expression_1 | expression_2
 
         ::
 
@@ -215,9 +215,9 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = payload_expression - timespantools.Timespan(0, Offset(1, 8))
+            >>> result = expression - timespantools.Timespan(0, Offset(1, 8))
 
         ::
 
@@ -239,9 +239,9 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = payload_expression - timespantools.Timespan(Offset(17, 8), 100)
+            >>> result = expression - timespantools.Timespan(Offset(17, 8), 100)
 
         ::
 
@@ -263,9 +263,9 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = payload_expression - timespantools.Timespan(Offset(1, 8), Offset(17, 8))
+            >>> result = expression - timespantools.Timespan(Offset(1, 8), Offset(17, 8))
 
         ::
 
@@ -292,9 +292,9 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = payload_expression - timespantools.Timespan(100, 200)
+            >>> result = expression - timespantools.Timespan(100, 200)
 
         ::
 
@@ -340,7 +340,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
         ::
 
-            >>> payload_expression.elements
+            >>> expression.elements
             [Division('[6, 8]', start_offset=Offset(0, 1)),
             Division('[6, 8]', start_offset=Offset(3, 4)),
             Division('[3, 4]', start_offset=Offset(3, 2))]
@@ -356,7 +356,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
         ::
 
-            >>> payload_expression.elements_are_time_contiguous
+            >>> expression.elements_are_time_contiguous
             True
 
         Return boolean.
@@ -369,7 +369,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
         ::
 
-            >>> payload_expression.payload
+            >>> expression.payload
             DivisionList('[6, 8], [6, 8], [3, 4]')
 
         Return division list.
@@ -382,7 +382,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
         ::
 
-            >>> payload_expression.start_offset
+            >>> expression.start_offset
             Offset(0, 1)
 
         Return offset.
@@ -395,7 +395,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
         ::
 
-            >>> payload_expression.stop_offset
+            >>> expression.stop_offset
             Offset(9, 4)
 
         Return offset.
@@ -408,7 +408,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
         ::
 
-            >>> z(payload_expression)
+            >>> z(expression)
             specificationtools.StartPositionedDivisionPayloadExpression(
                 payload=specificationtools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)),
@@ -429,7 +429,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
         ::
 
-            >>> payload_expression.timespan
+            >>> expression.timespan
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(9, 4))
 
         Return timespan.
@@ -442,7 +442,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
         ::
 
-            >>> payload_expression.voice_name is None
+            >>> expression.voice_name is None
             True
 
         Return string.
@@ -457,12 +457,12 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (6, 8), (6, 8), (6, 4), (6, 4)]
-            >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
 
         ::
 
-            >>> result = payload_expression.partition_by_ratio((1, 1))
+            >>> result = expression.partition_by_ratio((1, 1))
 
         ::
 
@@ -498,12 +498,12 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (6, 8), (6, 8), (6, 4), (6, 4)]
-            >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
 
         ::
 
-            >>> result = payload_expression.partition_by_ratio_of_durations((1, 1))
+            >>> result = expression.partition_by_ratio_of_durations((1, 1))
 
         ::
 
@@ -539,16 +539,16 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
 
         ::
 
-            >>> result = payload_expression.reflect()
+            >>> result = expression.reflect()
 
         ::
 
-            >>> z(payload_expression)
+            >>> z(expression)
             specificationtools.StartPositionedDivisionPayloadExpression(
                 payload=specificationtools.DivisionList(
                     [Division('[3, 4]', start_offset=Offset(0, 1)),
@@ -569,12 +569,12 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
 
         ::
 
-            >>> result = payload_expression.repeat_to_duration(Duration(13, 4))
+            >>> result = expression.repeat_to_duration(Duration(13, 4))
 
         ::
 
@@ -603,12 +603,12 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
 
         ::
 
-            >>> result = payload_expression.repeat_to_length(5)
+            >>> result = expression.repeat_to_length(5)
 
         ::
 
@@ -637,16 +637,16 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
 
         ::
 
-            >>> result = payload_expression.rotate(-1)
+            >>> result = expression.rotate(-1)
 
         ::
 
-            >>> z(payload_expression)
+            >>> z(expression)
             specificationtools.StartPositionedDivisionPayloadExpression(
                 payload=specificationtools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)),
@@ -667,12 +667,12 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
         ::
 
             >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> payload_expression = specificationtools.StartPositionedDivisionPayloadExpression(
+            >>> expression = specificationtools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
 
         ::
 
-            >>> result = payload_expression.translate(10)
+            >>> result = expression.translate(10)
 
         ::
 
