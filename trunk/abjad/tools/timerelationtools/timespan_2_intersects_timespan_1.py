@@ -7,15 +7,15 @@ def timespan_2_intersects_timespan_1(timespan_1=None, timespan_2=None, hold=Fals
 
         >>> z(timerelationtools.timespan_2_intersects_timespan_1())
         timerelationtools.TimespanTimespanTimeRelation(
-            'timespan_1.start <= timespan_2.start < timespan_1.stop or timespan_2.start <= timespan_1.start < timespan_2.stop',
+            'timespan_1.start_offset <= timespan_2.start_offset < timespan_1.stop_offset or timespan_2.start_offset <= timespan_1.start_offset < timespan_2.stop_offset',
             timerelationtools.CompoundInequality([
                 timerelationtools.CompoundInequality([
-                    'timespan_1.start <= timespan_2.start',
-                    'timespan_2.start < timespan_1.stop'
+                    'timespan_1.start_offset <= timespan_2.start_offset',
+                    'timespan_2.start_offset < timespan_1.stop_offset'
                     ]),
                 timerelationtools.CompoundInequality([
-                    'timespan_2.start <= timespan_1.start',
-                    'timespan_1.start < timespan_2.stop'
+                    'timespan_2.start_offset <= timespan_1.start_offset',
+                    'timespan_1.start_offset < timespan_2.stop_offset'
                     ])
                 ])
             )
@@ -25,16 +25,16 @@ def timespan_2_intersects_timespan_1(timespan_1=None, timespan_2=None, hold=Fals
     from abjad.tools import timerelationtools
 
     time_relation = timerelationtools.TimespanTimespanTimeRelation(
-        'timespan_1.start <= timespan_2.start < timespan_1.stop or '
-        'timespan_2.start <= timespan_1.start < timespan_2.stop',
+        'timespan_1.start_offset <= timespan_2.start_offset < timespan_1.stop_offset or '
+        'timespan_2.start_offset <= timespan_1.start_offset < timespan_2.stop_offset',
         timerelationtools.CompoundInequality([
             timerelationtools.CompoundInequality([
-                'timespan_1.start <= timespan_2.start',
-                'timespan_2.start < timespan_1.stop'],
+                'timespan_1.start_offset <= timespan_2.start_offset',
+                'timespan_2.start_offset < timespan_1.stop_offset'],
                 logical_operator='and'),
             timerelationtools.CompoundInequality([
-                'timespan_2.start <= timespan_1.start',
-                'timespan_1.start < timespan_2.stop'],
+                'timespan_2.start_offset <= timespan_1.start_offset',
+                'timespan_1.start_offset < timespan_2.stop_offset'],
                 logical_operator='and')],
             logical_operator='or'),
         timespan_1=timespan_1,

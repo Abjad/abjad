@@ -7,8 +7,8 @@ def timespan_2_overlaps_all_of_timespan_1(timespan_1=None, timespan_2=None, hold
 
         >>> z(timerelationtools.timespan_2_overlaps_all_of_timespan_1())
         timerelationtools.TimespanTimespanTimeRelation(
-            'timespan_2.start < timespan_1.start < timespan_1.stop < timespan_2.stop',
-            ['timespan_2.start < timespan_1.start', 'timespan_1.start < timespan_1.stop', 'timespan_1.stop < timespan_2.stop']
+            'timespan_2.start_offset < timespan_1.start_offset < timespan_1.stop_offset < timespan_2.stop_offset',
+            ['timespan_2.start_offset < timespan_1.start_offset', 'timespan_1.start_offset < timespan_1.stop_offset', 'timespan_1.stop_offset < timespan_2.stop_offset']
             )
 
     Return boolean or time relation.
@@ -16,11 +16,11 @@ def timespan_2_overlaps_all_of_timespan_1(timespan_1=None, timespan_2=None, hold
     from abjad.tools import timerelationtools
 
     time_relation = timerelationtools.TimespanTimespanTimeRelation(
-        'timespan_2.start < timespan_1.start < timespan_1.stop < timespan_2.stop',
+        'timespan_2.start_offset < timespan_1.start_offset < timespan_1.stop_offset < timespan_2.stop_offset',
         [
-            'timespan_2.start < timespan_1.start',
-            'timespan_1.start < timespan_1.stop',
-            'timespan_1.stop < timespan_2.stop',
+            'timespan_2.start_offset < timespan_1.start_offset',
+            'timespan_1.start_offset < timespan_1.stop_offset',
+            'timespan_1.stop_offset < timespan_2.stop_offset',
         ],
         timespan_1=timespan_1,
         timespan_2=timespan_2)

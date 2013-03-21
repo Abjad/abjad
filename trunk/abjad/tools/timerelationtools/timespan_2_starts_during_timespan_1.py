@@ -7,8 +7,8 @@ def timespan_2_starts_during_timespan_1(timespan_1=None, timespan_2=None, hold=F
 
         >>> z(timerelationtools.timespan_2_starts_during_timespan_1())
         timerelationtools.TimespanTimespanTimeRelation(
-            'timespan_1.start <= timespan_2.start < timespan_1.stop',
-            ['timespan_1.start <= timespan_2.start', 'timespan_2.start < timespan_1.stop']
+            'timespan_1.start_offset <= timespan_2.start_offset < timespan_1.stop_offset',
+            ['timespan_1.start_offset <= timespan_2.start_offset', 'timespan_2.start_offset < timespan_1.stop_offset']
             )
 
     Return time relation or boolean.
@@ -16,10 +16,10 @@ def timespan_2_starts_during_timespan_1(timespan_1=None, timespan_2=None, hold=F
     from abjad.tools import timerelationtools
 
     time_relation = timerelationtools.TimespanTimespanTimeRelation(
-        'timespan_1.start <= timespan_2.start < timespan_1.stop',
+        'timespan_1.start_offset <= timespan_2.start_offset < timespan_1.stop_offset',
         [
-            'timespan_1.start <= timespan_2.start',
-            'timespan_2.start < timespan_1.stop',
+            'timespan_1.start_offset <= timespan_2.start_offset',
+            'timespan_2.start_offset < timespan_1.stop_offset',
         ],
         timespan_1=timespan_1,
         timespan_2=timespan_2)

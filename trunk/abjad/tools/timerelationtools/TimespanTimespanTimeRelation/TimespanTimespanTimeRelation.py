@@ -127,8 +127,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             >>> z(time_relation)
             timerelationtools.TimespanTimespanTimeRelation(
-                'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                ['timespan_1.start <= timespan_2.start', 'timespan_2.start < timespan_1.stop'],
+                'timespan_1.start_offset <= timespan_2.start_offset < timespan_1.stop_offset',
+                ['timespan_1.start_offset <= timespan_2.start_offset', 'timespan_2.start_offset < timespan_1.stop_offset'],
                 timespan_1=timespantools.Timespan(
                     start_offset=durationtools.Offset(5, 1),
                     stop_offset=durationtools.Offset(15, 1)
@@ -203,10 +203,10 @@ class TimespanTimespanTimeRelation(TimeRelation):
         timespan_2_start, timespan_2_stop = self._get_expr_offsets(
             timespan_2, score_specification=score_specification, context_name=context_name)
         command = self.template
-        command = command.replace('timespan_1.start', repr(timespan_1_start))
-        command = command.replace('timespan_1.stop', repr(timespan_1_stop))
-        command = command.replace('timespan_2.start', repr(timespan_2_start))
-        command = command.replace('timespan_2.stop', repr(timespan_2_stop))
+        command = command.replace('timespan_1.start_offset', repr(timespan_1_start))
+        command = command.replace('timespan_1.stop_offset', repr(timespan_1_stop))
+        command = command.replace('timespan_2.start_offset', repr(timespan_2_start))
+        command = command.replace('timespan_2.stop_offset', repr(timespan_2_stop))
         result = eval(command, {'Offset': durationtools.Offset})
         return result
 

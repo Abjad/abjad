@@ -1,14 +1,11 @@
-1.  Change simple inequalities of the form 'timespan_n.start' to 'timespan_n.start_offset'.
-    Change simple inequalities of the form 'timespan_n.stop' to 'timespan_n.stop_offset'.
+1.  Author comprehensive time-relation tests for select_leaves().
 
-2.  Author comprehensive time-relation tests for select_leaves().
-
-3.  Change all TimeRelation.inequalities values to either CompoundInequality or string
+2.  Change all TimeRelation.inequalities values to either CompoundInequality or string
     (for simple inequality); forbid list-of-strings value.
 
-4.  Remove TimeRelation.template property.
+3.  Remove TimeRelation.template property.
 
-5.  Add these eight functions:
+4.  Add these eight functions:
         timerelationtools.timespan_2_starts_no_earlier_than_timespan_1_starts()
         timerelationtools.timespan_2_starts_no_earlier_than_timespan_1_stops()
         timerelationtools.timespan_2_starts_no_later_than_timespan_1_starts()
@@ -18,14 +15,14 @@
         timerelationtools.timespan_2_stops_no_later_than_timespan_1_starts()
         timerelationtools.timespan_2_stop_no_later_than_timespan_1_stops()
 
-6.  Integrate MetricalHierarhcy in BeatSelectExpression.
+5.  Integrate MetricalHierarhcy in BeatSelectExpression.
 
-7.  Add use_metrical_hierarcy=False flag to leaftools.make_leaves().
+6.  Add use_metrical_hierarcy=False flag to leaftools.make_leaves().
     Integrate into rhythmmakertools.NoteRhythmMaker.
 
-8.  Implement a -1 / +1 talea on TwoStageHairpinHandler to determine
+7.  Implement a -1 / +1 talea on TwoStageHairpinHandler to determine
     which stage should have greater duration (left or right).
 
-9.  Reinstate Callback class.
+8.  Reinstate Callback class.
     Will greatly clean up IterablePayloadCallbackMixin._apply_callbacks() method.
     Will make callback testing cleaner.

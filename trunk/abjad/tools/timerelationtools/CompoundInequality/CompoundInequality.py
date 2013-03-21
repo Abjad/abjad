@@ -10,12 +10,12 @@ class CompoundInequality(ObjectInventory):
 
         >>> compound_inequality = timerelationtools.CompoundInequality([
         ...    timerelationtools.CompoundInequality([
-        ...        'timespan_1.start <= timespan_2.start',
-        ...        'timespan_2.start < timespan_1.stop'],
+        ...        'timespan_1.start_offset <= timespan_2.start_offset',
+        ...        'timespan_2.start_offset < timespan_1.stop_offset'],
         ...         logical_operator='and'),
         ...     timerelationtools.CompoundInequality([
-        ...        'timespan_2.start <= timespan_1.start',
-        ...        'timespan_1.start < timespan_2.stop'],
+        ...        'timespan_2.start_offset <= timespan_1.start_offset',
+        ...        'timespan_1.start_offset < timespan_2.stop_offset'],
         ...        logical_operator='and')],
         ...    logical_operator='or')
 
@@ -24,12 +24,12 @@ class CompoundInequality(ObjectInventory):
         >>> z(compound_inequality)
         timerelationtools.CompoundInequality([
             timerelationtools.CompoundInequality([
-                'timespan_1.start <= timespan_2.start',
-                'timespan_2.start < timespan_1.stop'
+                'timespan_1.start_offset <= timespan_2.start_offset',
+                'timespan_2.start_offset < timespan_1.stop_offset'
                 ]),
             timerelationtools.CompoundInequality([
-                'timespan_2.start <= timespan_1.start',
-                'timespan_1.start < timespan_2.stop'
+                'timespan_2.start_offset <= timespan_1.start_offset',
+                'timespan_1.start_offset < timespan_2.stop_offset'
                 ])
             ])
 

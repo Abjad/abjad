@@ -7,8 +7,8 @@ def timespan_2_stops_after_timespan_1_starts(timespan_1=None, timespan_2=None, h
 
         >>> z(timerelationtools.timespan_2_stops_after_timespan_1_starts())
         timerelationtools.TimespanTimespanTimeRelation(
-            'timespan_1.start < timespan_2.stop',
-            ['timespan_1.start < timespan_2.stop']
+            'timespan_1.start_offset < timespan_2.stop_offset',
+            ['timespan_1.start_offset < timespan_2.stop_offset']
             )
 
     Return boolean or time relation.
@@ -16,9 +16,9 @@ def timespan_2_stops_after_timespan_1_starts(timespan_1=None, timespan_2=None, h
     from abjad.tools import timerelationtools
 
     time_relation = timerelationtools.TimespanTimespanTimeRelation(
-        'timespan_1.start < timespan_2.stop',
+        'timespan_1.start_offset < timespan_2.stop_offset',
         [
-            'timespan_1.start < timespan_2.stop',
+            'timespan_1.start_offset < timespan_2.stop_offset',
         ],
         timespan_1=timespan_1,
         timespan_2=timespan_2)

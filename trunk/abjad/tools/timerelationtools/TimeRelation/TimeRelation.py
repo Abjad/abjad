@@ -19,8 +19,8 @@ class TimeRelation(AbjadObject):
 
         >>> z(time_relation)
         timerelationtools.TimespanTimespanTimeRelation(
-            'timespan_1.start <= timespan_2.start < timespan_1.stop',
-            ['timespan_1.start <= timespan_2.start', 'timespan_2.start < timespan_1.stop'],
+            'timespan_1.start_offset <= timespan_2.start_offset < timespan_1.stop_offset',
+            ['timespan_1.start_offset <= timespan_2.start_offset', 'timespan_2.start_offset < timespan_1.stop_offset'],
             timespan_1=timespantools.Timespan(
                 start_offset=durationtools.Offset(0, 1),
                 stop_offset=durationtools.Offset(10, 1)
@@ -130,8 +130,8 @@ class TimeRelation(AbjadObject):
 
             >>> z(time_relation)
             timerelationtools.TimespanTimespanTimeRelation(
-                'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                ['timespan_1.start <= timespan_2.start', 'timespan_2.start < timespan_1.stop'],
+                'timespan_1.start_offset <= timespan_2.start_offset < timespan_1.stop_offset',
+                ['timespan_1.start_offset <= timespan_2.start_offset', 'timespan_2.start_offset < timespan_1.stop_offset'],
                 timespan_1=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(10, 1)
@@ -153,7 +153,7 @@ class TimeRelation(AbjadObject):
         ::
 
             >>> time_relation.template
-            'timespan_1.start <= timespan_2.start < timespan_1.stop'
+            'timespan_1.start_offset <= timespan_2.start_offset < timespan_1.stop_offset'
 
         Return string.
         '''
@@ -173,16 +173,16 @@ class TimeRelation(AbjadObject):
 
             >>> z(time_relation)
             timerelationtools.TimespanTimespanTimeRelation(
-                'timespan_2.stop == timespan_1.start',
-                ['timespan_2.stop == timespan_1.start']
+                'timespan_2.stop_offset == timespan_1.start_offset',
+                ['timespan_2.stop_offset == timespan_1.start_offset']
                 )
 
         ::
 
             >>> z(new_time_relation)
             timerelationtools.TimespanTimespanTimeRelation(
-                'timespan_2.stop == timespan_1.start',
-                ['timespan_2.stop == timespan_1.start'],
+                'timespan_2.stop_offset == timespan_1.start_offset',
+                ['timespan_2.stop_offset == timespan_1.start_offset'],
                 timespan_1=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(5, 1)
