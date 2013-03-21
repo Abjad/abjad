@@ -108,6 +108,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     ### SPECIAL METHODS ###
 
+    # TODO: test and see if context_name=None can be removed entirely.
+    # TODO: rename all timespan_1_start variable names as timespan_1_start_offset, etc.
+    # TODO: streamline this entire method to delegate evaluation to SimpleInequality, CompoundInequality
     def __call__(self, timespan_1=None, timespan_2=None, score_specification=None, context_name=None):
         r'''Evaluate time relation.
 
@@ -187,6 +190,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         Otherwise return boolean.
         '''
+        from abjad.tools import timerelationtools
         from abjad.tools import timespantools
         if timespan_1 is None:
             timespan_1 = self.timespan_1
@@ -208,16 +212,21 @@ class TimespanTimespanTimeRelation(TimeRelation):
         command = command.replace('timespan_2.start_offset', repr(timespan_2_start))
         command = command.replace('timespan_2.stop_offset', repr(timespan_2_stop))
         result = eval(command, {'Offset': durationtools.Offset})
-#        truth_values = []
-#        for inequality in self.inequalities:
-#            inequality = inequality.replace('timespan_1.start_offset', repr(timespan_1_start))
-#            inequality = inequality.replace('timespan_1.stop_offset', repr(timespan_1_stop))
-#            inequality = inequality.replace('timespan_2.start_offset', repr(timespan_2_start))
-#            inequality = inequality.replace('timespan_2.stop_offset', repr(timespan_2_stop))
-#            truth_value = eval(inequality, {'Offset': durationtools.Offset})
-#            truth_values.append(truth_value)
-#        truth_value = all(truth_values)
-#        assert result == truth_value, repr((result, truth_value))
+        if not isinstance(self.inequalities, timerelationtools.CompoundInequality):
+            truth_values = []
+            for inequality in self.inequalities:
+                inequality = inequality.replace('timespan_1.start_offset', repr(timespan_1_start))
+                inequality = inequality.replace('timespan_1.stop_offset', repr(timespan_1_stop))
+                inequality = inequality.replace('timespan_2.start_offset', repr(timespan_2_start))
+                inequality = inequality.replace('timespan_2.stop_offset', repr(timespan_2_stop))
+                truth_value = eval(inequality, {'Offset': durationtools.Offset})
+                truth_values.append(truth_value)
+            truth_value = all(truth_values)
+            assert result == truth_value, repr((result, truth_value))
+        else:
+            truth_value = self.inequalities.evaluate(
+                timespan_1_start, timespan_1_stop, timespan_2_start, timespan_2_stop)
+            assert result == truth_value, repr((result, truth_value))
         return result
 
     def __eq__(self, expr):

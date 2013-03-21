@@ -30,6 +30,9 @@ Methods
 .. automethod:: abjad.tools.timerelationtools.CompoundInequality.CompoundInequality.CompoundInequality.count
    :noindex:
 
+.. automethod:: abjad.tools.timerelationtools.CompoundInequality.CompoundInequality.CompoundInequality.evaluate
+   :noindex:
+
 .. automethod:: abjad.tools.timerelationtools.CompoundInequality.CompoundInequality.CompoundInequality.extend
    :noindex:
 

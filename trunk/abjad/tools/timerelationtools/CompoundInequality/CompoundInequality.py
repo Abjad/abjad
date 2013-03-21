@@ -1,3 +1,4 @@
+from abjad.tools import durationtools
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 
 
@@ -69,6 +70,30 @@ class CompoundInequality(ObjectInventory):
 
     ### PUBLIC METHODS ###
 
+    def evaluate(self, timespan_1_start, timespan_1_stop, timespan_2_start, timespan_2_stop):
+        truth_values = []
+        for inequality in self:
+            if isinstance(inequality, str):
+                inequality = inequality.replace('timespan_1.start_offset', repr(timespan_1_start))
+                inequality = inequality.replace('timespan_1.stop_offset', repr(timespan_1_stop))
+                inequality = inequality.replace('timespan_2.start_offset', repr(timespan_2_start))
+                inequality = inequality.replace('timespan_2.stop_offset', repr(timespan_2_stop))
+                truth_value = eval(inequality, {'Offset': durationtools.Offset})
+                truth_values.append(truth_value)
+            elif isinstance(inequality, type(self)):
+                truth_value = inequality.evaluate(
+                    timespan_1_start, timespan_1_stop, timespan_2_start, timespan_2_stop)
+                truth_values.append(truth_value)
+        if self.logical_operator == 'and':
+            truth_value = all(truth_values)
+        elif self.logical_operator == 'or':
+            truth_value = any(truth_values)
+        elif self.logical_operator == 'xor':
+            truth_value = bool(len([x for x in truth_values if x]) == 1)
+        else:
+            raise ValueError(self.logical_operator)
+        return truth_value
+        
     def get_offset_indices(self, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets):
         from experimental.tools import timerelationtools
         from experimental.tools import timespantools

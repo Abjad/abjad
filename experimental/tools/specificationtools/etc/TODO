@@ -1,3 +1,6 @@
+0.  Test and see if TimespanTimespanTimeRelation.__call__() context_name=None keyword
+    can be removed entirely.
+
 1.  Author comprehensive time-relation tests for select_leaves().
 
 2.  Change all TimeRelation.inequalities values to either CompoundInequality or string
