@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.specificationtools.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.elements
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.elements_are_time_contiguous
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.payload
    :noindex:
 

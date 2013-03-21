@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.elements
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.elements_are_time_contiguous
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression.payload
    :noindex:
 

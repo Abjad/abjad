@@ -218,6 +218,21 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         return self.payload
 
     @property
+    def elements_are_time_contiguous(self):
+        '''True when start-positioned payload expression elements are time-contiguous.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        if len(self.elements):
+            last_element = self.elements[0]
+            for current_element in self.elements[1:]:
+                if not last_element.stop_offset == current_element.start_offset:
+                    return False
+                last_element = current_element
+        return True
+
+    @property
     def payload(self):
         '''Start-postioned payload expression payload.
 
@@ -265,6 +280,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         Return newly constructed start-positioned payload expression.
         '''
         assert isinstance(time_relation, timerelationtools.TimeRelation), repr(time_relation)
+        assert self.elements_are_time_contiguous, repr(self)
         elements = []
         for element in self.elements:
             if time_relation(timespan_2=element, context_name=self.voice_name):

@@ -369,6 +369,20 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return self.payload.leaves
 
     @property
+    def elements_are_time_contiguous(self):
+        '''True when start-positioned rhythm payload expression
+        elements are time-contiguous. Otherwise false:
+
+        ::
+
+            >>> expression.elements_are_time_contiguous
+            True
+
+        Return boolean.
+        '''
+        return StartPositionedPayloadExpression.elements_are_time_contiguous.fget(self)  
+
+    @property
     def payload(self):
         '''Start-positioned rhythm payload expression payload.
 

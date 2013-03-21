@@ -89,7 +89,7 @@ def test_optimization_targets_04():
     string = 'score_specification.interpret()'
     count = iotools.count_function_calls(string, globals(), locals(), fixed_point=False)
     score = score_specification.score_specification.interpreter.score
-    assert count < 2500000
+    assert count < 2750000
 
 
 def test_optimization_targets_05():
@@ -116,4 +116,4 @@ def test_optimization_targets_05():
     string = 'score_specification.interpret()'
     count = iotools.count_function_calls(string, globals(), locals(), fixed_point=False)
     score = score_specification.score_specification.interpreter.score
-    assert count < 2500000
+    assert count < 2750000
