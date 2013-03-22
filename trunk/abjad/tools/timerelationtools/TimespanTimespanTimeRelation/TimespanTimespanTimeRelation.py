@@ -101,6 +101,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     ### INITIALIZER ###
 
+    # TODO: remove template
     def __init__(self, template, inequalities, timespan_1=None, timespan_2=None):
         TimeRelation.__init__(self, template, inequalities)
         self._timespan_1 = timespan_1
@@ -206,12 +207,6 @@ class TimespanTimespanTimeRelation(TimeRelation):
             timespan_1, score_specification=score_specification, context_name=context_name)
         timespan_2_start, timespan_2_stop = self._get_expr_offsets(
             timespan_2, score_specification=score_specification, context_name=context_name)
-        command = self.template
-        command = command.replace('timespan_1.start_offset', repr(timespan_1_start))
-        command = command.replace('timespan_1.stop_offset', repr(timespan_1_stop))
-        command = command.replace('timespan_2.start_offset', repr(timespan_2_start))
-        command = command.replace('timespan_2.stop_offset', repr(timespan_2_stop))
-        result = eval(command, {'Offset': durationtools.Offset})
         if not isinstance(self.inequalities, timerelationtools.CompoundInequality):
             truth_values = []
             for inequality in self.inequalities:
@@ -222,12 +217,10 @@ class TimespanTimespanTimeRelation(TimeRelation):
                 truth_value = eval(inequality, {'Offset': durationtools.Offset})
                 truth_values.append(truth_value)
             truth_value = all(truth_values)
-            assert result == truth_value, repr((result, truth_value))
         else:
             truth_value = self.inequalities.evaluate(
                 timespan_1_start, timespan_1_stop, timespan_2_start, timespan_2_stop)
-            assert result == truth_value, repr((result, truth_value))
-        return result
+        return truth_value
 
     def __eq__(self, expr):
         '''True when `expr` equals time relation. Otherwise false:
@@ -251,7 +244,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         Return boolean.
         '''
         if isinstance(expr, type(self)):
-            if self.template == expr.template:
+            if self.inequalities == expr.inequalities:
                 if self.timespan_1 == expr.timespan_1:
                     if self.timespan_2 == expr.timespan_2:
                         return True
