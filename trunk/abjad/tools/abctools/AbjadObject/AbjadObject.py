@@ -28,51 +28,50 @@ class AbjadObject(object):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, arg):
-        '''True when ``id(self)`` equals ``id(arg)``.
+    def __eq__(self, expr):
+        '''True when ``id(self)`` equals ``id(expr)``.
 
         Return boolean.
         '''
-        return id(self) == id(arg)
+        return id(self) == id(expr)
 
-    def __ge__(self, arg):
+    def __ge__(self, expr):
         '''Abjad objects by default do not implement this method.
 
         Raise exception.
         '''
-        raise NotImplementedError('Greater-equal not implemented on "{!r}".'.format(arg))
+        raise NotImplementedError('Greater-equal not implemented on {!r}.'.format(expr))
 
-    def __gt__(self, arg):
+    def __gt__(self, expr):
         '''Abjad objects by default do not implement this method.
 
         Raise exception
         '''
-        raise NotImplementedError('Greater-than not implemented on "{!r}".'.format(arg))
+        raise NotImplementedError('Greater-than not implemented on {!r}.'.format(expr))
 
-    def __le__(self, arg):
+    def __le__(self, expr):
         '''Abjad objects by default do not implement this method.
 
         Raise exception.
         '''
-        raise NotImplementedError('Less-equal not implemented on "{!r}".'.format(arg))
+        raise NotImplementedError('Less-equal not implemented on {!r}.'.format(expr))
 
-    def __lt__(self, arg):
+    def __lt__(self, expr):
         '''Abjad objects by default do not implement this method.
 
         Raise exception.
         '''
-        raise NotImplementedError('Less-than not implemented on "{!r}".'.format(arg))
+        raise NotImplementedError('Less-than not implemented on {!r}.'.format(expr))
 
-    def __ne__(self, arg):
-        '''Defined equal to the opposite of ``self == arg``.
+    def __ne__(self, expr):
+        '''Defined equal to the opposite of equality.
 
         Return boolean.
         '''
-        return not self == arg
+        return not self == expr
 
     def __repr__(self):
-        '''Interpreter representation of Abjad object defaulting to
-        class name, positional arguments, keyword arguments.
+        '''Interpreter representation of Abjad object.
 
         Return string.
         '''
