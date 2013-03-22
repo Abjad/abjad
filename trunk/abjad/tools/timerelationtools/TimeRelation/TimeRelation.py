@@ -176,14 +176,22 @@ class TimeRelation(AbjadObject):
 
             >>> z(time_relation)
             timerelationtools.TimespanTimespanTimeRelation(
-                ['timespan_2.stop_offset == timespan_1.start_offset']
+                timerelationtools.CompoundInequality([
+                    'timespan_2.stop_offset == timespan_1.start_offset'
+                    ],
+                    logical_operator='and'
+                    )
                 )
 
         ::
 
             >>> z(new_time_relation)
             timerelationtools.TimespanTimespanTimeRelation(
-                ['timespan_2.stop_offset == timespan_1.start_offset'],
+                timerelationtools.CompoundInequality([
+                    'timespan_2.stop_offset == timespan_1.start_offset'
+                    ],
+                    logical_operator='and'
+                    ),
                 timespan_1=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(5, 1)
