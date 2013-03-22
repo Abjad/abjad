@@ -6,13 +6,13 @@ class SimpleInequality(AbjadObject):
 
     Simple inequality.
 
-        >>> template = 'timespan_2.start < timespan_1.start'
+        >>> template = 'timespan_2.start_offset < timespan_1.start_offset'
         >>> simple_inequality = timerelationtools.SimpleInequality(template)
 
     ::
 
         >>> simple_inequality
-        SimpleInequality('timespan_2.start < timespan_1.start')
+        SimpleInequality('timespan_2.start_offset < timespan_1.start_offset')
 
     Return simple inequality.
     '''
@@ -21,10 +21,37 @@ class SimpleInequality(AbjadObject):
 
     __slots__ = ('_template', )
 
+    templates = (
+        'timespan_1.start_offset == timespan_2.start_offset',
+        'timespan_1.start_offset < timespan_2.start_offset',
+        'timespan_1.start_offset <= timespan_2.start_offset',
+        'timespan_1.start_offset == timespan_2.stop_offset',
+        'timespan_1.start_offset < timespan_2.stop_offset',
+        'timespan_1.start_offset <= timespan_2.stop_offset',
+        'timespan_1.stop_offset == timespan_2.start_offset',
+        'timespan_1.stop_offset < timespan_2.start_offset',
+        'timespan_1.stop_offset <= timespan_2.start_offset',
+        'timespan_1.stop_offset == timespan_2.stop_offset',
+        'timespan_1.stop_offset < timespan_2.stop_offset',
+        'timespan_1.stop_offset <= timespan_2.stop_offset',
+        'timespan_2.start_offset == timespan_1.start_offset',
+        'timespan_2.start_offset < timespan_1.start_offset',
+        'timespan_2.start_offset <= timespan_1.start_offset',
+        'timespan_2.start_offset == timespan_1.stop_offset',
+        'timespan_2.start_offset < timespan_1.stop_offset',
+        'timespan_2.start_offset <= timespan_1.stop_offset',
+        'timespan_2.stop_offset == timespan_1.start_offset',
+        'timespan_2.stop_offset < timespan_1.start_offset',
+        'timespan_2.stop_offset <= timespan_1.start_offset',
+        'timespan_2.stop_offset == timespan_1.stop_offset',
+        'timespan_2.stop_offset < timespan_1.stop_offset',
+        'timespan_2.stop_offset <= timespan_1.stop_offset',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, template):
-        assert isinstance(template, str), repr(template)
+        assert template in self.templates, repr(template)
         self._template = template
 
     ### PRIVATE METHODS ###
@@ -41,7 +68,7 @@ class SimpleInequality(AbjadObject):
         '''Simple inequality storage format.
 
             >>> z(simple_inequality)
-            timerelationtools.SimpleInequality('timespan_2.start < timespan_1.start')
+            timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.start_offset')
 
         Return string.
         '''
@@ -52,7 +79,7 @@ class SimpleInequality(AbjadObject):
         '''Simple inequality template.
 
             >>> simple_inequality.template
-            'timespan_2.start < timespan_1.start'
+            'timespan_2.start_offset < timespan_1.start_offset'
 
         Return string.
         '''
