@@ -3577,6 +3577,7 @@ Core composition packages
 
       tools/timerelationtools/CompoundInequality/CompoundInequality
       tools/timerelationtools/OffsetTimespanTimeRelation/OffsetTimespanTimeRelation
+      tools/timerelationtools/SimpleInequality/SimpleInequality
       tools/timerelationtools/TimespanTimespanTimeRelation/TimespanTimespanTimeRelation
 
    --------
@@ -3637,6 +3638,7 @@ Core composition packages
 
       tools/timerelationtools/CompoundInequality/CompoundInequality
       tools/timerelationtools/OffsetTimespanTimeRelation/OffsetTimespanTimeRelation
+      tools/timerelationtools/SimpleInequality/SimpleInequality
       tools/timerelationtools/TimespanTimespanTimeRelation/TimespanTimespanTimeRelation
 
    Functions
