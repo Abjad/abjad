@@ -7,7 +7,6 @@ def timespan_2_curtails_timespan_1(timespan_1=None, timespan_2=None, hold=False)
 
         >>> z(timerelationtools.timespan_2_curtails_timespan_1())
         timerelationtools.TimespanTimespanTimeRelation(
-            'timespan_1.start_offset < timespan_2.start_offset <= timespan_1.stop_offset <= timespan_2.stop_offset',
             ['timespan_1.start_offset < timespan_2.start_offset', 'timespan_2.start_offset <= timespan_1.stop_offset', 'timespan_1.stop_offset <= timespan_2.stop_offset']
             )
 
@@ -16,7 +15,6 @@ def timespan_2_curtails_timespan_1(timespan_1=None, timespan_2=None, hold=False)
     from abjad.tools import timerelationtools
 
     time_relation = timerelationtools.TimespanTimespanTimeRelation(
-        'timespan_1.start_offset < timespan_2.start_offset <= timespan_1.stop_offset <= timespan_2.stop_offset',
         [
             'timespan_1.start_offset < timespan_2.start_offset',
             'timespan_2.start_offset <= timespan_1.stop_offset',

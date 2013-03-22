@@ -7,7 +7,6 @@ def timespan_2_intersects_timespan_1(timespan_1=None, timespan_2=None, hold=Fals
 
         >>> z(timerelationtools.timespan_2_intersects_timespan_1())
         timerelationtools.TimespanTimespanTimeRelation(
-            'timespan_1.start_offset <= timespan_2.start_offset < timespan_1.stop_offset or timespan_2.start_offset <= timespan_1.start_offset < timespan_2.stop_offset',
             timerelationtools.CompoundInequality([
                 timerelationtools.CompoundInequality([
                     'timespan_1.start_offset <= timespan_2.start_offset',
@@ -31,8 +30,6 @@ def timespan_2_intersects_timespan_1(timespan_1=None, timespan_2=None, hold=Fals
     from abjad.tools import timerelationtools
 
     time_relation = timerelationtools.TimespanTimespanTimeRelation(
-        'timespan_1.start_offset <= timespan_2.start_offset < timespan_1.stop_offset or '
-        'timespan_2.start_offset <= timespan_1.start_offset < timespan_2.stop_offset',
         timerelationtools.CompoundInequality([
             timerelationtools.CompoundInequality([
                 'timespan_1.start_offset <= timespan_2.start_offset',

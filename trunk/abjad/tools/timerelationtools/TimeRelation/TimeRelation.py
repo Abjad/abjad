@@ -19,7 +19,6 @@ class TimeRelation(AbjadObject):
 
         >>> z(time_relation)
         timerelationtools.TimespanTimespanTimeRelation(
-            'timespan_1.start_offset <= timespan_2.start_offset < timespan_1.stop_offset',
             ['timespan_1.start_offset <= timespan_2.start_offset', 'timespan_2.start_offset < timespan_1.stop_offset'],
             timespan_1=timespantools.Timespan(
                 start_offset=durationtools.Offset(0, 1),
@@ -43,7 +42,7 @@ class TimeRelation(AbjadObject):
     @abc.abstractmethod
     def __init__(self, template, inequalities):
         from experimental.tools import timerelationtools
-        assert isinstance(template, str), repr(template)
+        assert isinstance(template, (str, type(None))), repr(template)
         # TODO: eventually allow only compound inequality or string
         if isinstance(inequalities, timerelationtools.CompoundInequality):
             self._inequalities = inequalities
@@ -130,7 +129,6 @@ class TimeRelation(AbjadObject):
 
             >>> z(time_relation)
             timerelationtools.TimespanTimespanTimeRelation(
-                'timespan_1.start_offset <= timespan_2.start_offset < timespan_1.stop_offset',
                 ['timespan_1.start_offset <= timespan_2.start_offset', 'timespan_2.start_offset < timespan_1.stop_offset'],
                 timespan_1=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -148,12 +146,7 @@ class TimeRelation(AbjadObject):
 
     @property
     def template(self):
-        '''Time relation template:
-
-        ::
-
-            >>> time_relation.template
-            'timespan_1.start_offset <= timespan_2.start_offset < timespan_1.stop_offset'
+        '''Time relation template.
 
         Return string.
         '''
@@ -173,7 +166,6 @@ class TimeRelation(AbjadObject):
 
             >>> z(time_relation)
             timerelationtools.TimespanTimespanTimeRelation(
-                'timespan_2.stop_offset == timespan_1.start_offset',
                 ['timespan_2.stop_offset == timespan_1.start_offset']
                 )
 
@@ -181,7 +173,6 @@ class TimeRelation(AbjadObject):
 
             >>> z(new_time_relation)
             timerelationtools.TimespanTimespanTimeRelation(
-                'timespan_2.stop_offset == timespan_1.start_offset',
                 ['timespan_2.stop_offset == timespan_1.start_offset'],
                 timespan_1=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
