@@ -60,6 +60,20 @@ class CompoundInequality(ObjectInventory):
         ObjectInventory.__init__(self, tokens=tokens, name=name)
         self._logical_operator = logical_operator
 
+#    ### READ-ONLY PRIVATE PROPERTIES ###
+#
+#    @property
+#    def _item_callable(self):
+#        from abjad.tools import timerelationtools
+#        def to_simple_inequality(expr):
+#            if isinstance(expr, str):
+#                return timerelationtools.SimpleInequality(expr)
+#            elif isinstance(expr, timerelationtools.SimpleInequality):
+#                return expr
+#            else:
+#                raise TypeError(expr)
+#        return to_simple_inequality
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

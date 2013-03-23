@@ -210,21 +210,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
             timespan_1, score_specification=score_specification, context_name=context_name)
         timespan_2_start_offset, timespan_2_stop_offset = self._get_expr_offsets(
             timespan_2, score_specification=score_specification, context_name=context_name)
-        # TODO: remove this first branch bc it is no longer necessary
-        if not isinstance(self.inequalities, timerelationtools.CompoundInequality):
-            truth_values = []
-            for inequality in self.inequalities:
-                inequality = inequality.replace('timespan_1.start_offset', repr(timespan_1_start_offset))
-                inequality = inequality.replace('timespan_1.stop_offset', repr(timespan_1_stop_offset))
-                inequality = inequality.replace('timespan_2.start_offset', repr(timespan_2_start_offset))
-                inequality = inequality.replace('timespan_2.stop_offset', repr(timespan_2_stop_offset))
-                truth_value = eval(inequality, {'Offset': durationtools.Offset})
-                truth_values.append(truth_value)
-            truth_value = all(truth_values)
-        else:
-            truth_value = self.inequalities.evaluate(
-                timespan_1_start_offset, timespan_1_stop_offset, 
-                timespan_2_start_offset, timespan_2_stop_offset)
+        truth_value = self.inequalities.evaluate(
+            timespan_1_start_offset, timespan_1_stop_offset, 
+            timespan_2_start_offset, timespan_2_stop_offset)
         return truth_value
 
     def __eq__(self, expr):
