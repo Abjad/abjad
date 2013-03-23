@@ -41,18 +41,21 @@ def get_offset_indices_that_satisfy_time_relation(
     assert time_relation.inequalities, repr((time_relation, time_relation.inequalities))
     timespan_1 = time_relation.timespan_1
 
-    # TODO: eventually allow only compound inequality of simple inequality
-    if isinstance(time_relation.inequalities, timerelationtools.CompoundInequality):
-        result = time_relation.inequalities.get_offset_indices(
-            timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
-    elif isinstance(time_relation.inequalities, list):
-        start_index_stop_index_pairs = timespantools.TimespanInventory()
-        for inequality in time_relation.inequalities:
-            simple_inequality = timerelationtools.SimpleInequality(inequality)
-            offset_indices = simple_inequality.to_offset_indices(
-                timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
-            start_index_stop_index_pairs.append(timespantools.Timespan(*offset_indices))
-        result = start_index_stop_index_pairs.compute_logical_and()
+#    if isinstance(time_relation.inequalities, timerelationtools.CompoundInequality):
+#        result = time_relation.inequalities.get_offset_indices(
+#            timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
+#    elif isinstance(time_relation.inequalities, list):
+#        raise Exception('???')
+#        start_index_stop_index_pairs = timespantools.TimespanInventory()
+#        for inequality in time_relation.inequalities:
+#            simple_inequality = timerelationtools.SimpleInequality(inequality)
+#            offset_indices = simple_inequality.get_offset_indices(
+#                timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
+#            start_index_stop_index_pairs.append(timespantools.Timespan(*offset_indices))
+#        result = start_index_stop_index_pairs.compute_logical_and()
+
+    result = time_relation.inequalities.get_offset_indices(
+        timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
 
     if not result:
         return []

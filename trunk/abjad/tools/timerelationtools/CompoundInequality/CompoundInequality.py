@@ -141,12 +141,13 @@ class CompoundInequality(ObjectInventory):
         from experimental.tools import timespantools
         timespans = timespantools.TimespanInventory()
         for element in self:
+            # TODO: compress the following two branches
             if isinstance(element, type(self)):
                 result = element.get_offset_indices(
                     timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
                 timespans.extend(result)
             elif isinstance(element, timerelationtools.SimpleInequality):
-                offset_indices = element.to_offset_indices(
+                offset_indices = element.get_offset_indices(
                     timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
                 timespan = timespantools.Timespan(*offset_indices)
                 timespans.append(timespan)

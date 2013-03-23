@@ -70,10 +70,50 @@ class SimpleInequality(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _find_index_lt(self, a, x):
+        '''Find index of rightmost value less than x.
+        '''
+        i = bisect.bisect_left(a, x)
+        if i:
+            return i - 1
+        raise ValueError
+
+    def _find_index_le(self, a, x):
+        '''Find index of rightmost value less than or equal to x.
+        '''
+        i = bisect.bisect_right(a, x)
+        if i:
+            return i - 1
+        raise ValueError
+
+    def _find_index_gt(self, a, x):
+        '''Find index of leftmost value greater than x.
+        '''
+        i = bisect.bisect_right(a, x)
+        if i != len(a):
+            return i
+        raise ValueError
+
+    def _find_index_ge(self, a, x):
+        '''Find index of leftmost item greater than or equal to x.
+        '''
+        i = bisect.bisect_left(a, x)
+        if i != len(a):
+            return i 
+        raise ValueError
+
     # do not indent storage format
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         return [''.join(
             AbjadObject._get_tools_package_qualified_repr_pieces(self, is_indented=False))]
+
+    def _index(self, a, x):
+        '''Find index of leftmost value exactly equal to x.
+        '''
+        i = bisect.bisect_left(a, x)
+        if i != len(a) and a[i] == x:
+            return i
+        raise ValueError
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -119,8 +159,7 @@ class SimpleInequality(AbjadObject):
         truth_value = eval(template, {'Offset': durationtools.Offset})
         return truth_value
 
-    # TODO: change name to get_offset_indices()
-    def to_offset_indices(self, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets):
+    def get_offset_indices(self, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets):
         '''Change simple inequality to offset indices.
 
         .. todo:: add example.
@@ -307,45 +346,3 @@ class SimpleInequality(AbjadObject):
             return leftmost_index, rightmost_index
         else:
             return []
-
-    ### BISECT CONVENIENCE FUNCTIONS ###
-
-    def _index(self, a, x):
-        '''Find index of leftmost value exactly equal to x.
-        '''
-        i = bisect.bisect_left(a, x)
-        if i != len(a) and a[i] == x:
-            return i
-        raise ValueError
-
-    def _find_index_lt(self, a, x):
-        '''Find index of rightmost value less than x.
-        '''
-        i = bisect.bisect_left(a, x)
-        if i:
-            return i - 1
-        raise ValueError
-
-    def _find_index_le(self, a, x):
-        '''Find index of rightmost value less than or equal to x.
-        '''
-        i = bisect.bisect_right(a, x)
-        if i:
-            return i - 1
-        raise ValueError
-
-    def _find_index_gt(self, a, x):
-        '''Find index of leftmost value greater than x.
-        '''
-        i = bisect.bisect_right(a, x)
-        if i != len(a):
-            return i
-        raise ValueError
-
-    def _find_index_ge(self, a, x):
-        '''Find index of leftmost item greater than or equal to x.
-        '''
-        i = bisect.bisect_left(a, x)
-        if i != len(a):
-            return i 
-        raise ValueError
