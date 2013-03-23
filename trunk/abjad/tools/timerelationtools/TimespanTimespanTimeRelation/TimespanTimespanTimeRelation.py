@@ -303,3 +303,52 @@ class TimespanTimespanTimeRelation(TimeRelation):
         Return timespan.
         '''
         return self._timespan_2
+
+    ### PUBLIC METHODS ###
+
+    def get_offset_indices(self, timespan_2_start_offsets, timespan_2_stop_offsets):
+        '''.. versionadded:: 2.12
+
+        Get offset indices that satisfy time relation:
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+            >>> start_offsets = [note.start_offset for note in staff]
+            >>> stop_offsets = [note.stop_offset for note in staff]
+
+        Example 1. Notes equal to ``staff[0:2]`` start during timespan ``[0, 3/16)``:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(Offset(0), Offset(3, 16))
+            >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
+            >>> time_relation.get_offset_indices(start_offsets, stop_offsets)
+            (0, 2)
+
+        Example 2. Notes equal to ``staff[2:8]`` start after timespan ``[0, 3/16)`` stops:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(Offset(0), Offset(3, 16))
+            >>> time_relation = timerelationtools.timespan_2_starts_after_timespan_1_stops(timespan_1=timespan_1)
+            >>> time_relation.get_offset_indices(start_offsets, stop_offsets)
+            (2, 8)
+        
+        Return nonnegative integer pair.
+        '''
+        from abjad.tools import timerelationtools
+        from abjad.tools import timespantools
+        
+        result = self.inequalities.get_offset_indices(
+            self.timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
+
+        if not result:
+            return []
+        elif len(result) == 1:
+            timespan = result[0]
+            start_index = int(timespan.start_offset)
+            stop_index = int(timespan.stop_offset)
+            return start_index, stop_index
+        elif 0 < len(result):
+            raise Exception('inequality evaluates to disjunct range: {!r}.'.format(result))
