@@ -33,8 +33,7 @@ def timespan_2_starts_during_timespan_1(timespan_1=None, timespan_2=None, hold=F
         >>> timespan_1 = timespantools.Timespan(Offset(1, 4), Offset(5, 4))
         >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
         ...     timespan_1=timespan_1)
-        >>> start_index, stop_index = timerelationtools.get_offset_indices_that_satisfy_time_relation(
-        ...     start_offsets, stop_offsets, time_relation)
+        >>> start_index, stop_index = time_relation.get_offset_indices(start_offsets, stop_offsets)
         
     ::
 

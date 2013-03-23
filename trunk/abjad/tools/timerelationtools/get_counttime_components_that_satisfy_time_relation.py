@@ -1,4 +1,5 @@
-# TODO: eventually implement this as method bound to some type of selection class
+# TODO: Eventually implement this as method bound to some class.
+#       Perhaps can be bound to TimespanTimespanTimeRelation.
 def get_counttime_components_that_satisfy_time_relation(counttime_components, time_relation):
     '''.. versionadded:: 2.12
 

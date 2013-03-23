@@ -285,8 +285,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             for element in self.elements:
                 start_offsets.append(element.start_offset)
                 stop_offsets.append(element.stop_offset)
-            start_index, stop_index = timerelationtools.get_offset_indices_that_satisfy_time_relation(
-                start_offsets, stop_offsets, time_relation) 
+            start_index, stop_index = time_relation.get_offset_indices(start_offsets, stop_offsets)
             elements = self.elements[start_index:stop_index]
             if not elements:
                 return
