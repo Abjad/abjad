@@ -70,19 +70,21 @@ class CompoundInequality(ObjectInventory):
 
     ### PUBLIC METHODS ###
 
-    def evaluate(self, timespan_1_start, timespan_1_stop, timespan_2_start, timespan_2_stop):
+    def evaluate(self, timespan_1_start_offset, timespan_1_stop_offset, 
+        timespan_2_start_offset, timespan_2_stop_offset):
         truth_values = []
         for inequality in self:
             if isinstance(inequality, str):
-                inequality = inequality.replace('timespan_1.start_offset', repr(timespan_1_start))
-                inequality = inequality.replace('timespan_1.stop_offset', repr(timespan_1_stop))
-                inequality = inequality.replace('timespan_2.start_offset', repr(timespan_2_start))
-                inequality = inequality.replace('timespan_2.stop_offset', repr(timespan_2_stop))
+                inequality = inequality.replace('timespan_1.start_offset', repr(timespan_1_start_offset))
+                inequality = inequality.replace('timespan_1.stop_offset', repr(timespan_1_stop_offset))
+                inequality = inequality.replace('timespan_2.start_offset', repr(timespan_2_start_offset))
+                inequality = inequality.replace('timespan_2.stop_offset', repr(timespan_2_stop_offset))
                 truth_value = eval(inequality, {'Offset': durationtools.Offset})
                 truth_values.append(truth_value)
             elif isinstance(inequality, type(self)):
                 truth_value = inequality.evaluate(
-                    timespan_1_start, timespan_1_stop, timespan_2_start, timespan_2_stop)
+                    timespan_1_start_offset, timespan_1_stop_offset, 
+                    timespan_2_start_offset, timespan_2_stop_offset)
                 truth_values.append(truth_value)
         if self.logical_operator == 'and':
             truth_value = all(truth_values)
