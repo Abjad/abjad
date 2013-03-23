@@ -48,8 +48,9 @@ def get_offset_indices_that_satisfy_time_relation(
     elif isinstance(time_relation.inequalities, list):
         start_index_stop_index_pairs = timespantools.TimespanInventory()
         for inequality in time_relation.inequalities:
-            offset_indices = timerelationtools.simple_inequality_to_offset_indices(
-                inequality, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
+            simple_inequality = timerelationtools.SimpleInequality(inequality)
+            offset_indices = simple_inequality.to_offset_indices(
+                timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
             start_index_stop_index_pairs.append(timespantools.Timespan(*offset_indices))
         result = start_index_stop_index_pairs.compute_logical_and()
 

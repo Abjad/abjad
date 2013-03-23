@@ -129,8 +129,9 @@ class CompoundInequality(ObjectInventory):
                     timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
                 timespans.extend(result)
             elif isinstance(element, str):
-                offset_indices = timerelationtools.simple_inequality_to_offset_indices(
-                    element, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
+                simple_inequality = timerelationtools.SimpleInequality(element)
+                offset_indices = simple_inequality.to_offset_indices(
+                    timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
                 timespan = timespantools.Timespan(*offset_indices)
                 timespans.append(timespan)
         if self.logical_operator == 'and':

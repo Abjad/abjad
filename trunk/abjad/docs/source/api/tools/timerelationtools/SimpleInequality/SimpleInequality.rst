@@ -15,6 +15,12 @@ Read-only properties
 .. autoattribute:: abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.template
    :noindex:
 
+Methods
+-------
+
+.. automethod:: abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.to_offset_indices
+   :noindex:
+
 Special methods
 ---------------
 
