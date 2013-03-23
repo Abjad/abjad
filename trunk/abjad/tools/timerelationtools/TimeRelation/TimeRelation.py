@@ -20,8 +20,8 @@ class TimeRelation(AbjadObject):
         >>> z(time_relation)
         timerelationtools.TimespanTimespanTimeRelation(
             timerelationtools.CompoundInequality([
-                'timespan_1.start_offset <= timespan_2.start_offset',
-                'timespan_2.start_offset < timespan_1.stop_offset'
+                timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
+                timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset')
                 ],
                 logical_operator='and'
                 ),
@@ -129,8 +129,8 @@ class TimeRelation(AbjadObject):
             >>> z(time_relation)
             timerelationtools.TimespanTimespanTimeRelation(
                 timerelationtools.CompoundInequality([
-                    'timespan_1.start_offset <= timespan_2.start_offset',
-                    'timespan_2.start_offset < timespan_1.stop_offset'
+                    timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
+                    timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset')
                     ],
                     logical_operator='and'
                     ),
@@ -163,7 +163,7 @@ class TimeRelation(AbjadObject):
             >>> z(time_relation)
             timerelationtools.TimespanTimespanTimeRelation(
                 timerelationtools.CompoundInequality([
-                    'timespan_2.stop_offset == timespan_1.start_offset'
+                    timerelationtools.SimpleInequality('timespan_2.stop_offset == timespan_1.start_offset')
                     ],
                     logical_operator='and'
                     )
@@ -174,7 +174,7 @@ class TimeRelation(AbjadObject):
             >>> z(new_time_relation)
             timerelationtools.TimespanTimespanTimeRelation(
                 timerelationtools.CompoundInequality([
-                    'timespan_2.stop_offset == timespan_1.start_offset'
+                    timerelationtools.SimpleInequality('timespan_2.stop_offset == timespan_1.start_offset')
                     ],
                     logical_operator='and'
                     ),

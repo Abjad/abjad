@@ -8,7 +8,7 @@ def timespan_2_starts_before_timespan_1_starts(timespan_1=None, timespan_2=None,
         >>> z(timerelationtools.timespan_2_starts_before_timespan_1_starts())
         timerelationtools.TimespanTimespanTimeRelation(
             timerelationtools.CompoundInequality([
-                'timespan_2.start_offset < timespan_1.start_offset'
+                timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.start_offset')
                 ],
                 logical_operator='and'
                 )

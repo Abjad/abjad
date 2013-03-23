@@ -8,8 +8,8 @@ def offset_happens_during_timespan(timespan=None, offset=None, hold=False):
         >>> z(timerelationtools.offset_happens_during_timespan())
         timerelationtools.OffsetTimespanTimeRelation(
             timerelationtools.CompoundInequality([
-                'timespan.start <= offset',
-                'offset < timespan.stop'
+                timerelationtools.SimpleInequality('timespan.start <= offset'),
+                timerelationtools.SimpleInequality('offset < timespan.stop')
                 ],
                 logical_operator='and'
                 )

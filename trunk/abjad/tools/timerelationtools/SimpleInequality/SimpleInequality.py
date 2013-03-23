@@ -1,4 +1,5 @@
 import bisect
+from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -100,6 +101,25 @@ class SimpleInequality(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def evaluate(self, timespan_1_start_offset, timespan_1_stop_offset,
+        timespan_2_start_offset, timespan_2_stop_offset):
+        template = self.template
+        template = template.replace('timespan_1.start_offset', repr(timespan_1_start_offset))
+        template = template.replace('timespan_1.stop_offset', repr(timespan_1_stop_offset))
+        template = template.replace('timespan_2.start_offset', repr(timespan_2_start_offset))
+        template = template.replace('timespan_2.stop_offset', repr(timespan_2_stop_offset))
+        truth_value = eval(template, {'Offset': durationtools.Offset})
+        return truth_value
+
+    def evaluate_offset_inequality(self, timespan_start, timespan_stop, offset):
+        template = self.template
+        template = template.replace('timespan.start', repr(timespan_start))
+        template = template.replace('timespan.stop', repr(timespan_stop))
+        template = template.replace('offset', repr(offset))
+        truth_value = eval(template, {'Offset': durationtools.Offset})
+        return truth_value
+
+    # TODO: change name to get_offset_indices()
     def to_offset_indices(self, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets):
         '''Change simple inequality to offset indices.
 

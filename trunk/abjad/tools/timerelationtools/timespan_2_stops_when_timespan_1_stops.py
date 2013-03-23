@@ -8,7 +8,7 @@ def timespan_2_stops_when_timespan_1_stops(timespan_1=None, timespan_2=None, hol
         >>> z(timerelationtools.timespan_2_stops_when_timespan_1_stops())
         timerelationtools.TimespanTimespanTimeRelation(
             timerelationtools.CompoundInequality([
-                'timespan_2.stop_offset == timespan_1.stop_offset'
+                timerelationtools.SimpleInequality('timespan_2.stop_offset == timespan_1.stop_offset')
                 ],
                 logical_operator='and'
                 )

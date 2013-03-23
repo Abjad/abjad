@@ -25,14 +25,14 @@ class CompoundInequality(ObjectInventory):
         >>> z(compound_inequality)
         timerelationtools.CompoundInequality([
             timerelationtools.CompoundInequality([
-                'timespan_1.start_offset <= timespan_2.start_offset',
-                'timespan_2.start_offset < timespan_1.stop_offset'
+                timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
+                timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset')
                 ],
                 logical_operator='and'
                 ),
             timerelationtools.CompoundInequality([
-                'timespan_2.start_offset <= timespan_1.start_offset',
-                'timespan_1.start_offset < timespan_2.stop_offset'
+                timerelationtools.SimpleInequality('timespan_2.start_offset <= timespan_1.start_offset'),
+                timerelationtools.SimpleInequality('timespan_1.start_offset < timespan_2.stop_offset')
                 ],
                 logical_operator='and'
                 )
@@ -60,21 +60,21 @@ class CompoundInequality(ObjectInventory):
         ObjectInventory.__init__(self, tokens=tokens, name=name)
         self._logical_operator = logical_operator
 
-#    ### READ-ONLY PRIVATE PROPERTIES ###
-#
-#    @property
-#    def _item_callable(self):
-#        from abjad.tools import timerelationtools
-#        def to_inequality(expr):
-#            if isinstance(expr, str):
-#                return timerelationtools.SimpleInequality(expr)
-#            elif isinstance(expr, timerelationtools.SimpleInequality):
-#                return expr
-#            elif isinstance(expr, timerelationtools.CompoundInequality):
-#                return expr
-#            else:
-#                raise TypeError(expr)
-#        return to_inequality
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _item_callable(self):
+        from abjad.tools import timerelationtools
+        def to_inequality(expr):
+            if isinstance(expr, str):
+                return timerelationtools.SimpleInequality(expr)
+            elif isinstance(expr, timerelationtools.SimpleInequality):
+                return expr
+            elif isinstance(expr, timerelationtools.CompoundInequality):
+                return expr
+            else:
+                raise TypeError(expr)
+        return to_inequality
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -88,14 +88,14 @@ class CompoundInequality(ObjectInventory):
 
     def evaluate(self, timespan_1_start_offset, timespan_1_stop_offset, 
         timespan_2_start_offset, timespan_2_stop_offset):
+        from abjad.tools import timerelationtools
         truth_values = []
         for inequality in self:
-            if isinstance(inequality, str):
-                inequality = inequality.replace('timespan_1.start_offset', repr(timespan_1_start_offset))
-                inequality = inequality.replace('timespan_1.stop_offset', repr(timespan_1_stop_offset))
-                inequality = inequality.replace('timespan_2.start_offset', repr(timespan_2_start_offset))
-                inequality = inequality.replace('timespan_2.stop_offset', repr(timespan_2_stop_offset))
-                truth_value = eval(inequality, {'Offset': durationtools.Offset})
+            # TODO: compress the following two branches
+            if isinstance(inequality, timerelationtools.SimpleInequality):
+                truth_value = inequality.evaluate(
+                    timespan_1_start_offset, timespan_1_stop_offset, 
+                    timespan_2_start_offset, timespan_2_stop_offset)
                 truth_values.append(truth_value)
             elif isinstance(inequality, type(self)):
                 truth_value = inequality.evaluate(
@@ -113,18 +113,19 @@ class CompoundInequality(ObjectInventory):
         return truth_value
 
     def evaluate_offset_inequalities(self, timespan_start, timespan_stop, offset):
+        from abjad.tools import timerelationtools
         truth_values = []
         for inequality in self:
-            if isinstance(inequality, str):
-                inequality = inequality.replace('timespan.start', repr(timespan_start))
-                inequality = inequality.replace('timespan.stop', repr(timespan_stop))
-                inequality = inequality.replace('offset', repr(offset))
-                truth_value = eval(inequality, {'Offset': durationtools.Offset})
+            if isinstance(inequality, timerelationtools.SimpleInequality):
+                truth_value = inequality.evaluate_offset_inequality(timespan_start, timespan_stop, offset)
                 truth_values.append(truth_value)
             elif isinstance(inequality, type(self)):
                 truth_value = inequality.evaluate_offset_inequalities(
                     timespan_start, timespan_stop, offset)
                 truth_values.append(truth_value)
+            else:
+                raise TypeError(inequality)
+        assert truth_values, repr(truth_values)
         if self.logical_operator == 'and':
             truth_value = all(truth_values)
         elif self.logical_operator == 'or':
@@ -144,12 +145,13 @@ class CompoundInequality(ObjectInventory):
                 result = element.get_offset_indices(
                     timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
                 timespans.extend(result)
-            elif isinstance(element, str):
-                simple_inequality = timerelationtools.SimpleInequality(element)
-                offset_indices = simple_inequality.to_offset_indices(
+            elif isinstance(element, timerelationtools.SimpleInequality):
+                offset_indices = element.to_offset_indices(
                     timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
                 timespan = timespantools.Timespan(*offset_indices)
                 timespans.append(timespan)
+            else:
+                raise TypeError(element)
         if self.logical_operator == 'and':
             result = timespans.compute_logical_and()
         elif self.logical_operator == 'or':

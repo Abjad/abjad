@@ -8,7 +8,7 @@ def offset_happens_when_timespan_starts(timespan=None, offset=None, hold=False):
         >>> z(timerelationtools.offset_happens_when_timespan_starts())
         timerelationtools.OffsetTimespanTimeRelation(
             timerelationtools.CompoundInequality([
-                'offset == timespan.start'
+                timerelationtools.SimpleInequality('offset == timespan.start')
                 ],
                 logical_operator='and'
                 )

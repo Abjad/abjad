@@ -20,8 +20,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
         >>> z(time_relation)
         timerelationtools.OffsetTimespanTimeRelation(
             timerelationtools.CompoundInequality([
-                'timespan.start <= offset',
-                'offset < timespan.stop'
+                timerelationtools.SimpleInequality('timespan.start <= offset'),
+                timerelationtools.SimpleInequality('offset < timespan.stop')
                 ],
                 logical_operator='and'
                 ),
@@ -148,8 +148,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
             >>> z(time_relation)
             timerelationtools.OffsetTimespanTimeRelation(
                 timerelationtools.CompoundInequality([
-                    'timespan.start <= offset',
-                    'offset < timespan.stop'
+                    timerelationtools.SimpleInequality('timespan.start <= offset'),
+                    timerelationtools.SimpleInequality('offset < timespan.stop')
                     ],
                     logical_operator='and'
                     ),

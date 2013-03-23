@@ -18,6 +18,12 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.evaluate
+   :noindex:
+
+.. automethod:: abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.evaluate_offset_inequality
+   :noindex:
+
 .. automethod:: abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.to_offset_indices
    :noindex:
 

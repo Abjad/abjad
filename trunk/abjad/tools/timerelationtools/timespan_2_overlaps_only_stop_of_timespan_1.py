@@ -8,9 +8,9 @@ def timespan_2_overlaps_only_stop_of_timespan_1(timespan_1=None, timespan_2=None
         >>> z(timerelationtools.timespan_2_overlaps_only_stop_of_timespan_1())
         timerelationtools.TimespanTimespanTimeRelation(
             timerelationtools.CompoundInequality([
-                'timespan_1.start_offset <= timespan_2.start_offset',
-                'timespan_2.start_offset < timespan_1.stop_offset',
-                'timespan_1.stop_offset < timespan_2.stop_offset'
+                timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
+                timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset'),
+                timerelationtools.SimpleInequality('timespan_1.stop_offset < timespan_2.stop_offset')
                 ],
                 logical_operator='and'
                 )
