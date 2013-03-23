@@ -89,6 +89,12 @@ class SimpleInequality(AbjadObject):
     ### PUBLIC METHODS ###
 
     def to_offset_indices(self, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets):
+        '''Change simple inequality to offset indices.
+
+        .. todo:: add example.
+
+        Return nonnegative integer pair.
+        '''
 
         simple_inequality = self.template
         assert isinstance(simple_inequality, str), repr(simple_inequality)
