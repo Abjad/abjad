@@ -102,7 +102,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
     ### INITIALIZER ###
 
     def __init__(self, inequalities, timespan_1=None, timespan_2=None):
-        TimeRelation.__init__(self, None, inequalities)
+        TimeRelation.__init__(self, inequalities)
         self._timespan_1 = timespan_1
         self._timespan_2 = timespan_2
 
@@ -110,6 +110,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     # TODO: test and see if context_name=None can be removed entirely.
     # TODO: streamline this entire method to delegate evaluation to SimpleInequality, CompoundInequality
+    # TODO: hoist to TimeRelation
     def __call__(self, timespan_1=None, timespan_2=None, score_specification=None, context_name=None):
         r'''Evaluate time relation.
 
@@ -209,6 +210,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             timespan_1, score_specification=score_specification, context_name=context_name)
         timespan_2_start_offset, timespan_2_stop_offset = self._get_expr_offsets(
             timespan_2, score_specification=score_specification, context_name=context_name)
+        # TODO: remove this first branch bc it is no longer necessary
         if not isinstance(self.inequalities, timerelationtools.CompoundInequality):
             truth_values = []
             for inequality in self.inequalities:

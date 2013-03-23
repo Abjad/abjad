@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.storage_format
    :noindex:
 
-.. autoattribute:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.template
-   :noindex:
-
 Methods
 -------
 

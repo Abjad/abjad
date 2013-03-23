@@ -7,8 +7,11 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
 
         >>> z(timerelationtools.offset_happens_before_timespan_starts())
         timerelationtools.OffsetTimespanTimeRelation(
-            'offset < timespan.start',
-            ['offset < timespan.start']
+            timerelationtools.CompoundInequality([
+                'offset < timespan.start'
+                ],
+                logical_operator='and'
+                )
             )
 
     Make time relation indicating that offset ``1/2`` happens before `timespan` starts:
@@ -26,8 +29,11 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
 
         >>> z(time_relation)
         timerelationtools.OffsetTimespanTimeRelation(
-            'offset < timespan.start',
-            ['offset < timespan.start'],
+            timerelationtools.CompoundInequality([
+                'offset < timespan.start'
+                ],
+                logical_operator='and'
+                ),
             offset=durationtools.Offset(1, 2)
             )
 
@@ -46,8 +52,11 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
 
         >>> z(time_relation)
         timerelationtools.OffsetTimespanTimeRelation(
-            'offset < timespan.start',
-            ['offset < timespan.start'],
+            timerelationtools.CompoundInequality([
+                'offset < timespan.start'
+                ],
+                logical_operator='and'
+                ),
             timespan=timespantools.Timespan(
                 start_offset=durationtools.Offset(2, 1),
                 stop_offset=durationtools.Offset(8, 1)
@@ -64,8 +73,11 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
 
         >>> z(time_relation)
         timerelationtools.OffsetTimespanTimeRelation(
-            'offset < timespan.start',
-            ['offset < timespan.start'],
+            timerelationtools.CompoundInequality([
+                'offset < timespan.start'
+                ],
+                logical_operator='and'
+                ),
             timespan=timespantools.Timespan(
                 start_offset=durationtools.Offset(2, 1),
                 stop_offset=durationtools.Offset(8, 1)
@@ -85,9 +97,11 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
     from abjad.tools import timerelationtools
 
     time_relation = timerelationtools.OffsetTimespanTimeRelation(
-        'offset < timespan.start',
-        ['offset < timespan.start'],
-        timespan=timespan, offset=offset)
+        timerelationtools.CompoundInequality([
+            'offset < timespan.start',
+            ]),
+        timespan=timespan, 
+        offset=offset)
 
     if time_relation.is_fully_loaded and not hold:
         return time_relation()

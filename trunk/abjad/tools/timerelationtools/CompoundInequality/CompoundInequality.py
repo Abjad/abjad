@@ -95,6 +95,29 @@ class CompoundInequality(ObjectInventory):
         else:
             raise ValueError(self.logical_operator)
         return truth_value
+
+    def evaluate_offset_inequalities(self, timespan_start, timespan_stop, offset):
+        truth_values = []
+        for inequality in self:
+            if isinstance(inequality, str):
+                inequality = inequality.replace('timespan.start', repr(timespan_start))
+                inequality = inequality.replace('timespan.stop', repr(timespan_stop))
+                inequality = inequality.replace('offset', repr(offset))
+                truth_value = eval(inequality, {'Offset': durationtools.Offset})
+                truth_values.append(truth_value)
+            elif isinstance(inequality, type(self)):
+                truth_value = inequality.evaluate_offset_inequalities(
+                    timespan_start, timespan_stop, offset)
+                truth_values.append(truth_value)
+        if self.logical_operator == 'and':
+            truth_value = all(truth_values)
+        elif self.logical_operator == 'or':
+            truth_value = any(truth_values)
+        elif self.logical_operator == 'xor':
+            truth_value = bool(len([x for x in truth_values if x]) == 1)
+        else:
+            raise ValueError(self.logical_operator)
+        return truth_value
         
     def get_offset_indices(self, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets):
         from experimental.tools import timerelationtools

@@ -1,7 +1,7 @@
 def timespan_2_stops_when_timespan_1_stops(timespan_1=None, timespan_2=None, hold=False):
     r'''.. versionadded:: 2.11
 
-    Make time relation template indicating that `timespan_2` happens during `timespan_1`:
+    Make time relation indicating that `timespan_2` happens during `timespan_1`:
 
     ::
 

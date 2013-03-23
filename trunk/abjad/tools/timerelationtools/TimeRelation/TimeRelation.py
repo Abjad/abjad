@@ -45,15 +45,10 @@ class TimeRelation(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, template, inequalities):
+    def __init__(self, inequalities):
         from experimental.tools import timerelationtools
-        assert isinstance(template, (str, type(None))), repr(template)
-        # TODO: eventually allow only compound inequality or string
-        if isinstance(inequalities, timerelationtools.CompoundInequality):
-            self._inequalities = inequalities
-        elif isinstance(inequalities, list):
-            self._inequalities = inequalities[:]
-        self._template = template
+        assert isinstance(inequalities, timerelationtools.CompoundInequality), repr(inequalities)
+        self._inequalities = inequalities
 
     ### SPECIAL METHODS ###
 
@@ -72,8 +67,7 @@ class TimeRelation(AbjadObject):
 
     @abc.abstractmethod
     def __eq__(self, expr):
-        '''True when `expr` is a time relation with
-        template and both terms equal to time relation.
+        '''True when `expr` is a equal-valued time relation.
         Otherwise false.
 
         Return boolean.
@@ -153,14 +147,6 @@ class TimeRelation(AbjadObject):
         Return string.
         '''
         return AbjadObject.storage_format.fget(self)
-
-    @property
-    def template(self):
-        '''Time relation template.
-
-        Return string.
-        '''
-        return self._template
 
     ### PUBLIC METHODS ###
 

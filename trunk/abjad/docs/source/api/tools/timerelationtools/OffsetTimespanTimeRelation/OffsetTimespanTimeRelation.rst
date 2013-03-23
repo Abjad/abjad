@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.storage_format
    :noindex:
 
-.. autoattribute:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.template
-   :noindex:
-
 .. autoattribute:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.timespan
    :noindex:
 

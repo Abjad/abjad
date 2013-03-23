@@ -19,8 +19,12 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
         >>> z(time_relation)
         timerelationtools.OffsetTimespanTimeRelation(
-            'timespan.start <= offset < timespan.stop',
-            ['timespan.start <= offset', 'offset < timespan.stop'],
+            timerelationtools.CompoundInequality([
+                'timespan.start <= offset',
+                'offset < timespan.stop'
+                ],
+                logical_operator='and'
+                ),
             timespan=timespantools.Timespan(
                 start_offset=durationtools.Offset(0, 1),
                 stop_offset=durationtools.Offset(10, 1)
@@ -33,13 +37,14 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     ### INITIALIZER ###
 
-    def __init__(self, template, inequalities, timespan=None, offset=None):
-        TimeRelation.__init__(self, template, inequalities)
+    def __init__(self, inequalities, timespan=None, offset=None):
+        TimeRelation.__init__(self, inequalities)
         self._timespan = timespan
         self._offset = offset
 
     ### SPECIAL METHODS ###
 
+    # TODO: hoist to TimeRelation
     def __call__(self, timespan=None, offset=None):
         r'''Evaluate time relation:
 
@@ -60,12 +65,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
         timespan = timespantools.Timespan()._get_timespan(timespan)
         offset = durationtools.Offset(offset)
         timespan_start, timespan_stop = self._get_expr_offsets(timespan)
-        command = self.template
-        command = command.replace('timespan.start', repr(timespan_start))
-        command = command.replace('timespan.stop', repr(timespan_stop))
-        command = command.replace('offset', repr(offset))
-        result = eval(command, {'Offset': durationtools.Offset})
-        return result
+        truth_value = self.inequalities.evaluate_offset_inequalities(timespan_start, timespan_stop, offset)
+        return truth_value
 
     def __eq__(self, expr):
         '''True when `expr` equals time relation. Otherwise false:
@@ -89,7 +90,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
         Return boolean.
         '''
         if isinstance(expr, type(self)):
-            if self.template == expr.template:
+            if self.inequalities == expr.inequalities:
                 if self.timespan == expr.timespan:
                     if self.offset == expr.offset:
                         return True
@@ -146,8 +147,12 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
             >>> z(time_relation)
             timerelationtools.OffsetTimespanTimeRelation(
-                'timespan.start <= offset < timespan.stop',
-                ['timespan.start <= offset', 'offset < timespan.stop'],
+                timerelationtools.CompoundInequality([
+                    'timespan.start <= offset',
+                    'offset < timespan.stop'
+                    ],
+                    logical_operator='and'
+                    ),
                 timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(10, 1)
