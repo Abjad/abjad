@@ -65,14 +65,16 @@ class CompoundInequality(ObjectInventory):
 #    @property
 #    def _item_callable(self):
 #        from abjad.tools import timerelationtools
-#        def to_simple_inequality(expr):
+#        def to_inequality(expr):
 #            if isinstance(expr, str):
 #                return timerelationtools.SimpleInequality(expr)
 #            elif isinstance(expr, timerelationtools.SimpleInequality):
 #                return expr
+#            elif isinstance(expr, timerelationtools.CompoundInequality):
+#                return expr
 #            else:
 #                raise TypeError(expr)
-#        return to_simple_inequality
+#        return to_inequality
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

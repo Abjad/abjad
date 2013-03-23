@@ -23,6 +23,18 @@ class SimpleInequality(AbjadObject):
     __slots__ = ('_template', )
 
     templates = (
+        'offset == timespan.start',
+        'offset < timespan.start',
+        'offset <= timespan.start',
+        'offset == timespan.stop',
+        'offset < timespan.stop',
+        'offset <= timespan.stop',
+        'timespan.start == offset',
+        'timespan.start < offset',
+        'timespan.start <= offset',
+        'timespan.stop == offset',
+        'timespan.stop < offset',
+        'timespan.stop <= offset',
         'timespan_1.start_offset == timespan_2.start_offset',
         'timespan_1.start_offset < timespan_2.start_offset',
         'timespan_1.start_offset <= timespan_2.start_offset',
