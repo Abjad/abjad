@@ -156,7 +156,6 @@ class Component(AbjadObject):
     def start_offset_in_seconds(self):
         '''Read-only start offset of comonent in seconds.
         '''
-        #self._update_marks_of_entire_score_tree_if_necessary()
         self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
         if self._start_offset_in_seconds is None:
             raise MissingTempoError
@@ -168,8 +167,6 @@ class Component(AbjadObject):
         '''
         # it's enough to return self._stop_offset because self._stop_offset is
         # updated by offsettools.update_offset_values_of_component();
-        # that means that the addition of duration is redundant ... and surprisingly expensive.
-        #return self.start_offset + self.duration
         self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
         return self._stop_offset
 
@@ -183,7 +180,6 @@ class Component(AbjadObject):
     def timespan(self):
         '''Read-only timespan of component.
         '''
-        #return timespantools.Timespan(start_offset=self.start_offset, stop_offset=self.stop_offset)
         self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
         return self._timespan
 

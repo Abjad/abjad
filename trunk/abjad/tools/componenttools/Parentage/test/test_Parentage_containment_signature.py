@@ -269,7 +269,7 @@ def test_Parentage_containment_signature_10():
     '''Measure and leaves must carry same thread signature.
     '''
 
-    t = Staff([measuretools.DynamicMeasure("c'8 d'8")] + notetools.make_repeated_notes(2))
+    t = Staff([Measure((2, 8), "c'8 d'8")] + notetools.make_repeated_notes(2))
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
