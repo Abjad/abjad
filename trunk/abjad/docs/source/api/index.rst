@@ -3101,7 +3101,6 @@ Core composition packages
       tools/spannertools/HairpinSpanner/HairpinSpanner
       tools/spannertools/HiddenStaffSpanner/HiddenStaffSpanner
       tools/spannertools/HorizontalBracketSpanner/HorizontalBracketSpanner
-      tools/spannertools/MetricGridSpanner/MetricGridSpanner
       tools/spannertools/OctavationSpanner/OctavationSpanner
       tools/spannertools/PhrasingSlurSpanner/PhrasingSlurSpanner
       tools/spannertools/PianoPedalSpanner/PianoPedalSpanner
@@ -3173,7 +3172,6 @@ Core composition packages
       tools/spannertools/HairpinSpanner/HairpinSpanner
       tools/spannertools/HiddenStaffSpanner/HiddenStaffSpanner
       tools/spannertools/HorizontalBracketSpanner/HorizontalBracketSpanner
-      tools/spannertools/MetricGridSpanner/MetricGridSpanner
       tools/spannertools/OctavationSpanner/OctavationSpanner
       tools/spannertools/PhrasingSlurSpanner/PhrasingSlurSpanner
       tools/spannertools/PianoPedalSpanner/PianoPedalSpanner
