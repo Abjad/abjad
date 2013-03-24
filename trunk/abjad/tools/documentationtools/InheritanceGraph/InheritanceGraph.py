@@ -126,7 +126,9 @@ class InheritanceGraph(AbjadObject):
         # main addresses
         if addresses is None:
             addresses = ('abjad',)
-        addresses = tuple(str(x) for x in addresses)
+        for i, x in enumerate(addresses):
+            if isinstance(x, unicode):
+                addresses[i] = str(x)
         all_main_klasses, main_immediate_klasses, main_cached_addresses = \
             self._collect_klasses(addresses, self.recurse_into_submodules)
         self._addresses = main_cached_addresses
