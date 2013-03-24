@@ -20,7 +20,7 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice=False):
 
     ::
 
-        >>> t = Staff(measuretools.AnonymousMeasure("c'8 d'8") * 2)
+        >>> t = Staff(2 * Measure((2, 8), "c'8 d'8"))
         >>> front, back = Duration(1, 32), Duration(1, 64)
         >>> measuretools.pad_measures_in_expr_with_rests(t, front, back)
 
@@ -29,21 +29,17 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice=False):
         >>> f(t)
         \new Staff {
             {
-                \override Staff.TimeSignature #'stencil = ##f
                 \time 19/64
                 r32
                 c'8
                 d'8
                 r64
-                \revert Staff.TimeSignature #'stencil
             }
             {
-                \override Staff.TimeSignature #'stencil = ##f
                 r32
                 c'8
                 d'8
                 r64
-                \revert Staff.TimeSignature #'stencil
             }
         }
 

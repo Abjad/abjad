@@ -1,7 +1,9 @@
 from abjad.tools import durationtools
 from abjad.tools import componenttools
+from abjad.tools import contexttools
 from abjad.tools import iterationtools
 from abjad.tools import leaftools
+from abjad.tools import mathtools
 from abjad.tools import resttools
 from abjad.tools import skiptools
 
@@ -54,6 +56,14 @@ def _insert_measure_padding(expr, front, back, klass, splice=False):
                 else:
                     componenttools.extend_in_parent_of_component(
                         stop_leaf, [klass.__class__(back)], grow_spanners=False)
+        if front is not None or back is not None:
+            new_duration = measure.duration
+            new_time_signature = mathtools.NonreducedFraction(new_duration)
+            old_time_signature = contexttools.get_time_signature_mark_attached_to_component(measure)
+            new_time_signature = new_time_signature.with_denominator(old_time_signature.denominator)
+            new_time_signature = contexttools.TimeSignatureMark(new_time_signature)
+            contexttools.detach_time_signature_marks_attached_to_component(measure)
+            new_time_signature.attach(measure)
 
     # allow updates after all calls to spanner-growing functions are done #
     #root._update._allow_component_update()
