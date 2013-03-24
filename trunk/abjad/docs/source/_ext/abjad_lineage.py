@@ -40,9 +40,10 @@ class AbjadLineage(Directive):
             elif module_name.startswith('experimental'):
                 addresses = ('abjad', 'experimental')
             else:
-                raise InheritanceException(
-                    'Could not import class {!r} specified for '
-                    'inheritance diagram'.format(self.arguments[0]))
+                addresses = (module_name.partition('.')[0],)
+                #raise InheritanceException(
+                #    'Could not import class {!r} specified for '
+                #    'inheritance diagram'.format(self.arguments[0]))
             # The following is a hack.
             # We need to guarantee that everything is imported before
             # the first diagram in the entire document is drawn,
