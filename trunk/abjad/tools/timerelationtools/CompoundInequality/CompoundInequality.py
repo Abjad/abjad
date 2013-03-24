@@ -45,7 +45,7 @@ class CompoundInequality(ObjectInventory):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_inequalities', '_logical_operator', '_name',
+    __slots__ = ('_logical_operator', '_name',
         )
 
     logical_operator_dictionary = {
@@ -112,7 +112,7 @@ class CompoundInequality(ObjectInventory):
             raise ValueError(self.logical_operator)
         return truth_value
 
-    def evaluate_offset_inequalities(self, timespan_start, timespan_stop, offset):
+    def evaluate_offset_inequality(self, timespan_start, timespan_stop, offset):
         from abjad.tools import timerelationtools
         truth_values = []
         for inequality in self:
@@ -120,7 +120,7 @@ class CompoundInequality(ObjectInventory):
                 truth_value = inequality.evaluate_offset_inequality(timespan_start, timespan_stop, offset)
                 truth_values.append(truth_value)
             elif isinstance(inequality, type(self)):
-                truth_value = inequality.evaluate_offset_inequalities(
+                truth_value = inequality.evaluate_offset_inequality(
                     timespan_start, timespan_stop, offset)
                 truth_values.append(truth_value)
             else:

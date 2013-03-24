@@ -33,7 +33,7 @@ Methods
 .. automethod:: abjad.tools.timerelationtools.CompoundInequality.CompoundInequality.CompoundInequality.evaluate
    :noindex:
 
-.. automethod:: abjad.tools.timerelationtools.CompoundInequality.CompoundInequality.CompoundInequality.evaluate_offset_inequalities
+.. automethod:: abjad.tools.timerelationtools.CompoundInequality.CompoundInequality.CompoundInequality.evaluate_offset_inequality
    :noindex:
 
 .. automethod:: abjad.tools.timerelationtools.CompoundInequality.CompoundInequality.CompoundInequality.extend

@@ -37,8 +37,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     ### INITIALIZER ###
 
-    def __init__(self, inequalities, timespan=None, offset=None):
-        TimeRelation.__init__(self, inequalities)
+    def __init__(self, inequality, timespan=None, offset=None):
+        TimeRelation.__init__(self, inequality)
         self._timespan = timespan
         self._offset = offset
 
@@ -56,18 +56,14 @@ class OffsetTimespanTimeRelation(TimeRelation):
         Otherwise return boolean.
         '''
         from abjad.tools import timespantools
-        if timespan is None:
-            timespan = self.timespan
-        if offset is None:
-            offset = self.offset
+        timespan = timespan or self.timespan
+        offset = offset or self.offset
         if timespan is None or offset is None:
             raise ValueError('time relation is not fully loaded.')
         timespan = timespantools.Timespan()._get_timespan(timespan)
         offset = durationtools.Offset(offset)
-        #timespan_start, timespan_stop = self._get_expr_offsets(timespan)
-        timespan_start = timespan.start_offset
-        timespan_stop = timespan.stop_offset
-        truth_value = self.inequalities.evaluate_offset_inequalities(timespan_start, timespan_stop, offset)
+        truth_value = self.inequality.evaluate_offset_inequality(
+            timespan.start_offset, timespan.stop_offset, offset)
         return truth_value
 
     def __eq__(self, expr):
@@ -92,7 +88,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
         Return boolean.
         '''
         if isinstance(expr, type(self)):
-            if self.inequalities == expr.inequalities:
+            if self.inequality == expr.inequality:
                 if self.timespan == expr.timespan:
                     if self.offset == expr.offset:
                         return True

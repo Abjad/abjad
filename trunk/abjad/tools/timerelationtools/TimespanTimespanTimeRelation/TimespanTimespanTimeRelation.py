@@ -101,14 +101,13 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     ### INITIALIZER ###
 
-    def __init__(self, inequalities, timespan_1=None, timespan_2=None):
-        TimeRelation.__init__(self, inequalities)
+    def __init__(self, inequality, timespan_1=None, timespan_2=None):
+        TimeRelation.__init__(self, inequality)
         self._timespan_1 = timespan_1
         self._timespan_2 = timespan_2
 
     ### SPECIAL METHODS ###
 
-    # TODO: streamline this entire method to delegate evaluation to SimpleInequality, CompoundInequality
     # TODO: hoist to TimeRelation
     def __call__(self, timespan_1=None, timespan_2=None):
         r'''Evaluate time relation.
@@ -202,7 +201,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             timespan_1 = timespantools.Timespan()._get_timespan(timespan_1)
         if not isinstance(timespan_2, timespantools.Timespan):
             timespan_2 = timespantools.Timespan()._get_timespan(timespan_2)
-        truth_value = self.inequalities.evaluate(
+        truth_value = self.inequality.evaluate(
             timespan_1.start_offset, timespan_1.stop_offset, 
             timespan_2.start_offset, timespan_2.stop_offset)
         return truth_value
@@ -229,7 +228,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         Return boolean.
         '''
         if isinstance(expr, type(self)):
-            if self.inequalities == expr.inequalities:
+            if self.inequality == expr.inequality:
                 if self.timespan_1 == expr.timespan_1:
                     if self.timespan_2 == expr.timespan_2:
                         return True
@@ -385,7 +384,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         from abjad.tools import timerelationtools
         from abjad.tools import timespantools
         
-        result = self.inequalities.get_offset_indices(
+        result = self.inequality.get_offset_indices(
             self.timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
 
         if not result:

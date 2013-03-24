@@ -9,7 +9,7 @@ timerelationtools.OffsetTimespanTimeRelation
 Read-only properties
 --------------------
 
-.. autoattribute:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.inequalities
+.. autoattribute:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.inequality
    :noindex:
 
 .. autoattribute:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.is_fully_loaded

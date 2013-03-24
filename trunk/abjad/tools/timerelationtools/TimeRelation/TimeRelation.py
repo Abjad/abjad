@@ -44,11 +44,10 @@ class TimeRelation(AbjadObject):
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
-    def __init__(self, inequalities):
+    def __init__(self, inequality):
         from experimental.tools import timerelationtools
-        assert isinstance(inequalities, timerelationtools.CompoundInequality), repr(inequalities)
-        self._inequalities = inequalities
+        assert isinstance(inequality, timerelationtools.CompoundInequality), repr(inequality)
+        self._inequality = inequality
 
     ### SPECIAL METHODS ###
 
@@ -77,10 +76,10 @@ class TimeRelation(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def inequalities(self):
-        '''Time relation inequalities.
+    def inequality(self):
+        '''Time relation inequality.
         '''
-        return self._inequalities
+        return self._inequality
 
     @abc.abstractproperty
     def is_fully_loaded(self):
