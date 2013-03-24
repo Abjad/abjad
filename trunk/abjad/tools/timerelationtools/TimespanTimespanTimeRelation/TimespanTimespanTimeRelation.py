@@ -110,7 +110,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     # TODO: streamline this entire method to delegate evaluation to SimpleInequality, CompoundInequality
     # TODO: hoist to TimeRelation
-    def __call__(self, timespan_1=None, timespan_2=None, score_specification=None):
+    def __call__(self, timespan_1=None, timespan_2=None):
         r'''Evaluate time relation.
 
         Example 1. Evaluate time relation without substitution:
@@ -193,25 +193,18 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         Otherwise return boolean.
         '''
-        from abjad.tools import timerelationtools
         from abjad.tools import timespantools
-        if timespan_1 is None:
-            timespan_1 = self.timespan_1
-        if timespan_2 is None:
-            timespan_2 = self.timespan_2
+        timespan_1 = timespan_1 or self.timespan_1
+        timespan_2 = timespan_2 or self.timespan_2
         if timespan_1 is None or timespan_2 is None:
             raise ValueError('time relation is not fully loaded: {!r}.'.format(self))
         if not isinstance(timespan_1, timespantools.Timespan):
             timespan_1 = timespantools.Timespan()._get_timespan(timespan_1)
         if not isinstance(timespan_2, timespantools.Timespan):
             timespan_2 = timespantools.Timespan()._get_timespan(timespan_2)
-        timespan_1_start_offset = timespan_1.start_offset
-        timespan_1_stop_offset = timespan_1.stop_offset
-        timespan_2_start_offset = timespan_2.start_offset
-        timespan_2_stop_offset = timespan_2.stop_offset
         truth_value = self.inequalities.evaluate(
-            timespan_1_start_offset, timespan_1_stop_offset, 
-            timespan_2_start_offset, timespan_2_stop_offset)
+            timespan_1.start_offset, timespan_1.stop_offset, 
+            timespan_2.start_offset, timespan_2.stop_offset)
         return truth_value
 
     def __eq__(self, expr):
