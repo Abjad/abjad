@@ -69,13 +69,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.stop_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.storage_format

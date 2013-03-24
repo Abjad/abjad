@@ -57,13 +57,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.stop_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.storage_format

@@ -60,13 +60,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.stop_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.storage_format

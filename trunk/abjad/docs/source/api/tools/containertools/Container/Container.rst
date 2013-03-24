@@ -57,13 +57,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.containertools.Container.Container.Container.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.stop_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.containertools.Container.Container.Container.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.storage_format

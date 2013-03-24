@@ -66,13 +66,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.contexttools.Context.Context.Context.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.stop_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.contexttools.Context.Context.Context.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.storage_format

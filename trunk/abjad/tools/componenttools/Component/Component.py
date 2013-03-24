@@ -187,8 +187,11 @@ class Component(AbjadObject):
     def timespan_in_seconds(self):
         '''Read-only timespan of component in seconds.
         '''
+        self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
+        if self._start_offset_in_seconds is None:
+            raise MissingTempoError
         return timespantools.Timespan(
-            start_offset=self.start_offset_in_seconds, stop_offset=self.stop_offset_in_seconds)
+            start_offset=self._start_offset_in_seconds, stop_offset=self._stop_offset_in_seconds)
 
     ### PRIVATE METHODS ###
 

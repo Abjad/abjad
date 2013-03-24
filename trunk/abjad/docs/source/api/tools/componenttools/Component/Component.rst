@@ -45,13 +45,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.componenttools.Component.Component.Component.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.stop_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.componenttools.Component.Component.Component.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.storage_format
