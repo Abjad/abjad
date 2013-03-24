@@ -48,7 +48,7 @@ def test_containertools_reverse_contents_of_container_04():
     attached to itself and with a parent.
     '''
 
-    t = Staff([measuretools.DynamicMeasure("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notetools.make_repeated_notes(2))
+    t = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notetools.make_repeated_notes(2))
     beam = beamtools.BeamSpanner(t[0])
     leaves_rev = reversed(t[0].leaves)
     containertools.reverse_contents_of_container(t[0])
@@ -62,7 +62,7 @@ def test_containertools_reverse_contents_of_container_05():
     attached to its leaves and with a parent.
     '''
 
-    t = Staff([measuretools.DynamicMeasure("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notetools.make_repeated_notes(2))
+    t = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notetools.make_repeated_notes(2))
     beam = beamtools.BeamSpanner(t[0].leaves)
     leaves_rev = reversed(t[0].leaves)
     containertools.reverse_contents_of_container(t[0])
@@ -76,7 +76,7 @@ def test_containertools_reverse_contents_of_container_06():
     '''
 
     notes = [Note("c'8"), Note("d'8")]
-    t = Staff([measuretools.DynamicMeasure("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notes)
+    t = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notes)
     beam = beamtools.BeamSpanner(t)
     leaves_rev = reversed(t[0].leaves)
     containertools.reverse_contents_of_container(t[0])
@@ -91,7 +91,7 @@ def test_containertools_reverse_contents_of_container_07():
     '''
 
     notes = [Note("c'8"), Note("d'8")]
-    measure = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    measure = Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     t = Staff([measure] + notes)
     beam = beamtools.BeamSpanner(t[:])
     leaves_rev = reversed(t[0].leaves)
@@ -108,7 +108,7 @@ def test_containertools_reverse_contents_of_container_08():
     '''
 
     notes = [Note("c'8"), Note("d'8")]
-    measure = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    measure = Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     t = Staff([measure] + notes)
     beam = beamtools.BeamSpanner(t[:])
 
@@ -138,8 +138,8 @@ def test_containertools_reverse_contents_of_container_09():
     '''Retrograde works on a depth-2 Container with no parent and with spanners at all levels.
     '''
 
-    m1 = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")
-    m2 = measuretools.DynamicMeasure("c'8 d'8 e'8")
+    m1 = Measure((4, 8), "c'8 d'8 e'8 f'8")
+    m2 = Measure((3, 8), "c'8 d'8 e'8")
     staff = Staff([m1, m2])
     pedal = spannertools.PianoPedalSpanner(staff)
     trill = spannertools.TrillSpanner(staff[:])

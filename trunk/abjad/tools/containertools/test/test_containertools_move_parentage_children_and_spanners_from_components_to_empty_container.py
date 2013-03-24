@@ -3,7 +3,8 @@ import py.test
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_01():
-    '''Move parentage, children and spanners from multiple containers to empty tuplet.'''
+    '''Move parentage, children and spanners from multiple containers to empty tuplet.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -49,7 +50,8 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_02():
-    '''Move parentage, children and spanners from container to empty voice.'''
+    '''Move parentage, children and spanners from container to empty voice.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     t.name = 'foo'
@@ -100,7 +102,8 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_03():
-    '''Move parentage, children and spanners from container to empty tuplet.'''
+    '''Move parentage, children and spanners from container to empty tuplet.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -150,7 +153,8 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_04():
-    '''Trying to move parentage, children and spanners to noncontainer raises type error.'''
+    '''Trying to move parentage, children and spanners to noncontainer raises type error.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     beamtools.BeamSpanner(t[:])
@@ -162,7 +166,8 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_05():
     '''Trying to move parentage, children and spanners from nonempty container
-    to nonempty container raises music contents error.'''
+    to nonempty container raises music contents error.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     beamtools.BeamSpanner(t[:])
@@ -175,7 +180,8 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_06():
     '''Trying to move parentage, children and spanners from components that are not parent-contiguous
-    raises exception.'''
+    raises exception.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -204,13 +210,14 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_07():
-    '''Move parentage, children and spanners from multiple dynamic measure to empty measure.'''
+    '''Move parentage, children and spanners from multiple dynamic measure to empty measure.
+    '''
 
-    t = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")
+    t = Measure((4, 8), "c'8 d'8 e'8 f'8")
 
     r'''
     {
-        \time 1/2
+        \time 4/8
         c'8
         d'8
         e'8

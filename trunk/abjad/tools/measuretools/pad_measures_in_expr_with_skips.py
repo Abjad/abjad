@@ -43,10 +43,11 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice=False):
             }
         }
 
-    Works when measures contain stacked voices. ::
+    Works when measures contain stacked voices:
 
-        >>> measure = measuretools.DynamicMeasure(
-        ...     Voice(notetools.make_repeated_notes(2)) * 2)
+    ::
+
+        >>> measure = Measure((2, 8), 2 * Voice(notetools.make_repeated_notes(2)))
         >>> measure.is_parallel = True
         >>> t = Staff(measure * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -89,9 +90,11 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice=False):
         }
 
     Set the optional `splice` keyword to ``True`` to extend edge
-    spanners over newly inserted skips::
+    spanners over newly inserted skips:
 
-        >>> t = measuretools.DynamicMeasure("c'8 d'8")
+    ::
+
+        >>> t = Measure((2, 8), "c'8 d'8")
         >>> beamtools.BeamSpanner(t[:])
         BeamSpanner(c'8, d'8)
         >>> measuretools.pad_measures_in_expr_with_skips(

@@ -1577,7 +1577,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/measuretools/DynamicMeasure/DynamicMeasure
       tools/measuretools/Measure/Measure
 
    --------
@@ -1630,7 +1629,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/measuretools/DynamicMeasure/DynamicMeasure
       tools/measuretools/Measure/Measure
 
    Functions
