@@ -604,18 +604,11 @@ class Timespan(BoundedObject):
             return self.intersects_timespan(expr) or self.stops_when_timespan_starts(expr)
         return False
 
-    def _get_offsets(self, expr):
-        try:
-            return expr.timespan.offsets
-        except AttributeError:
-            pass
-        try:
-            return expr.start_offset, expr.stop_offset
-        except AttributeError:
-            pass
-
     def _get_timespan(self, expr):
-        start_offset, stop_offset = self._get_offsets(expr)
+        if isinstance(expr, Timespan):
+            start_offset, stop_offset = expr.offsets
+        else:
+            start_offset, stop_offset = expr.timespan.offsets
         return type(self)(start_offset, stop_offset)
 
     def _implements_timespan_interface(self, timespan):
