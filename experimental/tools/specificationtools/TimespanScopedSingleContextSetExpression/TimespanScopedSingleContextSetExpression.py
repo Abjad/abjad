@@ -95,17 +95,23 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         '''
         return self._fresh
 
+    # TODO: remove and use self.timespan.start_offset instead
     @property
     def start_offset(self):
         '''Set expression start offset.
+
+        .. note:: remove and use ``self.timespan.start_offset`` instead.
 
         Return offset.
         '''
         return self.target_timespan.start_offset
 
+    # TODO: remove and use self.timespan.stop_offset instead
     @property
     def stop_offset(self):
         '''Set expression stop offset.
+
+        .. note:: remove and use ``self.timespan.stop_offset`` instead.
 
         Return offset.
         '''
