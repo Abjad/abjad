@@ -257,6 +257,8 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     @property
     def unflattened_graphviz_format(self):
+        from abjad.tools import iotools
+        assert iotools.which('unflatten'), 'Cannot find `unflatten` command-line tool.'
         graphviz_format = self.graphviz_format
         process = subprocess.Popen('unflatten -l 4'.split(),
             shell=False,
