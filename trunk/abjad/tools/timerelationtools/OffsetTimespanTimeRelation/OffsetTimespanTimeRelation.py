@@ -64,7 +64,9 @@ class OffsetTimespanTimeRelation(TimeRelation):
             raise ValueError('time relation is not fully loaded.')
         timespan = timespantools.Timespan()._get_timespan(timespan)
         offset = durationtools.Offset(offset)
-        timespan_start, timespan_stop = self._get_expr_offsets(timespan)
+        #timespan_start, timespan_stop = self._get_expr_offsets(timespan)
+        timespan_start = timespan.start_offset
+        timespan_stop = timespan.stop_offset
         truth_value = self.inequalities.evaluate_offset_inequalities(timespan_start, timespan_stop, offset)
         return truth_value
 

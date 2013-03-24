@@ -74,16 +74,6 @@ class TimeRelation(AbjadObject):
         '''
         pass
 
-    ### PRIVATE METHODS ###
-
-    def _get_expr_offsets(self, expr, score_specification=None, context_name=None):
-        if hasattr(expr, 'offsets'):
-            return expr.offsets
-        elif hasattr(expr, 'get_offsets'):
-            return expr.get_offsets(score_specification, context_name)
-        else:
-            raise ValueError('{!r} has neither offsets property nor get_offsets() method.'.format(expr))
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

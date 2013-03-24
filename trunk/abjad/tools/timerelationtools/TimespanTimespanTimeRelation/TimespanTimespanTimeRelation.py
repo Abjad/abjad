@@ -108,10 +108,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     ### SPECIAL METHODS ###
 
-    # TODO: test and see if context_name=None can be removed entirely.
     # TODO: streamline this entire method to delegate evaluation to SimpleInequality, CompoundInequality
     # TODO: hoist to TimeRelation
-    def __call__(self, timespan_1=None, timespan_2=None, score_specification=None, context_name=None):
+    def __call__(self, timespan_1=None, timespan_2=None, score_specification=None):
         r'''Evaluate time relation.
 
         Example 1. Evaluate time relation without substitution:
@@ -206,10 +205,10 @@ class TimespanTimespanTimeRelation(TimeRelation):
             timespan_1 = timespantools.Timespan()._get_timespan(timespan_1)
         if not isinstance(timespan_2, timespantools.Timespan):
             timespan_2 = timespantools.Timespan()._get_timespan(timespan_2)
-        timespan_1_start_offset, timespan_1_stop_offset = self._get_expr_offsets(
-            timespan_1, score_specification=score_specification, context_name=context_name)
-        timespan_2_start_offset, timespan_2_stop_offset = self._get_expr_offsets(
-            timespan_2, score_specification=score_specification, context_name=context_name)
+        timespan_1_start_offset = timespan_1.start_offset
+        timespan_1_stop_offset = timespan_1.stop_offset
+        timespan_2_start_offset = timespan_2.start_offset
+        timespan_2_stop_offset = timespan_2.stop_offset
         truth_value = self.inequalities.evaluate(
             timespan_1_start_offset, timespan_1_stop_offset, 
             timespan_2_start_offset, timespan_2_stop_offset)
