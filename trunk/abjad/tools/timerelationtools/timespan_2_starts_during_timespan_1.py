@@ -25,8 +25,8 @@ def timespan_2_starts_during_timespan_1(timespan_1=None, timespan_2=None, hold=F
 
     ::
     
-        >>> start_offsets = [note.start_offset for note in staff_1]
-        >>> stop_offsets = [note.stop_offset for note in staff_1]
+        >>> start_offsets = [note.timespan.start_offset for note in staff_1]
+        >>> stop_offsets = [note.timespan.stop_offset for note in staff_1]
 
     ::
 

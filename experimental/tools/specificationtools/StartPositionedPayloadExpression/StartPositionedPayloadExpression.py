@@ -227,7 +227,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         if len(self.elements):
             last_element = self.elements[0]
             for current_element in self.elements[1:]:
-                if not last_element.stop_offset == current_element.start_offset:
+                if not last_element.timespan.stop_offset == current_element.timespan.start_offset:
                     return False
                 last_element = current_element
         return True

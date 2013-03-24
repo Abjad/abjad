@@ -82,8 +82,8 @@ class ConcreteInterpreter(Interpreter):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_proxy = self.score_specification.voice_data_structures_by_voice[voice.name]
             for leaf in iterationtools.iterate_leaves_in_expr(voice):
-                voice_proxy.leaf_start_offsets.append(leaf.start_offset)
-                voice_proxy.leaf_stop_offsets.append(leaf.stop_offset)
+                voice_proxy.leaf_start_offsets.append(leaf.timespan.start_offset)
+                voice_proxy.leaf_stop_offsets.append(leaf.timespan.stop_offset)
                 voice_proxy.leaves.append(leaf)
 
     def calculate_score_and_segment_timespans(self):

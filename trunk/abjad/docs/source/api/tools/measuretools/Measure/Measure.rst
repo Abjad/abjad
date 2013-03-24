@@ -78,12 +78,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.spanners
    :noindex:
 
-.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.storage_format
    :noindex:
 

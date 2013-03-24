@@ -63,12 +63,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.spanners
    :noindex:
 
-.. autoattribute:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.storage_format
    :noindex:
 

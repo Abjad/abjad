@@ -36,12 +36,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.score_index
    :noindex:
 
-.. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.storage_format
    :noindex:
 

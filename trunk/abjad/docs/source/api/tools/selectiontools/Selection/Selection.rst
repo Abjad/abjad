@@ -12,12 +12,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.selectiontools.Selection.Selection.Selection.music
    :noindex:
 
-.. autoattribute:: abjad.tools.selectiontools.Selection.Selection.Selection.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.selectiontools.Selection.Selection.Selection.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.selectiontools.Selection.Selection.Selection.storage_format
    :noindex:
 

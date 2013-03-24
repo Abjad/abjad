@@ -30,12 +30,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner.set
    :noindex:
 
-.. autoattribute:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner.storage_format
    :noindex:
 

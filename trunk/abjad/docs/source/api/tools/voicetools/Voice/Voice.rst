@@ -63,12 +63,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.spanners
    :noindex:
 
-.. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.storage_format
    :noindex:
 

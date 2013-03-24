@@ -54,12 +54,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.spanners
    :noindex:
 
-.. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.storage_format
    :noindex:
 

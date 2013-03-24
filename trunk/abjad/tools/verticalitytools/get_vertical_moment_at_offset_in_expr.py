@@ -71,8 +71,8 @@ def get_vertical_moment_at_offset_in_expr(expr, offset):
         hi = len(container)
         while lo < hi:
             mid = (lo + hi) // 2
-            start_offset = container[mid].start_offset
-            stop_offset = container[mid].stop_offset
+            start_offset = container[mid].timespan.start_offset
+            stop_offset = container[mid].timespan.stop_offset
             if start_offset <= offset < stop_offset:
                 lo = mid + 1
             elif start_offset < stop_offset: # if container[mid] is of non-zero duration
@@ -83,7 +83,7 @@ def get_vertical_moment_at_offset_in_expr(expr, offset):
 
     def recurse(component, offset):
         result = []
-        if component.start_offset <= offset < component.stop_offset:
+        if component.timespan.start_offset <= offset < component.timespan.stop_offset:
             result.append(component)
             if hasattr(component, '_music'):
                 if component.is_parallel:

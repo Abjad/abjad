@@ -146,8 +146,8 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         '''
         assert isinstance(expr, slice), repr(expr)
         leaves = self.payload.leaves.__getitem__(expr)
-        start_offset = leaves[0].start_offset
-        stop_offset = leaves[-1].stop_offset
+        start_offset = leaves[0].timespan.start_offset
+        stop_offset = leaves[-1].timespan.stop_offset
         timespan = timespantools.Timespan(start_offset, stop_offset)
         timespan = timespan.translate(self.start_offset)
         result = self & timespan
@@ -778,11 +778,11 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         if isinstance(n, int):
             leaves = sequencetools.CyclicTuple(self.payload.leaves)
             if 0 < n:
-                split_offset = leaves[-n].start_offset
+                split_offset = leaves[-n].timespan.start_offset
             elif n == 0:
                 return self
             else:
-                split_offset = leaves[-(n+1)].stop_offset
+                split_offset = leaves[-(n+1)].timespan.stop_offset
         elif isinstance(n, specificationtools.RotationIndicator):
             rotation_indicator = n
             if rotation_indicator.level is None:
@@ -796,11 +796,11 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             components_at_level = sequencetools.CyclicTuple(components_at_level)
             if isinstance(rotation_indicator.index, int):
                 if 0 < rotation_indicator.index:
-                    split_offset = components_at_level[-rotation_indicator.index].start_offset
+                    split_offset = components_at_level[-rotation_indicator.index].timespan.start_offset
                 elif n == 0:
                     return self
                 else:
-                    split_offset = components_at_level[-(rotation_indicator.index+1)].stop_offset
+                    split_offset = components_at_level[-(rotation_indicator.index+1)].timespan.stop_offset
             else:
                 index = durationtools.Duration(rotation_indicator.index)
                 if 0 <= index:

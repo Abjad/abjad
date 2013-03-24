@@ -30,12 +30,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.set
    :noindex:
 
-.. autoattribute:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.storage_format
    :noindex:
 

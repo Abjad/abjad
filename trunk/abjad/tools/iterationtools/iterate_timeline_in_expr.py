@@ -75,7 +75,7 @@ def iterate_timeline_in_expr(expr, klass=None, reverse=False):
     components = list(component_generator)
 
     def _backward_sort_helper(component_1, component_2):
-        result = cmp(component_1.stop_offset, component_2.stop_offset)
+        result = cmp(component_1.timespan.stop_offset, component_2.timespan.stop_offset)
         if result == 0:
             return cmp(component_1.parentage.score_index, component_2.parentage.score_index)
         else:
@@ -84,7 +84,7 @@ def iterate_timeline_in_expr(expr, klass=None, reverse=False):
             return -result
 
     def _forward_sort_helper(component_1, component_2):
-        result = cmp(component_1.start_offset, component_2.start_offset)
+        result = cmp(component_1.timespan.start_offset, component_2.timespan.start_offset)
         if result == 0:
             return cmp(component_1.parentage.score_index, component_2.parentage.score_index)
         else:

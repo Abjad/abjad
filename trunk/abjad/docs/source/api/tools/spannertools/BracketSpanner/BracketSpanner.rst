@@ -30,12 +30,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.set
    :noindex:
 
-.. autoattribute:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.storage_format
    :noindex:
 

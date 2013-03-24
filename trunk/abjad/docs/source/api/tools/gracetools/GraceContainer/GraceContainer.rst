@@ -54,12 +54,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.spanners
    :noindex:
 
-.. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.storage_format
    :noindex:
 

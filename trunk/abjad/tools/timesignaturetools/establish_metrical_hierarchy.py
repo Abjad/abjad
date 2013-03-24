@@ -722,8 +722,8 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
         #print 'DEPTH:', depth
 
         tie_chain_duration = tie_chain.preprolated_duration
-        tie_chain_start_offset = tie_chain.start_offset
-        tie_chain_stop_offset = tie_chain.stop_offset
+        tie_chain_start_offset = tie_chain.timespan.start_offset
+        tie_chain_stop_offset = tie_chain.timespan.stop_offset
         tie_chain_starts_in_offsets = tie_chain_start_offset in offsets
         tie_chain_stops_in_offsets = tie_chain_stop_offset in offsets
 
@@ -799,7 +799,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
         assert 0 <= maximum_dot_count
 
     # build offset inventory, adjusted for initial offset and prolation
-    first_offset = components[0].start_offset
+    first_offset = components[0].timespan.start_offset
     prolation = components[0].prolation
     offset_inventory= []
     for offsets in metrical_hierarchy.depthwise_offset_inventory:

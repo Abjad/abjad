@@ -71,8 +71,8 @@ def get_tie_chains_masked_by_components(components):
         leaves_in_tie_chain = set(iterationtools.iterate_leaves_in_expr(tie_chain))
         leaves_intersecting = leaves_in_components.intersection(leaves_in_tie_chain)
         result.append(tietools.TieChain(tuple(sorted(leaves_intersecting,
-            key=lambda x: x.start_offset))))
-    result.sort(key=lambda x: x[0].start_offset)
+            key=lambda x: x.timespan.start_offset))))
+    result.sort(key=lambda x: x[0].timespan.start_offset)
 
     return result
 

@@ -1,6 +1,7 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
+from abjad.tools import timespantools
 from abjad.tools.mathtools.BoundedObject import BoundedObject
 from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
 
@@ -112,18 +113,24 @@ class Division(NonreducedFraction, BoundedObject):
         '''
         return durationtools.Duration(self.numerator, self.denominator)
 
+    # TODO: remove in favor of self.timespan
     @property
     def start_offset(self):
         '''Division start offset specified at initialization.
+
+        .. note:: remove in favor of ``self.timespan``.
 
         Return offset or none.
         '''
         return self._start_offset
 
+    # TODO: remove in favor of self.timespan
     @property
     def stop_offset(self):
         '''Division stop offset defined equal to start offset plus duration
         when start offset is not none.
+
+        .. note:: remove in favor of ``self.timespan``.
 
         Defined equal to none when start offset is none.
 
@@ -131,6 +138,14 @@ class Division(NonreducedFraction, BoundedObject):
         '''
         if self.start_offset is not None:
             return self.start_offset + self.duration
+
+    @property
+    def timespan(self):
+        '''Division timespan.
+
+        Return timespan.
+        '''
+        return timespantools.Timespan(self.start_offset, self.stop_offset)
 
     ### PUBLIC METHODS ###
 

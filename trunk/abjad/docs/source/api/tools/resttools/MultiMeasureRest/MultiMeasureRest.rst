@@ -51,12 +51,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.spanners
    :noindex:
 
-.. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.storage_format
    :noindex:
 

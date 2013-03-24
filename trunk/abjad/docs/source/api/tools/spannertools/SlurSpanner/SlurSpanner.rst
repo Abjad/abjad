@@ -30,12 +30,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.set
    :noindex:
 
-.. autoattribute:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.storage_format
    :noindex:
 

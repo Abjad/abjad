@@ -60,12 +60,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.start_notes
    :noindex:
 
-.. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.storage_format
    :noindex:
 

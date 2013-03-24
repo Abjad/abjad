@@ -15,12 +15,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.componenttools.Descendants.Descendants.Descendants.music
    :noindex:
 
-.. autoattribute:: abjad.tools.componenttools.Descendants.Descendants.Descendants.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.componenttools.Descendants.Descendants.Descendants.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.componenttools.Descendants.Descendants.Descendants.storage_format
    :noindex:
 

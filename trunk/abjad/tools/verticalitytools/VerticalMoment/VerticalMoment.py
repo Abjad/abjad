@@ -170,7 +170,7 @@ class VerticalMoment(Selection):
         from abjad.tools import verticalitytools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
-            if leaf.stop_offset < candidate_shortest_leaf.stop_offset:
+            if leaf.timespan.stop_offset < candidate_shortest_leaf.timespan.stop_offset:
                 candidate_shortest_leaf = leaf
         next_leaf = componenttools.get_nth_namesake_from_component(candidate_shortest_leaf, 1)
         next_vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(
@@ -240,7 +240,7 @@ class VerticalMoment(Selection):
         for leaf in self.leaves:
             #print ''
             #print leaf
-            leaf_start = leaf.start_offset
+            leaf_start = leaf.timespan.start_offset
             if leaf_start < self.offset:
                 #print 'found leaf starting before this moment ...'
                 if most_recent_start_offset <= leaf_start:
@@ -250,7 +250,7 @@ class VerticalMoment(Selection):
                 #print 'found leaf starting on this moment ...'
                 try:
                     previous_leaf = componenttools.get_nth_namesake_from_component(leaf, -1)
-                    start = previous_leaf.start_offset
+                    start = previous_leaf.timespan.start_offset
                     #print previous_leaf, start
                     if most_recent_start_offset <= start:
                         most_recent_start_offset = start
@@ -271,7 +271,7 @@ class VerticalMoment(Selection):
         starting with at vertical moment, ordered by score index.'''
         result = []
         for component in self.components:
-            if component.start_offset == self.offset:
+            if component.timespan.start_offset == self.offset:
                 result.append(component)
         result = tuple(result)
         return result

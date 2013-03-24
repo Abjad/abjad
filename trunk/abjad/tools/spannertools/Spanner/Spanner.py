@@ -170,7 +170,7 @@ class Spanner(AbjadObject):
         raise NotImplemented
 
     def _duration_offset_in_me(self, leaf):
-        return leaf.start_offset - self.start_offset
+        return leaf.timespan.start_offset - self.timespan.start_offset
 
     def _format_after_leaf(self, leaf):
         result = []
@@ -451,7 +451,16 @@ class Spanner(AbjadObject):
     def timespan(self):
         '''Read-only timespan of spanner.
         '''
-        return timespantools.Timespan(start_offset=self.start_offset, stop_offset=self.stop_offset)
+        #return timespantools.Timespan(start_offset=self.start_offset, stop_offset=self.stop_offset)
+        if len(self):
+            start_offset = self[0].timespan.start_offset
+        else:
+            start_offset = Duration(0)
+        if len(self):
+            stop_offset = self[-1].timespan.stop_offset
+        else:
+            stop_offset = Duration(0)
+        return timespantools.Timespan(start_offset=start_offset, stop_offset=stop_offset)
 
     @property
     def written_duration(self):

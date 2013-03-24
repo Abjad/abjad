@@ -39,12 +39,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.prolated_duration
    :noindex:
 
-.. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.storage_format
    :noindex:
 

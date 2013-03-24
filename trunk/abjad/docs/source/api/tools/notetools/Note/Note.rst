@@ -54,12 +54,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.spanners
    :noindex:
 
-.. autoattribute:: abjad.tools.notetools.Note.Note.Note.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.notetools.Note.Note.Note.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.storage_format
    :noindex:
 

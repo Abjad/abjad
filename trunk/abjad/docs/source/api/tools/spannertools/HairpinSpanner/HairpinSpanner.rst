@@ -30,12 +30,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.set
    :noindex:
 
-.. autoattribute:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.storage_format
    :noindex:
 

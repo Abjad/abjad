@@ -18,5 +18,5 @@ def test_Spanner_start_offset_01():
     }
     '''
 
-    assert beam.start_offset == Duration(1, 8)
-    assert glissando.start_offset == Duration(0)
+    assert beam.timespan.start_offset == Duration(1, 8)
+    assert glissando.timespan.start_offset == Duration(0)

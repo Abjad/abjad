@@ -30,12 +30,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner.set
    :noindex:
 
-.. autoattribute:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner.storage_format
    :noindex:
 

@@ -30,12 +30,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.set
    :noindex:
 
-.. autoattribute:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.storage_format
    :noindex:
 

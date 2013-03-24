@@ -51,12 +51,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.spanners
    :noindex:
 
-.. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.storage_format
    :noindex:
 

@@ -42,12 +42,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.spanners
    :noindex:
 
-.. autoattribute:: abjad.tools.componenttools.Component.Component.Component.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.componenttools.Component.Component.Component.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.storage_format
    :noindex:
 

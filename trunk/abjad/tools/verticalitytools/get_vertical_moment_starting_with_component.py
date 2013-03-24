@@ -64,7 +64,7 @@ def get_vertical_moment_starting_with_component(component, governor=None):
     '''
     from abjad.tools import verticalitytools
 
-    offset = component.start_offset
+    offset = component.timespan.start_offset
 
     if governor is None:
         governor = component.parentage.root

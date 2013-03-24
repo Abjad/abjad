@@ -63,12 +63,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.spanners
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.storage_format
    :noindex:
 

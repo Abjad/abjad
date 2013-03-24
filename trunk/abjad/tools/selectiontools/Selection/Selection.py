@@ -104,4 +104,6 @@ class Selection(AbjadObject):
         '''Read-only timespan of selection.
         '''
         from abjad.tools import timespantools
-        return timespantools.Timespan(self.start_offset, self.stop_offset)
+        start_offset = min(x.timespan.start_offset for x in self)
+        stop_offset = max(x.timespan.stop_offset for x in self)
+        return timespantools.Timespan(start_offset, stop_offset)

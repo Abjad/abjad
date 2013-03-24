@@ -30,12 +30,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner.set
    :noindex:
 
-.. autoattribute:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner.storage_format
    :noindex:
 

@@ -15,12 +15,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.music
    :noindex:
 
-.. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.storage_format
    :noindex:
 

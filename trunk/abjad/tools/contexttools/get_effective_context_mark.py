@@ -49,7 +49,7 @@ def get_effective_context_mark(component, klass):
     component._update_marks_of_entire_score_tree_if_necessary()
 
     # gathering candidate marks
-    candidate_marks = datastructuretools.SortedCollection(key=lambda x: x.start_component.start_offset)
+    candidate_marks = datastructuretools.SortedCollection(key=lambda x: x.start_component.timespan.start_offset)
     for parent in componenttools.get_improper_parentage_of_component(component):
         parent_marks = parent._context_marks_for_which_component_functions_as_effective_context
         for mark in parent_marks:
@@ -63,6 +63,6 @@ def get_effective_context_mark(component, klass):
     # elect most recent candidate mark
     if candidate_marks:
         try:
-            return candidate_marks.find_le(component.start_offset)
+            return candidate_marks.find_le(component.timespan.start_offset)
         except ValueError:
             pass

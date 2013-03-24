@@ -30,12 +30,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.set
    :noindex:
 
-.. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.storage_format
    :noindex:
 

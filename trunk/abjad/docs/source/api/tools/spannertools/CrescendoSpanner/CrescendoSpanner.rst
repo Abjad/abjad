@@ -30,12 +30,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.set
    :noindex:
 
-.. autoattribute:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.storage_format
    :noindex:
 

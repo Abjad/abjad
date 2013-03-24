@@ -141,7 +141,7 @@ def extend_in_parent_of_component(component, new_components, left=False, grow_sp
 
         # extend spanners if required
         if grow_spanners:
-            insert_offset = component.stop_offset
+            insert_offset = component.timespan.stop_offset
             receipt = spannertools.get_spanners_that_dominate_components([component])
             for spanner, index in receipt:
                 insert_component = spannertools.find_spanner_component_starting_at_exactly_score_offset(
@@ -176,7 +176,7 @@ def extend_in_parent_of_component(component, new_components, left=False, grow_sp
     else:
 
         if grow_spanners:
-            offset = component.start_offset
+            offset = component.timespan.start_offset
             receipt = spannertools.get_spanners_that_dominate_components([component])
             for spanner, x in receipt:
                 index = spannertools.find_index_of_spanner_component_at_score_offset(spanner, offset)

@@ -30,12 +30,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.set
    :noindex:
 
-.. autoattribute:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.storage_format
    :noindex:
 

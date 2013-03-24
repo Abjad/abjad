@@ -101,7 +101,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
     else:
         moments_in_governor = []
         for component in iterationtools.iterate_components_in_expr(expr):
-            offset = component.start_offset
+            offset = component.timespan.start_offset
             if offset not in moments_in_governor:
                 moments_in_governor.append(offset)
         moments_in_governor.sort()

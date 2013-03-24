@@ -30,12 +30,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner.set
    :noindex:
 
-.. autoattribute:: abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner.storage_format
    :noindex:
 

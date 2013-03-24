@@ -30,12 +30,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.set
    :noindex:
 
-.. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.start_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.stop_offset
-   :noindex:
-
 .. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.storage_format
    :noindex:
 
