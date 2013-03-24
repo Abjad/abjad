@@ -31,7 +31,7 @@ class AbjadLineage(Directive):
         node.document = self.state.document
         env = self.state.document.settings.env
         parts = self.arguments[0].rpartition('.')
-        module_name, class_name = parts[0], parts[2]
+        module_name, class_name = str(parts[0]), str(parts[2])
 
         # Create a graph starting with the list of classes
         try:
