@@ -35,4 +35,3 @@ def make_desordre_cell(pitches):
         marktools.BarLine('')(leaf)
 
     return container
-
