@@ -21,6 +21,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression.target_timespan
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.SetExpression.SetExpression.SetExpression.timespan
+   :noindex:
+
 Methods
 -------
 

@@ -33,6 +33,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.specificationtools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.target_timespan
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.timespan
+   :noindex:
+
 Methods
 -------
 

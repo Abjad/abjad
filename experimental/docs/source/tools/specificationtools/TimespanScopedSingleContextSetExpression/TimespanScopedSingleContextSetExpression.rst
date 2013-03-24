@@ -33,6 +33,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.specificationtools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.target_timespan
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.timespan
+   :noindex:
+
 Methods
 -------
 

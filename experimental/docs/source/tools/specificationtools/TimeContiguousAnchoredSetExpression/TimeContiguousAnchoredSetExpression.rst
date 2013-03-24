@@ -48,6 +48,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.target_timespan
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.timespan
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.truncate
    :noindex:
 

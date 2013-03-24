@@ -50,3 +50,11 @@ class SetExpression(Expression):
         Return timespan or timespan expression.
         '''
         return self._target_timespan
+
+    @property
+    def timespan(self):
+        '''Alias of set expression target timespan.
+
+        Return timespan or timespan expression.
+        '''
+        return self.target_timespan

@@ -51,6 +51,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.target_timespan
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.timespan
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.truncate
    :noindex:
 

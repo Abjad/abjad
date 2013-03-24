@@ -54,6 +54,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.specificationtools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.target_timespan
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.timespan
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.truncate
    :noindex:
 

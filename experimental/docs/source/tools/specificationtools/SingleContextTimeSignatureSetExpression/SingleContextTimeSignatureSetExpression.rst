@@ -54,6 +54,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.specificationtools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.target_timespan
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.timespan
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.truncate
    :noindex:
 

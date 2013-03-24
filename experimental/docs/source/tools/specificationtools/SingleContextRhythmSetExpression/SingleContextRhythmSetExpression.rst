@@ -54,6 +54,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.specificationtools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.target_timespan
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.timespan
+   :noindex:
+
 .. autoattribute:: experimental.tools.specificationtools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.truncate
    :noindex:
 
