@@ -605,12 +605,14 @@ class Timespan(BoundedObject):
         return False
 
     def _get_offsets(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
-            return expr.start_offset, expr.stop_offset
-        elif hasattr(expr, 'timespan'):
+        try:
             return expr.timespan.offsets
-        else:
-            raise TypeError(expr)
+        except AttributeError:
+            pass
+        try:
+            return expr.start_offset, expr.stop_offset
+        except AttributeError:
+            pass
 
     def _get_timespan(self, expr):
         start_offset, stop_offset = self._get_offsets(expr)
