@@ -306,10 +306,63 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     ### PUBLIC METHODS ###
 
-    def get_offset_indices(self, timespan_2_start_offsets, timespan_2_stop_offsets):
-        '''.. versionadded:: 2.12
+    def get_counttime_components(self, counttime_components):
+        '''Get `counttime_components` that satisfy `time_relation`:
 
-        Get offset indices that satisfy time relation:
+        ::
+
+            >>> voice = Voice([Note(i % 36, Duration(1, 4)) for i in range(200)])
+            >>> timespan_1 = timespantools.Timespan(20, 22)
+            >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
+
+        ::
+
+            >>> result = time_relation.get_counttime_components(voice[:])
+
+        ::
+
+            >>> for counttime_component in result: 
+            ...     counttime_component
+            Note("af'4")
+            Note("a'4")
+            Note("bf'4")
+            Note("b'4")
+            Note("c''4")
+            Note("cs''4")
+            Note("d''4")
+            Note("ef''4")
+
+        ::
+
+            >>> result.timespan
+            Timespan(start_offset=Offset(20, 1), stop_offset=Offset(22, 1))
+
+        `counttime_components` must belong to a single voice.
+
+        `counttime_components` must be time-contiguous.
+
+        Example shown here takes 78355 function calls under r9686.
+
+        Return selection.
+        '''
+        from abjad.tools import selectiontools
+        from abjad.tools import timerelationtools
+
+        # check input
+        assert isinstance(counttime_components, (list, selectiontools.Selection)), repr(counttime_components)
+        assert self.timespan_1 is not None
+
+        # iterate counttime components
+        result = []
+        for counttime_component in counttime_components:
+            if self(timespan_2=counttime_component.timespan):
+                result.append(counttime_component)
+
+        # return result
+        return selectiontools.Selection(result)
+
+    def get_offset_indices(self, timespan_2_start_offsets, timespan_2_stop_offsets):
+        '''Get offset indices that satisfy time relation:
 
         ::
 

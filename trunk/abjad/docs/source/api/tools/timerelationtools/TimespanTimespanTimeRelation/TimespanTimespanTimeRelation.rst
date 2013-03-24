@@ -30,6 +30,9 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.timerelationtools.TimespanTimespanTimeRelation.TimespanTimespanTimeRelation.TimespanTimespanTimeRelation.get_counttime_components
+   :noindex:
+
 .. automethod:: abjad.tools.timerelationtools.TimespanTimespanTimeRelation.TimespanTimespanTimeRelation.TimespanTimespanTimeRelation.get_offset_indices
    :noindex:
 
