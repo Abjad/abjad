@@ -51,12 +51,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.spanners
    :noindex:
 
-.. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.start_offset
-   :noindex:
-
-.. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.stop_offset
-   :noindex:
-
 .. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.storage_format
    :noindex:
 

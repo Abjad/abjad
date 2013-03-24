@@ -146,22 +146,6 @@ class Component(AbjadObject):
         return set(self._spanners)
 
     @property
-    def start_offset(self):
-        '''Read-only start offset of component.
-        '''
-        self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
-        return self._start_offset
-
-    @property
-    def stop_offset(self):
-        '''Read-only stop offset of component.
-        '''
-        # it's enough to return self._stop_offset because self._stop_offset is
-        # updated by offsettools.update_offset_values_of_component();
-        self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
-        return self._stop_offset
-
-    @property
     def timespan(self):
         '''Read-only timespan of component.
         '''

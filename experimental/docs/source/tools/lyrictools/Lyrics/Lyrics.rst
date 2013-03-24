@@ -63,12 +63,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.spanners
    :noindex:
 
-.. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.start_offset
-   :noindex:
-
-.. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.stop_offset
-   :noindex:
-
 .. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.storage_format
    :noindex:
 

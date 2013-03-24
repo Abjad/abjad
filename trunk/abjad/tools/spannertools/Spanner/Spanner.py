@@ -430,28 +430,9 @@ class Spanner(AbjadObject):
         return self._set
 
     @property
-    def start_offset(self):
-        '''Read-only start offset of spanner.
-        '''
-        if len(self):
-            return self[0].start_offset
-        else:
-            return Duration(0)
-
-    @property
-    def stop_offset(self):
-        '''Read-only stop offset of spanner.
-        '''
-        if len(self):
-            return self[-1].stop_offset
-        else:
-            return Duration(0)
-
-    @property
     def timespan(self):
         '''Read-only timespan of spanner.
         '''
-        #return timespantools.Timespan(start_offset=self.start_offset, stop_offset=self.stop_offset)
         if len(self):
             start_offset = self[0].timespan.start_offset
         else:

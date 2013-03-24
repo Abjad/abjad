@@ -48,6 +48,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.storage_format
    :noindex:
 
+.. autoattribute:: experimental.tools.specificationtools.Division.Division.Division.timespan
+   :noindex:
+
 Read/write properties
 ---------------------
 
