@@ -153,15 +153,6 @@ class Component(AbjadObject):
         return self._start_offset
 
     @property
-    def start_offset_in_seconds(self):
-        '''Read-only start offset of comonent in seconds.
-        '''
-        self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
-        if self._start_offset_in_seconds is None:
-            raise MissingTempoError
-        return self._start_offset_in_seconds
-
-    @property
     def stop_offset(self):
         '''Read-only stop offset of component.
         '''
@@ -169,12 +160,6 @@ class Component(AbjadObject):
         # updated by offsettools.update_offset_values_of_component();
         self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
         return self._stop_offset
-
-    @property
-    def stop_offset_in_seconds(self):
-        '''Read-only stop offset of component in seconds.
-        '''
-        return self.start_offset_in_seconds + self.duration_in_seconds
 
     @property
     def timespan(self):

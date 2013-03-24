@@ -81,13 +81,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.stop_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.storage_format

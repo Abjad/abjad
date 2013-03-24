@@ -66,13 +66,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.stop_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.storage_format

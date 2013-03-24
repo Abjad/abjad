@@ -66,13 +66,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.stop_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.storage_format

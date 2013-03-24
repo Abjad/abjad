@@ -54,13 +54,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.lyrictools.LyricText.LyricText.LyricText.start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.lyrictools.LyricText.LyricText.LyricText.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: experimental.tools.lyrictools.LyricText.LyricText.LyricText.stop_offset
-   :noindex:
-
-.. autoattribute:: experimental.tools.lyrictools.LyricText.LyricText.LyricText.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: experimental.tools.lyrictools.LyricText.LyricText.LyricText.storage_format

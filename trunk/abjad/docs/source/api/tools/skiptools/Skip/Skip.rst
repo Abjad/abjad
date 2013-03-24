@@ -54,13 +54,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.stop_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.storage_format

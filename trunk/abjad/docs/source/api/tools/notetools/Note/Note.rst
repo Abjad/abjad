@@ -57,13 +57,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.notetools.Note.Note.Note.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.stop_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.notetools.Note.Note.Note.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.storage_format

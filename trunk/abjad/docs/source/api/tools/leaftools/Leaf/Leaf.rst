@@ -54,13 +54,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.stop_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.storage_format

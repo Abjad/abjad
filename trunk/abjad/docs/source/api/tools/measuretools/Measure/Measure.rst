@@ -81,13 +81,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.stop_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.storage_format

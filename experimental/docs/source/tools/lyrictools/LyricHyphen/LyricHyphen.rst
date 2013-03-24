@@ -54,13 +54,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.start_offset
    :noindex:
 
-.. autoattribute:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.stop_offset
-   :noindex:
-
-.. autoattribute:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.storage_format

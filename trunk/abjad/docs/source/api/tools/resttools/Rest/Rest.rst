@@ -54,13 +54,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.stop_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.storage_format

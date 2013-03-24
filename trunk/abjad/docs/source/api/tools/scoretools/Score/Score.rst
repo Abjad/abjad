@@ -66,13 +66,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.Score.Score.Score.start_offset_in_seconds
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.stop_offset
-   :noindex:
-
-.. autoattribute:: abjad.tools.scoretools.Score.Score.Score.stop_offset_in_seconds
    :noindex:
 
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.storage_format
