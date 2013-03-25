@@ -144,16 +144,18 @@ We define a function to create a measure from a list of lists of numbers:
 
    def make_desordre_measure(pitches):
        '''Constructs a measure composed of *Désordre cells*.
-       `pitches` is a list of lists of number (e.g., [[1, 2, 3], [2, 3, 4]])
-       The function returns a DynamicMeasure.
-       '''
-       measure = measuretools.DynamicMeasure([ ])
-       for sequence in pitches:
-           measure.append(make_desordre_cell(sequence))
    
-       # make denominator 8
-       if contexttools.get_effective_time_signature(measure).denominator == 1:
-           measure.denominator = 8
+       `pitches` is a list of lists of number (e.g., [[1, 2, 3], [2, 3, 4]])
+   
+       The function returns a measure.
+       '''
+   
+       for sequence in pitches:
+           container = make_desordre_cell(sequence)
+           time_signature = container.duration
+           time_signature = mathtools.NonreducedFraction(time_signature)
+           time_signature = time_signature.with_denominator(8)
+           measure = Measure(time_signature, [container])
    
        return measure
 
@@ -257,16 +259,16 @@ The final result:
 .. image:: images/index-4.png
 
 
-Now that we have the redundant aspect of the piece compactly expressed and encapsulated, 
+Now that we have the redundant aspect of the piece compactly expressed and encapsulated,
 we can play around with it by changing the sequence of pitches.
 
-In order for each staff to carry its own sequence of independent measure changes, 
+In order for each staff to carry its own sequence of independent measure changes,
 LilyPond requires some special setting up prior to rendering.
 Specifically, one must move the LilyPond ``Timing_translator`` out from the score context
 and into the staff context.
 
-(You can refer to the LilyPond documentation on 
-`Polymetric notation <http://lilypond.org/doc/v2.12/Documentation/user/lilypond/Displaying-rhythms#Polymetric-notation>`_ 
+(You can refer to the LilyPond documentation on
+`Polymetric notation <http://lilypond.org/doc/v2.12/Documentation/user/lilypond/Displaying-rhythms#Polymetric-notation>`_
 to learn all about how this works.)
 
 In this example we a custom ``documentationtools`` function to set up our LilyPond file automatically.

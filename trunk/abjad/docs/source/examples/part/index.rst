@@ -67,7 +67,7 @@ The score template
            first_violin_staff = stafftools.Staff([first_violin_voice], name='First Violin Staff')
            contexttools.ClefMark('treble')(first_violin_staff)
            instrumenttools.Violin(
-               instrument_name_markup='Violin I', 
+               instrument_name_markup='Violin I',
                short_instrument_name_markup='Vl. I'
                )(first_violin_staff)
    
@@ -76,7 +76,7 @@ The score template
            second_violin_staff = stafftools.Staff([second_violin_voice], name='Second Violin Staff')
            contexttools.ClefMark('treble')(second_violin_staff)
            instrumenttools.Violin(
-               instrument_name_markup='Violin II', 
+               instrument_name_markup='Violin II',
                short_instrument_name_markup='Vl. II'
                )(second_violin_staff)
    
@@ -359,7 +359,7 @@ reservoir from scratch, so you can see the process:
 
 
 Then we'll grab the sub-reservoir for the first violins, taking the first ten
-descents (which includes the silences we've been adding as well).  We'll label 
+descents (which includes the silences we've been adding as well).  We'll label
 each descent with some markup, to distinguish them, throw them into a
 Staff and give them a 6/4 time signature, just so they line up properly.
 
@@ -422,7 +422,7 @@ The edits
        voice = score['First Violin Voice']
        descents = durated_reservoir['First Violin']
    
-       copied_descent = copy.deepcopy(descents[-1])
+       copied_descent = componenttools.copy_components_and_remove_spanners(descents[-1])
        voice.extend(copied_descent)
    
        final_sustain_rhythm = [(6, 4)] * 43 + [(1, 2)]
@@ -439,7 +439,7 @@ The edits
        voice = score['Second Violin Voice']
        descents = durated_reservoir['Second Violin']
    
-       copied_descent = list(copy.deepcopy(descents[-1]))
+       copied_descent = list(componenttools.copy_components_and_remove_spanners(descents[-1]))
        copied_descent[-1].written_duration = durationtools.Duration(1, 1)
        copied_descent.append(notetools.Note('a2'))
        for leaf in copied_descent:
@@ -469,7 +469,7 @@ The edits
        for leaf in descents[-1]:
            marktools.Articulation('accent')(leaf)
            marktools.Articulation('tenuto')(leaf)
-       copied_descent = copy.deepcopy(descents[-1])
+       copied_descent = componenttools.copy_components_and_remove_spanners(descents[-1])
        for leaf in copied_descent:
            if leaf.written_duration == durationtools.Duration(4, 4):
                leaf.written_duration = durationtools.Duration(8, 4)
@@ -504,7 +504,7 @@ The edits
            index = parent.index(leaf)
            parent[index] = chordtools.Chord(['e,', 'a,'], leaf.written_duration)
    
-       unison_descent = copy.deepcopy(voice[-len(descents[-1]):])
+       unison_descent = componenttools.copy_components_and_remove_spanners(voice[-len(descents[-1]):])
        voice.extend(unison_descent)
        for chord in unison_descent:
            index = chord.parent.index(chord)
@@ -564,9 +564,9 @@ Let's take a look:
                    markuptools.MarkupCommand('hspace', 1),
                    markuptools.MusicGlyph('scripts.upbow'),
                ]))
-       copy.copy(rebow_markup)(score['First Violin Voice'][64][0]) 
-       copy.copy(rebow_markup)(score['Second Violin Voice'][75][0]) 
-       copy.copy(rebow_markup)(score['Viola Voice'][86][0]) 
+       copy.copy(rebow_markup)(score['First Violin Voice'][64][0])
+       copy.copy(rebow_markup)(score['Second Violin Voice'][75][0])
+       copy.copy(rebow_markup)(score['Viola Voice'][86][0])
 
 
 After dealing with custom markup, applying dynamics is easy.  Just instantiate and attach:
@@ -689,7 +689,7 @@ break in the exact same places as the original:
    
        for measure_index in measure_indices:
            marktools.LilyPondCommandMark(
-               'break', 
+               'break',
                'after'
                )(bell_voice[measure_index])
 
@@ -708,7 +708,7 @@ breaks:
    
        for measure_index in measure_indices:
            marktools.LilyPondCommandMark(
-               r'mark \default', 
+               r'mark \default',
                'before'
                )(bell_voice[measure_index])
 

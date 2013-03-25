@@ -2,8 +2,8 @@ Bartók: *Mikrokosmos*
 =====================
 
 This example reconstructs the last five measures of Bartók's "Wandering"
-from *Mikrokosmos*, volume III.  
-The end result is just a few measures long but covers the basic features 
+from *Mikrokosmos*, volume III.
+The end result is just a few measures long but covers the basic features
 you'll use most often in Abjad.
 
 Here is what we want to end up with:
@@ -14,7 +14,7 @@ The score
 ---------
 
 We'll construct the fragment top-down from containers to notes.
-We could have done it the other way around but it will be easier to keep the big picture 
+We could have done it the other way around but it will be easier to keep the big picture
 in mind this way. Later, you can rebuild the example bottom-up as an exercise.
 
 First let's create an empty score with a pair of staves connected by a brace:
@@ -103,8 +103,8 @@ Now let's add some notes. We begin with the upper staff:
    >>> upper_measures[4].append(Note("d'2"))
 
 
-Now let's add notes to the lower staff. 
-This will be a more intricate process than that needed for the upper staff. 
+Now let's add notes to the lower staff.
+This will be a more intricate process than that needed for the upper staff.
 We added notes directly to the measures of the upper staff.
 But this will not be possible for the lower staff because of the simultaneous voices
 the lower staff contains.
@@ -132,7 +132,7 @@ We add notes to the lower staff measure by measure:
    >>> lower_measures[2].append(main_voice_m3)
 
 
-Notice that we give the same name to the three voices contained in 
+Notice that we give the same name to the three voices contained in
 the first three measures of the lower staff.
 
 It is in the last two measures of the lower staff where Bartók writes two voices at once.
@@ -166,9 +166,9 @@ We'll name the second of these two voices the `appendix_voice`:
 The LilyPond ``\voiceOne`` and ``\voiceTwo`` commands determine the direction
 of the stems in different voices.
 
-Note that we must put both voices in a parallel container 
+Note that we must put both voices in a parallel container
 because they occur at the same time in the score.
-We do this by creating an Abjad container and then setting 
+We do this by creating an Abjad container and then setting
 the ``is_parallel`` attribute of the container to true.
 
 We now do a similar thing for the last measure:
@@ -256,7 +256,7 @@ And see how things are coming out:
 .. image:: images/index-2.png
 
 
-Notice that the beams of the eighth and sixteenth notes appear 
+Notice that the beams of the eighth and sixteenth notes appear
 as you would usually expect: grouped by beat.
 We get this for free thanks to LilyPond's default beaming algorithm.
 But this is not the way Bartók notated the beams.
