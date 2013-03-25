@@ -178,10 +178,10 @@ example, while equivalent in magnitude, these are not the same notated
 durations:
 
 <abjad>
-m1 = measuretools.AnonymousMeasure([Note("c'4")])
-m2 = measuretools.AnonymousMeasure(Note(0, (1, 8)) * 2)
+m1 = Measure((1, 4), [Note("c'4")])
+m2 = Measure((1, 4), 2 * Note(0, (1, 8)))
 tietools.TieSpanner(m2)
-m3 = measuretools.AnonymousMeasure([Note(0, (1, 8))] + Note(0, (1, 16)) * 2)
+m3 = Measure((1, 4), [Note(0, (1, 8))] + 2 * Note(0, (1, 16)))
 tietools.TieSpanner(m3)
 r = stafftools.RhythmicStaff([m1, m2, m3])
 </abjad>
@@ -198,8 +198,8 @@ a half tone above middle C. But how is this pitch to be notated? As a C
 sharp or a B flat?
 
 <abjad>
-m1 = measuretools.AnonymousMeasure([Note(1, (1, 4))])
-m2 = measuretools.AnonymousMeasure([Note(('df', 4), (1, 4))])
+m1 = Measure((1, 4), [Note(1, (1, 4))])
+m2 = Measure((1, 4), [Note(('df', 4), (1, 4))])
 r = Staff([m1, m2])
 </abjad>
 
