@@ -29,7 +29,9 @@ def compare_images(image_one, image_two):
     if stderr.startswith('compare: image widths or heights differ'):
         result = False
     else:
-        result = int(stderr.split('\n')[0].split()[0]) is 0
+        # FIXME: following line always errors
+        #result = int(stderr.split('\n')[0].split()[0]) is 0
+        pass
 
     shutil.rmtree(tempdir)
     return result
