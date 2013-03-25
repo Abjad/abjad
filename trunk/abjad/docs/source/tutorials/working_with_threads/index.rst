@@ -152,13 +152,13 @@ To attach the slur spanner to the voices we could try either:
    >>> spannertools.SlurSpanner([vA, vB])
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 35, in __init__
+     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 37, in __init__
        DirectedSpanner.__init__(self, components, direction)
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 13, in __init__
+     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 13, in __init__
        Spanner.__init__(self, components)
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 44, in __init__
+     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 45, in __init__
        self._initialize_components(components)
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 219, in _initialize_components
+     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 220, in _initialize_components
        assert componenttools.all_are_thread_contiguous_components(leaves)
    AssertionError
 
@@ -170,13 +170,13 @@ To attach the slur spanner to the voices we could try either:
    >>> spannertools.SlurSpanner([vA, vC])
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 35, in __init__
+     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 37, in __init__
        DirectedSpanner.__init__(self, components, direction)
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 13, in __init__
+     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 13, in __init__
        Spanner.__init__(self, components)
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 44, in __init__
+     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 45, in __init__
        self._initialize_components(components)
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 219, in _initialize_components
+     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 220, in _initialize_components
        assert componenttools.all_are_thread_contiguous_components(leaves)
    AssertionError
 
@@ -223,21 +223,21 @@ by printing it:
 
    >>> vA_thread_signature = vA.parentage.containment_signature
    >>> vA_thread_signature
-   ContainmentSignature(Voice-166691500, Voice-166691500, Staff-166692140)
+   ContainmentSignature(Voice-151537580, Voice-151537580, Staff-156803500)
 
 
 ::
 
    >>> vB_thread_signature = vB.parentage.containment_signature
    >>> vB_thread_signature
-   ContainmentSignature(Voice-166691628, Voice-166691628, Staff-166692140)
+   ContainmentSignature(Voice-151536940, Voice-151536940, Staff-156803500)
 
 
 ::
 
    >>> vC_thread_signature = vC.parentage.containment_signature
    >>> vC_thread_signature
-   ContainmentSignature(Voice-166691884, Voice-166691884, Staff-166692140)
+   ContainmentSignature(Voice-156803372, Voice-156803372, Staff-156803500)
 
 
 And by comparing them with the binary equality operator:
@@ -276,7 +276,7 @@ Note how the thread signatures have changed:
 
    >>> vA_thread_signature = vA.parentage.containment_signature
    >>> print vA_thread_signature
-        staff: Staff-166692140
+        staff: Staff-156803500
         voice: Voice-'piccolo'
          self: Voice-'piccolo'
 
@@ -285,7 +285,7 @@ Note how the thread signatures have changed:
 
    >>> vB_thread_signature = vB.parentage.containment_signature
    >>> print vB_thread_signature
-        staff: Staff-166692140
+        staff: Staff-156803500
         voice: Voice-'piccolo'
          self: Voice-'piccolo'
 
@@ -294,9 +294,9 @@ Note how the thread signatures have changed:
 
    >>> vC_thread_signature = vC.parentage.containment_signature
    >>> print vC_thread_signature
-        staff: Staff-166692140
-        voice: Voice-166691884
-         self: Voice-166691884
+        staff: Staff-156803500
+        voice: Voice-156803372
+         self: Voice-156803372
 
 
 And how the ``iterationtools.iterate_thread_in_expr()`` function returns

@@ -28,7 +28,7 @@ Interpreting the file
 Call Python on ``hello_world.py``::
 
     $ python hello_world.py
-    
+
 .. image:: images/index-1.png
 
 

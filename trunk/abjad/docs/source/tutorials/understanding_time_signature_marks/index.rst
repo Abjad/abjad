@@ -260,10 +260,10 @@ And let's confirm what we see in the PDF in the staff's format:
 
 The staff's format now contains a LilyPond ``\time`` command because we have attached an Abjad time signature mark to the staff.
 
-What we've just been through above will cover over 80% of what you'll ever wind up doing 
-with time signature marks: creating them and attaching them directly to staves. 
-But what if we wanna get rid of a time signature mark? 
-Or what if the time signature will be changing all over the place? 
+What we've just been through above will cover over 80% of what you'll ever wind up doing
+with time signature marks: creating them and attaching them directly to staves.
+But what if we wanna get rid of a time signature mark?
+Or what if the time signature will be changing all over the place?
 We cover those cases next.
 
 Detaching a time signature mark is easy:
@@ -274,10 +274,10 @@ Detaching a time signature mark is easy:
    TimeSignatureMark((3, 4))
 
 
-The Abjad returns the mark we have just detached. 
-And, observing the repr of the time signature mark, 
-we see that the time signature mark has again changed state: 
-the time signature mark has transitioned from attached to unattached. 
+The Abjad returns the mark we have just detached.
+And, observing the repr of the time signature mark,
+we see that the time signature mark has again changed state:
+the time signature mark has transitioned from attached to unattached.
 We confirm this like so:
 
 ::
