@@ -64,7 +64,7 @@ Abjad packaging checklist:
     If any part of the scrape fails to compile, fix, commit and repeat this
     step.
 
- 6. Change to the abjad root directory.
+ 6. Change to the abjad mainline root directory.
     Run "ajv clean .".
     Then run "py.test".
     If any tests break, fix, commit and repeat this step.

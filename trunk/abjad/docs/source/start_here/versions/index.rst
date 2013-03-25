@@ -15,8 +15,7 @@ Performance increases
 Abjad 2.12 introduces a number of performance optimizations. ``LilyPondFile`` objects
 format four times faster than before. ``Duration`` objects initialize faster. 
 ``NonreducedFraction`` arithmetic operations are faster. 
-Much thanks to Fredrik Wallberg for significant improvements
-in the attach-time performance of context marks like dynamics and tempo marks.
+Context marks like dynamics and tempo indications now attach and detach much faster.
 
 Duration property renames
 ^^^^^^^^^^^^^^^^^^^^^^^^^

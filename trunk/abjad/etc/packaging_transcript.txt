@@ -12,13 +12,13 @@ Abjad 2.12
         7. lilypond --version: GNU LilyPond 2.17.9
         8. convert --version: ImageMagick 6.3.3
         9. dot -V: graphviz version 2.30.0 (20130114.0426)
-       10. mainline py.test test results: 
-       11. mainline doctest test results: 
-       12. experimental py.test test results: 
-       13. experimental doctest test results: Total modules: 
-       14. sanity check test results: 
-       15. experimental HTML build results: 
-       16. mainline HTML build results: 
+       10. mainline py.test test results: 5207 passed
+       11. mainline doctest test results: Total modules: 1590
+       12. experimental py.test test results: 451 passed
+       13. experimental doctest test results: Total modules: 155
+       14. sanity check test results: OK
+       15. experimental HTML build results: OK
+       16. mainline HTML build results: OK
        17. LaTeX build results: 
        18. Abjad.pdf build results:
        19. AbjadAPI.pdf build results: 

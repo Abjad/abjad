@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_CyclicTree___init___01():
+def test_sequencetools_CyclicTree___init___01():
     '''Initialize cyclic tree from other cyclic tree.
     '''
 
