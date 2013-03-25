@@ -23,7 +23,7 @@ These sixteenth notes are worth a sixteenth of a whole note:
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-1.png
 
@@ -47,7 +47,7 @@ These sixteenth notes are worth more than a sixteenth of a whole note:
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-2.png
 
@@ -108,7 +108,7 @@ These elements carry preprolated durations equal to ``1/8``, ``1/8`` and ``2/8``
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-3.png
 
@@ -140,7 +140,7 @@ This fixed-duration tuplet carries a target duration equal to ``4/8``:
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-4.png
 
@@ -174,7 +174,7 @@ The first two notes below carry leaf mulitipliers equal to ``2/1``:
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-5.png
 

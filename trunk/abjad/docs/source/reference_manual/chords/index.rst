@@ -13,7 +13,7 @@ You can make chords from a LilyPond input string:
 
 ::
 
-   >>> show(chord, docs=True)
+   >>> show(chord)
 
 .. image:: images/index-1.png
 
@@ -30,7 +30,7 @@ You can also make chords from chromatic pitch numbers and duration:
 
 ::
 
-   >>> show(chord, docs=True)
+   >>> show(chord)
 
 .. image:: images/index-2.png
 
@@ -75,7 +75,7 @@ You can add a pitch to a chord with a chromatic pitch number:
 
 ::
 
-   >>> show(chord, docs=True)
+   >>> show(chord)
 
 .. image:: images/index-3.png
 
@@ -89,7 +89,7 @@ Or you can add a pitch to a chord with a chromatic pitch name:
 
 ::
 
-   >>> show(chord, docs=True)
+   >>> show(chord)
 
 .. image:: images/index-4.png
 
@@ -112,7 +112,7 @@ You can use chromatic pitch numbers:
 
 ::
 
-   >>> show(chord, docs=True)
+   >>> show(chord)
 
 .. image:: images/index-5.png
 
@@ -126,7 +126,7 @@ Or you can chromatic pitch names:
 
 ::
 
-   >>> show(chord, docs=True)
+   >>> show(chord)
 
 .. image:: images/index-6.png
 
@@ -143,7 +143,7 @@ Delete pitches from a chord with ``del()``:
 
 ::
 
-   >>> show(chord, docs=True)
+   >>> show(chord)
 
 .. image:: images/index-7.png
 
@@ -155,7 +155,7 @@ Delete pitches from a chord with ``del()``:
 
 ::
 
-   >>> show(chord, docs=True)
+   >>> show(chord)
 
 .. image:: images/index-8.png
 
@@ -169,7 +169,7 @@ Negative indices work too:
 
 ::
 
-   >>> show(chord, docs=True)
+   >>> show(chord)
 
 .. image:: images/index-9.png
 
@@ -233,7 +233,7 @@ This is useful when you want to apply LilyPond overrides to note heads in a chor
 
 ::
 
-   >>> show(chord, docs=True)
+   >>> show(chord)
 
 .. image:: images/index-10.png
 
@@ -270,7 +270,7 @@ into it chord in any of the ways described above:
 
 ::
 
-   >>> show(chord, docs=True)
+   >>> show(chord)
 
 .. image:: images/index-11.png
 

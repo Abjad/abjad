@@ -15,7 +15,7 @@ Notes, rests, chords and skips carry some duration attributes:
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-1.png
 
@@ -37,7 +37,7 @@ Tuplets, measures, voices, staves and the other containers carry duration attrib
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-2.png
 

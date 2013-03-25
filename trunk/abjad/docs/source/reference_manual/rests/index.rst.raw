@@ -11,7 +11,7 @@ rest = Rest('r8')
 </abjad>
 
 <abjad>
-show(rest, docs=True)
+show(rest)
 </abjad>
 
 Making rests from durations
@@ -24,7 +24,7 @@ rest = Rest(Duration(1, 4))
 </abjad>
 
 <abjad>
-show(rest, docs=True)
+show(rest)
 </abjad>
 
 (You can even use ``Rest((1, 8))`` to make rests from a duration pair.)
@@ -57,7 +57,7 @@ tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Rest('r4'), Note("e'4")])
 </abjad>
 
 <abjad>
-show(tuplet, docs=True)
+show(tuplet)
 </abjad>
 
 <abjad>
@@ -94,7 +94,7 @@ tuplet[2].written_duration = Duration(1, 8)
 </abjad>
 
 <abjad>
-show(tuplet, docs=True)
+show(tuplet)
 </abjad>
 
 Other duration attributes are read-only.

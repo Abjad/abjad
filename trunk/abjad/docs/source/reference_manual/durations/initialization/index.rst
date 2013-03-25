@@ -11,7 +11,7 @@ Durated Abjad classes initialize duration from arguments in the form `(n, d)` wi
 
 ::
 
-   >>> show(note, docs=True)
+   >>> show(note)
 
 .. image:: images/index-1.png
 
@@ -29,7 +29,7 @@ Durated classes include notes, rests, chords, skips, tuplets and measures.
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-2.png
 
@@ -49,7 +49,7 @@ Abjad allows arbitrary positive durations like ``5/8`` for tuplets and measures.
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-3.png
 
@@ -64,7 +64,7 @@ Abjad supports breves.
 
 ::
 
-   >>> show(note, docs=True)
+   >>> show(note)
 
 .. image:: images/index-4.png
 
@@ -79,7 +79,7 @@ And longas.
 
 ::
 
-   >>> show(note, docs=True)
+   >>> show(note)
 
 .. image:: images/index-5.png
 

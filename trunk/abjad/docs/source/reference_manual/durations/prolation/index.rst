@@ -22,7 +22,7 @@ Tuplets prolate their contents:
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-1.png
 
@@ -74,7 +74,7 @@ Such nonbinary meters rhythmically diminish the contents of the measures they go
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-2.png
 
@@ -138,7 +138,7 @@ All durated components carry a prolation chain:
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-3.png
 

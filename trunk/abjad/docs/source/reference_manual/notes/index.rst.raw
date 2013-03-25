@@ -11,7 +11,7 @@ note = Note("c'4")
 </abjad>
 
 <abjad>
-show(note, docs=True)
+show(note)
 </abjad>
 
 Making notes from chromatic pitch number and duration
@@ -24,7 +24,7 @@ note = Note(0, Duration(1, 4))
 </abjad>
 
 <abjad>
-show(note, docs=True)
+show(note)
 </abjad>
 
 (You even use ``Note("c'4")`` to create notes with numbers alone.)
@@ -77,7 +77,7 @@ tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Note("d'4"), Note("e'4")])
 </abjad>
 
 <abjad>
-show(tuplet, docs=True)
+show(tuplet)
 </abjad>
 
 <abjad>
@@ -114,7 +114,7 @@ tuplet[2].written_duration = Duration(1, 8)
 </abjad>
 
 <abjad>
-show(tuplet, docs=True)
+show(tuplet)
 </abjad>
 
 Other duration attributes are read-only.

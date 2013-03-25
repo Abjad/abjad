@@ -9,8 +9,8 @@ note = Note("c'8.")
 </abjad>
 
 <abjad>
-show(note, docs=True)
-iotools.write_expr_to_ly(note, 'duration-initialization-1', docs=True) <hide
+show(note)
+iotools.write_expr_to_ly(note, 'duration-initialization-1') <hide
 </abjad>
 
 
@@ -23,8 +23,8 @@ staff = stafftools.RhythmicStaff([tuplet])
 </abjad>
 
 <abjad>
-show(staff, docs=True)
-iotools.write_expr_to_ly(staff, 'duration-initialization-2', docs=True) <hide
+show(staff)
+iotools.write_expr_to_ly(staff, 'duration-initialization-2') <hide
 </abjad>
 
 
@@ -39,8 +39,8 @@ staff = stafftools.RhythmicStaff([tuplet])
 </abjad>
 
 <abjad>
-show(staff, docs=True)
-iotools.write_expr_to_ly(staff, 'duration-initialization-3', docs=True) <hide
+show(staff)
+iotools.write_expr_to_ly(staff, 'duration-initialization-3') <hide
 </abjad>
 
 
@@ -51,8 +51,8 @@ note = Note(0, (2, 1))
 </abjad>
 
 <abjad>
-show(note, docs=True)
-iotools.write_expr_to_ly(note, 'duration-initialization-4', docs=True) <hide
+show(note)
+iotools.write_expr_to_ly(note, 'duration-initialization-4') <hide
 </abjad>
 
 
@@ -63,8 +63,8 @@ note = Note(0, (4, 1))
 </abjad>
 
 <abjad>
-show(note, docs=True)
-iotools.write_expr_to_ly(note, 'duration-initialization-5', docs=True) <hide
+show(note)
+iotools.write_expr_to_ly(note, 'duration-initialization-5') <hide
 </abjad>
 
 

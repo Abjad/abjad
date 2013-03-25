@@ -29,7 +29,7 @@ note = Note("cs''4")
 </abjad>
 
 <abjad>
-show(note, docs=True)
+show(note)
 </abjad>
 
 <abjad>
@@ -53,7 +53,7 @@ staff = Staff("c'8 d'8 e'8 f'8")
 </abjad>
 
 <abjad>
-show(staff, docs=True)
+show(staff)
 </abjad>
 
 <abjad>

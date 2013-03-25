@@ -21,7 +21,7 @@ staff = stafftools.RhythmicStaff([measure])
 </abjad>
 
 <abjad>
-show(staff, docs=True)
+show(staff)
 </abjad>
 
 <abjad>
@@ -39,7 +39,7 @@ staff = stafftools.RhythmicStaff([measure])
 </abjad>
 
 <abjad>
-show(staff, docs=True)
+show(staff)
 </abjad>
 
 <abjad>
@@ -94,7 +94,7 @@ staff = stafftools.RhythmicStaff([measure])
 </abjad>
 
 <abjad>
-show(staff, docs=True)
+show(staff)
 </abjad>
 
 <abjad>
@@ -120,7 +120,7 @@ staff = stafftools.RhythmicStaff([measure])
 </abjad>
 
 <abjad>
-show(staff, docs=True)
+show(staff)
 </abjad>
 
 <abjad>
@@ -148,7 +148,7 @@ staff = stafftools.RhythmicStaff([measure])
 </abjad>
 
 <abjad>
-show(staff, docs=True)
+show(staff)
 </abjad>
 
 <abjad>

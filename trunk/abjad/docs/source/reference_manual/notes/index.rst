@@ -13,7 +13,7 @@ You can make notes from string:
 
 ::
 
-   >>> show(note, docs=True)
+   >>> show(note)
 
 .. image:: images/index-1.png
 
@@ -30,7 +30,7 @@ You can also make notes from chromatic pitch number and duration:
 
 ::
 
-   >>> show(note, docs=True)
+   >>> show(note)
 
 .. image:: images/index-2.png
 
@@ -96,7 +96,7 @@ Except for notes inside a tuplet:
 
 ::
 
-   >>> show(tuplet, docs=True)
+   >>> show(tuplet)
 
 .. image:: images/index-3.png
 
@@ -144,7 +144,7 @@ You can change the written duration of notes:
 
 ::
 
-   >>> show(tuplet, docs=True)
+   >>> show(tuplet)
 
 .. image:: images/index-4.png
 

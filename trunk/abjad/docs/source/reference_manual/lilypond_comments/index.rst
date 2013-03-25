@@ -34,7 +34,7 @@ Attach LilyPond comments to a note, rest or chord with ``attach()``:
 
 ::
 
-   >>> show(note, docs=True)
+   >>> show(note)
 
 .. image:: images/index-1.png
 
@@ -67,7 +67,7 @@ Use ``attach()`` to attach LilyPond comments to a container:
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-2.png
 

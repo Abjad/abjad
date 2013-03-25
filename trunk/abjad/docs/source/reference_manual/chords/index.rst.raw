@@ -11,7 +11,7 @@ chord = Chord("<c' d' bf'>4")
 </abjad>
 
 <abjad>
-show(chord, docs=True)
+show(chord)
 </abjad>
 
 Making chords from chromatic pitch numbers and duration
@@ -24,7 +24,7 @@ chord = Chord([0, 2, 10], Duration(1, 4))
 </abjad>
 
 <abjad>
-show(chord, docs=True)
+show(chord)
 </abjad>
 
 Getting all the written pitches of a chord at once
@@ -61,7 +61,7 @@ chord.append(9)
 </abjad>
 
 <abjad>
-show(chord, docs=True)
+show(chord)
 </abjad>
 
 Or you can add a pitch to a chord with a chromatic pitch name:
@@ -71,7 +71,7 @@ chord.append("df''")
 </abjad>
 
 <abjad>
-show(chord, docs=True)
+show(chord)
 </abjad>
 
 Chords sort their pitches every time you add a new one.
@@ -90,7 +90,7 @@ chord.extend([3, 4, 14])
 </abjad>
 
 <abjad>
-show(chord, docs=True)
+show(chord)
 </abjad>
 
 Or you can chromatic pitch names:
@@ -100,7 +100,7 @@ chord.extend(["g''", "af''"])
 </abjad>
 
 <abjad>
-show(chord, docs=True)
+show(chord)
 </abjad>
 
 Deleting pitches from a chord
@@ -113,7 +113,7 @@ del(chord[0])
 </abjad>
 
 <abjad>
-show(chord, docs=True)
+show(chord)
 </abjad>
 
 <abjad>
@@ -121,7 +121,7 @@ del(chord[0])
 </abjad>
 
 <abjad>
-show(chord, docs=True)
+show(chord)
 </abjad>
 
 Negative indices work too:
@@ -131,7 +131,7 @@ del(chord[-1])
 </abjad>
 
 <abjad>
-show(chord, docs=True)
+show(chord)
 </abjad>
 
 Formatting chords
@@ -172,7 +172,7 @@ f(chord)
 </abjad>
 
 <abjad>
-show(chord, docs=True)
+show(chord)
 </abjad>
 
 
@@ -202,5 +202,5 @@ chord.extend(["gf'", "df''", "g''"])
 </abjad>
 
 <abjad>
-show(chord, docs=True)
+show(chord)
 </abjad>

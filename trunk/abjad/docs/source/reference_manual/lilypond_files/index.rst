@@ -26,8 +26,8 @@ that appear in file output:
 ::
 
    >>> f(lilypond_file)
-   % Abjad revision 9810:9815
-   % 2013-03-24 23:47
+   % Abjad revision 9810:9817
+   % 2013-03-24 23:58
    
    \version "2.16.1"
    \language "english"
@@ -56,8 +56,8 @@ Set default LilyPond paper size like this:
 ::
 
    >>> f(lilypond_file)
-   % Abjad revision 9810:9815
-   % 2013-03-24 23:47
+   % Abjad revision 9810:9817
+   % 2013-03-24 23:58
    
    \version "2.16.1"
    \language "english"
@@ -88,8 +88,8 @@ Set global staff size like this:
 ::
 
    >>> f(lilypond_file)
-   % Abjad revision 9810:9815
-   % 2013-03-24 23:47
+   % Abjad revision 9810:9817
+   % 2013-03-24 23:58
    
    \version "2.16.1"
    \language "english"

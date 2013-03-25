@@ -13,7 +13,7 @@ You can make rests from a string:
 
 ::
 
-   >>> show(rest, docs=True)
+   >>> show(rest)
 
 .. image:: images/index-1.png
 
@@ -30,7 +30,7 @@ You can also make rests from a duration:
 
 ::
 
-   >>> show(rest, docs=True)
+   >>> show(rest)
 
 .. image:: images/index-2.png
 
@@ -73,7 +73,7 @@ Except for rests inside a tuplet:
 
 ::
 
-   >>> show(tuplet, docs=True)
+   >>> show(tuplet)
 
 .. image:: images/index-3.png
 
@@ -121,7 +121,7 @@ You can change the written duration of notes and rests:
 
 ::
 
-   >>> show(tuplet, docs=True)
+   >>> show(tuplet)
 
 .. image:: images/index-4.png
 
