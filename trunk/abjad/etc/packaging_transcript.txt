@@ -19,9 +19,9 @@ Abjad 2.12
        14. sanity check test results: OK
        15. experimental HTML build results: OK
        16. mainline HTML build results: OK
-       17. LaTeX build results: 
-       18. Abjad.pdf build results:
-       19. AbjadAPI.pdf build results: 
+       17. LaTeX build results: OK
+       18. Abjad.pdf build results: OK
+       19. AbjadAPI.pdf build results: OK
 
 
 Abjad 2.11

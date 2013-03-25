@@ -115,21 +115,20 @@ Abjad packaging checklist:
 14. Change to abjad/docs.
     Run 'make clean'.
     This step is important because failing to 'make clean' before building
-    the docs can cause the doc tarball made below to exceed 25 megs.
-    PyPI rejects doc tarballs greater than 25 megs.
+    the docs can cause the doc tarball made below to be too large.
 
 15. Change to experimental/docs.
     Run "make clean".
     Run "avj api -X". If any erros occur, fix, commit and go back to (6.)
-    Record experimental build results in the packaging transcript.
+    Record experimental HTML build results in the packaging transcript.
 
 16. Change back to abjad/docs.
     Run "ajv api -M". If any errors occur, fix, commit and go back to (6.)
-    Record HTML build results in the packaging transcript.
+    Record mainline HTML build results in the packaging transcript.
 
 17. Run "make latex". 
     If any errors occur, fix, commit and go back to (6.)
-    Record the LaTeX build results in the packaging transcript.
+    Record LaTeX build results in the packaging transcript.
 
 18. Run "make latexpdf". 
     If any errors occur, fix, commit and go back to (6.)
