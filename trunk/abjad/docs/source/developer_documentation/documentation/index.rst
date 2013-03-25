@@ -1,9 +1,9 @@
 Docs
 ====
 
-The reST-based sources for the Abjad documentation are included in their entirety 
-in every installation of Abjad. You may add to and edit these reST-based sources 
-as soon as you install Abjad. 
+The reST-based sources for the Abjad documentation are included in their entirety
+in every installation of Abjad. You may add to and edit these reST-based sources
+as soon as you install Abjad.
 However, to build human-readable HTML or PDF versions of the docs you will first need to download
 and install Sphinx.
 
@@ -15,7 +15,7 @@ and how to build the docs with Sphinx.
 How the Abjad docs are laid out
 -------------------------------
 
-The source files for the Abjad docs are included in the ``docs`` 
+The source files for the Abjad docs are included in the ``docs``
 directory of every Abjad install.
 The ``docs`` directory contains everything
 required to build HTML, PDF and other versions of the Abjad docs. ::
@@ -26,7 +26,7 @@ required to build HTML, PDF and other versions of the Abjad docs. ::
 
 The bulk of the Abjad docs live in ``docs/chapters``.
 The chapter directories mirror the main sections on Abjad documentation.
-What you'll find as you inspect the chapter directories are a 
+What you'll find as you inspect the chapter directories are a
 collection of ``.rst`` files organized into groups.
 The ``.rst`` extension identifies files written in restructured text.
 
@@ -39,7 +39,7 @@ One example::
 Installing Sphinx
 -----------------
 
-Sphinx is the automated documentation system used by Python, Abjad 
+Sphinx is the automated documentation system used by Python, Abjad
 and `other projects <http://sphinx.pocoo.org/examples.html>`_
 implemented in Python. Because Sphinx is not included in the Python standard library you
 will probably need to download and install it.
@@ -55,8 +55,8 @@ Otherwise visit the `Sphinx <http://sphinx.pocoo.org/>`_ website.
 Removing old builds of the docs
 -------------------------------
 
-After installing Sphinx, change to the Abjad ``docs`` directory 
-and use the Sphinx makefile to remove any existing ``docs/_build`` 
+After installing Sphinx, change to the Abjad ``docs`` directory
+and use the Sphinx makefile to remove any existing ``docs/_build``
 directory prior to making a new build of the docs. ::
 
     abjad$ cd docs
@@ -70,7 +70,7 @@ directory prior to making a new build of the docs. ::
 Generating the Abjad API
 ------------------------
 
-The ``docs/scr`` directory includes a script to generate the Abjad API.  
+The ``docs/scr`` directory includes a script to generate the Abjad API.
 Run this script before building the Abjad docs for the first time. ::
 
     docs$ scr/make-abjad-api
@@ -89,7 +89,7 @@ Run this script before building the Abjad docs for the first time. ::
 
     Build finished. The HTML pages are in _build/html.
 
-Rerun ``make-abjad-api`` any time you add or remove a public class, 
+Rerun ``make-abjad-api`` any time you add or remove a public class,
 method or function from the codebase.
 
 
