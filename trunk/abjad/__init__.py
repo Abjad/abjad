@@ -51,4 +51,4 @@ del readline
 del rlcompleter
 del tools
 
-__version__ = '2.12'
+__version__ = '2.13'
