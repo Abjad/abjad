@@ -1,7 +1,7 @@
 Parsing
 =======
 
-Abjad provides a growing number of language parsers. 
+Abjad provides a growing number of language parsers.
 The most important of these is a sophisticate LilyPond parser.
 
 LilyPond Parsing
@@ -14,7 +14,7 @@ LilyPond Parsing
    >>> parser = lilypondparsertools.LilyPondParser()
 
 
-The LilyPond parser understands notes, chords, skips and rests, 
+The LilyPond parser understands notes, chords, skips and rests,
 including default durations and the ``q`` chord-repeat construct:
 
 ::
@@ -97,7 +97,7 @@ The LilyPond parser understands contexts and markup:
    ...     \new Staff = "Bass Staff" {
    ...         \new Voice = "Bass Voice" {
    ...             \clef bass
-   ...             c, _\markup { \italic Bass! } 
+   ...             c, _\markup { \italic Bass! }
    ...         }
    ...     }
    ... >>
@@ -163,12 +163,12 @@ The LilyPond parser even understands certain aspects of LilyPond file layouts, l
 ::
 
    >>> f(result)
-   % Abjad revision 8302:8306
-   % 2012-12-15 16:23
+   % Abjad revision 9810:9813
+   % 2013-03-24 23:45
    
    \version "2.16.1"
    \language "english"
-   \include "/media/Work/dev/scores/abjad/trunk/abjad/cfg/abjad.scm"
+   \include "/home/josiah/Documents/Development/abjad/trunk/abjad/cfg/abjad.scm"
    
    \header {
        composer = \markup {
@@ -206,8 +206,8 @@ The LilyPond parser even understands certain aspects of LilyPond file layouts, l
 .. image:: images/index-4.png
 
 
-A small number of music functions are also supported, such as ``\relative``. Music functions which mutate 
-the score during compilation, result in a normalized Abjad score structure.  That is, the resulting Abjad 
+A small number of music functions are also supported, such as ``\relative``. Music functions which mutate
+the score during compilation, result in a normalized Abjad score structure.  That is, the resulting Abjad
 structure corresponds to the music as it appears on the page:
 
 ::
@@ -255,8 +255,8 @@ structure corresponds to the music as it appears on the page:
 RhythmTree Parsing
 ------------------
 
-``rhythmtreetools.RhythmTreeParser`` parses a microlanguage resembling Ircam's RTM-style LISP syntax, and 
-generates a sequence of RhythmTree structures, which can be furthered manipulated by composers, before 
+``rhythmtreetools.RhythmTreeParser`` parses a microlanguage resembling Ircam's RTM-style LISP syntax, and
+generates a sequence of RhythmTree structures, which can be furthered manipulated by composers, before
 being converted into Abjad score object:
 
 ::
@@ -272,32 +272,32 @@ being converted into Abjad score object:
    RhythmTreeContainer(
        children=(
            RhythmTreeLeaf(
-               duration=durationtools.Duration(1, 1),
-               is_pitched=True,
+               preprolated_duration=Duration(1, 1),
+               is_pitched=True
                ),
            RhythmTreeContainer(
                children=(
                    RhythmTreeLeaf(
-                       duration=durationtools.Duration(1, 1),
-                       is_pitched=True,
+                       preprolated_duration=Duration(1, 1),
+                       is_pitched=True
                        ),
                    RhythmTreeLeaf(
-                       duration=durationtools.Duration(1, 1),
-                       is_pitched=True,
+                       preprolated_duration=Duration(1, 1),
+                       is_pitched=True
                        ),
                    RhythmTreeLeaf(
-                       duration=durationtools.Duration(1, 1),
-                       is_pitched=True,
-                       ),
-               ),
-               duration=Duration(2, 1)
+                       preprolated_duration=Duration(1, 1),
+                       is_pitched=True
+                       )
+                   ),
+               preprolated_duration=Duration(2, 1)
                ),
            RhythmTreeLeaf(
-               duration=durationtools.Duration(2, 1),
-               is_pitched=True,
-               ),
-       ),
-       duration=Duration(1, 1)
+               preprolated_duration=Duration(2, 1),
+               is_pitched=True
+               )
+           ),
+       preprolated_duration=Duration(1, 1)
        )
 
 
@@ -331,8 +331,8 @@ being converted into Abjad score object:
 "Reduced-Ly" Parsing
 --------------------
 
-``lilypondparsertools.ReducedLyParser`` parses the "reduced-ly" microlanguage, whose syntax combines a very 
-small subset of LilyPond syntax, along with affordances for generating various types of Abjad containers, and 
+``lilypondparsertools.ReducedLyParser`` parses the "reduced-ly" microlanguage, whose syntax combines a very
+small subset of LilyPond syntax, along with affordances for generating various types of Abjad containers, and
 speedups for rapidly notating notes and rests without needing to specify pitches.  It used mainly for creating
 Abjad documentation:
 
