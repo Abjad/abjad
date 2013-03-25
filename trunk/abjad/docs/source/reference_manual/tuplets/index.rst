@@ -322,26 +322,34 @@ Override attributes of the LilyPond tuplet number grob like this:
    >>> tuplet.override.tuplet_number.color = 'red'
 
 
+We'll place the tuplet into a Staff object, so that LilyPond does not complain about
+the overrides we've applied, which lexically cannot appear in a \score block.
+
 ::
 
-   >>> f(tuplet)
-   \override TupletNumber #'color = #red
-   \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-   \times 2/3 {
-       fs'8
-       g'8
-       r8
-       fs'8
-       e'8
-       d'8
+   >>> staff = Staff([tuplet])
+   >>> f(staff)
+   \new Staff {
+       \override TupletNumber #'color = #red
+       \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+       \times 2/3 {
+           fs'8
+           g'8
+           r8
+           fs'8
+           e'8
+           d'8
+       }
+       \revert TupletNumber #'color
+       \revert TupletNumber #'text
    }
-   \revert TupletNumber #'color
-   \revert TupletNumber #'text
 
 
 ::
 
-   >>> show(tuplet)
+   >>> show(staff)
+
+.. image:: images/index-7.png
 
 
 See the LilyPond docs for lists of grob attributes available.
@@ -358,26 +366,30 @@ Override attributes of the LilyPond tuplet bracket grob like this:
 
 ::
 
-   >>> f(tuplet)
-   \override TupletBracket #'color = #red
-   \override TupletNumber #'color = #red
-   \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-   \times 2/3 {
-       fs'8
-       g'8
-       r8
-       fs'8
-       e'8
-       d'8
+   >>> f(staff)
+   \new Staff {
+       \override TupletBracket #'color = #red
+       \override TupletNumber #'color = #red
+       \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+       \times 2/3 {
+           fs'8
+           g'8
+           r8
+           fs'8
+           e'8
+           d'8
+       }
+       \revert TupletBracket #'color
+       \revert TupletNumber #'color
+       \revert TupletNumber #'text
    }
-   \revert TupletBracket #'color
-   \revert TupletNumber #'color
-   \revert TupletNumber #'text
 
 
 ::
 
-   >>> show(tuplet)
+   >>> show(staff)
+
+.. image:: images/index-8.png
 
 
 See the LilyPond docs for lists of grob attributes available.

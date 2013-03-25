@@ -164,7 +164,7 @@ Use ``start_component`` to inspect the component to which a LilyPond command mar
 Getting and setting the command name of a LilyPond command mark
 ---------------------------------------------------------------
 
-Set the ``command_name`` of a LilyPond command mark to change the 
+Set the ``command_name`` of a LilyPond command mark to change the
 LilyPond command a LilyPond command mark prints:
 
 ::

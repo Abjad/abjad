@@ -33,7 +33,7 @@ note.prolation
 </abjad>
 
 <abjad>
-note.prolated_duration
+note.duration
 </abjad>
 
 Notes here with written duration ``1/8`` carry prolation factor ``5/4``
@@ -71,7 +71,7 @@ note.prolation
 </abjad>
 
 <abjad>
-note.prolated_duration
+note.duration
 </abjad>
 
 <abjad>
@@ -79,7 +79,7 @@ note.prolation
 </abjad>
 
 <abjad>
-note.prolated_duration
+note.duration
 </abjad>
 
 Notes here with written duration ``1/8`` carry prolation factor ``4/5``
@@ -126,7 +126,7 @@ note.prolation
 </abjad>
 
 <abjad>
-note.prolated_duration
+note.duration
 </abjad>
 
 Notes here with written duration ``1/16`` carry prolated duration ``2/35``.

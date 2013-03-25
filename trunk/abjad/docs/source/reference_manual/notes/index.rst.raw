@@ -67,7 +67,7 @@ note.preprolated_duration
 And prolated duration:
 
 <abjad>
-note.prolated_duration
+note.duration
 </abjad>
 
 Except for notes inside a tuplet:
@@ -99,7 +99,7 @@ note.prolation
 And prolated duration that is the product of the two:
 
 <abjad>
-note.prolated_duration
+note.duration
 </abjad>
 
 Changing the written duration of notes

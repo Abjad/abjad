@@ -83,10 +83,8 @@ And prolated duration:
 
 ::
 
-   >>> note.prolated_duration
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Note' object has no attribute 'prolated_duration'
+   >>> note.duration
+   Duration(1, 4)
 
 
 Except for notes inside a tuplet:
@@ -128,10 +126,8 @@ And prolated duration that is the product of the two:
 
 ::
 
-   >>> note.prolated_duration
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Note' object has no attribute 'prolated_duration'
+   >>> note.duration
+   Duration(1, 6)
 
 
 Changing the written duration of notes

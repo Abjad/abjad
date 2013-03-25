@@ -12,7 +12,7 @@ Use ``marktools`` to create articulations:
 
 ::
 
-   >>> articulation = marktools.Articulation('turn') 
+   >>> articulation = marktools.Articulation('turn')
 
 
 ::
@@ -33,7 +33,7 @@ Use ``attach()`` to attach articulations to a leaf:
    >>> key_signature = contexttools.KeySignatureMark('g', 'major')
    >>> key_signature.attach(staff)
    KeySignatureMark(NamedChromaticPitchClass('g'), Mode('major'))(Staff{})
-   >>> time_signature = contexttools.TimeSignatureMark((2, 4), partial = Duration(1, 8)) 
+   >>> time_signature = contexttools.TimeSignatureMark((2, 4), partial = Duration(1, 8))
    >>> time_signature.attach(staff)
    TimeSignatureMark((2, 4), partial=Duration(1, 8))(Staff{})
 

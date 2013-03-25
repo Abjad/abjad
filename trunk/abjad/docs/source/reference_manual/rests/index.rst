@@ -60,7 +60,7 @@ And prolated duration:
 
 ::
 
-   >>> rest.prolated_duration
+   >>> rest.duration
    Duration(1, 4)
 
 
@@ -103,7 +103,7 @@ And prolated duration that is the product of the two:
 
 ::
 
-   >>> rest.prolated_duration
+   >>> rest.duration
    Duration(1, 6)
 
 

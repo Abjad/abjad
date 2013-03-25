@@ -47,7 +47,7 @@ rest.preprolated_duration
 And prolated duration:
 
 <abjad>
-rest.prolated_duration
+rest.duration
 </abjad>
 
 Except for rests inside a tuplet:
@@ -79,7 +79,7 @@ rest.prolation
 And prolated duration that is the product of the two:
 
 <abjad>
-rest.prolated_duration
+rest.duration
 </abjad>
 
 Changing the written duration of rests

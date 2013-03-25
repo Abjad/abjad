@@ -26,12 +26,12 @@ that appear in file output:
 ::
 
    >>> f(lilypond_file)
-   % Abjad revision 8302:8306
-   % 2012-12-15 16:27
+   % Abjad revision 9810:9815
+   % 2013-03-24 23:47
    
    \version "2.16.1"
    \language "english"
-   \include "/media/Work/dev/scores/abjad/trunk/abjad/cfg/abjad.scm"
+   \include "/home/josiah/Documents/Development/abjad/trunk/abjad/cfg/abjad.scm"
    
    \score {
        \new Staff {
@@ -56,12 +56,12 @@ Set default LilyPond paper size like this:
 ::
 
    >>> f(lilypond_file)
-   % Abjad revision 8302:8306
-   % 2012-12-15 16:27
+   % Abjad revision 9810:9815
+   % 2013-03-24 23:47
    
    \version "2.16.1"
    \language "english"
-   \include "/media/Work/dev/scores/abjad/trunk/abjad/cfg/abjad.scm"
+   \include "/home/josiah/Documents/Development/abjad/trunk/abjad/cfg/abjad.scm"
    
    #(set-default-paper-size "11x17" 'landscape)
    
@@ -88,12 +88,12 @@ Set global staff size like this:
 ::
 
    >>> f(lilypond_file)
-   % Abjad revision 8302:8306
-   % 2012-12-15 16:27
+   % Abjad revision 9810:9815
+   % 2013-03-24 23:47
    
    \version "2.16.1"
    \language "english"
-   \include "/media/Work/dev/scores/abjad/trunk/abjad/cfg/abjad.scm"
+   \include "/home/josiah/Documents/Development/abjad/trunk/abjad/cfg/abjad.scm"
    
    #(set-default-paper-size "11x17" 'landscape)
    #(set-global-staff-size 16)

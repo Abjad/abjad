@@ -35,8 +35,8 @@ Durated classes include notes, rests, chords, skips, tuplets and measures.
 
 
 
-Abjad restricts notes, rests, chords and skips to durations like ``3/16`` that can be written 
-with dots, beams and flags without ties or brackets. 
+Abjad restricts notes, rests, chords and skips to durations like ``3/16`` that can be written
+with dots, beams and flags without ties or brackets.
 Abjad allows arbitrary positive durations like ``5/8`` for tuplets and measures.
 
 ::
@@ -92,12 +92,12 @@ And longas.
 
 .. note::
 
-    Integer forms like ``4`` as a substitute for ``(4, 1)`` in ``Note(0, (4, 1))`` 
+    Integer forms like ``4`` as a substitute for ``(4, 1)`` in ``Note(0, (4, 1))``
     are undocumented but allowed.
 
 
 .. note::
 
-    Abjad allows maxima note heads as in ``Note(0, (8, 1))``. 
-    LilyPond implements a ``\maxima`` command but does not supply a corresponding 
+    Abjad allows maxima note heads as in ``Note(0, (8, 1))``.
+    LilyPond implements a ``\maxima`` command but does not supply a corresponding
     glyph for the note head.

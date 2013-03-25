@@ -100,7 +100,7 @@ These elements carry preprolated durations equal to ``1/8``, ``1/8`` and ``2/8``
 
    >>> notes = 2 * Note("c'8")
    >>> beam = beamtools.BeamSpanner(notes)
-   >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 c c") 
+   >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 c c")
    >>> beam = beamtools.BeamSpanner(tuplet)
    >>> measure = Measure((4, 8), notes + [tuplet])
    >>> staff = stafftools.RhythmicStaff([measure])
@@ -132,7 +132,7 @@ This fixed-duration tuplet carries a target duration equal to ``4/8``:
 
 ::
 
-   >>> tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 c c c c") 
+   >>> tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 c c c c")
    >>> beam = beamtools.BeamSpanner(tuplet)
    >>> measure = Measure((4, 8), [tuplet])
    >>> staff = stafftools.RhythmicStaff([measure])

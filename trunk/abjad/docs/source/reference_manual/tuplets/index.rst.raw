@@ -253,12 +253,16 @@ tuplet.override.tuplet_number.text = schemetools.Scheme('tuplet-number::calc-fra
 tuplet.override.tuplet_number.color = 'red'
 </abjad>
 
+We'll place the tuplet into a Staff object, so that LilyPond does not complain about
+the overrides we've applied, which lexically cannot appear in a \score block.
+
 <abjad>
-f(tuplet)
+staff = Staff([tuplet])
+f(staff)
 </abjad>
 
 <abjad>
-show(tuplet)
+show(staff)
 </abjad>
 
 See the LilyPond docs for lists of grob attributes available.
@@ -273,11 +277,11 @@ tuplet.override.tuplet_bracket.color = 'red'
 </abjad>
 
 <abjad>
-f(tuplet)
+f(staff)
 </abjad>
 
 <abjad>
-show(tuplet)
+show(staff)
 </abjad>
 
 See the LilyPond docs for lists of grob attributes available.
