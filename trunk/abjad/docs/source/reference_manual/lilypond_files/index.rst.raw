@@ -26,7 +26,7 @@ that appear in file output:
 f(lilypond_file)
 </abjad>
 
-InputSetExpression default paper size
+Setting default paper size
 --------------------------
 
 Set default LilyPond paper size like this:
@@ -39,7 +39,7 @@ lilypond_file.default_paper_size = '11x17', 'landscape'
 f(lilypond_file)
 </abjad>
 
-InputSetExpression global staff size
+Setting global staff size
 -------------------------
 
 Set global staff size like this:
