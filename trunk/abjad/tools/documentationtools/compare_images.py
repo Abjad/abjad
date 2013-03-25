@@ -10,12 +10,14 @@ def compare_images(image_one, image_two):
 
     Return `True` if images are the same, otherwise `False`.
 
-    If `compare` is not available, return 1.
+    If `compare` is not available, return `False`.
     '''
     from abjad.tools import iotools
 
     assert os.path.exists(image_one)
     assert os.path.exists(image_two)
+
+    result = False
 
     if iotools.which('compare'):
 
@@ -30,16 +32,17 @@ def compare_images(image_one, image_two):
             )
 
         stderr = process.stderr.read()
-        result = True
-        if stderr.startswith('compare: image widths or heights differ'):
-            result = False
-        else:
-            # FIXME: following line always errors
-            result = int(stderr.split('\n')[0].split()[0]) is 0
-            #pass
+        stdout = process.stdout.read()
+
+        if stderr:
+            part = stderr.split()[0]
+            if part.isdigit():
+                result = int(part) is 0
+        elif stdout:
+            part = stdout.split()[0]                                                     
+            if part.isdigit():                                                           
+                result = int(part) is 0
 
         shutil.rmtree(tempdir)
 
-        return result
-
-    return 1
+    return result
