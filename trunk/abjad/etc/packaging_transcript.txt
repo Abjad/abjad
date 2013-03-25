@@ -1,3 +1,29 @@
+Abjad 2.12
+    Date of package: 2013-03-24
+    Revision of Abjad repository: r9810
+
+    Packaging environment:
+        1. uname -v: Darwin Kernel Version 11.4.2
+        2. svn --version: svn, version 1.6.17 (r1128011)
+        3. python --version: Python 2.7.3
+        4. pip --version:  pip 1.3.1
+        5. py.test --version: This is py.test version 2.3.4
+        6. sphinx-build --version: Sphinx v1.1.3
+        7. lilypond --version: GNU LilyPond 2.17.9
+        8. convert --version: ImageMagick 6.3.3
+        9. dot -V: graphviz version 2.30.0 (20130114.0426)
+       10. mainline py.test test results: 
+       11. mainline doctest test results: 
+       12. experimental py.test test results: 
+       13. experimental doctest test results: Total modules: 
+       14. sanity check test results: 
+       15. experimental HTML build results: 
+       16. mainline HTML build results: 
+       17. LaTeX build results: 
+       18. Abjad.pdf build results:
+       19. AbjadAPI.pdf build results: 
+
+
 Abjad 2.11
     Date of package: 2013-02-10
     Revision of Abjad repository: r9443
