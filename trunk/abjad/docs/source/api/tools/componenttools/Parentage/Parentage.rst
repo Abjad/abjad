@@ -45,6 +45,12 @@ Read-only properties
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.tuplet_depth
    :noindex:
 
+Methods
+-------
+
+.. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.get_offset_lists
+   :noindex:
+
 Special methods
 ---------------
 

@@ -48,6 +48,12 @@ Read-only properties
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.written_duration
    :noindex:
 
+Methods
+-------
+
+.. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.get_offset_lists
+   :noindex:
+
 Special methods
 ---------------
 

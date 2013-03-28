@@ -21,6 +21,12 @@ Read-only properties
 .. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.timespan
    :noindex:
 
+Methods
+-------
+
+.. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.get_offset_lists
+   :noindex:
+
 Special methods
 ---------------
 

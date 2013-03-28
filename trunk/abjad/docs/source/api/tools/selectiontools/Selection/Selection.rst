@@ -18,6 +18,12 @@ Read-only properties
 .. autoattribute:: abjad.tools.selectiontools.Selection.Selection.Selection.timespan
    :noindex:
 
+Methods
+-------
+
+.. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.get_offset_lists
+   :noindex:
+
 Special methods
 ---------------
 

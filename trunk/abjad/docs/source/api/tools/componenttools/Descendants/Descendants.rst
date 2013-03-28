@@ -21,6 +21,12 @@ Read-only properties
 .. autoattribute:: abjad.tools.componenttools.Descendants.Descendants.Descendants.timespan
    :noindex:
 
+Methods
+-------
+
+.. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.get_offset_lists
+   :noindex:
+
 Special methods
 ---------------
 

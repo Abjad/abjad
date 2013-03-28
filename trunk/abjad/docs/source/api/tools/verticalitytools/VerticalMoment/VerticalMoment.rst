@@ -66,6 +66,12 @@ Read-only properties
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.timespan
    :noindex:
 
+Methods
+-------
+
+.. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.get_offset_lists
+   :noindex:
+
 Special methods
 ---------------
 

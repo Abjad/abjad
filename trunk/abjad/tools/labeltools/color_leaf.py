@@ -19,8 +19,10 @@ def color_leaf(leaf, color):
 
         >>> f(note)
         \once \override Accidental #'color = #red
+        \once \override Beam #'color = #red
         \once \override Dots #'color = #red
         \once \override NoteHead #'color = #red
+        \once \override Stem #'color = #red
         c'4
 
     ::
@@ -60,8 +62,10 @@ def color_leaf(leaf, color):
 
         >>> f(chord)
         \once \override Accidental #'color = #red
+        \once \override Beam #'color = #red
         \once \override Dots #'color = #red
         \once \override NoteHead #'color = #red
+        \once \override Stem #'color = #red
         <c' e' bf'>4
 
     ::
@@ -74,8 +78,10 @@ def color_leaf(leaf, color):
     # color leaf
     if isinstance(leaf, (notetools.Note, chordtools.Chord)):
         leaf.override.accidental.color = color
+        leaf.override.beam.color = color
         leaf.override.dots.color = color
         leaf.override.note_head.color = color
+        leaf.override.stem.color = color
     elif isinstance(leaf, resttools.Rest):
         leaf.override.dots.color = color
         leaf.override.rest.color = color

@@ -15,6 +15,27 @@ def timespan_2_contains_timespan_1_improperly(timespan_1=None, timespan_2=None, 
                 )
             )
 
+    Example:
+
+    ::
+
+        >>> staff = Staff(r"c'8. \p \< fs'16 a'4 af'8 \f \> g'8 ~ g'16 f' e' ef' \p")
+        >>> timespan_1 = timespantools.Timespan(Offset(1, 4), Offset(3, 8))
+
+    ::
+
+        >>> offset_lists = staff[:].get_offset_lists()
+        >>> time_relation = timerelationtools.timespan_2_contains_timespan_1_improperly(timespan_1=timespan_1)
+        >>> start_index, stop_index = time_relation.get_offset_indices(*offset_lists)
+        >>> selected_notes = staff[start_index:stop_index]
+        >>> selected_notes
+        Selection(Note("a'4"),)
+
+    ::
+
+        >>> labeltools.color_leaves_in_expr(selected_notes, 'red')
+        >>> show(staff) # doctest: +SKIP
+
     Return time relation or boolean.
     '''
     from abjad.tools import timerelationtools

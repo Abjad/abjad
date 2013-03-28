@@ -5,7 +5,14 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class Selection(AbjadObject):
     '''.. versionadded:: 2.9
 
-    Selection taken from a single score.
+    Selection taken from a single score:
+
+    ::
+
+        >>> staff = Staff("c'4 d'4 e'4 f'4")
+        >>> selection = staff[:2]
+        >>> selection
+        Selection(Note("c'4"), Note("d'4"))
 
     Selection objects will eventually pervade the system and model all user selections.
 
@@ -95,3 +102,27 @@ class Selection(AbjadObject):
         start_offset = min(x.timespan.start_offset for x in self)
         stop_offset = max(x.timespan.stop_offset for x in self)
         return timespantools.Timespan(start_offset, stop_offset)
+
+    ### PUBLIC METHODS ###
+
+    def get_offset_lists(self):
+        '''Get offset lists of components in selection:
+
+        ::
+
+            >>> start_offsets, stop_offsets = selection.get_offset_lists()
+            >>> start_offsets
+            [Offset(0, 1), Offset(1, 4)]
+    
+        ::
+
+            >>> stop_offsets
+            [Offset(1, 4), Offset(1, 2)]
+
+        Return list of start offsets together with list of stop offsets.
+        '''
+        start_offsets, stop_offsets = [], []
+        for component in self:
+            start_offsets.append(component.timespan.start_offset)
+            stop_offsets.append(component.timespan.stop_offset)
+        return start_offsets, stop_offsets

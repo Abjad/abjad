@@ -31,16 +31,20 @@ def color_leaves_in_expr(expr, color):
         >>> f(staff)
         \new Staff {
             \once \override Accidental #'color = #red
+            \once \override Beam #'color = #red
             \once \override Dots #'color = #red
             \once \override NoteHead #'color = #red
+            \once \override Stem #'color = #red
             cs'8. [
             \once \override Dots #'color = #red
             \once \override Rest #'color = #red
             r8.
             s8.
             \once \override Accidental #'color = #red
+            \once \override Beam #'color = #red
             \once \override Dots #'color = #red
             \once \override NoteHead #'color = #red
+            \once \override Stem #'color = #red
             <c' cs' a'>8. ]
         }
 
