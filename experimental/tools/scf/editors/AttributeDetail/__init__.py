@@ -1,0 +1,1 @@
+from AttributeDetail import AttributeDetail

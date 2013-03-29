@@ -1,0 +1,1 @@
+from  PatternedArticulationsHandlerEditor import PatternedArticulationsHandlerEditor

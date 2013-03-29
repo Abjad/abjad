@@ -1,0 +1,1 @@
+from MusicContributionSpecifierEditor import MusicContributionSpecifierEditor

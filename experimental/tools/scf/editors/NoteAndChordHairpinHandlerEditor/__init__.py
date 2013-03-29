@@ -1,0 +1,1 @@
+from  NoteAndChordHairpinHandlerEditor import NoteAndChordHairpinHandlerEditor
