@@ -1,3 +1,4 @@
+import os
 import scf
 
 
@@ -5,16 +6,16 @@ def test_DirectoryProxy_read_only_attributes_01():
     '''Named directory proxy already written to disk.
     '''
 
-    directory_proxy = scf.proxies.DirectoryProxy('/Users/trevorbaca/Documents/abjad/experimental/scm')
-    assert directory_proxy.path_name == '/Users/trevorbaca/Documents/abjad/experimental/scm'
+    directory_proxy = scf.proxies.DirectoryProxy(os.environ.get('SCFPATH'))
+    assert directory_proxy.path_name is not None
     assert directory_proxy.is_versioned
 
 
 def test_DirectoryProxy_read_only_attributes_02():
 
-    directory_proxy_1 = scf.proxies.DirectoryProxy('/Users/trevorbaca/Documents/abjad/experimental/scf')
-    directory_proxy_2 = scf.proxies.DirectoryProxy('/Users/trevorbaca/Documents/ajbad/experimental/scf')
-    directory_proxy_3 = scf.proxies.DirectoryProxy('/Users/trevorbaca/Documents/baca')
+    directory_proxy_1 = scf.proxies.DirectoryProxy(os.environ.get('SCFPATH'))
+    directory_proxy_2 = scf.proxies.DirectoryProxy(os.environ.get('SCFPATH'))
+    directory_proxy_3 = scf.proxies.DirectoryProxy(os.environ.get('ABJAD'))
 
     assert     directory_proxy_1 == directory_proxy_2
     assert not directory_proxy_1 == directory_proxy_3
