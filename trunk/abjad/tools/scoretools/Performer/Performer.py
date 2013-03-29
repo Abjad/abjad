@@ -4,7 +4,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class Performer(AbjadObject):
     r'''.. versionadded:: 2.5
 
-    Abjad model of performer::
+    Abjad model of performer:
+
+    ::
 
         >>> scoretools.Performer(name='flutist')
         Performer(name='flutist', instruments=InstrumentInventory([]))
@@ -12,7 +14,7 @@ class Performer(AbjadObject):
     The purpose of the class is to model things like
     flute I doubling piccolo and alto flute.
 
-    At present the class is a list of instruments.
+    At present the class comprises an instrument inventory and name.
     '''
 
     ### INITIALIZER ###
@@ -35,8 +37,9 @@ class Performer(AbjadObject):
     def __hash__(self):
         return hash((type(self).__name__, self.name, tuple(self.instruments)))
 
-    def __ne__(self, expr):
-        return not self == expr
+    # TODO: remove because AbjadObject provides this functionality
+#    def __ne__(self, expr):
+#        return not self == expr
 
     ### PRIVATE PROPERTIES ###
 
@@ -56,7 +59,9 @@ class Performer(AbjadObject):
 
     @property
     def instrument_count(self):
-        r'''Read-only number of instruments to be played by performer::
+        r'''Read-only number of instruments to be played by performer:
+
+        ::
 
             >>> performer = scoretools.Performer('flutist')
 
@@ -77,7 +82,9 @@ class Performer(AbjadObject):
     @apply
     def instruments():
         def fget(self):
-            r'''List of instruments to be played by performer::
+            r'''List of instruments to be played by performer:
+
+            ::
 
                 >>> performer = scoretools.Performer('flutist')
 
@@ -107,7 +114,9 @@ class Performer(AbjadObject):
 
     @property
     def is_doubling(self):
-        r'''Is performer to play more than one instrument? ::
+        r'''Is performer to play more than one instrument?
+
+        ::
 
             >>> performer = scoretools.Performer('flutist')
 
@@ -129,7 +138,9 @@ class Performer(AbjadObject):
     def likely_instruments_based_on_performer_name(self):
         r'''.. versionadded:: 2.5
 
-        Likely instruments based on performer name::
+        Likely instruments based on performer name:
+
+        ::
 
             >>> flutist = scoretools.Performer(name='flutist')
             >>> for likely_instrument in flutist.likely_instruments_based_on_performer_name:
@@ -154,7 +165,9 @@ class Performer(AbjadObject):
     def most_likely_instrument_based_on_performer_name(self):
         r'''.. versionadded:: 2.5
 
-        Most likely instrument based on performer name::
+        Most likely instrument based on performer name:
+
+        ::
 
             >>> flutist = scoretools.Performer(name='flutist')
             >>> flutist.most_likely_instrument_based_on_performer_name
@@ -170,7 +183,9 @@ class Performer(AbjadObject):
     @apply
     def name():
         def fget(self):
-            r'''Score name of performer::
+            r'''Score name of performer:
+
+            ::
 
                 >>> performer = scoretools.Performer('flutist')
 

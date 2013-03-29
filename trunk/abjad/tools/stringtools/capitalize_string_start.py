@@ -23,7 +23,7 @@ def capitalize_string_start(string):
     '''
 
     if not isinstance(string, str):
-        raise TypeError
+        raise TypeError(string)
 
     if not string:
         return string

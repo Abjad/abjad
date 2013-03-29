@@ -76,13 +76,13 @@ class InstrumentMark(ContextMark):
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
-            if self.instrument_name_markup == arg.instrument_name_markup:
-                if self.short_instrument_name_markup == arg.short_instrument_name_markup:
+            if self.instrument_name == arg.instrument_name:
+                if self.short_instrument_name == arg.short_instrument_name:
                     return True
         return False
 
     def __hash__(self):
-        return hash((type(self).__name__, self.instrument_name_markup, self.short_instrument_name_markup))
+        return hash((type(self).__name__, self.instrument_name, self.short_instrument_name))
 
     ### PRIVATE PROPERTIES ###
 
