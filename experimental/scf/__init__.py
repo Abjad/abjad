@@ -22,8 +22,9 @@ Do the following to install SCF on your system:
     3. add abjad/experimental/scr to your PATH
     4. create a scores directory
     5. start and stop SCF
-    6. create Test Score 1 using SCF
-    7. run the SCF py.test battery
+    6. create Example Score I using SCF
+    7. create Example Score II using SCF
+    8. run the SCF py.test battery
 
 
 1. Verify SCF directories. The following six directories should be 
@@ -79,25 +80,35 @@ the abjad/experimental/scr directory to your PATH.
 After SCF starts correctly enter 'q' to quit SCF and return to the shell.
 
 
-6. Create Test Score I using SCF. Type 'scf' to start SCF again.
+6. Create Example Score I using SCF. Type 'scf' to start SCF again.
 Once SCF starts you should see a menu item that says "new score (new)".
 Type 'new'. You should then be presented with a 3-step score creation wizard.
 Complete the wizard exactly as follows:
 
-    (1/3) score title: Test Score I
-    (2/3) package name: test_1
+    (1/3) score title: Example Score I
+    (2/3) package name: example_score_1
     (3/3) year of completion: 2013
 
 Quit SCF once you finish the wizard. Check your scores directory. You should
-see a test_1 directory. List the contents of the test_1 score directory:
+see a example_score_1 directory. List the contents of the example_score_1 score directory:
 
-    scores$ ls test_1/
+    scores$ ls example_score_1/
     __init__.py dist        etc         exg         mus         tags.py
 
 You should see the subdirectories and initializer shown above.
 
+
+7. Create Example Score II using SCF. Repeat the steps listed for #6, above:
+
+    (1/3) score title: Example Score II
+    (2/3) package name: example_score_2
+    (3/3) year of completion: 2013
+
+Quit SCF when your are done. SCF tests parts of the system against 
+Example Score I and Example Score II.
+
     
-7. Run the py.test SCF battery. You're now in a position to run the SCF py.test battery.
+8. Run the py.test SCF battery. You're now in a position to run the SCF py.test battery.
 Just run "py.test in abjad/experimental/scf" the same way you do for every other part
 of Abjad. You're ready to read the SCF code if all tests pass.
 '''

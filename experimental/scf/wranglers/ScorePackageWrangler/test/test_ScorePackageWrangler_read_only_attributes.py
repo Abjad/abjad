@@ -1,3 +1,4 @@
+import os
 import scf
 
 studio = scf.studio.Studio()
@@ -15,8 +16,8 @@ def test_ScorePackageWrangler_read_only_attributes_02():
     '''Asset containers (all).
     '''
 
-    assert 'lidercfeny' in wrangler.list_asset_container_importable_names()
-    assert '/Users/trevorbaca/Documents/scores/lidercfeny' in wrangler.list_asset_container_path_names()
+    assert 'example_score_1' in wrangler.list_asset_container_importable_names()
+    assert os.path.join(os.environ.get('SCORES'), 'example_score_1') in wrangler.list_asset_container_path_names()
 
 
 def test_ScorePackageWrangler_read_only_attributes_03():
@@ -59,4 +60,4 @@ def test_ScorePackageWrangler_read_only_attributes_08():
     '''Other read-only attributes.
     '''
 
-    assert 'Lidércfény (2008)' in wrangler.visible_score_titles_with_years
+    assert 'Example Score I (2013)' in wrangler.visible_score_titles_with_years

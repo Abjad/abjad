@@ -26,4 +26,3 @@ def test_Studio_show_hidden_menu_entries_01():
       '     show mothballed scores only (mb)',
       '     profile packages (profile)',
       '']
-

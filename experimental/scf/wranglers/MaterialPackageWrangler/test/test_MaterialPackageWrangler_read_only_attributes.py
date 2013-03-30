@@ -18,9 +18,9 @@ def test_MaterialPackageWrangler_read_only_attributes_02():
     '''
 
     assert 'materials' in wrangler.list_asset_container_importable_names()
-    assert 'aracilik.mus.materials' in wrangler.list_asset_container_importable_names()
+    assert 'example_score_1.mus.materials' in wrangler.list_asset_container_importable_names()
     assert os.environ.get('SCFMATERIALSPATH') in wrangler.list_asset_container_path_names()
-    assert '/Users/trevorbaca/Documents/scores/aracilik/mus/materials' in \
+    assert os.path.join(os.environ.get('SCORES'), 'example_score_1', 'mus', 'materials') in \
         wrangler.list_asset_container_path_names()
 
 
@@ -74,11 +74,11 @@ def test_MaterialPackageWrangler_read_only_attributes_08():
 
     studio = scf.studio.Studio()
     wrangler = studio.material_package_wrangler
-    wrangler.session.current_score_package_short_name = 'aracilik'
+    wrangler.session.current_score_package_short_name = 'example_score_1'
     assert wrangler.session.is_in_score
 
-    assert 'aracilik.mus.materials' in wrangler.list_asset_container_importable_names()
-    assert wrangler.current_asset_container_importable_name == 'aracilik.mus.materials'
-    assert wrangler.temporary_asset_importable_name == 'aracilik.mus.materials.__temporary_package'
+    assert 'example_score_1.mus.materials' in wrangler.list_asset_container_importable_names()
+    assert wrangler.current_asset_container_importable_name == 'example_score_1.mus.materials'
+    assert wrangler.temporary_asset_importable_name == 'example_score_1.mus.materials.__temporary_package'
     assert wrangler.temporary_asset_path_name == \
-        '/Users/trevorbaca/Documents/scores/aracilik/mus/materials/__temporary_package'
+        os.path.join(os.environ.get('SCORES'), 'example_score_1', 'mus', 'materials', '__temporary_package')
