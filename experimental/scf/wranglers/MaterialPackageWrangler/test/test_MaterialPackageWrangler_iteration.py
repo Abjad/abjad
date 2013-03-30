@@ -1,3 +1,4 @@
+import os
 import scf
 
 studio = scf.studio.Studio()
@@ -29,9 +30,9 @@ def test_MaterialPackageWrangler_iteration_02():
 
 def test_MaterialPackageWrangler_iteration_03():
 
-    assert '/Users/trevorbaca/Documents/baca/materials/red_notes' in \
+    assert os.path.join(os.environ.get('SCFMATERIALSPATH'), 'red_notes') in \
         wrangler.list_asset_path_names()
-    assert '/Users/trevorbaca/Documents/baca/materials/red_notes' not in \
+    assert os.path.join(os.environ.get('SCFMATERIALSPATH'), 'red_notes') not in \
         wrangler.list_asset_path_names(head='aracilik')
     assert wrangler.list_asset_path_names(head='asdf') == []
 

@@ -1,3 +1,4 @@
+import os
 import scf
 
 studio = scf.studio.Studio()
@@ -18,8 +19,9 @@ def test_MaterialPackageWrangler_read_only_attributes_02():
 
     assert 'materials' in wrangler.list_asset_container_importable_names()
     assert 'aracilik.mus.materials' in wrangler.list_asset_container_importable_names()
-    assert '/Users/trevorbaca/Documents/baca/materials' in wrangler.list_asset_container_path_names()
-    assert '/Users/trevorbaca/Documents/scores/aracilik/mus/materials' in wrangler.list_asset_container_path_names()
+    assert os.environ.get('SCFMATERIALSPATH') in wrangler.list_asset_container_path_names()
+    assert '/Users/trevorbaca/Documents/scores/aracilik/mus/materials' in \
+        wrangler.list_asset_container_path_names()
 
 
 def test_MaterialPackageWrangler_read_only_attributes_03():
@@ -27,7 +29,7 @@ def test_MaterialPackageWrangler_read_only_attributes_03():
     '''
 
     assert wrangler.current_asset_container_importable_name == 'materials'
-    assert wrangler.current_asset_container_path_name == '/Users/trevorbaca/Documents/baca/materials'
+    assert wrangler.current_asset_container_path_name == os.environ.get('SCFMATERIALSPATH')
 
 
 def test_MaterialPackageWrangler_read_only_attributes_04():
@@ -36,7 +38,7 @@ def test_MaterialPackageWrangler_read_only_attributes_04():
 
     assert wrangler.list_score_external_asset_container_importable_names() == ['materials']
     assert wrangler.list_score_external_asset_container_path_names() == \
-        ['/Users/trevorbaca/Documents/baca/materials']
+        [os.environ.get('SCFMATERIALSPATH')]
 
 
 def test_MaterialPackageWrangler_read_only_attributes_05():
@@ -45,7 +47,7 @@ def test_MaterialPackageWrangler_read_only_attributes_05():
 
     assert 'red notes' in wrangler.list_score_external_asset_human_readable_names()
     assert 'materials.red_notes' in wrangler.list_score_external_asset_importable_names()
-    assert '/Users/trevorbaca/Documents/baca/materials/red_notes' in \
+    assert os.path.join(os.environ.get('SCFMATERIALSPATH'), 'red_notes') in \
         wrangler.list_score_external_asset_path_names()
 
 
@@ -62,7 +64,7 @@ def test_MaterialPackageWrangler_read_only_attributes_07():
 
     assert wrangler.temporary_asset_importable_name == 'materials.__temporary_package'
     assert wrangler.temporary_asset_path_name == \
-        '/Users/trevorbaca/Documents/baca/materials/__temporary_package'
+        os.path.join(os.environ.get('SCFMATERIALSPATH'), '__temporary_package')
     assert wrangler.temporary_asset_short_name == '__temporary_package'
 
 
