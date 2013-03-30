@@ -1,13 +1,12 @@
-import baca
+import scfmusic
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import measuretools
 from abjad.tools import sequencetools
-# TODO: move make_sargasso_measures to SCF music directory
-from baca.music.make_sargasso_measures import make_illustration_from_output_material
 from scf import predicates
 from scf.editors.UserInputWrapper import UserInputWrapper
 from scf.makers.FunctionInputMaterialPackageMaker import FunctionInputMaterialPackageMaker
+from scfmusic.make_sargasso_measures import make_illustration_from_output_material
 
 
 class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
@@ -17,7 +16,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
     generic_output_name = 'sargasso measures'
     illustration_maker = staticmethod(make_illustration_from_output_material)
     output_material_checker = staticmethod(measuretools.all_are_measures)
-    output_material_maker = staticmethod(baca.music.make_sargasso_measures)
+    output_material_maker = staticmethod(scfmusic.make_sargasso_measures)
     output_material_module_import_statements = ['from abjad.tools import measuretools']
 
     user_input_demo_values = [

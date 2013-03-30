@@ -1,6 +1,5 @@
 \version "2.15.13"
 \include "english.ly"
-\include "/Users/trevorbaca/Documents/abjad/trunk/abjad/cfg/abjad.scm"
 
 #(set-default-paper-size "letter" 'portrait)
 #(set-global-staff-size 14)
