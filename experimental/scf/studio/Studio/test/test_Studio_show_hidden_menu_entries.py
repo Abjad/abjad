@@ -8,7 +8,7 @@ def test_Studio_show_hidden_menu_entries_01():
     assert studio.transcript[-2] == \
      ['     back (b)',
       '     exec statement (exec)',
-      '     grep baca directories (grep)',
+      '     grep directories (grep)',
       '     edit client source (here)',
       '     show hidden items (hidden)',
       '     next score (next)',

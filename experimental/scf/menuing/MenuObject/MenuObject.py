@@ -81,7 +81,7 @@ class MenuObject(SCFObject):
         self.display(lines)
         self.session.hide_next_redraw = True
 
-    def grep_baca(self):
+    def grep_directories(self):
         regex = self.handle_raw_input('regex')
         command = 'grep -Irn "{}" * | grep -v svn'.format(regex)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
@@ -94,7 +94,7 @@ class MenuObject(SCFObject):
         section = MenuSection(is_hidden=True, session=session, where=where)
         section.append(('b', 'back'))
         section.append(('exec', 'exec statement'))
-        section.append(('grep', 'grep baca directories'))
+        section.append(('grep', 'grep directories'))
         section.append(('here', 'edit client source'))
         section.append(('hidden', 'show hidden items'))
         section.append(('next', 'next score'))

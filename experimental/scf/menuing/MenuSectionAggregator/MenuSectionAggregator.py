@@ -25,7 +25,7 @@ class MenuSectionAggregator(MenuObject):
         elif key == 'exec':
             self.exec_statement()
         elif key == 'grep':
-            self.grep_baca()
+            self.grep_directories()
         elif key == 'here':
             self.edit_client_source_file()
         elif key == 'hidden':
