@@ -1,3 +1,4 @@
+import py
 import scf
 
 
@@ -35,28 +36,30 @@ def test_MaterialPackageProxy_run_02():
 def test_MaterialPackageProxy_run_03():
     '''Score materials: quit, back, studio, score & junk all work.
     '''
+    py.test.skip('TODO: add Example Score I time signatures.')
 
     studio = scf.studio.Studio()
-    studio.run(user_input='all las m 2 q')
+    studio.run(user_input='all example_score_1 m 2 q')
     assert studio.ts == (10,)
 
-    studio.run(user_input='all las m 2 b q')
+    studio.run(user_input='all example_score_1 m 2 b q')
     assert studio.ts == (12, (6, 10))
 
-    studio.run(user_input='all las m 2 studio q')
+    studio.run(user_input='all example_score_1 m 2 studio q')
     assert studio.ts == (12, (2, 10))
 
-    studio.run(user_input='all las m 2 score q')
+    studio.run(user_input='all example_score_1 m 2 score q')
     assert studio.ts == (12, (4, 10))
 
-    studio.run(user_input='all las m 2 foo q')
+    studio.run(user_input='all example_score_1 m 2 foo q')
     assert studio.ts == (12, (8, 10))
 
 
 def test_MaterialPackageProxy_run_04():
     '''Score materials: breadcrumbs work.
     '''
+    py.test.skip('TODO: add Example Score I time signatures.')
 
     studio = scf.studio.Studio()
-    studio.run(user_input='all las m black q')
-    assert studio.transcript[-2][0] == 'Las manos mágicas - materials - black pcs'
+    studio.run(user_input='all example_score_1 m time_signatures q')
+    assert studio.transcript[-2][0] == 'Example Score I - materials - time signatures'
