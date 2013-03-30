@@ -1,7 +1,6 @@
-from abjad import *
-from abjad.tools import layouttools
-import baca
 import os
+import baca
+from abjad import *
 
 
 def make_illustration_from_output_material(output_material, **kwargs):

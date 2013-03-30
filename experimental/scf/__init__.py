@@ -31,6 +31,7 @@ Do the following to install SCF on your system:
 on your filesystem:
 
     abjad/experimental/materials
+    abjad/experimental/music
     abjad/experimental/scf
     abjad/experimental/scm
     abjad/experimental/scr
@@ -39,7 +40,7 @@ on your filesystem:
 
 
 2. Set SCF environment variables. The following five environment variables 
-should be set in your profile, or eqivalent:
+should be set in your profile, or equivalent:
 
     export SCFCHUNKSPATH=$ABJADEXPERIMENTAL/sketches
     export SCFMATERIALSPATH=$ABJADEXPERIMENTAL/materials
