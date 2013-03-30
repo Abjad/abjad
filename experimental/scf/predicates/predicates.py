@@ -34,14 +34,6 @@ def is_clef_token(expr):
     except:
         return False
 
-def is_constellation_circuit_id_pair(expr):
-    import baca
-    try:
-        baca.pitch.CC.get(*expr)
-        return True
-    except:
-        return False
-
 def is_direction_string(expr):
     return expr in ('up', 'down')
 

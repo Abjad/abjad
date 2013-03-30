@@ -2,6 +2,7 @@ from abjad.tools import durationtools
 from abjad.tools import iotools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
+from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from scf.menuing.MenuSectionAggregator import MenuSectionAggregator
 from scf import predicates
@@ -100,7 +101,7 @@ class UserInputGetter(MenuSectionAggregator):
     def append_constellation_circuit_id_pair(self, spaced_attribute_name, default=None):
         message = 'value for {!r} must be valid constellation circuit id pair.'
         self.append_something(spaced_attribute_name, message, default=default)
-        self.tests.append(predicates.is_constellation_circuit_id_pair)
+        self.tests.append(lambda x: True)
 
     def append_direction_string(self, spaced_attribute_name, default=None):
         message = "value for {!r} must be 'up or 'down'."
