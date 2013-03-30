@@ -83,8 +83,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             package_short_name, package_short_name + '.py')
         class_file = file(class_file_name, 'w')
         lines = []
-        lines.append('from baca.music.foo import foo')
-        lines.append('from baca.music.foo import make_illustration_from_output_material')
+        lines.append('from music.foo import foo')
+        lines.append('from music.foo import make_illustration_from_output_material')
         lines.append('from scf.makers.MaterialPackageMaker import MaterialPackageMaker')
         lines.append('from scf.editors.UserInputWrapper import UserInputWrapper')
         lines.append('import scf')
@@ -104,7 +104,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         lines.append('')
         lines.append('    output_material_checker = staticmethod(componenttools.all_are_components)')
         lines.append('')
-        lines.append('    output_material_maker = staticmethod(baca.music.foo)')
+        lines.append('    output_material_maker = staticmethod(music.foo)')
         lines.append('')
         lines.append('    output_material_module_import_statements = [')
         lines.append('        ]')
@@ -137,7 +137,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         line = 'from abjad.tools import importtools\n'
         initializer.write(line)
         initializer.write('\n')
-        initializer.write("importtools.import_structured_package(__path__[0], globals(), 'baca')\n")
+        initializer.write("importtools.import_structured_package(__path__[0], globals())\n")
         initializer.close()
 
     def make_asset_interactively(self):

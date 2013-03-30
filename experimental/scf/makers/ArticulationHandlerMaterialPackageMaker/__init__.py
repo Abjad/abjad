@@ -1,1 +1,1 @@
-from  ArticulationHandlerMaterialPackageMaker import ArticulationHandlerMaterialPackageMaker
+from ArticulationHandlerMaterialPackageMaker import ArticulationHandlerMaterialPackageMaker
