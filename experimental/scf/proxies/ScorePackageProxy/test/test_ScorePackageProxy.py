@@ -6,11 +6,11 @@ def test_ScorePackageProxy_01():
     '''Main menu.
     '''
 
-    archipel = scf.proxies.ScorePackageProxy('archipel')
-    archipel.run(user_input='q')
+    example_score_1 = scf.proxies.ScorePackageProxy('example_score_1')
+    example_score_1.run(user_input='q')
 
-    assert archipel.transcript[-2] == \
-    ["L'archipel du corps (2011)",
+    assert example_score_1.transcript[-2] == \
+    ['Example Score I (2013)',
       '',
       '     chunks (h)',
       '     materials (m)',
@@ -23,25 +23,25 @@ def test_ScorePackageProxy_02():
     '''Manage tags menu.
     '''
 
-    archipel = scf.proxies.ScorePackageProxy('archipel')
-    archipel.session.user_input = 'q'
-    archipel.manage_tags()
-    assert archipel.ts == (2,)
+    example_score_1 = scf.proxies.ScorePackageProxy('example_score_1')
+    example_score_1.session.user_input = 'q'
+    example_score_1.manage_tags()
+    assert example_score_1.ts == (2,)
 
 
 def test_ScorePackageProxy_03():
     '''Add and delete tag interactively.
     '''
 
-    archipel = scf.proxies.ScorePackageProxy('archipel')
-    archipel.session.user_input = 'add foo bar q'
-    archipel.manage_tags()
-    assert archipel.get_tag('foo') == 'bar'
+    example_score_1 = scf.proxies.ScorePackageProxy('example_score_1')
+    example_score_1.session.user_input = 'add foo bar q'
+    example_score_1.manage_tags()
+    assert example_score_1.get_tag('foo') == 'bar'
 
-    archipel = scf.proxies.ScorePackageProxy('archipel')
-    archipel.session.user_input = 'del foo q'
-    archipel.manage_tags()
-    assert archipel.get_tag('foo') is None
+    example_score_1 = scf.proxies.ScorePackageProxy('example_score_1')
+    example_score_1.session.user_input = 'del foo q'
+    example_score_1.manage_tags()
+    assert example_score_1.get_tag('foo') is None
 
 
 def test_ScorePackageProxy_04():
@@ -49,11 +49,11 @@ def test_ScorePackageProxy_04():
     '''
 
     studio = scf.studio.Studio()
-    studio.run(user_input="l'arch studio q")
+    studio.run(user_input="example~score studio q")
 
     assert studio.ts == (6, (0, 4))
     assert studio.transcript[0][0] == 'Studio - active scores'
-    assert studio.transcript[2][0] == "L'archipel du corps (2011)"
+    assert studio.transcript[2][0] == 'Example Score I (2013)'
     assert studio.transcript[4][0] == 'Studio - active scores'
 
 
@@ -61,12 +61,12 @@ def test_ScorePackageProxy_05():
     '''User 'studio' input terminates execution (when score not managed from studio).
     '''
 
-    archipel = scf.proxies.ScorePackageProxy('archipel')
-    archipel.run(user_input='studio')
+    example_score_1 = scf.proxies.ScorePackageProxy('example_score_1')
+    example_score_1.run(user_input='studio')
 
-    assert archipel.ts == (2,)
-    assert archipel.transcript[0][0] == "L'archipel du corps (2011)"
-    assert archipel.transcript[1][0] == 'SCF> studio'
+    assert example_score_1.ts == (2,)
+    assert example_score_1.transcript[0][0] == "Example Score I (2013)"
+    assert example_score_1.transcript[1][0] == 'SCF> studio'
 
 
 def test_ScorePackageProxy_06():
@@ -74,11 +74,11 @@ def test_ScorePackageProxy_06():
     '''
 
     studio = scf.studio.Studio()
-    studio.run(user_input="l'arch b q")
+    studio.run(user_input='example~score b q')
 
     assert studio.ts == (6, (0, 4))
     assert studio.transcript[0][0] == 'Studio - active scores'
-    assert studio.transcript[2][0] == "L'archipel du corps (2011)"
+    assert studio.transcript[2][0] == 'Example Score I (2013)'
     assert studio.transcript[4][0] == 'Studio - active scores'
 
 
@@ -86,7 +86,7 @@ def test_ScorePackageProxy_07():
     '''Shared session.
     '''
 
-    spp = scf.proxies.ScorePackageProxy('archipel')
+    spp = scf.proxies.ScorePackageProxy('example_score_1')
 
     assert spp.session is spp.dist_proxy.session
     assert spp.session is spp.etc_proxy.session
