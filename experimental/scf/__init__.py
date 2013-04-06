@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import chunks
 import editors
 import exceptions
@@ -24,7 +25,8 @@ Do the following to install SCF on your system:
     5. start and stop SCF
     6. create Example Score I using SCF
     7. create Example Score II using SCF
-    8. run the SCF py.test battery
+    7. create Étude Score I using SCF
+    9. run the SCF py.test battery
 
 
 1. Verify SCF directories. The following six directories should be 
@@ -105,11 +107,12 @@ You should see the subdirectories and initializer shown above.
     (2/3) package name: example_score_2
     (3/3) year of completion: 2013
 
-Quit SCF when your are done. SCF tests parts of the system against 
-Example Score I and Example Score II.
+8. Create Étude Score I using SCF. Repeat the steps listed above for #6 and #7.
 
+Quit SCF when your are done. SCF tests parts of the system against 
+Example Score I, Example Score II and Étude Score I.
     
-8. Run the py.test SCF battery. You're now in a position to run the SCF py.test battery.
+9. Run the py.test SCF battery. You're now in a position to run the SCF py.test battery.
 Just run "py.test in abjad/experimental/scf" the same way you do for every other part
 of Abjad. You're ready to read the SCF code if all tests pass.
 '''

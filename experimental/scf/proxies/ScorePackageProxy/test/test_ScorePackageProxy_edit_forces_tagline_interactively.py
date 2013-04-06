@@ -24,10 +24,10 @@ def test_ScorePackageProxy_edit_forces_tagline_interactively_02():
 
     try:
         studio = scf.studio.Studio()
-        studio.run(user_input='poeme setup tagline for~foo~bar q')
-        recursif = scf.proxies.ScorePackageProxy('recursif')
-        assert recursif.forces_tagline == 'for foo bar'
+        studio.run(user_input='example~score setup tagline for~foo~bar q')
+        example_score_1 = scf.proxies.ScorePackageProxy('example_score_1')
+        assert example_score_1.forces_tagline == 'for foo bar'
     finally:
-        studio.run(user_input='poeme setup tagline for~64~pieces~of~percussion q')
-        recursif = scf.proxies.ScorePackageProxy('recursif')
-        assert recursif.forces_tagline == 'for 64 pieces of percussion'
+        studio.run(user_input='example~score setup tagline for~six~players q')
+        example_score_1 = scf.proxies.ScorePackageProxy('example_score_1')
+        assert example_score_1.forces_tagline == 'for six players'

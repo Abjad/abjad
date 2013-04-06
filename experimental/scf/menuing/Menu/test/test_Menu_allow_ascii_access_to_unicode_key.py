@@ -4,14 +4,14 @@ import scf
 def test_Menu_allow_ascii_access_to_unicode_key_01():
 
     studio = scf.studio.Studio()
-    studio.run(user_input='Čáry q')
+    studio.run(user_input='Étude q')
     assert studio.ts == (4,)
 
-    studio.run(user_input='čáry q')
+    studio.run(user_input='étude q')
     assert studio.ts == (4,)
 
-    studio.run(user_input='Cary q')
+    studio.run(user_input='Etude q')
     assert studio.ts == (4,)
 
-    studio.run(user_input='cary q')
+    studio.run(user_input='etude q')
     assert studio.ts == (4,)
