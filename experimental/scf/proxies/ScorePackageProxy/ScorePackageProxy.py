@@ -139,7 +139,8 @@ class ScorePackageProxy(PackageProxy):
     def tempo_inventory(self):
         from abjad.tools import contexttools
         for material_package_proxy in self.material_package_wrangler.list_asset_proxies(head=self.short_name):
-            if material_package_proxy.get_tag('output_material_class_name') == 'TempoMarkInventory':
+            if material_package_proxy.get_tag('material_package_maker_class_name') == \
+                'TempoMarkInventoryMaterialPackageMaker':
                 return material_package_proxy.output_material
 
     @property

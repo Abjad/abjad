@@ -15,13 +15,10 @@ def test_MaterialPackageWrangler_get_available_material_package_importable_name_
 def test_MaterialPackageWrangler_get_available_material_package_importable_name_interactively_02():
 
     wrangler = scf.wranglers.MaterialPackageWrangler()
-    wrangler.session._current_score_package_short_name = 'betoerung'
+    wrangler.session._current_score_package_short_name = 'example_score_1'
 
     result = wrangler.get_available_material_package_importable_name_interactively(user_input='foo')
-    assert result == 'betoerung.mus.materials.foo'
-
-    result = wrangler.get_available_material_package_importable_name_interactively(user_input='speckled~time~token~maker q')
-    assert result is None
+    assert result == 'example_score_1.mus.materials.foo'
 
 
 def test_MaterialPackageWrangler_get_available_material_package_importable_name_interactively_03():

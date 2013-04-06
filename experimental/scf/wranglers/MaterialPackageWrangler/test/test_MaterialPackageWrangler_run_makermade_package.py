@@ -33,13 +33,13 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
     '''
 
     studio = scf.studio.Studio()
-    assert not studio.package_exists('betoerung.mus.materials.testsargasso')
+    assert not studio.package_exists('example_score_1.mus.materials.testsargasso')
 
     try:
-        studio.run(user_input='betörung m m sargasso testsargasso default q')
-        assert studio.package_exists('betoerung.mus.materials.testsargasso')
+        studio.run(user_input='example~score m m sargasso testsargasso default q')
+        assert studio.package_exists('example_score_1.mus.materials.testsargasso')
         mpp = scf.makers.SargassoMeasureMaterialPackageMaker(
-            'betoerung.mus.materials.testsargasso')
+            'example_score_1.mus.materials.testsargasso')
         assert mpp.is_makermade
         assert mpp.directory_contents == ['__init__.py', 'tags.py', 'user_input.py']
         assert mpp.has_initializer
@@ -49,8 +49,8 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
         assert not mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.output_material is None
     finally:
-        studio.run(user_input='betörung m testsargasso del remove default q')
-        assert not studio.package_exists('betoerung.mus.materials.testsargasso')
+        studio.run(user_input='example~score m testsargasso del remove default q')
+        assert not studio.package_exists('example_score_1.mus.materials.testsargasso')
 
 
 #def test_MaterialPackageWrangler_run_makermade_package_03():
