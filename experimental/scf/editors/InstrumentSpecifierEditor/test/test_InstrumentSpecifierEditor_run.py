@@ -6,26 +6,17 @@ def test_InstrumentSpecifierEditor_run_01():
     '''
 
     editor = scf.editors.InstrumentSpecifierEditor()
-    editor.session.current_score_package_short_name = 'betoerung'
+    editor.session.current_score_package_short_name = 'example_score_1'
     editor.run(user_input='name foo instrument horn done')
 
     r'''
     specifiers.InstrumentSpecifier(
-        instrument=instrumenttools.FrenchHorn(
-            instrument_name='horn',
-            instrument_name_markup=markuptools.Markup((
-                'Horn',
-                )),
-            short_instrument_name='hn.',
-            short_instrument_name_markup=markuptools.Markup((
-                'Hn.',
-                ))
-            ),
+        instrument=instrumenttools.FrenchHorn(),
         name='foo'
         )
     '''
 
-    assert editor.target.format == "specifiers.InstrumentSpecifier(\n\tinstrument=instrumenttools.FrenchHorn(\n\t\tinstrument_name='horn',\n\t\tinstrument_name_markup=markuptools.Markup((\n\t\t\t'Horn',\n\t\t\t)),\n\t\tshort_instrument_name='hn.',\n\t\tshort_instrument_name_markup=markuptools.Markup((\n\t\t\t'Hn.',\n\t\t\t))\n\t\t),\n\tname='foo'\n\t)"
+    assert editor.target.format == "specifiers.InstrumentSpecifier(\n\tinstrument=instrumenttools.FrenchHorn(),\n\tname='foo'\n\t)"
 
 
 def test_InstrumentSpecifierEditor_run_02():
