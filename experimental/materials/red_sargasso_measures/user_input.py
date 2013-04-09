@@ -1,5 +1,5 @@
 from abjad.tools.durationtools import Duration
-from scf.editors import UserInputWrapper
+from scftools.editors import UserInputWrapper
 
 
 user_input_wrapper = UserInputWrapper([

@@ -1,8 +1,8 @@
 #! /usr/bin/env python
-import scf
+import scftools
 import sys
 
 
-studio = scf.studio.Studio()
+studio = scftools.studio.Studio()
 studio.session.dump_transcript = True
 studio.run(user_input=' '.join(sys.argv[1:]))
