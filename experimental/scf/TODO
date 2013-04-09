@@ -4,7 +4,7 @@ TODO
    So optimize to make asset instantiation take much less time.
    Possibly by removing all [safe_]imports() from the __init__.py files.
    Best to run the profiler while doing this to avoid unnecessary tinkering.
-   Also unnecessarily interpreting output_materia.py modules should be elimiated.
+   Also unnecessarily interpreting output_material.py modules should be elimiated.
 
 2. Make user input getter defaults work like menu defaults;
     Implement default_value on user input getter.
@@ -40,3 +40,5 @@ TODO
 17. Consider keyword backtracking protocol to replace self.push_backtrack() / self.pop_backtrack().
 
 18. Distinguish positional editor parameters from keyword editor parameters.
+
+19. Change all 'from abc import ABCMeta' to just 'import abc'.

@@ -21,6 +21,7 @@ class ImportableAssetWrangler(AssetWrangler):
         result = []
         result.extend(self.list_score_external_asset_importable_names(head=head))
         result.extend(self.list_score_internal_asset_importable_names(head=head))
+        result.extend(self.list_user_asset_importable_names(head=head))
         return result
 
     def list_asset_proxies(self, head=None):
@@ -53,6 +54,14 @@ class ImportableAssetWrangler(AssetWrangler):
                             asset_container_importable_name, importable_base_name))
             else:
                 result.append(asset_container_importable_name)
+        return result
+
+    def list_user_asset_importable_names(self, head=None):
+        result = []
+        for path_name in self.list_user_asset_container_path_names(head=head):
+            for name in os.listdir(path_name):
+                if name[0].isalpha():
+                    result.append(self.dot_join([self.user_makers_package_importable_name, name]))
         return result
 
     # TODO: try to reimplement without proxy instantiation

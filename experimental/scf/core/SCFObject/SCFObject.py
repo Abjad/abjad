@@ -1,8 +1,3 @@
-from abjad.tools import iotools
-from abjad.tools import markuptools
-from abjad.tools import mathtools
-from abjad.tools import pitchtools
-from abjad.tools import stringtools
 import abc
 import inspect
 import os
@@ -10,6 +5,11 @@ import pprint
 import readline
 import sys
 import types
+from abjad.tools import iotools
+from abjad.tools import markuptools
+from abjad.tools import mathtools
+from abjad.tools import pitchtools
+from abjad.tools import stringtools
 
 
 class SCFObject(object):
@@ -179,6 +179,14 @@ class SCFObject(object):
     @property
     def ts(self):
         return self.transcript_signature
+
+    @property
+    def user_makers_directory_name(self):
+        return os.environ.get('SCFUSERMAKERSPATH')
+
+    @property
+    def user_makers_package_importable_name(self):
+        return os.environ.get('SCFUSERMAKERSIMPORTABLENAME')
 
     ### PUBLIC METHODS ###
 

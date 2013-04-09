@@ -1,19 +1,26 @@
+import os
 from abc import ABCMeta
 from abc import abstractmethod
 from abc import abstractproperty
 from abjad.tools import stringtools
 from scf.core.SCFObject import SCFObject
 from scf.proxies.PackageProxy import PackageProxy
-import os
 
 
 class AssetWrangler(SCFObject):
+
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
+
+    ### INITIALIZER ###
 
     def __init__(self,
         score_external_asset_container_importable_names=None,
         score_internal_asset_container_importable_name_infix=None,
-        session=None):
+        session=None,
+        user_asset_container_importable_names=None,
+        user_asset_container_path_names=None):
         SCFObject.__init__(self, session=session)
         if score_external_asset_container_importable_names:
             assert all([stringtools.is_underscore_delimited_lowercase_package_name(x)
@@ -25,6 +32,10 @@ class AssetWrangler(SCFObject):
             score_external_asset_container_importable_names or []
         self._score_internal_asset_container_importable_name_infix = \
             score_internal_asset_container_importable_name_infix
+        self._user_asset_container_importable_names = \
+            user_asset_container_importable_names or []
+        self._user_asset_container_path_names = \
+            user_asset_container_path_names or []
 
     ### SPECIAL METHODS ###
 
@@ -183,6 +194,7 @@ class AssetWrangler(SCFObject):
         if head in (None,) + self.score_external_package_importable_names:
             result.extend(self.list_score_external_asset_path_names(head=head))
         result.extend(self.list_score_internal_asset_path_names(head=head))
+        result.extend(self.list_user_asset_path_names(head=head))
         return result
 
     def list_asset_proxies(self, head=None):
@@ -298,6 +310,62 @@ class AssetWrangler(SCFObject):
             result.append(asset_proxy)
         return result
 
+    ### BEGIN NEW ###
+
+    # user asset containers #
+
+    def list_user_asset_container_human_readable_names(self, head=None):
+        result = []
+        for path_name in self.list_user_asset_container_path_names(head=head):
+            result.append(self.path_name_to_human_readable_base_name(path_name))
+        return result
+
+    def list_user_asset_container_importable_names(self, head=None):
+        result = []
+        for importable_name in self._user_asset_container_importable_names:
+            if head is None or importable_name.startswith(head):
+                result.append(importable_name)
+        return result
+
+    def list_user_asset_container_path_names(self, head=None):
+        #result = []
+        #for importable_name in self.list_user_asset_container_importable_names(head=head):
+        #    result.append(self.package_importable_name_to_path_name(importable_name))
+        #return result
+        return self._user_asset_container_path_names[:]
+
+    def list_user_asset_container_proxies(self, head=None):
+        result = []
+        for importable_name in self.list_user_asset_container_importable_names(head=head):
+            asset_container_proxy = self.asset_container_class(importable_name)
+            result.append(asset_container_proxy)
+        return result
+
+    # user assets #
+
+    def list_user_asset_human_readable_names(self, head=None):
+        result = []
+        for path_name in self.list_user_asset_path_names(head=head):
+            result.append(self.path_name_to_human_readable_base_name(path_name))
+        return result
+
+    def list_user_asset_path_names(self, head=None):
+        result = []
+        for path_name in self.list_user_asset_container_path_names(head=head):
+            for name in os.listdir(path_name):
+                if name[0].isalpha():
+                    result.append(os.path.join(path_name, name))
+        return result
+
+    def list_user_asset_proxies(self, head=None):
+        result = []
+        for asset_path_name in self.list_user_asset_path_names(head=head):
+            asset_proxy = self.get_asset_proxy(asset_path_name)
+            result.append(asset_proxy)
+        return result
+
+    ### END NEW ###
+
     # visible assets #
 
     def list_visible_asset_human_readable_names(self, head=None):
@@ -333,6 +401,7 @@ class AssetWrangler(SCFObject):
     def make_asset_selection_menu(self, head=None):
         menu, section = self.make_menu(where=self.where(), is_keyed=False, is_parenthetically_numbered=True)
         section.tokens = self.make_visible_asset_menu_tokens(head=head)
+        #self.debug(section.tokens, 'TOKENS')
         section.return_value_attribute = 'key'
         return menu
 

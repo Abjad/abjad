@@ -1,8 +1,8 @@
+import collections
+import os
 from abjad.tools import stringtools
 from scf import predicates
 from scf.wranglers.PackageWrangler import PackageWrangler
-import collections
-import os
 
 
 # TODO: write all iteration tests
@@ -135,6 +135,12 @@ class MaterialPackageWrangler(PackageWrangler):
         tags = tags or {}
         command = 'from scf.makers import {} as material_package_maker_class'.format(
             material_package_maker_class_name)
+        #material_package_importable_parts = material_package_importable_name.split('.')
+        #material_package_maker_head = '.'.join(material_package_importable_parts[:-1])
+        #material_package_maker_class_name = material_package_importable_parts[-1]
+        #command = 'from {} import {} as material_package_maker_class'.format(
+        #    material_package_maker_head, material_package_maker_class_name)
+        #self.debug(command, 'COMMAND')
         exec(command)
         should_have_user_input_module = getattr(
             material_package_maker_class, 'should_have_user_input_module', True)

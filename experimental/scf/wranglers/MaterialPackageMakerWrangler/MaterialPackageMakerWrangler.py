@@ -1,8 +1,8 @@
+import os
 from abjad.tools import stringtools
 from abjad.tools import layouttools
 from abjad.tools import lilypondfiletools
 from scf.wranglers.PackageWrangler import PackageWrangler
-import os
 
 
 class MaterialPackageMakerWrangler(PackageWrangler):
@@ -11,7 +11,9 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         PackageWrangler.__init__(self,
             score_external_asset_container_importable_names=[self.makers_package_importable_name],
             score_internal_asset_container_importable_name_infix=None,
-            session=session)
+            session=session,
+            user_asset_container_importable_names=[self.user_makers_package_importable_name],
+            user_asset_container_path_names=[self.user_makers_directory_name])
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
