@@ -58,3 +58,8 @@ TODO
     Then check Example Score I, Example Score II, Étude Score I in to scftestscores.
 
 25. Consolidate scores to single repository.
+
+26. Add scftools/etc directory.
+    Move scftools/TODO to scftools/etc/TODO.
+
+27. Change curated __init__.py files to load classes automatically.

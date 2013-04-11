@@ -8,4 +8,3 @@ from ModuleWrangler import ModuleWrangler
 from MusicSpecifierModuleWrangler import MusicSpecifierModuleWrangler
 from PackageWrangler import PackageWrangler
 from ScorePackageWrangler import ScorePackageWrangler
-from StylesheetFileWrangler import StylesheetFileWrangler

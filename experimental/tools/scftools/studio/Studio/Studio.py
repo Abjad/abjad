@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+import os
+import subprocess
 from abjad.tools import iotools
 from abjad.tools import mathtools
 from experimental.tools.scftools.core.SCFObject import SCFObject
@@ -7,21 +9,20 @@ from experimental.tools.scftools.wranglers.MaterialPackageMakerWrangler import M
 from experimental.tools.scftools.wranglers.MaterialPackageWrangler import MaterialPackageWrangler
 from experimental.tools.scftools.wranglers.MusicSpecifierModuleWrangler import MusicSpecifierModuleWrangler
 from experimental.tools.scftools.wranglers.ScorePackageWrangler import ScorePackageWrangler
-from experimental.tools.scftools.wranglers.StylesheetFileWrangler import StylesheetFileWrangler
-import os
-import subprocess
+#from experimental.tools.scftools.wranglers.StylesheetFileWrangler import StylesheetFileWrangler
 
 
 class Studio(SCFObject):
 
     def __init__(self, session=None):
+        from experimental.tools import scftools
         SCFObject.__init__(self, session=session)
         self._chunk_package_wrangler = ChunkPackageWrangler(session=self.session)
         self._material_package_maker_wrangler = MaterialPackageMakerWrangler(session=self.session)
         self._material_package_wrangler = MaterialPackageWrangler(session=self.session)
         self._music_specifier_module_wrangler = MusicSpecifierModuleWrangler(session=self.session)
         self._score_package_wrangler = ScorePackageWrangler(session=self.session)
-        self._stylesheet_file_wrangler = StylesheetFileWrangler(session=self.session)
+        self._stylesheet_file_wrangler = scftools.StylesheetFileWrangler(session=self.session)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

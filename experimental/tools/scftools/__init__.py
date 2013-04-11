@@ -148,3 +148,9 @@ Example Score I, Example Score II and Étude Score I.
 Just run "py.test in abjad/experimental/scftools" the same way you do for every other part
 of Abjad. You're ready to read the SCF code if all tests pass.
 '''
+
+from abjad.tools import importtools
+
+importtools.import_structured_package(__path__[0], globals(), package_root_name='experimental')
+
+_documentation_section = 'unstable'

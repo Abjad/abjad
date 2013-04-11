@@ -12,7 +12,7 @@ from experimental.tools.scftools.wranglers.MaterialPackageMakerWrangler import M
 from experimental.tools.scftools.proxies.OutputMaterialModuleProxy import OutputMaterialModuleProxy
 from experimental.tools.scftools.proxies.PackageProxy import PackageProxy
 from experimental.tools.scftools.proxies.StylesheetFileProxy import StylesheetFileProxy
-from experimental.tools.scftools.wranglers.StylesheetFileWrangler import StylesheetFileWrangler
+#from experimental.tools.scftools.wranglers.StylesheetFileWrangler import StylesheetFileWrangler
 from experimental.tools.scftools.proxies.UserInputModuleProxy import UserInputModuleProxy
 from experimental.tools.scftools.helpers import safe_import
 
@@ -697,7 +697,8 @@ class MaterialPackageProxy(PackageProxy):
         self.make_main_menu_section_for_illustration_builder(menu, hidden_section)
 
     def manage_stylesheets(self):
-        stylesheet_file_wrangler = StylesheetFileWrangler(session=self.session)
+        from experimental.tools import scftools
+        stylesheet_file_wrangler = scftools.StylesheetFileWrangler(session=self.session)
         stylesheet_file_wrangler.run()
 
     def overwrite_output_material_module(self):
@@ -829,7 +830,8 @@ class MaterialPackageProxy(PackageProxy):
         self.proceed(line, is_interactive=prompt)
 
     def select_stylesheet_interactively(self, prompt=True):
-        stylesheet_file_wrangler = StylesheetFileWrangler(session=self.session)
+        from experimental.tools import scftools
+        stylesheet_file_wrangler = scftools.StylesheetFileWrangler(session=self.session)
         self.push_backtrack()
         stylesheet_file_name = stylesheet_file_wrangler.select_stylesheet_file_name_interactively()
         self.pop_backtrack()
