@@ -45,20 +45,18 @@ TODO
 
 19. Change all 'from abc import ABCMeta' to just 'import abc'.
 
-20. Migrate ZaggedPitchClassMaterialPackageMaker out of experimental.
+20. Migrate scftools from experimental to experimental/tools.
 
-21. Migrate scftools from experimental to experimental/tools.
+21. Rename scftools to something better.
 
-22. Rename scftools to something better.
+22. Rebuild experimental docs with experimental/tools/scftools in place.
 
-23. Rebuild experimental docs with experimental/tools/scftools in place.
+23. Add ajv test -Z flag to run py.test on all experimental branches *except* scftools.
 
-24. Add ajv test -Z flag to run py.test on all experimental branches *except* scftools.
+24. Extend stuff to allow makers to be stored in multiple directories.
 
-25. Extend stuff to allow makers to be stored in multiple directories.
-
-26. Extend stuff to allow scores to be stored in multiple directories.
+25. Extend stuff to allow scores to be stored in multiple directories.
     Then create scftestscores directory somewhere.
     Then check Example Score I, Example Score II, Étude Score I in to scftestscores.
 
-27. Consolidate scores to single repository.
+26. Consolidate scores to single repository.
