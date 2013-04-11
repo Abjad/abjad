@@ -1,6 +1,6 @@
 #! /usr/bin/env python
-import scftools
 import sys
+from experimental.tools import scftools
 
 
 studio = scftools.studio.Studio()

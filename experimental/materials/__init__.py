@@ -1,3 +1,4 @@
+from experimental.tools.scftools.helpers import safe_import
 from scftools.helpers import safe_import
 
 
