@@ -47,19 +47,14 @@ TODO
 
 20. Rename scftools to something better.
 
-21. Rebuild experimental docs with experimental/tools/scftools in place.
+21. Add ajv test -Z flag to run py.test on all experimental branches *except* scftools.
 
-22. Add ajv test -Z flag to run py.test on all experimental branches *except* scftools.
+22. Extend stuff to allow makers to be stored in multiple directories.
 
-23. Extend stuff to allow makers to be stored in multiple directories.
-
-24. Extend stuff to allow scores to be stored in multiple directories.
+23. Extend stuff to allow scores to be stored in multiple directories.
     Then create scftestscores directory somewhere.
     Then check Example Score I, Example Score II, Étude Score I in to scftestscores.
 
-25. Consolidate scores to single repository.
+24. Consolidate scores to single repository.
 
-26. Add scftools/etc directory.
-    Move scftools/TODO to scftools/etc/TODO.
-
-27. Change curated __init__.py files to load classes automatically.
+25. Change curated __init__.py files to load classes automatically.
