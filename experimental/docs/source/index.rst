@@ -268,7 +268,6 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/scftools/StylesheetFileWrangler/StylesheetFileWrangler
       tools/scftools/chunks/Chunk/Chunk
       tools/scftools/core/SCFObject/SCFObject
       tools/scftools/core/Session/Session
@@ -430,6 +429,7 @@ Unstable packages (load manually)
       tools/scftools/wranglers/MusicSpecifierModuleWrangler/MusicSpecifierModuleWrangler
       tools/scftools/wranglers/PackageWrangler/PackageWrangler
       tools/scftools/wranglers/ScorePackageWrangler/ScorePackageWrangler
+      tools/scftools/wranglers/StylesheetFileWrangler/StylesheetFileWrangler
 
    --------
 
@@ -473,7 +473,6 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/scftools/StylesheetFileWrangler/StylesheetFileWrangler
       tools/scftools/chunks/Chunk/Chunk
       tools/scftools/core/SCFObject/SCFObject
       tools/scftools/core/Session/Session
@@ -635,6 +634,7 @@ Unstable packages (load manually)
       tools/scftools/wranglers/MusicSpecifierModuleWrangler/MusicSpecifierModuleWrangler
       tools/scftools/wranglers/PackageWrangler/PackageWrangler
       tools/scftools/wranglers/ScorePackageWrangler/ScorePackageWrangler
+      tools/scftools/wranglers/StylesheetFileWrangler/StylesheetFileWrangler
 
    Functions
    ---------
