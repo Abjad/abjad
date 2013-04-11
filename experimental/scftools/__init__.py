@@ -50,6 +50,15 @@ should be set in your profile, or equivalent:
     export SCFPATH=$ABJADEXPERIMENTAL/scftools
     export SCFSPECIFIERSPATH=$ABJADEXPERIMENTAL/specifiers
 
+You may also set the following two user-specific environment variables.
+These user-specific environment variables are not required for
+the SCF test battery to run correctly. Set these two user-specific
+environment variables if you would like to implement user-specific
+maker classes and also make them available to SCF:
+
+    export SCFUSERMAKERSPATH=$HOME/music/makers
+    export SCFUSERMAKERSIMPORTABLENAME=music.makers
+
 You should also set the HANDLERS environment variable because SCF uses handlertools:
 
     export HANDLERS=$ABJADEXPERIMENTAL/tools/handlertools
@@ -92,7 +101,30 @@ Complete the wizard exactly as follows:
     (2/3) package name: example_score_1
     (3/3) year of completion: 2013
 
-Quit SCF once you finish the wizard. Check your scores directory. You should
+Then setup instrumentation for Example Score I for six players as follows:
+
+    (1) hornist: horn
+    (2) trombonist: tenor trombone
+    (3) violinist: violin
+    (4) cellist: cello
+    (5) pianist: piano
+    (6) percussionist: no instruments
+
+Then add the tagline 'for six players'.
+
+Then create materials with 'materials (m)' and 'maker-maker (m)'
+followed by 'tempo mark inventory material package maker':
+
+    Material name> tempo inventory
+
+Then add the following four tempo marks to the tempo inventory:
+    
+    Tempo mark> (1, 8), 72
+    Tempo mark> (1, 8), 108
+    Tempo mark> (1, 8), 90
+    Tempo mark> (1, 8), 135
+
+Quit SCF once you finish. Check your scores directory. You should
 see a example_score_1 directory. List the contents of the example_score_1 score directory:
 
     scores$ ls example_score_1/
