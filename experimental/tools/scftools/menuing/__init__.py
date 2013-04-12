@@ -1,4 +1,5 @@
-from Menu import Menu
-from MenuSection import MenuSection
-from MenuSectionAggregator import MenuSectionAggregator
-from UserInputGetter import UserInputGetter
+from abjad.tools import importtools
+
+importtools.import_structured_package(__path__[0], globals(), package_root_name='experimental')
+
+_documentation_section = 'unstable'

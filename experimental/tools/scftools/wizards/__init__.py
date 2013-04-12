@@ -1,11 +1,5 @@
-from ArticulationHandlerCreationWizard import ArticulationHandlerCreationWizard
-from DynamicHandlerCreationWizard import DynamicHandlerCreationWizard
-from HandlerCreationWizard import HandlerCreationWizard
-from InstrumentCreationWizard import InstrumentCreationWizard
-from InstrumentSelectionWizard import InstrumentSelectionWizard
-from ParameterSpecifierCreationWizard import ParameterSpecifierCreationWizard
-from PerformerCreationWizard import PerformerCreationWizard
-from PitchClassTransformCreationWizard import PitchClassTransformCreationWizard
-from ReservoirStartHelperCreationWizard import ReservoirStartHelperCreationWizard
-from RhythmMakerCreationWizard import RhythmMakerCreationWizard
-from Wizard import Wizard
+from abjad.tools import importtools
+
+importtools.import_structured_package(__path__[0], globals(), package_root_name='experimental')
+
+_documentation_section = 'unstable'

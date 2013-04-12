@@ -1,18 +1,5 @@
-from ArticulationSpecifier import ArticulationSpecifier
-from ClefSpecifier import ClefSpecifier
-from DirectiveSpecifier import DirectiveSpecifier
-from DynamicSpecifier import DynamicSpecifier
-from InstrumentSpecifier import InstrumentSpecifier
-from NoteHeadSpecifier import NoteHeadSpecifier
-from OverrideSpecifier import OverrideSpecifier
-from PerformerSpecifier import PerformerSpecifier
-from PitchClassSpecifier import PitchClassSpecifier
-from RegistrationSpecifier import RegistrationSpecifier
-from RhythmSpecifier import RhythmSpecifier
-from Specifier import Specifier
-from StaffSpecifier import StaffSpecifier
-from TempoSpecifier import TempoSpecifier
-from TrillSpecifier import TrillSpecifier
-from TropingSpecifier import TropingSpecifier
-from MusicSpecifier import MusicSpecifier
-from MusicContributionSpecifier import MusicContributionSpecifier
+from abjad.tools import importtools
+
+importtools.import_structured_package(__path__[0], globals(), package_root_name='experimental')
+
+_documentation_section = 'unstable'

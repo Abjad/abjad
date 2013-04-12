@@ -1,25 +1,5 @@
-from AssetProxy import AssetProxy
-from BasicModuleProxy import BasicModuleProxy
-from ChunkPackageProxy import ChunkPackageProxy
-from DirectoryProxy import DirectoryProxy
-from DistDirectoryProxy import DistDirectoryProxy
-from EtcDirectoryProxy import EtcDirectoryProxy
-from ExgDirectoryProxy import ExgDirectoryProxy
-from FileProxy import FileProxy
-from IllustrationBuilderModuleProxy import IllustrationBuilderModuleProxy
-from IllustrationLyFileProxy import IllustrationLyFileProxy
-from IllustrationPdfFileProxy import IllustrationPdfFileProxy
-from ImportableAssetProxy import ImportableAssetProxy
-from InitializerFileProxy import InitializerFileProxy
-from MaterialDefinitionModuleProxy import MaterialDefinitionModuleProxy
-from MaterialModuleProxy import MaterialModuleProxy
-from MaterialPackageProxy import MaterialPackageProxy
-from ModuleProxy import ModuleProxy
-from MusicSpecifierModuleProxy import MusicSpecifierModuleProxy
-from MusPackageProxy import MusPackageProxy
-from OutputMaterialModuleProxy import OutputMaterialModuleProxy
-from PackageProxy import PackageProxy
-from ParsableFileProxy import ParsableFileProxy
-from ScorePackageProxy import ScorePackageProxy
-from StylesheetFileProxy import StylesheetFileProxy
-from UserInputModuleProxy import UserInputModuleProxy
+from abjad.tools import importtools
+
+importtools.import_structured_package(__path__[0], globals(), package_root_name='experimental')
+
+_documentation_section = 'unstable'
