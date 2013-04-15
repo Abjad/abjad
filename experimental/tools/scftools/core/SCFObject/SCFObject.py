@@ -75,6 +75,10 @@ class SCFObject(object):
         return self.dot_join([self.scf_package_importable_name, 'makers'])
 
     @property
+    def scf_fully_qualified_package_name(self):
+        return 'experimental.tools.scftools'
+
+    @property
     def scf_package_importable_name(self):
         return os.path.basename(os.environ.get('SCFPATH'))
 

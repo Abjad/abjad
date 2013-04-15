@@ -283,9 +283,12 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def material_package_maker(self):
         if self.material_package_maker_class_name is not None:
+            #maker_class = safe_import(
+            #    locals(), 'makers', self.material_package_maker_class_name,
+            #    source_parent_package_importable_name=self.scf_package_importable_name)
             maker_class = safe_import(
                 locals(), 'makers', self.material_package_maker_class_name,
-                source_parent_package_importable_name=self.scf_package_importable_name)
+                source_parent_package_importable_name=self.scf_fully_qualified_package_name)
             return maker_class
 
     @property
