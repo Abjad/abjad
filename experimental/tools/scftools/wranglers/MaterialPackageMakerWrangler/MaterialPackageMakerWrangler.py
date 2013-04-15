@@ -44,7 +44,13 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             material_package_maker_class = None
             command = 'from experimental.tools.scftools.makers import {} as material_package_maker_class'
             command = command.format(material_package_maker_class_name)
-            exec(command)
+            try:
+                exec(command)
+            except ImportError:
+                command = 'from {} import {} as material_package_maker_class'
+                command = command.format(
+                    self.user_makers_package_importable_name, material_package_maker_class_name)
+                exec(command)
             material_package_proxy = material_package_maker_class(
                 package_importable_name, session=self.session)
         return material_package_proxy
