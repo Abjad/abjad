@@ -48,6 +48,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.scf_package_importable_name
    :noindex:
 

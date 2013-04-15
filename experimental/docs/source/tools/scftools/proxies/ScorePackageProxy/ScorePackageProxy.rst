@@ -174,6 +174,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.public_names
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.scf_package_importable_name
    :noindex:
 

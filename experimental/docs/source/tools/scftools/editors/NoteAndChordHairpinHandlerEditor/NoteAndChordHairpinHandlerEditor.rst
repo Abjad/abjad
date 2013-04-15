@@ -48,6 +48,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.scf_package_importable_name
    :noindex:
 

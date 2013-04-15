@@ -42,6 +42,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.scf_package_importable_name
    :noindex:
 

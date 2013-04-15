@@ -48,6 +48,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.scf_package_importable_name
    :noindex:
 

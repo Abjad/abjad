@@ -42,6 +42,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.scf_package_importable_name
    :noindex:
 

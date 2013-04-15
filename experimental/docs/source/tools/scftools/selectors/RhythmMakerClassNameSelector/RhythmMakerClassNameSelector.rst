@@ -42,6 +42,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.scf_package_importable_name
    :noindex:
 

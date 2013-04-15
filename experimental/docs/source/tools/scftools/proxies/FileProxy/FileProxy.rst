@@ -72,6 +72,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.proxies.FileProxy.FileProxy.FileProxy.plural_generic_class_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.proxies.FileProxy.FileProxy.FileProxy.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.proxies.FileProxy.FileProxy.FileProxy.scf_package_importable_name
    :noindex:
 

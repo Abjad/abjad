@@ -42,6 +42,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.scf_package_importable_name
    :noindex:
 

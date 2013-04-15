@@ -69,6 +69,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.material_package_maker_wrangler
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.scf_package_importable_name
    :noindex:
 

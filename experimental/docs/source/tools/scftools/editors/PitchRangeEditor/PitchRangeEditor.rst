@@ -48,6 +48,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.scf_package_importable_name
    :noindex:
 

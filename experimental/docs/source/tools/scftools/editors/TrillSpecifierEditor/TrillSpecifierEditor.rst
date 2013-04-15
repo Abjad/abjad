@@ -48,6 +48,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.scf_package_importable_name
    :noindex:
 

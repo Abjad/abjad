@@ -42,6 +42,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.scf_package_importable_name
    :noindex:
 

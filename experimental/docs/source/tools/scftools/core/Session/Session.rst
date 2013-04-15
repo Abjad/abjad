@@ -105,6 +105,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.core.Session.Session.Session.output_directory
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.core.Session.Session.Session.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.core.Session.Session.Session.scf_package_importable_name
    :noindex:
 

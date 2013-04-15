@@ -42,6 +42,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.scf_package_importable_name
    :noindex:
 

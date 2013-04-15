@@ -48,6 +48,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.scf_package_importable_name
    :noindex:
 

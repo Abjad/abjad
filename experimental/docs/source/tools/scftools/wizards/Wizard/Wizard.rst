@@ -42,6 +42,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.wizards.Wizard.Wizard.Wizard.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.wizards.Wizard.Wizard.Wizard.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.wizards.Wizard.Wizard.Wizard.scf_package_importable_name
    :noindex:
 

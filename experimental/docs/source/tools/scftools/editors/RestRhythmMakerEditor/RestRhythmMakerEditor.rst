@@ -48,6 +48,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.scf_package_importable_name
    :noindex:
 

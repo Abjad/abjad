@@ -42,6 +42,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.scf_package_importable_name
    :noindex:
 

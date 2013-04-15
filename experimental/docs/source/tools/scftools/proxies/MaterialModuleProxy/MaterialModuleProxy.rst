@@ -114,6 +114,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.plural_generic_class_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.scf_package_importable_name
    :noindex:
 

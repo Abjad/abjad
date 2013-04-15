@@ -90,6 +90,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.menuing.MenuSection.MenuSection.MenuSection.menu_entry_return_values
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.menuing.MenuSection.MenuSection.MenuSection.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.menuing.MenuSection.MenuSection.MenuSection.scf_package_importable_name
    :noindex:
 

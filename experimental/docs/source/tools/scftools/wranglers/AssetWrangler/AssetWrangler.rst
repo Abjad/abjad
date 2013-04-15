@@ -66,6 +66,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.scf_package_importable_name
    :noindex:
 

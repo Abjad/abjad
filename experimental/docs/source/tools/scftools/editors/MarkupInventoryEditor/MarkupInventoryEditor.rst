@@ -54,6 +54,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.scf_package_importable_name
    :noindex:
 

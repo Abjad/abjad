@@ -42,6 +42,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.scf_package_importable_name
    :noindex:
 

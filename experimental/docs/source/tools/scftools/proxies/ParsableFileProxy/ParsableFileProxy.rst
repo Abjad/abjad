@@ -81,6 +81,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.plural_generic_class_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.scf_package_importable_name
    :noindex:
 

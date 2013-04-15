@@ -87,6 +87,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.menuing.Menu.Menu.Menu.ranged_section
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.menuing.Menu.Menu.Menu.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.menuing.Menu.Menu.Menu.scf_package_importable_name
    :noindex:
 

@@ -54,6 +54,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.editors.PerformerEditor.PerformerEditor.PerformerEditor.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.editors.PerformerEditor.PerformerEditor.PerformerEditor.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.editors.PerformerEditor.PerformerEditor.PerformerEditor.scf_package_importable_name
    :noindex:
 

@@ -42,6 +42,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.scf_package_importable_name
    :noindex:
 

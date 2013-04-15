@@ -66,6 +66,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.scf_package_importable_name
    :noindex:
 

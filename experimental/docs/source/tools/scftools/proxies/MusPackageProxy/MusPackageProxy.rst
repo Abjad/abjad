@@ -111,6 +111,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.public_names
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.scf_package_importable_name
    :noindex:
 

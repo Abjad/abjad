@@ -273,6 +273,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.public_names
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.scf_package_importable_name
    :noindex:
 

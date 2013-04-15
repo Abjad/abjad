@@ -54,6 +54,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.studio.Studio.Studio.Studio.music_specifier_module_wrangler
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.studio.Studio.Studio.Studio.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.studio.Studio.Studio.Studio.scf_package_importable_name
    :noindex:
 

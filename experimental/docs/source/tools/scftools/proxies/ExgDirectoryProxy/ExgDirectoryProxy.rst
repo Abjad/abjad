@@ -72,6 +72,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.public_content_short_names
    :noindex:
 
+.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.scf_fully_qualified_package_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.scf_package_importable_name
    :noindex:
 
