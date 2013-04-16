@@ -92,7 +92,7 @@ class MaterialPackageProxy(PackageProxy):
     def has_output_material(self):
         if self.should_have_output_material_module:
             if self.has_output_material_module:
-                return bool(self.output_material_module_proxy.import_output_material_safely())
+                return True
         return False
 
     @property

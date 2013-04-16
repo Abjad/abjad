@@ -1,6 +1,6 @@
+import os
 from experimental.tools.scoremanagementtools.proxies.BasicModuleProxy import BasicModuleProxy
 from experimental.tools.scoremanagementtools.helpers import safe_import
-import os
 
 
 class OutputMaterialModuleProxy(BasicModuleProxy):
