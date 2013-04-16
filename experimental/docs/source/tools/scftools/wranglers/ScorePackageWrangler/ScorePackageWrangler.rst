@@ -1,499 +1,499 @@
-scftools.wranglers.ScorePackageWrangler
+scoremanagementtools.wranglers.ScorePackageWrangler
 =======================================
 
-.. abjad-lineage:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler
+.. abjad-lineage:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler
 
-.. autoclass:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler
+.. autoclass:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.asset_class
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.asset_class
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.asset_class_human_readable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.asset_class_human_readable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.asset_class_plural_human_readable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.asset_class_plural_human_readable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.asset_container_class
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.asset_container_class
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.backtracking_source
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.boilerplate_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.boilerplate_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.breadcrumb
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.breadcrumb_stack
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.current_asset_container_human_readable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.current_asset_container_human_readable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.current_asset_container_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.current_asset_container_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.current_asset_container_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.current_asset_container_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.current_asset_container_proxy
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.current_asset_container_proxy
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.editors_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.editors_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.editors_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.editors_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.help_item_width
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.human_readable_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.human_readable_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.makers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.scf_fully_qualified_package_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.scf_fully_qualified_package_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.scf_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.scf_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.scf_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.scf_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_asset_proxies
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_asset_proxies
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_chunks_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_chunks_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_chunks_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_chunks_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_materials_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_materials_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_materials_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_materials_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_package_importable_names
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_package_importable_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_package_path_names
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_package_path_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_specifiers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_specifiers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_specifiers_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_external_specifiers_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_internal_asset_container_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_internal_asset_container_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_internal_chunks_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_internal_chunks_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_internal_materials_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_internal_materials_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_internal_specifiers_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_internal_specifiers_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.scores_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.scores_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.session
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.session
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.source_file_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.spaced_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.spaced_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.specifier_classes_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.specifier_classes_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.specifier_classes_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.specifier_classes_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.stylesheets_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.stylesheets_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.stylesheets_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.stylesheets_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.temporary_asset_human_readable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.temporary_asset_human_readable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.temporary_asset_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.temporary_asset_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.temporary_asset_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.temporary_asset_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.temporary_asset_proxy
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.temporary_asset_proxy
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.temporary_asset_short_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.temporary_asset_short_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.transcript
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.transcript
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.transcript_signature
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.ts
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.ts
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.user_makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.user_makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.user_makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.user_makers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.visible_score_titles_with_years
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.visible_score_titles_with_years
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.asset_full_name_to_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.asset_full_name_to_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.asset_full_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.asset_full_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.assign_user_input
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.backtrack
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.cache_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.cache_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.change_expr_to_menu_token
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.change_string_to_human_readable_string
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.change_string_to_human_readable_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.conditionally_add_terminal_newlines
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.conditionally_add_terminal_newlines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.conditionally_clear_terminal
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.conditionally_clear_terminal
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.conditionally_make_asset_container_packages
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.conditionally_make_asset_container_packages
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.conditionally_make_empty_package
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.conditionally_make_empty_package
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.conditionally_make_score_external_asset_container_package
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.conditionally_make_score_external_asset_container_package
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.conditionally_make_score_internal_asset_container_packages
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.conditionally_make_score_internal_asset_container_packages
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.confirm
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.debug
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.debug
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.display
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.display
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.dot_join
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.dot_join
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.expr_to_parent_package_short_name
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.expr_to_parent_package_short_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.fix_visible_assets
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.fix_visible_assets
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.get_asset_proxy
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.get_asset_proxy
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.get_one_line_menuing_summary
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.get_one_line_menuing_summary
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.get_tag_from_path_name
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.get_tag_from_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.get_tools_package_qualified_repr
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.get_tools_package_qualified_repr
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.handle_main_menu_result
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.handle_raw_input
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.handle_raw_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.handle_raw_input_with_default
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.handle_raw_input_with_default
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.is_module_name
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.is_module_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.is_path_name
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.is_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_container_human_readable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_container_human_readable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_container_importable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_container_importable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_container_path_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_container_path_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_container_proxies
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_container_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_human_readable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_human_readable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_importable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_importable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_path_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_path_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_proxies
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_asset_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_public_directory_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_public_directory_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_public_package_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_public_package_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_container_human_readable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_container_human_readable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_container_importable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_container_importable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_container_path_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_container_path_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_container_proxies
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_container_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_human_readable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_human_readable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_importable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_importable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_path_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_path_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_proxies
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_external_asset_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_container_human_readable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_container_human_readable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_container_importable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_container_importable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_container_path_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_container_path_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_container_proxies
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_container_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_human_readable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_human_readable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_importable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_importable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_path_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_path_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_proxies
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_internal_asset_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_package_short_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_score_package_short_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_container_human_readable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_container_human_readable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_container_importable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_container_importable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_container_path_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_container_path_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_container_proxies
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_container_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_human_readable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_human_readable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_importable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_importable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_path_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_path_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_proxies
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_user_asset_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_visible_asset_human_readable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_visible_asset_human_readable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_visible_asset_importable_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_visible_asset_importable_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_visible_asset_path_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_visible_asset_path_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_visible_asset_proxies
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_visible_asset_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_visible_asset_short_names
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_visible_asset_short_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_asset
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_asset_interactively
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_asset_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_asset_selection_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_asset_selection_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_asset_selection_menu
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_asset_selection_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_getter
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_getter
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_main_menu
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_menu
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_visible_asset_menu_tokens
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_visible_asset_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.module_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.module_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.package_exists
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.package_exists
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.package_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.package_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.path_name_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.path_name_to_human_readable_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.path_name_to_package_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.path_name_to_package_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.pluralize_string
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.pluralize_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.pop_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.pop_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.pop_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.pop_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.pop_next_user_response_from_user_input
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.pop_next_user_response_from_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.print_not_yet_implemented
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.print_not_yet_implemented
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.proceed
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.profile_visible_assets
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.profile_visible_assets
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.pt
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.pt
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.ptc
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.ptc
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.push_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.push_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.push_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.push_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.remove_assets_interactively
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.remove_assets_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.remove_package_importable_name_from_sys_modules
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.remove_package_importable_name_from_sys_modules
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.rename_asset_interactively
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.rename_asset_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.restore_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.restore_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.run
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.run
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.select_asset_importable_name_interactively
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.select_asset_importable_name_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.strip_extension_from_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.strip_py_extension
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.strip_py_extension
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.svn_add
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.svn_add
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.svn_ci
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.svn_ci
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.svn_st
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.svn_st
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.svn_up
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.svn_up
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.where
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.where
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.__eq__
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.__repr__
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.__repr__
    :noindex:

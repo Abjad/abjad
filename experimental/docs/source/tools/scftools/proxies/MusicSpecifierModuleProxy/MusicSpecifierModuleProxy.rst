@@ -1,475 +1,475 @@
-scftools.proxies.MusicSpecifierModuleProxy
+scoremanagementtools.proxies.MusicSpecifierModuleProxy
 ==========================================
 
-.. abjad-lineage:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy
+.. abjad-lineage:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy
 
-.. autoclass:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy
+.. autoclass:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.backtracking_source
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.boilerplate_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.boilerplate_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.breadcrumb
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.breadcrumb_stack
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.editor
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.editor
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.editors_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.editors_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.editors_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.editors_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.exists
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.exists
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.file_lines
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.file_lines
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.format
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.formatted_lines
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.formatted_lines
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.grandparent_package_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.grandparent_package_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.grandparent_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.grandparent_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.grandparent_package_initializer_file_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.grandparent_package_initializer_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.help_item_width
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.human_readable_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.human_readable_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.human_readable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.human_readable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.is_exceptionless
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.is_exceptionless
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.is_parsable
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.is_parsable
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.is_readable
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.is_readable
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.is_versioned
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.is_versioned
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.makers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.module_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.module_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.module_short_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.module_short_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.parent_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.parent_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.parent_package_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.parent_package_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.parent_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.parent_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.parent_package_initializer_file_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.parent_package_initializer_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.plural_generic_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.scf_fully_qualified_package_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.scf_fully_qualified_package_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.scf_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.scf_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.scf_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.scf_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_chunks_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_chunks_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_chunks_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_chunks_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_materials_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_materials_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_materials_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_materials_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_package_importable_names
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_package_importable_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_package_path_names
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_package_path_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_specifiers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_specifiers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_specifiers_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_external_specifiers_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_internal_chunks_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_internal_chunks_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_internal_materials_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_internal_materials_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_internal_specifiers_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.score_internal_specifiers_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.scores_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.scores_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.sections
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.sections
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.session
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.session
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.short_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.short_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.short_name_without_extension
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.short_name_without_extension
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.source_file_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.spaced_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.spaced_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.specifier_classes_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.specifier_classes_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.specifier_classes_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.specifier_classes_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.stylesheets_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.stylesheets_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.stylesheets_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.stylesheets_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.svn_add_command
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.svn_add_command
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.target_in_memory
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.target_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.transcript
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.transcript
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.transcript_signature
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.ts
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.ts
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.user_makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.user_makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.user_makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.user_makers_package_importable_name
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.asset_full_name_to_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.asset_full_name_to_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.asset_full_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.asset_full_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.assign_user_input
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.backtrack
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.cache_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.cache_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.change_expr_to_menu_token
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.change_string_to_human_readable_string
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.change_string_to_human_readable_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.clear
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.clear
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.conditionally_add_terminal_newlines
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.conditionally_add_terminal_newlines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.conditionally_clear_terminal
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.conditionally_clear_terminal
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.conditionally_make_empty_asset
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.conditionally_make_empty_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.conditionally_make_empty_package
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.conditionally_make_empty_package
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.confirm
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.copy
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.copy
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.copy_interactively
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.copy_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.debug
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.debug
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.display
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.display
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.display_formatted_lines
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.display_formatted_lines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.dot_join
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.dot_join
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.edit
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.edit
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.execute_file_lines
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.execute_file_lines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.expr_to_parent_package_short_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.expr_to_parent_package_short_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.fix
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.fix
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.get_one_line_menuing_summary
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.get_one_line_menuing_summary
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.get_tag_from_path_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.get_tag_from_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.get_tools_package_qualified_repr
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.get_tools_package_qualified_repr
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.handle_raw_input
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.handle_raw_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.handle_raw_input_with_default
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.handle_raw_input_with_default
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.has_line
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.has_line
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.human_readable_name_to_asset_short_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.human_readable_name_to_asset_short_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.is_module_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.is_module_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.is_path_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.is_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.list_public_directory_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.list_public_directory_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.list_public_package_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.list_public_package_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.list_score_package_short_names
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.list_score_package_short_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.load_target_into_memory
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.load_target_into_memory
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.make_getter
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.make_getter
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.make_menu
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.module_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.module_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.package_exists
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.package_exists
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.package_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.package_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.parse
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.parse
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.path_name_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.path_name_to_human_readable_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.path_name_to_package_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.path_name_to_package_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.pluralize_string
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.pluralize_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.pop_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.pop_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.pop_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.pop_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.pop_next_user_response_from_user_input
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.pop_next_user_response_from_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.prepend_target_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.prepend_target_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.print_not_yet_implemented
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.print_not_yet_implemented
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.proceed
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.profile
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.profile
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.pt
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.pt
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.ptc
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.ptc
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.push_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.push_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.push_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.push_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.read_target_from_disk
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.read_target_from_disk
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.remove
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.remove
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.remove_interactively
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.remove_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.remove_nonversioned_asset
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.remove_nonversioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.remove_package_importable_name_from_sys_modules
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.remove_package_importable_name_from_sys_modules
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.remove_versioned_asset
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.remove_versioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.rename
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.rename
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.rename_interactively
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.rename_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.rename_nonversioned_asset
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.rename_nonversioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.rename_versioned_asset
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.rename_versioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.restore_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.restore_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.run
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.run
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.run_abjad
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.run_abjad
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.run_first_time
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.run_first_time
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.run_py_test
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.run_py_test
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.run_python
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.run_python
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.strip_extension_from_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.strip_py_extension
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.strip_py_extension
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.svn_add
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.svn_add
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.svn_ci
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.svn_ci
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.svn_st
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.svn_st
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.svn_up
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.svn_up
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.touch
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.touch
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.unimport
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.unimport
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.view
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.view
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.where
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.where
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.write_boilerplate_asset_to_disk
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.write_boilerplate_asset_to_disk
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.write_boilerplate_asset_to_disk_interactively
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.write_boilerplate_asset_to_disk_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.write_stub_to_disk
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.write_stub_to_disk
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.write_target_to_disk
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.write_target_to_disk
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.write_to_disk
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.write_to_disk
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.scftools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.__repr__
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.__repr__
    :noindex:

@@ -1,40 +1,40 @@
-scftools.core.Transcript
+scoremanagementtools.core.Transcript
 ========================
 
-.. abjad-lineage:: experimental.tools.scftools.core.Transcript.Transcript.Transcript
+.. abjad-lineage:: experimental.tools.scoremanagementtools.core.Transcript.Transcript.Transcript
 
-.. autoclass:: experimental.tools.scftools.core.Transcript.Transcript.Transcript
+.. autoclass:: experimental.tools.scoremanagementtools.core.Transcript.Transcript.Transcript
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scftools.core.Transcript.Transcript.Transcript.current_time
+.. autoattribute:: experimental.tools.scoremanagementtools.core.Transcript.Transcript.Transcript.current_time
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.core.Transcript.Transcript.Transcript.entries
+.. autoattribute:: experimental.tools.scoremanagementtools.core.Transcript.Transcript.Transcript.entries
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.core.Transcript.Transcript.Transcript.short_transcript
+.. autoattribute:: experimental.tools.scoremanagementtools.core.Transcript.Transcript.Transcript.short_transcript
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.core.Transcript.Transcript.Transcript.signature
+.. autoattribute:: experimental.tools.scoremanagementtools.core.Transcript.Transcript.Transcript.signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.core.Transcript.Transcript.Transcript.start_time
+.. autoattribute:: experimental.tools.scoremanagementtools.core.Transcript.Transcript.Transcript.start_time
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.scftools.core.Transcript.Transcript.Transcript.append_lines
+.. automethod:: experimental.tools.scoremanagementtools.core.Transcript.Transcript.Transcript.append_lines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.core.Transcript.Transcript.Transcript.format_entry
+.. automethod:: experimental.tools.scoremanagementtools.core.Transcript.Transcript.Transcript.format_entry
    :noindex:
 
-.. automethod:: experimental.tools.scftools.core.Transcript.Transcript.Transcript.ptc
+.. automethod:: experimental.tools.scoremanagementtools.core.Transcript.Transcript.Transcript.ptc
    :noindex:
 
-.. automethod:: experimental.tools.scftools.core.Transcript.Transcript.Transcript.write_to_disk
+.. automethod:: experimental.tools.scoremanagementtools.core.Transcript.Transcript.Transcript.write_to_disk
    :noindex:

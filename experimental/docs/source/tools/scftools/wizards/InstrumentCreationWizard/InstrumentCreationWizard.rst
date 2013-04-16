@@ -1,283 +1,283 @@
-scftools.wizards.InstrumentCreationWizard
+scoremanagementtools.wizards.InstrumentCreationWizard
 =========================================
 
-.. abjad-lineage:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard
+.. abjad-lineage:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard
 
-.. autoclass:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard
+.. autoclass:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.backtracking_source
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.boilerplate_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.boilerplate_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.breadcrumb
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.breadcrumb_stack
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.editors_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.editors_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.editors_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.editors_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.help_item_width
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.human_readable_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.human_readable_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.makers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.scf_fully_qualified_package_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.scf_fully_qualified_package_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.scf_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.scf_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.scf_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.scf_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_chunks_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_chunks_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_chunks_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_chunks_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_materials_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_materials_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_materials_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_materials_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_package_importable_names
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_package_importable_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_package_path_names
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_package_path_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_specifiers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_specifiers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_specifiers_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_external_specifiers_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_internal_chunks_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_internal_chunks_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_internal_materials_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_internal_materials_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_internal_specifiers_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.score_internal_specifiers_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.scores_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.scores_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.session
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.session
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.source_file_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.spaced_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.spaced_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.specifier_classes_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.specifier_classes_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.specifier_classes_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.specifier_classes_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.stylesheets_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.stylesheets_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.stylesheets_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.stylesheets_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.transcript
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.transcript
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.transcript_signature
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.ts
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.ts
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.user_makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.user_makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.user_makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.user_makers_package_importable_name
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.asset_full_name_to_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.asset_full_name_to_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.asset_full_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.asset_full_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.assign_user_input
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.backtrack
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.cache_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.cache_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.change_expr_to_menu_token
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.change_instrument_name_to_instrument
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.change_instrument_name_to_instrument
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.change_string_to_human_readable_string
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.change_string_to_human_readable_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.conditionally_add_terminal_newlines
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.conditionally_add_terminal_newlines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.conditionally_clear_terminal
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.conditionally_clear_terminal
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.conditionally_make_empty_package
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.conditionally_make_empty_package
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.confirm
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.debug
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.debug
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.display
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.display
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.dot_join
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.dot_join
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.expr_to_parent_package_short_name
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.expr_to_parent_package_short_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.get_one_line_menuing_summary
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.get_one_line_menuing_summary
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.get_tag_from_path_name
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.get_tag_from_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.get_tools_package_qualified_repr
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.get_tools_package_qualified_repr
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.handle_raw_input
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.handle_raw_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.handle_raw_input_with_default
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.handle_raw_input_with_default
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.is_module_name
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.is_module_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.is_path_name
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.is_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.list_public_directory_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.list_public_directory_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.list_public_package_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.list_public_package_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.list_score_package_short_names
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.list_score_package_short_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.make_getter
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.make_getter
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.make_menu
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.module_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.module_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.name_untuned_percussion
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.name_untuned_percussion
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.package_exists
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.package_exists
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.package_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.package_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.path_name_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.path_name_to_human_readable_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.path_name_to_package_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.path_name_to_package_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.pluralize_string
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.pluralize_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.pop_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.pop_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.pop_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.pop_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.pop_next_user_response_from_user_input
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.pop_next_user_response_from_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.print_not_yet_implemented
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.print_not_yet_implemented
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.proceed
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.pt
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.pt
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.ptc
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.ptc
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.push_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.push_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.push_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.push_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.remove_package_importable_name_from_sys_modules
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.remove_package_importable_name_from_sys_modules
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.restore_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.restore_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.run
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.run
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.strip_extension_from_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.strip_py_extension
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.strip_py_extension
    :noindex:
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.where
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.where
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.scftools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.__repr__
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.__repr__
    :noindex:

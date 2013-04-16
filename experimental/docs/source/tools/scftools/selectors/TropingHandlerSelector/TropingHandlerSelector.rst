@@ -1,292 +1,292 @@
-scftools.selectors.TropingHandlerSelector
+scoremanagementtools.selectors.TropingHandlerSelector
 =========================================
 
-.. abjad-lineage:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector
+.. abjad-lineage:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector
 
-.. autoclass:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector
+.. autoclass:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.backtracking_source
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.boilerplate_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.boilerplate_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.breadcrumb
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.breadcrumb_stack
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.editors_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.editors_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.editors_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.editors_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.help_item_width
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.human_readable_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.human_readable_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.makers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.scf_fully_qualified_package_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.scf_fully_qualified_package_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.scf_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.scf_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.scf_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.scf_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_chunks_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_chunks_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_chunks_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_chunks_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_materials_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_materials_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_materials_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_materials_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_package_importable_names
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_package_importable_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_package_path_names
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_package_path_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_specifiers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_specifiers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_specifiers_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_specifiers_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_internal_chunks_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_internal_chunks_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_internal_materials_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_internal_materials_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_internal_specifiers_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_internal_specifiers_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.scores_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.scores_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.session
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.session
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.source_file_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.spaced_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.spaced_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.specifier_classes_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.specifier_classes_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.specifier_classes_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.specifier_classes_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.stylesheets_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.stylesheets_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.stylesheets_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.stylesheets_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.transcript
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.transcript
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.transcript_signature
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.ts
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.ts
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.user_makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.user_makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.user_makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.user_makers_package_importable_name
    :noindex:
 
 Read/write properties
 ---------------------
 
-.. autoattribute:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.items
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.items
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.asset_full_name_to_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.asset_full_name_to_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.asset_full_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.asset_full_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.assign_user_input
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.backtrack
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.cache_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.cache_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.change_expr_to_menu_token
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.change_string_to_human_readable_string
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.change_string_to_human_readable_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.conditionally_add_terminal_newlines
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.conditionally_add_terminal_newlines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.conditionally_clear_terminal
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.conditionally_clear_terminal
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.conditionally_make_empty_package
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.conditionally_make_empty_package
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.confirm
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.debug
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.debug
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.display
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.display
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.dot_join
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.dot_join
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.expr_to_parent_package_short_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.expr_to_parent_package_short_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.get_one_line_menuing_summary
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.get_one_line_menuing_summary
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.get_tag_from_path_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.get_tag_from_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.get_tools_package_qualified_repr
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.get_tools_package_qualified_repr
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.handle_raw_input
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.handle_raw_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.handle_raw_input_with_default
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.handle_raw_input_with_default
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.is_module_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.is_module_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.is_path_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.is_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.list_items
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.list_items
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.list_public_directory_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.list_public_directory_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.list_public_package_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.list_public_package_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.list_score_package_short_names
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.list_score_package_short_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.make_getter
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.make_getter
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.make_main_menu
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.make_menu
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.make_menu_tokens
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.module_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.module_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.package_exists
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.package_exists
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.package_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.package_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.path_name_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.path_name_to_human_readable_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.path_name_to_package_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.path_name_to_package_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.pluralize_string
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.pluralize_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.pop_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.pop_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.pop_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.pop_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.pop_next_user_response_from_user_input
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.pop_next_user_response_from_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.print_not_yet_implemented
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.print_not_yet_implemented
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.proceed
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.pt
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.pt
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.ptc
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.ptc
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.push_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.push_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.push_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.push_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.remove_package_importable_name_from_sys_modules
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.remove_package_importable_name_from_sys_modules
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.restore_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.restore_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.run
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.run
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.strip_extension_from_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.strip_py_extension
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.strip_py_extension
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.where
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.where
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.scftools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__repr__
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__repr__
    :noindex:

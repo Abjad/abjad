@@ -1,133 +1,133 @@
-scftools.specifiers.MusicContributionSpecifier
+scoremanagementtools.specifiers.MusicContributionSpecifier
 ==============================================
 
-.. abjad-lineage:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier
+.. abjad-lineage:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier
 
-.. autoclass:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier
+.. autoclass:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.articulations
+.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.articulations
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.directives
+.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.directives
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.format
+.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.human_readable_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.human_readable_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.one_line_menuing_summary
+.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.one_line_menuing_summary
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.storage_format
+.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.storage_format
    :noindex:
 
 Read/write properties
 ---------------------
 
-.. autoattribute:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.name
+.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.name
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.append
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.append
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.count
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.count
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.extend
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.extend
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.index
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.index
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.insert
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.insert
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.pop
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.pop
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.remove
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.remove
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.reverse
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.reverse
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.sort
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.sort
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__add__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__add__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__contains__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__contains__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__delitem__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__delitem__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__delslice__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__delslice__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__eq__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__ge__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__getitem__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__getitem__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__getslice__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__getslice__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__gt__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__iadd__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__iadd__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__imul__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__imul__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__iter__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__iter__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__le__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__le__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__len__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__len__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__lt__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__mul__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__mul__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__ne__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__repr__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__repr__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__reversed__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__reversed__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__rmul__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__rmul__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__setitem__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__setitem__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__setslice__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.__setslice__
    :noindex:

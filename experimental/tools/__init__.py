@@ -5,5 +5,5 @@ import handlertools
 import lyrictools
 import metricmodulationtools
 import parsertools
-import scftools
+import scoremanagementtools
 import specificationtools

@@ -1,352 +1,352 @@
-scftools.editors.PitchClassSpecifierEditor
+scoremanagementtools.editors.PitchClassSpecifierEditor
 ==========================================
 
-.. abjad-lineage:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor
+.. abjad-lineage:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor
 
-.. autoclass:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor
+.. autoclass:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.attributes_in_memory
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.backtracking_source
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.boilerplate_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.boilerplate_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.breadcrumb
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.breadcrumb_stack
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.editors_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.editors_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.editors_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.editors_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.has_target
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.has_target
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.help_item_width
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.human_readable_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.human_readable_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.makers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.scf_fully_qualified_package_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.scf_fully_qualified_package_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.scf_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.scf_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.scf_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.scf_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_chunks_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_chunks_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_chunks_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_chunks_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_materials_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_materials_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_materials_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_materials_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_package_importable_names
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_package_importable_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_package_path_names
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_package_path_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_specifiers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_specifiers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_specifiers_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_external_specifiers_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_internal_chunks_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_internal_chunks_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_internal_materials_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_internal_materials_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_internal_specifiers_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.score_internal_specifiers_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.scores_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.scores_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.session
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.session
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.source_file_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.spaced_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.spaced_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.specifier_classes_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.specifier_classes_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.specifier_classes_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.specifier_classes_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.stylesheets_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.stylesheets_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.stylesheets_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.stylesheets_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_attribute_names
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_attribute_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_attribute_tokens
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_attribute_tokens
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_class
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_class
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_class_human_readable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_class_human_readable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_keyword_attribute_names
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_keyword_attribute_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_positional_initializer_argument_names
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_positional_initializer_argument_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_positional_initializer_retrievable_attribute_names
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_positional_initializer_retrievable_attribute_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_summary_lines
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_summary_lines
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.transcript
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.transcript
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.transcript_signature
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.ts
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.ts
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.user_makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.user_makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.user_makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.user_makers_package_importable_name
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.asset_full_name_to_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.asset_full_name_to_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.asset_full_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.asset_full_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.assign_user_input
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.attribute_name_to_menu_key
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.backtrack
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.cache_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.cache_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.change_expr_to_menu_token
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.change_string_to_human_readable_string
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.change_string_to_human_readable_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.clean_up_attributes_in_memory
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.conditionally_add_terminal_newlines
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.conditionally_add_terminal_newlines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.conditionally_clear_terminal
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.conditionally_clear_terminal
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.conditionally_initialize_target
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.conditionally_initialize_target
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.conditionally_make_empty_package
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.conditionally_make_empty_package
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.conditionally_set_target_attribute
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.confirm
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.copy_target_attributes_to_memory
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.debug
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.debug
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.display
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.display
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.dot_join
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.dot_join
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.expr_to_parent_package_short_name
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.expr_to_parent_package_short_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.get_one_line_menuing_summary
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.get_one_line_menuing_summary
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.get_tag_from_path_name
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.get_tag_from_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.get_tools_package_qualified_repr
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.get_tools_package_qualified_repr
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.handle_main_menu_result
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.handle_raw_input
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.handle_raw_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.handle_raw_input_with_default
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.handle_raw_input_with_default
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.initialize_attributes_in_memory
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.initialize_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.initialize_target_from_attributes_in_memory
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.is_module_name
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.is_module_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.is_path_name
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.is_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.list_public_directory_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.list_public_directory_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.list_public_package_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.list_public_package_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.list_score_package_short_names
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.list_score_package_short_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.make_getter
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.make_getter
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.make_main_menu
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.make_menu
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.make_target_attribute_tokens_from_target_manifest
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.make_target_attribute_tokens_from_target_manifest
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.menu_key_to_delegated_editor_kwargs
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.menu_key_to_delegated_editor_kwargs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.menu_key_to_existing_value
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.module_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.module_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.package_exists
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.package_exists
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.package_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.package_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.path_name_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.path_name_to_human_readable_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.path_name_to_package_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.path_name_to_package_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.pluralize_string
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.pluralize_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.pop_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.pop_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.pop_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.pop_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.pop_next_user_response_from_user_input
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.pop_next_user_response_from_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.print_not_yet_implemented
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.print_not_yet_implemented
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.proceed
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.pt
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.pt
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.ptc
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.ptc
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.push_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.push_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.push_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.push_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.remove_package_importable_name_from_sys_modules
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.remove_package_importable_name_from_sys_modules
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.restore_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.restore_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.run
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.run
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.strip_extension_from_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.strip_py_extension
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.strip_py_extension
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_args_to_target_summary_lines
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_args_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_kwargs_to_target_summary_lines
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.where
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.where
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.scftools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.__repr__
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.__repr__
    :noindex:

@@ -1,5 +1,5 @@
-scftools.helpers.safe_import
+scoremanagementtools.helpers.safe_import
 ============================
 
-.. autofunction:: experimental.tools.scftools.helpers.safe_import.safe_import
+.. autofunction:: experimental.tools.scoremanagementtools.helpers.safe_import.safe_import
    :noindex:

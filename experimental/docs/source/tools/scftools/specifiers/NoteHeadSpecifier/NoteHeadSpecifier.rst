@@ -1,46 +1,46 @@
-scftools.specifiers.NoteHeadSpecifier
+scoremanagementtools.specifiers.NoteHeadSpecifier
 =====================================
 
-.. abjad-lineage:: experimental.tools.scftools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier
+.. abjad-lineage:: experimental.tools.scoremanagementtools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier
 
-.. autoclass:: experimental.tools.scftools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier
+.. autoclass:: experimental.tools.scoremanagementtools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scftools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.format
+.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.human_readable_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.human_readable_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.one_line_menuing_summary
+.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.one_line_menuing_summary
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.storage_format
+.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.storage_format
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.scftools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__eq__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__ge__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__gt__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__le__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__le__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__lt__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__ne__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__repr__
+.. automethod:: experimental.tools.scoremanagementtools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__repr__
    :noindex:

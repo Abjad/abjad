@@ -1,400 +1,400 @@
-scftools.proxies.ExgDirectoryProxy
+scoremanagementtools.proxies.ExgDirectoryProxy
 ==================================
 
-.. abjad-lineage:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy
+.. abjad-lineage:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy
 
-.. autoclass:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy
+.. autoclass:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.backtracking_source
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.boilerplate_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.boilerplate_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.breadcrumb
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.breadcrumb_stack
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.directory_contents
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.directory_contents
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.editors_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.editors_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.editors_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.editors_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.exists
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.exists
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.help_item_width
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.human_readable_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.human_readable_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.human_readable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.human_readable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.is_versioned
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.is_versioned
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.makers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.parent_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.parent_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.plural_generic_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.public_content_path_names
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.public_content_path_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.public_content_short_names
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.public_content_short_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.scf_fully_qualified_package_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.scf_fully_qualified_package_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.scf_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.scf_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.scf_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.scf_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_chunks_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_chunks_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_chunks_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_chunks_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_materials_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_materials_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_materials_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_materials_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_package_importable_names
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_package_importable_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_package_path_names
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_package_path_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_specifiers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_specifiers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_specifiers_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_specifiers_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_internal_chunks_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_internal_chunks_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_internal_materials_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_internal_materials_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_internal_specifiers_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_internal_specifiers_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.scores_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.scores_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.session
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.session
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.short_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.short_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.short_name_without_extension
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.short_name_without_extension
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.source_file_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.spaced_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.spaced_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.specifier_classes_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.specifier_classes_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.specifier_classes_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.specifier_classes_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.stylesheets_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.stylesheets_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.stylesheets_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.stylesheets_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.svn_add_command
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.svn_add_command
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.transcript
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.transcript
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.transcript_signature
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.ts
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.ts
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.user_makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.user_makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.user_makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.user_makers_package_importable_name
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.asset_full_name_to_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.asset_full_name_to_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.asset_full_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.asset_full_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.assign_user_input
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.backtrack
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.cache_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.cache_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.change_expr_to_menu_token
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.change_string_to_human_readable_string
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.change_string_to_human_readable_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.conditionally_add_terminal_newlines
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.conditionally_add_terminal_newlines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.conditionally_clear_terminal
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.conditionally_clear_terminal
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.conditionally_make_empty_asset
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.conditionally_make_empty_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.conditionally_make_empty_package
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.conditionally_make_empty_package
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.confirm
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.copy
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.copy
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.copy_interactively
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.copy_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.debug
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.debug
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.display
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.display
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.dot_join
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.dot_join
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.expr_to_parent_package_short_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.expr_to_parent_package_short_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.fix
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.fix
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.get_directory_name_interactively
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.get_directory_name_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.get_one_line_menuing_summary
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.get_one_line_menuing_summary
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.get_tag_from_path_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.get_tag_from_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.get_tools_package_qualified_repr
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.get_tools_package_qualified_repr
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.handle_raw_input
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.handle_raw_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.handle_raw_input_with_default
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.handle_raw_input_with_default
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.human_readable_name_to_asset_short_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.human_readable_name_to_asset_short_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.is_module_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.is_module_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.is_path_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.is_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.list_public_directory_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.list_public_directory_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.list_public_package_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.list_public_package_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.list_score_package_short_names
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.list_score_package_short_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.make_directory
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.make_directory
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.make_getter
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.make_getter
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.make_menu
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.module_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.module_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.package_exists
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.package_exists
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.package_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.package_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.path_name_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.path_name_to_human_readable_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.path_name_to_package_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.path_name_to_package_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.pluralize_string
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.pluralize_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.pop_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.pop_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.pop_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.pop_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.pop_next_user_response_from_user_input
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.pop_next_user_response_from_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.print_directory_contents
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.print_directory_contents
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.print_not_yet_implemented
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.print_not_yet_implemented
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.proceed
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.profile
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.profile
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.pt
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.pt
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.ptc
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.ptc
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.push_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.push_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.push_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.push_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.remove
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.remove
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.remove_interactively
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.remove_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.remove_nonversioned_asset
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.remove_nonversioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.remove_package_importable_name_from_sys_modules
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.remove_package_importable_name_from_sys_modules
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.remove_versioned_asset
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.remove_versioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.rename
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.rename
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.rename_interactively
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.rename_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.rename_nonversioned_asset
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.rename_nonversioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.rename_versioned_asset
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.rename_versioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.restore_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.restore_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.run
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.run
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.run_first_time
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.run_first_time
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.run_py_test
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.run_py_test
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.strip_extension_from_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.strip_py_extension
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.strip_py_extension
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.svn_add
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.svn_add
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.svn_ci
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.svn_ci
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.svn_st
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.svn_st
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.svn_up
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.svn_up
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.touch
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.touch
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.where
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.where
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.write_boilerplate_asset_to_disk
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.write_boilerplate_asset_to_disk
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.write_boilerplate_asset_to_disk_interactively
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.write_boilerplate_asset_to_disk_interactively
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.__eq__
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.__ne__
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.__repr__
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.__repr__
    :noindex:

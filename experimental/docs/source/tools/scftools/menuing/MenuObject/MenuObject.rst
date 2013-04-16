@@ -1,313 +1,313 @@
-scftools.menuing.MenuObject
+scoremanagementtools.menuing.MenuObject
 ===========================
 
-.. abjad-lineage:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject
+.. abjad-lineage:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject
 
-.. autoclass:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject
+.. autoclass:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.backtracking_source
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.boilerplate_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.boilerplate_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.breadcrumb
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.breadcrumb_stack
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.editors_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.editors_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.editors_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.editors_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.help_item_width
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.human_readable_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.human_readable_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.makers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.scf_fully_qualified_package_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.scf_fully_qualified_package_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.scf_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.scf_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.scf_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.scf_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.score_external_chunks_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.score_external_chunks_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.score_external_chunks_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.score_external_chunks_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.score_external_materials_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.score_external_materials_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.score_external_materials_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.score_external_materials_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.score_external_package_importable_names
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.score_external_package_importable_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.score_external_package_path_names
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.score_external_package_path_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.score_external_specifiers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.score_external_specifiers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.score_external_specifiers_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.score_external_specifiers_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.score_internal_chunks_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.score_internal_chunks_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.score_internal_materials_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.score_internal_materials_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.score_internal_specifiers_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.score_internal_specifiers_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.scores_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.scores_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.session
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.session
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.source_file_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.spaced_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.spaced_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.specifier_classes_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.specifier_classes_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.specifier_classes_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.specifier_classes_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.stylesheets_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.stylesheets_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.stylesheets_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.stylesheets_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.transcript
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.transcript
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.transcript_signature
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.ts
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.ts
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.user_makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.user_makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.user_makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.user_makers_package_importable_name
    :noindex:
 
 Read/write properties
 ---------------------
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.prompt_default
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.prompt_default
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.should_clear_terminal
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.should_clear_terminal
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.title
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.title
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.where
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.where
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.asset_full_name_to_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.asset_full_name_to_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.asset_full_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.asset_full_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.assign_user_input
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.backtrack
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.cache_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.cache_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.change_expr_to_menu_token
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.change_string_to_human_readable_string
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.change_string_to_human_readable_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.conditionally_add_terminal_newlines
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.conditionally_add_terminal_newlines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.conditionally_clear_terminal
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.conditionally_clear_terminal
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.conditionally_make_empty_package
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.conditionally_make_empty_package
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.confirm
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.debug
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.debug
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.display
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.display
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.dot_join
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.dot_join
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.edit_client_source_file
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.edit_client_source_file
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.exec_statement
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.exec_statement
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.expr_to_parent_package_short_name
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.expr_to_parent_package_short_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.get_one_line_menuing_summary
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.get_one_line_menuing_summary
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.get_tag_from_path_name
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.get_tag_from_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.get_tools_package_qualified_repr
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.get_tools_package_qualified_repr
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.grep_directories
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.grep_directories
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.handle_raw_input
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.handle_raw_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.handle_raw_input_with_default
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.handle_raw_input_with_default
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.is_module_name
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.is_module_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.is_path_name
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.is_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.list_public_directory_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.list_public_directory_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.list_public_package_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.list_public_package_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.list_score_package_short_names
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.list_score_package_short_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.make_default_hidden_section
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.make_default_hidden_section
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.make_getter
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.make_getter
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.make_is_integer_in_range
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.make_is_integer_in_range
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.make_menu
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.make_tab
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.make_tab
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.make_title_lines
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.make_title_lines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.module_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.module_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.package_exists
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.package_exists
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.package_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.package_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.path_name_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.path_name_to_human_readable_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.path_name_to_package_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.path_name_to_package_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.pluralize_string
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.pluralize_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.pop_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.pop_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.pop_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.pop_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.pop_next_user_response_from_user_input
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.pop_next_user_response_from_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.print_not_yet_implemented
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.print_not_yet_implemented
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.proceed
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.pt
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.pt
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.ptc
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.ptc
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.push_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.push_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.push_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.push_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.remove_package_importable_name_from_sys_modules
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.remove_package_importable_name_from_sys_modules
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.restore_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.restore_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.show_menu_client
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.show_menu_client
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.strip_extension_from_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.strip_py_extension
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.strip_py_extension
    :noindex:
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.toggle_menu
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.toggle_menu
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.scftools.menuing.MenuObject.MenuObject.MenuObject.__repr__
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.__repr__
    :noindex:

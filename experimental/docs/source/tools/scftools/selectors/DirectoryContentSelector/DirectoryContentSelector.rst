@@ -1,292 +1,292 @@
-scftools.selectors.DirectoryContentSelector
+scoremanagementtools.selectors.DirectoryContentSelector
 ===========================================
 
-.. abjad-lineage:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector
+.. abjad-lineage:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector
 
-.. autoclass:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector
+.. autoclass:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.backtracking_source
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.boilerplate_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.boilerplate_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.breadcrumb
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.breadcrumb_stack
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.editors_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.editors_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.editors_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.editors_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.help_item_width
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.human_readable_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.human_readable_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.makers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.scf_fully_qualified_package_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.scf_fully_qualified_package_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.scf_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.scf_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.scf_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.scf_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_chunks_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_chunks_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_chunks_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_chunks_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_materials_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_materials_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_materials_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_materials_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_package_importable_names
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_package_importable_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_package_path_names
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_package_path_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_specifiers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_specifiers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_specifiers_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_external_specifiers_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_internal_chunks_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_internal_chunks_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_internal_materials_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_internal_materials_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_internal_specifiers_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.score_internal_specifiers_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.scores_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.scores_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.session
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.session
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.source_file_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.spaced_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.spaced_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.specifier_classes_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.specifier_classes_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.specifier_classes_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.specifier_classes_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.stylesheets_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.stylesheets_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.stylesheets_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.stylesheets_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.transcript
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.transcript
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.transcript_signature
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.ts
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.ts
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.user_makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.user_makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.user_makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.user_makers_package_importable_name
    :noindex:
 
 Read/write properties
 ---------------------
 
-.. autoattribute:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.items
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.items
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.asset_full_name_to_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.asset_full_name_to_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.asset_full_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.asset_full_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.assign_user_input
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.backtrack
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.cache_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.cache_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.change_expr_to_menu_token
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.change_string_to_human_readable_string
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.change_string_to_human_readable_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.conditionally_add_terminal_newlines
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.conditionally_add_terminal_newlines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.conditionally_clear_terminal
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.conditionally_clear_terminal
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.conditionally_make_empty_package
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.conditionally_make_empty_package
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.confirm
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.debug
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.debug
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.display
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.display
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.dot_join
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.dot_join
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.expr_to_parent_package_short_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.expr_to_parent_package_short_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.get_one_line_menuing_summary
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.get_one_line_menuing_summary
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.get_tag_from_path_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.get_tag_from_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.get_tools_package_qualified_repr
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.get_tools_package_qualified_repr
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.handle_raw_input
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.handle_raw_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.handle_raw_input_with_default
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.handle_raw_input_with_default
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.is_module_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.is_module_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.is_path_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.is_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.list_items
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.list_items
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.list_public_directory_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.list_public_directory_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.list_public_package_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.list_public_package_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.list_score_package_short_names
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.list_score_package_short_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.make_getter
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.make_getter
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.make_main_menu
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.make_menu
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.make_menu_tokens
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.module_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.module_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.package_exists
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.package_exists
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.package_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.package_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.path_name_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.path_name_to_human_readable_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.path_name_to_package_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.path_name_to_package_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.pluralize_string
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.pluralize_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.pop_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.pop_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.pop_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.pop_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.pop_next_user_response_from_user_input
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.pop_next_user_response_from_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.print_not_yet_implemented
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.print_not_yet_implemented
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.proceed
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.pt
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.pt
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.ptc
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.ptc
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.push_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.push_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.push_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.push_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.remove_package_importable_name_from_sys_modules
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.remove_package_importable_name_from_sys_modules
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.restore_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.restore_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.run
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.run
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.strip_extension_from_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.strip_py_extension
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.strip_py_extension
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.where
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.where
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.scftools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__repr__
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__repr__
    :noindex:

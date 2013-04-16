@@ -1,5 +1,5 @@
 from abjad.tools.durationtools import Duration
-from experimental.tools.scftools.editors import UserInputWrapper
+from experimental.tools.scoremanagementtools.editors import UserInputWrapper
 
 
 user_input_wrapper = UserInputWrapper([

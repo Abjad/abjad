@@ -1,142 +1,142 @@
-scftools.editors.UserInputWrapper
+scoremanagementtools.editors.UserInputWrapper
 =================================
 
-.. abjad-lineage:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper
+.. abjad-lineage:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper
 
-.. autoclass:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper
+.. autoclass:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.editable_lines
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.editable_lines
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.formatted_lines
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.formatted_lines
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.is_complete
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.is_complete
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.is_empty
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.is_empty
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.is_partially_complete
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.is_partially_complete
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.user_input_module_import_statements
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.user_input_module_import_statements
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.clear
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.clear
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.copy
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.copy
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.get
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.get
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.get_tools_package_qualified_repr
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.get_tools_package_qualified_repr
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.has_key
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.has_key
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.items
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.items
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.iteritems
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.iteritems
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.iterkeys
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.iterkeys
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.itervalues
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.itervalues
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.keys
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.keys
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.list_items
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.list_items
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.list_keys
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.list_keys
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.list_values
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.list_values
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.pop
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.pop
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.popitem
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.popitem
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.setdefault
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.setdefault
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.update
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.update
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.values
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.values
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.viewitems
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.viewitems
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.viewkeys
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.viewkeys
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.viewvalues
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.viewvalues
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__cmp__
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__cmp__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__contains__
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__contains__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__delitem__
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__delitem__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__eq__
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__eq__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__ge__
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__ge__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__getitem__
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__getitem__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__gt__
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__gt__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__iter__
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__iter__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__le__
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__le__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__len__
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__len__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__lt__
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__lt__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__ne__
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__ne__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__repr__
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__repr__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__reversed__
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__reversed__
    :noindex:
 
-.. automethod:: experimental.tools.scftools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__setitem__
+.. automethod:: experimental.tools.scoremanagementtools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper.__setitem__
    :noindex:

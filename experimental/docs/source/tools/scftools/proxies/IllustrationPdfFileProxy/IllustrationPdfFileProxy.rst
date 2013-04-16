@@ -1,397 +1,397 @@
-scftools.proxies.IllustrationPdfFileProxy
+scoremanagementtools.proxies.IllustrationPdfFileProxy
 =========================================
 
-.. abjad-lineage:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy
+.. abjad-lineage:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy
 
-.. autoclass:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy
+.. autoclass:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.backtracking_source
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.boilerplate_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.boilerplate_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.breadcrumb
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.breadcrumb_stack
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.editors_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.editors_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.editors_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.editors_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.exists
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.exists
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.extension
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.extension
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.file_lines
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.file_lines
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.format
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.formatted_lines
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.formatted_lines
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.help_item_width
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.human_readable_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.human_readable_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.human_readable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.human_readable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.is_versioned
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.is_versioned
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.makers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.parent_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.parent_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.plural_generic_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.scf_fully_qualified_package_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.scf_fully_qualified_package_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.scf_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.scf_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.scf_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.scf_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_chunks_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_chunks_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_chunks_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_chunks_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_materials_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_materials_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_materials_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_materials_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_package_importable_names
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_package_importable_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_package_path_names
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_package_path_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_specifiers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_specifiers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_specifiers_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_external_specifiers_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_internal_chunks_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_internal_chunks_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_internal_materials_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_internal_materials_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_internal_specifiers_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.score_internal_specifiers_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.scores_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.scores_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.session
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.session
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.short_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.short_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.short_name_without_extension
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.short_name_without_extension
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.source_file_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.spaced_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.spaced_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.specifier_classes_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.specifier_classes_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.specifier_classes_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.specifier_classes_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.stylesheets_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.stylesheets_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.stylesheets_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.stylesheets_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.svn_add_command
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.svn_add_command
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.transcript
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.transcript
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.transcript_signature
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.ts
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.ts
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.user_makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.user_makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.user_makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.user_makers_package_importable_name
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.asset_full_name_to_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.asset_full_name_to_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.asset_full_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.asset_full_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.assign_user_input
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.backtrack
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.cache_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.cache_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.change_expr_to_menu_token
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.change_string_to_human_readable_string
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.change_string_to_human_readable_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.conditionally_add_terminal_newlines
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.conditionally_add_terminal_newlines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.conditionally_clear_terminal
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.conditionally_clear_terminal
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.conditionally_make_empty_asset
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.conditionally_make_empty_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.conditionally_make_empty_package
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.conditionally_make_empty_package
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.confirm
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.copy
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.copy
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.copy_interactively
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.copy_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.debug
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.debug
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.display
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.display
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.display_formatted_lines
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.display_formatted_lines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.dot_join
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.dot_join
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.edit
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.edit
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.expr_to_parent_package_short_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.expr_to_parent_package_short_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.fix
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.fix
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.get_one_line_menuing_summary
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.get_one_line_menuing_summary
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.get_tag_from_path_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.get_tag_from_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.get_tools_package_qualified_repr
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.get_tools_package_qualified_repr
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.handle_raw_input
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.handle_raw_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.handle_raw_input_with_default
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.handle_raw_input_with_default
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.has_line
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.has_line
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.human_readable_name_to_asset_short_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.human_readable_name_to_asset_short_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.is_module_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.is_module_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.is_path_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.is_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.list_public_directory_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.list_public_directory_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.list_public_package_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.list_public_package_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.list_score_package_short_names
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.list_score_package_short_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.make_getter
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.make_getter
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.make_menu
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.module_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.module_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.package_exists
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.package_exists
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.package_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.package_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.path_name_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.path_name_to_human_readable_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.path_name_to_package_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.path_name_to_package_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.pluralize_string
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.pluralize_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.pop_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.pop_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.pop_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.pop_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.pop_next_user_response_from_user_input
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.pop_next_user_response_from_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.print_not_yet_implemented
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.print_not_yet_implemented
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.proceed
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.profile
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.profile
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.pt
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.pt
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.ptc
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.ptc
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.push_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.push_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.push_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.push_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.remove
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.remove
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.remove_interactively
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.remove_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.remove_nonversioned_asset
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.remove_nonversioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.remove_package_importable_name_from_sys_modules
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.remove_package_importable_name_from_sys_modules
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.remove_versioned_asset
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.remove_versioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.rename
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.rename
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.rename_interactively
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.rename_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.rename_nonversioned_asset
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.rename_nonversioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.rename_versioned_asset
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.rename_versioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.restore_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.restore_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.run
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.run
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.run_first_time
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.run_first_time
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.run_py_test
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.run_py_test
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.strip_extension_from_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.strip_py_extension
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.strip_py_extension
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.svn_add
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.svn_add
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.svn_ci
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.svn_ci
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.svn_st
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.svn_st
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.svn_up
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.svn_up
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.touch
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.touch
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.view
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.view
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.where
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.where
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.write_boilerplate_asset_to_disk
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.write_boilerplate_asset_to_disk
    :noindex:
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.write_boilerplate_asset_to_disk_interactively
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.write_boilerplate_asset_to_disk_interactively
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.scftools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.__repr__
+.. automethod:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.__repr__
    :noindex:

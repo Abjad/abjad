@@ -1,292 +1,292 @@
-scftools.selectors.ReservoirStartHelperSelector
+scoremanagementtools.selectors.ReservoirStartHelperSelector
 ===============================================
 
-.. abjad-lineage:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector
+.. abjad-lineage:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector
 
-.. autoclass:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector
+.. autoclass:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector
    :noindex:
 
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.backtracking_source
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.boilerplate_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.boilerplate_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.breadcrumb
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.breadcrumb_stack
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.editors_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.editors_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.editors_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.editors_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.help_item_width
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.human_readable_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.human_readable_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.makers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.scf_fully_qualified_package_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.scf_fully_qualified_package_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.scf_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.scf_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.scf_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.scf_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_chunks_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_chunks_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_chunks_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_chunks_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_materials_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_materials_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_materials_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_materials_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_package_importable_names
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_package_importable_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_package_path_names
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_package_path_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_specifiers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_specifiers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_specifiers_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_external_specifiers_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_internal_chunks_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_internal_chunks_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_internal_materials_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_internal_materials_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_internal_specifiers_package_importable_name_infix
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.score_internal_specifiers_package_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.scores_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.scores_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.session
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.session
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.source_file_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.spaced_class_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.spaced_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.specifier_classes_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.specifier_classes_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.specifier_classes_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.specifier_classes_package_path_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.stylesheets_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.stylesheets_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.stylesheets_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.stylesheets_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.transcript
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.transcript
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.transcript_signature
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ts
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ts
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.user_makers_directory_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.user_makers_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.user_makers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.user_makers_package_importable_name
    :noindex:
 
 Read/write properties
 ---------------------
 
-.. autoattribute:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.items
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.items
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.asset_full_name_to_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.asset_full_name_to_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.asset_full_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.asset_full_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.assign_user_input
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.backtrack
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.cache_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.cache_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.change_expr_to_menu_token
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.change_string_to_human_readable_string
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.change_string_to_human_readable_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.conditionally_add_terminal_newlines
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.conditionally_add_terminal_newlines
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.conditionally_clear_terminal
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.conditionally_clear_terminal
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.conditionally_make_empty_package
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.conditionally_make_empty_package
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.confirm
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.debug
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.debug
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.display
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.display
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.dot_join
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.dot_join
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.expr_to_parent_package_short_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.expr_to_parent_package_short_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.get_one_line_menuing_summary
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.get_one_line_menuing_summary
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.get_tag_from_path_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.get_tag_from_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.get_tools_package_qualified_repr
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.get_tools_package_qualified_repr
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.handle_raw_input
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.handle_raw_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.handle_raw_input_with_default
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.handle_raw_input_with_default
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.is_module_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.is_module_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.is_path_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.is_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.list_items
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.list_items
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.list_public_directory_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.list_public_directory_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.list_public_package_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.list_public_package_path_names_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.list_score_package_short_names
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.list_score_package_short_names
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.make_getter
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.make_getter
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.make_main_menu
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.make_menu
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.make_menu_tokens
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.module_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.module_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.package_exists
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.package_exists
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.package_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.package_importable_name_to_path_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.path_name_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.path_name_to_human_readable_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.path_name_to_package_importable_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.path_name_to_package_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.pluralize_string
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.pluralize_string
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.pop_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.pop_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.pop_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.pop_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.pop_next_user_response_from_user_input
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.pop_next_user_response_from_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.print_not_yet_implemented
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.print_not_yet_implemented
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.proceed
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.pt
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.pt
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ptc
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ptc
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.push_backtrack
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.push_backtrack
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.push_breadcrumb
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.push_breadcrumb
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.remove_package_importable_name_from_sys_modules
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.remove_package_importable_name_from_sys_modules
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.restore_breadcrumbs
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.restore_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.run
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.run
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.strip_extension_from_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.strip_py_extension
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.strip_py_extension
    :noindex:
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.where
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.where
    :noindex:
 
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.scftools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.__repr__
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.__repr__
    :noindex:
