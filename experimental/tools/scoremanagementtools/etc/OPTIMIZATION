@@ -22,3 +22,19 @@ work of inspecting each score package tag file for date of composition.
 All of that should take far fewer than 820,000 function calls.
 Optimizing studio start up should save as much as 0.7 seconds on each
 studio-initiated test.
+
+OBSERVATION: Note that the following ...
+
+    def make_score_selection_menu(self):
+        #menu, section = self.make_menu(where=self.where(), is_numbered=True, is_keyed=False)
+        menu, section = self.make_menu(where='foo', is_numbered=True, is_keyed=False)
+        section.tokens = self.score_package_wrangler.make_visible_asset_menu_tokens()
+        return menu
+
+... reduces studio start-up from 820,000 function calls to 153,000 function calls.
+Removing the call to self.where() removes the call to inspect.stack().
+This was tricky to find because iotools.profile_expr('inspect.stack()') is lean.
+The function must be called inside a complex stack to reveal its true cost.
+
+CONCLUSION: Stack inspection can not be a mandatory part of menu creation
+because stack inspection is expensive.
