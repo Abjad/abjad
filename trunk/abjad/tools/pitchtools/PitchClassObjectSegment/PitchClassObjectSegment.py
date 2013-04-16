@@ -1,9 +1,9 @@
 import abc
 
-from abjad.tools.pitchtools.ObjectSegment import ObjectSegment
+from abjad.tools.pitchtools.Segment import Segment
 
 
-class PitchClassObjectSegment(ObjectSegment):
+class PitchClassObjectSegment(Segment):
     '''.. versionadded:: 2.0
 
     Pitch-class segment base class.

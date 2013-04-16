@@ -2,7 +2,7 @@ import abc
 from abjad.tools.abctools import ImmutableAbjadObject
 
 
-class ObjectSet(frozenset, ImmutableAbjadObject):
+class Set(frozenset, ImmutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Music-theoretic set base class.

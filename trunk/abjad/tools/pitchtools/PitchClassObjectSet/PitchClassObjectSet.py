@@ -1,9 +1,9 @@
 import abc
 
-from abjad.tools.pitchtools.ObjectSet import ObjectSet
+from abjad.tools.pitchtools.Set import Set
 
 
-class PitchClassObjectSet(ObjectSet):
+class PitchClassObjectSet(Set):
     '''.. versionadded:: 2.0
 
     Pitch-class set base class.

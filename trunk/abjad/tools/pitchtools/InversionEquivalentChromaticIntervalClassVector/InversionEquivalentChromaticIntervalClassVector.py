@@ -1,7 +1,7 @@
-from abjad.tools.pitchtools.ObjectVector import ObjectVector
+from abjad.tools.pitchtools.Vector import Vector
 
 
-class InversionEquivalentChromaticIntervalClassVector(ObjectVector):
+class InversionEquivalentChromaticIntervalClassVector(Vector):
     '''.. versionadded:: 2.0
 
     Abjad model of inversion-equivalent chromatic interval-class vector::

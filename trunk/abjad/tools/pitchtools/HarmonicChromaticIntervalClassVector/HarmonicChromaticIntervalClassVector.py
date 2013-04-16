@@ -1,7 +1,7 @@
-from abjad.tools.pitchtools.ObjectVector import ObjectVector
+from abjad.tools.pitchtools.Vector import Vector
 
 
-class HarmonicChromaticIntervalClassVector(ObjectVector):
+class HarmonicChromaticIntervalClassVector(Vector):
     '''.. versionadded:: 2.0
 
     Abjad model of harmonic chromatic interval-class vector::

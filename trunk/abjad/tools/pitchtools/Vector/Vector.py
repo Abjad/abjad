@@ -3,7 +3,7 @@ import abc
 from abjad.tools.datastructuretools import ImmutableDictionary
 
 
-class ObjectVector(ImmutableDictionary):
+class Vector(ImmutableDictionary):
     '''.. versionadded:: 2.0
 
     Music theoretic vector base class.

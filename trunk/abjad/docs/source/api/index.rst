@@ -1823,15 +1823,15 @@ Core composition packages
       tools/pitchtools/NumberedObject/NumberedObject
       tools/pitchtools/NumberedPitchClassObject/NumberedPitchClassObject
       tools/pitchtools/NumberedPitchObject/NumberedPitchObject
-      tools/pitchtools/ObjectSegment/ObjectSegment
-      tools/pitchtools/ObjectSet/ObjectSet
-      tools/pitchtools/ObjectVector/ObjectVector
       tools/pitchtools/PitchClassObject/PitchClassObject
       tools/pitchtools/PitchClassObjectSegment/PitchClassObjectSegment
       tools/pitchtools/PitchClassObjectSet/PitchClassObjectSet
       tools/pitchtools/PitchObject/PitchObject
       tools/pitchtools/PitchObjectSegment/PitchObjectSegment
       tools/pitchtools/PitchObjectSet/PitchObjectSet
+      tools/pitchtools/Segment/Segment
+      tools/pitchtools/Set/Set
+      tools/pitchtools/Vector/Vector
 
    --------
 
@@ -2056,15 +2056,15 @@ Core composition packages
       tools/pitchtools/NumberedObject/NumberedObject
       tools/pitchtools/NumberedPitchClassObject/NumberedPitchClassObject
       tools/pitchtools/NumberedPitchObject/NumberedPitchObject
-      tools/pitchtools/ObjectSegment/ObjectSegment
-      tools/pitchtools/ObjectSet/ObjectSet
-      tools/pitchtools/ObjectVector/ObjectVector
       tools/pitchtools/PitchClassObject/PitchClassObject
       tools/pitchtools/PitchClassObjectSegment/PitchClassObjectSegment
       tools/pitchtools/PitchClassObjectSet/PitchClassObjectSet
       tools/pitchtools/PitchObject/PitchObject
       tools/pitchtools/PitchObjectSegment/PitchObjectSegment
       tools/pitchtools/PitchObjectSet/PitchObjectSet
+      tools/pitchtools/Segment/Segment
+      tools/pitchtools/Set/Set
+      tools/pitchtools/Vector/Vector
 
    Concrete Classes
    ----------------
