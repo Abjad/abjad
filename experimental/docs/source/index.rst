@@ -244,7 +244,7 @@ Unstable packages (load manually)
       tools/parsertools/ENPParser/ENPParser
 
 :py:mod:`scoremanagementtools <experimental.tools.scoremanagementtools>`
-================================================
+========================================================================
 
 .. only:: html
 

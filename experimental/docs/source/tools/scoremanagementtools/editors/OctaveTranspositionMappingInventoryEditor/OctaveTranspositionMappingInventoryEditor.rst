@@ -1,0 +1,376 @@
+scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor
+======================================================================
+
+.. abjad-lineage:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor
+
+.. autoclass:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor
+   :noindex:
+
+Read-only properties
+--------------------
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.attributes_in_memory
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.backtracking_source
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.boilerplate_directory_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.breadcrumb
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.class_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.editors_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.editors_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.has_target
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.help_item_width
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.human_readable_class_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.items
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.items_identifier
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.makers_directory_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.makers_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.scf_fully_qualified_package_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.scf_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.scf_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.score_external_chunks_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.score_external_chunks_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.score_external_materials_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.score_external_materials_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.score_external_package_importable_names
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.score_external_package_path_names
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.score_external_specifiers_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.score_external_specifiers_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.score_internal_chunks_package_importable_name_infix
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.score_internal_materials_package_importable_name_infix
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.score_internal_specifiers_package_importable_name_infix
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.scores_directory_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.session
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.source_file_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.spaced_class_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.specifier_classes_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.stylesheets_directory_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.stylesheets_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.target_attribute_names
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.target_attribute_tokens
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.target_class
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.target_class_human_readable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.target_keyword_attribute_names
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.target_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.target_positional_initializer_argument_names
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.target_positional_initializer_retrievable_attribute_names
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.target_summary_lines
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.transcript
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.transcript_signature
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.ts
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.user_makers_directory_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.user_makers_package_importable_name
+   :noindex:
+
+Methods
+-------
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.add_items_interactively
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.asset_full_name_to_importable_name
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.asset_full_name_to_path_name
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.assign_user_input
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.attribute_name_to_menu_key
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.backtrack
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.cache_breadcrumbs
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.change_expr_to_menu_token
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.change_string_to_human_readable_string
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.clean_up_attributes_in_memory
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.conditionally_add_terminal_newlines
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.conditionally_clear_terminal
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.conditionally_initialize_target
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.conditionally_make_empty_package
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.conditionally_set_target_attribute
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.confirm
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.copy_target_attributes_to_memory
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.debug
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.display
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.dot_join
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.edit_item_interactively
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.expr_to_parent_package_short_name
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.get_item_from_item_number
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.get_one_line_menuing_summary
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.get_tag_from_path_name
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.get_tools_package_qualified_repr
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.handle_main_menu_result
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.handle_raw_input
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.handle_raw_input_with_default
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.initialize_attributes_in_memory
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.initialize_target_from_attributes_in_memory
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.is_module_name
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.is_path_name
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.item_getter_configuration_method
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.list_public_directory_path_names_in_subtree
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.list_public_package_path_names_in_subtree
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.list_score_package_short_names
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.make_getter
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.make_main_menu
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.make_menu
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.make_target_attribute_tokens_from_target_manifest
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.menu_key_to_delegated_editor_kwargs
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.module_importable_name_to_path_name
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.move_item_interactively
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.package_exists
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.package_importable_name_to_path_name
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.path_name_to_human_readable_base_name
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.path_name_to_package_importable_name
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.pluralize_string
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.pop_backtrack
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.pop_breadcrumb
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.pop_next_user_response_from_user_input
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.print_not_yet_implemented
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.proceed
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.pt
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.ptc
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.push_backtrack
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.push_breadcrumb
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.remove_items_interactively
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.remove_package_importable_name_from_sys_modules
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.restore_breadcrumbs
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.run
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.strip_extension_from_base_name
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.strip_py_extension
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.target_args_to_target_summary_lines
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.target_kwargs_to_target_summary_lines
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.where
+   :noindex:
+
+Special methods
+---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.__repr__
+   :noindex:
