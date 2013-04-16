@@ -6,4 +6,4 @@ import lyrictools
 import metricmodulationtools
 import parsertools
 import scoremanagementtools
-import specificationtools
+import musicexpressiontools

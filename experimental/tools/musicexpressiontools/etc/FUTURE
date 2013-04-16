@@ -1,0 +1,117 @@
+### VERSION 0.9 ###
+
+1.  Write TwoStageHairpinHandler tests.
+
+2.  Make ...
+        region.select_leaves(['Rhythm Voice'])
+    ... work as an alternative to ...
+        region.select_leaves('Rhythm Voice')
+    ... in order to allow
+        region.select_leaves(rhythm_voice)
+    ... for the first time.
+
+3.  Make this work:
+        region.select_leaves('Rhythm Voice')[:1].set_markup(region_markup)
+    Right now you have to use ...
+        region.select_leaves('Rhythm Voice')[0].set_markup(region_markup)
+    ... instead.
+
+
+### VERSION 1.0 ###
+
+1.  Implement negation on time relation objects.
+    Then implement the other logical operators on time relation objects.
+    Logically-anding two time relation should, for example, produce another time relation.
+
+2.  Make this ...
+        score_specification.set_pitch(library.example_pitches_1())
+    ... work to replace ...
+        score_specification.select_leaves('Voice 1').set_pitch(library.example_pitches_1())
+        score_specification.select_leaves('Voice 2').set_pitch(library.example_pitches_1())
+        score_specification.select_leaves('Voice 3').set_pitch(library.example_pitches_1())
+        score_specification.select_leaves('Voice 4').set_pitch(library.example_pitches_1())
+    ... as a type of "cake slice" set expression.
+
+3.  Make this ...
+        leaves = score_specification.select_leaves('Voice 1')
+        leaves += score_specification.select_leaves('Voice 2')
+        leaves.set_pitch(library.example_pitches_1(), timeline=True)
+    ... work.
+
+4.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
+    It means truncate last division in section. It also means restart divisions at
+    beginning of following section. Implement a SegmentSpecification.set_divisions()
+    boolean 'restart' keyword to separate these functions. When restart=True
+    then truncate will always effectively be interpreted as true.
+
+5.  Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
+    Currently we must use ...
+        timespan = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
+        rhythm = red_segment.select_leaves('Voice 1', timespan=timespan)
+        blue_segment.set_rhythm(rhythm, contexts=['Voice 1'])
+        rhythm = red_segment.select_leaves('Voice 2', timespan=timespan)
+        blue_segment.set_rhythm(rhythm, contexts=['Voice 2'])
+        rhythm = red_segment.select_leaves('Voice 3', timespan=timespan)
+        blue_segment.set_rhythm(rhythm, contexts=['Voice 3'])
+        rhythm = red_segment.select_leaves('Voice 4', timespan=timespan)
+        blue_segment.set_rhythm(rhythm, contexts=['Voice 4'])
+    ... when it might be possible to use ...
+        timespan = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
+        selected_voices = ['Voice 1', 'Voice 2', 'Voice 3', 'Voice 4']
+        rhythm = red_segment.select_leaves(selected_voices, timespan=timespan)
+        blue_segment.set_rhythm(rhythm, contexts=selected_voices)
+    ... instead.
+    This will simplify the X9 composer interface.
+
+6.  Implement something to allow the composer to decide whether overlapping set_dynamic_handler()
+    calls should overlay each other or replace each other. Default behavior should be to replace.
+
+
+### VERSION 1.1 ###
+
+1.  Implement some way to allow the following:
+    Lay down a complex series of cobalt divisions over all of segment one (with ever division unique).
+    Then select the middle third of the measures in segment one.
+    Then set the divisions of the middle third of measures to just repeating (3, 16).
+    Then change division interpretation to make it so that the overlaid strip of (3, 16)
+    *overwrites* the existing strip of unique cobalt divisions. 
+    (What happens in the current implementation is that the cobalt divisions lay out in the first third;
+    then the (3, 16) happen; then the cobalt divisions *start over* and lay out again in the last third.)
+
+
+### VERSION 2.0 ###
+
+1.  Change SelectMethodMixin.select_leaves() to SelectoMethodMixin.select_rhythm().
+    Implement SelectMethodMixin.select_rhythm(depth=-1) keyword
+
+2.  Overwrite existing divisions with new divisions:
+        divisions = red_segment.select_divisions('Voice 1')[5:10]
+        red_segment.set_divisions([(2, 16)], timespan=divisions)
+    (Note that overwriting existing time signatures with new time signatures makes no sense.)
+
+3.  Overwrite existing rhythms with new rhythms:
+        leaves = red_segment.select_leaves('Voice 1')[5:10]
+        red_segment.set_rhythm(library.thirty_seconds, timespan=leaves)
+
+4.  Create leaves somewhere.
+    Then select a slice of leaves.
+    Then overwrite that slice with a different rhythm-maker.
+
+5.  Implement voice intermittency.
+
+### ROTATION ###
+
+6. Implement TimespanInventory.rotate(Duration(-4, 1)).
+
+7.  Extend StartPositionedRhythmPayloadExpression.rotate() with a new 'level=-1' keyword.
+    The keyword will specify the score-tree level at which rotation should happen.
+    The keyword will be an attribute of the RotationIndicator class.
+
+8.  Reimplement rhythm rotation to pay attention to the differences beteween
+    spanners that cover components and spanners that dominate components.
+    Fill in missing spannertools docstrings before doing this.
+
+9.  Extend RotationIndicator to allow for symoblic rotation by portion of total duration.
+    Might look like rotation=musicexpressiontools.RotationIndicator((-1, 3)).
+    Or like rotation=(-1, 3), rotation=(-2, 2), rotation(-3, 1).
+    This also suggests a companion procedure that rotates based on ratio of total count of elements.
