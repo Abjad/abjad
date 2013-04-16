@@ -1,0 +1,196 @@
+musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory
+======================================================================
+
+.. abjad-lineage:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory
+
+.. autoclass:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory
+   :noindex:
+
+Read-only properties
+--------------------
+
+.. autoattribute:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.all_are_contiguous
+   :noindex:
+
+.. autoattribute:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.all_are_well_formed
+   :noindex:
+
+.. autoattribute:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.axis
+   :noindex:
+
+.. autoattribute:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.duration
+   :noindex:
+
+.. autoattribute:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.is_sorted
+   :noindex:
+
+.. autoattribute:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.start_offset
+   :noindex:
+
+.. autoattribute:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.stop_offset
+   :noindex:
+
+.. autoattribute:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.storage_format
+   :noindex:
+
+.. autoattribute:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.timespan
+   :noindex:
+
+Read/write properties
+---------------------
+
+.. autoattribute:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.name
+   :noindex:
+
+Methods
+-------
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.append
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.compute_logical_and
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.compute_logical_or
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.compute_logical_xor
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.count
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.extend
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.get_timespan_that_satisfies_time_relation
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.get_timespans_that_satisfy_time_relation
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.has_timespan_that_satisfies_time_relation
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.index
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.insert
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.pop
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.reflect
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.remove
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.remove_degenerate_timespans
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.repeat_to_stop_offset
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.reverse
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.rotate
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.scale
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.sort
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.sort_and_split_set_expressions
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.stretch
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.supply_missing_set_expressions
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.translate
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.translate_offsets
+   :noindex:
+
+Special methods
+---------------
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__add__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__and__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__contains__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__delitem__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__delslice__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__getitem__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__getslice__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__iadd__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__imul__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__iter__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__len__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__mul__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__ne__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__repr__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__reversed__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__rmul__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__setitem__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__setslice__
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.__sub__
+   :noindex:
