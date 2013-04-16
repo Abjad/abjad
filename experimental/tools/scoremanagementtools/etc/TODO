@@ -1,25 +1,25 @@
-1. Asset instantiation (tested on material proxy instantiation) really does take some time.
-   So optimize to make asset instantiation take much less time.
-   Possibly by removing all [safe_]imports() from the __init__.py files.
-   Best to run the profiler while doing this to avoid unnecessary tinkering.
-   Also unnecessarily interpreting output_material.py modules should be elimiated.
+1.  Asset instantiation (tested on material proxy instantiation) really does take some time.
+    So optimize to make asset instantiation take much less time.
+    Possibly by removing all [safe_]imports() from the __init__.py files.
+    Best to run the profiler while doing this to avoid unnecessary tinkering.
+    Also unnecessarily interpreting output_material.py modules should be eliminated.
 
-2. Make user input getter defaults work like menu defaults;
+2.  Make user input getter defaults work like menu defaults;
     Implement default_value on user input getter.
 
-3. Fix SCFObject.handle_user_input_with_default() default handling.
+3.  Fix SCFObject.handle_user_input_with_default() default handling.
 
-4. Define range inventories for all scores.
+4.  Define range inventories for all scores.
 
-5. Implement material methods to move material packages from one location to another.
+5.  Implement material methods to move material packages from one location to another.
 
-6. Find a way to include tags management in hidden menu of every package proxy.
+6.  Find a way to include tags management in hidden menu of every package proxy.
 
-7. Change 'redraw' to work only on 'r' and 're'.
+7.  Change 'redraw' to work only on 'r' and 're'.
 
-8. Port output change awareness.
+8.  Port output change awareness.
 
-9. Implement something to tour all materials everywhere and examine in sequence.
+9.  Implement something to tour all materials everywhere and examine in sequence.
 
 10. Make user input handler creation work.
 
@@ -41,18 +41,12 @@
 
 * * *
 
-19. Change all 'from abc import ABCMeta' to just 'import abc'.
+19. Add ajv test -Z flag to run py.test on all experimental branches *except* scoremanagementtools.
 
-20. Rename scoremanagementtools to something better.
+20. Extend stuff to allow makers to be stored in multiple directories.
 
-21. Add ajv test -Z flag to run py.test on all experimental branches *except* scoremanagementtools.
-
-22. Extend stuff to allow makers to be stored in multiple directories.
-
-23. Extend stuff to allow scores to be stored in multiple directories.
+21. Extend stuff to allow scores to be stored in multiple directories.
     Then create scftestscores directory somewhere.
     Then check Example Score I, Example Score II, Étude Score I in to scftestscores.
 
-24. Consolidate scores to single repository.
-
-25. Change curated __init__.py files to load classes automatically.
+22. Consolidate scores to single repository.

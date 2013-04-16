@@ -1,6 +1,4 @@
-from abc import ABCMeta
-from abc import abstractmethod
-from abc import abstractproperty
+import abc
 from experimental.tools.scoremanagementtools.core.SCFObject import SCFObject
 
 
@@ -9,7 +7,7 @@ class Wizard(SCFObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
     target_editor_class_name_suffix = 'Editor'
 
     ### INITIALIZER ###
@@ -20,12 +18,12 @@ class Wizard(SCFObject):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    @abstractproperty
+    @abc.abstractproperty
     def breadcrumb(self):
         pass
 
     ### PUBLIC METHODS ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def run(self, cache=False, clear=True, head=None, user_input=None):
         pass

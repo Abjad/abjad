@@ -1,5 +1,4 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
 from experimental.tools.scoremanagementtools.wizards.Wizard import Wizard
 
 
@@ -7,7 +6,7 @@ class HandlerCreationWizard(Wizard):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     ### PUBLIC METHODS ###
 

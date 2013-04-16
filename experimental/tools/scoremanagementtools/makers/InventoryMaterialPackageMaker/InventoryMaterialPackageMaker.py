@@ -1,5 +1,4 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
 from experimental.tools.scoremanagementtools.makers.MaterialPackageMaker import MaterialPackageMaker
 
 
@@ -7,4 +6,4 @@ class InventoryMaterialPackageMaker(MaterialPackageMaker):
 
     ### CLASS ATRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta

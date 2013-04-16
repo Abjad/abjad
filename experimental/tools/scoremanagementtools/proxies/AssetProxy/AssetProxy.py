@@ -1,18 +1,16 @@
-from abc import ABCMeta
-from abc import abstractmethod
-from abc import abstractproperty
-from experimental.tools.scoremanagementtools.core.SCFObject import SCFObject
-from experimental.tools.scoremanagementtools.menuing.UserInputGetter import UserInputGetter
+import abc
 import os
 import shutil
 import subprocess
+from experimental.tools.scoremanagementtools.core.SCFObject import SCFObject
+from experimental.tools.scoremanagementtools.menuing.UserInputGetter import UserInputGetter
 
 
 class AssetProxy(SCFObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
     generic_class_name = 'asset'
 
     ### INITIALIZER ###
@@ -93,7 +91,7 @@ class AssetProxy(SCFObject):
 
     ### PUBLIC METHODS ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def conditionally_make_empty_asset(self, is_interactive=False):
         pass
 
@@ -115,7 +113,7 @@ class AssetProxy(SCFObject):
         self.copy(new_path_name)
         self.proceed('asset copied.')
 
-    @abstractmethod
+    @abc.abstractmethod
     def fix(self):
         pass
 
@@ -124,7 +122,7 @@ class AssetProxy(SCFObject):
         asset_short_name = asset_short_name.replace(' ', '_')
         return asset_short_name
 
-    @abstractmethod
+    @abc.abstractmethod
     def profile(self):
         pass
 

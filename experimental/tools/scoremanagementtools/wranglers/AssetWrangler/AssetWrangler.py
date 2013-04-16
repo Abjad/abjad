@@ -1,7 +1,5 @@
+import abc
 import os
-from abc import ABCMeta
-from abc import abstractmethod
-from abc import abstractproperty
 from abjad.tools import stringtools
 from experimental.tools.scoremanagementtools.core.SCFObject import SCFObject
 from experimental.tools.scoremanagementtools.proxies.PackageProxy import PackageProxy
@@ -11,7 +9,7 @@ class AssetWrangler(SCFObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     ### INITIALIZER ###
 
@@ -60,7 +58,7 @@ class AssetWrangler(SCFObject):
 
     # asset class #
 
-    @abstractproperty
+    @abc.abstractproperty
     def asset_class(self):
         pass
 
@@ -120,7 +118,7 @@ class AssetWrangler(SCFObject):
     def temporary_asset_proxy(self):
         return self.get_asset_proxy(self.temporary_asset_importable_name)
 
-    @abstractproperty
+    @abc.abstractproperty
     def temporary_asset_short_name(self):
         pass
 
@@ -151,7 +149,7 @@ class AssetWrangler(SCFObject):
     def get_asset_proxy(self, asset_full_name):
         return self.asset_class(asset_full_name, session=self.session)
 
-    @abstractmethod
+    @abc.abstractmethod
     def handle_main_menu_result(self, result):
         pass
 
@@ -388,7 +386,7 @@ class AssetWrangler(SCFObject):
         asset_proxy = self.get_asset_proxy(asset_path_name)
         asset_proxy.write_stub_to_disk()
 
-    @abstractmethod
+    @abc.abstractmethod
     def make_asset_interactively(self):
         pass
 
@@ -405,7 +403,7 @@ class AssetWrangler(SCFObject):
         section.return_value_attribute = 'key'
         return menu
 
-    @abstractmethod
+    @abc.abstractmethod
     def make_main_menu(self):
         pass
 
