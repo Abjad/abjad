@@ -1,6 +1,3 @@
-import inspect
-
-
 def safe_import(target_namespace, source_module_short_name, source_attribute_name,
     source_parent_package_importable_name=None):
 

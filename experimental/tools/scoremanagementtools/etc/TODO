@@ -1,5 +1,3 @@
-TODO
-
 1. Asset instantiation (tested on material proxy instantiation) really does take some time.
    So optimize to make asset instantiation take much less time.
    Possibly by removing all [safe_]imports() from the __init__.py files.
@@ -21,7 +19,7 @@ TODO
 
 8. Port output change awareness.
 
-9. Implement something to tour all materials everywhere and inspect in sequence.
+9. Implement something to tour all materials everywhere and examine in sequence.
 
 10. Make user input handler creation work.
 
