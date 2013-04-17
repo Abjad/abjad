@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
+import os
 from abjad.tools import stringtools
 from experimental.tools.scoremanagementtools.core.SCFObject import SCFObject
 from experimental.tools.scoremanagementtools.core.Transcript import Transcript
-import os
 
 
 class Session(SCFObject):
@@ -19,6 +19,7 @@ class Session(SCFObject):
         self.current_score_package_short_name = None
         self.display_pitch_ranges_with_numbered_pitches = False
         self.dump_transcript = False
+        self.enable_where = False
         self.hide_next_redraw = False
         self.initial_user_input = user_input
         self.is_autoadding = False

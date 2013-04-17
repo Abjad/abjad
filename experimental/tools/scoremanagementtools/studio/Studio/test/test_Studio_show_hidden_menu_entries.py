@@ -18,6 +18,7 @@ def test_Studio_show_hidden_menu_entries_01():
       '     score (score)',
       '     studio (studio)',
       '     toggle menu (tm)',
+      '     toggle where (tw)',
       '     show menu client (where)',
       '',
       '     work with repository (svn)',

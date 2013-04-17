@@ -1,11 +1,13 @@
+import os
+import subprocess
 from abjad.tools import stringtools
 from experimental.tools.scoremanagementtools.core.SCFObject.SCFObject import SCFObject
 from experimental.tools.scoremanagementtools import predicates
-import os
-import subprocess
 
 
 class MenuObject(SCFObject):
+
+    ### INITIALIZER ###
 
     def __init__(self, session=None, where=None, title=None):
         SCFObject.__init__(self, session=session)
@@ -60,10 +62,17 @@ class MenuObject(SCFObject):
                 SCFObject.conditionally_clear_terminal(self)
 
     def edit_client_source_file(self):
-        file_name = self.where[1]
-        line_number = self.where[2]
-        command = 'vi +{} {}'.format(line_number, file_name)
-        os.system(command)
+        if self.where is not None:
+            file_name = self.where[1]
+            line_number = self.where[2]
+            command = 'vi +{} {}'.format(line_number, file_name)
+            os.system(command)
+        else:
+            lines = []
+            lines.append("where-tracking not enabled. Use 'tw' to toggle where-tracking.")
+            lines.append('')
+            self.display(lines)
+            self.session.hide_next_redraw = True
 
     def exec_statement(self):
         lines = []
@@ -104,6 +113,7 @@ class MenuObject(SCFObject):
         section.append(('score', 'score'))
         section.append(('studio', 'studio'))
         section.append(('tm', 'toggle menu'))
+        section.append(('tw', 'toggle where'))
         section.append(('where', 'show menu client'))
         return section
 
@@ -142,7 +152,7 @@ class MenuObject(SCFObject):
             lines.append('')
             self.display(lines, capitalize_first_character=False)
         else:
-            lines.append('location not known.')
+            lines.append("where-tracking not enabled. Use 'tw' to toggle where-tracking.")
             lines.append('')
             self.display(lines)
         self.session.hide_next_redraw = True

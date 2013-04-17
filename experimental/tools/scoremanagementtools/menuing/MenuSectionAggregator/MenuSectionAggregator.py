@@ -45,6 +45,8 @@ class MenuSectionAggregator(MenuObject):
             self.session.is_backtracking_to_studio = True
         elif key == 'tm':
             self.toggle_menu()
+        elif key == 'tw':
+            self.session.enable_where = not self.session.enable_where
         elif key == 'where':
             self.show_menu_client()
         else:

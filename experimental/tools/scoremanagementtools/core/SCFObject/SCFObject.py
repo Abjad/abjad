@@ -580,4 +580,5 @@ class SCFObject(object):
             return string
 
     def where(self):
-        return inspect.stack()[1]
+        if self.session.enable_where:
+            return inspect.stack()[1]
