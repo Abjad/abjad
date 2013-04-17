@@ -1,9 +1,9 @@
 import platform
 
 _python_version = platform.python_version()
-if not _python_version.startswith('2.7'):
-    print 'WARNING: Abjad no longer supports versions of Python less than 2.7!'
-    print 'WARNING: Please upgrade your version of Python to 2.7!'
+if not _python_version.startswith('2.7.3'):
+    print 'WARNING: Abjad no longer supports versions of Python less than 2.7.3!'
+    print 'WARNING: Please upgrade your version of Python to 2.7.3!'
 
 import readline
 import rlcompleter
