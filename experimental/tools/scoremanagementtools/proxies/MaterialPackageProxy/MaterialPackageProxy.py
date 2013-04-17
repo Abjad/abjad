@@ -634,36 +634,26 @@ class MaterialPackageProxy(PackageProxy):
         if not self.has_initializer:
             section = main_menu.make_section()
             section.title = '(Note: package has no initializer.)'
-            section.append(('inr', 'initializer - restore'))
-        elif not self.has_readable_initializer:
-            section = main_menu.make_section()
-            section.title = '(Note: package has invalid initializer.)'
-            section.append(('inr', 'initializer - restore'))
+        hidden_section.append(('inr', 'initializer - restore'))
         hidden_section.append(('inv', 'view package initializer'))
         hidden_section.append(('incanned', 'copy canned package initializer'))
         hidden_section.append(('instub', 'write stub package initializer'))
 
     def make_main_menu_section_for_material_definition(self, main_menu, hidden_section):
-        if not self.has_readable_initializer:
+        if not self.has_initializer:
             return
         section = main_menu.make_section()
         if self.has_material_definition_module:
-            has_invalid_material_definition_module = not self.has_readable_material_definition_module
-            if has_invalid_material_definition_module:
-                section.title = '(Note: has invalid material definition module.)'
-            section.append(('mde', 'material definition - edit'))
-            if not has_invalid_material_definition_module:
-                section.append(('mdx', 'material definition - execute'))
+            section.append(('mdx', 'material definition - execute'))
             hidden_section.append(('mdcanned', 'material definition - copy canned module'))
             hidden_section.append(('mddelete', 'material definition - delete'))
             hidden_section.append(('mdstub', 'material definition - stub'))
-            if not has_invalid_material_definition_module:
-                hidden_section.append(('mdxe', 'material definition - execute & edit'))
+            hidden_section.append(('mdxe', 'material definition - execute & edit'))
         elif self.material_package_maker_class_name is None:
             section.append(('mdstub', 'material definition - stub'))
 
     def make_main_menu_section_for_output_material(self, main_menu, hidden_section):
-        if not self.has_readable_initializer:
+        if not self.has_initializer:
             return
         has_output_material_section = False
         if self.has_material_definition_module or \
