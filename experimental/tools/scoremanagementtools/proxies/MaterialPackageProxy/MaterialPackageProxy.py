@@ -666,9 +666,13 @@ class MaterialPackageProxy(PackageProxy):
         if not self.has_readable_initializer:
             return
         has_output_material_section = False
+        # TODO: replace the following three-line condition with the one immediately following
         if self.has_readable_material_definition_module or \
             self.has_complete_user_input_wrapper_in_memory or \
             self.has_output_material_editor:
+        #if self.has_output_material_module or \
+        #    self.has_complete_user_input_wrapper_in_memory or \
+        #    self.has_output_material_editor:
             if self.has_material_definition or \
                 self.has_complete_user_input_wrapper_in_memory:
                 section = main_menu.make_section()
