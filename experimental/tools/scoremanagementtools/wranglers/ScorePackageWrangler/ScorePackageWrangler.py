@@ -27,6 +27,13 @@ class ScorePackageWrangler(PackageWrangler):
         return self.scores_directory_name
 
     @property
+    def visible_score_titles(self):
+        result = []
+        for score_package_proxy in self.list_visible_asset_proxies():
+            result.append(score_package_proxy.title or '(untitled score)')
+        return result
+
+    @property
     def visible_score_titles_with_years(self):
         result = []
         for score_package_proxy in self.list_visible_asset_proxies():
@@ -48,6 +55,7 @@ class ScorePackageWrangler(PackageWrangler):
         result = []
         scores_to_show = self.session.scores_to_show
         for asset_proxy in PackageWrangler.list_asset_proxies(self, head=head):
+            self.debug(asset_proxy, 'AP')
             is_mothballed = asset_proxy.get_tag('is_mothballed')
             if scores_to_show == 'all':
                 result.append(asset_proxy)
@@ -55,6 +63,23 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append(asset_proxy)
             elif scores_to_show == 'mothballed' and is_mothballed:
                 result.append(asset_proxy)
+        return result
+
+    def list_visible_asset_importable_name_and_score_title_pairs(self, head=None):
+        result = []
+        scores_to_show = self.session.scores_to_show
+        for asset_proxy in PackageWrangler.list_asset_proxies(self, head=head):
+            tags = asset_proxy.get_tags()
+            is_mothballed = tags.get('is_mothballed', False)
+            if scores_to_show == 'all' or \
+                (scores_to_show == 'active' and not is_mothballed) or \
+                (scores_to_show == 'mothballed' and is_mothballed):
+                year_of_completion = tags['year_of_completion']
+                if year_of_completion:
+                    title_with_year = '{} ({})'.format(tags['title'], year_of_completion)
+                else:
+                    title_with_year = '{}'.format(tags['title'])
+                result.append((asset_proxy.importable_name, title_with_year))
         return result
 
     def list_visible_asset_short_names(self, head=None):
@@ -88,9 +113,10 @@ class ScorePackageWrangler(PackageWrangler):
         self.print_not_yet_implemented()
 
     def make_visible_asset_menu_tokens(self, head=None):
-        keys = self.list_visible_asset_importable_names()
-        bodies = self.visible_score_titles_with_years
-        menuing_pairs = zip(keys, bodies)
+#        keys = self.list_visible_asset_importable_names()
+#        bodies = self.visible_score_titles_with_years
+#        menuing_pairs = zip(keys, bodies)
+        menuing_pairs = self.list_visible_asset_importable_name_and_score_title_pairs()
         tmp = stringtools.strip_diacritics_from_binary_string
         menuing_pairs.sort(lambda x, y: cmp(tmp(x[1]), tmp(y[1])))
         return menuing_pairs

@@ -168,6 +168,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.user_makers_package_importable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.visible_score_titles
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.visible_score_titles_with_years
    :noindex:
 
@@ -364,6 +367,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_visible_asset_human_readable_names
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_visible_asset_importable_name_and_score_title_pairs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.list_visible_asset_importable_names
