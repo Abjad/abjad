@@ -672,8 +672,6 @@ class MaterialPackageProxy(PackageProxy):
             if self.has_material_definition or \
                 self.has_complete_user_input_wrapper_in_memory:
                 section = main_menu.make_section()
-                if self.has_output_material_module and not self.has_readable_output_material_module:
-                    section.title = '(Note: has invalid output material module.)'
                 section.append(('omm', 'output material - make'))
                 has_output_material_section = True
             if self.has_output_material_editor:
