@@ -1,10 +1,10 @@
 import abc
 
 from abjad.tools.pitchtools.DiatonicObject import DiatonicObject
-from abjad.tools.pitchtools.PitchClassObject import PitchClassObject
+from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
-class DiatonicPitchClassObject(PitchClassObject, DiatonicObject):
+class DiatonicPitchClassObject(PitchClass, DiatonicObject):
     '''.. versionadded:: 2.0
 
     Diatonic pitch-class base class.

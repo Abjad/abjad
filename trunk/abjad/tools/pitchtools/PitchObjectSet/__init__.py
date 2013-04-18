@@ -1,1 +1,0 @@
-from PitchObjectSet import PitchObjectSet

@@ -2,7 +2,7 @@ import abc
 from abjad.tools.abctools import AttributeEqualityAbjadObject
 
 
-class PitchClassObject(AttributeEqualityAbjadObject):
+class PitchClass(AttributeEqualityAbjadObject):
     '''.. versionadded:: 2.0
 
     Pitch-class base class.

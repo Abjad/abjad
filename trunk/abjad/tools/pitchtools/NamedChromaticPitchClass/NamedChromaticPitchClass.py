@@ -1,7 +1,7 @@
-from abjad.tools.pitchtools.PitchClassObject import PitchClassObject
+from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
-class NamedChromaticPitchClass(PitchClassObject):
+class NamedChromaticPitchClass(PitchClass):
     '''.. versionadded:: 2.0
 
     Abjad model of named chromatic pitch-class::

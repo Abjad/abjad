@@ -3,7 +3,7 @@ import abc
 from abjad.tools.abctools.SortableAttributeEqualityAbjadObject import SortableAttributeEqualityAbjadObject
 
 
-class PitchObject(SortableAttributeEqualityAbjadObject):
+class Pitch(SortableAttributeEqualityAbjadObject):
     '''.. versionadded:: 2.0
 
     Pitch base class.

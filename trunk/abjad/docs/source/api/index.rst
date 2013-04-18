@@ -1821,14 +1821,14 @@ Core composition packages
       tools/pitchtools/MelodicIntervalObject/MelodicIntervalObject
       tools/pitchtools/MelodicObject/MelodicObject
       tools/pitchtools/NumberedObject/NumberedObject
-      tools/pitchtools/NumberedPitchClassObject/NumberedPitchClassObject
-      tools/pitchtools/NumberedPitchObject/NumberedPitchObject
-      tools/pitchtools/PitchClassObject/PitchClassObject
-      tools/pitchtools/PitchClassObjectSegment/PitchClassObjectSegment
-      tools/pitchtools/PitchClassObjectSet/PitchClassObjectSet
-      tools/pitchtools/PitchObject/PitchObject
-      tools/pitchtools/PitchObjectSegment/PitchObjectSegment
-      tools/pitchtools/PitchObjectSet/PitchObjectSet
+      tools/pitchtools/NumberedPitch/NumberedPitch
+      tools/pitchtools/NumberedPitchClass/NumberedPitchClass
+      tools/pitchtools/Pitch/Pitch
+      tools/pitchtools/PitchClass/PitchClass
+      tools/pitchtools/PitchClassSegment/PitchClassSegment
+      tools/pitchtools/PitchClassSet/PitchClassSet
+      tools/pitchtools/PitchSegment/PitchSegment
+      tools/pitchtools/PitchSet/PitchSet
       tools/pitchtools/Segment/Segment
       tools/pitchtools/Set/Set
       tools/pitchtools/Vector/Vector
@@ -2054,14 +2054,14 @@ Core composition packages
       tools/pitchtools/MelodicIntervalObject/MelodicIntervalObject
       tools/pitchtools/MelodicObject/MelodicObject
       tools/pitchtools/NumberedObject/NumberedObject
-      tools/pitchtools/NumberedPitchClassObject/NumberedPitchClassObject
-      tools/pitchtools/NumberedPitchObject/NumberedPitchObject
-      tools/pitchtools/PitchClassObject/PitchClassObject
-      tools/pitchtools/PitchClassObjectSegment/PitchClassObjectSegment
-      tools/pitchtools/PitchClassObjectSet/PitchClassObjectSet
-      tools/pitchtools/PitchObject/PitchObject
-      tools/pitchtools/PitchObjectSegment/PitchObjectSegment
-      tools/pitchtools/PitchObjectSet/PitchObjectSet
+      tools/pitchtools/NumberedPitch/NumberedPitch
+      tools/pitchtools/NumberedPitchClass/NumberedPitchClass
+      tools/pitchtools/Pitch/Pitch
+      tools/pitchtools/PitchClass/PitchClass
+      tools/pitchtools/PitchClassSegment/PitchClassSegment
+      tools/pitchtools/PitchClassSet/PitchClassSet
+      tools/pitchtools/PitchSegment/PitchSegment
+      tools/pitchtools/PitchSet/PitchSet
       tools/pitchtools/Segment/Segment
       tools/pitchtools/Set/Set
       tools/pitchtools/Vector/Vector

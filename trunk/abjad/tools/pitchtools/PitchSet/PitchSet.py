@@ -3,13 +3,13 @@ import abc
 from abjad.tools.pitchtools.Set import Set
 
 
-class PitchClassObjectSet(Set):
+class PitchSet(Set):
     '''.. versionadded:: 2.0
 
-    Pitch-class set base class.
+    Pitch set base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS METHODS ###
 
     __metaclass__ = abc.ABCMeta
 

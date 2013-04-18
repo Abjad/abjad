@@ -1,8 +1,8 @@
 from abjad.tools import sequencetools
-from abjad.tools.pitchtools.PitchClassObjectSet import PitchClassObjectSet
+from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
 
 
-class  NumberedChromaticPitchClassSet(PitchClassObjectSet):
+class  NumberedChromaticPitchClassSet(PitchClassSet):
     '''.. versionadded:: 2.0
 
     Abjad model of a numbered chromatic pitch-class set::

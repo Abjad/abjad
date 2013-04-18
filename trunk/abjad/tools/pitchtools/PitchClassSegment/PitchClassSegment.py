@@ -1,15 +1,15 @@
 import abc
 
-from abjad.tools.pitchtools.Set import Set
+from abjad.tools.pitchtools.Segment import Segment
 
 
-class PitchObjectSet(Set):
+class PitchClassSegment(Segment):
     '''.. versionadded:: 2.0
 
-    Pitch set base class.
+    Pitch-class segment base class.
     '''
 
-    ### CLASS METHODS ###
+    ### CLASS ATTRIBUTES ###
 
     __metaclass__ = abc.ABCMeta
 

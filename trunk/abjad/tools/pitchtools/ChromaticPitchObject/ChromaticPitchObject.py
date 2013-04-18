@@ -1,9 +1,9 @@
 import abc
 from abjad.tools.pitchtools.ChromaticObject import ChromaticObject
-from abjad.tools.pitchtools.PitchObject import PitchObject
+from abjad.tools.pitchtools.Pitch import Pitch
 
 
-class ChromaticPitchObject(PitchObject, ChromaticObject):
+class ChromaticPitchObject(Pitch, ChromaticObject):
     '''.. versionadded:: 2.0
 
     Chromatic pitch base class.

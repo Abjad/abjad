@@ -1,9 +1,9 @@
 import abc
 from abjad.tools.pitchtools.NumberedObject import NumberedObject
-from abjad.tools.pitchtools.PitchClassObject import PitchClassObject
+from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
-class NumberedPitchClassObject(PitchClassObject, NumberedObject):
+class NumberedPitchClass(PitchClass, NumberedObject):
     '''.. versionadded:: 2.0
 
     Numbered pitch-class base class.

@@ -24,7 +24,7 @@ def _transpose_pitch_carrier_by_melodic_diatonic_interval(pitch_carrier, melodic
     except (TypeError, ValueError):
         raise TypeError('must be melodic diatonic interval.')
 
-    if isinstance(pitch_carrier, pitchtools.PitchObject):
+    if isinstance(pitch_carrier, pitchtools.Pitch):
         return _transpose_pitch_by_melodic_diatonic_interval(pitch_carrier, mdi)
     elif isinstance(pitch_carrier, notetools.Note):
         new_note = componenttools.copy_components_and_remove_spanners([pitch_carrier])[0]

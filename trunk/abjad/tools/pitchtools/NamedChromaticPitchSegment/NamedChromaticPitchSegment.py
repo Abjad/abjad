@@ -1,8 +1,8 @@
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.PitchObjectSegment import PitchObjectSegment
+from abjad.tools.pitchtools.PitchSegment import PitchSegment
 
 
-class NamedChromaticPitchSegment(PitchObjectSegment):
+class NamedChromaticPitchSegment(PitchSegment):
     '''.. versionadded:: 2.0
 
     Abjad model of a named chromatic pitch segment::
