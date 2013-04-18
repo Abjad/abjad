@@ -36,7 +36,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
     assert not studio.package_exists('example_score_1.mus.materials.testsargasso')
 
     try:
-        studio.run(user_input='example~score m m sargasso testsargasso default q')
+        studio.run(user_input='example~score~i m m sargasso testsargasso default q')
         assert studio.package_exists('example_score_1.mus.materials.testsargasso')
         mpp = scoremanagementtools.makers.SargassoMeasureMaterialPackageMaker(
             'example_score_1.mus.materials.testsargasso')
@@ -49,7 +49,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
         assert not mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.output_material is None
     finally:
-        studio.run(user_input='example~score m testsargasso del remove default q')
+        studio.run(user_input='example~score~i m testsargasso del remove default q')
         assert not studio.package_exists('example_score_1.mus.materials.testsargasso')
 
 

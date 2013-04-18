@@ -387,9 +387,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.show_menu_client
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.split_multipart_user_response
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.strip_default_indicators_from_strings
    :noindex:
 
@@ -406,6 +403,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.user_enters_nothing
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.user_response_to_key
    :noindex:
 
 Special methods

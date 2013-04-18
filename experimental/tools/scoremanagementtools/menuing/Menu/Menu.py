@@ -7,6 +7,8 @@ from experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator impor
 
 class Menu(MenuSectionAggregator):
 
+    ### INITIALIZER ###
+
     def __init__(self, session=None, where=None):
         MenuSectionAggregator.__init__(self, session=session, where=where)
         self.sections.append(self.make_default_hidden_section(session=session, where=where))
@@ -172,7 +174,7 @@ class Menu(MenuSectionAggregator):
         if flamingo_input is not None:
             return flamingo_input
         user_response = self.handle_raw_input_with_default('SCF', default=self.prompt_default)
-        user_input = self.split_multipart_user_response(user_response)
+        user_input = self.user_response_to_key(user_response)
         directive = self.change_user_input_to_directive(user_input)
         directive = self.strip_default_indicators_from_strings(directive)
         self.session.hide_next_redraw = False
@@ -236,30 +238,6 @@ class Menu(MenuSectionAggregator):
                 break
         return result
 
-    def split_multipart_user_response(self, user_response):
-        self.session.transcribe_next_command = True
-        if ' ' in user_response:
-            parts = user_response.split(' ')
-            key_parts, rest_parts = [], []
-            for i, part in enumerate(parts):
-                if not part.endswith((',', '-')):
-                    break
-            key_parts = parts[:i+1]
-            rest_parts = parts[i+1:]
-            key = ' '.join(key_parts)
-            rest = ' '.join(rest_parts)
-            if rest:
-                self.session.transcribe_next_command = False
-            if isinstance(self.session.user_input, str) and rest:
-                self.session.user_input = rest + ' ' + self.session.user_input
-            elif isinstance(self.session.user_input, str) and not rest:
-                self.session.user_input = self.session.user_input
-            else:
-                self.session.user_input = rest
-        else:
-            key = user_response
-        return key
-
     # TODO: apply default indicators at display time so this can be completely removed
     def strip_default_indicators_from_strings(self, expr):
         if isinstance(expr, list):
@@ -286,3 +264,16 @@ class Menu(MenuSectionAggregator):
 
     def user_enters_nothing(self, user_input):
         return not user_input or (3 <= len(user_input) and 'default'.startswith(user_input))
+
+    def user_response_to_key(self, user_response):
+        self.session.transcribe_next_command = True
+        if ' ' not in user_response:
+            key = user_response
+        else:
+            parts = user_response.split()
+            for i, part in enumerate(parts):
+                if not part.endswith((',', '-')):
+                    break
+            key_parts = parts[:i+1]
+            key = ' '.join(key_parts)
+        return key

@@ -49,7 +49,7 @@ def test_ScorePackageProxy_04():
     '''
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input="example~score studio q")
+    studio.run(user_input="example~score~i studio q")
 
     assert studio.ts == (6, (0, 4))
     assert studio.transcript[0][0] == 'Studio - active scores'
@@ -74,7 +74,7 @@ def test_ScorePackageProxy_06():
     '''
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input='example~score b q')
+    studio.run(user_input='example~score~i b q')
 
     assert studio.ts == (6, (0, 4))
     assert studio.transcript[0][0] == 'Studio - active scores'

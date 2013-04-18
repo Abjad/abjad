@@ -4,7 +4,7 @@ from experimental import *
 def test_ScorePackageProxy_show_hidden_menu_entries_01():
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input='example~score hidden q')
+    studio.run(user_input='example~score~i hidden q')
 
     assert studio.transcript[-2] == \
      ['     back (b)',
