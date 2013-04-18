@@ -3,6 +3,8 @@ from experimental.tools.scoremanagementtools.menuing.MenuObject import MenuObjec
 
 class MenuSectionAggregator(MenuObject):
 
+    ### INITIALIZER ###
+
     def __init__(self, session=None, where=None):
         MenuObject.__init__(self, session=session, where=where)
         self._sections = []
@@ -38,6 +40,9 @@ class MenuSectionAggregator(MenuObject):
             self.session.is_backtracking_to_studio = True
         elif key in ('q', 'quit'):
             self.session.user_specified_quit = True
+#        # TODO: make this redraw!
+#        elif key == 'r':
+#            pass
         elif isinstance(key, str) and 3 <= len(key) and 'score'.startswith(key):
             if self.session.is_in_score:
                 self.session.is_backtracking_to_score = True

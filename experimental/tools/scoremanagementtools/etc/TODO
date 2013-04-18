@@ -42,10 +42,12 @@
 
 19. Add ajv test -Z flag to run py.test on all experimental branches *except* scoremanagementtools.
 
-20. Extend stuff to allow makers to be stored in multiple directories.
+20. Make user_input='m red~numbers q' and user_input='m red~notes q' work.
 
-21. Extend stuff to allow scores to be stored in multiple directories.
+21. Consolidate scores to single repository.
+
+22. Extend stuff to allow makers to be stored in multiple directories.
+
+23. Extend stuff to allow scores to be stored in multiple directories.
     Then create scftestscores directory somewhere.
     Then check Example Score I, Example Score II, Étude Score I in to scftestscores.
-
-22. Consolidate scores to single repository.

@@ -159,8 +159,13 @@ class Menu(MenuSectionAggregator):
             return self.conditionally_enclose_in_list(self.default_value)
         elif self.user_enters_argument_range(user_input):
             return self.handle_argument_range_user_input(user_input)
+        elif user_input == 'r':
+            return 'r'
         else:
             for number, key, body, return_value, section in self.unpacked_menu_entries:
+                #print number, key, body, return_value
+                if body == 'redraw':
+                    continue
                 body = stringtools.strip_diacritics_from_binary_string(body).lower()
                 if  (mathtools.is_integer_equivalent_expr(user_input) and int(user_input) == number) or \
                     (user_input == key) or \
@@ -175,7 +180,9 @@ class Menu(MenuSectionAggregator):
             return flamingo_input
         user_response = self.handle_raw_input_with_default('SCF', default=self.prompt_default)
         user_input = self.user_response_to_key(user_response)
+        #self.debug(user_input, 'user input')
         directive = self.change_user_input_to_directive(user_input)
+        #self.debug(directive, 'directive')
         directive = self.strip_default_indicators_from_strings(directive)
         self.session.hide_next_redraw = False
         directive = self.handle_hidden_key(directive)
