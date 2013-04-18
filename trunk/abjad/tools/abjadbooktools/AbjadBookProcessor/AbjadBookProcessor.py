@@ -113,14 +113,17 @@ class AbjadBookProcessor(abctools.AbjadObject):
                 if not os.path.exists(target) or \
                     not documentationtools.compare_images(source, target):
                     os.rename(source, target)
-                    print '\tMoving {}.'.format(x)
+                    if self.verbose:
+                        print '\tMoving {}.'.format(x)
                 else:
-                    print '\tKeeping old {}.'.format(x)
+                    if self.verbose:
+                        print '\tKeeping old {}.'.format(x)
             elif x.endswith('.pdf'):
                 source = os.path.join(tmp_directory, x)
                 target = os.path.join(image_directory, x)
                 os.rename(source, target)
-                print '\tMoving {}.'.format(x)
+                if self.verbose:
+                    print '\tMoving {}.'.format(x)
 
     def _cleanup_pipe(self, pipe):
         #print 'CLEANUP PIPE'
@@ -242,24 +245,29 @@ class AbjadBookProcessor(abctools.AbjadObject):
     def _render_ly_files(self, file_names, output_format, verbose):
         #print 'RENDER LY FILES'
         for file_name in file_names:
-            print '\tRendering {}.ly...'.format(file_name)
+            if self.verbose:
+                print '\tRendering {}.ly...'.format(file_name)
             try:
                 if output_format.image_format == 'pdf':
                     command = 'lilypond {}.ly'.format(file_name)
-                    print '\t\t{}'.format(command)
+                    if self.verbose:
+                        print '\t\t{}'.format(command)
                     self._run_command(command, verbose)
                     command = 'pdfcrop {}.pdf {}.pdf'.format(file_name, file_name)
-                    print '\t\t{}'.format(command)
+                    if self.verbose:
+                        print '\t\t{}'.format(command)
                     self._run_command(command, verbose)
                 elif output_format.image_format == 'png':
                     command = 'lilypond --png -dresolution=300 {}.ly'.format(file_name)
-                    print '\t\t{}'.format(command)
+                    if self.verbose:
+                        print '\t\t{}'.format(command)
                     assert os.path.exists('{}.ly'.format(file_name))
                     self._run_command(command, verbose)
                     for file in os.listdir('.'):
                         if file.startswith(file_name) and file.endswith('.png'):
                             command = 'convert {} -trim -resample 40%% {}'.format(file, file)
-                            print '\t\t{}'.format(command)
+                            if self.verbose:
+                                print '\t\t{}'.format(command)
                             self._run_command(command, verbose)
             except AssertionError, e:
                 print e
@@ -289,6 +297,7 @@ class AbjadBookProcessor(abctools.AbjadObject):
         self._current_code_line += 1
         percentage = float(self._current_code_line) / self._total_code_lines
         message = '[{:4.0%}] {}'.format(percentage, line)
-        print message
+        if self.verbose:
+            print message
 
 
