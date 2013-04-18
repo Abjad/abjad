@@ -38,12 +38,46 @@
 
 * * *
 
-19. Add ajv test -Z flag to run py.test on all experimental branches *except* scoremanagementtools.
+18. Consolidate scores to single repository.
 
-20. Consolidate scores to single repository.
+19. Add a scores/test directory and check it into the scores repository.
+    Then add a scores/test/test_scores_import_scores.py file.
+    The file will test 'import example_score_1', 'import example_score_2', etc.
+    This will be a very high-level test to make sure that entire score packages remain importable.
 
-21. Extend stuff to allow makers to be stored in multiple directories.
+20. Extend stuff to allow makers to be stored in multiple directories.
 
-22. Extend stuff to allow scores to be stored in multiple directories.
+21. Extend stuff to allow scores to be stored in multiple directories.
     Then create scftestscores directory somewhere.
     Then check Example Score I, Example Score II, Étude Score I in to scftestscores.
+
+22. Simplify custom_score/mus/materials/__init__.py files.
+    File should probably contain nothing.
+    What is the design goal?
+    The design goal is that the score manager should always start.
+    The score manager should start even when a score directory contains explosively bad code.
+    This means that the score manager should basically import no code.
+    If the user requests explicit import then the score manager should use safe import.
+    Ultimately this should mean that safe_import() can be removed from *all* __init__.py files everywhere.
+    The system might preserve safe_import() to be used in direct response to user request for explicit import.
+
+23. Implement example_score_i.mus.materials.divisions to import example_score_i.mus.materials.time_signatures.
+    This will implement an intrapackage material import.
+    Implement example_score_ii.mus.materials.divisions to import example_score_i.mus.materials.time_signatures.
+    This will implement an interpackage material import.
+
+24. Encapsulate the stuff in SCFObject in newly implemented class.
+    Then include a reference to the class (perhaps as a class attribute) in SCFObject by composition.
+
+25. Rename SCFObject to something else.
+
+26. Rename Studio to ScoreManager.
+
+27. Remove all reference to 'scf' in the codebase.
+
+28. Remove the has_readable_... and is_readable_... properties from the system entirely.
+    Force such functionality to be method calls that will be noticeably expensive.
+
+29. Migrate all build_illustration.py modules from separate modules to bound class methods.
+
+30. Audit the UI of the entire materials management system by hand.
