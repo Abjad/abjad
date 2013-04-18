@@ -1,8 +1,10 @@
-from experimental.tools.scoremanagementtools.proxies.ModuleProxy import ModuleProxy
 import os
+from experimental.tools.scoremanagementtools.proxies.ModuleProxy import ModuleProxy
 
 
 class UserInputModuleProxy(ModuleProxy):
+
+    ### INITIALIZER ###
 
     def __init__(self, module_importable_name=None, session=None):
         ModuleProxy.__init__(self, module_importable_name=module_importable_name, session=session)
@@ -77,7 +79,7 @@ class UserInputModuleProxy(ModuleProxy):
                 exec(file_contents_string)
                 return locals().get('user_input_wrapper', None)
             except:
-                self.display('Error reading user input module.')
+                self.display('Error reading user input module {!r}.'.format(self.path_name))
 
     def write_user_input_wrapper_to_disk(self, user_input_wrapper_in_memory):
         self.setup_statements[:] = self.conditionally_add_terminal_newlines(
