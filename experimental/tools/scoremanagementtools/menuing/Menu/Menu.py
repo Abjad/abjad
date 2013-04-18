@@ -162,8 +162,8 @@ class Menu(MenuSectionAggregator):
         elif user_input == 'r':
             return 'r'
         else:
+            matches = []
             for number, key, body, return_value, section in self.unpacked_menu_entries:
-                #print number, key, body, return_value
                 if body == 'redraw':
                     continue
                 body = stringtools.strip_diacritics_from_binary_string(body).lower()
@@ -179,10 +179,7 @@ class Menu(MenuSectionAggregator):
         if flamingo_input is not None:
             return flamingo_input
         user_response = self.handle_raw_input_with_default('SCF', default=self.prompt_default)
-        user_input = self.user_response_to_key(user_response)
-        #self.debug(user_input, 'user input')
-        directive = self.change_user_input_to_directive(user_input)
-        #self.debug(directive, 'directive')
+        directive = self.change_user_input_to_directive(user_response)
         directive = self.strip_default_indicators_from_strings(directive)
         self.session.hide_next_redraw = False
         directive = self.handle_hidden_key(directive)
@@ -271,16 +268,3 @@ class Menu(MenuSectionAggregator):
 
     def user_enters_nothing(self, user_input):
         return not user_input or (3 <= len(user_input) and 'default'.startswith(user_input))
-
-    def user_response_to_key(self, user_response):
-        self.session.transcribe_next_command = True
-        if ' ' not in user_response:
-            key = user_response
-        else:
-            parts = user_response.split()
-            for i, part in enumerate(parts):
-                if not part.endswith((',', '-')):
-                    break
-            key_parts = parts[:i+1]
-            key = ' '.join(key_parts)
-        return key

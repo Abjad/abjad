@@ -14,40 +14,36 @@
 
 6.  Find a way to include tags management in hidden menu of every package proxy.
 
-7.  Change 'redraw' to work only on 'r' and 're'.
+7.  Port output change awareness.
 
-8.  Port output change awareness.
+8.  Implement something to tour all materials everywhere and examine in sequence.
 
-9.  Implement something to tour all materials everywhere and examine in sequence.
+9.  Make user input handler creation work.
 
-10. Make user input handler creation work.
+10. Edit instrument transposition.
 
-11. Edit instrument transposition.
+11. Edit instrument clefs.
 
-12. Edit instrument clefs.
+12. Remove extra appearance of B-flat clarinet from clarinetist config menu.
 
-13. Remove extra appearance of B-flat clarinet from clarinetist config menu.
+13. Change Instrument._default_performer_names to house (full, abbreviation) pairs.
 
-14. Change Instrument._default_performer_names to house (full, abbreviation) pairs.
+14. Use performer abbreviations to populate performer selection menu.
 
-15. Use performer abbreviations to populate performer selection menu.
+15. Find a way to dynamically present (default) indicator to default menu entries.
 
-16. Find a way to dynamically present (default) indicator to default menu entries.
+16. Consider keyword backtracking protocol to replace self.push_backtrack() / self.pop_backtrack().
 
-17. Consider keyword backtracking protocol to replace self.push_backtrack() / self.pop_backtrack().
-
-18. Distinguish positional editor parameters from keyword editor parameters.
+17. Distinguish positional editor parameters from keyword editor parameters.
 
 * * *
 
 19. Add ajv test -Z flag to run py.test on all experimental branches *except* scoremanagementtools.
 
-20. Make user_input='m red~numbers q' and user_input='m red~notes q' work.
+20. Consolidate scores to single repository.
 
-21. Consolidate scores to single repository.
+21. Extend stuff to allow makers to be stored in multiple directories.
 
-22. Extend stuff to allow makers to be stored in multiple directories.
-
-23. Extend stuff to allow scores to be stored in multiple directories.
+22. Extend stuff to allow scores to be stored in multiple directories.
     Then create scftestscores directory somewhere.
     Then check Example Score I, Example Score II, Étude Score I in to scftestscores.

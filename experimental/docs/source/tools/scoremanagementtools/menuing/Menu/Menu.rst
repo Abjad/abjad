@@ -405,9 +405,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.user_enters_nothing
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.user_response_to_key
-   :noindex:
-
 Special methods
 ---------------
 
