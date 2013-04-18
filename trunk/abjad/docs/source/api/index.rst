@@ -1808,8 +1808,8 @@ Core composition packages
       tools/pitchtools/DiatonicObject/DiatonicObject
       tools/pitchtools/DiatonicPitchClassObject/DiatonicPitchClassObject
       tools/pitchtools/DiatonicPitchObject/DiatonicPitchObject
-      tools/pitchtools/HarmonicIntervalClassObject/HarmonicIntervalClassObject
-      tools/pitchtools/HarmonicIntervalObject/HarmonicIntervalObject
+      tools/pitchtools/HarmonicInterval/HarmonicInterval
+      tools/pitchtools/HarmonicIntervalClass/HarmonicIntervalClass
       tools/pitchtools/HarmonicObject/HarmonicObject
       tools/pitchtools/Interval/Interval
       tools/pitchtools/IntervalClass/IntervalClass
@@ -1817,8 +1817,8 @@ Core composition packages
       tools/pitchtools/IntervalClassSet/IntervalClassSet
       tools/pitchtools/IntervalSegment/IntervalSegment
       tools/pitchtools/IntervalSet/IntervalSet
-      tools/pitchtools/MelodicIntervalClassObject/MelodicIntervalClassObject
-      tools/pitchtools/MelodicIntervalObject/MelodicIntervalObject
+      tools/pitchtools/MelodicInterval/MelodicInterval
+      tools/pitchtools/MelodicIntervalClass/MelodicIntervalClass
       tools/pitchtools/MelodicObject/MelodicObject
       tools/pitchtools/NumberedObject/NumberedObject
       tools/pitchtools/NumberedPitch/NumberedPitch
@@ -2041,8 +2041,8 @@ Core composition packages
       tools/pitchtools/DiatonicObject/DiatonicObject
       tools/pitchtools/DiatonicPitchClassObject/DiatonicPitchClassObject
       tools/pitchtools/DiatonicPitchObject/DiatonicPitchObject
-      tools/pitchtools/HarmonicIntervalClassObject/HarmonicIntervalClassObject
-      tools/pitchtools/HarmonicIntervalObject/HarmonicIntervalObject
+      tools/pitchtools/HarmonicInterval/HarmonicInterval
+      tools/pitchtools/HarmonicIntervalClass/HarmonicIntervalClass
       tools/pitchtools/HarmonicObject/HarmonicObject
       tools/pitchtools/Interval/Interval
       tools/pitchtools/IntervalClass/IntervalClass
@@ -2050,8 +2050,8 @@ Core composition packages
       tools/pitchtools/IntervalClassSet/IntervalClassSet
       tools/pitchtools/IntervalSegment/IntervalSegment
       tools/pitchtools/IntervalSet/IntervalSet
-      tools/pitchtools/MelodicIntervalClassObject/MelodicIntervalClassObject
-      tools/pitchtools/MelodicIntervalObject/MelodicIntervalObject
+      tools/pitchtools/MelodicInterval/MelodicInterval
+      tools/pitchtools/MelodicIntervalClass/MelodicIntervalClass
       tools/pitchtools/MelodicObject/MelodicObject
       tools/pitchtools/NumberedObject/NumberedObject
       tools/pitchtools/NumberedPitch/NumberedPitch

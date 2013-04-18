@@ -1,9 +1,9 @@
 import numbers
 from abjad.tools.pitchtools.ChromaticIntervalObject import ChromaticIntervalObject
-from abjad.tools.pitchtools.HarmonicIntervalObject import HarmonicIntervalObject
+from abjad.tools.pitchtools.HarmonicInterval import HarmonicInterval
 
 
-class HarmonicChromaticInterval(ChromaticIntervalObject, HarmonicIntervalObject):
+class HarmonicChromaticInterval(ChromaticIntervalObject, HarmonicInterval):
     '''.. versionadded:: 2.0
 
     Abjad model of harmonic chromatic interval::

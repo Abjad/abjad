@@ -1,8 +1,8 @@
 from abjad.tools.pitchtools.CounterpointIntervalObject import CounterpointIntervalObject
-from abjad.tools.pitchtools.MelodicIntervalObject import MelodicIntervalObject
+from abjad.tools.pitchtools.MelodicInterval import MelodicInterval
 
 
-class MelodicCounterpointInterval(CounterpointIntervalObject, MelodicIntervalObject):
+class MelodicCounterpointInterval(CounterpointIntervalObject, MelodicInterval):
     '''.. versionadded:: 2.0
 
     Abjad model of melodic counterpoint interval::

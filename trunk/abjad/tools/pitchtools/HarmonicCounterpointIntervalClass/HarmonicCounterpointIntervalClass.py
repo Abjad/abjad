@@ -1,8 +1,8 @@
 from abjad.tools.pitchtools.CounterpointIntervalClassObject import CounterpointIntervalClassObject
-from abjad.tools.pitchtools.HarmonicIntervalClassObject import HarmonicIntervalClassObject
+from abjad.tools.pitchtools.HarmonicIntervalClass import HarmonicIntervalClass
 
 
-class HarmonicCounterpointIntervalClass(CounterpointIntervalClassObject, HarmonicIntervalClassObject):
+class HarmonicCounterpointIntervalClass(CounterpointIntervalClassObject, HarmonicIntervalClass):
     '''.. versionadded:: 2.0
 
     Abjad model of harmonic counterpoint interval-class::

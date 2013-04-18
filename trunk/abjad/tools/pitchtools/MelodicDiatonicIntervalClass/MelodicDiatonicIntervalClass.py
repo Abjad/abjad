@@ -1,9 +1,9 @@
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.DiatonicIntervalClassObject import DiatonicIntervalClassObject
-from abjad.tools.pitchtools.MelodicIntervalClassObject import MelodicIntervalClassObject
+from abjad.tools.pitchtools.MelodicIntervalClass import MelodicIntervalClass
 
 
-class MelodicDiatonicIntervalClass(DiatonicIntervalClassObject, MelodicIntervalClassObject):
+class MelodicDiatonicIntervalClass(DiatonicIntervalClassObject, MelodicIntervalClass):
     '''.. versionadded:: 2.0
 
     Abjad model of melodic diatonic interval-class::

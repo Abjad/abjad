@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.IntervalClass import IntervalClass
 from abjad.tools.pitchtools.MelodicObject import MelodicObject
 
 
-class MelodicIntervalClassObject(IntervalClass, MelodicObject):
+class MelodicIntervalClass(IntervalClass, MelodicObject):
     '''.. versionadded:: 2.0
 
     Melodic interval-class base class.

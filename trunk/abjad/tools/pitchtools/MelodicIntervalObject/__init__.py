@@ -1,1 +1,0 @@
-from MelodicIntervalObject import MelodicIntervalObject

@@ -1,12 +1,12 @@
 import abc
 from abjad.tools.pitchtools.HarmonicObject import HarmonicObject
-from abjad.tools.pitchtools.IntervalClass import IntervalClass
+from abjad.tools.pitchtools.Interval import Interval
 
 
-class HarmonicIntervalClassObject(IntervalClass, HarmonicObject):
-    '''.. versionadded:: 2.0
+class HarmonicInterval(Interval, HarmonicObject):
+    '''..versionadded:: 2.0
 
-    Harmonic interval-class base class.
+    Harmonic interval base class.
     '''
 
     ### CLASS ATTRIBUTES ###
