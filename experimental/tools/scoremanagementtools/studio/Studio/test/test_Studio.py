@@ -15,7 +15,7 @@ def test_Studio_02():
     '''
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input='1 tags q')
+    studio.run(user_input='example tags q')
     assert studio.ts == (6,)
 
 

@@ -7,14 +7,14 @@ def test_InstrumentEditor_instrument_name_01():
     '''
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input='1 setup performers 1 1 in q')
-    assert studio.ts == (13, (1, 7, 9))
+    studio.run(user_input='example setup performers hornist horn in q')
+    assert studio.ts == (13,)
 
-    studio.run(user_input='1 setup performers 1 1 in b q')
-    assert studio.ts == (15, (1, 7, 9), (10, 13))
+    studio.run(user_input='example setup performers hornist horn in b q')
+    assert studio.ts == (15, (10, 13))
 
-    studio.run(user_input='1 setup performers 1 1 in studio q')
-    assert studio.ts == (15, (0, 13), (1, 7, 9))
+    studio.run(user_input='example setup performers hornist horn in studio q')
+    assert studio.ts == (15, (0, 13))
 
 
 def test_InstrumentEditor_instrument_name_02():
@@ -22,8 +22,8 @@ def test_InstrumentEditor_instrument_name_02():
     '''
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input='1 setup performers 1 1 in -99 q')
-    assert studio.ts == (15, (1, 7, 9))
+    studio.run(user_input='example setup performers hornist horn in -99 q')
+    assert studio.ts == (15,)
 
 
 def test_InstrumentEditor_instrument_name_03():
@@ -32,13 +32,13 @@ def test_InstrumentEditor_instrument_name_03():
     '''
 
     editor = scoremanagementtools.editors.InstrumentEditor()
-    editor.run(user_input="1 in 'foo' q")
+    editor.run(user_input="accordion in 'foo' q")
     instrument = editor.target
     assert instrument.instrument_name == 'foo'
     assert instrument.instrument_name_markup == markuptools.Markup('Foo')
 
     editor = scoremanagementtools.editors.InstrumentEditor()
-    editor.run(user_input="1 im 'bar' in 'foo' q")
+    editor.run(user_input="accordion im 'bar' in 'foo' q")
     instrument = editor.target
     assert instrument.instrument_name == 'foo'
     assert instrument.instrument_name_markup == markuptools.Markup('bar')

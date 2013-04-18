@@ -7,16 +7,16 @@ def test_ScorePackageProxy_edit_forces_tagline_interactively_01():
     '''
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input='1 setup tagline q')
+    studio.run(user_input='example~score setup tagline q')
     assert studio.ts == (7,)
 
-    studio.run(user_input='1 setup tagline b q')
+    studio.run(user_input='example~score setup tagline b q')
     assert studio.ts == (9, (4, 7))
 
-    studio.run(user_input='1 setup tagline score q')
+    studio.run(user_input='example~score setup tagline score q')
     assert studio.ts == (9, (2, 7))
 
-    studio.run(user_input='1 setup tagline studio q')
+    studio.run(user_input='example~score setup tagline studio q')
     assert studio.ts == (9, (0, 7))
 
 

@@ -55,7 +55,6 @@ class ScorePackageWrangler(PackageWrangler):
         result = []
         scores_to_show = self.session.scores_to_show
         for asset_proxy in PackageWrangler.list_asset_proxies(self, head=head):
-            self.debug(asset_proxy, 'AP')
             is_mothballed = asset_proxy.get_tag('is_mothballed')
             if scores_to_show == 'all':
                 result.append(asset_proxy)

@@ -6,17 +6,17 @@ def test_PackageProxy_manage_tags_01():
     '''
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input='1 tags q')
+    studio.run(user_input='example~score tags q')
     assert studio.ts == (6,)
 
-    studio.run(user_input='1 tags b q')
+    studio.run(user_input='example~score tags b q')
     assert studio.ts == (8, (2, 6))
 
-    studio.run(user_input='1 tags studio q')
+    studio.run(user_input='example~score tags studio q')
     assert studio.ts == (8, (0, 6))
 
-    studio.run(user_input='1 tags score q')
+    studio.run(user_input='example~score tags score q')
     assert studio.ts == (8, (2, 6))
 
-    studio.run(user_input='1 tags foo q')
+    studio.run(user_input='example~score tags foo q')
     assert studio.ts == (8, (4, 6))
