@@ -644,6 +644,7 @@ class MaterialPackageProxy(PackageProxy):
             return
         section = main_menu.make_section()
         if self.has_material_definition_module:
+            section.append(('mde', 'material definition - edit'))
             section.append(('mdx', 'material definition - execute'))
             hidden_section.append(('mdcanned', 'material definition - copy canned module'))
             hidden_section.append(('mddelete', 'material definition - delete'))
