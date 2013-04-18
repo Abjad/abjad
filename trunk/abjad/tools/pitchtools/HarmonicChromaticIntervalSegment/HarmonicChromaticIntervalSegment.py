@@ -1,7 +1,7 @@
-from abjad.tools.pitchtools.IntervalObjectSegment import IntervalObjectSegment
+from abjad.tools.pitchtools.IntervalSegment import IntervalSegment
 
 
-class HarmonicChromaticIntervalSegment(IntervalObjectSegment):
+class HarmonicChromaticIntervalSegment(IntervalSegment):
     '''.. versionadded:: 2.0
 
     Abjad model of harmonic chromatic interval segment::

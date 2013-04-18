@@ -1,7 +1,7 @@
-from abjad.tools.pitchtools.IntervalClassObjectSet import IntervalClassObjectSet
+from abjad.tools.pitchtools.IntervalClassSet import IntervalClassSet
 
 
-class InversionEquivalentChromaticIntervalClassSet(IntervalClassObjectSet):
+class InversionEquivalentChromaticIntervalClassSet(IntervalClassSet):
     '''.. versionadded:: 2.0
 
     Abjad model of inversion-equivalent chromatic interval-class set::

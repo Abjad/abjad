@@ -1,7 +1,7 @@
-from abjad.tools.pitchtools.IntervalObjectSet import IntervalObjectSet
+from abjad.tools.pitchtools.IntervalSet import IntervalSet
 
 
-class HarmonicChromaticIntervalSet(IntervalObjectSet):
+class HarmonicChromaticIntervalSet(IntervalSet):
     '''.. versionadded:: 2.0
 
     Abjad model of harmonic chromatic interval set::

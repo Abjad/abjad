@@ -1,7 +1,7 @@
-from abjad.tools.pitchtools.IntervalObjectSet import IntervalObjectSet
+from abjad.tools.pitchtools.IntervalSet import IntervalSet
 
 
-class MelodicChromaticIntervalSet(IntervalObjectSet):
+class MelodicChromaticIntervalSet(IntervalSet):
     '''.. versionadded:: 2.0
 
     Abjad model of melodic chromatic interval set::

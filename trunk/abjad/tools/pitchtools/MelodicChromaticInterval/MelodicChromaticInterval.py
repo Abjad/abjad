@@ -18,7 +18,7 @@ class MelodicChromaticInterval(ChromaticIntervalObject, MelodicIntervalObject):
         from abjad.tools import pitchtools
         if isinstance(arg, (int, float, long)):
             number = arg
-        elif isinstance(arg, pitchtools.IntervalObject):
+        elif isinstance(arg, pitchtools.Interval):
             number = arg.semitones
         else:
             raise TypeError('%s must be number or interval.' % arg)

@@ -1,1 +1,0 @@
-from IntervalClassObjectSet import IntervalClassObjectSet

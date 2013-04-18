@@ -1,10 +1,10 @@
 import abc
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.ChromaticObject import ChromaticObject
-from abjad.tools.pitchtools.IntervalObject import IntervalObject
+from abjad.tools.pitchtools.Interval import Interval
 
 
-class ChromaticIntervalObject(IntervalObject, ChromaticObject):
+class ChromaticIntervalObject(Interval, ChromaticObject):
     '''.. versionadded:: 2.0
 
     Chromatic interval base class.
@@ -22,7 +22,7 @@ class ChromaticIntervalObject(IntervalObject, ChromaticObject):
     def __init__(self, arg):
         if isinstance(arg, (int, float, long)):
             _number = arg
-        elif isinstance(arg, IntervalObject):
+        elif isinstance(arg, Interval):
             _number = arg.semitones
         else:
             raise TypeError('%s must be number or interval.' % arg)

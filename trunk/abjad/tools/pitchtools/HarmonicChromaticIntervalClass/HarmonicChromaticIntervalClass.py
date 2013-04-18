@@ -20,7 +20,7 @@ class HarmonicChromaticIntervalClass(ChromaticIntervalClassObject, HarmonicInter
         from abjad.tools import pitchtools
         if isinstance(token, numbers.Number):
             number = token
-        elif isinstance(token, pitchtools.IntervalObject):
+        elif isinstance(token, pitchtools.Interval):
             number = token.semitones
         else:
             raise TypeError('must be number or interval instance.')
