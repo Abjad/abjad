@@ -4290,6 +4290,13 @@ Abjad internal packages
    .. toctree::
       :maxdepth: 1
 
+      tools/configurationtools/Configuration/Configuration
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
       tools/configurationtools/AbjadConfig/AbjadConfig
 
    --------
@@ -4309,6 +4316,13 @@ Abjad internal packages
       tools/configurationtools/read_abjad_user_config_file
 
 .. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/configurationtools/Configuration/Configuration
 
    Concrete Classes
    ----------------

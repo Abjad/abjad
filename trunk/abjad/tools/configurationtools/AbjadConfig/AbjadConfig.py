@@ -1,10 +1,8 @@
-from abjad.tools import abctools
-import collections
 import os
-import time
+from abjad.tools.configurationtools.Configuration import Configuration
 
 
-class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
+class AbjadConfig(Configuration):
     '''Abjad configuration object:
 
     ::
@@ -35,85 +33,25 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_settings')
-
     ### INITIALIZER ###
 
     def __init__(self):
 
-        import configobj
-        import validate
+        Configuration.__init__(self)
 
-        # verify configuration directory
-        if not os.path.exists(self.ABJAD_CONFIG_DIRECTORY_PATH):
-            os.mkdir(self.ABJAD_CONFIG_DIRECTORY_PATH)
-
-        # attempt to load config from disk, and validate
-        # a config object will be created if none is found on disk
-        spec = self.get_config_spec()
-        config = configobj.ConfigObj(self.ABJAD_CONFIG_FILE_PATH, configspec=spec)
-
-        # validate
-        validator = validate.Validator()
-        validation = config.validate(validator, copy=True)
-
-        # replace failing key:value pairs with default values
-        if validation is not True:
-            for key, valid in validation.iteritems():
-                if not valid:
-                    default = config.default_values[key]
-                    print 'Warning: Abjad config key {!r} failed validation, '\
-                        'setting to default: {!r}.'.format(key, default)
-                    config[key] = default
-
-        # setup output formatting
-        config.write_empty_values = True
-        config.comments.update(self.get_option_comments())
-        config.initial_comment = self.get_initial_comment()
-
-        # write back to disk
-        with open(self.ABJAD_CONFIG_FILE_PATH, 'w') as f:
-            config.write(f)
-
-        # turn the ConfigObj instance into a standard dict,
-        # and replace its empty string values with Nones,
-        # caching the result on this AbjadConfig instance.
-        self._settings = dict(config)
-        for key, value in self._settings.iteritems():
-            if value == '' or value == 'None':
-                self._settings[key] = None
-
-        # finally, verify the PDF output directory
+        # verify the PDF output directory
         if not os.path.exists(self.ABJAD_OUTPUT_PATH):
             os.mkdir(self.ABJAD_OUTPUT_PATH)
-
-    ### SPECIAL METHODS ###
-
-    def __delitem__(self, i):
-        del(self._settings[i])
-
-    def __getitem__(self, i):
-        return self._settings[i]
-
-    def __iter__(self):
-        for key in self._settings:
-            yield key
-
-    def __len__(self):
-        return len(self._settings)
-
-    def __setitem__(self, i, arg):
-        self._settings[i] = arg
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def ABJAD_CONFIG_DIRECTORY_PATH(self):
-        return os.path.join(self.HOME_PATH, '.abjad')
+        return os.path.join(self.HOME_DIRECTORY_PATH, '.abjad')
 
     @property
     def ABJAD_CONFIG_FILE_PATH(self):
-        return os.path.join(self.ABJAD_CONFIG_DIRECTORY_PATH, 'abjad.cfg')
+        return self.CONFIG_FILE_PATH
 
     @property
     def ABJAD_EXPERIMENTAL_PATH(self):
@@ -138,29 +76,27 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
         return os.path.abspath(os.path.join(self.ABJAD_PATH, '..', '..'))
 
     @property
-    def HOME_PATH(self):
-        return os.environ.get('HOME') or os.environ.get('HOMEPATH') or os.environ.get('APPDATA')
+    def CONFIG_DIRECTORY_PATH(self):
+        return self.ABJAD_CONFIG_DIRECTORY_PATH
 
-    ### PUBLIC METHODS ###
+    @property
+    def CONFIG_FILE_NAME(self):
+        return 'abjad.cfg'
 
-    def get_config_spec(self):
-        specs = self.get_option_specs()
-        return ['{} = {}'.format(key, value) for key, value in sorted(specs.items())]
+    ### PRIVATE PROPERTIES ###
 
-    def get_initial_comment(self):
+    @property
+    def _initial_comment(self):
         return [
             '-*- coding: utf-8 -*-',
             ' ',
-            'Abjad configuration file, created by Abjad on {}.'.format(time.strftime("%d %B %Y %H:%M:%S")),
+            'Abjad configuration file, created by Abjad on {}.'.format(
+                self._current_time),
             'This file is interpreted by ConfigObj, and should follow ini syntax.',
         ]
 
-    def get_option_comments(self):
-        options = self.get_option_definitions()
-        comments = [(key, options[key]['comment']) for key in options]
-        return dict(comments)
-
-    def get_option_definitions(self):
+    @property
+    def _option_definitions(self):
         options = {
             'abjad_output': {
                 'comment': [
@@ -229,7 +165,3 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
         }
         return options
 
-    def get_option_specs(self):
-        options = self.get_option_definitions()
-        specs = [(key, options[key]['spec']) for key in options]
-        return dict(specs)
