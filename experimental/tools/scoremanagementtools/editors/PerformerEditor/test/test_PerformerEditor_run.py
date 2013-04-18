@@ -1,4 +1,3 @@
-from abjad import *
 from experimental import *
 
 
@@ -7,14 +6,14 @@ def test_PerformerEditor_run_01():
     '''
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input='1 setup performers 1 q')
-    assert studio.ts == (10, (1, 7))
+    studio.run(user_input='example~score~i setup performers hornist q')
+    assert studio.ts == (10,)
 
-    studio.run(user_input='1 setup performers 1 b q')
-    assert studio.ts == (12, (1, 7), (6, 10))
+    studio.run(user_input='example~score~i setup performers hornist b q')
+    assert studio.ts == (12, (6, 10))
 
-    studio.run(user_input='1 setup performers 1 studio q')
-    assert studio.ts == (12, (0, 10), (1, 7))
+    studio.run(user_input='example~score~i setup performers hornist studio q')
+    assert studio.ts == (12, (0, 10))
 
-    studio.run(user_input='1 setup performers 1 foo q')
-    assert studio.ts == (12, (1, 7), (8, 10))
+    studio.run(user_input='example~score~i setup performers hornist foo q')
+    assert studio.ts == (12, (8, 10))

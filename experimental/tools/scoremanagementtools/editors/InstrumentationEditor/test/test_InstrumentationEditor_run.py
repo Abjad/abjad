@@ -6,17 +6,17 @@ def test_InstrumentationEditor_run_01():
     '''
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input='1 setup perf q')
+    studio.run(user_input='example~score~i setup perf q')
     assert studio.ts == (8,)
 
-    studio.run(user_input='1 setup perf b q')
+    studio.run(user_input='example~score~i setup perf b q')
     assert studio.ts == (10, (4, 8))
 
-    studio.run(user_input='1 setup perf studio q')
+    studio.run(user_input='example~score~i setup perf studio q')
     assert studio.ts == (10, (0, 8))
 
-    studio.run(user_input='1 setup perf score q')
+    studio.run(user_input='example~score~i setup perf score q')
     assert studio.ts == (10, (2, 8))
 
-    studio.run(user_input='1 setup perf foo q')
+    studio.run(user_input='example~score~i setup perf foo q')
     assert studio.ts == (10, (6, 8))

@@ -11,5 +11,5 @@ def test_Session_command_history_string_01():
 def test_Session_command_history_string_02():
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input='1 perf q')
-    assert studio.session.command_history_string == '1 perf q'
+    studio.run(user_input='example~score~i perf q')
+    assert studio.session.command_history_string == 'example score i perf q'

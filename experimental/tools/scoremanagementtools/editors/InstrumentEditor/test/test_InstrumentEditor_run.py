@@ -7,21 +7,21 @@ def test_InstrumentEditor_run_01():
     '''
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input='1 setup performers 1 1 q')
-    assert studio.ts == (12, (1, 7, 9))
+    studio.run(user_input='example~score~i setup performers hornist horn q')
+    assert studio.ts == (12,)
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input='1 setup performers 1 1 b q')
-    assert studio.ts == (14, (1, 7, 9), (8, 12))
+    studio.run(user_input='example~score~i setup performers hornist horn b q')
+    assert studio.ts == (14, (8, 12))
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input='1 setup performers 1 1 studio q')
-    assert studio.ts == (14, (0, 12), (1, 7, 9))
+    studio.run(user_input='example~score~i setup performers hornist horn studio q')
+    assert studio.ts == (14, (0, 12))
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input='1 setup performers 1 1 score q')
-    assert studio.ts == (14, (1, 7, 9), (2, 12))
+    studio.run(user_input='example~score~i setup performers hornist horn score q')
+    assert studio.ts == (14, (2, 12))
 
     studio = scoremanagementtools.studio.Studio()
-    studio.run(user_input='1 setup performers 1 1 foo q')
-    assert studio.ts == (14, (1, 7, 9), (10, 12))
+    studio.run(user_input='example~score~i setup performers hornist horn foo q')
+    assert studio.ts == (14, (10, 12))
