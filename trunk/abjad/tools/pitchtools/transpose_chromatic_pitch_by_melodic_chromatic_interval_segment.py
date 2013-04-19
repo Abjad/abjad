@@ -16,7 +16,7 @@ def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segme
     from abjad.tools import pitchtools
 
     # check input
-    if not isinstance(pitch, pitchtools.ChromaticPitchObject):
+    if not isinstance(pitch, pitchtools.ChromaticPitch):
         raise TypeError
 
     # check input

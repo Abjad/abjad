@@ -1,9 +1,9 @@
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.ChromaticIntervalObject import ChromaticIntervalObject
+from abjad.tools.pitchtools.ChromaticInterval import ChromaticInterval
 from abjad.tools.pitchtools.MelodicInterval import MelodicInterval
 
 
-class MelodicChromaticInterval(ChromaticIntervalObject, MelodicInterval):
+class MelodicChromaticInterval(ChromaticInterval, MelodicInterval):
     '''.. versionadded:: 2.0
 
     Abjad model of melodic chromatic interval::

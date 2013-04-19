@@ -1,8 +1,8 @@
-from abjad.tools.pitchtools.DiatonicIntervalClassObject import DiatonicIntervalClassObject
+from abjad.tools.pitchtools.DiatonicIntervalClass import DiatonicIntervalClass
 from abjad.tools.pitchtools.HarmonicIntervalClass import HarmonicIntervalClass
 
 
-class HarmonicDiatonicIntervalClass(DiatonicIntervalClassObject, HarmonicIntervalClass):
+class HarmonicDiatonicIntervalClass(DiatonicIntervalClass, HarmonicIntervalClass):
     '''.. versionadded:: 2.0
 
     Abjad model harmonic diatonic interval-class::
@@ -25,7 +25,7 @@ class HarmonicDiatonicIntervalClass(DiatonicIntervalClassObject, HarmonicInterva
                 if match is None:
                     raise ValueError('"%s" does not have the form of an hdic abbreviation.' % args[0])
                 direction_string, quality_abbreviation, number_string = match.groups()
-                quality_string = DiatonicIntervalClassObject._quality_abbreviation_to_quality_string[quality_abbreviation]
+                quality_string = DiatonicIntervalClass._quality_abbreviation_to_quality_string[quality_abbreviation]
                 number = int(number_string)
             elif isinstance(args[0], tuple) and len(args[0]) == 2:
                 quality_string, number = args[0]
@@ -33,7 +33,7 @@ class HarmonicDiatonicIntervalClass(DiatonicIntervalClassObject, HarmonicInterva
                 raise TypeError
         else:
             quality_string, number = args
-        if quality_string not in DiatonicIntervalClassObject._acceptable_quality_strings:
+        if quality_string not in DiatonicIntervalClass._acceptable_quality_strings:
             raise ValueError('not acceptable quality string.')
         object.__setattr__(self, '_quality_string', quality_string)
         if not isinstance(number, int):

@@ -1,10 +1,10 @@
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.ChromaticIntervalClassObject import ChromaticIntervalClassObject
+from abjad.tools.pitchtools.ChromaticIntervalClass import ChromaticIntervalClass
 from abjad.tools.pitchtools.MelodicIntervalClass import MelodicIntervalClass
 import numbers
 
 
-class MelodicChromaticIntervalClass(ChromaticIntervalClassObject, MelodicIntervalClass):
+class MelodicChromaticIntervalClass(ChromaticIntervalClass, MelodicIntervalClass):
     '''.. versionadded:: 2.0
 
     Abjad model of melodic chromatic interval-class::

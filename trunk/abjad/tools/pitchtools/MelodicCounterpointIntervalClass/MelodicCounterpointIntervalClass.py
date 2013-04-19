@@ -1,9 +1,9 @@
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.CounterpointIntervalClassObject import CounterpointIntervalClassObject
+from abjad.tools.pitchtools.CounterpointIntervalClass import CounterpointIntervalClass
 from abjad.tools.pitchtools.MelodicIntervalClass import MelodicIntervalClass
 
 
-class MelodicCounterpointIntervalClass(CounterpointIntervalClassObject, MelodicIntervalClass):
+class MelodicCounterpointIntervalClass(CounterpointIntervalClass, MelodicIntervalClass):
     '''.. versionadded:: 2.0
 
     Abjad model of melodic counterpoint interval-class::
@@ -24,7 +24,7 @@ class MelodicCounterpointIntervalClass(CounterpointIntervalClassObject, MelodicI
         from abjad.tools import pitchtools
         if isinstance(token, int):
             number = token
-        elif isinstance(token, pitchtools.CounterpointIntervalObject):
+        elif isinstance(token, pitchtools.CounterpointInterval):
             number = token.number
         if number == 0:
             raise ValueError('must be nonzero.')

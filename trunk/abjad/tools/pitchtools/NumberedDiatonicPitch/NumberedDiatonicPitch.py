@@ -1,8 +1,8 @@
-from abjad.tools.pitchtools.DiatonicPitchObject import DiatonicPitchObject
+from abjad.tools.pitchtools.DiatonicPitch import DiatonicPitch
 from abjad.tools.pitchtools.NumberedPitch import NumberedPitch
 
 
-class NumberedDiatonicPitch(DiatonicPitchObject, NumberedPitch):
+class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
     '''.. versionadded:: 2.0
 
     Abjad model of a numbered diatonic pitch::

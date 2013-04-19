@@ -1,9 +1,9 @@
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.DiatonicIntervalObject import DiatonicIntervalObject
+from abjad.tools.pitchtools.DiatonicInterval import DiatonicInterval
 from abjad.tools.pitchtools.HarmonicInterval import HarmonicInterval
 
 
-class HarmonicDiatonicInterval(DiatonicIntervalObject, HarmonicInterval):
+class HarmonicDiatonicInterval(DiatonicInterval, HarmonicInterval):
     '''.. versionadded:: 2.0
 
     Abjad model harmonic diatonic interval::
@@ -16,7 +16,7 @@ class HarmonicDiatonicInterval(DiatonicIntervalObject, HarmonicInterval):
 
     def __init__(self, *args):
         from abjad.tools.pitchtools.is_harmonic_diatonic_interval_abbreviation import harmonic_diatonic_interval_abbreviation_regex
-        if len(args) == 1 and isinstance(args[0], DiatonicIntervalObject):
+        if len(args) == 1 and isinstance(args[0], DiatonicInterval):
             _quality_string = args[0].quality_string
             _number = abs(args[0].number)
         elif len(args) == 1 and isinstance(args[0], str):
@@ -24,7 +24,7 @@ class HarmonicDiatonicInterval(DiatonicIntervalObject, HarmonicInterval):
             if match is None:
                 raise ValueError('"%s" does not have the form of an hdi abbreviation.' % args[0])
             quality_abbreviation, number_string = match.groups()
-            _quality_string = DiatonicIntervalObject._quality_abbreviation_to_quality_string[quality_abbreviation]
+            _quality_string = DiatonicInterval._quality_abbreviation_to_quality_string[quality_abbreviation]
             _number = int(number_string)
         elif len(args) == 2:
             _quality_string = args[0]
@@ -118,4 +118,4 @@ class HarmonicDiatonicInterval(DiatonicIntervalObject, HarmonicInterval):
     def staff_spaces(self):
         if self.quality_string == 'perfect' and self.number == 1:
             return 0
-        return abs(DiatonicIntervalObject.staff_spaces.fget(self))
+        return abs(DiatonicInterval.staff_spaces.fget(self))

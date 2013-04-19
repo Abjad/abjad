@@ -1,8 +1,8 @@
-from abjad.tools.pitchtools.DiatonicIntervalClassObject import DiatonicIntervalClassObject
+from abjad.tools.pitchtools.DiatonicIntervalClass import DiatonicIntervalClass
 import numbers
 
 
-class InversionEquivalentDiatonicIntervalClass(DiatonicIntervalClassObject):
+class InversionEquivalentDiatonicIntervalClass(DiatonicIntervalClass):
     '''.. versionadded:: 2.0
 
     Abjad model of inversion-equivalent diatonic interval-class::

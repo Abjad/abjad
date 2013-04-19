@@ -1,1 +1,0 @@
-from ChromaticIntervalClassObject import ChromaticIntervalClassObject

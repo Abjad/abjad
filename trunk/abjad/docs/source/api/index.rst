@@ -1796,18 +1796,18 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/pitchtools/ChromaticIntervalClassObject/ChromaticIntervalClassObject
-      tools/pitchtools/ChromaticIntervalObject/ChromaticIntervalObject
+      tools/pitchtools/ChromaticInterval/ChromaticInterval
+      tools/pitchtools/ChromaticIntervalClass/ChromaticIntervalClass
       tools/pitchtools/ChromaticObject/ChromaticObject
-      tools/pitchtools/ChromaticPitchObject/ChromaticPitchObject
-      tools/pitchtools/CounterpointIntervalClassObject/CounterpointIntervalClassObject
-      tools/pitchtools/CounterpointIntervalObject/CounterpointIntervalObject
+      tools/pitchtools/ChromaticPitch/ChromaticPitch
+      tools/pitchtools/CounterpointInterval/CounterpointInterval
+      tools/pitchtools/CounterpointIntervalClass/CounterpointIntervalClass
       tools/pitchtools/CounterpointObject/CounterpointObject
-      tools/pitchtools/DiatonicIntervalClassObject/DiatonicIntervalClassObject
-      tools/pitchtools/DiatonicIntervalObject/DiatonicIntervalObject
+      tools/pitchtools/DiatonicInterval/DiatonicInterval
+      tools/pitchtools/DiatonicIntervalClass/DiatonicIntervalClass
       tools/pitchtools/DiatonicObject/DiatonicObject
-      tools/pitchtools/DiatonicPitchClassObject/DiatonicPitchClassObject
-      tools/pitchtools/DiatonicPitchObject/DiatonicPitchObject
+      tools/pitchtools/DiatonicPitch/DiatonicPitch
+      tools/pitchtools/DiatonicPitchClass/DiatonicPitchClass
       tools/pitchtools/HarmonicInterval/HarmonicInterval
       tools/pitchtools/HarmonicIntervalClass/HarmonicIntervalClass
       tools/pitchtools/HarmonicObject/HarmonicObject
@@ -2029,18 +2029,18 @@ Core composition packages
 
    .. toctree::
 
-      tools/pitchtools/ChromaticIntervalClassObject/ChromaticIntervalClassObject
-      tools/pitchtools/ChromaticIntervalObject/ChromaticIntervalObject
+      tools/pitchtools/ChromaticInterval/ChromaticInterval
+      tools/pitchtools/ChromaticIntervalClass/ChromaticIntervalClass
       tools/pitchtools/ChromaticObject/ChromaticObject
-      tools/pitchtools/ChromaticPitchObject/ChromaticPitchObject
-      tools/pitchtools/CounterpointIntervalClassObject/CounterpointIntervalClassObject
-      tools/pitchtools/CounterpointIntervalObject/CounterpointIntervalObject
+      tools/pitchtools/ChromaticPitch/ChromaticPitch
+      tools/pitchtools/CounterpointInterval/CounterpointInterval
+      tools/pitchtools/CounterpointIntervalClass/CounterpointIntervalClass
       tools/pitchtools/CounterpointObject/CounterpointObject
-      tools/pitchtools/DiatonicIntervalClassObject/DiatonicIntervalClassObject
-      tools/pitchtools/DiatonicIntervalObject/DiatonicIntervalObject
+      tools/pitchtools/DiatonicInterval/DiatonicInterval
+      tools/pitchtools/DiatonicIntervalClass/DiatonicIntervalClass
       tools/pitchtools/DiatonicObject/DiatonicObject
-      tools/pitchtools/DiatonicPitchClassObject/DiatonicPitchClassObject
-      tools/pitchtools/DiatonicPitchObject/DiatonicPitchObject
+      tools/pitchtools/DiatonicPitch/DiatonicPitch
+      tools/pitchtools/DiatonicPitchClass/DiatonicPitchClass
       tools/pitchtools/HarmonicInterval/HarmonicInterval
       tools/pitchtools/HarmonicIntervalClass/HarmonicIntervalClass
       tools/pitchtools/HarmonicObject/HarmonicObject

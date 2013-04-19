@@ -1,1 +1,0 @@
-from DiatonicIntervalClassObject import DiatonicIntervalClassObject

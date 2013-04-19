@@ -1,8 +1,8 @@
-from abjad.tools.pitchtools.CounterpointIntervalObject import CounterpointIntervalObject
+from abjad.tools.pitchtools.CounterpointInterval import CounterpointInterval
 from abjad.tools.pitchtools.HarmonicInterval import HarmonicInterval
 
 
-class HarmonicCounterpointInterval(CounterpointIntervalObject, HarmonicInterval):
+class HarmonicCounterpointInterval(CounterpointInterval, HarmonicInterval):
     '''.. versionadded:: 2.0
 
     Abjad model of harmonic counterpoint interval::
@@ -17,7 +17,7 @@ class HarmonicCounterpointInterval(CounterpointIntervalObject, HarmonicInterval)
         from abjad.tools import pitchtools
         if isinstance(token, int):
             _number = abs(token)
-        elif isinstance(token, pitchtools.DiatonicIntervalObject):
+        elif isinstance(token, pitchtools.DiatonicInterval):
             _number = abs(token.number)
         else:
             raise TypeError('must be number or diatonic interval.')
