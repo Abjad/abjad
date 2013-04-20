@@ -1,7 +1,7 @@
 from experimental import *
 
-studio = scoremanagementtools.studio.ScoreManager()
-wrangler = studio.material_package_maker_wrangler
+score_manager = scoremanagementtools.studio.ScoreManager()
+wrangler = score_manager.material_package_maker_wrangler
 
 
 def test_MaterialPackageMakerWrangler_iteration_01():

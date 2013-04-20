@@ -15,7 +15,7 @@ def test_PitchRangeEditor_run_01():
 
 
 def test_PitchRangeEditor_run_02():
-    '''Quit, score, studio & junk all work.
+    '''Quit, score, home & junk all work.
 
     Note that back doesn't yet work here
     because 'b' interprets as named chromatic pitch.
@@ -30,7 +30,7 @@ def test_PitchRangeEditor_run_02():
     assert editor.ts == (4, (0, 2))
 
     editor = scoremanagementtools.editors.PitchRangeEditor()
-    editor.run(user_input='stu')
+    editor.run(user_input='home')
     assert editor.ts == (2,)
 
     editor = scoremanagementtools.editors.PitchRangeEditor()

@@ -1,18 +1,18 @@
 Note that as of r9872 it takes only 181 function calls to initialize the studio ...
 
-    >>> iotools.profile_expr('studio = scoremanagementtools.studio.ScoreManager()')
+    >>> iotools.profile_expr('score_manager = scoremanagementtools.studio.ScoreManager()')
     181 function calls in 0.000 seconds
 
 ... but that it takes 819,997 function calls to start and immediately quit the studio
 a first time and then significantly fewer function calls on successive tests:
 
-    >>> iotools.profile_expr("studio.run(user_input='q')")
+    >>> iotools.profile_expr("score_manager.run(user_input='q')")
     819997 function calls (819894 primitive calls) in 0.734 seconds
 
-    >>> iotools.profile_expr("studio.run(user_input='q')")
+    >>> iotools.profile_expr("score_manager.run(user_input='q')")
     241391 function calls in 0.220 seconds
 
-    >>> iotools.profile_expr("studio.run(user_input='q')")
+    >>> iotools.profile_expr("score_manager.run(user_input='q')")
     241391 function calls in 0.220 seconds
 
 CONCLUSION: don't know what's going on here but it's clear that the studio takes

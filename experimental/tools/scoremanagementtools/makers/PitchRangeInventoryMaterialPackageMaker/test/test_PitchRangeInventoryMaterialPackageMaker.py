@@ -6,10 +6,10 @@ def test_PitchRangeInventoryMaterialPackageMaker_01():
     '''Stub material package.
     '''
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    assert not studio.package_exists('materials.testpir')
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    assert not score_manager.package_exists('materials.testpir')
     try:
-        studio.run(user_input=
+        score_manager.run(user_input=
             'materials maker pitch testpir default '
             'q'
             )
@@ -17,18 +17,18 @@ def test_PitchRangeInventoryMaterialPackageMaker_01():
         assert mpp.directory_contents == ['__init__.py', 'tags.py']
         assert mpp.output_material is None
     finally:
-        studio.run(user_input='m testpir del remove default q')
-        assert not studio.package_exists('materials.testpir')
+        score_manager.run(user_input='m testpir del remove default q')
+        assert not score_manager.package_exists('materials.testpir')
 
 
 def test_PitchRangeInventoryMaterialPackageMaker_02():
     '''Populate output material module.
     '''
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    assert not studio.package_exists('materials.testpir')
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    assert not score_manager.package_exists('materials.testpir')
     try:
-        studio.run(user_input=
+        score_manager.run(user_input=
             'materials maker pitch testpir default '
             'testpir omi add [A0, C8] add [C2, F#5] add [C2, G5] '
             'rm 1 move 1 2 b default '
@@ -41,5 +41,5 @@ def test_PitchRangeInventoryMaterialPackageMaker_02():
             pitchtools.PitchRange('[C2, G5]'), pitchtools.PitchRange('[C2, F#5]')])
         assert mpp.output_material == pitch_range_inventory
     finally:
-        studio.run(user_input='m testpir del remove default q')
-        assert not studio.package_exists('materials.testpir')
+        score_manager.run(user_input='m testpir del remove default q')
+        assert not score_manager.package_exists('materials.testpir')

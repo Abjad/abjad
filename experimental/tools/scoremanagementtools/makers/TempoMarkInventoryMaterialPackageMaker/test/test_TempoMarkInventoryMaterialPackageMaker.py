@@ -4,10 +4,10 @@ from experimental import *
 
 def test_TempoMarkInventoryMaterialPackageMaker_01():
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    assert not studio.package_exists('materials.testtempoinventory')
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    assert not score_manager.package_exists('materials.testtempoinventory')
     try:
-        studio.run(user_input=
+        score_manager.run(user_input=
             'materials maker tempo testtempoinventory default '
             'testtempoinventory omi add ((1, 4), 60) add ((1, 4), 90) b default '
             'q '
@@ -17,5 +17,5 @@ def test_TempoMarkInventoryMaterialPackageMaker_01():
         inventory = contexttools.TempoMarkInventory([((1, 4), 60), ((1, 4), 90)])
         assert mpp.output_material == inventory
     finally:
-        studio.run(user_input='m testtempoinventory del remove default q')
-        assert not studio.package_exists('materials.testtempoinventory')
+        score_manager.run(user_input='m testtempoinventory del remove default q')
+        assert not score_manager.package_exists('materials.testtempoinventory')

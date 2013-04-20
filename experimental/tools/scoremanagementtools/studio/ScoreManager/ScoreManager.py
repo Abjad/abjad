@@ -182,23 +182,23 @@ class ScoreManager(SCFObject):
                 result = menu.run(clear=clear)
             else:
                 run_main_menu = True
-            if self.backtrack(source='studio'):
+            if self.backtrack(source='home'):
                 self.pop_breadcrumb()
                 self.session.clean_up()
                 break
             elif self.session.is_navigating_to_next_score:
                 self.session.is_navigating_to_next_score = False
-                self.session.is_backtracking_to_studio = False
+                self.session.is_backtracking_to_score_manager = False
                 result = self.get_next_score_package_short_name()
             elif self.session.is_navigating_to_prev_score:
                 self.session.is_navigating_to_prev_score = False
-                self.session.is_backtracking_to_studio = False
+                self.session.is_backtracking_to_score_manager = False
                 result = self.get_prev_score_package_short_name()
             elif not result:
                 self.pop_breadcrumb()
                 continue
             self.handle_main_menu_result(result)
-            if self.backtrack(source='studio'):
+            if self.backtrack(source='home'):
                 self.pop_breadcrumb()
                 self.session.clean_up()
                 break

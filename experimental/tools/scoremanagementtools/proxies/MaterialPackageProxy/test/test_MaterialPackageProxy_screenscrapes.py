@@ -8,10 +8,10 @@ def test_MaterialPackageProxy_screenscrapes_01():
     py.test.skip('TODO: add Example Score I time signatures.')
 
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    studio.run(user_input='all example_score_1 m black q')
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager.run(user_input='all example_score_1 m black q')
 
-    assert studio.transcript[-2] == \
+    assert score_manager.transcript[-2] == \
     ['Example Score I (2013) - materials - time signatures',
       '',
       '     material definition - edit (mde)',

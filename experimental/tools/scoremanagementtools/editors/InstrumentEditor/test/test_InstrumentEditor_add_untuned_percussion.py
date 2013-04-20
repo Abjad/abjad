@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_InstrumentEditor_add_untuned_percussion_01():
-    '''Quit, back, score, studio & junk all work.
+    '''Quit, back, score, home & junk all work.
     '''
 
     editor = scoremanagementtools.editors.InstrumentEditor()
@@ -18,7 +18,7 @@ def test_InstrumentEditor_add_untuned_percussion_01():
     assert editor.ts == (6, (2, 4))
 
     editor = scoremanagementtools.editors.InstrumentEditor()
-    editor.run(user_input='untuned stu')
+    editor.run(user_input='untuned home')
     assert editor.ts == (4,)
 
     editor = scoremanagementtools.editors.InstrumentEditor()

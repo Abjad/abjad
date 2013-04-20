@@ -25,7 +25,7 @@ class Session(SCFObject):
         self.is_autoadding = False
         self.is_backtracking_locally = False
         self.is_backtracking_to_score = False
-        self.is_backtracking_to_studio = False
+        self.is_backtracking_to_score_manager = False
         self.is_navigating_to_next_score = False
         self.is_navigating_to_prev_score = False
         self.last_command_was_composite = False
@@ -270,12 +270,12 @@ class Session(SCFObject):
         return property(**locals())
 
     @apply
-    def is_backtracking_to_studio():
+    def is_backtracking_to_score_manager():
         def fget(self):
-            return self._is_backtracking_to_studio
-        def fset(self, is_backtracking_to_studio):
-            assert isinstance(is_backtracking_to_studio, bool)
-            self._is_backtracking_to_studio = is_backtracking_to_studio
+            return self._is_backtracking_to_score_manager
+        def fset(self, is_backtracking_to_score_manager):
+            assert isinstance(is_backtracking_to_score_manager, bool)
+            self._is_backtracking_to_score_manager = is_backtracking_to_score_manager
         return property(**locals())
 
     @apply
@@ -321,20 +321,20 @@ class Session(SCFObject):
     def backtrack(self, source=None):
         if self.is_complete:
             return True
-        elif self.is_backtracking_to_studio and source == 'studio':
-            self.is_backtracking_to_studio = False
+        elif self.is_backtracking_to_score_manager and source == 'home':
+            self.is_backtracking_to_score_manager = False
             return False
-        elif self.is_backtracking_to_studio and not source == 'studio':
+        elif self.is_backtracking_to_score_manager and not source == 'home':
             return True
-        elif self.is_backtracking_to_score and source in ('score', 'studio'):
+        elif self.is_backtracking_to_score and source in ('score', 'home'):
             self.is_backtracking_to_score = False
             return False
-        elif self.is_backtracking_to_score and not source in ('score', 'studio'):
+        elif self.is_backtracking_to_score and not source in ('score', 'home'):
             return True
-        elif self.is_backtracking_locally and not source == 'studio' and \
+        elif self.is_backtracking_locally and not source == 'home' and \
             self.backtracking_stack:
             return True
-        elif self.is_backtracking_locally and not source == 'studio' and \
+        elif self.is_backtracking_locally and not source == 'home' and \
             not self.backtracking_stack:
             self.is_backtracking_locally = False
             return True

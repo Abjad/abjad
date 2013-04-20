@@ -111,7 +111,7 @@ class MenuObject(SCFObject):
         section.append(('q', 'quit'))
         section.append(('r', 'redraw'))
         section.append(('score', 'score'))
-        section.append(('studio', 'studio'))
+        section.append(('home', 'home'))
         section.append(('tm', 'toggle menu'))
         section.append(('tw', 'toggle where'))
         section.append(('where', 'show menu client'))

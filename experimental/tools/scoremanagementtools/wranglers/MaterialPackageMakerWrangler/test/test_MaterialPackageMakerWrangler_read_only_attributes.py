@@ -3,8 +3,8 @@ from experimental import *
 
 def test_MaterialPackageMakerWrangler_read_only_attributes_01():
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    wrangler = studio.material_package_maker_wrangler
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    wrangler = score_manager.material_package_maker_wrangler
 
     assert wrangler.breadcrumb == 'material package makers'
     assert wrangler.current_asset_container_importable_name == 'scoremanagementtools.makers'

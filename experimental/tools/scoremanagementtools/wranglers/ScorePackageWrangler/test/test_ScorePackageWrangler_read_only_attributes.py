@@ -1,8 +1,8 @@
 import os
 from experimental import *
 
-studio = scoremanagementtools.studio.ScoreManager()
-wrangler = studio.score_package_wrangler
+score_manager = scoremanagementtools.studio.ScoreManager()
+wrangler = score_manager.score_package_wrangler
 
 
 def test_ScorePackageWrangler_read_only_attributes_01():

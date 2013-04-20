@@ -3,15 +3,15 @@ from experimental import *
 
 
 def test_InstrumentEditor_short_instrument_name_markup_01():
-    '''Quit, back & studio all work.
+    '''Quit, back & home all work.
     '''
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    studio.run(user_input='example~score~i setup performers hornist horn sm q')
-    assert studio.ts == (13,)
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager.run(user_input='example~score~i setup performers hornist horn sm q')
+    assert score_manager.ts == (13,)
 
-    studio.run(user_input='example~score~i setup performers hornist horn sm b q')
-    assert studio.ts == (15, (10, 13))
+    score_manager.run(user_input='example~score~i setup performers hornist horn sm b q')
+    assert score_manager.ts == (15, (10, 13))
 
-    studio.run(user_input='example~score~i setup performers hornist horn sm studio q')
-    assert studio.ts == (15, (0, 13))
+    score_manager.run(user_input='example~score~i setup performers hornist horn sm home q')
+    assert score_manager.ts == (15, (0, 13))

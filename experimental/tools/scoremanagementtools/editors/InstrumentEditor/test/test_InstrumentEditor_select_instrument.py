@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_InstrumentEditor_select_instrument_01():
-    '''Quit, back, studio, score & junk all work.
+    '''Quit, back, home, score & junk all work.
     '''
 
     editor = scoremanagementtools.editors.InstrumentEditor()
@@ -14,7 +14,7 @@ def test_InstrumentEditor_select_instrument_01():
     assert (2,)
 
     editor = scoremanagementtools.editors.InstrumentEditor()
-    editor.run(user_input='studio q')
+    editor.run(user_input='home q')
     assert (2,)
 
     editor = scoremanagementtools.editors.InstrumentEditor()

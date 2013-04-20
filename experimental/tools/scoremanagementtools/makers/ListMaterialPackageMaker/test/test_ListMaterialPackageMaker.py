@@ -3,10 +3,10 @@ from experimental import *
 
 def test_ListMaterialPackageMaker_01():
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    assert not studio.package_exists('materials.testlist')
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    assert not score_manager.package_exists('materials.testlist')
     try:
-        studio.run(user_input=
+        score_manager.run(user_input=
             'materials maker list testlist '
             "17 foo done b default q "
             )
@@ -14,5 +14,5 @@ def test_ListMaterialPackageMaker_01():
         assert mpp.directory_contents == ['__init__.py', 'output_material.py', 'tags.py']
         assert mpp.output_material == [17, 'foo']
     finally:
-        studio.run(user_input='m testlist del remove default q')
-        assert not studio.package_exists('materials.testlist')
+        score_manager.run(user_input='m testlist del remove default q')
+        assert not score_manager.package_exists('materials.testlist')

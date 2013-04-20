@@ -3,8 +3,8 @@ from experimental import *
 
 def test_ChunkPackageWrangler_read_only_attributes_01():
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    wrangler = studio.chunk_package_wrangler
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    wrangler = score_manager.chunk_package_wrangler
     assert not wrangler.session.is_in_score
 
     assert wrangler.breadcrumb == 'sketches'
@@ -22,8 +22,8 @@ def test_ChunkPackageWrangler_read_only_attributes_01():
 
 def test_ChunkPackageWrangler_read_only_attributes_02():
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    wrangler = studio.chunk_package_wrangler
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    wrangler = score_manager.chunk_package_wrangler
     wrangler.session.current_score_package_short_name = 'example_score_1'
     assert wrangler.session.is_in_score
 

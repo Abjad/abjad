@@ -34,10 +34,10 @@ class MenuSectionAggregator(MenuObject):
             self.show_hidden_menu_entries()
         elif key == 'next':
             self.session.is_navigating_to_next_score = True
-            self.session.is_backtracking_to_studio = True
+            self.session.is_backtracking_to_score_manager = True
         elif key == 'prev':
             self.session.is_navigating_to_prev_score = True
-            self.session.is_backtracking_to_studio = True
+            self.session.is_backtracking_to_score_manager = True
         elif key in ('q', 'quit'):
             self.session.user_specified_quit = True
 #        # TODO: make this redraw!
@@ -46,8 +46,8 @@ class MenuSectionAggregator(MenuObject):
         elif isinstance(key, str) and 3 <= len(key) and 'score'.startswith(key):
             if self.session.is_in_score:
                 self.session.is_backtracking_to_score = True
-        elif isinstance(key, str) and 3 <= len(key) and 'studio'.startswith(key):
-            self.session.is_backtracking_to_studio = True
+        elif isinstance(key, str) and 3 <= len(key) and 'home'.startswith(key):
+            self.session.is_backtracking_to_score_manager = True
         elif key == 'tm':
             self.toggle_menu()
         elif key == 'tw':

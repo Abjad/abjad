@@ -3,24 +3,24 @@ from experimental import *
 
 
 def test_InstrumentationEditor_move_performer_01():
-    '''Quit, back, studio, score & junk all work.
+    '''Quit, back, home, score & junk all work.
     '''
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    studio.run(user_input='example~score~i setup perf move q')
-    assert studio.ts == (9,)
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager.run(user_input='example~score~i setup perf move q')
+    assert score_manager.ts == (9,)
 
-    studio.run(user_input='example~score~i setup perf move b q')
-    assert studio.ts == (11, (6, 9))
+    score_manager.run(user_input='example~score~i setup perf move b q')
+    assert score_manager.ts == (11, (6, 9))
 
-    studio.run(user_input='example~score~i setup perf move studio q')
-    assert studio.ts == (11, (0, 9))
+    score_manager.run(user_input='example~score~i setup perf move home q')
+    assert score_manager.ts == (11, (0, 9))
 
-    studio.run(user_input='example~score~i setup perf move score q')
-    assert studio.ts == (11, (2, 9))
+    score_manager.run(user_input='example~score~i setup perf move score q')
+    assert score_manager.ts == (11, (2, 9))
 
-    studio.run(user_input='example~score~i setup perf move foo q')
-    assert studio.ts == (11,)
+    score_manager.run(user_input='example~score~i setup perf move foo q')
+    assert score_manager.ts == (11,)
 
 
 def test_InstrumentationEditor_move_performer_02():

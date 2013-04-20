@@ -219,7 +219,7 @@ Read/write properties
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.is_backtracking_to_score
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.is_backtracking_to_studio
+.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.is_backtracking_to_score_manager
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.nonnumbered_menu_sections_are_hidden

@@ -3,10 +3,10 @@ from experimental import *
 
 def test_ScorePackageProxy_show_hidden_menu_entries_01():
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    studio.run(user_input='example~score~i hidden q')
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager.run(user_input='example~score~i hidden q')
 
-    assert studio.transcript[-2] == \
+    assert score_manager.transcript[-2] == \
      ['     back (b)',
       '     exec statement (exec)',
       '     grep directories (grep)',
@@ -17,7 +17,7 @@ def test_ScorePackageProxy_show_hidden_menu_entries_01():
       '     quit (q)',
       '     redraw (r)',
       '     score (score)',
-      '     studio (studio)',
+      '     home (home)',
       '     toggle menu (tm)',
       '     toggle where (tw)',
       '     show menu client (where)',

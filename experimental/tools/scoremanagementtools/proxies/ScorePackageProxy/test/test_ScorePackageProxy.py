@@ -45,41 +45,41 @@ def test_ScorePackageProxy_03():
 
 
 def test_ScorePackageProxy_04():
-    '''User 'studio' input results in return to studio main menu.
+    '''User 'home' input results in return home.
     '''
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    studio.run(user_input="example~score~i studio q")
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager.run(user_input="example~score~i home q")
 
-    assert studio.ts == (6, (0, 4))
-    assert studio.transcript[0][0] == 'Scores - active scores'
-    assert studio.transcript[2][0] == 'Example Score I (2013)'
-    assert studio.transcript[4][0] == 'Scores - active scores'
+    assert score_manager.ts == (6, (0, 4))
+    assert score_manager.transcript[0][0] == 'Scores - active scores'
+    assert score_manager.transcript[2][0] == 'Example Score I (2013)'
+    assert score_manager.transcript[4][0] == 'Scores - active scores'
 
 
 def test_ScorePackageProxy_05():
-    '''User 'studio' input terminates execution (when score not managed from studio).
+    '''User 'home' input terminates execution (when score not managed from studio).
     '''
 
     example_score_1 = scoremanagementtools.proxies.ScorePackageProxy('example_score_1')
-    example_score_1.run(user_input='studio')
+    example_score_1.run(user_input='home')
 
     assert example_score_1.ts == (2,)
     assert example_score_1.transcript[0][0] == "Example Score I (2013)"
-    assert example_score_1.transcript[1][0] == 'SCF> studio'
+    assert example_score_1.transcript[1][0] == 'SCF> home'
 
 
 def test_ScorePackageProxy_06():
-    '''User 'b' input returns to studio main menu.
+    '''User 'b' input returns home.
     '''
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    studio.run(user_input='example~score~i b q')
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager.run(user_input='example~score~i b q')
 
-    assert studio.ts == (6, (0, 4))
-    assert studio.transcript[0][0] == 'Scores - active scores'
-    assert studio.transcript[2][0] == 'Example Score I (2013)'
-    assert studio.transcript[4][0] == 'Scores - active scores'
+    assert score_manager.ts == (6, (0, 4))
+    assert score_manager.transcript[0][0] == 'Scores - active scores'
+    assert score_manager.transcript[2][0] == 'Example Score I (2013)'
+    assert score_manager.transcript[4][0] == 'Scores - active scores'
 
 
 def test_ScorePackageProxy_07():

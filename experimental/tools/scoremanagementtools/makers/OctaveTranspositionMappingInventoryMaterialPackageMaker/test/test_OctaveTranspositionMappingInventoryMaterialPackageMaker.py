@@ -6,10 +6,10 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_01():
     '''Stub material package.
     '''
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    assert not studio.package_exists('materials.testoctavetrans')
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    assert not score_manager.package_exists('materials.testoctavetrans')
     try:
-        studio.run(user_input=
+        score_manager.run(user_input=
             'materials maker octave testoctavetrans default '
             'q'
             )
@@ -17,18 +17,18 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_01():
         assert mpp.directory_contents == ['__init__.py', 'tags.py']
         assert mpp.output_material is None
     finally:
-        studio.run(user_input='m testoctavetrans del remove default q')
-        assert not studio.package_exists('materials.testoctavetrans')
+        score_manager.run(user_input='m testoctavetrans del remove default q')
+        assert not score_manager.package_exists('materials.testoctavetrans')
 
 
 def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_02():
     '''Populate output material module.
     '''
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    assert not studio.package_exists('materials.testoctavetrans')
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    assert not score_manager.package_exists('materials.testoctavetrans')
     try:
-        studio.run(user_input=
+        score_manager.run(user_input=
             'materials maker octave testoctavetrans '
             'testoctavetrans omi add add source [A0, C4) target 15 done '
             'add source [C4, C8) target 27 done done '
@@ -42,5 +42,5 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_02():
         inventory = pitchtools.OctaveTranspositionMappingInventory([mapping_1, mapping_2])
         assert mpp.output_material == inventory
     finally:
-        studio.run(user_input='m testoctavetrans del remove default q')
-        assert not studio.package_exists('materials.testoctavetrans')
+        score_manager.run(user_input='m testoctavetrans del remove default q')
+        assert not score_manager.package_exists('materials.testoctavetrans')

@@ -4,24 +4,24 @@ from abjad.tools.instrumenttools import *
 
 
 def test_PerformerEditor_move_instrument_01():
-    '''Quit, back, studio, score & junk all work.
+    '''Quit, back, home, score & junk all work.
     '''
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    studio.run(user_input="l'arch setup performers flutist move q")
-    assert studio.ts == (11,)
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager.run(user_input="l'arch setup performers flutist move q")
+    assert score_manager.ts == (11,)
 
-    studio.run(user_input="l'arch setup performers flutist move b q")
-    assert studio.ts == (13, (8, 11))
+    score_manager.run(user_input="l'arch setup performers flutist move b q")
+    assert score_manager.ts == (13, (8, 11))
 
-    studio.run(user_input="l'arch setup performers flutist move studio q")
-    assert studio.ts == (13, (0, 11))
+    score_manager.run(user_input="l'arch setup performers flutist move home q")
+    assert score_manager.ts == (13, (0, 11))
 
-    studio.run(user_input="l'arch setup performers flutist move score q")
-    assert studio.ts == (13, (2, 11))
+    score_manager.run(user_input="l'arch setup performers flutist move score q")
+    assert score_manager.ts == (13, (2, 11))
 
-    studio.run(user_input="l'arch setup performers flutist move foo q")
-    assert studio.ts == (13,)
+    score_manager.run(user_input="l'arch setup performers flutist move foo q")
+    assert score_manager.ts == (13,)
 
 
 def test_PerformerEditor_move_instrument_02():

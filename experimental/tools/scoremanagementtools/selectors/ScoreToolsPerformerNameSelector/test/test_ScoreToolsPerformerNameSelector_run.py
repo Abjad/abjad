@@ -10,7 +10,7 @@ def test_ScoreToolsPerformerNameSelector_run_01():
     assert selector.run(user_input='b') is None
 
     selector = scoremanagementtools.selectors.ScoreToolsPerformerNameSelector()
-    assert selector.run(user_input='studio') is None
+    assert selector.run(user_input='home') is None
 
 
 def test_ScoreToolsPerformerNameSelector_run_02():

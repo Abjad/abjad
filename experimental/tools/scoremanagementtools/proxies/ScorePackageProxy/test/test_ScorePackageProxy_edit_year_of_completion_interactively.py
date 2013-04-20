@@ -5,13 +5,13 @@ from experimental import *
 def test_ScorePackageProxy_edit_year_of_completion_interactively_01():
 
     try:
-        studio = scoremanagementtools.studio.ScoreManager()
-        studio.run(user_input='example~score~i setup year 2001 q')
-        assert studio.ts == (9,)
-        assert studio.transcript[-5][0] == 'Example Score I (2013) - setup'
-        assert studio.transcript[-2][0] == 'Example Score I (2001) - setup'
+        score_manager = scoremanagementtools.studio.ScoreManager()
+        score_manager.run(user_input='example~score~i setup year 2001 q')
+        assert score_manager.ts == (9,)
+        assert score_manager.transcript[-5][0] == 'Example Score I (2013) - setup'
+        assert score_manager.transcript[-2][0] == 'Example Score I (2001) - setup'
     finally:
-        studio.run(user_input="example~score~i setup year 2013 q")
-        assert studio.ts == (9,)
-        assert studio.transcript[-5][0] == 'Example Score I (2001) - setup'
-        assert studio.transcript[-2][0] == 'Example Score I (2013) - setup'
+        score_manager.run(user_input="example~score~i setup year 2013 q")
+        assert score_manager.ts == (9,)
+        assert score_manager.transcript[-5][0] == 'Example Score I (2001) - setup'
+        assert score_manager.transcript[-2][0] == 'Example Score I (2013) - setup'

@@ -5,10 +5,10 @@ from experimental import *
 
 def test_ArticulationHandlerMaterialPackageMaker_01():
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    assert not studio.package_exists('materials.testarticulationhandler')
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    assert not score_manager.package_exists('materials.testarticulationhandler')
     try:
-        studio.run(user_input=
+        score_manager.run(user_input=
             'materials maker articulation testarticulationhandler default '
             'testarticulationhandler omi reiterated '
             "['^', '.'] (1, 64) (1, 4) c c'''' done default "
@@ -25,5 +25,5 @@ def test_ArticulationHandlerMaterialPackageMaker_01():
             )
         assert mpp.output_material == handler
     finally:
-        studio.run(user_input='m testarticulationhandler del remove default q')
-        assert not studio.package_exists('materials.testarticulationhandler')
+        score_manager.run(user_input='m testarticulationhandler del remove default q')
+        assert not score_manager.package_exists('materials.testarticulationhandler')

@@ -11,7 +11,7 @@ def test_PerformerCreationWizard_run_01():
     assert wizard.run(user_input='b') is None
 
     wizard = scoremanagementtools.wizards.PerformerCreationWizard()
-    assert wizard.run(user_input='studio') is None
+    assert wizard.run(user_input='home') is None
 
 
 def test_PerformerCreationWizard_run_02():

@@ -5,6 +5,6 @@ def test_ScoreManager_manage_svn_01():
     '''Ignore score backtracking.
     '''
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    studio.run(user_input='svn sco q')
-    assert studio.ts == (6, (2, 4))
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager.run(user_input='svn sco q')
+    assert score_manager.ts == (6, (2, 4))

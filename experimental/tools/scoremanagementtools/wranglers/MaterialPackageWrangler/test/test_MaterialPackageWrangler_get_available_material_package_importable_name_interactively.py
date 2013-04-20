@@ -31,5 +31,5 @@ def test_MaterialPackageWrangler_get_available_material_package_importable_name_
     result = wrangler.get_available_material_package_importable_name_interactively(user_input='b')
     assert result is None
 
-    result = wrangler.get_available_material_package_importable_name_interactively(user_input='studio')
+    result = wrangler.get_available_material_package_importable_name_interactively(user_input='home')
     assert result is None

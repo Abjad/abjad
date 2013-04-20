@@ -5,10 +5,10 @@ from experimental import *
 
 def test_DynamicHandlerMaterialPackageMaker_01():
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    assert not studio.package_exists('materials.testdynamichandler')
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    assert not score_manager.package_exists('materials.testdynamichandler')
     try:
-        studio.run(user_input=
+        score_manager.run(user_input=
             'materials maker dynamic testdynamichandler default '
             'testdynamichandler omi reiterateddynamic '
             'f (1, 16) done default '
@@ -22,5 +22,5 @@ def test_DynamicHandlerMaterialPackageMaker_01():
             )
         assert mpp.output_material == handler
     finally:
-        studio.run(user_input='m testdynamichandler del remove default q')
-        assert not studio.package_exists('materials.testdynamichandler')
+        score_manager.run(user_input='m testdynamichandler del remove default q')
+        assert not score_manager.package_exists('materials.testdynamichandler')

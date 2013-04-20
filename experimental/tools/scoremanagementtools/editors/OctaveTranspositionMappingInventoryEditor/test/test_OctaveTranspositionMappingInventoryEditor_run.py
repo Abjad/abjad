@@ -19,7 +19,7 @@ def test_OctaveTranspositionMappingInventoryEditor_run_01():
     assert editor.target == pitchtools.OctaveTranspositionMappingInventory()
 
     editor = scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor()
-    editor.run(user_input='studio')
+    editor.run(user_input='home')
     assert editor.target == pitchtools.OctaveTranspositionMappingInventory()
 
 

@@ -2,18 +2,18 @@ from experimental import *
 
 
 def test_Menu_allow_mixed_case_key_01():
-    '''Allow mixed case 'stu' key.
+    '''Allow mixed case 'home' key.
     '''
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    studio.run(user_input="L'arch stu q")
-    assert studio.ts == (6, (0, 4))
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager.run(user_input="L'arch home q")
+    assert score_manager.ts == (6, (0, 4))
 
-    studio.run(user_input="L'arch STU q")
-    assert studio.ts == (6, (0, 4))
+    score_manager.run(user_input="L'arch HOME q")
+    assert score_manager.ts == (6, (0, 4))
 
-    studio.run(user_input="L'arch sTu q")
-    assert studio.ts == (6, (0, 4))
+    score_manager.run(user_input="L'arch hOmE q")
+    assert score_manager.ts == (6, (0, 4))
 
-    studio.run(user_input="L'arch sTU q")
-    assert studio.ts == (6, (0, 4))
+    score_manager.run(user_input="L'arch hOME q")
+    assert score_manager.ts == (6, (0, 4))

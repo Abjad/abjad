@@ -4,10 +4,10 @@ from experimental import *
 
 def test_MarkupInventoryMaterialPackageMaker_01():
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    assert not studio.package_exists('materials.testmarkupinventory')
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    assert not score_manager.package_exists('materials.testmarkupinventory')
     try:
-        studio.run(user_input=
+        score_manager.run(user_input=
             "materials maker markup testmarkupinventory "
             "omi name test~markup~inventory "
             "add arg r'\\italic~{~serenamente~}' name serenamente done "
@@ -29,5 +29,5 @@ def test_MarkupInventoryMaterialPackageMaker_01():
             )
         assert mpp.output_material == inventory
     finally:
-        studio.run(user_input='m testmarkupinventory del remove default q')
-        assert not studio.package_exists('materials.testmarkupinventory')
+        score_manager.run(user_input='m testmarkupinventory del remove default q')
+        assert not score_manager.package_exists('materials.testmarkupinventory')

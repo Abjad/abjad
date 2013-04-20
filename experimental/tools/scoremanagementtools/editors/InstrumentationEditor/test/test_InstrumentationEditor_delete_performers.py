@@ -3,24 +3,24 @@ from experimental import *
 
 
 def test_InstrumentationEditor_delete_performers_01():
-    '''Quit, back, studio, score & junk all work.
+    '''Quit, back, home, score & junk all work.
     '''
 
-    studio = scoremanagementtools.studio.ScoreManager()
-    studio.run(user_input='example~score~i setup performers rm q')
-    assert studio.ts == (9,)
+    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager.run(user_input='example~score~i setup performers rm q')
+    assert score_manager.ts == (9,)
 
-    studio.run(user_input='example~score~i setup performers rm b q')
-    assert studio.ts == (11, (6, 9))
+    score_manager.run(user_input='example~score~i setup performers rm b q')
+    assert score_manager.ts == (11, (6, 9))
 
-    studio.run(user_input='example~score~i setup performers rm studio q')
-    assert studio.ts == (11, (0, 9))
+    score_manager.run(user_input='example~score~i setup performers rm home q')
+    assert score_manager.ts == (11, (0, 9))
 
-    studio.run(user_input='example~score~i setup performers rm score q')
-    assert studio.ts == (11, (2, 9))
+    score_manager.run(user_input='example~score~i setup performers rm score q')
+    assert score_manager.ts == (11, (2, 9))
 
-    studio.run(user_input='example~score~i setup performers rm foo q')
-    assert studio.ts == (11,)
+    score_manager.run(user_input='example~score~i setup performers rm foo q')
+    assert score_manager.ts == (11,)
 
 
 def test_InstrumentationEditor_delete_performers_02():
