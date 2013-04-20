@@ -5,7 +5,7 @@ def test_Menu_allow_mixed_case_key_01():
     '''Allow mixed case 'stu' key.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input="L'arch stu q")
     assert studio.ts == (6, (0, 4))
 

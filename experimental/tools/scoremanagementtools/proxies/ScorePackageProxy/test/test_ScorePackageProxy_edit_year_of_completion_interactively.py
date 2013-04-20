@@ -5,7 +5,7 @@ from experimental import *
 def test_ScorePackageProxy_edit_year_of_completion_interactively_01():
 
     try:
-        studio = scoremanagementtools.studio.Studio()
+        studio = scoremanagementtools.studio.ScoreManager()
         studio.run(user_input='example~score~i setup year 2001 q')
         assert studio.ts == (9,)
         assert studio.transcript[-5][0] == 'Example Score I (2013) - setup'

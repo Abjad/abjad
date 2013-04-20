@@ -6,7 +6,7 @@ def test_InstrumentationEditor_delete_performers_01():
     '''Quit, back, studio, score & junk all work.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='example~score~i setup performers rm q')
     assert studio.ts == (9,)
 

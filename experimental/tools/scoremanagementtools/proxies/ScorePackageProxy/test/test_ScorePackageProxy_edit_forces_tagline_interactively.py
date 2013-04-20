@@ -6,7 +6,7 @@ def test_ScorePackageProxy_edit_forces_tagline_interactively_01():
     '''Quit, back, score & studio all work.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='example~score~i setup tagline q')
     assert studio.ts == (7,)
 
@@ -23,7 +23,7 @@ def test_ScorePackageProxy_edit_forces_tagline_interactively_01():
 def test_ScorePackageProxy_edit_forces_tagline_interactively_02():
 
     try:
-        studio = scoremanagementtools.studio.Studio()
+        studio = scoremanagementtools.studio.ScoreManager()
         studio.run(user_input='example~score~i setup tagline for~foo~bar q')
         example_score_1 = scoremanagementtools.proxies.ScorePackageProxy('example_score_1')
         assert example_score_1.forces_tagline == 'for foo bar'

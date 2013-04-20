@@ -632,7 +632,7 @@ Unstable packages (load manually)
       tools/scoremanagementtools/specifiers/TempoSpecifier/TempoSpecifier
       tools/scoremanagementtools/specifiers/TrillSpecifier/TrillSpecifier
       tools/scoremanagementtools/specifiers/TropingSpecifier/TropingSpecifier
-      tools/scoremanagementtools/studio/Studio/Studio
+      tools/scoremanagementtools/studio/ScoreManager/ScoreManager
       tools/scoremanagementtools/wizards/ArticulationHandlerCreationWizard/ArticulationHandlerCreationWizard
       tools/scoremanagementtools/wizards/DynamicHandlerCreationWizard/DynamicHandlerCreationWizard
       tools/scoremanagementtools/wizards/InstrumentCreationWizard/InstrumentCreationWizard
@@ -837,7 +837,7 @@ Unstable packages (load manually)
       tools/scoremanagementtools/specifiers/TempoSpecifier/TempoSpecifier
       tools/scoremanagementtools/specifiers/TrillSpecifier/TrillSpecifier
       tools/scoremanagementtools/specifiers/TropingSpecifier/TropingSpecifier
-      tools/scoremanagementtools/studio/Studio/Studio
+      tools/scoremanagementtools/studio/ScoreManager/ScoreManager
       tools/scoremanagementtools/wizards/ArticulationHandlerCreationWizard/ArticulationHandlerCreationWizard
       tools/scoremanagementtools/wizards/DynamicHandlerCreationWizard/DynamicHandlerCreationWizard
       tools/scoremanagementtools/wizards/InstrumentCreationWizard/InstrumentCreationWizard

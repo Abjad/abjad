@@ -1,6 +1,6 @@
 Note that as of r9872 it takes only 181 function calls to initialize the studio ...
 
-    >>> iotools.profile_expr('studio = scoremanagementtools.studio.Studio()')
+    >>> iotools.profile_expr('studio = scoremanagementtools.studio.ScoreManager()')
     181 function calls in 0.000 seconds
 
 ... but that it takes 819,997 function calls to start and immediately quit the studio
@@ -16,7 +16,7 @@ a first time and then significantly fewer function calls on successive tests:
     241391 function calls in 0.220 seconds
 
 CONCLUSION: don't know what's going on here but it's clear that the studio takes
-quite a few unnecessary steps on start-up. Studio start up should be as simple
+quite a few unnecessary steps on start-up. ScoreManager start up should be as simple
 as listing the names of all scores in the system, possibly with the additional
 work of inspecting each score package tag file for date of composition.
 All of that should take far fewer than 820,000 function calls.

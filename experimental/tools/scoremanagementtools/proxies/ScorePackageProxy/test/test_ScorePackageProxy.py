@@ -48,13 +48,13 @@ def test_ScorePackageProxy_04():
     '''User 'studio' input results in return to studio main menu.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input="example~score~i studio q")
 
     assert studio.ts == (6, (0, 4))
-    assert studio.transcript[0][0] == 'Studio - active scores'
+    assert studio.transcript[0][0] == 'Scores - active scores'
     assert studio.transcript[2][0] == 'Example Score I (2013)'
-    assert studio.transcript[4][0] == 'Studio - active scores'
+    assert studio.transcript[4][0] == 'Scores - active scores'
 
 
 def test_ScorePackageProxy_05():
@@ -73,13 +73,13 @@ def test_ScorePackageProxy_06():
     '''User 'b' input returns to studio main menu.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='example~score~i b q')
 
     assert studio.ts == (6, (0, 4))
-    assert studio.transcript[0][0] == 'Studio - active scores'
+    assert studio.transcript[0][0] == 'Scores - active scores'
     assert studio.transcript[2][0] == 'Example Score I (2013)'
-    assert studio.transcript[4][0] == 'Studio - active scores'
+    assert studio.transcript[4][0] == 'Scores - active scores'
 
 
 def test_ScorePackageProxy_07():

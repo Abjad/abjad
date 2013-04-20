@@ -12,7 +12,9 @@ from experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler impo
 from experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler import StylesheetFileWrangler
 
 
-class Studio(SCFObject):
+class ScoreManager(SCFObject):
+
+    ### INITIALIZER ###
 
     def __init__(self, session=None):
         SCFObject.__init__(self, session=session)
@@ -27,7 +29,7 @@ class Studio(SCFObject):
 
     @property
     def breadcrumb(self):
-        return 'studio'
+        return 'scores'
 
     @property
     def chunk_package_wrangler(self):

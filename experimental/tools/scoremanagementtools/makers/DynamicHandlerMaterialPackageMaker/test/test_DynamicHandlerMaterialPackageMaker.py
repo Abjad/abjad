@@ -5,7 +5,7 @@ from experimental import *
 
 def test_DynamicHandlerMaterialPackageMaker_01():
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testdynamichandler')
     try:
         studio.run(user_input=

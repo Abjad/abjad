@@ -6,7 +6,7 @@ def test_InstrumentEditor_instrument_name_01():
     '''Quit, back & studio all work.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='example setup performers hornist horn in q')
     assert studio.ts == (13,)
 
@@ -21,7 +21,7 @@ def test_InstrumentEditor_instrument_name_02():
     '''String only.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='example setup performers hornist horn in -99 q')
     assert studio.ts == (15,)
 

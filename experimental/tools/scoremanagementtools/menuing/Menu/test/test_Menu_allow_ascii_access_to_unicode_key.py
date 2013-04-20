@@ -3,7 +3,7 @@ from experimental import *
 
 def test_Menu_allow_ascii_access_to_unicode_key_01():
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='Étude q')
     assert studio.ts == (4,)
 

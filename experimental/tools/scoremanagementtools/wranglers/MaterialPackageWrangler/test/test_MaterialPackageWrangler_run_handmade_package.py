@@ -7,7 +7,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
     '''Make handmade package. Delete package.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testnotes')
 
     try:
@@ -34,7 +34,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
     Verify invalid initializer. Remove package.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testnotes')
 
     try:
@@ -63,7 +63,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
     Verify initializer. Remove package.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testnotes')
 
     try:
@@ -93,7 +93,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
     Delete package."
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testnotes')
 
     try:
@@ -124,7 +124,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
     Remove package.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testnotes')
 
     try:
@@ -153,7 +153,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
     Delete package.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testnotes')
 
     try:
@@ -182,7 +182,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
     Remove package.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testnotes')
 
     try:
@@ -213,7 +213,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
     Examine package state. Remove package.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testnotes')
 
     try:
@@ -242,7 +242,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
     Verify invalid output material module. Remove package.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testnotes')
 
     try:
@@ -273,8 +273,9 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
     '''Make handmade package. Copy canned material definition module.
     Make output data. Make PDF. Remove package.
     '''
+    py.test.skip('skip this one during day-to-day development and before build only.')
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testnotes')
 
     try:

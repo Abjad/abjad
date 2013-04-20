@@ -1,9 +1,9 @@
 from experimental import *
 
 
-def test_Studio_show_hidden_menu_entries_01():
+def test_ScoreManager_show_hidden_menu_entries_01():
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='hidden q')
     assert studio.transcript[-2] == \
      ['     back (b)',

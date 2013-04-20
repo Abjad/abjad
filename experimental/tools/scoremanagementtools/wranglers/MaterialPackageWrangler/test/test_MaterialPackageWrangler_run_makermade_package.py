@@ -7,7 +7,7 @@ def test_MaterialPackageWrangler_run_makermade_package_01():
     '''Make makermade package. Delete package.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testsargasso')
 
     try:
@@ -32,7 +32,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
     '''Make score-resident makermade package. Delete package.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('example_score_1.mus.materials.testsargasso')
 
     try:
@@ -58,7 +58,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Verify invalid initializer. Remove package.
 #    '''
 #
-#    studio = scoremanagementtools.studio.Studio()
+#    studio = scoremanagementtools.studio.ScoreManager()
 #    assert not studio.package_exists('materials.testsargasso')
 #
 #    try:
@@ -88,7 +88,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Verify initializer. Remove package.
 #    '''
 #
-#    studio = scoremanagementtools.studio.Studio()
+#    studio = scoremanagementtools.studio.ScoreManager()
 #    assert not studio.package_exists('materials.testsargasso')
 #
 #    try:
@@ -118,7 +118,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Delete package."
 #    '''
 #
-#    studio = scoremanagementtools.studio.Studio()
+#    studio = scoremanagementtools.studio.ScoreManager()
 #    assert not studio.package_exists('materials.testsargasso')
 #
 #    try:
@@ -149,7 +149,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Remove package.
 #    '''
 #
-#    studio = scoremanagementtools.studio.Studio()
+#    studio = scoremanagementtools.studio.ScoreManager()
 #    assert not studio.package_exists('materials.testsargasso')
 #
 #    try:
@@ -178,7 +178,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Delete package.
 #    '''
 #
-#    studio = scoremanagementtools.studio.Studio()
+#    studio = scoremanagementtools.studio.ScoreManager()
 #    assert not studio.package_exists('materials.testsargasso')
 #
 #    try:
@@ -207,7 +207,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Remove package.
 #    '''
 #
-#    studio = scoremanagementtools.studio.Studio()
+#    studio = scoremanagementtools.studio.ScoreManager()
 #    assert not studio.package_exists('materials.testsargasso')
 #
 #    try:
@@ -238,7 +238,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Examine package state. Remove package.
 #    '''
 #
-#    studio = scoremanagementtools.studio.Studio()
+#    studio = scoremanagementtools.studio.ScoreManager()
 #    assert not studio.package_exists('materials.testsargasso')
 #
 #    try:
@@ -267,7 +267,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Verify invalid output material module. Remove package.
 #    '''
 #
-#    studio = scoremanagementtools.studio.Studio()
+#    studio = scoremanagementtools.studio.ScoreManager()
 #    assert not studio.package_exists('materials.testsargasso')
 #
 #    try:
@@ -299,7 +299,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Make output data. Make PDF. Remove package.
 #    '''
 #
-#    studio = scoremanagementtools.studio.Studio()
+#    studio = scoremanagementtools.studio.ScoreManager()
 #    assert not studio.package_exists('materials.testsargasso')
 #
 #    try:

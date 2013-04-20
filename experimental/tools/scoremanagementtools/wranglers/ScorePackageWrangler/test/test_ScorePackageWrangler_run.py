@@ -5,7 +5,7 @@ def test_ScorePackageWrangler_run_01():
     '''Create score package. Remove score package.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('testscore')
 
     try:

@@ -6,7 +6,7 @@ from experimental import *
 def test_SargassoMeasureMaterialPackageMaker_01():
     '''Empty wrapper.'''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testsargasso')
     try:
         studio.run(user_input=
@@ -34,7 +34,7 @@ def test_SargassoMeasureMaterialPackageMaker_01():
 def test_SargassoMeasureMaterialPackageMaker_02():
     '''Load demo values.'''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testsargasso')
 
     try:
@@ -64,7 +64,7 @@ def test_SargassoMeasureMaterialPackageMaker_02():
 def test_SargassoMeasureMaterialPackageMaker_03():
     '''Load demo values and then clear all.'''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testsargasso')
     try:
         studio.run(user_input=
@@ -93,7 +93,7 @@ def test_SargassoMeasureMaterialPackageMaker_03():
 def test_SargassoMeasureMaterialPackageMaker_04():
     '''Edit one value.'''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testsargasso')
     try:
         studio.run(user_input=
@@ -122,7 +122,7 @@ def test_SargassoMeasureMaterialPackageMaker_04():
 def test_SargassoMeasureMaterialPackageMaker_05():
     '''Populate wrapper.'''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testsargasso')
     try:
         studio.run(user_input=
@@ -152,7 +152,7 @@ def test_SargassoMeasureMaterialPackageMaker_05():
 def test_SargassoMeasureMaterialPackageMaker_06():
     '''Partial population.'''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testsargasso')
     try:
         studio.run(user_input=
@@ -182,7 +182,7 @@ def test_SargassoMeasureMaterialPackageMaker_06():
 def test_SargassoMeasureMaterialPackageMaker_07():
     '''Set some values to none.'''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testsargasso')
     try:
         studio.run(user_input=
@@ -211,7 +211,7 @@ def test_SargassoMeasureMaterialPackageMaker_07():
 def test_SargassoMeasureMaterialPackageMaker_08():
     '''Make output from demo values.'''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     assert not studio.package_exists('materials.testsargasso')
     try:
         studio.run(user_input=

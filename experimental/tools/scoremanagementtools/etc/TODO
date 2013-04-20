@@ -71,13 +71,11 @@
 
 25. Rename SCFObject to something else.
 
-26. Rename Studio to ScoreManager.
+26. Remove all reference to 'scf' in the codebase.
 
-27. Remove all reference to 'scf' in the codebase.
-
-28. Remove the has_readable_... and is_readable_... properties from the system entirely.
+27. Remove the has_readable_... and is_readable_... properties from the system entirely.
     Force such functionality to be method calls that will be noticeably expensive.
 
-29. Migrate all build_illustration.py modules from separate modules to bound class methods.
+28. Migrate all build_illustration.py modules from separate modules to bound class methods.
 
-30. Audit the UI of the entire materials management system by hand.
+29. Audit the UI of the entire materials management system by hand.

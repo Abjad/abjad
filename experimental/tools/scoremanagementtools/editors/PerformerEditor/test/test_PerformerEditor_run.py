@@ -5,7 +5,7 @@ def test_PerformerEditor_run_01():
     '''Quit, back, studio and junk all work.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='example~score~i setup performers hornist q')
     assert studio.ts == (10,)
 

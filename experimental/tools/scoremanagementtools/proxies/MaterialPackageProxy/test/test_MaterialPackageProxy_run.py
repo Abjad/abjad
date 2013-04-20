@@ -6,7 +6,7 @@ def test_MaterialPackageProxy_run_01():
     '''Global materials: quit, back, studio, score & junk all work.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='m sargasso q')
     assert studio.ts == (6,)
 
@@ -28,9 +28,9 @@ def test_MaterialPackageProxy_run_02():
     '''Global materials: breadcrumbs work.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='m sargasso q')
-    assert studio.transcript[-2][0] == 'Studio - materials - sargasso multipliers'
+    assert studio.transcript[-2][0] == 'Scores - materials - sargasso multipliers'
 
 
 def test_MaterialPackageProxy_run_03():
@@ -38,7 +38,7 @@ def test_MaterialPackageProxy_run_03():
     '''
     py.test.skip('TODO: add Example Score I time signatures.')
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='all example_score_1 m 2 q')
     assert studio.ts == (10,)
 
@@ -60,6 +60,6 @@ def test_MaterialPackageProxy_run_04():
     '''
     py.test.skip('TODO: add Example Score I time signatures.')
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='all example_score_1 m time_signatures q')
     assert studio.transcript[-2][0] == 'Example Score I - materials - time signatures'

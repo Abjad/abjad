@@ -1,53 +1,53 @@
 from experimental import *
 
 
-def test_Studio_01():
+def test_ScoreManager_01():
     '''Main menu to mothballed scores.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='mb q')
     studio.ts == (4,)
 
 
-def test_Studio_02():
+def test_ScoreManager_02():
     '''Main menu to score menu to tags menu.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='example tags q')
     assert studio.ts == (6,)
 
 
-def test_Studio_03():
+def test_ScoreManager_03():
     '''Main menu to svn menu.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='svn q')
     assert studio.ts == (4,)
 
 
-def test_Studio_04():
+def test_ScoreManager_04():
     '''Main menu header is the same even after state change to secondary menu.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='q')
-    assert studio.transcript[-2][0] == 'Studio - active scores'
+    assert studio.transcript[-2][0] == 'Scores - active scores'
 
     studio.run(user_input='svn q')
-    assert studio.transcript[-2][0] == 'Studio - active scores - repository commands'
+    assert studio.transcript[-2][0] == 'Scores - active scores - repository commands'
 
     studio.run(user_input='svn b q')
-    assert studio.transcript[-2][0] == 'Studio - active scores'
+    assert studio.transcript[-2][0] == 'Scores - active scores'
 
 
-def test_Studio_05():
+def test_ScoreManager_05():
     '''Junk works.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='foo q')
     assert studio.ts == (4, (0, 2))
 
@@ -55,20 +55,20 @@ def test_Studio_05():
     assert studio.ts == (6, (0, 2, 4))
 
 
-def test_Studio_06():
+def test_ScoreManager_06():
     '''Back is handled correctly.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='b q')
     assert studio.ts == (4, (0, 2))
 
 
-def test_Studio_07():
+def test_ScoreManager_07():
     '''Exec works.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='exec 2**30 q')
 
     assert studio.transcript[1] == ['SCF> exec', '']
@@ -77,11 +77,11 @@ def test_Studio_07():
     assert studio.transcript[4] == ['SCF> q', '']
 
 
-def test_Studio_08():
+def test_ScoreManager_08():
     '''Exec protects against senseless input.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='exec foo q')
 
     assert studio.transcript[1] == ['SCF> exec', '']
@@ -90,39 +90,39 @@ def test_Studio_08():
     assert studio.transcript[4] == ['SCF> q', '']
 
 
-def test_Studio_09():
+def test_ScoreManager_09():
     '''Shared session.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
 
     assert studio.session is studio.score_package_wrangler.session
 
 
-def test_Studio_10():
+def test_ScoreManager_10():
     '''Backtracking stu* shortcut.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='Mon perf studio q')
     ts_1 = studio.ts
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='Mon perf stu q')
     ts_2 = studio.ts
 
     assert ts_1 == ts_2
 
 
-def test_Studio_11():
+def test_ScoreManager_11():
     '''Backtracking sco* shortcut.
     '''
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='Mon perf score q')
     ts_1 = studio.ts
 
-    studio = scoremanagementtools.studio.Studio()
+    studio = scoremanagementtools.studio.ScoreManager()
     studio.run(user_input='Mon perf sco q')
     ts_2 = studio.ts
 
