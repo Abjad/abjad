@@ -35,7 +35,6 @@ Abjad packaging checklist:
     (i) Update Graphiz. Go to www.graphviz.org.
         Record the output of "dot -V" in the packaging transcript.
 
-
  3. Author release notes:
         Open docs/source/start_here/versions/index.rst.
         Add a sentence giving the release date and repository revision number.
@@ -55,8 +54,46 @@ Abjad packaging checklist:
     Also update change log:
         Open docs/source/appendices/change_log/index.rst 
         Add entries for function, method and class names changed during development.
+    Commit.
 
- 4. Commit.
+ 4. Run the following codebase maintenance scripts on the mainline:
+        find-nonalphabetized-class-method-names
+        fix-test-cases
+        find-and-fix-manual-class-package-initializers
+    Possibly the following:
+        capitalize-test-file-names
+        find-duplicate-modules-names
+        find-duplicate-tool-module-names
+        find-import-as-statements
+        find-local-import-statements
+        find-lower-camel-case-definitions
+        find-lower-camel-case-modules
+        find-manual-class-loads-in-initializers
+        find-misnamed-private-modules
+        find-missing-test-modules
+        find-module-headers
+        find-modules-with-chevrons
+        find-multifunction-modules
+        find-multiline-import-statements
+        find-nonalphabetized-class-attributes
+        find-nonalphabetized-module-headers
+        find-noninstantiable-concrete-classes
+        find-nontrivial-subdirectories
+        find-public-helpers-without-docstrings
+        find-slots-implementation-inconsistencies
+        find-undocumented-tools
+        fix-nonalphabetized-module-headers
+        fix-test-case-block-comments
+        fix-test-case-names
+        fix-test-case-numbers
+        fix-test-cases
+        reindent-3-spaces-as-4
+        remove-source-file-terminal-blank-lines
+        remove-tmp-out-directories
+        replace-abjad-prompts-with-python-prompts
+    Test and commit. Alternately you may want to test after each script runs.
+    Then run the matinenance scripts on the experimental branch.
+    Then test and commit.
 
  5. Change to the abjad root directory, then to ly/ly and run `make all`.
     This will update the parser's LilyPond environment scrape to the current
