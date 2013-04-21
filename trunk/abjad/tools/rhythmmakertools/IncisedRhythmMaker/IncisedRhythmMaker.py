@@ -149,7 +149,7 @@ class IncisedRhythmMaker(RhythmMaker):
             leaf_list = leaftools.make_leaves_from_talea(
                 numeric_map_part, lcd,
                 forbidden_written_duration=self.forbidden_written_duration,
-                decrease_durations_monotonically=self.decrease_durations_monotonically, 
+                decrease_durations_monotonically=self.decrease_durations_monotonically,
                 tie_rests=self.tie_rests)
             leaf_lists.append(leaf_list)
         return leaf_lists

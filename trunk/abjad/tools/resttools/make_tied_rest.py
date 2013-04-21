@@ -1,7 +1,7 @@
 from abjad.tools import leaftools
 
 
-def make_tied_rest(duration, decrease_durations_monotonically=True, 
+def make_tied_rest(duration, decrease_durations_monotonically=True,
     forbidden_written_duration=None, tie_parts=False):
     '''Returns a list of rests to fill given duration.
 

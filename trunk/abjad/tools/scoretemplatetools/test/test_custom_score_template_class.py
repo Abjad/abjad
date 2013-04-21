@@ -64,7 +64,7 @@ def test_custom_score_template_class_02():
     custom_context_score_template = CustomContextScoreTemplate()
     score = custom_context_score_template()
 
-    r''' 
+    r'''
     \new Score <<
         \new CustomStaff {
             \new CustomVoice {
@@ -130,7 +130,7 @@ def test_custom_score_template_class_02():
     '''
 
     assert lilypond_file.layout_block.lilypond_format == "\\layout {\n\t\\context {\n\t\t\\Voice\n\t\t\\name CustomVoice\n\t\t\\type Engraver_group\n\t\t\\alias Voice\n\t\t\\override NoteHead #'color = #green\n\t\t\\override Stem #'color = #green\n\t}\n\t\\context {\n\t\t\\Staff\n\t\t\\name CustomStaff\n\t\t\\type Engraver_group\n\t\t\\alias Staff\n\t\t\\accepts CustomVoice\n\t\t\\override StaffSymbol #'color = #red\n\t}\n\t\\context {\n\t\t\\Score\n\t\t\\accepts CustomStaff\n\t}\n}"
- 
+
     r'''
     \score {
         \new Score <<

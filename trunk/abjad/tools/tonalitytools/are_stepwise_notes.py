@@ -30,7 +30,7 @@ def are_stepwise_notes(*expr):
         >>> staff[-1] = "g'4"
 
     ::
-    
+
         >>> show(staff) # doctest: +SKIP
 
     ::

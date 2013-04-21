@@ -84,11 +84,11 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
     ### INITIALIZER ###
 
-    def __init__(self, decrease_durations_monotonically=True, 
+    def __init__(self, decrease_durations_monotonically=True,
         forbidden_written_duration=None, tie_rests=False):
         DivisionIncisedNoteRhythmMaker.__init__(
             self, [], [0], [], [0], 1,
-            decrease_durations_monotonically=decrease_durations_monotonically, 
+            decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
             tie_rests=tie_rests
             )

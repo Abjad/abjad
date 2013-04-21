@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 
 
 def make_leaves_from_talea(talea, talea_denominator,
-    decrease_durations_monotonically=True, tie_rests=False, 
+    decrease_durations_monotonically=True, tie_rests=False,
     forbidden_written_duration=None):
     r'''.. versionadded:: 2.0
 

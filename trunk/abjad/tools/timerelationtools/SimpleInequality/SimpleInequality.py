@@ -99,7 +99,7 @@ class SimpleInequality(AbjadObject):
         '''
         i = bisect.bisect_left(a, x)
         if i != len(a):
-            return i 
+            return i
         raise ValueError
 
     # do not indent storage format
@@ -283,14 +283,14 @@ class SimpleInequality(AbjadObject):
                 rightmost_index = leftmost_index + 1
             except ValueError:
                 pass
-        # 6.b 
+        # 6.b
         elif simple_inequality == 'timespan_2.start_offset < timespan_1.stop_offset':
             try:
                 leftmost_index = 0
                 rightmost_index = self._find_index_ge(timespan_2_start_offsets, timespan_1.stop_offset)
             except ValueError:
                 pass
-        # 6.c 
+        # 6.c
         elif simple_inequality == 'timespan_2.start_offset <= timespan_1.stop_offset':
             try:
                 leftmost_index = 0

@@ -24,7 +24,7 @@ def offset_happens_during_timespan(timespan=None, offset=None, hold=False):
             'timespan.start <= offset',
             'offset < timespan.stop',
             ]),
-        timespan=timespan, 
+        timespan=timespan,
         offset=offset)
 
     if time_relation.is_fully_loaded and not hold:

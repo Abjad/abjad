@@ -21,12 +21,12 @@ def repeat_sequence_to_weight_exactly(sequence, weight):
     assert 0 <= weight
 
     # repeat sequence and find overage
-    sequence_weight = mathtools.weight(sequence)    
+    sequence_weight = mathtools.weight(sequence)
     complete_repetitions = int(math.ceil(float(weight) / float(sequence_weight)))
     result = list(sequence)
     result = complete_repetitions * result
     overage = complete_repetitions * sequence_weight - weight
-     
+
     # remove overage from result
     for element in reversed(result):
         if 0 < overage:

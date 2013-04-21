@@ -49,7 +49,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         }
 
     ::
-        
+
         >>> show(staff) # doctest: +SKIP
 
     Example 3. None-valued elements in `pitches` result in rests:
@@ -91,12 +91,12 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         }
 
     ::
-        
+
         >>> show(staff) # doctest: +SKIP
 
     Example 5. Read `pitches` cyclically when the length of `pitches`
     is less than the length of `durations`:
-    
+
     ::
 
         >>> leaves = leaftools.make_leaves(['C5'], 2 * [Duration(3, 8), Duration(1, 8)])
@@ -188,7 +188,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
 
     ::
 
-        >>> leaves = leaftools.make_leaves(['E5'], [Duration(13, 16)], 
+        >>> leaves = leaftools.make_leaves(['E5'], [Duration(13, 16)],
         ...     decrease_durations_monotonically=False)
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((13, 16))(staff)
@@ -227,7 +227,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
     ::
 
         >>> show(staff) # doctest: +SKIP
-    
+
     Example 11. Set `forbidden_written_duration` to avoid notes greater
     than or equal to a certain written duration:
 

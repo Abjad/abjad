@@ -86,7 +86,7 @@ class CompoundInequality(ObjectInventory):
 
     ### PUBLIC METHODS ###
 
-    def evaluate(self, timespan_1_start_offset, timespan_1_stop_offset, 
+    def evaluate(self, timespan_1_start_offset, timespan_1_stop_offset,
         timespan_2_start_offset, timespan_2_stop_offset):
         from abjad.tools import timerelationtools
         truth_values = []
@@ -94,12 +94,12 @@ class CompoundInequality(ObjectInventory):
             # TODO: compress the following two branches
             if isinstance(inequality, timerelationtools.SimpleInequality):
                 truth_value = inequality.evaluate(
-                    timespan_1_start_offset, timespan_1_stop_offset, 
+                    timespan_1_start_offset, timespan_1_stop_offset,
                     timespan_2_start_offset, timespan_2_stop_offset)
                 truth_values.append(truth_value)
             elif isinstance(inequality, type(self)):
                 truth_value = inequality.evaluate(
-                    timespan_1_start_offset, timespan_1_stop_offset, 
+                    timespan_1_start_offset, timespan_1_stop_offset,
                     timespan_2_start_offset, timespan_2_stop_offset)
                 truth_values.append(truth_value)
         if self.logical_operator == 'and':
@@ -135,7 +135,7 @@ class CompoundInequality(ObjectInventory):
         else:
             raise ValueError(self.logical_operator)
         return truth_value
-        
+
     def get_offset_indices(self, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets):
         from experimental.tools import timerelationtools
         from experimental.tools import timespantools
@@ -161,5 +161,5 @@ class CompoundInequality(ObjectInventory):
         elif self.logical_operator == 'xor':
             result = timespans.compute_logical_xor()
         else:
-            raise ValueError(self.logical_operator)         
+            raise ValueError(self.logical_operator)
         return result

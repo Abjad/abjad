@@ -34,9 +34,9 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_bound_hairpin_score_01(self):
         '''Make 200-note voice with p-to-f bound crescendo spanner on every 4 notes.
-    
+
         ::
-            
+
             2.12 (r9726) initialization:        279,448 function calls
 
             2.12 (r9726) LilyPond format:       124,517 function calls
@@ -50,9 +50,9 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_bound_hairpin_score_02(self):
         '''Make 200-note voice with p-to-f bound crescendo spanner on every 20 notes.
-    
+
         ::
-            
+
             2.12 (r9726) initialization:        268,845 function calls
 
             2.12 (r9726) LilyPond format:       117,846 function calls
@@ -66,9 +66,9 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_bound_hairpin_score_03(self):
         '''Make 200-note voice with p-to-f bound crescendo spanner on every 100 notes.
-    
+
         ::
-            
+
             2.12 (r9726) initialization:        267,417 function calls
 
             2.12 (r9726) LilyPond format:       116,534 function calls
@@ -84,7 +84,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''Make 200-note voice with dynamic mark on every 20th note:
 
         ::
-    
+
             2.12 (r9704) initialization:        630,433 function calls
             2.12 (r9710) initialization:        235,120 function calls
             2.12 r(9726) initialization:        235,126 function calls
@@ -100,7 +100,7 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_context_mark_score_02(self):
         '''Make 200-note staff with dynamic mark on every 4th note.
-    
+
         ::
 
             2.12 (r9704) initialization:      4,632,761 function calls
@@ -118,12 +118,12 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_context_mark_score_03(self):
         '''Make 200-note staff with dynamic mark on every note.
-    
+
         ::
 
             2.12 (r9704) initialization:     53,450,195 function calls (!!)
             2.12 (r9710) initialization:      2,124,500 function calls
-            2.12 (r9724) initialization:      2,122,591 function calls 
+            2.12 (r9724) initialization:      2,122,591 function calls
 
             2.12 (r9704) LilyPond format:       533,927 function calls
             2.12 (r9710) LilyPond format:        91,280 function calls
@@ -136,9 +136,9 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_hairpin_score_01(self):
         '''Make 200-note voice with crescendo spanner on every 4 notes.
-    
+
         ::
-            
+
             2.12 (r9726) initialization:        248,502 function calls
             2.12 (r9728) initialization:        248,502 function calls
 
@@ -152,9 +152,9 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_hairpin_score_02(self):
         '''Make 200-note voice with crescendo spanner on every 20 notes.
-    
+
         ::
-            
+
             2.12 (r9726) initialization:        248,687 function calls
             2.12 (r9728) initialization:        248,687 function calls
 
@@ -168,9 +168,9 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_hairpin_score_03(self):
         '''Make 200-note voice with crescendo spanner on every 100 notes.
-    
+
         ::
-            
+
             2.12 (r9726) initialization:        249,363 function calls
             2.12 (r9726) initialization:        249,363 function calls
 
@@ -186,7 +186,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''Make 200-note voice (with nothing else).
 
         ::
-        
+
             2.12 (r9710) initialization:        156,821 function calls
             2.12 (r9726) initialization:        156,827 function calls
 
@@ -199,13 +199,13 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_spanner_score_01(self):
         '''Make 200-note voice with durated complex beam spanner on every 4 notes.
-    
+
         ::
 
             2.12 (r9710) initialization:        248,654 function calls
             2.12 (r9724) initialization:        248,660 function calls
 
-            2.12 (r9703) LilyPond format:       425,848 function calls 
+            2.12 (r9703) LilyPond format:       425,848 function calls
             2.12 (r9710) LilyPond format:       426,652 function calls
             2.12 (r9724) LilyPond format:       441,884 function calls
         '''
@@ -216,7 +216,7 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_spanner_score_02(self):
         '''Make 200-note voice with durated complex beam spanner on every 20 notes.
-    
+
         ::
 
             2.12 (r9710) initialization:        250,954 function calls
@@ -233,7 +233,7 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_spanner_score_03(self):
         '''Make 200-note voice with durated complex beam spanner on every 100 notes.
-    
+
         ::
 
             2.12 (r9710) initialization:        251,606 function calls
@@ -250,10 +250,10 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_spanner_score_04(self):
         '''Make 200-note voice with slur spanner on every 4 notes.
-    
+
         ::
 
-            2.12 (r9724) initialization:        245,683 function calls 
+            2.12 (r9724) initialization:        245,683 function calls
 
             2.12 (r9703) LilyPond format:       125,577 function calls
             2.12 (r9724) LilyPond format:       111,341 function calls
@@ -265,7 +265,7 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_spanner_score_05(self):
         '''Make 200-note voice with slur spanner on every 20 notes.
-    
+
         ::
 
             2.12 (r9724) initialization:        248,567 function calls
@@ -280,7 +280,7 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_spanner_score_06(self):
         '''Make 200-note voice with slur spanner on every 100 notes.
-    
+
         ::
 
             2.12 (r9724) initialization:        249,339 function calls
@@ -295,7 +295,7 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_spanner_score_07(self):
         '''Make 200-note voice with (vanilla) beam spanner on every 4 notes.
-    
+
         ::
 
             2.12 (r9724) initialization:        245,683 function calls
@@ -310,7 +310,7 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_spanner_score_08(self):
         '''Make 200-note voice with (vanilla) beam spanner on every 20 notes.
-    
+
         ::
 
             2.12 (r9724) initialization:        248,567 function calls
@@ -325,9 +325,9 @@ class BenchmarkScoreMaker(AbjadObject):
 
     def make_spanner_score_09(self):
         '''Make 200-note voice with (vanilla) beam spanner on every 100 notes.
-    
+
         ::
-            
+
             2.12 (r9724) initialization:        249,339 function calls
 
             2.12 (r9703) LilyPond format:       121,497 function calls

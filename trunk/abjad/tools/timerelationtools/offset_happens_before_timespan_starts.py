@@ -100,7 +100,7 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
         timerelationtools.CompoundInequality([
             'offset < timespan.start',
             ]),
-        timespan=timespan, 
+        timespan=timespan,
         offset=offset)
 
     if time_relation.is_fully_loaded and not hold:

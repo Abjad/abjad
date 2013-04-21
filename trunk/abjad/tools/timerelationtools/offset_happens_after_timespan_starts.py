@@ -22,7 +22,7 @@ def offset_happens_after_timespan_starts(timespan=None, offset=None, hold=False)
         timerelationtools.CompoundInequality([
             'timespan.start < offset',
             ]),
-        timespan=timespan, 
+        timespan=timespan,
         offset=offset
         )
 

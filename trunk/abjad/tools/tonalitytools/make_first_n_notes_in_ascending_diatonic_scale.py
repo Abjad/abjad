@@ -13,7 +13,7 @@ def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration=None,
         >>> staff = Staff(notes)
 
     ::
-    
+
         >>> f(staff)
         \new Staff {
             c'8
@@ -27,7 +27,7 @@ def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration=None,
         }
 
     ::
-        
+
         >>> show(staff) # doctest: +SKIP
 
     Allow nonassignable `written_duration`:

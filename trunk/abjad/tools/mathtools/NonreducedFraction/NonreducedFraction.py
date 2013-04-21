@@ -414,7 +414,7 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         Return zero.
         '''
         return Fraction.imag.fget(self)
-        
+
     @property
     def numerator(self):
         '''Read-only numerator of nonreduced fraction:
@@ -461,7 +461,7 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         Return nonreduced fraction.
         '''
         return self
-    
+
     @property
     def storage_format(self):
         '''Nonreduced fraction storage format:
@@ -645,7 +645,7 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
     def with_multiple_of_denominator(self, denominator):
         '''Return new nonreduced fraction with multiple of integer `denominator`:
-    
+
         ::
 
             >>> mathtools.NonreducedFraction(3, 6).with_multiple_of_denominator(5)

@@ -245,12 +245,12 @@ def test_DivisionIncisedNoteRhythmMaker___call___05():
 def test_DivisionIncisedNoteRhythmMaker___call___06():
 
     maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-        prefix_talea=[-1], 
+        prefix_talea=[-1],
         prefix_lengths=[1],
-        suffix_talea=[], 
-        suffix_lengths=[0], 
-        talea_denominator=32, 
-        prolation_addenda=[2, 0], 
+        suffix_talea=[],
+        suffix_lengths=[0],
+        talea_denominator=32,
+        prolation_addenda=[2, 0],
         secondary_divisions=[20])
 
     divisions = [(4, 8), (4, 8), (4, 8)]

@@ -202,7 +202,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         if not isinstance(timespan_2, timespantools.Timespan):
             timespan_2 = timespantools.Timespan()._get_timespan(timespan_2)
         truth_value = self.inequality.evaluate(
-            timespan_1.start_offset, timespan_1.stop_offset, 
+            timespan_1.start_offset, timespan_1.stop_offset,
             timespan_2.start_offset, timespan_2.stop_offset)
         return truth_value
 
@@ -312,7 +312,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> for counttime_component in result: 
+            >>> for counttime_component in result:
             ...     counttime_component
             Note("af'4")
             Note("a'4")
@@ -378,12 +378,12 @@ class TimespanTimespanTimeRelation(TimeRelation):
             >>> time_relation = timerelationtools.timespan_2_starts_after_timespan_1_stops(timespan_1=timespan_1)
             >>> time_relation.get_offset_indices(start_offsets, stop_offsets)
             (2, 8)
-        
+
         Return nonnegative integer pair.
         '''
         from abjad.tools import timerelationtools
         from abjad.tools import timespantools
-        
+
         result = self.inequality.get_offset_indices(
             self.timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
 

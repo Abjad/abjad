@@ -5,7 +5,7 @@ from abjad.tools import durationtools
 def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total_duration, prolation=1):
     r'''Make repeated notes with `pitch` and `written_duration` summing to
     `total_duration` under `prolation`:
-    
+
     ::
 
         >>> args = [0, Duration(1, 16), Duration(1, 4)]

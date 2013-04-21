@@ -60,6 +60,7 @@ Abjad packaging checklist:
         find-nonalphabetized-class-method-names
         fix-test-cases
         find-and-fix-manual-class-package-initializers
+        reindent-3-spaces-as-4 (this will cause all 1500 pages of the docs to rebuild)
     Possibly the following:
         capitalize-test-file-names
         find-duplicate-modules-names
@@ -87,7 +88,6 @@ Abjad packaging checklist:
         fix-test-case-names
         fix-test-case-numbers
         fix-test-cases
-        reindent-3-spaces-as-4
         remove-source-file-terminal-blank-lines
         remove-tmp-out-directories
         replace-abjad-prompts-with-python-prompts

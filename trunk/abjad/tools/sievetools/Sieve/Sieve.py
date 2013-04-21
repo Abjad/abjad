@@ -61,7 +61,7 @@ class Sieve(_BaseResidueClass):
             self.rcs.sort()
 
     ### PUBLIC PROPERTIES ###
-    
+
     @property
     def logical_operator(self):
         '''Residue class expression logical operator.

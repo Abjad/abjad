@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def make_tied_leaf(kind, duration, decrease_durations_monotonically=True, 
+def make_tied_leaf(kind, duration, decrease_durations_monotonically=True,
     forbidden_written_duration=None, pitches=None, tie_parts=True):
     r'''.. versionadded:: 1.0
 
@@ -142,7 +142,7 @@ def make_tied_leaf(kind, duration, decrease_durations_monotonically=True,
     # reverse numerators if necessary
     if not decrease_durations_monotonically:
         numerators = list(reversed(numerators))
-    
+
     # make one leaf per written duration
     result = []
     for numerator in numerators:

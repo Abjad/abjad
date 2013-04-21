@@ -19,7 +19,7 @@ def repeat_sequence_to_weight_at_most(sequence, weight):
     assert isinstance(weight, numbers.Number)
     assert 0 <= weight
 
-    
+
     # initialize result
     result = [sequence[0]]
 

@@ -62,5 +62,5 @@ def get_spanner_format_contributions(component):
         else:
             result[key].sort(key=lambda x: x[0].__class__.__name__)
             result[key] = [x[1] for x in result[key]]
-            
+
     return result

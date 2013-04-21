@@ -7,7 +7,7 @@ from abjad.tools import iotools
 
 def _find_initializers():
     public_class_package_initializers = [ ]
-    for path, subdirectories, files in os.walk(ABJCFG.ABJAD_PATH):
+    for path, subdirectories, files in os.walk('.'):
         for f in files:
             if f == '__init__.py':
                 initializer_parent_directory = path.split(os.path.sep)[-1]
@@ -20,7 +20,9 @@ def _find_initializers():
             output = file(x, 'w')
             output.write('from abjad.tools import importtools\n')
             output.write('\n')
-            output.write("importtools.import_structured_package(__path__[0], globals(), package_root_name='abjad')\n")
+            # TODO: make package_root_name detect correct argument automatically
+            output.write(
+                "importtools.import_structured_package(__path__[0], globals(), package_root_name='abjad')\n")
             output.close()
 
 

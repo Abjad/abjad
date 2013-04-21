@@ -113,7 +113,7 @@ class Selection(AbjadObject):
             >>> start_offsets, stop_offsets = selection.get_offset_lists()
             >>> start_offsets
             [Offset(0, 1), Offset(1, 4)]
-    
+
         ::
 
             >>> stop_offsets

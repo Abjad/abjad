@@ -24,7 +24,7 @@ def timespan_2_starts_during_timespan_1(timespan_1=None, timespan_2=None, hold=F
         >>> score = Score([staff_1, staff_2])
 
     ::
-    
+
         >>> start_offsets = [note.timespan.start_offset for note in staff_1]
         >>> stop_offsets = [note.timespan.stop_offset for note in staff_1]
 
@@ -34,7 +34,7 @@ def timespan_2_starts_during_timespan_1(timespan_1=None, timespan_2=None, hold=F
         >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
         ...     timespan_1=timespan_1)
         >>> start_index, stop_index = time_relation.get_offset_indices(start_offsets, stop_offsets)
-        
+
     ::
 
         >>> selected_notes = staff_1[start_index:stop_index]

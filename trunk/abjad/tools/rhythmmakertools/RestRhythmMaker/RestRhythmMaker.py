@@ -91,7 +91,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
     def __init__(self, forbidden_written_duration=None):
         DivisionIncisedRestRhythmMaker.__init__(
             self, [], [0], [], [0], 1,
-            decrease_durations_monotonically=True, 
+            decrease_durations_monotonically=True,
             forbidden_written_duration=forbidden_written_duration,
             tie_rests=False
             )
