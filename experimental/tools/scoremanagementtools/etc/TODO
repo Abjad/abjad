@@ -75,3 +75,5 @@
 26. Migrate all build_illustration.py modules from separate modules to bound class methods.
 
 27. Audit the UI of the entire materials management system by hand.
+
+28. Audit all __init__.py files and make all autoloading.

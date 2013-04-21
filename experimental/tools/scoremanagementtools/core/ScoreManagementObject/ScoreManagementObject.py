@@ -50,10 +50,12 @@ class ScoreManagementObject(AbjadObject):
     def breadcrumb_stack(self):
         return self.session.breadcrumb_stack
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def editors_package_importable_name(self):
         return self.dot_join(['scoremanagementtools', 'editors'])
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def editors_package_path_name(self):
         return os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'editors')
@@ -62,30 +64,37 @@ class ScoreManagementObject(AbjadObject):
     def help_item_width(self):
         return 5
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def makers_directory_name(self):
         return os.path.join(self.score_management_tools_package_path_name, 'makers')
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def makers_package_importable_name(self):
         return self.dot_join([self.score_management_tools_package_importable_name, 'makers'])
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def score_external_chunks_package_importable_name(self):
         return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_CHUNKS_PATH'))
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def score_external_chunks_package_path_name(self):
         return os.environ.get('SCORE_MANAGEMENT_TOOLS_CHUNKS_PATH')
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def score_external_materials_package_importable_name(self):
         return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH'))
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def score_external_materials_package_path_name(self):
         return os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH')
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def score_external_package_importable_names(self):
         return (
@@ -94,6 +103,7 @@ class ScoreManagementObject(AbjadObject):
             self.score_external_specifiers_package_importable_name,
             )
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def score_external_package_path_names(self):
         return (
@@ -102,38 +112,47 @@ class ScoreManagementObject(AbjadObject):
             self.score_external_specifiers_package_path_name,
             )
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def score_external_specifiers_package_importable_name(self):
         return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_SPECIFIERS_PATH'))
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def score_external_specifiers_package_path_name(self):
         return os.environ.get('SCORE_MANAGEMENT_TOOLS_SPECIFIERS_PATH')
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def score_internal_chunks_package_importable_name_infix(self):
         return 'mus.chunks'
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def score_internal_materials_package_importable_name_infix(self):
         return 'mus.materials'
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def score_internal_specifiers_package_importable_name_infix(self):
         return 'mus.specifiers'
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def score_management_tools_fully_qualified_package_name(self):
         return 'experimental.tools.scoremanagementtools'
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def score_management_tools_package_importable_name(self):
         return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'))
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def score_management_tools_package_path_name(self):
         return os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH')
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def scores_directory_name(self):
         return os.environ.get('SCORES')
@@ -148,18 +167,22 @@ class ScoreManagementObject(AbjadObject):
         source_file_name = source_file_name.strip('c')
         return source_file_name
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def specifier_classes_package_importable_name(self):
         return self.dot_join(['scoremanagementtools', 'specifiers'])
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def specifier_classes_package_path_name(self):
         return os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'specifiers')
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def stylesheets_directory_name(self):
         return os.path.join(self.score_management_tools_package_path_name, 'stylesheets')
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def stylesheets_package_importable_name(self):
         return self.dot_join([self.score_management_tools_package_importable_name, 'stylesheets'])
@@ -176,10 +199,12 @@ class ScoreManagementObject(AbjadObject):
     def ts(self):
         return self.transcript_signature
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def user_makers_directory_name(self):
         return os.environ.get('SCORE_MANAGEMENT_TOOLS_USER_MAKERS_PATH')
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def user_makers_package_importable_name(self):
         return os.environ.get('SCORE_MANAGEMENT_TOOLS_USER_MAKERS_IMPORTABLE_NAME')
