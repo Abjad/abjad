@@ -173,7 +173,7 @@ class WoodwindFingering(AbjadObject):
             if right_hand is not None:
                 self._right_hand = tuple(right_hand)
 
-    ### PRIVATE READ-ONLY PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _positional_argument_names(self):

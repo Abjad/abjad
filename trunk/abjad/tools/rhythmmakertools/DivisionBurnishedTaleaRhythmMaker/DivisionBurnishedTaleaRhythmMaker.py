@@ -74,7 +74,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         assert burnished_weights == unburnished_weights
         return burnished_divisions
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def storage_format(self):
