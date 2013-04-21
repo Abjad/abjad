@@ -2,9 +2,9 @@ from abjad.tools import configurationtools
 import os
 
 
-def test_AbjadConfig___init___01():
+def test_AbjadConfiguration___init___01():
 
-    ABJADCONFIG = configurationtools.AbjadConfig()
+    ABJADCONFIG = configurationtools.AbjadConfiguration()
 
     assert os.path.exists(ABJADCONFIG.ABJAD_CONFIG_DIRECTORY_PATH)
     assert os.path.exists(ABJADCONFIG.ABJAD_CONFIG_FILE_PATH)

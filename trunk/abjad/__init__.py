@@ -14,9 +14,9 @@ else:
 
 # setup .abjad directory and friends (if not already handled elsewhere)
 # configurationtools.setup_abjad_directory_silently()
-from abjad.tools.configurationtools import AbjadConfig
-ABJCFG = AbjadConfig()
-del AbjadConfig
+from abjad.tools.configurationtools import AbjadConfiguration
+ABJCFG = AbjadConfiguration()
+del AbjadConfiguration
 
 from abjad.tools.importtools._import_functions_in_package_to_namespace import \
     _import_functions_in_package_to_namespace

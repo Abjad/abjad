@@ -4297,7 +4297,7 @@ Abjad internal packages
    .. toctree::
       :maxdepth: 1
 
-      tools/configurationtools/AbjadConfig/AbjadConfig
+      tools/configurationtools/AbjadConfiguration/AbjadConfiguration
 
    --------
 
@@ -4329,7 +4329,7 @@ Abjad internal packages
 
    .. toctree::
 
-      tools/configurationtools/AbjadConfig/AbjadConfig
+      tools/configurationtools/AbjadConfiguration/AbjadConfiguration
 
    Functions
    ---------

@@ -2,16 +2,16 @@ import os
 from abjad.tools.configurationtools.Configuration import Configuration
 
 
-class AbjadConfig(Configuration):
+class AbjadConfiguration(Configuration):
     '''Abjad configuration object:
 
     ::
 
-        >>> ABJCONFIG = configurationtools.AbjadConfig()
+        >>> ABJCONFIG = configurationtools.AbjadConfiguration()
         >>> ABJCONFIG['accidental_spelling']
         'mixed'
 
-    On instantiation, `AbjadConfig` creates the `$HOME/.abjad/` directory
+    On instantiation, `AbjadConfiguration` creates the `$HOME/.abjad/` directory
     if it does not already exist.
 
     It then attempts to read an `abjad.cfg` file in that directory,
@@ -26,9 +26,9 @@ class AbjadConfig(Configuration):
     Finally, the Abjad output directory is created if it does not already exist,
     by referencing the 'abjad_output' key in the configuration.
 
-    `AbjadConfig` supports the mutable mapping interface, and can be subscripted as a dictionary.
+    `AbjadConfiguration` supports the mutable mapping interface, and can be subscripted as a dictionary.
 
-    Returns `AbjadConfig` instance.
+    Returns `AbjadConfiguration` instance.
     '''
 
     ### CLASS ATTRIBUTES ###

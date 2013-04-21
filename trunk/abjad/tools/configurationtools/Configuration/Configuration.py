@@ -52,7 +52,7 @@ class Configuration(collections.MutableMapping, abctools.AbjadObject):
 
         # turn the ConfigObj instance into a standard dict,
         # and replace its empty string values with Nones,
-        # caching the result on this AbjadConfig instance.
+        # caching the result on this AbjadConfiguration instance.
         self._settings = dict(config)
         for key, value in self._settings.iteritems():
             if value == '' or value == 'None':
