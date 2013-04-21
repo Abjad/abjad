@@ -3,6 +3,8 @@ from experimental.tools.scoremanagementtools.editors.AttributeDetail import Attr
 
 class TargetManifest(object):
 
+    ### INITIALIZER ###
+
     def __init__(self, target_class, *attribute_details, **kwargs):
         self.target_class = target_class
         self._attribute_details = []
@@ -75,19 +77,19 @@ class TargetManifest(object):
 #        return result
 
     @property
-    def positional_initializer_retrievable_attribute_names(self):
-        result = []
-        for attribute_detail in self.attribute_details:
-            if attribute_detail.is_positional:
-                result.append(attribute_detail.retrievable_name)
-        return result
-
-    @property
     def positional_initializer_argument_names(self):
         result = []
         for attribute_detail in self.attribute_details:
             if attribute_detail.is_positional:
                 result.append(attribute_detail.name)
+        return result
+
+    @property
+    def positional_initializer_retrievable_attribute_names(self):
+        result = []
+        for attribute_detail in self.attribute_details:
+            if attribute_detail.is_positional:
+                result.append(attribute_detail.retrievable_name)
         return result
 
     ### PUBLIC METHODS ###

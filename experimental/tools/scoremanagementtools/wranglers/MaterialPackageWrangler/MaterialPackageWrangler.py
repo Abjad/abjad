@@ -8,8 +8,11 @@ from experimental.tools.scoremanagementtools.wranglers.PackageWrangler import Pa
 # TODO: write all iteration tests
 class MaterialPackageWrangler(PackageWrangler):
 
+    ### INITIALIZER ###
+
     def __init__(self, session=None):
-        from experimental.tools.scoremanagementtools.wranglers.MaterialPackageMakerWrangler import MaterialPackageMakerWrangler
+        from experimental.tools.scoremanagementtools.wranglers.MaterialPackageMakerWrangler import \
+            MaterialPackageMakerWrangler
         PackageWrangler.__init__(self,
             score_external_asset_container_importable_names= \
                 [self.score_external_materials_package_importable_name],
@@ -29,9 +32,6 @@ class MaterialPackageWrangler(PackageWrangler):
         return self._material_package_maker_wrangler
 
     ### PUBLIC METHODS ###
-
-    def get_asset_proxy(self, package_importable_name):
-        return self.material_package_maker_wrangler.get_asset_proxy(package_importable_name)
 
     def get_appropriate_material_package_proxy(self,
         material_package_maker_class_name, material_package_importable_name):
@@ -53,6 +53,9 @@ class MaterialPackageWrangler(PackageWrangler):
                 material_package_proxy = material_package_maker_class(
                     material_package_importable_name, session=self.session)
         return material_package_proxy
+
+    def get_asset_proxy(self, package_importable_name):
+        return self.material_package_maker_wrangler.get_asset_proxy(package_importable_name)
 
     def get_available_material_package_importable_name_interactively(self, user_input=None):
         self.assign_user_input(user_input=user_input)

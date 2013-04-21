@@ -23,6 +23,10 @@ class MusicSpecifier(Specifier, ObjectInventory):
     ### PRIVATE READ-ONLY PROPERTIES ###
 
     @property
+    def _item_class(self):
+        return MusicContributionSpecifer
+
+    @property
     def _keyword_argument_names(self):
         '''Is there a way to do this programmatically?
         '''
@@ -30,10 +34,6 @@ class MusicSpecifier(Specifier, ObjectInventory):
             'description',
             'name',
             ]))
-
-    @property
-    def _item_class(self):
-        return MusicContributionSpecifer
 
     ### PUBLIC READ-ONLY PROPERTIES ###
 

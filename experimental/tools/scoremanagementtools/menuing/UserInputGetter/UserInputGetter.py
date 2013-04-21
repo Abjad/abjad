@@ -1,3 +1,4 @@
+import types
 from abjad.tools import durationtools
 from abjad.tools import iotools
 from abjad.tools import mathtools
@@ -6,10 +7,11 @@ from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator import MenuSectionAggregator
 from experimental.tools.scoremanagementtools import predicates
-import types
 
 
 class UserInputGetter(MenuSectionAggregator):
+
+    ### INITIALIZER ###
 
     def __init__(self, session=None, where=None):
         MenuSectionAggregator.__init__(self, session=session, where=where)
@@ -206,6 +208,15 @@ class UserInputGetter(MenuSectionAggregator):
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(lambda x: all([isinstance(y, int) and not y == 0 for y in x]))
 
+    def append_pitch_range(self, spaced_attribute_name, default=None):
+        message = 'value for {!r} must be pitch range.'
+        self.append_something(spaced_attribute_name, message, default=default)
+        execs = []
+        execs.append('from abjad import *')
+        execs.append('value = pitchtools.PitchRange({})')
+        self.execs[-1] = execs
+        self.tests.append(predicates.is_pitch_range_or_none)
+
     def append_positive_integer_power_of_two(self, spaced_attribute_name, default=None):
         message = 'value for {!r} must be positive integer power of two.'
         self.append_something(spaced_attribute_name, message, default=default)
@@ -215,15 +226,6 @@ class UserInputGetter(MenuSectionAggregator):
         message = 'value for {!r} must be positive integers.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(lambda expr: all([mathtools.is_positive_integer(x) for x in expr]))
-
-    def append_pitch_range(self, spaced_attribute_name, default=None):
-        message = 'value for {!r} must be pitch range.'
-        self.append_something(spaced_attribute_name, message, default=default)
-        execs = []
-        execs.append('from abjad import *')
-        execs.append('value = pitchtools.PitchRange({})')
-        self.execs[-1] = execs
-        self.tests.append(predicates.is_pitch_range_or_none)
 
     def append_something(self, spaced_attribute_name, message,
         additional_message_arguments=None, default=None, include_chevron=True):

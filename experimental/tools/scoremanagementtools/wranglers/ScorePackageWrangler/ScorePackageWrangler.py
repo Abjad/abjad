@@ -45,6 +45,23 @@ class ScorePackageWrangler(PackageWrangler):
     def handle_main_menu_result(self):
         self.print_not_yet_implemented()
 
+    def list_visible_asset_importable_name_and_score_title_pairs(self, head=None):
+        result = []
+        scores_to_show = self.session.scores_to_show
+        for asset_proxy in PackageWrangler.list_asset_proxies(self, head=head):
+            tags = asset_proxy.get_tags()
+            is_mothballed = tags.get('is_mothballed', False)
+            if scores_to_show == 'all' or \
+                (scores_to_show == 'active' and not is_mothballed) or \
+                (scores_to_show == 'mothballed' and is_mothballed):
+                year_of_completion = tags.get('year_of_completion')
+                if year_of_completion:
+                    title_with_year = '{} ({})'.format(tags['title'], year_of_completion)
+                else:
+                    title_with_year = '{}'.format(tags['title'])
+                result.append((asset_proxy.importable_name, title_with_year))
+        return result
+
     def list_visible_asset_path_names(self, head=None):
         result = []
         for visible_asset_proxy in self.list_visible_asset_proxies(head=head):
@@ -62,23 +79,6 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append(asset_proxy)
             elif scores_to_show == 'mothballed' and is_mothballed:
                 result.append(asset_proxy)
-        return result
-
-    def list_visible_asset_importable_name_and_score_title_pairs(self, head=None):
-        result = []
-        scores_to_show = self.session.scores_to_show
-        for asset_proxy in PackageWrangler.list_asset_proxies(self, head=head):
-            tags = asset_proxy.get_tags()
-            is_mothballed = tags.get('is_mothballed', False)
-            if scores_to_show == 'all' or \
-                (scores_to_show == 'active' and not is_mothballed) or \
-                (scores_to_show == 'mothballed' and is_mothballed):
-                year_of_completion = tags.get('year_of_completion')
-                if year_of_completion:
-                    title_with_year = '{} ({})'.format(tags['title'], year_of_completion)
-                else:
-                    title_with_year = '{}'.format(tags['title'])
-                result.append((asset_proxy.importable_name, title_with_year))
         return result
 
     def list_visible_asset_short_names(self, head=None):

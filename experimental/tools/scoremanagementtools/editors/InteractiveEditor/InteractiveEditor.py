@@ -66,6 +66,12 @@ class InteractiveEditor(ScoreManagementObject):
             result.extend(self.target_manifest.keyword_attribute_names)
         return result
 
+    @property
+    def target_name(self):
+        target_name_attribute = self.target_manifest.target_name_attribute
+        if target_name_attribute:
+            return getattr(self.target, self.target_manifest.target_name_attribute, None)
+
     # TODO: deprecate and use two more specific labels instead
 #    @property
 #    def target_positional_attribute_names(self):
@@ -87,12 +93,6 @@ class InteractiveEditor(ScoreManagementObject):
         if hasattr(self, 'target_manifest'):
             result.extend(self.target_manifest.positional_initializer_retrievable_attribute_names)
         return result
-
-    @property
-    def target_name(self):
-        target_name_attribute = self.target_manifest.target_name_attribute
-        if target_name_attribute:
-            return getattr(self.target, self.target_manifest.target_name_attribute, None)
 
     @property
     def target_summary_lines(self):

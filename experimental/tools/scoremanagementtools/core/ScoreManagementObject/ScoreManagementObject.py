@@ -14,6 +14,8 @@ from abjad.tools import stringtools
 
 class ScoreManagementObject(object):
 
+    ### INITIALIZER ###
+
     def __init__(self, session=None):
         from experimental.tools.scoremanagementtools.core.Session import Session
         self._session = session or Session()
@@ -75,18 +77,6 @@ class ScoreManagementObject(object):
         return self.dot_join([self.score_management_tools_package_importable_name, 'makers'])
 
     @property
-    def score_management_tools_fully_qualified_package_name(self):
-        return 'experimental.tools.scoremanagementtools'
-
-    @property
-    def score_management_tools_package_importable_name(self):
-        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'))
-
-    @property
-    def score_management_tools_package_path_name(self):
-        return os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH')
-
-    @property
     def score_external_chunks_package_importable_name(self):
         return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_CHUNKS_PATH'))
 
@@ -137,6 +127,18 @@ class ScoreManagementObject(object):
     @property
     def score_internal_specifiers_package_importable_name_infix(self):
         return 'mus.specifiers'
+
+    @property
+    def score_management_tools_fully_qualified_package_name(self):
+        return 'experimental.tools.scoremanagementtools'
+
+    @property
+    def score_management_tools_package_importable_name(self):
+        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'))
+
+    @property
+    def score_management_tools_package_path_name(self):
+        return os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH')
 
     @property
     def scores_directory_name(self):
@@ -311,9 +313,6 @@ class ScoreManagementObject(object):
         else:
             return repr(expr)
 
-    def get_tools_package_qualified_repr(self, expr):
-        return getattr(expr, '_tools_package_qualified_repr', repr(expr))
-
     def get_tag_from_path_name(self, path_name, tag_name):
         tags_file_name = os.path.join(path_name, 'tags.py')
         if os.path.isfile(tags_file_name):
@@ -323,6 +322,9 @@ class ScoreManagementObject(object):
             exec(tags_file_string)
             result = locals().get('tags') or OrderedDict([])
             return result.get(tag_name)
+
+    def get_tools_package_qualified_repr(self, expr):
+        return getattr(expr, '_tools_package_qualified_repr', repr(expr))
 
     def handle_raw_input(self, prompt, include_chevron=True, include_newline=True, prompt_character='>',
         capitalize_prompt=True):
