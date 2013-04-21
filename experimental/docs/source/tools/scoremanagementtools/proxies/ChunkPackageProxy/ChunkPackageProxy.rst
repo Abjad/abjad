@@ -51,9 +51,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.human_readable_name
    :noindex:
 
@@ -163,9 +160,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.specifier_classes_package_importable_name

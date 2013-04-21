@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.specifier_classes_package_importable_name

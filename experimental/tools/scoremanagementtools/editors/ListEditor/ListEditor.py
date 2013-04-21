@@ -17,7 +17,7 @@ class ListEditor(InteractiveEditor):
     item_identifier = 'element'
     target_manifest = TargetManifest(list,)
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def breadcrumb(self):

@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.specifier_classes_package_importable_name

@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.specifier_classes_package_importable_name

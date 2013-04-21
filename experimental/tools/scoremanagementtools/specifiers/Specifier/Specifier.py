@@ -27,7 +27,7 @@ class Specifier(AbjadObject):
                     return True
         return False
 
-#    ### PRIVATE READ-ONLY PROPERTIES ###
+#    ### READ-ONLY PRIVATE PROPERTIES ###
 #
 #    @property
 #    def _keyword_argument_names(self):
@@ -39,14 +39,14 @@ class Specifier(AbjadObject):
 #            'name',
 #            ]))
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def format(self):
         return self._tools_package_qualified_indented_repr
 
     @property
-    def human_readable_class_name(self):
+    def _human_readable_class_name(self):
         return iotools.uppercamelcase_to_space_delimited_lowercase(self.class_name)
 
     @abc.abstractproperty

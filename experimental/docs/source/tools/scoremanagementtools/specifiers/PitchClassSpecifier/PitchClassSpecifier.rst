@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.PitchClassSpecifier.PitchClassSpecifier.PitchClassSpecifier.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.PitchClassSpecifier.PitchClassSpecifier.PitchClassSpecifier.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.PitchClassSpecifier.PitchClassSpecifier.PitchClassSpecifier.one_line_menuing_summary
    :noindex:
 

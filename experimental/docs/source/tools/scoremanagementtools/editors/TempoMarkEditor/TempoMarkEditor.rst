@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.specifier_classes_package_importable_name

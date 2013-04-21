@@ -51,9 +51,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.human_readable_name
    :noindex:
 
@@ -169,9 +166,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.specifier_classes_package_importable_name

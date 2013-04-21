@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier.one_line_menuing_summary
    :noindex:
 

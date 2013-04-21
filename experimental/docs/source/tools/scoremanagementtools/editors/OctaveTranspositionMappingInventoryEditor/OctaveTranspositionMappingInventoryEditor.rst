@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.items
    :noindex:
 
@@ -100,9 +97,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.specifier_classes_package_importable_name

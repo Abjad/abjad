@@ -54,9 +54,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.human_readable_name
    :noindex:
 
@@ -163,9 +160,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.specifier_classes_package_importable_name

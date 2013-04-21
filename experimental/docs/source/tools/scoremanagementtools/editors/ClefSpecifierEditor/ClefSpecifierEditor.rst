@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.specifier_classes_package_importable_name

@@ -54,9 +54,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.makers_directory_name
    :noindex:
 
@@ -115,9 +112,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.specifier_classes_package_importable_name

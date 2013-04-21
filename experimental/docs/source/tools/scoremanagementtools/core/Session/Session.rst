@@ -72,9 +72,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.is_complete
    :noindex:
 
@@ -157,9 +154,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.specifier_classes_package_importable_name

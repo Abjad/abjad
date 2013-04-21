@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.specifier_classes_package_importable_name

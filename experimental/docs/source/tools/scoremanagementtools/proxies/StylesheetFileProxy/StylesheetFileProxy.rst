@@ -45,9 +45,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.human_readable_name
    :noindex:
 
@@ -124,9 +121,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.specifier_classes_package_importable_name

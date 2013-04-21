@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.specifier_classes_package_importable_name

@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier.one_line_menuing_summary
    :noindex:
 

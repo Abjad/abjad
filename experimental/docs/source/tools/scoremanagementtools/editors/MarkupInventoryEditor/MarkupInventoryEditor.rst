@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.items
    :noindex:
 
@@ -100,9 +97,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.specifier_classes_package_importable_name

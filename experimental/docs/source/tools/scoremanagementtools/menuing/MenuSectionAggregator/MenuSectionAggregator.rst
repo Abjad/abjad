@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.makers_directory_name
    :noindex:
 
@@ -91,9 +88,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.specifier_classes_package_importable_name

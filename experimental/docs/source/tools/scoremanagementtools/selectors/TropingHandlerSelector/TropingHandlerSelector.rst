@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.specifier_classes_package_importable_name

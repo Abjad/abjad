@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.InstrumentSpecifier.InstrumentSpecifier.InstrumentSpecifier.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.InstrumentSpecifier.InstrumentSpecifier.InstrumentSpecifier.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.InstrumentSpecifier.InstrumentSpecifier.InstrumentSpecifier.one_line_menuing_summary
    :noindex:
 

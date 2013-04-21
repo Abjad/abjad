@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.items
    :noindex:
 
@@ -100,9 +97,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.specifier_classes_package_importable_name

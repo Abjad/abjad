@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.items
    :noindex:
 
@@ -100,9 +97,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.specifier_classes_package_importable_name

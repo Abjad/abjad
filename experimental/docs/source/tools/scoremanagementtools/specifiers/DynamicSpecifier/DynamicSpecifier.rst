@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.DynamicSpecifier.DynamicSpecifier.DynamicSpecifier.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.DynamicSpecifier.DynamicSpecifier.DynamicSpecifier.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.DynamicSpecifier.DynamicSpecifier.DynamicSpecifier.one_line_menuing_summary
    :noindex:
 

@@ -32,7 +32,7 @@ class AssetProxy(ScoreManagementObject):
 
     @property
     def breadcrumb(self):
-        return self.short_name or self.human_readable_class_name
+        return self.short_name or self._human_readable_class_name
 
     @property
     def exists(self):

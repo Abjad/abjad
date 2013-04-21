@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.specifier_classes_package_importable_name

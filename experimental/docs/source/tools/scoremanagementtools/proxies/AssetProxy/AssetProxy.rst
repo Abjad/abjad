@@ -33,9 +33,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.human_readable_name
    :noindex:
 
@@ -112,9 +109,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.specifier_classes_package_importable_name

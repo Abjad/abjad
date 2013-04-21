@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.specifier_classes_package_importable_name

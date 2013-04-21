@@ -54,9 +54,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.hidden_section
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.makers_directory_name
    :noindex:
 
@@ -139,9 +136,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.specifier_classes_package_importable_name

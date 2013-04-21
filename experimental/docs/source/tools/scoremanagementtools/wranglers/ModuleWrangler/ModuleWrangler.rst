@@ -54,9 +54,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.makers_directory_name
    :noindex:
 
@@ -115,9 +112,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.specifier_classes_package_importable_name

@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.specifier_classes_package_importable_name

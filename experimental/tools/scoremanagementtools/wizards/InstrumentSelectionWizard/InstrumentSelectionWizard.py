@@ -7,7 +7,7 @@ from experimental.tools.scoremanagementtools.wizards.Wizard import Wizard
 
 class InstrumentSelectionWizard(Wizard):
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def breadcrumb(self):

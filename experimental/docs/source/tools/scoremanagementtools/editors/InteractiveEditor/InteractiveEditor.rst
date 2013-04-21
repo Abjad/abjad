@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.specifier_classes_package_importable_name

@@ -117,9 +117,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.human_readable_name
    :noindex:
 
@@ -349,9 +346,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.specifier_classes_package_importable_name

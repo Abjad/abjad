@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.specifier_classes_package_importable_name

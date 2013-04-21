@@ -4,7 +4,7 @@ from experimental.tools.scoremanagementtools.wizards.Wizard import Wizard
 
 class ParameterSpecifierCreationWizard(Wizard):
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def breadcrumb(self):

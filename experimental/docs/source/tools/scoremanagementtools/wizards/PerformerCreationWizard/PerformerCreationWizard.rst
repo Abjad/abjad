@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.specifier_classes_package_importable_name

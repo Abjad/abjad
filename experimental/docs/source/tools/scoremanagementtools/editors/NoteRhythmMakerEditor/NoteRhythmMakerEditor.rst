@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor.specifier_classes_package_importable_name

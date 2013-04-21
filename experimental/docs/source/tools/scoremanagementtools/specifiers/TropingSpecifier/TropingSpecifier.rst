@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.TropingSpecifier.TropingSpecifier.TropingSpecifier.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.TropingSpecifier.TropingSpecifier.TropingSpecifier.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.TropingSpecifier.TropingSpecifier.TropingSpecifier.one_line_menuing_summary
    :noindex:
 

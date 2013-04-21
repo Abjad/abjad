@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier.one_line_menuing_summary
    :noindex:
 

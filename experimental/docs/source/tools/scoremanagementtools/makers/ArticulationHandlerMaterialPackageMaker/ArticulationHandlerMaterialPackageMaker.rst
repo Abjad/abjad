@@ -117,9 +117,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.human_readable_name
    :noindex:
 
@@ -349,9 +346,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.specifier_classes_package_importable_name

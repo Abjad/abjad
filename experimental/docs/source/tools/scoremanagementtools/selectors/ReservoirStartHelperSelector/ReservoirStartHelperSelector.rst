@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.specifier_classes_package_importable_name

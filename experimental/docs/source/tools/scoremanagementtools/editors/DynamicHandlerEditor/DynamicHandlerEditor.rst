@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.specifier_classes_package_importable_name

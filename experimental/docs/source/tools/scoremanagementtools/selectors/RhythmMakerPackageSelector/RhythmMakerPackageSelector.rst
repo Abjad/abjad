@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.specifier_classes_package_importable_name

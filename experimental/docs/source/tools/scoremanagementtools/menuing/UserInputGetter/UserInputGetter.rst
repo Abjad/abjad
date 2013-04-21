@@ -45,9 +45,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.helps
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.makers_directory_name
    :noindex:
 
@@ -109,9 +106,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.specifier_classes_package_importable_name

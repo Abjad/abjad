@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.specifier_classes_package_importable_name

@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.specifier_classes_package_importable_name

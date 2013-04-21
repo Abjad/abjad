@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.specifier_classes_package_importable_name

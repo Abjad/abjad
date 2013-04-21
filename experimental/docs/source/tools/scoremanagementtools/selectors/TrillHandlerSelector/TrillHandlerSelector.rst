@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.specifier_classes_package_importable_name

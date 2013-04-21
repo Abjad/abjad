@@ -21,12 +21,23 @@ class ScoreManagementObject(AbjadObject):
         from experimental.tools.scoremanagementtools.core.Session import Session
         self._session = session or Session()
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _human_readable_class_name(self): 
+        return self.change_string_to_human_readable_string(self._class_name)
+
+    @property
+    def _spaced_class_name(self):
+        return stringtools.uppercamelcase_to_space_delimited_lowercase(self._class_name)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def backtracking_source(self):
         return
 
+    # TODO: move to public property of (privately referenced) configuration class
     @property
     def boilerplate_directory_name(self):
         return os.path.join(self.score_management_tools_package_path_name, 'boilerplate')
@@ -50,10 +61,6 @@ class ScoreManagementObject(AbjadObject):
     @property
     def help_item_width(self):
         return 5
-
-    @property
-    def human_readable_class_name(self): 
-        return self.change_string_to_human_readable_string(self._class_name)
 
     @property
     def makers_directory_name(self):
@@ -140,10 +147,6 @@ class ScoreManagementObject(AbjadObject):
         source_file_name = inspect.getfile(type(self))
         source_file_name = source_file_name.strip('c')
         return source_file_name
-
-    @property
-    def spaced_class_name(self):
-        return stringtools.uppercamelcase_to_space_delimited_lowercase(self._class_name)
 
     @property
     def specifier_classes_package_importable_name(self):

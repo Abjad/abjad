@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.specifier_classes_package_importable_name

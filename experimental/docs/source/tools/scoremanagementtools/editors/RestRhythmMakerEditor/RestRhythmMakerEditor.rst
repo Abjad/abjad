@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.specifier_classes_package_importable_name

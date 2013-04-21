@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier.one_line_menuing_summary
    :noindex:
 

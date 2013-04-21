@@ -54,9 +54,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.makers_directory_name
    :noindex:
 
@@ -115,9 +112,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.specifier_classes_package_importable_name

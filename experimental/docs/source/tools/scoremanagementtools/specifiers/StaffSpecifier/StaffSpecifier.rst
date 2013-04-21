@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.StaffSpecifier.StaffSpecifier.StaffSpecifier.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.StaffSpecifier.StaffSpecifier.StaffSpecifier.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.StaffSpecifier.StaffSpecifier.StaffSpecifier.one_line_menuing_summary
    :noindex:
 

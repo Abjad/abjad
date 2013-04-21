@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.items
    :noindex:
 
@@ -100,9 +97,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.specifier_classes_package_importable_name

@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.specifier_classes_package_importable_name

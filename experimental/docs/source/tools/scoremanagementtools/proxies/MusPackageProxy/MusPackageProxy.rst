@@ -51,9 +51,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.human_readable_name
    :noindex:
 
@@ -163,9 +160,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.specifier_classes_package_importable_name

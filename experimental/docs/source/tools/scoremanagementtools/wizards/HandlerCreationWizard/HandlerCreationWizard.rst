@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.specifier_classes_package_importable_name

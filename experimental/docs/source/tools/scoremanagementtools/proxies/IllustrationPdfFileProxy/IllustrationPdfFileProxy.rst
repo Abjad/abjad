@@ -45,9 +45,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.human_readable_name
    :noindex:
 
@@ -124,9 +121,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.specifier_classes_package_importable_name

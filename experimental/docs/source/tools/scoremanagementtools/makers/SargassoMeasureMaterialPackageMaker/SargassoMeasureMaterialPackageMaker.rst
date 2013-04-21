@@ -117,9 +117,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.human_readable_name
    :noindex:
 
@@ -349,9 +346,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.specifier_classes_package_importable_name

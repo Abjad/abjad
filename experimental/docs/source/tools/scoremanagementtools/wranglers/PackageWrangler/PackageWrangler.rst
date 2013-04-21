@@ -54,9 +54,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.makers_directory_name
    :noindex:
 
@@ -118,9 +115,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.specifier_classes_package_importable_name

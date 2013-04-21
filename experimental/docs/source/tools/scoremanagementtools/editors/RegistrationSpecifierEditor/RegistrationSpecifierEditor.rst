@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.specifier_classes_package_importable_name

@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.items
    :noindex:
 
@@ -100,9 +97,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.specifier_classes_package_importable_name

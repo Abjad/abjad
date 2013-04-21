@@ -11,7 +11,7 @@ class InstrumentCreationWizard(Wizard):
         Wizard.__init__(self, session=session, target=target)
         self.is_ranged = is_ranged
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def breadcrumb(self):

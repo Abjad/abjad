@@ -27,7 +27,7 @@ def test_ScoreManagementObject_read_only_attributes_01():
     path = os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'core', 'ScoreManagementObject', 'ScoreManagementObject.py')
     assert score_management_object.source_file_name == path
 
-    assert score_management_object.spaced_class_name == 'score management object'
+    assert score_management_object._spaced_class_name == 'score management object'
     assert score_management_object.score_external_materials_package_importable_name == 'materials'
 
 

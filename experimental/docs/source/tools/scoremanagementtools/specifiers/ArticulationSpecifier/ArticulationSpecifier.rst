@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.ArticulationSpecifier.ArticulationSpecifier.ArticulationSpecifier.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.ArticulationSpecifier.ArticulationSpecifier.ArticulationSpecifier.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.ArticulationSpecifier.ArticulationSpecifier.ArticulationSpecifier.one_line_menuing_summary
    :noindex:
 

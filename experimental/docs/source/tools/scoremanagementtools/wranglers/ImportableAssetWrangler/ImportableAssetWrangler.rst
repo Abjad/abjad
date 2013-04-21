@@ -54,9 +54,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.makers_directory_name
    :noindex:
 
@@ -115,9 +112,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.specifier_classes_package_importable_name

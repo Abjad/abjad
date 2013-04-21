@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.specifier_classes_package_importable_name

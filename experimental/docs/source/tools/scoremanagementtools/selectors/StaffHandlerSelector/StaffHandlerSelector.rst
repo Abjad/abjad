@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.specifier_classes_package_importable_name

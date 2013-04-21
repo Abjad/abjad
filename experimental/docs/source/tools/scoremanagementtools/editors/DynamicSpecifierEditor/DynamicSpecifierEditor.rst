@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.specifier_classes_package_importable_name

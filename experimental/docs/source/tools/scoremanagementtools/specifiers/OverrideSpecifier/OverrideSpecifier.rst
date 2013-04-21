@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier.one_line_menuing_summary
    :noindex:
 

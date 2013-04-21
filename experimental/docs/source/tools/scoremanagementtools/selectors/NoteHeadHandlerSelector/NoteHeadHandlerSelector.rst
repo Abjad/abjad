@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.specifier_classes_package_importable_name

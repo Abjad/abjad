@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.specifier_classes_package_importable_name

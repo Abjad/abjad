@@ -16,7 +16,7 @@ class MusicContributionSpecifier(Specifier, ObjectInventory):
     def one_line_menuing_summary(self):
         return self.name or 'unknown contribution'
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def articulations(self):

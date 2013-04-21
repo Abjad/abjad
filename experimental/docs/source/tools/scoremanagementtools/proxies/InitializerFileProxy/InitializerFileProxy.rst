@@ -45,9 +45,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.human_readable_name
    :noindex:
 
@@ -136,9 +133,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.specifier_classes_package_importable_name

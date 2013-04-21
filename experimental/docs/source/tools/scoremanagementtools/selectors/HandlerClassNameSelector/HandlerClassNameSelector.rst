@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.specifier_classes_package_importable_name

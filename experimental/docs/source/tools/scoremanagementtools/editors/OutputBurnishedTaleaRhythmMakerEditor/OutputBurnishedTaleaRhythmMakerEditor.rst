@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.specifier_classes_package_importable_name

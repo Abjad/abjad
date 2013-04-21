@@ -51,9 +51,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.human_readable_name
    :noindex:
 
@@ -169,9 +166,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.specifier_classes_package_importable_name

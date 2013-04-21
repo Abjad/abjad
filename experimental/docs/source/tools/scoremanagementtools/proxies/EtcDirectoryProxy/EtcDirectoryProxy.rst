@@ -39,9 +39,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.human_readable_name
    :noindex:
 
@@ -124,9 +121,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.specifier_classes_package_importable_name

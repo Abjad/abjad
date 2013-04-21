@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.makers_directory_name
    :noindex:
 
@@ -88,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.specifier_classes_package_importable_name

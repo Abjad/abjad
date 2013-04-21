@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.human_readable_class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.makers_directory_name
    :noindex:
 
@@ -94,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.source_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.spaced_class_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.specifier_classes_package_importable_name
