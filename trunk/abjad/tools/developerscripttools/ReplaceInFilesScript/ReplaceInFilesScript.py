@@ -205,7 +205,7 @@ class ReplaceInFilesScript(DirectoryScript):
 
     def process_args(self, args):
 
-        print 'Replacing {!r} with {!r}...'.format(args.old, args.new)
+        print 'Replacing {!r} with {!r} ...'.format(args.old, args.new)
 
         skipped_dirs_patterns = self.skipped_directories + args.without_dirs
         skipped_files_patterns = self.skipped_files + args.without_files
