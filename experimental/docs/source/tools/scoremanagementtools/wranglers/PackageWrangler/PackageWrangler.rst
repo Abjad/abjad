@@ -66,15 +66,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.makers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.scf_fully_qualified_package_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.scf_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.scf_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.score_external_asset_proxies
    :noindex:
 
@@ -112,6 +103,15 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.score_internal_specifiers_package_importable_name_infix
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.score_management_tools_fully_qualified_package_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.score_management_tools_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.score_management_tools_package_path_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.scores_directory_name

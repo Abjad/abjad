@@ -105,15 +105,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.scf_fully_qualified_package_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.scf_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.scf_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.score_external_chunks_package_importable_name
    :noindex:
 
@@ -145,6 +136,15 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.score_internal_specifiers_package_importable_name_infix
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.score_management_tools_fully_qualified_package_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.score_management_tools_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.score_management_tools_package_path_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.scores_directory_name

@@ -66,15 +66,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.makers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.scf_fully_qualified_package_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.scf_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.scf_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.score_external_asset_proxies
    :noindex:
 
@@ -112,6 +103,15 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.score_internal_specifiers_package_importable_name_infix
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.score_management_tools_fully_qualified_package_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.score_management_tools_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.score_management_tools_package_path_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.scores_directory_name

@@ -273,15 +273,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.public_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.scf_fully_qualified_package_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.scf_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.scf_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.score_external_chunks_package_importable_name
    :noindex:
 
@@ -313,6 +304,15 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.score_internal_specifiers_package_importable_name_infix
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.score_management_tools_fully_qualified_package_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.score_management_tools_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.score_management_tools_package_path_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.scores_directory_name

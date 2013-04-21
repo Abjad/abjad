@@ -81,15 +81,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.scf_fully_qualified_package_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.scf_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.scf_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.score_external_chunks_package_importable_name
    :noindex:
 
@@ -121,6 +112,15 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.score_internal_specifiers_package_importable_name_infix
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.score_management_tools_fully_qualified_package_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.score_management_tools_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.score_management_tools_package_path_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.scores_directory_name

@@ -17,8 +17,8 @@ def is_available_underscore_delimited_lowercase_package_name(expr):
     from experimental.tools.scoremanagementtools.core.ScoreManagementObject import ScoreManagementObject
     if stringtools.is_underscore_delimited_lowercase_package_name(expr):
         if 3 <= len(expr):
-            scf_object = ScoreManagementObject()
-            return not scf_object.package_exists(expr)
+            score_management_object = ScoreManagementObject()
+            return not score_management_object.package_exists(expr)
     return False
 
 def is_boolean(expr):
@@ -53,8 +53,8 @@ def is_dynamic_token(expr):
 
 def is_existing_package_name(expr):
     from experimental.tools.scoremanagementtools.core.ScoreManagementObject import ScoreManagementObject
-    scf_object = ScoreManagementObject()
-    return scf_object.package_exists(expr)
+    score_management_object = ScoreManagementObject()
+    return score_management_object.package_exists(expr)
 
 def is_hairpin_token(expr):
     return spannertools.HairpinSpanner.is_hairpin_token(expr)

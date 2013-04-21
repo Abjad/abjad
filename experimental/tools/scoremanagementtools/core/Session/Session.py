@@ -171,7 +171,7 @@ class Session(ScoreManagementObject):
     def menu_header(self):
         return '\n'.join(self.format_breadcrumb_stack())
 
-    # TODO: rename to self.scf_output_directory
+    # TODO: rename to self.score_manaegment_tools_output_directory
     @property
     def output_directory(self):
         return os.environ.get('SCORE_MANAGEMENT_TOOLS_OUTPUT')

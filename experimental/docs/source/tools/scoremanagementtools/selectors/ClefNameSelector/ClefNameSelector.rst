@@ -42,15 +42,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.makers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.scf_fully_qualified_package_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.scf_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.scf_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.score_external_chunks_package_importable_name
    :noindex:
 
@@ -82,6 +73,15 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.score_internal_specifiers_package_importable_name_infix
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.score_management_tools_fully_qualified_package_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.score_management_tools_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.score_management_tools_package_path_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.scores_directory_name

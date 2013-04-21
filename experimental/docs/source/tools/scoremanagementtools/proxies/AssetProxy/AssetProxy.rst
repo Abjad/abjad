@@ -60,15 +60,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.scf_fully_qualified_package_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.scf_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.scf_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.score_external_chunks_package_importable_name
    :noindex:
 
@@ -100,6 +91,15 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.score_internal_specifiers_package_importable_name_infix
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.score_management_tools_fully_qualified_package_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.score_management_tools_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.score_management_tools_package_path_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.scores_directory_name

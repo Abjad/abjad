@@ -37,7 +37,7 @@ class ScoreManagementObject(object):
 
     @property
     def boilerplate_directory_name(self):
-        return os.path.join(self.scf_package_path_name, 'boilerplate')
+        return os.path.join(self.score_management_tools_package_path_name, 'boilerplate')
 
     @property
     def breadcrumb(self):
@@ -68,22 +68,22 @@ class ScoreManagementObject(object):
 
     @property
     def makers_directory_name(self):
-        return os.path.join(self.scf_package_path_name, 'makers')
+        return os.path.join(self.score_management_tools_package_path_name, 'makers')
 
     @property
     def makers_package_importable_name(self):
-        return self.dot_join([self.scf_package_importable_name, 'makers'])
+        return self.dot_join([self.score_management_tools_package_importable_name, 'makers'])
 
     @property
-    def scf_fully_qualified_package_name(self):
+    def score_management_tools_fully_qualified_package_name(self):
         return 'experimental.tools.scoremanagementtools'
 
     @property
-    def scf_package_importable_name(self):
+    def score_management_tools_package_importable_name(self):
         return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'))
 
     @property
-    def scf_package_path_name(self):
+    def score_management_tools_package_path_name(self):
         return os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH')
 
     @property
@@ -166,11 +166,11 @@ class ScoreManagementObject(object):
 
     @property
     def stylesheets_directory_name(self):
-        return os.path.join(self.scf_package_path_name, 'stylesheets')
+        return os.path.join(self.score_management_tools_package_path_name, 'stylesheets')
 
     @property
     def stylesheets_package_importable_name(self):
-        return self.dot_join([self.scf_package_importable_name, 'stylesheets'])
+        return self.dot_join([self.score_management_tools_package_importable_name, 'stylesheets'])
 
     @property
     def transcript(self):
@@ -432,8 +432,8 @@ class ScoreManagementObject(object):
         if package_importable_name is None:
             return
         package_importable_name_parts = package_importable_name.split('.')
-        if package_importable_name_parts[0] == self.scf_package_importable_name:
-            directory_parts = [self.scf_package_path_name] + package_importable_name_parts[1:]
+        if package_importable_name_parts[0] == self.score_management_tools_package_importable_name:
+            directory_parts = [self.score_management_tools_package_path_name] + package_importable_name_parts[1:]
         elif package_importable_name_parts[0] == self.score_external_materials_package_importable_name:
             directory_parts = \
                 [self.score_external_materials_package_path_name] + package_importable_name_parts[1:]
@@ -460,8 +460,8 @@ class ScoreManagementObject(object):
         path_name = path_name.rstrip(os.path.sep)
         if path_name.endswith('.py'):
             path_name = path_name[:-3]
-        if path_name.startswith(self.scf_package_path_name):
-            prefix_length = len(os.path.dirname(self.scf_package_path_name)) + 1
+        if path_name.startswith(self.score_management_tools_package_path_name):
+            prefix_length = len(os.path.dirname(self.score_management_tools_package_path_name)) + 1
         elif path_name.startswith(self.score_external_materials_package_path_name):
             prefix_length = len(os.path.dirname(self.score_external_materials_package_path_name)) + 1
         elif path_name.startswith(self.score_external_chunks_package_path_name):

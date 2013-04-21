@@ -60,15 +60,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.prompts
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.scf_fully_qualified_package_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.scf_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.scf_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.score_external_chunks_package_importable_name
    :noindex:
 
@@ -100,6 +91,15 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.score_internal_specifiers_package_importable_name_infix
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.score_management_tools_fully_qualified_package_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.score_management_tools_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.score_management_tools_package_path_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.scores_directory_name

@@ -4,38 +4,38 @@ from experimental import *
 
 def test_ScoreManagementObject_read_only_attributes_01():
 
-    scf_object = scoremanagementtools.core.ScoreManagementObject()
+    score_management_object = scoremanagementtools.core.ScoreManagementObject()
 
     path = os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'boilerplate')
-    assert scf_object.boilerplate_directory_name == path
+    assert score_management_object.boilerplate_directory_name == path
 
-    assert isinstance(scf_object.breadcrumb_stack, list)
-    assert scf_object.class_name == 'ScoreManagementObject'
-    assert scf_object.help_item_width == 5
+    assert isinstance(score_management_object.breadcrumb_stack, list)
+    assert score_management_object.class_name == 'ScoreManagementObject'
+    assert score_management_object.help_item_width == 5
 
     path = os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'makers')
-    assert scf_object.makers_directory_name == path
+    assert score_management_object.makers_directory_name == path
 
-    assert scf_object.makers_package_importable_name == 'scoremanagementtools.makers'
-    assert scf_object.scf_package_importable_name == 'scoremanagementtools'
+    assert score_management_object.makers_package_importable_name == 'scoremanagementtools.makers'
+    assert score_management_object.score_management_tools_package_importable_name == 'scoremanagementtools'
 
     path = os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH')
-    assert scf_object.scf_package_path_name == path
+    assert score_management_object.score_management_tools_package_path_name == path
 
-    assert isinstance(scf_object.session, scoremanagementtools.core.Session)
-    assert scf_object.score_external_chunks_package_importable_name == 'sketches'
+    assert isinstance(score_management_object.session, scoremanagementtools.core.Session)
+    assert score_management_object.score_external_chunks_package_importable_name == 'sketches'
 
     path = os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'core', 'ScoreManagementObject', 'ScoreManagementObject.py')
-    assert scf_object.source_file_name == path
+    assert score_management_object.source_file_name == path
 
-    assert scf_object.spaced_class_name == 'score management object'
-    assert scf_object.score_external_materials_package_importable_name == 'materials'
+    assert score_management_object.spaced_class_name == 'score management object'
+    assert score_management_object.score_external_materials_package_importable_name == 'materials'
 
 
     path = os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'stylesheets')
-    assert scf_object.stylesheets_directory_name == path
+    assert score_management_object.stylesheets_directory_name == path
 
-    assert scf_object.stylesheets_package_importable_name == 'scoremanagementtools.stylesheets'
-    assert isinstance(scf_object.transcript, list)
-    assert isinstance(scf_object.transcript_signature, tuple)
-    assert isinstance(scf_object.ts, tuple)
+    assert score_management_object.stylesheets_package_importable_name == 'scoremanagementtools.stylesheets'
+    assert isinstance(score_management_object.transcript, list)
+    assert isinstance(score_management_object.transcript_signature, tuple)
+    assert isinstance(score_management_object.ts, tuple)
