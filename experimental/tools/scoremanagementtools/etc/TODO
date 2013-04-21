@@ -48,8 +48,8 @@
 20. Extend stuff to allow makers to be stored in multiple directories.
 
 21. Extend stuff to allow scores to be stored in multiple directories.
-    Then create scftestscores directory somewhere.
-    Then check Example Score I, Example Score II, Étude Score I in to scftestscores.
+    Then create scoremanagementtoolstestscores directory somewhere.
+    Then check Example Score I, Example Score II, Étude Score I in to directory.
 
 22. Simplify custom_score/mus/materials/__init__.py files.
     File should probably contain nothing.
@@ -69,11 +69,9 @@
 24. Encapsulate the stuff in ScoreManagementObject in newly implemented class.
     Then include a reference to the class (perhaps as a class attribute) in ScoreManagementObject by composition.
 
-25. Remove all reference to 'scf' in the codebase.
-
-26. Remove the has_readable_... and is_readable_... properties from the system entirely.
+25. Remove the has_readable_... and is_readable_... properties from the system entirely.
     Force such functionality to be method calls that will be noticeably expensive.
 
-27. Migrate all build_illustration.py modules from separate modules to bound class methods.
+26. Migrate all build_illustration.py modules from separate modules to bound class methods.
 
-28. Audit the UI of the entire materials management system by hand.
+27. Audit the UI of the entire materials management system by hand.

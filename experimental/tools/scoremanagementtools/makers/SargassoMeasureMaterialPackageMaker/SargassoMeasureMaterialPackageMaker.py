@@ -1,12 +1,15 @@
-from experimental import scfmusic
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import measuretools
 from abjad.tools import sequencetools
 from experimental.tools.scoremanagementtools import predicates
 from experimental.tools.scoremanagementtools.editors.UserInputWrapper import UserInputWrapper
-from experimental.tools.scoremanagementtools.makers.FunctionInputMaterialPackageMaker import FunctionInputMaterialPackageMaker
-from experimental.scfmusic.make_sargasso_measures import make_illustration_from_output_material
+from experimental.tools.scoremanagementtools.makers.FunctionInputMaterialPackageMaker import \
+    FunctionInputMaterialPackageMaker
+from experimental.tools.scoremanagementtools.music.make_sargasso_measures import \
+    make_illustration_from_output_material
+from experimental.tools.scoremanagementtools.music.make_sargasso_measures import \
+    make_sargasso_measures
 
 
 class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
@@ -16,7 +19,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
     generic_output_name = 'sargasso measures'
     illustration_maker = staticmethod(make_illustration_from_output_material)
     output_material_checker = staticmethod(measuretools.all_are_measures)
-    output_material_maker = staticmethod(scfmusic.make_sargasso_measures)
+    output_material_maker = staticmethod(make_sargasso_measures)
     output_material_module_import_statements = ['from abjad.tools import measuretools']
 
     user_input_demo_values = [

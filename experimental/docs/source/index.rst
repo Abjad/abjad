@@ -667,6 +667,7 @@ Unstable packages (load manually)
       tools/scoremanagementtools/makers/PitchRangeInventoryMaterialPackageMaker/make_illustration_from_output_material
       tools/scoremanagementtools/makers/RhythmMakerMaterialPackageMaker/make_illustration_from_output_material
       tools/scoremanagementtools/makers/TempoMarkInventoryMaterialPackageMaker/make_illustration_from_output_material
+      tools/scoremanagementtools/music/make_sargasso_measures
 
 .. only:: latex
 
@@ -872,3 +873,4 @@ Unstable packages (load manually)
       tools/scoremanagementtools/makers/PitchRangeInventoryMaterialPackageMaker/make_illustration_from_output_material
       tools/scoremanagementtools/makers/RhythmMakerMaterialPackageMaker/make_illustration_from_output_material
       tools/scoremanagementtools/makers/TempoMarkInventoryMaterialPackageMaker/make_illustration_from_output_material
+      tools/scoremanagementtools/music/make_sargasso_measures

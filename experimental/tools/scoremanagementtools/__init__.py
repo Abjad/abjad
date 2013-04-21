@@ -6,6 +6,7 @@ import getters
 import helpers
 import makers
 import menuing
+import music
 import predicates
 import proxies
 import scoremanager
