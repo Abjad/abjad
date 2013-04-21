@@ -1,6 +1,6 @@
 '''Menu implements an intelligent ordered list of MenuSections.
 MenuSection implements an ordered list of menu entries.
-This means that every SCF Menu is essentially a list of lists.
+This means that every score managment tools Menu is essentially a list of lists.
 
 (Menu entries are modelled with built-in dicts; no custom class exists.)
 
@@ -9,7 +9,7 @@ Menu is dumb and implements no construction-time settings.
 MenuSection is smart and implements important construction-time settings.
 
 RUN TIME BEHAVIOR:
-Call Menu.run() to run any SCF menu.
+Call Menu.run() to run any score managment tools menu.
 The method queries for user input until a match is found.
 
 MATCH TIME BEHAVIOR:

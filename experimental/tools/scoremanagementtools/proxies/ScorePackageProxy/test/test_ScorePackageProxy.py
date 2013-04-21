@@ -66,7 +66,7 @@ def test_ScorePackageProxy_05():
 
     assert example_score_1.ts == (2,)
     assert example_score_1.transcript[0][0] == "Example Score I (2013)"
-    assert example_score_1.transcript[1][0] == 'SCF> home'
+    assert example_score_1.transcript[1][0] == '> home'
 
 
 def test_ScorePackageProxy_06():

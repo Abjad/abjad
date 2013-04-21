@@ -178,7 +178,7 @@ class Menu(MenuSectionAggregator):
         self.display(self.menu_lines, capitalize_first_character=False)
         if flamingo_input is not None:
             return flamingo_input
-        user_response = self.handle_raw_input_with_default('SCF', default=self.prompt_default)
+        user_response = self.handle_raw_input_with_default('', default=self.prompt_default)
         directive = self.change_user_input_to_directive(user_response)
         directive = self.strip_default_indicators_from_strings(directive)
         self.session.hide_next_redraw = False

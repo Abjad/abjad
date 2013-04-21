@@ -26,7 +26,7 @@ def test_FileProxy_public_attributes_02():
     '''
 
     short_name = 'clean_letter_14.ly'
-    path_name = os.path.join(os.environ.get('SCFPATH'), 'stylesheets', short_name)
+    path_name = os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'stylesheets', short_name)
     file_proxy = scoremanagementtools.proxies.FileProxy(path_name)
 
     assert file_proxy.file_lines

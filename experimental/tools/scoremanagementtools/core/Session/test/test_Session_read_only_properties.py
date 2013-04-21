@@ -16,19 +16,19 @@ def test_Session_read_only_properties_01():
     assert isinstance(session.complete_transcript, scoremanagementtools.core.Transcript)
 
     assert session.current_chunks_package_importable_name == \
-        os.path.basename(os.environ.get('SCFCHUNKSPATH'))
-    assert session.current_chunks_package_path_name == os.environ.get('SCFCHUNKSPATH')
+        os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_CHUNKS_PATH'))
+    assert session.current_chunks_package_path_name == os.environ.get('SCORE_MANAGEMENT_TOOLS_CHUNKS_PATH')
 
     assert session.current_materials_package_importable_name == \
-        os.path.basename(os.environ.get('SCFMATERIALSPATH'))
-    assert session.current_materials_package_path_name == os.environ.get('SCFMATERIALSPATH')
+        os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH'))
+    assert session.current_materials_package_path_name == os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH')
 
     assert session.current_score_package_proxy is None
     assert session.current_score_path_name is None
 
     assert session.current_specifiers_package_importable_name == \
-        os.path.basename(os.environ.get('SCFSPECIFIERSPATH'))
-    assert session.current_specifiers_package_path_name == os.environ.get('SCFSPECIFIERSPATH')
+        os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_SPECIFIERS_PATH'))
+    assert session.current_specifiers_package_path_name == os.environ.get('SCORE_MANAGEMENT_TOOLS_SPECIFIERS_PATH')
 
     assert session.explicit_command_history == []
     assert not session.is_complete
@@ -37,7 +37,7 @@ def test_Session_read_only_properties_01():
     assert not session.is_navigating_to_sibling_score
     assert session.last_semantic_command is None
     assert session.menu_header == ''
-    assert session.output_directory == os.environ.get('SCFOUTPUT')
+    assert session.output_directory == os.environ.get('SCORE_MANAGEMENT_TOOLS_OUTPUT')
     assert session.scores_to_show == 'active'
     assert not session.session_once_had_user_input
     assert session.testable_command_history_string == ''

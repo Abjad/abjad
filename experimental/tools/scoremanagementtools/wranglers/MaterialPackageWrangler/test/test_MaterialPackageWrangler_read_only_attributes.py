@@ -19,7 +19,7 @@ def test_MaterialPackageWrangler_read_only_attributes_02():
 
     assert 'materials' in wrangler.list_asset_container_importable_names()
     assert 'example_score_1.mus.materials' in wrangler.list_asset_container_importable_names()
-    assert os.environ.get('SCFMATERIALSPATH') in wrangler.list_asset_container_path_names()
+    assert os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH') in wrangler.list_asset_container_path_names()
     assert os.path.join(os.environ.get('SCORES'), 'example_score_1', 'mus', 'materials') in \
         wrangler.list_asset_container_path_names()
 
@@ -29,7 +29,7 @@ def test_MaterialPackageWrangler_read_only_attributes_03():
     '''
 
     assert wrangler.current_asset_container_importable_name == 'materials'
-    assert wrangler.current_asset_container_path_name == os.environ.get('SCFMATERIALSPATH')
+    assert wrangler.current_asset_container_path_name == os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH')
 
 
 def test_MaterialPackageWrangler_read_only_attributes_04():
@@ -38,7 +38,7 @@ def test_MaterialPackageWrangler_read_only_attributes_04():
 
     assert wrangler.list_score_external_asset_container_importable_names() == ['materials']
     assert wrangler.list_score_external_asset_container_path_names() == \
-        [os.environ.get('SCFMATERIALSPATH')]
+        [os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH')]
 
 
 def test_MaterialPackageWrangler_read_only_attributes_05():
@@ -47,7 +47,7 @@ def test_MaterialPackageWrangler_read_only_attributes_05():
 
     assert 'red notes' in wrangler.list_score_external_asset_human_readable_names()
     assert 'materials.red_notes' in wrangler.list_score_external_asset_importable_names()
-    assert os.path.join(os.environ.get('SCFMATERIALSPATH'), 'red_notes') in \
+    assert os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH'), 'red_notes') in \
         wrangler.list_score_external_asset_path_names()
 
 
@@ -64,7 +64,7 @@ def test_MaterialPackageWrangler_read_only_attributes_07():
 
     assert wrangler.temporary_asset_importable_name == 'materials.__temporary_package'
     assert wrangler.temporary_asset_path_name == \
-        os.path.join(os.environ.get('SCFMATERIALSPATH'), '__temporary_package')
+        os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH'), '__temporary_package')
     assert wrangler.temporary_asset_short_name == '__temporary_package'
 
 

@@ -6,7 +6,7 @@ def test_StylesheetFileProxy_remove_interactively_01():
     '''Nonversioned file.
     '''
 
-    path_name = os.path.join(os.environ.get('SCFPATH'), 'stylesheets', 'test_stylesheet.ly')
+    path_name = os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'stylesheets', 'test_stylesheet.ly')
     proxy = scoremanagementtools.proxies.StylesheetFileProxy(path_name=path_name)
     assert not proxy.exists
 
@@ -26,7 +26,7 @@ def test_StylesheetFileProxy_remove_interactively_02():
     '''Versioned file.
     '''
 
-    path_name = os.path.join(os.environ.get('SCFPATH'), 'stylesheets', 'temporary_stylesheet.ly')
+    path_name = os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'stylesheets', 'temporary_stylesheet.ly')
     proxy = scoremanagementtools.proxies.StylesheetFileProxy(path_name=path_name)
     assert not proxy.exists
 

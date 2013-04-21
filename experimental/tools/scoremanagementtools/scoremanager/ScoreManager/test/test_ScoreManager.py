@@ -71,10 +71,10 @@ def test_ScoreManager_07():
     score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='exec 2**30 q')
 
-    assert score_manager.transcript[1] == ['SCF> exec', '']
+    assert score_manager.transcript[1] == ['> exec', '']
     assert score_manager.transcript[2] == ['XCF> 2**30']
     assert score_manager.transcript[3] == ['1073741824', '']
-    assert score_manager.transcript[4] == ['SCF> q', '']
+    assert score_manager.transcript[4] == ['> q', '']
 
 
 def test_ScoreManager_08():
@@ -84,10 +84,10 @@ def test_ScoreManager_08():
     score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='exec foo q')
 
-    assert score_manager.transcript[1] == ['SCF> exec', '']
+    assert score_manager.transcript[1] == ['> exec', '']
     assert score_manager.transcript[2] == ['XCF> foo']
     assert score_manager.transcript[3] == ['Expression not executable.', '']
-    assert score_manager.transcript[4] == ['SCF> q', '']
+    assert score_manager.transcript[4] == ['> q', '']
 
 
 def test_ScoreManager_09():

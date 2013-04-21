@@ -6,9 +6,9 @@ scf_object = scoremanagementtools.core.ScoreManagementObject()
 
 def test_ScoreManagementObject_path_name_to_package_importable_name_01():
 
-    assert scf_object.path_name_to_package_importable_name(os.environ.get('SCFMATERIALSPATH')) == 'materials'
-    assert scf_object.path_name_to_package_importable_name(os.environ.get('SCFSPECIFIERSPATH')) == 'specifiers'
-    assert scf_object.path_name_to_package_importable_name(os.environ.get('SCFCHUNKSPATH')) == 'sketches'
+    assert scf_object.path_name_to_package_importable_name(os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH')) == 'materials'
+    assert scf_object.path_name_to_package_importable_name(os.environ.get('SCORE_MANAGEMENT_TOOLS_SPECIFIERS_PATH')) == 'specifiers'
+    assert scf_object.path_name_to_package_importable_name(os.environ.get('SCORE_MANAGEMENT_TOOLS_CHUNKS_PATH')) == 'sketches'
 
 
 def test_ScoreManagementObject_path_name_to_package_importable_name_02():

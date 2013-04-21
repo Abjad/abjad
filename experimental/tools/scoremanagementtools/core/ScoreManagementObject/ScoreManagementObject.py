@@ -41,7 +41,7 @@ class ScoreManagementObject(object):
 
     @property
     def breadcrumb(self):
-        return 'SCF object'
+        return 'score management object'
 
     @property
     def breadcrumb_stack(self):
@@ -57,7 +57,7 @@ class ScoreManagementObject(object):
 
     @property
     def editors_package_path_name(self):
-        return os.path.join(os.environ.get('SCFPATH'), 'editors')
+        return os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'editors')
 
     @property
     def help_item_width(self):
@@ -80,27 +80,27 @@ class ScoreManagementObject(object):
 
     @property
     def scf_package_importable_name(self):
-        return os.path.basename(os.environ.get('SCFPATH'))
+        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'))
 
     @property
     def scf_package_path_name(self):
-        return os.environ.get('SCFPATH')
+        return os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH')
 
     @property
     def score_external_chunks_package_importable_name(self):
-        return os.path.basename(os.environ.get('SCFCHUNKSPATH'))
+        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_CHUNKS_PATH'))
 
     @property
     def score_external_chunks_package_path_name(self):
-        return os.environ.get('SCFCHUNKSPATH')
+        return os.environ.get('SCORE_MANAGEMENT_TOOLS_CHUNKS_PATH')
 
     @property
     def score_external_materials_package_importable_name(self):
-        return os.path.basename(os.environ.get('SCFMATERIALSPATH'))
+        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH'))
 
     @property
     def score_external_materials_package_path_name(self):
-        return os.environ.get('SCFMATERIALSPATH')
+        return os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH')
 
     @property
     def score_external_package_importable_names(self):
@@ -120,11 +120,11 @@ class ScoreManagementObject(object):
 
     @property
     def score_external_specifiers_package_importable_name(self):
-        return os.path.basename(os.environ.get('SCFSPECIFIERSPATH'))
+        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_SPECIFIERS_PATH'))
 
     @property
     def score_external_specifiers_package_path_name(self):
-        return os.environ.get('SCFSPECIFIERSPATH')
+        return os.environ.get('SCORE_MANAGEMENT_TOOLS_SPECIFIERS_PATH')
 
     @property
     def score_internal_chunks_package_importable_name_infix(self):
@@ -162,7 +162,7 @@ class ScoreManagementObject(object):
 
     @property
     def specifier_classes_package_path_name(self):
-        return os.path.join(os.environ.get('SCFPATH'), 'specifiers')
+        return os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'specifiers')
 
     @property
     def stylesheets_directory_name(self):
@@ -186,11 +186,11 @@ class ScoreManagementObject(object):
 
     @property
     def user_makers_directory_name(self):
-        return os.environ.get('SCFUSERMAKERSPATH')
+        return os.environ.get('SCORE_MANAGEMENT_TOOLS_USER_MAKERS_PATH')
 
     @property
     def user_makers_package_importable_name(self):
-        return os.environ.get('SCFUSERMAKERSIMPORTABLENAME')
+        return os.environ.get('SCORE_MANAGEMENT_TOOLS_USER_MAKERS_IMPORTABLE_NAME')
 
     ### PUBLIC METHODS ###
 
