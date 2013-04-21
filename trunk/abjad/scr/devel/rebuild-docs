@@ -26,7 +26,7 @@ def _rebuild_docs():
     for bad_file in bad_files:
         print bad_file
     print ''
-    
+
 
 if __name__ == '__main__':
     iotools.clear_terminal()

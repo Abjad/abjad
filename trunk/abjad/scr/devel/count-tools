@@ -42,8 +42,8 @@ def _count_public_tools_functions():
     print 'Total private tools class definitions: %s' % total_private_classes
     print 'Total public tools class definitions:  %s' % total_public_classes
     print ''
-    
-    
+
+
 
 if __name__ == '__main__':
     iotools.clear_terminal()

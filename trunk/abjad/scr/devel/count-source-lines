@@ -13,7 +13,7 @@ def _count_source_lines():
     test_modules = 0
 
     for root, dirs, files  in os.walk('.'):
-      
+
         if '.svn' in dirs:
             dirs.remove('.svn')
 
@@ -51,7 +51,7 @@ def _report(source_modules, source_lines, test_modules, test_lines):
         ratio = test_lines / float(source_lines)
     except ZeroDivisionError:
         ratio = 1
-    print 'test-to-source ratio is %s : 1' % round(ratio, 1)  
+    print 'test-to-source ratio is %s : 1' % round(ratio, 1)
     print ''
 
 if __name__ == '__main__':

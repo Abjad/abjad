@@ -28,7 +28,7 @@ def _get_old_package_and_function():
             print ''
             continue
         return old_package, old_function
-    
+
 
 def _get_new_package_and_function():
     while True:
@@ -69,7 +69,7 @@ def _get_functions():
                 module_names.append(f[:-3])
     module_names.sort()
     return module_names
-        
+
 
 def _confirm_name_changes(old_package, old_function, new_package, new_module):
     print ''

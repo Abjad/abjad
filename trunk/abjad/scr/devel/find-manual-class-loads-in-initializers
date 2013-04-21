@@ -6,26 +6,26 @@ import os
 
 
 def _find_initializers():
-   initializers = [ ]
-   for path, subdirectories, files in os.walk(ABJCFG.ABJAD_PATH):
-      for f in files:
-         if f == '__init__.py':
-            parent_directory = path.split(os.sep)[-1]
-            # protect abjad/__init__.py
-            if parent_directory not in ('abjad', ):
-               initializers.append(os.path.join(path, f))
-   print 'There are %s initializers ...' % len(initializers)
-   inits_with_manual_imports = set([ ])
-   for x in initializers:
-      for line in file(x, 'r').readlines():
-         if line.startswith('from ') and line[5].isupper():
-            inits_with_manual_imports.add(x)
-   for x in sorted(inits_with_manual_imports):
-      print x
-      
-   print 'Total initializers with manual imports: %s' % len(inits_with_manual_imports)
+    initializers = [ ]
+    for path, subdirectories, files in os.walk(ABJCFG.ABJAD_PATH):
+        for f in files:
+            if f == '__init__.py':
+                parent_directory = path.split(os.sep)[-1]
+                # protect abjad/__init__.py
+                if parent_directory not in ('abjad', ):
+                    initializers.append(os.path.join(path, f))
+    print 'There are %s initializers ...' % len(initializers)
+    inits_with_manual_imports = set([ ])
+    for x in initializers:
+        for line in file(x, 'r').readlines():
+            if line.startswith('from ') and line[5].isupper():
+                inits_with_manual_imports.add(x)
+    for x in sorted(inits_with_manual_imports):
+        print x
+
+    print 'Total initializers with manual imports: %s' % len(inits_with_manual_imports)
 
 if __name__ == '__main__':
-   iotools.clear_terminal()
-   print 'Finding manual class loads in initializers ...'
-   _find_initializers()
+    iotools.clear_terminal()
+    print 'Finding manual class loads in initializers ...'
+    _find_initializers()

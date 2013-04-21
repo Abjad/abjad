@@ -24,7 +24,7 @@ for klass in crawler():
         try:
             eval(command)
         except:
-            total += 1 
+            total += 1
             print qualified_class_name
             print command
 

@@ -11,7 +11,7 @@ def _reindent(leading_tab, old_tab_size, new_tab_size):
         for dir in ['__pycache__', '.svn']:
             if dir in subdirectories:
                 subdirectories.remove(dir)
-        
+
         for file in files:
             if not file.startswith('__') and file.endswith('.py'):
 
@@ -36,7 +36,7 @@ def _reindent(leading_tab, old_tab_size, new_tab_size):
                             print '--- %s' % line
                             print '+++ %s' % new_line
                             lines[i] = new_line
-        
+
                 f = open(fullpath, 'w')
                 for line in lines:
                     f.write('%s\n' % line)

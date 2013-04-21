@@ -4,5 +4,5 @@ from abjad.tools import iotools
 
 
 if __name__ == '__main__':
-   iotools.spawn_subprocess('fix-test-case-names')
-   iotools.spawn_subprocess('fix-test-case-numbers')
+    iotools.spawn_subprocess('fix-test-case-names')
+    iotools.spawn_subprocess('fix-test-case-numbers')

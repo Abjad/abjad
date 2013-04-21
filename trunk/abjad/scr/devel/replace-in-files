@@ -4,96 +4,96 @@ import os
 
 
 def _usage( ):
-   result = [ ]
-   result.append('')
-   result.append('Usage:')
-   result.append('')
-   result.append('replace-in-files DIR OLD_TEXT NEW_TEXT [CONFIRM=true/false]')
-   result.append('')
-   result.append('Crawl directory DIR and read every file in it recursively. ')
-   result.append('Replace OLD_TEXT with NEW_TEXT in each file.')
-   result.append('')
-   result.append('Set CONFIRM to `false` to replace without prompting.')
-   result.append('')
-   result = '\n'.join(['\t' + line for line in result])
-   return result
+    result = [ ]
+    result.append('')
+    result.append('Usage:')
+    result.append('')
+    result.append('replace-in-files DIR OLD_TEXT NEW_TEXT [CONFIRM=true/false]')
+    result.append('')
+    result.append('Crawl directory DIR and read every file in it recursively. ')
+    result.append('Replace OLD_TEXT with NEW_TEXT in each file.')
+    result.append('')
+    result.append('Set CONFIRM to `false` to replace without prompting.')
+    result.append('')
+    result = '\n'.join(['\t' + line for line in result])
+    return result
 
 
 def _remove_dirs(skip_dirs, dirs):
-   for dir in skip_dirs:
-      if dir in dirs:
-         dirs.remove(dir)
+    for dir in skip_dirs:
+        if dir in dirs:
+            dirs.remove(dir)
 
 
 def _remove_files(skip_files, files):
-   for x in skip_files: 
-      #for file in files:   
-      for file in files[:]:   
-         if file.endswith(x):
-            files.remove(file)
+    for x in skip_files:
+        #for file in files:
+        for file in files[:]:
+            if file.endswith(x):
+                files.remove(file)
 
 
 def replace_in_files(dir, old, new, skip_dirs=['.svn'], confirm=True):
-   skip_files = ['replace-in-files', '.pyc', 
-      '.png', '.jpg', '.jpeg', '.gif', '.ps', '.pdf', 
-      '.ly', '.tex', '.nb', '.txt', '.rtf',
-      ]
-   print 'Replacing ...'
-   print '   "%s"' % old
-   print '   "%s"' % new
-   total_files_changed = 0
-   for root, dirs, files in os.walk(dir):
-      _remove_dirs(skip_dirs, dirs)
-      _remove_files(skip_files, files)
-      ## replace old with new
-      for file in files:
-         result = _replace_in_file(root, file, old, new)
-         if result:
-            total_files_changed += 1
-   print '... in %s file(s)' % total_files_changed
-   print ''
+    skip_files = ['replace-in-files', '.pyc',
+        '.png', '.jpg', '.jpeg', '.gif', '.ps', '.pdf',
+        '.ly', '.tex', '.nb', '.txt', '.rtf',
+        ]
+    print 'Replacing ...'
+    print '    "%s"' % old
+    print '    "%s"' % new
+    total_files_changed = 0
+    for root, dirs, files in os.walk(dir):
+        _remove_dirs(skip_dirs, dirs)
+        _remove_files(skip_files, files)
+        ## replace old with new
+        for file in files:
+            result = _replace_in_file(root, file, old, new)
+            if result:
+                total_files_changed += 1
+    print '... in %s file(s)' % total_files_changed
+    print ''
 
 
 def _replace_in_file(root, file, old, new):
-   file_is_changed = False
-   file = os.path.join(root, file)
-   pf = open(file, 'r')
-   #print "Working on file: %s" % file
-   new_text = [ ]
-   old_text = pf.readlines( )
-   for line in old_text:
-      if old in line:
-         if confirm:
-            print line,
-            replace = raw_input('Replace [y/n]? ')
-            if replace.lower( ) == 'y':
-               line = line.replace(old, new)
-               file_is_changed = True
-         else:
-            line = line.replace(old, new)
-            file_is_changed = True
-      new_text.append(line)
-   pf.close( )
-   if file_is_changed:
-      new_file = open(file, 'w')
-      new_file.writelines(new_text)
-      return True
-   else:
-      return False
+    file_is_changed = False
+    file = os.path.join(root, file)
+    pf = open(file, 'r')
+    #print "Working on file: %s" % file
+    new_text = [ ]
+    old_text = pf.readlines( )
+    for line in old_text:
+        if old in line:
+            if confirm:
+                print line,
+                replace = raw_input('Replace [y/n]? ')
+                if replace.lower( ) == 'y':
+                    line = line.replace(old, new)
+                    file_is_changed = True
+            else:
+                line = line.replace(old, new)
+                file_is_changed = True
+        new_text.append(line)
+    pf.close( )
+    if file_is_changed:
+        new_file = open(file, 'w')
+        new_file.writelines(new_text)
+        return True
+    else:
+        return False
 
 
 if __name__ == '__main__':
-   import sys
-   if len(sys.argv) < 4:
-      print _usage( )
-      sys.exit(2)
+    import sys
+    if len(sys.argv) < 4:
+        print _usage( )
+        sys.exit(2)
 
-   dir = sys.argv[1]
-   old = sys.argv[2]
-   new = sys.argv[3]
-   skip_dirs = ['.svn']
-   confirm = True
-   if len(sys.argv) == 5 and sys.argv[4].lower( ) == 'false':
-      confirm = False
+    dir = sys.argv[1]
+    old = sys.argv[2]
+    new = sys.argv[3]
+    skip_dirs = ['.svn']
+    confirm = True
+    if len(sys.argv) == 5 and sys.argv[4].lower( ) == 'false':
+        confirm = False
 
-   replace_in_files(dir, old, new, skip_dirs, confirm)
+    replace_in_files(dir, old, new, skip_dirs, confirm)
