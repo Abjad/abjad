@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.editors_package_importable_name
    :noindex:
 
@@ -106,6 +103,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.stylesheets_directory_name
@@ -347,6 +347,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.__repr__
    :noindex:

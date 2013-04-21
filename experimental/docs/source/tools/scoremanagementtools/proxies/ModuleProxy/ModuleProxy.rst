@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.editors_package_importable_name
    :noindex:
 
@@ -172,6 +169,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.stylesheets_directory_name
@@ -446,6 +446,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.__repr__
    :noindex:

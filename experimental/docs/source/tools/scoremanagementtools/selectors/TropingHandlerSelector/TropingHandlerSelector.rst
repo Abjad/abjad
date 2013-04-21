@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.editors_package_importable_name
    :noindex:
 
@@ -100,6 +97,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.stylesheets_directory_name
@@ -287,6 +287,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__repr__
    :noindex:

@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.directory_contents
    :noindex:
 
@@ -361,6 +358,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.stylesheet_file_name_on_disk
@@ -826,6 +826,18 @@ Special methods
 ---------------
 
 .. automethod:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.__lt__
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.__ne__

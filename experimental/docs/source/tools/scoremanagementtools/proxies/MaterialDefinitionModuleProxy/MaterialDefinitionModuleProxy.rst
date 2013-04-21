@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.editors_package_importable_name
    :noindex:
 
@@ -187,6 +184,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.stylesheets_directory_name
@@ -482,6 +482,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.__repr__
    :noindex:

@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.chunk_package_wrangler
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.editors_package_importable_name
    :noindex:
 
@@ -118,6 +115,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.stylesheet_file_wrangler
@@ -323,6 +323,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.__repr__
    :noindex:

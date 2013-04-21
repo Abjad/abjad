@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.editors_package_importable_name
    :noindex:
 
@@ -106,6 +103,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.stylesheets_directory_name
@@ -347,6 +347,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.__repr__
    :noindex:

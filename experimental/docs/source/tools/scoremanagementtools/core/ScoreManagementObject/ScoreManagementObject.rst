@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.editors_package_importable_name
    :noindex:
 
@@ -100,6 +97,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.stylesheets_directory_name
@@ -269,6 +269,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.__repr__
    :noindex:

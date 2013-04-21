@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.editors_package_importable_name
    :noindex:
 
@@ -106,6 +103,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.stylesheets_directory_name
@@ -347,6 +347,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.__repr__
    :noindex:

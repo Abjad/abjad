@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.editors_package_importable_name
    :noindex:
 
@@ -100,6 +97,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.stylesheets_directory_name
@@ -287,6 +287,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.__repr__
    :noindex:

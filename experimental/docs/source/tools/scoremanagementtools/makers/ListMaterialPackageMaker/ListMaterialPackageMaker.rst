@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.directory_contents
    :noindex:
 
@@ -361,6 +358,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.stylesheet_file_name_on_disk
@@ -826,6 +826,18 @@ Special methods
 ---------------
 
 .. automethod:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.__lt__
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.__ne__

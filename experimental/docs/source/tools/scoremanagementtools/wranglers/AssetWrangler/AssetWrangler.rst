@@ -33,9 +33,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.current_asset_container_human_readable_name
    :noindex:
 
@@ -127,6 +124,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.stylesheets_directory_name
@@ -466,6 +466,21 @@ Special methods
 ---------------
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.__ne__
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.__repr__

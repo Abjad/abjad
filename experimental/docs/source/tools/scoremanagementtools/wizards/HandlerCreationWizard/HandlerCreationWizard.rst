@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.editors_package_importable_name
    :noindex:
 
@@ -100,6 +97,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.stylesheets_directory_name
@@ -275,6 +275,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.__repr__
    :noindex:

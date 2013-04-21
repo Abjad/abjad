@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.editors_package_importable_name
    :noindex:
 
@@ -106,6 +103,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.stylesheets_directory_name
@@ -347,6 +347,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.__repr__
    :noindex:

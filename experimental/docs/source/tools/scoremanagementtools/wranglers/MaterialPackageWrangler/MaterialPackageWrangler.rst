@@ -33,9 +33,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.current_asset_container_human_readable_name
    :noindex:
 
@@ -133,6 +130,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.stylesheets_directory_name
@@ -523,6 +523,21 @@ Special methods
 ---------------
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.__ne__
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.__repr__

@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.directory_contents
    :noindex:
 
@@ -136,6 +133,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.stylesheets_directory_name
@@ -391,6 +391,18 @@ Special methods
 ---------------
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.__lt__
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.__ne__

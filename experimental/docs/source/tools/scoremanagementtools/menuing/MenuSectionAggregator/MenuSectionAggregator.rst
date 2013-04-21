@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.editors_package_importable_name
    :noindex:
 
@@ -103,6 +100,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.stylesheets_directory_name
@@ -317,6 +317,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.__repr__
    :noindex:

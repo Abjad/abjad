@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.editors_package_importable_name
    :noindex:
 
@@ -100,6 +97,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.stylesheets_directory_name
@@ -287,6 +287,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.__repr__
    :noindex:

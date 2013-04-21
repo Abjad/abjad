@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.editors_package_importable_name
    :noindex:
 
@@ -181,6 +178,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.stylesheets_directory_name
@@ -464,6 +464,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.__repr__
    :noindex:

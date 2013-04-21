@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.editors_package_importable_name
    :noindex:
 
@@ -100,6 +97,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.stylesheets_directory_name
@@ -287,6 +287,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.__repr__
    :noindex:

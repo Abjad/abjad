@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.chunks_package_initializer_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.composer
    :noindex:
 
@@ -247,6 +244,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.stylesheets_directory_name
@@ -625,6 +625,18 @@ Special methods
 ---------------
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.__lt__
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.__ne__

@@ -33,9 +33,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.current_asset_container_human_readable_name
    :noindex:
 
@@ -127,6 +124,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.stylesheets_directory_name
@@ -484,6 +484,21 @@ Special methods
 ---------------
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.__ne__
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.__repr__

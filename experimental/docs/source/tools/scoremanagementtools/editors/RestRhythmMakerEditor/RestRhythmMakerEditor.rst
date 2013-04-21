@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.editors_package_importable_name
    :noindex:
 
@@ -106,6 +103,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.stylesheets_directory_name
@@ -347,6 +347,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.__repr__
    :noindex:

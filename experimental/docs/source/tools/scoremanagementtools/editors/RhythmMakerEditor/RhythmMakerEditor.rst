@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.editors_package_importable_name
    :noindex:
 
@@ -106,6 +103,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.stylesheets_directory_name
@@ -347,6 +347,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.__repr__
    :noindex:

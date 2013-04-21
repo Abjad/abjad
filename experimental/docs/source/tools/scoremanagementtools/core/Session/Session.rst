@@ -27,9 +27,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.command_history
    :noindex:
 
@@ -169,6 +166,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.stylesheets_directory_name
@@ -404,6 +404,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.core.Session.Session.Session.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.core.Session.Session.Session.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.core.Session.Session.Session.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.core.Session.Session.Session.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.core.Session.Session.Session.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.core.Session.Session.Session.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.core.Session.Session.Session.__repr__
    :noindex:

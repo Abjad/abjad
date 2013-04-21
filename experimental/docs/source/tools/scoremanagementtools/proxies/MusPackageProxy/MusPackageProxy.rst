@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.directory_contents
    :noindex:
 
@@ -175,6 +172,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.stylesheets_directory_name
@@ -478,6 +478,18 @@ Special methods
 ---------------
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.__lt__
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.__ne__

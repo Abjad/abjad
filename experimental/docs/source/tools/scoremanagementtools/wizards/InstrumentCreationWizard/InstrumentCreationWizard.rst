@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.editors_package_importable_name
    :noindex:
 
@@ -100,6 +97,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.stylesheets_directory_name
@@ -278,6 +278,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.__repr__
    :noindex:

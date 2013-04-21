@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.editors_package_importable_name
    :noindex:
 
@@ -106,6 +103,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.stylesheets_directory_name
@@ -347,6 +347,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.__repr__
    :noindex:

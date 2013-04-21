@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.directory_contents
    :noindex:
 
@@ -175,6 +172,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.stylesheets_directory_name
@@ -502,6 +502,18 @@ Special methods
 ---------------
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.__lt__
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.__ne__

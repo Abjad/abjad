@@ -10,26 +10,16 @@ from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import stringtools
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class ScoreManagementObject(object):
+class ScoreManagementObject(AbjadObject):
 
     ### INITIALIZER ###
 
     def __init__(self, session=None):
         from experimental.tools.scoremanagementtools.core.Session import Session
         self._session = session or Session()
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        return '{}()'.format(self.class_name)
-
-    ### PRIVATE READ-ONLY PROPERTIES ###
-
-    @property
-    def _tcsh(self):
-        return self.session.testable_command_history_string
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -50,10 +40,6 @@ class ScoreManagementObject(object):
         return self.session.breadcrumb_stack
 
     @property
-    def class_name(self):
-        return type(self).__name__
-
-    @property
     def editors_package_importable_name(self):
         return self.dot_join(['scoremanagementtools', 'editors'])
 
@@ -66,7 +52,8 @@ class ScoreManagementObject(object):
         return 5
 
     @property
-    def human_readable_class_name(self): return self.change_string_to_human_readable_string(self.class_name)
+    def human_readable_class_name(self): 
+        return self.change_string_to_human_readable_string(self._class_name)
 
     @property
     def makers_directory_name(self):
@@ -156,7 +143,7 @@ class ScoreManagementObject(object):
 
     @property
     def spaced_class_name(self):
-        return stringtools.uppercamelcase_to_space_delimited_lowercase(self.class_name)
+        return stringtools.uppercamelcase_to_space_delimited_lowercase(self._class_name)
 
     @property
     def specifier_classes_package_importable_name(self):

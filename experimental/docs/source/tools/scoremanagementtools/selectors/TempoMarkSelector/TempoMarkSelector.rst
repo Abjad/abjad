@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.editors_package_importable_name
    :noindex:
 
@@ -100,6 +97,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.stylesheets_directory_name
@@ -287,6 +287,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.__repr__
    :noindex:

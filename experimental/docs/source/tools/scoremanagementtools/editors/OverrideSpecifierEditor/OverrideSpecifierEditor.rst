@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.editors_package_importable_name
    :noindex:
 
@@ -106,6 +103,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.stylesheets_directory_name
@@ -347,6 +347,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.__repr__
    :noindex:

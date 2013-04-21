@@ -33,9 +33,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.current_asset_container_human_readable_name
    :noindex:
 
@@ -130,6 +127,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.stylesheets_directory_name
@@ -487,6 +487,21 @@ Special methods
 ---------------
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.__ne__
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.__repr__

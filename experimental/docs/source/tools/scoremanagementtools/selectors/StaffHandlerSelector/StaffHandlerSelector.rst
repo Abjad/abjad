@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.editors_package_importable_name
    :noindex:
 
@@ -100,6 +97,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.stylesheets_directory_name
@@ -287,6 +287,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.__repr__
    :noindex:

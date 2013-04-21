@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.editors_package_importable_name
    :noindex:
 
@@ -148,6 +145,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.stylesheets_directory_name
@@ -437,6 +437,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.__repr__
    :noindex:

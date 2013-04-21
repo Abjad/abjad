@@ -27,9 +27,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.chevrons
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.defaults
    :noindex:
 
@@ -121,6 +118,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.stylesheets_directory_name
@@ -509,6 +509,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.__repr__
    :noindex:

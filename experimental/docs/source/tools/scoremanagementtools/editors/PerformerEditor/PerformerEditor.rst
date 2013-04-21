@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.editors_package_importable_name
    :noindex:
 
@@ -112,6 +109,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.stylesheets_directory_name
@@ -371,6 +371,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.__repr__
    :noindex:

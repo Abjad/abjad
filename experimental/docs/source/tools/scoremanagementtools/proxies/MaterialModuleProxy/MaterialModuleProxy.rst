@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.editors_package_importable_name
    :noindex:
 
@@ -181,6 +178,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.stylesheets_directory_name
@@ -461,6 +461,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.__repr__
    :noindex:

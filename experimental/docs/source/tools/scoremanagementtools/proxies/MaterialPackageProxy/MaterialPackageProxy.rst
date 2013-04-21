@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.directory_contents
    :noindex:
 
@@ -361,6 +358,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.stylesheet_file_name_on_disk
@@ -796,6 +796,18 @@ Special methods
 ---------------
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.__lt__
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.__ne__

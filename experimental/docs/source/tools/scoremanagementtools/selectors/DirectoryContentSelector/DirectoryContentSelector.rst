@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.editors_package_importable_name
    :noindex:
 
@@ -100,6 +97,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.stylesheets_directory_name
@@ -287,6 +287,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__repr__
    :noindex:

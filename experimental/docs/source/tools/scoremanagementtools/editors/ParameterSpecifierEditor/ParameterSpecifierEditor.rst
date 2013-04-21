@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.editors_package_importable_name
    :noindex:
 
@@ -106,6 +103,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.stylesheets_directory_name
@@ -347,6 +347,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.__repr__
    :noindex:

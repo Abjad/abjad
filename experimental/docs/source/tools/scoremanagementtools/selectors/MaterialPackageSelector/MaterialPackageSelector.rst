@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.editors_package_importable_name
    :noindex:
 
@@ -100,6 +97,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.stylesheets_directory_name
@@ -290,6 +290,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.__repr__
    :noindex:

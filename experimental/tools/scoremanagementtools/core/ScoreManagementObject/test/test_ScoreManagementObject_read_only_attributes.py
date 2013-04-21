@@ -10,7 +10,6 @@ def test_ScoreManagementObject_read_only_attributes_01():
     assert score_management_object.boilerplate_directory_name == path
 
     assert isinstance(score_management_object.breadcrumb_stack, list)
-    assert score_management_object.class_name == 'ScoreManagementObject'
     assert score_management_object.help_item_width == 5
 
     path = os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'makers')

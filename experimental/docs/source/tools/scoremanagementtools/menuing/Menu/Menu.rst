@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.default_value
    :noindex:
 
@@ -151,6 +148,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.stylesheets_directory_name
@@ -408,7 +408,25 @@ Methods
 Special methods
 ---------------
 
+.. automethod:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.__le__
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.__len__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.__ne__
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.__repr__

@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.editors_package_importable_name
    :noindex:
 
@@ -100,6 +97,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.stylesheets_directory_name
@@ -278,6 +278,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.__repr__
    :noindex:

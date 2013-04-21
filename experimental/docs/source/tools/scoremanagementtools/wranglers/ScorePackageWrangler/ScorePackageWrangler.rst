@@ -33,9 +33,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.current_asset_container_human_readable_name
    :noindex:
 
@@ -130,6 +127,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.stylesheets_directory_name
@@ -499,6 +499,21 @@ Special methods
 ---------------
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.__ne__
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.__repr__

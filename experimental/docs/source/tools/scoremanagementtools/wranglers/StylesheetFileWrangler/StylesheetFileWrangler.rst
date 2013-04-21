@@ -33,9 +33,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.current_asset_container_human_readable_name
    :noindex:
 
@@ -130,6 +127,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.stylesheet_file_names
@@ -493,6 +493,21 @@ Special methods
 ---------------
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.__ne__
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.__repr__

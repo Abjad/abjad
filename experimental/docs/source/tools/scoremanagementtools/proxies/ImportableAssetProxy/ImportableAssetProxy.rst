@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.editors_package_importable_name
    :noindex:
 
@@ -127,6 +124,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.stylesheets_directory_name
@@ -371,6 +371,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.__repr__
    :noindex:

@@ -33,9 +33,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.current_asset_container_human_readable_name
    :noindex:
 
@@ -127,6 +124,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.stylesheets_directory_name
@@ -484,6 +484,21 @@ Special methods
 ---------------
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.__ne__
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.__repr__

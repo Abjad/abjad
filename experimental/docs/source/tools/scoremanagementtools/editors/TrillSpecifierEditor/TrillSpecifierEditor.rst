@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.editors_package_importable_name
    :noindex:
 
@@ -106,6 +103,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.stylesheets_directory_name
@@ -347,6 +347,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.__repr__
    :noindex:

@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.editors_package_importable_name
    :noindex:
 
@@ -148,6 +145,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.stylesheets_directory_name
@@ -413,6 +413,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.__repr__
    :noindex:

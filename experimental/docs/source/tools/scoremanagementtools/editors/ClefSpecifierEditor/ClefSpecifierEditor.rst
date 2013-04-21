@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.editors_package_importable_name
    :noindex:
 
@@ -106,6 +103,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.stylesheets_directory_name
@@ -347,6 +347,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.__repr__
    :noindex:

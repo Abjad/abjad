@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.editors_package_importable_name
    :noindex:
 
@@ -100,6 +97,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.stylesheets_directory_name
@@ -287,6 +287,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.__repr__
    :noindex:

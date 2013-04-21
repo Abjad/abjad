@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.class_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.editors_package_importable_name
    :noindex:
 
@@ -175,6 +172,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.specifier_classes_package_path_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.stylesheets_directory_name
@@ -458,6 +458,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.__repr__
    :noindex:
