@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 
-from abjad import ABJCFG
-from abjad.tools import clear_terminal
 import os
+from abjad import ABJCFG
+from abjad.tools import iotools
 
 
 def _find_initializers():
@@ -13,14 +13,14 @@ def _find_initializers():
             initializer_parent_directory = path.split(os.path.sep)[-1]
             if initializer_parent_directory[0].isupper():
                public_class_package_initializers.append(os.path.join(path, f))
-   print 'There are %s public class packages ...' % len(public_class_package_initializers)
+   print 'There are {} public class packages ...'.format(len(public_class_package_initializers))
    for x in public_class_package_initializers:
       first_line = file(x, 'r').readlines()[0]
       if 'importtools' not in first_line:
          output = file(x, 'w')
          output.write('from abjad.tools import importtools\n')
          output.write('\n')
-         output.write('importtools.import_structured_package(__path__[0], globals(), package_root_name='abjad')\n')
+         output.write("importtools.import_structured_package(__path__[0], globals(), package_root_name='abjad')\n")
          output.close()
       
 
