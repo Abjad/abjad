@@ -73,7 +73,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
     def _map_to_each(self, payload_expression):
         result = [element for element in payload_expression]
         return result
-        
+
     def _partition_by_ratio(self, payload_expression, ratio, part, callback_cache):
         assert hasattr(payload_expression, 'partition_by_ratio')
         key = (repr(payload_expression), repr(ratio))

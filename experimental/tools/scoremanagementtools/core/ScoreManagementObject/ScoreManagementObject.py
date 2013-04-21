@@ -24,7 +24,7 @@ class ScoreManagementObject(AbjadObject):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
-    def _human_readable_class_name(self): 
+    def _human_readable_class_name(self):
         return self.change_string_to_human_readable_string(self._class_name)
 
     @property

@@ -5,7 +5,7 @@ from experimental.tools.musicexpressiontools.SelectMethodMixin import SelectMeth
 from experimental.tools.musicexpressiontools.TimespanCallbackMixin import TimespanCallbackMixin
 
 
-class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethodMixin, 
+class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethodMixin,
     TimeContiguousSetMethodMixin):
     r'''Timespan expression.
 

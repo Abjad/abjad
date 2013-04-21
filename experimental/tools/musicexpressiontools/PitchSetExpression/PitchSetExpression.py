@@ -8,7 +8,7 @@ from experimental.tools.musicexpressiontools.LeafSetExpression import LeafSetExp
 class PitchSetExpression(LeafSetExpression):
     '''Pitch set expression.
     '''
-    
+
     ### INITIALIZER ###
 
     def __init__(self, source_expression=None, target_select_expression_inventory=None,

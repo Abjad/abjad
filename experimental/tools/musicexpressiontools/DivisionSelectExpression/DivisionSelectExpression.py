@@ -81,7 +81,7 @@ class DivisionSelectExpression(SelectExpression):
                 expression._voice_name = self.voice_name
                 expressions.append(expression)
             return expressions
-        else: 
+        else:
             expression = result
             expression._voice_name = self.voice_name
             return expression

@@ -17,7 +17,7 @@ class SpannerSetExpression(CounttimeComponentSelectExpressionSetExpression):
         assert isinstance(spanner, spannertools.Spanner), repr(spanner)
         result = self.target_counttime_component_select_expression.evaluate_against_score(score)
         if isinstance(result, list):
-            for element in result: 
+            for element in result:
                 leaves = element.payload
                 new_spanner = copy.copy(spanner)
                 new_spanner(leaves)

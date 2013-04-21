@@ -290,7 +290,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             if not elements:
                 return
             callback_cache[key] = elements
-        elements = callback_cache[key] 
+        elements = callback_cache[key]
         start_offset = elements[0].start_offset
         expression = self.new(payload=elements, start_offset=start_offset)
         return expression

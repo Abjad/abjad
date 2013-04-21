@@ -67,7 +67,7 @@ class BeatSelectExpression(SelectExpression):
         '''
         from experimental.tools import musicexpressiontools
         anchor_timespan = self._evaluate_anchor_timespan()
-        time_relation = self._get_time_relation(anchor_timespan) 
+        time_relation = self._get_time_relation(anchor_timespan)
         time_signatures = self.root_specification.time_signatures[:]
         beats = self._time_signatures_to_naive_beats(time_signatures)
         start_offset = self.root_specification.timespan.start_offset

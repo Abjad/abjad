@@ -2,7 +2,7 @@ import locale
 from experimental import *
 
 
-locale.setlocale(locale.LC_ALL, 'en_US.UTF-8') 
+locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 def test_optimization_targets_01():
     '''Score with 1 voice, 50 measures, 100 divisions, 300 notes.
 

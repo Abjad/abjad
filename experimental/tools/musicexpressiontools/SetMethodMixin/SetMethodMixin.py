@@ -23,7 +23,7 @@ class SetMethodMixin(AbjadObject):
         else:
             raise TypeError(self)
         return target_select_expression_inventory
-        
+
     ### PRIVATE METHODS ###
 
     def _all_are_expressions(self, expr):

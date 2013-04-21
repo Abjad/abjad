@@ -27,8 +27,12 @@ class Specifier(AbjadObject):
                     return True
         return False
 
-#    ### READ-ONLY PRIVATE PROPERTIES ###
-#
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _human_readable_class_name(self):
+        return iotools.uppercamelcase_to_space_delimited_lowercase(self.class_name)
+
 #    @property
 #    def _keyword_argument_names(self):
 #        '''Defined by hand so that this tuple is inheritable by subclasses.
@@ -44,10 +48,6 @@ class Specifier(AbjadObject):
     @property
     def format(self):
         return self._tools_package_qualified_indented_repr
-
-    @property
-    def _human_readable_class_name(self):
-        return iotools.uppercamelcase_to_space_delimited_lowercase(self.class_name)
 
     @abc.abstractproperty
     def one_line_menuing_summary(self):

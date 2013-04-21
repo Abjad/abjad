@@ -25,7 +25,7 @@ class VoiceProxy(AbjadObject):
         '''Voice proxy leaf start offsets.
 
         Return list of offsets.
-        '''        
+        '''
         return self._leaf_start_offsets
 
     @property
@@ -33,7 +33,7 @@ class VoiceProxy(AbjadObject):
         '''Voice proxy leaf stop offsets.
 
         Return list of offsets.
-        '''        
+        '''
         return self._leaf_stop_offsets
 
     @property

@@ -380,7 +380,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         Return boolean.
         '''
-        return StartPositionedPayloadExpression.elements_are_time_contiguous.fget(self)  
+        return StartPositionedPayloadExpression.elements_are_time_contiguous.fget(self)
 
     @property
     def payload(self):

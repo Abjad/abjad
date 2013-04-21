@@ -29,7 +29,7 @@ class Expression(AbjadObject):
 
     def __hash__(self):
         '''Expression hash.
-        
+
         Return hash of expression repr.
         '''
         return hash(repr(self))
