@@ -5,7 +5,7 @@ def test_Menu_allow_mixed_case_key_01():
     '''Allow mixed case 'home' key.
     '''
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input="L'arch home q")
     assert score_manager.ts == (6, (0, 4))
 

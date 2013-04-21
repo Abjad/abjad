@@ -6,7 +6,7 @@ def test_MaterialPackageWrangler_run_01():
     '''Quit, back, home, score & junk all work.
     '''
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='m q')
     assert score_manager.ts == (4,)
 
@@ -27,6 +27,6 @@ def test_MaterialPackageWrangler_run_02():
     '''Breadcrumbs work.
     '''
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='m q')
     assert score_manager.transcript[-2][0] == 'Scores - materials'

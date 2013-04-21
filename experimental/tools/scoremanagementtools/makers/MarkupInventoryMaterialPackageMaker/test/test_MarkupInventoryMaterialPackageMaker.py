@@ -4,7 +4,7 @@ from experimental import *
 
 def test_MarkupInventoryMaterialPackageMaker_01():
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     assert not score_manager.package_exists('materials.testmarkupinventory')
     try:
         score_manager.run(user_input=

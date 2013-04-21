@@ -3,10 +3,10 @@ from experimental import *
 
 
 def test_PerformerEditor_name_01():
-    '''Quit, back and studio all work.
+    '''Quit, back and home all work.
     '''
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i setup performers hornist name q')
     assert score_manager.ts == (11,)
 
@@ -21,7 +21,7 @@ def test_PerformerEditor_name_02():
     '''String input only.
     '''
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i setup performers hornist name -99 q')
     assert score_manager.ts == (13,)
 

@@ -3,7 +3,7 @@ import py
 from experimental import *
 
 
-score_manager = scoremanagementtools.studio.ScoreManager()
+score_manager = scoremanagementtools.scoremanager.ScoreManager()
 wrangler = score_manager.material_package_wrangler
 assert not wrangler.session.is_in_score
 

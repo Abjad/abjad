@@ -3,7 +3,7 @@ from experimental import *
 
 def test_ScoreManager_show_hidden_menu_entries_01():
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='hidden q')
     assert score_manager.transcript[-2] == \
      ['     back (b)',

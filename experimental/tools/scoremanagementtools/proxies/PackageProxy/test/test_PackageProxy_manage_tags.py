@@ -5,7 +5,7 @@ def test_PackageProxy_manage_tags_01():
     '''Quit, back, home, score & junk all work.
     '''
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i tags q')
     assert score_manager.ts == (6,)
 

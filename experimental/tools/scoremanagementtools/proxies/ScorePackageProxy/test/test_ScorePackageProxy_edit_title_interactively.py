@@ -5,7 +5,7 @@ from experimental import *
 def test_ScorePackageProxy_edit_title_interactively_01():
 
     try:
-        score_manager = scoremanagementtools.studio.ScoreManager()
+        score_manager = scoremanagementtools.scoremanager.ScoreManager()
         score_manager.run(user_input='betorung setup title Foo q')
         assert score_manager.ts == (9,)
         assert score_manager.transcript[-5][0] == 'Betörung (2012) - setup'

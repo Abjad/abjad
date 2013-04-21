@@ -3,7 +3,7 @@ from experimental import *
 
 def test_ListMaterialPackageMaker_01():
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     assert not score_manager.package_exists('materials.testlist')
     try:
         score_manager.run(user_input=

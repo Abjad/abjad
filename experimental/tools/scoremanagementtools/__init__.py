@@ -8,9 +8,9 @@ import makers
 import menuing
 import predicates
 import proxies
+import scoremanager
 import selectors
 import specifiers
-import studio
 import wizards
 import wranglers
 

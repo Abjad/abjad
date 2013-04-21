@@ -48,7 +48,7 @@ def test_ScorePackageProxy_04():
     '''User 'home' input results in return home.
     '''
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input="example~score~i home q")
 
     assert score_manager.ts == (6, (0, 4))
@@ -58,7 +58,7 @@ def test_ScorePackageProxy_04():
 
 
 def test_ScorePackageProxy_05():
-    '''User 'home' input terminates execution (when score not managed from studio).
+    '''User 'home' input terminates execution (when score not managed from home).
     '''
 
     example_score_1 = scoremanagementtools.proxies.ScorePackageProxy('example_score_1')
@@ -73,7 +73,7 @@ def test_ScorePackageProxy_06():
     '''User 'b' input returns home.
     '''
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i b q')
 
     assert score_manager.ts == (6, (0, 4))

@@ -5,7 +5,7 @@ def test_PerformerEditor_set_initial_configuration_interactively_01():
     '''Quit, back, home, score & junk all work.
     '''
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i setup performers add accordionist q')
     assert score_manager.ts == (12,)
 

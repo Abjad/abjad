@@ -5,7 +5,7 @@ from experimental import *
 
 def test_ArticulationHandlerMaterialPackageMaker_01():
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     assert not score_manager.package_exists('materials.testarticulationhandler')
     try:
         score_manager.run(user_input=

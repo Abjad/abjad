@@ -4,7 +4,7 @@ from experimental import *
 
 def test_TempoMarkInventoryMaterialPackageMaker_01():
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     assert not score_manager.package_exists('materials.testtempoinventory')
     try:
         score_manager.run(user_input=

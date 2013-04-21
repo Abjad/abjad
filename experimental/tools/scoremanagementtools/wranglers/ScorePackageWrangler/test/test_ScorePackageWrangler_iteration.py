@@ -1,6 +1,6 @@
 from experimental import *
 
-score_manager = scoremanagementtools.studio.ScoreManager()
+score_manager = scoremanagementtools.scoremanager.ScoreManager()
 wrangler = score_manager.score_package_wrangler
 
 

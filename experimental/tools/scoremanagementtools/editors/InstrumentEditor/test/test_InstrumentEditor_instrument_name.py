@@ -6,7 +6,7 @@ def test_InstrumentEditor_instrument_name_01():
     '''Quit, back & home all work.
     '''
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='example setup performers hornist horn in q')
     assert score_manager.ts == (13,)
 
@@ -21,7 +21,7 @@ def test_InstrumentEditor_instrument_name_02():
     '''String only.
     '''
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='example setup performers hornist horn in -99 q')
     assert score_manager.ts == (15,)
 

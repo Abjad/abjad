@@ -586,6 +586,7 @@ Unstable packages (load manually)
       tools/scoremanagementtools/proxies/ScorePackageProxy/ScorePackageProxy
       tools/scoremanagementtools/proxies/StylesheetFileProxy/StylesheetFileProxy
       tools/scoremanagementtools/proxies/UserInputModuleProxy/UserInputModuleProxy
+      tools/scoremanagementtools/scoremanager/ScoreManager/ScoreManager
       tools/scoremanagementtools/selectors/ArticulationHandlerClassNameSelector/ArticulationHandlerClassNameSelector
       tools/scoremanagementtools/selectors/ArticulationHandlerSelector/ArticulationHandlerSelector
       tools/scoremanagementtools/selectors/ClefNameSelector/ClefNameSelector
@@ -632,7 +633,6 @@ Unstable packages (load manually)
       tools/scoremanagementtools/specifiers/TempoSpecifier/TempoSpecifier
       tools/scoremanagementtools/specifiers/TrillSpecifier/TrillSpecifier
       tools/scoremanagementtools/specifiers/TropingSpecifier/TropingSpecifier
-      tools/scoremanagementtools/studio/ScoreManager/ScoreManager
       tools/scoremanagementtools/wizards/ArticulationHandlerCreationWizard/ArticulationHandlerCreationWizard
       tools/scoremanagementtools/wizards/DynamicHandlerCreationWizard/DynamicHandlerCreationWizard
       tools/scoremanagementtools/wizards/InstrumentCreationWizard/InstrumentCreationWizard
@@ -791,6 +791,7 @@ Unstable packages (load manually)
       tools/scoremanagementtools/proxies/ScorePackageProxy/ScorePackageProxy
       tools/scoremanagementtools/proxies/StylesheetFileProxy/StylesheetFileProxy
       tools/scoremanagementtools/proxies/UserInputModuleProxy/UserInputModuleProxy
+      tools/scoremanagementtools/scoremanager/ScoreManager/ScoreManager
       tools/scoremanagementtools/selectors/ArticulationHandlerClassNameSelector/ArticulationHandlerClassNameSelector
       tools/scoremanagementtools/selectors/ArticulationHandlerSelector/ArticulationHandlerSelector
       tools/scoremanagementtools/selectors/ClefNameSelector/ClefNameSelector
@@ -837,7 +838,6 @@ Unstable packages (load manually)
       tools/scoremanagementtools/specifiers/TempoSpecifier/TempoSpecifier
       tools/scoremanagementtools/specifiers/TrillSpecifier/TrillSpecifier
       tools/scoremanagementtools/specifiers/TropingSpecifier/TropingSpecifier
-      tools/scoremanagementtools/studio/ScoreManager/ScoreManager
       tools/scoremanagementtools/wizards/ArticulationHandlerCreationWizard/ArticulationHandlerCreationWizard
       tools/scoremanagementtools/wizards/DynamicHandlerCreationWizard/DynamicHandlerCreationWizard
       tools/scoremanagementtools/wizards/InstrumentCreationWizard/InstrumentCreationWizard

@@ -7,7 +7,7 @@ def test_PerformerEditor_move_instrument_01():
     '''Quit, back, home, score & junk all work.
     '''
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input="l'arch setup performers flutist move q")
     assert score_manager.ts == (11,)
 

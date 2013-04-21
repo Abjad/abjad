@@ -6,7 +6,7 @@ def test_MaterialPackageProxy_run_01():
     '''Global materials: quit, back, home, score & junk all work.
     '''
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='m sargasso q')
     assert score_manager.ts == (6,)
 
@@ -28,7 +28,7 @@ def test_MaterialPackageProxy_run_02():
     '''Global materials: breadcrumbs work.
     '''
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='m sargasso q')
     assert score_manager.transcript[-2][0] == 'Scores - materials - sargasso multipliers'
 
@@ -38,7 +38,7 @@ def test_MaterialPackageProxy_run_03():
     '''
     py.test.skip('TODO: add Example Score I time signatures.')
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='all example_score_1 m 2 q')
     assert score_manager.ts == (10,)
 
@@ -60,6 +60,6 @@ def test_MaterialPackageProxy_run_04():
     '''
     py.test.skip('TODO: add Example Score I time signatures.')
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='all example_score_1 m time_signatures q')
     assert score_manager.transcript[-2][0] == 'Example Score I - materials - time signatures'

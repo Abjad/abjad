@@ -20,7 +20,7 @@ def test_InstrumentSpecifierEditor_run_01():
 
 
 def test_InstrumentSpecifierEditor_run_02():
-    '''In studio.
+    '''Home.
     '''
 
     editor = scoremanagementtools.editors.InstrumentSpecifierEditor()

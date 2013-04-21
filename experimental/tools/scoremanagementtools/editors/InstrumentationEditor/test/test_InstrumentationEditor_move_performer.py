@@ -6,7 +6,7 @@ def test_InstrumentationEditor_move_performer_01():
     '''Quit, back, home, score & junk all work.
     '''
 
-    score_manager = scoremanagementtools.studio.ScoreManager()
+    score_manager = scoremanagementtools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i setup perf move q')
     assert score_manager.ts == (9,)
 
