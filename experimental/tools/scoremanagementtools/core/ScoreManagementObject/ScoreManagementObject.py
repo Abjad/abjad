@@ -12,7 +12,7 @@ from abjad.tools import pitchtools
 from abjad.tools import stringtools
 
 
-class SCFObject(object):
+class ScoreManagementObject(object):
 
     def __init__(self, session=None):
         from experimental.tools.scoremanagementtools.core.Session import Session

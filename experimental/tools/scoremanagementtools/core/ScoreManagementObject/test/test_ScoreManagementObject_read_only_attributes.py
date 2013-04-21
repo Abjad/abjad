@@ -2,15 +2,15 @@ import os
 from experimental import *
 
 
-def test_SCFObject_read_only_attributes_01():
+def test_ScoreManagementObject_read_only_attributes_01():
 
-    scf_object = scoremanagementtools.core.SCFObject()
+    scf_object = scoremanagementtools.core.ScoreManagementObject()
 
     path = os.path.join(os.environ.get('SCFPATH'), 'boilerplate')
     assert scf_object.boilerplate_directory_name == path
 
     assert isinstance(scf_object.breadcrumb_stack, list)
-    assert scf_object.class_name == 'SCFObject'
+    assert scf_object.class_name == 'ScoreManagementObject'
     assert scf_object.help_item_width == 5
 
     path = os.path.join(os.environ.get('SCFPATH'), 'makers')
@@ -25,10 +25,10 @@ def test_SCFObject_read_only_attributes_01():
     assert isinstance(scf_object.session, scoremanagementtools.core.Session)
     assert scf_object.score_external_chunks_package_importable_name == 'sketches'
 
-    path = os.path.join(os.environ.get('SCFPATH'), 'core', 'SCFObject', 'SCFObject.py')
+    path = os.path.join(os.environ.get('SCFPATH'), 'core', 'ScoreManagementObject', 'ScoreManagementObject.py')
     assert scf_object.source_file_name == path
 
-    assert scf_object.spaced_class_name == 's c f object'
+    assert scf_object.spaced_class_name == 'score management object'
     assert scf_object.score_external_materials_package_importable_name == 'materials'
 
 

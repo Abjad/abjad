@@ -3,9 +3,9 @@ from abjad.tools import contexttools
 from experimental import *
 
 
-def test_SCFObject_expr_to_parent_package_short_name_01():
+def test_ScoreManagementObject_expr_to_parent_package_short_name_01():
 
-    scf_object = scoremanagementtools.core.SCFObject()
+    scf_object = scoremanagementtools.core.ScoreManagementObject()
 
     assert scf_object.expr_to_parent_package_short_name(Note("c'4")) == 'notetools'
     assert scf_object.expr_to_parent_package_short_name(Rest('r4')) == 'resttools'

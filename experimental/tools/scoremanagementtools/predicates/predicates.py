@@ -14,10 +14,10 @@ def is_articulation_token(expr):
         return False
 
 def is_available_underscore_delimited_lowercase_package_name(expr):
-    from experimental.tools.scoremanagementtools.core.SCFObject import SCFObject
+    from experimental.tools.scoremanagementtools.core.ScoreManagementObject import ScoreManagementObject
     if stringtools.is_underscore_delimited_lowercase_package_name(expr):
         if 3 <= len(expr):
-            scf_object = SCFObject()
+            scf_object = ScoreManagementObject()
             return not scf_object.package_exists(expr)
     return False
 
@@ -52,8 +52,8 @@ def is_dynamic_token(expr):
         return False
 
 def is_existing_package_name(expr):
-    from experimental.tools.scoremanagementtools.core.SCFObject import SCFObject
-    scf_object = SCFObject()
+    from experimental.tools.scoremanagementtools.core.ScoreManagementObject import ScoreManagementObject
+    scf_object = ScoreManagementObject()
     return scf_object.package_exists(expr)
 
 def is_hairpin_token(expr):

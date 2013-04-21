@@ -1,11 +1,11 @@
 import abc
 import os
 from abjad.tools import stringtools
-from experimental.tools.scoremanagementtools.core.SCFObject import SCFObject
+from experimental.tools.scoremanagementtools.core.ScoreManagementObject import ScoreManagementObject
 from experimental.tools.scoremanagementtools.proxies.PackageProxy import PackageProxy
 
 
-class AssetWrangler(SCFObject):
+class AssetWrangler(ScoreManagementObject):
 
     ### CLASS ATTRIBUTES ###
 
@@ -19,7 +19,7 @@ class AssetWrangler(SCFObject):
         session=None,
         user_asset_container_importable_names=None,
         user_asset_container_path_names=None):
-        SCFObject.__init__(self, session=session)
+        ScoreManagementObject.__init__(self, session=session)
         if score_external_asset_container_importable_names:
             assert all([stringtools.is_underscore_delimited_lowercase_package_name(x)
                 for x in score_external_asset_container_importable_names])

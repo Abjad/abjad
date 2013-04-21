@@ -6,7 +6,7 @@
 2.  Make user input getter defaults work like menu defaults;
     Implement default_value on user input getter.
 
-3.  Fix SCFObject.handle_user_input_with_default() default handling.
+3.  Fix ScoreManagementObject.handle_user_input_with_default() default handling.
 
 4.  Define range inventories for all scores.
 
@@ -66,16 +66,14 @@
     Implement example_score_ii.mus.materials.divisions to import example_score_i.mus.materials.time_signatures.
     This will implement an interpackage material import.
 
-24. Encapsulate the stuff in SCFObject in newly implemented class.
-    Then include a reference to the class (perhaps as a class attribute) in SCFObject by composition.
+24. Encapsulate the stuff in ScoreManagementObject in newly implemented class.
+    Then include a reference to the class (perhaps as a class attribute) in ScoreManagementObject by composition.
 
-25. Rename SCFObject to something else.
+25. Remove all reference to 'scf' in the codebase.
 
-26. Remove all reference to 'scf' in the codebase.
-
-27. Remove the has_readable_... and is_readable_... properties from the system entirely.
+26. Remove the has_readable_... and is_readable_... properties from the system entirely.
     Force such functionality to be method calls that will be noticeably expensive.
 
-28. Migrate all build_illustration.py modules from separate modules to bound class methods.
+27. Migrate all build_illustration.py modules from separate modules to bound class methods.
 
-29. Audit the UI of the entire materials management system by hand.
+28. Audit the UI of the entire materials management system by hand.

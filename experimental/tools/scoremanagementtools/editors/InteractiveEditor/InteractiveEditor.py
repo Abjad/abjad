@@ -1,12 +1,12 @@
-from experimental.tools.scoremanagementtools.core.SCFObject import SCFObject
+from experimental.tools.scoremanagementtools.core.ScoreManagementObject import ScoreManagementObject
 
 
-class InteractiveEditor(SCFObject):
+class InteractiveEditor(ScoreManagementObject):
 
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
-        SCFObject.__init__(self, session=session)
+        ScoreManagementObject.__init__(self, session=session)
         if target is not None:
             assert isinstance(target, self.target_class)
         self.target = target

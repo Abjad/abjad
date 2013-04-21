@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad.tools import stringtools
-from experimental.tools.scoremanagementtools.core.SCFObject import SCFObject
+from experimental.tools.scoremanagementtools.core.ScoreManagementObject import ScoreManagementObject
 from experimental.tools.scoremanagementtools.core.Transcript import Transcript
 
 
-class Session(SCFObject):
+class Session(ScoreManagementObject):
 
     ### INITIALIZER ###
 

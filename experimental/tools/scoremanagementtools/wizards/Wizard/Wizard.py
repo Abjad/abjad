@@ -1,9 +1,9 @@
 import abc
-from experimental.tools.scoremanagementtools.core.SCFObject import SCFObject
+from experimental.tools.scoremanagementtools.core.ScoreManagementObject import ScoreManagementObject
 
 
 # TODO: extend repr to show target, if any
-class Wizard(SCFObject):
+class Wizard(ScoreManagementObject):
 
     ### CLASS ATTRIBUTES ###
 
@@ -13,7 +13,7 @@ class Wizard(SCFObject):
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
-        SCFObject.__init__(self, session=session)
+        ScoreManagementObject.__init__(self, session=session)
         self.target = target
 
     ### READ-ONLY PUBLIC PROPERTIES ###

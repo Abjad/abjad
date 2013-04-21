@@ -3,7 +3,7 @@ import os
 import subprocess
 from abjad.tools import iotools
 from abjad.tools import mathtools
-from experimental.tools.scoremanagementtools.core.SCFObject import SCFObject
+from experimental.tools.scoremanagementtools.core.ScoreManagementObject import ScoreManagementObject
 from experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler import ChunkPackageWrangler
 from experimental.tools.scoremanagementtools.wranglers.MaterialPackageMakerWrangler import MaterialPackageMakerWrangler
 from experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler import MaterialPackageWrangler
@@ -12,12 +12,12 @@ from experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler impo
 from experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler import StylesheetFileWrangler
 
 
-class ScoreManager(SCFObject):
+class ScoreManager(ScoreManagementObject):
 
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        SCFObject.__init__(self, session=session)
+        ScoreManagementObject.__init__(self, session=session)
         self._chunk_package_wrangler = ChunkPackageWrangler(session=self.session)
         self._material_package_maker_wrangler = MaterialPackageMakerWrangler(session=self.session)
         self._material_package_wrangler = MaterialPackageWrangler(session=self.session)
