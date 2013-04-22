@@ -87,7 +87,6 @@ Abjad packaging checklist:
         fix-test-case-names
         fix-test-case-numbers
         fix-test-cases
-        remove-tmp-out-directories
         replace-abjad-prompts-with-python-prompts
     Test and commit. Alternately you may want to test after each script runs.
     Then run the matinenance scripts on the experimental branch.
