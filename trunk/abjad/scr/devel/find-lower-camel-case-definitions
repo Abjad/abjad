@@ -1,17 +1,17 @@
 #! /usr/bin/env python
 
-from abjad import ABJCFG
-from abjad.tools import iotools
 import os
 import pprint
 import re
+from abjad import ABJCFG
+from abjad.tools import iotools
 
 
 def _find_lower_camel_case_definitions():
     total_modules_with_lower_camel_case_definitions = 0
     lower_camel_case_definitions = [ ]
     lower_camel_case_definition_pattern = re.compile(r'.*def [_]*[a-z]+[A-Z]+.*')
-    for path, subdirectories, files in os.walk(ABJCFG.ABJAD_PATH):
+    for path, subdirectories, files in os.walk('.'):
         for f in files:
             found_lower_camel_case_definition = False
             if f.endswith('.py'):
@@ -27,8 +27,10 @@ def _find_lower_camel_case_definitions():
                         print line.strip()
             if found_lower_camel_case_definition:
                 print ''
-    print 'Total modules with lower camel case definitions: %s' % total_modules_with_lower_camel_case_definitions
-    print 'Total lower camel case definitions:                  %s' % len(lower_camel_case_definitions)
+    print 'Total modules with lower camel case definitions:     {}'.format(
+        total_modules_with_lower_camel_case_definitions)
+    print 'Total lower camel case definitions:                  {}'.format(
+        len(lower_camel_case_definitions))
     print ''
 
 

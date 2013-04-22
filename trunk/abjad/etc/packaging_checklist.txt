@@ -64,8 +64,8 @@ Abjad packaging checklist:
         find-duplicate-modules-names
         find-import-as-statements
         find-import-from-stdlib-statements
-    Possibly the following:
         find-lower-camel-case-definitions
+    Possibly the following:
         find-lower-camel-case-modules
         find-manual-class-loads-in-initializers
         find-misnamed-private-modules

@@ -85,7 +85,7 @@ class GuileProxy(AbjadObject):
                 lookahead.value = self.client._pitch_names[lookahead.value]
 
 
-    def makeClusters(self, music):
+    def make_clusters(self, music):
         return containertools.Cluster(music[:])
 
 
@@ -95,7 +95,7 @@ class GuileProxy(AbjadObject):
         return marktools.LilyPondCommandMark('mark %s' % label)
 
 
-    def oneVoice(self):
+    def one_voice(self):
         return marktools.LilyPondCommandMark('oneVoice')
 
 
@@ -149,7 +149,7 @@ class GuileProxy(AbjadObject):
         return leaf
 
 
-    def slashedGraceContainer(self, music):
+    def slashed_grace_container(self, music):
         grace = gracetools.GraceContainer(music[:])
         grace.kind = 'slashedGrace'
         return grace
@@ -200,19 +200,19 @@ class GuileProxy(AbjadObject):
     # tweak
 
 
-    def voiceOne(self):
+    def voice_one(self):
         return marktools.LilyPondCommandMark('voiceOne')
 
 
-    def voiceFour(self):
+    def voice_four(self):
         return marktools.LilyPondCommandMark('voiceTwo')
 
 
-    def voiceThree(self):
+    def voice_three(self):
         return marktools.LilyPondCommandMark('voiceThree')
 
 
-    def voiceTwo(self):
+    def voice_two(self):
         return marktools.LilyPondCommandMark('voiceFour')
 
 
