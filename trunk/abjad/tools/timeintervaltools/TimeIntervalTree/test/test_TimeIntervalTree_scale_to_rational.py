@@ -1,4 +1,4 @@
-from fractions import Fraction
+import fractions
 from abjad.tools.durationtools import Offset
 from abjad.tools.timeintervaltools import TimeInterval
 from abjad.tools.timeintervaltools import TimeIntervalTree
@@ -10,7 +10,7 @@ def test_TimeIntervalTree_scale_to_rational_01():
     t3 = TimeInterval(2, 6)
 
     tree = TimeIntervalTree([t1, t2, t3])
-    scalar = Fraction(1, 4)
+    scalar = fractions.Fraction(1, 4)
     result = tree.scale_to_rational(scalar)
 
     assert type(result) == type(tree)

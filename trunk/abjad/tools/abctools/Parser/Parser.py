@@ -2,8 +2,7 @@ import abc
 import inspect
 import logging
 import os
-from ply import lex
-from ply import yacc
+import ply
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -40,13 +39,13 @@ class Parser(AbjadObject):
             self._logger = logging.getLogger()
             self._logger.addHandler(logging.NullHandler())
 
-        self._lexer = lex.lex(
+        self._lexer = ply.lex.lex(
             debug=self.debug,
             debuglog=self.logger,
             object=self.lexer_rules_object
             )
 
-        self._parser = yacc.yacc(
+        self._parser = ply.yacc.yacc(
             debug=self.debug,
             debuglog=self.logger,
             module=self.parser_rules_object,

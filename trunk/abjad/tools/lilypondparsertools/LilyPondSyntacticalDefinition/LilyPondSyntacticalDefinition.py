@@ -1,5 +1,5 @@
 import fractions
-from ply import lex
+import ply
 from abjad.tools import chordtools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
@@ -2139,7 +2139,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
         p[0] = p[1]
 
-        token = lex.LexToken()
+        token = ply.lex.LexToken()
         token.type = 'MARKUP_IDENTIFIER'
         token.value = p[1]
         token.lexpos = 0

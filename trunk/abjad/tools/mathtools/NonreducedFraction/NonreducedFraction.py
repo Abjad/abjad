@@ -1,8 +1,8 @@
+import fractions
 from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
-from fractions import Fraction
 
 
-class NonreducedFraction(ImmutableAbjadObject, Fraction):
+class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
     r'''.. versionadded:: 2.9
 
     Initialize with an integer numerator and integer denominator:
@@ -97,7 +97,7 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
             raise ValueError('can not initialize NonreducedFraction from {!r}.'.format(args))
         numerator *= mathtools.sign(denominator)
         denominator = abs(denominator)
-        self = Fraction.__new__(klass, numerator, denominator)
+        self = fractions.Fraction.__new__(klass, numerator, denominator)
         self._numerator = numerator
         self._denominator = denominator
         return self
@@ -621,7 +621,7 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
         Return fraction.
         '''
-        return Fraction(self.numerator, self.denominator)
+        return fractions.Fraction(self.numerator, self.denominator)
 
     def with_denominator(self, denominator):
         '''Return new nonreduced fraction with integer `denominator`:

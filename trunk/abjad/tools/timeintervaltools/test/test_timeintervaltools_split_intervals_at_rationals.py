@@ -1,7 +1,5 @@
+from abjad import *
 from abjad.tools.timeintervaltools import *
-from abjad.tools.timeintervaltools._make_test_intervals import _make_test_intervals
-from fractions import Fraction
-import py.test
 
 
 def test_timeintervaltools_split_intervals_at_rationals_01():

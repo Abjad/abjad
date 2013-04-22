@@ -63,8 +63,8 @@ Abjad packaging checklist:
         reindent-3-spaces-as-4 (this will cause all 1500 pages of the docs to rebuild)
         find-duplicate-modules-names
         find-import-as-statements
+        find-local-import-statements (rename this script)
     Possibly the following:
-        find-local-import-statements
         find-lower-camel-case-definitions
         find-lower-camel-case-modules
         find-manual-class-loads-in-initializers

@@ -1,14 +1,14 @@
 #! /usr/bin/env python
 
-from abjad import ABJCFG
-from abjad.tools import iotools
 import os
 import pprint
+from abjad import ABJCFG
+from abjad.tools import iotools
 
 
 def _find_local_import_statements():
     total_local_import_statements = 0
-    for path, subdirectories, files in os.walk(ABJCFG.ABJAD_PATH):
+    for path, subdirectories, files in os.walk('.'):
         if '.svn' not in path and 'docs' not in path:
             for f in files:
                 if f.endswith('.py') and not f == '__init__.py':
@@ -27,7 +27,9 @@ def _find_local_import_statements_in_file(full_file_name):
     shorter_module_name = '%s%s%s' % (module, os.path.sep, function)
     fp = file(full_file_name, 'r')
     for line in fp.readlines():
-        if line.startswith('from'):
+        if line.startswith('from') and \
+            not line.startswith('from experimental import *') and \
+            not line.startswith('from make_illustration_from_output_material'):
             line_parts = line.split()
             module_name = line_parts[1]
             if not module_name in ('abjad', '__future__'):

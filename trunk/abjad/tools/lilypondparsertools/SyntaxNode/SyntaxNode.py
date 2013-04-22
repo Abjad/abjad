@@ -1,4 +1,3 @@
-from collections import Iterable
 from abjad.tools.abctools import AbjadObject
 
 

@@ -1,4 +1,3 @@
-from fractions import Fraction
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import durationtools

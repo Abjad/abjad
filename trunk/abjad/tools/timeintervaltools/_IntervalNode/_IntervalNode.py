@@ -1,6 +1,6 @@
+import fractions
 from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
 from abjad.tools.timeintervaltools._RedBlackNode import _RedBlackNode
-from fractions import Fraction
 
 
 class _IntervalNode(_RedBlackNode):
@@ -16,7 +16,7 @@ class _IntervalNode(_RedBlackNode):
     ### INITIALIZER ###
 
     def __init__(self, key, intervals=None):
-        assert isinstance(key, (int, Fraction))
+        assert isinstance(key, (int, fractions.Fraction))
         _RedBlackNode.__init__(self, key)
         self.payload = []
         if isinstance(intervals, (list, set, tuple)):
