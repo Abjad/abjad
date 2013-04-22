@@ -60,7 +60,6 @@ Abjad packaging checklist:
         find-nonalphabetized-class-method-names
         fix-test-cases
         find-and-fix-manual-class-package-initializers
-        reindent-3-spaces-as-4 (this will cause all 1500 pages of the docs to rebuild)
         find-duplicate-modules-names
         find-import-as-statements
         find-import-from-stdlib-statements
@@ -72,21 +71,21 @@ Abjad packaging checklist:
         remove-source-file-terminal-blank-lines
         replace-abjad-prompts-with-python-prompts
         find-nonalphabetized-class-attributes
+        find-undocumented-tools
+        find-public-helpers-without-docstrings
+        reindent-3-spaces-as-4 (this will cause all 1500 pages of the docs to rebuild)
+    Port these forward to new convnetions and then start using as part of regular maintenance:
+        find-nonalphabetized-module-headers
+        fix-nonalphabetized-module-headers
+        find-slots-implementation-inconsistencies
+    Finish this for the first time and then start using as part of regular maintenance:
+        find-noninstantiable-concrete-classes
     We're not adhering to these at the moment though we might like to in future:
         find-multifunction-modules
     These are no longer the standard but might as well be kept around just in case:
         find-missing-test-modules
         find-multiline-import-statements
         find-module-headers
-    Port these forward to new convnetions and then start using as part of regular maintenance:
-        find-nonalphabetized-module-headers
-        fix-nonalphabetized-module-headers
-    Finish this for the first time and then start using as part of regular maintenance:
-        find-noninstantiable-concrete-classes
-    Not yet classified:
-        find-public-helpers-without-docstrings
-        find-slots-implementation-inconsistencies
-        find-undocumented-tools
     Test and commit. Alternately you may want to test after each script runs.
     Then run the matinenance scripts on the experimental branch.
     Then test and commit.

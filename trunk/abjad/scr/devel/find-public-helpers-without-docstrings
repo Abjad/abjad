@@ -1,15 +1,14 @@
 #! /usr/bin/env python
 
+import os
 from abjad import ABJCFG
 from abjad.tools import iotools
-import os
 
 
 def _find_public_helpers_without_docstrings():
-    tools_path = os.path.join(ABJCFG.ABJAD_PATH, 'tools')
     total_undocumented_helpers = 0
     total_without_close_quote = 0
-    for path, subdirectories, files in os.walk(tools_path):
+    for path, subdirectories, files in os.walk('.'):
         for f in files:
             if f.endswith('.py') and not f.startswith('test'):
                 if not f.startswith('_'):
