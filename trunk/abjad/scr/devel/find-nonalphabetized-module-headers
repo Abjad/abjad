@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 
+import os
 from abjad import ABJCFG
 from abjad.tools import iotools
-import os
 
 
 def _main():
@@ -23,17 +23,18 @@ def _main():
                         break
                     else:
                         print ''
-                        print total_module_headers
+                        print total_nonalphabetized_module_headers
                         print ''
                         print full_file_name
                         print header_lines
-                        print line
+                        print 'this line is problematic: {!r}'.format(line)
+                        print ''
                         raise Exception
                 if header_lines:
                     sorted_header_lines = list(sorted(header_lines))
                     if header_lines != sorted_header_lines:
                         total_nonalphabetized_module_headers += 1
-                        print '## NONALPHABETIZED HEADER #####\n'
+                        print '### NONALPHABETIZED HEADER ###\n'
                         print ''.join(header_lines)
                         print ''.join(sorted_header_lines)
     print 'Total nonalphabetized headers: %s' % total_nonalphabetized_module_headers

@@ -68,23 +68,25 @@ Abjad packaging checklist:
         find-lower-camel-case-modules
         find-manual-class-loads-in-initializers
         find-misnamed-private-modules
-        [find-missing-test-modules] (don't need to run this one any more)
         fix-test-case-block-comments
         remove-source-file-terminal-blank-lines
         replace-abjad-prompts-with-python-prompts
-    Possibly the following:
-        find-module-headers
-        find-modules-with-chevrons
-        find-multifunction-modules
-        find-multiline-import-statements
         find-nonalphabetized-class-attributes
+    We're not adhering to these at the moment though we might like to in future:
+        find-multifunction-modules
+    These are no longer the standard but might as well be kept around just in case:
+        find-missing-test-modules
+        find-multiline-import-statements
+        find-module-headers
+    Port these forward to new convnetions and then start using as part of regular maintenance:
         find-nonalphabetized-module-headers
+        fix-nonalphabetized-module-headers
+    Finish this for the first time and then start using as part of regular maintenance:
         find-noninstantiable-concrete-classes
-        find-nontrivial-subdirectories
+    Not yet classified:
         find-public-helpers-without-docstrings
         find-slots-implementation-inconsistencies
         find-undocumented-tools
-        fix-nonalphabetized-module-headers
     Test and commit. Alternately you may want to test after each script runs.
     Then run the matinenance scripts on the experimental branch.
     Then test and commit.

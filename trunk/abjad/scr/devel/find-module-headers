@@ -7,10 +7,9 @@ from abjad.tools import iotools
 
 def _main():
     total_module_headers = 0
-    for path, subdirectories, files in os.walk(ABJCFG.ABJAD_PATH):
-    #for path, subdirectories, files in os.walk('.'):
+    for path, subdirectories, files in os.walk('.'):
         for f in files:
-            if f.endswith('.py'):
+            if f.endswith('.py') and not 'lilypondparsertools' in path:
                 full_file_name = os.path.join(path, f)
                 fp = file(full_file_name, 'r')
                 header_lines = [ ]
@@ -29,6 +28,7 @@ def _main():
                         print full_file_name
                         print header_lines
                         print 'This line is problematic: {!r}'.format(line)
+                        print ''
                         raise Exception
                 if header_lines:
                     total_module_headers += 1
