@@ -296,6 +296,3 @@ New time-token tools are available:
             c'2..
         }
     }
-
-
-

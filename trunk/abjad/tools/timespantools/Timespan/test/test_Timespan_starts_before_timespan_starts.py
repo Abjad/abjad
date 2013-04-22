@@ -65,4 +65,3 @@ def test_Timespan_starts_before_timespan_starts_13():
     a = timespantools.Timespan(0, 15)
     b = timespantools.Timespan(20, 25)
     assert a.starts_before_timespan_starts(b)
-

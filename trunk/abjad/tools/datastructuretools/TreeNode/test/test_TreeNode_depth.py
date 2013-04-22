@@ -29,4 +29,3 @@ def test_TreeNode_depth_01():
 
     subsubcontainer.append(leaf)
     assert leaf.depth == 3
-

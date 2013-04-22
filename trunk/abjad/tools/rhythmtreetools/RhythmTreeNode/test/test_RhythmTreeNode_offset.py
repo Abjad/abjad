@@ -41,4 +41,3 @@ def test_RhythmTreeNode_offset_01():
     assert tree[1][0].start_offset == Offset(19, 3)
     assert tree[1][1].start_offset == Offset(247, 21)
     assert tree[1][2].start_offset == Offset(323, 21)
-

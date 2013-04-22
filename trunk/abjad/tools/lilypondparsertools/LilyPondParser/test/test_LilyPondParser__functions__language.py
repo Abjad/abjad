@@ -20,4 +20,3 @@ def test_LilyPondParser__functions__language_01():
     parser = LilyPondParser()
     result = parser(input)
     assert target.lilypond_format == result.lilypond_format and target is not result
-

@@ -69,4 +69,3 @@ def test_ParallelJobHandler___call___02():
 
     assert sorted(a_jobs[0].q_grids, key=lambda x: x.root_node.rtm_format) == \
         sorted(b_jobs[0].q_grids, key=lambda x: x.root_node.rtm_format)
-

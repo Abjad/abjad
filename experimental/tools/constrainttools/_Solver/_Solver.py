@@ -41,4 +41,3 @@ class _Solver(AbjadObject):
             except StopIteration:
                 break
         return tuple(solutions)
-

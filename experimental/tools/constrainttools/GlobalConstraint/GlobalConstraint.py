@@ -35,5 +35,3 @@ class GlobalConstraint(_GlobalConstraint):
 
     def __call__(self, solution):
         return self._predicate(solution)
-
-

@@ -24,4 +24,3 @@ def apply_bowing_marks(score):
     copy.copy(rebow_markup)(score['First Violin Voice'][64][0])
     copy.copy(rebow_markup)(score['Second Violin Voice'][75][0])
     copy.copy(rebow_markup)(score['Viola Voice'][86][0])
-

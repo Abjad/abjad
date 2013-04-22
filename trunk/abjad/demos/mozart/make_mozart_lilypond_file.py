@@ -14,4 +14,3 @@ def make_mozart_lilypond_file():
     lily.paper_block.markup_system_spacing__basic_distance = 8
     lily.paper_block.paper_width = 180
     return lily
-

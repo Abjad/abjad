@@ -7,4 +7,3 @@ def test_LilyPondParser__lilypondfile__LilyPondFile_01():
     parser = LilyPondParser()
     result = parser(input)
     assert isinstance(result, lilypondfiletools.LilyPondFile)
-

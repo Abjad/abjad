@@ -96,5 +96,3 @@ def test_Timespan___and___13():
     b = timespantools.Timespan(20, 25)
     result = a & b
     assert result == timespantools.TimespanInventory([])
-
-

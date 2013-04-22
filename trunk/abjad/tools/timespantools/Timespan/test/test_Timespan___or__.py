@@ -106,5 +106,3 @@ def test_Timespan___or___13():
         timespantools.Timespan(0, 15),
         timespantools.Timespan(20, 25)
     ])
-
-

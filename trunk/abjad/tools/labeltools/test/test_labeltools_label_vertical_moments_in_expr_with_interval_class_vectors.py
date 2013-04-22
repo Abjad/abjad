@@ -73,5 +73,3 @@ def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_0
     '''
 
     assert chord.lilypond_format == "<bf bqf a'>4\n\t_ \\markup {\n\t\t\\tiny\n\t\t\t\\column\n\t\t\t\t{\n\t\t\t\t\t0100000\n\t\t\t\t\t110000\n\t\t\t\t}\n\t\t}"
-
-

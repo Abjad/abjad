@@ -46,4 +46,3 @@ def test_TreeContainer_name_01():
 
     assert foo['quux'] is quux
     assert foo['wux'] is quux2
-

@@ -312,4 +312,3 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
 
         # Call an error function here
         raise RuntimeError("yacc: internal parser error!!!\n")
-

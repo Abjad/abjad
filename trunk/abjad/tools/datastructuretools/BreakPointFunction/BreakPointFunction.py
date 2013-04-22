@@ -833,4 +833,3 @@ class BreakPointFunction(AbjadObject):
             else:
                 tessalated_bpf = tessalated_bpf.concatenate(bpf)
         return tessalated_bpf
-

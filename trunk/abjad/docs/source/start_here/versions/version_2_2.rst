@@ -9,5 +9,3 @@ Released 2011-08-30. Built from r4677.
 * Reordered the way in which Abjad determines the value of the ``HOME`` environment variable.
 * Updated ``scr/devel/replace-in-files`` to avoid image files.
 * Updated ``iotools.log()`` to call operating-specific text editor.
-
-

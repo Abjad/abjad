@@ -80,4 +80,3 @@ class GraphvizEdge(GraphvizObject):
         def fset(self, arg):
             self._is_directed = bool(arg)
         return property(**locals())
-

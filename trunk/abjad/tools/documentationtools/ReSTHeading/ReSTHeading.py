@@ -80,4 +80,3 @@ class ReSTHeading(TreeNode):
             assert len(arg)
             self._text = arg
         return property(**locals())
-

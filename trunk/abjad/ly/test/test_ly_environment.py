@@ -31,4 +31,3 @@ def test_ly_environment_01():
 
     assert ly.music_glyphs is not None
     print ly.music_glyphs
-

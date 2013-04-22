@@ -65,4 +65,3 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
             tie_spanners = spannertools.get_spanners_attached_to_component(leaf, tietools.TieSpanner)
             if not tie_spanners or tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
                 yield tietools.get_tie_chain(leaf)
-

@@ -142,4 +142,3 @@ And use ``value`` to get the value of any annotation:
 
    >>> annotation.value
    NamedChromaticPitch('bs')
-

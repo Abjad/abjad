@@ -42,4 +42,3 @@ class AbsoluteIndexConstraint(_AbsoluteConstraint):
         if len(solution) < self._max_index + 1:
             return True
         return self._predicate(*[solution[i] for i in self._indices])
-

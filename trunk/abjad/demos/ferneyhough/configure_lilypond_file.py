@@ -8,4 +8,3 @@ def configure_lilypond_file(lilypond_file):
     lilypond_file.layout_block.ragged_right = True
     lilypond_file.paper_block.ragged_bottom = True
     lilypond_file.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 8, 0)
-

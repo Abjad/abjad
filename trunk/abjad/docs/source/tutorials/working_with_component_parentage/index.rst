@@ -80,4 +80,3 @@ Or to find whether a component has no (proper) parentage at all:
 
    >>> note.parentage.is_orphan
    False
-

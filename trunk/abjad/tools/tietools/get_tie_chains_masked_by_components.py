@@ -75,4 +75,3 @@ def get_tie_chains_masked_by_components(components):
     result.sort(key=lambda x: x[0].timespan.start_offset)
 
     return result
-

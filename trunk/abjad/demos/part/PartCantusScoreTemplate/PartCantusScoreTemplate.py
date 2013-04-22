@@ -87,4 +87,3 @@ class PartCantusScoreTemplate(scoretemplatetools.ScoreTemplate):
 
         # return Pärt Cantus score
         return score
-

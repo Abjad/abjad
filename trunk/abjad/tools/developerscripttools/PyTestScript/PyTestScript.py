@@ -135,4 +135,3 @@ class PyTestScript(DirectoryScript):
             os.path.join(ABJCFG.ABJAD_PATH, 'tools'),
             ABJCFG.ABJAD_EXPERIMENTAL_PATH
             ])
-

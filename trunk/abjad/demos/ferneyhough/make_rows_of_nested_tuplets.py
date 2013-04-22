@@ -10,4 +10,3 @@ def make_rows_of_nested_tuplets(tuplet_duration, row_count, column_count):
             tuplet_duration, outer_tuplet_proportions, column_count)
         rows_of_nested_tuplets.append(row_of_nested_tuplets)
     return rows_of_nested_tuplets
-

@@ -191,4 +191,3 @@ class QTarget(AbjadObject):
             two_q_events = two.q_grid.leaves[0].q_event_proxies
             while one_q_events:
                 two_q_events.append(one_q_events.pop())
-

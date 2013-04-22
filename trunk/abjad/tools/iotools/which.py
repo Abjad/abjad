@@ -25,4 +25,3 @@ def which(name, flags=os.X_OK):
             if os.access(path_extension, flags):
                 result.append(path_extension)
     return result
-

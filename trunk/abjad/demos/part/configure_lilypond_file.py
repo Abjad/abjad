@@ -21,4 +21,3 @@ def configure_lilypond_file(lilypond_file):
 
     lilypond_file.header_block.composer = markuptools.Markup('Arvo Pärt')
     lilypond_file.header_block.title = markuptools.Markup('Cantus in Memory of Benjamin Britten (1980)')
-

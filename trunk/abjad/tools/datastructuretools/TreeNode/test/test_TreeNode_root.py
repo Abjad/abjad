@@ -16,4 +16,3 @@ def test_TreeNode_root_01():
     assert subsubcontainer.root == container
     assert subcontainer.root == container
     assert container.root == container
-

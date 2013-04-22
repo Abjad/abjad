@@ -371,4 +371,3 @@ Abjad documentation:
    >>> show(result)
 
 .. image:: images/index-7.png
-

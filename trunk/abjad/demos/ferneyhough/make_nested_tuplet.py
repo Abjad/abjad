@@ -8,4 +8,3 @@ def make_nested_tuplet(tuplet_duration, outer_tuplet_proportions, inner_tuplet_s
     right_tie_chain = tietools.get_tie_chain(outer_tuplet.leaves[-1])
     tietools.tie_chain_to_tuplet_with_ratio(right_tie_chain, inner_tuplet_proportions)
     return outer_tuplet
-

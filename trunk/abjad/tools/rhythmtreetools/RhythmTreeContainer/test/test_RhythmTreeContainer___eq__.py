@@ -48,4 +48,3 @@ def test_RhythmTreeContainer___eq___03():
     assert c != e
 
     assert d != e
-

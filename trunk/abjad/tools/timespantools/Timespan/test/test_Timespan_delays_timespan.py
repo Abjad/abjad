@@ -65,5 +65,3 @@ def test_Timespan_delays_timespan_13():
     a = timespantools.Timespan(0, 15)
     b = timespantools.Timespan(20, 25)
     assert not a.delays_timespan(b)
-
-

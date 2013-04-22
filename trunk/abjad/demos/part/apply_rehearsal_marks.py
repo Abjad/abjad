@@ -13,5 +13,3 @@ def apply_rehearsal_marks(score):
             r'mark \default',
             'before'
             )(bell_voice[measure_index])
-
-

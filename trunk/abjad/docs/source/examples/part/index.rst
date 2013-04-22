@@ -802,6 +802,3 @@ And here we show it:
 .. note:
 
    We only show the first two pages as the *Cantus* is still under copyright.
-
-
-

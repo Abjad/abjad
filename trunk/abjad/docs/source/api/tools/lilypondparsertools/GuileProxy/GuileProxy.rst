@@ -39,13 +39,13 @@ Methods
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.language
    :noindex:
 
-.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.makeClusters
+.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.make_clusters
    :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.mark
    :noindex:
 
-.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.oneVoice
+.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.one_voice
    :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.relative
@@ -54,7 +54,7 @@ Methods
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.skip
    :noindex:
 
-.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.slashedGraceContainer
+.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.slashed_grace_container
    :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.time
@@ -66,16 +66,16 @@ Methods
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.transpose
    :noindex:
 
-.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voiceFour
+.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voice_four
    :noindex:
 
-.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voiceOne
+.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voice_one
    :noindex:
 
-.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voiceThree
+.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voice_three
    :noindex:
 
-.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voiceTwo
+.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voice_two
    :noindex:
 
 Special methods

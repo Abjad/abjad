@@ -130,4 +130,3 @@ Which looks like this:
    >>> show(lilypond_file)
 
 .. image:: images/index-1.png
-

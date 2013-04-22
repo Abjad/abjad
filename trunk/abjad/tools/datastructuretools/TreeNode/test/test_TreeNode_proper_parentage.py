@@ -16,4 +16,3 @@ def test_TreeNode_proper_parentage_01():
     assert subsubcontainer.proper_parentage == (subcontainer, container)
     assert subcontainer.proper_parentage == (container,)
     assert container.proper_parentage == ()
-

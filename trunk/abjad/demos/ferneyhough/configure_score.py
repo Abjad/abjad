@@ -13,4 +13,3 @@ def configure_score(score):
     score.override.tuplet_bracket.staff_padding = 4
     score.override.tuplet_number.text = schemetools.Scheme('tuplet-number::calc-fraction-text')
     pass
-

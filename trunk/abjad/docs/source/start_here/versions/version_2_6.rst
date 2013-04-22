@@ -248,5 +248,3 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 
 * Fixed bug in ``iotools.play()``.
 * Fixed bug in ``quantizationtools`` regarding quantizing a stream of ``QEvents`` directly.
-
-

@@ -270,4 +270,3 @@ class RhythmTreeNode(TreeNode):
             self._duration = arg
             self._mark_entire_tree_for_later_update()
         return property(**locals())
-

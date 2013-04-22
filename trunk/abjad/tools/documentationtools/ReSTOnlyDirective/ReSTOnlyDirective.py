@@ -44,4 +44,3 @@ class ReSTOnlyDirective(ReSTDirective):
     @property
     def directive(self):
         return 'only'
-

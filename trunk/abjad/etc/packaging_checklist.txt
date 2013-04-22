@@ -69,6 +69,7 @@ Abjad packaging checklist:
         find-manual-class-loads-in-initializers
         find-misnamed-private-modules
         [find-missing-test-modules] (don't need to run this one any more)
+        remove-source-file-terminal-blank-lines
     Possibly the following:
         find-module-headers
         find-modules-with-chevrons
@@ -86,7 +87,6 @@ Abjad packaging checklist:
         fix-test-case-names
         fix-test-case-numbers
         fix-test-cases
-        remove-source-file-terminal-blank-lines
         remove-tmp-out-directories
         replace-abjad-prompts-with-python-prompts
     Test and commit. Alternately you may want to test after each script runs.

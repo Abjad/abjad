@@ -17,5 +17,3 @@ Released 2011-09-22. Built from r4803.
 
 Note that the three renames change user syntax.
 Composers working with the ``lilypondfiletools`` module should update their score code.
-
-

@@ -25,4 +25,3 @@ def test_TreeContainer_append_01():
 
     container.append(leaf_a)
     assert container.children == (leaf_b, leaf_c, leaf_d, leaf_a)
-

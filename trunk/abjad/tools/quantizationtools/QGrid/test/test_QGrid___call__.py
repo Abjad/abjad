@@ -85,5 +85,3 @@ def test_QGrid___call___03():
 
     assert isinstance(result, list) and len(result) == 1
     assert result[0].lilypond_format == "\\times 2/3 {\n\tc'4\n\tc'4\n}"
-
-

@@ -83,4 +83,3 @@ class SvnCommitScript(DirectoryScript):
             help='commit the path PATH',
             type=self._validate_path,
             )
-

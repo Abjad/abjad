@@ -19,4 +19,3 @@ def test_LilyPondParser_accidentals_forced_02():
     assert parsed[0].note_heads[1].is_forced == False
     assert parsed[0].note_heads[2].is_forced == True
     assert parsed[0].lilypond_format == '<c! e g!>4'
-

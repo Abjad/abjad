@@ -41,5 +41,3 @@ def test_TimeIntervalTree_scale_by_rational_02():
     assert result.duration == tree.duration * scalar
     for old, new in zip(tree, result):
         assert new.duration == old.duration * scalar
-
-

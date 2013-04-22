@@ -164,4 +164,3 @@ class AbjadConfiguration(Configuration):
 
         }
         return options
-

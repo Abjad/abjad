@@ -107,4 +107,3 @@ that markup positioning is by default relative to the left edge of note heads.
    >>> show(staff)
 
 .. image:: images/index-3.png
-

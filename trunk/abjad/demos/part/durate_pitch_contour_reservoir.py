@@ -44,4 +44,3 @@ def durate_pitch_contour_reservoir(pitch_contour_reservoir):
         durated_reservoir[instrument_name] = tuple(durated_contours)
 
     return durated_reservoir
-

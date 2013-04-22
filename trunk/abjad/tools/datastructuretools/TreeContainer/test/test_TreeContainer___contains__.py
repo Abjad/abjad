@@ -14,4 +14,3 @@ def test_TreeContainer___contains___01():
     assert leaf_a in container
     assert leaf_b not in container
     assert leaf_c not in container
-

@@ -89,4 +89,3 @@ And here's the corrected result:
    >>> show(staff)
 
 .. image:: images/index-4.png
-

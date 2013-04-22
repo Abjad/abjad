@@ -39,4 +39,3 @@ class QSchemaItem(tuple, ImmutableAbjadObject):
     @property
     def __dict__(self):
         return collections.OrderedDict(zip(self._fields, self))
-

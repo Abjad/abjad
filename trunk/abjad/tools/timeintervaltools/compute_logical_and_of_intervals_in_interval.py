@@ -15,4 +15,3 @@ def compute_logical_and_of_intervals_in_interval(intervals, interval):
     logic_tree = timeintervaltools.TimeIntervalTree([x for x in depth_tree if 1 < x['depth']])
 
     return logic_tree
-

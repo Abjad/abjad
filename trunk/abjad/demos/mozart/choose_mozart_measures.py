@@ -12,4 +12,3 @@ def choose_mozart_measures():
             choice = random.choice(choices)
             chosen_measures.append(choice)
     return chosen_measures
-

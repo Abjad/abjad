@@ -25,5 +25,3 @@ def test_Timespan_starts_at_offset_05():
     timespan = timespantools.Timespan(0, 10)
     offset = durationtools.Offset(15)
     assert not timespan.starts_at_offset(offset)
-
-

@@ -46,5 +46,3 @@ The same type of functions are likewise implemented for the following context ma
 * Renamed ``Mark.detach_mark()`` to ``Mark.detach()``.
 * Renamed ``marktools.Comment`` to ``marktools.LilyPondComment``. This matches ``marktools.LilyPondCommandMark``.
 * Removed ``contexttools.TimeSignatureMark(3, 8)`` initialization. You must now say ``contexttools.TimeSignatureMark((3, 8))`` instead. This parallels the initialization syntax for rests, skips and measures.
-
-

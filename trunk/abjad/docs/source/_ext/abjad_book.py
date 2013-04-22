@@ -365,4 +365,3 @@ def setup(app):
     app.connect('doctree-read', on_doctree_read)
     app.connect('build-finished', on_build_finished)
     app.add_config_value('abjad_book_transform_path', 'api/tools/', 'env')
-

@@ -666,4 +666,3 @@ class TreeContainer(TreeNode):
         '''
         i = self.index(node)
         del(self[i])
-

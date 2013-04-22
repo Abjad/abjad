@@ -15,5 +15,3 @@ Released 2011-09-12. Built from r4769.
 * Added new ``HorizontalBracketSpanner`` to ``spannertools`` package.
 * Improved ``schemetools.SchemePair`` handling.
 * Extended ``LilyPondFile`` blocks with double underscore-delimited attributes.
-
-

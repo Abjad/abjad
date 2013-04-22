@@ -196,4 +196,3 @@ class MarkupCommand(AbjadObject):
         result.extend(recurse(self.args, is_indented=is_indented))
         result.append('{})'.format(indent))
         return result
-

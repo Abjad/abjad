@@ -79,4 +79,3 @@ class MetricalKernel(AbjadObject):
         Return dict.
         '''
         return self._kernel.copy()
-

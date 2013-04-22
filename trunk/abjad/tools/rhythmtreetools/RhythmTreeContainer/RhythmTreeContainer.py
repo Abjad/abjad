@@ -416,5 +416,3 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         return '({} ({}))'.format(
             self.preprolated_duration,
             ' '.join([x.rtm_format for x in self]))
-
-

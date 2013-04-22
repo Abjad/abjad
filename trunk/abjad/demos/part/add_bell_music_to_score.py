@@ -23,4 +23,3 @@ def add_bell_music_to_score(score):
         bell_voice.append(measuretools.Measure((6, 4), 'R1.'))
 
     bell_voice.append(measuretools.Measure((6,4), r"a'1. \laissezVibrer"))
-

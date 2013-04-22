@@ -19,4 +19,3 @@ def test_TimeIntervalTree_scale_to_rational_01():
         (Offset(1, 32), Offset(1, 4)),
         (Offset(1, 16), Offset(3, 16))]
     assert result.duration == scalar
-

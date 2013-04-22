@@ -30,4 +30,3 @@ def _generate_production_map(output_path, tab_hh_path):
             rewrites[funcname] = docstring
 
     return rewrites
-

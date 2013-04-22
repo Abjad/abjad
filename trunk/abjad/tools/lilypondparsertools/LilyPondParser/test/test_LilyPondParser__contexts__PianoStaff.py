@@ -29,4 +29,3 @@ def test_LilyPondParser__contexts__PianoStaff_01():
     parser = LilyPondParser()
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result
-

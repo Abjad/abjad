@@ -632,4 +632,3 @@ And now the final result:
    >>> show(lilypond_file)
 
 .. image:: images/index-3.png
-

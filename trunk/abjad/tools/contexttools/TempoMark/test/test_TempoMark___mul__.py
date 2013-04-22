@@ -51,5 +51,3 @@ def test_TempoMark___mul___04():
 
     tempo_indication_1 = contexttools.TempoMark(Duration(1, 8), (90, 92))
     py.test.raises(ImpreciseTempoError, "tempo_indication_1 * Duration(1, 2)")
-
-

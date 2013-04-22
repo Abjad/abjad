@@ -17,5 +17,3 @@ def test_MetricalHierarchyInventory_storage_format_01():
     '''
 
     assert inventory.storage_format == "timesignaturetools.MetricalHierarchyInventory([\n\ttimesignaturetools.MetricalHierarchy(\n\t\t'(4/4 (1/4 1/4 1/4 1/4))'\n\t\t),\n\ttimesignaturetools.MetricalHierarchy(\n\t\t'(3/4 (1/4 1/4 1/4))'\n\t\t)\n\t])"
-
-

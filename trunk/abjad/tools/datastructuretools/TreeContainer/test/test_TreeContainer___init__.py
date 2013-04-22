@@ -7,5 +7,3 @@ def test_TreeContainer___init___01():
 
     assert container.children == ()
     assert container.parent is None
-
-

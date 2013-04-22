@@ -30,4 +30,3 @@ def test_LayoutBlock_02():
     '''
 
     assert lb.lilypond_format == '\\layout {\n\t\\accidentalStyle modern\n}'
-

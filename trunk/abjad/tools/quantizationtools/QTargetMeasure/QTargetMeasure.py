@@ -276,4 +276,3 @@ class QTargetMeasure(AbjadObject):
         Return boolean.
         '''
         return self._use_full_measure
-

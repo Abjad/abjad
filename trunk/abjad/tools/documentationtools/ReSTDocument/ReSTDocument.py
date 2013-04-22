@@ -92,4 +92,3 @@ class ReSTDocument(TreeContainer):
     @property
     def rest_format(self):
         return '\n'.join(self._rest_format_contributions)
-

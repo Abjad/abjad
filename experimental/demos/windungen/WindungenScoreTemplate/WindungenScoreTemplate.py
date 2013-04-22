@@ -38,4 +38,3 @@ class WindungenScoreTemplate(ScoreTemplate):
             [windungen_staff_group], name='Windungen Score')
 
         return windungen_score
-

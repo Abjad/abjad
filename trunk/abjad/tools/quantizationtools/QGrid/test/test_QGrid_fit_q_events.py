@@ -25,4 +25,3 @@ def test_QGrid_fit_q_events_01():
     assert q_grid.leaves[0].q_event_proxies == [a, b]
     assert q_grid.leaves[1].q_event_proxies == [c, d, e]
     assert q_grid.leaves[2].q_event_proxies == [g, f]
-

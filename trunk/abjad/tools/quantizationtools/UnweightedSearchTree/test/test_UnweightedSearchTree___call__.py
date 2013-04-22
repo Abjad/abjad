@@ -31,4 +31,3 @@ def test_UnweightedSearchTree___call___01():
 
     assert q_grids[0].root_node.rtm_format == '(1 (1 1))'
     assert q_grids[1].root_node.rtm_format == '(1 (1 1 1 1 1))'
-

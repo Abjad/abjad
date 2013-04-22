@@ -56,4 +56,3 @@ class MeasurewiseQTarget(QTarget):
             attack_point_optimizer(measure)
 
         return voice
-

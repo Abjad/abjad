@@ -15,4 +15,3 @@ def make_lilypond_file(tuplet_duration, row_count, column_count):
     lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
     configure_lilypond_file(lilypond_file)
     return lilypond_file
-

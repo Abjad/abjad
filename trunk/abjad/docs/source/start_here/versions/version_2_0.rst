@@ -29,4 +29,3 @@ Abjad 2.0 is the first public release of Abjad in more than two years. The new r
 * The ``intervaltreetools`` package implements a custom way of working with chunks of score during composition.
 
 * The ``lilyfiletools`` package implements an object-oriented interface to arbitrarily structured LilyPond input files.
-

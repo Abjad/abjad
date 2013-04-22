@@ -189,4 +189,3 @@ class QuantizationJob(AbjadObject):
         Return ``SearchTree`` instance.
         '''
         return self._search_tree
-

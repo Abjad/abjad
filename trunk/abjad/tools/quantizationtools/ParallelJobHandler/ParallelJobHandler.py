@@ -39,4 +39,3 @@ class ParallelJobHandler(JobHandler):
              worker.join()
 
         return finished_jobs
-

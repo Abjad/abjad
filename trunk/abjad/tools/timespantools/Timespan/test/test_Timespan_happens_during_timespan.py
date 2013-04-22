@@ -65,5 +65,3 @@ def test_Timespan_happens_during_timespan_13():
     a = timespantools.Timespan(0, 15)
     b = timespantools.Timespan(20, 25)
     assert not a.happens_during_timespan(b)
-
-

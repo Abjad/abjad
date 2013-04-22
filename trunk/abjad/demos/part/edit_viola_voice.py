@@ -33,4 +33,3 @@ def edit_viola_voice(score, durated_reservoir):
     voice.extend(final_sustain_notes)
     tietools.TieSpanner(final_sustain_notes)
     voice.extend('r4 r2.')
-

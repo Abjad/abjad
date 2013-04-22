@@ -53,4 +53,3 @@ def get_component_in_expr_with_name(expr, name):
         raise ExtraNamedComponentError
     else:
         return components[0]
-

@@ -33,5 +33,3 @@ def test_QuantizationJob___init___01():
     assert job.job_id == job_id
     assert job.search_tree == search_tree
     assert job.q_event_proxies == tuple(q_event_proxies)
-
-

@@ -19,4 +19,3 @@ def test_RhythmTreeContainer___copy___01():
 
     assert tree[2] == copied[2]
     assert tree[2] is not copied[2]
-

@@ -72,4 +72,3 @@ class Descendants(Selection):
     def component(self):
         '''The component from which the selection was derived.'''
         return self._component
-

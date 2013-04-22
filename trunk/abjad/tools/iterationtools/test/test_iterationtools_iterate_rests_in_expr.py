@@ -21,4 +21,3 @@ def test_iterationtools_iterate_rests_in_expr_02():
 
     assert rests[0] is staff[2]
     assert rests[1] is staff[4]
-

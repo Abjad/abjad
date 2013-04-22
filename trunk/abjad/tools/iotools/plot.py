@@ -45,5 +45,3 @@ def plot(expr, image_format='png', width=640, height=320):
     pdf_viewer = ABJCFG['pdf_viewer']
     ABJADOUTPUT = ABJCFG['abjad_output']
     _open_file(img_path, pdf_viewer)
-
-

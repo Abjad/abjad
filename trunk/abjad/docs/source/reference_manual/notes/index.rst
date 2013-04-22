@@ -246,4 +246,3 @@ Delete grob overrides you no longer want:
    >>> show(staff)
 
 .. image:: images/index-7.png
-

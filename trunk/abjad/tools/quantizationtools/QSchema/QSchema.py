@@ -186,4 +186,3 @@ class QSchema(AbjadObject):
             result.append('\t{},'.format(value_repr[-1]))
         result.append('\t})')
         return result
-

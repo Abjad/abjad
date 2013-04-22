@@ -66,4 +66,3 @@ class ReSTParagraph(TreeNode):
         def fset(self, arg):
             self._wrap = bool(arg)
         return property(**locals())
-

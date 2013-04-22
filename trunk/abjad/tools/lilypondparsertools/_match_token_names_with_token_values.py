@@ -8,4 +8,3 @@ def _match_token_names_with_token_values(names, values):
             matches[value] = name
 
     return matches
-

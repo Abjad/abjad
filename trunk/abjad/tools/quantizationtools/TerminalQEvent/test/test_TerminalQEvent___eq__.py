@@ -25,4 +25,3 @@ def test_TerminalQEvent___eq___03():
 
     assert a != b
     assert a != c
-

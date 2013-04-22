@@ -35,7 +35,3 @@ def apply_expressive_marks(score):
 
     for voice in iterationtools.iterate_voices_in_expr(score['Strings Staff Group']):
         markuptools.Markup(r'\italic { (non dim.) }', Down)(voice[102][0])
-
-
-
-

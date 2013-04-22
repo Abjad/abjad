@@ -129,4 +129,3 @@ class RhythmTreeLeaf(RhythmTreeNode):
         def fset(self, arg):
             self._is_pitched = bool(arg)
         return property(**locals())
-

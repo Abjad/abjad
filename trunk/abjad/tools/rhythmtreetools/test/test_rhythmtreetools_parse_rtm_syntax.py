@@ -25,4 +25,3 @@ def test_rhythmtreetools_parse_rtm_syntax_01():
     '''
 
     assert result.lilypond_format == "\\fraction \\times 3/4 {\n\tc'4\n\t\\fraction \\times 3/4 {\n\t\tc'4\n\t\t\\fraction \\times 3/4 {\n\t\t\tc'4\n\t\t\t\\fraction \\times 3/4 {\n\t\t\t\tc'4\n\t\t\t\tc'4\n\t\t\t\tc'4\n\t\t\t\tc'4\n\t\t\t}\n\t\t}\n\t}\n}"
-

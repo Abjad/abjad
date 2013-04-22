@@ -544,4 +544,3 @@ class NamedChromaticPitch(Pitch):
         result.append(str(self.octave_number))
         result = ''.join(result)
         return result
-

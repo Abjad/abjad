@@ -55,4 +55,3 @@ def test_PaperBlock_03():
     '''
 
     assert paper_block.lilypond_format == '\\paper {\n\t#(define fonts (make-pango-font-tree "Baskerville" "Baskerville" "Baskerville" (/ 14 20)))\n}'
-

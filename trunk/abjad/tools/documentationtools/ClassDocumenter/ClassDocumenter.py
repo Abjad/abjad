@@ -216,4 +216,3 @@ class ClassDocumenter(Documenter):
     @property
     def special_methods(self):
         return self._special_methods
-

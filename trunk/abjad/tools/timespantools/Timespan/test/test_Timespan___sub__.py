@@ -97,5 +97,3 @@ def test_Timespan___sub___13():
     assert result == timespantools.TimespanInventory([
         timespantools.Timespan(0, 15),
     ])
-
-

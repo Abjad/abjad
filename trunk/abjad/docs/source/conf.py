@@ -294,4 +294,3 @@ inheritance_graph_attrs = {
     'rankdir': 'TB',
     'ratio': 'compress'
 }
-

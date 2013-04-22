@@ -116,4 +116,3 @@ class WeightedSearchTree(SearchTree):
             compositions[divisor] = [tuple(x) for x in mathtools.yield_all_compositions_of_integer(divisor)
                 if 1 < len(x) <= max_divisions]
         return compositions
-

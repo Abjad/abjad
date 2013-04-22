@@ -380,4 +380,3 @@ one of them starting with a LilyPond skip:
    >>> show(staff, docs=True)
 
 .. image:: images/index-3.png
-

@@ -299,5 +299,3 @@ class AbjadBookProcessor(abctools.AbjadObject):
         message = '[{:4.0%}] {}'.format(percentage, line)
         if self.verbose:
             print message
-
-

@@ -45,4 +45,3 @@ def arg_to_tridirectional_ordinal_constant(arg):
     elif arg in lookup:
         return lookup[arg]
     raise ValueError
-

@@ -438,4 +438,3 @@ class TreeNode(AbjadObject):
                         named_children[arg].add(self)
             self._name = arg
         return property(**locals())
-

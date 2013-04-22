@@ -299,6 +299,3 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
   instead of string version of duration.
 
 - ``scr/devel/abj-grp`` no longer excludes lines of code that include the string ``'svn'``.
-
-
-

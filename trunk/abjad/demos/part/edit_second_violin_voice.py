@@ -28,4 +28,3 @@ def edit_second_violin_voice(score, durated_reservoir):
     voice.extend(final_sustain)
     tietools.TieSpanner(final_sustain)
     voice.extend('r4 r2.')
-

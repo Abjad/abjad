@@ -33,4 +33,3 @@ def test_RhythmTreeNode___call___03():
     result = tree((1, 4))
 
     assert result[0].lilypond_format == "\\times 4/5 {\n\tc'16\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n\tc'8\n}"
-

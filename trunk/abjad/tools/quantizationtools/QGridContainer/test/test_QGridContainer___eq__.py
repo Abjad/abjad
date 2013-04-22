@@ -48,5 +48,3 @@ def test_QGridContainer___eq___03():
     assert c != e
 
     assert d != e
-
-

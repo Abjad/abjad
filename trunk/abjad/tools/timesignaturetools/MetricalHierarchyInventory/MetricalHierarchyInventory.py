@@ -30,4 +30,3 @@ class MetricalHierarchyInventory(ObjectInventory):
     def _item_callable(self):
         from abjad.tools import timesignaturetools
         return timesignaturetools.MetricalHierarchy
-

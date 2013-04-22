@@ -111,5 +111,3 @@ def test_Timespan___xor___13():
         timespantools.Timespan(0, 15),
         timespantools.Timespan(20, 25)
     ])
-
-

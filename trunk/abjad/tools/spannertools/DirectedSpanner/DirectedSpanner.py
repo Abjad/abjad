@@ -28,4 +28,3 @@ class DirectedSpanner(Spanner):
     @abc.abstractmethod
     def _copy_keyword_args(self, new):
         new.direction = self.direction
-

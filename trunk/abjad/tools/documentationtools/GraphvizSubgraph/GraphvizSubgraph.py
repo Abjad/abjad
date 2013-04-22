@@ -62,4 +62,3 @@ class GraphvizSubgraph(GraphvizGraph):
         def fset(self, arg):
             self._is_cluster = bool(arg)
         return property(**locals())
-

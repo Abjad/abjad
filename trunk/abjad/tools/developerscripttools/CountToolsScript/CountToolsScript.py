@@ -104,4 +104,3 @@ class CountToolsScript(DirectoryScript):
             action='store_true',
             help='print verbose information',
             )
-

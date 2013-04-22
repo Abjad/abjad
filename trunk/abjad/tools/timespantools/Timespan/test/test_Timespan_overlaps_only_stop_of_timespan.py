@@ -65,5 +65,3 @@ def test_Timespan_overlaps_only_stop_of_timespan_13():
     a = timespantools.Timespan(0, 15)
     b = timespantools.Timespan(20, 25)
     assert not a.overlaps_only_stop_of_timespan(b)
-
-

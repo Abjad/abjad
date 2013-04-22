@@ -31,4 +31,3 @@ def test_BeatwiseQSchema___init___02():
     assert schema.beatspan == durationtools.Duration(1, 4)
     assert schema.search_tree == quantizationtools.UnweightedSearchTree()
     assert schema.tempo == contexttools.TempoMark((1, 4), 60)
-

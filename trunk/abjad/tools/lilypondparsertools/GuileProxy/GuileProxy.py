@@ -273,4 +273,3 @@ class GuileProxy(AbjadObject):
                 down_pitch.named_chromatic_pitch_class, down_octave + pitch.octave_number - 3)
 
         return pitch
-

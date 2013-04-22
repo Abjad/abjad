@@ -26,4 +26,3 @@ def test_TreeNode_parent_01():
     assert container.parent is None
 
     py.test.raises(AssertionError, 'subcontainer.append(container)')
-

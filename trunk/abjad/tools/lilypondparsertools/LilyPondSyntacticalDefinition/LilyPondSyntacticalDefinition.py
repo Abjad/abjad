@@ -3470,4 +3470,3 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_error(self, p):
         #print p
         raise LilyPondParserError(p)
-

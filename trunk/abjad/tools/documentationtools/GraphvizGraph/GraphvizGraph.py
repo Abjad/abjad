@@ -278,4 +278,3 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         def fset(self, arg):
             self._is_digraph = bool(arg)
         return property(**locals())
-

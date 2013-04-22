@@ -36,4 +36,3 @@ def test_QGridContainer___copy___01():
 
     assert tree[2] == copied[2]
     assert tree[2] is not copied[2]
-

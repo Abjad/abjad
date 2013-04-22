@@ -15,4 +15,3 @@ def test_TreeNode_improper_parentage_01():
     subcontainer = datastructuretools.TreeContainer([leaf])
     container.append(subcontainer)
     assert leaf.improper_parentage == (leaf, subcontainer, container)
-

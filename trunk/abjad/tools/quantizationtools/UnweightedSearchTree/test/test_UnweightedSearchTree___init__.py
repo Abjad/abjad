@@ -12,4 +12,3 @@ def test_UnweightedSearchTree___init___02():
     definition = {2: None, 3: {2: None}}
     search_tree = quantizationtools.UnweightedSearchTree(definition)
     assert search_tree.definition == definition
-

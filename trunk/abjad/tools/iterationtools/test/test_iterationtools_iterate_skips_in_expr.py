@@ -21,4 +21,3 @@ def test_iterationtools_iterate_skips_in_expr_02():
 
     assert skips[0] is staff[4]
     assert skips[1] is staff[2]
-

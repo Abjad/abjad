@@ -17,4 +17,3 @@ def test_MarkupInventory_storage_format_01():
     '''
 
     assert inventory.storage_format == "markuptools.MarkupInventory([\n\tmarkuptools.Markup((\n\t\t'foo',\n\t\t)),\n\tmarkuptools.Markup((\n\t\t'bar',\n\t\t))\n\t])"
-

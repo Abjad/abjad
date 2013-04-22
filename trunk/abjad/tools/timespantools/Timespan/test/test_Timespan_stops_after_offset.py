@@ -25,5 +25,3 @@ def test_Timespan_stops_after_offset_05():
     timespan = timespantools.Timespan(0, 10)
     offset = durationtools.Offset(15)
     assert not timespan.stops_after_offset(offset)
-
-

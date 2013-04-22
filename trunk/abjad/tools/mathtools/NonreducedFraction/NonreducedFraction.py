@@ -413,7 +413,7 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
 
         Return zero.
         '''
-        return Fraction.imag.fget(self)
+        return fractions.Fraction.imag.fget(self)
 
     @property
     def numerator(self):

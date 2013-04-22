@@ -10,4 +10,3 @@ Appendices
    score_snippet_gallery/index
    change_log/index
    bibliography/index
-

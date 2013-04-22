@@ -53,4 +53,3 @@ def test_RhythmTreeContainer___init___03():
 
     assert leaf_c.start_offset == 3
     assert leaf_c.parent is container
-

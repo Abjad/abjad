@@ -35,4 +35,3 @@ def test_TreeContainer___eq___03():
     assert a != b
     assert a != c
     assert b != c
-

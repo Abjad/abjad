@@ -52,5 +52,3 @@ def graph(expr, image_format='pdf', layout='dot'):
     pdf_viewer = ABJCFG['pdf_viewer']
     ABJADOUTPUT = ABJCFG['abjad_output']
     _open_file(img_path, pdf_viewer)
-
-

@@ -60,4 +60,3 @@ def apply_dynamic_marks(score):
     contexttools.DynamicMark('f')(voice[39][0])
     contexttools.DynamicMark('ff')(voice[51][0])
     contexttools.DynamicMark('fff')(voice[62][0])
-

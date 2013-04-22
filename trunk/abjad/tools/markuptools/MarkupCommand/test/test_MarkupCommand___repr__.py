@@ -11,4 +11,3 @@ def test_MarkupCommand___repr___01():
 
     assert markup_command_1 is not markup_command_2
     assert markup_command_1 == markup_command_2
-

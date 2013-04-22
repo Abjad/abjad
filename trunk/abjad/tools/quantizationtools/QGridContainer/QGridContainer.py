@@ -35,4 +35,3 @@ class QGridContainer(RhythmTreeContainer):
     def _node_klass(self):
         from abjad.tools import quantizationtools
         return (type(self), quantizationtools.QGridLeaf)
-

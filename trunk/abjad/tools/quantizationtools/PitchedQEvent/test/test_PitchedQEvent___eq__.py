@@ -29,4 +29,3 @@ def test_PitchedQEvent___eq___03():
 
     assert a != b
     assert a != c
-

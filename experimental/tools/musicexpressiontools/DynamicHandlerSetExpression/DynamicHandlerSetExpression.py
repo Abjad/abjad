@@ -21,4 +21,3 @@ class DynamicHandlerSetExpression(CounttimeComponentSelectExpressionSetExpressio
         else:
             leaves = result.payload
             handler(leaves)
-

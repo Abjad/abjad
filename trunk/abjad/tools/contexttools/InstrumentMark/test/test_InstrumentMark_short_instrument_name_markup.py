@@ -21,4 +21,3 @@ def test_InstrumentMark_short_instrument_name_markup_02():
     instrument = contexttools.InstrumentMark('flute', 'fl.',
         short_instrument_name_markup='Fl. 2')
     assert instrument.short_instrument_name_markup == markuptools.Markup('Fl. 2')
-

@@ -115,4 +115,3 @@ class DeveloperScript(abctools.AbjadObject):
     @abc.abstractmethod
     def setup_argument_parser(self):
         pass
-

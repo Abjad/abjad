@@ -368,5 +368,3 @@ Changes to end-user functionality:
   The new behavior better conforms to the Python iterable interface.
 
 - Moved ``abjad/docs/scr/make-abjad-api`` to ``abjad/scr/make-abjad-api``.
-
-
