@@ -6,7 +6,8 @@ def test_LilyPondParser__marks__KeySignatureMark_01():
     target = Staff([Note("fs'", 1)])
     contexttools.KeySignatureMark('g', 'major')(target[0])
 
-    r'''\new Staff {
+    r'''
+    \new Staff {
         \key g \major
         fs'1
     }

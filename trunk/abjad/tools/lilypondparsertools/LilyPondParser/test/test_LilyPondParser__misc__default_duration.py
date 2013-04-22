@@ -9,7 +9,8 @@ def test_LilyPondParser__misc__default_duration_01():
     target[-2].duration_multiplier = Fraction(5, 17)
     target[-1].duration_multiplier = Fraction(5, 17)
 
-    r'''{
+    r'''
+    {
         c'4
         c'2
         c'2

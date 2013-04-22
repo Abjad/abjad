@@ -11,7 +11,8 @@ def test_LilyPondParser__misc__chord_repetition_01():
         Chord([0, 4, 7], (1, 4)),
     ])
 
-    r'''{
+    r'''
+    {
         <c' e' g'>4
         <c' e' g'>4
         <c' e' g'>4
@@ -39,7 +40,8 @@ def test_LilyPondParser__misc__chord_repetition_02():
     markuptools.Markup('text', Up)(target[3])
     marktools.Articulation('staccatissimo')(target[-1])
 
-    r'''\new Staff {
+    r'''
+    \new Staff {
         <c' e' g'>8 \p
         <c' e' g'>8
         <c' e' g'>4 -\staccatissimo
@@ -65,7 +67,8 @@ def test_LilyPondParser__misc__chord_repetition_03():
         Chord([0, 4, 7], (1, 4)),
     ])
 
-    r'''{
+    r'''
+    {
         <c' e' g'>8
         c''8
         <c' e' g'>8

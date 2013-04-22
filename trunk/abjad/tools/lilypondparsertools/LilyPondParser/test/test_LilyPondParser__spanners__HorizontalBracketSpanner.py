@@ -9,7 +9,8 @@ def test_LilyPondParser__spanners__HorizontalBracketSpanner_01():
     spannertools.HorizontalBracketSpanner(target[:2])
     spannertools.HorizontalBracketSpanner(target[2:])
 
-    r'''{
+    r'''
+    {
         c'4 \startGroup \startGroup
         c'4 \stopGroup
         c'4 \startGroup

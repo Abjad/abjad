@@ -10,7 +10,8 @@ def test_LilyPondParser__containers__nesting_01():
         ])
     ])
 
-    r'''{
+    r'''
+    {
         {
         }
         {

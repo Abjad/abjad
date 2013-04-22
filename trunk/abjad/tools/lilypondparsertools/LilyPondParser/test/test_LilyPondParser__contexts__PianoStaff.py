@@ -8,7 +8,8 @@ def test_LilyPondParser__contexts__PianoStaff_01():
         Staff(notetools.make_notes([0, 2, 4, 5, 7], (1, 8)))
     ])
 
-    r'''\new PianoStaff <<
+    r'''
+    \new PianoStaff <<
         \new Staff {
             c'8
             d'8

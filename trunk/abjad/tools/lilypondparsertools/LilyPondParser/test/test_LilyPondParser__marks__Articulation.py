@@ -13,7 +13,8 @@ def test_LilyPondParser__marks__Articulation_01():
     marktools.Articulation('staccato')(target[5])
     marktools.Articulation('portato')(target[6])
 
-    r'''\new Staff {
+    r'''
+    \new Staff {
         c''4 ^\marcato
         c''4 _\stopped
         c''4 -\tenuto
@@ -43,7 +44,8 @@ def test_LilyPondParser__marks__Articulation_02():
     marktools.Articulation('staccato')(target[0])
     marktools.Articulation('portato')(target[0])
 
-    r'''\new Staff {
+    r'''
+    \new Staff {
         c'4 ^\marcato _\stopped -\tenuto -\staccatissimo -\accent -\staccato -\portato
     }
     '''
@@ -66,7 +68,8 @@ def test_LilyPondParser__marks__Articulation_03():
     marktools.Articulation('turn')(target[2])
     marktools.Articulation('fermata')(target[3])
 
-    r'''{
+    r'''
+    {
         c''4 -\staccato
         c''4 -\mordent
         b'2 -\turn

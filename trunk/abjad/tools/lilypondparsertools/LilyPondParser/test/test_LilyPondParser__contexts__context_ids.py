@@ -6,7 +6,8 @@ def test_LilyPondParser__contexts__context_ids_01():
     target = Staff(notetools.make_notes([0, 2, 4, 5, 7], (1, 8)))
     target.name = 'foo'
 
-    r'''\context Staff = "foo" {
+    r'''
+    \context Staff = "foo" {
         c'8
         d'8
         e'8

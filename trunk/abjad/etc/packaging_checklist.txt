@@ -69,7 +69,9 @@ Abjad packaging checklist:
         find-manual-class-loads-in-initializers
         find-misnamed-private-modules
         [find-missing-test-modules] (don't need to run this one any more)
+        fix-test-case-block-comments
         remove-source-file-terminal-blank-lines
+        replace-abjad-prompts-with-python-prompts
     Possibly the following:
         find-module-headers
         find-modules-with-chevrons
@@ -83,11 +85,6 @@ Abjad packaging checklist:
         find-slots-implementation-inconsistencies
         find-undocumented-tools
         fix-nonalphabetized-module-headers
-        fix-test-case-block-comments
-        fix-test-case-names
-        fix-test-case-numbers
-        fix-test-cases
-        replace-abjad-prompts-with-python-prompts
     Test and commit. Alternately you may want to test after each script runs.
     Then run the matinenance scripts on the experimental branch.
     Then test and commit.

@@ -9,7 +9,8 @@ def test_LilyPondParser__functions__language_01():
         Note("ff'8")
     ])
 
-    r'''{
+    r'''
+    {
         cs'8
         ds'8
         ff'8

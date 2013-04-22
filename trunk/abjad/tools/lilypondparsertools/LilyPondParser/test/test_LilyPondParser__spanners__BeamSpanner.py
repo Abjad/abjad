@@ -8,7 +8,8 @@ def test_LilyPondParser__spanners__BeamSpanner_01():
     beamtools.BeamSpanner(target[0:3])
     beamtools.BeamSpanner(target[3:])
 
-    r'''{
+    r'''
+    {
         c'4 [
         c'4
         c'4 ]
@@ -27,7 +28,8 @@ def test_LilyPondParser__spanners__BeamSpanner_02():
     beamtools.BeamSpanner(target[0:3])
     beamtools.BeamSpanner(target[3:])
 
-    r'''{
+    r'''
+    {
         c'4 [
         c'4
         c'4 ]
@@ -46,7 +48,8 @@ def test_LilyPondParser__spanners__BeamSpanner_03():
     beamtools.BeamSpanner(target[:])
     beamtools.BeamSpanner(target[1:3])
 
-    r'''{
+    r'''
+    {
         c'4 [
         c'4 [
         c'4 ]
@@ -62,7 +65,8 @@ def test_LilyPondParser__spanners__BeamSpanner_04():
     beamtools.BeamSpanner(target[:3])
     beamtools.BeamSpanner(target[2:])
 
-    r'''{
+    r'''
+    {
         c'4 [
         c'4
         c'4 ] [
@@ -90,7 +94,8 @@ def test_LilyPondParser__spanners__BeamSpanner_07():
     beamtools.BeamSpanner(target[0:3], direction=Up)
     beamtools.BeamSpanner(target[3:], direction=Down)
 
-    r'''{
+    r'''
+    {
         c'4 ^ [
         c'4
         c'4 ]

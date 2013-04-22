@@ -9,7 +9,8 @@ def test_LilyPondParser__spanners__PhrasingSlurSpanner_01():
     spannertools.PhrasingSlurSpanner(target[2:])
     spannertools.PhrasingSlurSpanner(target[:3])
 
-    r'''{
+    r'''
+    {
         c'4 \(
         c'4
         c'4 \) \(
@@ -28,7 +29,8 @@ def test_LilyPondParser__spanners__PhrasingSlurSpanner_02():
     spannertools.PhrasingSlurSpanner(target[2:])
     spannertools.PhrasingSlurSpanner(target[:3])
 
-    r'''{
+    r'''
+    {
         c'4 \(
         c'4
         c'4 \) \(

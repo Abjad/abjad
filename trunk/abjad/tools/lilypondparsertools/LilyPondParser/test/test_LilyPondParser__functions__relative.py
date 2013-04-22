@@ -6,7 +6,8 @@ def test_LilyPondParser__functions__relative_01():
     pitches = [2, 5, 9, 7, 12, 11, 5, 2]
     target = Container(notetools.make_notes(pitches, (1, 4)))
 
-    r'''{
+    r'''
+    {
         d'4
         f'4
         a'4
@@ -28,7 +29,8 @@ def test_LilyPondParser__functions__relative_02():
     pitches = [11, 12, 11, 14, 11, 16, 11, 9, 11, 7, 11, 5]
     target = Container(notetools.make_notes(pitches, (1, 4)))
 
-    r'''{
+    r'''
+    {
         b'4
         c''4
         b'4
@@ -120,7 +122,8 @@ def test_LilyPondParser__functions__relative_06():
         ])
     ])
 
-    r'''{
+    r'''
+    {
         c'4
         d'4
         e'4
@@ -149,7 +152,8 @@ def test_LilyPondParser__functions__relative_07():
         ])
     ])
 
-    r'''{
+    r'''
+    {
         d'4
         e'4
         {
@@ -196,7 +200,8 @@ def test_LilyPondParser__functions__relative_09():
     pitches = ["c''", "fs''", "c''", "gf'", "b'", "ess''", "b'", "fff'"]
     target = Container(notetools.make_notes(pitches, [(1, 2)]))
 
-    r'''{
+    r'''
+    {
         c''2
         fs''2
         c''2

@@ -7,7 +7,8 @@ def test_LilyPondParser__functions__transpose_01():
     target = Staff(notetools.make_notes(pitches, (1, 4)))
     contexttools.KeySignatureMark('e', 'major')(target[0])
 
-    r'''\new Staff {
+    r'''
+    \new Staff {
         \key e \major
         e'4
         gs'4
@@ -27,7 +28,8 @@ def test_LilyPondParser__functions__transpose_02():
     target = Staff(notetools.make_notes(pitches, (1, 4)))
     contexttools.KeySignatureMark('ef', 'major')(target[0])
 
-    r'''\new Staff {
+    r'''
+    \new Staff {
         \key ef \major
         ef'4
         f'4
@@ -48,7 +50,8 @@ def test_LilyPondParser__functions__transpose_03():
         Container(notetools.make_notes(["df'", "ef'", "f'", "gf'"], (1, 4)))
     ])
 
-    r'''\new Staff {
+    r'''
+    \new Staff {
         {
             cs'4
             ds'4

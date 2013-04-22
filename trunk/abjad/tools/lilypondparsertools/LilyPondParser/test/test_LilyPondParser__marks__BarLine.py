@@ -7,7 +7,8 @@ def test_LilyPondParser__marks__BarLine_01():
     target = Staff(notetools.make_notes(["e'", "d'", "c'"], [(1, 4), (1, 4), (1, 2)]))
     marktools.BarLine('|.')(target[-1])
 
-    r'''\new Staff {
+    r'''
+    \new Staff {
         e'4
         d'4
         c'2

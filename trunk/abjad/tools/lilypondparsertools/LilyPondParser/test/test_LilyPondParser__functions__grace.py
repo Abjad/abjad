@@ -14,7 +14,8 @@ def test_LilyPondParser__functions__grace_01():
     ])
     grace(target[2])
 
-    r'''{
+    r'''
+    {
         c'4
         d'4
         \grace {

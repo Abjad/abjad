@@ -9,7 +9,8 @@ def test_LilyPondParser__spanners__HairpinSpanner_01():
     spannertools.HairpinSpanner(target[2:], '>')
     contexttools.DynamicMark('ppp')(target[-1])
 
-    r'''\new Staff {
+    r'''
+    \new Staff {
         c'4 \<
         c'4
         c'4 \! \>
@@ -29,7 +30,8 @@ def test_LilyPondParser__spanners__HairpinSpanner_02():
     spannertools.HairpinSpanner(target[1:3], '<')
     spannertools.HairpinSpanner(target[2:], '<')
 
-    r'''{
+    r'''
+    {
         c'4 \<
         c'4 \! \<
         c'4 \! \<
@@ -51,7 +53,8 @@ def test_LilyPondParser__spanners__HairpinSpanner_03():
     contexttools.DynamicMark('p')(target[1])
     contexttools.DynamicMark('f')(target[-1])
 
-    r'''\new Staff {
+    r'''
+    \new Staff {
         c'4 \<
         c'4 \p \>
         c'4 \f
@@ -89,7 +92,8 @@ def test_LilyPondParser__spanners__HairpinSpanner_07():
     spannertools.HairpinSpanner(target[2:], '>', direction = Down)
     contexttools.DynamicMark('ppp')(target[-1])
 
-    r'''\new Staff {
+    r'''
+    \new Staff {
         c'4 ^ \<
         c'4
         c'4 \! _ \>

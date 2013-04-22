@@ -5,7 +5,8 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_LilyPondParser__contexts__StaffGroup_01():
     target = scoretools.StaffGroup([])
 
-    r'''\new StaffGroup <<
+    r'''
+    \new StaffGroup <<
     >>
     '''
 

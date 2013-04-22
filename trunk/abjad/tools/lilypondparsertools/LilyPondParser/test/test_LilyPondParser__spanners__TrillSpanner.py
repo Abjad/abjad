@@ -9,7 +9,8 @@ def test_LilyPondParser__spanners__TrillSpanner_01():
     spannertools.TrillSpanner(target[2:])
     spannertools.TrillSpanner(target[:3])
 
-    r'''{
+    r'''
+    {
         c'4 \startTrillSpan
         c'4
         c'4 \stopTrillSpan \startTrillSpan
@@ -28,7 +29,8 @@ def test_LilyPondParser__spanners__TrillSpanner_02():
     spannertools.TrillSpanner(target[2:])
     spannertools.TrillSpanner(target[:3])
 
-    r'''{
+    r'''
+    {
         c'4 \startTrillSpan
         c'4
         c'4 \stopTrillSpan \startTrillSpan

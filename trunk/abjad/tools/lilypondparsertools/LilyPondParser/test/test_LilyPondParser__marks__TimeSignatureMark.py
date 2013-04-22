@@ -6,7 +6,8 @@ def test_LilyPondParser__marks__TimeSignatureMark_01():
     target = Score([Staff([Note(0, 1)])])
     contexttools.TimeSignatureMark((8, 8))(target.leaves[0])
 
-    r'''\new Score <<
+    r'''
+    \new Score <<
         \new Staff {
             \time 8/8
             c'1

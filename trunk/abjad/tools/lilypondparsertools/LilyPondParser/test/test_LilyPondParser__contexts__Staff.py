@@ -5,7 +5,8 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_LilyPondParser__contexts__Staff_01():
     target = Staff([])
 
-    r'''\new Staff {
+    r'''
+    \new Staff {
     }
     '''
 
@@ -20,7 +21,8 @@ def test_LilyPondParser__contexts__Staff_02():
     target.append(Voice(notetools.make_notes([0, 2, 4, 5, 7, 9, 11, 12], (1, 8))))
     target.append(Voice(notetools.make_notes([0, 2, 4, 5, 7, 9, 11, 12], (1, 8))))
 
-    r'''\new Staff <<
+    r'''
+    \new Staff <<
         \new Voice {
             c'8
             d'8

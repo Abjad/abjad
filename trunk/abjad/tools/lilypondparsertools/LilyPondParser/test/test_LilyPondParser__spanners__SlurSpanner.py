@@ -9,7 +9,8 @@ def test_LilyPondParser__spanners__SlurSpanner_01():
     spannertools.SlurSpanner(target[2:])
     spannertools.SlurSpanner(target[:3])
 
-    r'''{
+    r'''
+    {
         c'4 (
         c'4
         c'4 ) (
@@ -28,7 +29,8 @@ def test_LilyPondParser__spanners__SlurSpanner_02():
     spannertools.SlurSpanner(target[2:])
     spannertools.SlurSpanner(target[:3])
 
-    r'''{
+    r'''
+    {
         c'4 (
         c'4
         c'4 ) (
@@ -73,7 +75,8 @@ def test_LilyPondParser__spanners__SlurSpanner_07():
     spannertools.SlurSpanner(target[:3], direction=Down)
     spannertools.SlurSpanner(target[2:], direction=Up)
 
-    r'''{
+    r'''
+    {
         c'4 _ (
         c'4
         c'4 ) ^ (

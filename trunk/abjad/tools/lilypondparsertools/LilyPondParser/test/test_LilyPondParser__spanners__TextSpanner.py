@@ -9,7 +9,8 @@ def test_LilyPondParser__spanners__TextSpanner_01():
     spannertools.TextSpanner(target[2:])
     spannertools.TextSpanner(target[:3])
 
-    r'''{
+    r'''
+    {
         c'4 \startTextSpan
         c'4
         c'4 \stopTextSpan \startTextSpan
@@ -28,7 +29,8 @@ def test_LilyPondParser__spanners__TextSpanner_02():
     spannertools.TextSpanner(target[2:])
     spannertools.TextSpanner(target[:3])
 
-    r'''{
+    r'''
+    {
         c'4 \startTextSpan
         c'4
         c'4 \stopTextSpan \startTextSpan

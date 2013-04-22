@@ -1,14 +1,15 @@
 #! /usr/bin/env python
 
-from abjad.tools import iotools
 import os
 import re
+from abjad.tools import iotools
 
 
 def _fix_test_case_block_comments():
     total_test_modules = 0
     total_broken_modules = 0
     total_broken_comments = 0
+    # TODO: extend to check for r""" too
     open_comment_re = re.compile(r"(\s*)(r''')(.+)")
     close_comment_re = re.compile(r"(\s*)([}|>]+)(.*)(''')")
     for path, subdirectories, files in os.walk('.'):
@@ -57,9 +58,9 @@ def _fix_test_case_block_comments():
                 fp.write(new_file_string)
                 fp.close()
 
-    print 'total test modules: %s' % total_test_modules
-    print 'total fixed test modules: %s' % total_broken_modules
-    print 'total fixed comments: %s' % total_broken_comments
+    print 'total test modules:       {}'.format(total_test_modules)
+    print 'total fixed test modules: {}'.format(total_broken_modules)
+    print 'total fixed comments:     {}'.format(total_broken_comments)
 
 
 if __name__ == '__main__':

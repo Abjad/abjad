@@ -20,7 +20,8 @@ def test_LilyPondParser__misc__variables_01():
         Note(12, 1)
     ])
 
-    r'''\new Staff {
+    r'''
+    \new Staff {
         {
             {
                 {

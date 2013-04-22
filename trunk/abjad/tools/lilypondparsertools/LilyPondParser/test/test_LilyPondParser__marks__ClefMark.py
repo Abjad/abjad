@@ -6,7 +6,8 @@ def test_LilyPondParser__marks__ClefMark_01():
     target = Staff([Note(0, 1)])
     contexttools.ClefMark('bass')(target[0])
 
-    r'''\new Staff {
+    r'''
+    \new Staff {
         \clef "bass"
         c'1
     }

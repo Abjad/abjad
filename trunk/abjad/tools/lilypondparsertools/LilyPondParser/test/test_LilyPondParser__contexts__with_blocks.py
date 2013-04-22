@@ -5,7 +5,8 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_LilyPondParser__contexts__with_blocks_01():
     target = Staff([])
 
-    r'''\new Staff {
+    r'''
+    \new Staff {
     }
     '''
 
