@@ -62,7 +62,6 @@ Abjad packaging checklist:
         find-and-fix-manual-class-package-initializers
         reindent-3-spaces-as-4 (this will cause all 1500 pages of the docs to rebuild)
     Possibly the following:
-        capitalize-test-file-names
         find-duplicate-modules-names
         find-duplicate-tool-module-names
         find-import-as-statements
