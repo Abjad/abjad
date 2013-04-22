@@ -39,7 +39,7 @@ Methods
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.language
    :noindex:
 
-.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.make_clusters
+.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.makeClusters
    :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.mark
@@ -66,16 +66,16 @@ Methods
 .. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.transpose
    :noindex:
 
-.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voice_four
+.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voiceFour
    :noindex:
 
-.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voice_one
+.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voiceOne
    :noindex:
 
-.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voice_three
+.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voiceThree
    :noindex:
 
-.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voice_two
+.. automethod:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voiceTwo
    :noindex:
 
 Special methods

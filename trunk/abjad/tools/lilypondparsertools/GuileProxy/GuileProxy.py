@@ -85,7 +85,7 @@ class GuileProxy(AbjadObject):
                 lookahead.value = self.client._pitch_names[lookahead.value]
 
 
-    def make_clusters(self, music):
+    def makeClusters(self, music):
         return containertools.Cluster(music[:])
 
 
@@ -200,19 +200,19 @@ class GuileProxy(AbjadObject):
     # tweak
 
 
-    def voice_one(self):
+    def voiceOne(self):
         return marktools.LilyPondCommandMark('voiceOne')
 
 
-    def voice_four(self):
+    def voiceFour(self):
         return marktools.LilyPondCommandMark('voiceTwo')
 
 
-    def voice_three(self):
+    def voiceThree(self):
         return marktools.LilyPondCommandMark('voiceThree')
 
 
-    def voice_two(self):
+    def voiceTwo(self):
         return marktools.LilyPondCommandMark('voiceFour')
 
 
