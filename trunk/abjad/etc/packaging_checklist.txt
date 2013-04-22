@@ -61,9 +61,8 @@ Abjad packaging checklist:
         fix-test-cases
         find-and-fix-manual-class-package-initializers
         reindent-3-spaces-as-4 (this will cause all 1500 pages of the docs to rebuild)
-    Possibly the following:
         find-duplicate-modules-names
-        find-duplicate-tool-module-names
+    Possibly the following:
         find-import-as-statements
         find-local-import-statements
         find-lower-camel-case-definitions
