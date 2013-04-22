@@ -12,7 +12,7 @@ class ResidueClass(_BaseResidueClass):
 
     ::
 
-        >>> from abjad.tools.sievetools import ResidueClass as RC
+        >>> RC = sievetools.ResidueClass
 
     ::
 

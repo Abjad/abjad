@@ -1,14 +1,14 @@
 from abjad import *
-from abjad.tools.sievetools import ResidueClass as RC
+from abjad.tools.sievetools import ResidueClass
 import py.test
 
 
 def test_ResidueClass_operator_or_01():
-    '''RC OR RC returns a sieve.
+    '''ResidueClass OR ResidueClass returns a sieve.
     '''
 
-    rc1 = RC(4, 0)
-    rc2 = RC(4, 1)
+    rc1 = ResidueClass(4, 0)
+    rc2 = ResidueClass(4, 1)
     t = rc1 | rc2
 
     assert isinstance(t, sievetools.Sieve)
@@ -17,11 +17,11 @@ def test_ResidueClass_operator_or_01():
 
 
 def test_ResidueClass_operator_or_02():
-    '''or-Sieve OR RC returns a flat or-sieve.
+    '''or-Sieve OR ResidueClass returns a flat or-sieve.
     '''
 
-    rcexpression = RC(4, 0) | RC(4, 1)
-    rc = RC(3, 0)
+    rcexpression = ResidueClass(4, 0) | ResidueClass(4, 1)
+    rc = ResidueClass(3, 0)
     t = rc | rcexpression
 
     assert isinstance(t, sievetools.Sieve)
@@ -33,11 +33,11 @@ def test_ResidueClass_operator_or_02():
 
 
 def test_ResidueClass_operator_or_03():
-    '''RC OR or-sieve returns a flat or-sieve.
+    '''ResidueClass OR or-sieve returns a flat or-sieve.
     '''
 
-    rcexpression = RC(4, 0) | RC(4, 1)
-    rc = RC(3, 0)
+    rcexpression = ResidueClass(4, 0) | ResidueClass(4, 1)
+    rc = ResidueClass(3, 0)
     t = rcexpression | rc
 
     assert isinstance(t, sievetools.Sieve)
@@ -52,10 +52,10 @@ def test_ResidueClass_operator_or_04():
     '''or-sieve OR or-Sieve returns a flat or-sieve.
     '''
 
-    rc1 = RC(4, 0)
-    rc2 = RC(4, 1)
-    rc3 = RC(3, 0)
-    rc4 = RC(3, 1)
+    rc1 = ResidueClass(4, 0)
+    rc2 = ResidueClass(4, 1)
+    rc3 = ResidueClass(3, 0)
+    rc4 = ResidueClass(3, 1)
     rcsA = rc1 | rc2
     rcsB = rc3 | rc4
     t = rcsA | rcsB
@@ -73,7 +73,7 @@ def test_ResidueClass_operator_or_05():
     '''OR.
     '''
 
-    t = RC(2, 0) | RC(3, 0)
+    t = ResidueClass(2, 0) | ResidueClass(3, 0)
 
     assert isinstance(t, sievetools.Sieve)
     assert t.logical_operator == 'or'
@@ -85,7 +85,7 @@ def test_ResidueClass_operator_or_06():
     '''OR.
     '''
 
-    t = RC(2, 1) | RC(3, 0)
+    t = ResidueClass(2, 1) | ResidueClass(3, 0)
 
     assert t.get_boolean_train(6) == [1,1,0,1,0,1]
     assert t.get_congruent_bases(6) == [0,1,3,5,6]

@@ -106,8 +106,8 @@ class Sieve(_BaseResidueClass):
 
     def get_boolean_train(self, *min_max):
         '''Returns a boolean train with 0s mapped to the integers
-        that are not congruent bases of the RC expression and 1s mapped
-        to those that are.
+        that are not congruent bases of the residue class expression 
+        and 1s mapped to those that are.
         The method takes one or two integer arguments.
         If only one is given, it is taken as the max range
         and min is assumed to be 0.
@@ -116,11 +116,11 @@ class Sieve(_BaseResidueClass):
 
         ::
 
-            >>> from abjad.tools.sievetools import ResidueClass as RC
+            >>> from abjad.tools.sievetools import ResidueClass
 
         ::
 
-            >>> e = RC(3, 0) | RC(2, 0)
+            >>> e = ResidueClass(3, 0) | ResidueClass(2, 0)
             >>> e.get_boolean_train(6)
             [1, 0, 1, 1, 1, 0]
             >>> e.get_congruent_bases(-6, 6)
@@ -141,7 +141,7 @@ class Sieve(_BaseResidueClass):
         return result
 
     def get_congruent_bases(self, *min_max):
-        '''Returns all the congruent bases of this RC expression
+        '''Returns all the congruent bases of this residue class expression
         within the given range.
         The method takes one or two integer arguments.
         If only one it given, it is taken as the max range
@@ -151,7 +151,7 @@ class Sieve(_BaseResidueClass):
 
         ::
 
-            >>> e = RC(3, 0) | RC(2, 0)
+            >>> e = ResidueClass(3, 0) | ResidueClass(2, 0)
             >>> e.get_congruent_bases(6)
             [0, 2, 3, 4, 6]
             >>> e.get_congruent_bases(-6, 6)
