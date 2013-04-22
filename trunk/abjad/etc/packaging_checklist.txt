@@ -65,11 +65,11 @@ Abjad packaging checklist:
         find-import-as-statements
         find-import-from-stdlib-statements
         find-lower-camel-case-definitions
-    Possibly the following:
         find-lower-camel-case-modules
         find-manual-class-loads-in-initializers
         find-misnamed-private-modules
-        find-missing-test-modules
+        [find-missing-test-modules] (don't need to run this one any more)
+    Possibly the following:
         find-module-headers
         find-modules-with-chevrons
         find-multifunction-modules

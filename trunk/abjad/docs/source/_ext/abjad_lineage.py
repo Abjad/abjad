@@ -3,9 +3,8 @@ import pickle
 from docutils import nodes
 from docutils.parsers.rst import directives
 from sphinx.util.compat import Directive
-from abjad.docs.source._ext.abjad_book import \
-    visit_abjad_book_html, visit_abjad_book_latex
-
+from abjad.docs.source._ext.abjad_book import visit_abjad_book_html
+from abjad.docs.source._ext.abjad_book import visit_abjad_book_latex
 
 
 class InheritanceException(Exception):

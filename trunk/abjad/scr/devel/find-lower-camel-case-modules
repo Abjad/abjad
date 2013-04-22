@@ -1,22 +1,21 @@
 #! /usr/bin/env python
 
+import os
+import re
 from abjad import ABJCFG
 from abjad.tools import iotools
-import os
-import pprint
-import re
 
 
 def _find_lower_camel_case_modules():
     lower_camel_case_modules = [ ]
     lower_camel_case_pattern = re.compile(r'[a-z]+[A-Z]+.*')
-    for path, subdirectories, files in os.walk(ABJCFG.ABJAD_PATH):
-        for f in files:
+    for path, subdirectories, file_names in os.walk('.'):
+        for file_name in file_names:
             found_import_as_statement = False
-            if f.endswith('.py'):
-                short_name = f[:-3]
+            if file_name.endswith('.py'):
+                short_name = file_name[:-3]
                 if lower_camel_case_pattern.match(short_name):
-                    lower_camel_case_modules.append(f)
+                    lower_camel_case_modules.append(file_name)
     if lower_camel_case_modules:
         print ''
         print lower_camel_case_modules

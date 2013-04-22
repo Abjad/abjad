@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 
+import os
 from abjad import ABJCFG
 from abjad.tools import iotools
-import os
 
 
 def _main():
@@ -28,7 +28,7 @@ def _main():
                         print ''
                         print full_file_name
                         print header_lines
-                        print line
+                        print 'This line is problematic: {!r}'.format(line)
                         raise Exception
                 if header_lines:
                     total_module_headers += 1

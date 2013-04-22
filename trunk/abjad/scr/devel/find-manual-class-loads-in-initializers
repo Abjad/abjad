@@ -1,13 +1,13 @@
 #! /usr/bin/env python
 
+import os
 from abjad import ABJCFG
 from abjad.tools import iotools
-import os
 
 
 def _find_initializers():
     initializers = [ ]
-    for path, subdirectories, files in os.walk(ABJCFG.ABJAD_PATH):
+    for path, subdirectories, files in os.walk('.'):
         for f in files:
             if f == '__init__.py':
                 parent_directory = path.split(os.sep)[-1]
@@ -22,8 +22,9 @@ def _find_initializers():
                 inits_with_manual_imports.add(x)
     for x in sorted(inits_with_manual_imports):
         print x
-
     print 'Total initializers with manual imports: %s' % len(inits_with_manual_imports)
+    print ''
+
 
 if __name__ == '__main__':
     iotools.clear_terminal()

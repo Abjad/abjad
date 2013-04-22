@@ -1,15 +1,13 @@
 #! /usr/bin/env python
 
+import os
 from abjad import ABJCFG
 from abjad.tools import iotools
-import os
-import pprint
 
 
 def _find_misnamed_private_modules():
-    tools_path = os.path.join(ABJCFG.ABJAD_PATH, 'tools')
-    offending_definition_lines = [ ]
-    for path, subdirectories, files in os.walk(tools_path):
+    offending_definition_lines = []
+    for path, subdirectories, files in os.walk('.'):
         for f in files:
             if f.endswith('.py'):
                 if not f.startswith(('test', '_')):
@@ -25,10 +23,8 @@ def _find_misnamed_private_modules():
                                     token = '%s in %s' % (function_name, medium_name)
                                     offending_definition_lines.append(token)
     print ''
-    #pprint.pprint(offending_definition_lines)
-    #print ''
     total_offending_definitions = len(offending_definition_lines)
-    print 'Total tools defined as private in public modules: %s' % total_offending_definitions
+    print 'Total functions defined as private in public modules: %s' % total_offending_definitions
     print ''
 
 
