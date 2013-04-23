@@ -12,13 +12,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.editors_package_importable_name

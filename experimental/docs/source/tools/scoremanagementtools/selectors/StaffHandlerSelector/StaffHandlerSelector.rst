@@ -12,13 +12,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.editors_package_importable_name

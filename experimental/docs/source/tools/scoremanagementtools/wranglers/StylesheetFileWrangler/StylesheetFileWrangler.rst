@@ -24,13 +24,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.current_asset_container_human_readable_name

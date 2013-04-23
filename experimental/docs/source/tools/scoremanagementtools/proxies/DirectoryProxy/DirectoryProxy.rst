@@ -12,13 +12,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.directory_contents

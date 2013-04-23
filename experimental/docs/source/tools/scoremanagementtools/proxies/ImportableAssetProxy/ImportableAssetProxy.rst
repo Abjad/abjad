@@ -12,13 +12,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.editors_package_importable_name

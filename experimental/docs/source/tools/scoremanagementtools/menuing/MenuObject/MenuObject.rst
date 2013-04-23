@@ -12,13 +12,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuObject.MenuObject.MenuObject.editors_package_importable_name

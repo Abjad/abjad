@@ -15,13 +15,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.editors_package_importable_name

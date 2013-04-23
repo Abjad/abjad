@@ -15,9 +15,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.backtracking_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.breadcrumb
    :noindex:
 
@@ -34,6 +31,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.complete_transcript
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.current_chunks_package_importable_name

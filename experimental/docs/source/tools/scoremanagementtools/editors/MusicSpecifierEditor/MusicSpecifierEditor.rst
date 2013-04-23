@@ -15,13 +15,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.editors_package_importable_name

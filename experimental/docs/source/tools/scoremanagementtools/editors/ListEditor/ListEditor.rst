@@ -15,13 +15,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.editors_package_importable_name

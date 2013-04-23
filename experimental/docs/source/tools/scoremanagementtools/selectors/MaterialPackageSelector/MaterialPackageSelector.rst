@@ -12,13 +12,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.editors_package_importable_name

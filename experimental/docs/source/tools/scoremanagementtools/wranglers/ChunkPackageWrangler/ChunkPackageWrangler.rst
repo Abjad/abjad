@@ -24,13 +24,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.current_asset_container_human_readable_name

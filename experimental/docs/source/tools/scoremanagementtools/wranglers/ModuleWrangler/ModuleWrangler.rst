@@ -24,13 +24,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.current_asset_container_human_readable_name

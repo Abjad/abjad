@@ -15,13 +15,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.editors_package_importable_name

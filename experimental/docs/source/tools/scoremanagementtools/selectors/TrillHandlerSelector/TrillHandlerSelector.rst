@@ -12,13 +12,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.editors_package_importable_name

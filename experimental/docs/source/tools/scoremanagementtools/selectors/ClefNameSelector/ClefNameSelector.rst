@@ -12,13 +12,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.editors_package_importable_name

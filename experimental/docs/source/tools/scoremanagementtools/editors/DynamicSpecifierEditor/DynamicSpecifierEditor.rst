@@ -15,13 +15,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.editors_package_importable_name

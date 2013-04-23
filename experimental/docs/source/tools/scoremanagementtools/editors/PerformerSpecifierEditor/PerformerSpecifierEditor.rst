@@ -15,13 +15,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.editors_package_importable_name

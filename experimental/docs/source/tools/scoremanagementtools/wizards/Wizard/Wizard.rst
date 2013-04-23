@@ -12,13 +12,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.Wizard.Wizard.Wizard.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.Wizard.Wizard.Wizard.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.Wizard.Wizard.Wizard.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.Wizard.Wizard.Wizard.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wizards.Wizard.Wizard.Wizard.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.Wizard.Wizard.Wizard.editors_package_importable_name

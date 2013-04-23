@@ -15,13 +15,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.editors_package_importable_name

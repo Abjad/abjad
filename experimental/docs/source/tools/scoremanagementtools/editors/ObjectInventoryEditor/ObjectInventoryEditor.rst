@@ -15,13 +15,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.editors_package_importable_name

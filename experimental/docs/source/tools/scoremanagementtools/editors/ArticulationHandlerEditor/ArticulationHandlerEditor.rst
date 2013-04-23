@@ -15,13 +15,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.editors_package_importable_name

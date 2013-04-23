@@ -15,13 +15,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.editors_package_importable_name

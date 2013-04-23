@@ -15,13 +15,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.editors_package_importable_name

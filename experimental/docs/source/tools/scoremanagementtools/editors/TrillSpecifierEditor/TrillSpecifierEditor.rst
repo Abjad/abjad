@@ -15,13 +15,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.editors_package_importable_name

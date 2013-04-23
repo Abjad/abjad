@@ -24,13 +24,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.current_asset_container_human_readable_name

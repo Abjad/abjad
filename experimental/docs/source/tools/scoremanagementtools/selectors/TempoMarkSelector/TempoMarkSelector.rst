@@ -12,13 +12,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.editors_package_importable_name

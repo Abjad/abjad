@@ -12,13 +12,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.directory_contents

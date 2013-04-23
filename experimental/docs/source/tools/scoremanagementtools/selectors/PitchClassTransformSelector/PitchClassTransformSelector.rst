@@ -12,13 +12,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.editors_package_importable_name

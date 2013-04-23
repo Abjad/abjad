@@ -275,7 +275,8 @@ class AssetProxy(ScoreManagementObject):
 
     def write_boilerplate_asset_to_disk(self, boilerplate_asset_name):
         if not os.path.exists(boilerplate_asset_name):
-            boilerplate_asset_name = os.path.join(self.boilerplate_directory_name, boilerplate_asset_name)
+            boilerplate_asset_name = os.path.join(
+                self.configuration.boilerplate_directory_name, boilerplate_asset_name)
         if os.path.exists(boilerplate_asset_name):
             shutil.copyfile(boilerplate_asset_name, self.path_name)
             return True

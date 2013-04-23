@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.breadcrumb
    :noindex:
 
@@ -22,6 +19,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.chunk_package_wrangler
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.editors_package_importable_name

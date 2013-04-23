@@ -15,13 +15,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.editors_package_importable_name

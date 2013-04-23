@@ -12,13 +12,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.directory_contents

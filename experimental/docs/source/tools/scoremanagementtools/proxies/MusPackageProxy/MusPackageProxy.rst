@@ -12,13 +12,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.directory_contents

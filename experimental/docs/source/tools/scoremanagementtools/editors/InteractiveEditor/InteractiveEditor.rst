@@ -15,13 +15,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.editors_package_importable_name

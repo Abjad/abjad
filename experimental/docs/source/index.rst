@@ -470,7 +470,6 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/scoremanagementtools/core/ScoreManagementToolsConfiguration/ScoreManagementToolsConfiguration
       tools/scoremanagementtools/proxies/AssetProxy/AssetProxy
       tools/scoremanagementtools/proxies/ImportableAssetProxy/ImportableAssetProxy
       tools/scoremanagementtools/specifiers/DynamicSpecifier/DynamicSpecifier
@@ -490,6 +489,7 @@ Unstable packages (load manually)
 
       tools/scoremanagementtools/chunks/Chunk/Chunk
       tools/scoremanagementtools/core/ScoreManagementObject/ScoreManagementObject
+      tools/scoremanagementtools/core/ScoreManagementToolsConfiguration/ScoreManagementToolsConfiguration
       tools/scoremanagementtools/core/Session/Session
       tools/scoremanagementtools/core/Transcript/Transcript
       tools/scoremanagementtools/editors/ArticulationHandlerEditor/ArticulationHandlerEditor
@@ -677,7 +677,6 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/scoremanagementtools/core/ScoreManagementToolsConfiguration/ScoreManagementToolsConfiguration
       tools/scoremanagementtools/proxies/AssetProxy/AssetProxy
       tools/scoremanagementtools/proxies/ImportableAssetProxy/ImportableAssetProxy
       tools/scoremanagementtools/specifiers/DynamicSpecifier/DynamicSpecifier
@@ -697,6 +696,7 @@ Unstable packages (load manually)
 
       tools/scoremanagementtools/chunks/Chunk/Chunk
       tools/scoremanagementtools/core/ScoreManagementObject/ScoreManagementObject
+      tools/scoremanagementtools/core/ScoreManagementToolsConfiguration/ScoreManagementToolsConfiguration
       tools/scoremanagementtools/core/Session/Session
       tools/scoremanagementtools/core/Transcript/Transcript
       tools/scoremanagementtools/editors/ArticulationHandlerEditor/ArticulationHandlerEditor

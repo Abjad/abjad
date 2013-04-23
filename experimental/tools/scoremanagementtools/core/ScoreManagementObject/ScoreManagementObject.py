@@ -18,8 +18,10 @@ class ScoreManagementObject(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from experimental.tools.scoremanagementtools.core.Session import Session
-        self._session = session or Session()
+        from experimental.tools import scoremanagementtools
+        self._session = session or scoremanagementtools.core.Session()
+        # TODO: make into a class attribute?
+        self._configuration = scoremanagementtools.core.ScoreManagementToolsConfiguration()
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -37,11 +39,6 @@ class ScoreManagementObject(AbjadObject):
     def backtracking_source(self):
         return
 
-    # TODO: move to public property of (privately referenced) configuration class
-    @property
-    def boilerplate_directory_name(self):
-        return os.path.join(self.score_management_tools_package_path_name, 'boilerplate')
-
     @property
     def breadcrumb(self):
         return 'score management object'
@@ -49,6 +46,10 @@ class ScoreManagementObject(AbjadObject):
     @property
     def breadcrumb_stack(self):
         return self.session.breadcrumb_stack
+
+    @property
+    def configuration(self):
+        return self._configuration
 
     # TODO: move to public property of (privately referenced) configuration class
     @property

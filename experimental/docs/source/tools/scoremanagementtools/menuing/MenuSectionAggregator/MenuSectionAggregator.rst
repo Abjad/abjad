@@ -12,13 +12,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.backtracking_source
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.boilerplate_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.breadcrumb_stack
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.configuration
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.editors_package_importable_name
