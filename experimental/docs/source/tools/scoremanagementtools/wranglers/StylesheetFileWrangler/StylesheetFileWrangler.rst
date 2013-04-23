@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.current_asset_container_human_readable_name
    :noindex:
 

@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.has_target
    :noindex:
 

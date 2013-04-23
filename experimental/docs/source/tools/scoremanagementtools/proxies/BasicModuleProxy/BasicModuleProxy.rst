@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.exists
    :noindex:
 

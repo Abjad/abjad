@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.help_item_width
    :noindex:
 

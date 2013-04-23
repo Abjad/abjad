@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.help_item_width
    :noindex:
 

@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.has_target
    :noindex:
 

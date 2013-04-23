@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.has_target
    :noindex:
 

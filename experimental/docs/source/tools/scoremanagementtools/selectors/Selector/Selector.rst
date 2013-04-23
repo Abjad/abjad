@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.Selector.Selector.Selector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.Selector.Selector.Selector.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.Selector.Selector.Selector.help_item_width
    :noindex:
 

@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.has_target
    :noindex:
 

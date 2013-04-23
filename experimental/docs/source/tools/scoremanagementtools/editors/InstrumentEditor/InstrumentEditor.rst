@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.has_target
    :noindex:
 

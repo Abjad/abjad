@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.has_target
    :noindex:
 

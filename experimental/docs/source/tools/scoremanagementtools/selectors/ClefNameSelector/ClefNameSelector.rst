@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.help_item_width
    :noindex:
 

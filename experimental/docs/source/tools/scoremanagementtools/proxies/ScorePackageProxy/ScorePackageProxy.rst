@@ -36,9 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.composer
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.directory_contents
    :noindex:
 

@@ -33,9 +33,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.complete_transcript
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.current_chunks_package_importable_name
    :noindex:
 

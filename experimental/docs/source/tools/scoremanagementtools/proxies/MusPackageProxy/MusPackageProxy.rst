@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.directory_contents
    :noindex:
 

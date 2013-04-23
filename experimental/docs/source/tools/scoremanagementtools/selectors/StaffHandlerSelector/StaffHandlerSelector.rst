@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.help_item_width
    :noindex:
 

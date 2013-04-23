@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.directory_contents
    :noindex:
 

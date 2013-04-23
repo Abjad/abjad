@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.help_item_width
    :noindex:
 

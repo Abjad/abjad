@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.help_item_width
    :noindex:
 

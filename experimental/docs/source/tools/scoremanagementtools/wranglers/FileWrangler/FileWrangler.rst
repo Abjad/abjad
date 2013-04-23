@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.current_asset_container_human_readable_name
    :noindex:
 

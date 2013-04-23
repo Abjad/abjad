@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.help_item_width
    :noindex:
 

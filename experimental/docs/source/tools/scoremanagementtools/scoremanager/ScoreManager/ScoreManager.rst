@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.chunk_package_wrangler
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.help_item_width
    :noindex:
 

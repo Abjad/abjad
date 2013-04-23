@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.has_target
    :noindex:
 

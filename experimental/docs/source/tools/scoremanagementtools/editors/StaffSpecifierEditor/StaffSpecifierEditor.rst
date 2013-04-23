@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.has_target
    :noindex:
 

@@ -72,9 +72,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.score_management_tools_fully_qualified_package_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.score_management_tools_package_importable_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.score_management_tools_package_path_name
    :noindex:
 

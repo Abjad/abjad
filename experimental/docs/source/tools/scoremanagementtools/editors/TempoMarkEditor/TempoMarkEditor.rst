@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.has_target
    :noindex:
 

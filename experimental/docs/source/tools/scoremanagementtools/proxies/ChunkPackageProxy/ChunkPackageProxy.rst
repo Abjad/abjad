@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.directory_contents
    :noindex:
 

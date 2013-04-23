@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.help_item_width
    :noindex:
 

@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.directory_contents
    :noindex:
 

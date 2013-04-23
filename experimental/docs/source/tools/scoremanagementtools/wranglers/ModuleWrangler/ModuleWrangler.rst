@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.current_asset_container_human_readable_name
    :noindex:
 

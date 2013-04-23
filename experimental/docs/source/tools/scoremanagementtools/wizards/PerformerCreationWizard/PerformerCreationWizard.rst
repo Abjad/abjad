@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.help_item_width
    :noindex:
 

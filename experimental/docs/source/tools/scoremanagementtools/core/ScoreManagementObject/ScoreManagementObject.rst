@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.help_item_width
    :noindex:
 

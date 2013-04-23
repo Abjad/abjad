@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.has_target
    :noindex:
 

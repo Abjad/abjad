@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.exists
    :noindex:
 

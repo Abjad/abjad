@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.chevrons
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.defaults
    :noindex:
 

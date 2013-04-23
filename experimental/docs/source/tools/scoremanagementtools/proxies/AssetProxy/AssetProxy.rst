@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.exists
    :noindex:
 

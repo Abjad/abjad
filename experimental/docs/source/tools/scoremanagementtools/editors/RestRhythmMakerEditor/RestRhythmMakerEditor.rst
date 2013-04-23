@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.has_target
    :noindex:
 

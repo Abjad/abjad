@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.help_item_width
    :noindex:
 

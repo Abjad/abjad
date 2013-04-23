@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.help_item_width
    :noindex:
 

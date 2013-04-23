@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.help_item_width
    :noindex:
 

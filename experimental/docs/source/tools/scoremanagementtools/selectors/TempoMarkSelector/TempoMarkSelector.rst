@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.help_item_width
    :noindex:
 

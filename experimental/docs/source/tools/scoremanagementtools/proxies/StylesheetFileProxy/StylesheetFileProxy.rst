@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.exists
    :noindex:
 

@@ -6,6 +6,11 @@ class ScoreManagementToolsConfiguration(Configuration):
     '''Score management tools configuration.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    score_management_tools_package_importable_name = \
+        os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'))
+
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
@@ -102,9 +107,9 @@ class ScoreManagementToolsConfiguration(Configuration):
     def score_management_tools_fully_qualified_package_name(self):
         return 'experimental.tools.scoremanagementtools'
 
-    @property
-    def score_management_tools_package_importable_name(self):
-        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'))
+#    @property
+#    def score_management_tools_package_importable_name(self):
+#        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'))
 
     @property
     def score_management_tools_package_path_name(self):

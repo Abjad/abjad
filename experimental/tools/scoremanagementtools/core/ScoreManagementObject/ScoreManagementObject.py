@@ -11,17 +11,21 @@ from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration import \
+    ScoreManagementToolsConfiguration
 
 
 class ScoreManagementObject(AbjadObject):
+
+    ### CLASS ATTRIBUTES ###
+
+    configuration = ScoreManagementToolsConfiguration()
 
     ### INITIALIZER ###
 
     def __init__(self, session=None):
         from experimental.tools import scoremanagementtools
         self._session = session or scoremanagementtools.core.Session()
-        # TODO: make into a class attribute?
-        self._configuration = scoremanagementtools.core.ScoreManagementToolsConfiguration()
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -47,9 +51,9 @@ class ScoreManagementObject(AbjadObject):
     def breadcrumb_stack(self):
         return self.session.breadcrumb_stack
 
-    @property
-    def configuration(self):
-        return self._configuration
+#    @property
+#    def configuration(self):
+#        return self._configuration
 
 #    # TODO: move to public property of (privately referenced) configuration class
 #    @property

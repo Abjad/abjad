@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.has_target
    :noindex:
 

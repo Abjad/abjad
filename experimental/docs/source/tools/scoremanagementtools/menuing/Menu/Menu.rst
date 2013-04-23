@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.default_value
    :noindex:
 

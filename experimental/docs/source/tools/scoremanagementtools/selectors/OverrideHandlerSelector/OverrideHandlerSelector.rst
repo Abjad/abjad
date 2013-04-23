@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.breadcrumb_stack
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.configuration
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.help_item_width
    :noindex:
 
