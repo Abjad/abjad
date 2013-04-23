@@ -1,16 +1,22 @@
+import os
 from abjad.tools import iotools
 from experimental.tools.scoremanagementtools.wranglers.PackageWrangler import PackageWrangler
 from experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy import StylesheetFileProxy
-import os
 
 
 class StylesheetFileWrangler(PackageWrangler):
 
+    ### INITIALIZER ###
+
     def __init__(self, session=None):
-        PackageWrangler.__init__(self,
-            score_external_asset_container_importable_names=[self.stylesheets_package_importable_name],
-            score_internal_asset_container_importable_name_infix=None,
-            session=session)
+#        PackageWrangler.__init__(self,
+#            score_external_asset_container_importable_names=[self.stylesheets_package_importable_name],
+#            score_internal_asset_container_importable_name_infix=None,
+#            session=session)
+        PackageWrangler.__init__(self, session=session)
+        self._score_external_asset_container_importable_names = [
+            self.stylesheets_package_importable_name]
+        self._score_internal_asset_container_importable_name_infix = None
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

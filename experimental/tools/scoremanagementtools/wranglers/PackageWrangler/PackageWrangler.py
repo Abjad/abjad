@@ -1,7 +1,7 @@
+import os
 from abjad.tools import stringtools
 from experimental.tools.scoremanagementtools.proxies.PackageProxy import PackageProxy
 from experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler import ImportableAssetWrangler
-import os
 
 
 class PackageWrangler(ImportableAssetWrangler):

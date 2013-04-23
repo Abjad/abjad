@@ -1,17 +1,25 @@
+import os
+import sys
 from abjad.tools import iotools
+from experimental.tools.scoremanagementtools.core.ScoreManagementObject import ScoreManagementObject
 from experimental.tools.scoremanagementtools.proxies.DirectoryProxy import DirectoryProxy
 from experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy import ImportableAssetProxy
 from experimental.tools.scoremanagementtools.proxies.InitializerFileProxy import InitializerFileProxy
 from experimental.tools.scoremanagementtools.helpers import safe_import
-import os
-import sys
 
 
-class PackageProxy(DirectoryProxy, ImportableAssetProxy):
+#class PackageProxy(DirectoryProxy, ImportableAssetProxy):
+class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagementObject):
+
+    ### INITIALIZER ###
 
     def __init__(self, package_importable_name=None, session=None):
+#        path_name = self.package_importable_name_to_path_name(package_importable_name)
+#        DirectoryProxy.__init__(self, path_name=path_name, session=session)
+#        ImportableAssetProxy.__init__(self, asset_full_name=package_importable_name, session=self.session)
+        ScoreManagementObject.__init__(self, session=session)
         path_name = self.package_importable_name_to_path_name(package_importable_name)
-        DirectoryProxy.__init__(self, path_name=path_name, session=session)
+        DirectoryProxy.__init__(self, path_name=path_name, session=self.session)
         ImportableAssetProxy.__init__(self, asset_full_name=package_importable_name, session=self.session)
 
     ### SPECIAL METHODS ###

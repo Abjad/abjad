@@ -1,17 +1,25 @@
-from experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy import MusicSpecifierModuleProxy
-from experimental.tools.scoremanagementtools.wranglers.ModuleWrangler import ModuleWrangler
 import os
+from experimental.tools.scoremanagementtools.proxies.MusicSpecifierModuleProxy import \
+    MusicSpecifierModuleProxy
+from experimental.tools.scoremanagementtools.wranglers.ModuleWrangler import ModuleWrangler
 
 
 class MusicSpecifierModuleWrangler(ModuleWrangler):
 
+    ### INITIALIZER ###
+
     def __init__(self, session=None):
-        ModuleWrangler.__init__(self,
-            score_external_asset_container_importable_names=\
-                [self.score_external_specifiers_package_importable_name],
-            score_internal_asset_container_importable_name_infix=\
-                self.score_internal_specifiers_package_importable_name_infix,
-            session=session)
+#        ModuleWrangler.__init__(self,
+#            score_external_asset_container_importable_names=\
+#                [self.configuration.score_external_specifiers_package_importable_name],
+#            score_internal_asset_container_importable_name_infix=\
+#                self.configuration.score_internal_specifiers_package_importable_name_infix,
+#            session=session)
+        ModuleWrangler.__init__(self, session=session)
+        self._score_external_asset_container_importable_names = [
+            self.configuration.score_external_specifiers_package_importable_name]
+        self._score_internal_asset_container_importable_name_infix = \
+            self.configuration.score_internal_specifiers_package_importable_name_infix
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

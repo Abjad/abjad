@@ -24,12 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.default_value
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.editors_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.editors_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.first_nonhidden_return_value_in_menu
    :noindex:
 
@@ -54,12 +48,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.hidden_section
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.makers_package_importable_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.menu_entry_bodies
    :noindex:
 
@@ -79,48 +67,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.ranged_section
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.score_external_chunks_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.score_external_chunks_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.score_external_materials_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.score_external_materials_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.score_external_package_importable_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.score_external_package_path_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.score_external_specifiers_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.score_external_specifiers_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.score_internal_chunks_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.score_internal_materials_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.score_internal_specifiers_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.score_management_tools_fully_qualified_package_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.score_management_tools_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.score_management_tools_package_path_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.scores_directory_name

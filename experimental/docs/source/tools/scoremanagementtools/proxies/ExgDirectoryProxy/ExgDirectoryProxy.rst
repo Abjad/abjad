@@ -27,12 +27,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.editors_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.editors_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.exists
    :noindex:
 
@@ -43,12 +37,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.is_versioned
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.makers_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.parent_directory_name
@@ -64,48 +52,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.public_content_short_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_chunks_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_chunks_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_materials_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_materials_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_package_importable_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_package_path_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_specifiers_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_external_specifiers_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_internal_chunks_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_internal_materials_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_internal_specifiers_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_management_tools_fully_qualified_package_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_management_tools_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.score_management_tools_package_path_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.scores_directory_name

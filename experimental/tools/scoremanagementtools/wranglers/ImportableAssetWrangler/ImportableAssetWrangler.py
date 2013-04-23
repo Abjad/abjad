@@ -1,5 +1,5 @@
-from experimental.tools.scoremanagementtools.wranglers.AssetWrangler import AssetWrangler
 import os
+from experimental.tools.scoremanagementtools.wranglers.AssetWrangler import AssetWrangler
 
 
 class ImportableAssetWrangler(AssetWrangler):

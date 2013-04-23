@@ -1,17 +1,24 @@
+import os
 from experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy import ChunkPackageProxy
 from experimental.tools.scoremanagementtools.wranglers.PackageWrangler import PackageWrangler
-import os
 
 
 class ChunkPackageWrangler(PackageWrangler):
 
+    ### INITIALIZER ###
+
     def __init__(self, session=None):
-        PackageWrangler.__init__(self,
-            score_external_asset_container_importable_names= \
-                [self.score_external_chunks_package_importable_name],
-            score_internal_asset_container_importable_name_infix= \
-                self.score_internal_chunks_package_importable_name_infix,
-            session=session)
+#        PackageWrangler.__init__(self,
+#            score_external_asset_container_importable_names= \
+#                [self.configuration.score_external_chunks_package_importable_name],
+#            score_internal_asset_container_importable_name_infix= \
+#                self.configuration.score_internal_chunks_package_importable_name_infix,
+#            session=session)
+        PackageWrangler.__init__(self, session=session)
+        self._score_external_asset_container_importable_names = [
+            self.configuration.score_external_chunks_package_importable_name]
+        self._score_internal_asset_container_importable_name_infix = \
+            self.configuration.score_internal_chunks_package_importable_name_infix
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

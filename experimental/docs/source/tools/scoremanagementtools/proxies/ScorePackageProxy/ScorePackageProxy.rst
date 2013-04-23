@@ -51,12 +51,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.dist_proxy
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.editors_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.editors_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.etc_proxy
    :noindex:
 
@@ -111,12 +105,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.is_versioned
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.makers_package_importable_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.material_package_maker_wrangler
    :noindex:
 
@@ -168,49 +156,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.public_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_external_chunks_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_external_chunks_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_external_materials_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_external_materials_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_external_package_importable_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_external_package_path_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_external_specifiers_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_external_specifiers_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_initializer_file_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_internal_chunks_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_internal_materials_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_internal_specifiers_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_management_tools_fully_qualified_package_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_management_tools_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_management_tools_package_path_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_package_wranglers

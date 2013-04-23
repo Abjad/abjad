@@ -27,12 +27,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.editors_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.editors_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.exists
    :noindex:
 
@@ -69,12 +63,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.is_versioned
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.makers_package_importable_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.package_root_name
    :noindex:
 
@@ -103,48 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.public_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.score_external_chunks_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.score_external_chunks_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.score_external_materials_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.score_external_materials_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.score_external_package_importable_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.score_external_package_path_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.score_external_specifiers_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.score_external_specifiers_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.score_internal_chunks_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.score_internal_materials_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.score_internal_specifiers_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.score_management_tools_fully_qualified_package_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.score_management_tools_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.score_management_tools_package_path_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.scores_directory_name

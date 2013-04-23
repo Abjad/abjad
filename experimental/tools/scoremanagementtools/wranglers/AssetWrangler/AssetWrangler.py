@@ -49,8 +49,8 @@ class AssetWrangler(ScoreManagementObject):
     def __repr__(self):
         parts = []
         parts.extend(self.list_score_external_asset_container_importable_names())
-        if self.score_internal_asset_container_importable_name_infix:
-            parts.append(self.score_internal_asset_container_importable_name_infix)
+        if self.configuration.score_internal_asset_container_importable_name_infix:
+            parts.append(self.configuration.score_internal_asset_container_importable_name_infix)
         parts = ', '.join([repr(part) for part in parts])
         return '{}({})'.format(self.class_name, parts)
 
@@ -189,7 +189,7 @@ class AssetWrangler(ScoreManagementObject):
 
     def list_asset_path_names(self, head=None):
         result = []
-        if head in (None,) + self.score_external_package_importable_names:
+        if head in (None,) + self.configuration.score_external_package_importable_names:
             result.extend(self.list_score_external_asset_path_names(head=head))
         result.extend(self.list_score_internal_asset_path_names(head=head))
         result.extend(self.list_user_asset_path_names(head=head))

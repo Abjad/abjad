@@ -21,12 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.configuration
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.editors_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.editors_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.exists
    :noindex:
 
@@ -51,12 +45,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.is_versioned
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.makers_package_importable_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.parent_directory_name
    :noindex:
 
@@ -64,48 +52,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.plural_generic_class_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.score_external_chunks_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.score_external_chunks_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.score_external_materials_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.score_external_materials_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.score_external_package_importable_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.score_external_package_path_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.score_external_specifiers_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.score_external_specifiers_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.score_internal_chunks_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.score_internal_materials_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.score_internal_specifiers_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.score_management_tools_fully_qualified_package_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.score_management_tools_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.score_management_tools_package_path_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.scores_directory_name

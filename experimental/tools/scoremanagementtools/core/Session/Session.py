@@ -2,6 +2,8 @@
 import os
 from abjad.tools import stringtools
 from experimental.tools.scoremanagementtools.core.ScoreManagementObject import ScoreManagementObject
+from experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration import \
+    ScoreManagementToolsConfiguration
 from experimental.tools.scoremanagementtools.core.Transcript import Transcript
 
 
@@ -15,6 +17,7 @@ class Session(ScoreManagementObject):
         self._breadcrumb_stack = []
         self._command_history = []
         self._complete_transcript = Transcript()
+        self._configuration = ScoreManagementToolsConfiguration()
         self._session_once_had_user_input = False
         self.current_score_package_short_name = None
         self.display_pitch_ranges_with_numbered_pitches = False
@@ -79,9 +82,9 @@ class Session(ScoreManagementObject):
         if self.is_in_score:
             return self.dot_join([
                 self.current_score_package_short_name,
-                self.score_internal_chunks_package_importable_name_infix])
+                self.configuration.score_internal_chunks_package_importable_name_infix])
         else:
-            return self.score_external_chunks_package_importable_name
+            return self.configuration.score_external_chunks_package_importable_name
 
     @property
     def current_chunks_package_path_name(self):
@@ -93,9 +96,9 @@ class Session(ScoreManagementObject):
         if self.is_in_score:
             return self.dot_join([
                 self.current_score_package_short_name,
-                self.score_internal_materials_package_importable_name_infix])
+                self.configuration.score_internal_materials_package_importable_name_infix])
         else:
-            return self.score_external_materials_package_importable_name
+            return self.configuration.score_external_materials_package_importable_name
 
     @property
     def current_materials_package_path_name(self):
@@ -120,16 +123,16 @@ class Session(ScoreManagementObject):
         if self.is_in_score:
             return self.dot_join([
                 self.current_score_package_short_name,
-                self.score_internal_specifiers_package_importable_name_infix])
+                self.configuration.score_internal_specifiers_package_importable_name_infix])
         else:
-            return self.score_external_specifiers_package_importable_name
+            return self.configuration.score_external_specifiers_package_importable_name
 
     @property
     def current_specifiers_package_path_name(self):
         if self.is_in_score:
             return os.path.join(self.current_score_path_name, 'mus', 'specifiers')
         else:
-            return self.score_external_specifiers_package_path_name
+            return self.configuration.score_external_specifiers_package_path_name
 
     @property
     def explicit_command_history(self):

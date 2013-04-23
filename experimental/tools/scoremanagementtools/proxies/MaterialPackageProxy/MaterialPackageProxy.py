@@ -285,10 +285,10 @@ class MaterialPackageProxy(PackageProxy):
         if self.material_package_maker_class_name is not None:
             #maker_class = safe_import(
             #    locals(), 'makers', self.material_package_maker_class_name,
-            #    source_parent_package_importable_name=self.score_management_tools_package_importable_name)
+            #    source_parent_package_importable_name=self.configuration.score_management_tools_package_importable_name)
             maker_class = safe_import(
                 locals(), 'makers', self.material_package_maker_class_name,
-                source_parent_package_importable_name=self.score_management_tools_fully_qualified_package_name)
+                source_parent_package_importable_name=self.configuration.score_management_tools_fully_qualified_package_name)
             return maker_class
 
     @property

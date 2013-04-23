@@ -21,61 +21,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.configuration
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.editors_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.editors_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.help_item_width
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.makers_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_chunks_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_chunks_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_materials_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_materials_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_package_importable_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_package_path_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_specifiers_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_external_specifiers_package_path_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_internal_chunks_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_internal_materials_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_internal_specifiers_package_importable_name_infix
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_management_tools_fully_qualified_package_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_management_tools_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.score_management_tools_package_path_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.scores_directory_name
