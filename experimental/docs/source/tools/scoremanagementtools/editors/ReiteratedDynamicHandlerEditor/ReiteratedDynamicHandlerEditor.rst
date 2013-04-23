@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

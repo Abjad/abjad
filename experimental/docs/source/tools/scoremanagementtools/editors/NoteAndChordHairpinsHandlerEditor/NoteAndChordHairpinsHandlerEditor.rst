@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

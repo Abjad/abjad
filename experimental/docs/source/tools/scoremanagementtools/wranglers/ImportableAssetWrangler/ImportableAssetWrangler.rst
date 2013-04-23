@@ -48,28 +48,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.score_internal_asset_container_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.temporary_asset_human_readable_name
@@ -94,12 +79,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.user_makers_package_importable_name
    :noindex:
 
 Methods

@@ -33,28 +33,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.items_identifier
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.target_attribute_names
@@ -91,12 +76,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PerformerEditor.PerformerEditor.PerformerEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

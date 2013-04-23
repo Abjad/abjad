@@ -51,28 +51,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.score_internal_asset_container_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.temporary_asset_human_readable_name
@@ -97,12 +82,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.user_makers_package_importable_name
    :noindex:
 
 Methods

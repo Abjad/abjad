@@ -60,9 +60,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.sections
    :noindex:
 
@@ -78,19 +75,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.svn_add_command
@@ -103,12 +88,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.user_makers_package_importable_name
    :noindex:
 
 Methods

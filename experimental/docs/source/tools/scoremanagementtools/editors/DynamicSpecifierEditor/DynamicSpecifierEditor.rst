@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

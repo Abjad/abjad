@@ -51,31 +51,16 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.score_internal_asset_container_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.stylesheet_file_names
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.temporary_asset_human_readable_name
@@ -100,12 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.user_makers_package_importable_name
    :noindex:
 
 Methods

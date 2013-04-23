@@ -21,28 +21,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.transcript
@@ -52,12 +37,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementObject.ScoreManagementObject.ScoreManagementObject.user_makers_package_importable_name
    :noindex:
 
 Methods

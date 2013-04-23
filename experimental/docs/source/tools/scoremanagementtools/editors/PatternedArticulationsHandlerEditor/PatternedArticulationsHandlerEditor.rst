@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

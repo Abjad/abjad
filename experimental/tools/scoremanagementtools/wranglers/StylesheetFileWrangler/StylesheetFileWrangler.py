@@ -10,12 +10,12 @@ class StylesheetFileWrangler(PackageWrangler):
 
     def __init__(self, session=None):
 #        PackageWrangler.__init__(self,
-#            score_external_asset_container_importable_names=[self.stylesheets_package_importable_name],
+#            score_external_asset_container_importable_names=[self.configuration.stylesheets_package_importable_name],
 #            score_internal_asset_container_importable_name_infix=None,
 #            session=session)
         PackageWrangler.__init__(self, session=session)
         self._score_external_asset_container_importable_names = [
-            self.stylesheets_package_importable_name]
+            self.configuration.stylesheets_package_importable_name]
         self._score_internal_asset_container_importable_name_infix = None
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -32,7 +32,7 @@ class StylesheetFileWrangler(PackageWrangler):
     @property
     def stylesheet_file_names(self):
         result = []
-        for file_name in os.listdir(self.stylesheets_directory_name):
+        for file_name in os.listdir(self.configuration.stylesheets_directory_name):
             if file_name.endswith('.ly'):
                 result.append(file_name)
         return result
@@ -43,7 +43,7 @@ class StylesheetFileWrangler(PackageWrangler):
         if result == 'new':
             self.make_asset_interactively()
         else:
-            stylesheet_file_name = os.path.join(self.stylesheets_directory_name, result)
+            stylesheet_file_name = os.path.join(self.configuration.stylesheets_directory_name, result)
             stylesheet_proxy = StylesheetFileProxy(stylesheet_file_name, session=self.session)
             stylesheet_proxy.run()
 
@@ -57,7 +57,7 @@ class StylesheetFileWrangler(PackageWrangler):
         stylesheet_name = iotools.string_to_strict_directory_name(stylesheet_name)
         if not stylesheet_name.endswith('.ly'):
             stylesheet_name = stylesheet_name + '.ly'
-        stylesheet_file_name = os.path.join(self.stylesheets_directory_name, stylesheet_name)
+        stylesheet_file_name = os.path.join(self.configuration.stylesheets_directory_name, stylesheet_name)
         stylesheet_proxy = StylesheetFileProxy(stylesheet_file_name, session=self.session)
         stylesheet_proxy.edit()
 
@@ -85,5 +85,5 @@ class StylesheetFileWrangler(PackageWrangler):
                 break
         self.pop_breadcrumb()
         self.restore_breadcrumbs(cache=cache)
-        result = os.path.join(self.stylesheets_directory_name, result)
+        result = os.path.join(self.configuration.stylesheets_directory_name, result)
         return result

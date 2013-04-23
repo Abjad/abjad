@@ -21,28 +21,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.transcript
@@ -52,12 +37,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.user_makers_package_importable_name
    :noindex:
 
 Read/write properties

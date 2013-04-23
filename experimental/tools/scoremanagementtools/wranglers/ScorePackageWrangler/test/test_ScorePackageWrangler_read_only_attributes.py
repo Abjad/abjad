@@ -25,7 +25,7 @@ def test_ScorePackageWrangler_read_only_attributes_03():
     '''
 
     assert wrangler.current_asset_container_importable_name is None
-    assert wrangler.current_asset_container_path_name == wrangler.scores_directory_name
+    assert wrangler.current_asset_container_path_name == wrangler.configuration.scores_directory_name
 
 
 def test_ScorePackageWrangler_read_only_attributes_04():

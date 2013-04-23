@@ -90,9 +90,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.public_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.session
    :noindex:
 
@@ -105,19 +102,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.svn_add_command
@@ -136,12 +121,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.user_makers_package_importable_name
    :noindex:
 
 Read/write properties

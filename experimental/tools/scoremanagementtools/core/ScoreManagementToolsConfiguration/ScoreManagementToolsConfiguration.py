@@ -115,6 +115,34 @@ class ScoreManagementToolsConfiguration(Configuration):
     def score_management_tools_package_path_name(self):
         return os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH')
 
+    @property
+    def scores_directory_name(self):
+        return os.environ.get('SCORES')
+
+    @property
+    def specifier_classes_package_importable_name(self):
+        return self.dot_join(['scoremanagementtools', 'specifiers'])
+
+    @property
+    def specifier_classes_package_path_name(self):
+        return os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'specifiers')
+
+    @property
+    def stylesheets_directory_name(self):
+        return os.path.join(self.score_management_tools_package_path_name, 'stylesheets')
+
+    @property
+    def stylesheets_package_importable_name(self):
+        return self.dot_join([self.score_management_tools_package_importable_name, 'stylesheets'])
+
+    @property
+    def user_makers_directory_name(self):
+        return os.environ.get('SCORE_MANAGEMENT_TOOLS_USER_MAKERS_PATH')
+
+    @property
+    def user_makers_package_importable_name(self):
+        return os.environ.get('SCORE_MANAGEMENT_TOOLS_USER_MAKERS_IMPORTABLE_NAME')
+
     ### PUBLIC METHODS ###
 
     def dot_join(self, expr):

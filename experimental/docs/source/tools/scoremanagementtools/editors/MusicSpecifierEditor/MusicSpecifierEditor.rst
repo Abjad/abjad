@@ -33,28 +33,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.items_identifier
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.target_attribute_names
@@ -91,12 +76,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

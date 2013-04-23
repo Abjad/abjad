@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

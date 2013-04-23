@@ -21,28 +21,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.transcript
@@ -52,12 +37,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.user_makers_package_importable_name
    :noindex:
 
 Read/write properties

@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

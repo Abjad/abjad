@@ -51,9 +51,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.public_content_short_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.session
    :noindex:
 
@@ -66,19 +63,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.svn_add_command
@@ -91,12 +76,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.user_makers_package_importable_name
    :noindex:
 
 Methods

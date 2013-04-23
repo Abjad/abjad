@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

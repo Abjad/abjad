@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupEditor.MarkupEditor.MarkupEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

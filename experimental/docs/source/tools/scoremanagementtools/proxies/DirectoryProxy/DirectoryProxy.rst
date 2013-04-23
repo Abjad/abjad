@@ -51,9 +51,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.public_content_short_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.session
    :noindex:
 
@@ -66,19 +63,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.svn_add_command
@@ -91,12 +76,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.user_makers_package_importable_name
    :noindex:
 
 Methods

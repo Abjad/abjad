@@ -33,28 +33,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.items_identifier
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.target_attribute_names
@@ -91,12 +76,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ListEditor.ListEditor.ListEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

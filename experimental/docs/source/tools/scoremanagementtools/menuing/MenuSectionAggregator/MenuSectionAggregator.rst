@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.sections
    :noindex:
 
@@ -33,19 +30,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.transcript
@@ -55,12 +40,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.user_makers_package_importable_name
    :noindex:
 
 Read/write properties

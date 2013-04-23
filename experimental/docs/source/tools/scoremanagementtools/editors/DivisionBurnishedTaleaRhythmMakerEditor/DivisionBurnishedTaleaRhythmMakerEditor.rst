@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

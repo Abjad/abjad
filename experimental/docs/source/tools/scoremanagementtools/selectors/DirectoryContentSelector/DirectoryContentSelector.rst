@@ -21,28 +21,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.transcript
@@ -52,12 +37,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.user_makers_package_importable_name
    :noindex:
 
 Read/write properties

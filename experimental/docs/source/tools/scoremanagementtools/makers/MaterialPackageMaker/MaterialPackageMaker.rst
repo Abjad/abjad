@@ -252,9 +252,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.public_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.session
    :noindex:
 
@@ -291,12 +288,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.storage_format
    :noindex:
 
@@ -304,12 +295,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.stylesheet_file_proxy
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.svn_add_command
@@ -343,12 +328,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.user_input_wrapper_in_memory
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.user_makers_package_importable_name
    :noindex:
 
 Methods

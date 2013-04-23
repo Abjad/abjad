@@ -51,116 +51,9 @@ class ScoreManagementObject(AbjadObject):
     def breadcrumb_stack(self):
         return self.session.breadcrumb_stack
 
-#    @property
-#    def configuration(self):
-#        return self._configuration
-
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def editors_package_importable_name(self):
-#        return self.dot_join(['scoremanagementtools', 'editors'])
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def editors_package_path_name(self):
-#        return os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'editors')
-
     @property
     def help_item_width(self):
         return 5
-
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def makers_directory_name(self):
-#        return os.path.join(self.score_management_tools_package_path_name, 'makers')
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def makers_package_importable_name(self):
-#        return self.dot_join([self.configuration.score_management_tools_package_importable_name, 'makers'])
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def score_external_chunks_package_importable_name(self):
-#        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_CHUNKS_PATH'))
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def score_external_chunks_package_path_name(self):
-#        return os.environ.get('SCORE_MANAGEMENT_TOOLS_CHUNKS_PATH')
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def score_external_materials_package_importable_name(self):
-#        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH'))
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def score_external_materials_package_path_name(self):
-#        return os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH')
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def score_external_package_importable_names(self):
-#        return (
-#            self.configuration.score_external_chunks_package_importable_name,
-#            self.configuration.score_external_materials_package_importable_name,
-#            self.configuration.score_external_specifiers_package_importable_name,
-#            )
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def score_external_package_path_names(self):
-#        return (
-#            self.configuration.score_external_chunks_package_path_name,
-#            self.configuration.score_external_materials_package_path_name,
-#            self.configuration.score_external_specifiers_package_path_name,
-#            )
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def score_external_specifiers_package_importable_name(self):
-#        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_SPECIFIERS_PATH'))
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def score_external_specifiers_package_path_name(self):
-#        return os.environ.get('SCORE_MANAGEMENT_TOOLS_SPECIFIERS_PATH')
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def score_internal_chunks_package_importable_name_infix(self):
-#        return 'mus.chunks'
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def score_internal_materials_package_importable_name_infix(self):
-#        return 'mus.materials'
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def score_internal_specifiers_package_importable_name_infix(self):
-#        return 'mus.specifiers'
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def score_management_tools_fully_qualified_package_name(self):
-#        return 'experimental.tools.scoremanagementtools'
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def score_management_tools_package_importable_name(self):
-#        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'))
-#
-#    # TODO: move to public property of (privately referenced) configuration class
-#    @property
-#    def score_management_tools_package_path_name(self):
-#        return os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH')
-
-    # TODO: move to public property of (privately referenced) configuration class
-    @property
-    def scores_directory_name(self):
-        return os.environ.get('SCORES')
 
     @property
     def session(self):
@@ -171,26 +64,6 @@ class ScoreManagementObject(AbjadObject):
         source_file_name = inspect.getfile(type(self))
         source_file_name = source_file_name.strip('c')
         return source_file_name
-
-    # TODO: move to public property of (privately referenced) configuration class
-    @property
-    def specifier_classes_package_importable_name(self):
-        return self.dot_join(['scoremanagementtools', 'specifiers'])
-
-    # TODO: move to public property of (privately referenced) configuration class
-    @property
-    def specifier_classes_package_path_name(self):
-        return os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'specifiers')
-
-    # TODO: move to public property of (privately referenced) configuration class
-    @property
-    def stylesheets_directory_name(self):
-        return os.path.join(self.configuration.score_management_tools_package_path_name, 'stylesheets')
-
-    # TODO: move to public property of (privately referenced) configuration class
-    @property
-    def stylesheets_package_importable_name(self):
-        return self.dot_join([self.configuration.score_management_tools_package_importable_name, 'stylesheets'])
 
     @property
     def transcript(self):
@@ -203,16 +76,6 @@ class ScoreManagementObject(AbjadObject):
     @property
     def ts(self):
         return self.transcript_signature
-
-    # TODO: move to public property of (privately referenced) configuration class
-    @property
-    def user_makers_directory_name(self):
-        return os.environ.get('SCORE_MANAGEMENT_TOOLS_USER_MAKERS_PATH')
-
-    # TODO: move to public property of (privately referenced) configuration class
-    @property
-    def user_makers_package_importable_name(self):
-        return os.environ.get('SCORE_MANAGEMENT_TOOLS_USER_MAKERS_IMPORTABLE_NAME')
 
     ### PUBLIC METHODS ###
 
@@ -418,7 +281,7 @@ class ScoreManagementObject(AbjadObject):
 
     def list_score_package_short_names(self, head=None):
         result = []
-        for name in os.listdir(self.scores_directory_name):
+        for name in os.listdir(self.configuration.scores_directory_name):
             if name[0].isalpha():
                 if head and name == head:
                     return [name]
@@ -474,7 +337,7 @@ class ScoreManagementObject(AbjadObject):
                 [self.configuration.score_external_specifiers_package_path_name] + \
                 package_importable_name_parts[1:]
         else:
-            directory_parts = [self.scores_directory_name] + package_importable_name_parts[:]
+            directory_parts = [self.configuration.scores_directory_name] + package_importable_name_parts[:]
         directory = os.path.join(*directory_parts)
         return directory
 
@@ -498,8 +361,8 @@ class ScoreManagementObject(AbjadObject):
             prefix_length = len(os.path.dirname(self.configuration.score_external_chunks_package_path_name)) + 1
         elif path_name.startswith(self.configuration.score_external_specifiers_package_path_name):
             prefix_length = len(os.path.dirname(self.configuration.score_external_specifiers_package_path_name)) + 1
-        elif path_name.startswith(self.scores_directory_name):
-            prefix_length = len(self.scores_directory_name) + 1
+        elif path_name.startswith(self.configuration.scores_directory_name):
+            prefix_length = len(self.configuration.scores_directory_name) + 1
         else:
             return
         package_importable_name = path_name[prefix_length:]

@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

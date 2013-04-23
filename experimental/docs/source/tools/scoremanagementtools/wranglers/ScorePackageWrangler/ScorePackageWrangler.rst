@@ -51,28 +51,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.score_internal_asset_container_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.temporary_asset_human_readable_name
@@ -97,12 +82,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.user_makers_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.visible_score_titles

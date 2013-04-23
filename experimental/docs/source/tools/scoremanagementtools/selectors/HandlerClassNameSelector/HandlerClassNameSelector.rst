@@ -21,28 +21,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.transcript
@@ -52,12 +37,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.user_makers_package_importable_name
    :noindex:
 
 Read/write properties

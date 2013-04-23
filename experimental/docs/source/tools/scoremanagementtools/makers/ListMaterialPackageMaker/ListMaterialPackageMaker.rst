@@ -252,9 +252,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.public_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.session
    :noindex:
 
@@ -291,12 +288,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.storage_format
    :noindex:
 
@@ -304,12 +295,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.stylesheet_file_proxy
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.svn_add_command
@@ -343,12 +328,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.user_input_wrapper_in_memory
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.user_makers_package_importable_name
    :noindex:
 
 Methods

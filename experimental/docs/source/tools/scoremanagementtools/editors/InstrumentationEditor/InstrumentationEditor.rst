@@ -33,28 +33,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.items_identifier
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.target_attribute_names
@@ -91,12 +76,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

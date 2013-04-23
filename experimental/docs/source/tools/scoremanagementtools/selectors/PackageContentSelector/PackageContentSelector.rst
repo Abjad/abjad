@@ -21,28 +21,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.transcript
@@ -52,12 +37,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.user_makers_package_importable_name
    :noindex:
 
 Read/write properties

@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

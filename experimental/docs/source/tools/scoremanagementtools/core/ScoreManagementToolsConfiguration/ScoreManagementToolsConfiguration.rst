@@ -75,7 +75,28 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.score_management_tools_package_path_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.scores_directory_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.specifier_classes_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.specifier_classes_package_path_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.storage_format
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.stylesheets_directory_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.stylesheets_package_importable_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.user_makers_directory_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.user_makers_package_importable_name
    :noindex:
 
 Methods

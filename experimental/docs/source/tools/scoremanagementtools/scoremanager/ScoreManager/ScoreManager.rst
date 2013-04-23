@@ -39,31 +39,16 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.score_status_string
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.stylesheet_file_wrangler
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.transcript
@@ -73,12 +58,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.scoremanager.ScoreManager.ScoreManager.ScoreManager.user_makers_package_importable_name
    :noindex:
 
 Methods

@@ -87,9 +87,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.sections
    :noindex:
 
@@ -105,19 +102,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.svn_add_command
@@ -130,12 +115,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.user_makers_package_importable_name
    :noindex:
 
 Methods

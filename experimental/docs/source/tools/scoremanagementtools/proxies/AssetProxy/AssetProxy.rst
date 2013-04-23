@@ -39,9 +39,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.session
    :noindex:
 
@@ -54,19 +51,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.svn_add_command
@@ -79,12 +64,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.AssetProxy.AssetProxy.AssetProxy.user_makers_package_importable_name
    :noindex:
 
 Methods

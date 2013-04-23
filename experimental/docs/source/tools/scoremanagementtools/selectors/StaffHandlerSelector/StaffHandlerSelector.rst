@@ -21,28 +21,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.transcript
@@ -52,12 +37,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.user_makers_package_importable_name
    :noindex:
 
 Read/write properties

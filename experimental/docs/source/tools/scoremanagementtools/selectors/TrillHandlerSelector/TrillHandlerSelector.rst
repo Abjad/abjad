@@ -21,28 +21,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.transcript
@@ -52,12 +37,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.user_makers_package_importable_name
    :noindex:
 
 Read/write properties

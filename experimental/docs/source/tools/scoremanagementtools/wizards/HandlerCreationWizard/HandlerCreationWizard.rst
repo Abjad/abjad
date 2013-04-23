@@ -21,28 +21,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.transcript
@@ -52,12 +37,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.user_makers_package_importable_name
    :noindex:
 
 Methods

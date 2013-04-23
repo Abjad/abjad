@@ -33,28 +33,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.items_identifier
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.target_attribute_names
@@ -91,12 +76,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

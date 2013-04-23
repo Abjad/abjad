@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

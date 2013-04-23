@@ -51,9 +51,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.FileProxy.FileProxy.FileProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.FileProxy.FileProxy.FileProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.FileProxy.FileProxy.FileProxy.session
    :noindex:
 
@@ -66,19 +63,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.FileProxy.FileProxy.FileProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.FileProxy.FileProxy.FileProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.FileProxy.FileProxy.FileProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.FileProxy.FileProxy.FileProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.FileProxy.FileProxy.FileProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.FileProxy.FileProxy.FileProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.FileProxy.FileProxy.FileProxy.svn_add_command
@@ -91,12 +76,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.FileProxy.FileProxy.FileProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.FileProxy.FileProxy.FileProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.FileProxy.FileProxy.FileProxy.user_makers_package_importable_name
    :noindex:
 
 Methods

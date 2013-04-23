@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

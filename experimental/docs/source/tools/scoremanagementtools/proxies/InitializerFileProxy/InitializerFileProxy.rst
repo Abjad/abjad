@@ -60,9 +60,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.sections
    :noindex:
 
@@ -78,19 +75,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.svn_add_command
@@ -103,12 +88,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.user_makers_package_importable_name
    :noindex:
 
 Methods

@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

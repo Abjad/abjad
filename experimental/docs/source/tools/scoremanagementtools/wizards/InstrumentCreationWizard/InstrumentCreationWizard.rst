@@ -21,28 +21,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.transcript
@@ -52,12 +37,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.user_makers_package_importable_name
    :noindex:
 
 Methods

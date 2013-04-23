@@ -84,9 +84,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.sections
    :noindex:
 
@@ -102,19 +99,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.svn_add_command
@@ -127,12 +112,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.user_makers_package_importable_name
    :noindex:
 
 Methods

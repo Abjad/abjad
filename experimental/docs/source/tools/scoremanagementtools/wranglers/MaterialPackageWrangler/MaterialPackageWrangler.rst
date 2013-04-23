@@ -54,28 +54,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.score_internal_asset_container_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.temporary_asset_human_readable_name
@@ -100,12 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.user_makers_package_importable_name
    :noindex:
 
 Methods

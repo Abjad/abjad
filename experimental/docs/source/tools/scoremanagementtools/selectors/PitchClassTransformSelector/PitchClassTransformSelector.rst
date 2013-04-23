@@ -21,28 +21,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.transcript
@@ -52,12 +37,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.user_makers_package_importable_name
    :noindex:
 
 Read/write properties

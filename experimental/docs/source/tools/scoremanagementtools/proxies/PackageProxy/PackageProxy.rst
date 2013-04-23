@@ -90,9 +90,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.public_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.session
    :noindex:
 
@@ -105,19 +102,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.svn_add_command
@@ -136,12 +121,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.PackageProxy.PackageProxy.PackageProxy.user_makers_package_importable_name
    :noindex:
 
 Methods

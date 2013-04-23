@@ -51,9 +51,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.session
    :noindex:
 
@@ -66,19 +63,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.svn_add_command
@@ -91,12 +76,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.user_makers_package_importable_name
    :noindex:
 
 Methods

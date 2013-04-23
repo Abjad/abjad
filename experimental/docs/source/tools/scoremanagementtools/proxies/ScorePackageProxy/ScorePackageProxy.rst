@@ -159,9 +159,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_package_wranglers
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.session
    :noindex:
 
@@ -177,19 +174,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.svn_add_command
@@ -226,12 +211,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.untitled_indicator
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.user_makers_package_importable_name
    :noindex:
 
 Read/write properties

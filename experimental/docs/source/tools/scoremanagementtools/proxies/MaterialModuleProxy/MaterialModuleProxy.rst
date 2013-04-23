@@ -93,9 +93,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.sections
    :noindex:
 
@@ -111,19 +108,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.svn_add_command
@@ -136,12 +121,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.user_makers_package_importable_name
    :noindex:
 
 Methods

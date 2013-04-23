@@ -66,9 +66,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.ranged_section
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.section_lines
    :noindex:
 
@@ -81,19 +78,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.tokens
@@ -109,12 +94,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.unpacked_menu_entries
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.Menu.Menu.Menu.user_makers_package_importable_name
    :noindex:
 
 Read/write properties

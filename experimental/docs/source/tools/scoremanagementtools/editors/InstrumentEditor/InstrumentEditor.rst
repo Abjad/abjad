@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

@@ -39,9 +39,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.prompts
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.sections
    :noindex:
 
@@ -51,19 +48,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.tests
@@ -76,12 +61,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.user_makers_package_importable_name
    :noindex:
 
 Read/write properties

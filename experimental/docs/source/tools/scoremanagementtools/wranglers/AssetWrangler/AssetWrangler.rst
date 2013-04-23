@@ -48,28 +48,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.score_internal_asset_container_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.temporary_asset_human_readable_name
@@ -91,12 +76,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.user_makers_package_importable_name
    :noindex:
 
 Methods

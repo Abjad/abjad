@@ -48,28 +48,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.score_internal_asset_container_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.temporary_asset_human_readable_name
@@ -94,12 +79,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.user_makers_package_importable_name
    :noindex:
 
 Methods

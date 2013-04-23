@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

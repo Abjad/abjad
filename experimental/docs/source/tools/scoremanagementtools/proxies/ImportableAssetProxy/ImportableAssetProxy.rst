@@ -42,9 +42,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.session
    :noindex:
 
@@ -57,19 +54,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.svn_add_command
@@ -82,12 +67,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.user_makers_package_importable_name
    :noindex:
 
 Methods

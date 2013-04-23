@@ -32,9 +32,9 @@ def test_ScoreManagementObject_read_only_attributes_01():
 
 
     path = os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'stylesheets')
-    assert score_management_object.stylesheets_directory_name == path
+    assert score_management_object.configuration.stylesheets_directory_name == path
 
-    assert score_management_object.stylesheets_package_importable_name == 'scoremanagementtools.stylesheets'
+    assert score_management_object.configuration.stylesheets_package_importable_name == 'scoremanagementtools.stylesheets'
     assert isinstance(score_management_object.transcript, list)
     assert isinstance(score_management_object.transcript_signature, tuple)
     assert isinstance(score_management_object.ts, tuple)

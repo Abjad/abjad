@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

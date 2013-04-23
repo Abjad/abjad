@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

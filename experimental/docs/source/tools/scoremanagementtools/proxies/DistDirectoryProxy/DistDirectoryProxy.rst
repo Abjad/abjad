@@ -51,9 +51,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.public_content_short_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.session
    :noindex:
 
@@ -66,19 +63,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.svn_add_command
@@ -91,12 +76,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.user_makers_package_importable_name
    :noindex:
 
 Methods

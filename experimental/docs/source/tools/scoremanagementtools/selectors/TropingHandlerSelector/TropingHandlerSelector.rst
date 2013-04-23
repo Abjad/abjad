@@ -21,28 +21,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.transcript
@@ -52,12 +37,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.user_makers_package_importable_name
    :noindex:
 
 Read/write properties

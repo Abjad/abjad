@@ -33,28 +33,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.items_identifier
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.target_attribute_names
@@ -91,12 +76,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

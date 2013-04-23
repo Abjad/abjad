@@ -37,7 +37,7 @@ def test_StylesheetFileProxy_public_attributes_02():
     assert proxy.generic_class_name == 'stylesheet'
     assert proxy.human_readable_name == short_name
     assert proxy.is_versioned
-    assert proxy.parent_directory_name == proxy.stylesheets_directory_name
+    assert proxy.parent_directory_name == proxy.configuration.stylesheets_directory_name
     assert proxy.path_name == path_name
     assert proxy.plural_generic_class_name == 'stylesheets'
     assert proxy.short_name == short_name

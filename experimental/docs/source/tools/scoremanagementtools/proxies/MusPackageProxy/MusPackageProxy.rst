@@ -90,9 +90,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.public_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.session
    :noindex:
 
@@ -105,19 +102,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.svn_add_command
@@ -136,12 +121,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.user_makers_package_importable_name
    :noindex:
 
 Methods

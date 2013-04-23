@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

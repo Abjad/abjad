@@ -48,28 +48,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.score_internal_asset_container_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.temporary_asset_human_readable_name
@@ -91,12 +76,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.FileWrangler.FileWrangler.FileWrangler.user_makers_package_importable_name
    :noindex:
 
 Methods

@@ -84,9 +84,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.output_directory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.scores_to_show
    :noindex:
 
@@ -99,19 +96,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.testable_command_history_string
@@ -127,12 +112,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.user_input_is_consumed
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.core.Session.Session.Session.user_makers_package_importable_name
    :noindex:
 
 Read/write properties

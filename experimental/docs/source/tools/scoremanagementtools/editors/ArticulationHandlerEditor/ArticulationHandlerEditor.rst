@@ -27,28 +27,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.help_item_width
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.target_attribute_names
@@ -85,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.user_makers_package_importable_name
    :noindex:
 
 Methods

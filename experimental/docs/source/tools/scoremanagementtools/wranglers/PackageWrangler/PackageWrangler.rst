@@ -51,28 +51,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.score_internal_asset_container_importable_name_infix
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.temporary_asset_human_readable_name
@@ -97,12 +82,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.user_makers_package_importable_name
    :noindex:
 
 Methods

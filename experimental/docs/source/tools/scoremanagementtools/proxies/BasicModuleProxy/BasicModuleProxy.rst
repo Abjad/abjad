@@ -93,9 +93,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.plural_generic_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.scores_directory_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.sections
    :noindex:
 
@@ -111,19 +108,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.source_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.specifier_classes_package_importable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.specifier_classes_package_path_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.stylesheets_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.stylesheets_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.svn_add_command
@@ -136,12 +121,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.ts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.user_makers_directory_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagementtools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.user_makers_package_importable_name
    :noindex:
 
 Methods

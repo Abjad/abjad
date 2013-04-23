@@ -33,7 +33,7 @@ def test_FileProxy_public_attributes_02():
     assert file_proxy.generic_class_name == 'file'
     assert file_proxy.human_readable_name == short_name
     assert file_proxy.is_versioned
-    assert file_proxy.parent_directory_name == file_proxy.stylesheets_directory_name
+    assert file_proxy.parent_directory_name == file_proxy.configuration.stylesheets_directory_name
     assert file_proxy.path_name == path_name
     assert file_proxy.plural_generic_class_name == 'files'
     assert file_proxy.short_name == short_name
