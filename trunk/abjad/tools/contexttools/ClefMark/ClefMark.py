@@ -88,7 +88,19 @@ class ClefMark(ContextMark):
 
     ### PRIVATE PROPERTIES ###
 
-    _clef_name_to_middle_c_position = { 'treble': -6, 'alto': 0, 'tenor': 2, 'bass': 6, }
+    _clef_name_to_middle_c_position = {
+        'treble': -6,
+        'alto': 0,
+        'tenor': 2,
+        'bass': 6,
+        'french': -8,
+        'soprano': -4,
+        'mezzosoprano': -2,
+        'baritone': 4,
+        'varbaritone': 4,
+        'percussion': 0,
+        'tab': 0
+    } 
 
     @property
     def _contents_repr_string(self):
@@ -145,4 +157,23 @@ class ClefMark(ContextMark):
 
         Return integer number of stafflines.
         '''
-        return self._clef_name_to_middle_c_position[self._clef_name]
+        alteration = 0
+        if '_' in self._clef_name:
+            base_name, part, suffix = self._clef_name.partition('_')
+            if suffix == '8':
+                alteration = 7
+            elif suffix == '15':
+                alteration = 13
+            else:
+                raise Exception, "Bad clef alteration suffix: {!r}".format(suffix)
+        elif '^' in self._clef_name:
+            base_name, part, suffix = self._clef_name.partition('^')
+            if suffix == '8':
+                alteration = -7
+            elif suffix == '15':
+                alteration = -13
+            else:
+                raise Exception, "Bad clef alteration suffix: {!r}".format(suffix)
+        else:
+            base_name = self._clef_name
+        return self._clef_name_to_middle_c_position[base_name] + alteration
