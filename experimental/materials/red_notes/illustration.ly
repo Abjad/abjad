@@ -5,7 +5,7 @@
 \include "english.ly"
 \include "/Users/trevorbaca/Documents/abjad/trunk/abjad/cfg/abjad.scm"
 
-\include "/Users/trevorbaca/Documents/abjad/experimental/tools/scoremanagementtools/stylesheets/clean_letter_14.ly"
+\include "/Users/trevorbaca/Documents/abjad/experimental/tools/scoremanagertools/stylesheets/clean_letter_14.ly"
 
 \header {
 	tagline = \markup { "" }

@@ -1,0 +1,83 @@
+1.  Something takes a bunch of time. So optimize to make stuff take much less time.
+    Possibly by removing unnecessary output_material.py module interpretation.
+    Also possibly by removing all [safe_]imports() from the __init__.py files.
+    First run profiler to avoid unnecessary tinkering.
+
+2.  Make user input getter defaults work like menu defaults;
+    Implement default_value on user input getter.
+
+3.  Fix ScoreManagementObject.handle_user_input_with_default() default handling.
+
+4.  Define range inventories for all scores.
+
+5.  Implement material methods to move material packages from one location to another.
+
+6.  Find a way to include tags management in hidden menu of every package proxy.
+
+7.  Port output change awareness.
+
+8.  Implement something to tour all materials everywhere and examine in sequence.
+
+9.  Make user input handler creation work.
+
+10. Edit instrument transposition.
+
+11. Edit instrument clefs.
+
+12. Remove extra appearance of B-flat clarinet from clarinetist config menu.
+
+13. Change Instrument._default_performer_names to house (full, abbreviation) pairs.
+
+14. Use performer abbreviations to populate performer selection menu.
+
+15. Find a way to dynamically present (default) indicator to default menu entries.
+
+16. Consider keyword backtracking protocol to replace self.push_backtrack() / self.pop_backtrack().
+
+17. Distinguish positional editor parameters from keyword editor parameters.
+
+* * *
+
+18. Consolidate scores to single repository.
+
+19. Add a scores/test directory and check it into the scores repository.
+    Then add a scores/test/test_scores_import_scores.py file.
+    The file will test 'import example_score_1', 'import example_score_2', etc.
+    This will be a very high-level test to make sure that entire score packages remain importable.
+
+20. Extend stuff to allow makers to be stored in multiple directories.
+
+21. Extend stuff to allow scores to be stored in multiple directories.
+    Then create scoremanagertoolstestscores directory somewhere.
+    Then check Example Score I, Example Score II, Étude Score I in to directory.
+
+22. Simplify custom_score/mus/materials/__init__.py files.
+    File should probably contain nothing.
+    What is the design goal?
+    The design goal is that the score manager should always start.
+    The score manager should start even when a score directory contains explosively bad code.
+    This means that the score manager should basically import no code.
+    If the user requests explicit import then the score manager should use safe import.
+    Ultimately this should mean that safe_import() can be removed from *all* __init__.py files everywhere.
+    The system might preserve safe_import() to be used in direct response to user request for explicit import.
+
+23. Implement example_score_i.mus.materials.divisions to import example_score_i.mus.materials.time_signatures.
+    This will implement an intrapackage material import.
+    Implement example_score_ii.mus.materials.divisions to import example_score_i.mus.materials.time_signatures.
+    This will implement an interpackage material import.
+
+24. Encapsulate the stuff in ScoreManagementObject in newly implemented class.
+    Then include a reference to the class (perhaps as a class attribute) in ScoreManagementObject by composition.
+
+25. Remove the has_readable_... and is_readable_... properties from the system entirely.
+    Force such functionality to be method calls that will be noticeably expensive.
+
+26. Migrate all build_illustration.py modules from separate modules to bound class methods.
+
+27. Audit the UI of the entire materials management system by hand.
+
+28. Audit all __init__.py files and make all autoloading.
+
+29. Remove reference to 'path_name' everywhere. Change to just 'path'.
+
+30. Reimplement 'is_versioned' to look for the presence of hidden .svn directory. Maybe?

@@ -1,7 +1,7 @@
 from abjad import *
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from experimental.tools.scoremanagementtools import specifiers
+from experimental.tools.scoremanagertools import specifiers
 
 
 music_specifier = specifiers.MusicSpecifier([
