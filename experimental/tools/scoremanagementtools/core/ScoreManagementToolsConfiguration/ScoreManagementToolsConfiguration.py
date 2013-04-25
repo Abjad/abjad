@@ -8,8 +8,6 @@ class ScoreManagementToolsConfiguration(Configuration):
     The score management tools output directory is created
     if it does not already exist by referencing the
     `score_management_tools_output_directory` key in the configuration.
-
-    Return score management tools configuration object.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -21,8 +19,8 @@ class ScoreManagementToolsConfiguration(Configuration):
 
     def __init__(self):
         Configuration.__init__(self)
-        if not os.path.exists(self.SCORE_MANAGER_TRANSCRIPT_DIRECTORY):
-            os.mkdir(self.SCORE_MANAGER_TRANSCRIPT_DIRECTORY)
+        if not os.path.exists(self.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY):
+            os.mkdir(self.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -39,11 +37,11 @@ class ScoreManagementToolsConfiguration(Configuration):
     @property
     def _option_definitions(self):
         options = {
-            'score_manager_transcript_directory': {
+            'score_manager_transcripts_directory': {
                 'comment': [
                     '',
                     'Set to the directory where you want score manager transcripts written.',
-                    'Defaults to $HOME/.score_manager/transcripts/'
+                    'Defaults to $HOME/.score_manager/transcripts/.'
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(self.SCORE_MANAGER_CONFIGURATION_DIRECTORY, 'transcripts'))
@@ -59,7 +57,7 @@ class ScoreManagementToolsConfiguration(Configuration):
 
     @property
     def CONFIG_FILE_NAME(self):
-        return 'config.py'
+        return 'score_manager.cfg'
 
     @property
     def boilerplate_directory_name(self):
@@ -83,19 +81,19 @@ class ScoreManagementToolsConfiguration(Configuration):
 
     @property
     def score_external_chunks_package_importable_name(self):
-        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_CHUNKS_PATH'))
+        return os.path.basename(os.environ.get('SCORE_MANAGER_CHUNKS_DIRECTORY'))
 
     @property
     def score_external_chunks_package_path_name(self):
-        return os.environ.get('SCORE_MANAGEMENT_TOOLS_CHUNKS_PATH')
+        return os.environ.get('SCORE_MANAGER_CHUNKS_DIRECTORY')
 
     @property
     def score_external_materials_package_importable_name(self):
-        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH'))
+        return os.path.basename(os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY'))
 
     @property
     def score_external_materials_package_path_name(self):
-        return os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH')
+        return os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY')
 
     @property
     def score_external_package_importable_names(self):
@@ -115,11 +113,11 @@ class ScoreManagementToolsConfiguration(Configuration):
 
     @property
     def score_external_specifiers_package_importable_name(self):
-        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_SPECIFIERS_PATH'))
+        return os.path.basename(os.environ.get('SCORE_MANAGER_SPECIFIERS_DIRECTORY'))
 
     @property
     def score_external_specifiers_package_path_name(self):
-        return os.environ.get('SCORE_MANAGEMENT_TOOLS_SPECIFIERS_PATH')
+        return os.environ.get('SCORE_MANAGER_SPECIFIERS_DIRECTORY')
 
     @property
     def score_internal_chunks_package_importable_name_infix(self):
@@ -138,8 +136,8 @@ class ScoreManagementToolsConfiguration(Configuration):
         return 'experimental.tools.scoremanagementtools'
 
     @property
-    def SCORE_MANAGER_TRANSCRIPT_DIRECTORY(self):
-        return self._settings['score_manager_transcript_directory']
+    def SCORE_MANAGER_TRANSCRIPTS_DIRECTORY(self):
+        return self._settings['score_manager_transcripts_directory']
 
     @property
     def SCORE_MANAGER_CONFIGURATION_DIRECTORY(self):
@@ -175,11 +173,11 @@ class ScoreManagementToolsConfiguration(Configuration):
 
     @property
     def user_makers_directory_name(self):
-        return os.environ.get('SCORE_MANAGEMENT_TOOLS_USER_MAKERS_PATH')
+        return os.environ.get('USER_SPECIFIC_SCORE_MANAGER_MAKERS_DIRECTORY')
 
     @property
     def user_makers_package_importable_name(self):
-        return os.environ.get('SCORE_MANAGEMENT_TOOLS_USER_MAKERS_IMPORTABLE_NAME')
+        return os.environ.get('USER_SPECIFIC_SCORE_MANAGER_MAKERS_IMPORTABLE_NAME')
 
     ### PUBLIC METHODS ###
 

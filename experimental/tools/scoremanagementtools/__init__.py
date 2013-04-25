@@ -45,11 +45,11 @@ on your filesystem:
 2. Set score management tools environment variables. The following five environment variables 
 should be set in your profile, or equivalent:
 
-    export SCORE_MANAGEMENT_TOOLS_CHUNKS_PATH=$ABJADEXPERIMENTAL/sketches
-    export SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH=$ABJADEXPERIMENTAL/materials
-    export SCORE_MANAGEMENT_TOOLS_OUTPUT=$HOME/.scoremanagementtools/output
+    export SCORE_MANAGER_CHUNKS_DIRECTORY=$ABJADEXPERIMENTAL/sketches
+    export SCORE_MANAGER_MATERIALS_DIRECTORY=$ABJADEXPERIMENTAL/materials
+    export SCORE_MANAGER_TRANSCRIPTS_DIRECTORY=$HOME/.scoremanagementtools/output
     export SCORE_MANAGEMENT_TOOLS_PATH=$ABJADEXPERIMENTAL/tools/scoremanagementtools
-    export SCORE_MANAGEMENT_TOOLS_SPECIFIERS_PATH=$ABJADEXPERIMENTAL/specifiers
+    export SCORE_MANAGER_SPECIFIERS_DIRECTORY=$ABJADEXPERIMENTAL/specifiers
 
 You may also set the following two user-specific environment variables.
 These user-specific environment variables are not required for
@@ -57,7 +57,7 @@ the score management tools test battery to run correctly. Set these two user-spe
 environment variables if you would like to implement user-specific
 maker classes and also make them available to score management tools:
 
-    export SCORE_MANAGEMENT_TOOLS_USER_MAKERS_PATH=$HOME/music/makers
+    export USER_SPECIFIC_SCORE_MANAGER_MAKERS_DIRECTORY=$HOME/music/makers
     export SCORE_MANAGEMENT_TOOLS_USEr_MAKERS_IMPORTABLE_NAME=music.makers
 
 You should also set the HANDLERS environment variable because score management tools uses handlertools:

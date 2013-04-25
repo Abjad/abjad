@@ -21,6 +21,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.HOME_DIRECTORY_PATH
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.SCORE_MANAGER_CONFIGURATION_DIRECTORY
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.ScoreManagementToolsConfiguration.boilerplate_directory_name
    :noindex:
 

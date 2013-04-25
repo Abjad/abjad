@@ -177,7 +177,7 @@ class Session(ScoreManagementObject):
     # TODO: rename to self.score_manaegment_tools_output_directory
     @property
     def output_directory(self):
-        return os.environ.get('SCORE_MANAGEMENT_TOOLS_OUTPUT')
+        return os.environ.get('SCORE_MANAGER_TRANSCRIPTS_DIRECTORY')
 
     @property
     def scores_to_show(self):

@@ -26,9 +26,9 @@ def test_MaterialPackageWrangler_iteration_02():
 
 def test_MaterialPackageWrangler_iteration_03():
 
-    assert os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH'), 'red_notes') in \
+    assert os.path.join(os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY'), 'red_notes') in \
         wrangler.list_asset_path_names()
-    assert os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_MATERIALS_PATH'), 'red_notes') not in \
+    assert os.path.join(os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY'), 'red_notes') not in \
         wrangler.list_asset_path_names(head='example_score_1')
     assert wrangler.list_asset_path_names(head='asdf') == []
 
