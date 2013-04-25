@@ -1,9 +1,9 @@
 import abc
 import collections
 import configobj
-import validate
 import os
 import time
+import validate
 from abjad.tools import abctools
 
 
