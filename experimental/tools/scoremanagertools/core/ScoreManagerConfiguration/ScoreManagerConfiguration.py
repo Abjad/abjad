@@ -60,7 +60,7 @@ class ScoreManagerConfiguration(Configuration):
                     '',
                     'Set to the directory where you house your scores. No default provided.'
                 ],
-                'spec': 'string()'
+                'spec': "string(default='')"
             },
             'user_specific_score_manager_makers_directory_path': {
                 'comment': [
