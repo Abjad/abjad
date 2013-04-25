@@ -21,16 +21,17 @@ def test_Session_read_only_properties_01():
         session.configuration.SCORE_MANAGER_SKETCHES_DIRECTORY_PATH
 
     assert session.current_materials_package_importable_name == \
-        os.path.basename(os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY'))
-    assert session.current_materials_package_path == os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY')
+        os.path.basename(session.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH)
+    assert session.current_materials_package_path == session.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH
 
     assert session.current_score_package_proxy is None
     assert session.current_score_path is None
 
     assert session.current_specifiers_package_importable_name == \
-        os.path.basename(os.environ.get('SCORE_MANAGER_SPECIFIERS_DIRECTORY'))
-    assert session.current_specifiers_package_path == os.environ.get('SCORE_MANAGER_SPECIFIERS_DIRECTORY')
-
+        os.path.basename(session.configuration.SCORE_MANAGER_SPECIFIERS_DIRECTORY_PATH)
+    assert session.current_specifiers_package_path == \
+        session.configuration.SCORE_MANAGER_SPECIFIERS_DIRECTORY_PATH
+        
     assert session.explicit_command_history == []
     assert not session.is_complete
     assert session.is_displayable

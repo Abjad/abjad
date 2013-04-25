@@ -9,9 +9,9 @@ scores_directory_path = score_manager_configuration.SCORES_DIRECTORY_PATH
 def test_ScoreManagementObject_path_name_to_package_importable_name_01():
 
     assert score_manager_object.path_to_package_importable_name(
-        os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY')) == 'materials'
+        score_manager_configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH) == 'materials'
     assert score_manager_object.path_to_package_importable_name(
-        os.environ.get('SCORE_MANAGER_SPECIFIERS_DIRECTORY')) == 'specifiers'
+        score_manager_configuration.SCORE_MANAGER_SPECIFIERS_DIRECTORY_PATH) == 'specifiers'
     assert score_manager_object.path_to_package_importable_name(
         score_manager_configuration.SCORE_MANAGER_SKETCHES_DIRECTORY_PATH) == 'sketches'
 

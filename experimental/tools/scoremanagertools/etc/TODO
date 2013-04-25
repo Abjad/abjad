@@ -81,3 +81,6 @@
 29. Audit references to '*_directory_name' and see if most should change to '*_directory_path'.
 
 30. Reimplement 'is_versioned' to look for the presence of hidden .svn directory. Maybe?
+
+31. Move experimental/materials to scoremanagertools/materials.
+    move experimental/specifiers to scoremanagertools/specifiers.

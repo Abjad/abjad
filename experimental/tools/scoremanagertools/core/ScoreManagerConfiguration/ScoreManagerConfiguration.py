@@ -109,11 +109,11 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def score_external_materials_package_importable_name(self):
-        return os.path.basename(os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY'))
+        return os.path.basename(self.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH)
 
     @property
     def score_external_materials_package_path(self):
-        return os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY')
+        return self.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH
 
     @property
     def score_external_package_importable_names(self):
@@ -133,11 +133,11 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def score_external_specifiers_package_importable_name(self):
-        return os.path.basename(os.environ.get('SCORE_MANAGER_SPECIFIERS_DIRECTORY'))
+        return os.path.basename(self.SCORE_MANAGER_SPECIFIERS_DIRECTORY_PATH)
 
     @property
     def score_external_specifiers_package_path(self):
-        return os.environ.get('SCORE_MANAGER_SPECIFIERS_DIRECTORY')
+        return self.SCORE_MANAGER_SPECIFIERS_DIRECTORY_PATH
 
     @property
     def score_internal_chunks_package_importable_name_infix(self):
@@ -159,6 +159,14 @@ class ScoreManagerConfiguration(Configuration):
     def score_manager_tools_package_importable_name(self):
         return os.path.basename(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH)
 
+    @property
+    def SCORE_MANAGER_MATERIALS_DIRECTORY_PATH(self):
+        return os.path.join(self.abjad_configuration.ABJAD_EXPERIMENTAL_DIRECTORY_PATH, 'materials')
+    
+    @property
+    def SCORE_MANAGER_SPECIFIERS_DIRECTORY_PATH(self):
+        return os.path.join(self.abjad_configuration.ABJAD_EXPERIMENTAL_DIRECTORY_PATH, 'specifiers')
+    
     @property
     def SCORE_MANAGER_TOOLS_DIRECTORY_PATH(self):
         return os.path.join(
