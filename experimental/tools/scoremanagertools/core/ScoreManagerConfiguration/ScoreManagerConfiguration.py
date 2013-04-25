@@ -20,7 +20,7 @@ class ScoreManagerConfiguration(Configuration):
     def __init__(self):
         Configuration.__init__(self)
         if not os.path.exists(self.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY_PATH):
-            os.mkdirs(self.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY_PATH)
+            os.makedirs(self.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY_PATH)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
