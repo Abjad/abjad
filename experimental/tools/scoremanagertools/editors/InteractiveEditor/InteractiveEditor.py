@@ -1,12 +1,12 @@
-from experimental.tools.scoremanagertools.core.ScoreManagementObject import ScoreManagementObject
+from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 
 
-class InteractiveEditor(ScoreManagementObject):
+class InteractiveEditor(ScoreManagerObject):
 
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
-        ScoreManagementObject.__init__(self, session=session)
+        ScoreManagerObject.__init__(self, session=session)
         if target is not None:
             assert isinstance(target, self.target_class)
         self.target = target

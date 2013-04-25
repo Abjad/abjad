@@ -6,7 +6,7 @@
 2.  Make user input getter defaults work like menu defaults;
     Implement default_value on user input getter.
 
-3.  Fix ScoreManagementObject.handle_user_input_with_default() default handling.
+3.  Fix ScoreManagerObject.handle_user_input_with_default() default handling.
 
 4.  Define range inventories for all scores.
 
@@ -66,8 +66,8 @@
     Implement example_score_ii.mus.materials.divisions to import example_score_i.mus.materials.time_signatures.
     This will implement an interpackage material import.
 
-24. Encapsulate the stuff in ScoreManagementObject in newly implemented class.
-    Then include a reference to the class (perhaps as a class attribute) in ScoreManagementObject by composition.
+24. Encapsulate the stuff in ScoreManagerObject in newly implemented class.
+    Then include a reference to the class (perhaps as a class attribute) in ScoreManagerObject by composition.
 
 25. Remove the has_readable_... and is_readable_... properties from the system entirely.
     Force such functionality to be method calls that will be noticeably expensive.
@@ -84,5 +84,5 @@
 
 31. Audit references to '*_directory_name' and see if most should change to '*_directory_path'.
 
-32. Rename ScoreManagementObject to ScoreManagerObject.
-    Remove 'management' from codebase.
+32. Remove 'management' from codebase.
+    Change score_management_object to score_manager_object.

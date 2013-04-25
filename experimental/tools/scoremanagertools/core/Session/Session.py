@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.core.ScoreManagementObject import ScoreManagementObject
+from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import \
     ScoreManagerConfiguration
 from experimental.tools.scoremanagertools.core.Transcript import Transcript
 
 
-class Session(ScoreManagementObject):
+class Session(ScoreManagerObject):
 
     ### INITIALIZER ###
 

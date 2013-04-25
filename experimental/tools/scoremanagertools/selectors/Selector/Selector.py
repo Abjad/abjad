@@ -1,11 +1,11 @@
-from experimental.tools.scoremanagertools.core.ScoreManagementObject import ScoreManagementObject
+from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 
 
-class Selector(ScoreManagementObject):
+class Selector(ScoreManagerObject):
 
     def __init__(self, is_keyed=False, is_numbered=False,
         is_parenthetically_numbered=True, is_ranged=False, items=None, session=None):
-        ScoreManagementObject.__init__(self, session=session)
+        ScoreManagerObject.__init__(self, session=session)
         self.is_keyed = is_keyed
         self.is_numbered = is_numbered
         self.is_parenthetically_numbered = is_parenthetically_numbered

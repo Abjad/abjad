@@ -2,9 +2,9 @@ import os
 from experimental import *
 
 
-def test_ScoreManagementObject_read_only_attributes_01():
+def test_ScoreManagerObject_read_only_attributes_01():
 
-    score_management_object = scoremanagertools.core.ScoreManagementObject()
+    score_management_object = scoremanagertools.core.ScoreManagerObject()
 
     path = os.path.join(
         score_management_object.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH,
@@ -28,10 +28,10 @@ def test_ScoreManagementObject_read_only_attributes_01():
 
     path = os.path.join(
         score_management_object.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH,
-        'core', 'ScoreManagementObject', 'ScoreManagementObject.py')
+        'core', 'ScoreManagerObject', 'ScoreManagerObject.py')
     assert score_management_object.source_file_name == path
 
-    assert score_management_object._spaced_class_name == 'score management object'
+    assert score_management_object._spaced_class_name == 'score manager object'
     assert score_management_object.configuration.score_external_materials_package_importable_name == 'materials'
 
 

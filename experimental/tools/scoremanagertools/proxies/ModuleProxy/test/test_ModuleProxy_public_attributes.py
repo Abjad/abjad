@@ -35,7 +35,7 @@ def test_ModuleProxy_public_attributes_02():
     '''With path.
     '''
 
-    score_management_object = scoremanagertools.core.ScoreManagementObject()
+    score_management_object = scoremanagertools.core.ScoreManagerObject()
     module_importable_name = '.'.join([
         score_management_object.configuration.score_external_materials_package_importable_name, 'red_notes', 'material_definition'])
     proxy = scoremanagertools.proxies.ModuleProxy(module_importable_name=module_importable_name)

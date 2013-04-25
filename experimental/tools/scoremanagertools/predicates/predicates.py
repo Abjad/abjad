@@ -14,10 +14,10 @@ def is_articulation_token(expr):
         return False
 
 def is_available_underscore_delimited_lowercase_package_name(expr):
-    from experimental.tools.scoremanagertools.core.ScoreManagementObject import ScoreManagementObject
+    from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
     if stringtools.is_underscore_delimited_lowercase_package_name(expr):
         if 3 <= len(expr):
-            score_management_object = ScoreManagementObject()
+            score_management_object = ScoreManagerObject()
             return not score_management_object.package_exists(expr)
     return False
 
@@ -52,8 +52,8 @@ def is_dynamic_token(expr):
         return False
 
 def is_existing_package_name(expr):
-    from experimental.tools.scoremanagertools.core.ScoreManagementObject import ScoreManagementObject
-    score_management_object = ScoreManagementObject()
+    from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
+    score_management_object = ScoreManagerObject()
     return score_management_object.package_exists(expr)
 
 def is_hairpin_token(expr):

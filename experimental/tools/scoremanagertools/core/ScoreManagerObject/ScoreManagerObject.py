@@ -15,7 +15,7 @@ from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import 
     ScoreManagerConfiguration
 
 
-class ScoreManagementObject(AbjadObject):
+class ScoreManagerObject(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 

@@ -2,11 +2,11 @@ import abc
 import os
 import shutil
 import subprocess
-from experimental.tools.scoremanagertools.core.ScoreManagementObject import ScoreManagementObject
+from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 from experimental.tools.scoremanagertools.menuing.UserInputGetter import UserInputGetter
 
 
-class AssetProxy(ScoreManagementObject):
+class AssetProxy(ScoreManagerObject):
 
     ### CLASS ATTRIBUTES ###
 
@@ -17,7 +17,7 @@ class AssetProxy(ScoreManagementObject):
 
     def __init__(self, path_name=None, session=None):
         assert isinstance(path_name, (str, type(None)))
-        ScoreManagementObject.__init__(self, session=session)
+        ScoreManagerObject.__init__(self, session=session)
         self._path_name = path_name
 
     ### SPECIAL METHODS ###

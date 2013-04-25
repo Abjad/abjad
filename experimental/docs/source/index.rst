@@ -488,8 +488,8 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/scoremanagertools/chunks/Chunk/Chunk
-      tools/scoremanagertools/core/ScoreManagementObject/ScoreManagementObject
       tools/scoremanagertools/core/ScoreManagerConfiguration/ScoreManagerConfiguration
+      tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
       tools/scoremanagertools/core/Session/Session
       tools/scoremanagertools/core/Transcript/Transcript
       tools/scoremanagertools/editors/ArticulationHandlerEditor/ArticulationHandlerEditor
@@ -695,8 +695,8 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/scoremanagertools/chunks/Chunk/Chunk
-      tools/scoremanagertools/core/ScoreManagementObject/ScoreManagementObject
       tools/scoremanagertools/core/ScoreManagerConfiguration/ScoreManagerConfiguration
+      tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
       tools/scoremanagertools/core/Session/Session
       tools/scoremanagertools/core/Transcript/Transcript
       tools/scoremanagertools/editors/ArticulationHandlerEditor/ArticulationHandlerEditor

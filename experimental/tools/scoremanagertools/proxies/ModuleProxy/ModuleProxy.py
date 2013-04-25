@@ -1,17 +1,17 @@
 import os
-from experimental.tools.scoremanagertools.core.ScoreManagementObject import ScoreManagementObject
+from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 from experimental.tools.scoremanagertools.menuing.UserInputGetter import UserInputGetter
 from experimental.tools.scoremanagertools.proxies.ImportableAssetProxy import ImportableAssetProxy
 from experimental.tools.scoremanagertools.proxies.ParsableFileProxy import ParsableFileProxy
 
 
 #class ModuleProxy(ParsableFileProxy, ImportableAssetProxy):
-class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagementObject):
+class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
 
     ### INITIALIZER ###
 
     def __init__(self, module_importable_name=None, session=None):
-        ScoreManagementObject.__init__(self, session=session)
+        ScoreManagerObject.__init__(self, session=session)
         module_importable_name = self.strip_py_extension(module_importable_name)
         path_name = self.module_importable_name_to_path_name(module_importable_name)
         ParsableFileProxy.__init__(self, path_name=path_name, session=self.session)

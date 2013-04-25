@@ -2,9 +2,9 @@ import os
 from experimental import *
 
 
-def test_ScoreManagementObject_public_methods_01():
+def test_ScoreManagerObject_public_methods_01():
 
-    score_management_object = scoremanagertools.core.ScoreManagementObject()
+    score_management_object = scoremanagertools.core.ScoreManagerObject()
 
     path = os.path.join(
         score_management_object.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 

@@ -1,7 +1,7 @@
 import os
 import sys
 from abjad.tools import iotools
-from experimental.tools.scoremanagertools.core.ScoreManagementObject import ScoreManagementObject
+from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 from experimental.tools.scoremanagertools.proxies.DirectoryProxy import DirectoryProxy
 from experimental.tools.scoremanagertools.proxies.ImportableAssetProxy import ImportableAssetProxy
 from experimental.tools.scoremanagertools.proxies.InitializerFileProxy import InitializerFileProxy
@@ -9,7 +9,7 @@ from experimental.tools.scoremanagertools.helpers import safe_import
 
 
 #class PackageProxy(DirectoryProxy, ImportableAssetProxy):
-class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagementObject):
+class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
 
     ### INITIALIZER ###
 
@@ -17,7 +17,7 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagementObject):
 #        path_name = self.package_importable_name_to_path_name(package_importable_name)
 #        DirectoryProxy.__init__(self, path_name=path_name, session=session)
 #        ImportableAssetProxy.__init__(self, asset_full_name=package_importable_name, session=self.session)
-        ScoreManagementObject.__init__(self, session=session)
+        ScoreManagerObject.__init__(self, session=session)
         path_name = self.package_importable_name_to_path_name(package_importable_name)
         DirectoryProxy.__init__(self, path_name=path_name, session=self.session)
         ImportableAssetProxy.__init__(self, asset_full_name=package_importable_name, session=self.session)

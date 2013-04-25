@@ -1,16 +1,16 @@
 import os
 import subprocess
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.core.ScoreManagementObject.ScoreManagementObject import ScoreManagementObject
+from experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject import ScoreManagerObject
 from experimental.tools.scoremanagertools import predicates
 
 
-class MenuObject(ScoreManagementObject):
+class MenuObject(ScoreManagerObject):
 
     ### INITIALIZER ###
 
     def __init__(self, session=None, where=None, title=None):
-        ScoreManagementObject.__init__(self, session=session)
+        ScoreManagerObject.__init__(self, session=session)
         self.indent_level = 0
         self.prompt_default = None
         self.should_clear_terminal = False
@@ -59,7 +59,7 @@ class MenuObject(ScoreManagementObject):
     def conditionally_clear_terminal(self):
         if not self.session.hide_next_redraw:
             if self.should_clear_terminal:
-                ScoreManagementObject.conditionally_clear_terminal(self)
+                ScoreManagerObject.conditionally_clear_terminal(self)
 
     def edit_client_source_file(self):
         if self.where is not None:

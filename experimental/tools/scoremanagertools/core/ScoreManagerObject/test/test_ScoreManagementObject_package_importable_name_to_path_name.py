@@ -1,10 +1,10 @@
 import os
 from experimental import *
 
-score_management_object = scoremanagertools.core.ScoreManagementObject()
+score_management_object = scoremanagertools.core.ScoreManagerObject()
 
 
-def test_ScoreManagementObject_package_importable_name_to_path_name_01():
+def test_ScoreManagerObject_package_importable_name_to_path_name_01():
 
     assert score_management_object.package_importable_name_to_path_name('materials') == os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY')
     assert score_management_object.package_importable_name_to_path_name('sketches') == os.environ.get('SCORE_MANAGER_CHUNKS_DIRECTORY')
