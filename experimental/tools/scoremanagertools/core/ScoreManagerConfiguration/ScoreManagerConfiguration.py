@@ -37,20 +37,20 @@ class ScoreManagerConfiguration(Configuration):
     @property
     def _option_definitions(self):
         options = {
+            'score_manager_sketches_directory_path': {
+                'comment': [
+                    '',
+                    'Set to the directory where you want score manager to store sketches.',
+                    'Defaults to $HOME/.score_manager/sketches/.'
+                ],
+                'spec': 'string(default={!r})'.format(
+                    os.path.join(self.SCORE_MANAGER_CONFIGURATION_DIRECTORY, 'sketches'))
+            },
             'score_manager_transcripts_directory_path': {
                 'comment': [
                     '',
                     'Set to the directory where you want score manager transcripts written.',
                     'Defaults to $HOME/.score_manager/transcripts/.'
-                ],
-                'spec': 'string(default={!r})'.format(
-                    os.path.join(self.SCORE_MANAGER_CONFIGURATION_DIRECTORY, 'transcripts'))
-            },
-            'score_manager_chunks_directory_path': {
-                'comment': [
-                    '',
-                    'Set to the directory where you want score manager to store sketches.',
-                    'Defaults to $HOME/.score_manager/sketches/.'
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(self.SCORE_MANAGER_CONFIGURATION_DIRECTORY, 'transcripts'))
@@ -97,8 +97,7 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def score_external_chunks_package_importable_name(self):
-        return os.path.basename(os.environ.get('SCORE_MANAGER_CHUNKS_DIRECTORY'))
-        #return os.path.basename(self.SCORE_MANAGER_SKETCHES_DIRECTORY_PATH)
+        return os.path.basename(self.SCORE_MANAGER_SKETCHES_DIRECTORY_PATH)
 
     @property
     def SCORE_MANAGER_SKETCHES_DIRECTORY_PATH(self):
@@ -106,7 +105,7 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def score_external_chunks_package_path(self):
-        return os.environ.get('SCORE_MANAGER_CHUNKS_DIRECTORY')
+        return self._settings['score_manager_sketches_directory_path']
 
     @property
     def score_external_materials_package_importable_name(self):

@@ -3,7 +3,7 @@ from abjad.tools import contexttools
 from experimental import *
 
 
-def test_ScoreManagerObject_expr_to_parent_package_short_name_01():
+def test_ScoreManagementObject_expr_to_parent_package_short_name_01():
 
     score_manager_object = scoremanagertools.core.ScoreManagerObject()
 

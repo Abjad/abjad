@@ -2,7 +2,7 @@ import os
 from experimental import *
 
 
-def test_ScoreManagerObject_public_methods_01():
+def test_ScoreManagementObject_public_methods_01():
 
     score_manager_object = scoremanagertools.core.ScoreManagerObject()
 

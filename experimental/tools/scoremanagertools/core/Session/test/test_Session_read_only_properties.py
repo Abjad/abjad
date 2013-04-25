@@ -16,8 +16,9 @@ def test_Session_read_only_properties_01():
     assert isinstance(session.complete_transcript, scoremanagertools.core.Transcript)
 
     assert session.current_chunks_package_importable_name == \
-        os.path.basename(os.environ.get('SCORE_MANAGER_CHUNKS_DIRECTORY'))
-    assert session.current_chunks_package_path == os.environ.get('SCORE_MANAGER_CHUNKS_DIRECTORY')
+        os.path.basename(session.configuration.SCORE_MANAGER_SKETCHES_DIRECTORY_PATH)
+    assert session.current_chunks_package_path == \
+        session.configuration.SCORE_MANAGER_SKETCHES_DIRECTORY_PATH
 
     assert session.current_materials_package_importable_name == \
         os.path.basename(os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY'))

@@ -2,7 +2,7 @@ import os
 from experimental import *
 
 
-def test_ScoreManagerObject_read_only_attributes_01():
+def test_ScoreManagementObject_read_only_attributes_01():
 
     score_manager_object = scoremanagertools.core.ScoreManagerObject()
 
