@@ -281,7 +281,7 @@ class ScoreManagementObject(AbjadObject):
 
     def list_score_package_short_names(self, head=None):
         result = []
-        for name in os.listdir(self.configuration.scores_directory_name):
+        for name in os.listdir(self.configuration.SCORES_DIRECTORY_PATH):
             if name[0].isalpha():
                 if head and name == head:
                     return [name]
@@ -337,7 +337,7 @@ class ScoreManagementObject(AbjadObject):
                 [self.configuration.score_external_specifiers_package_path_name] + \
                 package_importable_name_parts[1:]
         else:
-            directory_parts = [self.configuration.scores_directory_name] + package_importable_name_parts[:]
+            directory_parts = [self.configuration.SCORES_DIRECTORY_PATH] + package_importable_name_parts[:]
         directory = os.path.join(*directory_parts)
         return directory
 
@@ -361,8 +361,8 @@ class ScoreManagementObject(AbjadObject):
             prefix_length = len(os.path.dirname(self.configuration.score_external_chunks_package_path_name)) + 1
         elif path_name.startswith(self.configuration.score_external_specifiers_package_path_name):
             prefix_length = len(os.path.dirname(self.configuration.score_external_specifiers_package_path_name)) + 1
-        elif path_name.startswith(self.configuration.scores_directory_name):
-            prefix_length = len(self.configuration.scores_directory_name) + 1
+        elif path_name.startswith(self.configuration.SCORES_DIRECTORY_PATH):
+            prefix_length = len(self.configuration.SCORES_DIRECTORY_PATH) + 1
         else:
             return
         package_importable_name = path_name[prefix_length:]

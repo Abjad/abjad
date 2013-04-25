@@ -55,6 +55,13 @@ class ScoreManagerConfiguration(Configuration):
                 'spec': 'string(default={!r})'.format(
                     os.path.join(self.SCORE_MANAGER_CONFIGURATION_DIRECTORY, 'transcripts'))
             },
+            'scores_directory_path': {
+                'comment': [
+                    '',
+                    'Set to the directory where you house your scores. No default provided.'
+                ],
+                'spec': 'string()'
+            },
         }
         return options
 
@@ -169,8 +176,8 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.join(self.HOME_DIRECTORY_PATH, '.score_manager')
 
     @property
-    def scores_directory_name(self):
-        return os.environ.get('SCORES')
+    def SCORES_DIRECTORY_PATH(self):
+        return os.path.normpath(self._settings['scores_directory_path'])
 
     @property
     def specifier_classes_package_importable_name(self):

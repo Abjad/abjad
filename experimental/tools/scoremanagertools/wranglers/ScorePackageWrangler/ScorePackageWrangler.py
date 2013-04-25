@@ -24,7 +24,7 @@ class ScorePackageWrangler(PackageWrangler):
 
     @property
     def current_asset_container_path_name(self):
-        return self.configuration.scores_directory_name
+        return self.configuration.SCORES_DIRECTORY_PATH
 
     @property
     def visible_score_titles(self):
