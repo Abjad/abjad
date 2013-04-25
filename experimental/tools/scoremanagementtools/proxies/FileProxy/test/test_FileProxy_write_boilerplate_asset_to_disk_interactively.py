@@ -4,9 +4,11 @@ from experimental import *
 
 def test_FileProxy_write_boilerplate_asset_to_disk_interactively_01():
 
-    path_name = os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'temporary_file.txt')
-    file_proxy = scoremanagementtools.proxies.FileProxy(path_name=path_name)
-    assert not os.path.exists(path_name)
+    score_manager_configuration = scoremanagementtools.core.ScoreManagerConfiguration()
+    path = os.path.join(
+        score_manager_configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'temporary_file.txt')
+    file_proxy = scoremanagementtools.proxies.FileProxy(path_name=path)
+    assert not os.path.exists(path)
 
     try:
         boilerplate_asset_name = 'canned_testnumbers_material_definition.py'
@@ -18,6 +20,6 @@ def test_FileProxy_write_boilerplate_asset_to_disk_interactively_01():
         assert source.readlines() == target.readlines()
         file_proxy.remove()
     finally:
-        if os.path.exists(path_name):
-            os.remove(path_name)
-        assert not os.path.exists(path_name)
+        if os.path.exists(path):
+            os.remove(path)
+        assert not os.path.exists(path)

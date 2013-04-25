@@ -11,9 +11,9 @@ class ImportableAssetProxy(AssetProxy):
 
     def __repr__(self):
         if self.importable_name is not None:
-            return '{}({!r})'.format(self.class_name, self.importable_name)
+            return '{}({!r})'.format(self._class_name, self.importable_name)
         else:
-            return '{}()'.format(self.class_name)
+            return '{}()'.format(self._class_name)
 
     ### READ-ONLY PROPERTIES ###
 

@@ -31,7 +31,7 @@ class Specifier(AbjadObject):
 
     @property
     def _human_readable_class_name(self):
-        return iotools.uppercamelcase_to_space_delimited_lowercase(self.class_name)
+        return iotools.uppercamelcase_to_space_delimited_lowercase(self._class_name)
 
 #    @property
 #    def _keyword_argument_names(self):

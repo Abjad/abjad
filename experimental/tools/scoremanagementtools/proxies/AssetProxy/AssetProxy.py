@@ -24,9 +24,9 @@ class AssetProxy(ScoreManagementObject):
 
     def __repr__(self):
         if self.path_name:
-            return '{}({!r})'.format(self.class_name, self.path_name)
+            return '{}({!r})'.format(self._class_name, self.path_name)
         else:
-            return '{}()'.format(self.class_name)
+            return '{}()'.format(self._class_name)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

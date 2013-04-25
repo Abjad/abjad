@@ -17,7 +17,7 @@ class DirectoryProxy(AssetProxy):
         return not self == other
 
     def __repr__(self):
-        return '{}({!r})'.format(self.class_name, self.path_name)
+        return '{}({!r})'.format(self._class_name, self.path_name)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

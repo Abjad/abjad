@@ -8,5 +8,7 @@ def test_DistDirectoryProxy_01():
 
     assert dist_proxy.path_name == os.path.join(os.environ.get('SCORES'), 'example_score_1', 'dist')
     assert dist_proxy.source_file_name == \
-        os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'proxies', 'DistDirectoryProxy', 'DistDirectoryProxy.py')
+        os.path.join(
+            dist_proxy.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH,
+            'proxies', 'DistDirectoryProxy', 'DistDirectoryProxy.py')
     assert dist_proxy._spaced_class_name == 'dist directory proxy'

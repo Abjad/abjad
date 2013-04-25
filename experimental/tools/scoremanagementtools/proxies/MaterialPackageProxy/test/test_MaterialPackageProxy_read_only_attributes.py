@@ -1,7 +1,5 @@
 import os
 from experimental import *
-from abjad.tools import measuretools
-from abjad.tools import notetools
 
 
 def test_MaterialPackageProxy_read_only_attributes_01():
@@ -192,7 +190,8 @@ def test_MaterialPackageProxy_read_only_attributes_03():
     assert      mpp.should_have_output_material_module
     assert not  mpp.should_have_user_input_module
     assert      mpp.stylesheet_file_name_on_disk == \
-        os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'stylesheets', 'clean_letter_14.ly')
+        os.path.join(mpp.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH,
+            'stylesheets', 'clean_letter_14.ly')
     # TODO:
     #assert      mpp.stylesheet_file_proxy is not None
     assert      mpp.user_input_module_file_name is None

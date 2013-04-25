@@ -52,7 +52,7 @@ class AssetWrangler(ScoreManagementObject):
         if self.configuration.score_internal_asset_container_importable_name_infix:
             parts.append(self.configuration.score_internal_asset_container_importable_name_infix)
         parts = ', '.join([repr(part) for part in parts])
-        return '{}({})'.format(self.class_name, parts)
+        return '{}({})'.format(self._class_name, parts)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

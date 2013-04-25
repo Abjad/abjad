@@ -1,5 +1,6 @@
 import os
 from abjad.tools.configurationtools.Configuration import Configuration
+from abjad.tools.configurationtools.AbjadConfiguration import AbjadConfiguration
 
 
 class ScoreManagerConfiguration(Configuration):
@@ -11,16 +12,15 @@ class ScoreManagerConfiguration(Configuration):
     '''
 
     ### CLASS ATTRIBUTES ###
-
-    score_management_tools_package_importable_name = \
-        os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'))
+    
+    abjad_configuration = AbjadConfiguration()
 
     ### INITIALIZER ###
 
     def __init__(self):
         Configuration.__init__(self)
-        if not os.path.exists(self.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY):
-            os.mkdirs(self.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY)
+        if not os.path.exists(self.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY_PATH):
+            os.mkdirs(self.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY_PATH)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -37,11 +37,20 @@ class ScoreManagerConfiguration(Configuration):
     @property
     def _option_definitions(self):
         options = {
-            'score_manager_transcripts_directory': {
+            'score_manager_transcripts_directory_path': {
                 'comment': [
                     '',
                     'Set to the directory where you want score manager transcripts written.',
                     'Defaults to $HOME/.score_manager/transcripts/.'
+                ],
+                'spec': 'string(default={!r})'.format(
+                    os.path.join(self.SCORE_MANAGER_CONFIGURATION_DIRECTORY, 'transcripts'))
+            },
+            'score_manager_chunks_directory_path': {
+                'comment': [
+                    '',
+                    'Set to the directory where you want score manager to store sketches.',
+                    'Defaults to $HOME/.score_manager/sketches/.'
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(self.SCORE_MANAGER_CONFIGURATION_DIRECTORY, 'transcripts'))
@@ -61,7 +70,7 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def boilerplate_directory_name(self):
-        return os.path.join(self.score_management_tools_package_path_name, 'boilerplate')
+        return os.path.join(self.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'boilerplate')
 
     @property
     def editors_package_importable_name(self):
@@ -69,11 +78,11 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def editors_package_path_name(self):
-        return os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'editors')
+        return os.path.join(self.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'editors')
 
     @property
     def makers_directory_name(self):
-        return os.path.join(self.score_management_tools_package_path_name, 'makers')
+        return os.path.join(self.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'makers')
 
     @property
     def makers_package_importable_name(self):
@@ -82,6 +91,11 @@ class ScoreManagerConfiguration(Configuration):
     @property
     def score_external_chunks_package_importable_name(self):
         return os.path.basename(os.environ.get('SCORE_MANAGER_CHUNKS_DIRECTORY'))
+        #return os.path.basename(self.SCORE_MANAGER_SKETCHES_DIRECTORY_PATH)
+
+    @property
+    def SCORE_MANAGER_SKETCHES_DIRECTORY_PATH(self):
+        return self._settings['score_manager_sketches_directory_path']
 
     @property
     def score_external_chunks_package_path_name(self):
@@ -136,20 +150,23 @@ class ScoreManagerConfiguration(Configuration):
         return 'experimental.tools.scoremanagementtools'
 
     @property
-    def SCORE_MANAGER_TRANSCRIPTS_DIRECTORY(self):
-        return self._settings['score_manager_transcripts_directory']
+    def score_management_tools_package_importable_name(self):
+        return os.path.basename(self.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH)
+
+    @property
+    def SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH(self):
+        return os.path.join(
+            self.abjad_configuration.ABJAD_EXPERIMENTAL_DIRECTORY_PATH, 
+            'tools', 
+            'scoremanagementtools')
+        
+    @property
+    def SCORE_MANAGER_TRANSCRIPTS_DIRECTORY_PATH(self):
+        return self._settings['score_manager_transcripts_directory_path']
 
     @property
     def SCORE_MANAGER_CONFIGURATION_DIRECTORY(self):
         return os.path.join(self.HOME_DIRECTORY_PATH, '.score_manager')
-
-#    @property
-#    def score_management_tools_package_importable_name(self):
-#        return os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'))
-
-    @property
-    def score_management_tools_package_path_name(self):
-        return os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH')
 
     @property
     def scores_directory_name(self):
@@ -161,11 +178,12 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def specifier_classes_package_path_name(self):
-        return os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'specifiers')
+        #return os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'specifiers')
+        return os.path.join(self.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'specifiers')
 
     @property
     def stylesheets_directory_name(self):
-        return os.path.join(self.score_management_tools_package_path_name, 'stylesheets')
+        return os.path.join(self.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'stylesheets')
 
     @property
     def stylesheets_package_importable_name(self):

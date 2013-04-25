@@ -4,18 +4,23 @@ from experimental import *
 
 def test_StylesheetFileProxy_copy_interactively_01():
 
-    path_name = os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'stylesheets', 'clean_letter_14.ly')
-    proxy = scoremanagementtools.proxies.StylesheetFileProxy(path_name=path_name)
+    score_manager_configuration = scoremanagementtools.core.ScoreManagerConfiguration()
+    path = os.path.join(
+        score_manager_configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH,
+        'stylesheets', 'clean_letter_14.ly')
+    proxy = scoremanagementtools.proxies.StylesheetFileProxy(path_name=path)
     assert proxy.exists
 
     try:
-        new_path_name = os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'stylesheets', 'new_clean_letter_14.ly')
+        new_path = os.path.join(
+            score_manager_configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH,
+            'stylesheets', 'new_clean_letter_14.ly')
         proxy.copy_interactively(user_input='new_clean_letter_14 y default q')
-        assert os.path.exists(path_name)
-        assert os.path.exists(new_path_name)
-        os.remove(new_path_name)
+        assert os.path.exists(path)
+        assert os.path.exists(new_path)
+        os.remove(new_path)
     finally:
-        if os.path.exists(new_path_name):
-            os.remove(new_path_name)
-        assert os.path.exists(path_name)
-        assert not os.path.exists(new_path_name)
+        if os.path.exists(new_path):
+            os.remove(new_path)
+        assert os.path.exists(path)
+        assert not os.path.exists(new_path)

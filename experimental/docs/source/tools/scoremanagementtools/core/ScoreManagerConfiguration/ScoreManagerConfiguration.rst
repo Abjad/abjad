@@ -21,10 +21,16 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.HOME_DIRECTORY_PATH
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.SCORE_MANAGER_CONFIGURATION_DIRECTORY
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.SCORE_MANAGER_SKETCHES_DIRECTORY_PATH
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY_PATH
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.boilerplate_directory_name
@@ -78,7 +84,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_management_tools_fully_qualified_package_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_management_tools_package_path_name
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_management_tools_package_importable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.scores_directory_name

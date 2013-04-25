@@ -77,3 +77,9 @@
 27. Audit the UI of the entire materials management system by hand.
 
 28. Audit all __init__.py files and make all autoloading.
+
+29. Remove reference to 'path_name' everywhere. Change to just 'path'.
+
+30. Change scoremanagementtools to scoremanagertools.
+
+31. Reimplement 'is_versioned' to look for the presence of hidden .svn directory. Maybe?

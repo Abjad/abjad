@@ -4,23 +4,26 @@ from experimental import *
 
 def test_FileProxy_copy_01():
 
-    path_name = os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'temporary_file.txt')
-    file_proxy = scoremanagementtools.proxies.FileProxy(path_name=path_name)
-    assert not os.path.exists(path_name)
+    score_manager_configuration = scoremanagementtools.core.ScoreManagerConfiguration()
+    path = os.path.join(
+        score_manager_configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'temporary_file.txt')
+    file_proxy = scoremanagementtools.proxies.FileProxy(path_name=path)
+    assert not os.path.exists(path)
 
     try:
         file_proxy.conditionally_make_empty_asset()
-        assert os.path.exists(path_name)
-        new_path_name = os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'new_temporary_file.txt')
-        file_proxy.copy(new_path_name)
-        assert os.path.exists(path_name)
-        assert os.path.exists(new_path_name)
+        assert os.path.exists(path)
+        new_path = os.path.join(
+            score_manager_configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'new_temporary_file.txt')
+        file_proxy.copy(new_path)
+        assert os.path.exists(path)
+        assert os.path.exists(new_path)
         file_proxy.remove()
-        os.remove(new_path_name)
+        os.remove(new_path)
     finally:
-        if os.path.exists(path_name):
-            os.remove(path_name)
-        if os.path.exists(new_path_name):
-            os.remove(new_path_name)
-        assert not os.path.exists(path_name)
-        assert not os.path.exists(new_path_name)
+        if os.path.exists(path):
+            os.remove(path)
+        if os.path.exists(new_path):
+            os.remove(new_path)
+        assert not os.path.exists(path)
+        assert not os.path.exists(new_path)
