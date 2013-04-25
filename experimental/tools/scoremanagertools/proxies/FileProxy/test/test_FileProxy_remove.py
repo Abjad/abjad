@@ -8,7 +8,7 @@ def test_FileProxy_remove_01():
 
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     path = os.path.join(
-        score_manager_configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'temporary_file.txt')
+        score_manager_configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'temporary_file.txt')
     file_proxy = scoremanagertools.proxies.FileProxy(path=path)
     assert not os.path.exists(path)
 
@@ -29,7 +29,7 @@ def test_FileProxy_remove_02():
 
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     path = os.path.join(
-        score_manager_configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'temporary_file.txt')
+        score_manager_configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'temporary_file.txt')
     file_proxy = scoremanagertools.proxies.FileProxy(path=path)
     assert not os.path.exists(path)
 

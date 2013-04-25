@@ -24,13 +24,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.SCORES_DIRECTORY_PATH
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.SCORE_MANAGER_CONFIGURATION_DIRECTORY
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.SCORE_MANAGER_SKETCHES_DIRECTORY_PATH
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY_PATH

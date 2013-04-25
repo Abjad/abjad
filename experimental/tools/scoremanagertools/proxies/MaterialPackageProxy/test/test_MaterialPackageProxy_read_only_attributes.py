@@ -190,7 +190,7 @@ def test_MaterialPackageProxy_read_only_attributes_03():
     assert      mpp.should_have_output_material_module
     assert not  mpp.should_have_user_input_module
     assert      mpp.stylesheet_file_name_on_disk == \
-        os.path.join(mpp.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH,
+        os.path.join(mpp.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH,
             'stylesheets', 'clean_letter_14.ly')
     # TODO:
     #assert      mpp.stylesheet_file_proxy is not None

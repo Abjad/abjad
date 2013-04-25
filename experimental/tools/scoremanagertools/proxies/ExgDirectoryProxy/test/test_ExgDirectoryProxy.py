@@ -10,6 +10,6 @@ def test_ExgDirectoryProxy_01():
         exg_proxy.configuration.SCORES_DIRECTORY_PATH, 'example_score_1', 'exg')
     assert exg_proxy.source_file_name == \
         os.path.join(
-            exg_proxy.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH,
+            exg_proxy.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH,
             'proxies', 'ExgDirectoryProxy', 'ExgDirectoryProxy.py')
     assert exg_proxy._spaced_class_name == 'exg directory proxy'

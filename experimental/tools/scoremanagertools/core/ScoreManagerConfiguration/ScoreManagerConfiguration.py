@@ -77,7 +77,7 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def boilerplate_directory_name(self):
-        return os.path.join(self.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'boilerplate')
+        return os.path.join(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'boilerplate')
 
     @property
     def editors_package_importable_name(self):
@@ -85,11 +85,11 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def editors_package_path(self):
-        return os.path.join(self.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'editors')
+        return os.path.join(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'editors')
 
     @property
     def makers_directory_name(self):
-        return os.path.join(self.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'makers')
+        return os.path.join(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'makers')
 
     @property
     def makers_package_importable_name(self):
@@ -157,10 +157,10 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def score_manager_tools_package_importable_name(self):
-        return os.path.basename(self.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH)
+        return os.path.basename(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH)
 
     @property
-    def SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH(self):
+    def SCORE_MANAGER_TOOLS_DIRECTORY_PATH(self):
         return os.path.join(
             self.abjad_configuration.ABJAD_EXPERIMENTAL_DIRECTORY_PATH, 
             'tools', 
@@ -184,12 +184,11 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def specifier_classes_package_path(self):
-        #return os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'specifiers')
-        return os.path.join(self.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'specifiers')
+        return os.path.join(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'specifiers')
 
     @property
     def stylesheets_directory_name(self):
-        return os.path.join(self.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'stylesheets')
+        return os.path.join(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'stylesheets')
 
     @property
     def stylesheets_package_importable_name(self):

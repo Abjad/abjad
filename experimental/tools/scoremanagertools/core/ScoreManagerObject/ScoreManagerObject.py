@@ -319,7 +319,7 @@ class ScoreManagerObject(AbjadObject):
         package_importable_name_parts = package_importable_name.split('.')
         if package_importable_name_parts[0] == \
             self.configuration.score_manager_tools_package_importable_name:
-            directory_parts = [self.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH] + \
+            directory_parts = [self.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH] + \
                 package_importable_name_parts[1:]
         elif package_importable_name_parts[0] == \
             self.configuration.score_external_materials_package_importable_name:
@@ -353,8 +353,8 @@ class ScoreManagerObject(AbjadObject):
         path = path.rstrip(os.path.sep)
         if path.endswith('.py'):
             path = path[:-3]
-        if path.startswith(self.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH):
-            prefix_length = len(os.path.dirname(self.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH)) + 1
+        if path.startswith(self.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH):
+            prefix_length = len(os.path.dirname(self.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH)) + 1
         elif path.startswith(self.configuration.score_external_materials_package_path):
             prefix_length = len(os.path.dirname(self.configuration.score_external_materials_package_path)) + 1
         elif path.startswith(self.configuration.score_external_chunks_package_path):

@@ -7,7 +7,7 @@ def test_ScoreManagementObject_read_only_attributes_01():
     score_manager_object = scoremanagertools.core.ScoreManagerObject()
 
     path = os.path.join(
-        score_manager_object.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH,
+        score_manager_object.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH,
         'boilerplate')
     assert score_manager_object.configuration.boilerplate_directory_name == path
 
@@ -15,7 +15,7 @@ def test_ScoreManagementObject_read_only_attributes_01():
     assert score_manager_object.help_item_width == 5
 
     path = os.path.join(
-        score_manager_object.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH,
+        score_manager_object.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH,
         'makers')
     assert score_manager_object.configuration.makers_directory_name == path
 
@@ -27,7 +27,7 @@ def test_ScoreManagementObject_read_only_attributes_01():
     assert score_manager_object.configuration.score_external_chunks_package_importable_name == 'sketches'
 
     path = os.path.join(
-        score_manager_object.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH,
+        score_manager_object.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH,
         'core', 'ScoreManagerObject', 'ScoreManagerObject.py')
     assert score_manager_object.source_file_name == path
 
@@ -36,7 +36,7 @@ def test_ScoreManagementObject_read_only_attributes_01():
 
 
     path = os.path.join(
-        score_manager_object.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH,
+        score_manager_object.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH,
         'stylesheets')
     assert score_manager_object.configuration.stylesheets_directory_name == path
 
