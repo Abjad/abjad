@@ -174,10 +174,10 @@ class Session(ScoreManagerObject):
     def menu_header(self):
         return '\n'.join(self.format_breadcrumb_stack())
 
-    # TODO: rename to self.score_manaegment_tools_output_directory
+    # TODO: rename to self.score_manager_transcripts_directory_path
     @property
     def output_directory(self):
-        return os.environ.get('SCORE_MANAGER_TRANSCRIPTS_DIRECTORY')
+        return self.configuration.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY_PATH
 
     @property
     def scores_to_show(self):

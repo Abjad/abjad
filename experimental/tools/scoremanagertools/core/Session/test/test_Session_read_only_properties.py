@@ -39,7 +39,6 @@ def test_Session_read_only_properties_01():
     assert not session.is_navigating_to_sibling_score
     assert session.last_semantic_command is None
     assert session.menu_header == ''
-    assert session.output_directory == os.environ.get('SCORE_MANAGER_TRANSCRIPTS_DIRECTORY')
     assert session.scores_to_show == 'active'
     assert not session.session_once_had_user_input
     assert session.testable_command_history_string == ''

@@ -88,6 +88,10 @@ class ScoreManagerConfiguration(Configuration):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def boilerplate_directory_name(self):
+        return os.path.join(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'boilerplate')
+
+    @property
     def CONFIGURATION_DIRECTORY_PATH(self):
         return self.SCORE_MANAGER_CONFIGURATION_DIRECTORY
 
@@ -96,16 +100,17 @@ class ScoreManagerConfiguration(Configuration):
         return 'score_manager.cfg'
 
     @property
-    def boilerplate_directory_name(self):
-        return os.path.join(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'boilerplate')
-
-    @property
     def editors_package_importable_name(self):
         return self.dot_join(['scoremanagertools', 'editors'])
 
     @property
     def editors_package_path(self):
         return os.path.join(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'editors')
+
+    @property
+    def HANDLER_TOOLS_DIRECTORY_PATH(self):
+        return os.path.join(
+            self.abjad_configuration.ABJAD_EXPERIMENTAL_DIRECTORY_PATH, 'tools', 'handlertools')
 
     @property
     def makers_directory_name(self):

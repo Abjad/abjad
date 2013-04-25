@@ -20,7 +20,8 @@ def test_DirectoryProxy_read_only_attributes_02():
     path = score_manager_configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH
     directory_proxy_1 = scoremanagertools.proxies.DirectoryProxy(path)
     directory_proxy_2 = scoremanagertools.proxies.DirectoryProxy(path)
-    directory_proxy_3 = scoremanagertools.proxies.DirectoryProxy(os.environ.get('ABJAD'))
+    directory_proxy_3 = scoremanagertools.proxies.DirectoryProxy(
+        score_manager_configuration.abjad_configuration.ABJAD_DIRECTORY_PATH)
 
     assert     directory_proxy_1 == directory_proxy_2
     assert not directory_proxy_1 == directory_proxy_3
