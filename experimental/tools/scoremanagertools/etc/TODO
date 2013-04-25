@@ -85,4 +85,4 @@
 31. Audit references to '*_directory_name' and see if most should change to '*_directory_path'.
 
 32. Remove 'management' from codebase.
-    Change score_management_object to score_manager_object.
+    Change score_manager_object to score_manager_object.
