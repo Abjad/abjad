@@ -4,11 +4,11 @@ from abjad.tools.configurationtools.AbjadConfiguration import AbjadConfiguration
 
 
 class ScoreManagerConfiguration(Configuration):
-    '''Score management tools configuration.
+    '''Score manager configuration.
 
-    The score management tools output directory is created
+    The score manager tools output directory is created
     if it does not already exist by referencing the
-    `score_management_tools_output_directory` key in the configuration.
+    `score_manager_tools_output_directory` key in the configuration.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -29,7 +29,7 @@ class ScoreManagerConfiguration(Configuration):
         return [
             '-*- coding: utf-8 -*-',
             '',
-            'Score management tools configuration file created on {}.'.format(
+            'Score manager tools configuration file created on {}.'.format(
                 self._current_time),
             'This file is interpreted by ConfigObj and should follow ini syntax.',
         ]
@@ -93,7 +93,7 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def makers_package_importable_name(self):
-        return self.dot_join([self.score_management_tools_package_importable_name, 'makers'])
+        return self.dot_join([self.score_manager_tools_package_importable_name, 'makers'])
 
     @property
     def score_external_chunks_package_importable_name(self):
@@ -153,11 +153,11 @@ class ScoreManagerConfiguration(Configuration):
         return 'mus.specifiers'
 
     @property
-    def score_management_tools_fully_qualified_package_name(self):
+    def score_manager_tools_fully_qualified_package_name(self):
         return 'experimental.tools.scoremanagertools'
 
     @property
-    def score_management_tools_package_importable_name(self):
+    def score_manager_tools_package_importable_name(self):
         return os.path.basename(self.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH)
 
     @property
@@ -194,7 +194,7 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def stylesheets_package_importable_name(self):
-        return self.dot_join([self.score_management_tools_package_importable_name, 'stylesheets'])
+        return self.dot_join([self.score_manager_tools_package_importable_name, 'stylesheets'])
 
     @property
     def user_makers_directory_name(self):

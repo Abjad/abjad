@@ -83,6 +83,3 @@
 30. Reimplement 'is_versioned' to look for the presence of hidden .svn directory. Maybe?
 
 31. Audit references to '*_directory_name' and see if most should change to '*_directory_path'.
-
-32. Remove 'management' from codebase.
-    Change score_manager_object to score_manager_object.

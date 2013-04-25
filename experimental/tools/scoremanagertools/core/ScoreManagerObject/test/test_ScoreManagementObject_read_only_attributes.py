@@ -20,7 +20,7 @@ def test_ScoreManagerObject_read_only_attributes_01():
     assert score_manager_object.configuration.makers_directory_name == path
 
     assert score_manager_object.configuration.makers_package_importable_name == 'scoremanagertools.makers'
-    assert score_manager_object.configuration.score_management_tools_package_importable_name == \
+    assert score_manager_object.configuration.score_manager_tools_package_importable_name == \
         'scoremanagertools'
 
     assert isinstance(score_manager_object.session, scoremanagertools.core.Session)

@@ -45,7 +45,7 @@ class ScoreManagerObject(AbjadObject):
 
     @property
     def breadcrumb(self):
-        return 'score management object'
+        return 'score manager object'
 
     @property
     def breadcrumb_stack(self):
@@ -318,7 +318,7 @@ class ScoreManagerObject(AbjadObject):
             return
         package_importable_name_parts = package_importable_name.split('.')
         if package_importable_name_parts[0] == \
-            self.configuration.score_management_tools_package_importable_name:
+            self.configuration.score_manager_tools_package_importable_name:
             directory_parts = [self.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH] + \
                 package_importable_name_parts[1:]
         elif package_importable_name_parts[0] == \
