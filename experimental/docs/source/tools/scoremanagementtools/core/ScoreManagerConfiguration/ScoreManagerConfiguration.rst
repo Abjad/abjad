@@ -9,13 +9,13 @@ scoremanagementtools.core.ScoreManagerConfiguration
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.CONFIG_DIRECTORY_PATH
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.CONFIGURATION_DIRECTORY_PATH
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.CONFIG_FILE_NAME
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.CONFIGURATION_FILE_NAME
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.CONFIG_FILE_PATH
+.. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.CONFIGURATION_FILE_PATH
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.HOME_DIRECTORY_PATH

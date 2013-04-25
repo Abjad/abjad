@@ -51,7 +51,7 @@ class AbjadConfiguration(Configuration):
     @property
     def _option_definitions(self):
         options = {
-            # TODO: should this be renamed to 'abjad_output_directory'?
+            # TODO: should this be renamed to 'abjad_output_directory_path'?
             'abjad_output': {
                 'comment': [
                     '',
@@ -121,7 +121,6 @@ class AbjadConfiguration(Configuration):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    # TODO: should this be changed to ABJAD_CONFIGURATION_DIRECTORY?
     @property
     def ABJAD_CONFIGURATION_DIRECTORY_PATH(self):
         return os.path.join(self.HOME_DIRECTORY_PATH, '.abjad')
@@ -130,17 +129,17 @@ class AbjadConfiguration(Configuration):
     def ABJAD_CONFIGURATION_FILE_PATH(self):
         return self.CONFIGURATION_FILE_PATH
 
-    # TODO: should this be changed to ABJAD_EXPERIMENTAL_DIRECTORY?
+    # TODO: change name to ABJAD_EXPERIMENTAL_DIRECTORY_PATH
     @property
     def ABJAD_EXPERIMENTAL_PATH(self):
         return os.path.abspath(os.path.join(self.ABJAD_PATH, '..', '..', 'experimental'))
 
-    # TODO: should this be changed to ABJAD_OUTPUT_DIRECTORY?
+    # TODO: change name to ABJAD_OUTPUT_DIRECTORY_PATH
     @property
     def ABJAD_OUTPUT_PATH(self):
         return self._settings['abjad_output']
 
-    # TODO: should this be changed to ABJAD_DIRECTORY?
+    # TODO: change name to ABJAD_DIRECTORY_PATH
     @property
     def ABJAD_PATH(self):
         module_parts = self.__module__.split('.')
@@ -151,12 +150,11 @@ class AbjadConfiguration(Configuration):
             filepath_parts.pop()
         return os.path.sep.join(filepath_parts)
 
-    # TODO: should this be changed to ABJAD_ROOT_DIRECTORY
+    # TODO: change name to ABJAD_ROOT_DIRECTORY_PATH
     @property
     def ABJAD_ROOT_PATH(self):
         return os.path.abspath(os.path.join(self.ABJAD_PATH, '..', '..'))
 
-    # TODO: should this be changed to CONFIGURATION_DIRECTORY?
     @property
     def CONFIGURATION_DIRECTORY_PATH(self):
         return self.ABJAD_CONFIGURATION_DIRECTORY_PATH

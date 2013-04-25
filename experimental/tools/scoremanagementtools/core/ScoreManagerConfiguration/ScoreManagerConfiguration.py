@@ -20,7 +20,7 @@ class ScoreManagerConfiguration(Configuration):
     def __init__(self):
         Configuration.__init__(self)
         if not os.path.exists(self.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY):
-            os.mkdir(self.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY)
+            os.mkdirs(self.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -52,11 +52,11 @@ class ScoreManagerConfiguration(Configuration):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def CONFIG_DIRECTORY_PATH(self):
+    def CONFIGURATION_DIRECTORY_PATH(self):
         return self.SCORE_MANAGER_CONFIGURATION_DIRECTORY
 
     @property
-    def CONFIG_FILE_NAME(self):
+    def CONFIGURATION_FILE_NAME(self):
         return 'score_manager.cfg'
 
     @property
