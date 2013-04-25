@@ -20,8 +20,8 @@ def test_MaterialPackageWrangler_read_only_attributes_02():
     assert 'materials' in wrangler.list_asset_container_importable_names()
     assert 'example_score_1.mus.materials' in wrangler.list_asset_container_importable_names()
     assert os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY') in wrangler.list_asset_container_path_names()
-    assert os.path.join(os.environ.get('SCORES'), 'example_score_1', 'mus', 'materials') in \
-        wrangler.list_asset_container_path_names()
+    path = os.path.join(wrangler.configuration.SCORES_DIRECTORY_PATH, 'example_score_1', 'mus', 'materials')
+    assert path in wrangler.list_asset_container_path_names()
 
 
 def test_MaterialPackageWrangler_read_only_attributes_03():
@@ -80,5 +80,7 @@ def test_MaterialPackageWrangler_read_only_attributes_08():
     assert 'example_score_1.mus.materials' in wrangler.list_asset_container_importable_names()
     assert wrangler.current_asset_container_importable_name == 'example_score_1.mus.materials'
     assert wrangler.temporary_asset_importable_name == 'example_score_1.mus.materials.__temporary_package'
-    assert wrangler.temporary_asset_path_name == \
-        os.path.join(os.environ.get('SCORES'), 'example_score_1', 'mus', 'materials', '__temporary_package')
+    path = os.path.join(
+         wrangler.configuration.SCORES_DIRECTORY_PATH, 
+        'example_score_1', 'mus', 'materials', '__temporary_package')
+    assert wrangler.temporary_asset_path_name == path

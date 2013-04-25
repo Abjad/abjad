@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-from abjad.tools import instrumenttools
-from abjad.tools import scoretools
 from experimental import *
 
 
@@ -40,9 +38,10 @@ def test_ScorePackageProxy_read_only_attributes_01():
     assert score_proxy.title == 'Example Score I'
     assert score_proxy.year_of_completion == 2013
 
+    path = score_proxy.configuration.SCORES_DIRECTORY_PATH
     assert score_proxy.score_initializer_file_names == (
-        os.path.join(os.environ.get('SCORES'), 'example_score_1', '__init__.py'),
-        os.path.join(os.environ.get('SCORES'), 'example_score_1', 'mus', '__init__.py'))
+        os.path.join(path, 'example_score_1', '__init__.py'),
+        os.path.join(path, 'example_score_1', 'mus', '__init__.py'))
 
     assert score_proxy.score_package_wranglers == (
         scoremanagertools.wranglers.ChunkPackageWrangler(),

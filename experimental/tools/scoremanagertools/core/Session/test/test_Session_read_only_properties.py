@@ -54,18 +54,19 @@ def test_Session_read_only_properties_02():
     session.current_score_package_short_name = 'foo'
 
     assert session.current_chunks_package_importable_name == 'foo.mus.chunks'
+    scores_directory_path = session.configuration.SCORES_DIRECTORY_PATH
     assert session.current_chunks_package_path_name == \
-        os.path.join(os.environ.get('SCORES'), 'foo', 'mus', 'chunks')
+        os.path.join(scores_directory_path, 'foo', 'mus', 'chunks')
 
     assert session.current_materials_package_importable_name == 'foo.mus.materials'
     assert session.current_materials_package_path_name == \
-        os.path.join(os.environ.get('SCORES'), 'foo', 'mus', 'materials')
+        os.path.join(scores_directory_path, 'foo', 'mus', 'materials')
 
     assert isinstance(session.current_score_package_proxy, scoremanagertools.proxies.ScorePackageProxy)
-    assert session.current_score_path_name == os.path.join(os.environ.get('SCORES'), 'foo')
+    assert session.current_score_path_name == os.path.join(scores_directory_path, 'foo')
 
     assert session.current_specifiers_package_importable_name == 'foo.mus.specifiers'
     assert session.current_specifiers_package_path_name == \
-        os.path.join(os.environ.get('SCORES'), 'foo', 'mus', 'specifiers')
+        os.path.join(scores_directory_path, 'foo', 'mus', 'specifiers')
 
     assert session.is_in_score

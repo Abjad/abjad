@@ -2,6 +2,8 @@ import os
 from experimental import *
 
 score_management_object = scoremanagertools.core.ScoreManagementObject()
+score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
+scores_directory_path = score_manager_configuration.SCORES_DIRECTORY_PATH
 
 
 def test_ScoreManagementObject_path_name_to_package_importable_name_01():
@@ -13,20 +15,20 @@ def test_ScoreManagementObject_path_name_to_package_importable_name_01():
 
 def test_ScoreManagementObject_path_name_to_package_importable_name_02():
 
-    path = os.path.join(os.environ.get('SCORES'), 'example_score_1')
+    path = os.path.join(scores_directory_path, 'example_score_1')
     assert score_management_object.path_name_to_package_importable_name(path) == 'example_score_1'
 
-    path = os.path.join(os.environ.get('SCORES'), 'example_score_1', 'mus')
+    path = os.path.join(scores_directory_path, 'example_score_1', 'mus')
     assert score_management_object.path_name_to_package_importable_name(path) == 'example_score_1.mus'
 
-    path = os.path.join(os.environ.get('SCORES'), 'example_score_1', 'mus', 'materials')
+    path = os.path.join(scores_directory_path, 'example_score_1', 'mus', 'materials')
     assert score_management_object.path_name_to_package_importable_name(path) == 'example_score_1.mus.materials'
 
 
 def test_ScoreManagementObject_path_name_to_package_importable_name_03():
 
-    path = os.path.join(os.environ.get('SCORES'), 'example_score_1', 'foo')
+    path = os.path.join(scores_directory_path, 'example_score_1', 'foo')
     assert score_management_object.path_name_to_package_importable_name(path) == 'example_score_1.foo'
 
-    path = os.path.join(os.environ.get('SCORES'), 'example_score_1', 'foo.py')
+    path = os.path.join(scores_directory_path, 'example_score_1', 'foo.py')
     assert score_management_object.path_name_to_package_importable_name(path) == 'example_score_1.foo'

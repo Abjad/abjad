@@ -6,7 +6,8 @@ def test_EtcDirectoryProxy_01():
 
     etc_proxy = scoremanagertools.proxies.EtcDirectoryProxy('example_score_1')
 
-    assert etc_proxy.path_name == os.path.join(os.environ.get('SCORES'), 'example_score_1', 'etc')
+    assert etc_proxy.path_name == os.path.join(
+        etc_proxy.configuration.SCORES_DIRECTORY_PATH, 'example_score_1', 'etc')
     assert etc_proxy.source_file_name == \
         os.path.join(
             etc_proxy.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH,

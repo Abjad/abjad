@@ -56,10 +56,9 @@ def test_MaterialPackageWrangler_iteration_05():
 
 def test_MaterialPackageWrangler_iteration_06():
 
-    assert os.path.join(os.environ.get('SCORES'), 'example_score_1', 'mus', 'materials') in \
-        wrangler.list_score_internal_asset_container_path_names()
-    assert os.path.join(os.environ.get('SCORES'), 'example_score_1', 'mus', 'materials') not in \
-        wrangler.list_score_internal_asset_container_path_names(head='example_score_2')
+    path = os.path.join(wrangler.configuration.SCORES_DIRECTORY_PATH, 'example_score_1', 'mus', 'materials')
+    assert path in wrangler.list_score_internal_asset_container_path_names()
+    assert path not in wrangler.list_score_internal_asset_container_path_names(head='example_score_2')
     assert wrangler.list_score_internal_asset_container_path_names(head='asdf') == []
 
 
@@ -78,10 +77,11 @@ def test_MaterialPackageWrangler_iteration_07():
 def test_MaterialPackageWrangler_iteration_08():
     py.test.skip('TODO: add time_signatures package to Example Score I.')
 
-    assert os.path.join(os.environ.get('SCORES'), 'example_score_1', 'mus', 'materials', 'time_signatures') in \
-        wrangler.list_score_internal_asset_path_names()
-    assert os.path.join(os.environ.get('SCORES'), 'example_score_1', 'mus', 'materials', 'time_signatures') in \
-        wrangler.list_score_internal_asset_path_names(head='example_score_2')
+    path = os.path.join(
+        wrangler.configuration.SCORES_DIRECTORY_PATH, 
+        'example_scores_1', 'mus', 'materials', 'time_signatures')
+    assert path in wrangler.list_score_internal_asset_path_names()
+    assert path in wrangler.list_score_internal_asset_path_names(head='example_score_2')
     assert wrangler.list_score_internal_asset_path_names(head='asdf') == []
 
 
