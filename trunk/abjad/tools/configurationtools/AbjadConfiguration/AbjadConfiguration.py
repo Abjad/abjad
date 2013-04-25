@@ -130,14 +130,6 @@ class AbjadConfiguration(Configuration):
         return self.CONFIGURATION_FILE_PATH
 
     @property
-    def ABJAD_EXPERIMENTAL_DIRECTORY_PATH(self):
-        return os.path.abspath(os.path.join(self.ABJAD_DIRECTORY_PATH, '..', '..', 'experimental'))
-
-    @property
-    def ABJAD_OUTPUT_DIRECTORY_PATH(self):
-        return self._settings['abjad_output']
-
-    @property
     def ABJAD_DIRECTORY_PATH(self):
         module_parts = self.__module__.split('.')
         filepath_parts = os.path.abspath(__file__).rpartition('.py')[0].split(os.path.sep)
@@ -146,6 +138,14 @@ class AbjadConfiguration(Configuration):
                 break
             filepath_parts.pop()
         return os.path.sep.join(filepath_parts)
+
+    @property
+    def ABJAD_EXPERIMENTAL_DIRECTORY_PATH(self):
+        return os.path.abspath(os.path.join(self.ABJAD_DIRECTORY_PATH, '..', '..', 'experimental'))
+
+    @property
+    def ABJAD_OUTPUT_DIRECTORY_PATH(self):
+        return self._settings['abjad_output']
 
     @property
     def ABJAD_ROOT_DIRECTORY_PATH(self):
