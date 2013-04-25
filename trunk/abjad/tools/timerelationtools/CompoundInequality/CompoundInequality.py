@@ -137,8 +137,8 @@ class CompoundInequality(ObjectInventory):
         return truth_value
 
     def get_offset_indices(self, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets):
-        from experimental.tools import timerelationtools
-        from experimental.tools import timespantools
+        from abjad.tools import timerelationtools
+        from abjad.tools import timespantools
         timespans = timespantools.TimespanInventory()
         for element in self:
             # TODO: compress the following two branches

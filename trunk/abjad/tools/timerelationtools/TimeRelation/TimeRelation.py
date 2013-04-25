@@ -45,7 +45,7 @@ class TimeRelation(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, inequality):
-        from experimental.tools import timerelationtools
+        from abjad.tools import timerelationtools
         assert isinstance(inequality, timerelationtools.CompoundInequality), repr(inequality)
         self._inequality = inequality
 
