@@ -4,6 +4,12 @@ from abjad.tools.configurationtools.Configuration import Configuration
 
 class ScoreManagementToolsConfiguration(Configuration):
     '''Score management tools configuration.
+
+    The score management tools output directory is created
+    if it does not already exist by referencing the
+    `score_management_tools_output_directory` key in the configuration.
+
+    Return score management tools configuration object.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -11,21 +17,45 @@ class ScoreManagementToolsConfiguration(Configuration):
     score_management_tools_package_importable_name = \
         os.path.basename(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'))
 
+    ### INITIALIZER ###
+
+    def __init__(self):
+        Configuration.__init__(self)
+        if not os.path.exists(self.SCORE_MANAGER_TRANSCRIPT_DIRECTORY):
+            os.mkdir(self.SCORE_MANAGER_TRANSCRIPT_DIRECTORY)
+
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _initial_comment(self):
-        return []
+        return [
+            '-*- coding: utf-8 -*-',
+            '',
+            'Score management tools configuration file created on {}.'.format(
+                self._current_time),
+            'This file is interpreted by ConfigObj and should follow ini syntax.',
+        ]
 
     @property
     def _option_definitions(self):
-        return []
+        options = {
+            'score_manager_transcript_directory': {
+                'comment': [
+                    '',
+                    'Set to the directory where you want score manager transcripts written.',
+                    'Defaults to $HOME/.score_manager/transcripts/'
+                ],
+                'spec': 'string(default={!r})'.format(
+                    os.path.join(self.SCORE_MANAGER_CONFIGURATION_DIRECTORY, 'transcripts'))
+            },
+        }
+        return options
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def CONFIG_DIRECTORY_PATH(self):
-        return os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH')
+        return self.SCORE_MANAGER_CONFIGURATION_DIRECTORY
 
     @property
     def CONFIG_FILE_NAME(self):
@@ -106,6 +136,14 @@ class ScoreManagementToolsConfiguration(Configuration):
     @property
     def score_management_tools_fully_qualified_package_name(self):
         return 'experimental.tools.scoremanagementtools'
+
+    @property
+    def SCORE_MANAGER_TRANSCRIPT_DIRECTORY(self):
+        return self._settings['score_manager_transcript_directory']
+
+    @property
+    def SCORE_MANAGER_CONFIGURATION_DIRECTORY(self):
+        return os.path.join(self.HOME_DIRECTORY_PATH, '.score_manager')
 
 #    @property
 #    def score_management_tools_package_importable_name(self):
