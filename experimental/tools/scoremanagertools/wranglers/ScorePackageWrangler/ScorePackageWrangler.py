@@ -23,7 +23,7 @@ class ScorePackageWrangler(PackageWrangler):
         return 'scores'
 
     @property
-    def current_asset_container_path_name(self):
+    def current_asset_container_path(self):
         return self.configuration.SCORES_DIRECTORY_PATH
 
     @property
@@ -62,10 +62,10 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append((asset_proxy.importable_name, title_with_year))
         return result
 
-    def list_visible_asset_path_names(self, head=None):
+    def list_visible_asset_paths(self, head=None):
         result = []
         for visible_asset_proxy in self.list_visible_asset_proxies(head=head):
-            result.append(visible_asset_proxy.path_name)
+            result.append(visible_asset_proxy.path)
         return result
 
     def list_visible_asset_proxies(self, head=None):
@@ -83,8 +83,8 @@ class ScorePackageWrangler(PackageWrangler):
 
     def list_visible_asset_short_names(self, head=None):
         result = []
-        for path_name in self.list_visible_asset_path_names(head=head):
-            result.append(os.path.basename(path_name))
+        for path in self.list_visible_asset_paths(head=head):
+            result.append(os.path.basename(path))
         return result
 
     def make_asset_interactively(self, rollback=False):

@@ -9,7 +9,7 @@ class DirectoryProxy(AssetProxy):
 
     def __eq__(self, other):
         if isinstance(other, type(self)):
-            if self.path_name == other.path_name:
+            if self.path == other.path:
                 return True
         return False
 
@@ -17,39 +17,39 @@ class DirectoryProxy(AssetProxy):
         return not self == other
 
     def __repr__(self):
-        return '{}({!r})'.format(self._class_name, self.path_name)
+        return '{}({!r})'.format(self._class_name, self.path)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def directory_contents(self):
         result = []
-        for file_name in os.listdir(self.path_name):
+        for file_name in os.listdir(self.path):
             if file_name.endswith('.pyc'):
-                path_name = os.path.join(self.path_name, file_name)
-                os.remove(path_name)
-        for name in os.listdir(self.path_name):
+                path = os.path.join(self.path, file_name)
+                os.remove(path)
+        for name in os.listdir(self.path):
             if not name.startswith('.'):
                 result.append(name)
         return result
 
     @property
     def directory_name(self):
-        return self._path_name
+        return self._path
 
     @property
-    def public_content_path_names(self):
+    def public_content_paths(self):
         result = []
-        for short_name in os.listdir(self.path_name):
+        for short_name in os.listdir(self.path):
             if short_name[0].isalpha():
                 if not short_name.endswith('.pyc'):
-                    result.append(os.path.join(self.path_name, short_name))
+                    result.append(os.path.join(self.path, short_name))
         return result
 
     @property
     def public_content_short_names(self):
         result = []
-        for short_name in os.listdir(self.path_name):
+        for short_name in os.listdir(self.path):
             if short_name[0].isalpha():
                 if not short_name.endswith('.pyc'):
                     result.append(short_name)
@@ -57,7 +57,7 @@ class DirectoryProxy(AssetProxy):
 
     @property
     def svn_add_command(self):
-        return 'cd {} && svn-add-all'.format(self.path_name)
+        return 'cd {} && svn-add-all'.format(self.path)
 
     ### PUBLIC METHODS ###
 
@@ -73,10 +73,10 @@ class DirectoryProxy(AssetProxy):
         result = getter.run()
         if self.backtrack():
             return
-        self.path_name = result
+        self.path = result
 
     def make_directory(self):
-        os.mkdir(self.path_name)
+        os.mkdir(self.path)
 
     def print_directory_contents(self):
         self.display(self.directory_contents, capitalize_first_character=False)

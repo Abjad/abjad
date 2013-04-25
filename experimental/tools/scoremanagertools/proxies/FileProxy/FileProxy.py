@@ -18,9 +18,9 @@ class FileProxy(AssetProxy):
     @property
     def file_lines(self):
         result = []
-        if self.path_name:
-            if os.path.exists(self.path_name):
-                file_pointer = file(self.path_name)
+        if self.path:
+            if os.path.exists(self.path):
+                file_pointer = file(self.path)
                 result.extend(file_pointer.readlines())
                 file_pointer.close()
         return result
@@ -36,8 +36,8 @@ class FileProxy(AssetProxy):
     ### PUBLIC METHODS ###
 
     def conditionally_make_empty_asset(self, is_interactive=False):
-        if not os.path.exists(self.path_name):
-            file_reference = file(self.path_name, 'w')
+        if not os.path.exists(self.path):
+            file_reference = file(self.path, 'w')
             file_reference.write('')
             file_reference.close()
         self.proceed(is_interactive=is_interactive)
@@ -46,13 +46,13 @@ class FileProxy(AssetProxy):
         self.display(self.formatted_lines)
 
     def edit(self):
-        os.system('vi + {}'.format(self.path_name))
+        os.system('vi + {}'.format(self.path))
 
     def fix(self):
         pass
 
     def has_line(self, line):
-        file_reference = open(self.path_name, 'r')
+        file_reference = open(self.path, 'r')
         for file_line in file_reference.readlines():
             if file_line == line:
                 file_reference.close()
@@ -64,4 +64,4 @@ class FileProxy(AssetProxy):
         pass
 
     def view(self):
-        os.system('vi -R {}'.format(self.path_name))
+        os.system('vi -R {}'.format(self.path))

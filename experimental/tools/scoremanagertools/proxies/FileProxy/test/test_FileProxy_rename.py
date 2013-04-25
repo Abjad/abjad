@@ -9,7 +9,7 @@ def test_FileProxy_rename_01():
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     path = os.path.join(
         score_manager_configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'temporary_file.txt')
-    file_proxy = scoremanagertools.proxies.FileProxy(path_name=path)
+    file_proxy = scoremanagertools.proxies.FileProxy(path=path)
     assert not os.path.exists(path)
 
     try:
@@ -38,7 +38,7 @@ def test_FileProxy_rename_02():
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     path = os.path.join(
         score_manager_configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'temporary_file.txt')
-    file_proxy = scoremanagertools.proxies.FileProxy(path_name=path)
+    file_proxy = scoremanagertools.proxies.FileProxy(path=path)
     assert not os.path.exists(path)
 
     try:
@@ -50,7 +50,7 @@ def test_FileProxy_rename_02():
             score_manager_configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'new_temporary_file.txt')
         file_proxy.rename(new_path)
         assert os.path.exists(new_path)
-        assert file_proxy.path_name == new_path
+        assert file_proxy.path == new_path
     finally:
         file_proxy.remove()
         assert not os.path.exists(path)

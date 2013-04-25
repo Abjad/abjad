@@ -84,7 +84,7 @@ class ScoreManagerConfiguration(Configuration):
         return self.dot_join(['scoremanagertools', 'editors'])
 
     @property
-    def editors_package_path_name(self):
+    def editors_package_path(self):
         return os.path.join(self.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'editors')
 
     @property
@@ -105,7 +105,7 @@ class ScoreManagerConfiguration(Configuration):
         return self._settings['score_manager_sketches_directory_path']
 
     @property
-    def score_external_chunks_package_path_name(self):
+    def score_external_chunks_package_path(self):
         return os.environ.get('SCORE_MANAGER_CHUNKS_DIRECTORY')
 
     @property
@@ -113,7 +113,7 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.basename(os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY'))
 
     @property
-    def score_external_materials_package_path_name(self):
+    def score_external_materials_package_path(self):
         return os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY')
 
     @property
@@ -125,11 +125,11 @@ class ScoreManagerConfiguration(Configuration):
             )
 
     @property
-    def score_external_package_path_names(self):
+    def score_external_package_paths(self):
         return (
-            self.score_external_chunks_package_path_name,
-            self.score_external_materials_package_path_name,
-            self.score_external_specifiers_package_path_name,
+            self.score_external_chunks_package_path,
+            self.score_external_materials_package_path,
+            self.score_external_specifiers_package_path,
             )
 
     @property
@@ -137,7 +137,7 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.basename(os.environ.get('SCORE_MANAGER_SPECIFIERS_DIRECTORY'))
 
     @property
-    def score_external_specifiers_package_path_name(self):
+    def score_external_specifiers_package_path(self):
         return os.environ.get('SCORE_MANAGER_SPECIFIERS_DIRECTORY')
 
     @property
@@ -184,7 +184,7 @@ class ScoreManagerConfiguration(Configuration):
         return self.dot_join(['scoremanagertools', 'specifiers'])
 
     @property
-    def specifier_classes_package_path_name(self):
+    def specifier_classes_package_path(self):
         #return os.path.join(os.environ.get('SCORE_MANAGEMENT_TOOLS_PATH'), 'specifiers')
         return os.path.join(self.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH, 'specifiers')
 

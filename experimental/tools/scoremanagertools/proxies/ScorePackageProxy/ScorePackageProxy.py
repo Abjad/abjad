@@ -47,7 +47,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def chunks_package_directory_name(self):
-        return os.path.join(self.path_name, 'mus', 'chunks')
+        return os.path.join(self.path, 'mus', 'chunks')
 
     @property
     def chunks_package_importable_name(self):
@@ -63,7 +63,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def dist_pdf_directory_name(self):
-        return os.path.join(self.dist_proxy.path_name, 'pdf')
+        return os.path.join(self.dist_proxy.path, 'pdf')
 
     @property
     def dist_proxy(self):
@@ -103,7 +103,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def materials_package_directory_name(self):
-        return os.path.join(self.path_name, 'mus', 'materials')
+        return os.path.join(self.path, 'mus', 'materials')
 
     @property
     def materials_package_importable_name(self):
@@ -156,7 +156,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def top_level_directory_names(self):
-        return tuple([x.path_name for x in self.top_level_directory_proxies])
+        return tuple([x.path for x in self.top_level_directory_proxies])
 
     @property
     def top_level_directory_proxies(self):
@@ -248,12 +248,12 @@ class ScorePackageProxy(PackageProxy):
         result = True
         if self.short_name == 'recursif':
             return True
-        for path_name in self.top_level_directory_names:
-            if not os.path.exists(path_name):
+        for path in self.top_level_directory_names:
+            if not os.path.exists(path):
                 result = False
-                prompt = 'create {!r}? '.format(path_name)
+                prompt = 'create {!r}? '.format(path)
                 if not is_interactive or self.confirm(prompt):
-                    os.mkdir(path_name)
+                    os.mkdir(path)
         if not os.path.exists(self.initializer_file_name):
             result = False
             prompt = 'create {}? '.format(self.initializer_file_name)
@@ -436,8 +436,8 @@ class ScorePackageProxy(PackageProxy):
         self.restore_breadcrumbs(cache=cache)
 
     def profile(self, prompt=True):
-        if not os.path.exists(self.path_name):
-            raise OSError('directory {!r} does not exist.'.format(self.path_name))
+        if not os.path.exists(self.path):
+            raise OSError('directory {!r} does not exist.'.format(self.path))
         if self.short_name == 'recursif':
             return
         lines = []

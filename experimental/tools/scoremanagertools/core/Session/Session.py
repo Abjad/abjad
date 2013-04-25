@@ -87,8 +87,8 @@ class Session(ScoreManagerObject):
             return self.configuration.score_external_chunks_package_importable_name
 
     @property
-    def current_chunks_package_path_name(self):
-        return self.package_importable_name_to_path_name(
+    def current_chunks_package_path(self):
+        return self.package_importable_name_to_path(
             self.current_chunks_package_importable_name)
 
     @property
@@ -101,8 +101,8 @@ class Session(ScoreManagerObject):
             return self.configuration.score_external_materials_package_importable_name
 
     @property
-    def current_materials_package_path_name(self):
-        return self.package_importable_name_to_path_name(
+    def current_materials_package_path(self):
+        return self.package_importable_name_to_path(
             self.current_materials_package_importable_name)
 
     @property
@@ -113,9 +113,9 @@ class Session(ScoreManagerObject):
                 score_package_short_name=self.current_score_package_short_name, session=self)
 
     @property
-    def current_score_path_name(self):
+    def current_score_path(self):
         if self.is_in_score:
-            return self.package_importable_name_to_path_name(
+            return self.package_importable_name_to_path(
                 self.current_score_package_short_name)
 
     @property
@@ -128,11 +128,11 @@ class Session(ScoreManagerObject):
             return self.configuration.score_external_specifiers_package_importable_name
 
     @property
-    def current_specifiers_package_path_name(self):
+    def current_specifiers_package_path(self):
         if self.is_in_score:
-            return os.path.join(self.current_score_path_name, 'mus', 'specifiers')
+            return os.path.join(self.current_score_path, 'mus', 'specifiers')
         else:
-            return self.configuration.score_external_specifiers_package_path_name
+            return self.configuration.score_external_specifiers_package_path
 
     @property
     def explicit_command_history(self):

@@ -14,12 +14,12 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
     ### INITIALIZER ###
 
     def __init__(self, package_importable_name=None, session=None):
-#        path_name = self.package_importable_name_to_path_name(package_importable_name)
-#        DirectoryProxy.__init__(self, path_name=path_name, session=session)
+#        path = self.package_importable_name_to_path(package_importable_name)
+#        DirectoryProxy.__init__(self, path=path, session=session)
 #        ImportableAssetProxy.__init__(self, asset_full_name=package_importable_name, session=self.session)
         ScoreManagerObject.__init__(self, session=session)
-        path_name = self.package_importable_name_to_path_name(package_importable_name)
-        DirectoryProxy.__init__(self, path_name=path_name, session=self.session)
+        path = self.package_importable_name_to_path(package_importable_name)
+        DirectoryProxy.__init__(self, path=path, session=self.session)
         ImportableAssetProxy.__init__(self, asset_full_name=package_importable_name, session=self.session)
 
     ### SPECIAL METHODS ###
@@ -32,7 +32,7 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
     @property
     def directory_name(self):
         if self.importable_name is not None:
-            return self.package_importable_name_to_path_name(self.importable_name)
+            return self.package_importable_name_to_path(self.importable_name)
 
     @property
     def formatted_tags(self):
@@ -67,8 +67,8 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
 
     @property
     def initializer_file_name(self):
-        if self.path_name is not None:
-            return os.path.join(self.path_name, '__init__.py')
+        if self.path is not None:
+            return os.path.join(self.path, '__init__.py')
 
     # TODO: write test
     @property
@@ -82,7 +82,7 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
     @property
     def parent_initializer_file_name(self):
         if self.parent_package_importable_name:
-            parent_directory_name = self.package_importable_name_to_path_name(
+            parent_directory_name = self.package_importable_name_to_path(
                 self.parent_package_importable_name)
             return os.path.join(parent_directory_name, '__init__.py')
 
@@ -111,7 +111,7 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
 
     @property
     def tags_file_name(self):
-        return os.path.join(self.path_name, 'tags.py')
+        return os.path.join(self.path, 'tags.py')
 
     @property
     def tags_file_proxy(self):

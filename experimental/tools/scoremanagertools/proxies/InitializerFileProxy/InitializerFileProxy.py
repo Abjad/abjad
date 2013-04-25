@@ -5,8 +5,8 @@ import os
 
 class InitializerFileProxy(ParsableFileProxy):
 
-    def __init__(self, path_name=None, session=None):
-        ParsableFileProxy.__init__(self, path_name=path_name, session=session)
+    def __init__(self, path=None, session=None):
+        ParsableFileProxy.__init__(self, path=path, session=session)
         self.safe_import_statements = []
         self.tag_lines = []
         self.parse()
@@ -72,7 +72,7 @@ class InitializerFileProxy(ParsableFileProxy):
     def parse(self, initializer_file_name=None):
         is_parsable = True
         if initializer_file_name is None:
-            initializer_file_name = self.path_name
+            initializer_file_name = self.path
         if not os.path.exists(initializer_file_name):
             return
         initializer = file(initializer_file_name, 'r')

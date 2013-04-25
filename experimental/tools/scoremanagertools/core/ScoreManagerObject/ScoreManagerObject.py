@@ -80,16 +80,16 @@ class ScoreManagerObject(AbjadObject):
     ### PUBLIC METHODS ###
 
     def asset_full_name_to_importable_name(self, asset_full_name):
-        if self.is_path_name(asset_full_name):
-            return self.path_name_to_package_importable_name(asset_full_name)
+        if self.is_path(asset_full_name):
+            return self.path_to_package_importable_name(asset_full_name)
         else:
             return asset_full_name
 
-    def asset_full_name_to_path_name(self, asset_full_name):
-        if self.is_path_name(asset_full_name):
+    def asset_full_name_to_path(self, asset_full_name):
+        if self.is_path(asset_full_name):
             return asset_full_name
         else:
-            return self.package_importable_name_to_path_name(asset_full_name)
+            return self.package_importable_name_to_path(asset_full_name)
 
     def assign_user_input(self, user_input=None):
         if user_input is not None:
@@ -134,7 +134,7 @@ class ScoreManagerObject(AbjadObject):
     def conditionally_make_empty_package(self, package_importable_name):
         if package_importable_name is None:
             return
-        package_directory_name = self.package_importable_name_to_path_name(
+        package_directory_name = self.package_importable_name_to_path(
             package_importable_name)
         if not os.path.exists(package_directory_name):
             os.mkdir(package_directory_name)
@@ -196,8 +196,8 @@ class ScoreManagerObject(AbjadObject):
         else:
             return repr(expr)
 
-    def get_tag_from_path_name(self, path_name, tag_name):
-        tags_file_name = os.path.join(path_name, 'tags.py')
+    def get_tag_from_path(self, path, tag_name):
+        tags_file_name = os.path.join(path, 'tags.py')
         if os.path.isfile(tags_file_name):
             tags_file = open(tags_file_name, 'r')
             tags_file_string = tags_file.read()
@@ -256,27 +256,27 @@ class ScoreManagerObject(AbjadObject):
                 return True
         return False
 
-    def is_path_name(self, expr):
+    def is_path(self, expr):
         if isinstance(expr, str):
             if os.path.sep in expr:
                 return True
         return False
 
-    def list_public_directory_path_names_in_subtree(self, subtree_path_name):
+    def list_public_directory_paths_in_subtree(self, subtree_path):
         result = []
-        for subtree_path_name, directory_names, file_names in os.walk(subtree_path_name):
-            if '.svn' not in subtree_path_name:
+        for subtree_path, directory_names, file_names in os.walk(subtree_path):
+            if '.svn' not in subtree_path:
                 for directory_name in directory_names:
                     if '.svn' not in directory_name:
                         if directory_name[0].isalpha():
-                            result.append(os.path.join(subtree_path_name, directory_name))
+                            result.append(os.path.join(subtree_path, directory_name))
         return result
 
-    def list_public_package_path_names_in_subtree(self, subtree_path_name):
+    def list_public_package_paths_in_subtree(self, subtree_path):
         result = []
-        for directory_path_name in self.list_public_directory_path_names_in_subtree(subtree_path_name):
-            if '__init__.py' in os.listdir(directory_path_name):
-                result.append(directory_path_name)
+        for directory_path in self.list_public_directory_paths_in_subtree(subtree_path):
+            if '__init__.py' in os.listdir(directory_path):
+                result.append(directory_path)
         return result
 
     def list_score_package_short_names(self, head=None):
@@ -303,17 +303,17 @@ class ScoreManagerObject(AbjadObject):
             is_ranged=is_ranged)
         return menu, section
 
-    def module_importable_name_to_path_name(self, module_importable_name):
+    def module_importable_name_to_path(self, module_importable_name):
         if module_importable_name is not None:
-            path_name = self.package_importable_name_to_path_name(module_importable_name) + '.py'
-            return path_name
+            path = self.package_importable_name_to_path(module_importable_name) + '.py'
+            return path
 
     def package_exists(self, package_importable_name):
         assert isinstance(package_importable_name, str)
-        path_name = self.package_importable_name_to_path_name(package_importable_name)
-        return os.path.exists(path_name)
+        path = self.package_importable_name_to_path(package_importable_name)
+        return os.path.exists(path)
 
-    def package_importable_name_to_path_name(self, package_importable_name):
+    def package_importable_name_to_path(self, package_importable_name):
         if package_importable_name is None:
             return
         package_importable_name_parts = package_importable_name.split('.')
@@ -324,48 +324,48 @@ class ScoreManagerObject(AbjadObject):
         elif package_importable_name_parts[0] == \
             self.configuration.score_external_materials_package_importable_name:
             directory_parts = \
-                [self.configuration.score_external_materials_package_path_name] + \
+                [self.configuration.score_external_materials_package_path] + \
                 package_importable_name_parts[1:]
         elif package_importable_name_parts[0] == \
             self.configuration.score_external_chunks_package_importable_name:
             directory_parts = \
-                [self.configuration.score_external_chunks_package_path_name] + \
+                [self.configuration.score_external_chunks_package_path] + \
                 package_importable_name_parts[1:]
         elif package_importable_name_parts[0] == \
             self.configuration.score_external_specifiers_package_importable_name:
             directory_parts = \
-                [self.configuration.score_external_specifiers_package_path_name] + \
+                [self.configuration.score_external_specifiers_package_path] + \
                 package_importable_name_parts[1:]
         else:
             directory_parts = [self.configuration.SCORES_DIRECTORY_PATH] + package_importable_name_parts[:]
         directory = os.path.join(*directory_parts)
         return directory
 
-    def path_name_to_human_readable_base_name(self, path_name):
-        path_name = path_name.rstrip(os.path.sep)
-        base_name = os.path.basename(path_name)
+    def path_to_human_readable_base_name(self, path):
+        path = path.rstrip(os.path.sep)
+        base_name = os.path.basename(path)
         base_name = self.strip_extension_from_base_name(base_name)
         return self.change_string_to_human_readable_string(base_name)
 
-    def path_name_to_package_importable_name(self, path_name):
-        if path_name is None:
+    def path_to_package_importable_name(self, path):
+        if path is None:
             return
-        path_name = path_name.rstrip(os.path.sep)
-        if path_name.endswith('.py'):
-            path_name = path_name[:-3]
-        if path_name.startswith(self.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH):
+        path = path.rstrip(os.path.sep)
+        if path.endswith('.py'):
+            path = path[:-3]
+        if path.startswith(self.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH):
             prefix_length = len(os.path.dirname(self.configuration.SCORE_MANAGEMENT_TOOLS_DIRECTORY_PATH)) + 1
-        elif path_name.startswith(self.configuration.score_external_materials_package_path_name):
-            prefix_length = len(os.path.dirname(self.configuration.score_external_materials_package_path_name)) + 1
-        elif path_name.startswith(self.configuration.score_external_chunks_package_path_name):
-            prefix_length = len(os.path.dirname(self.configuration.score_external_chunks_package_path_name)) + 1
-        elif path_name.startswith(self.configuration.score_external_specifiers_package_path_name):
-            prefix_length = len(os.path.dirname(self.configuration.score_external_specifiers_package_path_name)) + 1
-        elif path_name.startswith(self.configuration.SCORES_DIRECTORY_PATH):
+        elif path.startswith(self.configuration.score_external_materials_package_path):
+            prefix_length = len(os.path.dirname(self.configuration.score_external_materials_package_path)) + 1
+        elif path.startswith(self.configuration.score_external_chunks_package_path):
+            prefix_length = len(os.path.dirname(self.configuration.score_external_chunks_package_path)) + 1
+        elif path.startswith(self.configuration.score_external_specifiers_package_path):
+            prefix_length = len(os.path.dirname(self.configuration.score_external_specifiers_package_path)) + 1
+        elif path.startswith(self.configuration.SCORES_DIRECTORY_PATH):
             prefix_length = len(self.configuration.SCORES_DIRECTORY_PATH) + 1
         else:
             return
-        package_importable_name = path_name[prefix_length:]
+        package_importable_name = path[prefix_length:]
         package_importable_name = package_importable_name.replace(os.path.sep, '.')
         return package_importable_name
 

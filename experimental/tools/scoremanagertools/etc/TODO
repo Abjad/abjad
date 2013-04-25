@@ -78,8 +78,6 @@
 
 28. Audit all __init__.py files and make all autoloading.
 
-29. Remove reference to 'path_name' everywhere. Change to just 'path'.
+29. Audit references to '*_directory_name' and see if most should change to '*_directory_path'.
 
 30. Reimplement 'is_versioned' to look for the presence of hidden .svn directory. Maybe?
-
-31. Audit references to '*_directory_name' and see if most should change to '*_directory_path'.

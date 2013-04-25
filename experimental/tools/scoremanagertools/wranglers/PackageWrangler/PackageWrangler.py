@@ -15,8 +15,8 @@ class PackageWrangler(ImportableAssetWrangler):
     @property
     def score_external_asset_proxies(self):
         result = []
-        for asset_path_name in self.score_external_asset_path_names:
-            asset_package_importable_name = self.path_name_to_package_importable_name(asset_path_name)
+        for asset_path in self.score_external_asset_paths:
+            asset_package_importable_name = self.path_to_package_importable_name(asset_path)
             asset_proxy = self.get_asset_proxy(asset_package_importable_name)
             result.append(asset_proxy)
         return result
@@ -32,8 +32,8 @@ class PackageWrangler(ImportableAssetWrangler):
 
     def make_asset(self, asset_short_name):
         assert stringtools.is_underscore_delimited_lowercase_package_name(asset_short_name)
-        asset_path_name = os.path.join(self.current_asset_container_path_name, asset_short_name)
-        os.mkdir(asset_path_name)
+        asset_path = os.path.join(self.current_asset_container_path, asset_short_name)
+        os.mkdir(asset_path)
         package_proxy = self.get_asset_proxy(asset_short_name)
         package_proxy.fix(is_interactive=False)
 

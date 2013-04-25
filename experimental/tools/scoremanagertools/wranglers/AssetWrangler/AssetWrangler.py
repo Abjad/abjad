@@ -18,7 +18,7 @@ class AssetWrangler(ScoreManagerObject):
         score_internal_asset_container_importable_name_infix=None,
         session=None,
         user_asset_container_importable_names=None,
-        user_asset_container_path_names=None):
+        user_asset_container_paths=None):
         ScoreManagerObject.__init__(self, session=session)
         if score_external_asset_container_importable_names:
             assert all([stringtools.is_underscore_delimited_lowercase_package_name(x)
@@ -32,8 +32,8 @@ class AssetWrangler(ScoreManagerObject):
             score_internal_asset_container_importable_name_infix
         self._user_asset_container_importable_names = \
             user_asset_container_importable_names or []
-        self._user_asset_container_path_names = \
-            user_asset_container_path_names or []
+        self._user_asset_container_paths = \
+            user_asset_container_paths or []
 
     ### SPECIAL METHODS ###
 
@@ -78,7 +78,7 @@ class AssetWrangler(ScoreManagerObject):
 
     @property
     def current_asset_container_human_readable_name(self):
-        return self.path_name_to_human_readable_base_name(self.current_asset_container_path_name)
+        return self.path_to_human_readable_base_name(self.current_asset_container_path)
 
     @property
     def current_asset_container_importable_name(self):
@@ -90,8 +90,8 @@ class AssetWrangler(ScoreManagerObject):
             return self.list_score_external_asset_container_importable_names()[0]
 
     @property
-    def current_asset_container_path_name(self):
-        return self.package_importable_name_to_path_name(
+    def current_asset_container_path(self):
+        return self.package_importable_name_to_path(
             self.current_asset_container_importable_name)
 
     @property
@@ -108,11 +108,11 @@ class AssetWrangler(ScoreManagerObject):
 
     @property
     def temporary_asset_human_readable_name(self):
-        return self.path_name_to_human_readable_base_name(self.temporary_asset_path_name)
+        return self.path_to_human_readable_base_name(self.temporary_asset_path)
 
     @property
-    def temporary_asset_path_name(self):
-        return os.path.join(self.current_asset_container_path_name, self.temporary_asset_short_name)
+    def temporary_asset_path(self):
+        return os.path.join(self.current_asset_container_path, self.temporary_asset_short_name)
 
     @property
     def temporary_asset_proxy(self):
@@ -167,10 +167,10 @@ class AssetWrangler(ScoreManagerObject):
         result.extend(self.list_score_internal_asset_container_importable_names(head=head))
         return result
 
-    def list_asset_container_path_names(self, head=None):
+    def list_asset_container_paths(self, head=None):
         result = []
-        result.extend(self.list_score_external_asset_container_path_names(head=head))
-        result.extend(self.list_score_internal_asset_container_path_names(head=head))
+        result.extend(self.list_score_external_asset_container_paths(head=head))
+        result.extend(self.list_score_internal_asset_container_paths(head=head))
         return result
 
     def list_asset_container_proxies(self, head=None):
@@ -183,22 +183,22 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_asset_human_readable_names(self, head=None):
         result = []
-        for path_name in self.list_asset_path_names(head=head):
-            result.append(self.path_name_to_human_readable_base_name(path_name))
+        for path in self.list_asset_paths(head=head):
+            result.append(self.path_to_human_readable_base_name(path))
         return result
 
-    def list_asset_path_names(self, head=None):
+    def list_asset_paths(self, head=None):
         result = []
         if head in (None,) + self.configuration.score_external_package_importable_names:
-            result.extend(self.list_score_external_asset_path_names(head=head))
-        result.extend(self.list_score_internal_asset_path_names(head=head))
-        result.extend(self.list_user_asset_path_names(head=head))
+            result.extend(self.list_score_external_asset_paths(head=head))
+        result.extend(self.list_score_internal_asset_paths(head=head))
+        result.extend(self.list_user_asset_paths(head=head))
         return result
 
     def list_asset_proxies(self, head=None):
         result = []
-        for asset_path_name in self.list_asset_path_names(head=head):
-            asset_proxy = self.get_asset_proxy(asset_path_name)
+        for asset_path in self.list_asset_paths(head=head):
+            asset_proxy = self.get_asset_proxy(asset_path)
             result.append(asset_proxy)
         return result
 
@@ -206,8 +206,8 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_score_external_asset_container_human_readable_names(self, head=None):
         result = []
-        for path_name in self.list_score_external_asset_container_path_names(head=head):
-            result.append(self.path_name_to_human_readable_base_name(path_name))
+        for path in self.list_score_external_asset_container_paths(head=head):
+            result.append(self.path_to_human_readable_base_name(path))
         return result
 
     def list_score_external_asset_container_importable_names(self, head=None):
@@ -217,10 +217,10 @@ class AssetWrangler(ScoreManagerObject):
                 result.append(importable_name)
         return result
 
-    def list_score_external_asset_container_path_names(self, head=None):
+    def list_score_external_asset_container_paths(self, head=None):
         result = []
         for importable_name in self.list_score_external_asset_container_importable_names(head=head):
-            result.append(self.package_importable_name_to_path_name(importable_name))
+            result.append(self.package_importable_name_to_path(importable_name))
         return result
 
     def list_score_external_asset_container_proxies(self, head=None):
@@ -234,22 +234,22 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_score_external_asset_human_readable_names(self, head=None):
         result = []
-        for path_name in self.list_score_external_asset_path_names(head=head):
-            result.append(self.path_name_to_human_readable_base_name(path_name))
+        for path in self.list_score_external_asset_paths(head=head):
+            result.append(self.path_to_human_readable_base_name(path))
         return result
 
-    def list_score_external_asset_path_names(self, head=None):
+    def list_score_external_asset_paths(self, head=None):
         result = []
-        for path_name in self.list_score_external_asset_container_path_names(head=head):
-            for name in os.listdir(path_name):
+        for path in self.list_score_external_asset_container_paths(head=head):
+            for name in os.listdir(path):
                 if name[0].isalpha():
-                    result.append(os.path.join(path_name, name))
+                    result.append(os.path.join(path, name))
         return result
 
     def list_score_external_asset_proxies(self, head=None):
         result = []
-        for asset_path_name in self.list_score_external_asset_path_names(head=head):
-            asset_proxy = self.get_asset_proxy(asset_path_name)
+        for asset_path in self.list_score_external_asset_paths(head=head):
+            asset_proxy = self.get_asset_proxy(asset_path)
             result.append(asset_proxy)
         return result
 
@@ -257,8 +257,8 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_score_internal_asset_container_human_readable_names(self, head=None):
         result = []
-        for path_name in self.list_score_internal_asset_container_human_readable_names(head=head):
-            result.append(self.path_name_to_human_readable_base_name(path_name))
+        for path in self.list_score_internal_asset_container_human_readable_names(head=head):
+            result.append(self.path_to_human_readable_base_name(path))
         return result
 
     def list_score_internal_asset_container_importable_names(self, head=None):
@@ -271,11 +271,11 @@ class AssetWrangler(ScoreManagerObject):
             result.append(score_internal_score_package_importable_name)
         return result
 
-    def list_score_internal_asset_container_path_names(self, head=None):
+    def list_score_internal_asset_container_paths(self, head=None):
         result = []
         for package_importable_name in \
             self.list_score_internal_asset_container_importable_names(head=head):
-            result.append(self.package_importable_name_to_path_name(package_importable_name))
+            result.append(self.package_importable_name_to_path(package_importable_name))
         return result
 
     def list_score_internal_asset_container_proxies(self, head=None):
@@ -289,16 +289,16 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_score_internal_asset_human_readable_names(self, head=None):
         result = []
-        for path_name in self.list_score_internal_asset_path_names(head=head):
-            result.append(self.path_name_to_human_readable_base_name(path_name))
+        for path in self.list_score_internal_asset_paths(head=head):
+            result.append(self.path_to_human_readable_base_name(path))
         return result
 
-    def list_score_internal_asset_path_names(self, head=None):
+    def list_score_internal_asset_paths(self, head=None):
         result = []
-        for path_name in self.list_score_internal_asset_container_path_names(head=head):
-            for name in os.listdir(path_name):
+        for path in self.list_score_internal_asset_container_paths(head=head):
+            for name in os.listdir(path):
                 if name[0].isalpha():
-                    result.append(os.path.join(path_name, name))
+                    result.append(os.path.join(path, name))
         return result
 
     def list_score_internal_asset_proxies(self, head=None):
@@ -314,8 +314,8 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_user_asset_container_human_readable_names(self, head=None):
         result = []
-        for path_name in self.list_user_asset_container_path_names(head=head):
-            result.append(self.path_name_to_human_readable_base_name(path_name))
+        for path in self.list_user_asset_container_paths(head=head):
+            result.append(self.path_to_human_readable_base_name(path))
         return result
 
     def list_user_asset_container_importable_names(self, head=None):
@@ -325,12 +325,12 @@ class AssetWrangler(ScoreManagerObject):
                 result.append(importable_name)
         return result
 
-    def list_user_asset_container_path_names(self, head=None):
+    def list_user_asset_container_paths(self, head=None):
         #result = []
         #for importable_name in self.list_user_asset_container_importable_names(head=head):
-        #    result.append(self.package_importable_name_to_path_name(importable_name))
+        #    result.append(self.package_importable_name_to_path(importable_name))
         #return result
-        return self._user_asset_container_path_names[:]
+        return self._user_asset_container_paths[:]
 
     def list_user_asset_container_proxies(self, head=None):
         result = []
@@ -343,22 +343,22 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_user_asset_human_readable_names(self, head=None):
         result = []
-        for path_name in self.list_user_asset_path_names(head=head):
-            result.append(self.path_name_to_human_readable_base_name(path_name))
+        for path in self.list_user_asset_paths(head=head):
+            result.append(self.path_to_human_readable_base_name(path))
         return result
 
-    def list_user_asset_path_names(self, head=None):
+    def list_user_asset_paths(self, head=None):
         result = []
-        for path_name in self.list_user_asset_container_path_names(head=head):
-            for name in os.listdir(path_name):
+        for path in self.list_user_asset_container_paths(head=head):
+            for name in os.listdir(path):
                 if name[0].isalpha():
-                    result.append(os.path.join(path_name, name))
+                    result.append(os.path.join(path, name))
         return result
 
     def list_user_asset_proxies(self, head=None):
         result = []
-        for asset_path_name in self.list_user_asset_path_names(head=head):
-            asset_proxy = self.get_asset_proxy(asset_path_name)
+        for asset_path in self.list_user_asset_paths(head=head):
+            asset_proxy = self.get_asset_proxy(asset_path)
             result.append(asset_proxy)
         return result
 
@@ -368,12 +368,12 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_visible_asset_human_readable_names(self, head=None):
         result = []
-        for path_name in self.list_visible_asset_path_names(head=head):
-            result.append(self.path_name_to_human_readable_base_name(path_name))
+        for path in self.list_visible_asset_paths(head=head):
+            result.append(self.path_to_human_readable_base_name(path))
         return result
 
-    def list_visible_asset_path_names(self, head=None):
-        return self.list_asset_path_names(head=head)
+    def list_visible_asset_paths(self, head=None):
+        return self.list_asset_paths(head=head)
 
     def list_visible_asset_proxies(self, head=None):
         return self.list_asset_proxies(head=head)
@@ -382,8 +382,8 @@ class AssetWrangler(ScoreManagerObject):
 
     def make_asset(self, asset_short_name):
         assert stringtools.is_underscore_delimited_lowercase_string(asset_short_name)
-        asset_path_name = os.path.join(self.current_asset_container_path_name, asset_short_name)
-        asset_proxy = self.get_asset_proxy(asset_path_name)
+        asset_path = os.path.join(self.current_asset_container_path, asset_short_name)
+        asset_proxy = self.get_asset_proxy(asset_path)
         asset_proxy.write_stub_to_disk()
 
     @abc.abstractmethod
@@ -408,7 +408,7 @@ class AssetWrangler(ScoreManagerObject):
         pass
 
     def make_visible_asset_menu_tokens(self, head=None):
-        keys = self.list_visible_asset_path_names(head=head)
+        keys = self.list_visible_asset_paths(head=head)
         bodies = self.list_visible_asset_human_readable_names(head=head)
         return zip(keys, bodies)
 
@@ -419,7 +419,7 @@ class AssetWrangler(ScoreManagerObject):
     # TODO: write test
     def remove_assets_interactively(self, head=None):
         getter = self.make_getter(where=self.where())
-        argument_list = self.list_visible_asset_path_names(head=head)
+        argument_list = self.list_visible_asset_paths(head=head)
         getter.append_argument_range(self.asset_class_plural_human_readable_name, argument_list)
         result = getter.run()
         if self.backtrack():
@@ -428,8 +428,8 @@ class AssetWrangler(ScoreManagerObject):
         total_assets_removed = 0
         for asset_number in result:
             asset_index = asset_number - 1
-            asset_path_name = argument_list[asset_index]
-            asset_proxy = self.get_asset_proxy(asset_path_name)
+            asset_path = argument_list[asset_index]
+            asset_proxy = self.get_asset_proxy(asset_path)
             asset_proxy.remove()
             total_assets_removed += 1
         self.proceed('{} asset(s) removed.'.format(total_assets_removed))

@@ -27,10 +27,10 @@ def test_MaterialPackageWrangler_iteration_02():
 def test_MaterialPackageWrangler_iteration_03():
 
     assert os.path.join(os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY'), 'red_notes') in \
-        wrangler.list_asset_path_names()
+        wrangler.list_asset_paths()
     assert os.path.join(os.environ.get('SCORE_MANAGER_MATERIALS_DIRECTORY'), 'red_notes') not in \
-        wrangler.list_asset_path_names(head='example_score_1')
-    assert wrangler.list_asset_path_names(head='asdf') == []
+        wrangler.list_asset_paths(head='example_score_1')
+    assert wrangler.list_asset_paths(head='asdf') == []
 
 
 def test_MaterialPackageWrangler_iteration_04():
@@ -57,9 +57,9 @@ def test_MaterialPackageWrangler_iteration_05():
 def test_MaterialPackageWrangler_iteration_06():
 
     path = os.path.join(wrangler.configuration.SCORES_DIRECTORY_PATH, 'example_score_1', 'mus', 'materials')
-    assert path in wrangler.list_score_internal_asset_container_path_names()
-    assert path not in wrangler.list_score_internal_asset_container_path_names(head='example_score_2')
-    assert wrangler.list_score_internal_asset_container_path_names(head='asdf') == []
+    assert path in wrangler.list_score_internal_asset_container_paths()
+    assert path not in wrangler.list_score_internal_asset_container_paths(head='example_score_2')
+    assert wrangler.list_score_internal_asset_container_paths(head='asdf') == []
 
 
 def test_MaterialPackageWrangler_iteration_07():
@@ -80,9 +80,9 @@ def test_MaterialPackageWrangler_iteration_08():
     path = os.path.join(
         wrangler.configuration.SCORES_DIRECTORY_PATH, 
         'example_scores_1', 'mus', 'materials', 'time_signatures')
-    assert path in wrangler.list_score_internal_asset_path_names()
-    assert path in wrangler.list_score_internal_asset_path_names(head='example_score_2')
-    assert wrangler.list_score_internal_asset_path_names(head='asdf') == []
+    assert path in wrangler.list_score_internal_asset_paths()
+    assert path in wrangler.list_score_internal_asset_paths(head='example_score_2')
+    assert wrangler.list_score_internal_asset_paths(head='asdf') == []
 
 
 def test_MaterialPackageWrangler_iteration_09():

@@ -15,7 +15,7 @@ def test_StylesheetFileProxy_public_attributes_01():
     assert proxy.human_readable_name is None
     assert not proxy.is_versioned
     assert proxy.parent_directory_name is None
-    assert proxy.path_name is None
+    assert proxy.path is None
     assert proxy.plural_generic_class_name == 'stylesheets'
     assert proxy.short_name is None
     assert proxy.short_name_without_extension is None
@@ -41,9 +41,9 @@ def test_StylesheetFileProxy_public_attributes_02():
     assert proxy.human_readable_name == short_name
     assert proxy.is_versioned
     assert proxy.parent_directory_name == proxy.configuration.stylesheets_directory_name
-    assert proxy.path_name == path
+    assert proxy.path == path
     assert proxy.plural_generic_class_name == 'stylesheets'
     assert proxy.short_name == short_name
     assert proxy.short_name_without_extension == short_name[:-3]
-    assert proxy.svn_add_command == 'svn add {}'.format(proxy.path_name)
+    assert proxy.svn_add_command == 'svn add {}'.format(proxy.path)
     assert proxy.temporary_asset_short_name == 'temporary_stylesheet.ly'

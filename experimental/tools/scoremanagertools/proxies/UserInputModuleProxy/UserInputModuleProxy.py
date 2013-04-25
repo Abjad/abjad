@@ -33,7 +33,7 @@ class UserInputModuleProxy(ModuleProxy):
 
     def parse(self):
         is_parsable = True
-        output_material_module = file(self.path_name, 'r')
+        output_material_module = file(self.path, 'r')
         encoding_directives = []
         docstring_lines = []
         setup_statements = []
@@ -71,15 +71,15 @@ class UserInputModuleProxy(ModuleProxy):
 
     def read_user_input_wrapper_from_disk(self):
         self.unimport()
-        if os.path.exists(self.path_name):
-            file_pointer = open(self.path_name, 'r')
+        if os.path.exists(self.path):
+            file_pointer = open(self.path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
             try:
                 exec(file_contents_string)
                 return locals().get('user_input_wrapper', None)
             except:
-                self.display('Error reading user input module {!r}.'.format(self.path_name))
+                self.display('Error reading user input module {!r}.'.format(self.path))
 
     def write_user_input_wrapper_to_disk(self, user_input_wrapper_in_memory):
         self.setup_statements[:] = self.conditionally_add_terminal_newlines(

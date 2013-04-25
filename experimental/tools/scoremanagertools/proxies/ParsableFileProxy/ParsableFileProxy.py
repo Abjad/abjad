@@ -3,8 +3,8 @@ from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
 
 class ParsableFileProxy(FileProxy):
 
-    def __init__(self, path_name=None, session=None):
-        FileProxy.__init__(self, path_name=path_name, session=session)
+    def __init__(self, path=None, session=None):
+        FileProxy.__init__(self, path=path, session=session)
         self.encoding_directives = []
         self.docstring_lines = []
         self.setup_statements = []
@@ -62,8 +62,8 @@ class ParsableFileProxy(FileProxy):
 
     # TODO: move down to ModuleProxy?
     def execute_file_lines(self):
-        if self.path_name:
-            file_pointer = open(self.path_name, 'r')
+        if self.path:
+            file_pointer = open(self.path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
             #print file_contents_string
@@ -71,5 +71,5 @@ class ParsableFileProxy(FileProxy):
 
     # TODO: move up to FileProxy
     def write_to_disk(self):
-        initializer = file(self.path_name, 'w')
+        initializer = file(self.path, 'w')
         initializer.write(self.format)

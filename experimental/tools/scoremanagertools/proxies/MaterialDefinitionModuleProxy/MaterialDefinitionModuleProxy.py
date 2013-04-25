@@ -43,11 +43,11 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
 
     def edit(self):
         columns = len(self.material_underscored_name) + 3
-        os.system("vi + -c'norm {}l' {}".format(columns, self.path_name))
+        os.system("vi + -c'norm {}l' {}".format(columns, self.path))
 
     def import_output_material_module_import_statements_and_material_definition(self):
-        if os.path.exists(self.path_name):
-            file_pointer = open(self.path_name, 'r')
+        if os.path.exists(self.path):
+            file_pointer = open(self.path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
             exec(file_contents_string)
@@ -60,7 +60,7 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
         is_parsable = True
         if not self.exists:
             return
-        material_definition_module = file(self.path_name, 'r')
+        material_definition_module = file(self.path, 'r')
         encoding_directives = []
         docstring_lines = []
         setup_statements = []

@@ -177,7 +177,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def illustration_builder_module_file_name(self):
         if self.should_have_illustration_builder_module:
-            return os.path.join(self.path_name, 'illustration_builder.py')
+            return os.path.join(self.path, 'illustration_builder.py')
 
     @property
     def illustration_builder_module_importable_name(self):
@@ -195,7 +195,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def illustration_ly_file_name(self):
         if self.should_have_illustration_ly:
-            return os.path.join(self.path_name, 'illustration.ly')
+            return os.path.join(self.path, 'illustration.ly')
 
     @property
     def illustration_ly_file_proxy(self):
@@ -207,7 +207,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def illustration_pdf_file_name(self):
         if self.should_have_illustration_pdf:
-            return os.path.join(self.path_name, 'illustration.pdf')
+            return os.path.join(self.path, 'illustration.pdf')
 
     @property
     def illustration_pdf_file_proxy(self):
@@ -260,7 +260,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def material_definition_module_file_name(self):
         if self.should_have_material_definition_module:
-            return os.path.join(self.path_name, 'material_definition.py')
+            return os.path.join(self.path, 'material_definition.py')
 
     @property
     def material_definition_module_importable_name(self):
@@ -275,10 +275,10 @@ class MaterialPackageProxy(PackageProxy):
 
     @property
     def material_package_directory(self):
-        if self.session.current_materials_package_path_name:
+        if self.session.current_materials_package_path:
             if self.material_package_short_name:
                 return os.path.join(
-                    self.session.current_materials_package_path_name, self.material_package_short_name)
+                    self.session.current_materials_package_path, self.material_package_short_name)
 
     @property
     def material_package_maker(self):
@@ -320,7 +320,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def output_material_module_file_name(self):
         if self.should_have_output_material_module:
-            return os.path.join(self.path_name, 'output_material.py')
+            return os.path.join(self.path, 'output_material.py')
 
     @property
     def output_material_module_import_statements_and_material_definition(self):
@@ -415,7 +415,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def user_input_module_file_name(self):
         if self.should_have_user_input_module:
-            return os.path.join(self.path_name, 'user_input.py')
+            return os.path.join(self.path, 'user_input.py')
 
     @property
     def user_input_module_importable_name(self):
@@ -781,12 +781,12 @@ class MaterialPackageProxy(PackageProxy):
             return
         if self.is_versioned:
             # rename package directory
-            new_directory_name = self.path_name.replace(
+            new_directory_name = self.path.replace(
                 self.material_underscored_name, new_material_underscored_name)
-            command = 'svn mv {} {}'.format(self.path_name, new_directory_name)
+            command = 'svn mv {} {}'.format(self.path, new_directory_name)
             os.system(command)
             # update package initializer
-            parent_directory_name = os.path.dirname(self.path_name)
+            parent_directory_name = os.path.dirname(self.path)
             new_package_directory = os.path.join(parent_directory_name, new_material_underscored_name)
             new_initializer = os.path.join(new_package_directory, '__init__.py')
             helpers.globally_replace_in_file(
@@ -802,7 +802,7 @@ class MaterialPackageProxy(PackageProxy):
             command = 'svn commit -m "{}" {}'.format(commit_message, self.parent_directory_name)
             os.system(command)
             # update path name to reflect change
-            self._path_name = new_package_directory
+            self._path = new_package_directory
         else:
             raise NotImplementedError('commit to repository and then rename.')
 

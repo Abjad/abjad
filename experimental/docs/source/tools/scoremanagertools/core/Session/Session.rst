@@ -36,25 +36,25 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_chunks_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_chunks_package_path_name
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_chunks_package_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_materials_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_materials_package_path_name
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_materials_package_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_score_package_proxy
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_score_path_name
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_score_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_specifiers_package_importable_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_specifiers_package_path_name
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_specifiers_package_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.explicit_command_history
@@ -159,7 +159,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.asset_full_name_to_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.asset_full_name_to_path_name
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.asset_full_name_to_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.assign_user_input
@@ -210,7 +210,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.get_one_line_menuing_summary
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.get_tag_from_path_name
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.get_tag_from_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.get_tools_package_qualified_repr
@@ -225,13 +225,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.is_module_name
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.is_path_name
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.is_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.list_public_directory_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.list_public_directory_paths_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.list_public_package_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.list_public_package_paths_in_subtree
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.list_score_package_short_names
@@ -243,19 +243,19 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.module_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.module_importable_name_to_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.package_exists
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.package_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.package_importable_name_to_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.path_name_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.path_to_human_readable_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.path_name_to_package_importable_name
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.path_to_package_importable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.pluralize_string

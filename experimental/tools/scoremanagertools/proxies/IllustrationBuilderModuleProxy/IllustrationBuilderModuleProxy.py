@@ -9,11 +9,11 @@ class IllustrationBuilderModuleProxy(BasicModuleProxy):
 
     @property
     def illustration_ly_file_name(self):
-        return self.path_name.replace('.py', '.ly')
+        return self.path.replace('.py', '.ly')
 
     @property
     def illustration_pdf_file_name(self):
-        return self.path_name.replace('.py', '.pdf')
+        return self.path.replace('.py', '.pdf')
 
     @property
     def is_user_finalized(self):

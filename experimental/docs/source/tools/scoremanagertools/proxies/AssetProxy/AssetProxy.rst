@@ -33,7 +33,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.parent_directory_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.path_name
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.plural_generic_class_name
@@ -72,7 +72,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.asset_full_name_to_importable_name
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.asset_full_name_to_path_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.asset_full_name_to_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.assign_user_input
@@ -129,7 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.get_one_line_menuing_summary
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.get_tag_from_path_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.get_tag_from_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.get_tools_package_qualified_repr
@@ -147,13 +147,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.is_module_name
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.is_path_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.is_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.list_public_directory_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.list_public_directory_paths_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.list_public_package_path_names_in_subtree
+.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.list_public_package_paths_in_subtree
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.list_score_package_short_names
@@ -165,19 +165,19 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.module_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.module_importable_name_to_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.package_exists
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.package_importable_name_to_path_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.package_importable_name_to_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.path_name_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.path_to_human_readable_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.path_name_to_package_importable_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.path_to_package_importable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.pluralize_string

@@ -33,9 +33,9 @@ class ImportableAssetWrangler(AssetWrangler):
 
     def list_score_external_asset_importable_names(self, head=None):
         result = []
-        for path_name in self.list_score_external_asset_container_path_names(head=head):
-            for name in os.listdir(path_name):
-                importable_name = self.path_name_to_package_importable_name(path_name)
+        for path in self.list_score_external_asset_container_paths(head=head):
+            for name in os.listdir(path):
+                importable_name = self.path_to_package_importable_name(path)
                 if name[0].isalpha():
                     result.append(self.dot_join([importable_name, name]))
         return result
@@ -45,9 +45,9 @@ class ImportableAssetWrangler(AssetWrangler):
         for asset_container_importable_name in \
             self.list_score_internal_asset_container_importable_names(head=head):
             if self.score_internal_asset_container_importable_name_infix:
-                asset_path_name = self.package_importable_name_to_path_name(
+                asset_path = self.package_importable_name_to_path(
                     asset_container_importable_name)
-                for name in os.listdir(asset_path_name):
+                for name in os.listdir(asset_path):
                     if name[0].isalpha():
                         importable_base_name = self.strip_extension_from_base_name(name)
                         result.append('{}.{}'.format(
@@ -58,8 +58,8 @@ class ImportableAssetWrangler(AssetWrangler):
 
     def list_user_asset_importable_names(self, head=None):
         result = []
-        for path_name in self.list_user_asset_container_path_names(head=head):
-            for name in os.listdir(path_name):
+        for path in self.list_user_asset_container_paths(head=head):
+            for name in os.listdir(path):
                 if name[0].isalpha():
                     result.append(self.dot_join([self.configuration.user_makers_package_importable_name, name]))
         return result

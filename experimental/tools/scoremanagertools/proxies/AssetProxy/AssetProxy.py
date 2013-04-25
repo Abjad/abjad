@@ -15,16 +15,16 @@ class AssetProxy(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, path_name=None, session=None):
-        assert isinstance(path_name, (str, type(None)))
+    def __init__(self, path=None, session=None):
+        assert isinstance(path, (str, type(None)))
         ScoreManagerObject.__init__(self, session=session)
-        self._path_name = path_name
+        self._path = path
 
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        if self.path_name:
-            return '{}({!r})'.format(self._class_name, self.path_name)
+        if self.path:
+            return '{}({!r})'.format(self._class_name, self.path)
         else:
             return '{}()'.format(self._class_name)
 
@@ -36,8 +36,8 @@ class AssetProxy(ScoreManagerObject):
 
     @property
     def exists(self):
-        if self.path_name:
-            return os.path.exists(self.path_name)
+        if self.path:
+            return os.path.exists(self.path)
         return False
 
     @property
@@ -46,11 +46,11 @@ class AssetProxy(ScoreManagerObject):
 
     @property
     def is_versioned(self):
-        if self.path_name is None:
+        if self.path is None:
             return False
-        if not os.path.exists(self.path_name):
+        if not os.path.exists(self.path):
             return False
-        command = 'svn st {}'.format(self.path_name)
+        command = 'svn st {}'.format(self.path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         first_line = proc.stdout.readline()
         if first_line.startswith(('?', 'svn: warning:')):
@@ -60,12 +60,12 @@ class AssetProxy(ScoreManagerObject):
 
     @property
     def parent_directory_name(self):
-        if self.path_name:
-            return os.path.dirname(self.path_name)
+        if self.path:
+            return os.path.dirname(self.path)
 
     @property
-    def path_name(self):
-        return self._path_name
+    def path(self):
+        return self._path
 
     @property
     def plural_generic_class_name(self):
@@ -73,8 +73,8 @@ class AssetProxy(ScoreManagerObject):
 
     @property
     def short_name(self):
-        if self.path_name:
-            return self.path_name.split(os.path.sep)[-1]
+        if self.path:
+            return self.path.split(os.path.sep)[-1]
 
     @property
     def short_name_without_extension(self):
@@ -86,8 +86,8 @@ class AssetProxy(ScoreManagerObject):
 
     @property
     def svn_add_command(self):
-        if self.path_name:
-            return 'svn add {}'.format(self.path_name)
+        if self.path:
+            return 'svn add {}'.format(self.path)
 
     ### PUBLIC METHODS ###
 
@@ -95,8 +95,8 @@ class AssetProxy(ScoreManagerObject):
     def conditionally_make_empty_asset(self, is_interactive=False):
         pass
 
-    def copy(self, new_path_name):
-        shutil.copyfile(self.path_name, new_path_name)
+    def copy(self, new_path):
+        shutil.copyfile(self.path, new_path)
 
     def copy_interactively(self, user_input=None):
         self.assign_user_input(user_input=user_input)
@@ -106,11 +106,11 @@ class AssetProxy(ScoreManagerObject):
         if self.backtrack():
             return
         new_asset_short_name = self.human_readable_name_to_asset_short_name(result)
-        new_path_name = os.path.join(self.parent_directory_name, new_asset_short_name)
-        self.display('new path will be {}'.format(new_path_name))
+        new_path = os.path.join(self.parent_directory_name, new_asset_short_name)
+        self.display('new path will be {}'.format(new_path))
         if not self.confirm():
             return
-        self.copy(new_path_name)
+        self.copy(new_path)
         self.proceed('asset copied.')
 
     @abc.abstractmethod
@@ -134,7 +134,7 @@ class AssetProxy(ScoreManagerObject):
 
     def remove_interactively(self, user_input=None):
         self.assign_user_input(user_input=user_input)
-        self.display(['{} will be removed.'.format(self.path_name), ''])
+        self.display(['{} will be removed.'.format(self.path), ''])
         getter = self.make_getter(where=self.where())
         getter.append_string("type 'remove' to proceed")
         result = getter.run()
@@ -143,25 +143,25 @@ class AssetProxy(ScoreManagerObject):
         if not result == 'remove':
             return
         if self.remove():
-            self.proceed('{} removed.'.format(self.path_name))
+            self.proceed('{} removed.'.format(self.path))
 
     def remove_nonversioned_asset(self):
-        command = 'rm -rf {}'.format(self.path_name)
+        command = 'rm -rf {}'.format(self.path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         proc.stdout.readline()
         return True
 
     def remove_versioned_asset(self, is_interactive=False):
-        command = 'svn --force rm {}'.format(self.path_name)
+        command = 'svn --force rm {}'.format(self.path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         proc.stdout.readline()
         return True
 
-    def rename(self, new_path_name):
+    def rename(self, new_path):
         if self.is_versioned:
-            result = self.rename_versioned_asset(new_path_name)
+            result = self.rename_versioned_asset(new_path)
         else:
-            result = self.rename_nonversioned_asset(new_path_name)
+            result = self.rename_nonversioned_asset(new_path)
 
     def rename_interactively(self, user_input=None):
         self.assign_user_input(user_input=user_input)
@@ -171,24 +171,24 @@ class AssetProxy(ScoreManagerObject):
         result = getter.run()
         if self.backtrack():
             return
-        new_path_name = os.path.join(self.parent_directory_name, result)
-        self.display(['new path name will be: "{}"'.format(new_path_name), ''])
+        new_path = os.path.join(self.parent_directory_name, result)
+        self.display(['new path name will be: "{}"'.format(new_path), ''])
         if not self.confirm():
             return
-        if self.rename(new_path_name):
+        if self.rename(new_path):
             self.proceed('asset renamed.')
 
-    def rename_nonversioned_asset(self, new_path_name):
-        command = 'mv {} {}'.format(self.path_name, new_path_name)
+    def rename_nonversioned_asset(self, new_path):
+        command = 'mv {} {}'.format(self.path, new_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         proc.stdout.readline()
-        self._path_name = new_path_name
+        self._path = new_path
 
-    def rename_versioned_asset(self, new_path_name):
-        command = 'svn --force mv {} {}'.format(self.path_name, new_path_name)
+    def rename_versioned_asset(self, new_path):
+        command = 'svn --force mv {} {}'.format(self.path, new_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         proc.stdout.readline()
-        self._path_name = new_path_name
+        self._path = new_path
 
     def run(self, cache=False, clear=True, user_input=None):
         self.assign_user_input(user_input=user_input)
@@ -213,7 +213,7 @@ class AssetProxy(ScoreManagerObject):
         self.run(**kwargs)
 
     def run_py_test(self, prompt=True):
-        proc = subprocess.Popen('py.test {}'.format(self.path_name), shell=True, stdout=subprocess.PIPE)
+        proc = subprocess.Popen('py.test {}'.format(self.path), shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         if lines:
             self.display(lines)
@@ -222,7 +222,7 @@ class AssetProxy(ScoreManagerObject):
 
     def svn_add(self, is_interactive=False):
         if is_interactive:
-            self.display(self.path_name)
+            self.display(self.path)
         proc = subprocess.Popen(self.svn_add_command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
@@ -242,8 +242,8 @@ class AssetProxy(ScoreManagerObject):
             if not self.confirm():
                 return
         lines = []
-        lines.append(self.path_name)
-        command = 'svn commit -m "{}" {}'.format(commit_message, self.path_name)
+        lines.append(self.path)
+        command = 'svn commit -m "{}" {}'.format(commit_message, self.path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines.extend([line.strip() for line in proc.stdout.readlines()])
         lines.append('')
@@ -252,8 +252,8 @@ class AssetProxy(ScoreManagerObject):
 
     def svn_st(self, is_interactive=True):
         if is_interactive:
-            self.display(self.path_name)
-        command = 'svn st -u {}'.format(self.path_name)
+            self.display(self.path)
+        command = 'svn st -u {}'.format(self.path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
@@ -262,8 +262,8 @@ class AssetProxy(ScoreManagerObject):
 
     def svn_up(self, is_interactive=True):
         if is_interactive:
-            self.display(self.path_name)
-        command = 'svn up {}'.format(self.path_name)
+            self.display(self.path)
+        command = 'svn up {}'.format(self.path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
@@ -271,14 +271,14 @@ class AssetProxy(ScoreManagerObject):
         self.proceed(is_interactive=is_interactive)
 
     def touch(self):
-        os.system('touch {}'.format(self.path_name))
+        os.system('touch {}'.format(self.path))
 
     def write_boilerplate_asset_to_disk(self, boilerplate_asset_name):
         if not os.path.exists(boilerplate_asset_name):
             boilerplate_asset_name = os.path.join(
                 self.configuration.boilerplate_directory_name, boilerplate_asset_name)
         if os.path.exists(boilerplate_asset_name):
-            shutil.copyfile(boilerplate_asset_name, self.path_name)
+            shutil.copyfile(boilerplate_asset_name, self.path)
             return True
 
     def write_boilerplate_asset_to_disk_interactively(self, user_input=None):

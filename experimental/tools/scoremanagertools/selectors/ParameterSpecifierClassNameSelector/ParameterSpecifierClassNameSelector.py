@@ -14,7 +14,7 @@ class ParameterSpecifierClassNameSelector(Selector):
             'ParameterSpecifier',
             'Specifier',
             )
-        for name in os.listdir(self.configuration.specifier_classes_package_path_name):
+        for name in os.listdir(self.configuration.specifier_classes_package_path):
             if name.endswith('Specifier'):
                 if not name in forbidden_names:
                     result.append(name)

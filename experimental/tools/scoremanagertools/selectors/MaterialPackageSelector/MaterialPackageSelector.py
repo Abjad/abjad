@@ -11,18 +11,18 @@ class MaterialPackageSelector(Selector):
 
     ### PUBLIC METHODS ###
 
-    def list_current_material_package_path_names(self):
+    def list_current_material_package_paths(self):
         result = []
-        for package_path_name in self.list_public_package_path_names_in_subtree(
-            self.session.current_materials_package_path_name):
-            if self.get_tag_from_path_name(package_path_name, 'generic_output_name') == \
+        for package_path in self.list_public_package_paths_in_subtree(
+            self.session.current_materials_package_path):
+            if self.get_tag_from_path(package_path, 'generic_output_name') == \
                 self.generic_output_name:
-                result.append(package_path_name)
+                result.append(package_path)
         return result
 
     def list_items(self):
         result = []
-        for path_name in self.list_current_material_package_path_names():
-            package_importable_name = self.path_name_to_package_importable_name(path_name)
+        for path in self.list_current_material_package_paths():
+            package_importable_name = self.path_to_package_importable_name(path)
             result.append(package_importable_name)
         return result

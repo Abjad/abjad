@@ -23,7 +23,7 @@ class BasicModuleProxy(MaterialModuleProxy):
 
     def parse(self):
         is_parsable = True
-        output_material_module = file(self.path_name, 'r')
+        output_material_module = file(self.path, 'r')
         encoding_directives = []
         docstring_lines = []
         setup_statements = []

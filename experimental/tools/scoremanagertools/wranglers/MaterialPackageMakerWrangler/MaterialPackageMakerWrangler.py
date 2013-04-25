@@ -13,13 +13,13 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 #            score_internal_asset_container_importable_name_infix=None,
 #            session=session,
 #            user_asset_container_importable_names=[self.configuration.user_makers_package_importable_name],
-#            user_asset_container_path_names=[self.configuration.user_makers_directory_name])
+#            user_asset_container_paths=[self.configuration.user_makers_directory_name])
         PackageWrangler.__init__(self, session=session)
         self._score_external_asset_container_importable_names = [
             self.configuration.makers_package_importable_name]
         self._score_internal_asset_container_importable_name_infix = None
         self._user_asset_container_importable_names = [self.configuration.user_makers_package_importable_name]
-        self._user_asset_container_path_names = [self.configuration.user_makers_directory_name]
+        self._user_asset_container_paths = [self.configuration.user_makers_directory_name]
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -69,9 +69,9 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def list_asset_human_readable_names(self, head=None):
         result = []
-        for path_name in self.list_asset_path_names(head=head):
-            path_name = path_name.rstrip(os.path.sep)
-            base_name = os.path.basename(path_name)
+        for path in self.list_asset_paths(head=head):
+            path = path.rstrip(os.path.sep)
+            base_name = os.path.basename(path)
             if base_name in self.forbidden_class_names:
                 continue
             human_readable_name = stringtools.uppercamelcase_to_space_delimited_lowercase(base_name)
