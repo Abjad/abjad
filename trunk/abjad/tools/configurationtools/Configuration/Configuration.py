@@ -11,20 +11,17 @@ class Configuration(collections.MutableMapping, abctools.AbjadObject):
     '''Abjad configuration object.
     '''
 
-    ### CLASS ATTRIBUTES ###
-
     ### INITIALIZER ###
 
     def __init__(self):
-
         # verify configuration directory
-        if not os.path.exists(self.CONFIG_DIRECTORY_PATH):
-            os.makedirs(self.CONFIG_DIRECTORY_PATH)
+        if not os.path.exists(self.CONFIGURATION_DIRECTORY_PATH):
+            os.makedirs(self.CONFIGURATION_DIRECTORY_PATH)
 
         # attempt to load config from disk, and validate
         # a config object will be created if none is found on disk
         config = configobj.ConfigObj(
-            self.CONFIG_FILE_PATH,
+            self.CONFIGURATION_FILE_PATH,
             configspec=self._config_specification
             )
 
@@ -47,7 +44,7 @@ class Configuration(collections.MutableMapping, abctools.AbjadObject):
         config.initial_comment = self._initial_comment
 
         # write back to disk
-        with open(self.CONFIG_FILE_PATH, 'w') as f:
+        with open(self.CONFIGURATION_FILE_PATH, 'w') as f:
             config.write(f)
 
         # turn the ConfigObj instance into a standard dict,
@@ -76,27 +73,7 @@ class Configuration(collections.MutableMapping, abctools.AbjadObject):
     def __setitem__(self, i, arg):
         self._settings[i] = arg
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @abc.abstractproperty
-    def CONFIG_DIRECTORY_PATH(self):
-        raise NotImplemented
-
-    @abc.abstractproperty
-    def CONFIG_FILE_NAME(self):
-        raise NotImplemented
-
-    @property
-    def CONFIG_FILE_PATH(self):
-        return os.path.join(self.CONFIG_DIRECTORY_PATH, self.CONFIG_FILE_NAME)
-
-    @property
-    def HOME_DIRECTORY_PATH(self):
-        return os.environ.get('HOME') or \
-            os.environ.get('HOMEPATH') or \
-            os.environ.get('APPDATA')
-
-    ### PRIVATE PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _config_specification(self):
@@ -126,3 +103,23 @@ class Configuration(collections.MutableMapping, abctools.AbjadObject):
         options = self._option_definitions
         specs = [(key, options[key]['spec']) for key in options]
         return dict(specs)
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @abc.abstractproperty
+    def CONFIGURATION_DIRECTORY_PATH(self):
+        raise NotImplemented
+
+    @abc.abstractproperty
+    def CONFIGURATION_FILE_NAME(self):
+        raise NotImplemented
+
+    @property
+    def CONFIGURATION_FILE_PATH(self):
+        return os.path.join(self.CONFIGURATION_DIRECTORY_PATH, self.CONFIGURATION_FILE_NAME)
+
+    @property
+    def HOME_DIRECTORY_PATH(self):
+        return os.environ.get('HOME') or \
+            os.environ.get('HOMEPATH') or \
+            os.environ.get('APPDATA')

@@ -11,23 +11,21 @@ class AbjadConfiguration(Configuration):
         >>> ABJCONFIG['accidental_spelling']
         'mixed'
 
-    On instantiation, `AbjadConfiguration` creates the `$HOME/.abjad/` directory
+    `AbjadConfiguration` creates the `$HOME/.abjad/` directory on instantiation.
+
+    `AbjadConfiguration` then attempts to read an `abjad.cfg` file in that directory
+    and parse the file as a `ConfigObj` configuration.
+    `AbjadConfiguration` generates a default configuration if no file is found.
+
+    `AbjadConfiguration` validates the `ConfigObj` instance
+    and replaces key-value pairs which fail validation with default values.
+    `AbjadConfiguration` then writes the configuration back to disk.
+
+    The Abjad output directory is created the from `abjad_output` key
     if it does not already exist.
 
-    It then attempts to read an `abjad.cfg` file in that directory,
-    parsing it as a `ConfigObj` configuration.
-    A default configuration is generated if no file is found.
-
-    The `ConfigObj` instance is validated. 
-    Key-value pairs which fail validation are replaced by default values.
-    The configuration is then written back to disk.
-
-    The Abjad output directory is created if it does not already exist,
-    by referencing the `abjad_output` key in the configuration.
-
-    `AbjadConfiguration` supports the mutable mapping interface, and can be subscripted as a dictionary.
-
-    Returns `AbjadConfiguration` instance.
+    `AbjadConfiguration` supports the mutable mapping interface 
+    and can be subscripted as a dictionary.
     '''
 
     ### INITIALIZER ###
@@ -44,7 +42,7 @@ class AbjadConfiguration(Configuration):
     def _initial_comment(self):
         return [
             '-*- coding: utf-8 -*-',
-            ' ',
+            '',
             'Abjad configuration file created by Abjad on {}.'.format(
                 self._current_time),
             'This file is interpreted by ConfigObj and should follow ini syntax.',
@@ -53,6 +51,7 @@ class AbjadConfiguration(Configuration):
     @property
     def _option_definitions(self):
         options = {
+            # TODO: should this be renamed to 'abjad_output_directory'?
             'abjad_output': {
                 'comment': [
                     '',
@@ -61,7 +60,7 @@ class AbjadConfiguration(Configuration):
                     'Defaults to $HOME/.abjad/output/'
                 ],
                 'spec': 'string(default={!r})'.format(
-                    os.path.join(self.ABJAD_CONFIG_DIRECTORY_PATH, 'output'))
+                    os.path.join(self.ABJAD_CONFIGURATION_DIRECTORY_PATH, 'output'))
             },
             'accidental_spelling': {
                 'comment': [
@@ -88,7 +87,7 @@ class AbjadConfiguration(Configuration):
             'lilypond_path': {
                 'comment': [
                     '',
-                    'Lilypond executable path.  Set to override dynamic lookup.'
+                    'Lilypond executable path. Set to override dynamic lookup.'
                 ],
                 'spec': "string(default='lilypond')"
             },
@@ -122,22 +121,26 @@ class AbjadConfiguration(Configuration):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
+    # TODO: should this be changed to ABJAD_CONFIGURATION_DIRECTORY?
     @property
-    def ABJAD_CONFIG_DIRECTORY_PATH(self):
+    def ABJAD_CONFIGURATION_DIRECTORY_PATH(self):
         return os.path.join(self.HOME_DIRECTORY_PATH, '.abjad')
 
     @property
-    def ABJAD_CONFIG_FILE_PATH(self):
-        return self.CONFIG_FILE_PATH
+    def ABJAD_CONFIGURATION_FILE_PATH(self):
+        return self.CONFIGURATION_FILE_PATH
 
+    # TODO: should this be changed to ABJAD_EXPERIMENTAL_DIRECTORY?
     @property
     def ABJAD_EXPERIMENTAL_PATH(self):
         return os.path.abspath(os.path.join(self.ABJAD_PATH, '..', '..', 'experimental'))
 
+    # TODO: should this be changed to ABJAD_OUTPUT_DIRECTORY?
     @property
     def ABJAD_OUTPUT_PATH(self):
         return self._settings['abjad_output']
 
+    # TODO: should this be changed to ABJAD_DIRECTORY?
     @property
     def ABJAD_PATH(self):
         module_parts = self.__module__.split('.')
@@ -148,14 +151,16 @@ class AbjadConfiguration(Configuration):
             filepath_parts.pop()
         return os.path.sep.join(filepath_parts)
 
+    # TODO: should this be changed to ABJAD_ROOT_DIRECTORY
     @property
     def ABJAD_ROOT_PATH(self):
         return os.path.abspath(os.path.join(self.ABJAD_PATH, '..', '..'))
 
+    # TODO: should this be changed to CONFIGURATION_DIRECTORY?
     @property
-    def CONFIG_DIRECTORY_PATH(self):
-        return self.ABJAD_CONFIG_DIRECTORY_PATH
+    def CONFIGURATION_DIRECTORY_PATH(self):
+        return self.ABJAD_CONFIGURATION_DIRECTORY_PATH
 
     @property
-    def CONFIG_FILE_NAME(self):
+    def CONFIGURATION_FILE_NAME(self):
         return 'abjad.cfg'
