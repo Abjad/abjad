@@ -489,7 +489,6 @@ Unstable packages (load manually)
 
       tools/scoremanagementtools/chunks/Chunk/Chunk
       tools/scoremanagementtools/core/ScoreManagementObject/ScoreManagementObject
-      tools/scoremanagementtools/core/ScoreManagementToolsConfiguration/ScoreManagementToolsConfiguration
       tools/scoremanagementtools/core/Session/Session
       tools/scoremanagementtools/core/Transcript/Transcript
       tools/scoremanagementtools/editors/ArticulationHandlerEditor/ArticulationHandlerEditor
@@ -696,7 +695,6 @@ Unstable packages (load manually)
 
       tools/scoremanagementtools/chunks/Chunk/Chunk
       tools/scoremanagementtools/core/ScoreManagementObject/ScoreManagementObject
-      tools/scoremanagementtools/core/ScoreManagementToolsConfiguration/ScoreManagementToolsConfiguration
       tools/scoremanagementtools/core/Session/Session
       tools/scoremanagementtools/core/Transcript/Transcript
       tools/scoremanagementtools/editors/ArticulationHandlerEditor/ArticulationHandlerEditor

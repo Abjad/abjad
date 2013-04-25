@@ -2,8 +2,8 @@
 import os
 from abjad.tools import stringtools
 from experimental.tools.scoremanagementtools.core.ScoreManagementObject import ScoreManagementObject
-from experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration import \
-    ScoreManagementToolsConfiguration
+from experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration import \
+    ScoreManagerConfiguration
 from experimental.tools.scoremanagementtools.core.Transcript import Transcript
 
 
@@ -17,7 +17,7 @@ class Session(ScoreManagementObject):
         self._breadcrumb_stack = []
         self._command_history = []
         self._complete_transcript = Transcript()
-        self._configuration = ScoreManagementToolsConfiguration()
+        self._configuration = ScoreManagerConfiguration()
         self._session_once_had_user_input = False
         self.current_score_package_short_name = None
         self.display_pitch_ranges_with_numbered_pitches = False

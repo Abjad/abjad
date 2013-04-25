@@ -2,7 +2,7 @@ import os
 from abjad.tools.configurationtools.Configuration import Configuration
 
 
-class ScoreManagementToolsConfiguration(Configuration):
+class ScoreManagerConfiguration(Configuration):
     '''Score management tools configuration.
 
     The score management tools output directory is created

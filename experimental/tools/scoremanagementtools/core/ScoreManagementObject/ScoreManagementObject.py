@@ -11,15 +11,15 @@ from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.tools.scoremanagementtools.core.ScoreManagementToolsConfiguration import \
-    ScoreManagementToolsConfiguration
+from experimental.tools.scoremanagementtools.core.ScoreManagerConfiguration import \
+    ScoreManagerConfiguration
 
 
 class ScoreManagementObject(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    configuration = ScoreManagementToolsConfiguration()
+    configuration = ScoreManagerConfiguration()
 
     ### INITIALIZER ###
 
