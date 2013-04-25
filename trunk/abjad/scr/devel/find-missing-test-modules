@@ -6,7 +6,7 @@ from abjad.tools import iotools
 
 
 def _find_missing_test_modules():
-    tools_path = os.path.join(ABJCFG.ABJAD_PATH, 'tools')
+    tools_path = os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'tools')
     public_tools_modules = set([])
     test_modules = set([ ])
     #for path, subdirectories, files in os.walk(tools_path):

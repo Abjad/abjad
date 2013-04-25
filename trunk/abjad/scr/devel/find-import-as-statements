@@ -9,7 +9,7 @@ from abjad.tools import iotools
 def _find_import_as_statements():
     total_modules_with_import_as_statements = 0
     total_import_as_statements = 0
-    for path, subdirectories, files in os.walk(ABJCFG.ABJAD_PATH):
+    for path, subdirectories, files in os.walk(ABJCFG.ABJAD_DIRECTORY_PATH):
         for f in files:
             found_import_as_statement = False
             if f.endswith('.py') and not f == 'autodoc.py':

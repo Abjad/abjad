@@ -6,7 +6,7 @@ import os
 
 
 def _list_private_modules():
-    tools_path = os.path.join(ABJCFG.ABJAD_PATH, 'tools')
+    tools_path = os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'tools')
     private_module_names = [ ]
     for path, subdirectories, files in os.walk(tools_path):
         for f in files:

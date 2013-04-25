@@ -92,21 +92,21 @@ class SvnUpdateScript(DirectoryScript):
 
         group.add_argument('-E', '--experimental',
             action='store_const',
-            const=ABJCFG.ABJAD_EXPERIMENTAL_PATH,
+            const=ABJCFG.ABJAD_EXPERIMENTAL_DIRECTORY_PATH,
             dest='path',
             help='update Abjad abjad.tools directory',
             )
 
         group.add_argument('-M', '--mainline',
             action='store_const',
-            const=ABJCFG.ABJAD_PATH,
+            const=ABJCFG.ABJAD_DIRECTORY_PATH,
             dest='path',
             help='update Abjad mainline directory',
             )
 
         group.add_argument('-R', '--root',
             action='store_const',
-            const=ABJCFG.ABJAD_ROOT_PATH,
+            const=ABJCFG.ABJAD_ROOT_DIRECTORY_PATH,
             dest='path',
             help='update Abjad root directory',
             )

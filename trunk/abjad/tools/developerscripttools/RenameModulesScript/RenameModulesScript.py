@@ -55,17 +55,17 @@ class RenameModulesScript(DeveloperScript):
     def _codebase_name_to_codebase_docs_path(self, codebase):
         from abjad import ABJCFG
         if codebase == 'mainline':
-            return os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'source', 'api', 'tools')
+            return os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'docs', 'source', 'api', 'tools')
         elif codebase == 'experimental':
-            return os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'docs', 'source', 'tools')
+            return os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_DIRECTORY_PATH, 'docs', 'source', 'tools')
         raise Exception('Bad codebase name {!r}.'.format(codebase))
 
     def _codebase_name_to_codebase_tools_path(self, codebase):
         from abjad import ABJCFG
         if codebase == 'mainline':
-            return os.path.join(ABJCFG.ABJAD_PATH, 'tools')
+            return os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'tools')
         elif codebase == 'experimental':
-            return os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'tools')
+            return os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_DIRECTORY_PATH, 'tools')
         raise Exception('Bad codebase name {!r}.'.format(codebase))
 
     def _confirm_name_changes(self, kind, old_codebase, old_package_name, old_object_name,
@@ -296,7 +296,7 @@ class RenameModulesScript(DeveloperScript):
         from abjad import ABJCFG
         without_dirs = ['--without-dirs', 'build', '--without-dirs', '_build']
 
-        directory = ABJCFG.ABJAD_ROOT_PATH
+        directory = ABJCFG.ABJAD_ROOT_DIRECTORY_PATH
 
         print 'Updating codebase ...'
         print ''

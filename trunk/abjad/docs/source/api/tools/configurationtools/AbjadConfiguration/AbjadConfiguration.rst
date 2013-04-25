@@ -15,16 +15,16 @@ Read-only properties
 .. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.ABJAD_CONFIGURATION_FILE_PATH
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.ABJAD_EXPERIMENTAL_PATH
+.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.ABJAD_DIRECTORY_PATH
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.ABJAD_OUTPUT_PATH
+.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.ABJAD_EXPERIMENTAL_DIRECTORY_PATH
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.ABJAD_PATH
+.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.ABJAD_OUTPUT_DIRECTORY_PATH
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.ABJAD_ROOT_PATH
+.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.ABJAD_ROOT_DIRECTORY_PATH
    :noindex:
 
 .. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.CONFIGURATION_DIRECTORY_PATH

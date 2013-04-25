@@ -15,7 +15,7 @@ def _shorten_class_name(klass):
 
 
 def _find_inconsistencies():
-    tools_path = os.path.join(ABJCFG.ABJAD_PATH, 'tools')
+    tools_path = os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'tools')
     classes = ClassCrawler(tools_path)()
     graph = InheritanceGraph(*classes, root_class=AbjadObject)
     bad_arcs = []

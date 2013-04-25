@@ -194,7 +194,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
     def docs_api_index_path(self):
         '''Path to index.rst for Abjad API.'''
         from abjad import ABJCFG
-        return os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'source', 'api', 'index.rst')
+        return os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'docs', 'source', 'api', 'index.rst')
 
     @property
     def package_prefix(self):
@@ -206,13 +206,13 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         from abjad import ABJCFG
         return (
             (
-                os.path.join(ABJCFG.ABJAD_PATH, 'tools'),
-                os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'source', 'api', 'tools'),
+                os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'tools'),
+                os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'docs', 'source', 'api', 'tools'),
                 'abjad.tools.',
             ),
             (
-                os.path.join(ABJCFG.ABJAD_PATH, 'demos'),
-                os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'source', 'api', 'demos'),
+                os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'demos'),
+                os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'docs', 'source', 'api', 'demos'),
                 'abjad.demos.',
             ),
         )

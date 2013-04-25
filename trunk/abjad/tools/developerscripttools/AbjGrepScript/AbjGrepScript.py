@@ -94,28 +94,28 @@ If no PATH flag is specified, the current directory will be searched.
 
         group.add_argument('-X', '--experimental',
             action='store_const',
-            const=ABJCFG.ABJAD_EXPERIMENTAL_PATH,
+            const=ABJCFG.ABJAD_EXPERIMENTAL_DIRECTORY_PATH,
             dest='path',
             help='grep Abjad abjad.tools directory',
             )
 
         group.add_argument('-M', '--mainline',
             action='store_const',
-            const=ABJCFG.ABJAD_PATH,
+            const=ABJCFG.ABJAD_DIRECTORY_PATH,
             dest='path',
             help='grep Abjad mainline directory',
             )
 
         group.add_argument('-T', '--tools',
             action='store_const',
-            const=os.path.join(ABJCFG.ABJAD_PATH, 'tools'),
+            const=os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'tools'),
             dest='path',
             help='grep Abjad mainline tools directory',
             )
 
         group.add_argument('-R', '--root',
             action='store_const',
-            const=ABJCFG.ABJAD_ROOT_PATH,
+            const=ABJCFG.ABJAD_ROOT_DIRECTORY_PATH,
             dest='path',
             help='grep Abjad root directory',
             )

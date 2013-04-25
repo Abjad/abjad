@@ -8,7 +8,7 @@ import os
 
 # find start directory and project root
 start_directory = os.path.abspath('.')
-project_root = ABJCFG.ABJAD_PATH.rstrip('abjad')
+project_root = ABJCFG.ABJAD_DIRECTORY_PATH.rstrip('abjad')
 
 # svn update
 os.chdir(project_root)

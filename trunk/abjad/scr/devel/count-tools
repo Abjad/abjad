@@ -7,7 +7,7 @@ import pprint
 
 
 def _count_public_tools_functions():
-    tools_path = os.path.join(ABJCFG.ABJAD_PATH, 'tools')
+    tools_path = os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'tools')
     public_function_definition_lines = []
     private_function_definition_lines = []
     public_class_definition_lines = []

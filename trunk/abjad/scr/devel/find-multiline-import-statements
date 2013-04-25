@@ -8,7 +8,7 @@ import pprint
 
 def _find_multiline_import_statements():
     total_multiline_import_statements = 0
-    for path, subdirectories, files in os.walk(ABJCFG.ABJAD_PATH):
+    for path, subdirectories, files in os.walk(ABJCFG.ABJAD_DIRECTORY_PATH):
         for f in files:
             found_import_statement_in_file = False
             if f.endswith('.py'):

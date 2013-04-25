@@ -33,8 +33,8 @@ class AbjadConfiguration(Configuration):
     def __init__(self):
         Configuration.__init__(self)
         # verify the PDF output directory
-        if not os.path.exists(self.ABJAD_OUTPUT_PATH):
-            os.mkdir(self.ABJAD_OUTPUT_PATH)
+        if not os.path.exists(self.ABJAD_OUTPUT_DIRECTORY_PATH):
+            os.mkdir(self.ABJAD_OUTPUT_DIRECTORY_PATH)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -51,7 +51,7 @@ class AbjadConfiguration(Configuration):
     @property
     def _option_definitions(self):
         options = {
-            # TODO: should this be renamed to 'abjad_output_directory_path'?
+            # TODO: change name to 'abjad_output_directory_path'
             'abjad_output': {
                 'comment': [
                     '',
@@ -129,19 +129,16 @@ class AbjadConfiguration(Configuration):
     def ABJAD_CONFIGURATION_FILE_PATH(self):
         return self.CONFIGURATION_FILE_PATH
 
-    # TODO: change name to ABJAD_EXPERIMENTAL_DIRECTORY_PATH
     @property
-    def ABJAD_EXPERIMENTAL_PATH(self):
-        return os.path.abspath(os.path.join(self.ABJAD_PATH, '..', '..', 'experimental'))
+    def ABJAD_EXPERIMENTAL_DIRECTORY_PATH(self):
+        return os.path.abspath(os.path.join(self.ABJAD_DIRECTORY_PATH, '..', '..', 'experimental'))
 
-    # TODO: change name to ABJAD_OUTPUT_DIRECTORY_PATH
     @property
-    def ABJAD_OUTPUT_PATH(self):
+    def ABJAD_OUTPUT_DIRECTORY_PATH(self):
         return self._settings['abjad_output']
 
-    # TODO: change name to ABJAD_DIRECTORY_PATH
     @property
-    def ABJAD_PATH(self):
+    def ABJAD_DIRECTORY_PATH(self):
         module_parts = self.__module__.split('.')
         filepath_parts = os.path.abspath(__file__).rpartition('.py')[0].split(os.path.sep)
         for part in reversed(module_parts):
@@ -150,10 +147,9 @@ class AbjadConfiguration(Configuration):
             filepath_parts.pop()
         return os.path.sep.join(filepath_parts)
 
-    # TODO: change name to ABJAD_ROOT_DIRECTORY_PATH
     @property
-    def ABJAD_ROOT_PATH(self):
-        return os.path.abspath(os.path.join(self.ABJAD_PATH, '..', '..'))
+    def ABJAD_ROOT_DIRECTORY_PATH(self):
+        return os.path.abspath(os.path.join(self.ABJAD_DIRECTORY_PATH, '..', '..'))
 
     @property
     def CONFIGURATION_DIRECTORY_PATH(self):
