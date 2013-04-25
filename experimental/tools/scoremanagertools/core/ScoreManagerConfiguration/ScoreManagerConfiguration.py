@@ -70,7 +70,7 @@ class ScoreManagerConfiguration(Configuration):
                     'together with user_specific_score_manager_makers_importable_name.',
                     'Defaults to none.'
                 ],
-                'spec': 'string(default='')'
+                'spec': "string(default='')"
             },
             'user_specific_score_manager_makers_importable_name': {
                 'comment': [
@@ -80,7 +80,7 @@ class ScoreManagerConfiguration(Configuration):
                     'together with user_specific_score_manager_makers_importable_name.',
                     'Defaults to none.'
                 ],
-                'spec': 'string(default='')'
+                'spec': "string(default='')"
             },
         }
         return options
