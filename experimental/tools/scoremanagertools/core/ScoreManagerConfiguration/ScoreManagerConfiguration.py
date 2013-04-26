@@ -88,7 +88,7 @@ class ScoreManagerConfiguration(Configuration):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def boilerplate_directory_path(self):
+    def BOILERPLATE_DIRECTORY_PATH(self):
         return os.path.join(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'boilerplate')
 
     @property
@@ -104,7 +104,7 @@ class ScoreManagerConfiguration(Configuration):
         return self.dot_join(['scoremanagertools', 'editors'])
 
     @property
-    def editors_package_path(self):
+    def editors_directory_path(self):
         return os.path.join(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'editors')
 
     @property
@@ -129,7 +129,7 @@ class ScoreManagerConfiguration(Configuration):
         return self._settings['score_manager_sketches_directory_path']
 
     @property
-    def score_external_chunks_package_path(self):
+    def score_external_chunks_directory_path(self):
         return self._settings['score_manager_sketches_directory_path']
 
     @property
@@ -137,7 +137,7 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.basename(self.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH)
 
     @property
-    def score_external_materials_package_path(self):
+    def score_external_materials_directory_path(self):
         return self.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH
 
     @property
@@ -149,11 +149,11 @@ class ScoreManagerConfiguration(Configuration):
             )
 
     @property
-    def score_external_package_paths(self):
+    def score_external_directory_paths(self):
         return (
-            self.score_external_chunks_package_path,
-            self.score_external_materials_package_path,
-            self.score_external_specifiers_package_path,
+            self.score_external_chunks_directory_path,
+            self.score_external_materials_directory_path,
+            self.score_external_specifiers_directory_path,
             )
 
     @property
@@ -161,7 +161,7 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.basename(self.SCORE_MANAGER_SPECIFIERS_DIRECTORY_PATH)
 
     @property
-    def score_external_specifiers_package_path(self):
+    def score_external_specifiers_directory_path(self):
         return self.SCORE_MANAGER_SPECIFIERS_DIRECTORY_PATH
 
     @property
@@ -216,7 +216,7 @@ class ScoreManagerConfiguration(Configuration):
         return self.dot_join(['scoremanagertools', 'specifiers'])
 
     @property
-    def specifier_classes_package_path(self):
+    def specifier_classes_directory_path(self):
         return os.path.join(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'specifiers')
 
     @property

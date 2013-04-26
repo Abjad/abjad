@@ -13,7 +13,7 @@ class ParameterEditorClassNameSelector(Selector):
             'MusicContributionSpecifierEditor',
             'ParameterSpecifierEditor',
             )
-        for name in os.listdir(self.configuration.editors_package_path):
+        for name in os.listdir(self.configuration.editors_directory_path):
             if name.endswith('SpecifierEditor'):
                 if not name in forbidden_names:
                     result.append(name)

@@ -189,7 +189,7 @@ class MaterialPackageWrangler(PackageWrangler):
     def make_material_package(self, material_package_importable_name, is_interactive=False, tags=None):
         tags = collections.OrderedDict(tags or {})
         tags['is_material_package'] = True
-        path = self.package_importable_name_to_path(material_package_importable_name)
+        path = self.package_importable_name_to_package_directory_path(material_package_importable_name)
         assert not os.path.exists(path)
         os.mkdir(path)
         material_package_maker_class_name = tags.get('material_package_maker_class_name')

@@ -33,7 +33,7 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
     @property
     def grandparent_package_directory_path(self):
         if self.module_importable_name:
-            return self.package_importable_name_to_path(self.grandparent_package_importable_name)
+            return self.package_importable_name_to_package_directory_path(self.grandparent_package_importable_name)
 
     @property
     def grandparent_package_importable_name(self):
@@ -62,7 +62,7 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
     @property
     def parent_package_directory_path(self):
         if self.module_importable_name:
-            return self.package_importable_name_to_path(self.parent_package_importable_name)
+            return self.package_importable_name_to_package_directory_path(self.parent_package_importable_name)
 
     @property
     def parent_package_importable_name(self):

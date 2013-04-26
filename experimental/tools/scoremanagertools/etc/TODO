@@ -82,15 +82,14 @@
 
 30. Change 'chunks' globally to 'segments'.
 
-31. Change self._path to self._path_name on the classes that have the attribute.
-    Change slef.path to self.path_name on the classes that have the attribute.
-
-32. Move ScoreManagerObject.package_importable_name_to_path() to ScoreManagerConfiguration.
+31. Move ScoreManagerObject.package_importable_name_to_package_directory_path() to ScoreManagerConfiguration.
     Then see if it's possible to change ...
         class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject)
     ... to ...
         class PackageProxy(DirectoryProxy, ImportableAssetProxy)
     ... instead.
 
-33. Encapsulate the stuff in ScoreManagerObject in newly implemented class.
+32. Encapsulate the stuff in ScoreManagerObject in newly implemented class.
     Then include a reference to the class (perhaps as a class attribute) in ScoreManagerObject by composition.
+
+33. Replace 'package_directory_path' globally with 'directory_path'.
