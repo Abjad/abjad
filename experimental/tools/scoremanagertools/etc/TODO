@@ -66,21 +66,31 @@
     Implement example_score_ii.mus.materials.divisions to import example_score_i.mus.materials.time_signatures.
     This will implement an interpackage material import.
 
-24. Encapsulate the stuff in ScoreManagerObject in newly implemented class.
-    Then include a reference to the class (perhaps as a class attribute) in ScoreManagerObject by composition.
-
-25. Remove the has_readable_... and is_readable_... properties from the system entirely.
+24. Remove the has_readable_... and is_readable_... properties from the system entirely.
     Force such functionality to be method calls that will be noticeably expensive.
 
-26. Migrate all build_illustration.py modules from separate modules to bound class methods.
+25. Migrate all build_illustration.py modules from separate modules to bound class methods.
 
-27. Audit the UI of the entire materials management system by hand.
+26. Audit the UI of the entire materials management system by hand.
 
-28. Audit all __init__.py files and make all autoloading.
+27. Audit all __init__.py files and make all autoloading.
 
-29. Audit references to '*_directory_name' and see if most should change to '*_directory_path'.
+28. Reimplement 'is_versioned' to look for the presence of hidden .svn directory. Maybe?
 
-30. Reimplement 'is_versioned' to look for the presence of hidden .svn directory. Maybe?
-
-31. Move experimental/materials to scoremanagertools/materials.
+29. Move experimental/materials to scoremanagertools/materials.
     move experimental/specifiers to scoremanagertools/specifiers.
+
+30. Change 'chunks' globally to 'segments'.
+
+31. Change self._path to self._path_name on the classes that have the attribute.
+    Change slef.path to self.path_name on the classes that have the attribute.
+
+32. Move ScoreManagerObject.package_importable_name_to_path() to ScoreManagerConfiguration.
+    Then see if it's possible to change ...
+        class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject)
+    ... to ...
+        class PackageProxy(DirectoryProxy, ImportableAssetProxy)
+    ... instead.
+
+33. Encapsulate the stuff in ScoreManagerObject in newly implemented class.
+    Then include a reference to the class (perhaps as a class attribute) in ScoreManagerObject by composition.

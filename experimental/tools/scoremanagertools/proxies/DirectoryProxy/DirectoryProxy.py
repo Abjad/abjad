@@ -1,6 +1,6 @@
-from experimental.tools.scoremanagertools.proxies.AssetProxy import AssetProxy
 import os
 import subprocess
+from experimental.tools.scoremanagertools.proxies.AssetProxy import AssetProxy
 
 
 class DirectoryProxy(AssetProxy):
@@ -34,7 +34,7 @@ class DirectoryProxy(AssetProxy):
         return result
 
     @property
-    def directory_name(self):
+    def path_name(self):
         return self._path
 
     @property
@@ -67,7 +67,7 @@ class DirectoryProxy(AssetProxy):
     def fix(self, is_interactive=False):
         pass
 
-    def get_directory_name_interactively(self):
+    def get_directory_path_interactively(self):
         getter = self.make_getter(where=self.where())
         getter.append_string('directory name')
         result = getter.run()

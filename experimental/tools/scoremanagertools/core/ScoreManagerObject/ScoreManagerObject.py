@@ -134,11 +134,11 @@ class ScoreManagerObject(AbjadObject):
     def conditionally_make_empty_package(self, package_importable_name):
         if package_importable_name is None:
             return
-        package_directory_name = self.package_importable_name_to_path(
+        package_directory_path = self.package_importable_name_to_path(
             package_importable_name)
-        if not os.path.exists(package_directory_name):
-            os.mkdir(package_directory_name)
-            initializer_file_name = os.path.join(package_directory_name, '__init__.py')
+        if not os.path.exists(package_directory_path):
+            os.mkdir(package_directory_path)
+            initializer_file_name = os.path.join(package_directory_path, '__init__.py')
             file_reference = file(initializer_file_name, 'w')
             file_reference.write('')
             file_reference.close()

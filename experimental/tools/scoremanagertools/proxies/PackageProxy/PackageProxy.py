@@ -30,7 +30,7 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def directory_name(self):
+    def directory_path(self):
         if self.importable_name is not None:
             return self.package_importable_name_to_path(self.importable_name)
 
@@ -82,9 +82,9 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
     @property
     def parent_initializer_file_name(self):
         if self.parent_package_importable_name:
-            parent_directory_name = self.package_importable_name_to_path(
+            parent_directory_path = self.package_importable_name_to_path(
                 self.parent_package_importable_name)
-            return os.path.join(parent_directory_name, '__init__.py')
+            return os.path.join(parent_directory_path, '__init__.py')
 
     # TODO: write test
     @property

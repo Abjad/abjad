@@ -59,10 +59,11 @@ class AssetProxy(ScoreManagerObject):
             return True
 
     @property
-    def parent_directory_name(self):
+    def parent_directory_path(self):
         if self.path:
             return os.path.dirname(self.path)
 
+    # TODO: rename to directory_path
     @property
     def path(self):
         return self._path
@@ -106,7 +107,7 @@ class AssetProxy(ScoreManagerObject):
         if self.backtrack():
             return
         new_asset_short_name = self.human_readable_name_to_asset_short_name(result)
-        new_path = os.path.join(self.parent_directory_name, new_asset_short_name)
+        new_path = os.path.join(self.parent_directory_path, new_asset_short_name)
         self.display('new path will be {}'.format(new_path))
         if not self.confirm():
             return
@@ -171,7 +172,7 @@ class AssetProxy(ScoreManagerObject):
         result = getter.run()
         if self.backtrack():
             return
-        new_path = os.path.join(self.parent_directory_name, result)
+        new_path = os.path.join(self.parent_directory_path, result)
         self.display(['new path name will be: "{}"'.format(new_path), ''])
         if not self.confirm():
             return
@@ -276,7 +277,7 @@ class AssetProxy(ScoreManagerObject):
     def write_boilerplate_asset_to_disk(self, boilerplate_asset_name):
         if not os.path.exists(boilerplate_asset_name):
             boilerplate_asset_name = os.path.join(
-                self.configuration.boilerplate_directory_name, boilerplate_asset_name)
+                self.configuration.boilerplate_directory_path, boilerplate_asset_name)
         if os.path.exists(boilerplate_asset_name):
             shutil.copyfile(boilerplate_asset_name, self.path)
             return True

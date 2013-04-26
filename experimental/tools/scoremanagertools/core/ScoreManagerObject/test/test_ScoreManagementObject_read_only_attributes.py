@@ -9,7 +9,7 @@ def test_ScoreManagementObject_read_only_attributes_01():
     path = os.path.join(
         score_manager_object.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH,
         'boilerplate')
-    assert score_manager_object.configuration.boilerplate_directory_name == path
+    assert score_manager_object.configuration.boilerplate_directory_path == path
 
     assert isinstance(score_manager_object.breadcrumb_stack, list)
     assert score_manager_object.help_item_width == 5
@@ -17,7 +17,7 @@ def test_ScoreManagementObject_read_only_attributes_01():
     path = os.path.join(
         score_manager_object.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH,
         'makers')
-    assert score_manager_object.configuration.makers_directory_name == path
+    assert score_manager_object.configuration.makers_directory_path == path
 
     assert score_manager_object.configuration.makers_package_importable_name == 'scoremanagertools.makers'
     assert score_manager_object.configuration.score_manager_tools_package_importable_name == \
@@ -38,7 +38,7 @@ def test_ScoreManagementObject_read_only_attributes_01():
     path = os.path.join(
         score_manager_object.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH,
         'stylesheets')
-    assert score_manager_object.configuration.stylesheets_directory_name == path
+    assert score_manager_object.configuration.stylesheets_directory_path == path
 
     assert score_manager_object.configuration.stylesheets_package_importable_name == \
         'scoremanagertools.stylesheets'

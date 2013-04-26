@@ -13,14 +13,14 @@ def test_ModuleProxy_public_attributes_01():
     assert not proxy.exists
     assert not proxy.file_lines
     assert proxy.generic_class_name == 'module'
-    assert proxy.grandparent_package_directory_name is None
+    assert proxy.grandparent_package_directory_path is None
     assert proxy.grandparent_package_importable_name is None
     assert proxy.human_readable_name is None
     assert not proxy.is_versioned
     assert proxy.module_importable_name is None
     assert proxy.module_short_name is None
-    assert proxy.parent_directory_name is None
-    assert proxy.parent_package_directory_name is None
+    assert proxy.parent_directory_path is None
+    assert proxy.parent_package_directory_path is None
     assert proxy.parent_package_importable_name is None
     assert proxy.parent_package_initializer_file_name is None
     assert proxy.path is None
@@ -44,15 +44,15 @@ def test_ModuleProxy_public_attributes_02():
     assert proxy.exists
     assert proxy.file_lines
     assert proxy.generic_class_name == 'module'
-    assert proxy.grandparent_package_directory_name == proxy.configuration.score_external_materials_package_path
+    assert proxy.grandparent_package_directory_path == proxy.configuration.score_external_materials_package_path
     assert proxy.grandparent_package_importable_name == proxy.configuration.score_external_materials_package_importable_name
     assert proxy.human_readable_name == 'material definition'
     assert proxy.is_versioned
     assert proxy.module_importable_name == module_importable_name
     assert proxy.module_short_name == 'material_definition'
-    assert proxy.parent_directory_name == os.path.join(
+    assert proxy.parent_directory_path == os.path.join(
         proxy.configuration.score_external_materials_package_path, 'red_notes')
-    assert proxy.parent_package_directory_name == os.path.join(
+    assert proxy.parent_package_directory_path == os.path.join(
         proxy.configuration.score_external_materials_package_path, 'red_notes')
     assert proxy.parent_package_importable_name == '.'.join([
         proxy.configuration.score_external_materials_package_importable_name, 'red_notes'])

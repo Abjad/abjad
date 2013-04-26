@@ -1,8 +1,10 @@
-from experimental.tools.scoremanagertools.proxies.PackageProxy import PackageProxy
 import os
+from experimental.tools.scoremanagertools.proxies.PackageProxy import PackageProxy
 
 
 class ScorePackageProxy(PackageProxy):
+
+    ### INITIALIZER ###
 
     def __init__(self, score_package_short_name=None, session=None):
         from experimental.tools import scoremanagertools
@@ -46,7 +48,7 @@ class ScorePackageProxy(PackageProxy):
         return self._chunk_wrangler
 
     @property
-    def chunks_package_directory_name(self):
+    def chunks_package_directory_path(self):
         return os.path.join(self.path, 'mus', 'chunks')
 
     @property
@@ -55,14 +57,14 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def chunks_package_initializer_file_name(self):
-        return os.path.join(self.chunks_package_directory_name, '__init__.py')
+        return os.path.join(self.chunks_package_directory_path, '__init__.py')
 
     @property
     def composer(self):
         return self.get_tag('composer')
 
     @property
-    def dist_pdf_directory_name(self):
+    def dist_pdf_directory_path(self):
         return os.path.join(self.dist_proxy.path, 'pdf')
 
     @property
@@ -79,7 +81,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def has_correct_directory_structure(self):
-        return all([os.path.exists(name) for name in self.top_level_directory_names])
+        return all([os.path.exists(name) for name in self.top_level_directory_paths])
 
     @property
     def has_correct_initializers(self):
@@ -102,7 +104,7 @@ class ScorePackageProxy(PackageProxy):
         return self._material_package_wrangler
 
     @property
-    def materials_package_directory_name(self):
+    def materials_package_directory_path(self):
         return os.path.join(self.path, 'mus', 'materials')
 
     @property
@@ -111,7 +113,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def materials_package_initializer_file_name(self):
-        return os.path.join(self.materials_package_directory_name, '__init__.py')
+        return os.path.join(self.materials_package_directory_path, '__init__.py')
 
     @property
     def mus_proxy(self):
@@ -155,7 +157,7 @@ class ScorePackageProxy(PackageProxy):
             return self.title
 
     @property
-    def top_level_directory_names(self):
+    def top_level_directory_paths(self):
         return tuple([x.path for x in self.top_level_directory_proxies])
 
     @property
@@ -248,7 +250,7 @@ class ScorePackageProxy(PackageProxy):
         result = True
         if self.short_name == 'recursif':
             return True
-        for path in self.top_level_directory_names:
+        for path in self.top_level_directory_paths:
             if not os.path.exists(path):
                 result = False
                 prompt = 'create {!r}? '.format(path)
@@ -294,19 +296,19 @@ class ScorePackageProxy(PackageProxy):
                 tags_file.write('\n')
                 tags_file.write('tags = OrderedDict([])\n')
                 tags_file.close()
-        if not os.path.exists(self.materials_package_directory_name):
+        if not os.path.exists(self.materials_package_directory_path):
             result = False
-            prompt = 'create {}'.format(self.materials_package_directory_name)
+            prompt = 'create {}'.format(self.materials_package_directory_path)
             if not is_interactive or self.confirm(prompt):
-                os.mkdir(self.materials_package_directory_name)
+                os.mkdir(self.materials_package_directory_path)
         if not os.path.exists(self.materials_package_initializer_file_name):
             result = False
             file(self.materials_package_initializer_file_name, 'w').write('')
-        if not os.path.exists(self.chunks_package_directory_name):
+        if not os.path.exists(self.chunks_package_directory_path):
             result = False
-            prompt = 'create {}'.format(self.chunks_package_directory_name)
+            prompt = 'create {}'.format(self.chunks_package_directory_path)
             if not is_interactive or self.confirm(prompt):
-                os.mkdir(self.chunks_package_directory_name)
+                os.mkdir(self.chunks_package_directory_path)
         if not os.path.exists(self.chunks_package_initializer_file_name):
             result = False
             file(self.chunks_package_initializer_file_name, 'w').write('')
@@ -441,8 +443,8 @@ class ScorePackageProxy(PackageProxy):
         if self.short_name == 'recursif':
             return
         lines = []
-        for subdirectory_name in self.top_level_directory_names:
-            lines.append('{} {}'.format(subdirectory_name.ljust(80), os.path.exists(subdirectory_name)))
+        for subdirectory_path in self.top_level_directory_paths:
+            lines.append('{} {}'.format(subdirectory_path.ljust(80), os.path.exists(subdirectory_path)))
         for initializer in self.score_initializer_file_names:
             lines.append('{} {}'.format(initializer.ljust(80), os.path.exists(initializer)))
         lines.append('')

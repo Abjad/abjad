@@ -31,7 +31,7 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
     ### READ-ONLY PROPERTIES ###
 
     @property
-    def grandparent_package_directory_name(self):
+    def grandparent_package_directory_path(self):
         if self.module_importable_name:
             return self.package_importable_name_to_path(self.grandparent_package_importable_name)
 
@@ -43,7 +43,7 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
     @property
     def grandparent_package_initializer_file_name(self):
         if self.module_importable_name:
-            return os.path.join(self.grandparent_package_directory_name, '__init__.py')
+            return os.path.join(self.grandparent_package_directory_path, '__init__.py')
 
     @property
     def human_readable_name(self):
@@ -60,7 +60,7 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
             return self.module_importable_name.split('.')[-1]
 
     @property
-    def parent_package_directory_name(self):
+    def parent_package_directory_path(self):
         if self.module_importable_name:
             return self.package_importable_name_to_path(self.parent_package_importable_name)
 
@@ -72,7 +72,7 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
     @property
     def parent_package_initializer_file_name(self):
         if self.module_importable_name:
-            return os.path.join(self.parent_package_directory_name, '__init__.py')
+            return os.path.join(self.parent_package_directory_path, '__init__.py')
 
     ### PUBLIC METHODS ###
 
