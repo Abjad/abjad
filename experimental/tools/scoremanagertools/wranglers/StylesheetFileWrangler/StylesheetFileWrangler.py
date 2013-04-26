@@ -32,7 +32,7 @@ class StylesheetFileWrangler(PackageWrangler):
     @property
     def stylesheet_file_names(self):
         result = []
-        for file_name in os.listdir(self.configuration.stylesheets_directory_path):
+        for file_name in os.listdir(self.configuration.STYLESHEETS_DIRECTORY_PATH):
             if file_name.endswith('.ly'):
                 result.append(file_name)
         return result
@@ -43,7 +43,7 @@ class StylesheetFileWrangler(PackageWrangler):
         if result == 'new':
             self.make_asset_interactively()
         else:
-            stylesheet_file_name = os.path.join(self.configuration.stylesheets_directory_path, result)
+            stylesheet_file_name = os.path.join(self.configuration.STYLESHEETS_DIRECTORY_PATH, result)
             stylesheet_proxy = StylesheetFileProxy(stylesheet_file_name, session=self.session)
             stylesheet_proxy.run()
 
@@ -57,7 +57,7 @@ class StylesheetFileWrangler(PackageWrangler):
         stylesheet_name = stringtools.string_to_strict_directory_name(stylesheet_name)
         if not stylesheet_name.endswith('.ly'):
             stylesheet_name = stylesheet_name + '.ly'
-        stylesheet_file_name = os.path.join(self.configuration.stylesheets_directory_path, stylesheet_name)
+        stylesheet_file_name = os.path.join(self.configuration.STYLESHEETS_DIRECTORY_PATH, stylesheet_name)
         stylesheet_proxy = StylesheetFileProxy(stylesheet_file_name, session=self.session)
         stylesheet_proxy.edit()
 
@@ -85,5 +85,5 @@ class StylesheetFileWrangler(PackageWrangler):
                 break
         self.pop_breadcrumb()
         self.restore_breadcrumbs(cache=cache)
-        result = os.path.join(self.configuration.stylesheets_directory_path, result)
+        result = os.path.join(self.configuration.STYLESHEETS_DIRECTORY_PATH, result)
         return result

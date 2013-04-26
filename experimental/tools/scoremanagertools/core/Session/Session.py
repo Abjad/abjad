@@ -132,7 +132,7 @@ class Session(ScoreManagerObject):
         if self.is_in_score:
             return os.path.join(self.current_score_path, 'mus', 'specifiers')
         else:
-            return self.configuration.score_external_specifiers_directory_path
+            return self.configuration.SCORE_EXTERNAL_SPECIFIERS_DIRECTORY_PATH
 
     @property
     def explicit_command_history(self):
