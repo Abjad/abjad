@@ -16,7 +16,7 @@ def test_ScorePackageWrangler_read_only_attributes_02():
     '''Asset containers (all).
     '''
 
-    assert 'example_score_1' in wrangler.list_asset_container_importable_names()
+    assert 'example_score_1' in wrangler.list_asset_container_package_importable_names()
     path = os.path.join(wrangler.configuration.SCORES_DIRECTORY_PATH, 'example_score_1')
     assert path in wrangler.list_asset_container_paths()
 
@@ -25,7 +25,7 @@ def test_ScorePackageWrangler_read_only_attributes_03():
     '''Current asset container.
     '''
 
-    assert wrangler.current_asset_container_importable_name is None
+    assert wrangler.current_asset_container_package_importable_name is None
     assert wrangler.current_asset_container_path == wrangler.configuration.SCORES_DIRECTORY_PATH
 
 
@@ -33,28 +33,28 @@ def test_ScorePackageWrangler_read_only_attributes_04():
     '''Score-external asset container.
     '''
 
-    assert wrangler.list_score_external_asset_container_importable_names() == []
+    assert wrangler.list_score_external_asset_container_package_importable_names() == []
 
 
 def test_ScorePackageWrangler_read_only_attributes_05():
     '''Score-external assets.
     '''
 
-    assert wrangler.list_score_external_asset_importable_names() == []
+    assert wrangler.list_score_external_asset_package_importable_names() == []
 
 
 def test_ScorePackageWrangler_read_only_attributes_06():
     '''Infix.
     '''
 
-    assert wrangler.score_internal_asset_container_importable_name_infix is None
+    assert wrangler.score_internal_asset_container_package_importable_name_infix is None
 
 
 def test_ScorePackageWrangler_read_only_attributes_07():
     '''Temporary asset.
     '''
 
-    assert wrangler.temporary_asset_importable_name == '__temporary_package'
+    assert wrangler.temporary_asset_package_importable_name == '__temporary_package'
 
 
 def test_ScorePackageWrangler_read_only_attributes_08():

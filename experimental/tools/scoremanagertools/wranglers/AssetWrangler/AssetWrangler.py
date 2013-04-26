@@ -14,24 +14,24 @@ class AssetWrangler(ScoreManagerObject):
     ### INITIALIZER ###
 
     def __init__(self,
-        score_external_asset_container_importable_names=None,
-        score_internal_asset_container_importable_name_infix=None,
+        score_external_asset_container_package_importable_names=None,
+        score_internal_asset_container_package_importable_name_infix=None,
         session=None,
-        user_asset_container_importable_names=None,
+        user_asset_container_package_importable_names=None,
         user_asset_container_paths=None):
         ScoreManagerObject.__init__(self, session=session)
-        if score_external_asset_container_importable_names:
+        if score_external_asset_container_package_importable_names:
             assert all([stringtools.is_underscore_delimited_lowercase_package_name(x)
-                for x in score_external_asset_container_importable_names])
-        if score_internal_asset_container_importable_name_infix:
+                for x in score_external_asset_container_package_importable_names])
+        if score_internal_asset_container_package_importable_name_infix:
             assert stringtools.is_underscore_delimited_lowercase_package_name(
-                score_internal_asset_container_importable_name_infix)
-        self._score_external_asset_container_importable_names = \
-            score_external_asset_container_importable_names or []
-        self._score_internal_asset_container_importable_name_infix = \
-            score_internal_asset_container_importable_name_infix
-        self._user_asset_container_importable_names = \
-            user_asset_container_importable_names or []
+                score_internal_asset_container_package_importable_name_infix)
+        self._score_external_asset_container_package_importable_names = \
+            score_external_asset_container_package_importable_names or []
+        self._score_internal_asset_container_package_importable_name_infix = \
+            score_internal_asset_container_package_importable_name_infix
+        self._user_asset_container_package_importable_names = \
+            user_asset_container_package_importable_names or []
         self._user_asset_container_paths = \
             user_asset_container_paths or []
 
@@ -39,18 +39,18 @@ class AssetWrangler(ScoreManagerObject):
 
     def __eq__(self, other):
         if isinstance(other, type(self)):
-            if self.list_score_external_asset_container_importable_names() == \
-                other.list_score_external_asset_container_importable_names():
-                if self.score_internal_asset_container_importable_name_infix == \
-                    other.score_internal_asset_container_importable_name_infix:
+            if self.list_score_external_asset_container_package_importable_names() == \
+                other.list_score_external_asset_container_package_importable_names():
+                if self.score_internal_asset_container_package_importable_name_infix == \
+                    other.score_internal_asset_container_package_importable_name_infix:
                     return True
         return False
 
     def __repr__(self):
         parts = []
-        parts.extend(self.list_score_external_asset_container_importable_names())
-        if self.configuration.score_internal_asset_container_importable_name_infix:
-            parts.append(self.configuration.score_internal_asset_container_importable_name_infix)
+        parts.extend(self.list_score_external_asset_container_package_importable_names())
+        if self.configuration.score_internal_asset_container_package_importable_name_infix:
+            parts.append(self.configuration.score_internal_asset_container_package_importable_name_infix)
         parts = ', '.join([repr(part) for part in parts])
         return '{}({})'.format(self._class_name, parts)
 
@@ -81,28 +81,28 @@ class AssetWrangler(ScoreManagerObject):
         return self.path_to_human_readable_base_name(self.current_asset_container_path)
 
     @property
-    def current_asset_container_importable_name(self):
+    def current_asset_container_package_importable_name(self):
         if self.session.is_in_score:
             return self.dot_join([
                 self.session.current_score_package_short_name,
-                self.score_internal_asset_container_importable_name_infix])
-        elif self.list_score_external_asset_container_importable_names():
-            return self.list_score_external_asset_container_importable_names()[0]
+                self.score_internal_asset_container_package_importable_name_infix])
+        elif self.list_score_external_asset_container_package_importable_names():
+            return self.list_score_external_asset_container_package_importable_names()[0]
 
     @property
     def current_asset_container_path(self):
         return self.package_importable_name_to_directory_path(
-            self.current_asset_container_importable_name)
+            self.current_asset_container_package_importable_name)
 
     @property
     def current_asset_container_proxy(self):
-        return self.asset_container_class(self.current_asset_container_importable_name)
+        return self.asset_container_class(self.current_asset_container_package_importable_name)
 
     # infix #
 
     @property
-    def score_internal_asset_container_importable_name_infix(self):
-        return self._score_internal_asset_container_importable_name_infix
+    def score_internal_asset_container_package_importable_name_infix(self):
+        return self._score_internal_asset_container_package_importable_name_infix
 
     # temporary asset #
 
@@ -116,7 +116,7 @@ class AssetWrangler(ScoreManagerObject):
 
     @property
     def temporary_asset_proxy(self):
-        return self.get_asset_proxy(self.temporary_asset_importable_name)
+        return self.get_asset_proxy(self.temporary_asset_package_importable_name)
 
     @abc.abstractproperty
     def temporary_asset_short_name(self):
@@ -130,13 +130,13 @@ class AssetWrangler(ScoreManagerObject):
         self.proceed('missing packages created.', is_interactive=is_interactive)
 
     def conditionally_make_score_external_asset_container_package(self):
-        for importable_name in self.list_score_external_asset_container_importable_names():
-            self.conditionally_make_empty_package(importable_name)
+        for package_importable_name in self.list_score_external_asset_container_package_importable_names():
+            self.conditionally_make_empty_package(package_importable_name)
 
     def conditionally_make_score_internal_asset_container_packages(self, head=None):
-        for score_internal_asset_container_importable_name in \
-            self.list_score_internal_asset_container_importable_names(head=head):
-            self.conditionally_make_empty_package(score_internal_asset_container_importable_name)
+        for score_internal_asset_container_package_importable_name in \
+            self.list_score_internal_asset_container_package_importable_names(head=head):
+            self.conditionally_make_empty_package(score_internal_asset_container_package_importable_name)
 
     def fix_visible_assets(self, is_interactive=True):
         results = []
@@ -161,10 +161,10 @@ class AssetWrangler(ScoreManagerObject):
         result.extend(self.list_score_internal_asset_container_human_readable_names(head=head))
         return result
 
-    def list_asset_container_importable_names(self, head=None):
+    def list_asset_container_package_importable_names(self, head=None):
         result = []
-        result.extend(self.list_score_external_asset_container_importable_names(head=head))
-        result.extend(self.list_score_internal_asset_container_importable_names(head=head))
+        result.extend(self.list_score_external_asset_container_package_importable_names(head=head))
+        result.extend(self.list_score_internal_asset_container_package_importable_names(head=head))
         return result
 
     def list_asset_container_paths(self, head=None):
@@ -210,22 +210,22 @@ class AssetWrangler(ScoreManagerObject):
             result.append(self.path_to_human_readable_base_name(path))
         return result
 
-    def list_score_external_asset_container_importable_names(self, head=None):
+    def list_score_external_asset_container_package_importable_names(self, head=None):
         result = []
-        for importable_name in self._score_external_asset_container_importable_names:
+        for importable_name in self._score_external_asset_container_package_importable_names:
             if head is None or importable_name.startswith(head):
                 result.append(importable_name)
         return result
 
     def list_score_external_asset_container_paths(self, head=None):
         result = []
-        for importable_name in self.list_score_external_asset_container_importable_names(head=head):
+        for importable_name in self.list_score_external_asset_container_package_importable_names(head=head):
             result.append(self.package_importable_name_to_directory_path(importable_name))
         return result
 
     def list_score_external_asset_container_proxies(self, head=None):
         result = []
-        for importable_name in self.list_score_external_asset_container_importable_names(head=head):
+        for importable_name in self.list_score_external_asset_container_package_importable_names(head=head):
             asset_container_proxy = self.asset_container_class(importable_name)
             result.append(asset_container_proxy)
         return result
@@ -261,12 +261,12 @@ class AssetWrangler(ScoreManagerObject):
             result.append(self.path_to_human_readable_base_name(path))
         return result
 
-    def list_score_internal_asset_container_importable_names(self, head=None):
+    def list_score_internal_asset_container_package_importable_names(self, head=None):
         result = []
         for score_package_short_name in self.list_score_package_short_names(head=head):
             parts = [score_package_short_name]
-            if self.score_internal_asset_container_importable_name_infix:
-                parts.append(self.score_internal_asset_container_importable_name_infix)
+            if self.score_internal_asset_container_package_importable_name_infix:
+                parts.append(self.score_internal_asset_container_package_importable_name_infix)
             score_internal_score_package_importable_name = self.dot_join(parts)
             result.append(score_internal_score_package_importable_name)
         return result
@@ -274,13 +274,13 @@ class AssetWrangler(ScoreManagerObject):
     def list_score_internal_asset_container_paths(self, head=None):
         result = []
         for package_importable_name in \
-            self.list_score_internal_asset_container_importable_names(head=head):
+            self.list_score_internal_asset_container_package_importable_names(head=head):
             result.append(self.package_importable_name_to_directory_path(package_importable_name))
         return result
 
     def list_score_internal_asset_container_proxies(self, head=None):
         result = []
-        for importable_name in self.list_score_internal_asset_container_importable_names(head=head):
+        for importable_name in self.list_score_internal_asset_container_package_importable_names(head=head):
             asset_container_proxy = self.asset_container_class(importable_name)
             result.append(asset_container_proxy)
         return result
@@ -303,7 +303,7 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_score_internal_asset_proxies(self, head=None):
         result = []
-        for importable_name in self.list_score_internal_asset_importable_names(head=head):
+        for importable_name in self.list_score_internal_asset_package_importable_names(head=head):
             asset_proxy = self.asset_class_name(importable_name)
             result.append(asset_proxy)
         return result
@@ -318,23 +318,23 @@ class AssetWrangler(ScoreManagerObject):
             result.append(self.path_to_human_readable_base_name(path))
         return result
 
-    def list_user_asset_container_importable_names(self, head=None):
+    def list_user_asset_container_package_importable_names(self, head=None):
         result = []
-        for importable_name in self._user_asset_container_importable_names:
+        for importable_name in self._user_asset_container_package_importable_names:
             if head is None or importable_name.startswith(head):
                 result.append(importable_name)
         return result
 
     def list_user_asset_container_paths(self, head=None):
         #result = []
-        #for importable_name in self.list_user_asset_container_importable_names(head=head):
+        #for importable_name in self.list_user_asset_container_package_importable_names(head=head):
         #    result.append(self.package_importable_name_to_directory_path(importable_name))
         #return result
         return self._user_asset_container_paths[:]
 
     def list_user_asset_container_proxies(self, head=None):
         result = []
-        for importable_name in self.list_user_asset_container_importable_names(head=head):
+        for importable_name in self.list_user_asset_container_package_importable_names(head=head):
             asset_container_proxy = self.asset_container_class(importable_name)
             result.append(asset_container_proxy)
         return result
@@ -437,12 +437,12 @@ class AssetWrangler(ScoreManagerObject):
     # TODO: write test
     def rename_asset_interactively(self, head=None):
         self.push_backtrack()
-        asset_importable_name = self.select_asset_importable_name_interactively(
+        asset_package_importable_name = self.select_asset_package_importable_name_interactively(
             head=head, infinitival_phrase='to rename')
         self.pop_backtrack()
         if self.backtrack():
             return
-        asset_proxy = self.get_asset_proxy(asset_importable_name)
+        asset_proxy = self.get_asset_proxy(asset_package_importable_name)
         asset_proxy.rename_interactively()
 
     def run(self, cache=False, clear=True, head=None, rollback=None, user_input=None):
@@ -466,7 +466,7 @@ class AssetWrangler(ScoreManagerObject):
         self.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
         self.restore_breadcrumbs(cache=cache)
 
-    def select_asset_importable_name_interactively(
+    def select_asset_package_importable_name_interactively(
         self, clear=True, cache=False, head=None, infinitival_phrase=None, user_input=None):
         self.cache_breadcrumbs(cache=cache)
         while True:

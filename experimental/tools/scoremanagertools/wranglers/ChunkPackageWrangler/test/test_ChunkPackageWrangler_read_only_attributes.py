@@ -8,16 +8,16 @@ def test_ChunkPackageWrangler_read_only_attributes_01():
     assert not wrangler.session.is_in_score
 
     assert wrangler.breadcrumb == 'sketches'
-    assert wrangler.current_asset_container_importable_name == 'sketches'
-    assert all([x.startswith('sketches') for x in wrangler.list_score_external_asset_importable_names()])
+    assert wrangler.current_asset_container_package_importable_name == 'sketches'
+    assert all([x.startswith('sketches') for x in wrangler.list_score_external_asset_package_importable_names()])
 
-    assert wrangler.list_score_external_asset_container_importable_names() == ['sketches']
-    assert wrangler.score_internal_asset_container_importable_name_infix == 'mus.chunks'
+    assert wrangler.list_score_external_asset_container_package_importable_names() == ['sketches']
+    assert wrangler.score_internal_asset_container_package_importable_name_infix == 'mus.chunks'
 
-    assert wrangler.temporary_asset_importable_name == 'sketches.__temporary_package'
+    assert wrangler.temporary_asset_package_importable_name == 'sketches.__temporary_package'
 
-    assert 'sketches' in wrangler.list_asset_container_importable_names()
-    assert 'example_score_1.mus.chunks' in wrangler.list_asset_container_importable_names()
+    assert 'sketches' in wrangler.list_asset_container_package_importable_names()
+    assert 'example_score_1.mus.chunks' in wrangler.list_asset_container_package_importable_names()
 
 
 def test_ChunkPackageWrangler_read_only_attributes_02():
@@ -29,16 +29,16 @@ def test_ChunkPackageWrangler_read_only_attributes_02():
 
     assert wrangler.breadcrumb == 'chunks'
 
-    assert wrangler.current_asset_container_importable_name == 'example_score_1.mus.chunks'
+    assert wrangler.current_asset_container_package_importable_name == 'example_score_1.mus.chunks'
 
     assert all([
-        x.startswith('sketches.') for x in wrangler.list_score_external_asset_importable_names()])
-    assert wrangler.list_score_external_asset_container_importable_names() == \
+        x.startswith('sketches.') for x in wrangler.list_score_external_asset_package_importable_names()])
+    assert wrangler.list_score_external_asset_container_package_importable_names() == \
         ['sketches']
 
-    assert wrangler.score_internal_asset_container_importable_name_infix == 'mus.chunks'
+    assert wrangler.score_internal_asset_container_package_importable_name_infix == 'mus.chunks'
 
-    assert wrangler.temporary_asset_importable_name == 'example_score_1.mus.chunks.__temporary_package'
+    assert wrangler.temporary_asset_package_importable_name == 'example_score_1.mus.chunks.__temporary_package'
 
-    assert 'sketches' in wrangler.list_asset_container_importable_names()
-    assert 'example_score_1.mus.chunks' in wrangler.list_asset_container_importable_names()
+    assert 'sketches' in wrangler.list_asset_container_package_importable_names()
+    assert 'example_score_1.mus.chunks' in wrangler.list_asset_container_package_importable_names()

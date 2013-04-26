@@ -14,15 +14,15 @@ class MaterialPackageWrangler(PackageWrangler):
         from experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler import \
             MaterialPackageMakerWrangler
 #        PackageWrangler.__init__(self,
-#            score_external_asset_container_importable_names= \
+#            score_external_asset_container_package_importable_names= \
 #                [self.configuration.score_external_materials_package_importable_name],
-#            score_internal_asset_container_importable_name_infix= \
+#            score_internal_asset_container_package_importable_name_infix= \
 #                self.configuration.score_internal_materials_package_importable_name_infix,
 #            session=session)
         PackageWrangler.__init__(self, session=session)
-        self._score_external_asset_container_importable_names = [
+        self._score_external_asset_container_package_importable_names = [
             self.configuration.score_external_materials_package_importable_name]
-        self._score_internal_asset_container_importable_name_infix = \
+        self._score_internal_asset_container_package_importable_name_infix = \
             self.configuration.score_internal_materials_package_importable_name_infix
         self._material_package_maker_wrangler = MaterialPackageMakerWrangler(session=self.session)
 
@@ -74,7 +74,7 @@ class MaterialPackageWrangler(PackageWrangler):
                 return
             material_package_short_name = stringtools.string_to_strict_directory_name(material_name)
             material_package_importable_name = self.dot_join([
-                self.current_asset_container_importable_name, material_package_short_name])
+                self.current_asset_container_package_importable_name, material_package_short_name])
             if self.package_exists(material_package_importable_name):
                 line = 'Material package {!r} already exists.'.format(material_package_importable_name)
                 self.display([line, ''])
@@ -168,13 +168,13 @@ class MaterialPackageWrangler(PackageWrangler):
     def make_makermade_material_package_interactively(self, user_input=None):
         self.assign_user_input(user_input=user_input)
         self.push_backtrack()
-        result = self.material_package_maker_wrangler.select_asset_importable_name_interactively(
+        result = self.material_package_maker_wrangler.select_asset_package_importable_name_interactively(
             cache=True, clear=False)
         self.pop_backtrack()
         if self.backtrack():
             return
-        material_package_maker_importable_name = result
-        material_package_maker_class_name = material_package_maker_importable_name.split('.')[-1]
+        material_package_maker_package_importable_name = result
+        material_package_maker_class_name = material_package_maker_package_importable_name.split('.')[-1]
         self.push_backtrack()
         material_package_importable_name = self.get_available_material_package_importable_name_interactively()
         self.pop_backtrack()

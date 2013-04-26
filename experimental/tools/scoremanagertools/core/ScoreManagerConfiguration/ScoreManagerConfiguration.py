@@ -67,17 +67,17 @@ class ScoreManagerConfiguration(Configuration):
                     '',
                     'Set to the directory where you house your user-specific makers.',
                     'Always set user_specific_score_manager_makers_directory_path',
-                    'together with user_specific_score_manager_makers_importable_name.',
+                    'together with user_specific_score_manager_makers_package_importable_name.',
                     'Defaults to none.'
                 ],
                 'spec': "string(default='')"
             },
-            'user_specific_score_manager_makers_importable_name': {
+            'user_specific_score_manager_makers_package_importable_name': {
                 'comment': [
                     '',
                     'Set to the directory where you house your user-specific makers.',
                     'Always set user_specific_score_manager_makers_directory_path',
-                    'together with user_specific_score_manager_makers_importable_name.',
+                    'together with user_specific_score_manager_makers_package_importable_name.',
                     'Defaults to none.'
                 ],
                 'spec': "string(default='')"
@@ -233,7 +233,7 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def user_makers_package_importable_name(self):
-        return self._settings['user_specific_score_manager_makers_importable_name']
+        return self._settings['user_specific_score_manager_makers_package_importable_name']
 
     ### PUBLIC METHODS ###
 

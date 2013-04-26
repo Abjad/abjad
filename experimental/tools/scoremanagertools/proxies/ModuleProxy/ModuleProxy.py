@@ -52,7 +52,7 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
 
     @property
     def module_importable_name(self):
-        return self.importable_name
+        return self.package_importable_name
 
     @property
     def module_short_name(self):

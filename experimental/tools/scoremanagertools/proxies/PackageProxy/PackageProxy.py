@@ -31,8 +31,8 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
 
     @property
     def directory_path(self):
-        if self.importable_name is not None:
-            return self.package_importable_name_to_directory_path(self.importable_name)
+        if self.package_importable_name is not None:
+            return self.package_importable_name_to_directory_path(self.package_importable_name)
 
     @property
     def formatted_tags(self):
@@ -63,7 +63,7 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
 
     @property
     def imported_package(self):
-        return __import__(self.importable_name, fromlist=['*'])
+        return __import__(self.package_importable_name, fromlist=['*'])
 
     @property
     def initializer_file_name(self):
@@ -77,7 +77,7 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
 
     @property
     def package_root_name(self):
-        return self.importable_name.split('.')[0]
+        return self.package_importable_name.split('.')[0]
 
     @property
     def parent_initializer_file_name(self):
@@ -95,8 +95,8 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
 
     @property
     def parent_package_importable_name(self):
-        if self.importable_name is not None:
-            result = self.dot_join(self.importable_name.split('.')[:-1])
+        if self.package_importable_name is not None:
+            result = self.dot_join(self.package_importable_name.split('.')[:-1])
             if result:
                 return result
 
@@ -229,7 +229,7 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
         result = getter.run()
         if self.backtrack():
             return
-        self.importable_name = result
+        self.package_importable_name = result
 
     def unimport_package(self):
-        self.remove_package_importable_name_from_sys_modules(self.importable_name)
+        self.remove_package_importable_name_from_sys_modules(self.package_importable_name)

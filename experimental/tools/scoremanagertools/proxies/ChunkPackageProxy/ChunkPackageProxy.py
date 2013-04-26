@@ -55,7 +55,7 @@ class ChunkPackageProxy(PackageProxy):
         if self.backtrack():
             return
         package_short_name = result.replace(' ', '_')
-        package_importable_name = self.dot_join([self.importable_name, package_short_name])
+        package_importable_name = self.dot_join([self.package_importable_name, package_short_name])
         chunk_proxy = ChunkPackageProxy(package_importable_name)
         chunk_proxy.make_asset()
         line = 'chunk spaced name set.'

@@ -8,8 +8,8 @@ class ScorePackageWrangler(PackageWrangler):
 
     def __init__(self, session=None):
         PackageWrangler.__init__(self,
-            score_external_asset_container_importable_names=[],
-            score_internal_asset_container_importable_name_infix=None,
+            score_external_asset_container_package_importable_names=[],
+            score_internal_asset_container_package_importable_name_infix=None,
             session=session)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -45,7 +45,7 @@ class ScorePackageWrangler(PackageWrangler):
     def handle_main_menu_result(self):
         self.print_not_yet_implemented()
 
-    def list_visible_asset_importable_name_and_score_title_pairs(self, head=None):
+    def list_visible_asset_package_importable_name_and_score_title_pairs(self, head=None):
         result = []
         scores_to_show = self.session.scores_to_show
         for asset_proxy in PackageWrangler.list_asset_proxies(self, head=head):
@@ -59,7 +59,7 @@ class ScorePackageWrangler(PackageWrangler):
                     title_with_year = '{} ({})'.format(tags['title'], year_of_completion)
                 else:
                     title_with_year = '{}'.format(tags['title'])
-                result.append((asset_proxy.importable_name, title_with_year))
+                result.append((asset_proxy.package_importable_name, title_with_year))
         return result
 
     def list_visible_asset_paths(self, head=None):
@@ -112,7 +112,7 @@ class ScorePackageWrangler(PackageWrangler):
         self.print_not_yet_implemented()
 
     def make_visible_asset_menu_tokens(self, head=None):
-        menuing_pairs = self.list_visible_asset_importable_name_and_score_title_pairs()
+        menuing_pairs = self.list_visible_asset_package_importable_name_and_score_title_pairs()
         tmp = stringtools.strip_diacritics_from_binary_string
         menuing_pairs.sort(lambda x, y: cmp(tmp(x[1]), tmp(y[1])))
         return menuing_pairs

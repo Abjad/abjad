@@ -19,9 +19,9 @@ def test_MaterialPackageWrangler_iteration_01():
 def test_MaterialPackageWrangler_iteration_02():
 
     assert 'materials.red_sargasso_measures' in \
-        wrangler.list_asset_importable_names()
+        wrangler.list_asset_package_importable_names()
     assert 'materials.red_sargasso_measures' not in \
-        wrangler.list_asset_importable_names(head='example_score_1')
+        wrangler.list_asset_package_importable_names(head='example_score_1')
 
 
 def test_MaterialPackageWrangler_iteration_03():
@@ -44,14 +44,14 @@ def test_MaterialPackageWrangler_iteration_05():
     '''
 
     assert 'example_score_1.mus.materials' in \
-        wrangler.list_score_internal_asset_container_importable_names()
+        wrangler.list_score_internal_asset_container_package_importable_names()
     assert 'example_score_2.mus.materials' in \
-        wrangler.list_score_internal_asset_container_importable_names()
+        wrangler.list_score_internal_asset_container_package_importable_names()
     assert 'example_score_1.mus.materials' not in \
-        wrangler.list_score_internal_asset_container_importable_names(head='example_score_2')
+        wrangler.list_score_internal_asset_container_package_importable_names(head='example_score_2')
     assert 'example_score_2.mus.materials' not in \
-        wrangler.list_score_internal_asset_container_importable_names(head='example_score_1')
-    assert wrangler.list_score_internal_asset_container_importable_names(head='asdf') == []
+        wrangler.list_score_internal_asset_container_package_importable_names(head='example_score_1')
+    assert wrangler.list_score_internal_asset_container_package_importable_names(head='asdf') == []
 
 
 def test_MaterialPackageWrangler_iteration_06():
@@ -68,10 +68,10 @@ def test_MaterialPackageWrangler_iteration_07():
     py.test.skip('TODO: add time_signatures package to Example Score I.')
 
     assert 'example_score_1.mus.materials.time_signatures' in \
-        wrangler.list_score_internal_asset_importable_names()
+        wrangler.list_score_internal_asset_package_importable_names()
     assert 'example_score_1.mus.materials.time_signatures' not in \
-        wrangler.list_score_internal_asset_importable_names(head='example_score_2')
-    assert wrangler.list_score_internal_asset_importable_names(head='asdf') == []
+        wrangler.list_score_internal_asset_package_importable_names(head='example_score_2')
+    assert wrangler.list_score_internal_asset_package_importable_names(head='asdf') == []
 
 
 def test_MaterialPackageWrangler_iteration_08():
@@ -98,10 +98,10 @@ def test_MaterialPackageWrangler_iteration_10():
    py.test.skip('TODO: add time_signatures package to Example Score I.')
 
    assert 'example_score_1.mus.materials.time_signatures' in \
-        wrangler.list_visible_asset_importable_names()
+        wrangler.list_visible_asset_package_importable_names()
    assert 'example_score_1.mus.materials.time_signatures' not in \
-        wrangler.list_visible_asset_importable_names(head='example_score_2')
-   assert wrangler.list_visible_asset_importable_names(head='asdf') == []
+        wrangler.list_visible_asset_package_importable_names(head='example_score_2')
+   assert wrangler.list_visible_asset_package_importable_names(head='asdf') == []
 
 
 def test_MaterialPackageWrangler_iteration_11():
