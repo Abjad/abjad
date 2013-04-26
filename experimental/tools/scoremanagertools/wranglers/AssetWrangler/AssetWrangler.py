@@ -91,7 +91,7 @@ class AssetWrangler(ScoreManagerObject):
 
     @property
     def current_asset_container_path(self):
-        return self.package_importable_name_to_package_directory_path(
+        return self.package_importable_name_to_directory_path(
             self.current_asset_container_importable_name)
 
     @property
@@ -220,7 +220,7 @@ class AssetWrangler(ScoreManagerObject):
     def list_score_external_asset_container_paths(self, head=None):
         result = []
         for importable_name in self.list_score_external_asset_container_importable_names(head=head):
-            result.append(self.package_importable_name_to_package_directory_path(importable_name))
+            result.append(self.package_importable_name_to_directory_path(importable_name))
         return result
 
     def list_score_external_asset_container_proxies(self, head=None):
@@ -275,7 +275,7 @@ class AssetWrangler(ScoreManagerObject):
         result = []
         for package_importable_name in \
             self.list_score_internal_asset_container_importable_names(head=head):
-            result.append(self.package_importable_name_to_package_directory_path(package_importable_name))
+            result.append(self.package_importable_name_to_directory_path(package_importable_name))
         return result
 
     def list_score_internal_asset_container_proxies(self, head=None):
@@ -328,7 +328,7 @@ class AssetWrangler(ScoreManagerObject):
     def list_user_asset_container_paths(self, head=None):
         #result = []
         #for importable_name in self.list_user_asset_container_importable_names(head=head):
-        #    result.append(self.package_importable_name_to_package_directory_path(importable_name))
+        #    result.append(self.package_importable_name_to_directory_path(importable_name))
         #return result
         return self._user_asset_container_paths[:]
 

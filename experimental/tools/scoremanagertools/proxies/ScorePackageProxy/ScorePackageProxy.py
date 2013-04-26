@@ -48,7 +48,7 @@ class ScorePackageProxy(PackageProxy):
         return self._chunk_wrangler
 
     @property
-    def chunks_package_directory_path(self):
+    def chunks_directory_path(self):
         return os.path.join(self.path, 'mus', 'chunks')
 
     @property
@@ -57,7 +57,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def chunks_package_initializer_file_name(self):
-        return os.path.join(self.chunks_package_directory_path, '__init__.py')
+        return os.path.join(self.chunks_directory_path, '__init__.py')
 
     @property
     def composer(self):
@@ -104,7 +104,7 @@ class ScorePackageProxy(PackageProxy):
         return self._material_package_wrangler
 
     @property
-    def materials_package_directory_path(self):
+    def materials_directory_path(self):
         return os.path.join(self.path, 'mus', 'materials')
 
     @property
@@ -113,7 +113,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def materials_package_initializer_file_name(self):
-        return os.path.join(self.materials_package_directory_path, '__init__.py')
+        return os.path.join(self.materials_directory_path, '__init__.py')
 
     @property
     def mus_proxy(self):
@@ -296,19 +296,19 @@ class ScorePackageProxy(PackageProxy):
                 tags_file.write('\n')
                 tags_file.write('tags = OrderedDict([])\n')
                 tags_file.close()
-        if not os.path.exists(self.materials_package_directory_path):
+        if not os.path.exists(self.materials_directory_path):
             result = False
-            prompt = 'create {}'.format(self.materials_package_directory_path)
+            prompt = 'create {}'.format(self.materials_directory_path)
             if not is_interactive or self.confirm(prompt):
-                os.mkdir(self.materials_package_directory_path)
+                os.mkdir(self.materials_directory_path)
         if not os.path.exists(self.materials_package_initializer_file_name):
             result = False
             file(self.materials_package_initializer_file_name, 'w').write('')
-        if not os.path.exists(self.chunks_package_directory_path):
+        if not os.path.exists(self.chunks_directory_path):
             result = False
-            prompt = 'create {}'.format(self.chunks_package_directory_path)
+            prompt = 'create {}'.format(self.chunks_directory_path)
             if not is_interactive or self.confirm(prompt):
-                os.mkdir(self.chunks_package_directory_path)
+                os.mkdir(self.chunks_directory_path)
         if not os.path.exists(self.chunks_package_initializer_file_name):
             result = False
             file(self.chunks_package_initializer_file_name, 'w').write('')

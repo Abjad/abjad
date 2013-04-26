@@ -45,7 +45,7 @@ class ImportableAssetWrangler(AssetWrangler):
         for asset_container_importable_name in \
             self.list_score_internal_asset_container_importable_names(head=head):
             if self.score_internal_asset_container_importable_name_infix:
-                asset_path = self.package_importable_name_to_package_directory_path(
+                asset_path = self.package_importable_name_to_directory_path(
                     asset_container_importable_name)
                 for name in os.listdir(asset_path):
                     if name[0].isalpha():
