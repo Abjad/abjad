@@ -8,7 +8,7 @@ class ParameterSpecifierClassNameSelector(Selector):
 
     def list_items(self):
         result = []
-        forbidden_names = (
+        forbidden_directory_content_names = (
             'MusicSpecifier',
             'MusicContributionSpecifier',
             'ParameterSpecifier',
@@ -16,6 +16,6 @@ class ParameterSpecifierClassNameSelector(Selector):
             )
         for name in os.listdir(self.configuration.SPECIFIER_CLASSES_DIRECTORY_PATH):
             if name.endswith('Specifier'):
-                if not name in forbidden_names:
+                if not name in forbidden_directory_content_names:
                     result.append(name)
         return result

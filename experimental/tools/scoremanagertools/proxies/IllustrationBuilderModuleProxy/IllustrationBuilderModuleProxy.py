@@ -28,7 +28,7 @@ class IllustrationBuilderModuleProxy(BasicModuleProxy):
         #self.unimport_output_material_module()
         illustration = safe_import(locals(), self.module_name, 'illustration',
             source_parent_package_path=self.parent_package_path)
-        illustration.header_block.title = markuptools.Markup(self.material_spaced_name)
+        illustration.header_block.title = markuptools.Markup(self.space_delimited_material_package_name)
         return illustration
 
     def write_stub_to_disk(self, prompt=True):

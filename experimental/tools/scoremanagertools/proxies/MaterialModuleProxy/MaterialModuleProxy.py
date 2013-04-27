@@ -10,7 +10,7 @@ class MaterialModuleProxy(ModuleProxy):
         return self.parent_package_path
 
     @property
-    def material_spaced_name(self):
+    def space_delimited_material_package_name(self):
         return self.material_package_name.replace('_', ' ')
 
     @property

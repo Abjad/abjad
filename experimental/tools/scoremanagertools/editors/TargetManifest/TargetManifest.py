@@ -117,9 +117,9 @@ class TargetManifest(object):
             return attribute_detail.name
 
     def menu_key_to_editor(self, menu_key, existing_value, session=None, **kwargs):
-        attribute_spaced_name = self.menu_key_to_human_readable_attribute_name(menu_key)
+        space_delimited_attribute_name = self.menu_key_to_human_readable_attribute_name(menu_key)
         attribute_detail = self.menu_key_to_attribute_detail(menu_key)
-        return attribute_detail.get_editor(attribute_spaced_name, existing_value, session=session, **kwargs)
+        return attribute_detail.get_editor(space_delimited_attribute_name, existing_value, session=session, **kwargs)
 
     def menu_key_to_existing_value(self, menu_key):
         attribute_name = self.menu_key_to_attribute_name(menu_key)

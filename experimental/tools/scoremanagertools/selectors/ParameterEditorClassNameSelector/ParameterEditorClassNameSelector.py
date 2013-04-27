@@ -8,13 +8,13 @@ class ParameterEditorClassNameSelector(Selector):
 
     def list_items(self):
         result = []
-        forbidden_names = (
+        forbidden_directory_content_names = (
             'MusicSpecifierEditor',
             'MusicContributionSpecifierEditor',
             'ParameterSpecifierEditor',
             )
         for name in os.listdir(self.configuration.EDITORS_DIRECTORY_PATH):
             if name.endswith('SpecifierEditor'):
-                if not name in forbidden_names:
+                if not name in forbidden_directory_content_names:
                     result.append(name)
         return result

@@ -1,10 +1,12 @@
+import types
 from experimental.tools.scoremanagertools.editors.InteractiveEditor import InteractiveEditor
 from experimental.tools.scoremanagertools.selectors.Selector import Selector
 from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
-import types
 
 
 class AttributeDetail(object):
+
+    ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
         is_null = False
@@ -49,9 +51,9 @@ class AttributeDetail(object):
 
     ### PUBLIC METHODS ###
 
-    def get_editor(self, attribute_spaced_name, existing_value, session=None, **kwargs):
+    def get_editor(self, space_delimited_attribute_name, existing_value, session=None, **kwargs):
         if isinstance(self.editor_callable, types.FunctionType):
-            editor = self.editor_callable(attribute_spaced_name,
+            editor = self.editor_callable(space_delimited_attribute_name,
                 session=session, existing_value=existing_value, allow_none=self.allow_none, **kwargs)
         elif issubclass(self.editor_callable, InteractiveEditor):
             editor = self.editor_callable(session=session, target=existing_value, **kwargs)

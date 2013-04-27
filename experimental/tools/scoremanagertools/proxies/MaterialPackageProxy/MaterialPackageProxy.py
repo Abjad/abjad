@@ -300,7 +300,7 @@ class MaterialPackageProxy(PackageProxy):
         return self.name
 
     @property
-    def material_spaced_name(self):
+    def space_delimited_material_package_name(self):
         return self.material_package_name.replace('_', ' ')
 
     @property

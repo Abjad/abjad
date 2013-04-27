@@ -41,7 +41,7 @@ def test_MaterialPackageProxy_read_only_attributes_01():
     assert     mpp.material_package_maker is None
     assert     mpp.material_package_maker_class_name is None
     assert     mpp.material_package_name == 'red_numbers'
-    assert     mpp.material_spaced_name == 'red numbers'
+    assert     mpp.space_delimited_material_package_name == 'red numbers'
     assert     mpp.material_package_name == 'red_numbers'
     assert     mpp.output_material == [1, 2, 3, 4, 5]
     assert     mpp.output_material_module_body_lines == ['red_numbers = [1, 2, 3, 4, 5]']
@@ -104,7 +104,7 @@ def test_MaterialPackageProxy_read_only_attributes_02():
     assert     mpp.material_package_maker is scoremanagertools.makers.SargassoMeasureMaterialPackageMaker
     assert     mpp.material_package_maker_class_name == 'SargassoMeasureMaterialPackageMaker'
     assert     mpp.material_package_name == 'red_sargasso_measures'
-    assert     mpp.material_spaced_name == 'red sargasso measures'
+    assert     mpp.space_delimited_material_package_name == 'red sargasso measures'
     assert     mpp.material_package_name == 'red_sargasso_measures'
     assert     measuretools.all_are_measures(mpp.output_material)
     assert     mpp.output_material_module_body_lines is None
@@ -173,7 +173,7 @@ def test_MaterialPackageProxy_read_only_attributes_03():
     assert     mpp.material_package_maker is None
     assert     mpp.material_package_maker_class_name is None
     assert     mpp.material_package_name == 'red_notes'
-    assert     mpp.material_spaced_name == 'red notes'
+    assert     mpp.space_delimited_material_package_name == 'red notes'
     assert     mpp.material_package_name == 'red_notes'
     assert     notetools.all_are_notes(mpp.material_definition)
     assert     mpp.output_material_module_body_lines is not None

@@ -10,6 +10,6 @@ class DynamicHandlerClassNameSelector(HandlerClassNameSelector):
     asset_container_paths = [HandlerClassNameSelector.configuration.HANDLER_TOOLS_DIRECTORY_PATH]
     target_human_readable_name = 'dynamic handler class name'
 
-    forbidden_names = (
+    forbidden_directory_content_names = (
         'DynamicHandler',
         )

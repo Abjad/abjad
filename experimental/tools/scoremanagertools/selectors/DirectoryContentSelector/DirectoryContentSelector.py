@@ -17,8 +17,8 @@ class DirectoryContentSelector(Selector):
         for path in self.asset_container_paths:
             directory_proxy = DirectoryProxy(path=path, session=self.session)
             result.extend(directory_proxy.public_content_names)
-            if hasattr(self, 'forbidden_names'):
-                for forbidden_name in self.forbidden_names:
-                    if forbidden_name in result:
-                        result.remove(forbidden_name)
+            if hasattr(self, 'forbidden_directory_content_names'):
+                for forbidden_directory_content_name in self.forbidden_directory_content_names:
+                    if forbidden_directory_content_name in result:
+                        result.remove(forbidden_directory_content_name)
         return result

@@ -48,18 +48,5 @@ class ChunkPackageProxy(PackageProxy):
         section.append(('d', 'delete'))
         return menu
 
-    def set_chunk_spaced_name_interactively(self, prompt=True):
-        getter = self.make_getter(where=self.where())
-        getter.append_spaced_delimited_lowercase_string('chunk name')
-        result = getter.run()
-        if self.backtrack():
-            return
-        package_name = result.replace(' ', '_')
-        package_path = self.dot_join([self.package_path, package_name])
-        chunk_proxy = ChunkPackageProxy(package_path)
-        chunk_proxy.make_asset()
-        line = 'chunk spaced name set.'
-        self.proceed(line, is_interactive=prompt)
-
     def set_score_template_interactively(self):
         self.print_not_yet_implemented()
