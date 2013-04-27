@@ -212,9 +212,9 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_score_external_asset_container_package_importable_names(self, head=None):
         result = []
-        for importable_name in self._score_external_asset_container_package_importable_names:
-            if head is None or importable_name.startswith(head):
-                result.append(importable_name)
+        for package_importable_name in self._score_external_asset_container_package_importable_names:
+            if head is None or package_importable_name.startswith(head):
+                result.append(package_importable_name)
         return result
 
     def list_score_external_asset_container_paths(self, head=None):
@@ -225,8 +225,9 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_score_external_asset_container_proxies(self, head=None):
         result = []
-        for importable_name in self.list_score_external_asset_container_package_importable_names(head=head):
-            asset_container_proxy = self.asset_container_class(importable_name)
+        for package_importable_name in \
+            self.list_score_external_asset_container_package_importable_names(head=head):
+            asset_container_proxy = self.asset_container_class(package_importable_name)
             result.append(asset_container_proxy)
         return result
 
@@ -280,8 +281,9 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_score_internal_asset_container_proxies(self, head=None):
         result = []
-        for importable_name in self.list_score_internal_asset_container_package_importable_names(head=head):
-            asset_container_proxy = self.asset_container_class(importable_name)
+        for package_importable_name in \
+            self.list_score_internal_asset_container_package_importable_names(head=head):
+            asset_container_proxy = self.asset_container_class(package_importable_name)
             result.append(asset_container_proxy)
         return result
 
@@ -303,8 +305,8 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_score_internal_asset_proxies(self, head=None):
         result = []
-        for importable_name in self.list_score_internal_asset_package_importable_names(head=head):
-            asset_proxy = self.asset_class_name(importable_name)
+        for package_importable_name in self.list_score_internal_asset_package_importable_names(head=head):
+            asset_proxy = self.asset_class_name(package_importable_name)
             result.append(asset_proxy)
         return result
 
@@ -320,22 +322,22 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_user_asset_container_package_importable_names(self, head=None):
         result = []
-        for importable_name in self._user_asset_container_package_importable_names:
-            if head is None or importable_name.startswith(head):
-                result.append(importable_name)
+        for package_importable_name in self._user_asset_container_package_importable_names:
+            if head is None or package_importable_name.startswith(head):
+                result.append(package_importable_name)
         return result
 
     def list_user_asset_container_paths(self, head=None):
         #result = []
-        #for importable_name in self.list_user_asset_container_package_importable_names(head=head):
-        #    result.append(self.package_importable_name_to_directory_path(importable_name))
+        #for package_importable_name in self.list_user_asset_container_package_importable_names(head=head):
+        #    result.append(self.package_importable_name_to_directory_path(package_importable_name))
         #return result
         return self._user_asset_container_paths[:]
 
     def list_user_asset_container_proxies(self, head=None):
         result = []
-        for importable_name in self.list_user_asset_container_package_importable_names(head=head):
-            asset_container_proxy = self.asset_container_class(importable_name)
+        for package_importable_name in self.list_user_asset_container_package_importable_names(head=head):
+            asset_container_proxy = self.asset_container_class(package_importable_name)
             result.append(asset_container_proxy)
         return result
 
