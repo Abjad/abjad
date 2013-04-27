@@ -25,8 +25,8 @@ class MaterialPackageProxy(PackageProxy):
 
     ### INTIALIZER ###
 
-    def __init__(self, package_importable_name=None, session=None):
-        PackageProxy.__init__(self, package_importable_name=package_importable_name, session=session)
+    def __init__(self, package_path=None, session=None):
+        PackageProxy.__init__(self, package_path=package_path, session=session)
         self._generic_output_name = None
         self.stylesheet_file_name_in_memory = None
 
@@ -182,7 +182,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def illustration_builder_module_path(self):
         if self.should_have_illustration_builder_module:
-            return self.dot_join([self.package_importable_name, 'illustration_builder'])
+            return self.dot_join([self.package_path, 'illustration_builder'])
 
     @property
     def illustration_builder_module_proxy(self):
@@ -265,7 +265,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def material_definition_module_path(self):
         if self.should_have_material_definition_module:
-            return self.dot_join([self.package_importable_name, 'material_definition'])
+            return self.dot_join([self.package_path, 'material_definition'])
 
     @property
     def material_definition_module_proxy(self):
@@ -285,10 +285,10 @@ class MaterialPackageProxy(PackageProxy):
         if self.material_package_maker_class_name is not None:
             #maker_class = safe_import(
             #    locals(), 'makers', self.material_package_maker_class_name,
-            #    source_parent_package_importable_name=self.configuration.score_manager_tools_package_importable_name)
+            #    source_parent_package_path=self.configuration.score_manager_tools_package_path)
             maker_class = safe_import(
                 locals(), 'makers', self.material_package_maker_class_name,
-                source_parent_package_importable_name=self.configuration.score_manager_tools_fully_qualified_package_name)
+                source_parent_package_path=self.configuration.score_manager_tools_fully_qualified_package_name)
             return maker_class
 
     @property
@@ -349,7 +349,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def output_material_module_path(self):
         if self.should_have_output_material_module:
-            return '{}.output_material'.format(self.package_importable_name)
+            return '{}.output_material'.format(self.package_path)
 
     @property
     def output_material_module_proxy(self):
@@ -420,7 +420,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def user_input_module_path(self):
         if self.should_have_user_input_module:
-            return self.dot_join([self.package_importable_name, 'user_input'])
+            return self.dot_join([self.package_path, 'user_input'])
 
     @property
     def user_input_module_proxy(self):
@@ -436,7 +436,7 @@ class MaterialPackageProxy(PackageProxy):
             'output_material', self.material_underscored_name)
 
     def add_material_to_materials_initializer(self):
-        parent_package = PackageProxy(self.parent_package_importable_name, session=self.session)
+        parent_package = PackageProxy(self.parent_package_path, session=self.session)
         parent_package.initializer_file_proxy.add_safe_import_statement(
             self.material_underscored_name, self.material_underscored_name)
 
@@ -735,7 +735,7 @@ class MaterialPackageProxy(PackageProxy):
         import_statement = 'safe_import(globals(), {!r}, {!r})\n'
         import_statement = import_statement.format(
             self.material_underscored_name, self.material_underscored_name)
-        parent_package = PackageProxy(self.parent_package_importable_name, session=self.session)
+        parent_package = PackageProxy(self.parent_package_path, session=self.session)
         parent_package_initializer_file_proxy = parent_package.initializer_file_proxy
         filtered_import_statements = []
         for safe_import_statement in parent_package_initializer_file_proxy.safe_import_statements:

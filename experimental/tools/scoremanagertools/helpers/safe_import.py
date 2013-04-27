@@ -1,20 +1,20 @@
 def safe_import(target_namespace, source_module_short_name, source_attribute_name,
-    source_parent_package_importable_name=None):
+    source_parent_package_path=None):
 
     #print repr(target_namespace.keys())
     #print repr(source_module_short_name)
     #print repr(source_attribute_name)
-    #print repr(source_parent_package_importable_name)
+    #print repr(source_parent_package_path)
 
-    if source_parent_package_importable_name is None:
+    if source_parent_package_path is None:
         try:
-            source_parent_package_importable_name = target_namespace['__name__']
+            source_parent_package_path = target_namespace['__name__']
         except KeyError:
             pass
 
-    if source_parent_package_importable_name:
+    if source_parent_package_path:
         source_module_path = '{}.{}'.format(
-            source_parent_package_importable_name, source_module_short_name)
+            source_parent_package_path, source_module_short_name)
     else:
         source_module_path = source_module_short_name
 

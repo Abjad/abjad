@@ -34,7 +34,7 @@ def test_ScorePackageProxy_read_only_attributes_01():
     assert score_proxy.composer is None
     # TODO: create Example Score I instrumentation
     #assert score_proxy.instrumentation == instrumentation
-    assert score_proxy.materials_package_importable_name == 'example_score_1.mus.materials'
+    assert score_proxy.materials_package_path == 'example_score_1.mus.materials'
     assert score_proxy.title == 'Example Score I'
     assert score_proxy.year_of_completion == 2013
 

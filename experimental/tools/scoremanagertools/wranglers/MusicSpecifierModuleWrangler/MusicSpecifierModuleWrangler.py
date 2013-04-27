@@ -10,16 +10,16 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
 
     def __init__(self, session=None):
 #        ModuleWrangler.__init__(self,
-#            score_external_asset_container_package_importable_names=\
-#                [self.configuration.score_external_specifiers_package_importable_name],
-#            score_internal_asset_container_package_importable_name_infix=\
-#                self.configuration.score_internal_specifiers_package_importable_name_infix,
+#            score_external_asset_container_package_paths=\
+#                [self.configuration.score_external_specifiers_package_path],
+#            score_internal_asset_container_package_path_infix=\
+#                self.configuration.score_internal_specifiers_package_path_infix,
 #            session=session)
         ModuleWrangler.__init__(self, session=session)
-        self._score_external_asset_container_package_importable_names = [
-            self.configuration.score_external_specifiers_package_importable_name]
-        self._score_internal_asset_container_package_importable_name_infix = \
-            self.configuration.score_internal_specifiers_package_importable_name_infix
+        self._score_external_asset_container_package_paths = [
+            self.configuration.score_external_specifiers_package_path]
+        self._score_internal_asset_container_package_path_infix = \
+            self.configuration.score_internal_specifiers_package_path_infix
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

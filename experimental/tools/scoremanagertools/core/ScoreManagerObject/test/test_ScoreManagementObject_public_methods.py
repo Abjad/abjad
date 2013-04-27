@@ -13,4 +13,4 @@ def test_ScoreManagementObject_public_methods_01():
         'scoremanagertools.scoremanager.ScoreManager.ScoreManager') == path
 
     path = score_manager_object.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH
-    assert score_manager_object.package_importable_name_to_directory_path('scoremanagertools') == path
+    assert score_manager_object.package_path_to_directory_path('scoremanagertools') == path

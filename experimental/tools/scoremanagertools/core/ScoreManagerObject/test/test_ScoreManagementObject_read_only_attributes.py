@@ -19,12 +19,12 @@ def test_ScoreManagementObject_read_only_attributes_01():
         'makers')
     assert score_manager_object.configuration.MAKERS_DIRECTORY_PATH == path
 
-    assert score_manager_object.configuration.makers_package_importable_name == 'scoremanagertools.makers'
-    assert score_manager_object.configuration.score_manager_tools_package_importable_name == \
+    assert score_manager_object.configuration.makers_package_path == 'scoremanagertools.makers'
+    assert score_manager_object.configuration.score_manager_tools_package_path == \
         'scoremanagertools'
 
     assert isinstance(score_manager_object.session, scoremanagertools.core.Session)
-    assert score_manager_object.configuration.score_external_chunks_package_importable_name == 'sketches'
+    assert score_manager_object.configuration.score_external_chunks_package_path == 'sketches'
 
     path = os.path.join(
         score_manager_object.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH,
@@ -32,7 +32,7 @@ def test_ScoreManagementObject_read_only_attributes_01():
     assert score_manager_object.source_file_name == path
 
     assert score_manager_object._spaced_class_name == 'score manager object'
-    assert score_manager_object.configuration.score_external_materials_package_importable_name == 'materials'
+    assert score_manager_object.configuration.score_external_materials_package_path == 'materials'
 
 
     path = os.path.join(
@@ -40,7 +40,7 @@ def test_ScoreManagementObject_read_only_attributes_01():
         'stylesheets')
     assert score_manager_object.configuration.STYLESHEETS_DIRECTORY_PATH == path
 
-    assert score_manager_object.configuration.stylesheets_package_importable_name == \
+    assert score_manager_object.configuration.stylesheets_package_path == \
         'scoremanagertools.stylesheets'
     assert isinstance(score_manager_object.transcript, list)
     assert isinstance(score_manager_object.transcript_signature, tuple)

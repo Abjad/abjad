@@ -6,7 +6,7 @@ class MaterialPackageSelector(Selector):
 
 	### CLASS ATTRIBUTES ###
 
-    asset_subtree_package_importable_names = []
+    asset_subtree_package_paths = []
     target_human_readable_name = 'material package'
 
     ### PUBLIC METHODS ###
@@ -23,6 +23,6 @@ class MaterialPackageSelector(Selector):
     def list_items(self):
         result = []
         for path in self.list_current_material_directory_paths():
-            package_importable_name = self.path_to_package_importable_name(path)
-            result.append(package_importable_name)
+            package_path = self.path_to_package_path(path)
+            result.append(package_path)
         return result

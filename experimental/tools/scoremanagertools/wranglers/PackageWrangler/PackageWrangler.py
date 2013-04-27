@@ -16,8 +16,8 @@ class PackageWrangler(ImportableAssetWrangler):
     def score_external_asset_proxies(self):
         result = []
         for asset_path in self.score_external_asset_paths:
-            asset_package_importable_name = self.path_to_package_importable_name(asset_path)
-            asset_proxy = self.get_asset_proxy(asset_package_importable_name)
+            asset_package_path = self.path_to_package_path(asset_path)
+            asset_proxy = self.get_asset_proxy(asset_package_path)
             result.append(asset_proxy)
         return result
 

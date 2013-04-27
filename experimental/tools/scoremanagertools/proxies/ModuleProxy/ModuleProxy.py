@@ -33,10 +33,10 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
     @property
     def grandparent_directory_path(self):
         if self.module_path:
-            return self.package_importable_name_to_directory_path(self.grandparent_package_importable_name)
+            return self.package_path_to_directory_path(self.grandparent_package_path)
 
     @property
-    def grandparent_package_importable_name(self):
+    def grandparent_package_path(self):
         if self.module_path:
             return self.dot_join(self.module_path.split('.')[:-2])
 
@@ -52,7 +52,7 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
 
     @property
     def module_path(self):
-        return self.package_importable_name
+        return self.package_path
 
     @property
     def module_short_name(self):
@@ -62,10 +62,10 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
     @property
     def parent_directory_path(self):
         if self.module_path:
-            return self.package_importable_name_to_directory_path(self.parent_package_importable_name)
+            return self.package_path_to_directory_path(self.parent_package_path)
 
     @property
-    def parent_package_importable_name(self):
+    def parent_package_path(self):
         if self.module_path:
             return self.dot_join(self.module_path.split('.')[:-1])
 
@@ -91,4 +91,4 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
         self.proceed('file executed.', is_interactive=prompt)
 
     def unimport(self):
-        self.remove_package_importable_name_from_sys_modules(self.module_path)
+        self.remove_package_path_from_sys_modules(self.module_path)

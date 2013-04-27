@@ -4,8 +4,8 @@ from experimental.tools.scoremanagertools.proxies.PackageProxy import PackagePro
 
 class ChunkPackageProxy(PackageProxy):
 
-    def __init__(self, package_importable_name=None, score_template=None, session=None):
-        PackageProxy.__init__(self, package_importable_name=package_importable_name, session=session)
+    def __init__(self, package_path=None, score_template=None, session=None):
+        PackageProxy.__init__(self, package_path=package_path, session=session)
         self.score_template = score_template
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -55,8 +55,8 @@ class ChunkPackageProxy(PackageProxy):
         if self.backtrack():
             return
         package_short_name = result.replace(' ', '_')
-        package_importable_name = self.dot_join([self.package_importable_name, package_short_name])
-        chunk_proxy = ChunkPackageProxy(package_importable_name)
+        package_path = self.dot_join([self.package_path, package_short_name])
+        chunk_proxy = ChunkPackageProxy(package_path)
         chunk_proxy.make_asset()
         line = 'chunk spaced name set.'
         self.proceed(line, is_interactive=prompt)

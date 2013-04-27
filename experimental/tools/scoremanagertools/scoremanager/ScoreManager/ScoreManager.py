@@ -61,9 +61,9 @@ class ScoreManager(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def edit_score_interactively(self, score_package_importable_name):
-        score_package_proxy = self.score_package_wrangler.get_asset_proxy(score_package_importable_name)
-        score_package_proxy.session.current_score_package_short_name = score_package_importable_name
+    def edit_score_interactively(self, score_package_path):
+        score_package_proxy = self.score_package_wrangler.get_asset_proxy(score_package_path)
+        score_package_proxy.session.current_score_package_short_name = score_package_path
         score_package_proxy.run(cache=True)
         self.session.current_score_package_name = None
 
@@ -92,10 +92,10 @@ class ScoreManager(ScoreManagerObject):
             self.session.show_all_scores()
         elif result == 'm':
             self.material_package_wrangler.run(
-                rollback=True, head=self.configuration.score_external_materials_package_importable_name)
+                rollback=True, head=self.configuration.score_external_materials_package_path)
         elif result == 'f':
             self.music_specifier_module_wrangler.run(
-                rollback=True, head=self.configuration.score_external_specifiers_package_importable_name)
+                rollback=True, head=self.configuration.score_external_specifiers_package_path)
         elif result == 'k':
             self.print_not_yet_implemented()
         elif result == 'new':

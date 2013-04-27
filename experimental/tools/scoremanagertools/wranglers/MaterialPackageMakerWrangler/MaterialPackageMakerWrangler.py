@@ -9,16 +9,16 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def __init__(self, session=None):
 #        PackageWrangler.__init__(self,
-#            score_external_asset_container_package_importable_names=[self.makers_package_importable_name],
-#            score_internal_asset_container_package_importable_name_infix=None,
+#            score_external_asset_container_package_paths=[self.makers_package_path],
+#            score_internal_asset_container_package_path_infix=None,
 #            session=session,
-#            user_asset_container_package_importable_names=[self.configuration.user_makers_package_importable_name],
+#            user_asset_container_package_paths=[self.configuration.user_makers_package_path],
 #            user_asset_container_paths=[self.configuration.USER_MAKERS_DIRECTORY_PATH])
         PackageWrangler.__init__(self, session=session)
-        self._score_external_asset_container_package_importable_names = [
-            self.configuration.makers_package_importable_name]
-        self._score_internal_asset_container_package_importable_name_infix = None
-        self._user_asset_container_package_importable_names = [self.configuration.user_makers_package_importable_name]
+        self._score_external_asset_container_package_paths = [
+            self.configuration.makers_package_path]
+        self._score_internal_asset_container_package_path_infix = None
+        self._user_asset_container_package_paths = [self.configuration.user_makers_package_path]
         self._user_asset_container_paths = [self.configuration.USER_MAKERS_DIRECTORY_PATH]
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -37,14 +37,14 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             )
 
     @property
-    def forbidden_package_importable_names(self):
+    def forbidden_package_paths(self):
         return ['scoremanagertools.makers.' + class_name for class_name in self.forbidden_class_names]
 
     ### PUBLIC METHODS ###
 
-    def get_asset_proxy(self, package_importable_name):
+    def get_asset_proxy(self, package_path):
         from experimental.tools.scoremanagertools.proxies.MaterialPackageProxy import MaterialPackageProxy
-        material_package_proxy = MaterialPackageProxy(package_importable_name, session=self.session)
+        material_package_proxy = MaterialPackageProxy(package_path, session=self.session)
         material_package_maker_class_name = material_package_proxy.material_package_maker_class_name
         if material_package_maker_class_name is not None:
             material_package_maker_class = None
@@ -55,10 +55,10 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             except ImportError:
                 command = 'from {} import {} as material_package_maker_class'
                 command = command.format(
-                    self.configuration.user_makers_package_importable_name, material_package_maker_class_name)
+                    self.configuration.user_makers_package_path, material_package_maker_class_name)
                 exec(command)
             material_package_proxy = material_package_maker_class(
-                package_importable_name, session=self.session)
+                package_path, session=self.session)
         return material_package_proxy
 
     def handle_main_menu_result(self, result):
@@ -78,22 +78,22 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             result.append(human_readable_name)
         return result
 
-    def list_score_external_asset_package_importable_names(self, head=None):
-        result = PackageWrangler.list_score_external_asset_package_importable_names(self, head=head)
+    def list_score_external_asset_package_paths(self, head=None):
+        result = PackageWrangler.list_score_external_asset_package_paths(self, head=head)
         #if self.base_class_name in result:
         #    result.remove(self.base_class_name)
-        for forbidden_package_importable_name in self.forbidden_package_importable_names:
-            if forbidden_package_importable_name in result:
-                result.remove(forbidden_package_importable_name)
+        for forbidden_package_path in self.forbidden_package_paths:
+            if forbidden_package_path in result:
+                result.remove(forbidden_package_path)
         return result
 
-    def list_score_internal_asset_container_package_importable_names(self, head=None):
+    def list_score_internal_asset_container_package_paths(self, head=None):
         return []
 
     # TODO: implement MaterialPackageProxyClassFile object to model and customize these settings
     def make_asset_class_file(self, package_short_name, generic_output_name):
         class_file_name = os.path.join(
-            self.list_score_external_asset_container_package_importable_names()[0],
+            self.list_score_external_asset_container_package_paths()[0],
             package_short_name, package_short_name + '.py')
         class_file = file(class_file_name, 'w')
         lines = []
@@ -106,9 +106,9 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         lines.append('')
         lines.append('class {}(MaterialPackageMaker):'.format(package_short_name))
         lines.append('')
-        lines.append('    def __init__(self, package_importable_name=None, session=None):')
+        lines.append('    def __init__(self, package_path=None, session=None):')
         lines.append('        MaterialPackageMaker.__init__(')
-        lines.append('            self, package_importable_name=package_importable_name, session=seession')
+        lines.append('            self, package_path=package_path, session=seession')
         lines.append('')
         lines.append('    ### READ-ONLY PUBLIC PROPERTIES ###')
         lines.append('')
@@ -145,7 +145,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     # TODO: change to boilerplate file stored in material_package_maker package
     def make_asset_initializer(self, package_short_name):
         initializer_file_name = os.path.join(
-            self.list_score_external_asset_container_package_importable_names()[0],
+            self.list_score_external_asset_container_package_paths()[0],
             package_short_name, '__init__.py')
         initializer = file(initializer_file_name, 'w')
         line = 'from abjad.tools import importtools\n'
@@ -163,7 +163,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             return
         material_package_maker_class_name, generic_output_product_name = result
         material_package_maker_directory = os.path.join(
-            self.list_score_external_asset_container_package_importable_names[0],
+            self.list_score_external_asset_container_package_paths[0],
             material_package_maker_class_name)
         os.mkdir(material_package_maker_directory)
         self.make_asset_initializer(material_package_maker_class_name)
@@ -183,7 +183,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         stylesheet.paper_block.markup_system_spacing = layouttools.make_spacing_vector(0, 0, 12, 0)
         stylesheet.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 10, 0)
         stylesheet_file_name = os.path.join(
-            self.list_score_external_asset_container_package_importable_names()[0],
+            self.list_score_external_asset_container_package_paths()[0],
             package_short_name, 'stylesheet.ly')
         stylesheet_file_pointer = file(stylesheet_file_name, 'w')
         stylesheet_file_pointer.write(stylesheet.format)
@@ -197,6 +197,6 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         return menu
 
     def make_visible_asset_menu_tokens(self, head=None):
-        keys = self.list_asset_package_importable_names(head=head)
+        keys = self.list_asset_package_paths(head=head)
         bodies = self.list_asset_human_readable_names(head=head)
         return zip(keys, bodies)

@@ -10,13 +10,13 @@ class ImportableAssetProxy(AssetProxy):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        if self.package_importable_name is not None:
-            return '{}({!r})'.format(self._class_name, self.package_importable_name)
+        if self.package_path is not None:
+            return '{}({!r})'.format(self._class_name, self.package_path)
         else:
             return '{}()'.format(self._class_name)
 
     ### READ-ONLY PROPERTIES ###
 
     @property
-    def package_importable_name(self):
-        return self.path_to_package_importable_name(self.path)
+    def package_path(self):
+        return self.path_to_package_path(self.path)

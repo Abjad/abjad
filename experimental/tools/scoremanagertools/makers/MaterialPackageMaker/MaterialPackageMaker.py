@@ -17,8 +17,8 @@ class MaterialPackageMaker(MaterialPackageProxy):
 
     ### INITIALIZER ###
 
-    def __init__(self, package_importable_name=None, session=None):
-        MaterialPackageProxy.__init__(self, package_importable_name=package_importable_name, session=session)
+    def __init__(self, package_path=None, session=None):
+        MaterialPackageProxy.__init__(self, package_path=package_path, session=session)
         self._user_input_wrapper_in_memory = self._initialize_user_input_wrapper_in_memory()
 
     ### PRIVATE METHODS ###
@@ -27,7 +27,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         from experimental.tools import scoremanagertools
         if not self.should_have_user_input_module:
             return
-        user_input_module_path = self.dot_join([self.package_importable_name, 'user_input'])
+        user_input_module_path = self.dot_join([self.package_path, 'user_input'])
         user_input_module_file_name = self.module_path_to_file_path(
             user_input_module_path)
         if not os.path.exists(user_input_module_file_name):

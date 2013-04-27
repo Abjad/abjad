@@ -6,7 +6,7 @@ class PackageContentSelector(DirectoryContentSelector):
 
     ### CLASS ATTRIBUTES ###
 
-    asset_container_package_importable_names = []
+    asset_container_package_paths = []
     target_human_readable_name = 'item'
 
     ### PUBLIC METHODS ###
@@ -14,8 +14,8 @@ class PackageContentSelector(DirectoryContentSelector):
     def list_items(self):
         from experimental.tools.scoremanagertools.proxies.PackageProxy import PackageProxy
         result = []
-        for package_importable_name in self.asset_container_package_importable_names:
+        for package_path in self.asset_container_package_paths:
             package_proxy = PackageProxy(
-                package_importable_name=package_importable_name, session=self.session)
+                package_path=package_path, session=self.session)
             result.extend(package_proxy.public_names)
         return result

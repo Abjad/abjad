@@ -36,13 +36,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_chunks_directory_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_chunks_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_chunks_package_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_materials_directory_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_materials_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_materials_package_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_score_package_proxy
@@ -54,7 +54,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_specifiers_directory_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_specifiers_package_importable_name
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_specifiers_package_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.explicit_command_history
@@ -246,13 +246,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.package_exists
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.package_importable_name_to_directory_path
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.package_path_to_directory_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.path_to_human_readable_base_name
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.path_to_package_importable_name
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.path_to_package_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.pluralize_string
@@ -288,7 +288,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.reinitialize
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.remove_package_importable_name_from_sys_modules
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.restore_breadcrumbs

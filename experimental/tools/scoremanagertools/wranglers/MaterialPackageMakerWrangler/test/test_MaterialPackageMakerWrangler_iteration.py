@@ -6,18 +6,18 @@ wrangler = score_manager.material_package_maker_wrangler
 
 def test_MaterialPackageMakerWrangler_iteration_01():
 
-    assert wrangler.list_score_internal_asset_package_importable_names() == []
+    assert wrangler.list_score_internal_asset_package_paths() == []
 
 
 def test_MaterialPackageMakerWrangler_iteration_02():
 
-    assert wrangler.list_score_internal_asset_container_package_importable_names() == []
+    assert wrangler.list_score_internal_asset_container_package_paths() == []
 
 
 def test_MaterialPackageMakerWrangler_iteration_03():
 
     assert 'scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker' in \
-        wrangler.list_asset_package_importable_names()
+        wrangler.list_asset_package_paths()
 
 
 def test_MaterialPackageMakerWrangler_iteration_04():

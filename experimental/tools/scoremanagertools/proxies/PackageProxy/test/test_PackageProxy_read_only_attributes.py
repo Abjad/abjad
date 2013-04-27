@@ -14,9 +14,9 @@ def test_PackageProxy_read_only_attributes_01():
         os.path.join(
             package_proxy.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH, 
             'red_sargasso_measures','__init__.py')
-    assert package_proxy.package_importable_name == 'materials.red_sargasso_measures'
+    assert package_proxy.package_path == 'materials.red_sargasso_measures'
     assert package_proxy.short_name == 'red_sargasso_measures'
     assert package_proxy.human_readable_name == 'red sargasso measures'
     assert package_proxy.parent_initializer_file_name == \
         os.path.join(package_proxy.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH, '__init__.py')
-    assert package_proxy.parent_package_importable_name == 'materials'
+    assert package_proxy.parent_package_path == 'materials'

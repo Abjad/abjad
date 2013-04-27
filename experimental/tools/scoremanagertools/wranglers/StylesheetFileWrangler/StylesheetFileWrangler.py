@@ -10,13 +10,13 @@ class StylesheetFileWrangler(PackageWrangler):
 
     def __init__(self, session=None):
 #        PackageWrangler.__init__(self,
-#            score_external_asset_container_package_importable_names=[self.configuration.stylesheets_package_importable_name],
-#            score_internal_asset_container_package_importable_name_infix=None,
+#            score_external_asset_container_package_paths=[self.configuration.stylesheets_package_path],
+#            score_internal_asset_container_package_path_infix=None,
 #            session=session)
         PackageWrangler.__init__(self, session=session)
-        self._score_external_asset_container_package_importable_names = [
-            self.configuration.stylesheets_package_importable_name]
-        self._score_internal_asset_container_package_importable_name_infix = None
+        self._score_external_asset_container_package_paths = [
+            self.configuration.stylesheets_package_path]
+        self._score_internal_asset_container_package_path_infix = None
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

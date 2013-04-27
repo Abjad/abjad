@@ -67,17 +67,17 @@ class ScoreManagerConfiguration(Configuration):
                     '',
                     'Set to the directory where you house your user-specific makers.',
                     'Always set user_specific_score_manager_makers_directory_path',
-                    'together with user_specific_score_manager_makers_package_importable_name.',
+                    'together with user_specific_score_manager_makers_package_path.',
                     'Defaults to none.'
                 ],
                 'spec': "string(default='')"
             },
-            'user_specific_score_manager_makers_package_importable_name': {
+            'user_specific_score_manager_makers_package_path': {
                 'comment': [
                     '',
                     'Set to the directory where you house your user-specific makers.',
                     'Always set user_specific_score_manager_makers_directory_path',
-                    'together with user_specific_score_manager_makers_package_importable_name.',
+                    'together with user_specific_score_manager_makers_package_path.',
                     'Defaults to none.'
                 ],
                 'spec': "string(default='')"
@@ -100,7 +100,7 @@ class ScoreManagerConfiguration(Configuration):
         return 'score_manager.cfg'
 
     @property
-    def editors_package_importable_name(self):
+    def editors_package_path(self):
         return self.dot_join(['scoremanagertools', 'editors'])
 
     @property
@@ -117,11 +117,11 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.join(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'makers')
 
     @property
-    def makers_package_importable_name(self):
-        return self.dot_join([self.score_manager_tools_package_importable_name, 'makers'])
+    def makers_package_path(self):
+        return self.dot_join([self.score_manager_tools_package_path, 'makers'])
 
     @property
-    def score_external_chunks_package_importable_name(self):
+    def score_external_chunks_package_path(self):
         return os.path.basename(self.SCORE_MANAGER_SKETCHES_DIRECTORY_PATH)
 
     @property
@@ -133,7 +133,7 @@ class ScoreManagerConfiguration(Configuration):
         return self._settings['score_manager_sketches_directory_path']
 
     @property
-    def score_external_materials_package_importable_name(self):
+    def score_external_materials_package_path(self):
         return os.path.basename(self.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH)
 
     @property
@@ -141,11 +141,11 @@ class ScoreManagerConfiguration(Configuration):
         return self.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH
 
     @property
-    def score_external_package_importable_names(self):
+    def score_external_package_paths(self):
         return (
-            self.score_external_chunks_package_importable_name,
-            self.score_external_materials_package_importable_name,
-            self.score_external_specifiers_package_importable_name,
+            self.score_external_chunks_package_path,
+            self.score_external_materials_package_path,
+            self.score_external_specifiers_package_path,
             )
 
     @property
@@ -157,7 +157,7 @@ class ScoreManagerConfiguration(Configuration):
             )
 
     @property
-    def score_external_specifiers_package_importable_name(self):
+    def score_external_specifiers_package_path(self):
         return os.path.basename(self.SCORE_MANAGER_SPECIFIERS_DIRECTORY_PATH)
 
     @property
@@ -165,15 +165,15 @@ class ScoreManagerConfiguration(Configuration):
         return self.SCORE_MANAGER_SPECIFIERS_DIRECTORY_PATH
 
     @property
-    def score_internal_chunks_package_importable_name_infix(self):
+    def score_internal_chunks_package_path_infix(self):
         return 'mus.chunks'
 
     @property
-    def score_internal_materials_package_importable_name_infix(self):
+    def score_internal_materials_package_path_infix(self):
         return 'mus.materials'
 
     @property
-    def score_internal_specifiers_package_importable_name_infix(self):
+    def score_internal_specifiers_package_path_infix(self):
         return 'mus.specifiers'
 
     @property
@@ -181,7 +181,7 @@ class ScoreManagerConfiguration(Configuration):
         return 'experimental.tools.scoremanagertools'
 
     @property
-    def score_manager_tools_package_importable_name(self):
+    def score_manager_tools_package_path(self):
         return os.path.basename(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH)
 
     @property
@@ -212,7 +212,7 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.normpath(self._settings['scores_directory_path'])
 
     @property
-    def specifier_classes_package_importable_name(self):
+    def specifier_classes_package_path(self):
         return self.dot_join(['scoremanagertools', 'specifiers'])
 
     @property
@@ -224,16 +224,16 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.join(self.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'stylesheets')
 
     @property
-    def stylesheets_package_importable_name(self):
-        return self.dot_join([self.score_manager_tools_package_importable_name, 'stylesheets'])
+    def stylesheets_package_path(self):
+        return self.dot_join([self.score_manager_tools_package_path, 'stylesheets'])
 
     @property
     def USER_MAKERS_DIRECTORY_PATH(self):
         return self._settings['user_specific_score_manager_makers_directory_path']
 
     @property
-    def user_makers_package_importable_name(self):
-        return self._settings['user_specific_score_manager_makers_package_importable_name']
+    def user_makers_package_path(self):
+        return self._settings['user_specific_score_manager_makers_package_path']
 
     ### PUBLIC METHODS ###
 

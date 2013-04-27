@@ -82,7 +82,7 @@
 
 30. Change 'chunks' globally to 'segments'.
 
-31. Move ScoreManagerObject.package_importable_name_to_directory_path() to ScoreManagerConfiguration.
+31. Move ScoreManagerObject.package_path_to_directory_path() to ScoreManagerConfiguration.
     Then see if it's possible to change ...
         class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject)
     ... to ...

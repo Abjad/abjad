@@ -13,14 +13,14 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, package_importable_name=None, session=None):
-#        path = self.package_importable_name_to_directory_path(package_importable_name)
+    def __init__(self, package_path=None, session=None):
+#        path = self.package_path_to_directory_path(package_path)
 #        DirectoryProxy.__init__(self, path=path, session=session)
-#        ImportableAssetProxy.__init__(self, asset_full_name=package_importable_name, session=self.session)
+#        ImportableAssetProxy.__init__(self, asset_full_name=package_path, session=self.session)
         ScoreManagerObject.__init__(self, session=session)
-        path = self.package_importable_name_to_directory_path(package_importable_name)
+        path = self.package_path_to_directory_path(package_path)
         DirectoryProxy.__init__(self, path=path, session=self.session)
-        ImportableAssetProxy.__init__(self, asset_full_name=package_importable_name, session=self.session)
+        ImportableAssetProxy.__init__(self, asset_full_name=package_path, session=self.session)
 
     ### SPECIAL METHODS ###
 
@@ -31,8 +31,8 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
 
     @property
     def directory_path(self):
-        if self.package_importable_name is not None:
-            return self.package_importable_name_to_directory_path(self.package_importable_name)
+        if self.package_path is not None:
+            return self.package_path_to_directory_path(self.package_path)
 
     @property
     def formatted_tags(self):
@@ -63,7 +63,7 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
 
     @property
     def imported_package(self):
-        return __import__(self.package_importable_name, fromlist=['*'])
+        return __import__(self.package_path, fromlist=['*'])
 
     @property
     def initializer_file_name(self):
@@ -77,13 +77,13 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
 
     @property
     def package_root_name(self):
-        return self.package_importable_name.split('.')[0]
+        return self.package_path.split('.')[0]
 
     @property
     def parent_initializer_file_name(self):
-        if self.parent_package_importable_name:
-            parent_directory_path = self.package_importable_name_to_directory_path(
-                self.parent_package_importable_name)
+        if self.parent_package_path:
+            parent_directory_path = self.package_path_to_directory_path(
+                self.parent_package_path)
             return os.path.join(parent_directory_path, '__init__.py')
 
     # TODO: write test
@@ -94,9 +94,9 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
                 self.parent_initializer_file_name, session=self.session)
 
     @property
-    def parent_package_importable_name(self):
-        if self.package_importable_name is not None:
-            result = self.dot_join(self.package_importable_name.split('.')[:-1])
+    def parent_package_path(self):
+        if self.package_path is not None:
+            result = self.dot_join(self.package_path.split('.')[:-1])
             if result:
                 return result
 
@@ -223,13 +223,13 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
             tag_name = result
             self.remove_tag(tag_name)
 
-    def set_package_importable_name_interactively(self):
+    def set_package_path_interactively(self):
         getter = self.make_getter(where=self.where())
         geter.append_underscore_delimited_lowercase_package_name('package importable name')
         result = getter.run()
         if self.backtrack():
             return
-        self.package_importable_name = result
+        self.package_path = result
 
     def unimport_package(self):
-        self.remove_package_importable_name_from_sys_modules(self.package_importable_name)
+        self.remove_package_path_from_sys_modules(self.package_path)
