@@ -22,7 +22,7 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
             file_contents_string = file_pointer.read()
             file_pointer.close()
             exec(file_contents_string)
-            result = locals().get(self.material_underscored_name)
+            result = locals().get(self.material_package_name)
             return result
 
     def import_output_material_safely(self):
@@ -36,9 +36,9 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
         parent_package_initializer_file_proxy = scoremanagertools.proxies.InitializerFileProxy(
             self.parent_package_initializer_file_name)
         parent_package_initializer_file_proxy.remove_safe_import_statement(
-            'output_material', self.material_underscored_name)
+            'output_material', self.material_package_name)
         grandparent_package_initializer = scoremanagertools.proxies.InitializerFileProxy(
             self.grandparent_package_initializer_file_name)
         grandparent_package_initializer.remove_safe_import_statement(
-            self.material_underscored_name, self.material_underscored_name)
+            self.material_package_name, self.material_package_name)
         BasicModuleProxy.remove(self)

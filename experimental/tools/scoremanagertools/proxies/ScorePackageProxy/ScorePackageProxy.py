@@ -470,7 +470,7 @@ class ScorePackageProxy(PackageProxy):
             self.session.is_backtracking_locally = True
 
     def summarize_chunks(self):
-        chunks = self.chunk_wrangler.package_underscored_names
+        chunks = self.chunk_wrangler.list_visible_asset_names()
         lines = []
         if not chunks:
             lines.append('{}Chunks (none yet)'.format(self.make_tab(1)))

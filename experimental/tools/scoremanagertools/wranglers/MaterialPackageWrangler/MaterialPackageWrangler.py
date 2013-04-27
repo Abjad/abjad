@@ -68,11 +68,11 @@ class MaterialPackageWrangler(PackageWrangler):
             getter = self.make_getter(where=self.where())
             getter.append_space_delimited_lowercase_string('material name')
             self.push_backtrack()
-            material_name = getter.run()
+            package_name = getter.run()
             self.pop_backtrack()
             if self.backtrack():
                 return
-            material_package_name = stringtools.string_to_strict_directory_name(material_name)
+            material_package_name = stringtools.string_to_strict_directory_name(package_name)
             material_package_path = self.dot_join([
                 self.current_asset_container_package_path, material_package_name])
             if self.package_exists(material_package_path):

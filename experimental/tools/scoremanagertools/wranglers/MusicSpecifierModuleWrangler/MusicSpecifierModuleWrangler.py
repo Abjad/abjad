@@ -55,10 +55,10 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
     def make_asset_interactively(self):
         getter = self.make_getter()
         getter.append_space_delimited_lowercase_string('music specifier name')
-        specifier_name = getter.run()
+        package_name = getter.run()
         if self.backtrack():
             return
-        package_name = specifier_name.replace(' ', '_')
+        package_name = package_name.replace(' ', '_')
         self.debug(package_name)
         self.make_asset(package_name)
         self.debug('foo')

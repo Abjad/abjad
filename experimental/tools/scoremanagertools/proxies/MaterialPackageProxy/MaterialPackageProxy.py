@@ -227,7 +227,7 @@ class MaterialPackageProxy(PackageProxy):
     def initializer_has_output_material_safe_import_statement(self):
         if self.has_initializer:
             return self.initializer_file_proxy.has_safe_import_statement(
-                'output_material', self.material_underscored_name)
+                'output_material', self.material_package_name)
 
     # TODO: port
     @property
@@ -297,15 +297,11 @@ class MaterialPackageProxy(PackageProxy):
 
     @property
     def material_package_name(self):
-        return self.material_underscored_name
+        return self.name
 
     @property
     def material_spaced_name(self):
-        return self.material_underscored_name.replace('_', ' ')
-
-    @property
-    def material_underscored_name(self):
-        return self.name
+        return self.material_package_name.replace('_', ' ')
 
     @property
     def output_material(self):
@@ -342,7 +338,7 @@ class MaterialPackageProxy(PackageProxy):
             output_material_module_body_lines = self.make_output_material_module_body_lines(output_material)
         else:
             line = '{} = {}'.format(
-                self.material_underscored_name, self.get_tools_package_qualified_repr(output_material))
+                self.material_package_name, self.get_tools_package_qualified_repr(output_material))
             output_material_module_body_lines = [line]
         return output_material_module_import_statements, output_material_module_body_lines
 
@@ -362,7 +358,7 @@ class MaterialPackageProxy(PackageProxy):
     def parent_initializer_has_output_material_safe_import_statement(self):
         if self.has_parent_initializer:
             return self.parent_initializer_file_proxy.has_safe_import_statement(
-            self.material_underscored_name, self.material_underscored_name)
+            self.material_package_name, self.material_package_name)
 
     @property
     def should_have_illustration(self):
@@ -433,12 +429,12 @@ class MaterialPackageProxy(PackageProxy):
 
     def add_material_to_material_initializer(self):
         self.initializer_file_proxy.add_safe_import_statement(
-            'output_material', self.material_underscored_name)
+            'output_material', self.material_package_name)
 
     def add_material_to_materials_initializer(self):
         parent_package = PackageProxy(self.parent_package_path, session=self.session)
         parent_package.initializer_file_proxy.add_safe_import_statement(
-            self.material_underscored_name, self.material_underscored_name)
+            self.material_package_name, self.material_package_name)
 
     def conditionally_write_stub_material_definition_module_to_disk(self, is_interactive=False):
         if not self.get_tag('material_package_maker_class_name'):
@@ -471,7 +467,7 @@ class MaterialPackageProxy(PackageProxy):
             output_material_module_body_lines = self.make_output_material_module_body_lines(
                 output_material_handler.target)
         else:
-            line = '{} = {}'.format(self.material_underscored_name,
+            line = '{} = {}'.format(self.material_package_name,
                 self.get_tools_package_qualified_repr(output_material_handler.target))
             output_material_module_body_lines = [line]
         self.write_output_material_to_disk(
@@ -734,7 +730,7 @@ class MaterialPackageProxy(PackageProxy):
     def remove_material_from_materials_initializer(self):
         import_statement = 'safe_import(globals(), {!r}, {!r})\n'
         import_statement = import_statement.format(
-            self.material_underscored_name, self.material_underscored_name)
+            self.material_package_name, self.material_package_name)
         parent_package = PackageProxy(self.parent_package_path, session=self.session)
         parent_package_initializer_file_proxy = parent_package.initializer_file_proxy
         filtered_import_statements = []
@@ -765,16 +761,16 @@ class MaterialPackageProxy(PackageProxy):
             self.user_input_module_proxy.remove()
 
     def rename_material_interactively(self):
-        line = 'current material name: {}'.format(self.material_underscored_name)
+        line = 'current material name: {}'.format(self.material_package_name)
         self.display(line)
         getter = self.make_getter(where=self.where())
         getter.append_underscore_delimited_lowercase_package_name('new material name')
-        new_material_underscored_name = getter.run()
+        new_material_package_name = getter.run()
         if self.backtrack():
             return
         lines = []
-        lines.append('current material name: {}'.format(self.material_underscored_name))
-        lines.append('new material name:     {}'.format(new_material_underscored_name))
+        lines.append('current material name: {}'.format(self.material_package_name))
+        lines.append('new material name:     {}'.format(new_material_package_name))
         lines.append('')
         self.display(lines)
         if not self.confirm():
@@ -782,22 +778,22 @@ class MaterialPackageProxy(PackageProxy):
         if self.is_versioned:
             # rename package directory
             new_directory_path = self.path.replace(
-                self.material_underscored_name, new_material_underscored_name)
+                self.material_package_name, new_material_package_name)
             command = 'svn mv {} {}'.format(self.path, new_directory_path)
             os.system(command)
             # update package initializer
             parent_directory_path = os.path.dirname(self.path)
-            new_package_directory = os.path.join(parent_directory_path, new_material_underscored_name)
+            new_package_directory = os.path.join(parent_directory_path, new_material_package_name)
             new_initializer = os.path.join(new_package_directory, '__init__.py')
             helpers.globally_replace_in_file(
-                new_initializer, self.material_underscored_name, new_material_underscored_name)
+                new_initializer, self.material_package_name, new_material_package_name)
             # rename output material
             new_output_material = os.path.join(new_package_directory, 'output_material.py')
             helpers.globally_replace_in_file(
-                new_output_material, self.material_underscored_name, new_material_underscored_name)
+                new_output_material, self.material_package_name, new_material_package_name)
             # commit
             commit_message = 'renamed {} to {}.'.format(
-                self.material_underscored_name, new_material_underscored_name)
+                self.material_package_name, new_material_package_name)
             commit_message = commit_message.replace('_', ' ')
             command = 'svn commit -m "{}" {}'.format(commit_message, self.parent_directory_path)
             os.system(command)

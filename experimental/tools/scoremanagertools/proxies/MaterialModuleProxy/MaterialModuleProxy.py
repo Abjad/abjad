@@ -11,10 +11,10 @@ class MaterialModuleProxy(ModuleProxy):
 
     @property
     def material_spaced_name(self):
-        return self.material_underscored_name.replace('_', ' ')
+        return self.material_package_name.replace('_', ' ')
 
     @property
-    def material_underscored_name(self):
+    def material_package_name(self):
         return self.module_path.split('.')[-2]
 
     ### PUBLIC METHODS ###

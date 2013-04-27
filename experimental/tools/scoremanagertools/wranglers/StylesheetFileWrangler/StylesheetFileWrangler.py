@@ -51,13 +51,14 @@ class StylesheetFileWrangler(PackageWrangler):
     def make_asset_interactively(self):
         getter = self.make_getter(where=self.where())
         getter.append_string('stylesheet name')
-        stylesheet_name = getter.run()
+        stylesheet_file_name = getter.run()
         if self.backtrack():
             return
-        stylesheet_name = stringtools.string_to_strict_directory_name(stylesheet_name)
-        if not stylesheet_name.endswith('.ly'):
-            stylesheet_name = stylesheet_name + '.ly'
-        stylesheet_file_name = os.path.join(self.configuration.STYLESHEETS_DIRECTORY_PATH, stylesheet_name)
+        stylesheet_file_name = stringtools.string_to_strict_directory_name(stylesheet_file_name)
+        if not stylesheet_file_name.endswith('.ly'):
+            stylesheet_file_name = stylesheet_file_name + '.ly'
+        stylesheet_file_name = os.path.join(
+            self.configuration.STYLESHEETS_DIRECTORY_PATH, stylesheet_file_name)
         stylesheet_proxy = StylesheetFileProxy(stylesheet_file_name, session=self.session)
         stylesheet_proxy.edit()
 

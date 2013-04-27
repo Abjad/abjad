@@ -94,3 +94,6 @@
 
 33. Search for unqualified ' path =' and change to directory_path, file_path, package_path
     or module_path, as appropriate.
+
+34. Rename stringtools.strict_to_strict_directory_name() to something without 'directory'.
+    The function is used to strip nonascii things. Maybe better to use that.

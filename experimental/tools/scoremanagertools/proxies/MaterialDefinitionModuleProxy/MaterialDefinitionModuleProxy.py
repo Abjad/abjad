@@ -42,7 +42,7 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
     ### PUBLIC METHODS ###
 
     def edit(self):
-        columns = len(self.material_underscored_name) + 3
+        columns = len(self.material_package_name) + 3
         os.system("vi + -c'norm {}l' {}".format(columns, self.path))
 
     def import_output_material_module_import_statements_and_material_definition(self):
@@ -51,7 +51,7 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
             file_contents_string = file_pointer.read()
             file_pointer.close()
             exec(file_contents_string)
-            material_definition = locals().get(self.material_underscored_name)
+            material_definition = locals().get(self.material_package_name)
             output_material_module_import_statements = locals().get(
                 'output_material_module_import_statements')
             return output_material_module_import_statements, material_definition
@@ -106,7 +106,7 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
         self.clear()
         self.setup_statements.append('from abjad.tools import sequencetools\n')
         self.output_material_module_import_lines.append('output_material_module_import_statements = []\n')
-        self.body_lines.append('{} = None'.format(self.material_underscored_name))
+        self.body_lines.append('{} = None'.format(self.material_package_name))
         self.write_to_disk()
 
     def write_stub_music_material_definition_to_disk(self):
@@ -114,7 +114,7 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
         self.setup_statements.append('from abjad import *\n')
         line = "output_material_module_import_statements = ['from abjad import *']\n"
         self.output_material_module_import_lines.append(line)
-        self.body_lines.append('{} = None'.format(self.material_underscored_name))
+        self.body_lines.append('{} = None'.format(self.material_package_name))
         self.write_to_disk()
 
     def write_stub_to_disk(self, is_data_only, is_interactive=True):

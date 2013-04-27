@@ -148,7 +148,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         else:
             lines = [repr(output_material)]
         lines = list(lines)
-        lines[0] = '{} = {}'.format(self.material_underscored_name, lines[0])
+        lines[0] = '{} = {}'.format(self.material_package_name, lines[0])
         lines = [line + '\n' for line in lines]
         return lines
 

@@ -35,10 +35,10 @@ class IllustrationBuilderModuleProxy(BasicModuleProxy):
         self.clear()
         self.setup_statements.append('from abjad import *\n')
         line = 'from {}.output_material import {}\n'.format(
-            self.material_package_path, self.material_underscored_name)
+            self.material_package_path, self.material_package_name)
         self.setup_statements.append(line)
         line = 'score, treble_staff, bass_staff = scoretools.make_piano_score_from_leaves({})\n'
-        line = line.format(self.material_underscored_name)
+        line = line.format(self.material_package_name)
         self.body_lines.append(line)
         self.body_lines.append('illustration = lilypondfiletools.make_basic_lilypond_file(score)\n')
         self.write_to_disk()

@@ -50,7 +50,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
 
     def make_output_material_module_body_lines(self, output_material):
         lines = []
-        lines.append('{} = ['.format(self.material_underscored_name))
+        lines.append('{} = ['.format(self.material_package_name))
         for measure in output_material[:-1]:
             line = measuretools.measure_to_one_line_input_string(measure)
             line = 'measuretools.' + line
