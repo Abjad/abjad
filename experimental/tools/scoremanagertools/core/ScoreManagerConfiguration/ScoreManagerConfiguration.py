@@ -8,7 +8,7 @@ class ScoreManagerConfiguration(Configuration):
 
     The score manager tools output directory is created
     if it does not already exist by referencing the
-    `score_manager_tools_output_directory` key in the configuration.
+    `score_manager_tools_transcripts_directory` key in the configuration.
     '''
 
     ### CLASS ATTRIBUTES ###

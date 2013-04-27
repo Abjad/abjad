@@ -79,12 +79,6 @@ class ScoreManagerObject(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def asset_full_name_to_importable_name(self, asset_full_name):
-        if self.is_path(asset_full_name):
-            return self.path_to_package_importable_name(asset_full_name)
-        else:
-            return asset_full_name
-
     def asset_full_name_to_path(self, asset_full_name):
         if self.is_path(asset_full_name):
             return asset_full_name
