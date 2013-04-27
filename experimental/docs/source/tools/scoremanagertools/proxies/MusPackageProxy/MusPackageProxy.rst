@@ -261,7 +261,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.path_to_package_path
@@ -354,7 +354,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.set_package_path_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.strip_py_extension

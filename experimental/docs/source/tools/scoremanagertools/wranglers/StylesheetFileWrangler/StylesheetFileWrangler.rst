@@ -321,7 +321,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.path_to_package_path
@@ -381,7 +381,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.select_stylesheet_file_name_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.strip_py_extension

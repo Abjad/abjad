@@ -177,7 +177,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.path_to_package_path
@@ -225,7 +225,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.run_py_test_all
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.strip_py_extension

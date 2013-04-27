@@ -537,7 +537,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.path_to_package_path
@@ -675,7 +675,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.show_user_input_demo_values
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.strip_py_extension

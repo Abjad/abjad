@@ -7,6 +7,8 @@ from experimental.tools.scoremanagertools.wranglers.PackageWrangler import Packa
 
 class MaterialPackageMakerWrangler(PackageWrangler):
 
+    ### INITIALIZER ###
+
     def __init__(self, session=None):
 #        PackageWrangler.__init__(self,
 #            score_external_asset_container_package_paths=[self.makers_package_path],
@@ -69,13 +71,13 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def list_asset_human_readable_names(self, head=None):
         result = []
-        for path in self.list_asset_paths(head=head):
-            path = path.rstrip(os.path.sep)
-            base_name = os.path.basename(path)
-            if base_name in self.forbidden_class_names:
+        for asset_path in self.list_asset_paths(head=head):
+            asset_path = os.path.normpath(asset_path)
+            asset_name = os.path.basename(asset_path)
+            if asset_name in self.forbidden_class_names:
                 continue
-            human_readable_name = stringtools.uppercamelcase_to_space_delimited_lowercase(base_name)
-            result.append(human_readable_name)
+            asset_human_readable_name = stringtools.uppercamelcase_to_space_delimited_lowercase(asset_name)
+            result.append(asset_human_readable_name)
         return result
 
     def list_score_external_asset_package_paths(self, head=None):

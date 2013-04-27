@@ -198,7 +198,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.path_to_package_path
@@ -243,7 +243,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.run
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.strip_py_extension

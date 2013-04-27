@@ -249,7 +249,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.path_to_package_path
@@ -303,7 +303,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.show_mothballed_scores
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.strip_py_extension

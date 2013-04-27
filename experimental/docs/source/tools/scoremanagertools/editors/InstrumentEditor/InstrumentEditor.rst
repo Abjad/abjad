@@ -198,7 +198,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.path_to_package_path
@@ -243,7 +243,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.run
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.strip_py_extension

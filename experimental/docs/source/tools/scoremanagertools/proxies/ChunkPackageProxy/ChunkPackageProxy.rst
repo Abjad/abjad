@@ -279,7 +279,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.path_to_package_path
@@ -378,7 +378,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.set_score_template_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.strip_py_extension

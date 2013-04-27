@@ -342,7 +342,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.path_to_package_path
@@ -408,7 +408,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.store_value_from_argument_list
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.strip_py_extension

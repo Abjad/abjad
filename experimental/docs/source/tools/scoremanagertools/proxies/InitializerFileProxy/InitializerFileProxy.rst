@@ -222,7 +222,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.parse
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.path_to_package_path
@@ -306,7 +306,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.run_py_test
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.strip_py_extension

@@ -144,7 +144,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.path_to_package_path
@@ -189,7 +189,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.run
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.strip_py_extension

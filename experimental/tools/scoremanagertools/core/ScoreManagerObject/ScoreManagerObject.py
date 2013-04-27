@@ -335,11 +335,11 @@ class ScoreManagerObject(AbjadObject):
         directory = os.path.join(*directory_parts)
         return directory
 
-    def path_to_human_readable_base_name(self, path):
-        path = path.rstrip(os.path.sep)
-        base_name = os.path.basename(path)
-        base_name = self.strip_extension_from_base_name(base_name)
-        return self.change_string_to_human_readable_string(base_name)
+    def path_to_human_readable_name(self, path):
+        path = os.path.normpath(path)
+        name = os.path.basename(path)
+        name = self.strip_file_extension_from_string(name)
+        return self.change_string_to_human_readable_string(name)
 
     def path_to_package_path(self, path):
         if path is None:
@@ -455,10 +455,10 @@ class ScoreManagerObject(AbjadObject):
         if cache:
             self.session._breadcrumb_stack[:] = self.session.breadcrumb_cache_stack.pop()
 
-    def strip_extension_from_base_name(self, base_name):
-        if '.' in base_name:
-            return base_name[:base_name.rindex('.')]
-        return base_name
+    def strip_file_extension_from_string(self, file_name):
+        if '.' in file_name:
+            return file_name[:file_name.rindex('.')]
+        return file_name
 
     def strip_py_extension(self, string):
         if isinstance(string, str) and string.endswith('.py'):

@@ -198,7 +198,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.path_to_package_path
@@ -243,7 +243,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.run
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.strip_py_extension

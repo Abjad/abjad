@@ -186,7 +186,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.path_to_package_path
@@ -267,7 +267,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.run_py_test
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.strip_py_extension

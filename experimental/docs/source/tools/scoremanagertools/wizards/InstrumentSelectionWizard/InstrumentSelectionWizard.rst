@@ -129,7 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.path_to_package_path
@@ -174,7 +174,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.run
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.strip_py_extension

@@ -144,7 +144,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.path_to_package_path
@@ -189,7 +189,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.run
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.strip_py_extension

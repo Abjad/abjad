@@ -318,7 +318,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.path_to_package_path
@@ -375,7 +375,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.select_asset_package_path_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.strip_py_extension

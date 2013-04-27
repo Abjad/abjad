@@ -237,7 +237,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.parse
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.path_to_package_path
@@ -324,7 +324,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.run_python
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.strip_py_extension

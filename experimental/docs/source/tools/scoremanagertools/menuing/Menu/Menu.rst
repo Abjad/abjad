@@ -243,7 +243,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.path_to_package_path
@@ -303,7 +303,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.strip_default_indicators_from_strings
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.strip_py_extension

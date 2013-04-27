@@ -147,7 +147,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.path_to_package_path
@@ -192,7 +192,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.run
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.strip_py_extension

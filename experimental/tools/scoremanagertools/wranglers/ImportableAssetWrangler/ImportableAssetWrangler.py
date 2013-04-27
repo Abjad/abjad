@@ -49,9 +49,9 @@ class ImportableAssetWrangler(AssetWrangler):
                     asset_container_package_path)
                 for name in os.listdir(asset_path):
                     if name[0].isalpha():
-                        importable_base_name = self.strip_extension_from_base_name(name)
+                        package_name = self.strip_file_extension_from_string(name)
                         result.append('{}.{}'.format(
-                            asset_container_package_path, importable_base_name))
+                            asset_container_package_path, package_name))
             else:
                 result.append(asset_container_package_path)
         return result

@@ -144,7 +144,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.path_to_package_path
@@ -189,7 +189,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.run
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.strip_py_extension

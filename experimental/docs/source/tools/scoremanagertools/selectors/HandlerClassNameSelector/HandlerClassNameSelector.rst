@@ -144,7 +144,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.path_to_package_path
@@ -189,7 +189,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.run
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.strip_py_extension

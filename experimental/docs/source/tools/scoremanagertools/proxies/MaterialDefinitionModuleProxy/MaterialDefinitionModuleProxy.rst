@@ -252,7 +252,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.parse
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.path_to_package_path
@@ -336,7 +336,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.run_python
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.strip_py_extension

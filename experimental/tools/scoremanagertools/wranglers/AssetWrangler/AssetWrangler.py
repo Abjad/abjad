@@ -78,7 +78,7 @@ class AssetWrangler(ScoreManagerObject):
 
     @property
     def current_asset_container_human_readable_name(self):
-        return self.path_to_human_readable_base_name(self.current_asset_container_path)
+        return self.path_to_human_readable_name(self.current_asset_container_path)
 
     @property
     def current_asset_container_package_path(self):
@@ -108,7 +108,7 @@ class AssetWrangler(ScoreManagerObject):
 
     @property
     def temporary_asset_human_readable_name(self):
-        return self.path_to_human_readable_base_name(self.temporary_asset_path)
+        return self.path_to_human_readable_name(self.temporary_asset_path)
 
     @property
     def temporary_asset_path(self):
@@ -184,7 +184,7 @@ class AssetWrangler(ScoreManagerObject):
     def list_asset_human_readable_names(self, head=None):
         result = []
         for path in self.list_asset_paths(head=head):
-            result.append(self.path_to_human_readable_base_name(path))
+            result.append(self.path_to_human_readable_name(path))
         return result
 
     def list_asset_paths(self, head=None):
@@ -207,7 +207,7 @@ class AssetWrangler(ScoreManagerObject):
     def list_score_external_asset_container_human_readable_names(self, head=None):
         result = []
         for path in self.list_score_external_asset_container_paths(head=head):
-            result.append(self.path_to_human_readable_base_name(path))
+            result.append(self.path_to_human_readable_name(path))
         return result
 
     def list_score_external_asset_container_package_paths(self, head=None):
@@ -236,7 +236,7 @@ class AssetWrangler(ScoreManagerObject):
     def list_score_external_asset_human_readable_names(self, head=None):
         result = []
         for path in self.list_score_external_asset_paths(head=head):
-            result.append(self.path_to_human_readable_base_name(path))
+            result.append(self.path_to_human_readable_name(path))
         return result
 
     def list_score_external_asset_paths(self, head=None):
@@ -259,7 +259,7 @@ class AssetWrangler(ScoreManagerObject):
     def list_score_internal_asset_container_human_readable_names(self, head=None):
         result = []
         for path in self.list_score_internal_asset_container_human_readable_names(head=head):
-            result.append(self.path_to_human_readable_base_name(path))
+            result.append(self.path_to_human_readable_name(path))
         return result
 
     def list_score_internal_asset_container_package_paths(self, head=None):
@@ -292,7 +292,7 @@ class AssetWrangler(ScoreManagerObject):
     def list_score_internal_asset_human_readable_names(self, head=None):
         result = []
         for path in self.list_score_internal_asset_paths(head=head):
-            result.append(self.path_to_human_readable_base_name(path))
+            result.append(self.path_to_human_readable_name(path))
         return result
 
     def list_score_internal_asset_paths(self, head=None):
@@ -317,7 +317,7 @@ class AssetWrangler(ScoreManagerObject):
     def list_user_asset_container_human_readable_names(self, head=None):
         result = []
         for path in self.list_user_asset_container_paths(head=head):
-            result.append(self.path_to_human_readable_base_name(path))
+            result.append(self.path_to_human_readable_name(path))
         return result
 
     def list_user_asset_container_package_paths(self, head=None):
@@ -346,7 +346,7 @@ class AssetWrangler(ScoreManagerObject):
     def list_user_asset_human_readable_names(self, head=None):
         result = []
         for path in self.list_user_asset_paths(head=head):
-            result.append(self.path_to_human_readable_base_name(path))
+            result.append(self.path_to_human_readable_name(path))
         return result
 
     def list_user_asset_paths(self, head=None):
@@ -371,7 +371,7 @@ class AssetWrangler(ScoreManagerObject):
     def list_visible_asset_human_readable_names(self, head=None):
         result = []
         for path in self.list_visible_asset_paths(head=head):
-            result.append(self.path_to_human_readable_base_name(path))
+            result.append(self.path_to_human_readable_name(path))
         return result
 
     def list_visible_asset_paths(self, head=None):

@@ -297,7 +297,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.package_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.path_to_human_readable_base_name
+.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.path_to_package_path
@@ -354,7 +354,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.select_asset_package_path_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.strip_extension_from_base_name
+.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.strip_file_extension_from_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.strip_py_extension
