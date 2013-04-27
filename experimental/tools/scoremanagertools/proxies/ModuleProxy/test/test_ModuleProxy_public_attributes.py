@@ -18,7 +18,7 @@ def test_ModuleProxy_public_attributes_01():
     assert proxy.human_readable_name is None
     assert not proxy.is_versioned
     assert proxy.module_path is None
-    assert proxy.module_short_name is None
+    assert proxy.module_name is None
     assert proxy.parent_directory_path is None
     assert proxy.parent_directory_path is None
     assert proxy.parent_package_path is None
@@ -49,7 +49,7 @@ def test_ModuleProxy_public_attributes_02():
     assert proxy.human_readable_name == 'material definition'
     assert proxy.is_versioned
     assert proxy.module_path == module_path
-    assert proxy.module_short_name == 'material_definition'
+    assert proxy.module_name == 'material_definition'
     assert proxy.parent_directory_path == os.path.join(
         proxy.configuration.SCORE_EXTERNAL_MATERIALS_DIRECTORY_PATH, 'red_notes')
     assert proxy.parent_directory_path == os.path.join(

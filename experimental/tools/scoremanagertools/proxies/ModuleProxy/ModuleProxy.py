@@ -55,7 +55,7 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
         return self.package_path
 
     @property
-    def module_short_name(self):
+    def module_name(self):
         if self.module_path:
             return self.module_path.split('.')[-1]
 

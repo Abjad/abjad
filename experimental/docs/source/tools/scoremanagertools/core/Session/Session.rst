@@ -117,7 +117,7 @@ Read-only properties
 Read/write properties
 ---------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_score_package_short_name
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_score_package_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.dump_transcript
@@ -198,7 +198,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.dot_join
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.expr_to_parent_package_short_name
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.expr_to_parent_package_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.format_breadcrumb_stack
@@ -231,7 +231,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.list_public_directory_paths_with_initializers_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.list_score_package_short_names
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.make_getter

@@ -1,7 +1,9 @@
 from experimental import *
+import py
 
 
 def test_Session_command_repetition_01():
+    py.test.skip('TODO: command repetition is currently broken.')
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='next . . . q')

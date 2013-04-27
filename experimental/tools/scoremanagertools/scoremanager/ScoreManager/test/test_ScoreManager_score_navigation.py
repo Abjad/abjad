@@ -17,11 +17,11 @@ def test_ScoreManager_score_navigation_02():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='next q')
     score_manager.ts == (4,)
-    isinstance(score_manager.session.current_score_package_short_name, str)
+    isinstance(score_manager.session.current_score_package_name, str)
 
     score_manager.run(user_input='prev q')
     score_manager.ts == (4,)
-    isinstance(score_manager.session.current_score_package_short_name, str)
+    isinstance(score_manager.session.current_score_package_name, str)
 
 
 def test_ScoreManager_score_navigation_03():
@@ -31,7 +31,7 @@ def test_ScoreManager_score_navigation_03():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='next next next q')
     score_manager.ts == (8, (1, 3, 5))
-    isinstance(score_manager.session.current_score_package_short_name, str)
+    isinstance(score_manager.session.current_score_package_name, str)
 
 
 def test_ScoreManager_score_navigation_04():
@@ -41,4 +41,4 @@ def test_ScoreManager_score_navigation_04():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='prev prev prev q')
     score_manager.ts == (8, (1, 3, 5))
-    isinstance(score_manager.session.current_score_package_short_name, str)
+    isinstance(score_manager.session.current_score_package_name, str)

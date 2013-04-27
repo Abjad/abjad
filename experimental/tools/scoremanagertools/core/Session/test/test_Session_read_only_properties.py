@@ -52,7 +52,7 @@ def test_Session_read_only_properties_02():
     '''
 
     session = scoremanagertools.core.Session()
-    session.current_score_package_short_name = 'foo'
+    session.current_score_package_name = 'foo'
 
     assert session.current_chunks_package_path == 'foo.mus.chunks'
     scores_directory_path = session.configuration.SCORES_DIRECTORY_PATH

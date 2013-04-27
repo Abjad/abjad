@@ -91,10 +91,10 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         return []
 
     # TODO: implement MaterialPackageProxyClassFile object to model and customize these settings
-    def make_asset_class_file(self, package_short_name, generic_output_name):
+    def make_asset_class_file(self, package_name, generic_output_name):
         class_file_name = os.path.join(
             self.list_score_external_asset_container_package_paths()[0],
-            package_short_name, package_short_name + '.py')
+            package_name, package_name + '.py')
         class_file = file(class_file_name, 'w')
         lines = []
         lines.append('from music.foo import foo')
@@ -104,7 +104,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         lines.append('from experimental.tools import scoremanagertools')
         lines.append('')
         lines.append('')
-        lines.append('class {}(MaterialPackageMaker):'.format(package_short_name))
+        lines.append('class {}(MaterialPackageMaker):'.format(package_name))
         lines.append('')
         lines.append('    def __init__(self, package_path=None, session=None):')
         lines.append('        MaterialPackageMaker.__init__(')
@@ -143,10 +143,10 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         class_file.close()
 
     # TODO: change to boilerplate file stored in material_package_maker package
-    def make_asset_initializer(self, package_short_name):
+    def make_asset_initializer(self, package_name):
         initializer_file_name = os.path.join(
             self.list_score_external_asset_container_package_paths()[0],
-            package_short_name, '__init__.py')
+            package_name, '__init__.py')
         initializer = file(initializer_file_name, 'w')
         line = 'from abjad.tools import importtools\n'
         initializer.write(line)
@@ -172,7 +172,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         self.make_asset_stylesheet(material_package_maker_class_name)
 
     # TODO: change to boilerplate file stored somewhere
-    def make_asset_stylesheet(self, package_short_name):
+    def make_asset_stylesheet(self, package_name):
         stylesheet = lilypondfiletools.make_basic_lilypond_file()
         stylesheet.pop()
         stylesheet.file_initial_system_comments = []
@@ -184,7 +184,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         stylesheet.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 10, 0)
         stylesheet_file_name = os.path.join(
             self.list_score_external_asset_container_package_paths()[0],
-            package_short_name, 'stylesheet.ly')
+            package_name, 'stylesheet.ly')
         stylesheet_file_pointer = file(stylesheet_file_name, 'w')
         stylesheet_file_pointer.write(stylesheet.format)
         stylesheet_file_pointer.close()

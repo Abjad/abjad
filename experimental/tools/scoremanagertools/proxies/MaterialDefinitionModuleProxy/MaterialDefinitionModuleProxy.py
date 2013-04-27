@@ -22,7 +22,7 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
     def output_material_module_import_statements(self):
         self.unimport()
         result = safe_import(
-            locals(), self.module_short_name, 'output_material_module_import_statements',
+            locals(), self.module_name, 'output_material_module_import_statements',
             source_parent_package_path=self.parent_package_path)
         # keep list from persisting between multiple calls to this method
         if result:

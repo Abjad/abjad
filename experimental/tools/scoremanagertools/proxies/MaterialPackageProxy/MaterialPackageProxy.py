@@ -276,9 +276,9 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def material_package_directory(self):
         if self.session.current_materials_directory_path:
-            if self.material_package_short_name:
+            if self.material_package_name:
                 return os.path.join(
-                    self.session.current_materials_directory_path, self.material_package_short_name)
+                    self.session.current_materials_directory_path, self.material_package_name)
 
     @property
     def material_package_maker(self):
@@ -296,7 +296,7 @@ class MaterialPackageProxy(PackageProxy):
         return self.get_tag('material_package_maker_class_name')
 
     @property
-    def material_package_short_name(self):
+    def material_package_name(self):
         return self.material_underscored_name
 
     @property

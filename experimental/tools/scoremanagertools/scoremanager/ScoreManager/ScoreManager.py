@@ -63,25 +63,25 @@ class ScoreManager(ScoreManagerObject):
 
     def edit_score_interactively(self, score_package_path):
         score_package_proxy = self.score_package_wrangler.get_asset_proxy(score_package_path)
-        score_package_proxy.session.current_score_package_short_name = score_package_path
+        score_package_proxy.session.current_score_package_name = score_package_path
         score_package_proxy.run(cache=True)
         self.session.current_score_package_name = None
 
-    def get_next_score_package_short_name(self):
-        score_package_short_names = self.score_package_wrangler.list_visible_asset_short_names()
-        if self.session.current_score_package_short_name is None:
-            return score_package_short_names[0]
-        index = score_package_short_names.index(self.session.current_score_package_short_name)
-        next_index = (index + 1) % len(score_package_short_names)
-        return score_package_short_names[next_index]
+    def get_next_score_package_name(self):
+        score_package_names = self.score_package_wrangler.list_visible_asset_short_names()
+        if self.session.current_score_package_name is None:
+            return score_package_names[0]
+        index = score_package_names.index(self.session.current_score_package_name)
+        next_index = (index + 1) % len(score_package_names)
+        return score_package_names[next_index]
 
-    def get_prev_score_package_short_name(self):
-        score_package_short_names = self.score_package_wrangler.list_visible_asset_short_names()
-        if self.session.current_score_package_short_name is None:
-            return score_package_short_names[-1]
-        index = score_package_short_names.index(self.session.current_score_package_short_name)
-        prev_index = (index - 1) % len(score_package_short_names)
-        return score_package_short_names[prev_index]
+    def get_prev_score_package_name(self):
+        score_package_names = self.score_package_wrangler.list_visible_asset_short_names()
+        if self.session.current_score_package_name is None:
+            return score_package_names[-1]
+        index = score_package_names.index(self.session.current_score_package_name)
+        prev_index = (index - 1) % len(score_package_names)
+        return score_package_names[prev_index]
 
     def handle_main_menu_result(self, result):
         if not isinstance(result, str):
@@ -189,11 +189,11 @@ class ScoreManager(ScoreManagerObject):
             elif self.session.is_navigating_to_next_score:
                 self.session.is_navigating_to_next_score = False
                 self.session.is_backtracking_to_score_manager = False
-                result = self.get_next_score_package_short_name()
+                result = self.get_next_score_package_name()
             elif self.session.is_navigating_to_prev_score:
                 self.session.is_navigating_to_prev_score = False
                 self.session.is_backtracking_to_score_manager = False
-                result = self.get_prev_score_package_short_name()
+                result = self.get_prev_score_package_name()
             elif not result:
                 self.pop_breadcrumb()
                 continue

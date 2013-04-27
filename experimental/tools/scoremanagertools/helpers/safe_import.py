@@ -1,8 +1,8 @@
-def safe_import(target_namespace, source_module_short_name, source_attribute_name,
+def safe_import(target_namespace, source_module_name, source_attribute_name,
     source_parent_package_path=None):
 
     #print repr(target_namespace.keys())
-    #print repr(source_module_short_name)
+    #print repr(source_module_name)
     #print repr(source_attribute_name)
     #print repr(source_parent_package_path)
 
@@ -14,9 +14,9 @@ def safe_import(target_namespace, source_module_short_name, source_attribute_nam
 
     if source_parent_package_path:
         source_module_path = '{}.{}'.format(
-            source_parent_package_path, source_module_short_name)
+            source_parent_package_path, source_module_name)
     else:
-        source_module_path = source_module_short_name
+        source_module_path = source_module_name
 
     try:
         source_module = __import__(source_module_path, fromlist=['*'])

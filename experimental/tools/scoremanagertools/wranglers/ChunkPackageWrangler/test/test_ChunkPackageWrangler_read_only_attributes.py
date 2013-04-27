@@ -24,7 +24,7 @@ def test_ChunkPackageWrangler_read_only_attributes_02():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     wrangler = score_manager.chunk_package_wrangler
-    wrangler.session.current_score_package_short_name = 'example_score_1'
+    wrangler.session.current_score_package_name = 'example_score_1'
     assert wrangler.session.is_in_score
 
     assert wrangler.breadcrumb == 'chunks'

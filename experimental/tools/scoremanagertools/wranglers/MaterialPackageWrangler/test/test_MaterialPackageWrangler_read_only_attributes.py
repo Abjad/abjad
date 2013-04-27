@@ -74,7 +74,7 @@ def test_MaterialPackageWrangler_read_only_attributes_08():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     wrangler = score_manager.material_package_wrangler
-    wrangler.session.current_score_package_short_name = 'example_score_1'
+    wrangler.session.current_score_package_name = 'example_score_1'
     assert wrangler.session.is_in_score
 
     assert 'example_score_1.mus.materials' in wrangler.list_asset_container_package_paths()

@@ -169,7 +169,7 @@ class ScoreManagerObject(AbjadObject):
     def dot_join(self, expr):
         return '.'.join(expr)
 
-    def expr_to_parent_package_short_name(self, expr):
+    def expr_to_parent_package_name(self, expr):
         module_path = expr.__module__
         parts = module_path.split('.')
         for part in reversed(parts):
@@ -273,7 +273,7 @@ class ScoreManagerObject(AbjadObject):
                 result.append(directory_path)
         return result
 
-    def list_score_package_short_names(self, head=None):
+    def list_score_package_names(self, head=None):
         result = []
         for name in os.listdir(self.configuration.SCORES_DIRECTORY_PATH):
             if name[0].isalpha():

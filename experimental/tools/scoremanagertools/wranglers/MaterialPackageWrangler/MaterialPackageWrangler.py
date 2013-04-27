@@ -72,9 +72,9 @@ class MaterialPackageWrangler(PackageWrangler):
             self.pop_backtrack()
             if self.backtrack():
                 return
-            material_package_short_name = stringtools.string_to_strict_directory_name(material_name)
+            material_package_name = stringtools.string_to_strict_directory_name(material_name)
             material_package_path = self.dot_join([
-                self.current_asset_container_package_path, material_package_short_name])
+                self.current_asset_container_package_path, material_package_name])
             if self.package_exists(material_package_path):
                 line = 'Material package {!r} already exists.'.format(material_package_path)
                 self.display([line, ''])

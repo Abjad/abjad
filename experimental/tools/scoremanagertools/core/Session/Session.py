@@ -19,7 +19,7 @@ class Session(ScoreManagerObject):
         self._complete_transcript = Transcript()
         self._configuration = ScoreManagerConfiguration()
         self._session_once_had_user_input = False
-        self.current_score_package_short_name = None
+        self.current_score_package_name = None
         self.display_pitch_ranges_with_numbered_pitches = False
         self.dump_transcript = False
         self.enable_where = False
@@ -81,7 +81,7 @@ class Session(ScoreManagerObject):
     def current_chunks_package_path(self):
         if self.is_in_score:
             return self.dot_join([
-                self.current_score_package_short_name,
+                self.current_score_package_name,
                 self.configuration.score_internal_chunks_package_path_infix])
         else:
             return self.configuration.score_external_chunks_package_path
@@ -95,7 +95,7 @@ class Session(ScoreManagerObject):
     def current_materials_package_path(self):
         if self.is_in_score:
             return self.dot_join([
-                self.current_score_package_short_name,
+                self.current_score_package_name,
                 self.configuration.score_internal_materials_package_path_infix])
         else:
             return self.configuration.score_external_materials_package_path
@@ -110,19 +110,19 @@ class Session(ScoreManagerObject):
         from experimental.tools.scoremanagertools.proxies.ScorePackageProxy import ScorePackageProxy
         if self.is_in_score:
             return ScorePackageProxy(
-                score_package_short_name=self.current_score_package_short_name, session=self)
+                score_package_name=self.current_score_package_name, session=self)
 
     @property
     def current_score_path(self):
         if self.is_in_score:
             return self.package_path_to_directory_path(
-                self.current_score_package_short_name)
+                self.current_score_package_name)
 
     @property
     def current_specifiers_package_path(self):
         if self.is_in_score:
             return self.dot_join([
-                self.current_score_package_short_name,
+                self.current_score_package_name,
                 self.configuration.score_internal_specifiers_package_path_infix])
         else:
             return self.configuration.score_external_specifiers_package_path
@@ -154,7 +154,7 @@ class Session(ScoreManagerObject):
 
     @property
     def is_in_score(self):
-        return self.current_score_package_short_name is not None
+        return self.current_score_package_name is not None
 
     @property
     def is_navigating_to_sibling_score(self):
@@ -219,12 +219,12 @@ class Session(ScoreManagerObject):
     ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
-    def current_score_package_short_name():
+    def current_score_package_name():
         def fget(self):
-            return self._current_score_package_short_name
-        def fset(self, current_score_package_short_name):
-            assert isinstance(current_score_package_short_name, (str, type(None)))
-            self._current_score_package_short_name = current_score_package_short_name
+            return self._current_score_package_name
+        def fset(self, current_score_package_name):
+            assert isinstance(current_score_package_name, (str, type(None)))
+            self._current_score_package_name = current_score_package_name
         return property(**locals())
 
     @apply

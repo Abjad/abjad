@@ -6,17 +6,17 @@ class ScorePackageProxy(PackageProxy):
 
     ### INITIALIZER ###
 
-    def __init__(self, score_package_short_name=None, session=None):
+    def __init__(self, score_package_name=None, session=None):
         from experimental.tools import scoremanagertools
-        PackageProxy.__init__(self, score_package_short_name, session=session)
+        PackageProxy.__init__(self, score_package_name, session=session)
         self._dist_proxy = scoremanagertools.proxies.DistDirectoryProxy(
-            score_package_short_name=score_package_short_name, session=self.session)
+            score_package_name=score_package_name, session=self.session)
         self._etc_proxy = scoremanagertools.proxies.EtcDirectoryProxy(
-            score_package_short_name=score_package_short_name, session=self.session)
+            score_package_name=score_package_name, session=self.session)
         self._exg_proxy = scoremanagertools.proxies.ExgDirectoryProxy(
-            score_package_short_name=score_package_short_name, session=self.session)
+            score_package_name=score_package_name, session=self.session)
         self._mus_proxy = scoremanagertools.proxies.MusPackageProxy(
-            score_package_short_name=score_package_short_name, session=self.session)
+            score_package_name=score_package_name, session=self.session)
         self._chunk_wrangler = scoremanagertools.wranglers.ChunkPackageWrangler(
             session=self.session)
         self._material_package_wrangler = scoremanagertools.wranglers.MaterialPackageWrangler(

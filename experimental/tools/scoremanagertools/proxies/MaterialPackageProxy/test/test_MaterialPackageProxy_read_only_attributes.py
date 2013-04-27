@@ -40,7 +40,7 @@ def test_MaterialPackageProxy_read_only_attributes_01():
         os.path.join(mpp.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH, 'red_numbers')
     assert     mpp.material_package_maker is None
     assert     mpp.material_package_maker_class_name is None
-    assert     mpp.material_package_short_name == 'red_numbers'
+    assert     mpp.material_package_name == 'red_numbers'
     assert     mpp.material_spaced_name == 'red numbers'
     assert     mpp.material_underscored_name == 'red_numbers'
     assert     mpp.output_material == [1, 2, 3, 4, 5]
@@ -103,7 +103,7 @@ def test_MaterialPackageProxy_read_only_attributes_02():
         os.path.join(mpp.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH, 'red_sargasso_measures')
     assert     mpp.material_package_maker is scoremanagertools.makers.SargassoMeasureMaterialPackageMaker
     assert     mpp.material_package_maker_class_name == 'SargassoMeasureMaterialPackageMaker'
-    assert     mpp.material_package_short_name == 'red_sargasso_measures'
+    assert     mpp.material_package_name == 'red_sargasso_measures'
     assert     mpp.material_spaced_name == 'red sargasso measures'
     assert     mpp.material_underscored_name == 'red_sargasso_measures'
     assert     measuretools.all_are_measures(mpp.output_material)
@@ -172,7 +172,7 @@ def test_MaterialPackageProxy_read_only_attributes_03():
         os.path.join(mpp.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH, 'red_notes')
     assert     mpp.material_package_maker is None
     assert     mpp.material_package_maker_class_name is None
-    assert     mpp.material_package_short_name == 'red_notes'
+    assert     mpp.material_package_name == 'red_notes'
     assert     mpp.material_spaced_name == 'red notes'
     assert     mpp.material_underscored_name == 'red_notes'
     assert     notetools.all_are_notes(mpp.material_definition)
