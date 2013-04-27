@@ -135,7 +135,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.module_importable_name_to_path
+.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.module_path_to_file_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.package_exists

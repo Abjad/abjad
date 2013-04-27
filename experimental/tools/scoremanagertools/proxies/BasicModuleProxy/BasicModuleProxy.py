@@ -3,8 +3,8 @@ from experimental.tools.scoremanagertools.proxies.MaterialModuleProxy import Mat
 
 class BasicModuleProxy(MaterialModuleProxy):
 
-    def __init__(self, module_importable_name, session=None):
-        MaterialModuleProxy.__init__(self, module_importable_name, session=session)
+    def __init__(self, module_path, session=None):
+        MaterialModuleProxy.__init__(self, module_path, session=session)
         self.body_lines = []
         self.parse()
 

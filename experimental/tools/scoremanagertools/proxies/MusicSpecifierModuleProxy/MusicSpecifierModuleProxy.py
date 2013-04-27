@@ -6,8 +6,8 @@ import os
 
 class MusicSpecifierModuleProxy(ModuleProxy):
 
-    def __init__(self, module_importable_name=None, session=None):
-        ModuleProxy.__init__(self, module_importable_name=module_importable_name, session=session)
+    def __init__(self, module_path=None, session=None):
+        ModuleProxy.__init__(self, module_path=module_path, session=session)
         self.load_target_into_memory()
         self._editor = self.editor_class(target=self.target_in_memory, session=self.session)
         self.target_lines = []

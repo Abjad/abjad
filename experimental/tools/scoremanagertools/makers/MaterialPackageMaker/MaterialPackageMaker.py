@@ -27,12 +27,12 @@ class MaterialPackageMaker(MaterialPackageProxy):
         from experimental.tools import scoremanagertools
         if not self.should_have_user_input_module:
             return
-        user_input_module_importable_name = self.dot_join([self.package_importable_name, 'user_input'])
-        user_input_module_file_name = self.module_importable_name_to_path(
-            user_input_module_importable_name)
+        user_input_module_path = self.dot_join([self.package_importable_name, 'user_input'])
+        user_input_module_file_name = self.module_path_to_file_path(
+            user_input_module_path)
         if not os.path.exists(user_input_module_file_name):
             file(user_input_module_file_name, 'w').write('')
-        proxy = scoremanagertools.proxies.UserInputModuleProxy(user_input_module_importable_name, session=self.session)
+        proxy = scoremanagertools.proxies.UserInputModuleProxy(user_input_module_path, session=self.session)
         user_input_wrapper = proxy.read_user_input_wrapper_from_disk()
         if user_input_wrapper:
             user_input_wrapper._user_input_module_import_statements = \

@@ -156,7 +156,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.make_title_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.module_importable_name_to_path
+.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.module_path_to_file_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.package_exists

@@ -9,7 +9,7 @@ def test_ScoreManagementObject_public_methods_01():
     path = os.path.join(
         score_manager_object.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 
         'scoremanager', 'ScoreManager', 'ScoreManager.py')
-    assert score_manager_object.module_importable_name_to_path(
+    assert score_manager_object.module_path_to_file_path(
         'scoremanagertools.scoremanager.ScoreManager.ScoreManager') == path
 
     path = score_manager_object.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH

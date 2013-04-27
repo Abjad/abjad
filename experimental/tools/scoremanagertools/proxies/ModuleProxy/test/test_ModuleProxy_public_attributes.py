@@ -17,7 +17,7 @@ def test_ModuleProxy_public_attributes_01():
     assert proxy.grandparent_package_importable_name is None
     assert proxy.human_readable_name is None
     assert not proxy.is_versioned
-    assert proxy.module_importable_name is None
+    assert proxy.module_path is None
     assert proxy.module_short_name is None
     assert proxy.parent_directory_path is None
     assert proxy.parent_directory_path is None
@@ -36,9 +36,9 @@ def test_ModuleProxy_public_attributes_02():
     '''
 
     score_manager_object = scoremanagertools.core.ScoreManagerObject()
-    module_importable_name = '.'.join([
+    module_path = '.'.join([
         score_manager_object.configuration.score_external_materials_package_importable_name, 'red_notes', 'material_definition'])
-    proxy = scoremanagertools.proxies.ModuleProxy(module_importable_name=module_importable_name)
+    proxy = scoremanagertools.proxies.ModuleProxy(module_path=module_path)
 
     assert proxy.breadcrumb == 'material_definition.py'
     assert proxy.exists
@@ -48,7 +48,7 @@ def test_ModuleProxy_public_attributes_02():
     assert proxy.grandparent_package_importable_name == proxy.configuration.score_external_materials_package_importable_name
     assert proxy.human_readable_name == 'material definition'
     assert proxy.is_versioned
-    assert proxy.module_importable_name == module_importable_name
+    assert proxy.module_path == module_path
     assert proxy.module_short_name == 'material_definition'
     assert proxy.parent_directory_path == os.path.join(
         proxy.configuration.SCORE_EXTERNAL_MATERIALS_DIRECTORY_PATH, 'red_notes')

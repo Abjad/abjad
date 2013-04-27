@@ -297,9 +297,9 @@ class ScoreManagerObject(AbjadObject):
             is_ranged=is_ranged)
         return menu, section
 
-    def module_importable_name_to_path(self, module_importable_name):
-        if module_importable_name is not None:
-            path = self.package_importable_name_to_directory_path(module_importable_name) + '.py'
+    def module_path_to_file_path(self, module_path):
+        if module_path is not None:
+            path = self.package_importable_name_to_directory_path(module_path) + '.py'
             return path
 
     def package_exists(self, package_importable_name):

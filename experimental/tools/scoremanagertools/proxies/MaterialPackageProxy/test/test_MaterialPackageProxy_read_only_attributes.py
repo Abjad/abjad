@@ -20,7 +20,7 @@ def test_MaterialPackageProxy_read_only_attributes_01():
     assert not mpp.has_user_input_wrapper_on_disk
     assert     mpp.illustration is None
     assert     mpp.illustration_builder_module_file_name is None
-    assert     mpp.illustration_builder_module_importable_name is None
+    assert     mpp.illustration_builder_module_path is None
     assert     mpp.illustration_builder_module_proxy is None
     assert     mpp.illustration_ly_file_name is None
     assert     mpp.illustration_ly_file_proxy is None
@@ -33,7 +33,7 @@ def test_MaterialPackageProxy_read_only_attributes_01():
     assert     mpp.material_definition == [1, 2, 3, 4, 5]
     assert     mpp.material_definition_module_file_name == \
         os.path.join(mpp.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH, 'red_numbers', 'material_definition.py')
-    assert     mpp.material_definition_module_importable_name == \
+    assert     mpp.material_definition_module_path == \
         'materials.red_numbers.material_definition'
     assert     mpp.material_definition_module_proxy is not None
     assert     mpp.material_package_directory == \
@@ -47,7 +47,7 @@ def test_MaterialPackageProxy_read_only_attributes_01():
     assert     mpp.output_material_module_body_lines == ['red_numbers = [1, 2, 3, 4, 5]']
     assert     mpp.output_material_module_file_name == \
         os.path.join(mpp.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH, 'red_numbers', 'output_material.py')
-    assert     mpp.output_material_module_importable_name == \
+    assert     mpp.output_material_module_path == \
         'materials.red_numbers.output_material'
     assert      mpp.output_material_module_proxy is not None
     assert not  mpp.should_have_illustration
@@ -60,7 +60,7 @@ def test_MaterialPackageProxy_read_only_attributes_01():
     assert      mpp.stylesheet_file_name_on_disk is None
     assert      mpp.stylesheet_file_proxy is None
     assert      mpp.user_input_module_file_name is None
-    assert      mpp.user_input_module_importable_name is None
+    assert      mpp.user_input_module_path is None
     assert      mpp.user_input_module_proxy is None
 
 
@@ -83,7 +83,7 @@ def test_MaterialPackageProxy_read_only_attributes_02():
     assert     mpp.has_user_input_wrapper_in_memory
     assert     mpp.illustration is not None
     assert     mpp.illustration_builder_module_file_name is None
-    assert     mpp.illustration_builder_module_importable_name is None
+    assert     mpp.illustration_builder_module_path is None
     assert     mpp.illustration_builder_module_proxy is None
     assert     mpp.illustration_ly_file_name == \
         os.path.join(mpp.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH, 'red_sargasso_measures', 'illustration.ly')
@@ -97,7 +97,7 @@ def test_MaterialPackageProxy_read_only_attributes_02():
     assert not mpp.is_handmade
     assert     mpp.is_makermade
     assert     mpp.material_definition_module_file_name is None
-    assert     mpp.material_definition_module_importable_name is None
+    assert     mpp.material_definition_module_path is None
     assert     mpp.material_definition_module_proxy is None
     assert     mpp.material_package_directory == \
         os.path.join(mpp.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH, 'red_sargasso_measures')
@@ -110,7 +110,7 @@ def test_MaterialPackageProxy_read_only_attributes_02():
     assert     mpp.output_material_module_body_lines is None
     assert     mpp.output_material_module_file_name == \
         os.path.join(mpp.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH, 'red_sargasso_measures', 'output_material.py')
-    assert     mpp.output_material_module_importable_name == \
+    assert     mpp.output_material_module_path == \
         'materials.red_sargasso_measures.output_material'
     assert      mpp.output_material_module_proxy is not None
     assert      mpp.should_have_illustration
@@ -125,7 +125,7 @@ def test_MaterialPackageProxy_read_only_attributes_02():
     #assert      mpp.stylesheet_file_proxy is None
     assert      mpp.user_input_module_file_name == \
         os.path.join(mpp.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH, 'red_sargasso_measures', 'user_input.py')
-    assert      mpp.user_input_module_importable_name == \
+    assert      mpp.user_input_module_path == \
         'materials.red_sargasso_measures.user_input'
     assert      mpp.user_input_module_proxy is not None
 
@@ -149,7 +149,7 @@ def test_MaterialPackageProxy_read_only_attributes_03():
     assert     mpp.illustration is not None
     assert     mpp.illustration_builder_module_file_name == \
         os.path.join(mpp.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH, 'red_notes', 'illustration_builder.py')
-    assert     mpp.illustration_builder_module_importable_name == \
+    assert     mpp.illustration_builder_module_path == \
         'materials.red_notes.illustration_builder'
     assert     mpp.illustration_builder_module_proxy is not None
     assert     mpp.illustration_ly_file_name == \
@@ -165,7 +165,7 @@ def test_MaterialPackageProxy_read_only_attributes_03():
     assert not mpp.is_makermade
     assert     mpp.material_definition_module_file_name == \
         os.path.join(mpp.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH, 'red_notes', 'material_definition.py')
-    assert     mpp.material_definition_module_importable_name == \
+    assert     mpp.material_definition_module_path == \
         'materials.red_notes.material_definition'
     assert     mpp.material_definition_module_proxy is not None
     assert     mpp.material_package_directory == \
@@ -179,7 +179,7 @@ def test_MaterialPackageProxy_read_only_attributes_03():
     assert     mpp.output_material_module_body_lines is not None
     assert     mpp.output_material_module_file_name == \
         os.path.join(mpp.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH, 'red_notes', 'output_material.py')
-    assert     mpp.output_material_module_importable_name == \
+    assert     mpp.output_material_module_path == \
         'materials.red_notes.output_material'
     assert      mpp.output_material_module_proxy is not None
     assert      mpp.should_have_illustration
@@ -195,5 +195,5 @@ def test_MaterialPackageProxy_read_only_attributes_03():
     # TODO:
     #assert      mpp.stylesheet_file_proxy is not None
     assert      mpp.user_input_module_file_name is None
-    assert      mpp.user_input_module_importable_name is None
+    assert      mpp.user_input_module_path is None
     assert      mpp.user_input_module_proxy is None

@@ -120,7 +120,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.module_importable_name_to_path
+.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.module_path_to_file_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.package_exists

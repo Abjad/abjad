@@ -180,7 +180,7 @@ class MaterialPackageProxy(PackageProxy):
             return os.path.join(self.path, 'illustration_builder.py')
 
     @property
-    def illustration_builder_module_importable_name(self):
+    def illustration_builder_module_path(self):
         if self.should_have_illustration_builder_module:
             return self.dot_join([self.package_importable_name, 'illustration_builder'])
 
@@ -190,7 +190,7 @@ class MaterialPackageProxy(PackageProxy):
             if not self.has_illustration_builder_module:
                 file(self.illustration_builder_module_file_name, 'w').write('')
             return IllustrationBuilderModuleProxy(
-                self.illustration_builder_module_importable_name, session=self.session)
+                self.illustration_builder_module_path, session=self.session)
 
     @property
     def illustration_ly_file_name(self):
@@ -263,7 +263,7 @@ class MaterialPackageProxy(PackageProxy):
             return os.path.join(self.path, 'material_definition.py')
 
     @property
-    def material_definition_module_importable_name(self):
+    def material_definition_module_path(self):
         if self.should_have_material_definition_module:
             return self.dot_join([self.package_importable_name, 'material_definition'])
 
@@ -271,7 +271,7 @@ class MaterialPackageProxy(PackageProxy):
     def material_definition_module_proxy(self):
         if self.should_have_material_definition_module:
             return MaterialDefinitionModuleProxy(
-                self.material_definition_module_importable_name, session=self.session)
+                self.material_definition_module_path, session=self.session)
 
     @property
     def material_package_directory(self):
@@ -347,7 +347,7 @@ class MaterialPackageProxy(PackageProxy):
         return output_material_module_import_statements, output_material_module_body_lines
 
     @property
-    def output_material_module_importable_name(self):
+    def output_material_module_path(self):
         if self.should_have_output_material_module:
             return '{}.output_material'.format(self.package_importable_name)
 
@@ -356,7 +356,7 @@ class MaterialPackageProxy(PackageProxy):
         if self.should_have_output_material_module:
             if self.has_output_material_module:
                 return OutputMaterialModuleProxy(
-                    self.output_material_module_importable_name, session=self.session)
+                    self.output_material_module_path, session=self.session)
 
     @property
     def parent_initializer_has_output_material_safe_import_statement(self):
@@ -418,7 +418,7 @@ class MaterialPackageProxy(PackageProxy):
             return os.path.join(self.path, 'user_input.py')
 
     @property
-    def user_input_module_importable_name(self):
+    def user_input_module_path(self):
         if self.should_have_user_input_module:
             return self.dot_join([self.package_importable_name, 'user_input'])
 
@@ -427,7 +427,7 @@ class MaterialPackageProxy(PackageProxy):
         if self.should_have_user_input_module:
             if not self.has_user_input_module:
                 file(self.user_input_module_file_name, 'w').write('')
-            return UserInputModuleProxy(self.user_input_module_importable_name, session=self.session)
+            return UserInputModuleProxy(self.user_input_module_path, session=self.session)
 
     ### PUBLIC METHODS ###
 

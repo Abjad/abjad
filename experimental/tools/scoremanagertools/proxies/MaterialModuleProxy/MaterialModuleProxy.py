@@ -15,7 +15,7 @@ class MaterialModuleProxy(ModuleProxy):
 
     @property
     def material_underscored_name(self):
-        return self.module_importable_name.split('.')[-2]
+        return self.module_path.split('.')[-2]
 
     ### PUBLIC METHODS ###
 

@@ -189,7 +189,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.module_importable_name_to_path
+.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.module_path_to_file_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.package_exists

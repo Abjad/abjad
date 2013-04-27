@@ -10,10 +10,10 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, module_importable_name=None, session=None):
+    def __init__(self, module_path=None, session=None):
         ScoreManagerObject.__init__(self, session=session)
-        module_importable_name = self.strip_py_extension(module_importable_name)
-        path = self.module_importable_name_to_path(module_importable_name)
+        module_path = self.strip_py_extension(module_path)
+        path = self.module_path_to_file_path(module_path)
         ParsableFileProxy.__init__(self, path=path, session=self.session)
         ImportableAssetProxy.__init__(self, asset_full_name=path, session=self.session)
 
@@ -32,17 +32,17 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
 
     @property
     def grandparent_directory_path(self):
-        if self.module_importable_name:
+        if self.module_path:
             return self.package_importable_name_to_directory_path(self.grandparent_package_importable_name)
 
     @property
     def grandparent_package_importable_name(self):
-        if self.module_importable_name:
-            return self.dot_join(self.module_importable_name.split('.')[:-2])
+        if self.module_path:
+            return self.dot_join(self.module_path.split('.')[:-2])
 
     @property
     def grandparent_package_initializer_file_name(self):
-        if self.module_importable_name:
+        if self.module_path:
             return os.path.join(self.grandparent_directory_path, '__init__.py')
 
     @property
@@ -51,27 +51,27 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
             self.short_name_without_extension)
 
     @property
-    def module_importable_name(self):
+    def module_path(self):
         return self.package_importable_name
 
     @property
     def module_short_name(self):
-        if self.module_importable_name:
-            return self.module_importable_name.split('.')[-1]
+        if self.module_path:
+            return self.module_path.split('.')[-1]
 
     @property
     def parent_directory_path(self):
-        if self.module_importable_name:
+        if self.module_path:
             return self.package_importable_name_to_directory_path(self.parent_package_importable_name)
 
     @property
     def parent_package_importable_name(self):
-        if self.module_importable_name:
-            return self.dot_join(self.module_importable_name.split('.')[:-1])
+        if self.module_path:
+            return self.dot_join(self.module_path.split('.')[:-1])
 
     @property
     def parent_package_initializer_file_name(self):
-        if self.module_importable_name:
+        if self.module_path:
             return os.path.join(self.parent_directory_path, '__init__.py')
 
     ### PUBLIC METHODS ###
@@ -91,4 +91,4 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
         self.proceed('file executed.', is_interactive=prompt)
 
     def unimport(self):
-        self.remove_package_importable_name_from_sys_modules(self.module_importable_name)
+        self.remove_package_importable_name_from_sys_modules(self.module_path)
