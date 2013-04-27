@@ -120,6 +120,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.music_specifier_module_wrangler
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.package_path
    :noindex:
 
@@ -166,12 +172,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.setup_value_menu_tokens
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.short_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.short_name_without_extension
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.source_file_name

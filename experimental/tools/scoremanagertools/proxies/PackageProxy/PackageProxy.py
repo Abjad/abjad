@@ -59,7 +59,7 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
 
     @property
     def human_readable_name(self):
-        return self.short_name.replace('_', ' ')
+        return self.name.replace('_', ' ')
 
     @property
     def imported_package(self):

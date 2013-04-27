@@ -195,6 +195,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.material_underscored_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.output_material
    :noindex:
 
@@ -256,12 +262,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.session
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.short_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.short_name_without_extension
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.should_have_illustration

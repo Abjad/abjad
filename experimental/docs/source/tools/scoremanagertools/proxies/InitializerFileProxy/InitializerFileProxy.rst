@@ -51,6 +51,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.is_versioned
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.parent_directory_path
    :noindex:
 
@@ -64,12 +70,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.session
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.short_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.short_name_without_extension
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.source_file_name

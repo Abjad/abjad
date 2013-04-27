@@ -48,7 +48,7 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
     @property
     def human_readable_name(self):
         return self.change_string_to_human_readable_string(
-            self.short_name_without_extension)
+            self.name_without_extension)
 
     @property
     def module_path(self):

@@ -33,6 +33,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.is_versioned
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.parent_directory_path
    :noindex:
 
@@ -52,12 +58,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.session
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.short_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.short_name_without_extension
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.source_file_name

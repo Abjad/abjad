@@ -195,6 +195,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.material_underscored_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.output_material
    :noindex:
 
@@ -256,12 +262,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.session
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.short_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.short_name_without_extension
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.should_have_illustration

@@ -195,6 +195,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.material_underscored_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.output_material
    :noindex:
 
@@ -256,12 +262,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.session
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.short_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.short_name_without_extension
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.should_have_illustration

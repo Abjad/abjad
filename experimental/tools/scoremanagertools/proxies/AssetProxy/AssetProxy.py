@@ -32,7 +32,7 @@ class AssetProxy(ScoreManagerObject):
 
     @property
     def breadcrumb(self):
-        return self.short_name or self._human_readable_class_name
+        return self.name or self._human_readable_class_name
 
     @property
     def exists(self):
@@ -42,7 +42,7 @@ class AssetProxy(ScoreManagerObject):
 
     @property
     def human_readable_name(self):
-        return self.short_name
+        return self.name
 
     @property
     def is_versioned(self):
@@ -59,11 +59,23 @@ class AssetProxy(ScoreManagerObject):
             return True
 
     @property
+    def name(self):
+        if self.path:
+            return self.path.split(os.path.sep)[-1]
+
+    @property
+    def name_without_extension(self):
+        if self.name:
+            if '.' in self.name:
+                return self.name[:self.name.rindex('.')]
+            else:
+                return self.name
+
+    @property
     def parent_directory_path(self):
         if self.path:
             return os.path.dirname(self.path)
 
-    # TODO: rename to directory_path
     @property
     def path(self):
         return self._path
@@ -71,19 +83,6 @@ class AssetProxy(ScoreManagerObject):
     @property
     def plural_generic_class_name(self):
         return self.pluralize_string(self.generic_class_name)
-
-    @property
-    def short_name(self):
-        if self.path:
-            return self.path.split(os.path.sep)[-1]
-
-    @property
-    def short_name_without_extension(self):
-        if self.short_name:
-            if '.' in self.short_name:
-                return self.short_name[:self.short_name.rindex('.')]
-            else:
-                return self.short_name
 
     @property
     def svn_add_command(self):

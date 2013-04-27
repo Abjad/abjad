@@ -57,6 +57,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.is_versioned
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.package_path
    :noindex:
 
@@ -94,12 +100,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.session
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.short_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.short_name_without_extension
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.source_file_name

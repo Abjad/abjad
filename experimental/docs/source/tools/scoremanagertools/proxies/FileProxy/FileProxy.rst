@@ -42,6 +42,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.is_versioned
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.parent_directory_path
    :noindex:
 
@@ -52,12 +58,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.session
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.short_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.short_name_without_extension
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.source_file_name

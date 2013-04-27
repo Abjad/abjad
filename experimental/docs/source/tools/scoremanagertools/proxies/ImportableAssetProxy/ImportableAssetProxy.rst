@@ -30,6 +30,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.is_versioned
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.package_path
    :noindex:
 
@@ -43,12 +49,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.session
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.short_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.short_name_without_extension
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.source_file_name

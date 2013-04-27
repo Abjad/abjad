@@ -140,7 +140,7 @@ class ScorePackageProxy(PackageProxy):
     @property
     def tempo_inventory(self):
         from abjad.tools import contexttools
-        for material_package_proxy in self.material_package_wrangler.list_asset_proxies(head=self.short_name):
+        for material_package_proxy in self.material_package_wrangler.list_asset_proxies(head=self.name):
             if material_package_proxy.get_tag('material_package_maker_class_name') == \
                 'TempoMarkInventoryMaterialPackageMaker':
                 return material_package_proxy.output_material
@@ -248,7 +248,7 @@ class ScorePackageProxy(PackageProxy):
 
     def fix(self, is_interactive=True):
         result = True
-        if self.short_name == 'recursif':
+        if self.name == 'recursif':
             return True
         for path in self.top_level_directory_paths:
             if not os.path.exists(path):
@@ -318,9 +318,9 @@ class ScorePackageProxy(PackageProxy):
     def handle_main_menu_result(self, result):
         assert isinstance(result, str)
         if result == 'h':
-            self.chunk_wrangler.run(head=self.short_name)
+            self.chunk_wrangler.run(head=self.name)
         elif  result == 'm':
-            self.material_package_wrangler.run(head=self.short_name)
+            self.material_package_wrangler.run(head=self.name)
         elif result == 'f':
             self.music_specifier_module_wrangler.run()
         elif result == 's':
@@ -440,7 +440,7 @@ class ScorePackageProxy(PackageProxy):
     def profile(self, prompt=True):
         if not os.path.exists(self.path):
             raise OSError('directory {!r} does not exist.'.format(self.path))
-        if self.short_name == 'recursif':
+        if self.name == 'recursif':
             return
         lines = []
         for subdirectory_path in self.top_level_directory_paths:

@@ -57,6 +57,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.is_versioned
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.package_path
    :noindex:
 
@@ -94,12 +100,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.session
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.short_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.short_name_without_extension
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.source_file_name

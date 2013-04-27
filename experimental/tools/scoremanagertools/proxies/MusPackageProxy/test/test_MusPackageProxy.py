@@ -8,5 +8,5 @@ def test_MusPackageProxy_01():
 
     assert mus_proxy.path == os.path.join(
         mus_proxy.configuration.SCORES_DIRECTORY_PATH, 'example_score_1', 'mus')
-    assert mus_proxy.short_name == 'mus'
+    assert mus_proxy.name == 'mus'
     assert mus_proxy.package_path == 'example_score_1.mus'

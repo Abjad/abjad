@@ -195,6 +195,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.material_underscored_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.output_material
    :noindex:
 
@@ -256,12 +262,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.session
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.short_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.short_name_without_extension
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.should_have_illustration

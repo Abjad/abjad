@@ -57,6 +57,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.is_versioned
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.package_path
    :noindex:
 
@@ -94,12 +100,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.session
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.short_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.short_name_without_extension
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.source_file_name
