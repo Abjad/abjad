@@ -37,22 +37,23 @@ class DirectoryProxy(AssetProxy):
     def path_name(self):
         return self._path
 
-    @property
-    def public_content_paths(self):
-        result = []
-        for short_name in os.listdir(self.path):
-            if short_name[0].isalpha():
-                if not short_name.endswith('.pyc'):
-                    result.append(os.path.join(self.path, short_name))
-        return result
+    # TODO: remove because unused?
+#    @property
+#    def public_content_paths(self):
+#        result = []
+#        for name in os.listdir(self.path):
+#            if name[0].isalpha():
+#                if not name.endswith('.pyc'):
+#                    result.append(os.path.join(self.path, name))
+#        return result
 
     @property
-    def public_content_short_names(self):
+    def public_content_names(self):
         result = []
-        for short_name in os.listdir(self.path):
-            if short_name[0].isalpha():
-                if not short_name.endswith('.pyc'):
-                    result.append(short_name)
+        for name in os.listdir(self.path):
+            if name[0].isalpha():
+                if not name.endswith('.pyc'):
+                    result.append(name)
         return result
 
     @property

@@ -1,5 +1,5 @@
-from experimental.tools.scoremanagertools.selectors.Selector import Selector
 import os
+from experimental.tools.scoremanagertools.selectors.Selector import Selector
 
 
 class DirectoryContentSelector(Selector):
@@ -16,7 +16,7 @@ class DirectoryContentSelector(Selector):
         result = []
         for path in self.asset_container_paths:
             directory_proxy = DirectoryProxy(path=path, session=self.session)
-            result.extend(directory_proxy.public_content_short_names)
+            result.extend(directory_proxy.public_content_names)
             if hasattr(self, 'forbidden_names'):
                 for forbidden_name in self.forbidden_names:
                     if forbidden_name in result:

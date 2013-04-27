@@ -91,3 +91,6 @@
 
 32. Encapsulate the stuff in ScoreManagerObject in newly implemented class.
     Then include a reference to the class (perhaps as a class attribute) in ScoreManagerObject by composition.
+
+33. Search for unqualified ' path =' and change to directory_path, file_path, package_path
+    or module_path, as appropriate.

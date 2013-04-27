@@ -27,23 +27,23 @@ def test_StylesheetFileProxy_public_attributes_02():
     '''With path.
     '''
 
-    short_name = 'clean_letter_14.ly'
+    file_name = 'clean_letter_14.ly'
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     path = os.path.join(
         score_manager_configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH,
-        'stylesheets', short_name)
+        'stylesheets', file_name)
     proxy = scoremanagertools.proxies.StylesheetFileProxy(path)
 
     assert proxy.breadcrumb == 'clean_letter_14.ly'
     assert proxy.exists
     assert proxy.file_lines
     assert proxy.generic_class_name == 'stylesheet'
-    assert proxy.human_readable_name == short_name
+    assert proxy.human_readable_name == file_name
     assert proxy.is_versioned
     assert proxy.parent_directory_path == proxy.configuration.STYLESHEETS_DIRECTORY_PATH
     assert proxy.path == path
     assert proxy.plural_generic_class_name == 'stylesheets'
-    assert proxy.name == short_name
-    assert proxy.name_without_extension == short_name[:-3]
+    assert proxy.name == file_name
+    assert proxy.name_without_extension == file_name[:-3]
     assert proxy.svn_add_command == 'svn add {}'.format(proxy.path)
     assert proxy.temporary_asset_name == 'temporary_stylesheet.ly'
