@@ -11,9 +11,9 @@ class ImportableAssetWrangler(AssetWrangler):
         if self.current_asset_container_package_path:
             return self.dot_join([
                 self.current_asset_container_package_path,
-                self.temporary_asset_short_name])
+                self.temporary_asset_name])
         else:
-            return self.temporary_asset_short_name
+            return self.temporary_asset_name
 
     ### PUBLIC METHODS ###
 

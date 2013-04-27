@@ -20,7 +20,7 @@ def test_StylesheetFileProxy_public_attributes_01():
     assert proxy.short_name is None
     assert proxy.short_name_without_extension is None
     assert proxy.svn_add_command is None
-    assert proxy.temporary_asset_short_name == 'temporary_stylesheet.ly'
+    assert proxy.temporary_asset_name == 'temporary_stylesheet.ly'
 
 
 def test_StylesheetFileProxy_public_attributes_02():
@@ -46,4 +46,4 @@ def test_StylesheetFileProxy_public_attributes_02():
     assert proxy.short_name == short_name
     assert proxy.short_name_without_extension == short_name[:-3]
     assert proxy.svn_add_command == 'svn add {}'.format(proxy.path)
-    assert proxy.temporary_asset_short_name == 'temporary_stylesheet.ly'
+    assert proxy.temporary_asset_name == 'temporary_stylesheet.ly'

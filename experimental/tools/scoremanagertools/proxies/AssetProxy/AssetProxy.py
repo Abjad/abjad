@@ -106,8 +106,8 @@ class AssetProxy(ScoreManagerObject):
         result = getter.run()
         if self.backtrack():
             return
-        new_asset_short_name = self.human_readable_name_to_asset_short_name(result)
-        new_path = os.path.join(self.parent_directory_path, new_asset_short_name)
+        new_asset_name = self.human_readable_name_to_asset_name(result)
+        new_path = os.path.join(self.parent_directory_path, new_asset_name)
         self.display('new path will be {}'.format(new_path))
         if not self.confirm():
             return
@@ -118,10 +118,10 @@ class AssetProxy(ScoreManagerObject):
     def fix(self):
         pass
 
-    def human_readable_name_to_asset_short_name(self, human_readable_name):
-        asset_short_name = human_readable_name.lower()
-        asset_short_name = asset_short_name.replace(' ', '_')
-        return asset_short_name
+    def human_readable_name_to_asset_name(self, human_readable_name):
+        asset_name = human_readable_name.lower()
+        asset_name = asset_name.replace(' ', '_')
+        return asset_name
 
     @abc.abstractmethod
     def profile(self):

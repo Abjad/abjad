@@ -112,14 +112,14 @@ class AssetWrangler(ScoreManagerObject):
 
     @property
     def temporary_asset_path(self):
-        return os.path.join(self.current_asset_container_path, self.temporary_asset_short_name)
+        return os.path.join(self.current_asset_container_path, self.temporary_asset_name)
 
     @property
     def temporary_asset_proxy(self):
         return self.get_asset_proxy(self.temporary_asset_package_path)
 
     @abc.abstractproperty
-    def temporary_asset_short_name(self):
+    def temporary_asset_name(self):
         pass
 
     ### PUBLIC METHODS ###
@@ -382,9 +382,9 @@ class AssetWrangler(ScoreManagerObject):
 
     # other #
 
-    def make_asset(self, asset_short_name):
-        assert stringtools.is_underscore_delimited_lowercase_string(asset_short_name)
-        asset_path = os.path.join(self.current_asset_container_path, asset_short_name)
+    def make_asset(self, asset_name):
+        assert stringtools.is_underscore_delimited_lowercase_string(asset_name)
+        asset_path = os.path.join(self.current_asset_container_path, asset_name)
         asset_proxy = self.get_asset_proxy(asset_path)
         asset_proxy.write_stub_to_disk()
 

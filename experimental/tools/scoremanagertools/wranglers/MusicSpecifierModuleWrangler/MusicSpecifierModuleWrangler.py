@@ -32,7 +32,7 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
         return 'music specifiers'
 
     @property
-    def temporary_asset_short_name(self):
+    def temporary_asset_name(self):
         return 'temporary_specifier_module.py'
 
     ### PUBLIC METHODS ###

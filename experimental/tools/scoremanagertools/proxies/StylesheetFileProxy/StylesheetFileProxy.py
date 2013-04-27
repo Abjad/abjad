@@ -6,7 +6,7 @@ class StylesheetFileProxy(FileProxy):
     ### CLASS ATTRIBUTES ###
 
     generic_class_name = 'stylesheet'
-    temporary_asset_short_name = 'temporary_stylesheet.ly'
+    temporary_asset_name = 'temporary_stylesheet.ly'
 
     ### READ-ONLY PROPERTIES ###
 
@@ -35,11 +35,11 @@ class StylesheetFileProxy(FileProxy):
         else:
             raise ValueError
 
-    def human_readable_name_to_asset_short_name(self, human_readable_name):
-        asset_short_name = FileProxy.human_readable_name_to_asset_short_name(self, human_readable_name)
-        if not asset_short_name.endswith(self.extension):
-            asset_short_name += self.extension
-        return asset_short_name
+    def human_readable_name_to_asset_name(self, human_readable_name):
+        asset_name = FileProxy.human_readable_name_to_asset_name(self, human_readable_name)
+        if not asset_name.endswith(self.extension):
+            asset_name += self.extension
+        return asset_name
 
     def make_main_menu(self):
         menu, section = self.make_menu(where=self.where)

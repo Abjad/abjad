@@ -1,10 +1,12 @@
+import os
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.wranglers.PackageWrangler import PackageWrangler
 from experimental.tools.scoremanagertools.proxies.ScorePackageProxy import ScorePackageProxy
-import os
 
 
 class ScorePackageWrangler(PackageWrangler):
+
+    ### INITIALIZER ###
 
     def __init__(self, session=None):
         PackageWrangler.__init__(self,
@@ -81,7 +83,7 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append(asset_proxy)
         return result
 
-    def list_visible_asset_short_names(self, head=None):
+    def list_visible_asset_names(self, head=None):
         result = []
         for path in self.list_visible_asset_paths(head=head):
             result.append(os.path.basename(path))

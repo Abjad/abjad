@@ -26,7 +26,7 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
 
     extension = '.py'
     generic_class_name = 'module'
-    temporary_asset_short_name = 'temporary_module.py'
+    temporary_asset_name = 'temporary_module.py'
 
     ### READ-ONLY PROPERTIES ###
 
@@ -76,11 +76,11 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def human_readable_name_to_asset_short_name(self, human_readable_name):
-        asset_short_name = ParsableFileProxy.human_readable_name_to_asset_short_name(
+    def human_readable_name_to_asset_name(self, human_readable_name):
+        asset_name = ParsableFileProxy.human_readable_name_to_asset_name(
             self, human_readable_name)
-        asset_short_name += '.py'
-        return asset_short_name
+        asset_name += '.py'
+        return asset_name
 
     def run_abjad(self, prompt=True):
         os.system('abjad {}'.format(self.path))

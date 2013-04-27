@@ -22,7 +22,7 @@ class PackageWrangler(ImportableAssetWrangler):
         return result
 
     @property
-    def temporary_asset_short_name(self):
+    def temporary_asset_name(self):
         return '__temporary_package'
 
     ### PUBLIC METHODS ###
@@ -30,11 +30,11 @@ class PackageWrangler(ImportableAssetWrangler):
     def handle_main_menu_result(self, result):
         self.print_not_yet_implemented()
 
-    def make_asset(self, asset_short_name):
-        assert stringtools.is_underscore_delimited_lowercase_package_name(asset_short_name)
-        asset_path = os.path.join(self.current_asset_container_path, asset_short_name)
+    def make_asset(self, asset_name):
+        assert stringtools.is_underscore_delimited_lowercase_package_name(asset_name)
+        asset_path = os.path.join(self.current_asset_container_path, asset_name)
         os.mkdir(asset_path)
-        package_proxy = self.get_asset_proxy(asset_short_name)
+        package_proxy = self.get_asset_proxy(asset_name)
         package_proxy.fix(is_interactive=False)
 
     def make_asset_interactively(self):
