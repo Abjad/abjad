@@ -3,8 +3,8 @@ from experimental.tools.scoremanagertools.proxies.AssetProxy import AssetProxy
 
 class ImportableAssetProxy(AssetProxy):
 
-    def __init__(self, asset_full_name=None, session=None):
-        path = self.asset_full_name_to_path(asset_full_name)
+    def __init__(self, asset_path=None, session=None):
+        path = self.asset_path_to_directory_path(asset_path)
         AssetProxy.__init__(self, path=path, session=session)
 
     ### SPECIAL METHODS ###
@@ -19,4 +19,4 @@ class ImportableAssetProxy(AssetProxy):
 
     @property
     def package_path(self):
-        return self.path_to_package_path(self.path)
+        return self.directory_path_to_package_path(self.path)

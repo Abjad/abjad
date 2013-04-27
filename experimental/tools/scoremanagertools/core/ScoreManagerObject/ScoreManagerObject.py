@@ -79,11 +79,11 @@ class ScoreManagerObject(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def asset_full_name_to_path(self, asset_full_name):
-        if self.is_path(asset_full_name):
-            return asset_full_name
+    def asset_path_to_directory_path(self, asset_path):
+        if self.is_path(asset_path):
+            return asset_path
         else:
-            return self.package_path_to_directory_path(asset_full_name)
+            return self.package_path_to_directory_path(asset_path)
 
     def assign_user_input(self, user_input=None):
         if user_input is not None:
@@ -341,7 +341,7 @@ class ScoreManagerObject(AbjadObject):
         name = self.strip_file_extension_from_string(name)
         return self.change_string_to_human_readable_string(name)
 
-    def path_to_package_path(self, path):
+    def directory_path_to_package_path(self, path):
         if path is None:
             return
         path = path.rstrip(os.path.sep)

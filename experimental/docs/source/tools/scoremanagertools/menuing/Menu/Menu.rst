@@ -117,7 +117,7 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.asset_full_name_to_path
+.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.asset_path_to_directory_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.assign_user_input
@@ -157,6 +157,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.debug
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.directory_path_to_package_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.display
@@ -244,9 +247,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.path_to_human_readable_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.path_to_package_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.pluralize_string

@@ -102,5 +102,3 @@
     Rename to something better when doing this.
 
 36. Audit for os.path.sep and replace with better os module functions.
-
-37. Audit and remove 'importable' from codebase.

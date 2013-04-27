@@ -146,8 +146,8 @@ class AssetWrangler(ScoreManagerObject):
                 asset_proxy.profile()
         return results
 
-    def get_asset_proxy(self, asset_full_name):
-        return self.asset_class(asset_full_name, session=self.session)
+    def get_asset_proxy(self, asset_path):
+        return self.asset_class(asset_path, session=self.session)
 
     @abc.abstractmethod
     def handle_main_menu_result(self, result):
@@ -219,8 +219,8 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_score_external_asset_container_paths(self, head=None):
         result = []
-        for importable_name in self.list_score_external_asset_container_package_paths(head=head):
-            result.append(self.package_path_to_directory_path(importable_name))
+        for package_path in self.list_score_external_asset_container_package_paths(head=head):
+            result.append(self.package_path_to_directory_path(package_path))
         return result
 
     def list_score_external_asset_container_proxies(self, head=None):

@@ -35,7 +35,7 @@ class ImportableAssetWrangler(AssetWrangler):
         result = []
         for path in self.list_score_external_asset_container_paths(head=head):
             for name in os.listdir(path):
-                package_path = self.path_to_package_path(path)
+                package_path = self.directory_path_to_package_path(path)
                 if name[0].isalpha():
                     result.append(self.dot_join([package_path, name]))
         return result

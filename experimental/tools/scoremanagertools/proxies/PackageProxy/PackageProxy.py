@@ -16,11 +16,11 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
     def __init__(self, package_path=None, session=None):
 #        path = self.package_path_to_directory_path(package_path)
 #        DirectoryProxy.__init__(self, path=path, session=session)
-#        ImportableAssetProxy.__init__(self, asset_full_name=package_path, session=self.session)
+#        ImportableAssetProxy.__init__(self, asset_path=package_path, session=self.session)
         ScoreManagerObject.__init__(self, session=session)
         path = self.package_path_to_directory_path(package_path)
         DirectoryProxy.__init__(self, path=path, session=self.session)
-        ImportableAssetProxy.__init__(self, asset_full_name=package_path, session=self.session)
+        ImportableAssetProxy.__init__(self, asset_path=package_path, session=self.session)
 
     ### SPECIAL METHODS ###
 
@@ -225,7 +225,7 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
 
     def set_package_path_interactively(self):
         getter = self.make_getter(where=self.where())
-        geter.append_underscore_delimited_lowercase_package_name('package importable name')
+        getter.append_underscore_delimited_lowercase_package_name('package name')
         result = getter.run()
         if self.backtrack():
             return

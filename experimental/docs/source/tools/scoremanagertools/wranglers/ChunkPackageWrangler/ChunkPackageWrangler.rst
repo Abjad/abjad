@@ -87,7 +87,7 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.asset_full_name_to_path
+.. automethod:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.asset_path_to_directory_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.assign_user_input
@@ -127,6 +127,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.debug
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.directory_path_to_package_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.display
@@ -319,9 +322,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.path_to_human_readable_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.path_to_package_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.pluralize_string
