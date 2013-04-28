@@ -9,34 +9,34 @@ configurationtools.AbjadConfiguration
 Read-only properties
 --------------------
 
-.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.ABJAD_CONFIGURATION_DIRECTORY_PATH
+.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.abjad_configuration_directory_path
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.ABJAD_CONFIGURATION_FILE_PATH
+.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.abjad_configuration_file_path
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.ABJAD_DIRECTORY_PATH
+.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.abjad_directory_path
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.ABJAD_EXPERIMENTAL_DIRECTORY_PATH
+.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.abjad_experimental_directory_path
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.ABJAD_OUTPUT_DIRECTORY_PATH
+.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.abjad_output_directory_path
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.ABJAD_ROOT_DIRECTORY_PATH
+.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.abjad_root_directory_path
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.CONFIGURATION_DIRECTORY_PATH
+.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.configuration_directory_path
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.CONFIGURATION_FILE_NAME
+.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.configuration_file_name
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.CONFIGURATION_FILE_PATH
+.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.configuration_file_path
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.HOME_DIRECTORY_PATH
+.. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.home_directory_path
    :noindex:
 
 .. autoattribute:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration.storage_format

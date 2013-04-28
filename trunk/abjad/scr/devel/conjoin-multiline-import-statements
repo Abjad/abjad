@@ -7,7 +7,7 @@ import os
 
 def _conjoin_multiline_import_statements():
     total_multiline_import_statements = 0
-    for path, subdirectories, files in os.walk(ABJCFG.ABJAD_DIRECTORY_PATH):
+    for path, subdirectories, files in os.walk(ABJCFG.abjad_directory_path):
         for f in files:
             file_lines_to_output = [ ]
             found_import_statement_in_file = False

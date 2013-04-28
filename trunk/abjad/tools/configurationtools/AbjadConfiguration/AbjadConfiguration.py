@@ -11,7 +11,7 @@ class AbjadConfiguration(Configuration):
         >>> ABJCONFIG['accidental_spelling']
         'mixed'
 
-    `AbjadConfiguration` creates the `$HOME/.abjad/` directory on instantiation.
+    `AbjadConfiguration` creates the `$home/.abjad/` directory on instantiation.
 
     `AbjadConfiguration` then attempts to read an `abjad.cfg` file in that directory
     and parse the file as a `ConfigObj` configuration.
@@ -33,8 +33,8 @@ class AbjadConfiguration(Configuration):
     def __init__(self):
         Configuration.__init__(self)
         # verify the PDF output directory
-        if not os.path.exists(self.ABJAD_OUTPUT_DIRECTORY_PATH):
-            os.mkdir(self.ABJAD_OUTPUT_DIRECTORY_PATH)
+        if not os.path.exists(self.abjad_output_directory_path):
+            os.mkdir(self.abjad_output_directory_path)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -57,10 +57,10 @@ class AbjadConfiguration(Configuration):
                     '',
                     'Set to the one directory where you wish all Abjad-generated files',
                     '(such as PDFs, LilyPond, MIDI or log files) to be saved.',
-                    'Defaults to $HOME/.abjad/output/'
+                    'Defaults to $home/.abjad/output/'
                 ],
                 'spec': 'string(default={!r})'.format(
-                    os.path.join(self.ABJAD_CONFIGURATION_DIRECTORY_PATH, 'output'))
+                    os.path.join(self.abjad_configuration_directory_path, 'output'))
             },
             'accidental_spelling': {
                 'comment': [
@@ -122,15 +122,15 @@ class AbjadConfiguration(Configuration):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def ABJAD_CONFIGURATION_DIRECTORY_PATH(self):
-        return os.path.join(self.HOME_DIRECTORY_PATH, '.abjad')
+    def abjad_configuration_directory_path(self):
+        return os.path.join(self.home_directory_path, '.abjad')
 
     @property
-    def ABJAD_CONFIGURATION_FILE_PATH(self):
-        return self.CONFIGURATION_FILE_PATH
+    def abjad_configuration_file_path(self):
+        return self.configuration_file_path
 
     @property
-    def ABJAD_DIRECTORY_PATH(self):
+    def abjad_directory_path(self):
         module_parts = self.__module__.split('.')
         filepath_parts = os.path.abspath(__file__).rpartition('.py')[0].split(os.path.sep)
         for part in reversed(module_parts):
@@ -140,21 +140,21 @@ class AbjadConfiguration(Configuration):
         return os.path.sep.join(filepath_parts)
 
     @property
-    def ABJAD_EXPERIMENTAL_DIRECTORY_PATH(self):
-        return os.path.abspath(os.path.join(self.ABJAD_DIRECTORY_PATH, '..', '..', 'experimental'))
+    def abjad_experimental_directory_path(self):
+        return os.path.abspath(os.path.join(self.abjad_directory_path, '..', '..', 'experimental'))
 
     @property
-    def ABJAD_OUTPUT_DIRECTORY_PATH(self):
+    def abjad_output_directory_path(self):
         return self._settings['abjad_output']
 
     @property
-    def ABJAD_ROOT_DIRECTORY_PATH(self):
-        return os.path.abspath(os.path.join(self.ABJAD_DIRECTORY_PATH, '..', '..'))
+    def abjad_root_directory_path(self):
+        return os.path.abspath(os.path.join(self.abjad_directory_path, '..', '..'))
 
     @property
-    def CONFIGURATION_DIRECTORY_PATH(self):
-        return self.ABJAD_CONFIGURATION_DIRECTORY_PATH
+    def configuration_directory_path(self):
+        return self.abjad_configuration_directory_path
 
     @property
-    def CONFIGURATION_FILE_NAME(self):
+    def configuration_file_name(self):
         return 'abjad.cfg'

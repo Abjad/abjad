@@ -7,7 +7,7 @@ import sys
 
 
 start_directory = os.path.abspath('.')
-os.chdir(ABJCFG.ABJAD_DIRECTORY_PATH)
+os.chdir(ABJCFG.abjad_directory_path)
 iotools.clear_terminal()
 command = 'grep -Irn "{}" * | grep -v svn\/ | grep -v docs'.format(sys.argv[1])
 iotools.spawn_subprocess(command)

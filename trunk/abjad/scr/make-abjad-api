@@ -15,7 +15,7 @@ if __name__ == '__main__':
     print ''
 
     # change to docs directory because makefile lives there
-    docs_directory = os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'docs')
+    docs_directory = os.path.join(ABJCFG.abjad_directory_path, 'docs')
     os.chdir(docs_directory)
 
     # make html docs

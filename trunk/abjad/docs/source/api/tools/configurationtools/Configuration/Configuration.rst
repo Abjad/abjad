@@ -9,16 +9,16 @@ configurationtools.Configuration
 Read-only properties
 --------------------
 
-.. autoattribute:: abjad.tools.configurationtools.Configuration.Configuration.Configuration.CONFIGURATION_DIRECTORY_PATH
+.. autoattribute:: abjad.tools.configurationtools.Configuration.Configuration.Configuration.configuration_directory_path
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.Configuration.Configuration.Configuration.CONFIGURATION_FILE_NAME
+.. autoattribute:: abjad.tools.configurationtools.Configuration.Configuration.Configuration.configuration_file_name
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.Configuration.Configuration.Configuration.CONFIGURATION_FILE_PATH
+.. autoattribute:: abjad.tools.configurationtools.Configuration.Configuration.Configuration.configuration_file_path
    :noindex:
 
-.. autoattribute:: abjad.tools.configurationtools.Configuration.Configuration.Configuration.HOME_DIRECTORY_PATH
+.. autoattribute:: abjad.tools.configurationtools.Configuration.Configuration.Configuration.home_directory_path
    :noindex:
 
 .. autoattribute:: abjad.tools.configurationtools.Configuration.Configuration.Configuration.storage_format

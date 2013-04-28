@@ -105,9 +105,9 @@ class MakeNewClassTemplateScript(DeveloperScript):
         os.mkdir(package_path)
         os.mkdir(os.path.join(package_path, 'test'))
 
-        if args.path == os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_DIRECTORY_PATH, 'tools'):
+        if args.path == os.path.join(ABJCFG.abjad_experimental_directory_path, 'tools'):
             package_root_name = 'experimental'
-        elif args.path == os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'tools'):
+        elif args.path == os.path.join(ABJCFG.abjad_directory_path, 'tools'):
             package_root_name = 'abjad'
         else:
             raise Exception
@@ -136,14 +136,14 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
         path_group.add_argument('-X', '--experimental',
             action='store_const',
-            const=os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_DIRECTORY_PATH, 'tools'),
+            const=os.path.join(ABJCFG.abjad_experimental_directory_path, 'tools'),
             dest='path',
             help='use the Abjad experimental tools path',
             )
 
         path_group.add_argument('-M', '--mainline',
             action='store_const',
-            const=os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'tools'),
+            const=os.path.join(ABJCFG.abjad_directory_path, 'tools'),
             dest='path',
             help='use the Abjad mainline tools path',
             )

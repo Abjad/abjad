@@ -106,14 +106,14 @@ class MakeNewFunctionTemplateScript(DeveloperScript):
 
         path_group.add_argument('-X', '--experimental',
             action='store_const',
-            const=os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_DIRECTORY_PATH, 'tools'),
+            const=os.path.join(ABJCFG.abjad_experimental_directory_path, 'tools'),
             dest='path',
             help='use the Abjad experimental tools path',
             )
 
         path_group.add_argument('-M', '--mainline',
             action='store_const',
-            const=os.path.join(ABJCFG.ABJAD_DIRECTORY_PATH, 'tools'),
+            const=os.path.join(ABJCFG.abjad_directory_path, 'tools'),
             dest='path',
             help='use the Abjad mainline tools path',
             )

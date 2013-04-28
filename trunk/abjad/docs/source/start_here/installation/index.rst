@@ -94,8 +94,8 @@ You'll then be ready to start using Abjad.
 After install
 -------------
 
-When first run, Abjad creates an ``.abjad`` directory in your own ``$HOME`` directory.
-In ``$HOME/.abjad`` you will find the Abjad configuration file: ``config.py``.
+When first run, Abjad creates an ``.abjad`` directory in your own ``$home`` directory.
+In ``$home/.abjad`` you will find the Abjad configuration file: ``config.py``.
 Here you can tell Abjad about your preferred PDF file viewer, MIDI player, your preferred LilyPond language, etc.
 All relevant variables have defaults that you can change to suit your needs.
 In Linux, for example, you might want to set your ``pdfviewer`` to ``evince`` and your ``MIDIplayer`` to ``tiMIDIty``.
@@ -112,5 +112,5 @@ Most Linux distributions now come with ``xdg-utils`` installed.
 If you do not have ``xdg-utils`` installed, you can download it from 
 http://www.portland.freedsektop.org.
 
-Alternatively you can set the ``pdfviewer`` variable in ``$HOME/.abjad/config``
+Alternatively you can set the ``pdfviewer`` variable in ``$home/.abjad/config``
 to your favorite PDF viewer. 

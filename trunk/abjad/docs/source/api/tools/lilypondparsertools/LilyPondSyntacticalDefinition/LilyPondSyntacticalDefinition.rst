@@ -810,7 +810,7 @@ Methods
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_output_def_body__output_def_head_with_mode_switch__Chr123
    :noindex:
 
-.. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_output_def_body__output_def_head_with_mode_switch__Chr123__OUTPUT_DEF_IDENTIFIER
+.. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_output_def_body__output_def_head_with_mode_switch__Chr123__output_DEF_IDENTIFIER
    :noindex:
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition.p_output_def_head__LAYOUT
