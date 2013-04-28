@@ -159,6 +159,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.asset_path_to_directory_path
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.asset_path_to_human_readable_name
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.assign_user_input
    :noindex:
 
@@ -250,9 +253,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.pluralize_string

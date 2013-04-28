@@ -20,8 +20,9 @@ def test_MaterialPackageWrangler_read_only_attributes_02():
     assert 'materials' in wrangler.list_asset_container_package_paths()
     assert 'example_score_1.mus.materials' in wrangler.list_asset_container_package_paths()
     assert wrangler.configuration.score_manager_materials_directory_path in wrangler.list_asset_container_paths()
-    path = os.path.join(wrangler.configuration.scores_directory_path, 'example_score_1', 'mus', 'materials')
-    assert path in wrangler.list_asset_container_paths()
+    directory_path = os.path.join(
+        wrangler.configuration.scores_directory_path, 'example_score_1', 'mus', 'materials')
+    assert directory_path in wrangler.list_asset_container_paths()
 
 
 def test_MaterialPackageWrangler_read_only_attributes_03():
@@ -80,7 +81,7 @@ def test_MaterialPackageWrangler_read_only_attributes_08():
     assert 'example_score_1.mus.materials' in wrangler.list_asset_container_package_paths()
     assert wrangler.current_asset_container_package_path == 'example_score_1.mus.materials'
     assert wrangler.temporary_asset_package_path == 'example_score_1.mus.materials.__temporary_package'
-    path = os.path.join(
+    directory_path = os.path.join(
          wrangler.configuration.scores_directory_path, 
         'example_score_1', 'mus', 'materials', '__temporary_package')
-    assert wrangler.temporary_asset_path == path
+    assert wrangler.temporary_asset_path == directory_path

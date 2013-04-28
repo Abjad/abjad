@@ -38,10 +38,10 @@ def test_ScorePackageProxy_read_only_attributes_01():
     assert score_proxy.title == 'Example Score I'
     assert score_proxy.year_of_completion == 2013
 
-    path = score_proxy.configuration.scores_directory_path
+    directory_path = score_proxy.configuration.scores_directory_path
     assert score_proxy.score_initializer_file_names == (
-        os.path.join(path, 'example_score_1', '__init__.py'),
-        os.path.join(path, 'example_score_1', 'mus', '__init__.py'))
+        os.path.join(directory_path, 'example_score_1', '__init__.py'),
+        os.path.join(directory_path, 'example_score_1', 'mus', '__init__.py'))
 
     assert score_proxy.score_package_wranglers == (
         scoremanagertools.wranglers.ChunkPackageWrangler(),

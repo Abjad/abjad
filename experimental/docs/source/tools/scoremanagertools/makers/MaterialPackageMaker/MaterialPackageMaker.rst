@@ -342,6 +342,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.asset_path_to_directory_path
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.asset_path_to_human_readable_name
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.assign_user_input
    :noindex:
 
@@ -535,9 +538,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.pluralize_string

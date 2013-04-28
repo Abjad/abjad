@@ -78,6 +78,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.asset_path_to_directory_path
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.asset_path_to_human_readable_name
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.assign_user_input
    :noindex:
 
@@ -199,9 +202,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.pluralize_string

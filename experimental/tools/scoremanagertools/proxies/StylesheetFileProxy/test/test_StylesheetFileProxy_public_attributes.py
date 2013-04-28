@@ -29,10 +29,10 @@ def test_StylesheetFileProxy_public_attributes_02():
 
     file_name = 'clean_letter_14.ly'
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
-    path = os.path.join(
+    file_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path,
         'stylesheets', file_name)
-    proxy = scoremanagertools.proxies.StylesheetFileProxy(path)
+    proxy = scoremanagertools.proxies.StylesheetFileProxy(file_path)
 
     assert proxy.breadcrumb == 'clean_letter_14.ly'
     assert proxy.exists
@@ -41,7 +41,7 @@ def test_StylesheetFileProxy_public_attributes_02():
     assert proxy.human_readable_name == file_name
     assert proxy.is_versioned
     assert proxy.parent_directory_path == proxy.configuration.stylesheets_directory_path
-    assert proxy.path == path
+    assert proxy.path == file_path
     assert proxy.plural_generic_class_name == 'stylesheets'
     assert proxy.name == file_name
     assert proxy.name_without_extension == file_name[:-3]

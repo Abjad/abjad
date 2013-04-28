@@ -75,6 +75,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.asset_path_to_directory_path
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.asset_path_to_human_readable_name
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.assign_user_input
    :noindex:
 
@@ -175,9 +178,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.pluralize_string

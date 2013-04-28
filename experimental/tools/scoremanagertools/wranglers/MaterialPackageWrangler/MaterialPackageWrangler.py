@@ -189,9 +189,9 @@ class MaterialPackageWrangler(PackageWrangler):
     def make_material_package(self, material_package_path, is_interactive=False, tags=None):
         tags = collections.OrderedDict(tags or {})
         tags['is_material_package'] = True
-        path = self.package_path_to_directory_path(material_package_path)
-        assert not os.path.exists(path)
-        os.mkdir(path)
+        directory_path = self.package_path_to_directory_path(material_package_path)
+        assert not os.path.exists(directory_path)
+        os.mkdir(directory_path)
         material_package_maker_class_name = tags.get('material_package_maker_class_name')
         pair = (material_package_maker_class_name, material_package_path)
         material_package_proxy = self.get_appropriate_material_package_proxy(*pair)

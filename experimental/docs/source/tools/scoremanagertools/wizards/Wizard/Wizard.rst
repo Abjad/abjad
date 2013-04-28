@@ -45,6 +45,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.asset_path_to_directory_path
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.asset_path_to_human_readable_name
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.assign_user_input
    :noindex:
 
@@ -130,9 +133,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.pluralize_string

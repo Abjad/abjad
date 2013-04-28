@@ -90,6 +90,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.asset_path_to_directory_path
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.asset_path_to_human_readable_name
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.assign_user_input
    :noindex:
 
@@ -319,9 +322,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.pluralize_string

@@ -26,13 +26,14 @@ class DirectoryProxy(AssetProxy):
         result = []
         for file_name in os.listdir(self.path):
             if file_name.endswith('.pyc'):
-                path = os.path.join(self.path, file_name)
-                os.remove(path)
+                file_path = os.path.join(self.path, file_name)
+                os.remove(file_path)
         for name in os.listdir(self.path):
             if not name.startswith('.'):
                 result.append(name)
         return result
 
+    # TODO: maybe remove because already present on baseclass?
     @property
     def path(self):
         return self._path

@@ -92,13 +92,13 @@
 32. Encapsulate the stuff in ScoreManagerObject in newly implemented class.
     Then include a reference to the class (perhaps as a class attribute) in ScoreManagerObject by composition.
 
-33. Search for unqualified ' path =' and change to directory_path, file_path, package_path
-    or module_path, as appropriate.
-
-34. Rename stringtools.strict_to_strict_directory_name() to something without 'directory'.
+33. Rename stringtools.strict_to_strict_directory_name() to something without 'directory'.
     The function is used to strip nonascii things. Maybe better to use that.
 
-35. Move ScoreManagerObject.change_string_to_human_readable_string() to stringtools.
+34. Move ScoreManagerObject.change_string_to_human_readable_string() to stringtools.
     Rename to something better when doing this.
 
-36. Audit for os.path.sep and replace with better os module functions.
+35. Audit for os.path.sep and replace with better os module functions.
+
+36. Audit for path=path and change to directory_path=directory_path.
+    Or change to file_path=path_path, as appropriate.

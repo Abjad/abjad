@@ -138,6 +138,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.asset_path_to_directory_path
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.asset_path_to_human_readable_name
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.assign_user_input
    :noindex:
 
@@ -277,9 +280,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.pluralize_string

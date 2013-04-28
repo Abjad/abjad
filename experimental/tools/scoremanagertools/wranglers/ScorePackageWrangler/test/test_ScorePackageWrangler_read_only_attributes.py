@@ -17,8 +17,8 @@ def test_ScorePackageWrangler_read_only_attributes_02():
     '''
 
     assert 'example_score_1' in wrangler.list_asset_container_package_paths()
-    path = os.path.join(wrangler.configuration.scores_directory_path, 'example_score_1')
-    assert path in wrangler.list_asset_container_paths()
+    directory_path = os.path.join(wrangler.configuration.scores_directory_path, 'example_score_1')
+    assert directory_path in wrangler.list_asset_container_paths()
 
 
 def test_ScorePackageWrangler_read_only_attributes_03():

@@ -299,13 +299,13 @@ class ScoreManagerObject(AbjadObject):
 
     def module_path_to_file_path(self, module_path):
         if module_path is not None:
-            path = self.package_path_to_directory_path(module_path) + '.py'
-            return path
+            file_path = self.package_path_to_directory_path(module_path) + '.py'
+            return file_path
 
     def package_exists(self, package_path):
         assert isinstance(package_path, str)
-        path = self.package_path_to_directory_path(package_path)
-        return os.path.exists(path)
+        directory_path = self.package_path_to_directory_path(package_path)
+        return os.path.exists(directory_path)
 
     def package_path_to_directory_path(self, package_path):
         if package_path is None:
@@ -335,31 +335,34 @@ class ScoreManagerObject(AbjadObject):
         directory = os.path.join(*directory_parts)
         return directory
 
-    def path_to_human_readable_name(self, path):
-        path = os.path.normpath(path)
-        name = os.path.basename(path)
-        name = self.strip_file_extension_from_string(name)
-        return self.change_string_to_human_readable_string(name)
+    def asset_path_to_human_readable_name(self, asset_path):
+        asset_path = os.path.normpath(asset_path)
+        asset_name = os.path.basename(asset_path)
+        asset_name = self.strip_file_extension_from_string(asset_name)
+        return self.change_string_to_human_readable_string(asset_name)
 
-    def directory_path_to_package_path(self, path):
-        if path is None:
+    def directory_path_to_package_path(self, directory_path):
+        if directory_path is None:
             return
-        path = path.rstrip(os.path.sep)
-        if path.endswith('.py'):
-            path = path[:-3]
-        if path.startswith(self.configuration.score_manager_tools_directory_path):
+        #directory_path = directory_path.rstrip(os.path.sep)
+        directory_path = os.path.normpath(directory_path)
+        if directory_path.endswith('.py'):
+            directory_path = directory_path[:-3]
+        if directory_path.startswith(self.configuration.score_manager_tools_directory_path):
             prefix_length = len(os.path.dirname(self.configuration.score_manager_tools_directory_path)) + 1
-        elif path.startswith(self.configuration.score_external_materials_directory_path):
-            prefix_length = len(os.path.dirname(self.configuration.score_external_materials_directory_path)) + 1
-        elif path.startswith(self.configuration.score_external_chunks_directory_path):
+        elif directory_path.startswith(self.configuration.score_external_materials_directory_path):
+            prefix_length = \
+                len(os.path.dirname(self.configuration.score_external_materials_directory_path)) + 1
+        elif directory_path.startswith(self.configuration.score_external_chunks_directory_path):
             prefix_length = len(os.path.dirname(self.configuration.score_external_chunks_directory_path)) + 1
-        elif path.startswith(self.configuration.score_external_specifiers_directory_path):
-            prefix_length = len(os.path.dirname(self.configuration.score_external_specifiers_directory_path)) + 1
-        elif path.startswith(self.configuration.scores_directory_path):
+        elif directory_path.startswith(self.configuration.score_external_specifiers_directory_path):
+            prefix_length = \
+                len(os.path.dirname(self.configuration.score_external_specifiers_directory_path)) + 1
+        elif directory_path.startswith(self.configuration.scores_directory_path):
             prefix_length = len(self.configuration.scores_directory_path) + 1
         else:
             return
-        package_path = path[prefix_length:]
+        package_path = directory_path[prefix_length:]
         package_path = package_path.replace(os.path.sep, '.')
         return package_path
 

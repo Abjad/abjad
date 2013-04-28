@@ -78,6 +78,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.asset_path_to_directory_path
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.asset_path_to_human_readable_name
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.assign_user_input
    :noindex:
 
@@ -199,9 +202,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.path_to_human_readable_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.pluralize_string
