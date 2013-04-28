@@ -45,9 +45,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_external_chunks_package_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_external_directory_paths
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_external_materials_directory_path
    :noindex:
 
@@ -145,6 +142,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.setdefault
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.trim
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.update
