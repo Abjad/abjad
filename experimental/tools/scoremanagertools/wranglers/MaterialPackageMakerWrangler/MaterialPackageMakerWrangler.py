@@ -14,14 +14,14 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 #            score_external_asset_container_package_paths=[self.makers_package_path],
 #            score_internal_asset_container_package_path_infix=None,
 #            session=session,
-#            user_asset_container_package_paths=[self.configuration.user_makers_package_path],
-#            user_asset_container_paths=[self.configuration.user_makers_directory_path])
+#            user_asset_container_package_paths=[self.configuration.user_specific_makers_package_path],
+#            user_asset_container_paths=[self.configuration.user_specific_makers_directory_path])
         PackageWrangler.__init__(self, session=session)
         self._score_external_asset_container_package_paths = [
             self.configuration.makers_package_path]
         self._score_internal_asset_container_package_path_infix = None
-        self._user_asset_container_package_paths = [self.configuration.user_makers_package_path]
-        self._user_asset_container_paths = [self.configuration.user_makers_directory_path]
+        self._user_asset_container_package_paths = [self.configuration.user_specific_makers_package_path]
+        self._user_asset_container_paths = [self.configuration.user_specific_makers_directory_path]
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -57,7 +57,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             except ImportError:
                 command = 'from {} import {} as material_package_maker_class'
                 command = command.format(
-                    self.configuration.user_makers_package_path, material_package_maker_class_name)
+                    self.configuration.user_specific_makers_package_path, material_package_maker_class_name)
                 exec(command)
             material_package_proxy = material_package_maker_class(
                 package_path, session=self.session)

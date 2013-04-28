@@ -17,13 +17,13 @@ class MaterialPackageWrangler(PackageWrangler):
 #            score_external_asset_container_package_paths= \
 #                [self.configuration.score_external_materials_package_path],
 #            score_internal_asset_container_package_path_infix= \
-#                self.configuration.score_internal_materials_package_path_infix,
+#                self.configuration._score_internal_materials_package_path_infix,
 #            session=session)
         PackageWrangler.__init__(self, session=session)
         self._score_external_asset_container_package_paths = [
             self.configuration.score_external_materials_package_path]
         self._score_internal_asset_container_package_path_infix = \
-            self.configuration.score_internal_materials_package_path_infix
+            self.configuration._score_internal_materials_package_path_infix
         self._material_package_maker_wrangler = MaterialPackageMakerWrangler(session=self.session)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -53,7 +53,7 @@ class MaterialPackageWrangler(PackageWrangler):
             except AttributeError:
                 command = 'import {}.{} as material_package_maker_class'
                 command = command.format(
-                    self.configuration.user_makers_package_path, material_package_maker_class_name)
+                    self.configuration.user_specific_makers_package_path, material_package_maker_class_name)
                 exec(command)
                 material_package_proxy = material_package_maker_class(
                     material_package_path, session=self.session)
@@ -155,7 +155,7 @@ class MaterialPackageWrangler(PackageWrangler):
             exec(command)
         except ImportError:
             command = 'from {} import {} as material_package_maker_class'.format(
-                self.configuration.user_makers_package_path, material_package_maker_class_name)
+                self.configuration.user_specific_makers_package_path, material_package_maker_class_name)
             exec(command)
         should_have_user_input_module = getattr(
             material_package_maker_class, 'should_have_user_input_module', True)

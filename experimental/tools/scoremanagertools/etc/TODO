@@ -102,5 +102,3 @@
 
 36. Fix AssetWrangler.__repr__ and ScorePackageWrangler.__repr__.
     Write a generalized script to test the reprs of all objects in the system.
-
-37. Audit for 'fully_qualified' and 'qualified' and replace with something better.

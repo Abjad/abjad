@@ -87,7 +87,7 @@ class Session(ScoreManagerObject):
         if self.is_in_score:
             return self.dot_join([
                 self.current_score_package_name,
-                self.configuration.score_internal_chunks_package_path_infix])
+                self.configuration._score_internal_chunks_package_path_infix])
         else:
             return self.configuration.score_external_chunks_package_path
 
@@ -101,7 +101,7 @@ class Session(ScoreManagerObject):
         if self.is_in_score:
             return self.dot_join([
                 self.current_score_package_name,
-                self.configuration.score_internal_materials_package_path_infix])
+                self.configuration._score_internal_materials_package_path_infix])
         else:
             return self.configuration.score_external_materials_package_path
 
@@ -130,7 +130,7 @@ class Session(ScoreManagerObject):
         if self.is_in_score:
             return self.dot_join([
                 self.current_score_package_name,
-                self.configuration.score_internal_specifiers_package_path_infix])
+                self.configuration._score_internal_specifiers_package_path_infix])
         else:
             return self.configuration.score_external_specifiers_package_path
 

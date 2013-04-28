@@ -12,13 +12,13 @@ class ChunkPackageWrangler(PackageWrangler):
 #            score_external_asset_container_package_paths= \
 #                [self.configuration.score_external_chunks_package_path],
 #            score_internal_asset_container_package_path_infix= \
-#                self.configuration.score_internal_chunks_package_path_infix,
+#                self.configuration._score_internal_chunks_package_path_infix,
 #            session=session)
         PackageWrangler.__init__(self, session=session)
         self._score_external_asset_container_package_paths = [
             self.configuration.score_external_chunks_package_path]
         self._score_internal_asset_container_package_path_infix = \
-            self.configuration.score_internal_chunks_package_path_infix
+            self.configuration._score_internal_chunks_package_path_infix
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

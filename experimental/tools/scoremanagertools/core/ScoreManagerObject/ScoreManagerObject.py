@@ -343,7 +343,7 @@ class ScoreManagerObject(AbjadObject):
             return
         package_path_parts = package_path.split('.')
         if package_path_parts[0] == \
-            self.configuration.score_manager_tools_package_path:
+            self.configuration.score_manager_tools_package_name:
             directory_parts = [self.configuration.score_manager_tools_directory_path] + \
                 package_path_parts[1:]
         elif package_path_parts[0] == \

@@ -61,7 +61,7 @@ class ImportableAssetWrangler(AssetWrangler):
         for path in self.list_user_asset_container_paths(head=head):
             for name in os.listdir(path):
                 if name[0].isalpha():
-                    result.append(self.dot_join([self.configuration.user_makers_package_path, name]))
+                    result.append(self.dot_join([self.configuration.user_specific_makers_package_path, name]))
         return result
 
     # TODO: try to reimplement without proxy instantiation

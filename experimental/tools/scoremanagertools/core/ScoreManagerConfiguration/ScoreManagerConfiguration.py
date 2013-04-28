@@ -85,6 +85,18 @@ class ScoreManagerConfiguration(Configuration):
         }
         return options
 
+    @property
+    def _score_internal_chunks_package_path_infix(self):
+        return 'mus.chunks'
+
+    @property
+    def _score_internal_materials_package_path_infix(self):
+        return 'mus.materials'
+
+    @property
+    def _score_internal_specifiers_package_path_infix(self):
+        return 'mus.specifiers'
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -118,7 +130,7 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def makers_package_path(self):
-        return self.dot_join([self.score_manager_tools_package_path, 'makers'])
+        return self.dot_join([self.score_manager_tools_package_name, 'makers'])
 
     @property
     def score_external_chunks_directory_path(self):
@@ -161,18 +173,6 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.basename(self.score_manager_specifiers_directory_path)
 
     @property
-    def score_internal_chunks_package_path_infix(self):
-        return 'mus.chunks'
-
-    @property
-    def score_internal_materials_package_path_infix(self):
-        return 'mus.materials'
-
-    @property
-    def score_internal_specifiers_package_path_infix(self):
-        return 'mus.specifiers'
-
-    @property
     def score_manager_configuration_directory(self):
         return os.path.join(self.home_directory_path, '.score_manager')
 
@@ -196,12 +196,12 @@ class ScoreManagerConfiguration(Configuration):
             'scoremanagertools')
         
     @property
-    def score_manager_tools_fully_qualified_package_name(self):
-        return 'experimental.tools.scoremanagertools'
+    def score_manager_tools_package_name(self):
+        return 'scoremanagertools'
 
     @property
     def score_manager_tools_package_path(self):
-        return os.path.basename(self.score_manager_tools_directory_path)
+        return 'experimental.tools.scoremanagertools'
 
     @property
     def score_manager_transcripts_directory_path(self):
@@ -225,14 +225,14 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def stylesheets_package_path(self):
-        return self.dot_join([self.score_manager_tools_package_path, 'stylesheets'])
+        return self.dot_join([self.score_manager_tools_package_name, 'stylesheets'])
 
     @property
-    def user_makers_directory_path(self):
+    def user_specific_makers_directory_path(self):
         return self._settings['user_specific_score_manager_makers_directory_path']
 
     @property
-    def user_makers_package_path(self):
+    def user_specific_makers_package_path(self):
         return self._settings['user_specific_score_manager_makers_package_path']
 
     ### PUBLIC METHODS ###
