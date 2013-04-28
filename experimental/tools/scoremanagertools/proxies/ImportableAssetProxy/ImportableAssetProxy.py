@@ -21,4 +21,5 @@ class ImportableAssetProxy(AssetProxy):
 
     @property
     def package_path(self):
-        return self.directory_path_to_package_path(self.path)
+        # TODO: eventually change to self.directory_path_to_package_path(self.directory_path)
+        return self.directory_path_to_package_path(self.asset_path)

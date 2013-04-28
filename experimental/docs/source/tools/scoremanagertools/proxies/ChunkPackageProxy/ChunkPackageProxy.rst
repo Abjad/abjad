@@ -9,6 +9,9 @@ scoremanagertools.proxies.ChunkPackageProxy
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.asset_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.backtracking_source
    :noindex:
 
@@ -79,9 +82,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.parent_package_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.plural_generic_class_name

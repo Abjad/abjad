@@ -9,6 +9,9 @@ scoremanagertools.proxies.ImportableAssetProxy
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.asset_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.backtracking_source
    :noindex:
 
@@ -40,9 +43,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.parent_directory_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.plural_generic_class_name

@@ -64,8 +64,8 @@ class ParsableFileProxy(FileProxy):
 
     # TODO: move down to ModuleProxy?
     def execute_file_lines(self):
-        if self.path:
-            file_pointer = open(self.path, 'r')
+        if self.file_path:
+            file_pointer = open(self.file_path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
             #print file_contents_string
@@ -73,5 +73,5 @@ class ParsableFileProxy(FileProxy):
 
     # TODO: move up to FileProxy
     def write_to_disk(self):
-        initializer = file(self.path, 'w')
+        initializer = file(self.file_path, 'w')
         initializer.write(self.format)

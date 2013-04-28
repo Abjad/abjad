@@ -9,6 +9,9 @@ scoremanagertools.makers.RhythmMakerMaterialPackageMaker
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.asset_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.backtracking_source
    :noindex:
 
@@ -235,9 +238,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.parent_package_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.plural_generic_class_name

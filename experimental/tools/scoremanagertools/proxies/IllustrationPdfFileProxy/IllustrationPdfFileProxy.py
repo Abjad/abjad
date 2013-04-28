@@ -1,5 +1,5 @@
-from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
 import os
+from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
 
 
 class IllustrationPdfFileProxy(FileProxy):
@@ -13,5 +13,5 @@ class IllustrationPdfFileProxy(FileProxy):
     ### PUBLIC METHODS ###
 
     def view(self):
-        command = 'open {}'.format(self.path)
+        command = 'open {}'.format(self.file_path)
         os.system(command)

@@ -9,6 +9,9 @@ scoremanagertools.makers.MarkupInventoryMaterialPackageMaker
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.makers.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.asset_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.makers.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.backtracking_source
    :noindex:
 
@@ -235,9 +238,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.parent_package_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.plural_generic_class_name

@@ -9,6 +9,9 @@ scoremanagertools.proxies.MaterialModuleProxy
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.asset_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.backtracking_source
    :noindex:
 
@@ -22,6 +25,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.file_lines
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.file_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.format
@@ -85,9 +91,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.parent_package_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.plural_generic_class_name

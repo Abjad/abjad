@@ -15,7 +15,7 @@ def test_FileProxy_write_boilerplate_asset_to_disk_01():
         file_proxy.write_boilerplate_asset_to_disk(boilerplate_asset_name)
         source = open(os.path.join(
             file_proxy.configuration.boilerplate_directory_path, boilerplate_asset_name), 'r')
-        target = open(file_proxy.path)
+        target = open(file_proxy.file_path)
         assert source.readlines() == target.readlines()
         file_proxy.remove()
     finally:

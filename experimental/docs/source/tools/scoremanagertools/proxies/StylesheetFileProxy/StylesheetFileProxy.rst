@@ -9,6 +9,9 @@ scoremanagertools.proxies.StylesheetFileProxy
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.asset_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.backtracking_source
    :noindex:
 
@@ -25,6 +28,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.file_lines
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.file_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.format
@@ -49,9 +55,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.parent_directory_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.plural_generic_class_name

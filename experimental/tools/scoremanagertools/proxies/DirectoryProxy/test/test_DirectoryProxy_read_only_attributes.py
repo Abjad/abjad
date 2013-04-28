@@ -9,7 +9,7 @@ def test_DirectoryProxy_read_only_attributes_01():
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     directory_path = score_manager_configuration.score_manager_tools_directory_path
     directory_proxy = scoremanagertools.proxies.DirectoryProxy(directory_path)
-    assert directory_proxy.path is not None
+    assert directory_proxy.directory_path is not None
     # TODO: uncomment
     #assert directory_proxy.is_versioned
 

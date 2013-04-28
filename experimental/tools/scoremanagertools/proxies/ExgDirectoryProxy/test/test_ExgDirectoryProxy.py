@@ -6,7 +6,7 @@ def test_ExgDirectoryProxy_01():
 
     exg_proxy = scoremanagertools.proxies.ExgDirectoryProxy('example_score_1')
 
-    assert exg_proxy.path == os.path.join(
+    assert exg_proxy.directory_path == os.path.join(
         exg_proxy.configuration.scores_directory_path, 'example_score_1', 'exg')
     assert exg_proxy.source_file_name == \
         os.path.join(

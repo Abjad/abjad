@@ -100,4 +100,5 @@
 
 35. Audit for os.path.sep and replace with better os module functions.
 
-36. Change 'def path' to 'def directory_path' or 'def file_path' and so on, as appropriate.
+36. Fix AssetWrangler.__repr__ and ScorePackageWrangler.__repr__.
+    Write a generalized script to test the reprs of all objects in the system.

@@ -9,6 +9,9 @@ scoremanagertools.proxies.ParsableFileProxy
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.asset_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.backtracking_source
    :noindex:
 
@@ -25,6 +28,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.file_lines
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.file_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.format
@@ -58,9 +64,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.parent_directory_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.plural_generic_class_name

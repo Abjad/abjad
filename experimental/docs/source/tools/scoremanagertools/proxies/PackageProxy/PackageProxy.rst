@@ -9,6 +9,9 @@ scoremanagertools.proxies.PackageProxy
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.asset_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.backtracking_source
    :noindex:
 
@@ -79,9 +82,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.parent_package_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.plural_generic_class_name

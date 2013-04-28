@@ -9,6 +9,9 @@ scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.asset_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.backtracking_source
    :noindex:
 
@@ -235,9 +238,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.parent_package_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.plural_generic_class_name

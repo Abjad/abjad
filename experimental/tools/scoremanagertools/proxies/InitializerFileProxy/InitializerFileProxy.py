@@ -74,7 +74,7 @@ class InitializerFileProxy(ParsableFileProxy):
     def parse(self, initializer_file_name=None):
         is_parsable = True
         if initializer_file_name is None:
-            initializer_file_name = self.path
+            initializer_file_name = self.file_path
         if not os.path.exists(initializer_file_name):
             return
         initializer = file(initializer_file_name, 'r')

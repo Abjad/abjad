@@ -9,6 +9,9 @@ scoremanagertools.makers.ListMaterialPackageMaker
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.asset_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.backtracking_source
    :noindex:
 
@@ -235,9 +238,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.parent_package_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.plural_generic_class_name

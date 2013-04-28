@@ -9,6 +9,9 @@ scoremanagertools.makers.SargassoMeasureMaterialPackageMaker
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.asset_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.backtracking_source
    :noindex:
 
@@ -235,9 +238,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.parent_package_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.plural_generic_class_name

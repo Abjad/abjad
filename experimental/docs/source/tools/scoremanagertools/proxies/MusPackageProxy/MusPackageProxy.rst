@@ -9,6 +9,9 @@ scoremanagertools.proxies.MusPackageProxy
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.asset_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.backtracking_source
    :noindex:
 
@@ -79,9 +82,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.parent_package_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.plural_generic_class_name

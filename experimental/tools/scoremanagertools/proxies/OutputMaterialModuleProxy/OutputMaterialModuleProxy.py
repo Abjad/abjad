@@ -17,8 +17,8 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
         self.unimport_materials_package()
         self.unimport_material_package()
         #self.unimport()
-        if os.path.exists(self.path):
-            file_pointer = open(self.path, 'r')
+        if os.path.exists(self.file_path):
+            file_pointer = open(self.file_path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
             exec(file_contents_string)

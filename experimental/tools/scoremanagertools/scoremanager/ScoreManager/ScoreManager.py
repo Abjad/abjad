@@ -208,9 +208,11 @@ class ScoreManager(ScoreManagerObject):
         self.pop_breadcrumb()
         self.restore_breadcrumbs(cache=cache)
 
+    # TODO: this probably isn't working any more bc of self.score_package_wrangler.path;
+    #       just fix that at some point to run tests again from within score manager.
     def run_py_test_all(self, prompt=True):
         proc = subprocess.Popen(
-            'py.test {} {}'.format(self.path, self.score_package_wrangler.path),
+            'py.test {} {}'.format(self.asset_path, self.score_package_wrangler.asset_path),
             shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         if lines:

@@ -67,7 +67,7 @@ class ScorePackageWrangler(PackageWrangler):
     def list_visible_asset_paths(self, head=None):
         result = []
         for visible_asset_proxy in self.list_visible_asset_proxies(head=head):
-            result.append(visible_asset_proxy.path)
+            result.append(visible_asset_proxy.asset_path)
         return result
 
     def list_visible_asset_proxies(self, head=None):

@@ -9,6 +9,9 @@ scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.asset_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.backtracking_source
    :noindex:
 
@@ -235,9 +238,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.parent_package_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.plural_generic_class_name

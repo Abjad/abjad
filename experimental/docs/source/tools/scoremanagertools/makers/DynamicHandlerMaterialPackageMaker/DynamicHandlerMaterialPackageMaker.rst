@@ -9,6 +9,9 @@ scoremanagertools.makers.DynamicHandlerMaterialPackageMaker
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.asset_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.backtracking_source
    :noindex:
 
@@ -235,9 +238,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.parent_package_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.plural_generic_class_name

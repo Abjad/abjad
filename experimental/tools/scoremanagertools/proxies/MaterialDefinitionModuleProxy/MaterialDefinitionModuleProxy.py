@@ -1,9 +1,11 @@
+import os
 from experimental.tools.scoremanagertools.proxies.MaterialModuleProxy import MaterialModuleProxy
 from experimental.tools.scoremanagertools.helpers import safe_import
-import os
 
 
 class MaterialDefinitionModuleProxy(MaterialModuleProxy):
+
+    ### INITIALIZER ###
 
     def __init__(self, module_path, session=None):
         MaterialModuleProxy.__init__(self, module_path, session=session)
@@ -43,11 +45,11 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
 
     def edit(self):
         columns = len(self.material_package_name) + 3
-        os.system("vi + -c'norm {}l' {}".format(columns, self.path))
+        os.system("vi + -c'norm {}l' {}".format(columns, self.file_path))
 
     def import_output_material_module_import_statements_and_material_definition(self):
-        if os.path.exists(self.path):
-            file_pointer = open(self.path, 'r')
+        if os.path.exists(self.file_path):
+            file_pointer = open(self.file_path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
             exec(file_contents_string)
@@ -60,7 +62,7 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
         is_parsable = True
         if not self.exists:
             return
-        material_definition_module = file(self.path, 'r')
+        material_definition_module = file(self.file_path, 'r')
         encoding_directives = []
         docstring_lines = []
         setup_statements = []

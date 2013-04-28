@@ -14,7 +14,7 @@ class DirectoryProxy(AssetProxy):
 
     def __eq__(self, other):
         if isinstance(other, type(self)):
-            if self.path == other.path:
+            if self.directory_path == other.directory_path:
                 return True
         return False
 
@@ -22,31 +22,30 @@ class DirectoryProxy(AssetProxy):
         return not self == other
 
     def __repr__(self):
-        return '{}({!r})'.format(self._class_name, self.path)
+        return '{}({!r})'.format(self._class_name, self.directory_path)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def directory_contents(self):
         result = []
-        for file_name in os.listdir(self.path):
+        for file_name in os.listdir(self.directory_path):
             if file_name.endswith('.pyc'):
-                file_path = os.path.join(self.path, file_name)
+                file_path = os.path.join(self.directory_path, file_name)
                 os.remove(file_path)
-        for name in os.listdir(self.path):
+        for name in os.listdir(self.directory_path):
             if not name.startswith('.'):
                 result.append(name)
         return result
 
-    # TODO: maybe remove because already present on baseclass?
     @property
-    def path(self):
-        return self._path
+    def directory_path(self):
+        return self.asset_path
 
     @property
     def public_content_names(self):
         result = []
-        for name in os.listdir(self.path):
+        for name in os.listdir(self.directory_path):
             if name[0].isalpha():
                 if not name.endswith('.pyc'):
                     result.append(name)
@@ -54,7 +53,7 @@ class DirectoryProxy(AssetProxy):
 
     @property
     def svn_add_command(self):
-        return 'cd {} && svn-add-all'.format(self.path)
+        return 'cd {} && svn-add-all'.format(self.directory_path)
 
     ### PUBLIC METHODS ###
 
@@ -70,10 +69,10 @@ class DirectoryProxy(AssetProxy):
         result = getter.run()
         if self.backtrack():
             return
-        self.path = result
+        self.directory_path = result
 
     def make_directory(self):
-        os.mkdir(self.path)
+        os.mkdir(self.directory_path)
 
     def print_directory_contents(self):
         self.display(self.directory_contents, capitalize_first_character=False)

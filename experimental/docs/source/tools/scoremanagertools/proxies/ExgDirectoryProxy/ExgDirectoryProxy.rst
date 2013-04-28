@@ -9,6 +9,9 @@ scoremanagertools.proxies.ExgDirectoryProxy
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.asset_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.backtracking_source
    :noindex:
 
@@ -19,6 +22,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.directory_contents
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.directory_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.exists
@@ -40,9 +46,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.parent_directory_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.plural_generic_class_name

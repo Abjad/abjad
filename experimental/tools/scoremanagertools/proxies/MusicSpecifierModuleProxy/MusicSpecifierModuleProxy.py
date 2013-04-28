@@ -1,10 +1,12 @@
+import os
 from experimental.tools.scoremanagertools.editors.MusicSpecifierEditor import MusicSpecifierEditor
 from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
 from experimental.tools.scoremanagertools.specifiers.MusicSpecifier import MusicSpecifier
-import os
 
 
 class MusicSpecifierModuleProxy(ModuleProxy):
+
+    ### INITIALIZER ###
 
     def __init__(self, module_path=None, session=None):
         ModuleProxy.__init__(self, module_path=module_path, session=session)
@@ -55,7 +57,7 @@ class MusicSpecifierModuleProxy(ModuleProxy):
 
     def parse(self):
         is_parsable = True
-        output_material_module = file(self.path, 'r')
+        output_material_module = file(self.file_path, 'r')
         encoding_directives = []
         docstring_lines = []
         setup_statements = []
@@ -99,8 +101,8 @@ class MusicSpecifierModuleProxy(ModuleProxy):
 
     def read_target_from_disk(self):
         self.unimport()
-        if os.path.exists(self.path):
-            file_pointer = open(self.path, 'r')
+        if os.path.exists(self.file_path):
+            file_pointer = open(self.file_path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
             exec(file_contents_string)
