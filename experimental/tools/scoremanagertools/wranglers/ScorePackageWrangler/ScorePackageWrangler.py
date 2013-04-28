@@ -47,6 +47,12 @@ class ScorePackageWrangler(PackageWrangler):
     def handle_main_menu_result(self):
         self.print_not_yet_implemented()
 
+    def list_visible_asset_names(self, head=None):
+        result = []
+        for path in self.list_visible_asset_paths(head=head):
+            result.append(os.path.basename(path))
+        return result
+
     def list_visible_asset_package_path_and_score_title_pairs(self, head=None):
         result = []
         scores_to_show = self.session.scores_to_show
@@ -81,12 +87,6 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append(asset_proxy)
             elif scores_to_show == 'mothballed' and is_mothballed:
                 result.append(asset_proxy)
-        return result
-
-    def list_visible_asset_names(self, head=None):
-        result = []
-        for path in self.list_visible_asset_paths(head=head):
-            result.append(os.path.basename(path))
         return result
 
     def make_asset_interactively(self, rollback=False):

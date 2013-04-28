@@ -6,16 +6,16 @@ class MaterialModuleProxy(ModuleProxy):
     ### READ-ONLY PROPERTIES ###
 
     @property
+    def material_package_name(self):
+        return self.module_path.split('.')[-2]
+
+    @property
     def material_package_path(self):
         return self.parent_package_path
 
     @property
     def space_delimited_material_package_name(self):
         return self.material_package_name.replace('_', ' ')
-
-    @property
-    def material_package_name(self):
-        return self.module_path.split('.')[-2]
 
     ### PUBLIC METHODS ###
 

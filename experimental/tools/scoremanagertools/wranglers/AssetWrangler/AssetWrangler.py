@@ -110,6 +110,10 @@ class AssetWrangler(ScoreManagerObject):
     def temporary_asset_human_readable_name(self):
         return self.asset_path_to_human_readable_name(self.temporary_asset_path)
 
+    @abc.abstractproperty
+    def temporary_asset_name(self):
+        pass
+
     @property
     def temporary_asset_path(self):
         return os.path.join(self.current_asset_container_path, self.temporary_asset_name)
@@ -117,10 +121,6 @@ class AssetWrangler(ScoreManagerObject):
     @property
     def temporary_asset_proxy(self):
         return self.get_asset_proxy(self.temporary_asset_package_path)
-
-    @abc.abstractproperty
-    def temporary_asset_name(self):
-        pass
 
     ### PUBLIC METHODS ###
 

@@ -100,12 +100,12 @@ class ScoreManagerConfiguration(Configuration):
         return 'score_manager.cfg'
 
     @property
-    def editors_package_path(self):
-        return self.dot_join(['scoremanagertools', 'editors'])
-
-    @property
     def editors_directory_path(self):
         return os.path.join(self.score_manager_tools_directory_path, 'editors')
+
+    @property
+    def editors_package_path(self):
+        return self.dot_join(['scoremanagertools', 'editors'])
 
     @property
     def handler_tools_directory_path(self):
@@ -121,24 +121,28 @@ class ScoreManagerConfiguration(Configuration):
         return self.dot_join([self.score_manager_tools_package_path, 'makers'])
 
     @property
-    def score_external_chunks_package_path(self):
-        return os.path.basename(self.score_manager_sketches_directory_path)
-
-    @property
-    def score_manager_sketches_directory_path(self):
-        return self._settings['score_manager_sketches_directory_path']
-
-    @property
     def score_external_chunks_directory_path(self):
         return self._settings['score_manager_sketches_directory_path']
 
     @property
-    def score_external_materials_package_path(self):
-        return os.path.basename(self.score_manager_materials_directory_path)
+    def score_external_chunks_package_path(self):
+        return os.path.basename(self.score_manager_sketches_directory_path)
+
+    @property
+    def score_external_directory_paths(self):
+        return (
+            self.score_external_chunks_directory_path,
+            self.score_external_materials_directory_path,
+            self.score_external_specifiers_directory_path,
+            )
 
     @property
     def score_external_materials_directory_path(self):
         return self.score_manager_materials_directory_path
+
+    @property
+    def score_external_materials_package_path(self):
+        return os.path.basename(self.score_manager_materials_directory_path)
 
     @property
     def score_external_package_paths(self):
@@ -149,20 +153,12 @@ class ScoreManagerConfiguration(Configuration):
             )
 
     @property
-    def score_external_directory_pathS(self):
-        return (
-            self.score_external_chunks_directory_path,
-            self.score_external_materials_directory_path,
-            self.score_external_specifiers_directory_path,
-            )
+    def score_external_specifiers_directory_path(self):
+        return self.score_manager_specifiers_directory_path
 
     @property
     def score_external_specifiers_package_path(self):
         return os.path.basename(self.score_manager_specifiers_directory_path)
-
-    @property
-    def score_external_specifiers_directory_path(self):
-        return self.score_manager_specifiers_directory_path
 
     @property
     def score_internal_chunks_package_path_infix(self):
@@ -177,17 +173,17 @@ class ScoreManagerConfiguration(Configuration):
         return 'mus.specifiers'
 
     @property
-    def score_manager_tools_fully_qualified_package_name(self):
-        return 'experimental.tools.scoremanagertools'
-
-    @property
-    def score_manager_tools_package_path(self):
-        return os.path.basename(self.score_manager_tools_directory_path)
+    def score_manager_configuration_directory(self):
+        return os.path.join(self.home_directory_path, '.score_manager')
 
     @property
     def score_manager_materials_directory_path(self):
         return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'materials')
     
+    @property
+    def score_manager_sketches_directory_path(self):
+        return self._settings['score_manager_sketches_directory_path']
+
     @property
     def score_manager_specifiers_directory_path(self):
         return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'specifiers')
@@ -200,24 +196,28 @@ class ScoreManagerConfiguration(Configuration):
             'scoremanagertools')
         
     @property
-    def score_manager_transcripts_directory_path(self):
-        return self._settings['score_manager_transcripts_directory_path']
+    def score_manager_tools_fully_qualified_package_name(self):
+        return 'experimental.tools.scoremanagertools'
 
     @property
-    def score_manager_configuration_directory(self):
-        return os.path.join(self.home_directory_path, '.score_manager')
+    def score_manager_tools_package_path(self):
+        return os.path.basename(self.score_manager_tools_directory_path)
+
+    @property
+    def score_manager_transcripts_directory_path(self):
+        return self._settings['score_manager_transcripts_directory_path']
 
     @property
     def scores_directory_path(self):
         return os.path.normpath(self._settings['scores_directory_path'])
 
     @property
-    def specifier_classes_package_path(self):
-        return self.dot_join(['scoremanagertools', 'specifiers'])
-
-    @property
     def specifier_classes_directory_path(self):
         return os.path.join(self.score_manager_tools_directory_path, 'specifiers')
+
+    @property
+    def specifier_classes_package_path(self):
+        return self.dot_join(['scoremanagertools', 'specifiers'])
 
     @property
     def stylesheets_directory_path(self):

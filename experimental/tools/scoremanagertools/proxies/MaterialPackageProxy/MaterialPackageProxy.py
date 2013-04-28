@@ -300,10 +300,6 @@ class MaterialPackageProxy(PackageProxy):
         return self.name
 
     @property
-    def space_delimited_material_package_name(self):
-        return self.material_package_name.replace('_', ' ')
-
-    @property
     def output_material(self):
         if self.has_readable_output_material_module:
             return self.output_material_module_proxy.import_output_material()
@@ -394,6 +390,10 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def should_have_stylesheet(self):
         return self.should_have_illustration
+
+    @property
+    def space_delimited_material_package_name(self):
+        return self.material_package_name.replace('_', ' ')
 
     @property
     def stylesheet_file_name_on_disk(self):

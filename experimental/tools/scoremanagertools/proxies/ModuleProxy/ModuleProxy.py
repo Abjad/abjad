@@ -36,14 +36,14 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
             return self.package_path_to_directory_path(self.grandparent_package_path)
 
     @property
-    def grandparent_package_path(self):
-        if self.module_path:
-            return self.dot_join(self.module_path.split('.')[:-2])
-
-    @property
     def grandparent_package_initializer_file_name(self):
         if self.module_path:
             return os.path.join(self.grandparent_directory_path, '__init__.py')
+
+    @property
+    def grandparent_package_path(self):
+        if self.module_path:
+            return self.dot_join(self.module_path.split('.')[:-2])
 
     @property
     def human_readable_name(self):
@@ -51,13 +51,13 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
             self.name_without_extension)
 
     @property
-    def module_path(self):
-        return self.package_path
-
-    @property
     def module_name(self):
         if self.module_path:
             return self.module_path.split('.')[-1]
+
+    @property
+    def module_path(self):
+        return self.package_path
 
     @property
     def parent_directory_path(self):
@@ -65,14 +65,14 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
             return self.package_path_to_directory_path(self.parent_package_path)
 
     @property
-    def parent_package_path(self):
-        if self.module_path:
-            return self.dot_join(self.module_path.split('.')[:-1])
-
-    @property
     def parent_package_initializer_file_name(self):
         if self.module_path:
             return os.path.join(self.parent_directory_path, '__init__.py')
+
+    @property
+    def parent_package_path(self):
+        if self.module_path:
+            return self.dot_join(self.module_path.split('.')[:-1])
 
     ### PUBLIC METHODS ###
 

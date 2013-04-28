@@ -52,12 +52,12 @@ class ScorePackageProxy(PackageProxy):
         return os.path.join(self.directory_path, 'mus', 'chunks')
 
     @property
-    def chunks_package_path(self):
-        return self.dot_join([self.package_path, 'mus', 'chunks'])
-
-    @property
     def chunks_package_initializer_file_name(self):
         return os.path.join(self.chunks_directory_path, '__init__.py')
+
+    @property
+    def chunks_package_path(self):
+        return self.dot_join([self.package_path, 'mus', 'chunks'])
 
     @property
     def composer(self):
@@ -108,12 +108,12 @@ class ScorePackageProxy(PackageProxy):
         return os.path.join(self.directory_path, 'mus', 'materials')
 
     @property
-    def materials_package_path(self):
-        return self.dot_join([self.package_path, 'mus', 'materials'])
-
-    @property
     def materials_package_initializer_file_name(self):
         return os.path.join(self.materials_directory_path, '__init__.py')
+
+    @property
+    def materials_package_path(self):
+        return self.dot_join([self.package_path, 'mus', 'materials'])
 
     @property
     def mus_proxy(self):

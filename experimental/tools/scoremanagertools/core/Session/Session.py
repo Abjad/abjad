@@ -78,6 +78,11 @@ class Session(ScoreManagerObject):
         return self._complete_transcript
 
     @property
+    def current_chunks_directory_path(self):
+        return self.package_path_to_directory_path(
+            self.current_chunks_package_path)
+
+    @property
     def current_chunks_package_path(self):
         if self.is_in_score:
             return self.dot_join([
@@ -87,9 +92,9 @@ class Session(ScoreManagerObject):
             return self.configuration.score_external_chunks_package_path
 
     @property
-    def current_chunks_directory_path(self):
+    def current_materials_directory_path(self):
         return self.package_path_to_directory_path(
-            self.current_chunks_package_path)
+            self.current_materials_package_path)
 
     @property
     def current_materials_package_path(self):
@@ -99,11 +104,6 @@ class Session(ScoreManagerObject):
                 self.configuration.score_internal_materials_package_path_infix])
         else:
             return self.configuration.score_external_materials_package_path
-
-    @property
-    def current_materials_directory_path(self):
-        return self.package_path_to_directory_path(
-            self.current_materials_package_path)
 
     @property
     def current_score_package_proxy(self):
@@ -119,6 +119,13 @@ class Session(ScoreManagerObject):
                 self.current_score_package_name)
 
     @property
+    def current_specifiers_directory_path(self):
+        if self.is_in_score:
+            return os.path.join(self.current_score_path, 'mus', 'specifiers')
+        else:
+            return self.configuration.score_external_specifiers_directory_path
+
+    @property
     def current_specifiers_package_path(self):
         if self.is_in_score:
             return self.dot_join([
@@ -126,13 +133,6 @@ class Session(ScoreManagerObject):
                 self.configuration.score_internal_specifiers_package_path_infix])
         else:
             return self.configuration.score_external_specifiers_package_path
-
-    @property
-    def current_specifiers_directory_path(self):
-        if self.is_in_score:
-            return os.path.join(self.current_score_path, 'mus', 'specifiers')
-        else:
-            return self.configuration.score_external_specifiers_directory_path
 
     @property
     def explicit_command_history(self):
