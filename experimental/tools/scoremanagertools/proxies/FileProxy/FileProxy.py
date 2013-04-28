@@ -1,5 +1,5 @@
-from experimental.tools.scoremanagertools.proxies.AssetProxy import AssetProxy
 import os
+from experimental.tools.scoremanagertools.proxies.AssetProxy import AssetProxy
 
 
 class FileProxy(AssetProxy):
@@ -8,6 +8,11 @@ class FileProxy(AssetProxy):
 
     generic_class_name = 'file'
     temporary_asset_name = 'temporary_file.txt'
+
+    ### INITIALIZER ###
+
+    def __init__(self, file_path=None, session=None):
+        AssetProxy.__init__(self, asset_path=file_path, session=session)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

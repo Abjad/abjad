@@ -7,7 +7,7 @@ class ImportableAssetProxy(AssetProxy):
 
     def __init__(self, asset_path=None, session=None):
         directory_path = self.asset_path_to_directory_path(asset_path)
-        AssetProxy.__init__(self, path=directory_path, session=session)
+        AssetProxy.__init__(self, asset_path=directory_path, session=session)
 
     ### SPECIAL METHODS ###
 

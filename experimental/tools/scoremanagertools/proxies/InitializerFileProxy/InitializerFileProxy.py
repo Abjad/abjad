@@ -1,12 +1,14 @@
-from experimental.tools.scoremanagertools.proxies.ParsableFileProxy import ParsableFileProxy
 import collections
 import os
+from experimental.tools.scoremanagertools.proxies.ParsableFileProxy import ParsableFileProxy
 
 
 class InitializerFileProxy(ParsableFileProxy):
 
-    def __init__(self, path=None, session=None):
-        ParsableFileProxy.__init__(self, path=path, session=session)
+    ### INITIALIZER ###
+
+    def __init__(self, file_path=None, session=None):
+        ParsableFileProxy.__init__(self, file_path=file_path, session=session)
         self.safe_import_statements = []
         self.tag_lines = []
         self.parse()

@@ -7,7 +7,7 @@ def test_FileProxy_copy_interactively_01():
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     file_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path, 'temporary_file.txt')
-    file_proxy = scoremanagertools.proxies.FileProxy(path=file_path)
+    file_proxy = scoremanagertools.proxies.FileProxy(file_path=file_path)
     assert not os.path.exists(file_path)
 
     try:

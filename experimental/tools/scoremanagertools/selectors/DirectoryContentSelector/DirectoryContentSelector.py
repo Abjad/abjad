@@ -14,8 +14,8 @@ class DirectoryContentSelector(Selector):
     def list_items(self):
         from experimental.tools.scoremanagertools.proxies.DirectoryProxy import DirectoryProxy
         result = []
-        for path in self.asset_container_paths:
-            directory_proxy = DirectoryProxy(path=path, session=self.session)
+        for directory_path in self.asset_container_paths:
+            directory_proxy = DirectoryProxy(directory_path=directory_path, session=self.session)
             result.extend(directory_proxy.public_content_names)
             if hasattr(self, 'forbidden_directory_content_names'):
                 for forbidden_directory_content_name in self.forbidden_directory_content_names:

@@ -5,6 +5,11 @@ from experimental.tools.scoremanagertools.proxies.AssetProxy import AssetProxy
 
 class DirectoryProxy(AssetProxy):
 
+    ### INITIALIZER ###
+
+    def __init__(self, directory_path=None, session=None):
+        AssetProxy.__init__(self, asset_path=directory_path, session=session)
+
     ### SPECIAL METHODS ###
 
     def __eq__(self, other):

@@ -14,7 +14,7 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
         ScoreManagerObject.__init__(self, session=session)
         module_path = self.strip_py_extension(module_path)
         file_path = self.module_path_to_file_path(module_path)
-        ParsableFileProxy.__init__(self, path=file_path, session=self.session)
+        ParsableFileProxy.__init__(self, file_path=file_path, session=self.session)
         ImportableAssetProxy.__init__(self, asset_path=file_path, session=self.session)
 
     ### SPECIAL METHODS ###

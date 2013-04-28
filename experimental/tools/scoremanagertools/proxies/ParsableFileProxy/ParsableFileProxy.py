@@ -2,9 +2,11 @@ from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
 
 
 class ParsableFileProxy(FileProxy):
+    
+    ### INITIALIZER ###
 
-    def __init__(self, path=None, session=None):
-        FileProxy.__init__(self, path=path, session=session)
+    def __init__(self, file_path=None, session=None):
+        FileProxy.__init__(self, file_path=file_path, session=session)
         self.encoding_directives = []
         self.docstring_lines = []
         self.setup_statements = []

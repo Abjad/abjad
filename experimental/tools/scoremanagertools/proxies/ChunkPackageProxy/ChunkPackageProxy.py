@@ -4,6 +4,8 @@ from experimental.tools.scoremanagertools.proxies.PackageProxy import PackagePro
 
 class ChunkPackageProxy(PackageProxy):
 
+    ### INITIALIZER ###
+
     def __init__(self, package_path=None, score_template=None, session=None):
         PackageProxy.__init__(self, package_path=package_path, session=session)
         self.score_template = score_template

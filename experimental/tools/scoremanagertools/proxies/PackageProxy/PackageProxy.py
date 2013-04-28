@@ -15,11 +15,11 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
 
     def __init__(self, package_path=None, session=None):
 #        directory_path = self.package_path_to_directory_path(package_path)
-#        DirectoryProxy.__init__(self, path=directory_path, session=session)
+#        DirectoryProxy.__init__(self, directory_path=directory_path, session=session)
 #        ImportableAssetProxy.__init__(self, asset_path=package_path, session=self.session)
         ScoreManagerObject.__init__(self, session=session)
         directory_path = self.package_path_to_directory_path(package_path)
-        DirectoryProxy.__init__(self, path=directory_path, session=self.session)
+        DirectoryProxy.__init__(self, directory_path=directory_path, session=self.session)
         ImportableAssetProxy.__init__(self, asset_path=package_path, session=self.session)
 
     ### SPECIAL METHODS ###

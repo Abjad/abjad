@@ -100,5 +100,4 @@
 
 35. Audit for os.path.sep and replace with better os module functions.
 
-36. Audit for path=path and change to directory_path=directory_path.
-    Or change to file_path=path_path, as appropriate.
+36. Change 'def path' to 'def directory_path' or 'def file_path' and so on, as appropriate.

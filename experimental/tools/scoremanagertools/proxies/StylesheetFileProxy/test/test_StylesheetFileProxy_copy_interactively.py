@@ -8,7 +8,7 @@ def test_StylesheetFileProxy_copy_interactively_01():
     file_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path,
         'stylesheets', 'clean_letter_14.ly')
-    proxy = scoremanagertools.proxies.StylesheetFileProxy(path=file_path)
+    proxy = scoremanagertools.proxies.StylesheetFileProxy(file_path=file_path)
     assert proxy.exists
 
     try:

@@ -15,10 +15,10 @@ class AssetProxy(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, path=None, session=None):
-        assert isinstance(path, (str, type(None)))
+    def __init__(self, asset_path=None, session=None):
+        assert isinstance(asset_path, (str, type(None))), repr(asset_path)
         ScoreManagerObject.__init__(self, session=session)
-        self._path = path
+        self._path = asset_path
 
     ### SPECIAL METHODS ###
 
