@@ -7,17 +7,17 @@ def test_ScoreManagementObject_read_only_attributes_01():
     score_manager_object = scoremanagertools.core.ScoreManagerObject()
 
     path = os.path.join(
-        score_manager_object.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH,
+        score_manager_object.configuration.score_manager_tools_directory_path,
         'boilerplate')
-    assert score_manager_object.configuration.BOILERPLATE_DIRECTORY_PATH == path
+    assert score_manager_object.configuration.boilerplate_directory_path == path
 
     assert isinstance(score_manager_object.breadcrumb_stack, list)
     assert score_manager_object.help_item_width == 5
 
     path = os.path.join(
-        score_manager_object.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH,
+        score_manager_object.configuration.score_manager_tools_directory_path,
         'makers')
-    assert score_manager_object.configuration.MAKERS_DIRECTORY_PATH == path
+    assert score_manager_object.configuration.makers_directory_path == path
 
     assert score_manager_object.configuration.makers_package_path == 'scoremanagertools.makers'
     assert score_manager_object.configuration.score_manager_tools_package_path == \
@@ -27,7 +27,7 @@ def test_ScoreManagementObject_read_only_attributes_01():
     assert score_manager_object.configuration.score_external_chunks_package_path == 'sketches'
 
     path = os.path.join(
-        score_manager_object.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH,
+        score_manager_object.configuration.score_manager_tools_directory_path,
         'core', 'ScoreManagerObject', 'ScoreManagerObject.py')
     assert score_manager_object.source_file_name == path
 
@@ -36,9 +36,9 @@ def test_ScoreManagementObject_read_only_attributes_01():
 
 
     path = os.path.join(
-        score_manager_object.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH,
+        score_manager_object.configuration.score_manager_tools_directory_path,
         'stylesheets')
-    assert score_manager_object.configuration.STYLESHEETS_DIRECTORY_PATH == path
+    assert score_manager_object.configuration.stylesheets_directory_path == path
 
     assert score_manager_object.configuration.stylesheets_package_path == \
         'scoremanagertools.stylesheets'

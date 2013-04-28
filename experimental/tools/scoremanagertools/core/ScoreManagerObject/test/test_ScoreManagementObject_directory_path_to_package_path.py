@@ -3,17 +3,17 @@ from experimental import *
 
 score_manager_object = scoremanagertools.core.ScoreManagerObject()
 score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
-scores_directory_path = score_manager_configuration.SCORES_DIRECTORY_PATH
+scores_directory_path = score_manager_configuration.scores_directory_path
 
 
 def test_ScoreManagementObject_directory_path_to_package_path_01():
 
     assert score_manager_object.directory_path_to_package_path(
-        score_manager_configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH) == 'materials'
+        score_manager_configuration.score_manager_materials_directory_path) == 'materials'
     assert score_manager_object.directory_path_to_package_path(
-        score_manager_configuration.SCORE_MANAGER_SPECIFIERS_DIRECTORY_PATH) == 'specifiers'
+        score_manager_configuration.score_manager_specifiers_directory_path) == 'specifiers'
     assert score_manager_object.directory_path_to_package_path(
-        score_manager_configuration.SCORE_MANAGER_SKETCHES_DIRECTORY_PATH) == 'sketches'
+        score_manager_configuration.score_manager_sketches_directory_path) == 'sketches'
 
 
 def test_ScoreManagementObject_directory_path_to_package_path_02():

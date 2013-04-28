@@ -44,22 +44,22 @@ def test_ModuleProxy_public_attributes_02():
     assert proxy.exists
     assert proxy.file_lines
     assert proxy.generic_class_name == 'module'
-    assert proxy.grandparent_directory_path == proxy.configuration.SCORE_EXTERNAL_MATERIALS_DIRECTORY_PATH
+    assert proxy.grandparent_directory_path == proxy.configuration.score_external_materials_directory_path
     assert proxy.grandparent_package_path == proxy.configuration.score_external_materials_package_path
     assert proxy.human_readable_name == 'material definition'
     assert proxy.is_versioned
     assert proxy.module_path == module_path
     assert proxy.module_name == 'material_definition'
     assert proxy.parent_directory_path == os.path.join(
-        proxy.configuration.SCORE_EXTERNAL_MATERIALS_DIRECTORY_PATH, 'red_notes')
+        proxy.configuration.score_external_materials_directory_path, 'red_notes')
     assert proxy.parent_directory_path == os.path.join(
-        proxy.configuration.SCORE_EXTERNAL_MATERIALS_DIRECTORY_PATH, 'red_notes')
+        proxy.configuration.score_external_materials_directory_path, 'red_notes')
     assert proxy.parent_package_path == '.'.join([
         proxy.configuration.score_external_materials_package_path, 'red_notes'])
     assert proxy.parent_package_initializer_file_name == os.path.join(
-        proxy.configuration.SCORE_EXTERNAL_MATERIALS_DIRECTORY_PATH, 'red_notes', '__init__.py')
+        proxy.configuration.score_external_materials_directory_path, 'red_notes', '__init__.py')
     assert proxy.path == os.path.join(
-        proxy.configuration.SCORE_EXTERNAL_MATERIALS_DIRECTORY_PATH, 'red_notes', 'material_definition.py')
+        proxy.configuration.score_external_materials_directory_path, 'red_notes', 'material_definition.py')
     assert proxy.plural_generic_class_name == 'modules'
     assert proxy.name == 'material_definition.py'
     assert proxy.name_without_extension == 'material_definition'

@@ -19,7 +19,7 @@ def make_illustration_from_output_material(output_material, **kwargs):
     illustration = lilypondfiletools.make_basic_lilypond_file(score)
 
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
-    path = score_manager_configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH
+    path = score_manager_configuration.score_manager_tools_directory_path
     stylesheet = os.path.join(path, 'stylesheets', 'rhythm_letter_16.ly')
     illustration.file_initial_user_includes.append(stylesheet)
     scoretools.add_double_bar_to_end_of_score(score)

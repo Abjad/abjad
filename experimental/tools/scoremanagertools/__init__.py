@@ -48,10 +48,10 @@ This tells your shell where the start-score-manager script is housed:
 
 3. Create a scores directory.
 You can do this anywhere on your filesystem you wish.
-Then create a SCORES environment variable in your profile.
-Set the SCORES environment variable to your scores directory:
+Then create a scores environment variable in your profile.
+Set the scores environment variable to your scores directory:
 
-    export SCORES=$DOCUMENTS/scores
+    export scores=$DOCUMENTS/scores
 
     
 4. Start and stop the score manager.

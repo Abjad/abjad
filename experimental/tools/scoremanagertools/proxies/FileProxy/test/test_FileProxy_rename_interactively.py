@@ -8,7 +8,7 @@ def test_FileProxy_rename_interactively_01():
 
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     path = os.path.join(
-        score_manager_configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'test_file.txt')
+        score_manager_configuration.score_manager_tools_directory_path, 'test_file.txt')
     file_proxy = scoremanagertools.proxies.FileProxy(path=path)
     assert not os.path.exists(path)
 
@@ -17,7 +17,7 @@ def test_FileProxy_rename_interactively_01():
         assert os.path.exists(path)
         assert not file_proxy.is_versioned
         new_path = os.path.join(
-            score_manager_configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'new_test_file.txt')
+            score_manager_configuration.score_manager_tools_directory_path, 'new_test_file.txt')
         file_proxy.rename_interactively(user_input='new_test_file.txt y q')
         assert file_proxy.path == new_path
         assert not os.path.exists(path)
@@ -34,7 +34,7 @@ def test_FileProxy_rename_interactively_02():
 
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     path = os.path.join(
-        score_manager_configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'test_file.txt')
+        score_manager_configuration.score_manager_tools_directory_path, 'test_file.txt')
     file_proxy = scoremanagertools.proxies.FileProxy(path=path)
     assert not os.path.exists(path)
 
@@ -44,7 +44,7 @@ def test_FileProxy_rename_interactively_02():
         file_proxy.svn_add()
         assert file_proxy.is_versioned
         new_path = os.path.join(
-            score_manager_configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'new_test_file.txt')
+            score_manager_configuration.score_manager_tools_directory_path, 'new_test_file.txt')
         file_proxy.rename_interactively(user_input='new_test_file.txt y q')
         assert file_proxy.path == new_path
         assert os.path.exists(new_path)

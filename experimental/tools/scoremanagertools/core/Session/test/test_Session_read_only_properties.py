@@ -16,21 +16,21 @@ def test_Session_read_only_properties_01():
     assert isinstance(session.complete_transcript, scoremanagertools.core.Transcript)
 
     assert session.current_chunks_package_path == \
-        os.path.basename(session.configuration.SCORE_MANAGER_SKETCHES_DIRECTORY_PATH)
+        os.path.basename(session.configuration.score_manager_sketches_directory_path)
     assert session.current_chunks_directory_path == \
-        session.configuration.SCORE_MANAGER_SKETCHES_DIRECTORY_PATH
+        session.configuration.score_manager_sketches_directory_path
 
     assert session.current_materials_package_path == \
-        os.path.basename(session.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH)
-    assert session.current_materials_directory_path == session.configuration.SCORE_MANAGER_MATERIALS_DIRECTORY_PATH
+        os.path.basename(session.configuration.score_manager_materials_directory_path)
+    assert session.current_materials_directory_path == session.configuration.score_manager_materials_directory_path
 
     assert session.current_score_package_proxy is None
     assert session.current_score_path is None
 
     assert session.current_specifiers_package_path == \
-        os.path.basename(session.configuration.SCORE_MANAGER_SPECIFIERS_DIRECTORY_PATH)
+        os.path.basename(session.configuration.score_manager_specifiers_directory_path)
     assert session.current_specifiers_directory_path == \
-        session.configuration.SCORE_MANAGER_SPECIFIERS_DIRECTORY_PATH
+        session.configuration.score_manager_specifiers_directory_path
         
     assert session.explicit_command_history == []
     assert not session.is_complete
@@ -55,7 +55,7 @@ def test_Session_read_only_properties_02():
     session.current_score_package_name = 'foo'
 
     assert session.current_chunks_package_path == 'foo.mus.chunks'
-    scores_directory_path = session.configuration.SCORES_DIRECTORY_PATH
+    scores_directory_path = session.configuration.scores_directory_path
     assert session.current_chunks_directory_path == \
         os.path.join(scores_directory_path, 'foo', 'mus', 'chunks')
 

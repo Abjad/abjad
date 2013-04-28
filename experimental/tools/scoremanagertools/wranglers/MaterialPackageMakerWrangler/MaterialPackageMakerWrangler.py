@@ -15,13 +15,13 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 #            score_internal_asset_container_package_path_infix=None,
 #            session=session,
 #            user_asset_container_package_paths=[self.configuration.user_makers_package_path],
-#            user_asset_container_paths=[self.configuration.USER_MAKERS_DIRECTORY_PATH])
+#            user_asset_container_paths=[self.configuration.user_makers_directory_path])
         PackageWrangler.__init__(self, session=session)
         self._score_external_asset_container_package_paths = [
             self.configuration.makers_package_path]
         self._score_internal_asset_container_package_path_infix = None
         self._user_asset_container_package_paths = [self.configuration.user_makers_package_path]
-        self._user_asset_container_paths = [self.configuration.USER_MAKERS_DIRECTORY_PATH]
+        self._user_asset_container_paths = [self.configuration.user_makers_directory_path]
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

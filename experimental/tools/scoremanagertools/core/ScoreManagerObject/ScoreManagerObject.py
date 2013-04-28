@@ -275,7 +275,7 @@ class ScoreManagerObject(AbjadObject):
 
     def list_score_package_names(self, head=None):
         result = []
-        for name in os.listdir(self.configuration.SCORES_DIRECTORY_PATH):
+        for name in os.listdir(self.configuration.scores_directory_path):
             if name[0].isalpha():
                 if head and name == head:
                     return [name]
@@ -313,25 +313,25 @@ class ScoreManagerObject(AbjadObject):
         package_path_parts = package_path.split('.')
         if package_path_parts[0] == \
             self.configuration.score_manager_tools_package_path:
-            directory_parts = [self.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH] + \
+            directory_parts = [self.configuration.score_manager_tools_directory_path] + \
                 package_path_parts[1:]
         elif package_path_parts[0] == \
             self.configuration.score_external_materials_package_path:
             directory_parts = \
-                [self.configuration.SCORE_EXTERNAL_MATERIALS_DIRECTORY_PATH] + \
+                [self.configuration.score_external_materials_directory_path] + \
                 package_path_parts[1:]
         elif package_path_parts[0] == \
             self.configuration.score_external_chunks_package_path:
             directory_parts = \
-                [self.configuration.SCORE_EXTERNAL_CHUNKS_DIRECTORY_PATH] + \
+                [self.configuration.score_external_chunks_directory_path] + \
                 package_path_parts[1:]
         elif package_path_parts[0] == \
             self.configuration.score_external_specifiers_package_path:
             directory_parts = \
-                [self.configuration.SCORE_EXTERNAL_SPECIFIERS_DIRECTORY_PATH] + \
+                [self.configuration.score_external_specifiers_directory_path] + \
                 package_path_parts[1:]
         else:
-            directory_parts = [self.configuration.SCORES_DIRECTORY_PATH] + package_path_parts[:]
+            directory_parts = [self.configuration.scores_directory_path] + package_path_parts[:]
         directory = os.path.join(*directory_parts)
         return directory
 
@@ -347,16 +347,16 @@ class ScoreManagerObject(AbjadObject):
         path = path.rstrip(os.path.sep)
         if path.endswith('.py'):
             path = path[:-3]
-        if path.startswith(self.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH):
-            prefix_length = len(os.path.dirname(self.configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH)) + 1
-        elif path.startswith(self.configuration.SCORE_EXTERNAL_MATERIALS_DIRECTORY_PATH):
-            prefix_length = len(os.path.dirname(self.configuration.SCORE_EXTERNAL_MATERIALS_DIRECTORY_PATH)) + 1
-        elif path.startswith(self.configuration.SCORE_EXTERNAL_CHUNKS_DIRECTORY_PATH):
-            prefix_length = len(os.path.dirname(self.configuration.SCORE_EXTERNAL_CHUNKS_DIRECTORY_PATH)) + 1
-        elif path.startswith(self.configuration.SCORE_EXTERNAL_SPECIFIERS_DIRECTORY_PATH):
-            prefix_length = len(os.path.dirname(self.configuration.SCORE_EXTERNAL_SPECIFIERS_DIRECTORY_PATH)) + 1
-        elif path.startswith(self.configuration.SCORES_DIRECTORY_PATH):
-            prefix_length = len(self.configuration.SCORES_DIRECTORY_PATH) + 1
+        if path.startswith(self.configuration.score_manager_tools_directory_path):
+            prefix_length = len(os.path.dirname(self.configuration.score_manager_tools_directory_path)) + 1
+        elif path.startswith(self.configuration.score_external_materials_directory_path):
+            prefix_length = len(os.path.dirname(self.configuration.score_external_materials_directory_path)) + 1
+        elif path.startswith(self.configuration.score_external_chunks_directory_path):
+            prefix_length = len(os.path.dirname(self.configuration.score_external_chunks_directory_path)) + 1
+        elif path.startswith(self.configuration.score_external_specifiers_directory_path):
+            prefix_length = len(os.path.dirname(self.configuration.score_external_specifiers_directory_path)) + 1
+        elif path.startswith(self.configuration.scores_directory_path):
+            prefix_length = len(self.configuration.scores_directory_path) + 1
         else:
             return
         package_path = path[prefix_length:]

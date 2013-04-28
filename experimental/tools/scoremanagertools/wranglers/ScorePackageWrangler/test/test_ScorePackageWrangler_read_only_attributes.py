@@ -17,7 +17,7 @@ def test_ScorePackageWrangler_read_only_attributes_02():
     '''
 
     assert 'example_score_1' in wrangler.list_asset_container_package_paths()
-    path = os.path.join(wrangler.configuration.SCORES_DIRECTORY_PATH, 'example_score_1')
+    path = os.path.join(wrangler.configuration.scores_directory_path, 'example_score_1')
     assert path in wrangler.list_asset_container_paths()
 
 
@@ -26,7 +26,7 @@ def test_ScorePackageWrangler_read_only_attributes_03():
     '''
 
     assert wrangler.current_asset_container_package_path is None
-    assert wrangler.current_asset_container_path == wrangler.configuration.SCORES_DIRECTORY_PATH
+    assert wrangler.current_asset_container_path == wrangler.configuration.scores_directory_path
 
 
 def test_ScorePackageWrangler_read_only_attributes_04():

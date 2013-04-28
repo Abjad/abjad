@@ -132,7 +132,7 @@ class Session(ScoreManagerObject):
         if self.is_in_score:
             return os.path.join(self.current_score_path, 'mus', 'specifiers')
         else:
-            return self.configuration.SCORE_EXTERNAL_SPECIFIERS_DIRECTORY_PATH
+            return self.configuration.score_external_specifiers_directory_path
 
     @property
     def explicit_command_history(self):
@@ -177,7 +177,7 @@ class Session(ScoreManagerObject):
     # TODO: rename to self.score_manager_transcripts_directory_path
     @property
     def output_directory(self):
-        return self.configuration.SCORE_MANAGER_TRANSCRIPTS_DIRECTORY_PATH
+        return self.configuration.score_manager_transcripts_directory_path
 
     @property
     def scores_to_show(self):

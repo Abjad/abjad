@@ -6,7 +6,7 @@ def test_FileProxy_copy_01():
 
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     path = os.path.join(
-        score_manager_configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'temporary_file.txt')
+        score_manager_configuration.score_manager_tools_directory_path, 'temporary_file.txt')
     file_proxy = scoremanagertools.proxies.FileProxy(path=path)
     assert not os.path.exists(path)
 
@@ -14,7 +14,7 @@ def test_FileProxy_copy_01():
         file_proxy.conditionally_make_empty_asset()
         assert os.path.exists(path)
         new_path = os.path.join(
-            score_manager_configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH, 'new_temporary_file.txt')
+            score_manager_configuration.score_manager_tools_directory_path, 'new_temporary_file.txt')
         file_proxy.copy(new_path)
         assert os.path.exists(path)
         assert os.path.exists(new_path)

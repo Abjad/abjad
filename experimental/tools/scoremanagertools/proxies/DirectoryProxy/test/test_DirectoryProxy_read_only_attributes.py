@@ -7,7 +7,7 @@ def test_DirectoryProxy_read_only_attributes_01():
     '''
 
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
-    path = score_manager_configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH
+    path = score_manager_configuration.score_manager_tools_directory_path
     directory_proxy = scoremanagertools.proxies.DirectoryProxy(path)
     assert directory_proxy.path is not None
     # TODO: uncomment
@@ -17,11 +17,11 @@ def test_DirectoryProxy_read_only_attributes_01():
 def test_DirectoryProxy_read_only_attributes_02():
 
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
-    path = score_manager_configuration.SCORE_MANAGER_TOOLS_DIRECTORY_PATH
+    path = score_manager_configuration.score_manager_tools_directory_path
     directory_proxy_1 = scoremanagertools.proxies.DirectoryProxy(path)
     directory_proxy_2 = scoremanagertools.proxies.DirectoryProxy(path)
     directory_proxy_3 = scoremanagertools.proxies.DirectoryProxy(
-        score_manager_configuration.abjad_configuration.ABJAD_DIRECTORY_PATH)
+        score_manager_configuration.abjad_configuration.abjad_directory_path)
 
     assert     directory_proxy_1 == directory_proxy_2
     assert not directory_proxy_1 == directory_proxy_3
