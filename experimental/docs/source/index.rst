@@ -642,12 +642,12 @@ Unstable packages (load manually)
       tools/scoremanagertools/wizards/PitchClassTransformCreationWizard/PitchClassTransformCreationWizard
       tools/scoremanagertools/wizards/ReservoirStartHelperCreationWizard/ReservoirStartHelperCreationWizard
       tools/scoremanagertools/wizards/RhythmMakerCreationWizard/RhythmMakerCreationWizard
-      tools/scoremanagertools/wranglers/ChunkPackageWrangler/ChunkPackageWrangler
       tools/scoremanagertools/wranglers/MaterialPackageMakerWrangler/MaterialPackageMakerWrangler
       tools/scoremanagertools/wranglers/MaterialPackageWrangler/MaterialPackageWrangler
       tools/scoremanagertools/wranglers/MusicSpecifierModuleWrangler/MusicSpecifierModuleWrangler
       tools/scoremanagertools/wranglers/PackageWrangler/PackageWrangler
       tools/scoremanagertools/wranglers/ScorePackageWrangler/ScorePackageWrangler
+      tools/scoremanagertools/wranglers/SegmentPackageWrangler/SegmentPackageWrangler
       tools/scoremanagertools/wranglers/StylesheetFileWrangler/StylesheetFileWrangler
 
    --------
@@ -848,12 +848,12 @@ Unstable packages (load manually)
       tools/scoremanagertools/wizards/PitchClassTransformCreationWizard/PitchClassTransformCreationWizard
       tools/scoremanagertools/wizards/ReservoirStartHelperCreationWizard/ReservoirStartHelperCreationWizard
       tools/scoremanagertools/wizards/RhythmMakerCreationWizard/RhythmMakerCreationWizard
-      tools/scoremanagertools/wranglers/ChunkPackageWrangler/ChunkPackageWrangler
       tools/scoremanagertools/wranglers/MaterialPackageMakerWrangler/MaterialPackageMakerWrangler
       tools/scoremanagertools/wranglers/MaterialPackageWrangler/MaterialPackageWrangler
       tools/scoremanagertools/wranglers/MusicSpecifierModuleWrangler/MusicSpecifierModuleWrangler
       tools/scoremanagertools/wranglers/PackageWrangler/PackageWrangler
       tools/scoremanagertools/wranglers/ScorePackageWrangler/ScorePackageWrangler
+      tools/scoremanagertools/wranglers/SegmentPackageWrangler/SegmentPackageWrangler
       tools/scoremanagertools/wranglers/StylesheetFileWrangler/StylesheetFileWrangler
 
    Functions

@@ -17,7 +17,7 @@ class ScorePackageProxy(PackageProxy):
             score_package_name=score_package_name, session=self.session)
         self._mus_proxy = scoremanagertools.proxies.MusPackageProxy(
             score_package_name=score_package_name, session=self.session)
-        self._chunk_wrangler = scoremanagertools.wranglers.ChunkPackageWrangler(
+        self._chunk_wrangler = scoremanagertools.wranglers.SegmentPackageWrangler(
             session=self.session)
         self._material_package_wrangler = scoremanagertools.wranglers.MaterialPackageWrangler(
             session=self.session)

@@ -1,7 +1,7 @@
 from experimental import *
 
 
-def test_ChunkPackageWrangler_read_only_attributes_01():
+def test_SegmentPackageWrangler_read_only_attributes_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     wrangler = score_manager.chunk_package_wrangler
@@ -20,7 +20,7 @@ def test_ChunkPackageWrangler_read_only_attributes_01():
     assert 'example_score_1.mus.chunks' in wrangler.list_asset_container_package_paths()
 
 
-def test_ChunkPackageWrangler_read_only_attributes_02():
+def test_SegmentPackageWrangler_read_only_attributes_02():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     wrangler = score_manager.chunk_package_wrangler

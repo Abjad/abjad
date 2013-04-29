@@ -3,7 +3,7 @@ from experimental.tools.scoremanagertools.proxies.SegmentPackageProxy import Seg
 from experimental.tools.scoremanagertools.wranglers.PackageWrangler import PackageWrangler
 
 
-class ChunkPackageWrangler(PackageWrangler):
+class SegmentPackageWrangler(PackageWrangler):
 
     ### INITIALIZER ###
 

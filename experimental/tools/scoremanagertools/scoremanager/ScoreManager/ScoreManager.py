@@ -4,7 +4,7 @@ import subprocess
 from abjad.tools import iotools
 from abjad.tools import mathtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
-from experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler import ChunkPackageWrangler
+from experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler import SegmentPackageWrangler
 from experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler import MaterialPackageMakerWrangler
 from experimental.tools.scoremanagertools.wranglers.MaterialPackageWrangler import MaterialPackageWrangler
 from experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler import MusicSpecifierModuleWrangler
@@ -18,7 +18,7 @@ class ScoreManager(ScoreManagerObject):
 
     def __init__(self, session=None):
         ScoreManagerObject.__init__(self, session=session)
-        self._chunk_package_wrangler = ChunkPackageWrangler(session=self.session)
+        self._chunk_package_wrangler = SegmentPackageWrangler(session=self.session)
         self._material_package_maker_wrangler = MaterialPackageMakerWrangler(session=self.session)
         self._material_package_wrangler = MaterialPackageWrangler(session=self.session)
         self._music_specifier_module_wrangler = MusicSpecifierModuleWrangler(session=self.session)
