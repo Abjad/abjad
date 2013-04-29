@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.chunk_package_wrangler
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.material_package_maker_wrangler
    :noindex:
 
@@ -28,6 +25,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.score_status_string
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.segment_package_wrangler
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.session

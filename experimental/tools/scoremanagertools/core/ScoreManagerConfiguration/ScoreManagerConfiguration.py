@@ -88,7 +88,7 @@ class ScoreManagerConfiguration(Configuration):
         return options
 
     @property
-    def _score_internal_chunks_package_path_infix(self):
+    def _score_internal_segments_package_path_infix(self):
         return 'mus.chunks'
 
     @property
@@ -250,12 +250,12 @@ class ScoreManagerConfiguration(Configuration):
         return self.dot_join([self.score_manager_tools_package_name, 'makers'])
 
     @property
-    def score_external_chunks_directory_path(self):
+    def score_external_segments_directory_path(self):
         '''Score-external chunks directory path:
 
         ::
 
-            >>> configuration.score_external_chunks_directory_path # doctest: +SKIP
+            >>> configuration.score_external_segments_directory_path # doctest: +SKIP
             '~/.score_manager/sketches'
 
         Return string.
@@ -263,12 +263,12 @@ class ScoreManagerConfiguration(Configuration):
         return self._settings['score_manager_sketches_directory_path']
 
     @property
-    def score_external_chunks_package_path(self):
+    def score_external_segments_package_path(self):
         '''Score-external chunks package path:
 
         ::
 
-            >>> configuration.score_external_chunks_package_path
+            >>> configuration.score_external_segments_package_path
             'sketches'
 
         Return string.
@@ -316,7 +316,7 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return (
-            self.score_external_chunks_package_path,
+            self.score_external_segments_package_path,
             self.score_external_materials_package_path,
             self.score_external_specifiers_package_path,
             )

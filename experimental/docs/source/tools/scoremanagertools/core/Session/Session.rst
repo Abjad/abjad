@@ -27,12 +27,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.complete_transcript
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_chunks_directory_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_chunks_package_path
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_materials_directory_path
    :noindex:
 
@@ -43,6 +37,12 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_score_path
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_segments_directory_path
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_segments_package_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_specifiers_directory_path

@@ -15,9 +15,9 @@ def test_Session_read_only_properties_01():
     assert session.command_history_string == ''
     assert isinstance(session.complete_transcript, scoremanagertools.core.Transcript)
 
-    assert session.current_chunks_package_path == \
+    assert session.current_segments_package_path == \
         os.path.basename(session.configuration.score_manager_sketches_directory_path)
-    assert session.current_chunks_directory_path == \
+    assert session.current_segments_directory_path == \
         session.configuration.score_manager_sketches_directory_path
 
     assert session.current_materials_package_path == \
@@ -54,9 +54,9 @@ def test_Session_read_only_properties_02():
     session = scoremanagertools.core.Session()
     session.current_score_package_name = 'foo'
 
-    assert session.current_chunks_package_path == 'foo.mus.chunks'
+    assert session.current_segments_package_path == 'foo.mus.chunks'
     scores_directory_path = session.configuration.scores_directory_path
-    assert session.current_chunks_directory_path == \
+    assert session.current_segments_directory_path == \
         os.path.join(scores_directory_path, 'foo', 'mus', 'chunks')
 
     assert session.current_materials_package_path == 'foo.mus.materials'

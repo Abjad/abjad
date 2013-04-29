@@ -78,18 +78,18 @@ class Session(ScoreManagerObject):
         return self._complete_transcript
 
     @property
-    def current_chunks_directory_path(self):
+    def current_segments_directory_path(self):
         return self.package_path_to_directory_path(
-            self.current_chunks_package_path)
+            self.current_segments_package_path)
 
     @property
-    def current_chunks_package_path(self):
+    def current_segments_package_path(self):
         if self.is_in_score:
             return self.dot_join([
                 self.current_score_package_name,
-                self.configuration._score_internal_chunks_package_path_infix])
+                self.configuration._score_internal_segments_package_path_infix])
         else:
-            return self.configuration.score_external_chunks_package_path
+            return self.configuration.score_external_segments_package_path
 
     @property
     def current_materials_directory_path(self):

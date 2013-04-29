@@ -17,7 +17,7 @@ class ScorePackageProxy(PackageProxy):
             score_package_name=score_package_name, session=self.session)
         self._mus_proxy = scoremanagertools.proxies.MusPackageProxy(
             score_package_name=score_package_name, session=self.session)
-        self._chunk_wrangler = scoremanagertools.wranglers.SegmentPackageWrangler(
+        self._segment_wrangler = scoremanagertools.wranglers.SegmentPackageWrangler(
             session=self.session)
         self._material_package_wrangler = scoremanagertools.wranglers.MaterialPackageWrangler(
             session=self.session)
@@ -46,19 +46,19 @@ class ScorePackageProxy(PackageProxy):
         return self.annotated_title
 
     @property
-    def chunk_wrangler(self):
-        return self._chunk_wrangler
+    def segment_wrangler(self):
+        return self._segment_wrangler
 
     @property
-    def chunks_directory_path(self):
+    def segments_directory_path(self):
         return os.path.join(self.directory_path, 'mus', 'chunks')
 
     @property
-    def chunks_package_initializer_file_name(self):
-        return os.path.join(self.chunks_directory_path, '__init__.py')
+    def segments_package_initializer_file_name(self):
+        return os.path.join(self.segments_directory_path, '__init__.py')
 
     @property
-    def chunks_package_path(self):
+    def segments_package_path(self):
         return self.dot_join([self.package_path, 'mus', 'chunks'])
 
     @property
@@ -135,7 +135,7 @@ class ScorePackageProxy(PackageProxy):
     @property
     def score_package_wranglers(self):
         return (
-            self.chunk_wrangler,
+            self.segment_wrangler,
             self.material_package_wrangler,
             )
 
@@ -306,21 +306,21 @@ class ScorePackageProxy(PackageProxy):
         if not os.path.exists(self.materials_package_initializer_file_name):
             result = False
             file(self.materials_package_initializer_file_name, 'w').write('')
-        if not os.path.exists(self.chunks_directory_path):
+        if not os.path.exists(self.segments_directory_path):
             result = False
-            prompt = 'create {}'.format(self.chunks_directory_path)
+            prompt = 'create {}'.format(self.segments_directory_path)
             if not is_interactive or self.confirm(prompt):
-                os.mkdir(self.chunks_directory_path)
-        if not os.path.exists(self.chunks_package_initializer_file_name):
+                os.mkdir(self.segments_directory_path)
+        if not os.path.exists(self.segments_package_initializer_file_name):
             result = False
-            file(self.chunks_package_initializer_file_name, 'w').write('')
+            file(self.segments_package_initializer_file_name, 'w').write('')
         self.proceed('packaged structure fixed.', is_interactive=is_interactive)
         return result
 
     def handle_main_menu_result(self, result):
         assert isinstance(result, str)
         if result == 'h':
-            self.chunk_wrangler.run(head=self.name)
+            self.segment_wrangler.run(head=self.name)
         elif  result == 'm':
             self.material_package_wrangler.run(head=self.name)
         elif result == 'f':
@@ -472,7 +472,7 @@ class ScorePackageProxy(PackageProxy):
             self.session.is_backtracking_locally = True
 
     def summarize_chunks(self):
-        chunks = self.chunk_wrangler.list_visible_asset_names()
+        chunks = self.segment_wrangler.list_visible_asset_names()
         lines = []
         if not chunks:
             lines.append('{}Chunks (none yet)'.format(self.make_tab(1)))

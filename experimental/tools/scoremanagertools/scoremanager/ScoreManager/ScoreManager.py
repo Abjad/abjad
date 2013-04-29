@@ -18,7 +18,7 @@ class ScoreManager(ScoreManagerObject):
 
     def __init__(self, session=None):
         ScoreManagerObject.__init__(self, session=session)
-        self._chunk_package_wrangler = SegmentPackageWrangler(session=self.session)
+        self._segment_package_wrangler = SegmentPackageWrangler(session=self.session)
         self._material_package_maker_wrangler = MaterialPackageMakerWrangler(session=self.session)
         self._material_package_wrangler = MaterialPackageWrangler(session=self.session)
         self._music_specifier_module_wrangler = MusicSpecifierModuleWrangler(session=self.session)
@@ -32,8 +32,8 @@ class ScoreManager(ScoreManagerObject):
         return 'scores'
 
     @property
-    def chunk_package_wrangler(self):
-        return self._chunk_package_wrangler
+    def segment_package_wrangler(self):
+        return self._segment_package_wrangler
 
     @property
     def material_package_maker_wrangler(self):

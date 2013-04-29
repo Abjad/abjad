@@ -150,8 +150,8 @@ class ScoreManagerObject(AbjadObject):
         elif directory_path.startswith(self.configuration.score_external_materials_directory_path):
             prefix_length = \
                 len(os.path.dirname(self.configuration.score_external_materials_directory_path)) + 1
-        elif directory_path.startswith(self.configuration.score_external_chunks_directory_path):
-            prefix_length = len(os.path.dirname(self.configuration.score_external_chunks_directory_path)) + 1
+        elif directory_path.startswith(self.configuration.score_external_segments_directory_path):
+            prefix_length = len(os.path.dirname(self.configuration.score_external_segments_directory_path)) + 1
         elif directory_path.startswith(self.configuration.score_external_specifiers_directory_path):
             prefix_length = \
                 len(os.path.dirname(self.configuration.score_external_specifiers_directory_path)) + 1
@@ -343,9 +343,9 @@ class ScoreManagerObject(AbjadObject):
                 [self.configuration.score_external_materials_directory_path] + \
                 package_path_parts[1:]
         elif package_path_parts[0] == \
-            self.configuration.score_external_chunks_package_path:
+            self.configuration.score_external_segments_package_path:
             directory_parts = \
-                [self.configuration.score_external_chunks_directory_path] + \
+                [self.configuration.score_external_segments_directory_path] + \
                 package_path_parts[1:]
         elif package_path_parts[0] == \
             self.configuration.score_external_specifiers_package_path:

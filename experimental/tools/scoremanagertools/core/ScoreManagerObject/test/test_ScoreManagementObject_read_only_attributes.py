@@ -23,7 +23,7 @@ def test_ScoreManagementObject_read_only_attributes_01():
         'scoremanagertools'
 
     assert isinstance(score_manager_object.session, scoremanagertools.core.Session)
-    assert score_manager_object.configuration.score_external_chunks_package_path == 'sketches'
+    assert score_manager_object.configuration.score_external_segments_package_path == 'sketches'
 
     assert score_manager_object._spaced_class_name == 'score manager object'
     assert score_manager_object.configuration.score_external_materials_package_path == 'materials'

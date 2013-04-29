@@ -18,18 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.chunk_wrangler
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.chunks_directory_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.chunks_package_initializer_file_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.chunks_package_path
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.composer
    :noindex:
 
@@ -151,6 +139,18 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.score_package_wranglers
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.segment_wrangler
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.segments_directory_path
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.segments_package_initializer_file_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.segments_package_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.session

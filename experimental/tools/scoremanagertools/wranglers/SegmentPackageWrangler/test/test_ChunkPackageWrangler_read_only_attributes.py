@@ -4,7 +4,7 @@ from experimental import *
 def test_SegmentPackageWrangler_read_only_attributes_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    wrangler = score_manager.chunk_package_wrangler
+    wrangler = score_manager.segment_package_wrangler
     assert not wrangler.session.is_in_score
 
     assert wrangler.breadcrumb == 'sketches'
@@ -23,7 +23,7 @@ def test_SegmentPackageWrangler_read_only_attributes_01():
 def test_SegmentPackageWrangler_read_only_attributes_02():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    wrangler = score_manager.chunk_package_wrangler
+    wrangler = score_manager.segment_package_wrangler
     wrangler.session.current_score_package_name = 'example_score_1'
     assert wrangler.session.is_in_score
 
