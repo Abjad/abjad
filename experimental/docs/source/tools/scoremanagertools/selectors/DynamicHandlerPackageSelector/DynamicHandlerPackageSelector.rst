@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.transcript
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.transcript_signature
    :noindex:
 

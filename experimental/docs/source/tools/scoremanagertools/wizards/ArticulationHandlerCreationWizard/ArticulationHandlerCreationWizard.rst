@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.transcript
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.transcript_signature
    :noindex:
 

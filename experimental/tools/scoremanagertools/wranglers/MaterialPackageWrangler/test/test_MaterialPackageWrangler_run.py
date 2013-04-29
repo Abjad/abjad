@@ -29,4 +29,4 @@ def test_MaterialPackageWrangler_run_02():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='m q')
-    assert score_manager.transcript[-2][0] == 'Scores - materials'
+    assert score_manager.session.transcript[-2][0] == 'Scores - materials'

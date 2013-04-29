@@ -60,9 +60,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.temporary_asset_proxy
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.transcript
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.transcript_signature
    :noindex:
 

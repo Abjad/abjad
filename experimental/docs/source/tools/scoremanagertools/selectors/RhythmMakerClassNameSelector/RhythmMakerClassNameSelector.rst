@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.transcript
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.transcript_signature
    :noindex:
 

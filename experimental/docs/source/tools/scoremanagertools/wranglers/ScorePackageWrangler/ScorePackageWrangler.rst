@@ -66,9 +66,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.temporary_asset_proxy
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.transcript
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.transcript_signature
    :noindex:
 

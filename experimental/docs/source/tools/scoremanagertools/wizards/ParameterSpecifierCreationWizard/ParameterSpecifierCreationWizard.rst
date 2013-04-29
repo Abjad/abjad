@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.transcript
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.transcript_signature
    :noindex:
 

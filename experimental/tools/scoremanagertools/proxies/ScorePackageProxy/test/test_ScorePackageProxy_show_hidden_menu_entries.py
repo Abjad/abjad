@@ -6,7 +6,7 @@ def test_ScorePackageProxy_show_hidden_menu_entries_01():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i hidden q')
 
-    assert score_manager.transcript[-2] == \
+    assert score_manager.session.transcript[-2] == \
      ['     back (b)',
       '     exec statement (exec)',
       '     grep directories (grep)',

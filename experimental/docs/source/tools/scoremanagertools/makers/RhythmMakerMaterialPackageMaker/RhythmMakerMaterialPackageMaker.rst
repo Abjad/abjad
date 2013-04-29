@@ -291,9 +291,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.tags_file_proxy
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.transcript
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.transcript_signature
    :noindex:
 

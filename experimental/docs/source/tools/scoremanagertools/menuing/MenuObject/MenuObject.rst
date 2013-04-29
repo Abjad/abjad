@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.transcript
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.transcript_signature
    :noindex:
 

@@ -60,9 +60,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.target_summary_lines
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.transcript
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.transcript_signature
    :noindex:
 

@@ -30,7 +30,7 @@ def test_MaterialPackageProxy_run_02():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='m sargasso q')
-    assert score_manager.transcript[-2][0] == 'Scores - materials - sargasso multipliers'
+    assert score_manager.session.transcript[-2][0] == 'Scores - materials - sargasso multipliers'
 
 
 def test_MaterialPackageProxy_run_03():
@@ -62,4 +62,4 @@ def test_MaterialPackageProxy_run_04():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='all example_score_1 m time_signatures q')
-    assert score_manager.transcript[-2][0] == 'Example Score I - materials - time signatures'
+    assert score_manager.session.transcript[-2][0] == 'Example Score I - materials - time signatures'

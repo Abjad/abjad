@@ -12,7 +12,7 @@ def test_Menu_run_01():
     result = section_1.extend(['apple', 'banana', 'cherry'])
 
     result = menu.run(user_input='foo')
-    assert menu.transcript[-2] == \
+    assert menu.session.transcript[-2] == \
     ['Location',
       '',
       '     Section',
@@ -81,7 +81,7 @@ def test_Menu_run_02():
     section_1.extend(['apple', 'banana', 'cherry'])
     result = menu.run(user_input='foo')
 
-    assert menu.transcript[-2] == \
+    assert menu.session.transcript[-2] == \
     ['Location',
       '',
       '     Section',
@@ -123,7 +123,7 @@ def test_Menu_run_03():
     section_1.extend(['apple', 'banana', 'cherry'])
     result = menu.run(user_input='foo')
 
-    assert menu.transcript[-2] == \
+    assert menu.session.transcript[-2] == \
     ['Location', '']
     assert result is None
 
@@ -158,7 +158,7 @@ def test_Menu_run_04():
     section_1.extend(['apple', 'banana', 'cherry'])
     result = menu.run(user_input='foo')
 
-    assert menu.transcript[-2] == \
+    assert menu.session.transcript[-2] == \
     ['Location',
       '',
       '     Section',
@@ -200,7 +200,7 @@ def test_Menu_run_05():
     section_1.extend(['apple', 'banana', 'cherry'])
     result = menu.run(user_input='foo')
 
-    assert menu.transcript[-2] == \
+    assert menu.session.transcript[-2] == \
     ['Location',
       '',
       '     Section',
@@ -246,7 +246,7 @@ def test_Menu_run_06():
     section_1.append(('mod', 'third command'))
     result = menu.run(user_input='foo')
 
-    assert menu.transcript[-2] == \
+    assert menu.session.transcript[-2] == \
     ['Location',
       '',
       '     Section',
@@ -342,7 +342,7 @@ def test_Menu_run_07():
     section_1.append(('mod', 'third command'))
     result = menu.run(user_input='foo')
 
-    assert menu.transcript[-2] == \
+    assert menu.session.transcript[-2] == \
     ['Location',
       '',
       '     Section',
@@ -438,7 +438,7 @@ def test_Menu_run_08():
     section_1.append(('mod', 'third command'))
     result = menu.run(user_input='foo')
 
-    assert menu.transcript[-2] == \
+    assert menu.session.transcript[-2] == \
     ['Location', '']
 
     assert result is None
@@ -527,7 +527,7 @@ def test_Menu_run_09():
     section_1.append(('mod', 'third command'))
     result = menu.run(user_input='foo')
 
-    assert menu.transcript[-2] == \
+    assert menu.session.transcript[-2] == \
     ['Location',
       '',
       '     Section',
@@ -622,7 +622,7 @@ def test_Menu_run_10():
     section_1.append(('mod', 'third command'))
     result = menu.run(user_input='foo')
 
-    assert menu.transcript[-2] == \
+    assert menu.session.transcript[-2] == \
     ['Location',
       '',
       '     Section',

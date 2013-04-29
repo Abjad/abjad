@@ -54,10 +54,6 @@ class ScoreManagerObject(AbjadObject):
         return source_file_name
 
     @property
-    def transcript(self):
-        return self.session.transcript
-
-    @property
     def transcript_signature(self):
         return self.session.complete_transcript.signature
 

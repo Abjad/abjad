@@ -54,9 +54,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.target_summary_lines
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.transcript
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.transcript_signature
    :noindex:
 

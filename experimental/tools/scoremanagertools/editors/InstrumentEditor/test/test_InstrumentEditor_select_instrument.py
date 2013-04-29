@@ -7,7 +7,7 @@ def test_InstrumentEditor_select_instrument_01():
 
     editor = scoremanagertools.editors.InstrumentEditor()
     editor.run(user_input='q')
-    assert editor.transcript_signature == (2,)
+    assert editor.session.transcript_signature == (2,)
 
     editor = scoremanagertools.editors.InstrumentEditor()
     editor.run(user_input='b q')
@@ -19,8 +19,8 @@ def test_InstrumentEditor_select_instrument_01():
 
     editor = scoremanagertools.editors.InstrumentEditor()
     editor.run(user_input='score q')
-    assert editor.transcript_signature == (4, (0, 2))
+    assert editor.session.transcript_signature == (4, (0, 2))
 
     editor = scoremanagertools.editors.InstrumentEditor()
     editor.run(user_input='foo q')
-    assert editor.transcript_signature == (4, (0, 2))
+    assert editor.session.transcript_signature == (4, (0, 2))

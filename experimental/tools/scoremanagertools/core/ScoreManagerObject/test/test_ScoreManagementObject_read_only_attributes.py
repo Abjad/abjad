@@ -41,6 +41,4 @@ def test_ScoreManagementObject_read_only_attributes_01():
 
     assert score_manager_object.configuration.stylesheets_package_path == \
         'scoremanagertools.stylesheets'
-    assert isinstance(score_manager_object.transcript, list)
-    assert isinstance(score_manager_object.transcript_signature, tuple)
     assert isinstance(score_manager_object.transcript_signature, tuple)

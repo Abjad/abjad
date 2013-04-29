@@ -20,7 +20,7 @@ def test_PerformerEditor_delete_instruments_01():
     assert score_manager.transcript_signature == (13, (2, 11))
 
     score_manager.run(user_input='example~score~i setup perf hornist rm foo q')
-    transcript = score_manager.transcript
+    transcript = score_manager.session.transcript
     assert score_manager.transcript_signature == (13,)
 
 
