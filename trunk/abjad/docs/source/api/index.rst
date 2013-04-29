@@ -3264,6 +3264,7 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
+      tools/stringtools/add_terminal_newlines
       tools/stringtools/arg_to_bidirectional_direction_string
       tools/stringtools/arg_to_bidirectional_lilypond_symbol
       tools/stringtools/arg_to_tridirectional_direction_string
@@ -3295,6 +3296,7 @@ Core composition packages
 
    .. toctree::
 
+      tools/stringtools/add_terminal_newlines
       tools/stringtools/arg_to_bidirectional_direction_string
       tools/stringtools/arg_to_bidirectional_lilypond_symbol
       tools/stringtools/arg_to_tridirectional_direction_string
