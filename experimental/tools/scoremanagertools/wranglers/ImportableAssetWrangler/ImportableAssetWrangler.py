@@ -49,7 +49,7 @@ class ImportableAssetWrangler(AssetWrangler):
                     asset_container_package_path)
                 for name in os.listdir(asset_path):
                     if name[0].isalpha():
-                        package_name = self.strip_file_extension_from_string(name)
+                        package_name = self.strip_file_extension_from_file_name(name)
                         result.append('{}.{}'.format(
                             asset_container_package_path, package_name))
             else:

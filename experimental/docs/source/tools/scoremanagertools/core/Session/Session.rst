@@ -144,7 +144,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.asset_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.asset_path_to_human_readable_name
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.asset_path_to_human_readable_asset_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.assign_user_input
@@ -192,7 +192,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.get_one_line_menuing_summary
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.get_tag_from_path
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.get_tag_from_directory_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.get_tools_package_qualified_repr
@@ -246,16 +246,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.pop_next_user_response_from_user_input
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.pprint_transcript
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.print_not_yet_implemented
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.pt
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.ptc
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.push_backtrack
@@ -282,7 +279,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.show_mothballed_scores
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.strip_file_extension_from_string
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.strip_file_extension_from_file_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.strip_py_extension

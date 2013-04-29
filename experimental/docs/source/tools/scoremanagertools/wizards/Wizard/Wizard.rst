@@ -27,7 +27,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.asset_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.asset_path_to_human_readable_name
+.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.asset_path_to_human_readable_asset_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.assign_user_input
@@ -69,7 +69,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.get_one_line_menuing_summary
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.get_tag_from_path
+.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.get_tag_from_directory_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.get_tools_package_qualified_repr
@@ -123,16 +123,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.pop_next_user_response_from_user_input
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.pprint_transcript
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.print_not_yet_implemented
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.pt
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.ptc
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.push_backtrack
@@ -150,7 +147,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.run
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.strip_file_extension_from_string
+.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.strip_file_extension_from_file_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.strip_py_extension

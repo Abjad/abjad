@@ -60,12 +60,11 @@ class ScoreManagerObject(AbjadObject):
         else:
             return self.package_path_to_directory_path(asset_path)
 
-    # TODO: change name to asset_path_to_human_readable_asset_name
     # TODO: move to filesystemtools
-    def asset_path_to_human_readable_name(self, asset_path):
+    def asset_path_to_human_readable_asset_name(self, asset_path):
         asset_path = os.path.normpath(asset_path)
         asset_name = os.path.basename(asset_path)
-        asset_name = self.strip_file_extension_from_string(asset_name)
+        asset_name = self.strip_file_extension_from_file_name(asset_name)
         return self.change_string_to_human_readable_string(asset_name)
 
     # TODO: move to Session
@@ -182,7 +181,7 @@ class ScoreManagerObject(AbjadObject):
     def dot_join(self, expr):
         return '.'.join(expr)
 
-    # TODO: make private and hoist to AbjadObject
+    # TODO: move to somewhere in menuing package
     def get_one_line_menuing_summary(self, expr):
         if isinstance(expr, (types.ClassType, abc.ABCMeta)):
             return expr.__name__
@@ -198,9 +197,8 @@ class ScoreManagerObject(AbjadObject):
             return repr(expr)
 
     # TODO: move to Selector
-    # TODO: change name to get_tag_value_from_directory_path()
-    def get_tag_from_path(self, path, tag_name):
-        tags_file_name = os.path.join(path, 'tags.py')
+    def get_tag_from_directory_path(self, directory_path, tag_name):
+        tags_file_name = os.path.join(directory_path, 'tags.py')
         if os.path.isfile(tags_file_name):
             tags_file = open(tags_file_name, 'r')
             tags_file_string = tags_file.read()
@@ -424,14 +422,10 @@ class ScoreManagerObject(AbjadObject):
         self.handle_raw_input('press return to continue.', include_chevron=False)
         self.conditionally_clear_terminal()
 
-    # TODO: remove abbreviation
-    def pt(self):
+    # TODO: move to Session
+    def pprint_transcript(self):
         pprint.pprint(self.transcript)
         print len(self.transcript)
-
-    # TODO: remove abbreviation
-    def ptc(self):
-        self.session.complete_transcript.ptc()
 
     # TODO: move to Session
     def push_backtrack(self):
@@ -460,9 +454,8 @@ class ScoreManagerObject(AbjadObject):
         if cache:
             self.session._breadcrumb_stack[:] = self.session.breadcrumb_cache_stack.pop()
 
-    # TODO: rename to strip_file_extension_from_file_name()
     # TODO: move to filesystemtools
-    def strip_file_extension_from_string(self, file_name):
+    def strip_file_extension_from_file_name(self, file_name):
         if '.' in file_name:
             return file_name[:file_name.rindex('.')]
         return file_name
@@ -475,7 +468,6 @@ class ScoreManagerObject(AbjadObject):
         else:
             return string
 
-    # TODO: move to Session
     def where(self):
         if self.session.enable_where:
             return inspect.stack()[1]

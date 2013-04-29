@@ -15,7 +15,7 @@ class MaterialPackageSelector(Selector):
         result = []
         for directory_path in self.list_public_directory_paths_with_initializers_in_subtree(
             self.session.current_materials_directory_path):
-            if self.get_tag_from_path(directory_path, 'generic_output_name') == \
+            if self.get_tag_from_directory_path(directory_path, 'generic_output_name') == \
                 self.generic_output_name:
                 result.append(directory_path)
         return result

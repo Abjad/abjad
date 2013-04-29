@@ -108,3 +108,5 @@
 38. Remove Session.transcript.
     Change Session.complete_transcript to Session.transcript.
     Remove concept of 'short transcript' altogether.
+
+39. Remove 'for path in self.list_*' from AssetWrangler.

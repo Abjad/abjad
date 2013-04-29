@@ -33,8 +33,5 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.format_entry
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.ptc
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.write_to_disk
    :noindex:

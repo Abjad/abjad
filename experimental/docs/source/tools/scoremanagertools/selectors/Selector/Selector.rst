@@ -33,7 +33,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.asset_path_to_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.asset_path_to_human_readable_name
+.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.asset_path_to_human_readable_asset_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.assign_user_input
@@ -75,7 +75,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.get_one_line_menuing_summary
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.get_tag_from_path
+.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.get_tag_from_directory_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.get_tools_package_qualified_repr
@@ -138,16 +138,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.pop_next_user_response_from_user_input
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.pprint_transcript
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.print_not_yet_implemented
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.pt
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.ptc
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.push_backtrack
@@ -165,7 +162,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.run
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.strip_file_extension_from_string
+.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.strip_file_extension_from_file_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.strip_py_extension
