@@ -2,7 +2,7 @@ from abjad.tools import iotools
 from experimental.tools.scoremanagertools.proxies.PackageProxy import PackageProxy
 
 
-class ChunkPackageProxy(PackageProxy):
+class SegmentPackageProxy(PackageProxy):
 
     ### INITIALIZER ###
 

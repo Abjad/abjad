@@ -1,5 +1,5 @@
 import os
-from experimental.tools.scoremanagertools.proxies.ChunkPackageProxy import ChunkPackageProxy
+from experimental.tools.scoremanagertools.proxies.SegmentPackageProxy import SegmentPackageProxy
 from experimental.tools.scoremanagertools.wranglers.PackageWrangler import PackageWrangler
 
 
@@ -24,7 +24,7 @@ class ChunkPackageWrangler(PackageWrangler):
 
     @property
     def asset_class(self):
-        return ChunkPackageProxy
+        return SegmentPackageProxy
 
     @property
     def breadcrumb(self):
@@ -44,7 +44,7 @@ class ChunkPackageWrangler(PackageWrangler):
             chunk_package_proxy.run()
 
     def make_asset_interactively(self):
-        chunk_package_proxy = ChunkPackageProxy(session=self.session)
+        chunk_package_proxy = SegmentPackageProxy(session=self.session)
         chunk_package_proxy.make_asset_interactively()
 
     def make_main_menu(self, head=None):

@@ -564,7 +564,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/menuing/MenuSectionAggregator/MenuSectionAggregator
       tools/scoremanagertools/menuing/UserInputGetter/UserInputGetter
       tools/scoremanagertools/proxies/BasicModuleProxy/BasicModuleProxy
-      tools/scoremanagertools/proxies/ChunkPackageProxy/ChunkPackageProxy
       tools/scoremanagertools/proxies/DirectoryProxy/DirectoryProxy
       tools/scoremanagertools/proxies/DistDirectoryProxy/DistDirectoryProxy
       tools/scoremanagertools/proxies/EtcDirectoryProxy/EtcDirectoryProxy
@@ -584,6 +583,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/proxies/PackageProxy/PackageProxy
       tools/scoremanagertools/proxies/ParsableFileProxy/ParsableFileProxy
       tools/scoremanagertools/proxies/ScorePackageProxy/ScorePackageProxy
+      tools/scoremanagertools/proxies/SegmentPackageProxy/SegmentPackageProxy
       tools/scoremanagertools/proxies/StylesheetFileProxy/StylesheetFileProxy
       tools/scoremanagertools/proxies/UserInputModuleProxy/UserInputModuleProxy
       tools/scoremanagertools/scoremanager/ScoreManager/ScoreManager
@@ -770,7 +770,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/menuing/MenuSectionAggregator/MenuSectionAggregator
       tools/scoremanagertools/menuing/UserInputGetter/UserInputGetter
       tools/scoremanagertools/proxies/BasicModuleProxy/BasicModuleProxy
-      tools/scoremanagertools/proxies/ChunkPackageProxy/ChunkPackageProxy
       tools/scoremanagertools/proxies/DirectoryProxy/DirectoryProxy
       tools/scoremanagertools/proxies/DistDirectoryProxy/DistDirectoryProxy
       tools/scoremanagertools/proxies/EtcDirectoryProxy/EtcDirectoryProxy
@@ -790,6 +789,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/proxies/PackageProxy/PackageProxy
       tools/scoremanagertools/proxies/ParsableFileProxy/ParsableFileProxy
       tools/scoremanagertools/proxies/ScorePackageProxy/ScorePackageProxy
+      tools/scoremanagertools/proxies/SegmentPackageProxy/SegmentPackageProxy
       tools/scoremanagertools/proxies/StylesheetFileProxy/StylesheetFileProxy
       tools/scoremanagertools/proxies/UserInputModuleProxy/UserInputModuleProxy
       tools/scoremanagertools/scoremanager/ScoreManager/ScoreManager
