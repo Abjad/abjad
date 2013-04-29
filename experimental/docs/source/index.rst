@@ -487,7 +487,6 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/scoremanagertools/chunks/Chunk/Chunk
       tools/scoremanagertools/core/ScoreManagerConfiguration/ScoreManagerConfiguration
       tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
       tools/scoremanagertools/core/Session/Session
@@ -694,7 +693,6 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/scoremanagertools/chunks/Chunk/Chunk
       tools/scoremanagertools/core/ScoreManagerConfiguration/ScoreManagerConfiguration
       tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
       tools/scoremanagertools/core/Session/Session

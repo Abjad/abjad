@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import chunks
 import editors
 import exceptions
 import getters
