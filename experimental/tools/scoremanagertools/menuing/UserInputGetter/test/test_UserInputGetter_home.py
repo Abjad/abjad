@@ -5,4 +5,4 @@ def test_UserInputGetter_home_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i setup performers move home q')
-    assert score_manager.ts == (11, (0, 9))
+    assert score_manager.transcript_signature == (11, (0, 9))

@@ -8,20 +8,20 @@ def test_InstrumentEditor_run_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i setup performers hornist horn q')
-    assert score_manager.ts == (12,)
+    assert score_manager.transcript_signature == (12,)
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i setup performers hornist horn b q')
-    assert score_manager.ts == (14, (8, 12))
+    assert score_manager.transcript_signature == (14, (8, 12))
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i setup performers hornist horn home q')
-    assert score_manager.ts == (14, (0, 12))
+    assert score_manager.transcript_signature == (14, (0, 12))
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i setup performers hornist horn score q')
-    assert score_manager.ts == (14, (2, 12))
+    assert score_manager.transcript_signature == (14, (2, 12))
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i setup performers hornist horn foo q')
-    assert score_manager.ts == (14, (10, 12))
+    assert score_manager.transcript_signature == (14, (10, 12))

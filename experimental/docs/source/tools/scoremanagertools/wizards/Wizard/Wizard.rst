@@ -27,9 +27,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.ts
-   :noindex:
-
 Methods
 -------
 

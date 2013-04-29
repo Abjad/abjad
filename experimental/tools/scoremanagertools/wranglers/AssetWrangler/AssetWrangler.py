@@ -49,8 +49,8 @@ class AssetWrangler(ScoreManagerObject):
     def __repr__(self):
         parts = []
         parts.extend(self.list_score_external_asset_container_package_paths())
-        if self.configuration.score_internal_asset_container_package_path_infix:
-            parts.append(self.configuration.score_internal_asset_container_package_path_infix)
+        if self.score_internal_asset_container_package_path_infix:
+            parts.append(self.score_internal_asset_container_package_path_infix)
         parts = ', '.join([repr(part) for part in parts])
         return '{}({})'.format(self._class_name, parts)
 

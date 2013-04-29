@@ -8,20 +8,20 @@ def test_PerformerEditor_delete_instruments_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i setup perf hornist rm q')
-    assert score_manager.ts == (11,)
+    assert score_manager.transcript_signature == (11,)
 
     score_manager.run(user_input='example~score~i setup perf hornist rm b q')
-    assert score_manager.ts == (13, (8, 11))
+    assert score_manager.transcript_signature == (13, (8, 11))
 
     score_manager.run(user_input='example~score~i setup perf hornist rm home q')
-    assert score_manager.ts == (13, (0, 11))
+    assert score_manager.transcript_signature == (13, (0, 11))
 
     score_manager.run(user_input='example~score~i setup perf hornist rm score q')
-    assert score_manager.ts == (13, (2, 11))
+    assert score_manager.transcript_signature == (13, (2, 11))
 
     score_manager.run(user_input='example~score~i setup perf hornist rm foo q')
     transcript = score_manager.transcript
-    assert score_manager.ts == (13,)
+    assert score_manager.transcript_signature == (13,)
 
 
 def test_PerformerEditor_delete_instruments_02():

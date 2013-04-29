@@ -60,9 +60,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.ts
-   :noindex:
-
 Methods
 -------
 

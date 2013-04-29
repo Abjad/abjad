@@ -8,13 +8,13 @@ def test_InstrumentEditor_instrument_name_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='example setup performers hornist horn in q')
-    assert score_manager.ts == (13,)
+    assert score_manager.transcript_signature == (13,)
 
     score_manager.run(user_input='example setup performers hornist horn in b q')
-    assert score_manager.ts == (15, (10, 13))
+    assert score_manager.transcript_signature == (15, (10, 13))
 
     score_manager.run(user_input='example setup performers hornist horn in home q')
-    assert score_manager.ts == (15, (0, 13))
+    assert score_manager.transcript_signature == (15, (0, 13))
 
 
 def test_InstrumentEditor_instrument_name_02():
@@ -23,7 +23,7 @@ def test_InstrumentEditor_instrument_name_02():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='example setup performers hornist horn in -99 q')
-    assert score_manager.ts == (15,)
+    assert score_manager.transcript_signature == (15,)
 
 
 def test_InstrumentEditor_instrument_name_03():

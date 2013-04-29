@@ -26,7 +26,7 @@ def test_ScorePackageProxy_02():
     example_score_1 = scoremanagertools.proxies.ScorePackageProxy('example_score_1')
     example_score_1.session.user_input = 'q'
     example_score_1.manage_tags()
-    assert example_score_1.ts == (2,)
+    assert example_score_1.transcript_signature == (2,)
 
 
 def test_ScorePackageProxy_03():
@@ -51,7 +51,7 @@ def test_ScorePackageProxy_04():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input="example~score~i home q")
 
-    assert score_manager.ts == (6, (0, 4))
+    assert score_manager.transcript_signature == (6, (0, 4))
     assert score_manager.transcript[0][0] == 'Scores - active scores'
     assert score_manager.transcript[2][0] == 'Example Score I (2013)'
     assert score_manager.transcript[4][0] == 'Scores - active scores'
@@ -64,7 +64,7 @@ def test_ScorePackageProxy_05():
     example_score_1 = scoremanagertools.proxies.ScorePackageProxy('example_score_1')
     example_score_1.run(user_input='home')
 
-    assert example_score_1.ts == (2,)
+    assert example_score_1.transcript_signature == (2,)
     assert example_score_1.transcript[0][0] == "Example Score I (2013)"
     assert example_score_1.transcript[1][0] == '> home'
 
@@ -76,7 +76,7 @@ def test_ScorePackageProxy_06():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i b q')
 
-    assert score_manager.ts == (6, (0, 4))
+    assert score_manager.transcript_signature == (6, (0, 4))
     assert score_manager.transcript[0][0] == 'Scores - active scores'
     assert score_manager.transcript[2][0] == 'Example Score I (2013)'
     assert score_manager.transcript[4][0] == 'Scores - active scores'

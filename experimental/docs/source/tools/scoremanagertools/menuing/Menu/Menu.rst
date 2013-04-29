@@ -78,9 +78,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.ts
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.unpacked_menu_entries
    :noindex:
 

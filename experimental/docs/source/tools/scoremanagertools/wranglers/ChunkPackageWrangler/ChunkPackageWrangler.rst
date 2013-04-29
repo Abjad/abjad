@@ -72,9 +72,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.ts
-   :noindex:
-
 Methods
 -------
 

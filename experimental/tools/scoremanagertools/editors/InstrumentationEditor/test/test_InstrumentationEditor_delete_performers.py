@@ -8,19 +8,19 @@ def test_InstrumentationEditor_delete_performers_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='example~score~i setup performers rm q')
-    assert score_manager.ts == (9,)
+    assert score_manager.transcript_signature == (9,)
 
     score_manager.run(user_input='example~score~i setup performers rm b q')
-    assert score_manager.ts == (11, (6, 9))
+    assert score_manager.transcript_signature == (11, (6, 9))
 
     score_manager.run(user_input='example~score~i setup performers rm home q')
-    assert score_manager.ts == (11, (0, 9))
+    assert score_manager.transcript_signature == (11, (0, 9))
 
     score_manager.run(user_input='example~score~i setup performers rm score q')
-    assert score_manager.ts == (11, (2, 9))
+    assert score_manager.transcript_signature == (11, (2, 9))
 
     score_manager.run(user_input='example~score~i setup performers rm foo q')
-    assert score_manager.ts == (11,)
+    assert score_manager.transcript_signature == (11,)
 
 
 def test_InstrumentationEditor_delete_performers_02():

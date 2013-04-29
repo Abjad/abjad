@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.ts
-   :noindex:
-
 Read/write properties
 ---------------------
 

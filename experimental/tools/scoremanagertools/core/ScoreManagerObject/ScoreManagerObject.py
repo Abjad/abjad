@@ -61,10 +61,6 @@ class ScoreManagerObject(AbjadObject):
     def transcript_signature(self):
         return self.session.complete_transcript.signature
 
-    @property
-    def ts(self):
-        return self.transcript_signature
-
     ### PUBLIC METHODS ###
 
     def asset_path_to_directory_path(self, asset_path):

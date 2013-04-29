@@ -43,4 +43,4 @@ def test_ScoreManagementObject_read_only_attributes_01():
         'scoremanagertools.stylesheets'
     assert isinstance(score_manager_object.transcript, list)
     assert isinstance(score_manager_object.transcript_signature, tuple)
-    assert isinstance(score_manager_object.ts, tuple)
+    assert isinstance(score_manager_object.transcript_signature, tuple)

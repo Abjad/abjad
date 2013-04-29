@@ -7,7 +7,7 @@ def test_ScoreManager_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='mb q')
-    score_manager.ts == (4,)
+    score_manager.transcript_signature == (4,)
 
 
 def test_ScoreManager_02():
@@ -16,7 +16,7 @@ def test_ScoreManager_02():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='example tags q')
-    assert score_manager.ts == (6,)
+    assert score_manager.transcript_signature == (6,)
 
 
 def test_ScoreManager_03():
@@ -25,7 +25,7 @@ def test_ScoreManager_03():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='svn q')
-    assert score_manager.ts == (4,)
+    assert score_manager.transcript_signature == (4,)
 
 
 def test_ScoreManager_04():
@@ -49,10 +49,10 @@ def test_ScoreManager_05():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='foo q')
-    assert score_manager.ts == (4, (0, 2))
+    assert score_manager.transcript_signature == (4, (0, 2))
 
     score_manager.run(user_input='foo bar q')
-    assert score_manager.ts == (6, (0, 2, 4))
+    assert score_manager.transcript_signature == (6, (0, 2, 4))
 
 
 def test_ScoreManager_06():
@@ -61,7 +61,7 @@ def test_ScoreManager_06():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='b q')
-    assert score_manager.ts == (4, (0, 2))
+    assert score_manager.transcript_signature == (4, (0, 2))
 
 
 def test_ScoreManager_07():
@@ -105,11 +105,11 @@ def test_ScoreManager_10():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='Mon perf home q')
-    ts_1 = score_manager.ts
+    ts_1 = score_manager.transcript_signature
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='Mon perf home q')
-    ts_2 = score_manager.ts
+    ts_2 = score_manager.transcript_signature
 
     assert ts_1 == ts_2
 
@@ -120,10 +120,10 @@ def test_ScoreManager_11():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='Mon perf score q')
-    ts_1 = score_manager.ts
+    ts_1 = score_manager.transcript_signature
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='Mon perf sco q')
-    ts_2 = score_manager.ts
+    ts_2 = score_manager.transcript_signature
 
     assert ts_1 == ts_2

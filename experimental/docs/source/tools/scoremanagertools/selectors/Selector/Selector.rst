@@ -27,9 +27,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.transcript_signature
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.ts
-   :noindex:
-
 Read/write properties
 ---------------------
 
