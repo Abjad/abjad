@@ -1,6 +1,6 @@
-from abjad import *
-from abjad.tools import contexttools
 from experimental import *
+import py
+py.test.skip('remove because unused?')
 
 
 def test_ScoreManagementObject_expr_to_parent_package_name_01():

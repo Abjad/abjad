@@ -25,11 +25,6 @@ def test_ScoreManagementObject_read_only_attributes_01():
     assert isinstance(score_manager_object.session, scoremanagertools.core.Session)
     assert score_manager_object.configuration.score_external_chunks_package_path == 'sketches'
 
-    file_path = os.path.join(
-        score_manager_object.configuration.score_manager_tools_directory_path,
-        'core', 'ScoreManagerObject', 'ScoreManagerObject.py')
-    assert score_manager_object.source_file_name == file_path
-
     assert score_manager_object._spaced_class_name == 'score manager object'
     assert score_manager_object.configuration.score_external_materials_package_path == 'materials'
 

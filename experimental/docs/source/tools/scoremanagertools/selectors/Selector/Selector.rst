@@ -15,9 +15,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.session
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.source_file_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.storage_format
    :noindex:
 
@@ -66,9 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.debug
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.directory_path_to_package_path
    :noindex:
 
@@ -76,9 +70,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.dot_join
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.expr_to_parent_package_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.get_one_line_menuing_summary

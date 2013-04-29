@@ -104,3 +104,7 @@
     Write a generalized script to test the reprs of all objects in the system.
 
 37. Make Session no longer inherit from ScoreManagerObject. Maybe?
+
+38. Remove Session.transcript.
+    Change Session.complete_transcript to Session.transcript.
+    Remove concept of 'short transcript' altogether.

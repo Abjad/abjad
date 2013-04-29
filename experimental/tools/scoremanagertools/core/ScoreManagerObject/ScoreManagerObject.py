@@ -48,29 +48,27 @@ class ScoreManagerObject(AbjadObject):
         return self._session
 
     @property
-    def source_file_name(self):
-        source_file_name = inspect.getfile(type(self))
-        source_file_name = source_file_name.strip('c')
-        return source_file_name
-
-    @property
     def transcript_signature(self):
         return self.session.complete_transcript.signature
 
     ### PUBLIC METHODS ###
 
+    # TODO: move to filesystemtools
     def asset_path_to_directory_path(self, asset_path):
         if self.is_path(asset_path):
             return asset_path
         else:
             return self.package_path_to_directory_path(asset_path)
 
+    # TODO: change name to asset_path_to_human_readable_asset_name
+    # TODO: move to filesystemtools
     def asset_path_to_human_readable_name(self, asset_path):
         asset_path = os.path.normpath(asset_path)
         asset_name = os.path.basename(asset_path)
         asset_name = self.strip_file_extension_from_string(asset_name)
         return self.change_string_to_human_readable_string(asset_name)
 
+    # TODO: move to Session
     def assign_user_input(self, user_input=None):
         if user_input is not None:
             if self.session.user_input:
@@ -78,17 +76,21 @@ class ScoreManagerObject(AbjadObject):
             else:
                 self.session.user_input = user_input
 
+    # TODO: move to Session
     def backtrack(self, source=None):
         return self.session.backtrack(source=source)
 
+    # TODO: move to Session
     def cache_breadcrumbs(self, cache=False):
         if cache:
             self.session.breadcrumb_cache_stack.append(self.session._breadcrumb_stack[:])
             self.session._breadcrumb_stack[:] = []
 
+    # TODO: move to Selector
     def change_expr_to_menu_token(self, expr):
         return (None, self.get_one_line_menuing_summary(expr), None, expr)
 
+    # TODO: move to stringtools
     def change_string_to_human_readable_string(self, string):
         if not string:
             return string
@@ -97,6 +99,7 @@ class ScoreManagerObject(AbjadObject):
         else:
             return string.replace('_', ' ')
 
+    # TODO: move to stringtools
     def conditionally_add_terminal_newlines(self, lines):
         terminated_lines = []
         for line in lines:
@@ -106,10 +109,12 @@ class ScoreManagerObject(AbjadObject):
         terminated_lines = type(lines)(terminated_lines)
         return terminated_lines
 
+    # TODO: migrate to [menuing.]IO class
     def conditionally_clear_terminal(self):
         if self.session.is_displayable:
             iotools.clear_terminal()
 
+    # TODO: move to filesystemtools
     # TODO: write test
     def conditionally_make_empty_package(self, package_path):
         if package_path is None:
@@ -123,6 +128,7 @@ class ScoreManagerObject(AbjadObject):
             file_reference.write('')
             file_reference.close()
 
+    # TODO: migrate to [menuing.]IO class
     def confirm(self, prompt_string='ok?', include_chevron=False):
         getter = self.make_getter(where=self.where())
         getter.append_yes_no_string(prompt_string)
@@ -132,16 +138,10 @@ class ScoreManagerObject(AbjadObject):
             return
         return 'yes'.startswith(result.lower())
 
-    def debug(self, value, annotation=None):
-        if annotation is None:
-            print 'debug: {!r}'.format(value)
-        else:
-            print 'debug ({}): {!r}'.format(annotation, value)
-
+    # TODO: move to ScoreManagerConfiguration
     def directory_path_to_package_path(self, directory_path):
         if directory_path is None:
             return
-        #directory_path = directory_path.rstrip(os.path.sep)
         directory_path = os.path.normpath(directory_path)
         if directory_path.endswith('.py'):
             directory_path = directory_path[:-3]
@@ -163,6 +163,7 @@ class ScoreManagerObject(AbjadObject):
         package_path = package_path.replace(os.path.sep, '.')
         return package_path
 
+    # TODO: migrate to [menuing.]IO class
     def display(self, lines, capitalize_first_character=True):
         assert isinstance(lines, (str, list))
         if isinstance(lines, str):
@@ -177,16 +178,11 @@ class ScoreManagerObject(AbjadObject):
                 for line in lines:
                     print line
 
+    # TODO: eventually remove after all configuration info is encapsulated somewhere
     def dot_join(self, expr):
         return '.'.join(expr)
 
-    def expr_to_parent_package_name(self, expr):
-        module_path = expr.__module__
-        parts = module_path.split('.')
-        for part in reversed(parts):
-            if not part == expr.__class__.__name__:
-                return part
-
+    # TODO: make private and hoist to AbjadObject
     def get_one_line_menuing_summary(self, expr):
         if isinstance(expr, (types.ClassType, abc.ABCMeta)):
             return expr.__name__
@@ -201,6 +197,8 @@ class ScoreManagerObject(AbjadObject):
         else:
             return repr(expr)
 
+    # TODO: move to Selector
+    # TODO: change name to get_tag_value_from_directory_path()
     def get_tag_from_path(self, path, tag_name):
         tags_file_name = os.path.join(path, 'tags.py')
         if os.path.isfile(tags_file_name):
@@ -211,9 +209,11 @@ class ScoreManagerObject(AbjadObject):
             result = locals().get('tags') or OrderedDict([])
             return result.get(tag_name)
 
+    # TODO: remove or hoist to AbjadObject, as necessary
     def get_tools_package_qualified_repr(self, expr):
         return getattr(expr, '_tools_package_qualified_repr', repr(expr))
 
+    # TODO: migrate to [menuing.]IO class
     def handle_raw_input(self, prompt, include_chevron=True, include_newline=True, prompt_character='>',
         capitalize_prompt=True):
         if capitalize_prompt:
@@ -243,6 +243,7 @@ class ScoreManagerObject(AbjadObject):
             self.session.complete_transcript.append_lines(menu_chunk)
         return user_response
 
+    # TODO: migrate to [menuing.]IO class
     def handle_raw_input_with_default(self, prompt, default=None, include_chevron=True, include_newline=True,
         prompt_character='>', capitalize_prompt=True):
         if default in (None, 'None'):
@@ -255,18 +256,21 @@ class ScoreManagerObject(AbjadObject):
         finally:
             readline.set_startup_hook()
 
+    # TODO: move to filesystemtools
     def is_module_name(self, expr):
         if isinstance(expr, str):
             if os.path.sep not in expr:
                 return True
         return False
 
+    # TODO: move to filesystemtools
     def is_path(self, expr):
         if isinstance(expr, str):
             if os.path.sep in expr:
                 return True
         return False
 
+    # TODO: move to filesystemtools
     def list_public_directory_paths_in_subtree(self, subtree_path):
         result = []
         for subtree_path, directory_names, file_names in os.walk(subtree_path):
@@ -277,6 +281,7 @@ class ScoreManagerObject(AbjadObject):
                             result.append(os.path.join(subtree_path, directory_name))
         return result
 
+    # TODO: move to filesystemtools
     def list_public_directory_paths_with_initializers_in_subtree(self, subtree_path):
         result = []
         for directory_path in self.list_public_directory_paths_in_subtree(subtree_path):
@@ -284,6 +289,7 @@ class ScoreManagerObject(AbjadObject):
                 result.append(directory_path)
         return result
 
+    # TODO: not quite sure where to move this method
     def list_score_package_names(self, head=None):
         result = []
         for name in os.listdir(self.configuration.scores_directory_path):
@@ -294,10 +300,12 @@ class ScoreManagerObject(AbjadObject):
                     result.append(name)
         return result
 
+    # TODO: migrate to [menuing.]IO class
     def make_getter(self, where=None):
         from experimental.tools import scoremanagertools
         return scoremanagertools.menuing.UserInputGetter(where=where, session=self.session)
 
+    # TODO: migrate to [menuing.]IO class
     def make_menu(self, is_hidden=False, is_internally_keyed=False, is_keyed=True,
         is_numbered=False, is_parenthetically_numbered=False, is_ranged=False, where=None):
         from experimental.tools import scoremanagertools
@@ -308,16 +316,19 @@ class ScoreManagerObject(AbjadObject):
             is_ranged=is_ranged)
         return menu, section
 
+    # TODO: move to filesystemtools
     def module_path_to_file_path(self, module_path):
         if module_path is not None:
             file_path = self.package_path_to_directory_path(module_path) + '.py'
             return file_path
 
+    # TODO: move to filesystemtools
     def package_exists(self, package_path):
         assert isinstance(package_path, str)
         directory_path = self.package_path_to_directory_path(package_path)
         return os.path.exists(directory_path)
 
+    # TODO: move to filesystemtools
     def package_path_to_directory_path(self, package_path):
         if package_path is None:
             return
@@ -346,6 +357,7 @@ class ScoreManagerObject(AbjadObject):
         directory = os.path.join(*directory_parts)
         return directory
 
+    # TODO: move to stringtools
     def pluralize_string(self, string):
         if string.endswith('y'):
             return string[:-1] + 'ies'
@@ -354,13 +366,16 @@ class ScoreManagerObject(AbjadObject):
         else:
             return string + 's'
 
+    # TODO: move to Session
     def pop_backtrack(self):
         return self.session.backtracking_stack.pop()
 
+    # TODO: move to Session
     def pop_breadcrumb(self, rollback=True):
         if rollback:
             return self.session._breadcrumb_stack.pop()
 
+    # TODO: migrate to [menuing.]IO class
     def pop_next_user_response_from_user_input(self):
         self.session.last_command_was_composite = False
         if self.session.user_input is None:
@@ -389,10 +404,12 @@ class ScoreManagerObject(AbjadObject):
         self.session.user_input = user_input
         return user_response
 
+    # TODO: migrate to [menuing.]IO class
     def print_not_yet_implemented(self):
         self.display(['not yet implemented', ''])
         self.proceed()
 
+    # TODO: migrate to [menuing.]IO class
     def proceed(self, lines=None, is_interactive=True):
         assert isinstance(lines, (tuple, list, str, type(None)))
         if not is_interactive:
@@ -407,13 +424,16 @@ class ScoreManagerObject(AbjadObject):
         self.handle_raw_input('press return to continue.', include_chevron=False)
         self.conditionally_clear_terminal()
 
+    # TODO: remove abbreviation
     def pt(self):
         pprint.pprint(self.transcript)
         print len(self.transcript)
 
+    # TODO: remove abbreviation
     def ptc(self):
         self.session.complete_transcript.ptc()
 
+    # TODO: move to Session
     def push_backtrack(self):
         if self.session.backtracking_stack:
             last_number = self.session.backtracking_stack[-1]
@@ -421,6 +441,7 @@ class ScoreManagerObject(AbjadObject):
         else:
             self.session.backtracking_stack.append(0)
 
+    # TODO: move to Session
     def push_breadcrumb(self, breadcrumb=None, rollback=True):
         if rollback:
             if breadcrumb is not None:
@@ -434,21 +455,27 @@ class ScoreManagerObject(AbjadObject):
             package_path, package_path)
         exec(command)
 
+    # TODO: move to Session
     def restore_breadcrumbs(self, cache=False):
         if cache:
             self.session._breadcrumb_stack[:] = self.session.breadcrumb_cache_stack.pop()
 
+    # TODO: rename to strip_file_extension_from_file_name()
+    # TODO: move to filesystemtools
     def strip_file_extension_from_string(self, file_name):
         if '.' in file_name:
             return file_name[:file_name.rindex('.')]
         return file_name
 
+    
+    # TODO: remove in favor of self.strip_file_extension_from_file_name()
     def strip_py_extension(self, string):
         if isinstance(string, str) and string.endswith('.py'):
             return string[:-3]
         else:
             return string
 
+    # TODO: move to Session
     def where(self):
         if self.session.enable_where:
             return inspect.stack()[1]

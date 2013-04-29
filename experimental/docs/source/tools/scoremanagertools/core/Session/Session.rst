@@ -84,9 +84,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.session_once_had_user_input
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.source_file_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.storage_format
    :noindex:
 
@@ -180,9 +177,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.debug
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.directory_path_to_package_path
    :noindex:
 
@@ -190,9 +184,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.dot_join
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.expr_to_parent_package_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.format_breadcrumb_stack
