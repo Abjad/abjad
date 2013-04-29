@@ -1,4 +1,5 @@
 import os
+from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 from experimental.tools.scoremanagertools.menuing.UserInputGetter import UserInputGetter
 from experimental.tools.scoremanagertools.proxies.ImportableAssetProxy import ImportableAssetProxy
@@ -47,8 +48,7 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
 
     @property
     def human_readable_name(self):
-        return self.change_string_to_human_readable_string(
-            self.name_without_extension)
+        return stringtools.string_to_space_delimited_lowercase(self.name_without_extension)
 
     @property
     def module_name(self):

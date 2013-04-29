@@ -1,3 +1,4 @@
+from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 
 
@@ -57,7 +58,7 @@ class InteractiveEditor(ScoreManagerObject):
 
     @property
     def target_class_human_readable_name(self):
-        return self.change_string_to_human_readable_string(self.target_class.__name__)
+        return stringtools.string_to_space_delimited_lowercase(self.target_class.__name__)
 
     @property
     def target_keyword_attribute_names(self):
@@ -99,7 +100,7 @@ class InteractiveEditor(ScoreManagerObject):
         result = []
         if self.target is not None:
             for target_attribute_name in self.target_attribute_names:
-                name = self.change_string_to_human_readable_string(target_attribute_name)
+                name = stringtools.string_to_space_delimited_lowercase(target_attribute_name)
                 value = self.get_one_line_menuing_summary(getattr(self.target, target_attribute_name))
                 result.append('{}: {}'.format(name, value))
         return result
@@ -301,7 +302,7 @@ class InteractiveEditor(ScoreManagerObject):
     def target_args_to_target_summary_lines(self, target):
         result = []
         for arg in getattr(target, 'args', []):
-            name = self.change_string_to_human_readable_string(arg)
+            name = stringtools.string_to_space_delimited_lowercase(arg)
             value = self.get_one_line_menuing_summary(getattr(target, arg))
             result.append('{}: {}'.format(name, value))
         return result
@@ -309,7 +310,7 @@ class InteractiveEditor(ScoreManagerObject):
     def target_kwargs_to_target_summary_lines(self, target):
         result = []
         for kwarg in getattr(target, 'kwargs', []):
-            name = self.change_string_to_human_readable_string(kwarg)
+            name = stringtools.string_to_space_delimited_lowercase(kwarg)
             value = self.get_one_line_menuing_summary(getattr(target, kwarg))
             result.append('{}: {}'.format(name, value))
         return result

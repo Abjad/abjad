@@ -35,11 +35,12 @@ class ScoreManagerObject(AbjadObject):
 
     @property
     def _human_readable_class_name(self):
-        return self.change_string_to_human_readable_string(self._class_name)
+        return stringtools.string_to_space_delimited_lowercase(self._class_name)
 
     @property
     def _spaced_class_name(self):
-        return stringtools.uppercamelcase_to_space_delimited_lowercase(self._class_name)
+        #return stringtools.uppercamelcase_to_space_delimited_lowercase(self._class_name)
+        return stringtools.string_to_space_delimited_lowercase(self._class_name)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -65,7 +66,7 @@ class ScoreManagerObject(AbjadObject):
         asset_path = os.path.normpath(asset_path)
         asset_name = os.path.basename(asset_path)
         asset_name = self.strip_file_extension_from_file_name(asset_name)
-        return self.change_string_to_human_readable_string(asset_name)
+        return stringtools.string_to_space_delimited_lowercase(asset_name)
 
     # TODO: move to Session
     def assign_user_input(self, user_input=None):
@@ -88,15 +89,6 @@ class ScoreManagerObject(AbjadObject):
     # TODO: move to Selector
     def change_expr_to_menu_token(self, expr):
         return (None, self.get_one_line_menuing_summary(expr), None, expr)
-
-    # TODO: move to stringtools
-    def change_string_to_human_readable_string(self, string):
-        if not string:
-            return string
-        elif string[0].isupper():
-            return stringtools.uppercamelcase_to_space_delimited_lowercase(string)
-        else:
-            return string.replace('_', ' ')
 
     # TODO: move to stringtools
     def conditionally_add_terminal_newlines(self, lines):

@@ -64,7 +64,7 @@ class AssetWrangler(ScoreManagerObject):
 
     @property
     def asset_class_human_readable_name(self):
-        return self.change_string_to_human_readable_string(self.asset_class.__name__)
+        return string.string_to_space_delimited_lowercase(self.asset_class.__name__)
 
     @property
     def asset_class_plural_human_readable_name(self):
