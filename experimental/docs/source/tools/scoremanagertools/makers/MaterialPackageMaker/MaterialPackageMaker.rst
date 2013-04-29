@@ -12,13 +12,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.asset_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.backtracking_source
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.breadcrumb
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.breadcrumb_stack
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.directory_contents
@@ -106,9 +100,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.has_user_input_wrapper_on_disk
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.makers.MaterialPackageMaker.MaterialPackageMaker.MaterialPackageMaker.human_readable_name

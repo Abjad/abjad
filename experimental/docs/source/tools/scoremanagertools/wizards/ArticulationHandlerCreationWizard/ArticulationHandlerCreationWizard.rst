@@ -9,16 +9,7 @@ scoremanagertools.wizards.ArticulationHandlerCreationWizard
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.backtracking_source
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.breadcrumb
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.breadcrumb_stack
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.session

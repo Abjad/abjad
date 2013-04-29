@@ -9,16 +9,7 @@ scoremanagertools.selectors.TropingHandlerSelector
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.backtracking_source
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.breadcrumb
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.breadcrumb_stack
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.session

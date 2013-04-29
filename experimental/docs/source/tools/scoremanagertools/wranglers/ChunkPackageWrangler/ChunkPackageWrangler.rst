@@ -21,13 +21,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.asset_container_class
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.backtracking_source
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.breadcrumb
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.breadcrumb_stack
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.current_asset_container_human_readable_name
@@ -40,9 +34,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.current_asset_container_proxy
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ChunkPackageWrangler.ChunkPackageWrangler.ChunkPackageWrangler.score_external_asset_proxies

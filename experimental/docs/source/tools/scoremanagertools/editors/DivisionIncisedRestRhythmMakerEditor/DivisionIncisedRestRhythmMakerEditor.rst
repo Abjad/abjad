@@ -12,19 +12,10 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.backtracking_source
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.breadcrumb_stack
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.has_target
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.session

@@ -30,6 +30,10 @@ class ScoreManagerObject(AbjadObject):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
+    def _backtracking_source(self):
+        return
+
+    @property
     def _human_readable_class_name(self):
         return self.change_string_to_human_readable_string(self._class_name)
 
@@ -38,22 +42,6 @@ class ScoreManagerObject(AbjadObject):
         return stringtools.uppercamelcase_to_space_delimited_lowercase(self._class_name)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def backtracking_source(self):
-        return
-
-    @property
-    def breadcrumb(self):
-        return 'score manager object'
-
-    @property
-    def breadcrumb_stack(self):
-        return self.session.breadcrumb_stack
-
-    @property
-    def help_item_width(self):
-        return 5
 
     @property
     def session(self):
@@ -103,7 +91,7 @@ class ScoreManagerObject(AbjadObject):
 
     def cache_breadcrumbs(self, cache=False):
         if cache:
-            self.session.breadcrumb_cache_stack.append(self.session.breadcrumb_stack[:])
+            self.session.breadcrumb_cache_stack.append(self.session._breadcrumb_stack[:])
             self.session._breadcrumb_stack[:] = []
 
     def change_expr_to_menu_token(self, expr):
@@ -379,7 +367,7 @@ class ScoreManagerObject(AbjadObject):
 
     def pop_breadcrumb(self, rollback=True):
         if rollback:
-            return self.breadcrumb_stack.pop()
+            return self.session._breadcrumb_stack.pop()
 
     def pop_next_user_response_from_user_input(self):
         self.session.last_command_was_composite = False
@@ -444,9 +432,9 @@ class ScoreManagerObject(AbjadObject):
     def push_breadcrumb(self, breadcrumb=None, rollback=True):
         if rollback:
             if breadcrumb is not None:
-                self.breadcrumb_stack.append(breadcrumb)
+                self.session._breadcrumb_stack.append(breadcrumb)
             else:
-                self.breadcrumb_stack.append(self.breadcrumb)
+                self.session._breadcrumb_stack.append(self.breadcrumb)
 
     def remove_package_path_from_sys_modules(self, package_path):
         '''Total hack. But works.'''

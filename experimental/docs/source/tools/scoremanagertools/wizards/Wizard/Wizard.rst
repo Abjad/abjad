@@ -9,16 +9,7 @@ scoremanagertools.wizards.Wizard
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.backtracking_source
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.breadcrumb
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.breadcrumb_stack
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.session

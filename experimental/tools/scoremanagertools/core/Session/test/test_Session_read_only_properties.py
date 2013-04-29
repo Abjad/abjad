@@ -10,7 +10,7 @@ def test_Session_read_only_properties_01():
 
     assert session.backtracking_stack == []
     assert session.breadcrumb_cache_stack == []
-    assert session.breadcrumb_stack == []
+    assert session._breadcrumb_stack == []
     assert session.command_history == []
     assert session.command_history_string == ''
     assert isinstance(session.complete_transcript, scoremanagertools.core.Transcript)

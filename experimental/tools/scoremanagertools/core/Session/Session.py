@@ -347,13 +347,13 @@ class Session(ScoreManagerObject):
             self.complete_transcript.write_to_disk(self.output_directory)
 
     def format_breadcrumb_stack(self):
-        if not self.breadcrumb_stack:
+        if not self._breadcrumb_stack:
             return ''
-        result_lines = [self.breadcrumb_stack[0]]
+        result_lines = [self._breadcrumb_stack[0]]
         hanging_indent_width = len(stringtools.strip_diacritics_from_binary_string(
-            self.breadcrumb_stack[0]))
+            self._breadcrumb_stack[0]))
         hanging_indent_width += len(' - ')
-        for breadcrumb in self.breadcrumb_stack[1:]:
+        for breadcrumb in self._breadcrumb_stack[1:]:
             candidate_line = result_lines[-1] + ' - ' + breadcrumb
             if len(candidate_line) <= self.menu_header_width:
                 result_lines[-1] = candidate_line

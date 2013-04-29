@@ -21,15 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.asset_container_class
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.backtracking_source
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.breadcrumb
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.breadcrumb_stack
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.current_asset_container_human_readable_name
    :noindex:
 
@@ -40,9 +31,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.current_asset_container_proxy
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.score_internal_asset_container_package_path_infix

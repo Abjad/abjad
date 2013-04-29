@@ -9,13 +9,7 @@ scoremanagertools.core.Session
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.backtracking_source
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.backtracking_stack
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.breadcrumb_cache_stack
@@ -58,9 +52,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.explicit_command_history
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.is_complete

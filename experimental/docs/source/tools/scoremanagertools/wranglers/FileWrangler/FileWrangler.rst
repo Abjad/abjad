@@ -21,15 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.asset_container_class
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.backtracking_source
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.breadcrumb
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.breadcrumb_stack
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.current_asset_container_human_readable_name
    :noindex:
 
@@ -40,9 +31,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.current_asset_container_proxy
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.score_internal_asset_container_package_path_infix

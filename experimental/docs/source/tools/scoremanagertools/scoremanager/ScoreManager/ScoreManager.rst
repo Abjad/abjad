@@ -9,19 +9,10 @@ scoremanagertools.scoremanager.ScoreManager
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.backtracking_source
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.breadcrumb_stack
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.chunk_package_wrangler
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.material_package_maker_wrangler

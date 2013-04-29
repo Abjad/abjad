@@ -9,15 +9,6 @@ scoremanagertools.menuing.MenuSection
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.backtracking_source
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.breadcrumb
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.breadcrumb_stack
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.default_value
    :noindex:
 
@@ -34,9 +25,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.has_tuple_tokens
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.is_hidden

@@ -9,18 +9,6 @@ scoremanagertools.menuing.MenuObject
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.backtracking_source
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.breadcrumb
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.breadcrumb_stack
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.help_item_width
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.session
    :noindex:
 

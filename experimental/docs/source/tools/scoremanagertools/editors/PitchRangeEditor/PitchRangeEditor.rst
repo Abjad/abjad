@@ -12,19 +12,10 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.backtracking_source
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.breadcrumb_stack
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.has_target
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.session

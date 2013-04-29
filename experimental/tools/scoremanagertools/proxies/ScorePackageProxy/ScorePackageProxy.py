@@ -25,6 +25,12 @@ class ScorePackageProxy(PackageProxy):
             session=self.session)
         self._music_specifier_module_wrangler = scoremanagertools.wranglers.MusicSpecifierModuleWrangler(
             session=self.session)
+    
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _backtracking_source(self):
+        return 'score'
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -34,10 +40,6 @@ class ScorePackageProxy(PackageProxy):
             return self.title_with_year
         else:
             return self.title
-
-    @property
-    def backtracking_source(self):
-        return 'score'
 
     @property
     def breadcrumb(self):

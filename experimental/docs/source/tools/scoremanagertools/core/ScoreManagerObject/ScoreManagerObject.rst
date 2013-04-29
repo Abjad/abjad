@@ -9,18 +9,6 @@ scoremanagertools.core.ScoreManagerObject
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.backtracking_source
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.breadcrumb
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.breadcrumb_stack
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.help_item_width
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.session
    :noindex:
 

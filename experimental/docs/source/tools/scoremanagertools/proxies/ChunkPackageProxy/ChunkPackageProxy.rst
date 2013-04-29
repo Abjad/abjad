@@ -12,13 +12,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.asset_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.backtracking_source
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.breadcrumb
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.breadcrumb_stack
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.directory_contents
@@ -40,9 +34,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.has_tags_file
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ChunkPackageProxy.ChunkPackageProxy.ChunkPackageProxy.human_readable_name

@@ -197,13 +197,13 @@ class AssetProxy(ScoreManagerObject):
             self.push_breadcrumb()
             menu = self.make_main_menu()
             result = menu.run(clear=clear)
-            if self.backtrack(source=self.backtracking_source):
+            if self.backtrack(source=self._backtracking_source):
                 break
             elif not result:
                 self.pop_breadcrumb()
                 continue
             self.handle_main_menu_result(result)
-            if self.backtrack(source=self.backtracking_source):
+            if self.backtrack(source=self._backtracking_source):
                 break
             self.pop_breadcrumb()
         self.pop_breadcrumb()

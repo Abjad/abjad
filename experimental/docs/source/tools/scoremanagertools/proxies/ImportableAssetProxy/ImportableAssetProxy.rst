@@ -12,19 +12,10 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.asset_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.backtracking_source
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.breadcrumb_stack
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.exists
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ImportableAssetProxy.ImportableAssetProxy.ImportableAssetProxy.human_readable_name

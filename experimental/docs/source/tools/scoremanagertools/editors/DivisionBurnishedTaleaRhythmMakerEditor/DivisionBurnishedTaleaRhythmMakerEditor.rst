@@ -12,19 +12,10 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.backtracking_source
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.breadcrumb_stack
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.has_target
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.session

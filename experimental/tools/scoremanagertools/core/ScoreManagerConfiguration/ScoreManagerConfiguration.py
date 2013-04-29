@@ -198,6 +198,19 @@ class ScoreManagerConfiguration(Configuration):
             self.abjad_configuration.abjad_experimental_directory_path, 'tools', 'handlertools')
 
     @property
+    def help_item_width(self):
+        '''Help item width:
+
+        ::
+
+            >>> configuration.help_item_width
+            5
+
+        Return constant integer.
+        '''
+        return 5
+
+    @property
     def home_directory_path(self):
         '''Home directory path:
 

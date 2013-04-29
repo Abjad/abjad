@@ -11,8 +11,7 @@ def test_ScoreManagementObject_read_only_attributes_01():
         'boilerplate')
     assert score_manager_object.configuration.boilerplate_directory_path == directory_path
 
-    assert isinstance(score_manager_object.breadcrumb_stack, list)
-    assert score_manager_object.help_item_width == 5
+    assert score_manager_object.configuration.help_item_width == 5
 
     directory_path = os.path.join(
         score_manager_object.configuration.score_manager_tools_directory_path,

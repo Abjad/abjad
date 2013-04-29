@@ -102,3 +102,5 @@
 
 36. Fix AssetWrangler.__repr__ and ScorePackageWrangler.__repr__.
     Write a generalized script to test the reprs of all objects in the system.
+
+37. Make Session no longer inherit from ScoreManagerObject. Maybe?

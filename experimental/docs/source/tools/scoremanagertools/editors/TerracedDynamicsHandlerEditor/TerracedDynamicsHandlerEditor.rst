@@ -12,19 +12,10 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.backtracking_source
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.breadcrumb_stack
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.has_target
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.help_item_width
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.session
