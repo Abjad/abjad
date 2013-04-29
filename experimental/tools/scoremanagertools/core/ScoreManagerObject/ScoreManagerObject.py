@@ -39,7 +39,6 @@ class ScoreManagerObject(AbjadObject):
 
     @property
     def _spaced_class_name(self):
-        #return stringtools.uppercamelcase_to_space_delimited_lowercase(self._class_name)
         return stringtools.string_to_space_delimited_lowercase(self._class_name)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -89,16 +88,6 @@ class ScoreManagerObject(AbjadObject):
     # TODO: move to Selector
     def change_expr_to_menu_token(self, expr):
         return (None, self.get_one_line_menuing_summary(expr), None, expr)
-
-    # TODO: move to stringtools
-    def conditionally_add_terminal_newlines(self, lines):
-        terminated_lines = []
-        for line in lines:
-            if not line.endswith('\n'):
-                line = line + '\n'
-            terminated_lines.append(line)
-        terminated_lines = type(lines)(terminated_lines)
-        return terminated_lines
 
     # TODO: migrate to [menuing.]IO class
     def conditionally_clear_terminal(self):

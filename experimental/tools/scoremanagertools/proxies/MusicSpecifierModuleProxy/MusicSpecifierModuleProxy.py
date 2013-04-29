@@ -1,4 +1,5 @@
 import os
+from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.editors.MusicSpecifierEditor import MusicSpecifierEditor
 from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
 from experimental.tools.scoremanagertools.specifiers.MusicSpecifier import MusicSpecifier
@@ -114,9 +115,9 @@ class MusicSpecifierModuleProxy(ModuleProxy):
 
     def write_target_to_disk(self, target_in_memory):
         self.parse()
-        self.setup_statements[:] = self.conditionally_add_terminal_newlines(
+        self.setup_statements[:] = stringtools.add_terminal_newlines(
             self.target_in_memory.storage_module_import_statements)[:]
-        self.target_lines[:] = self.conditionally_add_terminal_newlines(
+        self.target_lines[:] = stringtools.add_terminal_newlines(
             self.prepend_target_name(
                 self.target_in_memory._get_tools_package_qualified_repr_pieces(is_indented=True)))
         ModuleProxy.write_to_disk(self)

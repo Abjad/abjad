@@ -1,4 +1,5 @@
 import os
+from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
 
 
@@ -82,8 +83,8 @@ class UserInputModuleProxy(ModuleProxy):
                 self.display('Error reading user input module {!r}.'.format(self.file_path))
 
     def write_user_input_wrapper_to_disk(self, user_input_wrapper_in_memory):
-        self.setup_statements[:] = self.conditionally_add_terminal_newlines(
+        self.setup_statements[:] = stringtools.add_terminal_newlines(
             user_input_wrapper_in_memory.user_input_module_import_statements)[:]
-        self.user_input_wrapper_lines[:] = self.conditionally_add_terminal_newlines(
+        self.user_input_wrapper_lines[:] = stringtools.add_terminal_newlines(
             user_input_wrapper_in_memory.formatted_lines)
         ModuleProxy.write_to_disk(self)
