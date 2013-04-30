@@ -1,5 +1,6 @@
 import os
 from abjad.tools import stringtools
+from experimental.tools import filesystemtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 from experimental.tools.scoremanagertools.menuing.UserInputGetter import UserInputGetter
 from experimental.tools.scoremanagertools.proxies.AssetProxy import AssetProxy
@@ -34,7 +35,8 @@ class ModuleProxy(ParsableFileProxy, AssetProxy, ScoreManagerObject):
     @property
     def grandparent_directory_path(self):
         if self.module_path:
-            return self.package_path_to_directory_path(self.grandparent_package_path)
+            return filesystemtools.package_path_to_directory_path(
+                self.grandparent_package_path, self.configuration)
 
     @property
     def grandparent_package_initializer_file_name(self):
@@ -62,7 +64,8 @@ class ModuleProxy(ParsableFileProxy, AssetProxy, ScoreManagerObject):
     @property
     def parent_directory_path(self):
         if self.module_path:
-            return self.package_path_to_directory_path(self.parent_package_path)
+            return filesystemtools.package_path_to_directory_path(
+                self.parent_package_path, self.configuration)
 
     @property
     def parent_package_initializer_file_name(self):

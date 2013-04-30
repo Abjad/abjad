@@ -122,6 +122,7 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/filesystemtools/improved_package_path_to_directory_path
+      tools/filesystemtools/package_path_to_directory_path
 
 .. only:: latex
 
@@ -131,6 +132,7 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/filesystemtools/improved_package_path_to_directory_path
+      tools/filesystemtools/package_path_to_directory_path
 
 :py:mod:`handlertools <experimental.tools.handlertools>`
 ========================================================

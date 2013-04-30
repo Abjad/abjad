@@ -1,4 +1,5 @@
 import os
+from experimental.tools import filesystemtools
 from experimental.tools.scoremanagertools.wranglers.AssetWrangler import AssetWrangler
 
 
@@ -45,8 +46,8 @@ class ImportableAssetWrangler(AssetWrangler):
         for asset_container_package_path in \
             self.list_score_internal_asset_container_package_paths(head=head):
             if self.score_internal_asset_container_package_path_infix:
-                asset_path = self.package_path_to_directory_path(
-                    asset_container_package_path)
+                asset_path = filesystemtools.package_path_to_directory_path(
+                    asset_container_package_path, self.configuration)
                 for name in os.listdir(asset_path):
                     if name[0].isalpha():
                         package_name = self.strip_file_extension_from_file_name(name)

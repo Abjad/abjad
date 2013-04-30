@@ -11,6 +11,7 @@ from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.tools import filesystemtools
 from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import \
     ScoreManagerConfiguration
 
@@ -226,43 +227,16 @@ class ScoreManagerObject(AbjadObject):
     # TODO: move to filesystemtools
     def module_path_to_file_path(self, module_path):
         if module_path is not None:
-            file_path = self.package_path_to_directory_path(module_path) + '.py'
+            file_path = filesystemtools.package_path_to_directory_path(
+                module_path, self.configuration)
+            file_path += '.py'
             return file_path
 
     # TODO: move to filesystemtools
     def package_exists(self, package_path):
         assert isinstance(package_path, str)
-        directory_path = self.package_path_to_directory_path(package_path)
+        directory_path = filesystemtools.package_path_to_directory_path(package_path, self.configuration)
         return os.path.exists(directory_path)
-
-    # TODO: move to filesystemtools
-    def package_path_to_directory_path(self, package_path):
-        if package_path is None:
-            return
-        package_path_parts = package_path.split('.')
-        if package_path_parts[0] == \
-            self.configuration.score_manager_tools_package_name:
-            directory_parts = [self.configuration.score_manager_tools_directory_path] + \
-                package_path_parts[1:]
-        elif package_path_parts[0] == \
-            self.configuration.score_external_materials_package_path:
-            directory_parts = \
-                [self.configuration.score_external_materials_directory_path] + \
-                package_path_parts[1:]
-        elif package_path_parts[0] == \
-            self.configuration.score_external_segments_package_path:
-            directory_parts = \
-                [self.configuration.score_external_segments_directory_path] + \
-                package_path_parts[1:]
-        elif package_path_parts[0] == \
-            self.configuration.score_external_specifiers_package_path:
-            directory_parts = \
-                [self.configuration.score_external_specifiers_directory_path] + \
-                package_path_parts[1:]
-        else:
-            directory_parts = [self.configuration.scores_directory_path] + package_path_parts[:]
-        directory = os.path.join(*directory_parts)
-        return directory
 
     # TODO: move to Session
     def pop_backtrack(self):

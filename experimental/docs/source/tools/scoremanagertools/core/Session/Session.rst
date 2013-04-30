@@ -201,9 +201,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.package_exists
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.package_path_to_directory_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.pop_backtrack
    :noindex:
 

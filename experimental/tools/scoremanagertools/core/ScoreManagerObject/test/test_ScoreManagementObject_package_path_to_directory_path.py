@@ -1,5 +1,7 @@
 import os
 from experimental import *
+import py
+py.test.skip('migrate to filesystemtools')
 
 score_manager_object = scoremanagertools.core.ScoreManagerObject()
 

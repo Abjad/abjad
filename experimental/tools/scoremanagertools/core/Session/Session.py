@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad.tools import stringtools
+from experimental.tools import filesystemtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import \
     ScoreManagerConfiguration
@@ -79,8 +80,8 @@ class Session(ScoreManagerObject):
 
     @property
     def current_segments_directory_path(self):
-        return self.package_path_to_directory_path(
-            self.current_segments_package_path)
+        return filesystemtools.package_path_to_directory_path(
+            self.current_segments_package_path, self.configuration)
 
     @property
     def current_segments_package_path(self):
@@ -93,8 +94,8 @@ class Session(ScoreManagerObject):
 
     @property
     def current_materials_directory_path(self):
-        return self.package_path_to_directory_path(
-            self.current_materials_package_path)
+        return filesystemtools.package_path_to_directory_path(
+            self.current_materials_package_path, self.configuration)
 
     @property
     def current_materials_package_path(self):
@@ -115,8 +116,8 @@ class Session(ScoreManagerObject):
     @property
     def current_score_path(self):
         if self.is_in_score:
-            return self.package_path_to_directory_path(
-                self.current_score_package_name)
+            return filesystemtools.package_path_to_directory_path(
+                self.current_score_package_name, self.configuration)
 
     @property
     def current_specifiers_directory_path(self):
