@@ -150,9 +150,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.cache_breadcrumbs
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.change_expr_to_menu_token
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.clean_up
    :noindex:
 
@@ -175,9 +172,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.get_one_line_menuing_summary
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.get_tag_from_directory_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.get_tools_package_qualified_repr

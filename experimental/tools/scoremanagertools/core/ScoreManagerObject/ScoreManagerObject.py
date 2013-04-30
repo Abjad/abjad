@@ -72,10 +72,6 @@ class ScoreManagerObject(AbjadObject):
             self.session.breadcrumb_cache_stack.append(self.session._breadcrumb_stack[:])
             self.session._breadcrumb_stack[:] = []
 
-    # TODO: move to Selector
-    def change_expr_to_menu_token(self, expr):
-        return (None, self.get_one_line_menuing_summary(expr), None, expr)
-
     # TODO: migrate to [menuing.]IO class
     def conditionally_clear_terminal(self):
         if self.session.is_displayable:
@@ -149,17 +145,6 @@ class ScoreManagerObject(AbjadObject):
             return expr
         else:
             return repr(expr)
-
-    # TODO: move to Selector
-    def get_tag_from_directory_path(self, directory_path, tag_name):
-        tags_file_name = os.path.join(directory_path, 'tags.py')
-        if os.path.isfile(tags_file_name):
-            tags_file = open(tags_file_name, 'r')
-            tags_file_string = tags_file.read()
-            tags_file.close()
-            exec(tags_file_string)
-            result = locals().get('tags') or OrderedDict([])
-            return result.get(tag_name)
 
     # TODO: remove or hoist to AbjadObject, as necessary
     def get_tools_package_qualified_repr(self, expr):
