@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.display
    :noindex:
 
@@ -82,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.run

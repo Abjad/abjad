@@ -90,9 +90,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.display
    :noindex:
 
@@ -154,9 +151,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.remove_items_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.run

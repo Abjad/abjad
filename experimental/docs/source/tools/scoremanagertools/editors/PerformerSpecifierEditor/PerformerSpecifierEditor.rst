@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.display
    :noindex:
 
@@ -130,9 +127,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.run

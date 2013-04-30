@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.display
    :noindex:
 
@@ -82,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.run

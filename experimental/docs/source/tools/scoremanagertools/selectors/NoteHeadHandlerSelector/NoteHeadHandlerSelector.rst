@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.display
    :noindex:
 
@@ -82,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.run

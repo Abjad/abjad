@@ -33,9 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.display
    :noindex:
 
@@ -64,9 +61,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.run

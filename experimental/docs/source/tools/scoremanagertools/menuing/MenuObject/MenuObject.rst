@@ -45,9 +45,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.display
    :noindex:
 
@@ -94,9 +91,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.show_menu_client

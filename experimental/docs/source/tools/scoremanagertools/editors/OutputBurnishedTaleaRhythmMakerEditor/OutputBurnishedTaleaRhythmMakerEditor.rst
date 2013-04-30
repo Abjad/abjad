@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.display
    :noindex:
 
@@ -130,9 +127,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.run

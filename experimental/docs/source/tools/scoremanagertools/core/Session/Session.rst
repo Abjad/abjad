@@ -159,9 +159,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.display
    :noindex:
 
@@ -205,9 +202,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.reinitialize
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.restore_breadcrumbs

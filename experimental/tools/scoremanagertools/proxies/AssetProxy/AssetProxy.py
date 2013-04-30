@@ -2,6 +2,7 @@ import abc
 import os
 import shutil
 import subprocess
+import sys
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 from experimental.tools.scoremanagertools.menuing.UserInputGetter import UserInputGetter
@@ -153,6 +154,12 @@ class AssetProxy(ScoreManagerObject):
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         proc.stdout.readline()
         return True
+
+    def remove_package_path_from_sys_modules(self, package_path):
+        '''Total hack. But works.'''
+        command = "if '{}' in sys.modules: del(sys.modules['{}'])".format(
+            package_path, package_path)
+        exec(command)
 
     def remove_versioned_asset(self, is_interactive=False):
         command = 'svn --force rm {}'.format(self.asset_path)

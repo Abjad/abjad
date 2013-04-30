@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.display
    :noindex:
 
@@ -82,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.run

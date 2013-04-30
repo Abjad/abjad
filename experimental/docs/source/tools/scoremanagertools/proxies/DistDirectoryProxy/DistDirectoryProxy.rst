@@ -78,9 +78,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.copy_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.display
    :noindex:
 

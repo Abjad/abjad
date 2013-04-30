@@ -33,9 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.display
    :noindex:
 
@@ -61,9 +58,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.run

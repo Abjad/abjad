@@ -121,6 +121,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/filesystemtools/directory_path_to_package_path
       tools/filesystemtools/improved_package_path_to_directory_path
       tools/filesystemtools/module_path_to_file_path
       tools/filesystemtools/package_exists
@@ -133,6 +134,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/filesystemtools/directory_path_to_package_path
       tools/filesystemtools/improved_package_path_to_directory_path
       tools/filesystemtools/module_path_to_file_path
       tools/filesystemtools/package_exists

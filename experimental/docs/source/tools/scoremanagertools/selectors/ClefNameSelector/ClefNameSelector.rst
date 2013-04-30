@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.display
    :noindex:
 
@@ -82,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.run

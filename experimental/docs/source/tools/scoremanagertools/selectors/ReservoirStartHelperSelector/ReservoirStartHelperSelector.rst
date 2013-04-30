@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.display
    :noindex:
 
@@ -82,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.run

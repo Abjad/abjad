@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.display
    :noindex:
 
@@ -130,9 +127,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.run

@@ -99,9 +99,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.display
    :noindex:
 
@@ -277,9 +274,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.remove_assets_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.rename_asset_interactively

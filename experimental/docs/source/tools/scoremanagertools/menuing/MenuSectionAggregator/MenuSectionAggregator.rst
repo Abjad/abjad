@@ -48,9 +48,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.display
    :noindex:
 
@@ -100,9 +97,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.show_hidden_menu_entries

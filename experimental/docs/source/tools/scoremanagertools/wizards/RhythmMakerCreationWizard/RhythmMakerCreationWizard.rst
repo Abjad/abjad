@@ -33,9 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.display
    :noindex:
 
@@ -64,9 +61,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.run

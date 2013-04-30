@@ -30,9 +30,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.display
    :noindex:
 
@@ -58,9 +55,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.where

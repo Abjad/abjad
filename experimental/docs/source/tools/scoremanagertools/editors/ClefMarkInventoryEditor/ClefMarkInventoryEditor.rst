@@ -90,9 +90,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.display
    :noindex:
 
@@ -154,9 +151,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.remove_items_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.run

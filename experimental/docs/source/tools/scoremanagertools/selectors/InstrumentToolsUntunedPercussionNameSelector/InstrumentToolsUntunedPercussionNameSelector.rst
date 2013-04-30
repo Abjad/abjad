@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.display
    :noindex:
 
@@ -82,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.run

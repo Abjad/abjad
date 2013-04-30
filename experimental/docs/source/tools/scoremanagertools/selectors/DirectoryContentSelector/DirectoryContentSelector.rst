@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.display
    :noindex:
 
@@ -82,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.run

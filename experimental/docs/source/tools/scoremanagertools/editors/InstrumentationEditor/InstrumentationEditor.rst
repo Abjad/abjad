@@ -90,9 +90,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.display
    :noindex:
 
@@ -154,9 +151,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.remove_items_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.run

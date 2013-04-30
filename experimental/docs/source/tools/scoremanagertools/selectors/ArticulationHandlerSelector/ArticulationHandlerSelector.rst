@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.display
    :noindex:
 
@@ -91,9 +88,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.run

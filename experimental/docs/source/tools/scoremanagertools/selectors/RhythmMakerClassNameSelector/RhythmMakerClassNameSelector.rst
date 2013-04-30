@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.display
    :noindex:
 
@@ -82,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.run

@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.display
    :noindex:
 
@@ -82,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.run

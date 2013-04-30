@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.display
    :noindex:
 
@@ -82,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.run

@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.display
    :noindex:
 
@@ -91,9 +88,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.run

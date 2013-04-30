@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.display
    :noindex:
 
@@ -67,9 +64,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.run

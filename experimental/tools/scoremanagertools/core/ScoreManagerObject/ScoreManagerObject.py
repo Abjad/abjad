@@ -1,14 +1,9 @@
 import inspect
 import os
 import readline
-import sys
 from abjad.tools import iotools
-from abjad.tools import markuptools
-from abjad.tools import mathtools
-from abjad.tools import pitchtools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.tools import filesystemtools
 from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import \
     ScoreManagerConfiguration
 
@@ -73,33 +68,6 @@ class ScoreManagerObject(AbjadObject):
         if self.session.backtrack():
             return
         return 'yes'.startswith(result.lower())
-
-    # TODO: move to ScoreManagerConfiguration ... or eliminate?
-    def directory_path_to_package_path(self, directory_path):
-        if directory_path is None:
-            return
-        directory_path = os.path.normpath(directory_path)
-        if directory_path.endswith('.py'):
-            directory_path = directory_path[:-3]
-        if directory_path.startswith(self.configuration.score_manager_tools_directory_path):
-            prefix_length = \
-                len(os.path.dirname(self.configuration.score_manager_tools_directory_path)) + 1
-        elif directory_path.startswith(self.configuration.score_external_materials_directory_path):
-            prefix_length = \
-                len(os.path.dirname(self.configuration.score_external_materials_directory_path)) + 1
-        elif directory_path.startswith(self.configuration.score_external_segments_directory_path):
-            prefix_length = \
-                len(os.path.dirname(self.configuration.score_external_segments_directory_path)) + 1
-        elif directory_path.startswith(self.configuration.score_external_specifiers_directory_path):
-            prefix_length = \
-                len(os.path.dirname(self.configuration.score_external_specifiers_directory_path)) + 1
-        elif directory_path.startswith(self.configuration.scores_directory_path):
-            prefix_length = len(self.configuration.scores_directory_path) + 1
-        else:
-            return
-        package_path = directory_path[prefix_length:]
-        package_path = package_path.replace(os.path.sep, '.')
-        return package_path
 
     # TODO: migrate to [menuing.]IO class
     def display(self, lines, capitalize_first_character=True):
@@ -227,12 +195,6 @@ class ScoreManagerObject(AbjadObject):
             self.display(lines)
         self.handle_raw_input('press return to continue.', include_chevron=False)
         self.conditionally_clear_terminal()
-
-    def remove_package_path_from_sys_modules(self, package_path):
-        '''Total hack. But works.'''
-        command = "if '{}' in sys.modules: del(sys.modules['{}'])".format(
-            package_path, package_path)
-        exec(command)
 
     def where(self):
         if self.session.enable_where:

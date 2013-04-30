@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.display
    :noindex:
 
@@ -82,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.run

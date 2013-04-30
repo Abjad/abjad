@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.display
    :noindex:
 
@@ -130,9 +127,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.run

@@ -42,9 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.confirm
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.display
    :noindex:
 
@@ -82,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.proceed
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.run

@@ -90,9 +90,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.directory_path_to_package_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.display
    :noindex:
 
@@ -154,9 +151,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.remove_items_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.remove_package_path_from_sys_modules
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.run
