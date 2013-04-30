@@ -78,12 +78,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.conditionally_clear_terminal
    :noindex:
 
@@ -274,9 +268,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.pop_backtrack

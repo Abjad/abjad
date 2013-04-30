@@ -87,13 +87,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.change_string_to_human_readable_string
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.conditionally_add_terminal_newlines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.conditionally_clear_terminal
@@ -199,9 +193,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.pop_backtrack

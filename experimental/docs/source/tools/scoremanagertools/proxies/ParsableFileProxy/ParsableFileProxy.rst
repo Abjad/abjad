@@ -96,13 +96,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.change_string_to_human_readable_string
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.clear
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.conditionally_add_terminal_newlines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.conditionally_clear_terminal
@@ -193,9 +187,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.pop_backtrack

@@ -42,12 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.conditionally_clear_terminal
    :noindex:
 
@@ -118,9 +112,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.pop_backtrack

@@ -42,12 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.conditionally_clear_terminal
    :noindex:
 
@@ -112,9 +106,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.pop_backtrack

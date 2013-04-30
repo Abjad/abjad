@@ -135,12 +135,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.conditionally_clear_terminal
    :noindex:
 
@@ -256,9 +250,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.pop_backtrack

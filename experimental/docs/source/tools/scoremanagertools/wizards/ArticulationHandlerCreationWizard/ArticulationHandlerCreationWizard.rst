@@ -42,12 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.conditionally_clear_terminal
    :noindex:
 
@@ -112,9 +106,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.pop_backtrack

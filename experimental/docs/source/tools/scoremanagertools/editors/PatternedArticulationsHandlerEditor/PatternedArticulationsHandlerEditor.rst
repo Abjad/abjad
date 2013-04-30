@@ -78,13 +78,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.change_string_to_human_readable_string
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.conditionally_add_terminal_newlines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.conditionally_clear_terminal
@@ -178,9 +172,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.PatternedArticulationsHandlerEditor.pop_backtrack

@@ -87,13 +87,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.change_string_to_human_readable_string
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.conditionally_add_terminal_newlines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.conditionally_clear_terminal
@@ -199,9 +193,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.pop_backtrack

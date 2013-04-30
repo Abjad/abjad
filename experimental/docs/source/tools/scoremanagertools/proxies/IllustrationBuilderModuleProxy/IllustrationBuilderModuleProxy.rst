@@ -135,13 +135,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.change_string_to_human_readable_string
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.clear
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.conditionally_add_terminal_newlines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.conditionally_clear_terminal
@@ -238,9 +232,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.parse
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.pop_backtrack

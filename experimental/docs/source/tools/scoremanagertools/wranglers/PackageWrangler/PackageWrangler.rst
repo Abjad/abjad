@@ -84,12 +84,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.conditionally_clear_terminal
    :noindex:
 
@@ -295,9 +289,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.pop_backtrack

@@ -42,12 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.conditionally_clear_terminal
    :noindex:
 
@@ -115,9 +109,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.pop_backtrack

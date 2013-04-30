@@ -339,13 +339,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.change_string_to_human_readable_string
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.clear_user_input_wrapper
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.conditionally_add_terminal_newlines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.conditionally_clear_terminal
@@ -514,9 +508,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.pop_backtrack

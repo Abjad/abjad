@@ -39,12 +39,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.conditionally_clear_terminal
    :noindex:
 
@@ -106,9 +100,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.pop_backtrack

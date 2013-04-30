@@ -84,12 +84,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.conditionally_clear_terminal
    :noindex:
 
@@ -181,9 +175,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.pop_backtrack

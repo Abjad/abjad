@@ -78,13 +78,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.change_string_to_human_readable_string
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.conditionally_add_terminal_newlines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.conditionally_clear_terminal
@@ -178,9 +172,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.pop_backtrack

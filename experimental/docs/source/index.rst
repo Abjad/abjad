@@ -113,6 +113,25 @@ Unstable packages (load manually)
       tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
       tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
+:py:mod:`filesystemtools <experimental.tools.filesystemtools>`
+==============================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/filesystemtools/package_path_to_directory_path
+
+.. only:: latex
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/filesystemtools/package_path_to_directory_path
+
 :py:mod:`handlertools <experimental.tools.handlertools>`
 ========================================================
 

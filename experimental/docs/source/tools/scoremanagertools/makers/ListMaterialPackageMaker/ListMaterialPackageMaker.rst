@@ -339,13 +339,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.change_string_to_human_readable_string
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.clear_user_input_wrapper
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.conditionally_add_terminal_newlines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.conditionally_clear_terminal
@@ -514,9 +508,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.pop_backtrack

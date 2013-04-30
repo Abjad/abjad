@@ -78,12 +78,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.conditionally_clear_terminal
    :noindex:
 
@@ -166,9 +160,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ExgDirectoryProxy.ExgDirectoryProxy.ExgDirectoryProxy.pop_backtrack

@@ -42,12 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.conditionally_clear_terminal
    :noindex:
 
@@ -112,9 +106,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.pop_backtrack

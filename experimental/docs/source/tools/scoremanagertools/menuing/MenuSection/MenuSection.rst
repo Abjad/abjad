@@ -132,12 +132,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.conditionally_clear_terminal
    :noindex:
 
@@ -229,9 +223,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.pop_backtrack

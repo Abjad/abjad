@@ -78,13 +78,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.change_string_to_human_readable_string
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.conditionally_add_terminal_newlines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.conditionally_clear_terminal
@@ -178,9 +172,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.pop_backtrack

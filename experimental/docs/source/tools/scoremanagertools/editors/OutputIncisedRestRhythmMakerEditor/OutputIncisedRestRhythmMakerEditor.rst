@@ -78,13 +78,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.change_string_to_human_readable_string
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.conditionally_add_terminal_newlines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.conditionally_clear_terminal
@@ -178,9 +172,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.pop_backtrack

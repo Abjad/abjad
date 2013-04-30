@@ -48,12 +48,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.conditionally_clear_terminal
    :noindex:
 
@@ -124,9 +118,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.pop_backtrack

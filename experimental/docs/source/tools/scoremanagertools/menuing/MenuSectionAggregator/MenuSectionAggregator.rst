@@ -57,12 +57,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.conditionally_clear_terminal
    :noindex:
 
@@ -148,9 +142,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.pop_backtrack

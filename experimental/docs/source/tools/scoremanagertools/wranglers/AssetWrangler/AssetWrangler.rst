@@ -78,12 +78,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.conditionally_clear_terminal
    :noindex:
 
@@ -274,9 +268,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.pop_backtrack

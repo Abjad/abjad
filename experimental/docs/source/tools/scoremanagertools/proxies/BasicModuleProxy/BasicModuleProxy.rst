@@ -126,13 +126,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.change_string_to_human_readable_string
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.clear
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.conditionally_add_terminal_newlines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.conditionally_clear_terminal
@@ -226,9 +220,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.parse
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.pop_backtrack

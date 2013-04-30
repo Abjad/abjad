@@ -48,12 +48,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.change_string_to_human_readable_string
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.conditionally_add_terminal_newlines
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.conditionally_clear_terminal
    :noindex:
 
@@ -124,9 +118,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.pop_backtrack

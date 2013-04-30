@@ -78,13 +78,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.change_string_to_human_readable_string
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.conditionally_add_terminal_newlines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.conditionally_clear_terminal
@@ -178,9 +172,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.pop_backtrack

@@ -339,13 +339,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.change_string_to_human_readable_string
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.clear_user_input_wrapper
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.conditionally_add_terminal_newlines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.conditionally_clear_terminal
@@ -514,9 +508,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.pop_backtrack

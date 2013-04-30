@@ -126,13 +126,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.change_string_to_human_readable_string
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.clear
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.conditionally_add_terminal_newlines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.conditionally_clear_terminal
@@ -223,9 +217,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.package_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.pluralize_string
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.pop_backtrack
